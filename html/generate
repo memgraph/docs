@@ -1,0 +1,53 @@
+#!/bin/bash
+
+print_help () {
+    echo "Usage: $0 [-s|--standalone]"
+    echo "    -s|--stanalone -> Put pandoc HTML wrapper around the content."
+    exit 1
+}
+
+version="v0.11.0"
+script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+input_dir=${script_dir}/../user_technical/${version}
+output_dir=${script_dir}/docs/${version}
+standalone=0
+
+while [[ $# > 0 ]]; do
+    key="$1"
+    case $key in
+        -s|--standalone)
+        standalone=1
+        shift
+        ;;
+        -h|--help|help)
+        print_help
+        shift
+        ;;
+    esac
+done
+
+# TODO: add support for the title with spaces
+append_standalone () {
+    (( $standalone )) && echo "metadata.yaml --metadata title='$1' --include-after-body=footer.html" || echo ""
+}
+
+rm -rf ${output_dir}
+mkdir -p ${output_dir}
+
+cp -R ${script_dir}/libs ${output_dir}/libs
+
+# For each version there should be a block of code that generates appropriate
+# html files. For each version a new block of code has to be added but it's ok
+# for now. The goal is to learn the pattern.
+if [[ "${version}" == "v0.11.0" ]]; then
+    # TODO: DRY
+    pandoc ${input_dir}/README.md --from markdown --to html --output ${output_dir}/index.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Memgraph")
+    pandoc ${input_dir}/concepts.md --from markdown --to html --output ${output_dir}/concepts.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Concepts")
+    pandoc ${input_dir}/drivers.md --from markdown --to html --output ${output_dir}/drivers.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Drivers")
+    pandoc ${input_dir}/examples.md --from markdown --to html --output ${output_dir}/examples.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Examples")
+    pandoc ${input_dir}/import-tools.md --from markdown --to html --output ${output_dir}/import-tools.html --filter ${script_dir}/html_links_filter.py $(append_standalone "ImportTools")
+    pandoc ${input_dir}/open-cypher.md --from markdown --to html --output ${output_dir}/open-cypher.html --filter ${script_dir}/html_links_filter.py $(append_standalone "openCypher")
+    pandoc ${input_dir}/quick-start.md --from markdown --to html --output ${output_dir}/quick-start.html --filter ${script_dir}/html_links_filter.py $(append_standalone "QuickStart")
+    pandoc ${input_dir}/storage.md --from markdown --to html --output ${output_dir}/storage.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Storage")
+    pandoc ${input_dir}/upcoming-features.md --from markdown --to html --output ${output_dir}/upcoming-features.html --filter ${script_dir}/html_links_filter.py $(append_standalone "UpcomingFeatures")
+fi

@@ -1,0 +1,6 @@
+---
+header-includes:
+- <link rel="stylesheet" href="libs/codemirror/codemirror.css" />
+- <link rel="stylesheet" href="libs/codemirror/theme/neo.css" />
+- <link rel="stylesheet" href="libs/pandoc/pandoc.css" />
+...
