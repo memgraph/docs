@@ -5,7 +5,8 @@ $(document).ready(function () {
         javascript: 'text/javascript',
         csh: 'text/x-csharp',
         opencypher: 'application/x-cypher-query',
-        bash: 'text/x-sh'
+        bash: 'text/x-sh',
+        csv: 'text/x-sh'
     };
 
     // Retrieve a CodeMirror Instance via jQuery.
