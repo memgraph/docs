@@ -1,6 +1,42 @@
 #!/bin/bash
 
-pandoc --verbose \
-    example.md \
-    -o example.pdf --from markdown --template documentation-template.latex \
-    --listings --toc
+# TODO (buda): verison as a parameter
+version="v0.11.0"
+
+# TODO (buda): parameter for building the exmample
+# pandoc --verbose \
+#     example.md \
+#     -o example.pdf --from markdown --template documentation-template.latex \
+#     --listings --toc
+
+# TODO: handle depth 4 in the titles ####
+
+# TODO: setup font
+
+# TODO: auto-generate header.md
+
+script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+content_dir="${script_dir}/../../user_technical/${version}"
+template_dir=${script_dir}
+output_dir="${script_dir}/../../pdf"
+
+mkdir -p ${output_dir}
+cd ${script_dir}
+
+pandoc -o "${output_dir}/Memgraph User Technical Documantation ${version}.pdf" \
+    --verbose \
+    --from markdown \
+    --template documentation-template.latex \
+    --latex-engine=xelatex \
+    --listings \
+    ${script_dir}/header.md \
+    ${content_dir}/README.md \
+    ${content_dir}/quick-start.md \
+    ${content_dir}/examples.md \
+    ${content_dir}/drivers.md \
+    ${content_dir}/storage.md \
+    ${content_dir}/open-cypher.md \
+    ${content_dir}/import-tools.md \
+    ${content_dir}/concepts.md \
+    ${content_dir}/upcoming-features.md \
+    -f markdown+escaped_line_breaks
