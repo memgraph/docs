@@ -6,7 +6,7 @@ print_help () {
     exit 1
 }
 
-version="v0.11.0"
+version="v0.12.0"
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 input_dir=${script_dir}/../user_technical/${version}
 output_dir=${script_dir}/docs/${version}
@@ -39,7 +39,7 @@ cp -R ${script_dir}/libs ${output_dir}/libs
 # For each version there should be a block of code that generates appropriate
 # html files. For each version a new block of code has to be added but it's ok
 # for now. The goal is to learn the pattern.
-if [[ "${version}" == "v0.11.0" ]]; then
+if [[ "${version}" == "v0.12.0" ]]; then
     # TODO: DRY
     pandoc ${script_dir}/../user_technical/CHANGELOG.md --from markdown --to html --output ${output_dir}/changelog.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Changelog")
     pandoc ${input_dir}/concepts.md --from markdown --to html --output ${output_dir}/concepts.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Concepts")
