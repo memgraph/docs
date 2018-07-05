@@ -42,6 +42,7 @@ cp -R ${script_dir}/libs ${output_dir}/libs
 if [[ "${version}" == "v0.12.0" ]]; then
     # TODO: DRY
     pandoc ${script_dir}/../user_technical/CHANGELOG.md --from markdown --to html --output ${output_dir}/changelog.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Changelog")
+    pandoc ${script_dir}/../user_technical/faq.md --from markdown --to html --output ${output_dir}/faq.html --filter ${script_dir}/html_links_filter.py $(append_standalone "FAQ")
     pandoc ${input_dir}/concepts.md --from markdown --to html --output ${output_dir}/concepts.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Concepts")
     pandoc ${input_dir}/drivers.md --from markdown --to html --output ${output_dir}/drivers.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Drivers")
     pandoc ${input_dir}/examples.md --from markdown --to html --output ${output_dir}/examples.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Examples")
