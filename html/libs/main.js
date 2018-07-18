@@ -25,7 +25,21 @@ $(document).ready(function () {
         return $target.get(0).CodeMirror;
     };
 
-    $('code').each(function(index, code) {
+    var memgraphOverlay = {
+        token: function (stream) {
+            if (stream.match("bfs")) {
+                return "memgraph-keyword";
+            }
+            if (stream.match("wShortest")) {
+                return "memgraph-keyword";
+            } else {
+                stream.next();
+                return null;
+            }
+        }
+    };
+
+    $('code').each(function (index, code) {
         var parentClasses = ($(this).parent().attr('class') || '').split(' ');
         var classes = ($(this).attr('class') || '').split(' ');
         var lang = classes.concat(parentClasses).find(function (className) {
@@ -38,13 +52,13 @@ $(document).ready(function () {
             $(this).html($('<div><button id="' + copyButtonId + '">COPY</button><textarea id="' + textAreaId + '">' + $(this).text() + '</textarea></div>'));
             CodeMirror.fromTextArea($('#' + textAreaId).get(0), {
                 mode: supportedLanguages[lang],
-                theme: 'neo',
+                theme: 'memgraph',
                 lineWrapping: true,
                 readOnly: true
-            });
+            }).addOverlay(memgraphOverlay);
 
             new ClipboardJS('#' + copyButtonId, {
-                text: function() {
+                text: function () {
                     var code = getCodeMirrorJQuery('#' + textAreaId + ' ~ .CodeMirror').getDoc().getValue() || '';
                     var lines = code.split('\\\n').map(function (line) {
                         return line.trim();
