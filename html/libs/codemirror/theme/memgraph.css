@@ -1,6 +1,6 @@
 /* Loosely based on the Night theme */
 
-.cm-s-memgraph.CodeMirror { background: #332f30; color: #ABA9AC; }
+.cm-s-memgraph.CodeMirror { background: #464143; color: #ABA9AC; }
 .cm-s-memgraph div.CodeMirror-selected { background: #413d3e; }
 .cm-s-memgraph .CodeMirror-line::selection, .cm-s-memgraph .CodeMirror-line > span::selection, .cm-s-memgraph .CodeMirror-line > span > span::selection { background: rgba(68, 68, 119, .99); }
 .cm-s-memgraph .CodeMirror-line::-moz-selection, .cm-s-memgraph .CodeMirror-line > span::-moz-selection, .cm-s-memgraph .CodeMirror-line > span > span::-moz-selection { background: rgba(68, 68, 119, .99); }
