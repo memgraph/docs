@@ -1,7 +1,7 @@
 /* Loosely based on the Night theme */
 
-.cm-s-memgraph.CodeMirror { background: #302C2D; color: #ABA9AC; }
-.cm-s-memgraph div.CodeMirror-selected { background: #4A4A4A; }
+.cm-s-memgraph.CodeMirror { background: #332f30; color: #ABA9AC; }
+.cm-s-memgraph div.CodeMirror-selected { background: #413d3e; }
 .cm-s-memgraph .CodeMirror-line::selection, .cm-s-memgraph .CodeMirror-line > span::selection, .cm-s-memgraph .CodeMirror-line > span > span::selection { background: rgba(68, 68, 119, .99); }
 .cm-s-memgraph .CodeMirror-line::-moz-selection, .cm-s-memgraph .CodeMirror-line > span::-moz-selection, .cm-s-memgraph .CodeMirror-line > span > span::-moz-selection { background: rgba(68, 68, 119, .99); }
 .cm-s-memgraph .CodeMirror-gutters { background: #4A4A4A; border-right: 1px solid #191516; }
@@ -10,18 +10,19 @@
 .cm-s-memgraph .CodeMirror-linenumber { color: #f8f8f8; }
 .cm-s-memgraph .CodeMirror-cursor { border-left: 1px solid white; }
 
-.cm-s-memgraph span.cm-comment { color: #720096; }
-.cm-s-memgraph span.cm-atom, .cm-s-memgraph span.cm-variable { color: #02A396; }
+.cm-s-memgraph span.cm-comment { color: #E6E6E6; }
+.cm-s-memgraph span.cm-atom, .cm-s-memgraph span.cm-variable { color: #17AB47; }
 .cm-s-memgraph span.cm-number, .cm-s-memgraph span.cm-attribute { color: #ffd500; }
 .cm-s-memgraph span.cm-keyword { color: #09C5E4; }
+.cm-s-memgraph span.cm-def { color: #09b6d5; }
 .cm-s-memgraph span.cm-memgraph-keyword { color: #FF0092; }
 .cm-s-memgraph span.cm-string { color: #FC994D; }
 .cm-s-memgraph span.cm-meta { color: #318DE5; }
 .cm-s-memgraph span.cm-variable-2, .cm-s-memgraph span.cm-tag { color: #99b2ff; }
-.cm-s-memgraph span.cm-variable-3, .cm-s-memgraph span.cm-def, .cm-s-memgraph span.cm-type { color: white; }
+.cm-s-memgraph span.cm-variable-3, .cm-s-memgraph span.cm-type { color: white; }
 .cm-s-memgraph span.cm-bracket { color: #8da6ce; }
 .cm-s-memgraph span.cm-builtin, .cm-s-memgraph span.cm-special { color: #ff9e59; }
-.cm-s-memgraph span.cm-link { color: #17AB47; }
+.cm-s-memgraph span.cm-link { color: #00CCBB; }
 .cm-s-memgraph span.cm-error { color: #DD2222; }
 
 .cm-s-memgraph .CodeMirror-activeline-background { background: #413d3e; }

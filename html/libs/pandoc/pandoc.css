@@ -340,5 +340,6 @@ button[id|="copy"] {
 div.sourceCode,
 pre.opencypher {
   padding: 5px;
-  background: #302C2D;
+  border-radius: 6px;
+  background: #332f30;
 }
