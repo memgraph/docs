@@ -13,7 +13,7 @@
 .cm-s-memgraph span.cm-comment { color: #720096; }
 .cm-s-memgraph span.cm-atom, .cm-s-memgraph span.cm-variable { color: #02A396; }
 .cm-s-memgraph span.cm-number, .cm-s-memgraph span.cm-attribute { color: #ffd500; }
-.cm-s-memgraph span.cm-keyword { color: #2D7FCF; }
+.cm-s-memgraph span.cm-keyword { color: #09C5E4; }
 .cm-s-memgraph span.cm-memgraph-keyword { color: #FF0092; }
 .cm-s-memgraph span.cm-string { color: #FC994D; }
 .cm-s-memgraph span.cm-meta { color: #318DE5; }
@@ -24,5 +24,5 @@
 .cm-s-memgraph span.cm-link { color: #17AB47; }
 .cm-s-memgraph span.cm-error { color: #DD2222; }
 
-.cm-s-memgraph .CodeMirror-activeline-background { background: #231F20; }
+.cm-s-memgraph .CodeMirror-activeline-background { background: #413d3e; }
 .cm-s-memgraph .CodeMirror-matchingbracket { outline:1px solid grey; color:white !important; }
