@@ -58,5 +58,5 @@ echo $output_dir
 # Add yml paths for web docs
 # TODO: make it optional
 for filename in $output_dir/*.html; do
-    ed -s $filename <<< $'1i\n---\npermalink: /docs/:path\n---\n.\nwq'
+    ed -s $filename <<< $'1i\n---\npermalink: /docs/:path/\n---\n.\nwq'
 done
