@@ -52,3 +52,11 @@ if [[ "${version}" == "v0.12.0" ]]; then
     pandoc ${input_dir}/storage.md --from markdown --to html --output ${output_dir}/storage.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Storage")
     pandoc ${input_dir}/upcoming-features.md --from markdown --to html --output ${output_dir}/upcoming-features.html --filter ${script_dir}/html_links_filter.py $(append_standalone "UpcomingFeatures")
 fi
+
+echo $output_dir
+
+# Add yml paths for web docs
+# TODO: make it optional
+for filename in $output_dir/*.html; do
+    ed -s $filename <<< $'1i\n---\npermalink: /docs/:path\n---\n.\nwq'
+done
