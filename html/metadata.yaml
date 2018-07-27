@@ -1,6 +1,6 @@
 ---
 header-includes:
-- <link rel="stylesheet" href="libs/codemirror/codemirror.css" />
-- <link rel="stylesheet" href="libs/codemirror/theme/memgraph.css" />
-- <link rel="stylesheet" href="libs/pandoc/pandoc.css" />
+- <link rel="stylesheet" href="../libs/codemirror/codemirror.css" />
+- <link rel="stylesheet" href="../libs/codemirror/theme/memgraph.css" />
+- <link rel="stylesheet" href="../libs/pandoc/pandoc.css" />
 ...

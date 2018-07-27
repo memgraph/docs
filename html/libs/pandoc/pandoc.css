@@ -327,8 +327,9 @@ table td {
   }
 }
 
-.CodeMirror {
-  height: auto;
+.CodeMirror,
+.CodeMirror-scroll {
+  height: auto !important;
   width: 100%;
 }
 

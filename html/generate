@@ -34,7 +34,7 @@ append_standalone () {
 rm -rf ${output_dir}
 mkdir -p ${output_dir}
 
-cp -R ${script_dir}/libs ${output_dir}/libs
+cp -R ${script_dir}/libs ${script_dir}/docs/
 
 # For each version there should be a block of code that generates appropriate
 # html files. For each version a new block of code has to be added but it's ok
