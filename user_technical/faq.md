@@ -17,7 +17,7 @@
 
 6. ##### Is Memgraph highly available? 
 
-High Availability (HA) based on the RAFT protocol will be available in Q4 of 1018
+High Availability (HA) based on the RAFT protocol will be available in Q4 of 2018.
 
 7. ##### Does Memgraph offer a cloud graph database as a service? 
    We currently don’t have plans to offer Memgraph on our infrastructure as a service. But, Memgraph can be easily deployed on any major cloud provider such as AWS, Azure or Google Cloud.
