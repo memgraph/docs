@@ -327,8 +327,9 @@ table td {
   }
 }
 
-.CodeMirror {
-  height: auto;
+.CodeMirror,
+.CodeMirror-scroll {
+  height: auto !important;
   width: 100%;
 }
 
@@ -340,5 +341,6 @@ button[id|="copy"] {
 div.sourceCode,
 pre.opencypher {
   padding: 5px;
-  background: #302C2D;
+  border-radius: 6px;
+  background: #464143;
 }
