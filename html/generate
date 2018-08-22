@@ -6,7 +6,7 @@ print_help () {
     exit 1
 }
 
-version="v0.12.0"
+version="v1.0.0"
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 input_dir=${script_dir}/../user_technical/${version}
 output_dir=${script_dir}/docs/${version}
@@ -53,10 +53,49 @@ if [[ "${version}" == "v0.12.0" ]]; then
     pandoc ${input_dir}/upcoming-features.md --from markdown --to html --output ${output_dir}/upcoming-features.html --filter ${script_dir}/html_links_filter.py $(append_standalone "UpcomingFeatures")
 fi
 
+if [[ "${version}" == "v1.0.0" ]]; then
+    mkdir -p ${output_dir}/concepts
+    mkdir -p ${output_dir}/how-to_guides
+    mkdir -p ${output_dir}/reference_guide
+    mkdir -p ${output_dir}/tutorials
+
+    pandoc ${script_dir}/../user_technical/CHANGELOG.md --from markdown --to html --output ${output_dir}/changelog.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Changelog")
+    pandoc ${script_dir}/../user_technical/faq.md --from markdown --to html --output ${output_dir}/faq.html --filter ${script_dir}/html_links_filter.py $(append_standalone "FAQ")
+
+    pandoc ${input_dir}/quick_start.md --from markdown --to html --output ${output_dir}/quick_start.html --filter ${script_dir}/html_links_filter.py $(append_standalone "QuickStart")
+    pandoc ${input_dir}/upcoming_features.md --from markdown --to html --output ${output_dir}/upcoming_features.html --filter ${script_dir}/html_links_filter.py $(append_standalone "UpcomingFeatures")
+
+    pandoc ${input_dir}/concepts/concepts_overview.md --from markdown --to html --output ${output_dir}/concepts/concepts_overview.html --filter ${script_dir}/html_links_filter.py $(append_standalone "ConceptsOverview")
+    pandoc ${input_dir}/concepts/graph_algorithms.md --from markdown --to html --output ${output_dir}/concepts/graph_algorithms.html --filter ${script_dir}/html_links_filter.py $(append_standalone "GraphAlgorithms")
+    pandoc ${input_dir}/concepts/indexing.md --from markdown --to html --output ${output_dir}/concepts/indexing.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Indexing")
+    pandoc ${input_dir}/concepts/storage.md --from markdown --to html --output ${output_dir}/concepts/storage.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Storage")
+
+    pandoc ${input_dir}/how-to_guides/how-to_guides_overview.md --from markdown --to html --output ${output_dir}/how-to_guides/how-to_guides_overview.html --filter ${script_dir}/html_links_filter.py $(append_standalone "HowToGuidesOverview")
+    pandoc ${input_dir}/how-to_guides/import_tools.md --from markdown --to html --output ${output_dir}/how-to_guides/import_tools.html --filter ${script_dir}/html_links_filter.py $(append_standalone "ImportTools")
+    pandoc ${input_dir}/how-to_guides/integrations.md --from markdown --to html --output ${output_dir}/how-to_guides/integrations.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Integrations")
+    pandoc ${input_dir}/how-to_guides/programmatic_querying.md --from markdown --to html --output ${output_dir}/how-to_guides/programmatic_querying.html --filter ${script_dir}/html_links_filter.py $(append_standalone "ProgrammaticQuerying")
+
+    pandoc ${input_dir}/reference_guide/differences.md --from markdown --to html --output ${output_dir}/reference_guide/differences.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Differences")
+    pandoc ${input_dir}/reference_guide/dynamic_graph_partitioner.md --from markdown --to html --output ${output_dir}/reference_guide/dynamic_graph_partitioner.html --filter ${script_dir}/html_links_filter.py $(append_standalone "DynamicGraphPartitioner")
+    pandoc ${input_dir}/reference_guide/graph_algorithms.md --from markdown --to html --output ${output_dir}/reference_guide/graph_algorithms.html --filter ${script_dir}/html_links_filter.py $(append_standalone "GraphAlgorithmsReference")
+    pandoc ${input_dir}/reference_guide/indexing.md --from markdown --to html --output ${output_dir}/reference_guide/indexing.html --filter ${script_dir}/html_links_filter.py $(append_standalone "IndexingReference")
+    pandoc ${input_dir}/reference_guide/other_features.md --from markdown --to html --output ${output_dir}/reference_guide/other_features.html --filter ${script_dir}/html_links_filter.py $(append_standalone "OtherFeatures")
+    pandoc ${input_dir}/reference_guide/reading_and_writing.md --from markdown --to html --output ${output_dir}/reference_guide/reading_and_writing.html --filter ${script_dir}/html_links_filter.py $(append_standalone "ReadingAndWriting")
+    pandoc ${input_dir}/reference_guide/reading_existing_data.md --from markdown --to html --output ${output_dir}/reference_guide/reading_existing_data.html --filter ${script_dir}/html_links_filter.py $(append_standalone "ReadingExistingData")
+    pandoc ${input_dir}/reference_guide/reference_overview.md --from markdown --to html --output ${output_dir}/reference_guide/reference_overview.html --filter ${script_dir}/html_links_filter.py $(append_standalone "ReferenceOverview")
+    pandoc ${input_dir}/reference_guide/streaming.md --from markdown --to html --output ${output_dir}/reference_guide/streaming.html --filter ${script_dir}/html_links_filter.py $(append_standalone "StreamingReference")
+    pandoc ${input_dir}/reference_guide/writing_new_data.md --from markdown --to html --output ${output_dir}/reference_guide/writing_new_data.html --filter ${script_dir}/html_links_filter.py $(append_standalone "WritingNewData")
+
+    pandoc ${input_dir}/tutorials/tutorials_overview.md --from markdown --to html --output ${output_dir}/tutorials/tutorials_overview.html --filter ${script_dir}/html_links_filter.py $(append_standalone "TutorialsOverview")
+    pandoc ${input_dir}/tutorials/analyzing_TED_talks.md --from markdown --to html --output ${output_dir}/tutorials/analyzing_TED_talks.html --filter ${script_dir}/html_links_filter.py $(append_standalone "AnalyzingTedTalks")
+    pandoc ${input_dir}/tutorials/exploring_the_european_road_network.md --from markdown --to html --output ${output_dir}/tutorials/exploring_the_european_road_network.html --filter ${script_dir}/html_links_filter.py $(append_standalone "ExploringTheEuropeanRoadNetwork")
+    pandoc ${input_dir}/tutorials/graphing_the_premier_league.md --from markdown --to html --output ${output_dir}/tutorials/graphing_the_premier_league.html --filter ${script_dir}/html_links_filter.py $(append_standalone "GraphingThePremierLeague")
+fi
+
 echo $output_dir
 
 # Add yml paths for web docs
 # TODO: make it optional
 for filename in $output_dir/*.html; do
-    ed -s $filename <<< $'1i\n---\npermalink: /docs/:path/\n---\n.\nwq'
+    sed -s $filename <<< $'1i\n---\npermalink: /docs/:path/\n---\n.\nwq'
 done
