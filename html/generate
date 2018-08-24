@@ -72,7 +72,7 @@ if [[ "${version}" == "v1.0.0" ]]; then
 
     pandoc ${input_dir}/how-to_guides/how-to_guides_overview.md --from markdown --to html --output ${output_dir}/how-to_guides/how-to_guides_overview.html --filter ${script_dir}/html_links_filter.py $(append_standalone "HowToGuidesOverview")
     pandoc ${input_dir}/how-to_guides/import_tools.md --from markdown --to html --output ${output_dir}/how-to_guides/import_tools.html --filter ${script_dir}/html_links_filter.py $(append_standalone "ImportTools")
-    pandoc ${input_dir}/how-to_guides/integrations.md --from markdown --to html --output ${output_dir}/how-to_guides/integrations.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Integrations")
+    pandoc ${input_dir}/how-to_guides/how_to_ingest_data_using_kafka.md --from markdown --to html --output ${output_dir}/how-to_guides/how_to_ingest_data_using_kafka.html --filter ${script_dir}/html_links_filter.py $(append_standalone "HowToKafka")
     pandoc ${input_dir}/how-to_guides/programmatic_querying.md --from markdown --to html --output ${output_dir}/how-to_guides/programmatic_querying.html --filter ${script_dir}/html_links_filter.py $(append_standalone "ProgrammaticQuerying")
 
     pandoc ${input_dir}/reference_guide/differences.md --from markdown --to html --output ${output_dir}/reference_guide/differences.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Differences")
