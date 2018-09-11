@@ -10,12 +10,12 @@ not yet supported features of the language are listed.
 
 Our reference guide currently consists of the following articles:
 
-  * [Reading Existing Data](reading_existing_data.md)
-  * [Writing New Data](writing_new_data.md)
-  * [Reading and Writing](reading_and_writing.md)
+  * [Reading Existing Data](reading-existing-data.md)
+  * [Writing New Data](writing-new-data.md)
+  * [Reading and Writing](reading-and-writing.md)
   * [Indexing](indexing.md)
-  * [Graph Algorithms](graph_algorithms.md)
-  * [Graph Streams](graph_streams.md)
-  * [Dynamic Graph Partitioner](dynamic_graph_partitioner.md)
-  * [Other Features](other_features.md)
+  * [Graph Algorithms](graph-algorithms.md)
+  * [Graph Streams](graph-streams.md)
+  * [Dynamic Graph Partitioner](dynamic-graph-partitioner.md)
+  * [Other Features](other-features.md)
   * [Differences](differences.md)

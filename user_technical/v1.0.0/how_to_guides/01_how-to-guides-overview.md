@@ -6,6 +6,6 @@ guide on how to use certain Memgraph feature or solve a particular problem.
 
 So far we have covered the following topics:
 
-  * [Import Tools](import_tools.md)
-  * [Programmatic Querying](programmatic_querying.md)
-  * [How to Ingest Data Using Kafka](how_to_ingest_data_using_kafka.md)
+  * [Import Tools](import-tools.md)
+  * [Programmatic Querying](programmatic-querying.md)
+  * [How to Ingest Data Using Kafka](how-to-ingest-data-using-kafka.md)

@@ -7,5 +7,5 @@ are recommended for advanced users and other graph database enthusiasts.
 So far we have covered the following topics:
 
   * [Data Storage](storage.md)
-  * [Graph Algorithms](graph_algorithms.md)
+  * [Graph Algorithms](graph-algorithms.md)
   * [Indexing](indexing.md)

@@ -55,41 +55,41 @@ fi
 
 if [[ "${version}" == "v1.0.0" ]]; then
     mkdir -p ${output_dir}/concepts
-    mkdir -p ${output_dir}/how-to_guides
+    mkdir -p ${output_dir}/how_to_guides
     mkdir -p ${output_dir}/reference_guide
     mkdir -p ${output_dir}/tutorials
 
     pandoc ${script_dir}/../user_technical/CHANGELOG.md --from markdown --to html --output ${output_dir}/changelog.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Changelog")
     pandoc ${script_dir}/../user_technical/faq.md --from markdown --to html --output ${output_dir}/faq.html --filter ${script_dir}/html_links_filter.py $(append_standalone "FAQ")
 
-    pandoc ${input_dir}/quick_start.md --from markdown --to html --output ${output_dir}/quick_start.html --filter ${script_dir}/html_links_filter.py $(append_standalone "QuickStart")
-    pandoc ${input_dir}/upcoming_features.md --from markdown --to html --output ${output_dir}/upcoming_features.html --filter ${script_dir}/html_links_filter.py $(append_standalone "UpcomingFeatures")
+    pandoc ${input_dir}/quick-start.md --from markdown --to html --output ${output_dir}/quick-start.html --filter ${script_dir}/html_links_filter.py $(append_standalone "QuickStart")
+    pandoc ${input_dir}/upcoming-features.md --from markdown --to html --output ${output_dir}/upcoming-features.html --filter ${script_dir}/html_links_filter.py $(append_standalone "UpcomingFeatures")
 
-    pandoc ${input_dir}/concepts/concepts_overview.md --from markdown --to html --output ${output_dir}/concepts/concepts_overview.html --filter ${script_dir}/html_links_filter.py $(append_standalone "ConceptsOverview")
-    pandoc ${input_dir}/concepts/graph_algorithms.md --from markdown --to html --output ${output_dir}/concepts/graph_algorithms.html --filter ${script_dir}/html_links_filter.py $(append_standalone "GraphAlgorithms")
-    pandoc ${input_dir}/concepts/indexing.md --from markdown --to html --output ${output_dir}/concepts/indexing.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Indexing")
-    pandoc ${input_dir}/concepts/storage.md --from markdown --to html --output ${output_dir}/concepts/storage.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Storage")
+    pandoc ${input_dir}/concepts/01_concepts-overview.md --from markdown --to html --output ${output_dir}/concepts/concepts-overview.html --filter ${script_dir}/html_links_filter.py $(append_standalone "ConceptsOverview")
+    pandoc ${input_dir}/concepts/02_storage.md --from markdown --to html --output ${output_dir}/concepts/storage.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Storage")
+    pandoc ${input_dir}/concepts/03_graph-algorithms.md --from markdown --to html --output ${output_dir}/concepts/graph-algorithms.html --filter ${script_dir}/html_links_filter.py $(append_standalone "GraphAlgorithms")
+    pandoc ${input_dir}/concepts/04_indexing.md --from markdown --to html --output ${output_dir}/concepts/indexing.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Indexing")
 
-    pandoc ${input_dir}/how-to_guides/how-to_guides_overview.md --from markdown --to html --output ${output_dir}/how-to_guides/how-to_guides_overview.html --filter ${script_dir}/html_links_filter.py $(append_standalone "HowToGuidesOverview")
-    pandoc ${input_dir}/how-to_guides/import_tools.md --from markdown --to html --output ${output_dir}/how-to_guides/import_tools.html --filter ${script_dir}/html_links_filter.py $(append_standalone "ImportTools")
-    pandoc ${input_dir}/how-to_guides/how_to_ingest_data_using_kafka.md --from markdown --to html --output ${output_dir}/how-to_guides/how_to_ingest_data_using_kafka.html --filter ${script_dir}/html_links_filter.py $(append_standalone "HowToKafka")
-    pandoc ${input_dir}/how-to_guides/programmatic_querying.md --from markdown --to html --output ${output_dir}/how-to_guides/programmatic_querying.html --filter ${script_dir}/html_links_filter.py $(append_standalone "ProgrammaticQuerying")
+    pandoc ${input_dir}/how_to_guides/01_how-to-guides-overview.md --from markdown --to html --output ${output_dir}/how_to_guides/how-to-guides-overview.html --filter ${script_dir}/html_links_filter.py $(append_standalone "HowToGuidesOverview")
+    pandoc ${input_dir}/how_to_guides/02_import-tools.md --from markdown --to html --output ${output_dir}/how_to_guides/import-tools.html --filter ${script_dir}/html_links_filter.py $(append_standalone "ImportTools")
+    pandoc ${input_dir}/how_to_guides/03_programmatic-querying.md --from markdown --to html --output ${output_dir}/how_to_guides/programmatic-querying.html --filter ${script_dir}/html_links_filter.py $(append_standalone "ProgrammaticQuerying")
+    pandoc ${input_dir}/how_to_guides/04_how-to-ingest-data-using-kafka.md --from markdown --to html --output ${output_dir}/how_to_guides/how-to-ingest-data-using-kafka.html --filter ${script_dir}/html_links_filter.py $(append_standalone "HowToKafka")
 
-    pandoc ${input_dir}/reference_guide/differences.md --from markdown --to html --output ${output_dir}/reference_guide/differences.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Differences")
-    pandoc ${input_dir}/reference_guide/dynamic_graph_partitioner.md --from markdown --to html --output ${output_dir}/reference_guide/dynamic_graph_partitioner.html --filter ${script_dir}/html_links_filter.py $(append_standalone "DynamicGraphPartitioner")
-    pandoc ${input_dir}/reference_guide/graph_algorithms.md --from markdown --to html --output ${output_dir}/reference_guide/graph_algorithms.html --filter ${script_dir}/html_links_filter.py $(append_standalone "GraphAlgorithmsReference")
-    pandoc ${input_dir}/reference_guide/indexing.md --from markdown --to html --output ${output_dir}/reference_guide/indexing.html --filter ${script_dir}/html_links_filter.py $(append_standalone "IndexingReference")
-    pandoc ${input_dir}/reference_guide/other_features.md --from markdown --to html --output ${output_dir}/reference_guide/other_features.html --filter ${script_dir}/html_links_filter.py $(append_standalone "OtherFeatures")
-    pandoc ${input_dir}/reference_guide/reading_and_writing.md --from markdown --to html --output ${output_dir}/reference_guide/reading_and_writing.html --filter ${script_dir}/html_links_filter.py $(append_standalone "ReadingAndWriting")
-    pandoc ${input_dir}/reference_guide/reading_existing_data.md --from markdown --to html --output ${output_dir}/reference_guide/reading_existing_data.html --filter ${script_dir}/html_links_filter.py $(append_standalone "ReadingExistingData")
-    pandoc ${input_dir}/reference_guide/reference_overview.md --from markdown --to html --output ${output_dir}/reference_guide/reference_overview.html --filter ${script_dir}/html_links_filter.py $(append_standalone "ReferenceOverview")
-    pandoc ${input_dir}/reference_guide/graph_streams.md --from markdown --to html --output ${output_dir}/reference_guide/graph_streams.html --filter ${script_dir}/html_links_filter.py $(append_standalone "GraphStreamsReference")
-    pandoc ${input_dir}/reference_guide/writing_new_data.md --from markdown --to html --output ${output_dir}/reference_guide/writing_new_data.html --filter ${script_dir}/html_links_filter.py $(append_standalone "WritingNewData")
+    pandoc ${input_dir}/reference_guide/01_reference-overview.md --from markdown --to html --output ${output_dir}/reference_guide/reference-overview.html --filter ${script_dir}/html_links_filter.py $(append_standalone "ReferenceOverview")
+    pandoc ${input_dir}/reference_guide/02_reading-existing-data.md --from markdown --to html --output ${output_dir}/reference_guide/reading-existing-data.html --filter ${script_dir}/html_links_filter.py $(append_standalone "ReadingExistingData")
+    pandoc ${input_dir}/reference_guide/03_writing-new-data.md --from markdown --to html --output ${output_dir}/reference_guide/writing-new-data.html --filter ${script_dir}/html_links_filter.py $(append_standalone "WritingNewData")
+    pandoc ${input_dir}/reference_guide/04_reading-and-writing.md --from markdown --to html --output ${output_dir}/reference_guide/reading-and-writing.html --filter ${script_dir}/html_links_filter.py $(append_standalone "ReadingAndWriting")
+    pandoc ${input_dir}/reference_guide/05_indexing.md --from markdown --to html --output ${output_dir}/reference_guide/indexing.html --filter ${script_dir}/html_links_filter.py $(append_standalone "IndexingReference")
+    pandoc ${input_dir}/reference_guide/06_graph-algorithms.md --from markdown --to html --output ${output_dir}/reference_guide/graph_algorithms.html --filter ${script_dir}/html_links_filter.py $(append_standalone "GraphAlgorithmsReference")
+    pandoc ${input_dir}/reference_guide/07_graph-streams.md --from markdown --to html --output ${output_dir}/reference_guide/graph-streams.html --filter ${script_dir}/html_links_filter.py $(append_standalone "GraphStreamsReference")
+    pandoc ${input_dir}/reference_guide/08_dynamic-graph-partitioner.md --from markdown --to html --output ${output_dir}/reference_guide/dynamic-graph-partitioner.html --filter ${script_dir}/html_links_filter.py $(append_standalone "DynamicGraphPartitioner")
+    pandoc ${input_dir}/reference_guide/09_other-features.md --from markdown --to html --output ${output_dir}/reference_guide/other-features.html --filter ${script_dir}/html_links_filter.py $(append_standalone "OtherFeatures")
+    pandoc ${input_dir}/reference_guide/10_differences.md --from markdown --to html --output ${output_dir}/reference_guide/differences.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Differences")
 
-    pandoc ${input_dir}/tutorials/tutorials_overview.md --from markdown --to html --output ${output_dir}/tutorials/tutorials_overview.html --filter ${script_dir}/html_links_filter.py $(append_standalone "TutorialsOverview")
-    pandoc ${input_dir}/tutorials/analyzing_TED_talks.md --from markdown --to html --output ${output_dir}/tutorials/analyzing_TED_talks.html --filter ${script_dir}/html_links_filter.py $(append_standalone "AnalyzingTedTalks")
-    pandoc ${input_dir}/tutorials/exploring_the_european_road_network.md --from markdown --to html --output ${output_dir}/tutorials/exploring_the_european_road_network.html --filter ${script_dir}/html_links_filter.py $(append_standalone "ExploringTheEuropeanRoadNetwork")
-    pandoc ${input_dir}/tutorials/graphing_the_premier_league.md --from markdown --to html --output ${output_dir}/tutorials/graphing_the_premier_league.html --filter ${script_dir}/html_links_filter.py $(append_standalone "GraphingThePremierLeague")
+    pandoc ${input_dir}/tutorials/01_tutorials-overview.md --from markdown --to html --output ${output_dir}/tutorials/tutorials-overview.html --filter ${script_dir}/html_links_filter.py $(append_standalone "TutorialsOverview")
+    pandoc ${input_dir}/tutorials/02_analyzing-TED-talks.md --from markdown --to html --output ${output_dir}/tutorials/analyzing-TED-talks.html --filter ${script_dir}/html_links_filter.py $(append_standalone "AnalyzingTedTalks")
+    pandoc ${input_dir}/tutorials/03_graphing-the-premier-league.md --from markdown --to html --output ${output_dir}/tutorials/graphing-the-premier-league.html --filter ${script_dir}/html_links_filter.py $(append_standalone "GraphingThePremierLeague")
+    pandoc ${input_dir}/tutorials/04_exploring-the-european-road-network.md --from markdown --to html --output ${output_dir}/tutorials/exploring-the-european-road-network.html --filter ${script_dir}/html_links_filter.py $(append_standalone "ExploringTheEuropeanRoadNetwork")
 fi
 
 echo $output_dir
