@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Main entrypoint for generating documentation.
+
+script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# Generate output folders.
+mkdir -p ${script_dir}/output/pdf
+mkdir -p ${script_dir}/output/html
+
+# Setup HTML environment.
+cd ${script_dir}/html
+if [ ! -d "${script_dir}/html/ve3" ]; then
+    virtualenv -p python3 ve3 || exit 1
+    source ve3/bin/activate
+    pip install -r ${script_dir}/html/requirements.txt || exit 1
+    deactivate
+fi

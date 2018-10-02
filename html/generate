@@ -3,14 +3,14 @@
 print_help () {
     echo "Usage: $0 [-s|--standalone]"
     echo "    -s|--stanalone -> Put pandoc HTML wrapper around the content."
+    echo "    -v|--version -> Put the output files under defined folder name."
     exit 1
 }
 
-version="v0.12.0"
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-input_dir=${script_dir}/../user_technical/${version}
-output_dir=${script_dir}/docs/${version}
+input_dir=${script_dir}/../user_technical
 standalone=0
+version="v0.1.0"
 
 while [[ $# > 0 ]]; do
     key="$1"
@@ -19,12 +19,19 @@ while [[ $# > 0 ]]; do
         standalone=1
         shift
         ;;
+        -v|--version)
+        shift
+        version=$1
+        shift
+        ;;
         -h|--help|help)
         print_help
         shift
         ;;
     esac
 done
+
+output_dir=${script_dir}/../output/html/${version}
 
 # TODO: add support for the title with spaces
 append_standalone () {
@@ -36,27 +43,15 @@ mkdir -p ${output_dir}
 
 cp -R ${script_dir}/libs ${script_dir}/docs/
 
-# For each version there should be a block of code that generates appropriate
-# html files. For each version a new block of code has to be added but it's ok
-# for now. The goal is to learn the pattern.
-if [[ "${version}" == "v0.12.0" ]]; then
-    # TODO: DRY
-    pandoc ${script_dir}/../user_technical/CHANGELOG.md --from markdown --to html --output ${output_dir}/changelog.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Changelog")
-    pandoc ${script_dir}/../user_technical/faq.md --from markdown --to html --output ${output_dir}/faq.html --filter ${script_dir}/html_links_filter.py $(append_standalone "FAQ")
-    pandoc ${input_dir}/concepts.md --from markdown --to html --output ${output_dir}/concepts.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Concepts")
-    pandoc ${input_dir}/drivers.md --from markdown --to html --output ${output_dir}/drivers.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Drivers")
-    pandoc ${input_dir}/examples.md --from markdown --to html --output ${output_dir}/examples.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Examples")
-    pandoc ${input_dir}/import-tools.md --from markdown --to html --output ${output_dir}/import-tools.html --filter ${script_dir}/html_links_filter.py $(append_standalone "ImportTools")
-    pandoc ${input_dir}/open-cypher.md --from markdown --to html --output ${output_dir}/open-cypher.html --filter ${script_dir}/html_links_filter.py $(append_standalone "openCypher")
-    pandoc ${input_dir}/quick-start.md --from markdown --to html --output ${output_dir}/quick-start.html --filter ${script_dir}/html_links_filter.py $(append_standalone "QuickStart")
-    pandoc ${input_dir}/storage.md --from markdown --to html --output ${output_dir}/storage.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Storage")
-    pandoc ${input_dir}/upcoming-features.md --from markdown --to html --output ${output_dir}/upcoming-features.html --filter ${script_dir}/html_links_filter.py $(append_standalone "UpcomingFeatures")
-fi
+pandoc ${input_dir}/CHANGELOG.md --from markdown --to html --output ${output_dir}/changelog.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Changelog")
+pandoc ${input_dir}/faq.md --from markdown --to html --output ${output_dir}/faq.html --filter ${script_dir}/html_links_filter.py $(append_standalone "FAQ")
+pandoc ${input_dir}/concepts.md --from markdown --to html --output ${output_dir}/concepts.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Concepts")
+pandoc ${input_dir}/drivers.md --from markdown --to html --output ${output_dir}/drivers.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Drivers")
+pandoc ${input_dir}/examples.md --from markdown --to html --output ${output_dir}/examples.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Examples")
+pandoc ${input_dir}/import-tools.md --from markdown --to html --output ${output_dir}/import-tools.html --filter ${script_dir}/html_links_filter.py $(append_standalone "ImportTools")
+pandoc ${input_dir}/open-cypher.md --from markdown --to html --output ${output_dir}/open-cypher.html --filter ${script_dir}/html_links_filter.py $(append_standalone "openCypher")
+pandoc ${input_dir}/quick-start.md --from markdown --to html --output ${output_dir}/quick-start.html --filter ${script_dir}/html_links_filter.py $(append_standalone "QuickStart")
+pandoc ${input_dir}/storage.md --from markdown --to html --output ${output_dir}/storage.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Storage")
+pandoc ${input_dir}/upcoming-features.md --from markdown --to html --output ${output_dir}/upcoming-features.html --filter ${script_dir}/html_links_filter.py $(append_standalone "UpcomingFeatures")
 
 echo $output_dir
-
-# Add yml paths for web docs
-# TODO: make it optional
-for filename in $output_dir/*.html; do
-    ed -s $filename <<< $'1i\n---\npermalink: /docs/:path/\n---\n.\nwq'
-done

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+output_dir="${script_dir}/../../pdf"
+
+mkdir -p ${output_dir}
+cd ${script_dir}
+
+pandoc -o "${output_dir}/Memgraph Graph Streams.pdf" \
+    --include-in-header=fontoptions.tex \
+    --verbose \
+    --from markdown \
+    --template documentation-template.latex \
+    --latex-engine=xelatex \
+    --listings \
+    ${script_dir}/graph_streams.md \
+    -f markdown+escaped_line_breaks
