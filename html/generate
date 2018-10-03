@@ -36,14 +36,12 @@ output_dir=${script_dir}/../output/html/${version}
 # TODO: add support for the title with spaces
 append_standalone () {
     (( $standalone )) && \
-    echo "--metadata=title:'$1' --metadata=link_suffix:'' --metadata=link_prefix:'.html' --include-after-body=footer.html" || \
+    echo "--metadata=title:'$1' --metadata=link_suffix:'' --metadata=link_prefix:'.html'" || \
     echo "--metadata=link_suffix:'/docs/${version}/' --metadata=link_prefix:''"
 }
 
 rm -rf ${output_dir}
 mkdir -p ${output_dir}
-
-cp -R ${script_dir}/libs ${script_dir}/docs/
 
 cd ${script_dir}
 source ve3/bin/activate || exit 1
