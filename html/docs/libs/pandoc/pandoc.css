@@ -231,6 +231,10 @@ table {
   border-collapse: collapse;
 }
 
+table th:last-child {
+  min-width: 35rem;
+}
+
 table th {
   padding: .2em 1em;
   background-color: #eee;
