@@ -62,4 +62,4 @@ pandoc ${input_dir}/upcoming-features.md --from markdown --to html --output ${ou
 
 deactivate
 
-echo $output_dir
+echo "Output dir: $output_dir"
