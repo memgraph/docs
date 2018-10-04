@@ -1,12 +1,54 @@
-## Bolt Drivers
+## How to Query Memgraph Programmatically?
 
-### Python Driver Example
+### Supported Languages
+
+If users wish to query Memgraph programmatically, they can do so using the
+[Bolt protocol](https://boltprotocol.org). Bolt was designed for efficient
+communication with graph databases and Memgraph supports
+[Version 1](https://boltprotocol.org/v1) of the protocol. Bolt protocol drivers
+for some popular programming languages are listed below:
+
+  * [Java](https://github.com/neo4j/neo4j-java-driver)
+  * [Python](https://github.com/neo4j/neo4j-python-driver)
+  * [JavaScript](https://github.com/neo4j/neo4j-javascript-driver)
+  * [C#](https://github.com/neo4j/neo4j-dotnet-driver)
+  * [Ruby](https://github.com/neo4jrb/neo4j)
+  * [Haskell](https://github.com/zmactep/hasbolt)
+  * [PHP](https://github.com/graphaware/neo4j-bolt-php)
+
+### Secure Sockets Layer (SSL)
+
+Secure connections are supported and enabled by default. The server initially
+ships with a self-signed testing certificate. The certificate can be replaced
+by editing the following parameters in `/etc/memgraph/memgraph.conf`:
+```
+--cert-file=/path/to/ssl/certificate.pem
+--key-file=/path/to/ssl/privatekey.pem
+```
+To disable SSL support and use insecure connections to the database you should
+set both parameters (`--cert-file` and `--key-file`) to empty values.
+
+### Examples
+
+In this article we have included some basic usage examples for the following
+supported languages:
+
+  * [Python](#python-example)
+  * [Java](#java-example)
+  * [JavaScript](#javascript-example)
+  * [C#](#c-sharp-example)
+
+Examples for the languages listed above are equivalent.
+
+#### Python Example
 
 Neo4j officially supports Python for interacting with an openCypher and Bolt
 compliant database. For details consult the
 [official documentation](http://neo4j.com/docs/api/python-driver) and the
-[GitHub project](https://github.com/neo4j/neo4j-python-driver).  Following is
-a basic usage example:
+[GitHub project](https://github.com/neo4j/neo4j-python-driver).
+
+The code snippet below outlines a basic usage example which connects to the
+database and executes a couple of elementary queries.
 
 ```python
 from neo4j.v1 import GraphDatabase, basic_auth
@@ -43,13 +85,13 @@ session.close()
 driver.close()
 ```
 
-### Java Driver Example
+#### Java Example
 
-The details about Java driver can be found
-[on GitHub](https://github.com/neo4j/neo4j-java-driver).
+The details about Java driver can be found on
+[GitHub](https://github.com/neo4j/neo4j-java-driver).
 
-The example below is equivalent to Python example. Major difference is that
-`Config` object has to be created before the driver construction.
+The code snippet below outlines a basic usage example which connects to the
+database and executes a couple of elementary queries.
 
 ```java
 import org.neo4j.driver.v1.*;
@@ -84,12 +126,10 @@ public class JavaQuickStart {
 }
 ```
 
-### Javascript Driver Example
+#### JavaScript Example
 
-The details about Javascript driver can be found
-[on GitHub](https://github.com/neo4j/neo4j-javascript-driver).
-
-The Javascript example below is equivalent to Python and Java examples.
+The details about Javascript driver can be found on
+[GitHub](https://github.com/neo4j/neo4j-javascript-driver).
 
 Here is an example related to `Node.js`. Memgraph doesn't have integrated
 support for `WebSocket` which is required during the execution in any web
@@ -99,6 +139,9 @@ Requests from web browsers are wrapped into `WebSocket` messages, and a proxy
 is needed to handle the overhead. The proxy has to be configured to point out
 to Memgraph's Bolt port and web browser driver has to send requests to the
 proxy port.
+
+The code snippet below outlines a basic usage example which connects to the
+database and executes a couple of elementary queries.
 
 ```javascript
 var neo4j = require('neo4j-driver').v1;
@@ -135,11 +178,13 @@ run_query("MATCH (n) DETACH DELETE n", function (result) {
 });
 ```
 
-### C# Driver Example
+#### C# Example {#c-sharp-example}
 
-The C# driver is hosted
-[on GitHub](https://github.com/neo4j/neo4j-dotnet-driver). The example below
-performs the same work as all of the previous examples.
+The details about C# driver can be found on
+[GitHub](https://github.com/neo4j/neo4j-dotnet-driver).
+
+The code snipped below outlines a basic usage example which connects to the
+database and executes a couple of elementary queries.
 
 ```csh
 using System;
@@ -166,26 +211,3 @@ public class Basic {
   }
 }
 ```
-
-### Secure Sockets Layer (SSL)
-
-Secure connections are supported and enabled by default. The server initially
-ships with a self-signed testing certificate. The certificate can be replaced
-by editing the following parameters in `/etc/memgraph/memgraph.conf`:
-```
---cert-file=/path/to/ssl/certificate.pem
---key-file=/path/to/ssl/privatekey.pem
-```
-To disable SSL support and use insecure connections to the database you should
-set both parameters (`--cert-file` and `--key-file`) to empty values.
-
-### Limitations
-
-Memgraph is currently in early stage, and has a number of limitations we plan
-to remove in future versions.
-
-#### Multiple Users & Authorization
-
-Memgraph is currently single-user only. There is no way to control user
-privileges. The default user has read and write privileges over the whole
-database.

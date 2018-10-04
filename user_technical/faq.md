@@ -34,7 +34,7 @@ Any programming language. For all popular programming languages there is an open
 
 9. ##### Do you support Tinkerpop API stacks?
 
-Memgraph doesn’t support the Tinkerpop API stack because Tinkerpop is highly dependent on Java stack. Memgraph is implemented in C/C++/Assembly with openCypher and the  Bolt protocol as an interface. We have considered a Tinkerpop integration, but at the moment it’s not one of our highest priorities.
+Memgraph doesn’t support the Tinkerpop API stack because Tinkerpop is highly dependent on Java stack. Memgraph is implemented in C/C++/Assembly with openCypher and the  Bolt protocol as an interface. We have considered a Tinkerpop integration, but at the moment it’s not one of our highest priorities.
 
 10. ##### How do you interface with the system?
 

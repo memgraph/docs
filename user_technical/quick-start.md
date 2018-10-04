@@ -1,38 +1,130 @@
 ## Quick Start
 
-This chapter outlines installing and running Memgraph, as well as executing
-basic queries against the database.
+This article briefly outlines the basic steps necessary to install and run
+Memgraph. It also gives a brief glimpse into the world of OpenCypher and
+outlines some information on programmatic querying of Memgraph. The users
+should also make sure to read and fully understand the implications of
+[telemetry](#telemetry) at the very end of the article.
 
 ### Installation
 
-The Memgraph binary is offered as:
+With regards to their own preference, users can download the Memgraph binary
+as:
 
-  * Debian package for Debian 9 (Stretch);
-  * RPM package for CentOS 7 and
-  * Docker image.
+  * [a Debian package for Debian 9 (Stretch)](#debian-installation)
+  * [a RPM package for CentOS 7](#RPM-installation)
+  * [a Docker image](#docker-installation)
 
-After downloading the binary, proceed to the corresponding section below.
+After downloading the binary, users are advised to proceed to the corresponding
+section below which outlines the installation details.
 
-NOTE: Currently, newer versions of Memgraph are not backward compatible with
-older versions. This is mainly noticeable by unsupported loading of storage
-snapshots between different versions.
+It is important to note that newer versions of Memgraph are currently not
+backward compatible with older versions. This is mainly noticeable by
+being unable to load storage snapshots between different versions.
 
-#### Docker Installation
+#### Debian Package Installation {#debian-installation}
 
-Before proceeding with the installation, please install the Docker engine on
-the system. Instructions on how to install Docker can be found on the
-[official Docker website](https://docs.docker.com/engine/installation).
-Memgraph Docker image was built with Docker version `1.12` and should be
-compatible with all later versions.
+After downloading Memgraph as a Debian package, install it by running the
+following:
 
-After installing and running Docker, download the Memgraph Docker image and
-import it with the following command.
+```bash
+dpkg -i /path/to/memgraph_<version>.deb
+```
+
+On successful installation, Memgraph should already be running. To
+make sure that is true, user can start it explicitly with the command:
+
+
+```bash
+systemctl start memgraph
+```
+
+To verify that Memgraph is running, user can run the following command:
+
+```bash
+journalctl --unit memgraph
+```
+
+If successful, the user should receive an output similar to the following:
+
+```bash
+Nov 23 13:40:13 hostname memgraph[14654]: Starting 8 BoltS workers
+Nov 23 13:40:13 hostname memgraph[14654]: BoltS server is fully armed and operational
+Nov 23 13:40:13 hostname memgraph[14654]: BoltS listening on 0.0.0.0 at 7687
+```
+
+At this point, Memgraph is ready to process queries. To try out some elementary
+queries, the user should proceed to [querying](#querying) section of this
+article.
+
+To shut down the Memgraph server, issue the following command:
+
+```bash
+systemctl stop memgraph
+```
+
+Memgraph configuration is available in `/etc/memgraph/memgraph.conf`. If the
+configuration is altered, Memgraph needs to be restarted.
+
+#### RPM Package Installation {#RPM-installation}
+
+After downloading the RPM package of Memgraph, the user can install it by
+issuing the following command:
+
+```bash
+rpm -U /path/to/memgraph-<version>.rpm
+```
+
+After the successful installation, Memgraph can be started as a service. To do
+so, the user can type the following command:
+
+```bash
+systemctl start memgraph
+```
+
+To verify that Memgraph is running, the user should run the following command:
+
+```bash
+journalctl --unit memgraph
+```
+
+If successful, the user should receive an output similar to the following:
+
+```bash
+Nov 23 13:40:13 hostname memgraph[14654]: Starting 8 BoltS workers
+Nov 23 13:40:13 hostname memgraph[14654]: BoltS server is fully armed and operational
+Nov 23 13:40:13 hostname memgraph[14654]: BoltS listening on 0.0.0.0 at 7687
+```
+
+At this point, Memgraph is ready to process queries. To try out some elementary
+queries, the user should proceed to [querying](#querying) section of this
+article.
+
+To shut down the Memgraph server, issue the following command:
+
+```bash
+systemctl stop memgraph
+```
+
+Memgraph configuration is available in `/etc/memgraph/memgraph.conf`. If the
+configuration is altered, Memgraph needs to be restarted.
+
+#### Docker Installation {#docker-installation}
+
+Before proceeding with the installation, the user should install the Docker
+engine on their system. Instructions on how to install Docker can be found on
+the [official Docker website](https://docs.docker.com/engine/installation).
+Memgraph's Docker image was built with Docker version `1.12` and should be
+compatible with all newer versions.
+
+After successful Docker installation, the user should install the Memgraph
+Docker image and import it using the following command:
 
 ```bash
 docker load -i /path/to/memgraph-<version>-docker.tar.gz
 ```
 
-Memgraph is then started with another docker command.
+To actually start Memgraph, the user should issue the following command:
 
 ```bash
 docker run -p 7687:7687 \
@@ -40,7 +132,7 @@ docker run -p 7687:7687 \
   memgraph
 ```
 
-On success, expect to see output similar to the following.
+If successful, the user should be greeted with the following message:
 
 ```bash
 Starting 8 workers
@@ -48,38 +140,31 @@ Server is fully armed and operational
 Listening on 0.0.0.0 at 7687
 ```
 
-Memgraph is now ready to process queries, you may now proceed to
-[querying](#querying). To stop Memgraph, press `Ctrl-c`.
+At this point, Memgraph is ready to process queries. To try out some elementary
+queries, the user should proceed to [querying](#querying) section of this
+article.
+
+To stop Memgraph, press `Ctrl-c`.
+
+#### Note about named volumes
 
 Memgraph configuration is available in Docker's named volume `mg_etc`. On
 Linux systems it should be in
 `/var/lib/docker/volumes/mg_etc/_data/memgraph.conf`. After changing the
 configuration, Memgraph needs to be restarted.
 
-##### Note about named volumes
-
-In case named volumes are reused between different versions of Memgraph, a user
-has to be careful because Docker will overwrite a folder within the container
-with existing data from the host machine. In the case where a new file is
-introduced, or two versions of Memgraph are not compatible, the new feature
-won't work or Memgraph won't be able to work correctly. The easiest way to
-solve the issue is to use another named volume or to remove existing named
-volume from the host with the following command.
+If it happens that the named volumes are reused between different Memgraph
+versions, Docker will overwrite a folder within the container with existing
+data from the host machine. If a new file is introduced, or two versions of
+Memgraph are not compatible, some features might not work or Memgraph might
+not be able to work correctly. We strongly advise the users to use another
+named volume for a different Memgraph version or to remove the existing volume
+from the host with the following command:
 
 ```bash
 docker volume rm <volume_name>
 ```
-
-Named Docker volumes used in this documentation are: `mg_etc`, `mg_log` and
-`mg_lib`. E.g. to avoid any configuration issues between different Memgraph
-versions, `docker volume rm mg_etc` can be executed before running a new
-container.
-
-Another valid option is to try to migrate your existing volume to a
-newer version of Memgraph. In case of any issues, send an email to
-`tech@memgraph.com`.
-
-##### Note for OS X/macOS Users
+#### Note for OS X/macOS Users {#OSX-note}
 
 Although unlikely, some OS X/macOS users might experience minor difficulties
 after following the Docker installation instructions. Instead of running on
@@ -110,101 +195,19 @@ The command above should yield the sought IP. If that IP does not correspond to
 `localhost`, it should be used instead of `localhost` when firing up the
 `neo4j-client` in the [querying](#querying) section.
 
-#### Debian Package Installation
-
-After downloading Memgraph as a Debian package, install it by running the
-following.
-
-```bash
-dpkg -i /path/to/memgraph_<version>.deb
-```
-
-If the installation was successful, Memgraph should already be running. To
-make sure that is true, start it explicitly with the command:
-
-```bash
-systemctl start memgraph
-```
-
-To verify that Memgraph is running, run the following command.
-
-```bash
-journalctl --unit memgraph
-```
-
-It is expected to see something like the following output.
-
-```bash
-Nov 23 13:40:13 hostname memgraph[14654]: Starting 8 BoltS workers
-Nov 23 13:40:13 hostname memgraph[14654]: BoltS server is fully armed and operational
-Nov 23 13:40:13 hostname memgraph[14654]: BoltS listening on 0.0.0.0 at 7687
-```
-
-Memgraph is now ready to process queries, you may now proceed to
-[querying](#querying). To shutdown Memgraph server, issue the following
-command.
-
-```bash
-systemctl stop memgraph
-```
-
-Memgraph configuration is available in `/etc/memgraph/memgraph.conf`. After
-changing the configuration, Memgraph needs to be restarted.
-
-#### RPM Package Installation
-
-If you downloaded the RPM package of Memgraph, you can install it by running
-the following command.
-
-```bash
-rpm -U /path/to/memgraph-<version>.rpm
-```
-
-After the successful installation, Memgraph can be started as a service. To do
-so, type the following command.
-
-```bash
-systemctl start memgraph
-```
-
-To verify that Memgraph is running, run the following command.
-
-```bash
-journalctl --unit memgraph
-```
-
-It is expected to see something like the following output.
-
-```bash
-Nov 23 13:40:13 hostname memgraph[14654]: Starting 8 BoltS workers
-Nov 23 13:40:13 hostname memgraph[14654]: BoltS server is fully armed and operational
-Nov 23 13:40:13 hostname memgraph[14654]: BoltS listening on 0.0.0.0 at 7687
-```
-
-Memgraph is now ready to process queries, you may now proceed to
-[querying](#querying). To shutdown Memgraph server, issue the following
-command.
-
-```bash
-systemctl stop memgraph
-```
-
-Memgraph configuration is available in `/etc/memgraph/memgraph.conf`. After
-changing the configuration, Memgraph needs to be restarted.
-
-### Querying
+### Querying {#querying}
 
 Memgraph supports the openCypher query language which has been developed by
-[Neo4j](http://neo4j.com). The language is currently going through a
-vendor-independent standardization process. It's a declarative language
-developed specifically for interaction with graph databases.
+[Neo4j](http://neo4j.com). It is a declarative language developed specifically
+for interaction with graph databases which is currently going through a
+vendor-independent standardization process.
 
-The easiest way to execute openCypher queries against Memgraph, is using
+The easiest way to execute openCypher queries against Memgraph is by using
 Neo4j's command-line tool. The command-line `neo4j-client` can be installed as
 described [on the official website](https://neo4j-client.net).
 
-After installing `neo4j-client`, connect to the running Memgraph instance by
-issuing the following shell command.
+After installing `neo4j-client`, the user can connect to the running Memgraph
+instance by issuing the following shell command:
 
 ```bash
 neo4j-client -u "" -p ""  localhost 7687
@@ -253,9 +256,9 @@ for some popular programming languages are listed below:
   * [PHP](https://github.com/graphaware/neo4j-bolt-php)
 
 We have included some basic usage examples for some of the supported languages
-in the [Drivers](drivers.md) section.
+in the article about [programmatic querying](how_to_guides/query-memgraph-programmatically.md).
 
-### Telemetry
+### Telemetry {#telemetry}
 
 Telemetry is an automated process by which some useful data is collected at
 a remote point. At Memgraph, we use telemetry for the sole purpose of improving
@@ -272,10 +275,16 @@ as a command-line argument when running the executable.
 
 ### Where to Next
 
-To learn more about the openCypher language, visit [openCypher Query
-Language](open-cypher.md) chapter in this document. For real-world examples
-of how to use Memgraph visit [Examples](examples.md) chapter. Details on
-what can be stored in Memgraph are in [Data Storage](storage.md) chapter.
+To learn more about the openCypher language, the user should visit our
+[reference guide](reference_guide/reference-overview.md) article.
+For real-world examples of how to use Memgraph, we strongly suggest reading
+through the following articles:
+
+  * [Analyzing TED Talks](tutorials/analyzing-TED-talks.md)
+  * [Graphing the Premier League](tutorials/graphing-the-premier-league.md)
+  * [Exploring the European Road Network](tutorials/exploring-the-european-road-network.md)
+
+Details on what can be stored in Memgraph can be found in the article about
+[Data Storage](concepts/storage.md).
 
 We *welcome and encourage* your feedback!
-

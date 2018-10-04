@@ -10,7 +10,7 @@ print_help () {
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 input_dir=${script_dir}/../user_technical
 standalone=0
-version="v0.1.0"
+version="v0.13.0"
 
 while [[ $# > 0 ]]; do
     key="$1"
@@ -33,11 +33,20 @@ done
 
 output_dir=${script_dir}/../output/html/${version}
 
-# TODO: add support for the title with spaces
-append_standalone () {
+add_link_info () {
     (( $standalone )) && \
-    echo "--metadata=title:'$1' --metadata=link_suffix:'' --metadata=link_prefix:'.html'" || \
+    echo "--metadata=link_suffix:'' --metadata=link_prefix:'.html'" || \
     echo "--metadata=link_suffix:'/docs/${version}/' --metadata=link_prefix:''"
+}
+
+dump_html () {
+    local src_filename=$1
+    local dst_filename=$2
+    pandoc ${input_dir}/${src_filename} \
+        --from markdown --to html \
+        --output ${output_dir}/${dst_filename} \
+        --filter ${script_dir}/html_links_filter.py \
+        $(add_link_info) || exit 1
 }
 
 rm -rf ${output_dir}
@@ -46,18 +55,31 @@ mkdir -p ${output_dir}
 cd ${script_dir}
 source ve3/bin/activate || exit 1
 
-pandoc ${input_dir}/README.md --from markdown --to html --output ${output_dir}/index.html --filter ${script_dir}/html_links_filter.py $(append_standalone "TechnicalDocumentation") || exit 1
-pandoc ${input_dir}/CHANGELOG.md --from markdown --to html --output ${output_dir}/changelog.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Changelog") || exit 1
-pandoc ${input_dir}/faq.md --from markdown --to html --output ${output_dir}/faq.html --filter ${script_dir}/html_links_filter.py $(append_standalone "FAQ") || exit 1
-pandoc ${input_dir}/concepts.md --from markdown --to html --output ${output_dir}/concepts.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Concepts") || exit 1
-pandoc ${input_dir}/drivers.md --from markdown --to html --output ${output_dir}/drivers.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Drivers") || exit 1
-pandoc ${input_dir}/examples.md --from markdown --to html --output ${output_dir}/examples.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Examples") || exit 1
-pandoc ${input_dir}/import-tools.md --from markdown --to html --output ${output_dir}/import-tools.html --filter ${script_dir}/html_links_filter.py $(append_standalone "ImportTools") || exit 1
-pandoc ${input_dir}/open-cypher.md --from markdown --to html --output ${output_dir}/open-cypher.html --filter ${script_dir}/html_links_filter.py $(append_standalone "openCypher") || exit 1
-pandoc ${input_dir}/quick-start.md --from markdown --to html --output ${output_dir}/quick-start.html --filter ${script_dir}/html_links_filter.py $(append_standalone "QuickStart") || exit 1
-pandoc ${input_dir}/storage.md --from markdown --to html --output ${output_dir}/storage.html --filter ${script_dir}/html_links_filter.py $(append_standalone "Storage") || exit 1
-pandoc ${input_dir}/upcoming-features.md --from markdown --to html --output ${output_dir}/upcoming-features.html --filter ${script_dir}/html_links_filter.py $(append_standalone "UpcomingFeatures") || exit 1
+mkdir -p ${output_dir}/concepts
+mkdir -p ${output_dir}/how_to_guides
+mkdir -p ${output_dir}/reference_guide
+mkdir -p ${output_dir}/tutorials
+mkdir -p ${output_dir}/data
+
+cp -r ${input_dir}/data/* ${output_dir}/data/
+
+dump_html "README.md" "index.html"
+dump_html "CHANGELOG.md" "changelog.html"
+dump_html "faq.md" "faq.html"
+dump_html "quick-start.md" "quick-start.html"
+dump_html "upcoming-features.md" "upcoming-features.html"
+
+for dir in $(find ${input_dir}/* -maxdepth 1 -type d); do
+    for file in "$dir"/*; do
+        rel_path=$(realpath --relative-to=${input_dir} ${dir})
+        if [[ "${rel_path}" == "data" ]]; then
+            continue
+        fi
+        basename=$(basename ${file%.*})
+        dump_html "${rel_path}/${basename}.md" "${rel_path}/${basename}.html"
+    done
+done
 
 deactivate
 
-echo "Output dir: $output_dir"
+echo "Output Diractory: $output_dir"
