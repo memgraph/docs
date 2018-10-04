@@ -10,7 +10,7 @@ not yet supported features of the language are listed.
 
   * [Reading Existing Data](#reading-existing-data)
   * [Writing New Data](#writing-new-data)
-  * [Reading & Writing](#reading-amp-writing)
+  * [Reading and Writing](#reading-and-writing)
   * [Indexing](#indexing)
   * [Other Features](#other-features)
 
@@ -385,7 +385,7 @@ Example.
 MATCH (n :WrongLabel) REMOVE n :WrongLabel, n.property
 ```
 
-### Reading & Writing
+### Reading and Writing
 
 OpenCypher supports combining multiple reads and writes using the
 `WITH` clause. In addition to combining, the `MERGE` clause is provided which
