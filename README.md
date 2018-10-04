@@ -7,7 +7,7 @@ Memgraph documentation available at
 ## Write Docs
 
 Want to contribute to the docs? Please take a look at
-[CONTRIBUTING](CONTRIBUTING) for details about style and main ideas behind the
+[CONTRIBUTING](CONTRIBUTING.md) for details about style and main ideas behind the
 documentation. In case you notice any problem or a need for additional
 information, feel free to [create an
 issue](https://github.com/memgraph/docs/issues).
