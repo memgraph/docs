@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# Main entrypoint for generating documentation.
-
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Generate output folders.
