@@ -799,11 +799,6 @@ Although we try to implement openCypher query language as closely to the
 language reference as possible, we had to make some changes to enhance the
 user experience.
 
-#### Symbolic Names
-
-We don't allow symbolic names (variables, label names...) to be openCypher
-keywords (WHERE, MATCH, COUNT, SUM...).
-
 #### Unicode Codepoints in String Literal
 
 Use `\u` followed by 4 hex digits in string literal for UTF-16 codepoint and
