@@ -50,9 +50,9 @@ background, context and a detailed explanation of a specific concept. These
 articles tend to be written for more advanced users that really care how things
 work under the hood. They are usually written in a more formal language and can
 introduce more advanced terminology. Apart from satisfying the curiosity of
-advanced users, they aim to arm them with knowledge that will reflect on their
-usage of our product. In other words, deep understanding of concepts should make
-them use Memgraph more efficiently and effectively.
+advanced users, they aim to arm them with the knowledge that will reflect on
+their usage of our product. In other words, a deep understanding of concepts
+should make them use Memgraph more efficiently and effectively.
 
 An example of a good concept is an article that explains
 [Graph Algorithms](user_technical/concepts/graph-algorithms.md)
@@ -61,9 +61,9 @@ understanding of what is happening when they are executing certain queries and
 might optimize their queries due to that knowledge.
 
 ### Reference guide
-Reference guide is information-oriented, they provide an accurate and complete
-list of Memgraph’s commands and features. These types of articles might be
-easiest to write from a creative standpoint as they do not provide any deep
+The Reference guide is information-oriented, they provide an accurate and
+complete list of Memgraph’s commands and features. These types of articles might
+be easiest to write from a creative standpoint as they do not provide any deep
 explanations or motivations behind their content. The main difficulty arises
 from the fact that it is imperative for those articles to be completely accurate
 and up-to-date.
@@ -71,4 +71,3 @@ and up-to-date.
 An example of a good reference guide is an article which lists all OpenCypher
 commands that allow users to
 [read or write data](user_technical/reference_guide/reading-and-writing.md).
-
