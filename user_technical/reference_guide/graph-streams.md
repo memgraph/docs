@@ -1,4 +1,4 @@
-## Graph Streams [Enterprise]
+## Graph Streams
 
 ### Kafka
 
