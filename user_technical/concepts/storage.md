@@ -24,9 +24,9 @@ versions.
 Behaviour of the above mechanisms can be tweaked in the configuration file,
 usually found in `/etc/memgraph/memgraph.conf`.
 
-In addition to the above mentioned data durability and recovery, a
-snapshot file may be generated using *Memgraph's* import tools. For more
-information, take a look at the [Import Tools](../how_to_guides/02_import-tools.md)
+In addition to the above mentioned data durability and recovery, a snapshot
+file may be generated using *Memgraph's* import tools. For more information,
+take a look at the [How to Import Data?](../how_to_guides/import-data.md)
 article.
 
 ## Storable Data Types

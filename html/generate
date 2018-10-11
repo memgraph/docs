@@ -34,9 +34,15 @@ done
 output_dir=${script_dir}/../output/html/${version}
 
 add_link_info () {
+    local resource_dir=$(dirname $1)
+    if [[ ${resource_dir} == "." ]]; then
+        resource_dir=""
+    else
+        resource_dir="${resource_dir}/"
+    fi
     (( $standalone )) && \
     echo "--metadata=link_suffix:'' --metadata=link_prefix:'.html'" || \
-    echo "--metadata=link_suffix:'/docs/${version}/' --metadata=link_prefix:''"
+    echo "--metadata=link_suffix:'/docs/${version}/${resource_dir}' --metadata=link_prefix:''"
 }
 
 dump_html () {
@@ -46,7 +52,7 @@ dump_html () {
         --from markdown --to html \
         --output ${output_dir}/${dst_filename} \
         --filter ${script_dir}/html_links_filter.py \
-        $(add_link_info) || exit 1
+        $(add_link_info ${dst_filename}) || exit 1
 }
 
 rm -rf ${output_dir}

@@ -6,7 +6,7 @@ guide on how to use certain Memgraph feature or solve a particular problem.
 
 So far we have covered the following topics:
 
-  * [How to Import Data?](import-tools.md)
+  * [How to Import Data?](import-data.md)
   * [How to Query Memgraph Programmatically?](query-memgraph-programmatically.md)
   * [How to Ingest Data Using Kafka](ingest-data-using-kafka.md)
   * [How to Manage User Privileges](manage-user-privileges.md)
