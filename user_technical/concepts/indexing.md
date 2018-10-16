@@ -72,6 +72,19 @@ Bear in mind that `WHERE` filters could contain arbitrarily complex expressions
 and index based retrieval might not be used. Nevertheless, we are continually
 improving our index usage recognition algorithms.
 
+### Uniqueness constraint
+Label-property index can also enforce uniqueness constraint and thus ensure that
+all values in the index have a unique value.
+
+This can be done with the following language construct:
+```opencypher
+CREATE UNIQUE INDEX ON :Person(email)
+```
+
+If you're absolutely sure that the uniqueness needs to be ensured on the
+database level, you have to be aware that using uniqueness constraint might
+reduce write performance significantly.
+
 ### Underlying Implementation
 
 The central part of our index data structure is a highly-concurrent skip list.

@@ -54,3 +54,16 @@ we recommend putting properties and labels inside the `MATCH` pattern.
 Currently, once an index is created it cannot be deleted. This feature will be
 implemented very soon. The expected syntax for removing an index will be `DROP
 INDEX ON :Label(property)`.
+
+### Uniqueness constraint
+
+Memgraph offers the ability to enforce uniqueness in property values. Uniqueness
+constraint will ensure that property values are unique for all nodes with a
+specific label. Nodes without the property are not included in the uniqueness
+constraint. Uniqueness constraint is available only on a single property.
+
+For example, to ensure that each `:Person` has a unique `email`, we can create
+an index on the label property pair with the uniqueness constraint:
+```opencypher
+CREATE UNIQUE INDEX ON :Person(email)
+```
