@@ -22,7 +22,7 @@ indexes labeled data. By doing so we optimize queries which fetch nodes by
 label:
 
 ```opencypher
-MATCH (n: Label) ... RETURN n
+MATCH (n: Label) ... RETURN n;
 ```
 
 Indexes can also be created on data with a specific combination of label and
@@ -37,7 +37,7 @@ have a property named `age`. We can do so by using the following language
 construct:
 
 ```opencypher
-CREATE INDEX ON :Person(age)
+CREATE INDEX ON :Person(age);
 ```
 
 After the creation of that index, those queries will be more efficient due to
@@ -48,7 +48,7 @@ beneficial. The main reason is that entries within that index are kept sorted
 by property value. Queries such as the following are therefore more efficient:
 
 ```opencypher
-MATCH (n :Person {age: 42}) RETURN n
+MATCH (n :Person {age: 42}) RETURN n;
 ```
 
 Index based retrieval can also be invoked on queries with `WHERE` statements.
@@ -56,7 +56,7 @@ For instance, the following query will have the same effect as the previous
 one:
 
 ```opencypher
-MATCH (n) WHERE n:Person AND n.age = 42 RETURN n
+MATCH (n) WHERE n:Person AND n.age = 42 RETURN n;
 ```
 
 Naturally, indexes will also be used when filtering based on less than or
@@ -65,12 +65,26 @@ under 18 years of age under Croatian law) using the following query will use
 index based retrieval:
 
 ```opencypher
-MATCH (n) WHERE n:PERSON and n.age < 18 RETURN n
+MATCH (n) WHERE n:PERSON and n.age < 18 RETURN n;
 ```
 
 Bear in mind that `WHERE` filters could contain arbitrarily complex expressions
 and index based retrieval might not be used. Nevertheless, we are continually
 improving our index usage recognition algorithms.
+
+### Uniqueness constraint
+Label-property index can also enforce uniqueness constraint and thus ensure that
+all values in the index have a unique value.
+
+This can be done with the following language construct:
+```opencypher
+CREATE UNIQUE INDEX ON :Person(email);
+```
+
+If you're absolutely sure that the uniqueness needs to be ensured on the
+database level, you have to be aware that using uniqueness constraint might
+reduce write performance significantly.  That being said, we are planning to
+resolve this issue in some future release.
 
 ### Underlying Implementation
 
