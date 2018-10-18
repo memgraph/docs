@@ -13,7 +13,7 @@ multi-version concurrency control and asynchronous IO.
   * [About Memgraph](#about-memgraph)
   * [Quick Start](quick-start.md)
   * [Tutorials](tutorials/tutorials-overview.md)
-    * [Analysing TED Talks](tutorials/analyzing-TED-talks.md)
+    * [Analyzing TED Talks](tutorials/analyzing-TED-talks.md)
     * [Graphing the Premier League](tutorials/graphing-the-premier-league.md)
     * [Exploring the European Road Network](tutorials/exploring-the-european-road-network.md)
   * [How to](how_to_guides/how-to-guides-overview.md)
