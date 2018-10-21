@@ -137,6 +137,6 @@ Finally, we need to assign that role to each of the supervisors. Suppose, a user
 named `bob` is indeed a supervisor within the company. Assigning them that role
 within the database can be done by the following command:
 
-```
+```openCypher
   SET ROLE FOR bob TO supervisor;
 ```
