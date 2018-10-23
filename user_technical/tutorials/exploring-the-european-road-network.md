@@ -8,6 +8,7 @@ We highly recommend checking out the other articles from this series:
 
   * [Analyzing TED Talks](analyzing-TED-talks.md)
   * [Graphing the Premier League](graphing-the-premier-league.md)
+  * [Movie recommendation system](movie-recommendation.md)
 
 ### Introduction
 
