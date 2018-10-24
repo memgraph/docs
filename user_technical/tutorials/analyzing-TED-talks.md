@@ -8,7 +8,7 @@ We highly recommend checking out the other articles from this series:
 
   * [Exploring the European Road Network](exploring-the-european-road-network.md)
   * [Graphing the Premier League](graphing-the-premier-league.md)
-  * [Movie recommendation system](movie-recommendation.md)
+  * [Movie Recommendation System](movie-recommendation.md)
 
 ### Introduction
 
