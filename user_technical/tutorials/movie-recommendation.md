@@ -69,7 +69,7 @@ MATCH (m :Movie) RETURN m ORDER BY m.title LIMIT 10;
 ```opencypher
 MATCH (u: User) RETURN u ORDER BY u.name DESC LIMIT 15;
 ```
-3) List 10 movies that have Comedy and Action genres and sort them by title
+3) List 10 movies that have *Comedy* and *Action* genres and sort them by title
 
 ```opencypher
 MATCH (m :Movie)-[:ofGenre]->(:Genre {name:"Action"}), (m)-[:ofGenre]->(:Genre {name:"Comedy"})
@@ -150,16 +150,16 @@ The idea is to implement simple [memory based collaborative filtering](https://e
 Let's recommend some movies for user Aladin:
 
 ```opencypher
-MATCH (u:User{id:1000})-[r:Rating]-(m:Movie)-[otherR:Rating]-(other:User)
-WITH other.id AS otherId, 
-AVG(ABS(r.score-otherR.score)) AS similarity, COUNT(*) AS similarUserCount
-WHERE similarUserCount > 2
-WITH otherId ORDER BY similarity LIMIT 10
-WITH COLLECT(otherId) AS similarUserSet
-MATCH (someMovie: Movie)-[fellowRate:Rating]-(fellowUser:User)
-WHERE fellowUser.id in similarUserSet
-WITH someMovie, AVG(fellowRate.score) AS predictionScore
-RETURN someMovie.title AS Title, predictionScore ORDER BY predictionScore DESC;
+MATCH (u:User{id:1000})-[r:Rating]-(m:Movie)-[other_r:Rating]-(other:User)
+WITH other.id AS other_id, 
+AVG(ABS(r.score-other_r.score)) AS similarity, COUNT(*) AS similar_user_count
+WHERE similar_user_count > 2
+WITH other_id ORDER BY similarity LIMIT 10
+WITH COLLECT(other_id) AS similar_user_set
+MATCH (some_movie: Movie)-[fellow_rate:Rating]-(fellow_user:User)
+WHERE fellow_user.id in similar_user_set
+WITH some_movie, AVG(fellow_rate.score) AS prediction_score
+RETURN some_movie.title AS Title, prediction_score ORDER BY prediction_score DESC;
 ```
 How does this query work?
 
@@ -176,16 +176,16 @@ For the target user (Aladin) and some other user we are searching
 for the same movies:
 
 ```opencypher
-MATCH (u:User{id:1000})-[r:Rating]-(m:Movie)-[otherR:Rating]-(other:User)
+MATCH (u:User{id:1000})-[r:Rating]-(m:Movie)-[other_r:Rating]-(other:User)
 ```
 But this is not enough for finding similar users. We need to choose users 
 with the same movies and similar scores:
 
 ```opencypher
-WITH other.id AS otherId, AVG(ABS(r.score-otherR.score)) AS similarity, 
-COUNT(*) AS similarUserCount
-WHERE similarUserCount > 2
-WITH otherId ORDER BY similarity LIMIT 10
+WITH other.id AS other_id, 
+AVG(ABS(r.score-other_r.score)) AS similarity, COUNT(*) AS similar_user_count
+WHERE similar_user_count > 2
+WITH other_id ORDER BY similarity LIMIT 10
 ```
 Here we calculate similarities as the average distance between 
 target user score and some other user score on the same set of movies.
@@ -199,10 +199,10 @@ Now we have similar user set. We will use those users to
 calculate the average score for all movies in the database.
 
 ```opencypher
-MATCH (someMovie: Movie)-[fellowRate:Rating]-(fellowUser:User)
-WHERE fellowUser.id in similarUserSet
-WITH someMovie, AVG(fellowRate.score) AS predictionScore
-RETURN someMovie.title AS Title, predictionScore ORDER BY predictionScore DESC;
+MATCH (some_movie: Movie)-[fellow_rate:Rating]-(fellow_user:User)
+WHERE fellow_user.id in similar_user_set
+WITH some_movie, AVG(fellow_rate.score) AS prediction_score
+RETURN some_movie.title AS Title, prediction_score ORDER BY prediction_score DESC;
 ```
 We encourage you to play with some parameters, like similar user count limit 
 and similar user set size limit.
@@ -210,7 +210,7 @@ You can also try to use different similarity functions,
 for example [Euclidean distance](https://en.wikipedia.org/wiki/Euclidean_distance):
 
 ```opencypher
-SQRT(REDUCE(a=0, x in COLLECT((r.score - otherR.score) * (r.score - otherR.score)) | a + x))
+SQRT(REDUCE(a=0, x in COLLECT((r.score - other_r.score) * (r.score - other_r.score)) | a + x))
 AS similarity
 ```
 Here we use `REDUCE` function. Reduce function accumulate list elements 
