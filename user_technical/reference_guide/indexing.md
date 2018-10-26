@@ -51,7 +51,6 @@ are continuously improving the recognition of index usage opportunities from a
 `WHERE` expression. If there is any suspicion that an index may not be used,
 we recommend putting properties and labels inside the `MATCH` pattern.
 
-
 Information about available indexes can be retrieved by using the following
 syntax:
 
@@ -60,7 +59,6 @@ RETURN indexInfo();
 ```
 The result of this query will be a list of all labels and label-property pairs
 that Memgraph currently indexes.
-
 
 Created indexes can also be deleted by using the following syntax:
 ```opencypher

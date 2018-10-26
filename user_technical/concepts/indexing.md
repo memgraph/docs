@@ -81,13 +81,12 @@ RETURN indexInfo();
 The result of this query will be a list of all labels and label-property pairs
 that Memgraph currently indexes.
 
-
 Created indexes can also be deleted by using the following syntax:
 ```opencypher
 DROP INDEX ON :Label(property)
 ```
 
-Dropping an index will instruct all active transaction to abort as soon as
+Dropping an index will instruct all active transactions to abort as soon as
 possible, and it will wait for them to finish. Once all transaction have
 finished, it will drop the index.
 
