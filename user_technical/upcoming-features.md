@@ -15,12 +15,6 @@ will be continually working on improving the performance. This includes:
   * memory usage and
   * other improvements.
 
-### Label-Property Index Usage Improvements
-
-Currently, indexing combinations of labels and properties can be created, but
-cannot be deleted. We plan to add a new query language construct which will
-allow deletion of created indices.
-
 ### Improving openCypher Support
 
 Although we have implemented the most common features of the openCypher query
