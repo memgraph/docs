@@ -2,7 +2,10 @@
 
 This repository contains the source files and various generators for the
 Memgraph documentation available at
-[memgraph.com/docs](https://memgraph.com/docs).
+[memgraph.com/docs](https://memgraph.com/docs). Since we are writing our
+technical documentation using markdown, it is also nicely rendered by
+github as you can see by following
+[this link](https://github.com/memgraph/docs/tree/master/user_technical).
 
 ## Write Docs
 
