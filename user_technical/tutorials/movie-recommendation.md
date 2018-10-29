@@ -29,7 +29,7 @@ Each movie can be connected with `:ofGenre` edge to different genres.
 A user can rate some movie. Rating is modeled with `:Rating` edge
 and this edge has property `score` &mdash; float number between 0 and 5.
 
-![movie-metagraph](../data/movie_metagraph.png)
+![](../data/movie_metagraph.png)
 
 ### Importing the Snapshot
 

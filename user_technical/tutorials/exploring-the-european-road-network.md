@@ -27,7 +27,7 @@ There are edges of type `:Road` connecting cities less than 500 kilometers
 apart. Distance between cities is specified in the `length` property of the
 edge.
 
-![road-metagraph](../data/road_network_metagraph.png)
+![](../data/road_network_metagraph.png)
 
 ### Importing the Snapshot
 

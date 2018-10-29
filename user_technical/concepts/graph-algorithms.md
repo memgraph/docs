@@ -55,7 +55,7 @@ The order of visited nodes is nicely visualized in the following animation from
 Wikipedia. Note that each row contains nodes that are equidistant from the
 source and thus represents one of the sets mentioned above.
 
-![visualization](https://upload.wikimedia.org/wikipedia/commons/5/5d/Breadth-First-Search-Algorithm.gif)
+![](https://upload.wikimedia.org/wikipedia/commons/5/5d/Breadth-First-Search-Algorithm.gif)
 
 The standard BFS implementation skews from the above description by relying on
 a FIFO (first in, first out) queue data structure. Nevertheless, the
@@ -97,7 +97,7 @@ The described algorithm is nicely visualized in the following animation from
 Wikipedia. Note that edge weights correspond to the Euclidean distance between
 nodes which represent points on a plane.
 
-![visualization](https://upload.wikimedia.org/wikipedia/commons/e/e4/DijkstraDemo.gif)
+![](https://upload.wikimedia.org/wikipedia/commons/e/e4/DijkstraDemo.gif)
 
 Using appropriate data structures the worst-case performance of our
 implementation can be expressed as  `O(|E| + |V|log|V|)` where `E` denotes
@@ -119,7 +119,7 @@ on this parameter.
 
 Consider the following graph and sample queries.
 
-![sample-graph](../data/graph.png)
+![](../data/graph.png)
 
 ```opencypher
 MATCH (a {id: 0})-[edge_list *wShortest 3 (e, n | e.weight) total_weight]-(b {id: 5}) RETURN *
