@@ -34,7 +34,7 @@ is a way of traversing a graph data structure. The
 traversal starts from a single node (usually referred to as source node) and,
 during the traversal, breadth is prioritized over depth, hence the name of the
 algorithm. More precisely, when we visit some node, we can safely assume that
-we have already visited all nodes that are fewer edges away from a source node.  
+we have already visited all nodes that are fewer edges away from a source node.
 An interesting side-effect of traversing a graph in BFS order is the fact
 that, when we visit a particular node, we can easily find a path from
 the source node to the newly visited node with the least number of edges.
@@ -152,5 +152,5 @@ be as precise as possible in order to have a more performant query.
 ### Where to next?
 
 For some real-world application of WSP we encourage you to visit our article
-on [exploring the European road network](../tutorials/04_exploring-the-european-road-network.md)
+on [exploring the European road network](../tutorials/exploring-the-european-road-network.md)
 which was specially crafted to showcase our graph algorithms.

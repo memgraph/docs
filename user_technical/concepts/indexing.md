@@ -72,6 +72,24 @@ Bear in mind that `WHERE` filters could contain arbitrarily complex expressions
 and index based retrieval might not be used. Nevertheless, we are continually
 improving our index usage recognition algorithms.
 
+Information about available indexes can be retrieved by using the following
+syntax:
+
+```opencypher
+RETURN indexInfo();
+```
+The result of this query will be a list of all labels and label-property pairs
+that Memgraph currently indexes.
+
+Created indexes can also be deleted by using the following syntax:
+```opencypher
+DROP INDEX ON :Label(property)
+```
+
+Dropping an index will instruct all active transactions to abort as soon as
+possible, and it will wait for them to finish. Once all transaction have
+finished, it will drop the index.
+
 ### Uniqueness constraint
 Label-property index can also enforce uniqueness constraint and thus ensure that
 all values in the index have a unique value.

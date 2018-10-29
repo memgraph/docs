@@ -8,6 +8,7 @@ We highly recommend checking out the other articles from this series:
 
   * [Analyzing TED Talks](analyzing-TED-talks.md)
   * [Exploring the European Road Network](exploring-the-european-road-network.md)
+  * [Movie Recommendation System](movie-recommendation.md)
 
 ### Introduction
 
@@ -30,28 +31,10 @@ Two of the nodes will represent the teams that have played the match, while the
 third node will represent the game itself. Both edges are directed from the
 team nodes to the game node and are labeled as `:Played`.
 
-Let us consider a real life example of this model&mdash;Arsene Wenger's 1000th
-game in charge of Arsenal. This was a regular fixture of a 2013/2014
-English Premier League, yet it was written in the stars that this historic
-moment would be a big London derby against Chelsea on Stanford Bridge. The
-sketch below shows how this game is being modeled in our database.
+Every bit of information regarding the data model is nicely condensed in
+the following visual representation.
 
-```
-+---------------+                                            +-----------------------------+
-|n: Team        |                                            |w: Game                      |
-|               |-[:Played {side: "home", outcome: "won"}]-->|                             |
-|name: "Chelsea"|                                            |HT_home_score: 4             |
-+---------------+                                            |HT_away_score: 0             |
-                                                             |HT_result: "H"               |
-                                                             |FT_home_score: 6             |
-                                                             |FT_away_score: 0             |
-                                                             |FT_result: "H"               |
-+---------------+                                            |date: "2014-03-22"           |
-|m: Team        |                                            |league: "ENG-Premier League" |
-|               |-[:Played {side: "away", outcome: "lost"}]->|season: 2013                 |
-|name: "Arsenal"|                                            |referee: "Andre Marriner"    |
-+---------------+                                            +-----------------------------+
-```
+![football-metagraph](../data/football_metagraph.png)
 
 ### Importing the Snapshot
 

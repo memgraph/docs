@@ -51,9 +51,19 @@ are continuously improving the recognition of index usage opportunities from a
 `WHERE` expression. If there is any suspicion that an index may not be used,
 we recommend putting properties and labels inside the `MATCH` pattern.
 
-Currently, once an index is created it cannot be deleted. This feature will be
-implemented very soon. The expected syntax for removing an index will be `DROP
-INDEX ON :Label(property)`.
+Information about available indexes can be retrieved by using the following
+syntax:
+
+```opencypher
+RETURN indexInfo();
+```
+The result of this query will be a list of all labels and label-property pairs
+that Memgraph currently indexes.
+
+Created indexes can also be deleted by using the following syntax:
+```opencypher
+DROP INDEX ON :Label(property)
+```
 
 ### Uniqueness constraint
 

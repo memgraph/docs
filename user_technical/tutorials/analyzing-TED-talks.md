@@ -8,6 +8,7 @@ We highly recommend checking out the other articles from this series:
 
   * [Exploring the European Road Network](exploring-the-european-road-network.md)
   * [Graphing the Premier League](graphing-the-premier-league.md)
+  * [Movie Recommendation System](movie-recommendation.md)
 
 ### Introduction
 
@@ -35,6 +36,8 @@ tag. Moreover, users give ratings to each talk by selecting up to three
 predefined string values. Therefore we add node `Rating` with these values as
 property `name` and relationship`HasRating` with property `user_count` between
 talk and rating nodes.
+
+![TED-metagraph](../data/TED_metagraph.png)
 
 ### Importing the Snapshot
 

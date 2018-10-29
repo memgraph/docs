@@ -8,6 +8,7 @@ We highly recommend checking out the other articles from this series:
 
   * [Analyzing TED Talks](analyzing-TED-talks.md)
   * [Graphing the Premier League](graphing-the-premier-league.md)
+  * [Movie Recommendation System](movie-recommendation.md)
 
 ### Introduction
 
@@ -25,6 +26,8 @@ Each city is connected to the country it belongs to via an edge of type `:In_`.
 There are edges of type `:Road` connecting cities less than 500 kilometers
 apart. Distance between cities is specified in the `length` property of the
 edge.
+
+![road-metagraph](../data/road_network_metagraph.png)
 
 ### Importing the Snapshot
 
