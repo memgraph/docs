@@ -24,7 +24,7 @@ as a silent deny. The information above is neatly condensed in the following
 table:
 
 User Status | Role Status | Effective Status
----------------------------------------------
+------------|-------------|------------------
 GRANT       | GRANT       | GRANT
 GRANT       | DENY        | DENY
 GRANT       | NULL        | GRANT
