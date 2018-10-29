@@ -34,7 +34,7 @@ team nodes to the game node and are labeled as `:Played`.
 Every bit of information regarding the data model is nicely condensed in
 the following visual representation.
 
-![football-metagraph](../data/football_metagraph.png)
+![](../data/football_metagraph.png)
 
 ### Importing the Snapshot
 
