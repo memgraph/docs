@@ -6,7 +6,12 @@ def action(elem, doc):
         elem.url = \
             doc.get_metadata("link_suffix", "") + \
             elem.url[:-3] + \
-            doc.get_metadata("link_prefix", "")
+            doc.get_metadata("html_link_prefix", "")
+        return elem
+    if isinstance(elem, pf.Image) and elem.url.endswith(".png"):
+        elem.url = \
+            doc.get_metadata("link_suffix", "") + \
+            elem.url
         return elem
 
 

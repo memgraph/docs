@@ -41,8 +41,8 @@ add_link_info () {
         resource_dir="${resource_dir}/"
     fi
     (( $standalone )) && \
-    echo "--metadata=link_suffix:'' --metadata=link_prefix:'.html'" || \
-    echo "--metadata=link_suffix:'/docs/${version}/${resource_dir}' --metadata=link_prefix:''"
+    echo "--metadata=link_suffix:'' --metadata=html_link_prefix:'.html'" || \
+    echo "--metadata=link_suffix:'/docs/${version}/${resource_dir}' --metadata=html_link_prefix:''"
 }
 
 dump_html () {
@@ -51,7 +51,7 @@ dump_html () {
     pandoc ${input_dir}/${src_filename} \
         --from markdown --to html \
         --output ${output_dir}/${dst_filename} \
-        --filter ${script_dir}/html_links_filter.py \
+        --filter ${script_dir}/links_filter.py \
         $(add_link_info ${dst_filename}) || exit 1
 }
 
