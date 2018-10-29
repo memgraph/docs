@@ -37,6 +37,8 @@ predefined string values. Therefore we add node `Rating` with these values as
 property `name` and relationship`HasRating` with property `user_count` between
 talk and rating nodes.
 
+![TED-metagraph](../data/TED_metagraph.png)
+
 ### Importing the Snapshot
 
 We have prepared a database snapshot for this example, so the user can easily
