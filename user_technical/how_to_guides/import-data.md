@@ -1,10 +1,11 @@
 ## How to Import Data?
 
-Memgraph comes with tools for importing data into the database. Currently,
-only import of CSV formatted is supported. We plan to support more formats in
-the future.
+Memgraph comes with tools for importing data into the database. Currently, only
+[import of CSV](#import-csv) format is supported. We plan to support more
+formats in the future. Furthermore, [cypher queries](#import-cypher) saved in a
+file can be imported with `mg_client` running in non-interactive mode.
 
-### CSV Import Tool
+### CSV Import Tool {#import-csv}
 
 CSV data should be in Neo4j CSV compatible format. Detailed format
 specification can be found
@@ -116,3 +117,29 @@ docker run -v mg_lib:/var/lib/memgraph -v mg_etc:/etc/memgraph -v mg_import:/imp
 ```
 
 Next time you run Memgraph, the dataset will be loaded.
+
+### Importing Cypher Queries {#import-cypher}
+
+When Memgraph is running, cypher queries are imported by running `mg_client` in
+non-interactive mode. The user can import queries saved in e.g. `queries.txt`
+by issuing the following shell command:
+
+```bash
+mg_client < queries.txt
+```
+
+If you installed Memgraph using Docker, you will need to run the client using
+the following command:
+
+```bash
+docker run -i --entrypoint=mg_client memgraph --host HOST < queries.txt`
+```
+
+Remember to replace `HOST` with valid IP of the container (see
+[Note for OS X/macOS Users](../tutorials/quick-start.md#OSX-note)).
+
+For more information about `mg_client` options run:
+
+```bash
+mg_client --help
+```
