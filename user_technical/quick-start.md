@@ -207,7 +207,7 @@ Memgraph's command-line tool. The command-line `mg_client` is installed
 together with Memgraph.
 
 The user can connect to the running Memgraph instance by issuing the following
- shell command:
+shell command:
 
 ```bash
 mg_client
