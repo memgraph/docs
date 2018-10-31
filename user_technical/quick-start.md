@@ -192,9 +192,8 @@ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' 939
 ```
 
 The command above should yield the sought IP, which should be used when connecting to
-memgraph and instead of `HOST` when firing up the `mg_client` with docker in
+Memgraph and instead of `HOST` when firing up the `mg_client` with Docker in
 the [querying](#querying) section.
-
 
 ### Querying {#querying}
 
@@ -205,7 +204,7 @@ vendor-independent standardization process.
 
 The easiest way to execute openCypher queries against Memgraph is by using
 Memgraph's command-line tool. The command-line `mg_client` is installed
-together with Memgrah.
+together with Memgraph.
 
 The user can connect to the running Memgraph instance by issuing the following shell command:
 
@@ -213,14 +212,14 @@ The user can connect to the running Memgraph instance by issuing the following s
 mg_client
 ```
 
-If you installed Memgraph using docker, you will need to run the client
+If you installed Memgraph using Docker, you will need to run the client
 using the following command:
 
 ```bash
 docker run -it --entrypoint=mg_client memgraph --host HOST
 ```
 
-Remember to replace HOST with valid IP of the container
+Remember to replace `HOST` with valid IP of the container
 (see [Note for OS X/macOS Users](#OSX-note)).
 
 After the client has started it should present a command prompt similar to:
