@@ -129,7 +129,7 @@ by issuing the following shell command:
 
 `mg_client < queries.txt`
 
-If you installed memgraph using docker, you will need to run the client using
+If you installed Memgraph using Docker, you will need to run the client using
 the following command:
 
 `docker run -i --entrypoint=mg_client memgraph --host HOST < queries.txt`
