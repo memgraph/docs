@@ -1,9 +1,9 @@
 ## How to Import Data?
 
-Memgraph comes with tools for importing data into the database. Currently,
-only [import of CSV](#import-csv) format is supported. We plan to support more formats in
-the future. Furthermore, [cypher queries](#import-cypher) saved in a file can be imported with
-`mg_client` running in non-interactive mode.
+Memgraph comes with tools for importing data into the database. Currently, only
+[import of CSV](#import-csv) format is supported. We plan to support more
+formats in the future. Furthermore, [cypher queries](#import-cypher) saved in a
+file can be imported with `mg_client` running in non-interactive mode.
 
 ### CSV Import Tool {#import-csv}
 
