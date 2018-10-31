@@ -191,9 +191,9 @@ image.  In our case, that is `9397623cd87e`.
 docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' 9397623cd87e
 ```
 
-The command above should yield the sought IP. If that IP does not correspond to
-`localhost`, it should be used instead of `localhost` when firing up the
-`neo4j-client` in the [querying](#querying) section.
+The command above should yield the sought IP, which should be used when connecting to
+Memgraph and instead of `HOST` when firing up the `mg_client` with Docker in
+the [querying](#querying) section.
 
 ### Querying {#querying}
 
@@ -203,23 +203,33 @@ for interaction with graph databases which is currently going through a
 vendor-independent standardization process.
 
 The easiest way to execute openCypher queries against Memgraph is by using
-Neo4j's command-line tool. The command-line `neo4j-client` can be installed as
-described [on the official website](https://neo4j-client.net).
+Memgraph's command-line tool. The command-line `mg_client` is installed
+together with Memgraph.
 
-After installing `neo4j-client`, the user can connect to the running Memgraph
-instance by issuing the following shell command:
+The user can connect to the running Memgraph instance by issuing the following shell command:
 
 ```bash
-neo4j-client -u "" -p ""  localhost 7687
+mg_client
 ```
+
+If you installed Memgraph using Docker, you will need to run the client
+using the following command:
+
+```bash
+docker run -it --entrypoint=mg_client memgraph --host HOST
+```
+
+Remember to replace `HOST` with valid IP of the container
+(see [Note for OS X/macOS Users](#OSX-note)).
 
 After the client has started it should present a command prompt similar to:
 
 ```bash
-neo4j-client 2.1.3
-Enter `:help` for usage hints.
-Connected to 'neo4j://@localhost:7687'
-neo4j>
+mg_client 0.14.0
+Type :help for shell usage
+Quit the shell by typing Ctrl-D(eof) or :quit
+Connected to 'memgraph://127.0.0.1:7687'
+memgraph>
 ```
 
 At this point it is possible to execute openCypher queries on Memgraph. Each
