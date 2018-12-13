@@ -34,6 +34,7 @@ multi-version concurrency control and asynchronous IO.
     * [Graph Algorithms](reference_guide/graph-algorithms.md)
     * [Graph Streams](reference_guide/graph-streams.md)
     * [Security](reference_guide/security.md)
+    * [Tensorflow Op](reference_guide/tensorflow.md)
     * [Other Features](reference_guide/other-features.md)
     * [Differences](reference_guide/differences.md)
   * [Upcoming Features](upcoming-features.md)
