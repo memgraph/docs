@@ -1,11 +1,11 @@
-## How to Setup Memgraph Tensorflow Op
-TensorFlow is an open source software library for
-high-performance numerical computation.
+## How to Setup Memgraph Tensorflow Op?
+[TensorFlow](https://www.tensorflow.org/) is an open source software
+library for high-performance numerical computation.
 A TensorFlow op (operation) is a fundamental building block of all TensorFlow
 models.
 
 Memgraph TensorFlow op wraps the high-performance Memgraph client for
-use with TensorFlow allowing natural data transfer between Memgraph and
+use with TensorFlow, allowing natural data transfer between Memgraph and
 TensorFlow at any point of the model.
 
 At this point, we strongly advise you to read
@@ -15,13 +15,12 @@ the TensorFlow section of our
 In this article, we assume you have installed Python 3 and TensorFlow pip
 package. See [link](https://www.tensorflow.org/install/pip?lang=python3) for
 more.
-
 We also assume that you have installed and
 running Memgraph ([see more](../quick-start.md))
 
-### Use Memgraph Tensorflow Op
-Memgraph TensorFlow op is shared library (.so file).
-Library name is ```libmemgraph_op.so```.
+### Memgraph Tensorflow Op Usage
+Memgraph TensorFlow op is a shared library (`.so` file).
+Library name is `libmemgraph_op.so`.
 
 Load op library:
 ```python3
@@ -36,7 +35,7 @@ memgraph_op = memgraph_op_module.memgraph_op(query_holder,
                                              input_list_holder,
                                              output_dtype=tf.int64)
 ```
-Where ```query_holder``` and ```input_list_holder```
+Where `query_holder` and `input_list_holder`
 are TensorFlow placeholders.
 
 Computation:
@@ -49,8 +48,8 @@ The output is a tuple, where the first element is header and the second
 element is a result matrix.
 
 ### Example
-Here is simple example. You can use *Movie*
-[dataset](../tutorials/movie-recommendation.md) or you can use
+Here is a simple example. You can use
+[Movie dataset](../tutorials/movie-recommendation.md) or you can use
 this simple dataset:
 
 ```openCypher
@@ -62,8 +61,8 @@ CREATE (:User {id: 5})-[:Rating {score:4.5}]->(:Movie {id: 33});
 CREATE (:User {id: 42})-[:Rating {score:1.0}]->(:Movie {id: 42});
 ```
 
-This example assume that Memgraph is running on ```127.0.0.1:7687```
-without ```ssl```.
+This example assumes that Memgraph is running on `127.0.0.1:7687`
+without `ssl`.
 If you want to change this,
 use op [attributes](../reference_guide/tensorflow.md).
 
