@@ -49,7 +49,7 @@ element is a result matrix.
 
 ### Example
 Here is a simple example. You can use
-[Movie dataset](../tutorials/movie-recommendation.md) or you can use
+[the movie dataset](../tutorials/movie-recommendation.md) or you can use
 this simple dataset:
 
 ```openCypher

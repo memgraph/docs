@@ -23,7 +23,7 @@ There are two inputs:
   * query
   * input list
 
-The Query is a string. The query is an `openCypher`
+The query is a string. The query is an `openCypher`
 query supported by Memgraph.
 Memgraph TensorFlow op has some [limitations](#limitations) on the query.
 
@@ -50,7 +50,7 @@ Memgraph TensorFlow op attributes:
 
 `Host`, `port`, `user`, `password`
 and `use_ssl` are attributes used
-for connecting to Memgraph. The only different attribute is `output_type`.
+for connecting to Memgraph. The only different attribute is `output_dtype`.
 `output_dtype` has no default value and
 it is used to determine the type of output tensor.
 Notice that all data in the output tensor must be of the same type.
@@ -68,7 +68,7 @@ The header is a string list.
 The list contains headers provided by query execution:
 
 ```openCypher
-MATCH (n) RETURN n.name as Name, n.address AS Address;
+MATCH (n) RETURN n.name AS Name, n.address AS Address;
 ```
 
 Header is `["Name", "Address"]`.
@@ -144,7 +144,7 @@ Matrix output:
 ### Limitations
 
 #### Input List
-Input list (`$input_list`) can contain only elements of **int64** type.
+Input list (`$input_list`) can contain only elements of `int64` type.
 
 #### Output types:
 Output matrix contains only elements with the same data type. The data type can
