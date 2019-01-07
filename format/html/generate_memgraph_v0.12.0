@@ -1,0 +1,63 @@
+#!/bin/bash
+
+print_help () {
+    echo "Usage: $0 [-s|--standalone]"
+    echo "    -s|--stanalone -> Put pandoc HTML wrapper around the content."
+    echo "    -v|--version -> Put the output files under defined folder name."
+    exit 1
+}
+
+script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+standalone=0
+version="v0.12.0"
+
+while [[ $# > 0 ]]; do
+    key="$1"
+    case $key in
+        -s|--standalone)
+        standalone=1
+        shift
+        ;;
+        -v|--version)
+        shift
+        version=$1
+        shift
+        ;;
+        -h|--help|help)
+        print_help
+        shift
+        ;;
+    esac
+done
+
+input_dir=${script_dir}/../../products/memgraph/${version}
+output_dir=${script_dir}/../../output/html/memgraph/${version}
+
+# TODO: add support for the title with spaces
+append_standalone () {
+    (( $standalone )) && \
+    echo "--metadata=title:'$1' --metadata=html_link_suffix:'' --metadata=html_link_prefix:'.html'" || \
+    echo "--metadata=html_link_suffix:'/docs/${version}/' --metadata=html_link_prefix:''"
+}
+
+rm -rf ${output_dir}
+mkdir -p ${output_dir}
+
+cd ${script_dir}
+source ve3/bin/activate || exit 1
+
+pandoc ${input_dir}/README.md --from markdown --to html --output ${output_dir}/index.html --filter ${script_dir}/links_filter.py $(append_standalone "TechnicalDocumentation") || exit 1
+pandoc ${input_dir}/CHANGELOG.md --from markdown --to html --output ${output_dir}/changelog.html --filter ${script_dir}/links_filter.py $(append_standalone "Changelog") || exit 1
+pandoc ${input_dir}/faq.md --from markdown --to html --output ${output_dir}/faq.html --filter ${script_dir}/links_filter.py $(append_standalone "FAQ") || exit 1
+pandoc ${input_dir}/concepts.md --from markdown --to html --output ${output_dir}/concepts.html --filter ${script_dir}/links_filter.py $(append_standalone "Concepts") || exit 1
+pandoc ${input_dir}/drivers.md --from markdown --to html --output ${output_dir}/drivers.html --filter ${script_dir}/links_filter.py $(append_standalone "Drivers") || exit 1
+pandoc ${input_dir}/examples.md --from markdown --to html --output ${output_dir}/examples.html --filter ${script_dir}/links_filter.py $(append_standalone "Examples") || exit 1
+pandoc ${input_dir}/import-tools.md --from markdown --to html --output ${output_dir}/import-tools.html --filter ${script_dir}/links_filter.py $(append_standalone "ImportTools") || exit 1
+pandoc ${input_dir}/open-cypher.md --from markdown --to html --output ${output_dir}/open-cypher.html --filter ${script_dir}/links_filter.py $(append_standalone "openCypher") || exit 1
+pandoc ${input_dir}/quick-start.md --from markdown --to html --output ${output_dir}/quick-start.html --filter ${script_dir}/links_filter.py $(append_standalone "QuickStart") || exit 1
+pandoc ${input_dir}/storage.md --from markdown --to html --output ${output_dir}/storage.html --filter ${script_dir}/links_filter.py $(append_standalone "Storage") || exit 1
+pandoc ${input_dir}/upcoming-features.md --from markdown --to html --output ${output_dir}/upcoming-features.html --filter ${script_dir}/links_filter.py $(append_standalone "UpcomingFeatures") || exit 1
+
+deactivate
+
+echo "Output dir: $output_dir"

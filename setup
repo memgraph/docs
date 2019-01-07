@@ -11,6 +11,6 @@ cd ${script_dir}/html
 if [ ! -d "${script_dir}/html/ve3" ]; then
     virtualenv -p python3 ve3 || exit 1
     source ve3/bin/activate
-    pip install -r ${script_dir}/html/requirements.txt || exit 1
+    pip install -r ${script_dir}/format/html/requirements.txt || exit 1
     deactivate
 fi

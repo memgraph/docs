@@ -22,7 +22,7 @@
 \pgfdeclareimage[interpolate=true,width=\paperwidth,height=\paperheight]{logo}{title-slide} % Use title-slide-169 if aspect ration is 16:9
 \setbeamertemplate{background}{
   \begin{tikzpicture}
-  \useasboundingbox (0,0) rectangle (\the\paperwidth,\the\paperheight); 
+  \useasboundingbox (0,0) rectangle (\the\paperwidth,\the\paperheight);
     \pgftext[at=\pgfpoint{0}{0},left,base]{\pgfuseimage{logo}};
   \ifnum\thepage>1\relax%
   \useasboundingbox (0,0) rectangle (\the\paperwidth,\the\paperheight);
@@ -33,23 +33,23 @@
 
 % Footline content
 \setbeamertemplate{navigation symbols}{}%remove navigation symbols
- 
+
  \setbeamertemplate{footline}{
   \begin{beamercolorbox}[heightt=1.6cm,width=\paperwidth]{footlinecolor}
     \vspace{0.1cm}
     \hfill
     \begin{minipage}[c]{3cm}
        \includegraphics[align=c, height=0.8cm]{memgraph-logo.png}
-    \end{minipage}  
+    \end{minipage}
     \begin{minipage}[c]{7cm}
          \insertshorttitle -- \insertsection
-    \end{minipage}      
+    \end{minipage}
     \begin{minipage}[c]{2cm}
         \tiny{\insertframenumber{} of \inserttotalframenumber}
-    \end{minipage}      
+    \end{minipage}
    \end{beamercolorbox}
 }
-  
+
 % Memgraph color palette
 \definecolor{mg-purple}{HTML}{720096}
 \definecolor{mg-red}{HTML}{DD2222}
@@ -82,7 +82,7 @@
 \begin{document}
 
  {
-\setbeamertemplate{footline}{} 
+\setbeamertemplate{footline}{}
 \begin{frame}
   \titlepage
 \end{frame}

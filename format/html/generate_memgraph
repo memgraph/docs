@@ -8,9 +8,8 @@ print_help () {
 }
 
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-input_dir=${script_dir}/../user_technical
+version="v0.14.0"
 standalone=0
-version="v0.13.0"
 
 while [[ $# > 0 ]]; do
     key="$1"
@@ -31,7 +30,14 @@ while [[ $# > 0 ]]; do
     esac
 done
 
-output_dir=${script_dir}/../output/html/${version}
+input_dir=${script_dir}/../../products/memgraph/${version}
+output_dir=${script_dir}/../../output/html/memgraph/${version}
+
+fail() {
+    msg=$1
+    echo ${msg}
+    exit 1
+}
 
 add_link_info () {
     local resource_dir=$(dirname $1)
@@ -41,8 +47,8 @@ add_link_info () {
         resource_dir="${resource_dir}/"
     fi
     (( $standalone )) && \
-    echo "--metadata=link_suffix:'' --metadata=html_link_prefix:'.html'" || \
-    echo "--metadata=link_suffix:'/docs/${version}/${resource_dir}' --metadata=html_link_prefix:''"
+    echo "--metadata=html_link_suffix:'' --metadata=html_link_prefix:'.html'" || \
+    echo "--metadata=html_link_suffix:'/docs/${version}/${resource_dir}' --metadata=html_link_prefix:''"
 }
 
 dump_html () {
@@ -52,7 +58,7 @@ dump_html () {
         --from markdown --to html \
         --output ${output_dir}/${dst_filename} \
         --filter ${script_dir}/links_filter.py \
-        $(add_link_info ${dst_filename}) || exit 1
+        $(add_link_info ${dst_filename}) || fail "Failed to generate ${dst_filename}!"
 }
 
 rm -rf ${output_dir}

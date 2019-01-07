@@ -1,6 +1,7 @@
 ## Memgraph TensorFlow Op
 
 ### Introduction
+
 Memgraph enables easier development and production serving of your
 machine learning models based on graph data by allowing you to query Memgraph
 directly from TensorFlow using the Memgraph TensorFlow op.
@@ -16,9 +17,11 @@ See TensorFlow
 for more information.
 
 ### API
+
 Memgraph TensorFlow op API consists of inputs, attributes and outputs.
 
 #### Input
+
 There are two inputs:
   * query
   * input list
@@ -48,15 +51,12 @@ Memgraph TensorFlow op attributes:
   * `use_ssl`, default: `false`
   * `output_dtype`
 
-`Host`, `port`, `user`, `password`
-and `use_ssl` are attributes used
-for connecting to Memgraph. The only different attribute is `output_dtype`.
-`output_dtype` has no default value and
-it is used to determine the type of output tensor.
-Notice that all data in the output tensor must be of the same type.
-`output_dtype` can be `int64`, `double`, `bool`
-and `string`.
-Memgraph TensorFlow op does not support other output types.
+`Host`, `port`, `user`, `password` and `use_ssl` are attributes used for
+connecting to Memgraph. The only different attribute is `output_dtype`.
+`output_dtype` has no default value and it is used to determine the type of
+output tensor.  Notice that all data in the output tensor must be of the same
+type.  `output_dtype` can be `int64`, `double`, `bool` and `string`.  Memgraph
+TensorFlow op does not support other output types.
 
 #### Outputs
 
@@ -102,8 +102,9 @@ Query output:
 
 Headers:
 
-|id|value_list_0|value_list_1|value_list_2|
-|--|------------|------------|------------|
+|id|value_list_0 |value_list_1 |value_list_2 |...|
+|--|-------------|-------------|-------------|---|
+|id|value_list[0]|value_list[1]|value_list[2]|...|
 
 Matrix output:
 
@@ -130,8 +131,9 @@ Query output:
 
 Headers:
 
-|id|value_list_0|value_list_1|value_list_2|neigh_0|neigh_1|
-|--|------------|------------|------------|-------|-------|
+|id|value_list_0 |value_list_1 |value_list_2 |...|neigh_0 |neigh_1 |
+|--|-------------|-------------|-------------|---|--------|--------|
+|id|value_list[0]|value_list[1]|value_list[2]|...|neigh[0]|neigh[1]|
 
 Matrix output:
 
@@ -144,9 +146,11 @@ Matrix output:
 ### Limitations
 
 #### Input List
+
 Input list (`$input_list`) can contain only elements of `int64` type.
 
 #### Output types:
+
 Output matrix contains only elements with the same data type. The data type can
 be `int64`, `double`, `bool` and `string`.
 `Null` is not allowed in matrix output.
@@ -157,6 +161,7 @@ A user must be careful here because converting data type to string
 and vice versa can have unwanted performance issues.
 
 #### Output Lists
+
 If the query contains list as output, the list expands into the row.
 All corresponding lists must have the same size.
 
