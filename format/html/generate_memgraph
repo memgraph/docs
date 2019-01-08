@@ -1,8 +1,8 @@
 #!/bin/bash
 
 print_help () {
-    echo "Usage: $0 [-s|--standalone]"
-    echo "    -s|--stanalone -> Put pandoc HTML wrapper around the content."
+    echo "Usage: $0 [-s|--standalone|-v|--version]"
+    echo "    -s|--standalone -> Put pandoc HTML wrapper around the content."
     echo "    -v|--version -> Put the output files under defined folder name."
     exit 1
 }
