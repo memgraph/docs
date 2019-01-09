@@ -39,7 +39,7 @@ This section contains the list of other supported functions.
  `relationships` | Returns a list of relationships (edges) from a path.
  `range`         | Constructs a list of value in given range.
  `tail`          | Returns all elements after the first of a given list.
- `uniformSample` | Returns elements of given list randomly oversampled or undersampled to desired size. e.g. `uniformSample([1, 2, 3], 5) -> [1, 2, 3, 2, 3]`
+ `uniformSample` | Returns elements of given list randomly oversampled or undersampled to desired size, e.g. `uniformSample([1, 2, 3], 5) -> [1, 2, 3, 2, 3]`
  `abs`           | Returns the absolute value of a number.
  `ceil`          | Returns the smallest integer greater than or equal to given number.
  `floor`         | Returns the largest integer smaller than or equal to given number.

@@ -1,5 +1,11 @@
 # Change Log
 
+## v0.15.0
+
+### Major Features and Improvements
+
+* Add `uniformSample` function to openCypher.
+
 ## v0.14.0
 
 ### Breaking Changes
