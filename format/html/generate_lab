@@ -37,7 +37,7 @@ output_dir=${script_dir}/../../output/html/lab/${version}
 append_standalone () {
     (( $standalone )) && \
     echo "--metadata=title:'$1' --metadata=html_link_suffix:'' --metadata=html_link_prefix:'.html'" || \
-    echo "--metadata=html_link_suffix:'/docs/${version}/' --metadata=html_link_prefix:''"
+    echo "--metadata=html_link_suffix:'/docs/lab/${version}/' --metadata=html_link_prefix:''"
 }
 
 rm -rf ${output_dir}

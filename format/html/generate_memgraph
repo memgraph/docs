@@ -48,7 +48,7 @@ add_link_info () {
     fi
     (( $standalone )) && \
     echo "--metadata=html_link_suffix:'' --metadata=html_link_prefix:'.html'" || \
-    echo "--metadata=html_link_suffix:'/docs/${version}/${resource_dir}' --metadata=html_link_prefix:''"
+    echo "--metadata=html_link_suffix:'/docs/memgraph/${version}/${resource_dir}' --metadata=html_link_prefix:''"
 }
 
 dump_html () {
