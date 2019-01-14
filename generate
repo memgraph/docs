@@ -42,8 +42,12 @@ append_standalone () {
     echo ""
 }
 
+# Generate Memgraph DBMS docs.
 ./generate_memgraph_v0.12.0 $(append_standalone)
 versions=("v0.13.0" "v0.14.0")
 for version in "${versions[@]}"; do
     ./generate_memgraph --version ${version} $(append_standalone)
 done
+
+# Generate Memgraph Lab docs.
+./generate_lab $(append_standalone)
