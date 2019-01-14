@@ -48,9 +48,7 @@ The output is a tuple, where the first element is header and the second
 element is a result matrix.
 
 ### Example
-Here is a simple example. You can use
-[the movie dataset](../tutorials/movie-recommendation.md) or you can use
-this simple dataset:
+Here is a simple example. You can use this simple dataset:
 
 ```openCypher
 CREATE (:User {id: 1})-[:Rating {score:5.0}]->(:Movie {id: 1});
