@@ -21,7 +21,7 @@ property. These are not automatically created, instead a user needs to create
 them explicitly. Creation is done using a special
 `CREATE INDEX ON :Label(property)` language construct.
 
-For example, to index nodes which is labeled as `:Person` and has a property
+For example, to index nodes which are labeled as `:Person` and have a property
 named `age`:
 
 ```opencypher

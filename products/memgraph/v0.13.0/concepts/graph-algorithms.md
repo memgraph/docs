@@ -101,7 +101,7 @@ nodes which represent points on a plane.
 
 Using appropriate data structures the worst-case performance of our
 implementation can be expressed as  `O(|E| + |V|log|V|)` where `E` denotes
-a set of edges and `V` denotes the set of nodes.
+the set of edges and `V` denotes the set of nodes.
 
 A sample query that finds a shortest path between two nodes looks as follows:
 

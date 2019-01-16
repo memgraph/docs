@@ -10,11 +10,11 @@ No. Memgraph uses RAM as the primary storage for data. However, Memgraph continu
 
 3. ##### How far have you scaled your system?
 
-It depends on the dataset and the queries, in other words the workload. On a single machine, Memgraph scales up to the size of a main memory or disk space where properties could be stored on disk. In a distributed system, the graph is automatically repartitioned in background to improve query execution time and scalability.
+It depends on the dataset and the queries, in other words the workload. On a single machine, Memgraph scales up to the size of the main memory or disk space where properties could be stored on disk. In a distributed system, the graph is automatically repartitioned in the background to improve query execution time and scalability.
 
 4. ##### Can Memgraph be deployed in the cloud?
 
-Yes, Memgraph can be deployed in the cloud. Memgraph is designed to be portable, but currently available only on x86_64 architecture. All standard Linux distributions like CentOS, Debian, Ubuntu, RedHat are supported. Memgraph is also available on Docker. For any other platforms, please drop us an email at [tech@memgraph.com](mailto:tech@memgraph.com) or get in touch with our team on our [Slack Channel](https://memgraph.com/slack/).
+Yes, Memgraph can be deployed in the cloud. Memgraph is designed to be portable, but currently available only on the x86_64 architecture. All standard Linux distributions like CentOS, Debian, Ubuntu, RedHat are supported. Memgraph is also available on Docker. For any other platforms, please drop us an email at [tech@memgraph.com](mailto:tech@memgraph.com) or get in touch with our team on our [Slack Channel](https://memgraph.com/slack/).
 
 5. ##### What does the hardware footprint look like?
 
@@ -34,7 +34,7 @@ Any programming language. For all popular programming languages there is an open
 
 9. ##### Do you support Tinkerpop API stacks?
 
-Memgraph doesn’t support the Tinkerpop API stack because Tinkerpop is highly dependent on Java stack. Memgraph is implemented in C/C++/Assembly with openCypher and the  Bolt protocol as an interface. We have considered a Tinkerpop integration, but at the moment it’s not one of our highest priorities.
+Memgraph doesn’t support the Tinkerpop API stack because Tinkerpop is highly dependent on the Java stack. Memgraph is implemented in C/C++/Assembly with openCypher and the Bolt protocol as an interface. We have considered Tinkerpop integration, but at the moment it’s not one of our highest priorities.
 
 10. ##### How do you interface with the system?
 
