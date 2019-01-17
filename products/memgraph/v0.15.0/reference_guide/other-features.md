@@ -184,7 +184,7 @@ In the future, additional information might be added to the output of the
 As an example, let's inspect the plan produced for a simple query:
 
 ```opencypher
-EXPLAIN MATCH (n) RETURN n
+EXPLAIN MATCH (n) RETURN n;
 ```
 
 ```
@@ -214,7 +214,7 @@ query's result set.
 A slightly more complicated example would be:
 
 ```opencypher
-EXPLAIN MATCH (n :Node)-[:Edge]-(m :Node) WHERE n.prop = 42 RETURN *
+EXPLAIN MATCH (n :Node)-[:Edge]-(m :Node) WHERE n.prop = 42 RETURN *;
 ```
 
 ```
@@ -247,7 +247,7 @@ A simple example showcasing the fully general tree structure of the plan could
 be:
 
 ```opencypher
-EXPLAIN MERGE (n) RETURN n
+EXPLAIN MERGE (n) RETURN n;
 ```
 
 ```
@@ -291,7 +291,7 @@ logical operator the following info is provided:
 A simple example to illustrate the output:
 
 ```opencypher
-EXPLAIN MATCH (n :Node)-[:Edge]-(m :Node) WHERE n.prop = 42 RETURN *
+EXPLAIN MATCH (n :Node)-[:Edge]-(m :Node) WHERE n.prop = 42 RETURN *;
 ```
 
 ```
