@@ -1,6 +1,6 @@
 ## How to Inspect and Profile OpenCypher Queries Using Memgraph
 
-### Inspecting queries
+### Inspecting Queries
 
 Before a Cypher query is executed, it is converted into an internal form
 suitable for execution, known as a *plan*. A plan is a tree-like data structure
@@ -112,7 +112,7 @@ can take input from upto 3 places. The `On Match` and `On Create` branches are
 "pulled from" only if a match was found or if a new vertex has to be created,
 respectively.
 
-### Profiling queries
+### Profiling Queries
 
 Along with inspecting a query's plan as described in the [previous
 section](#inspecting-queries), it is also possible to profile the execution of a
