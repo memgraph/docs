@@ -274,8 +274,8 @@ respectively.
 
 ### Profiling queries
 
-Along with inspecting a query's plan as described in the section [Profiling
-queries](#profiling-queries), it is also possible to profile the execution of a
+Along with inspecting a query's plan as described in the [previous
+section](#inspecting-queries), it is also possible to profile the execution of a
 query and get a detailed report on how the query's plan behaved. For every
 logical operator the following info is provided:
 
