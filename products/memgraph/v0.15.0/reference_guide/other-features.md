@@ -197,17 +197,17 @@ EXPLAIN MATCH (n) RETURN n
 +----------------+
 ```
 
-The output of the `EXPLAIN` query is a representation of the produced plan.
-Every logical operator within the plan starts with an asterisk character (`*`)
-and is followed by its name (and sometimes additional information). The "end" of
-the pipe is the topmost operator and data flows from the bottom-most logical
-operator(s) to the top-most logical operator(s). The execution of the query
-proceeds iteratively, from the bottom to the top.
+The output of the `EXPLAIN` query is a representation of the produced plan. Every
+logical operator within the plan starts with an asterisk character (`*`) and is
+followed by its name (and sometimes additional information). The execution of
+the query proceeds iteratively (generating one entry of the result set at a
+time), with data flowing from the bottom-most logical operator(s) (the start of
+the pipeline) to the top-most logical operator(s) (the end of the pipeline).
 
 In the example above, the resulting plan is a pipeline of 3 logical operators.
 `Once` is the identity logical operator which does nothing and is always found
-at the "start" of the pipeline; `ScanAll` is a logical operator which produces
-all of the nodes in the graph, one by one; and `Produce` is a logical operator
+at the start of the pipeline; `ScanAll` is a logical operator which iteratively
+produces all of the nodes in the graph; and `Produce` is a logical operator
 which takes data produced by another logical operator and produces data for the
 query's result set.
 
