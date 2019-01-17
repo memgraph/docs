@@ -165,8 +165,8 @@ RETURN CASE WHEN n.height < 30 THEN "short" WHEN n.height > 300 THEN "tall" END
 Before a Cypher query is executed, it is converted into an internal form
 suitable for execution, known as a *plan*. A plan is a tree-like data structure
 describing a pipeline of operations which will be performed on the database in
-order to yield the results for a given query. Every node within a *plan* is
-known as a *logical operator* and describes a particular operation.
+order to yield the results for a given query. Every node within a plan is known
+as a *logical operator* and describes a particular operation.
 
 Because a plan represents a pipeline, the logical operators are iteratively
 executed as data passes from one logical operator to the other. Every logical
