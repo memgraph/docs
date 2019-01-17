@@ -173,3 +173,6 @@ EXPLAIN MATCH (n) RETURN n;
 ```opencypher
 PROFILE MATCH (n) RETURN n;
 ```
+
+For a detailed look at using `EXPLAIN` and `PROFILE`, take a look at the
+[accompanying how-to guide](../how_to_guides/explain-profile.md).
