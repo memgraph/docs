@@ -134,7 +134,7 @@ logical operator the following info is provided:
 A simple example to illustrate the output:
 
 ```opencypher
-EXPLAIN MATCH (n :Node)-[:Edge]-(m :Node) WHERE n.prop = 42 RETURN *;
+PROFILE MATCH (n :Node)-[:Edge]-(m :Node) WHERE n.prop = 42 RETURN *;
 ```
 
 ```plaintext
