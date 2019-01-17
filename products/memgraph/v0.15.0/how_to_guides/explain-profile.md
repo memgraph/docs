@@ -119,17 +119,17 @@ section](#inspecting-queries), it is also possible to profile the execution of a
 query and get a detailed report on how the query's plan behaved. For every
 logical operator the following info is provided:
 
-- `OPERATOR` --- the name of the operator, just like in the output of an
+- `OPERATOR` &mdash; the name of the operator, just like in the output of an
   `EXPLAIN` query.
 
-- `ACTUAL HITS` --- the number of times a particular logical operator was pulled
-  from.
+- `ACTUAL HITS` &mdash; the number of times a particular logical operator was
+  pulled from.
 
-- `RELATIVE TIME` --- the amount of time that was spent processing a particular
-  logical operator, relative to the execution of the whole plan.
+- `RELATIVE TIME` &mdash; the amount of time that was spent processing a
+  particular logical operator, relative to the execution of the whole plan.
 
-- `ABSOLUTE TIME` --- the amount of time that was spent processing a particular
-  logical operator.
+- `ABSOLUTE TIME` &mdash; the amount of time that was spent processing a
+  particular logical operator.
 
 A simple example to illustrate the output:
 
