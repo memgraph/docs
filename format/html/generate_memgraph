@@ -76,6 +76,7 @@ mkdir -p ${output_dir}/data
 cp -r ${input_dir}/data/* ${output_dir}/data/
 
 dump_html "README.md" "index.html"
+dump_html "LICENSE.md" "license.html"
 dump_html "CHANGELOG.md" "changelog.html"
 dump_html "faq.md" "faq.html"
 dump_html "quick-start.md" "quick-start.html"

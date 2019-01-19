@@ -47,6 +47,7 @@ cd ${script_dir}
 source ve3/bin/activate || exit 1
 
 pandoc ${input_dir}/README.md --from markdown --to html --output ${output_dir}/index.html --filter ${script_dir}/links_filter.py $(append_standalone "TechnicalDocumentation") || exit 1
+pandoc ${input_dir}/LICENSE.md --from markdown --to html --output ${output_dir}/license.html --filter ${script_dir}/links_filter.py $(append_standalone "License") || exit 1
 pandoc ${input_dir}/CHANGELOG.md --from markdown --to html --output ${output_dir}/changelog.html --filter ${script_dir}/links_filter.py $(append_standalone "Changelog") || exit 1
 pandoc ${input_dir}/faq.md --from markdown --to html --output ${output_dir}/faq.html --filter ${script_dir}/links_filter.py $(append_standalone "FAQ") || exit 1
 pandoc ${input_dir}/concepts.md --from markdown --to html --output ${output_dir}/concepts.html --filter ${script_dir}/links_filter.py $(append_standalone "Concepts") || exit 1
