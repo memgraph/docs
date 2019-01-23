@@ -159,3 +159,20 @@ to true is matched:
 MATCH (n)
 RETURN CASE WHEN n.height < 30 THEN "short" WHEN n.height > 300 THEN "tall" END
 ```
+
+### Inspecting and Profiling Queries
+
+The `EXPLAIN` and `PROFILE` operators can be used to inspect and profile a
+particular OpenCypher query in order to see its internal representation and the
+way it behaves during execution.
+
+```opencypher
+EXPLAIN MATCH (n) RETURN n;
+```
+
+```opencypher
+PROFILE MATCH (n) RETURN n;
+```
+
+For a detailed look at using `EXPLAIN` and `PROFILE`, take a look at the
+[accompanying how-to guide](../how_to_guides/explain-profile.md).

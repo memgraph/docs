@@ -18,6 +18,7 @@ multi-version concurrency control and asynchronous IO.
     * [Exploring the European Road Network](tutorials/exploring-the-european-road-network.md)
     * [Movie Recommendation System](tutorials/movie-recommendation.md)
   * [How to](how_to_guides/how-to-guides-overview.md)
+    * [Inspect and Profile OpenCypher Queries Using Memgraph](how_to_guides/explain-profile.md)
     * [Import Data?](how_to_guides/import-data.md)
     * [Query Memgraph Programmatically?](how_to_guides/query-memgraph-programmatically.md)
     * [Ingest Data Using Kafka?](how_to_guides/ingest-data-using-kafka.md)
