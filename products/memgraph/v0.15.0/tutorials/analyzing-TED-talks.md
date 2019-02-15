@@ -1,14 +1,8 @@
 ## Analyzing TED Talks
 
-This article is a part of a series intended to show users how to use Memgraph
-on real-world data and, by doing so, retrieve some interesting and useful
+This article is a part of a series intended to show how to use Memgraph
+on real-world data to retrieve some interesting and useful
 information.
-
-We highly recommend checking out the other articles from this series:
-
-  * [Exploring the European Road Network](exploring-the-european-road-network.md)
-  * [Graphing the Premier League](graphing-the-premier-league.md)
-  * [Movie Recommendation System](movie-recommendation.md)
 
 ### Introduction
 
@@ -21,18 +15,21 @@ this data as a graph and demonstrate a few example queries.
 
 ### Data Model
 
-Each TED talk has a main speaker, so we
-identify two types of nodes &mdash; `Talk` and `Speaker`. Also, we will add
-an edge of type `Gave` pointing to a `Talk` from its main `Speaker`.
-Each speaker has a name so we can add property `name` to `Speaker` node.
-Likewise, we'll add properties `name`, `title` and `description` to node
-`Talk`. Furthermore, each talk is given in a specific TED event, so we can
+[//]: # (JCS TO DO --  is there an way to define the data model/ontology? That is, is there a language to express it besides written English?)
+
+* Each TED talk has a main speaker, so we
+identify two types of nodes &mdash; `Talk` and `Speaker`. 
+* We add an edge of type `Gave` pointing to a `Talk` from its main `Speaker`.
+* Each speaker has a name so we can add property `name` to `Speaker` node.
+* We'll add properties `name`, `title` and `description` to node
+`Talk`. 
+* Each talk is given in a specific TED event, so we can
 create node `Event` with property `name` and relationship `InEvent` between
 talk and event.
-
-Talks are tagged with keywords to facilitate searching, hence we
+* Talks are tagged with keywords to facilitate searching, hence we
 add node `Tag` with property `name` and relationship `HasTag` between talk and
-tag. Moreover, users give ratings to each talk by selecting up to three
+tag.
+* Users give ratings to each talk by selecting up to three
 predefined string values. Therefore we add node `Rating` with these values as
 property `name` and relationship`HasRating` with property `user_count` between
 talk and rating nodes.
@@ -49,15 +46,14 @@ import it when starting Memgraph using the `--durability-directory` option.
   --durability-enabled=false --snapshot-on-exit=false
 ```
 
-When using Memgraph installed from DEB or RPM package, the currently running
-Memgraph server may need to be stopped before importing the example. The user
-can do so using the following command:
+When using Memgraph installed from a Debian or RPM package, the currently running
+Memgraph server needs to be stopped before importing the example, using the following command:
 
 ```bash
 systemctl stop memgraph
 ```
 
-When using Docker, the example can be imported with the following command:
+When using Docker, the example can simply be imported with the following command:
 
 ```bash
 docker run -p 7687:7687 \
@@ -69,8 +65,15 @@ docker run -p 7687:7687 \
 The user should note that any modifications of the database state will persist
 only during this run of Memgraph.
 
-### Example Queries
+[//]: # (JCS TO DO -- how would I persist them? How would I prepare my own set of TED talks to import and add to this set? I think there are a few unanswered questions here.)
 
+### Example Queries using OpenCypher
+
+[//]: # (JCS TO DO -- for each of the queries below, it would be good to suggest, as an exercise for the reader, another they could try to work out for themselves.)
+
+In the queries below, we are using [OpenCypher](https://www.opencypher.org) to query Memgraph via the console.
+
+ 
 1) Find all talks given by specific speaker:
 
 ```opencypher
@@ -177,3 +180,11 @@ WITH DISTINCT n, m ORDER BY m.name
 RETURN n.name AS Speaker, COLLECT(m.name) AS Others
 ORDER BY Speaker;
 ```
+
+### Where To Next?
+
+We recommend checking out other tutorials from this series:
+
+  * [Exploring the European Road Network](exploring-the-european-road-network.md)
+  * [Graphing the Premier League](graphing-the-premier-league.md)
+  * [Movie Recommendation System](movie-recommendation.md)
