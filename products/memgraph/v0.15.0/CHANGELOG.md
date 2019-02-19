@@ -2,8 +2,14 @@
 
 ## v0.15.0
 
+### Breaking Changes
+
+* `indexInfo()` function replaced with `SHOW INDEX INFO` syntax.
+
 ### Major Features and Improvements
 
+* [Enterprise Ed.] Add new privilege, `STATS` for accessing storage info.
+* Add `SHOW STORAGE INFO` feature.
 * Add `uniformSample` function to openCypher.
 
 ## v0.14.0

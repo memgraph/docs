@@ -22,8 +22,7 @@ here (especially subtle semantic ones).
 * Data importing. Memgraph doesn't support Cypher's CSV importing capabilities.
 * The `FOREACH` language construct for performing an operation on every list element.
 * The `CALL` construct for a standalone function call. This can be expressed using
-  `RETURN functioncall()`. For example, with Memgraph you can get information about
-  the indexes present in the database using the `RETURN indexinfo()` openCypher query.
+  `RETURN functioncall()`.
 * Stored procedures.
 * Regular expressions for string matching.
 * `shortestPath` and `allShortestPaths` functions. `shortestPath` can be expressed using
