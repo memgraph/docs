@@ -23,7 +23,7 @@ conversational style which is easy to understand and conveys the most important
 messages without depending on highly-technical knowledge.
 
 For instance, our [Exploring the European Road
-Network](products/memgraph/v0.14.0/tutorials/exploring-the-european-road-network.md)
+Network](products/memgraph/v0.14.1/tutorials/exploring-the-european-road-network.md)
 tutorial provides a snapshot of, you guessed it, European road networks.  The
 example queries are designed to easily introduce Memgraph’s shortest path
 finding capabilities to users.
@@ -40,7 +40,7 @@ wants to solve their problem as quickly and as easy as possible.
 
 A typical example of a how-to guide would be an article on [How-to Ingest Data
 Using
-Kafka](products/memgraph/v0.14.0/how_to_guides/ingest-data-using-kafka.md).
+Kafka](products/memgraph/v0.14.1/how_to_guides/ingest-data-using-kafka.md).
 That article should contain all the necessary steps for the user to do so
 without going into much detail on what is Kafka or why data streaming might be
 important.
@@ -56,7 +56,7 @@ their usage of our product. In other words, a deep understanding of concepts
 should make them use Memgraph more efficiently and effectively.
 
 An example of a good concept is an article that explains
-[Graph Algorithms](products/memgraph/v0.14.0/concepts/graph-algorithms.md)
+[Graph Algorithms](products/memgraph/v0.14.1/concepts/graph-algorithms.md)
 that are implemented within Memgraph. Advanced users will gain an
 understanding of what is happening when they are executing certain queries and
 might optimize their queries due to that knowledge.
@@ -71,4 +71,4 @@ and up-to-date.
 
 An example of a good reference guide is an article which lists all OpenCypher
 commands that allow users to
-[read or write data](products/memgraph/v0.14.0/reference_guide/reading-and-writing.md).
+[read or write data](products/memgraph/v0.14.1/reference_guide/reading-and-writing.md).
