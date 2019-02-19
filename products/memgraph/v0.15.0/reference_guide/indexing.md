@@ -55,9 +55,9 @@ Information about available indexes can be retrieved by using the following
 syntax:
 
 ```opencypher
-RETURN indexInfo();
+SHOW INDEX INFO;
 ```
-The result of this query will be a list of all labels and label-property pairs
+The results of this query will be all of the labels and label-property pairs
 that Memgraph currently indexes.
 
 Created indexes can also be deleted by using the following syntax:

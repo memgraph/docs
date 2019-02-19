@@ -104,3 +104,25 @@ the same. It is also important to note that the user cannot change the storage
 location of a property while *Memgraph* is running. Naturally, the user can
 reload their database from snapshot, provide a different list of properties on
 disk and rest assured that only those properties will be stored on disk.
+
+### Storage Statistics
+
+A user can retrieve information and statistics from the storage of a running
+Memgraph instance. This is done with the following query.
+
+```opencypher
+SHOW STORAGE INFO;
+```
+
+For example, the results are:
+
+ storage info      | value
+-------------------|------------
+ `average_degree`  | 2.872567
+ `disk_usage`      | 38028
+ `edge_count`      | 90674
+ `memory_usage`    | 88842240
+ `vertex_count`    | 63131
+
+All of the `*_usage` results are expressing in bytes, unless explicitly stated
+otherwise.

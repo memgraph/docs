@@ -43,7 +43,7 @@ roles and privileges can only be executed by users that are granted the
 At the moment, privileges are confined to users' abilities to perform certain
 `OpenCypher` queries. Namely users can be given permission to execute a subset
 of the following commands: `CREATE`, `DELETE`, `MATCH`, `MERGE`, `SET`,
-`REMOVE`, `INDEX`, `AUTH`, `STREAM`.
+`REMOVE`, `INDEX`, `STATS`, `AUTH`, `STREAM`.
 
 We could naturally cluster those privileges into groups:
 
@@ -51,6 +51,7 @@ We could naturally cluster those privileges into groups:
   * Privilege to modify data (`MERGE`, `SET`)
   * Privilege to create and delete data (`CREATE`, `DELETE`, `REMOVE`)
   * Privilege to index data (`INDEX`)
+  * Privilege to obtain statistics and information from Memgraph (`STATS`)
   * Privilege to use data streaming (`STREAM`)
   * Privilege to view and alter users, roles and privileges (`AUTH`)
 
