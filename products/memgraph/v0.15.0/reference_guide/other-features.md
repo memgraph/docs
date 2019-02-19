@@ -81,7 +81,6 @@ This section contains the list of other supported functions.
  `assert`        | Raises an exception reported to the client if the given argument is not `true`.
  `counter`       | Generates integers that are guaranteed to be unique on the database level, for the given counter name.
  `counterSet`    | Sets the counter with the given name to the given value.
- `indexInfo`     | Returns a list of all the indexes available in the database. The list includes indexes that are not yet ready for use (they are concurrently being built by another transaction).
  `timestamp`     | Returns the difference, measured in milliseconds, between the current time and midnight, January 1, 1970 UTC.
  `id`            | Returns identifier for a given node or edge. The identifier is generated during the initialization of node or edge and will be persisted through the durability mechanism.
 
