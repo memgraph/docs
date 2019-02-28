@@ -26,7 +26,7 @@ equal to `cn=alice,dc=example,dc=com` which will then be used for the LDAP bind
 operation with the user specified password.
 
 When a user that has never logged in to the database passes authentication
-using LDAP a user object is created for that user. The user can then be seen
+using LDAP, a user object is created for that user. The user can then be seen
 using the following query:
 ```opencypher
 SHOW USERS;
@@ -48,7 +48,7 @@ as its member is used as the user's role. The role that is mapped to the user
 is the CN of the role mapping object.
 
 When a user that has a role that doesn't yet exist in the database logs in to
-the database a role object is created for that user and assigned to that user.
+the database, a role object is created for that user and assigned to that user.
 The role can then be seen using the following query:
 ```opencypher
 SHOW ROLES;
@@ -56,8 +56,8 @@ SHOW ROLES;
 This behavior can be changed to disable login to users that don't have an
 explicitly created role.
 
-Note: When searching for a role in directories that have thousands of roles the
-search process could take a long time. That could cause long login times.
+Note: When searching for a role in directories that have thousands of roles,
+the search process could take a long time. That could cause long login times.
 
 ### Flags
 
@@ -67,7 +67,7 @@ authentication and authorization mechanisms used by Memgraph.
  Flag                               | Description
 ------------------------------------|------------
  `--auth-ldap-enabled`              | Enables the LDAP integration.
- `--auth-ldap-issue-starttls`       | Conrols whether Memgraph should issue STARTTLS at the beginning of communication with the LDAP server.
+ `--auth-ldap-issue-starttls`       | Controls whether Memgraph should issue STARTTLS at the beginning of communication with the LDAP server.
  `--auth-ldap-prefix`               | Prefix used when forming the DN used for authentication.
  `--auth-ldap-suffix`               | Suffix used when forming the DN used for authentication.
  `--auth-ldap-host`                 | Host used to connect to the LDAP server.

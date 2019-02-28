@@ -1,13 +1,13 @@
 ## How to Manage Users Using LDAP?
 
 In large organizations it is often difficult to manage permissions that staff
-members have in the organization.  Organizations typically use a LDAP server to
-hold and manage the permissions.  Because LDAP servers are already set-up in
-most large organizations it is convenient for the organization to allow all
+members have in the organization.  Organizations typically use an LDAP server
+to hold and manage the permissions.  Because LDAP servers are already set-up in
+most large organizations, it is convenient for the organization to allow all
 staff members to have access to the database using the already available
 centralized user management system.
 
-For this guide let's assume that we have a LDAP server that is serving the
+For this guide let's assume that we have an LDAP server that is serving the
 following data:
 
 ```plaintext
@@ -90,20 +90,27 @@ To summarize, in this dataset we have the following data:
   - `cn=moderator,ou=roles,dc=memgraph,dc=com` - role `moderator` that has `alice` as its member
   - `cn=admin,ou=roles,dc=memgraph,dc=com` - role `admin` that has `carol` and `dave` as its members
 
+For detailed information about the LDAP integration you should first see the
+reference guide:
+[LDAP Security](../reference_guide/ldap-security.md).
+
 ### Authentication
 
 Before enabling LDAP authentication, Memgraph should be prepared for the
 integration. Here we assume that you have an already running Memgraph instance
-that doesn't have any users in its local authentication storage.  First you
-should create the user that should be the database administrator.  It is
-important to have in mind that the username that you create *must* exist in the
-LDAP directory.  For the described LDAP directory we will connect to the
+that doesn't have any users in its local authentication storage. For more
+details on how the native authentication storage works in Memgraph you should
+see: [How to Manage User Privileges?](manage-user-privileges.md).
+
+First you should create the user that should be the database administrator.  It
+is important to have in mind that the username that you create *must* exist in
+the LDAP directory.  For the described LDAP directory we will connect to the
 database and issue the following queries all in the same connection:
 ```opencypher
 CREATE USER dba;
 GRANT ALL PRIVILEGES TO dba;
 ```
-After the user is created and all privileges are granted it is safe to
+After the user is created and all privileges are granted, it is safe to
 disconnect from the database and proceed with LDAP integration.
 
 To enable LDAP integration you should specify the following flags to Memgraph:
@@ -132,7 +139,7 @@ Using user `dba` we modify Alice's privileges to include the `MATCH` privilege.
 GRANT MATCH TO alice;
 ```
 
-After Alice logs in again in to the database (to refresh her privileges) she
+After Alice logs in again into the database (to refresh her privileges) she
 will be able to execute the following query:
 ```opencypher
 MATCH (n) RETURN n;
@@ -166,8 +173,8 @@ example we will explain how to set-up Memgraph to deduce the user's role using
 LDAP search queries.
 
 First, you should enable and verify that user authentication works. To enable
-role mapping for the described LDAP schema, we add the following additional
-flag to Memgraph:
+role mapping for the described LDAP schema, we will add the following
+additional flag to Memgraph:
 ```plaintext
 --auth-ldap-role-mapping-root-dn="ou=roles,dc=memgraph,dc=com"
 ```
@@ -181,7 +188,7 @@ member.
 So now when Alice logs in, Memgraph will go through the following entries:
 `cn=admin,ou=roles,dc=memgraph,dc=com` and
 `cn=moderator,ou=roles,dc=memgraph,dc=com`.  Because Alice is a member of the
-`moderator` role mapping Memgraph will assign role moderator to Alice.
+`moderator` role mapping, Memgraph will assign role moderator to Alice.
 
 Now as the user `dba` we can issue `SHOW ROLE FOR alice;` and we will see that
 indeed Alice now has the role `moderator`.
