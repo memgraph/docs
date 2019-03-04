@@ -9,6 +9,7 @@
 ### Major Features and Improvements
 
 * [Enterprise Ed.] Add new privilege, `STATS` for accessing storage info.
+* [Enterprise Ed.] LDAP authentication and authorization support.
 * Add `SHOW STORAGE INFO` feature.
 * Add `uniformSample` function to openCypher.
 
