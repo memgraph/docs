@@ -38,6 +38,7 @@ multi-version concurrency control and asynchronous IO.
     * [Graph Streams](reference_guide/graph-streams.md)
     * [Security](reference_guide/security.md)
     * [LDAP Security](reference_guide/ldap-security.md)
+    * [Audit Log](reference_guide/audit-log.md)
     * [TensorFlow Op](reference_guide/tensorflow.md)
     * [Other Features](reference_guide/other-features.md)
     * [Differences](reference_guide/differences.md)
