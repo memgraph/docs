@@ -4,10 +4,11 @@ Memgraph supports all query audit logging. When enabled, the audit log contains
 records of all queries executed on the database.  Each executed query is one
 entry (one line) in the audit log. The audit log itself is a CSV file.
 
-All audit logs are written to `<MEMGRAPH_STORAGE_DIRECTORY>/audit/audit.log`.
-The log is rotated using `logrotate`, so entries in the `audit.log` file are
-always the newest entries. Entries in `audit.log.1`, `audit.log.2.gz`, etc.
-are older entries. The default log rotation configuration can be found in
+All audit logs are written to
+`<MEMGRAPH_DURABILITY_DIRECTORY>/audit/audit.log`.  The log is rotated using
+`logrotate`, so entries in the `audit.log` file are always the newest entries.
+Entries in `audit.log.1`, `audit.log.2.gz`, etc.  are older entries. The
+default log rotation configuration can be found in
 `/etc/logrotate.d/memgraph_audit`. By default, the log is rotated every day and
 a full year of entries is preserved. You can modify the values to your own
 needs and preferences.
@@ -43,8 +44,7 @@ CREATE (n {name: $name})                          | {"name": "alice"}
 MATCH (n), (m) CREATE (n)-[:e {when: $when}]->(m) | {"when": 42}
 MATCH (n), (m) SET n.value = m.value              | {}
 
-
-### Parsing the log
+### Parsing the Log
 
 If you wish to parse the log, the following Python snippet shows how to extract
 data from the audit log:
