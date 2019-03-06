@@ -17,8 +17,6 @@ It is important to note that newer versions of Memgraph are currently not
 backward compatible with older versions. This is mainly noticeable by
 being unable to load storage snapshots between different versions.
 
-[//]: # (JCS TO DO --  how to find out what version I've already got? How to upgrade? Need a section on this or point to another location)
-
 #### Debian Package Installation {#debian-installation}
 
 After downloading Memgraph as a Debian package, install it by running the
