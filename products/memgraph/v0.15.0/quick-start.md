@@ -51,7 +51,8 @@ Nov 23 13:40:13 hostname memgraph[14654]: BoltS listening on 0.0.0.0 at 7687
 At this point, Memgraph is ready for you to [submit queries](#querying).
 
 ##### Configuration
-The Memgraph configuration is available in `/etc/memgraph/memgraph.conf`. 
+The Memgraph configuration is available in `/etc/memgraph/memgraph.conf`.
+
 
 #### RPM Package Installation {#RPM-installation}
 
@@ -86,7 +87,8 @@ Nov 23 13:40:13 hostname memgraph[14654]: BoltS listening on 0.0.0.0 at 7687
 At this point, Memgraph is ready for you to [submit queries](#querying).
 
 ##### Configuration
-The Memgraph configuration is available in `/etc/memgraph/memgraph.conf`. 
+The Memgraph configuration is available in `/etc/memgraph/memgraph.conf`.
+
 
 #### Docker Installation {#docker-installation}
 
@@ -126,7 +128,8 @@ At this point, Memgraph is ready for you to [submit queries](#querying).
 
 The Memgraph configuration is available in Docker's named volume `mg_etc`. On
 Linux systems it should be in
-`/var/lib/docker/volumes/mg_etc/_data/memgraph.conf`. 
+`/var/lib/docker/volumes/mg_etc/_data/memgraph.conf`.
+
 
 ##### Named Volumes
 If it happens that the named volumes are reused between different Memgraph
