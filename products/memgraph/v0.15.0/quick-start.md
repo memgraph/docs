@@ -1,8 +1,8 @@
 ## Quick Start
 
 This article briefly outlines the basic steps necessary to install and run
-Memgraph. It also introduces how to make queries using [OpenCypher](https://www.opencypher.org). Finally, please
-be aware of and understand the implications of
+Memgraph. It also introduces how to make queries using [OpenCypher](https://www.opencypher.org). 
+Finally, please be aware of and understand the implications of
 [telemetry](#telemetry) as used by the Memgraph team.
 
 ### Installation
@@ -64,7 +64,8 @@ issuing the following command:
 rpm -U /path/to/memgraph-<version>.rpm
 ```
 
-After successful installation, Memgraph can be started as a service using the following command:
+After successful installation, Memgraph can be started as a 
+service using the following command:
 
 ```bash
 systemctl start memgraph
@@ -173,8 +174,9 @@ with Docker, as described in the [querying](#querying) section.
 
 ### Querying {#querying}
 
-Memgraph supports the [openCypher](https://www.opencypher.org) query language which has been developed by
-[Neo4j](http://neo4j.com). It is a declarative language developed specifically
+Memgraph supports the [openCypher](https://www.opencypher.org) query language 
+which has been developed by [Neo4j](http://neo4j.com). 
+It is a declarative language developed specifically
 for interaction with graph databases, which is currently going through a
 vendor-independent standardization process.
 
@@ -183,14 +185,15 @@ Memgraph's command-line tool, `mg_client`, which is installed
 together with Memgraph.
 
 If you installed Memgraph using Docker, you will need to run the client
-using the following command (remember to replace `HOST` with valid IP of the container - see [Note for OS X/macOS Users](#OSX-note)):
+using the following command (remember to replace `HOST` with valid IP of 
+the container - see [Note for OS X/macOS Users](#OSX-note)):
 
 ```bash
 docker run -it --entrypoint=mg_client memgraph --host HOST
 ```
 
-Otherwise, you can connect to the running Memgraph instance by issuing the following
-shell command:
+Otherwise, you can connect to the running Memgraph instance by 
+issuing the following shell command:
 
 ```bash
 mg_client
@@ -237,10 +240,11 @@ systemctl stop memgraph
 ### Telemetry {#telemetry}
 
 Telemetry is an automated process by which data is collected at
-a remote point. At Memgraph, we use telemetry for the sole purpose of improving
-our product, thereby collecting data about the machine that executes the
-database (CPU, memory, OS and kernel information) as well as data about the
-database runtime (CPU usage, memory usage, vertices and edges count).
+a remote point. At Memgraph, we use telemetry for the sole purpose 
+of improving our product, thereby collecting data about the machine 
+that executes the database (CPU, memory, OS and kernel information) 
+as well as data about the database runtime (CPU usage, memory usage, 
+vertices and edges count).
 
 Here at Memgraph, we care deeply about the privacy of our users and do not
 collect any sensitive information. If you wish to disable Memgraph's telemetry
