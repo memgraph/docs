@@ -1,4 +1,4 @@
-## How to Inspect and Profile OpenCypher Queries Using Memgraph
+## How to Inspect and Profile OpenCypher Queries Using Memgraph?
 
 ### Inspecting Queries
 
