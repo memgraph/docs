@@ -15,8 +15,6 @@ this data as a graph and demonstrate a few example queries.
 
 ### Data Model
 
-[//]: # (JCS TO DO --  is there an way to define the data model/ontology? That is, is there a language to express it besides written English?)
-
 * Each TED talk has a main speaker, so we
 identify two types of nodes &mdash; `Talk` and `Speaker`. 
 * We add an edge of type `Gave` pointing to a `Talk` from its main `Speaker`.
@@ -46,8 +44,9 @@ import it when starting Memgraph using the `--durability-directory` option.
   --durability-enabled=false --snapshot-on-exit=false
 ```
 
-When using Memgraph installed from a Debian or RPM package, the currently running
-Memgraph server needs to be stopped before importing the example, using the following command:
+When using Memgraph installed from a Debian or RPM package, 
+the currently running Memgraph server needs to be stopped before 
+importing the example, using the following command:
 
 ```bash
 systemctl stop memgraph
@@ -65,13 +64,10 @@ docker run -p 7687:7687 \
 The user should note that any modifications of the database state will persist
 only during this run of Memgraph.
 
-[//]: # (JCS TO DO -- how would I persist them? How would I prepare my own set of TED talks to import and add to this set? I think there are a few unanswered questions here.)
-
 ### Example Queries using OpenCypher
 
-[//]: # (JCS TO DO -- for each of the queries below, it would be good to suggest, as an exercise for the reader, another they could try to work out for themselves.)
-
-In the queries below, we are using [OpenCypher](https://www.opencypher.org) to query Memgraph via the console.
+In the queries below, we are using [OpenCypher](https://www.opencypher.org) 
+to query Memgraph via the console.
 
  
 1) Find all talks given by specific speaker:
