@@ -1,4 +1,5 @@
 ## How to Setup Memgraph Tensorflow Op?
+
 [TensorFlow](https://www.tensorflow.org/) is an open source software
 library for high-performance numerical computation.
 A TensorFlow op (operation) is a fundamental building block of all TensorFlow
@@ -19,6 +20,7 @@ We also assume that you have installed and
 running Memgraph ([see more](../quick-start.md))
 
 ### Memgraph Tensorflow Op Usage
+
 Memgraph TensorFlow op is a shared library (`.so` file).
 Library name is `libmemgraph_op.so`.
 
@@ -48,6 +50,7 @@ The output is a tuple, where the first element is header and the second
 element is a result matrix.
 
 ### Example
+
 Here is a simple example. You can use
 [the movie dataset](../tutorials/movie-recommendation.md) or you can use
 this simple dataset:
