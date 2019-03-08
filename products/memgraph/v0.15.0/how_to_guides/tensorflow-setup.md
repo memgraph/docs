@@ -115,3 +115,103 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+
+### Memgraph Parallel Tensorflow Op Usage
+
+Load op library:
+```python3
+import tensorflow as tf
+memgraph_op_module = tf.load_op_library('libmemgraph_op.so')
+```
+
+Create Memgraph TensorFlow op:
+```python3
+# Create Memgraph op, and put placeholders for input
+memgraph_op = memgraph_op_module.parallel_memgraph_op(query_holder,
+                                                      input_list_holder,
+                                                      output_dtype=tf.int64,
+                                                      num_workers=4)
+```
+Where `query_holder` and `input_list_holder`
+are TensorFlow placeholders.
+
+Computation:
+```python3
+# Run Memgraph op
+output = sess.run(memgraph_op, {query_holder: query,
+                                input_list_holder: input_list})
+```
+The output is a tuple, where the first element is header and the second
+element is a result matrix.
+
+### Example
+This example shows one of the archetypal patterns of using the parallel op.
+We will find nodes by ids and return each of their features.
+
+We will query this example dataset:
+
+```openCypher
+CREATE (n:Node {id: 1, features: [100, 115, 121, 95, 72, 142]});
+CREATE (n:Node {id: 2, features: [45, 125, 212, 46, 25, 92]});
+CREATE (n:Node {id: 3, features: [34, 74, 261, 194, 142, 37]});
+CREATE (n:Node {id: 4, features: [76, 92, 11, 16, 78, 261]});
+CREATE (n:Node {id: 5, features: [175, 63, 111, 192, 58, 91]});
+CREATE (n:Node {id: 6, features: [251, 184, 43, 57, 243, 231]});
+CREATE (n:Node {id: 7, features: [187, 136, 37, 33, 76, 145]});
+CREATE (n:Node {id: 8, features: [193, 195, 200, 74, 28, 127]});
+```
+
+This example assumes that Memgraph is running on `127.0.0.1:7687`
+without `ssl`.
+If you want to change this,
+use op [attributes](../reference_guide/tensorflow.md).
+
+```python3
+import tensorflow as tf
+
+# Load libmemgraph_op.so
+memgraph_op_module = tf.load_op_library('libmemgraph_op.so')
+
+
+def main():
+    query = """
+            UNWIND $input_list AS idx
+            MATCH (n:Node {id: idx})
+            RETURN n.features
+            """
+
+    # Input list used in query
+    input_list = [1, 2, 3, 4, 5]
+
+    # Create tensorflow session
+    with tf.Session() as sess:
+
+        # Query placeholder
+        query_holder = tf.placeholder(tf.string)
+
+        # Input list placeholder
+        input_list_holder = tf.placeholder(tf.int64)
+
+        # Create Memgraph op, and put placeholders for input
+        memgraph_op = memgraph_op_module.parallel_memgraph_op(query_holder,
+                                                     input_list_holder,
+                                                     output_dtype=tf.int64)
+
+        # Run Memgraph op
+        output = sess.run(memgraph_op, {query_holder: query,
+                                        input_list_holder: input_list})
+
+        # First output is list of headers
+        print("Headers:")
+        for i in output[0]:
+            print(i)
+
+        # Output matrix (rows), query results
+        print("Rows: ")
+        for i in output[1]:
+            print(i)
+
+if __name__ == "__main__":
+    main()
+```
