@@ -194,9 +194,9 @@ a data parallel way. The parallelization is done by splitting the input list
 into chunks, running the query on each chunk of the input list independently
 and simply concatenating the results into a single tensor.
 
-### Api
+### API
 
-The inputs, outputs, and errors are all equivalent to the regular
+The inputs, outputs and errors are all equivalent to the regular
 Memgraph Tensorflow Op, with the exception of the parallel op having one
 addional attribute
 
@@ -208,9 +208,9 @@ Tensorflow Op will maintain and into how many chunks the input list is broken.
 ### Important Considerations and Semantic Differences
 
 Under the hood, the Parallel Tensorflow Op runs each of your queries as several
-independent queries. The exact number matches the num_workers attribute.
+independent queries. The exact number matches the `num_workers` attribute.
 
-Your input list is split into chunks, such that every worker gets a chunk
+Your input list is split into chunks, such that every worker gets a chunk of
 approximately equal size.
 The only way to utilize paralleism is to use input lists.
 
@@ -224,7 +224,7 @@ results is likely to produce unexpected results.
 For example, a query that sorts results will only sort results within its
 chunk.
 
-If this is the result of an imaginary query with num_workers = 1:
+If this is the result of an imaginary query with `num_workers = 1`:
 
 |result|
 |-|
@@ -234,7 +234,7 @@ If this is the result of an imaginary query with num_workers = 1:
 |4|
 |5|
 
-This might be the result with num_workers = 2:
+This might be the result with `num_workers = 2`:
 The first worker is assigned a chunk of size three and the second worker a
 chunk of size two.
 Hence the first three elements are sorted amongst each other and the last
@@ -250,9 +250,9 @@ sorted.
 |5|
 
 A query with a limit clause will only limit the results within that
-chunk, meaning the total result might have (num_workers * limit) rows.
+chunk, meaning the total result might have `(num_workers * limit)` rows.
 
-Using "WHERE something in $input_list" will cause unexpected results.
+Using `WHERE something in $input_list` will cause unexpected results.
 
 The parallel Memgraph Tensorflow op is best used when the input list is full
 of "ids" of nodes to be found and something independent has to be done for

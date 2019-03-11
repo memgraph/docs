@@ -49,7 +49,7 @@ output = sess.run(memgraph_op, {query_holder: query,
 The output is a tuple, where the first element is header and the second
 element is a result matrix.
 
-### Example
+#### Example
 
 Here is a simple example. You can use
 [the movie dataset](../tutorials/movie-recommendation.md) or you can use
@@ -116,7 +116,6 @@ if __name__ == "__main__":
     main()
 ```
 
-
 ### Memgraph Parallel Tensorflow Op Usage
 
 Load op library:
@@ -145,7 +144,7 @@ output = sess.run(memgraph_op, {query_holder: query,
 The output is a tuple, where the first element is header and the second
 element is a result matrix.
 
-### Example
+#### Example
 This example shows one of the archetypal patterns of using the parallel op.
 We will find nodes by ids and return each of their features.
 
