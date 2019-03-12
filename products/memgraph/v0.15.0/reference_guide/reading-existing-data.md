@@ -90,6 +90,23 @@ MATCH (n :Person) WHERE n.age > 20 RETURN n
 Additional examples can be found
 [here](https://neo4j.com/docs/developer-manual/current/cypher/clauses/where/).
 
+#### Regular Expressions
+
+Inside `WHERE` clause, you can use regular expressions for text filtering. To
+use a regular expression, you need to use the `=~` operator.
+
+For example, finding all `Person` nodes which have a name ending with `son`.
+
+```opencypher
+MATCH (n :Person) WHERE ".*son$" RETURN n
+```
+
+The regular expression syntax is based on the modified ECMAScript regular
+expression grammar. The ECMAScript grammar can be found
+[here](http://ecma-international.org/ecma-262/5.1/#sec-15.10), while the
+modifications are described in [this
+document](https://en.cppreference.com/w/cpp/regex/ecmascript).
+
 ### RETURN
 
 The `RETURN` clause defines which data should be included in the resulting
