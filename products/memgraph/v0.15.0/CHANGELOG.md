@@ -13,6 +13,7 @@
 * [Enterprise Ed.] Add audit logging feature.
 * Add `SHOW STORAGE INFO` feature.
 * Add `uniformSample` function to openCypher.
+* Add regex matching to openCypher.
 
 ## v0.14.0
 
