@@ -98,7 +98,7 @@ use a regular expression, you need to use the `=~` operator.
 For example, finding all `Person` nodes which have a name ending with `son`.
 
 ```opencypher
-MATCH (n :Person) WHERE ".*son$" RETURN n
+MATCH (n :Person) WHERE n.name =~ ".*son$" RETURN n
 ```
 
 The regular expression syntax is based on the modified ECMAScript regular
