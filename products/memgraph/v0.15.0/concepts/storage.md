@@ -70,15 +70,15 @@ types. Following is a table of supported data types.
  Note that even though it's possible to store `List` and `Map` property values, it is not possible to modify them. It is however possible to replace them completely. So, the following queries are legal:
 
 ```opencypher
-CREATE (:Node {property: [1, 2, 3]})
-CREATE (:Node {property: {key: "value"}})
+CREATE (:Node {property: [1, 2, 3]});
+CREATE (:Node {property: {key: "value"}});
 ```
 
 However, these queries are not:
 
 ```opencypher
-MATCH (n:Node) SET n.property[0] = 0
-MATCH (n:Node) SET n.property.key = "other value"
+MATCH (n:Node) SET n.property[0] = 0;
+MATCH (n:Node) SET n.property.key = "other value";
 ```
 
 ### Cold data on disk

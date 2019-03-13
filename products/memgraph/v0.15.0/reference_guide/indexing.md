@@ -62,7 +62,7 @@ that Memgraph currently indexes.
 
 Created indexes can also be deleted by using the following syntax:
 ```opencypher
-DROP INDEX ON :Label(property)
+DROP INDEX ON :Label(property);
 ```
 
 ### Uniqueness constraint

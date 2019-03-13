@@ -106,7 +106,7 @@ the set of edges and `V` denotes the set of nodes.
 A sample query that finds a shortest path between two nodes looks as follows:
 
 ```opencypher
-MATCH (a {id: 723})-[edge_list *wShortest 10 (e, n | e.weight) total_weight]-(b {id: 882}) RETURN *
+MATCH (a {id: 723})-[edge_list *wShortest 10 (e, n | e.weight) total_weight]-(b {id: 882}) RETURN *;
 ```
 
 This query has an upper bound length restriction set to `10`. This means that no
@@ -122,11 +122,11 @@ Consider the following graph and sample queries.
 ![](../data/graph.png)
 
 ```opencypher
-MATCH (a {id: 0})-[edge_list *wShortest 3 (e, n | e.weight) total_weight]-(b {id: 5}) RETURN *
+MATCH (a {id: 0})-[edge_list *wShortest 3 (e, n | e.weight) total_weight]-(b {id: 5}) RETURN *;
 ```
 
 ```opencypher
-MATCH (a {id: 0})-[edge_list *wShortest   (e, n | e.weight) total_weight]-(b {id: 5}) RETURN *
+MATCH (a {id: 0})-[edge_list *wShortest   (e, n | e.weight) total_weight]-(b {id: 5}) RETURN *;
 ```
 
 The first query will try to find the weighted shortest path between nodes `0`

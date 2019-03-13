@@ -6,7 +6,7 @@ OpenCypher supports only simple filtering when matching variable length paths.
 For example:
 
 ```opencypher
-MATCH (n)-[edge_list:Type * {x: 42}]-(m)
+MATCH (n)-[edge_list:Type * {x: 42}]-(m);
 ```
 
 This will produce only those paths whose edges have the required `Type` and `x`
@@ -19,7 +19,7 @@ during path matching. The next example filters edges which have property `x`
 between `0` and `10`.
 
 ```opencypher
-MATCH (n)-[edge_list * (edge, node | 0 < edge.x < 10)]-(m)
+MATCH (n)-[edge_list * (edge, node | 0 < edge.x < 10)]-(m);
 ```
 
 Here we introduce a lambda function with parentheses, where the first two
@@ -32,7 +32,7 @@ value.  If `True`, matching continues, otherwise the path is discarded.
 The previous example can be written using the `all` function:
 
 ```opencypher
-MATCH (n)-[edge_list *]-(m) WHERE all(edge IN edge_list WHERE 0 < edge.x < 10)
+MATCH (n)-[edge_list *]-(m) WHERE all(edge IN edge_list WHERE 0 < edge.x < 10);
 ```
 
 However, filtering using a lambda function is more efficient because paths
@@ -51,7 +51,7 @@ Finding the shortest path between nodes can be done using breadth-first
 expansion:
 
 ```opencypher
-MATCH (a {id: 723})-[edge_list:Type *bfs..10]-(b {id: 882}) RETURN *
+MATCH (a {id: 723})-[edge_list:Type *bfs..10]-(b {id: 882}) RETURN *;
 ```
 
 The above query will find all paths of length up to 10 between nodes `a` and `b`.
@@ -61,7 +61,7 @@ length expansion.
 To find only the shortest path, simply append `LIMIT 1` to the `RETURN` clause.
 
 ```opencypher
-MATCH (a {id: 723})-[edge_list:Type *bfs..10]-(b {id: 882}) RETURN * LIMIT 1
+MATCH (a {id: 723})-[edge_list:Type *bfs..10]-(b {id: 882}) RETURN * LIMIT 1;
 ```
 
 Breadth-first expansion allows an arbitrary expression filter that determines
@@ -70,7 +70,7 @@ allowed only over edges whose `x` property is greater than `12` and nodes `y`
 whose property is less than `3`:
 
 ```opencypher
-MATCH (a {id: 723})-[*bfs..10 (e, n | e.x > 12 AND n.y < 3)]-() RETURN *
+MATCH (a {id: 723})-[*bfs..10 (e, n | e.x > 12 AND n.y < 3)]-() RETURN *;
 ```
 
 The filter is defined as a lambda function over `e` and `n`, which denote the edge
@@ -101,7 +101,7 @@ shortest path expansion:
 MATCH (a {id: 723})-[
         edge_list *wShortest 10 (e, n | e.weight) total_weight
     ]-(b {id: 882})
-RETURN *
+RETURN *;
 ```
 
 The above query will find the shortest path of length up to 10 nodes between
@@ -117,7 +117,7 @@ which the weight between nodes is defined as the product of edge weights
 MATCH (a {id: 723})-[
         edge_list *wShortest 10 (e, n | log(e.weight)) total_weight
     ]-(b {id: 882})
-RETURN exp(total_weight)
+RETURN exp(total_weight);
 ```
 
 Weighted Shortest Path expansions also allows an arbitrary expression filter
@@ -129,7 +129,7 @@ and nodes `y` whose property is less than `3`:
 MATCH (a {id: 723})-[
         edge_list *wShortest 10 (e, n | e.weight) total_weight (e, n | e.x > 12 AND n.y < 3)
     ]-(b {id: 882})
-RETURN exp(total_weight)
+RETURN exp(total_weight);
 ```
 
 Both weight and filter expression are defined as lambda functions over `e` and

@@ -14,7 +14,7 @@ For example, creating a node and finding all nodes with the same property.
 
 ```opencypher
 CREATE (node {property: 42}) WITH node.property AS propValue
-MATCH (n {property: propValue}) RETURN n
+MATCH (n {property: propValue}) RETURN n;
 ```
 
 Note that the `node` is not visible after `WITH`, since only `node.property`
@@ -33,7 +33,7 @@ created. In a way, this clause is like a combination of `MATCH` and `CREATE`.
 Example. Ensure that a person has at least one friend.
 
 ```opencypher
-MATCH (n :Person) MERGE (n)-[:FriendOf]->(m)
+MATCH (n :Person) MERGE (n)-[:FriendOf]->(m);
 ```
 
 The clause also provides additional features for updating the values depending
@@ -44,7 +44,7 @@ Example. Set a different properties depending on what `MERGE` did.
 
 ```opencypher
 MATCH (n :Person) MERGE (n)-[:FriendOf]->(m)
-ON CREATE SET m.prop = "created" ON MATCH SET m.prop = "existed"
+ON CREATE SET m.prop = "created" ON MATCH SET m.prop = "existed";
 ```
 
 For more details, click [this

@@ -9,7 +9,7 @@ The `UNWIND` clause is used to unwind a list of values as individual rows.
 Example. Produce rows out of a single list.
 
 ```opencypher
-UNWIND [1,2,3] AS listElement RETURN listElement
+UNWIND [1,2,3] AS listElement RETURN listElement;
 ```
 
 More examples are
@@ -107,7 +107,7 @@ old Cypher parameter syntax using curly braces. For example, you can parameteriz
 filtering a node property:
 
 ```opencypher
-MATCH (node1 {property: $propertyValue}) RETURN node1
+MATCH (node1 {property: $propertyValue}) RETURN node1;
 ```
 
 You can use parameters instead of any literal in the query, but not instead of
@@ -115,7 +115,7 @@ property maps even though that is allowed in standard openCypher. Following
 example is illegal in Memgraph:
 
 ```opencypher
-MATCH (node1 $propertyValue) RETURN node1
+MATCH (node1 $propertyValue) RETURN node1;
 ```
 
 To use parameters with Python driver use following syntax:

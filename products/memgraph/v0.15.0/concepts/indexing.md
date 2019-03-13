@@ -83,7 +83,7 @@ that Memgraph currently indexes.
 
 Created indexes can also be deleted by using the following syntax:
 ```opencypher
-DROP INDEX ON :Label(property)
+DROP INDEX ON :Label(property);
 ```
 
 Dropping an index will instruct all active transactions to abort as soon as
