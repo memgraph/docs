@@ -178,7 +178,7 @@ For the target user (Aladin) and some other user we are searching
 for the same movies:
 
 ```opencypher
-MATCH (u:User{id:1000})-[r:Rating]-(m:Movie)-[other_r:Rating]-(other:User)
+MATCH (u:User{id:1000})-[r:Rating]-(m:Movie)-[other_r:Rating]-(other:User);
 ```
 But this is not enough for finding similar users. We need to choose users
 with the same movies and similar scores:
@@ -187,7 +187,7 @@ with the same movies and similar scores:
 WITH other.id AS other_id,
 AVG(ABS(r.score-other_r.score)) AS similarity, COUNT(*) AS similar_user_count
 WHERE similar_user_count > 2
-WITH other_id ORDER BY similarity LIMIT 10
+WITH other_id ORDER BY similarity LIMIT 10;
 ```
 Here we calculate similarities as the average distance between
 target user score and some other user score on the same set of movies.
@@ -213,7 +213,7 @@ for example [Euclidean distance](https://en.wikipedia.org/wiki/Euclidean_distanc
 
 ```opencypher
 SQRT(REDUCE(a=0, x in COLLECT((r.score - other_r.score) * (r.score - other_r.score)) | a + x))
-AS similarity
+AS similarity;
 ```
 Here we use `REDUCE` function. Reduce function accumulate list elements
 into a single result by applying an expression.

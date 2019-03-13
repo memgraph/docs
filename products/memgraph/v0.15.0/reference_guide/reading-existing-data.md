@@ -16,13 +16,13 @@ pattern. For example, to find each node in the database, you can use the
 following query.
 
 ```opencypher
-MATCH (node) RETURN node
+MATCH (node) RETURN node;
 ```
 
 Finding connected nodes can be achieved by using the query:
 
 ```opencypher
-MATCH (node1)-[connection]-(node2) RETURN node1, connection, node2
+MATCH (node1)-[connection]-(node2) RETURN node1, connection, node2;
 ```
 
 In addition to general pattern matching, you can narrow the search down by
@@ -31,13 +31,13 @@ can also be specified. For example, finding each node labeled as `Person` and
 with property `age` being 42, is done with the following query.
 
 ```opencypher
-MATCH (n :Person {age: 42}) RETURN n
+MATCH (n :Person {age: 42}) RETURN n;
 ```
 
 While their friends can be found with the following.
 
 ```opencypher
-MATCH (n :Person {age: 42})-[:FriendOf]-(friend) RETURN friend
+MATCH (n :Person {age: 42})-[:FriendOf]-(friend) RETURN friend;
 ```
 
 There are cases when a user needs to find data which is connected by
@@ -49,7 +49,7 @@ traversing from `node1` to `node2` by following any number of connections in a
 single direction can be achieved with:
 
 ```opencypher
-MATCH (node1)-[r*]->(node2) RETURN node1, r, node2
+MATCH (node1)-[r*]->(node2) RETURN node1, r, node2;
 ```
 
 If paths are very long, finding them could take a long time. To prevent that,
@@ -57,14 +57,14 @@ a user can provide the minimum and maximum length of the path. For example,
 paths of length between 2 and 4 can be obtained with a query like:
 
 ```opencypher
-MATCH (node1)-[r*2..4]->(node2) RETURN node1, r, node2
+MATCH (node1)-[r*2..4]->(node2) RETURN node1, r, node2;
 ```
 
 It is possible to name patterns in the query and return the resulting paths.
 This is especially useful when matching variable length paths:
 
 ```opencypher
-MATCH path = ()-[r*2..4]->() RETURN path
+MATCH path = ()-[r*2..4]->() RETURN path;
 ```
 
 More details on how `MATCH` works can be found
@@ -84,7 +84,7 @@ you can use `WHERE` paired with `MATCH` or `OPTIONAL MATCH`. For example,
 finding each person older than 20 is done with the this query.
 
 ```opencypher
-MATCH (n :Person) WHERE n.age > 20 RETURN n
+MATCH (n :Person) WHERE n.age > 20 RETURN n;
 ```
 
 Additional examples can be found
@@ -98,7 +98,7 @@ use a regular expression, you need to use the `=~` operator.
 For example, finding all `Person` nodes which have a name ending with `son`.
 
 ```opencypher
-MATCH (n :Person) WHERE n.name =~ ".*son$" RETURN n
+MATCH (n :Person) WHERE n.name =~ ".*son$" RETURN n;
 ```
 
 The regular expression syntax is based on the modified ECMAScript regular
@@ -117,7 +117,7 @@ keyword.
 Example.
 
 ```opencypher
-MATCH (n :Person) RETURN n AS people
+MATCH (n :Person) RETURN n AS people;
 ```
 
 That query would display all nodes under the header named `people` instead of
@@ -129,13 +129,13 @@ When you want to get everything that was matched, you can use the `*`
 This query:
 
 ```opencypher
-MATCH (node1)-[connection]-(node2) RETURN *
+MATCH (node1)-[connection]-(node2) RETURN *;
 ```
 
 is equivalent to:
 
 ```opencypher
-MATCH (node1)-[connection]-(node2) RETURN node1, connection, node2
+MATCH (node1)-[connection]-(node2) RETURN node1, connection, node2;
 ```
 
 `RETURN` can be followed by the `DISTINCT` operator, which will remove
@@ -143,7 +143,7 @@ duplicate results. For example, getting unique names of people can be achieved
 with:
 
 ```opencypher
-MATCH (n :Person) RETURN DISTINCT n.name
+MATCH (n :Person) RETURN DISTINCT n.name;
 ```
 
 Besides choosing what will be the result and how it will be named, the
@@ -163,21 +163,21 @@ These sub-clauses take a number of how many results to skip or limit.
 For example, to get the first 3 results you can use this query.
 
 ```opencypher
-MATCH (n :Person) RETURN n LIMIT 3
+MATCH (n :Person) RETURN n LIMIT 3;
 ```
 
 If you want to get all the results after the first 3, you can use the
 following.
 
 ```opencypher
-MATCH (n :Person) RETURN n SKIP 3
+MATCH (n :Person) RETURN n SKIP 3;
 ```
 
 The `SKIP` and `LIMIT` can be combined. So for example, to get the 2nd result,
 you can do:
 
 ```opencypher
-MATCH (n :Person) RETURN n SKIP 1 LIMIT 1
+MATCH (n :Person) RETURN n SKIP 1 LIMIT 1;
 ```
 
 #### ORDER BY
@@ -190,7 +190,7 @@ For example, the following query will get all `:Person` nodes and order them
 by their names.
 
 ```opencypher
-MATCH (n :Person) RETURN n ORDER BY n.name
+MATCH (n :Person) RETURN n ORDER BY n.name;
 ```
 
 By default, ordering will be in the ascending order. To change the order to be
@@ -199,7 +199,7 @@ descending, you should append `DESC`.
 For example, to order people by their name descending, you can use this query.
 
 ```opencypher
-MATCH (n :Person) RETURN n ORDER BY n.name DESC
+MATCH (n :Person) RETURN n ORDER BY n.name DESC;
 ```
 
 You can also order by multiple variables. The results will be sorted by the
@@ -209,27 +209,27 @@ second variable, and so on.
 Example. Ordering by first name descending and last name ascending.
 
 ```opencypher
-MATCH (n :Person) RETURN n ORDER BY n.name DESC, n.lastName
+MATCH (n :Person) RETURN n ORDER BY n.name DESC, n.lastName;
 ```
 
 Note that `ORDER BY` sees only the variable names as carried over by `RETURN`.
 This means that the following will result in an error.
 
 ```opencypher
-MATCH (n :Person) RETURN old AS new ORDER BY old.name
+MATCH (n :Person) RETURN old AS new ORDER BY old.name;
 ```
 
 Instead, the `new` variable must be used:
 
 ```opencypher
-MATCH (n: Person) RETURN old AS new ORDER BY new.name
+MATCH (n: Person) RETURN old AS new ORDER BY new.name;
 ```
 
 The `ORDER BY` sub-clause may come in handy with `SKIP` and/or `LIMIT`
 sub-clauses. For example, to get the oldest person you can use the following.
 
 ```opencypher
-MATCH (n :Person) RETURN n ORDER BY n.age DESC LIMIT 1
+MATCH (n :Person) RETURN n ORDER BY n.age DESC LIMIT 1;
 ```
 
 ##### Aggregating
@@ -251,19 +251,19 @@ the following aggregating functions.
 Example, calculating the average age:
 
 ```opencypher
-MATCH (n :Person) RETURN avg(n.age) AS averageAge
+MATCH (n :Person) RETURN avg(n.age) AS averageAge;
 ```
 
 Collecting items into a list:
 
 ```opencypher
-MATCH (n :Person) RETURN collect(n.name) AS list_of_names
+MATCH (n :Person) RETURN collect(n.name) AS list_of_names;
 ```
 
 Collecting items into a map:
 
 ```opencypher
-MATCH (n :Person) RETURN collect(n.name, n.age) AS map_name_to_age
+MATCH (n :Person) RETURN collect(n.name, n.age) AS map_name_to_age;
 ```
 
 Click
@@ -288,10 +288,11 @@ Restrictions when using `UNION` or `UNION ALL`:
 Example, get distinct names that are shared between persons and movies:
 
 ```opencypher
-MATCH(n: Person) RETURN n.name AS name UNION MATCH(n: Movie) RETURN n.name AS name
+MATCH(n: Person) RETURN n.name AS name UNION MATCH(n: Movie) RETURN n.name AS name;
 ```
 
 Example, get all names that are shared between persons and movies (including duplicates):
 
 ```opencypher
-MATCH(n: Person) RETURN n.name AS name UNION ALL MATCH(n: Movie) RETURN n.name AS name
+MATCH(n: Person) RETURN n.name AS name UNION ALL MATCH(n: Movie) RETURN n.name AS name;
+```

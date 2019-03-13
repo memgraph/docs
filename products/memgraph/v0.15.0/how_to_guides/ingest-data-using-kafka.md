@@ -32,7 +32,7 @@ In order to create a stream input the following query in the client:
 
 ```opencypher
 CREATE STREAM mystream AS LOAD DATA KAFKA 'localhost:9092' WITH TOPIC 'test' WITH
-TRANSFORM 'http://localhost/transform.py'
+TRANSFORM 'http://localhost/transform.py';
 ```
 
 This will create the stream inside Memgraph but will not start it yet. However,
@@ -55,7 +55,7 @@ After a successful stream creation, you can check the status of all streams by
 executing:
 
 ```opencypher
-SHOW STREAMS
+SHOW STREAMS;
 ```
 
 This should produce the following output:
