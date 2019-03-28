@@ -24,39 +24,41 @@ their ID values will be 1, 2 and 3.
 
 We also need to specify two `.json` files. One of them (`raft_config_file`)
 defines some constants which are internal to the Raft protocol. The other one
-(`coordination_config_file`) contains coordination info such as network
-endpoints and ports.
+(`coordination_config_file`) contains coordination info consisting of
+`server_id`, `ip_address` and `rpc_port`.
 
-Finally, we need to specify the location on disk where persistent data should
-be stored. In order to do this, we use the `--durability-directory` flag.
-
-Therefore, we can run the `memgraph_ha` binary on the first ( ID=1`) server by
+Therefore, we can run the `memgraph_ha` binary on the first (`ID=1`) server by
 issuing the following command:
 
 ```plaintext
   ./memgraph_ha --server_id 1 \
                 --coordination_config_file="coordination.json" \
                 --raft_config_file="raft.json" \
-                --durability_directory=dur$id --port 7001
+                --port 1001
 ```
 
 By analogy, let's suppose that the second server will be run with `--server_id`
-equal to `2`, `durability_directory` equal to `dur2` and `port` equal to `7002`.
-The same analogy follows for the third server.
+equal to `2` and `port` equal to `1002`. The same analogy follows for the third
+server.
 
 The assumed contents of the `coordination.json` file are:
 
 ```plaintext
 [
-  [1, "127.0.0.1", 7001],
-  [2, "127.0.0.1", 7002],
-  [3, "127.0.0.1", 7003]
+  [1, "1.0.0.1", 7001],
+  [2, "2.0.0.2", 7002],
+  [3, "3.0.0.3", 7003]
 ]
 ```
 
 Here, each line corresponds to coordination of one server. The first entry is
-that server's ID, the second is its IP address and the third is the port it
-listens to.
+that server's ID, the second is its IP address and the third is the RPC port it
+listens to. Notice that we have also provided a `--port` flag which has a value
+that is different from the port in `coordination.json`. Port from
+`coordination.json` is used by HA Memgraph's RPC server for communication
+between machines in the cluster, while the command line argument port is used in
+order to communicate with the client via the bolt protocol.
+
 
 The assumed contents of the `raft.json` file are:
 
@@ -82,7 +84,7 @@ Flag                          | Description
 
 ### Querying HA Memgraph Using the HA Client
 
-[//]: # TODO when HA Client is implemented
+[//]: # (TODO when HA Client is implemented)
 
 ### Querying HA Memgraph Without the HA Client
 
@@ -98,11 +100,11 @@ I0327 13:46:29.906607 8200 :590] Server 3: Transitioned to LEADER (Term: 6)
 
 This lets you know that the third machine was successfully elected as a leader
 and should be ready to process queries. Since we know that this machine lives
-on `localhost` and listens on `7003`, we can connect to it using the
+on `3.0.0.3` and listens on `1003`, we can connect to it using the
 `neo4j-client` by using the following command:
 
 ```plaintext
-neo4j-client -u "" -p "" --insecure localhost 7003
+neo4j-client -u "" -p "" --insecure 3.0.0.3 7003
 ```
 
 At this point you can execute some queries on HA Memgraph.
