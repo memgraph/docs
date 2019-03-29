@@ -21,10 +21,7 @@ the data will stay the same as long as a majority of the cluster is alive.
 3. ##### How far have you scaled your system?
 
 It depends on the dataset and the queries, in other words, the workload. HA
-Memgraph scales up to the size of the main memory or disk space where properties
-and Raft logs could be stored on disk. In a distributed system, the graph is
-automatically repartitioned in the background to improve query execution time
-and scalability.
+Memgraph scales up to the size of the main memory and disk space.
 
 4. ##### Can HA Memgraph be deployed in the cloud?
 
