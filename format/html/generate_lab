@@ -9,7 +9,7 @@ print_help () {
 
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 standalone=0
-version="v0.1.2"
+version="v1.0.0"
 
 while [[ $# > 0 ]]; do
     key="$1"
