@@ -2,8 +2,8 @@
 
 ## About Memgraph
 
-HA Memgraph is an ACID compliant, highly available, transactional graph
-database management system based on the Raft protocol.
+HA Memgraph is an ACID compliant, highly available, transactional, in-memory
+graph database management system based on the Raft protocol.
 
 [//]: # (When adding a new documentation file, please add it to the list)
 

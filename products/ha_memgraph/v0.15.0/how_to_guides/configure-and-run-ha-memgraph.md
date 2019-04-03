@@ -34,12 +34,7 @@ issuing the following command:
   ./memgraph_ha --server_id 1 \
                 --coordination_config_file="coordination.json" \
                 --raft_config_file="raft.json" \
-                --port 1001
 ```
-
-By analogy, let's suppose that the second server will be run with `--server_id`
-equal to `2` and `port` equal to `1002`. The same analogy follows for the third
-server.
 
 The assumed contents of the `coordination.json` file are:
 
@@ -53,12 +48,9 @@ The assumed contents of the `coordination.json` file are:
 
 Here, each line corresponds to coordination of one server. The first entry is
 that server's ID, the second is its IP address and the third is the RPC port it
-listens to. Notice that we have also provided a `--port` flag which has a value
-that is different from the port in `coordination.json`. Port from
-`coordination.json` is used by HA Memgraph's RPC server for communication
-between machines in the cluster, while the command line argument port is used in
-order to communicate with the client via the bolt protocol.
-
+listens to. This port should not be confused with the port used for client
+interaction via the bolt protocol. Since we haven't provided the `--port` flag,
+HA Memgraph will use the default value for that port which is `7687`.
 
 The assumed contents of the `raft.json` file are:
 
@@ -100,11 +92,11 @@ I0327 13:46:29.906607 8200 :590] Server 3: Transitioned to LEADER (Term: 6)
 
 This lets you know that the third machine was successfully elected as a leader
 and should be ready to process queries. Since we know that this machine lives
-on `3.0.0.3` and listens on `1003`, we can connect to it using the
-`neo4j-client` by using the following command:
+on `3.0.0.3` and listens on the default port for bolt protocol (`7687`),
+we can connect to it using the `neo4j-client` by using the following command:
 
 ```plaintext
-neo4j-client -u "" -p "" --insecure 3.0.0.3 7003
+neo4j-client -u "" -p "" --insecure 3.0.0.3 7687
 ```
 
 At this point you can execute some queries on HA Memgraph.
