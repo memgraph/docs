@@ -1,4 +1,4 @@
-## Backpacking through Europe
+## Backpacking Through Europe
 
 This article is a part of a series intended to show users how to use Memgraph
 on real-world data and, by doing so, retrieve some interesting and useful
@@ -20,7 +20,6 @@ This article explores the European Backpackers Index from 2018.
 The dataset contains tourist prices and other data for 56 of the most popular
 European cities. Here we showcase how Memgraph's graph traversal algorithms can
 be used to make a real-time travelling recommendation system.
-
 
 ### Data model
 
@@ -73,7 +72,7 @@ only during this run of Memgraph.
 cost per night.
 
 ```opencypher
-MATCH (n:City)                                                                                                              
+MATCH (n:City)
 RETURN n.name, n.cheapest_hostel, n.cost_per_night_USD, n.hostel_url
 ORDER BY n.cost_per_night_USD LIMIT 10;
 ```
@@ -88,12 +87,12 @@ ORDER BY c.total_USD;
 ```
 
 
-3) What if we want to visit multiple cities in a single country and want to know 
+3) What if we want to visit multiple cities in a single country and want to know
 which country has the most cities in the index?
 
 ```opencypher
 MATCH (n:Country)<-[:Inside]-(m:City)
-RETURN n.name AS CountryName, COUNT(m) as HostelCount
+RETURN n.name AS CountryName, COUNT(m) AS HostelCount
 ORDER BY HostelCount DESC, CountryName LIMIT 10;
 ```
 
@@ -108,7 +107,7 @@ borders. This is a great job for the breadth-first search (BFS) algorithm.
 MATCH p = (n:Country {name:"Spain"})
           -[r:Borders * bfs]-
           (m:Country {name: "Russia"})
-UNWIND (nodes(p)) as rows
+UNWIND (nodes(p)) AS rows
 RETURN rows.name;
 ```
 
@@ -121,7 +120,7 @@ pay with Euro everywhere along the trip.
 MATCH p = (:City {name:"Bratislava"})
           -[:CloseTo * bfs (e, v | v.local_currency = "Euro")]-
           (:City {name: "Madrid"})
-UNWIND (nodes(p)) as rows
+UNWIND (nodes(p)) AS rows
 RETURN rows.name;
 ```
 
@@ -142,7 +141,8 @@ This is a good use case for the Dijkstra's shortest path algorithm.
 MATCH p = (:City {name: "Brussels"})
           -[:CloseTo * wShortest(e, v | v.cost_per_night_USD) total_cost (e, v | e.eu_border=FALSE)]-
           (:City {name: "Athens"})
-RETURN nodes(p), total_cost;
+WITH extract(city in nodes(p) | city.name) AS trip, total_cost
+RETURN trip, total_cost;
 ```
 
 Here we used the *weight lambda* to specify the cost of expanding to the
@@ -153,7 +153,8 @@ This can be done using an edge property like in the
 tutorial.
 Here we use `cost_per_night` property of the city vertex `v` as our weight.
 Finally, we use the *filter lambda* to only consider paths with no EU border
-crossings.
+crossings. The `extract` function is used to only show the city names.
+To get the full city information, we would simply return `nodes(p)`.
 
 7) We're on a trip with our friends from Madrid to Belgrade, but want to visit
 Vienna along the way. We want to party it up on the first part of our trip and
@@ -162,29 +163,29 @@ After that, we plan on sightseeing and are interested in the cost of attractions
 from Vienna to Belgrade. What is our cheapest option?
 
 ```opencypher
-MATCH p = (:City {name:"Madrid"})
+MATCH p = (:City {name: "Madrid"})
           -[:CloseTo * wShortest(e, v | v.cost_per_night_USD + v.drinks_USD) cost1]-
           (:City {name: "Vienna"})
           -[:CloseTo * wShortest(e, v | v.cost_per_night_USD + v.attractions_USD) cost2]-
           (:City {name: "Belgrade"})
-RETURN nodes(p), cost1 + cost2 as total_cost;
+WITH extract(city in nodes(p) | city.name) AS trip, cost1, cost2
+RETURN trip, cost1 + cost2 AS total_cost;
 ```
 
-
 8) We're on a trip from Paris to Zagreb and want to visit at least 3 cities,
-but no more than 5 (excluding the starting location - Paris).
+but no more than 5 (excluding the starting location &mdash; Paris).
 Let's list our top 10 options sorted by the total trip cost and number of
 cities in the path.
 
 ```opencypher
-MATCH path=(n:City {name: "Paris"})-[:CloseTo *3..5]-(m:City {name: "Zagreb"}) 
+MATCH path = (n:City {name: "Paris"})-[:CloseTo *3..5]-(m:City {name: "Zagreb"}) 
 WITH nodes(path) AS trip
 WITH extract(city in trip | [city, trip]) AS lst
 UNWIND lst AS rows
-WITH rows[0] AS city, rows[1] AS trip
-RETURN trip, 
-       toInteger(sum(city.total_USD)) AS trip_cost_USD, 
-       count(trip) as city_count
+WITH rows[0] AS city, extract(city in rows[1] | city.name) AS trip
+RETURN trip,
+       toInteger(sum(city.total_USD)) AS trip_cost_USD,
+       count(trip) AS city_count
 ORDER BY trip_cost_USD, city_count DESC LIMIT 10;
 ```
 
