@@ -43,7 +43,7 @@ We have prepared a database snapshot for this example, so the user can easily
 import it when starting Memgraph using the `--durability-directory` option.
 
 ```bash
-/usr/lib/memgraph/memgraph --durability-directory /usr/share/memgraph/examples/Europe \
+/usr/lib/memgraph/memgraph --durability-directory /usr/share/memgraph/examples/Backpacking \
   --durability-enabled=false --snapshot-on-exit=false
 ```
 
@@ -60,7 +60,7 @@ When using Docker, the example can be imported with the following command:
 ```bash
 docker run -p 7687:7687 \
   -v mg_lib:/var/lib/memgraph -v mg_log:/var/log/memgraph -v mg_etc:/etc/memgraph \
-  memgraph --durability-directory /usr/share/memgraph/examples/Europe \
+  memgraph --durability-directory /usr/share/memgraph/examples/Backpacking \
   --durability-enabled=false --snapshot-on-exit=false
 ```
 

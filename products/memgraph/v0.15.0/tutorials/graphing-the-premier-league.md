@@ -8,6 +8,7 @@ We highly recommend checking out the other articles from this series:
 
   * [Analyzing TED Talks](analyzing-TED-talks.md)
   * [Exploring the European Road Network](exploring-the-european-road-network.md)
+  * [Backpacking through Europe](backpacking-through-europe.md)
   * [Movie Recommendation System](movie-recommendation.md)
 
 ### Introduction

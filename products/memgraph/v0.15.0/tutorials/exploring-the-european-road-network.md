@@ -6,6 +6,7 @@ information.
 
 We highly recommend checking out the other articles from this series:
 
+  * [Backpacking through Europe](backpacking-through-europe.md)
   * [Analyzing TED Talks](analyzing-TED-talks.md)
   * [Graphing the Premier League](graphing-the-premier-league.md)
   * [Movie Recommendation System](movie-recommendation.md)

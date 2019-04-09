@@ -182,5 +182,6 @@ ORDER BY Speaker;
 We recommend checking out other tutorials from this series:
 
   * [Exploring the European Road Network](exploring-the-european-road-network.md)
+  * [Backpacking through Europe](backpacking-through-europe.md)
   * [Graphing the Premier League](graphing-the-premier-league.md)
   * [Movie Recommendation System](movie-recommendation.md)
