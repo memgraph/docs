@@ -16,6 +16,7 @@ multi-version concurrency control and asynchronous IO.
     * [Analyzing TED Talks](tutorials/analyzing-TED-talks.md)
     * [Graphing the Premier League](tutorials/graphing-the-premier-league.md)
     * [Exploring the European Road Network](tutorials/exploring-the-european-road-network.md)
+    * [Backpacking through Europe](backpacking-through-europe.md)
     * [Movie Recommendation System](tutorials/movie-recommendation.md)
   * [How to](how_to_guides/how-to-guides-overview.md)
     * [Inspect and Profile OpenCypher Queries Using Memgraph?](how_to_guides/explain-profile.md)
