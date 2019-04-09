@@ -29,7 +29,7 @@ Two cities are connected via the `:CloseTo` edge if they are from the same
 or from the neighboring countries. Every edge has an `eu_border` property to
 indicate whether the EU border needs to be crossed to reach the other city.
 The index lists the cheapest and most attractive hostel from each city.
-The hostel name can be accessed via the `cheapest_hostel` parameter, and it's
+The hostel name can be accessed via the `cheapest_hostel` parameter, and its
 website is stored in `hostel_url`.
 The city nodes also contain parameters for tourist information such as
 `local_currency`, `local_currency_code`, and `total_USD`.
