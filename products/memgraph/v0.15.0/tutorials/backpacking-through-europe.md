@@ -14,7 +14,7 @@ We highly recommend checking out the other articles from this series:
 ### Introduction
 
 Backpacking is a form of low-cost independent travel. It includes the use of
-public transportation, inexpensive hostels and are often longer in duration
+public transportation, inexpensive hostels and is often longer in duration
 than conventional vacations.
 This article explores the European Backpackers Index from 2018.
 The dataset contains tourist prices and other data for 56 of the most popular
@@ -28,13 +28,18 @@ The European Backpacker Index (2018) contains information for 56 cities from
 Two cities are connected via the `:CloseTo` edge if they are from the same
 or from the neighboring countries. Every edge has an `eu_border` property to
 indicate whether the EU border needs to be crossed to reach the other city.
-The city nodes contain parameters for tourist information such as
-`total_cost_USD`, `cost_per_night_USD`, `local_currency`, etc.
+The index lists the cheapest and most attractive hostel from each city.
+The hostel name can be accessed via the `cheapest_hostel` parameter, and it's
+website is stored in `hostel_url`.
+The city nodes also contain parameters for tourist information such as
+`local_currency`, `local_currency_code`, and `total_USD`.
+`total_USD` is the sum of the most common tourist expenses,
+such as `cost_per_night_USD`, `attractions_USD`, `drinks_USD`, `meals_USD`, and
+`transportation_USD`.
 The country nodes are connected with the `:Borders` edge if they are
 neighboring countries. This edge also has the `eu_border` property.
 Every city node is connected to its parent country node via the `:Inside`
 edge.
-
 
 ### Importing the Snapshot
 
@@ -68,8 +73,8 @@ only during this run of Memgraph.
 
 ### Example Queries
 
-1) Let's list the top 10 cheapest hotels from the European Backpacker Index by
-cost per night.
+1) Let's list the top 10 cities with the cheapest hostels by cost per night
+from the European Backpacker Index.
 
 ```opencypher
 MATCH (n:City)
@@ -81,11 +86,10 @@ ORDER BY n.cost_per_night_USD LIMIT 10;
 Let's sort them by total costs.
 
 ```opencypher
-MATCH (:Country {name : "Croatia"})<-[:Inside]-(c:City)
+MATCH (c:City)-[:Inside]->(:Country {name: "Croatia"})
 RETURN c.name, c.cheapest_hostel, c.total_USD
 ORDER BY c.total_USD;
 ```
-
 
 3) What if we want to visit multiple cities in a single country and want to know
 which country has the most cities in the index?
@@ -96,7 +100,6 @@ RETURN n.name AS CountryName, COUNT(m) AS HostelCount
 ORDER BY HostelCount DESC, CountryName LIMIT 10;
 ```
 
-
 Now, let's start backpacking. This is where Memgraph's graph traversal
 capabilities come into play.
 
@@ -104,7 +107,7 @@ capabilities come into play.
 borders. This is a great job for the breadth-first search (BFS) algorithm.
 
 ```opencypher
-MATCH p = (n:Country {name:"Spain"})
+MATCH p = (n:Country {name: "Spain"})
           -[r:Borders * bfs]-
           (m:Country {name: "Russia"})
 UNWIND (nodes(p)) AS rows
@@ -115,9 +118,8 @@ RETURN rows.name;
 amount of stops? Also, we can't be bothered to switch currencies and want to
 pay with Euro everywhere along the trip.
 
-
 ```opencypher
-MATCH p = (:City {name:"Bratislava"})
+MATCH p = (:City {name: "Bratislava"})
           -[:CloseTo * bfs (e, v | v.local_currency = "Euro")]-
           (:City {name: "Madrid"})
 UNWIND (nodes(p)) AS rows
@@ -128,7 +130,6 @@ Here we can see how to use the *filter lambda* to filter paths where the
 local currency in the city vertex `v` is the Euro.
 `nodes(p)` returns the path as a list, and `UNWIND` unpacks the list
 into individual rows.
-
 
 6) This time we're going from Brussels to Athens on a budget.
 We're interested in the route with the cheapest stays.
