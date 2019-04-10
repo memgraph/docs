@@ -41,6 +41,8 @@ neighboring countries. This edge also has the `eu_border` property.
 Every city node is connected to its parent country node via the `:Inside`
 edge.
 
+![](../data/backpacking_metagraph.png)
+
 ### Importing the Snapshot
 
 We have prepared a database snapshot for this example, so the user can easily
