@@ -1,5 +1,13 @@
-# About Memgraph
+# Introduction
+
+## Memgraph
 
 Memgraph is an ACID compliant high performance transactional in-memory graph
 database management system featuring highly concurrent data structures,
 multi-version concurrency control and asynchronous IO.
+
+## Memgraph Lab
+
+Memgraph Lab is a lightweight and intuitive openCypher and Bolt compatible
+integrated development environment (IDE), designed to help you import data,
+develop, debug and profile database queries and visualize query results.
