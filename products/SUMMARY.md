@@ -4,7 +4,7 @@
 
 * [Quick Start](memgraph/v0.15.0/quick-start.md)
 * [Tutorials](memgraph/v0.15.0/tutorials-overview.md)
-    * [Analyzing TED Talks](v0.15.0/analyzing-TED-talks.md)
+    * [Analyzing TED Talks](memgraph/v0.15.0/analyzing-TED-talks.md)
 * [Changelog](memgraph/v0.15.0/CHANGELOG.md)
 
 ## Memgraph Lab
