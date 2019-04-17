@@ -1,10 +1,10 @@
 # Products
 
-## Memgraph
+## Memgraph v0.15.0 (Latest)
 
 * [Quick Start](memgraph/v0.15.0/quick-start.md)
-* [Tutorials](memgraph/v0.15.0/tutorials-overview.md)
-    * [Analyzing TED Talks](memgraph/v0.15.0/analyzing-ted-talks.md)
+* [Tutorials](memgraph/v0.15.0/tutorials/tutorials-overview.md)
+    * [Analyzing TED Talks](memgraph/v0.15.0/tutorials/analyzing-TED-talks.md)
 * [Changelog](memgraph/v0.15.0/CHANGELOG.md)
 
 ## Memgraph Lab
