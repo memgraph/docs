@@ -1,5 +1,5 @@
 root: ./products
 
 structure:
-  readme: README.md
-  summary: SUMMARY.md
+  readme: .gitbook_readme
+  summary: .gitbook_summary
