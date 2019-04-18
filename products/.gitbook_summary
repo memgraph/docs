@@ -44,5 +44,6 @@
 
 ## Machine Learning
 
-* [How to Setup Memgraph Tensorflow Op?](memgraph/v0.15.0/how_to_guides/tensorflow-setup.md)
-* [TensorFlow Op](memgraph/v0.15.0/reference_guide/tensorflow.md)
+* TensorFlow Op
+    * [How to Setup TensorFlow Op?](memgraph/v0.15.0/how_to_guides/tensorflow-setup.md)
+    * [TensorFlow Op Reference](memgraph/v0.15.0/reference_guide/tensorflow.md)
