@@ -2,6 +2,7 @@
 
 ## Memgraph
 
+* [Introduction](memgraph/v0.15.0/README.md)
 * [Quick Start](memgraph/v0.15.0/quick-start.md)
 * [Tutorials](memgraph/v0.15.0/tutorials/tutorials-overview.md)
     * [Analyzing TED Talks](memgraph/v0.15.0/tutorials/analyzing-TED-talks.md)
