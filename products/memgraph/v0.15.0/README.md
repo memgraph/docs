@@ -1,10 +1,22 @@
 # Technical Documentation
 
-## About Memgraph
+## Supported Features
 
-Memgraph is an ACID compliant high performance transactional in-memory graph
-database management system featuring highly concurrent data structures,
-multi-version concurrency control and asynchronous IO.
+Feature                                               | Community | Enterprise
+------------------------------------------------------|-----------|-----------
+Hybrid In&#8209;Memory / On&#8209;Disk Storage Engine |     +     |     +
+ACID Transactions                                     |     +     |     +
+Optimized for Low Latency and High&#8209;Throughput   |     +     |     +
+Enterprise Authentication                             |           |     +
+Advanced Password Policies                            |           |     +
+Fine&#8209;Grained Access Control                     |           |     +
+Data Encryption (Coming soon)                         |           |     +
+Data Redaction (Coming soon)                          |           |     +
+Full Activity Auditing                                |           |     +
+Stack Overflow and Slack Community Support            |     +     |     +
+Business Hours Support                                |           | 9 AM - 5 PM GMT
+Mission&#8209;Critical Support                        |           |   24/7
+Professional Services                                 |           |     +
 
 [//]: # (When adding a new documentation file, please add it to the list)
 
