@@ -36,15 +36,18 @@
 * [Upcoming Features](memgraph/v0.15.0/upcoming-features.md)
 * [Changelog](memgraph/v0.15.0/CHANGELOG.md)
 * [FAQ](memgraph/v0.15.0/faq.md)
-* [Licnese](memgraph/v0.15.0/LICENSE.md)
+
+## Highly Available Memgraph
+
+* [How to Configure and Run HA Memgraph?](ha_memgraph/v0.15.0/how_to_guides/configure-and-run-ha-memgraph.md)
+* [FAQ](ha_memgraph/v0.15.0/faq.md)
 
 ## Memgraph Lab
 
 * [How to install on OSX?](lab/v0.1.2/how_to_install_memgraph_lab_on_macos.md)
-* [Licnese](lab/v0.1.2/LICENSE.md)
 
 ## Machine Learning
 
-* TensorFlow Op
+* [TensorFlow Op](tensorflow_op/README.md)
     * [How to Setup TensorFlow Op?](memgraph/v0.15.0/how_to_guides/tensorflow-setup.md)
     * [TensorFlow Op Reference](memgraph/v0.15.0/reference_guide/tensorflow.md)
