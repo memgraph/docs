@@ -15,6 +15,13 @@
 * Add `uniformSample` function to openCypher.
 * Add regex matching to openCypher.
 
+## v0.14.1
+
+### Bug Fixes and Other Changes
+
+* Fix bug in explicit transaction handling.
+* Fix bug in edge filtering by edge type and destination.
+
 ## v0.14.0
 
 ### Breaking Changes
@@ -238,9 +245,3 @@
 ### Bug Fixes and Other Changes
 
 * Unhandled Lock Timeout Exception.
-
-## Build 755
-
-### Major Features and Improvements
-
-* MATCH, CREATE, WHERE, SET, REMOVE, DELETE.
