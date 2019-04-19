@@ -7,16 +7,11 @@ Feature                                               | Community | Enterprise
 Hybrid In&#8209;Memory / On&#8209;Disk Storage Engine |     +     |     +
 ACID Transactions                                     |     +     |     +
 Optimized for Low Latency and High&#8209;Throughput   |     +     |     +
-Enterprise Authentication                             |           |     +
+Authentication                                        |           |     +
 Advanced Password Policies                            |           |     +
 Fine&#8209;Grained Access Control                     |           |     +
-Data Encryption (Coming soon)                         |           |     +
-Data Redaction (Coming soon)                          |           |     +
 Full Activity Auditing                                |           |     +
-Stack Overflow and Slack Community Support            |     +     |     +
-Business Hours Support                                |           | 9 AM - 5 PM GMT
-Mission&#8209;Critical Support                        |           |   24/7
-Professional Services                                 |           |     +
+Graph Strams (Kafka)                                  |           |     +
 
 [//]: # (When adding a new documentation file, please add it to the list)
 
