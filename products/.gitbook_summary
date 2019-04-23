@@ -34,14 +34,14 @@
     * [Other Features](memgraph/v0.15.0/reference_guide/other-features.md)
     * [Differences](memgraph/v0.15.0/reference_guide/differences.md)
 * [Upcoming Features](memgraph/v0.15.0/upcoming-features.md)
-* [Changelog](memgraph/v0.15.0/CHANGELOG.md)
+* [Changelog](memgraph/CHANGELOG.md)
 * [FAQ](memgraph/v0.15.0/faq.md)
 
 ## Highly Available Memgraph
 
-* [Introduction](ha_memgraph/v0.15.0/gitbook_introduction.md)
+* [Introduction](ha_memgraph/v0.15.0/gitbook-introduction.md)
 * [How to Configure and Run HA Memgraph?](ha_memgraph/v0.15.0/how_to_guides/configure-and-run-ha-memgraph.md)
-* [Changelog](ha_memgraph/v0.15.0/CHANGELOG.md)
+* [Changelog](ha_memgraph/CHANGELOG.md)
 * [FAQ](ha_memgraph/v0.15.0/faq.md)
 
 ## Memgraph Lab
