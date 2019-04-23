@@ -1,9 +1,16 @@
 # Technical Documentation
 
-## About Memgraph
+## Supported Features
 
-HA Memgraph is an ACID compliant, highly available, transactional, in-memory
-graph database management system based on the Raft protocol.
+Feature                                               | Pro | Enterprise
+------------------------------------------------------|-----|-----------
+Hybrid In&#8209;Memory / On&#8209;Disk Storage Engine |  +  |     +
+ACID Transactions                                     |  +  |     +
+High Availability Replication (Raft)                  |  +  |     +
+Authentication                                        |     |     +
+Advanced Password Policies                            |     |     +
+Fine&#8209;Grained Access Control                     |     |     +
+Full Activity Auditing                                |     |     +
 
 [//]: # (When adding a new documentation file, please add it to the list)
 
