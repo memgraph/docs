@@ -2,7 +2,7 @@
 
 ## Memgraph
 
-* [Introduction](memgraph/v0.15.0/README.md)
+* [Introduction](memgraph/v0.15.0/gitbook-introduction.md)
 * [Quick Start](memgraph/v0.15.0/quick-start.md)
 * [Tutorials](memgraph/v0.15.0/tutorials/tutorials-overview.md)
     * [Analyzing TED Talks](memgraph/v0.15.0/tutorials/analyzing-TED-talks.md)
@@ -39,7 +39,7 @@
 
 ## Highly Available Memgraph
 
-* [Introduction](ha_memgraph/v0.15.0/README.md)
+* [Introduction](ha_memgraph/v0.15.0/gitbook_introduction.md)
 * [How to Configure and Run HA Memgraph?](ha_memgraph/v0.15.0/how_to_guides/configure-and-run-ha-memgraph.md)
 * [Changelog](ha_memgraph/v0.15.0/CHANGELOG.md)
 * [FAQ](ha_memgraph/v0.15.0/faq.md)
