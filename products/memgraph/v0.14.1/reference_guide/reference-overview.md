@@ -18,6 +18,5 @@ Our reference guide currently consists of the following articles:
   * [Graph Streams](graph-streams.md)
   * [Security](security.md)
   * [TensorFlow Op](tensorflow.md)
-  * [Dynamic Graph Partitioner](dynamic-graph-partitioner.md)
   * [Other Features](other-features.md)
   * [Differences](differences.md)
