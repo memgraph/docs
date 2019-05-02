@@ -8,7 +8,7 @@ print_help () {
 }
 
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-version="v0.14.0"
+version="v0.14.1"
 standalone=0
 
 while [[ $# > 0 ]]; do
@@ -77,7 +77,6 @@ cp -r ${input_dir}/data/* ${output_dir}/data/
 
 dump_html "README.md" "index.html"
 dump_html "LICENSE.md" "license.html"
-dump_html "CHANGELOG.md" "changelog.html"
 dump_html "faq.md" "faq.html"
 dump_html "quick-start.md" "quick-start.html"
 dump_html "upcoming-features.md" "upcoming-features.html"

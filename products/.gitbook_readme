@@ -11,7 +11,7 @@ multi-version concurrency control and asynchronous IO.
 HA Memgraph is an ACID compliant, highly available, transactional, in-memory
 graph database management system based on the Raft protocol.
 
-## Memgraph Lab v0.1.2
+## Memgraph Lab v1.0.0
 
 Memgraph Lab is a lightweight and intuitive openCypher and Bolt compatible
 integrated development environment (IDE), designed to help you import data,

@@ -50,7 +50,6 @@ source ve3/bin/activate || exit 1
 # TODO: Improve.
 pandoc ${input_dir}/README.md --from markdown --to html --output ${output_dir}/index.html --filter ${script_dir}/links_filter.py $(append_standalone "TechnicalDocumentation") || exit 1
 pandoc ${input_dir}/LICENSE.md --from markdown --to html --output ${output_dir}/license.html --filter ${script_dir}/links_filter.py $(append_standalone "License") || exit 1
-pandoc ${input_dir}/CHANGELOG.md --from markdown --to html --output ${output_dir}/changelog.html --filter ${script_dir}/links_filter.py $(append_standalone "Changelog") || exit 1
 pandoc ${input_dir}/how_to_install_memgraph_lab_on_macos.md --from markdown --to html --output ${output_dir}/how_to_install_memgraph_lab_on_macos.html --filter ${script_dir}/links_filter.py $(append_standalone "HowToInstallMemgraphLabOnMacOS") || exit 1
 
 # Copy data files.
