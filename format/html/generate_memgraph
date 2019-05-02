@@ -1,41 +1,49 @@
 #!/bin/bash
 
 print_help () {
-    echo "Usage: $0 [-s|--standalone|-v|--version]"
-    echo "    -s|--standalone -> Put pandoc HTML wrapper around the content."
-    echo "    -v|--version -> Put the output files under defined folder name."
-    exit 1
+    echo "Usage: $0 [--standalone]"
+    echo -e "\t--standalone\tGenerate standalone HTML documents."
+    echo -e "\t-h|--help\tPrint help."
 }
 
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-version="v0.14.1"
-standalone=0
 
-while [[ $# > 0 ]]; do
-    key="$1"
-    case $key in
-        -s|--standalone)
-        standalone=1
-        shift
+versions=("v0.13.0" "v0.14.1")
+# Parse inputs.
+standalone=0
+if [[ $# -gt 1 ]]; then
+    print_help
+    exit 1
+elif  [[ $# -eq 1 ]]; then
+    case "$1" in
+        --standalone)
+            standalone=1
         ;;
-        -v|--version)
-        shift
-        version=$1
-        shift
+        -h|--help)
+            print_help
+            exit 0
         ;;
-        -h|--help|help)
-        print_help
-        shift
+        *)
+            print_help
+            exit 1
         ;;
     esac
-done
+fi
 
-input_dir=${script_dir}/../../products/memgraph/${version}
-output_dir=${script_dir}/../../output/html/memgraph/${version}
+# Generate output folders.
+mkdir -p ${script_dir}/../../output/html/memgraph
 
-fail() {
-    msg=$1
-    echo ${msg}
+# Initialize HTML gen environment.
+if [ ! -d "${script_dir}/ve3" ]; then
+    virtualenv -p python3 ve3 || exit 1
+    source ve3/bin/activate
+    pip install -r ${script_dir}/requirements.txt || exit 1
+    deactivate
+fi
+
+
+fail_with_msg () {
+    echo ${1}
     exit 1
 }
 
@@ -52,46 +60,57 @@ add_link_info () {
 }
 
 dump_html () {
-    local src_filename=$1
-    local dst_filename=$2
-    pandoc ${input_dir}/${src_filename} \
+    # Info about the relative path has to be preserved because non standalone
+    # generator depends on that.
+    local src_dir=$1
+    local src_relpath=$2
+    local dst_dir=$3
+    local dst_relpath=$4
+    pandoc ${src_dir}/${src_relpath} \
         --from markdown --to html \
-        --output ${output_dir}/${dst_filename} \
+        --output ${dst_dir}/${dst_relpath} \
         --filter ${script_dir}/links_filter.py \
-        $(add_link_info ${dst_filename}) || fail "Failed to generate ${dst_filename}!"
+        $(add_link_info ${dst_relpath}) || fail_with_msg "Failed to generate ${dst_relpath}!"
 }
 
-rm -rf ${output_dir}
-mkdir -p ${output_dir}
+generate_version () {
+    version=$1
+    input_dir=${script_dir}/../../products/memgraph/${version}
+    output_dir=${script_dir}/../../output/html/memgraph/${version}
+
+    rm -rf ${output_dir}
+    mkdir -p ${output_dir}
+    mkdir -p ${output_dir}/concepts
+    mkdir -p ${output_dir}/how_to_guides
+    mkdir -p ${output_dir}/reference_guide
+    mkdir -p ${output_dir}/tutorials
+    mkdir -p ${output_dir}/data
+    cd ${script_dir}
+    source ve3/bin/activate || exit 1
+
+    cp -r ${input_dir}/data/* ${output_dir}/data/
+    dump_html ${input_dir} "README.md" ${output_dir} "index.html"
+    dump_html ${input_dir} "LICENSE.md" ${output_dir} "license.html"
+    dump_html ${input_dir} "faq.md" ${output_dir} "faq.html"
+    dump_html ${input_dir} "quick-start.md" ${output_dir} "quick-start.html"
+    dump_html ${input_dir} "upcoming-features.md" ${output_dir} "upcoming-features.html"
+    for dir in $(find ${input_dir}/* -maxdepth 1 -type d); do
+        for file in "$dir"/*; do
+            rel_path=$(realpath --relative-to=${input_dir} ${dir})
+            if [[ "${rel_path}" == "data" ]]; then
+                continue
+            fi
+            basename=$(basename ${file%.*})
+            dump_html ${input_dir} "${rel_path}/${basename}.md" ${output_dir} "${rel_path}/${basename}.html"
+        done
+    done
+    deactivate
+    echo "Output Diractory: $output_dir"
+}
 
 cd ${script_dir}
 source ve3/bin/activate || exit 1
-
-mkdir -p ${output_dir}/concepts
-mkdir -p ${output_dir}/how_to_guides
-mkdir -p ${output_dir}/reference_guide
-mkdir -p ${output_dir}/tutorials
-mkdir -p ${output_dir}/data
-
-cp -r ${input_dir}/data/* ${output_dir}/data/
-
-dump_html "README.md" "index.html"
-dump_html "LICENSE.md" "license.html"
-dump_html "faq.md" "faq.html"
-dump_html "quick-start.md" "quick-start.html"
-dump_html "upcoming-features.md" "upcoming-features.html"
-
-for dir in $(find ${input_dir}/* -maxdepth 1 -type d); do
-    for file in "$dir"/*; do
-        rel_path=$(realpath --relative-to=${input_dir} ${dir})
-        if [[ "${rel_path}" == "data" ]]; then
-            continue
-        fi
-        basename=$(basename ${file%.*})
-        dump_html "${rel_path}/${basename}.md" "${rel_path}/${basename}.html"
-    done
+dump_html ${script_dir}/../../products/memgraph "CHANGELOG.md" ${script_dir}/../../output/html/memgraph "changelog.html"
+for version in "${versions[@]}"; do
+    generate_version ${version}
 done
-
-deactivate
-
-echo "Output Diractory: $output_dir"

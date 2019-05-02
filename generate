@@ -1,33 +1,38 @@
 #!/bin/bash
 
 print_help () {
-    echo "Usage: $0 [--no-standalone]"
-    echo "    --no-standalone -> Don't put pandoc HTML wrapper around the content."
-    exit 1
+    echo "Usage: $0 [--standalone]"
+    echo -e "\t--standalone\tGenerate standalone HTML documents."
+    echo -e "\t-h|--help\tPrint help."
 }
 
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-standalone=1
-while [[ $# > 0 ]]; do
-    key="$1"
-    case $key in
-        --no-standalone)
-        standalone=0
-        shift
+# Parse inputs.
+standalone=0
+if [[ $# -gt 1 ]]; then
+    print_help
+    exit 1
+elif  [[ $# -eq 1 ]]; then
+    case "$1" in
+        --standalone)
+            standalone=1
         ;;
-        -h|--help|help)
-        print_help
-        shift
+        -h|--help)
+            print_help
+            exit 0
+        ;;
+        *)
+            print_help
+            exit 1
         ;;
     esac
-done
+fi
 
 # Generate output folders.
-mkdir -p ${script_dir}/output/pdf
 mkdir -p ${script_dir}/output/html
 
-# Setup HTML environment.
+# Initialize HTML gen environment.
 cd ${script_dir}/format/html
 if [ ! -d "${script_dir}/format/html/ve3" ]; then
     virtualenv -p python3 ve3 || exit 1
@@ -42,11 +47,8 @@ append_standalone () {
     echo ""
 }
 
-# Generate Memgraph DBMS docs.
-versions=("v0.13.0" "v0.14.1")
-for version in "${versions[@]}"; do
-    ./generate_memgraph --version ${version} $(append_standalone)
-done
+# Generate Memgraph docs.
+./generate_memgraph $(append_standalone)
 
 # Generate Memgraph Lab docs.
 ./generate_lab $(append_standalone)
