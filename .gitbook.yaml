@@ -1,0 +1,5 @@
+root: ./products
+
+structure:
+  readme: .gitbook_readme
+  summary: .gitbook_summary
