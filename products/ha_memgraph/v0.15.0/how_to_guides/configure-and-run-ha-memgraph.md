@@ -12,47 +12,72 @@ are advised to read [this article](../concepts/high-availability.md).
 
 ### Cluster Setup
 
-In order to successfully use HA Memgraph, you need to run the
-`memgraph_ha` binary on each machine in your cluster. We recommend running this
+In order to successfully use HA Memgraph, you need to install the
+`memgraph_ha` package on each machine in your cluster. We recommend running this
 feature on an odd-sized cluster. The most commonly used cluster size is 3 and
 all examples throughout this guide will assume that.
 
-In order to run the `memgraph_ha` binary, we need to specify a couple of things
+In order to run the `memgraph_ha` server, we need to specify a couple of things
 in advance. Each server within the cluster should be given a unique ID value
 between 1 and `cluster_size`. Since we are dealing with a cluster of 3 machines,
 their ID values will be 1, 2 and 3.
 
-We also need to specify two `.json` files. One of them (`raft_config_file`)
-defines some constants which are internal to the Raft protocol. The other one
-(`coordination_config_file`) contains coordination info consisting of
-`server_id`, `ip_address` and `rpc_port`.
+After you have installed the `memgraph_ha` package, you should first finish the
+configuration of the cluster before attempting to start the cluster.
 
-Therefore, we can run the `memgraph_ha` binary on the first (`ID=1`) server by
-issuing the following command:
+There are two main things that need to be configured in order for the cluster
+to be able to run:
+1. You have to edit the main configuration file and specify the unique node ID
+   to each server in the cluster
+2. You have to create a file that describes all IP addresses of all servers
+   that will be used in the cluster
 
-```plaintext
-  ./memgraph_ha --server_id 1 \
-                --coordination_config_file="coordination.json" \
-                --raft_config_file="raft.json"
-```
+The `memgraph_ha` binary loads all configuration parameters from
+`/etc/memgraph/memgraph_ha.conf`. On each node of the cluster, you should
+uncomment the `--server-id=0` parameter and change the value to the `server_id`
+of that node (1, 2 or 3). All nodes *must* have a unique value for this field
+in the configuration.
 
-The assumed contents of the `coordination.json` file are:
+The last step before starting the server is to create a `coordination`
+configuration file. That file is already present as an example in
+`/etc/memgraph/coordination.json.example` and you have to copy it to
+`/etc/memgraph/coordination.json` and edit it according to your cluster
+configuration. The file contains coordination info consisting of a list of
+`server_id`, `ip_address` and `rpc_port` lists. The assumed contents of the
+`coordination.json` file are:
 
 ```plaintext
 [
-  [1, "1.0.0.1", 7001],
-  [2, "2.0.0.2", 7002],
-  [3, "3.0.0.3", 7003]
+  [1, "192.168.0.1", 10000],
+  [2, "192.168.0.2", 10000],
+  [3, "192.168.0.3", 10000]
 ]
 ```
 
 Here, each line corresponds to coordination of one server. The first entry is
 that server's ID, the second is its IP address and the third is the RPC port it
 listens to. This port should not be confused with the port used for client
-interaction via the bolt protocol. Since we haven't provided the `--port` flag,
-HA Memgraph will use the default value for that port which is `7687`.
+interaction via the Bolt protocol.
 
-The assumed contents of the `raft.json` file are:
+The `ip_address` entered for each `server_id` *must* match the exact IP address
+that belongs to that server and that will be used to communicate to other nodes
+in the cluster. The coordination configuration file *must* be identical on all
+nodes in the cluster.
+
+After you have set the `server_id` on each node in
+`/etc/memgraph/memgraph_ha.conf` and provided the same
+`/etc/memgraph/coordination.json` file to each node in the cluster you can
+start the Memgraph HA service by issuing the following command on each node in
+the cluster:
+
+```
+systemctl start memgraph_ha
+```
+
+### Raft configuration parameters
+
+All Raft configuration parameters can be controlled by modifying
+`/etc/memgraph/raft.json`.  The assumed contents of the `raft.json` file are:
 
 ```plaintext
 {
