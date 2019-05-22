@@ -99,6 +99,59 @@ Flag                          | Description
 `replication_timeout`         | Time interval allowed for data replication given in milliseconds
 `log_size_snapshot_threshold` | Allowed number of entries in Raft log before its compaction
 
-### Querying HA Memgraph Using the HA Client
+### Memgraph HA Proxy Setup
 
-[//]: # (TODO when HA Client is implemented)
+The Bolt protocol that is exposed by each Memgraph HA node is an extended
+version of the standard Bolt protocol. In order to be able to communicate with
+the highly available cluster of Memgraph HA nodes, the client must have some
+logic implemented in itself so that it can communicate correctly with all nodes
+in the cluster. To facilitate a faster start with the HA cluster we have built
+the Memgraph HA proxy binary that communicates with all nodes in the HA cluster
+using the extended Bolt protocol and itself exposes a standard Bolt protocol to
+the user. All standard Bolt clients (libraries and custom systems) can
+communicate with the Memgraph HA proxy without any code modifications.
+
+The HA proxy should be deployed on each client machine that is used to
+communicate with the cluster. It can't be deployed on the Memgraph HA nodes!
+
+When using the Memgraph HA proxy, the communication flow is described in the
+following diagram:
+```plaintext
+Memgraph HA node 1 -----+
+                        |
+Memgraph HA node 2 -----+ Memgraph HA proxy <---> any standard Bolt client (C, Java, PHP, Python, etc.)
+                        |
+Memgraph HA node 3 -----+
+```
+
+To setup the Memgraph HA proxy you should install the `memgraph_ha_proxy`
+package.
+
+After you have installed the `memgraph_ha_proxy` package, you should first
+enter all endpoints of the Memgraph HA cluster servers into the configuration
+before attempting to start the Memgraph HA proxy server.
+
+The Memgraph HA proxy server loads all of its configuration from
+`/etc/memgraph/memgraph_ha_proxy.conf`. Assuming that the cluster is set up
+like in the previous examples, you should uncomment and enter the following
+value into the `--endpoints` parameter:
+```
+--endpoints=192.168.0.1:7687,192.168.0.2:7687,192.168.0.3:7687
+```
+
+Note that the IP addresses used in the example match the individual cluster
+nodes IP addresses, but the ports used are the Bolt server ports exposed by
+each node (currently the default value of `7687`).  We also assume that the
+clients access the cluster through the same IP address that the cluster itself
+uses to communicate within itself. If you have a more advanced network setup,
+you should specify the IP addresses of the nodes that can be reached by all
+clients that will use the database cluster.
+
+After you have entered the Memgraph HA cluster nodes endpoints, you can start
+the Memgraph HA proxy using the following command:
+```
+systemctl start memgraph_ha_proxy
+```
+
+After the Memgraph HA proxy is started you can query the Memgraph HA cluster by
+connecting to the Memgraph HA proxy IP address using your favorite Bolt client.
