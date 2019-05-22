@@ -33,7 +33,7 @@ issuing the following command:
 ```plaintext
   ./memgraph_ha --server_id 1 \
                 --coordination_config_file="coordination.json" \
-                --raft_config_file="raft.json" \
+                --raft_config_file="raft.json"
 ```
 
 The assumed contents of the `coordination.json` file are:
@@ -56,11 +56,11 @@ The assumed contents of the `raft.json` file are:
 
 ```plaintext
 {
-  "election_timeout_min": 150,
-  "election_timeout_max": 300,
+  "election_timeout_min": 750,
+  "election_timeout_max": 1000,
   "heartbeat_interval": 100,
-  "replication_timeout": 10000,
-  "log_size_snapshot_threshold": -1
+  "replication_timeout": 20000,
+  "log_size_snapshot_threshold": 50000
 }
 ```
 
@@ -77,33 +77,3 @@ Flag                          | Description
 ### Querying HA Memgraph Using the HA Client
 
 [//]: # (TODO when HA Client is implemented)
-
-### Querying HA Memgraph Without the HA Client
-
-If you wish to use a third-party client such as `neo4j-client` you should be
-aware that the client should only communicate with the leader of the cluster.
-
-Suppose we have a cluster of 3 machines and have observed the following message
-on the third machine soon after startup:
-
-```plaintext
-I0327 13:46:29.906607 8200 :590] Server 3: Transitioned to LEADER (Term: 6)
-```
-
-This lets you know that the third machine was successfully elected as a leader
-and should be ready to process queries. Since we know that this machine lives
-on `3.0.0.3` and listens on the default port for bolt protocol (`7687`),
-we can connect to it using the `neo4j-client` by using the following command:
-
-```plaintext
-neo4j-client -u "" -p "" --insecure 3.0.0.3 7687
-```
-
-At this point you can execute some queries on HA Memgraph.
-
-If you have connected to the machine that is not the leader and have attempted
-to execute a query, you should recieve the following error message:
-
-```plaintext
-error: HA Memgraph: Can't execute queries if not leader.
-```
