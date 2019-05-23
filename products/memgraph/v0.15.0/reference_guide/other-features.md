@@ -74,8 +74,8 @@ This section contains the list of other supported functions.
  `toString`      | Converts an integer, float or boolean value to a string.
  `toUpper`       | Returns the original string in uppercase.
  `trim`          | Returns the original string with leading and trailing whitespace removed.
- `all`           | Check if all elements of a list satisfy a predicate.<br/>The syntax is: `all(variable IN list WHERE predicate)`.<br/> NOTE: Whenever possible, use Memgraph's lambda functions when matching instead.
- `single`        | Check if only one element of a list satisfies a predicate.<br/>The syntax is: `single(variable IN list WHERE predicate)`.
+ `all`           | Check if all elements of a list satisfy a predicate. The syntax is: `all(variable IN list WHERE predicate)`.<br/> NOTE: Whenever possible, use Memgraph's lambda functions when matching instead.
+ `single`        | Check if only one element of a list satisfies a predicate. The syntax is: `single(variable IN list WHERE predicate)`.
  `reduce`        | Accumulate list elements into a single result by applying an expression. The syntax is:<br/>`reduce(accumulator = initial_value, variable IN list | expression)`.
  `extract`       | A list of values obtained by evaluating an expression for each element in list. The syntax is:<br>`extract(variable IN list | expression)`.
  `assert`        | Raises an exception reported to the client if the given argument is not `true`.
