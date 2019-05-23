@@ -6,9 +6,7 @@ Although there are multiple ways to design highly-available systems, HA Memgraph
 strives to achieve HA by elimination of single points of failure. In essence,
 this implies adding redundancy to the system so that a failure of a component
 does not imply the failure of the entire system. To ensure this, HA Memgraph
-implements the [Raft Consensus Algorithm](https://raft.github.io/). For more
-information on Raft internals as well as its integration with HA Memgraph, you
-are advised to read [this article](../concepts/high-availability.md).
+implements the [Raft Consensus Algorithm](https://raft.github.io/).
 
 ### Cluster Setup
 
