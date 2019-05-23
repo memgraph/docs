@@ -62,7 +62,7 @@ database and executes a couple of elementary queries.
 from neo4j.v1 import GraphDatabase, basic_auth
 
 # Initialize and configure the driver.
-#   * provide the correct URL where Memgraph proxy is reachable;
+#   * provide the correct URL where Memgraph HA proxy is reachable;
 #   * use an empty user name and password.
 driver = GraphDatabase.driver("bolt://localhost:7687",
                               auth=basic_auth("", ""))
