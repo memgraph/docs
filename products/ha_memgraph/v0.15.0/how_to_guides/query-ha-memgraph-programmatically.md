@@ -8,8 +8,8 @@ it would be to query the single node Memgraph instance.
 ### Supported Languages
 
 If users wish to query HA Memgraph programmatically, they can do so using the
-[Bolt protocol](https://boltprotocol.org). Bolt was designed for efficient
-communication with graph databases and Memgraph supports
+[Bolt protocol](https://boltprotocol.org) proxy server. Bolt was designed for
+efficient communication with graph databases and Memgraph supports
 [Version 1](https://boltprotocol.org/v1) of the protocol. Bolt protocol drivers
 for some popular programming languages are listed below:
 
@@ -23,19 +23,18 @@ for some popular programming languages are listed below:
 
 ### Secure Sockets Layer (SSL)
 
-Secure connections are supported and enabled by default. The server initially
-ships with a self-signed testing certificate. The certificate can be replaced
-by editing the following parameters in `/etc/memgraph/memgraph_ha.conf`:
+Secure connections are supported and enabled by default. The proxy server
+initially ships with a self-signed testing certificate. The certificate can be
+replaced by editing the following parameters in
+`/etc/memgraph/memgraph_ha_proxy.conf`:
 
 ```
---rpc-cert-file=/path/to/ssl/rpc_cert.pem
---rpc-key-file=/path/to/ssl/rpc_key.pem
 --cert-file=/path/to/ssl/client_cert.pem
 --key-file=/path/to/ssl/client_key.pem
 ```
 
-To disable SSL support and use insecure connections to the database you should
-set the mentioned parameters to empty values.
+To disable SSL support and use insecure connections to the database proxy you
+should set the mentioned parameters to empty values.
 
 ### Examples
 
@@ -63,7 +62,7 @@ database and executes a couple of elementary queries.
 from neo4j.v1 import GraphDatabase, basic_auth
 
 # Initialize and configure the driver.
-#   * provide the correct URL where HA Memgraph is reachable;
+#   * provide the correct URL where Memgraph proxy is reachable;
 #   * use an empty user name and password.
 driver = GraphDatabase.driver("bolt://localhost:7687",
                               auth=basic_auth("", ""))
@@ -140,14 +139,14 @@ public class JavaQuickStart {
 The details about Javascript driver can be found on
 [GitHub](https://github.com/neo4j/neo4j-javascript-driver).
 
-Here is an example related to `Node.js`. Memgraph doesn't have integrated
-support for `WebSocket` which is required during the execution in any web
-browser. If you want to run `openCypher` queries from a web browser,
+Here is an example related to `Node.js`. Memgraph HA proxy doesn't have
+integrated support for `WebSocket` which is required during the execution in any
+web browser. If you want to run `openCypher` queries from a web browser,
 [websockify](https://github.com/novnc/websockify) has to be up and running.
 Requests from web browsers are wrapped into `WebSocket` messages, and a proxy
 is needed to handle the overhead. The proxy has to be configured to point out
-to Memgraph's Bolt port and web browser driver has to send requests to the
-proxy port.
+to Memgraph HA proxy's Bolt port and web browser driver has to send requests to
+the proxy port.
 
 The code snippet below outlines a basic usage example which connects to the
 database and executes a couple of elementary queries.
