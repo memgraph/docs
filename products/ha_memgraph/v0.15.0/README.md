@@ -19,6 +19,7 @@ Full Activity Auditing                                |     |     +
   * [About Memgraph](#about-memgraph)
   * [How to](how_to_guides/how-to-guides-overview.md)
     * [Configure and Run HA Memgraph?](how_to_guides/configure-and-run-ha-memgraph.md)
+    * [Query HA Memgraph Programmatically?](how_to_guides/query-ha-memgraph-programmatically.md)
     * [Inspect and Profile OpenCypher Queries Using Memgraph?](how_to_guides/explain-profile.md)
     * [Setup Memgraph Tensorflow Op?](how_to_guides/tensorflow-setup.md)
   * [Concepts](concepts/concepts-overview.md)
