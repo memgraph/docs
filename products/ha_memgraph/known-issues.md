@@ -11,7 +11,7 @@ description and status. The possible issue statuses are given below:
   - OPEN &mdash; We are aware of the issue, but we do not consider it high priority at the moment.
   - PLANNED &mdash; We are aware of the issue and definitely intend to solve it as soon as possible.
   - IN PROGRESS &mdash; We are aware of the issue and are actively working on the solution. Most likely, this will be fixed in the next release.
-  - FIXED IN `version` &mdash; The issue was resolved in the mentioned version
+  - FIXED IN `version` &mdash; The issue was resolved in the mentioned version.
 
 ## 23rd of May 2019
 
