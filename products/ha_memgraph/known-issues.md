@@ -14,7 +14,7 @@ Status             | Explanation
 OPEN               | We are aware of the issue, but we do not consider it high priority at the moment.
 PLANNED            | We are aware of the issue and definitely intend to solve it as soon as possible.
 IN PROGRESS        | We are aware of the issue and are actively working on the solution. Most likely, this will be fixed in the next release.
-FIXED IN <version> | The issue no longer exists and was fixed in the mentioned version
+FIXED IN `version` | The issue no longer exists and was fixed in the mentioned version
 
 ## 23rd of May 2019
 
