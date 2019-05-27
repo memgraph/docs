@@ -1,4 +1,4 @@
-## How to Configure and Run HA Memgraph?
+## How to Install, Configure and Run HA Memgraph?
 
 High availability (HA) is a characteristic of a system which aims to ensure a
 certain level of operational performance for a higher-than-normal period.
@@ -7,6 +7,24 @@ strives to achieve HA by elimination of single points of failure. In essence,
 this implies adding redundancy to the system so that a failure of a component
 does not imply the failure of the entire system. To ensure this, HA Memgraph
 implements the [Raft Consensus Algorithm](https://raft.github.io/).
+
+### Installation
+
+Memgraph HA is currently only available as a Debian package for Debian 9
+(Stretch).
+
+It is important to note that newer versions of Memgraph HA are currently not
+backward compatible with older versions.
+
+To install the Memgraph HA Debian package run the following command:
+
+```bash
+dpkg -i /path/to/memgraph_ha_<version>.deb
+```
+
+At this point, Memgraph HA is *not* yet ready for startup. Before starting the
+database, you should have installed the Debian package on your whole cluster
+and you should proceed to the [Cluster setup](#cluster-setup) section.
 
 ### Cluster Setup
 
