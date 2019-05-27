@@ -1,9 +1,9 @@
 ## How to Query HA Memgraph Programmatically?
 
 If you have successfully
-[configured HA Memgraph](configure-and-run-ha-memgraph.md) along with the proxy
-setup, the process of programmatic querying should be exactly the same as
-it would be to query the single node Memgraph instance.
+[configured HA Memgraph](install-configure-and-run-ha-memgraph.md) along with
+the proxy setup, the process of programmatic querying should be exactly the
+same as it would be to query the single node Memgraph instance.
 
 ### Supported Languages
 
