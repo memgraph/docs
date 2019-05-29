@@ -51,6 +51,12 @@
 * [How to install on OSX?](lab/v1.0.0/how_to_install_memgraph_lab_on_macos.md)
 * [Changelog](lab/CHANGELOG.md)
 
+## Memgraph Clients
+
+* [pymgclient](https://memgraph.github.io/pymgclient)
+* [mgclient](https://github.com/memgraph/mgclient)
+* [mgconsole](https://github.com/memgraph/mgconsole)
+
 ## Machine Learning
 
 * [TensorFlow Op](tensorflow_op/README.md)
