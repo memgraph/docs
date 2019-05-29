@@ -28,8 +28,9 @@ and you should proceed to the [Cluster setup](#cluster-setup) section.
 
 Most likely, you will use [Memgraph HA Proxy](#memgraph-ha-proxy-setup) to
 execute queries on Highly Available Memgraph. Memgraph HA Proxy is also only
-available as a Debian package for Debian 9 (Stretch). You can install the
-Memgraph HA Proxy package by running the following command:
+available as a Debian package for Debian 9 (Stretch).
+
+You can install the Memgraph HA Proxy package by running the following command:
 
 ```bash
 dpkg -i /path/to/memgraph_ha_proxy_<version>.deb
