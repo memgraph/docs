@@ -25,13 +25,13 @@ Memgraph TensorFlow op is a shared library (`.so` file).
 Library name is `libmemgraph_op.so`.
 
 Load op library:
-```python3
+```python
 import tensorflow as tf
 memgraph_op_module = tf.load_op_library('libmemgraph_op.so')
 ```
 
 Create Memgraph TensorFlow op:
-```python3
+```python
 # Create Memgraph op, and put placeholders for input
 memgraph_op = memgraph_op_module.memgraph_op(query_holder,
                                              input_list_holder,
@@ -41,7 +41,7 @@ Where `query_holder` and `input_list_holder`
 are TensorFlow placeholders.
 
 Computation:
-```python3
+```python
 # Run Memgraph op
 output = sess.run(memgraph_op, {query_holder: query,
                                 input_list_holder: input_list})
@@ -69,7 +69,7 @@ without `ssl`.
 If you want to change this,
 use op [attributes](../reference_guide/tensorflow.md).
 
-```python3
+```python
 import tensorflow as tf
 
 # Load libmemgraph_op.so
@@ -119,13 +119,13 @@ if __name__ == "__main__":
 ### Memgraph Parallel Tensorflow Op Usage
 
 Load op library:
-```python3
+```python
 import tensorflow as tf
 memgraph_op_module = tf.load_op_library('libmemgraph_op.so')
 ```
 
 Create Memgraph TensorFlow op:
-```python3
+```python
 # Create Memgraph op, and put placeholders for input
 memgraph_op = memgraph_op_module.parallel_memgraph_op(query_holder,
                                                       input_list_holder,
@@ -136,7 +136,7 @@ Where `query_holder` and `input_list_holder`
 are TensorFlow placeholders.
 
 Computation:
-```python3
+```python
 # Run Memgraph op
 output = sess.run(memgraph_op, {query_holder: query,
                                 input_list_holder: input_list})
@@ -166,7 +166,7 @@ without `ssl`.
 If you want to change this,
 use op [attributes](../reference_guide/tensorflow.md).
 
-```python3
+```python
 import tensorflow as tf
 
 # Load libmemgraph_op.so
