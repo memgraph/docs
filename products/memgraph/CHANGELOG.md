@@ -4,16 +4,35 @@
 
 ### Breaking Changes
 
+* Snapshot and write-ahead log format changed (not backward compatible).
 * `indexInfo()` function replaced with `SHOW INDEX INFO` syntax.
+* Removed support for unique index. Use unique constraints instead.
+* `CREATE UNIQUE INDEX ON :label (property)` replaced with `CREATE CONSTRAINT ON (n:label) ASSERT n.property IS UNIQUE`.
+* Changed semantics for `COUNTER` openCypher function.
 
 ### Major Features and Improvements
 
 * [Enterprise Ed.] Add new privilege, `STATS` for accessing storage info.
 * [Enterprise Ed.] LDAP authentication and authorization support.
 * [Enterprise Ed.] Add audit logging feature.
+* Add multiple properties unique constraint which replace unique indices.
 * Add `SHOW STORAGE INFO` feature.
+* Add `PROFILE` clause to openCypher.
+* Add `CREATE CONSTRAINT` clause to openCypher.
+* Add `DROP CONSTRAINT` clause to openCypher.
+* Add `SHOW CONSTRAINT INFO` feature.
 * Add `uniformSample` function to openCypher.
 * Add regex matching to openCypher.
+
+### Bug Fixes and Other Changes
+
+* Fix bug in query comment parsing.
+* Fix bug in query symbol table.
+* Fix OpenSSL memory leaks.
+* Make authentication case insensitive.
+* Remove `COALESCE` function.
+* Add movie tutorial.
+* Add backpacking tutorial.
 
 ## v0.14.1
 
