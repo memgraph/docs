@@ -72,7 +72,3 @@ DROP CONSTRAINT ON (n:Employee) ASSERT n.name, n.surname IS UNIQUE;
 ```
 
 Now, `SHOW CONSTRAINT INFO;` yields an empty set. 
-
-Finally, the users should be aware that using uniqueness constraints might
-significantly reduce write performance. That being said, we plan to alleviate
-this issue in future releases.
