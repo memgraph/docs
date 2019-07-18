@@ -29,6 +29,7 @@ Graph Strams (Kafka)                                  |           |     +
     * [Inspect and Profile OpenCypher Queries Using Memgraph?](how_to_guides/explain-profile.md)
     * [Import Data?](how_to_guides/import-data.md)
     * [Query Memgraph Programmatically?](how_to_guides/query-memgraph-programmatically.md)
+    * [Enforce Constraints?](how_to_guides/enforce-constraints.md)
     * [Ingest Data Using Kafka?](how_to_guides/ingest-data-using-kafka.md)
     * [Manage User Privileges?](how_to_guides/manage-user-privileges.md)
     * [Manage Users Using LDAP?](how_to_guides/manage-users-using-ldap.md)
