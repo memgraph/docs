@@ -90,20 +90,6 @@ Dropping an index will instruct all active transactions to abort as soon as
 possible, and it will wait for them to finish. Once all transaction have
 finished, it will drop the index.
 
-### Uniqueness constraint
-Label-property index can also enforce uniqueness constraint and thus ensure that
-all values in the index have a unique value.
-
-This can be done with the following language construct:
-```opencypher
-CREATE UNIQUE INDEX ON :Person(email);
-```
-
-If you're absolutely sure that the uniqueness needs to be ensured on the
-database level, you have to be aware that using uniqueness constraint might
-reduce write performance significantly.  That being said, we are planning to
-resolve this issue in some future release.
-
 ### Underlying Implementation
 
 The central part of our index data structure is a highly-concurrent skip list.
