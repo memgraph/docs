@@ -6,9 +6,8 @@ remainder of this document.
 
 ### Uniqueness constraint
 
-Uniqueness constraint enforces that each `label, property_set` pair has a unique
-value set. This constraint can be enforced using the following language
-construct:
+Uniqueness constraint enforces that each `label, property_set` pair is unique.
+This constraint can be enforced using the following language construct:
 
 ```opencypher
 CREATE CONSTRAINT ON (n:label) ASSERT n.property1, n.property2, ..., IS UNIQUE;
