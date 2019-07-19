@@ -22,7 +22,7 @@ Memgraph uses ~50GB to store 100M nodes and 100M edges with one label and one pr
 
 6. ##### Is Memgraph highly available?
 
-High Availability (HA) based on the RAFT protocol will be available in Q4 of 2018.
+Stable High Availability (HA) based on the RAFT protocol will be available in Q4 of 2019.
 
 7. ##### Does Memgraph offer a cloud graph database as a service?
 
