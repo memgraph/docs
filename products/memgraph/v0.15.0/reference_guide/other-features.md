@@ -21,7 +21,6 @@ This section contains the list of other supported functions.
 
  Name            | Description
 -----------------|------------
- `coalesce`      | Returns the first non null argument.
  `startNode`     | Returns the starting node of an edge.
  `endNode`       | Returns the destination node of an edge.
  `degree`        | Returns the number of edges (both incoming and outgoing) of a node.
