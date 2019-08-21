@@ -123,7 +123,7 @@ RETURN exp(total_weight);
 Weighted Shortest Path expansions also allows an arbitrary expression filter
 that determines if an expansion is allowed. Following is an example in which
 expansion is allowed only over edges whose `x` property is greater than `12`
-and nodes `y` whose property is less than `3`:
+and nodes whose `y` property is less than `3`:
 
 ```opencypher
 MATCH (a {id: 723})-[
