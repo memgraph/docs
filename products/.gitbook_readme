@@ -17,6 +17,14 @@ Memgraph Lab is a lightweight and intuitive openCypher and Bolt compatible
 integrated development environment (IDE), designed to help you import data,
 develop, debug and profile database queries and visualize query results.
 
+## Memgraph Cloud
+
+To offer its users more flexibility and better experience, Memgraph provides
+fully managed graph DBMS as a service (in the Cloud). Users do not need to set
+up or maintain a database instance. It is Memgraph's responsibility to oversee
+the infrastructure (deployment, upgrade, update, removal, data backup,
+security, etc.).
+
 ## Note
 
 These pages contain only the documents related to the latest versions of
