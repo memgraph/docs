@@ -47,6 +47,10 @@
 * [Known Issues](ha_memgraph/known-issues.md)
 * [FAQ](ha_memgraph/v0.1.0/faq.md)
 
+## Memgraph Cloud
+
+* [How to Connect to Memgraph Cloud?](memgraph_cloud/how-to-connect.md)
+
 ## Memgraph Lab
 
 * [How to install on OSX?](lab/v1.0.0/how_to_install_memgraph_lab_on_macos.md)
