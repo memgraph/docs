@@ -1,7 +1,7 @@
 # How to Connect to Memgraph Cloud
 
 To query Memgraph from the graphical user interface, please download and
-install [Memgraph Lab](https://memgraph.com/download/memgraph-lab).
+install [Memgraph Lab](https://memgraph.com/download#tools).
 
 To query Memgraph from the terminal please use [Memgraph
 Console](https://github.com/memgraph/mgconsole).
