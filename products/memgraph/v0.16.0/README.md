@@ -46,6 +46,7 @@ Graph Strams (Kafka)                                  |           |     +
     * [Graph Algorithms](reference_guide/graph-algorithms.md)
     * [Graph Streams](reference_guide/graph-streams.md)
     * [Security](reference_guide/security.md)
+    * [Auth Module](reference_guide/auth-module.md)
     * [LDAP Security](reference_guide/ldap-security.md)
     * [Audit Log](reference_guide/audit-log.md)
     * [TensorFlow Op](reference_guide/tensorflow.md)

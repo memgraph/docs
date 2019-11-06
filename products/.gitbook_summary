@@ -30,6 +30,7 @@
     * [Graph Algorithms](memgraph/v0.16.0/reference_guide/graph-algorithms.md)
     * [Graph Streams](memgraph/v0.16.0/reference_guide/graph-streams.md)
     * [Security](memgraph/v0.16.0/reference_guide/security.md)
+    * [Auth Module](memgraph/v0.16.0/reference_guide/auth-module.md)
     * [LDAP Security](memgraph/v0.16.0/reference_guide/ldap-security.md)
     * [Audit Log](memgraph/v0.16.0/reference_guide/audit-log.md)
     * [Other Features](memgraph/v0.16.0/reference_guide/other-features.md)

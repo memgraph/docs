@@ -17,6 +17,7 @@ Our reference guide currently consists of the following articles:
   * [Graph Algorithms](graph-algorithms.md)
   * [Graph Streams](graph-streams.md)
   * [Security](security.md)
+  * [Auth Module](auth-module.md)
   * [LDAP Security](ldap-security.md)
   * [Audit Log](audit-log.md)
   * [TensorFlow Op](tensorflow.md)

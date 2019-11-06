@@ -113,15 +113,38 @@ GRANT ALL PRIVILEGES TO dba;
 After the user is created and all privileges are granted, it is safe to
 disconnect from the database and proceed with LDAP integration.
 
-To enable LDAP integration you should specify the following flags to Memgraph:
+To enable LDAP integration you should specify the following flag to Memgraph:
 ```plaintext
---auth-ldap-enabled=true
---auth-ldap-host=<LDAP_SERVER_HOSTNAME>
---auth-ldap-port=<LDAP_SERVER_PORT>
---auth-ldap-prefix="cn="
---auth-ldap-suffix=",ou=people,dc=memgraph,dc=com"
+--auth-module-executable=/usr/lib/memgraph/auth_module/ldap.py
 ```
-After setting these flags you should restart your Memgraph instance.
+
+You should also have the following LDAP module configuration in
+`/etc/memgraph/auth_module/ldap.yaml`:
+```yaml
+server:
+  host: "<LDAP_SERVER_HOSTNAME>"
+  port: <LDAP_SERVER_PORT>
+  encryption: "disabled"
+  cert_file: ""
+  key_file: ""
+  ca_file: ""
+  validate_cert: false
+
+users:
+  prefix: "cn="
+  suffix: ",ou=people,dc=memgraph,dc=com"
+
+roles:
+  root_dn: ""
+  root_objectclass: ""
+  user_attribute: ""
+  role_attribute: ""
+```
+You should adjust the security settings according to your LDAP server security
+settings.
+
+After setting these configuration options you should restart your Memgraph
+instance.
 
 Now you can verify that you can still log in to the database using username
 `dba` and password `dba`.
@@ -151,7 +174,7 @@ Users Bob, Carol and Dave will also be able to log in to the database using
 their LDAP password.  As with Alice, their users will be created and won't have
 any privileges.
 
-If automatic user account creation is disabled using the flag:
+If automatic user account creation is disabled using the database flag:
 ```plaintext
 --auth-ldap-create-user=false
 ```
@@ -169,26 +192,34 @@ won't be able to log in.
 ### Authorization
 
 In the previous example users could only authenticate using LDAP. In this
-example we will explain how to set-up Memgraph to deduce the user's role using
-LDAP search queries.
+example we will explain how to set-up the LDAP auth module to deduce the user's
+role using LDAP search queries.
 
 First, you should enable and verify that user authentication works. To enable
-role mapping for the described LDAP schema, we will add the following
-additional flag to Memgraph:
-```plaintext
---auth-ldap-role-mapping-root-dn="ou=roles,dc=memgraph,dc=com"
+role mapping for the described LDAP schema, we will modify the LDAP auth module
+configuration file, specifically the section `roles`, to have the following
+content:
+```yaml
+roles:
+  root_dn: "ou=roles,dc=memgraph,dc=com"
+  root_objectclass: "groupOfNames"
+  user_attribute: "member"
+  role_attribute: "cn"
 ```
-This flag tells Memgraph that all role mapping entries are children of the
-`ou=roles,dc=memgraph,dc=com` entry.
+This configuration tells the LDAP module that all role mapping entries are
+children of the `ou=roles,dc=memgraph,dc=com` entry, that the children have
+user DNs specified in their `member` attribute and that the `cn` attribute
+should be used to determine the role name.
 
-When a user logs in to the database, Memgraph will go through all role mapping
-entries and will try to find out which role mapping entry has the user as its
-member.
+When a user logs in to the database, the LDAP auth module will go through all
+role mapping entries and will try to find out which role mapping entry has the
+user as its member.
 
-So now when Alice logs in, Memgraph will go through the following entries:
-`cn=admin,ou=roles,dc=memgraph,dc=com` and
+So now when Alice logs in, the LDAP auth module will go through the following
+entries: `cn=admin,ou=roles,dc=memgraph,dc=com` and
 `cn=moderator,ou=roles,dc=memgraph,dc=com`.  Because Alice is a member of the
-`moderator` role mapping, Memgraph will assign role moderator to Alice.
+`moderator` role mapping, the LDAP auth module will assign role moderator to
+Alice.
 
 Now as the user `dba` we can issue `SHOW ROLE FOR alice;` and we will see that
 indeed Alice now has the role `moderator`.
