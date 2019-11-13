@@ -1,5 +1,12 @@
 # Change Log
 
+## v0.16.0
+
+### Major Features and Improvements
+
+* Support loading query modules implementing read-only procedures.
+* Add `CALL <procedure> YIELD <result>` syntax for invoking loaded procedures.
+
 ## v0.15.0
 
 ### Breaking Changes
