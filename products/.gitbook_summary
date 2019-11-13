@@ -32,6 +32,7 @@
     * [Security](memgraph/v0.16.0/reference_guide/security.md)
     * [LDAP Security](memgraph/v0.16.0/reference_guide/ldap-security.md)
     * [Audit Log](memgraph/v0.16.0/reference_guide/audit-log.md)
+    * [Query Modules](memgraph/v0.16.0/reference_guide/query-modules.md)
     * [Other Features](memgraph/v0.16.0/reference_guide/other-features.md)
     * [Differences](memgraph/v0.16.0/reference_guide/differences.md)
 * [Upcoming Features](memgraph/v0.16.0/upcoming-features.md)

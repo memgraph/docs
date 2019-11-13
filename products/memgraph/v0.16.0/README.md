@@ -49,7 +49,7 @@ Graph Strams (Kafka)                                  |           |     +
     * [LDAP Security](reference_guide/ldap-security.md)
     * [Audit Log](reference_guide/audit-log.md)
     * [TensorFlow Op](reference_guide/tensorflow.md)
-    * [Query Modules](reference-guide/query-modules.md)
+    * [Query Modules](reference_guide/query-modules.md)
     * [Other Features](reference_guide/other-features.md)
     * [Differences](reference_guide/differences.md)
   * [Upcoming Features](upcoming-features.md)

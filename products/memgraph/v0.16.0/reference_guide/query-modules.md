@@ -39,7 +39,7 @@ languages.
 ### Syntax for Calling Procedures
 
 OpenCypher has a special syntax for calling procedures in loaded query
-modules. For example.
+modules. For example:
 
 ```opencypher
 CALL example("string-argument") YIELD args, result;
@@ -55,7 +55,7 @@ which are not part of the produced record will result in an error.
 
 Procedures may be called standalone as in the above example, or as a part of a
 larger query. This is useful if we want the procedure to work on data the
-query is producing. For example.
+query is producing. For example:
 
 ```
 MATCH (node) CALL example(node) YIELD result RETURN *;
@@ -69,7 +69,7 @@ which update something don't need to `RETURN` anything.
 
 If a procedure returns a record with a field name that may clash with some
 variable we already have in a query, that field name can be aliased into some
-other name. For example.
+other name. For example:
 
 ```opencypher
 MATCH (node) CALL example(42) YIELD node AS result RETURN *;
@@ -99,7 +99,7 @@ all functions that can be used to implement a query module procedure. This
 file is found in the Memgraph installation directory, under
 `include/memgraph`. On the standard Debian installation, this will be under
 `/usr/include/memgraph`. To compile the module, you will have to pass the appropriate
-flags to the compiler. For example, using `clang`.
+flags to the compiler. For example, using `clang`:
 
 ```bash
 clang -Wall -shared -fPIC -I /usr/include/memgraph example.c -o example.so
