@@ -10,7 +10,7 @@ No. Memgraph uses RAM as the primary storage for data. However, Memgraph continu
 
 3. ##### How far have you scaled your system?
 
-It depends on the dataset and the queries, in other words, the workload. On a single machine, Memgraph scales up to the size of the main memory or disk space where properties could be stored on disk. In a distributed system, the graph is automatically repartitioned in the background to improve query execution time and scalability.
+It depends on the dataset and the queries, in other words, the workload. On a single machine, Memgraph scales up to the size of the main memory. In a distributed system, the graph is automatically repartitioned in the background to improve query execution time and scalability.
 
 4. ##### Can Memgraph be deployed in the cloud?
 

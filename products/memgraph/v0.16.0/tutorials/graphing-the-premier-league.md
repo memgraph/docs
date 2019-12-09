@@ -40,11 +40,12 @@ the following visual representation.
 ### Importing the Snapshot
 
 We have prepared a database snapshot for this example, so the user can easily
-import it when starting Memgraph using the `--durability-directory` option.
+import it when starting Memgraph using the `--data-directory` option.
 
 ```bash
-/usr/lib/memgraph/memgraph --durability-directory /usr/share/memgraph/examples/football \
-  --durability-enabled=false --snapshot-on-exit=false
+/usr/lib/memgraph/memgraph --data-directory /usr/share/memgraph/examples/football \
+  --storage-snapshot-interval-sec=0 --storage-wal-enabled=false \
+  --storage-snapshot-on-exit=false --storage-properties-on-edges=true
 ```
 
 When using Memgraph installed from DEB or RPM package, the currently running
@@ -60,8 +61,9 @@ When using Docker, the example can be imported with the following command:
 ```bash
 docker run -p 7687:7687 \
   -v mg_lib:/var/lib/memgraph -v mg_log:/var/log/memgraph -v mg_etc:/etc/memgraph \
-  memgraph --durability-directory /usr/share/memgraph/examples/football \
-  --durability-enabled=false --snapshot-on-exit=false
+  memgraph --data-directory /usr/share/memgraph/examples/football \
+  --storage-snapshot-interval-sec=0 --storage-wal-enabled=false \
+  --storage-snapshot-on-exit=false --storage-properties-on-edges=true
 ```
 
 The user should note that any modifications of the database state will persist
