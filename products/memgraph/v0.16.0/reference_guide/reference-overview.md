@@ -15,7 +15,6 @@ Our reference guide currently consists of the following articles:
   * [Reading and Writing](reading-and-writing.md)
   * [Indexing](indexing.md)
   * [Graph Algorithms](graph-algorithms.md)
-  * [Graph Streams](graph-streams.md)
   * [Security](security.md)
   * [Auth Module](auth-module.md)
   * [LDAP Security](ldap-security.md)

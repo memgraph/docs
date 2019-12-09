@@ -10,7 +10,6 @@ So far we have covered the following topics:
   * [How to Import Data?](import-data.md)
   * [How to Query Memgraph Programmatically?](query-memgraph-programmatically.md)
   * [How to Enforce Constraints?](enforce-constraints.md)
-  * [How to Ingest Data Using Kafka?](ingest-data-using-kafka.md)
   * [How to Manage User Privileges?](manage-user-privileges.md)
   * [How to Manage Users Using LDAP?](manage-users-using-ldap.md)
   * [How to Setup Memgraph Tensorflow Op?](tensorflow-setup.md)
