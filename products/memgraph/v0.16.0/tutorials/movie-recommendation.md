@@ -78,31 +78,17 @@ MATCH (u: User) RETURN u ORDER BY u.name DESC LIMIT 15;
 MATCH (m :Movie)-[:ofGenre]->(:Genre {name:"Action"}), (m)-[:ofGenre]->(:Genre {name:"Comedy"})
 RETURN m.title ORDER BY m.title LIMIT 10;
 ```
-4) Uniqueness constraint for genre:
-
-Let's create new unique constraint:
-
-```opencypher
-CREATE UNIQUE INDEX ON :Genre(name);
-```
-And now we can try to create new `Genre` node with existing `name': "Comedy":
-
-```opencypher
-CREATE (:Genre {name: "Comedy"});
-```
-This query returns an error because genre "Comedy" already exists.
-
-5) Average score for *Star Wars* movie:
+4) Average score for *Star Wars* movie:
 
 ```opencypher
 MATCH (u :User)-[r :Rating]->(m :Movie {title:"Star Wars"}) RETURN AVG(r.score);
 ```
-6) Average scores for first 10 movies:
+5) Average scores for first 10 movies:
 
 ```opencypher
 MATCH (u :User)-[r :Rating]->(m:Movie) RETURN m.title, AVG(r.score) AS score ORDER BY score DESC LIMIT 10;
 ```
-7) Create a new user and rate some movies:
+6) Create a new user and rate some movies:
 
 ```opencypher
 CREATE (:User {id:1000, name:"Aladin"});
@@ -146,7 +132,7 @@ MERGE (u)-[:Rating{score:2.5}]-(m);
 MATCH (u:User{id:1000}), (m:Movie{title:"Notorious"})
 MERGE (u)-[:Rating{score:3.5}]-(m);
 ```
-8) Recommandation sytstem:
+7) Recommendation system:
 
 The idea is to implement simple [memory based collaborative filtering](https://en.wikipedia.org/wiki/Collaborative_filtering).
 
