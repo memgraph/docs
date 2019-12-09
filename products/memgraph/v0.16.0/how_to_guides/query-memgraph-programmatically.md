@@ -22,11 +22,11 @@ Secure connections are supported and enabled by default. The server initially
 ships with a self-signed testing certificate. The certificate can be replaced
 by editing the following parameters in `/etc/memgraph/memgraph.conf`:
 ```
---cert-file=/path/to/ssl/certificate.pem
---key-file=/path/to/ssl/privatekey.pem
+--bolt-cert-file=/path/to/ssl/certificate.pem
+--bolt-key-file=/path/to/ssl/privatekey.pem
 ```
 To disable SSL support and use insecure connections to the database you should
-set both parameters (`--cert-file` and `--key-file`) to empty values.
+set both parameters (`--bolt-cert-file` and `--bolt-key-file`) to empty values.
 
 ### Examples
 
