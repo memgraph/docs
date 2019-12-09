@@ -21,10 +21,7 @@ here (especially subtle semantic ones).
 
 * Data importing. Memgraph doesn't support Cypher's CSV importing capabilities.
 * The `FOREACH` language construct for performing an operation on every list element.
-* The `CALL` construct for a standalone function call. This can be expressed using
-  `RETURN functioncall()`.
 * Stored procedures.
-* Regular expressions for string matching.
 * `shortestPath` and `allShortestPaths` functions. `shortestPath` can be expressed using
   Memgraph's breadth-first expansion syntax already described in this document.
 * Patterns in expressions. For example, Memgraph doesn't support `size((n)-->())`. Most of the time

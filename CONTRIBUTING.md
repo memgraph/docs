@@ -38,11 +38,10 @@ explanations of the tools used to solve that problem (apart from a reference for
 example). When writing how-to guides, one should have in mind that the reader
 wants to solve their problem as quickly and as easy as possible.
 
-A typical example of a how-to guide would be an article on [How-to Ingest Data
-Using
-Kafka](products/memgraph/v0.14.1/how_to_guides/ingest-data-using-kafka.md).
+A typical example of a how-to guide would be an article on [How to Manage User
+Privileges](products/memgraph/v0.14.1/how_to_guides/manage-user-privileges.md).
 That article should contain all the necessary steps for the user to do so
-without going into much detail on what is Kafka or why data streaming might be
+without going into much detail on what user privileges are or why they might be
 important.
 
 ### Concepts
