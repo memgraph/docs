@@ -81,6 +81,25 @@ MATCH (n:Node) SET n.property[0] = 0;
 MATCH (n:Node) SET n.property.key = "other value";
 ```
 
+### Properties on edges
+
+Although openCypher supports properties on edges, they are often not used. If
+you have a use-case that doesn't use properties on edges you can specify a flag
+in the Memgraph configuration file which will disable the usage of properties
+on edges.
+```
+--storage-properties-on-edges=false
+```
+The benefit of supplying this flag to Memgraph is reduced memory usage.
+
+The durability system is designed to handle a mixed usage of properties on
+edges. If, for example, you start Memgraph with properties on edges enabled
+(the default setting), add some data to the database and then shut it down, you
+will be able to recover your data in Memgraph with properties on edges
+disabled. The data will be recovered under one condition, though, and that is
+that you can't have any properties on edges in your data that will be used
+for recovery.
+
 ### Storage Statistics
 
 A user can retrieve information and statistics from the storage of a running
