@@ -59,9 +59,9 @@ Once you have Memgraph Lab installed, run the app and you should be presented
 with a connect screen. The username and password fields are only for Memgraph
 Enterprise users and are not required if you’re using Memgraph Core.
 
-The default connection string set to "bolt://localhost:7687". If you're using a
+The default connection string set to `bolt://localhost:7687`. If you're using a
 different port you will have to change the connection string to point to that
-port. i.e. "bolt://localhost:<your port number>"
+port. i.e. `bolt://localhost:<your port number>`
 
 Click on connect and you should be presented with the following dashboard:
 
