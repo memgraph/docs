@@ -1,5 +1,17 @@
 # Change Log
 
+## v1.1.0
+
+### Major Features and Improvements
+
+* Enable explain and profile view.
+* Memgraph v0.15.0 keywords support.
+
+### Bug Fixes and Other Changes
+
+* Fix bug with a new line in parsing multi-command queries.
+* On empty data for graph redirect to data view.
+
 ## v1.0.0
 
 ### Major Features and Improvements
