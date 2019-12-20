@@ -1,4 +1,4 @@
-## How to Manage User Privileges?
+## How to Manage User Privileges? [Enterprise]
 
 Most databases have multiple users accessing and modifying
 data within the database. This might pose a serious security concern for the
