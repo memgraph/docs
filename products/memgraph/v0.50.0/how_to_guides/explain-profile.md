@@ -10,7 +10,7 @@ as a *logical operator* and describes a particular operation.
 
 Because a plan represents a pipeline, the logical operators are iteratively
 executed as data passes from one logical operator to the other. Every logical
-operator *pulls* data from the logical operator(s) preceeding it, processes it
+operator *pulls* data from the logical operator(s) preceding it, processes it
 and passes it onto the logical operator next in the pipeline for further
 processing.
 
