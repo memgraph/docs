@@ -1,4 +1,4 @@
-## How to Manage Users Using LDAP?
+## How to Manage Users Using LDAP? [Enterprise]
 
 In large organizations it is often difficult to manage permissions that staff
 members have in the organization.  Organizations typically use an LDAP server

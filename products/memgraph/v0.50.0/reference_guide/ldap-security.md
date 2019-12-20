@@ -1,4 +1,4 @@
-## LDAP Security
+## LDAP Security [Enterprise]
 
 For the purpose of supporting LDAP authentication and (optional)
 authorization, we have built an auth module that is packaged with Memgraph

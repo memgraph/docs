@@ -1,4 +1,4 @@
-## Security
+## Security [Enterprise]
 
 Before reading this article we highly recommend going through a how-to guide
 on [managing user privileges](../how_to_guides/manage-user-privileges.md)
