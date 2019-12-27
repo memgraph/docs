@@ -310,9 +310,27 @@ The concept of weakly connected components is natural and simple, two nodes
 belong to the same component if path between them exists in a given graph.
 Otherwise, we say those nodes are disconnected.
 
-For example, the graph from the figure below consists of 4 weakly connected
-components. Here, numbers in the vertices correspond to internal Memgraph
-ids of these vertices.
+
+This query module should be provided as a shared object (`.so`) file called
+`connectivity.so`. Assuming the standard installation on Debian, that file
+should be located in `lib/memgraph/query_modules`. Therefore, we can run
+Memgraph using the following command.
+
+```bash
+/usr/lib/memgraph/memgraph --query-modules-directory=/usr/lib/memgraph/query_modules
+```
+
+When using Docker, the equivalent would be the following.
+
+```bash
+docker run -p 7687:7687 \
+  -v mg_lib:/var/lib/memgraph -v mg_log:/var/log/memgraph -v mg_etc:/etc/memgraph \
+  memgraph --query-modules-directory=/usr/lib/memgraph/query_modules
+```
+
+Suppose that Memgraph is currently storing a graph as depicted on the figure
+below where numbers in the vertices correspond to internal Memgraph ids of these
+vertices. This graph obviously has 4 weakly connected components.
 
 ![](../data/wcc_graph.png)
 
