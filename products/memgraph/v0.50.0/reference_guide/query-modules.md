@@ -241,7 +241,7 @@ vertices.
 Let's run the following query.
 
 ```opencypher
-CALL louvain.communities() YIELD id, community;
+CALL louvain.communities() YIELD community, id;
 ```
 
 We should observe the following result.
@@ -337,7 +337,7 @@ vertices. This graph obviously has 4 weakly connected components.
 Therefore, after issuing the following query:
 
 ```opencypher
-CALL connectivity.weak() YIELD id, component;
+CALL connectivity.weak() YIELD component, id;
 ```
 
 we should get the result similar to:
