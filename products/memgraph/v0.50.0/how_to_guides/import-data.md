@@ -13,14 +13,14 @@ When Memgraph is running, cypher queries are imported by running `mg_client` in
 non-interactive mode. The user can import queries saved in e.g. `queries.txt`
 by issuing the following shell command:
 
-```bash
+```plaintext
 mg_client < queries.txt
 ```
 
 If you installed Memgraph using Docker, you will need to run the client using
 the following command:
 
-```bash
+```plaintext
 docker run -i --entrypoint=mg_client memgraph --host HOST < queries.txt`
 ```
 
@@ -29,6 +29,6 @@ Remember to replace `HOST` with valid IP of the container (see
 
 For more information about `mg_client` options run:
 
-```bash
+```plaintext
 mg_client --help
 ```

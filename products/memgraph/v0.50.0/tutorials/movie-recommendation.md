@@ -37,7 +37,7 @@ and this edge has property `score` &mdash; float number between 0 and 5.
 We have prepared a database snapshot for this example, so the user can easily
 import it when starting Memgraph using the `--data-directory` option.
 
-```bash
+```plaintext
 /usr/lib/memgraph/memgraph --data-directory /usr/share/memgraph/examples/Movie \
   --storage-snapshot-interval-sec=0 --storage-wal-enabled=false \
   --storage-snapshot-on-exit=false --storage-properties-on-edges=true
@@ -46,12 +46,12 @@ When using Memgraph installed from DEB or RPM package, the currently running
 Memgraph server may need to be stopped before importing the example. The user
 can do so using the following command:
 
-```bash
+```plaintext
 systemctl stop memgraph
 ```
 When using Docker, the example can be imported with the following command:
 
-```bash
+```plaintext
 docker run -p 7687:7687 \
   -v mg_lib:/var/lib/memgraph -v mg_log:/var/log/memgraph -v mg_etc:/etc/memgraph \
   memgraph --data-directory /usr/share/memgraph/examples/Movie \
