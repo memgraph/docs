@@ -22,7 +22,7 @@ being unable to load storage snapshots between different versions.
 After downloading Memgraph as a Debian package, install it by running the
 following:
 
-```bash
+```plaintext
 dpkg -i /path/to/memgraph_<version>.deb
 ```
 
@@ -30,19 +30,19 @@ On successful installation, Memgraph should already be running. To
 confirm it, you can start it explicitly as follows:
 
 
-```bash
+```plaintext
 systemctl start memgraph
 ```
 
 To verify that Memgraph is running, run the following:
 
-```bash
+```plaintext
 journalctl --unit memgraph
 ```
 
 If successful, you should receive an output similar to the following:
 
-```bash
+```plaintext
 Nov 23 13:40:13 hostname memgraph[14654]: Starting 8 BoltS workers
 Nov 23 13:40:13 hostname memgraph[14654]: BoltS server is fully armed and operational
 Nov 23 13:40:13 hostname memgraph[14654]: BoltS listening on 0.0.0.0 at 7687
@@ -59,26 +59,26 @@ The Memgraph configuration is available in `/etc/memgraph/memgraph.conf`.
 After downloading the RPM package of Memgraph, you can install it by
 issuing the following command:
 
-```bash
+```plaintext
 rpm -U /path/to/memgraph-<version>.rpm
 ```
 
 After successful installation, Memgraph can be started as a 
 service using the following command:
 
-```bash
+```plaintext
 systemctl start memgraph
 ```
 
 To verify that Memgraph is running, run the following command:
 
-```bash
+```plaintext
 journalctl --unit memgraph
 ```
 
 If successful, the you should receive an output similar to the following:
 
-```bash
+```plaintext
 Nov 23 13:40:13 hostname memgraph[14654]: Starting 8 BoltS workers
 Nov 23 13:40:13 hostname memgraph[14654]: BoltS server is fully armed and operational
 Nov 23 13:40:13 hostname memgraph[14654]: BoltS listening on 0.0.0.0 at 7687
@@ -101,13 +101,13 @@ compatible with all newer versions.
 After successful Docker installation, import the Memgraph
 Docker image using the following command:
 
-```bash
+```plaintext
 docker load -i /path/to/memgraph-<version>-docker.tar.gz
 ```
 
 To start Memgraph, use the following command:
 
-```bash
+```plaintext
 docker run -p 7687:7687 \
   -v mg_lib:/var/lib/memgraph -v mg_log:/var/log/memgraph -v mg_etc:/etc/memgraph \
   memgraph
@@ -115,7 +115,7 @@ docker run -p 7687:7687 \
 
 If successful, you should see the following message:
 
-```bash
+```plaintext
 Starting 8 workers
 Server is fully armed and operational
 Listening on 0.0.0.0 at 7687
@@ -140,7 +140,7 @@ not be able to work correctly. We strongly advise you to use different
 named volumes for different Memgraph versions, or to remove the existing volume
 from the host with the following command:
 
-```bash
+```plaintext
 docker volume rm <volume_name>
 ```
 ##### Note for OS X/macOS Users {#OSX-note}
@@ -155,7 +155,7 @@ address. Fortunately, that IP address can be found as follows:
 By issuing the command `docker ps` the user should get an output similar to the
 following:
 
-```bash
+```plaintext
 CONTAINER ID        IMAGE               COMMAND                  CREATED        ...
 9397623cd87e        memgraph            "/usr/lib/memgraph/m…"   2 seconds ago  ...
 ```
@@ -165,7 +165,7 @@ image.  In our case, that is `9397623cd87e`.
 
 2) Use the container ID to retrieve an IP of the container
 
-```bash
+```plaintext
 docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' 9397623cd87e
 ```
 
@@ -189,20 +189,20 @@ If you installed Memgraph using Docker, you will need to run the client
 using the following command (remember to replace `HOST` with valid IP of 
 the container - see [Note for OS X/macOS Users](#OSX-note)):
 
-```bash
+```plaintext
 docker run -it --entrypoint=mg_client memgraph --host HOST
 ```
 
 Otherwise, you can connect to the running Memgraph instance by 
 issuing the following shell command:
 
-```bash
+```plaintext
 mg_client
 ```
 
 After the client has started it should present a command prompt similar to:
 
-```bash
+```plaintext
 mg_client 0.14.0
 Type :help for shell usage
 Quit the shell by typing Ctrl-D(eof) or :quit
@@ -234,7 +234,7 @@ If you installed Memgraph using Docker, to stop Memgraph, press `Ctrl-c`.
 
 Otherwise, to shut down the Memgraph server, issue the following command:
 
-```bash
+```plaintext
 systemctl stop memgraph
 ```
 

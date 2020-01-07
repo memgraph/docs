@@ -16,13 +16,13 @@ it to explain how query modules work. You should run Memgraph with
 `lib/memgraph/quey_modules` directory. Assuming the standard installation on
 Debian, you would run Memgraph with the following command.
 
-```bash
+```plaintext
 /usr/lib/memgraph/memgraph --query-modules-directory=/usr/lib/memgraph/query_modules
 ```
 
 When using Docker, the equivalent would be the following.
 
-```bash
+```plaintext
 docker run -p 7687:7687 \
   -v mg_lib:/var/lib/memgraph -v mg_log:/var/log/memgraph -v mg_etc:/etc/memgraph \
   memgraph --query-modules-directory=/usr/lib/memgraph/query_modules
@@ -107,7 +107,7 @@ file is found in the Memgraph installation directory, under
 `/usr/include/memgraph`. To compile the module, you will have to pass the appropriate
 flags to the compiler. For example, using `clang`:
 
-```bash
+```plaintext
 clang -Wall -shared -fPIC -I /usr/include/memgraph example.c -o example.so
 ```
 
@@ -220,13 +220,13 @@ This query module should be provided as a shared object (`.so`) file called
 be located in `lib/memgraph/query_modules`. Therefore, we can run Memgraph
 using the following command.
 
-```bash
+```plaintext
 /usr/lib/memgraph/memgraph --query-modules-directory=/usr/lib/memgraph/query_modules
 ```
 
 When using Docker, the equivalent would be the following.
 
-```bash
+```plaintext
 docker run -p 7687:7687 \
   -v mg_lib:/var/lib/memgraph -v mg_log:/var/log/memgraph -v mg_etc:/etc/memgraph \
   memgraph --query-modules-directory=/usr/lib/memgraph/query_modules
@@ -316,13 +316,13 @@ This query module should be provided as a shared object (`.so`) file called
 should be located in `lib/memgraph/query_modules`. Therefore, we can run
 Memgraph using the following command.
 
-```bash
+```plaintext
 /usr/lib/memgraph/memgraph --query-modules-directory=/usr/lib/memgraph/query_modules
 ```
 
 When using Docker, the equivalent would be the following.
 
-```bash
+```plaintext
 docker run -p 7687:7687 \
   -v mg_lib:/var/lib/memgraph -v mg_log:/var/log/memgraph -v mg_etc:/etc/memgraph \
   memgraph --query-modules-directory=/usr/lib/memgraph/query_modules
