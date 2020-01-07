@@ -7,7 +7,8 @@ Finally, please be aware of and understand the implications of
 
 ### Installation
 
-Memgraph is available to download as a binary in the following formats:
+Memgraph is available to [download as a binary](https://memgraph.com/download/)
+in the following formats:
 
   * [Debian package for Debian 9 (Stretch)](#debian-installation)
   * [RPM package for CentOS 7](#RPM-installation)
