@@ -14,10 +14,10 @@ initial bulk ingestion of data into the database.  Upon ingestion, the CSV
 importer creates a snapshot that will be used by the database to recover its
 state on its next startup.
 
-If you are already familiar with the Neo4j bulk import tool then using the
+If you are already familiar with the Neo4j bulk import tool, then using the
 `mg_import_csv` tool should be easy.  The CSV import tool is fully compatible
-with the (Neo4j CSV
-format)[https://neo4j.com/docs/operations-manual/current/tools/import/].  If
+with the [Neo4j CSV
+format](https://neo4j.com/docs/operations-manual/current/tools/import/).  If
 you already have a pipeline set-up for Neo4j, you should only replace
 `neo4j-admin import` with `mg_import_csv`.
 
@@ -44,7 +44,7 @@ contain a NULL character.
 
 The CSV parser uses the same logic as the standard Python CSV parser.  The data
 is parsed in the same way as the following snippet:
-```
+```python
 import csv
 for row in csv.reader(stream, strict=True):
     # process 'row'
@@ -60,7 +60,7 @@ default settings for the CSV parser are:
  - skipinitialspace: False
 
 The above snippet can be expanded to:
-```
+```python
 import csv
 for row in csv.reader(stream, delimiter=',', doublequote=True,
                       escapechar=None, lineterminator='\r\n',
@@ -75,7 +75,7 @@ https://docs.python.org/3/library/csv.html#csv.Dialect
 ##### Properties
 
 Both nodes and relationships can have properties added to them.  When importing
-properties the CSV importer uses the name specified in the header of the
+properties, the CSV importer uses the name specified in the header of the
 corresponding CSV column for the name of the property.  A property is
 designated by specifying one of the following types in the header:
  - `integer`, `int`, `long`, `byte`, `short`: creates an integer property
@@ -87,10 +87,10 @@ When importing a boolean value, the CSV field should contain exactly the text
 `true` to import a `True` boolean value.  All other text values are treated as
 a boolean value `False`.
 
-If you want to import an array of values you can do so by appending `[]` to any
-of the above types.  The values of the array are then determined by splitting
-the raw CSV value using the array delimiter (`--array-delimiter` flag)
-character.
+If you want to import an array of values, you can do so by appending `[]` to
+any of the above types.  The values of the array are then determined by
+splitting the raw CSV value using the array delimiter (`--array-delimiter`
+flag) character.
 
 Assuming that the array delimiter is `;`, the following example:
 ```plaintext
@@ -118,12 +118,12 @@ creating relationships.  It is optional and nodes that don't have an ID value
 specified will be imported, but can't be connected to any relationships.  If
 you want to save the ID value as a property in the database, just specify a
 name for the ID (`user_id:ID`).  If you just want to use the ID during the
-import, just leave out the name of the field (`:ID`).  The `ID` field also
-supports creating separate ID spaces.  The ID space is specified with the ID
-space name appended to the `ID` type in parentheses (`ID(user)`).  That allows
-you to have the same IDs (by value) for multiple different node files (for
-example, numbers from 1 to N).  The IDs in each ID space will be treated as an
-independent set of IDs that don't interfere with IDs in another ID space.
+import, leave out the name of the field (`:ID`).  The `ID` field also supports
+creating separate ID spaces.  The ID space is specified with the ID space name
+appended to the `ID` type in parentheses (`ID(user)`).  That allows you to have
+the same IDs (by value) for multiple different node files (for example, numbers
+from 1 to N).  The IDs in each ID space will be treated as an independent set
+of IDs that don't interfere with IDs in another ID space.
 
 The `LABEL` field type adds additional labels to the node.  The value is
 treated as an array type so that multiple additional labels can be specified
@@ -175,8 +175,8 @@ Files that are supplied in one `--nodes` flag are treated by the CSV parser as
 one big CSV file.  Only the first line of the first file is parsed for the CSV
 header, all other files (and rows) are treated as data.  This is useful when
 you have a very large CSV file and don't want to edit its first line just to
-add a CSV header.  Instead, you can specify the header in a separate file (eg.
-`users_header.csv`) and have the data intact in the large file (eg.
+add a CSV header.  Instead, you can specify the header in a separate file (e.g.
+`users_header.csv`) and have the data intact in the large file (e.g.
 `users.csv`).  Also, you can supply additional labels for each set of node
 files.  The format of this flag is:
 `[<label>[:<label>]...=]<file>[,<file>][,<file>]...`.  Take note that only the
@@ -192,8 +192,8 @@ supplied `--relationships` flag.  Files that are supplied in one
 the first line of the first file is parsed for the CSV header, all other files
 (and rows) are treated as data.  This is useful when you have a very large CSV
 file and don't want to edit its first line just to add a CSV header.  Instead,
-you can specify the header in a separate file (eg. `friendships_header.csv`)
-and have the data intact in the large file (eg. `friendships.csv`).  Also, you
+you can specify the header in a separate file (e.g. `friendships_header.csv`)
+and have the data intact in the large file (e.g. `friendships.csv`).  Also, you
 can set the type of all relationships in the files for each set of
 relationships files.  The format of this flag is:
 `[<type>=]<file>[,<file>][,<file>]...`.  Take note that only the `<file>` part
