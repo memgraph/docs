@@ -52,14 +52,12 @@ for row in csv.reader(stream, strict=True):
 
 Python uses 'excel' as the default dialect when parsing CSV files and the
 default settings for the CSV parser are:
-| Parameter          | Value    |
-| ------------------ | -------- |
-| `delimiter`        | `','`    |
-| `doublequote`      | `True`   |
-| `escapechar`       | `None`   |
-| `lineterminator`   | `'\r\n'` |
-| `quotechar`        | `'"'`    |
-| `skipinitialspace` | `False`  |
+ - `delimiter`: `','`
+ - `doublequote`: `True`
+ - `escapechar`: `None`
+ - `lineterminator`: `'\r\n'`
+ - `quotechar`: `'"'`
+ - `skipinitialspace`: `False`
 
 The above snippet can be expanded to:
 ```python
