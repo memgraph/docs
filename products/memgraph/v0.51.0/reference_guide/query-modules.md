@@ -10,9 +10,9 @@ If you wish to use procedures from query modules, you have to tell Memgraph
 where to find them. This is done when running Memgraph using the
 `--query-modules-directory` command line flag.
 
-The Memgraph installation comes with the `example` procedure, and we will use
-it to explain how query modules work. You should run Memgraph with
-`--query-modules-directory` pointing to Memgraph's installation
+The Memgraph installation comes with the `example.so` and `py_example.py` query
+module. We will use them to explain how query modules work. You should run
+Memgraph with `--query-modules-directory` pointing to Memgraph's installation
 `lib/memgraph/quey_modules` directory. Assuming the standard installation on
 Debian, you would run Memgraph with the following command.
 
@@ -28,13 +28,15 @@ docker run -p 7687:7687 \
   memgraph --query-modules-directory=/usr/lib/memgraph/query_modules
 ```
 
-Memgraph will now load all of the shared libraries it finds in the given
-directory. Names of shared libraries (modules) will be mapped to procedure
-names. So in our case, we have an `example.so` which will be mapped to
-`example` procedure in the query language. In the future, a single shared
-library will be able to register multiple procedures with different names.
-That feature would make them full fledged modules like in other programming
-languages.
+Memgraph will now attempt to load the query modules form all `*.so` and `*.py`
+files it finds in the given directory. Each file corresponds to one query
+module. Names of these files will be mapped to query module names.  So in our
+case, we have an `example.so` which will be mapped to `example` module and a
+`py_example.py` which will be mapped to `py_example` module in the query
+language.
+
+Each query module can define multiple procedures. Both of our examples define
+a single procedure creatively named `procedure`.
 
 ### Syntax for Calling Procedures
 
@@ -49,9 +51,9 @@ Each procedure returns zero or more records, where each record contains named
 fields. The `YIELD` part is used to select fields we are interested in. If we
 are not interested in any fields, the `YIELD` part can be omitted. The
 procedure will still run in such a case, but the record fields will not be
-stored in variables. In the above example, we assume that `example` will
-produce a record with 2 fields, `args` and `result`. Trying to `YIELD` fields
-which are not part of the produced record will result in an error.
+stored in variables. In the above example, we assume that `example.procedure`
+will produce a record with 2 fields, `args` and `result`. Trying to `YIELD`
+fields which are not part of the produced record will result in an error.
 
 Procedures may be called standalone as in the above example, or as a part of a
 larger query. This is useful if we want the procedure to work on data the
@@ -82,7 +84,9 @@ will now examine how this procedure is implemented. Both the source and the
 compiled module can be found in the above mentioned
 `lib/memgraph/query_modules` directory where Memgraph is installed.
 
-Query modules are implemented using the C API provided by Memgraph. Written
+#### C API
+
+Query modules can be implemented using the C API provided by Memgraph. Such
 modules need to be compiled to a shared library, so that they can be loaded
 when Memgraph starts. This means that you can write the procedures in any
 programming language which can work with C and can be compiled to the ELF
@@ -101,11 +105,11 @@ Let's take a look at the `example.c` file.
 ```
 
 On the first line, we include `mg_procedure.h`, which contains declarations of
-all functions that can be used to implement a query module procedure. This
-file is found in the Memgraph installation directory, under
-`include/memgraph`. On the standard Debian installation, this will be under
-`/usr/include/memgraph`. To compile the module, you will have to pass the appropriate
-flags to the compiler. For example, using `clang`:
+all functions that can be used to implement a query module procedure. This file
+is found in the Memgraph installation directory, under `include/memgraph`. On
+the standard Debian installation, this will be under `/usr/include/memgraph`.
+To compile the module, you will have to pass the appropriate flags to the
+compiler. For example, using `clang`:
 
 ```plaintext
 clang -Wall -shared -fPIC -I /usr/include/memgraph example.c -o example.so
@@ -195,6 +199,123 @@ int mgp_shutdown_module() {
 As previously mentioned, no exceptions should leave your module. If you are
 writing the module in a language which throws them, you probably want
 exception handlers in `mgp_init_module` and `mgp_shutdown_module` as well.
+
+#### Python API
+
+Query modules can be implemented using the Python API provided by Memgraph. If
+you wish to write your own query modules using Python API, you need to have
+Python version `3.5.0` and above.
+
+Let's take a look at the `py_example.py` file.
+
+```python
+import mgp
+```
+
+On the first line, we import the `mgp` module, which contains definitions of the
+public Python API provided by Memgraph. In essence, this is a wrapper around the
+C API described in the previous section. This file (`mgp.py`) can be found in
+the Memgraph installation directory, under `include/memgraph`. On the standard
+Debian installation, this will be under `/usr/include/memgraph`.
+
+Next we have a `procedure` function. This function will serve as the callback
+for our `py_example.procedure` invocation through openCypher.
+
+```python
+@mgp.read_proc
+def procedure(context: mgp.ProcCtx,
+              required_arg: mgp.Nullable[mgp.Any],
+              optional_arg: mgp.Nullable[mgp.Any] = None
+              ) -> mgp.Record(args=list,
+                              vertex_count=int,
+                              avg_degree=mgp.Number,
+                              props=mgp.Nullable[mgp.Map]):
+
+  ...
+```
+
+This procedure needs to be a callable which optionally takes `ProcCtx` as the
+first argument. Other arguments will be bound to values passed in the
+cypher query. The full signature of this procedure needs to be annotated
+with types. The return type must be `Record(field_name=type, ...)` and the
+procedure must produce either a complete `Record` or `None`. As you can see,
+the procedure is passed to a `read_proc` decorator which handles read-only
+procedures. You can also inspect the definition of said decorator in
+`mgp.py` file.
+
+In our case, the example procedure returns 4 fields:
+
+- `args`, a copy of arguments passed to the procedure.
+- `vertex_count`, number of vertices in the database.
+- `avg_degree`, average degree of vertices.
+- `props`, properties map of the Vertex or Edge object passed in `required_arg`.
+   In case a Path instance is passed, procedure returns the properties map of
+   the starting vertex.
+
+This procedure can be invoked in openCypher as follows:
+
+```opencypher
+MATCH (n) CALL py_example.procedure(n, 1) YIELD * RETURN *;
+```
+
+The following lines create the properties map for a received Edge, Vertex
+or Path instance:
+
+```python
+if isinstance(required_arg, (mgp.Edge, mgp.Vertex)):
+    props = dict(required_arg.properties.items())
+elif isinstance(required_arg, mgp.Path):
+    start_vertex, = required_arg.vertices
+    props = dict(start_vertex.properties.items())
+```
+
+As you can see, in the case of `mgp.Edge` and `mgp.Vertex`, we obtain an
+instance of `mgp.Properties` class which holds the respective properties by
+accessing the `properties` property of our `mgp.Edge` or `mgp.Vertex` instance.
+Once we have access to `mgp.Properties` instance, we can simply invoke the
+`items()` method which returns an `Iterable` that contains `mgp.Property`
+objects. Since the type of `mgp.Property` is a simple `collections.namedtuple`
+containing `name` and `value`, we can easily pass it to a `dict` constructor.
+
+We go on to counting the number of vertices and edges in our graph:
+
+```python
+vertex_count = 0
+edge_count = 0
+for v in context.graph.vertices:
+    vertex_count += 1
+    edge_count += sum(1 for e in v.in_edges)
+    edge_count += sum(1 for e in v.out_edges)
+```
+
+As you can see, we can access the `mgp.Graph` instance through `context.graph`.
+This instance contains the state of our database when executing the cypher query
+that called our procedure. A `mgp.Graph` instance has a property `vertices`
+which allows us to access a `mgp.Vertices` object which can be iterated upon.
+
+Similarly, each `mgp.Vertex` object has `in_edges` and `out_edges` properties
+which allow us to iterate over corresponding `mgp.Edge` objects. The rest of the
+code logic from the previous snippet is self-explanatory, we simply increase the
+adequate variables on each traversed vertex or edge.
+
+After that we calculate the average degree and obtain a copy of the passed
+arguments:
+
+```python
+avg_degree = 0 if vertex_count == 0 else edge_count / vertex_count
+args_copy = [copy.deepcopy(required_arg), copy.deepcopy(optional_arg)]
+```
+
+Finally, we return a `mgp.Record` with all the calculated values:
+
+```python
+return mgp.Record(args=args_copy, vertex_count=vertex_count,
+                  avg_degree=avg_degree, props=props)
+```
+
+In conclusion, Python API provided by Memgraph can be a very powerful, yet
+simple tool when implementing query modules. Therefore, we strongly suggest
+that all users thoroughly inspect the `mgp.py` source file.
 
 ### Graph Algorithms as Query Modules [Enterprise]
 
