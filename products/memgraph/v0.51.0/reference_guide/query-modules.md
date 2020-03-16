@@ -7,7 +7,7 @@ startup.
 ### Loading Query Modules
 
 The Memgraph installation comes with the `example.so` and `py_example.py` query
-modules which are located in `usr/lib/memgraph/query_modules` directory,
+modules which are located in `/usr/lib/memgraph/query_modules` directory,
 Assuming the standard installation on Debian, you would run Memgraph with the
 following command.
 
@@ -24,7 +24,7 @@ docker run -p 7687:7687 \
 ```
 
 Memgraph will now attempt to load the query modules form all `*.so` and `*.py`
-files it finds in the default (`usr/lib/memgraph/query_modules`) directory.
+files it finds in the default (`/usr/lib/memgraph/query_modules`) directory.
 The `*.so` modules are written using the C API and the `*.py` modules are
 written using the Python API. Each file corresponds to one query module. Names
 of these files will be mapped to query module names.  So in our case, we have
@@ -33,6 +33,11 @@ which will be mapped to `py_example` module in the query language.
 
 Each query module can define multiple procedures. Both of our examples define
 a single procedure creatively named `procedure`.
+
+If you want to change the directory in which Memgraph searches for query
+modules, just change the `--query-modules-directory` flag in the main
+configuration file (`/etc/memgraph/memgraph.conf`) or supply it as
+a command-line parameter (e.g. when using Docker).
 
 ### Syntax for Calling Procedures
 
@@ -78,7 +83,7 @@ MATCH (node) CALL example.procedure(42) YIELD node AS result RETURN *;
 All of the above examples invoke the `procedure` from `example` module. We
 will now examine how this procedure is implemented. Both the source and the
 compiled module can be found in the above mentioned
-`lib/memgraph/query_modules` directory where Memgraph is installed.
+`/usr/lib/memgraph/query_modules` directory where Memgraph is installed.
 
 #### C API
 
@@ -145,7 +150,7 @@ records of the procedure. Parameters `graph` and `memory` are context
 parameters of the procedure, and they are used in some parts of the provided C
 API. For more information on what exactly is possible via C API, take a look
 at the `mg_procedure.h` file, as well as the `example.c` found in
-`lib/memgraph/query_modules`
+`/usr/lib/memgraph/query_modules`
 
 Then comes the required `mgp_init_module` function. It's primary purpose is to
 register procedures which can then be invoked through openCypher. Although the
@@ -337,7 +342,7 @@ we advise you to study the [original paper](https://arxiv.org/pdf/0803.0476.pdf)
 
 This query module should be provided as a shared object (`.so`) file called
 `louvain.so`. Assuming the standard installation on Debian, that file should be
-located in `lib/memgraph/query_modules`. Again, we can simply run Memgraph with
+located in `/usr/lib/memgraph/query_modules`. Again, we can simply run Memgraph with
 the following command.
 
 ```plaintext
@@ -432,7 +437,7 @@ Otherwise, we say those nodes are disconnected.
 
 This query module should be provided as a shared object (`.so`) file called
 `connectivity.so`. Assuming the standard installation on Debian, that file
-should be located in `lib/memgraph/query_modules`. Again, we can simply run
+should be located in `/usr/lib/memgraph/query_modules`. Again, we can simply run
 Memgraph with the following command.
 
 ```plaintext
