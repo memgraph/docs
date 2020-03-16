@@ -29,7 +29,7 @@ docker run -p 7687:7687 \
 ```
 
 Memgraph will now attempt to load the query modules form all `*.so` and `*.py`
-files it finds in the given directory. The `*.so` modules are usually written
+files it finds in the given directory. The `*.so` modules are written
 using the C API and the `*.py` modules are written using the Python API. Each
 file corresponds to one query module. Names of these files will be mapped to
 query module names.  So in our case, we have an `example.so` which will be
@@ -217,7 +217,7 @@ On the first line, we import the `mgp` module, which contains definitions of the
 public Python API provided by Memgraph. In essence, this is a wrapper around the
 C API described in the previous section. This file (`mgp.py`) can be found in
 the Memgraph installation directory, under `python_support`. On the standard
-Debian installation, this will be under `/usr/lib/python_support`.
+Debian installation, this will be under `/usr/lib/memgraph/python_support`.
 
 Next we have a `procedure` function. This function will serve as the callback
 for our `py_example.procedure` invocation through openCypher.
