@@ -43,9 +43,10 @@ We have prepared a database snapshot for this example, so the user can easily
 import it when starting Memgraph using the `--data-directory` option.
 
 ```plaintext
-/usr/lib/memgraph/memgraph --data-directory /usr/share/memgraph/examples/football \
-  --storage-snapshot-interval-sec=0 --storage-wal-enabled=false \
-  --storage-snapshot-on-exit=false --storage-properties-on-edges=true
+sudo -u memgraph \
+  /usr/lib/memgraph/memgraph --data-directory /usr/share/memgraph/examples/football \
+    --storage-snapshot-interval-sec=0 --storage-wal-enabled=false \
+    --storage-snapshot-on-exit=false --storage-properties-on-edges=true
 ```
 
 When using Memgraph installed from DEB or RPM package, the currently running
