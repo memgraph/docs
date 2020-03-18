@@ -32,6 +32,8 @@ Graph Strams (Kafka)                                  |           |     +
     * [Enforce Constraints?](how_to_guides/enforce-constraints.md)
     * [Manage User Privileges?](how_to_guides/manage-user-privileges.md)
     * [Manage Users Using LDAP?](how_to_guides/manage-users-using-ldap.md)
+    * [How to Use and Implement Query Modules?](how_to_guides/use-and-implement-query-modules.md)
+    * [How to Use Query Modules Provided by Memgraph?](how_to_guides/use-query-modules-provided-by-memgraph.md)
     * [Setup Memgraph Tensorflow Op?](how_to_guides/tensorflow-setup.md)
   * [Concepts](concepts/concepts-overview.md)
     * [Storage](concepts/storage.md)
