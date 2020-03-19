@@ -1,21 +1,20 @@
 ## How to Use and Implement Query Modules?
 
-Memgraph supports extending the query language with procedures written by a
-user. These procedures are compiled into modules, which can then be loaded on
-startup.
+Memgraph supports extending the query language with user-written procedures.
+These procedures are grouped into modules, which can then be loaded on startup.
 
 ### Loading Query Modules
 
 The Memgraph installation comes with the `example.so` and `py_example.py` query
-modules which are located in `/usr/lib/memgraph/query_modules` directory,
+modules which are located in `/usr/lib/memgraph/query_modules` directory.
 Assuming the standard installation on Debian, you would run Memgraph with the
-following command.
+following command:
 
 ```plaintext
 systemctl start memgraph
 ```
 
-When using Docker, the equivalent would be the following.
+When using Docker, the equivalent would be the following:
 
 ```plaintext
 docker run -p 7687:7687 \
@@ -75,15 +74,15 @@ variable we already have in a query, that field name can be aliased into some
 other name. For example:
 
 ```opencypher
-MATCH (node) CALL example.procedure(42) YIELD node AS result RETURN *;
+MATCH (result) CALL example.procedure(42) YIELD result AS procedure_result RETURN *;
 ```
 
 ### Implementing Query Modules
 
-All of the above examples invoke the `procedure` from `example` module. We
-will now examine how this procedure is implemented. Both the source and the
-compiled module can be found in the above mentioned
-`/usr/lib/memgraph/query_modules` directory where Memgraph is installed.
+All of the above examples invoke the `procedure` from `example` module. We will
+now examine how this procedure is implemented. The compiled module can be found
+in the `/usr/lib/memgraph/query_modules` directory, while the source can be
+found in `/usr/lib/memgraph/query_modules/src` directory.
 
 #### C API
 
@@ -150,7 +149,7 @@ records of the procedure. Parameters `graph` and `memory` are context
 parameters of the procedure, and they are used in some parts of the provided C
 API. For more information on what exactly is possible via C API, take a look
 at the `mg_procedure.h` file, as well as the `example.c` found in
-`/usr/lib/memgraph/query_modules`
+`/usr/lib/memgraph/query_modules/src`
 
 Then comes the required `mgp_init_module` function. It's primary purpose is to
 register procedures which can then be invoked through openCypher. Although the

@@ -1,8 +1,7 @@
 ## How to Use Query Modules Provided by Memgraph?
 
-Memgraph supports extending the query language with procedures written by a
-user. These procedures are compiled into modules, which can then be loaded on
-startup.
+Memgraph supports extending the query language with user-written procedures.
+These procedures are grouped into modules, which can then be loaded on startup.
 
 ### Utility Query Module
 
@@ -42,14 +41,14 @@ This module is included in Memgraph's Enterprise offering.
 If we wish to reload the `louvain` module, we can simply invoke:
 
 ```opencypher
-CALL mg.reload("louvain") YIELD *;
+CALL mg.reload("louvain");
 ```
 
 As you might have guessed from the name, the following query will reload all
 loaded modules:
 
 ```opencypher
-CALL mg.reload_all() YIELD *:
+CALL mg.reload_all();
 ```
 
 ### Graph Algorithms as Query Modules [Enterprise]

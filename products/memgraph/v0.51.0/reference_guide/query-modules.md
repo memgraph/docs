@@ -1,13 +1,13 @@
 ## Query Modules
 
-Memgraph supports extending the query language with procedures written by a
-user. These procedures are compiled into modules, which can then be loaded on
-startup.
+Memgraph supports extending the query language with user-written procedures.
+These procedures are grouped into modules, which can then be loaded on startup.
 
 ### Loading Query Modules
 
-Memgraph will now attempt to load the query modules form all `*.so` and `*.py`
-files it finds in the default (`/usr/lib/memgraph/query_modules`) directory.
+Upon startup, Memgraph will attempt to load the query modules form all `*.so`
+and `*.py` files it finds in the default (`/usr/lib/memgraph/query_modules`)
+directory.
 
 If you want to change the directory in which Memgraph searches for query
 modules, just change the `--query-modules-directory` flag in the main
@@ -56,7 +56,7 @@ provided by Memgraph.
 
 Modules implemented using the C API need to be compiled to a shared library
 (`.so` file), so they can be loaded when Memgraph starts.  The C API is well
-documented in the `include/memgraph/mg_procedure.h` header.
+documented in the `/usr/include/memgraph/mg_procedure.h` header.
 
 Modules implemented using the Python API need to be written in Python version
 `3.5.0` and above. The Python API is well documented in the
@@ -88,12 +88,12 @@ At the moment, these modules offer the following query procedures:
   procedures and their signatures
 * `mg.reload(module_name :: STRING) :: ()`: reloads the given module
 * `mg.reload_all() :: ()`: reloads all loaded modules
-* `louvain.communities() :: (community :: INTEGER, id :: INTEGER)`: detects
-  communities in the graph
-* `louvain.modularity() :: (modularity :: FLOAT)`: computes modularity of
-  a graph
-* `connectivity.weak() :: (component :: INTEGER, id :: INTEGER)`: detects
-  weakly connected components of a graph
+* `louvain.communities() :: (community :: INTEGER, id :: INTEGER)` [Enterprise]:
+  detects communities in the graph
+* `louvain.modularity() :: (modularity :: FLOAT)` [Enterprise]: computes
+  modularity of a graph
+* `connectivity.weak() :: (component :: INTEGER, id :: INTEGER)` [Enterprise]:
+  detects weakly connected components of a graph
 
 For more detailed examples on how to use each of these query modules, we
 suggest you take a look at this
