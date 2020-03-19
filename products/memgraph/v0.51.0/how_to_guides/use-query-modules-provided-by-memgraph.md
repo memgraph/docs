@@ -73,13 +73,13 @@ we advise you to study the [original paper](https://arxiv.org/pdf/0803.0476.pdf)
 This query module should be provided as a shared object (`.so`) file called
 `louvain.so`. Assuming the standard installation on Debian, that file should be
 located in `/usr/lib/memgraph/query_modules`. Again, we can simply run Memgraph with
-the following command.
+the following command:
 
 ```plaintext
 systemctl start memgraph
 ```
 
-When using Docker, the equivalent would be the following.
+When using Docker, the equivalent would be the following:
 
 ```plaintext
 docker run -p 7687:7687 \
@@ -93,13 +93,13 @@ vertices.
 
 ![](../data/louvain_graph.png)
 
-Let's run the following query.
+Let's run the following query:
 
 ```opencypher
 CALL louvain.communities() YIELD community, id;
 ```
 
-We should observe the following result.
+We should observe the following result:
 
 ```plaintext
 +-----------+-----------+
@@ -118,20 +118,20 @@ As you can see, vertices with ids 1, 2 and 3 belong to one community, while
 vertices with ids 4, 5 and 6 belong to another community. In this case, the `id`
 field is populated with an internal id of a vertex. If you wish to explicitly
 find out what vertices correspond to what ids, you can always execute the
-following query.
+following query:
 
 ```opencypher
 MATCH (n) RETURN n, id(n);
 ```
 
 If you wish to know the exact graph modularity after running Louvain, you can
-run the following query.
+run the following query:
 
 ```opencypher
 CALL louvain.modularity() YIELD modularity;
 ```
 
-In our example, the result should be.
+In our example, the result should be:
 
 ```plaintext
 +------------+
@@ -168,13 +168,13 @@ Otherwise, we say those nodes are disconnected.
 This query module should be provided as a shared object (`.so`) file called
 `connectivity.so`. Assuming the standard installation on Debian, that file
 should be located in `/usr/lib/memgraph/query_modules`. Again, we can simply run
-Memgraph with the following command.
+Memgraph with the following command:
 
 ```plaintext
 systemctl start memgraph
 ```
 
-When using Docker, the equivalent would be the following.
+When using Docker, the equivalent would be the following:
 
 ```plaintext
 docker run -p 7687:7687 \
