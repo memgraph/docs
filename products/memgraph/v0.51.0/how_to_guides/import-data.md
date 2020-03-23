@@ -332,12 +332,15 @@ Use the following command:
 mg_import_csv --nodes comment_nodes.csv --nodes forum_nodes.csv --relationships relationships.csv
 ```
 
-If using Docker, things are a bit more complicated. First you need to move the
+If using Docker, things are a bit more complicated. First you need to copy the
 CSV files where the Docker image can see them:
 
 ```bash
-mkdir -p /var/lib/docker/volumes/mg_import/_data
-cp comment_nodes.csv forum_nodes.csv relationships.csv /var/lib/docker/volumes/mg_import/_data
+docker container create --name mg_import_helper -v mg_import:/import-data busybox
+docker cp comment_nodes.csv mg_import_helper:/import-data
+docker cp forum_nodes.csv mg_import_helper:/import-data
+docker cp relationships.csv mg_import_helper:/import-data
+docker rm mg_import_helper
 ```
 
 Then, run the importer with the following:
@@ -365,7 +368,7 @@ If you installed Memgraph using Docker, you will need to run the client using
 the following command:
 
 ```plaintext
-docker run -i --entrypoint=mg_client memgraph --host HOST < queries.txt`
+docker run -i --entrypoint=mg_client memgraph --host HOST < queries.txt
 ```
 
 Remember to replace `HOST` with valid IP of the container (see
