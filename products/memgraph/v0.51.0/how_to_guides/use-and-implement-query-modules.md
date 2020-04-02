@@ -77,6 +77,23 @@ other name. For example:
 MATCH (result) CALL example.procedure(42) YIELD result AS procedure_result RETURN *;
 ```
 
+### Controlling Procedure Memory Usage
+
+When running a procedure, Memgraph controls the maximum memory usage that the
+procedure may consume during its execution.  By default, the upper memory limit
+when running a procedure is `100 MB`.  If your query procedure requires more
+memory to be able to yield its results, you can increase the memory limit using
+the following syntax:
+
+```opencypher
+CALL example.procedure(arg1, arg2, ...) MEMORY LIMIT 100 KB YIELD result;
+CALL example.procedure(arg1, arg2, ...) MEMORY LIMIT 100 MB YIELD result;
+CALL example.procedure(arg1, arg2, ...) MEMORY UNLIMITED YIELD result;
+```
+
+The limit can either be specified to a specific value (either in `KB` or in
+`MB`), or it can be set to unlimited.
+
 ### Implementing Query Modules
 
 All of the above examples invoke the `procedure` from `example` module. We will
