@@ -31,7 +31,7 @@ Procedures may be called standalone as the above, or as a part of a
 larger query. This is useful if we want the procedure to work on data the
 query is producing. For example:
 
-```
+```opencypher
 MATCH (node) CALL module.procedure(node) YIELD result RETURN *;
 ```
 
@@ -48,6 +48,23 @@ other name. For example:
 ```opencypher
 MATCH (node) CALL module.procedure(42) YIELD node AS result RETURN *;
 ```
+
+### Controlling Procedure Memory Usage
+
+When running a procedure, Memgraph controls the maximum memory usage that the
+procedure may consume during its execution.  By default, the upper memory limit
+when running a procedure is `100 MB`.  If your query procedure requires more
+memory to be able to yield its results, you can increase the memory limit using
+the following syntax:
+
+```opencypher
+CALL module.procedure(arg1, arg2, ...) MEMORY LIMIT 100 KB YIELD res1, res2, ...;
+CALL module.procedure(arg1, arg2, ...) MEMORY LIMIT 100 MB YIELD res1, res2, ...;
+CALL module.procedure(arg1, arg2, ...) MEMORY UNLIMITED YIELD res1, res2, ...;
+```
+
+The limit can either be specified to a specific value (either in `KB` or in
+`MB`), or it can be set to unlimited.
 
 ### Implementing Query Modules
 
