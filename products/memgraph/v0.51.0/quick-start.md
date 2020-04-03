@@ -27,6 +27,27 @@ following:
 dpkg -i /path/to/memgraph_<version>.deb
 ```
 
+You could get errors while installing the package with the above command if you
+don't have all of Memgraph's dependencies installed. The issues mostly look
+like the following:
+
+```plaintext
+dpkg: error processing package memgraph (--install):
+ dependency problems - leaving unconfigured
+Errors were encountered while processing:
+ memgraph
+```
+
+To install missing dependencies and finish the installation of the Memgraph
+package, just issue the following command:
+
+```plaintext
+apt-get install -f
+```
+
+The above command will install all missing dependencies and will finish
+configuring the Memgraph package.
+
 On successful installation, Memgraph should already be running. To
 confirm it, you can start it explicitly as follows:
 
