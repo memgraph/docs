@@ -99,18 +99,42 @@ offering.
 * `louvain` [Enterprise]: Louvain algorithm for community detection.
 * `connectivity` [Enterprise]: Algorithms that analyse graph connectivity.
 
-At the moment, these modules offer the following query procedures:
+In addition to low-level modules listed above, Memgraph Community offering
+provides the following Python modules based on
+[NetworkX](https://networkx.github.io/) algorithms.
+
+* `graph_analyzer`: Module that offers more insights about the stored graph. To
+  get a detailed list of provided functionalities within this module run
+`CALL graph_analyzer.help() YIELD *;`.
+* `pagerank`: Page Rank algorithm for centrality calculations.
+* `wcc`: Module that offers analysis of weakly connected components.
+
+The utility module offers the following functionality:
 
 * `mg.procedures() :: (name :: STRING, signature :: STRING)`: lists loaded
-  procedures and their signatures
-* `mg.reload(module_name :: STRING) :: ()`: reloads the given module
-* `mg.reload_all() :: ()`: reloads all loaded modules
+  procedures and their signatures.
+* `mg.reload(module_name :: STRING) :: ()`: reloads the given module.
+* `mg.reload_all() :: ()`: reloads all loaded modules.
+
+To get detailed list of all procedures from all modules, run the following
+command:
+
+```
+CALL mg.procedures() YIELD *;
+```
+
+At the moment, graph analytics modules offer the following query procedures:
+
 * `louvain.communities() :: (community :: INTEGER, id :: INTEGER)` [Enterprise]:
-  detects communities in the graph
+  detects communities in the graph.
 * `louvain.modularity() :: (modularity :: FLOAT)` [Enterprise]: computes
-  modularity of a graph
+  modularity of a graph.
 * `connectivity.weak() :: (component :: INTEGER, id :: INTEGER)` [Enterprise]:
-  detects weakly connected components of a graph
+  detects weakly connected components of a graph.
+* `graph_analyzer.analyze(analyses = Null :: LIST? OF STRING) :: (name :: STRING, value :: STRING)` analyzes the entire graph.
+* `graph_analyzer.analyze_subgraph(vertices :: LIST OF NODE, edges :: LIST OF RELATIONSHIP, analyses = Null :: LIST? OF STRING) :: (name :: STRING, value :: STRING)`analyzes the graph defined by given vertices and edges.
+* `pagerank.pagerank(alpha = 0.85 :: NUMBER, personalization = Null :: STRING?, max_iter = 100 :: INTEGER, tol = 1e-06 :: NUMBER, nstart = Null :: STRING?, weight = "weight" :: STRING?, dangling = Null :: STRING?) :: (node :: NODE, rank :: FLOAT)` calculates pagerank on the entire graph.
+* `wcc.get_components(vertices :: LIST OF NODE, edges :: LIST OF RELATIONSHIP) :: (components :: LIST OF LIST OF NODE, n_components :: INTEGER)` returns the number of weakly connected components and a list of lists of nodes within each component on a given subgraph.
 
 For more detailed examples on how to use each of these query modules, we
 suggest you take a look at this
