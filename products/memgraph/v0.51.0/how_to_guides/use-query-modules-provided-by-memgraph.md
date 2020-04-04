@@ -119,7 +119,7 @@ Results should be similar to the ones below.
 | "Number of bridges"                       | "6"                     |
 | "Number of articulation points"           | "2"                     |
 | "Average degree"                          | "0.8571428571428571"    |
-| "Sorted nodes degree"                     | "[(16, 4), (19, 3), ... |
+| "Sorted nodes degree"                     | "[(16, 4),(19, 3), ..." |
 | "Self loops"                              | "0"                     |
 | "Is bipartite"                            | "True"                  |
 | "Is planar"                               | "True"                  |
