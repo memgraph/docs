@@ -54,7 +54,7 @@ CALL mg.reload_all();
 ### Community Graph Algorithms as Query Modules
 
 Memgraph Community edition comes with a set of Python query modules based on
-[NetworkX](https://networkx.github.io/) library of algorithms. Modules are
+the [NetworkX](https://networkx.github.io/) library of algorithms. Modules are
 already packaged within all Memgraph packages, but `NetworkX` might have to
 be installed by running the following command:
 
@@ -64,13 +64,13 @@ pip3 install networkx
 
 NOTE: The following "How to Guides" provide explanation of basic usage. To find
 out more details about each module and documentation of each procedure, please
-take a look at installed Python files. Under Linux, the files should be located
-under `/usr/lib/memgraph/query_modules`.
+take a look at installed Python files. On Linux, the files are located in
+`/usr/lib/memgraph/query_modules`.
 
 #### Graph Analyzer
 
 The purpose of this module is to get more insights about the stored graph. To
-illustrate functionality the following graph might be used.
+illustrate functionality the following graph will be used.
 
 ![](../data/graph_analyzer_graph.png)
 
@@ -96,16 +96,6 @@ To analyze the whole graph, let's run the following query:
 
 ```opencypher
 CALL graph_analyzer.analyze() YIELD *;
-```
-
-To analyze a sub-graph, relevant nodes and edges have to be collected by
-combining `MATCH` and `WITH` clauses. Once everything is collected,
-`analyze_subgraph` procedure can be called as follows:
-
-```opencypher
-MATCH (n)-[e]->(m) WITH collect(n) as nodes, collect(e) as edges
-CALL graph_analyzer.analyze_subgraph(nodes, edges) YIELD name, value
-RETURN name, value;
 ```
 
 Results should be similar to the ones below.
@@ -135,10 +125,21 @@ Results should be similar to the ones below.
 +-------------------------------------------+-------------------------+
 ```
 
+To analyze a sub-graph, relevant nodes and edges have to be collected by
+combining `MATCH` and `WITH` clauses. Once everything is collected,
+`analyze_subgraph` procedure can be called as follows:
+
+```opencypher
+MATCH (n)-[e]->(m) WITH collect(n) as nodes, collect(e) as edges
+CALL graph_analyzer.analyze_subgraph(nodes, edges) YIELD name, value
+RETURN name, value;
+```
+
 #### Page Rank
 
-To run [Page Rank](https://en.wikipedia.org/wiki/PageRank) on top of data
-stored inside Memgraph, the following graph might be used:
+The `pagerank.py` module allows you to run the [Page
+Rank](https://en.wikipedia.org/wiki/PageRank) algorithm on the data stored in
+Memgraph. To illustrate the functionality, the following graph will be used:
 
 ![](../data/pagerank_graph.png)
 
@@ -171,16 +172,16 @@ CALL pagerank.pagerank() YIELD *;
 +--------------------+----------+
 ```
 
-NOTE: A documented list of Page Rank parameters is located inside `pagerank.py`
-file installed with your Memgraph package under
+NOTE: A documented list of Page Rank parameters is located inside the
+`pagerank.py` file installed with your Memgraph package in
 `/usr/lib/memgraph/query_modules`.
 
 #### Weakly Connected Components
 
-`wcc.py` query module can run
+The `wcc.py` query module can run
 [WCC](https://mathworld.wolfram.com/WeaklyConnectedComponent.html) analysis on
-top of a sub-graph. To get the number of weakly connected components and nodes
-within each component the following graph could be used:
+a sub-graph of the whole graph. To illustrate the number of weakly connected
+components and nodes within each component, the following graph will be used:
 
 ![](../data/simple_wcc.png)
 
@@ -195,7 +196,7 @@ CREATE (n1)-[:e]->(n2)
 CREATE (n3)-[:e]->(n4);
 ```
 
-The following query will do the magic:
+The following query will do the calculation:
 
 ```opencypher
 MATCH (n)-[e]->(m) WITH collect(n) as nodes, collect(e) as edges
@@ -213,8 +214,8 @@ Expected result follows:
 +--------------------------------------------------+--------------+
 ```
 
-Please keep in mind that after the `MATCH` clause there can be `WHERE` with
-arbitrary expression to further filter matched set of results.
+Please keep in mind that after the `MATCH` clause there can be a `WHERE` clause
+with arbitrary expression to further filter matched set of results.
 
 ### Low-level Optimized Graph Algorithms as Query Modules [Enterprise]
 
