@@ -54,8 +54,8 @@ CALL mg.reload_all();
 ### Community Graph Algorithms as Query Modules
 
 Memgraph Community edition comes with a set of Python query modules based on
-the [NetworkX](https://networkx.github.io/) library of algorithms. Modules are
-already packaged within all Memgraph packages, but `NetworkX` might have to
+the [NetworkX](https://networkx.github.io/) library of algorithms. The modules
+are already packaged within all Memgraph packages, but `NetworkX` might have to
 be installed by running the following command:
 
 ```
@@ -70,7 +70,7 @@ take a look at installed Python files. On Linux, the files are located in
 #### Graph Analyzer
 
 The purpose of this module is to get more insights about the stored graph. To
-illustrate functionality the following graph will be used.
+illustrate functionality the following graph will be used:
 
 ![](../data/graph_analyzer_graph.png)
 
@@ -215,7 +215,7 @@ Expected result follows:
 ```
 
 Please keep in mind that after the `MATCH` clause there can be a `WHERE` clause
-with arbitrary expression to further filter matched set of results.
+with an arbitrary expression to further filter matched set of results.
 
 ### Low-level Optimized Graph Algorithms as Query Modules [Enterprise]
 

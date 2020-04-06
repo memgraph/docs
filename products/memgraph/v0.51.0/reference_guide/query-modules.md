@@ -107,7 +107,7 @@ The utility module offers the following functionality:
 * `mg.reload_all() :: ()`: Reloads all loaded modules.
 
 To get a detailed list of all procedures from all modules, run the following
-command:
+query:
 
 ```
 CALL mg.procedures() YIELD *;
