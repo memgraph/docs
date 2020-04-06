@@ -99,16 +99,6 @@ offering.
 * `louvain` [Enterprise]: Louvain algorithm for community detection.
 * `connectivity` [Enterprise]: Algorithms that analyse graph connectivity.
 
-In addition to low-level modules listed above, the Memgraph Community offering
-provides the following Python modules based on
-[NetworkX](https://networkx.github.io/) algorithms.
-
-* `graph_analyzer`: Module that offers more insights about the stored graph. To
-  get a detailed list of provided functionalities within this module run
-  `CALL graph_analyzer.help() YIELD *;`.
-* `pagerank`: Page Rank algorithm for centrality calculations.
-* `wcc`: Module that offers analysis of weakly connected components.
-
 The utility module offers the following functionality:
 
 * `mg.procedures() :: (name :: STRING, signature :: STRING)`: Lists loaded
@@ -122,6 +112,16 @@ command:
 ```
 CALL mg.procedures() YIELD *;
 ```
+
+In addition to low-level modules listed above, the Memgraph Community offering
+provides the following Python modules based on
+[NetworkX](https://networkx.github.io/) algorithms.
+
+* `graph_analyzer`: Module that offers more insights about the stored graph. To
+  get a detailed list of provided functionalities within this module run
+  `CALL graph_analyzer.help() YIELD *;`.
+* `pagerank`: Page Rank algorithm for centrality calculations.
+* `wcc`: Module that offers analysis of weakly connected components.
 
 For more detailed examples on how to use each of these query modules, we
 suggest you take a look at this
