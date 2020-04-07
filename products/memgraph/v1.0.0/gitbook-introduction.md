@@ -13,7 +13,7 @@ Feature                                               | Community | Enterprise
 Hybrid In&#8209;Memory / On&#8209;Disk Storage Engine |     +     |     +
 ACID Transactions                                     |     +     |     +
 Optimized for Low Latency and High&#8209;Throughput   |     +     |     +
-Support for Custom Query Modules                      |     +     |     +
+Support for Custom Query Modules (C and Python API)   |     +     |     +
 Query Modules with Graph Algorithms                   |           |     +
 Authentication                                        |           |     +
 Advanced Password Policies                            |           |     +
