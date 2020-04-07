@@ -51,17 +51,183 @@ loaded modules:
 CALL mg.reload_all();
 ```
 
-### Graph Algorithms as Query Modules [Enterprise]
+### Community Graph Algorithms as Query Modules
+
+Memgraph Community edition comes with a set of Python query modules based on
+the [NetworkX](https://networkx.github.io/) library of algorithms. The modules
+are already packaged within all Memgraph packages, but `NetworkX` might have to
+be installed by running the following command:
+
+```
+pip3 install networkx
+```
+
+NOTE: The following "How to Guides" provide explanation of basic usage. To find
+out more details about each module and documentation of each procedure, please
+take a look at installed Python files. On Linux, the files are located in
+`/usr/lib/memgraph/query_modules`.
+
+#### Graph Analyzer
+
+The purpose of this module is to get more insights about the stored graph. To
+illustrate functionality the following graph will be used:
+
+![](../data/graph_analyzer_graph.png)
+
+To create the graph, the following query should be executed:
+
+```opencypher
+CREATE (n1)
+CREATE (n2)
+CREATE (n3)
+CREATE (n4)
+CREATE (n5)
+CREATE (n6)
+CREATE (n7)
+CREATE (n1)-[:e]->(n5)
+CREATE (n3)-[:e]->(n5)
+CREATE (n5)-[:e]->(n2)
+CREATE (n4)-[:e]->(n2)
+CREATE (n2)-[:e]->(n6)
+CREATE (n2)-[:e]->(n7);
+```
+
+To analyze the whole graph, let's run the following query:
+
+```opencypher
+CALL graph_analyzer.analyze() YIELD *;
+```
+
+Results should be similar to the ones below.
+
+```bash
++-------------------------------------------+-------------------------+
+| name                                      | value                   |
++-------------------------------------------+-------------------------+
+| "Number of nodes"                         | "7"                     |
+| "Number of edges"                         | "6"                     |
+| "Number of bridges"                       | "6"                     |
+| "Number of articulation points"           | "2"                     |
+| "Average degree"                          | "0.8571428571428571"    |
+| "Sorted nodes degree"                     | "[(16, 4),(19, 3), ..." |
+| "Self loops"                              | "0"                     |
+| "Is bipartite"                            | "True"                  |
+| "Is planar"                               | "True"                  |
+| "Is biconnected"                          | "False"                 |
+| "Is weakly connected"                     | "True"                  |
+| "Number of weakly connected components"   | "1"                     |
+| "Is strongly connected"                   | "False"                 |
+| "Number of strongly connected components" | "7"                     |
+| "Is DAG"                                  | "True"                  |
+| "Is eulerian"                             | "False"                 |
+| "Is forest"                               | "True"                  |
+| "Is tree"                                 | "True"                  |
++-------------------------------------------+-------------------------+
+```
+
+To analyze a sub-graph, relevant nodes and edges have to be collected by
+combining `MATCH` and `WITH` clauses. Once everything is collected,
+`analyze_subgraph` procedure can be called as follows:
+
+```opencypher
+MATCH (n)-[e]->(m) WITH collect(n) as nodes, collect(e) as edges
+CALL graph_analyzer.analyze_subgraph(nodes, edges) YIELD name, value
+RETURN name, value;
+```
+
+#### Page Rank
+
+The `pagerank.py` module allows you to run the [Page
+Rank](https://en.wikipedia.org/wiki/PageRank) algorithm on the data stored in
+Memgraph. To illustrate the functionality, the following graph will be used:
+
+![](../data/pagerank_graph.png)
+
+To load the graph into Memgraph, the following query should be used:
+
+```opencypher
+CREATE (na {name: "Page A"})
+CREATE (nb {name: "Page B"})
+CREATE (nc {name: "Page C"})
+CREATE (nd {name: "Page D"})
+CREATE (na)-[:e]->(nb)
+CREATE (na)-[:e]->(nc)
+CREATE (nc)-[:e]->(na)
+CREATE (nb)-[:e]->(nc)
+CREATE (nd)-[:e]->(nc);
+```
+
+By executing `pagerank.pagerank()`, Memgraph will return the rank for each
+node as follows:
+
+```opencypher
+CALL pagerank.pagerank() YIELD *;
++--------------------+----------+
+| node               | rank     |
++--------------------+----------+
+| ({name: "Page C"}) | 0.39415  |
+| ({name: "Page D"}) | 0.0375   |
+| ({name: "Page A"}) | 0.372526 |
+| ({name: "Page B"}) | 0.195824 |
++--------------------+----------+
+```
+
+NOTE: A documented list of Page Rank parameters is located inside the
+`pagerank.py` file installed with your Memgraph package in
+`/usr/lib/memgraph/query_modules`.
+
+#### Weakly Connected Components
+
+The `wcc.py` query module can run
+[WCC](https://mathworld.wolfram.com/WeaklyConnectedComponent.html) analysis on
+a sub-graph of the whole graph. To illustrate the number of weakly connected
+components and nodes within each component, the following graph will be used:
+
+![](../data/simple_wcc.png)
+
+To create the graph, run the following query:
+
+```opencypher
+CREATE (n1 {id: 1})
+CREATE (n2 {id: 2})
+CREATE (n3 {id: 3})
+CREATE (n4 {id: 4})
+CREATE (n1)-[:e]->(n2)
+CREATE (n3)-[:e]->(n4);
+```
+
+The following query will do the calculation:
+
+```opencypher
+MATCH (n)-[e]->(m) WITH collect(n) as nodes, collect(e) as edges
+CALL wcc.get_components(nodes, edges) YIELD components, n_components
+RETURN components, n_components;
+```
+
+Expected result follows:
+
+```
++--------------------------------------------------+--------------+
+| components                                       | n_components |
++--------------------------------------------------+--------------+
+| [[({id: 1}), ({id: 2})], [({id: 3}), ({id: 4})]] | 2            |
++--------------------------------------------------+--------------+
+```
+
+Please keep in mind that after the `MATCH` clause there can be a `WHERE` clause
+with an arbitrary expression to further filter matched set of results.
+
+### Low-level Optimized Graph Algorithms as Query Modules [Enterprise]
 
 If you have purchased Memgraph's Enterprise edition, you have access to
 certain graph algorithms in the form of query modules. These modules were
 implemented by our own team using C++ and should offer some additional
 performance benefits. Currently we have implemented the following algorithms:
 
-* Louvain algorithm for community detection
-* Weakly connected components
+* Louvain algorithm for community detection.
+* Weakly connected components.
 
-#### Louvain algorithm for community detection
+#### Louvain Algorithm for Community Detection
 
 In essence, this algorithm is a heuristic method which can be used to extract
 the community structure of fairly sizeable networks. In the simplest of terms,
