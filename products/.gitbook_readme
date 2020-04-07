@@ -1,6 +1,6 @@
 # Overview
 
-## Memgraph v0.50.0
+## Memgraph v1.0.0
 
 Memgraph is an ACID compliant high performance transactional in-memory graph
 database management system featuring highly concurrent data structures,
