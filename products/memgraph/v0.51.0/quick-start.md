@@ -82,7 +82,7 @@ After downloading the RPM package of Memgraph, you can install it by
 issuing the following command:
 
 ```plaintext
-rpm -U /path/to/memgraph-<version>.rpm
+yum --nogpgcheck localinstall /path/to/memgraph-<version>.rpm
 ```
 
 After successful installation, Memgraph can be started as a 
@@ -104,6 +104,13 @@ If successful, the you should receive an output similar to the following:
 Nov 23 13:40:13 hostname memgraph[14654]: Starting 8 BoltS workers
 Nov 23 13:40:13 hostname memgraph[14654]: BoltS server is fully armed and operational
 Nov 23 13:40:13 hostname memgraph[14654]: BoltS listening on 0.0.0.0 at 7687
+```
+
+If you want the Memgraph service to start automatically on each startup, run
+the following command:
+
+```plaintext
+systemctl enable memgraph
 ```
 
 At this point, Memgraph is ready for you to [submit queries](#querying).
