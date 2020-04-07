@@ -238,6 +238,11 @@ fields removes all leading and trailing whitespace from them.
 #### How to Use the CSV Import Tool?
 
 The import tool is run from the console, using the `mg_import_csv` command.
+The tool should be run as user `memgraph`, using the following command:
+
+```
+sudo -u memgraph mg_import_csv
+```
 
 If you installed Memgraph using Docker, you will need to run the importer
 using the following command:
@@ -274,7 +279,7 @@ Memgraph instance.
 For information on other options, run:
 
 ```bash
-mg_import_csv --help
+sudo -u memgraph mg_import_csv --help
 ```
 
 When using Docker, this translates to:
@@ -329,7 +334,7 @@ Memgraph will load the new dataset.
 Use the following command:
 
 ```bash
-mg_import_csv --nodes comment_nodes.csv --nodes forum_nodes.csv --relationships relationships.csv
+sudo -u memgraph mg_import_csv --nodes comment_nodes.csv --nodes forum_nodes.csv --relationships relationships.csv
 ```
 
 If using Docker, things are a bit more complicated. First you need to copy the
