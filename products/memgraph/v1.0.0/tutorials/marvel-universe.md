@@ -52,21 +52,45 @@ to query Memgraph via the console.
 
 Here are some queries you might find interesting:
 
-1) List all the heroes that have appeared together with Spider-Man/Peter Parker in a comic:
+1) List all the heroes that have "SPIDER" in their name
+
+If you take a peek at the Hero nodes, you'll find that their names, while
+accurate in most cases, can be a bit mangled. For example, Hulk/Bruce Banner is
+represented as "HULK III/BRUCE BANNE". We didn't have time to check and update
+all the names that were already present. We swear! Super-busy! But, no worries,
+we'll show you how to get a list of potential heroes you might be looking for.
+One of the most flexible ways is to use regex matching (represented by the
+regex-matching operator "=~").
+
+```opencypher
+MATCH (h:Hero) WHERE
+h.name =~ ".*SPIDER.+"
+RETURN h.name as PotentialSpiderDude
+```
+
+We recommend you search for your heroes of interest this way, might save you
+some time!
+
+2) List all the heroes that have appeared together with Spider-Man/Peter Parker in a comic:
 
 ```opencypher
 MATCH (:Hero {name: "SPIDER-MAN/PETER PARKER"})-[:AppearedInSameComic]->(h:Hero)
 RETURN DISTINCT h.name AS SpiderAssociate;
 ```
 
-2) List all the comic issues where Spider-Man (Peter Parker) and Venom (Eddie Brock) appear together:
+Wonder why we've used the "DISTINCT" keyword? Here's why - the data graph we got
+by loading the scraped MCU data (as used in the paper linked to in the
+introduction) contains an edge between two Hero nodes for every comic they
+appear in together. So, to remove duplicates, we had to plug in the "DISTINCT" keyword. 
+
+3) List all the comic issues where Spider-Man (Peter Parker) and Venom (Eddie Brock) appear together:
 
 ```opencypher
 MATCH (:Hero {name: "SPIDER-MAN/PETER PARKER"})-[:AppearedIn]->(c:Comic)<-[:AppearedIn]-(:Hero {name: "VENOM/EDDIE BROCK"})
 RETURN c.name AS SpideyAndVenomComic;
 ```
 
-3) List 10 heroes with whom Spider-Man (Peter Parker) appeared most frequently together:
+4) List 10 heroes with whom Spider-Man (Peter Parker) appeared most frequently together:
 
 ```opencypher
 MATCH (:Hero {name: "SPIDER-MAN/PETER PARKER"})-[r:AppearedInSameComic]->(h:Hero) WITH
@@ -77,7 +101,7 @@ ORDER BY NumCollabs DESC
 LIMIT 10;
 ```
 
-4) List the 10 most popular heroes in the MCU:
+5) List the 10 most popular heroes in the MCU:
 
 Quickly, name the five most popular heroes in the MCU! Alright, how did your
 brain decide what to give as the answer? We're assuming that you have no clue,
@@ -113,18 +137,29 @@ LIMIT 10;
 ```
 
 How do the results of this query match with your own list? Not bad, right?
-Now go and find out more interesting connections in the MCU!
 
 If you're interested in the PageRank algorithm, we recommend you start [here](https://en.wikipedia.org/wiki/PageRank).
 
-5) List whatever your custom fancy algorithm returns
+### Nifty things you could do
 
-Look at Mr. Fancy Pants right here. Our out-of-the-box functions not working out
-for ya? You want to use your own fancy supermath? Well, that's excellent, because
-we've got you covered! At some point, you'll want to try out recipes from your own
-cookbook, and to get you up to speed, we'll show you one of the ways you could do it
-using our [query module system](../reference_guide/query-modules.md) and some elbow
-grease. Alright, let's go!
+While the thing we've shown you how to do might be fun for a while, there are
+loads of cool things you could do to improve the fun-factor. Here's a very short
+list of things we think you could pull off:
 
-Let's say you want to run a [closeness centrality](https://en.wikipedia.org/wiki/Closeness_centrality)
-analysis on the MCU graph. 
+* we have loads of Hero nodes, so even the Hobgoblin or Magneto are deemed
+  "heroes", but if you were the mayor of the Marvel Comic Universe Town, you
+  wouldn't give those guys medals of honor, would you? It would be pretty cool
+  if we could classify the MCU entities into "Hero" and "Villain" categories.
+  Then you could ask the query engine to give you a list of Spidey's arch
+  nemeses in addition to Spidey's best hero buddies.
+* similar to the previous idea, it would be insanely cool if someone would add
+  more attributes to the heroes like "Superpower", "Level", "Affiliation",
+  "Signature moves" etc. If you had that, you could perhaps make a simple
+  Pokemon-like game where you'd randomly pick a team of villains and choose a team
+  of heroes to fight them.
+* you could write your own query module that could run more sophisticated
+  analyses on the social network like closeness centrality, Louvain modularity
+  etc.
+
+Now go and use your graph database superpowers for greater good! Although the
+comic universe is full of heroes, there's always room for one more!
