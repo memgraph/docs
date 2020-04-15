@@ -1,4 +1,4 @@
-## Marvel Universe Social Network
+## Marvel Comic Universe Social Network
 
 ### Introduction
 
@@ -27,7 +27,7 @@ snapshot ready for use.
 Now, the data we'll be using in our queries can be classified as follows:
   * nodes, labeled as either "Hero" or "Comic"
     * a "Hero" node has a "name" attribute corresponding to both a hero's
-      monniker and her/his real name (e.g. "SPIDER-MAN/PETER PARKER")
+      moniker and her/his real name (e.g. "SPIDER-MAN/PETER PARKER")
     * a "Comic" node has a "name" attribute corresponding to the abbreviated
       comic series name and the issue/volume number if it's included (e.g. "AT2"
       corresponds to "Astonishing Tales Volume 2")
@@ -47,7 +47,7 @@ Complete mapping of abbreviated comic titles to the full ones can be found [here
 
 ### Example Queries using OpenCypher
 
-In the queries below, we are, as usual, using [OpenCypher](https://www.opencypher.org) 
+In the queries below, we are, as usual, using [OpenCypher](https://www.opencypher.org)
 to query Memgraph via the console.
 
 Here are some queries you might find interesting:
@@ -81,7 +81,7 @@ RETURN DISTINCT h.name AS SpiderAssociate;
 Wonder why we've used the "DISTINCT" keyword? Here's why - the data graph we got
 by loading the scraped MCU data (as used in the paper linked to in the
 introduction) contains an edge between two Hero nodes for every comic they
-appear in together. So, to remove duplicates, we had to plug in the "DISTINCT" keyword. 
+appear in together. So, to remove duplicates, we had to plug in the "DISTINCT" keyword.
 
 3) List all the comic issues where Spider-Man (Peter Parker) and Venom (Eddie Brock) appear together:
 
@@ -124,7 +124,7 @@ that can access the data stored in our graph database, do some processing, and
 return the results of this processing to the query engine, so we can perform
 further queries on them. In this particular case, the PageRank algorithm is
 implemented as a Python module, and can be found in the query module directory
-"/usr/lib/memgraph/query_modules/", along with its description and the examples
+`/usr/lib/memgraph/query_modules/`, along with its description and the examples
 of usage. What you as a user must know is that the pagerank procedure automagically
 takes the MCU graph as an argument, and returns a record of pairs of "Hero" nodes and the
 corresponding rank values (rank is a number representing the "popularity" of a given node).
