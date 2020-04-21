@@ -25,17 +25,24 @@ We've used a slightly modified version of this data to create a graph database
 snapshot ready for use.
 
 Now, the data we'll be using in our queries can be classified as follows:
-  * nodes, labeled as either "Hero" or "Comic"
+  * nodes, labeled as "Hero", "Comic", or "ComicSeries
     * a "Hero" node has a "name" attribute corresponding to both a hero's
       moniker and her/his real name (e.g. "SPIDER-MAN/PETER PARKER")
     * a "Comic" node has a "name" attribute corresponding to the abbreviated
-      comic series name and the issue/volume number if it's included (e.g. "AT2"
-      corresponds to "Astonishing Tales Volume 2")
-  * edges, labeled either "AppearedIn" or "AppearedInSameComic"
+      comic series name and the issue/volume number if it's included (e.g.
+      "Astonishing Tales Vol. 2 12")
+    * a "ComicSeries" node has a "title" attribute corresponding to the title of
+      the series a given comic is a part of, e.g. the "Comic" node
+      "AMAZING SPIDER-MAN VOL 2. 15" is part of series "AMAZING SPIDER-MAN VOL 2.".
+      In addition, each "ComicSeries" node has a "publishYear" attribute, which
+      is a list of years in which the series was published.
+  * edges, labeled "AppearedIn", "AppearedInSameComic", or "IsPartOfSeries"
     * edges connecting a "Hero" node to the "Comic" node it appears in are
       labeled "AppearedIn"
     * edges connecting two "Hero" nodes that appeared in the same comic are
       labeled "AppearedInSameComic"
+    * edges connecting a "Comic" node and its corresponding comic series it's
+      part of are labeled "IsPartOfSeries"
 
 A visual scheme of our graph database is given below.
 
@@ -55,11 +62,10 @@ Here are some queries you might find interesting:
 1) List all the heroes that have "SPIDER" in their name
 
 If you take a peek at the Hero nodes, you'll find that their names, while
-accurate in most cases, can be a bit mangled. For example, Hulk/Bruce Banner is
-represented as "HULK III/BRUCE BANNE". We didn't have time to check and update
-all the names that were already present. We swear! Super-busy! But, no worries,
-we'll show you how to get a list of potential heroes you might be looking for.
-One of the most flexible ways is to use regex matching (represented by the
+accurate in most cases, can be a bit mangled. We didn't have time to check and
+update all the names that were already present. We swear! Super-busy! But, no
+worries, we'll show you how to get a list of potential heroes you might be looking
+for. One of the most flexible ways is to use regex matching (represented by the
 regex-matching operator "=~").
 
 ```opencypher
@@ -90,6 +96,13 @@ MATCH (:Hero {name: "SPIDER-MAN/PETER PARKER"})-[:AppearedIn]->(c:Comic)<-[:Appe
 RETURN c.name AS SpideyAndVenomComic;
 ```
 
+4) List all the comic series in which Spider-Man/Peter Parker appears:
+
+```opencypher
+MATCH (:Hero {name: "SPIDER-MAN/PETER PARKER"})-[:AppearedIn]->(c:Comic)-[:IsPartOfSeries]-(s:ComicSeries)
+RETURN DISTINCT s.title as SpideySeries;
+```
+
 4) List 10 heroes with whom Spider-Man (Peter Parker) appeared most frequently together:
 
 ```opencypher
@@ -101,7 +114,7 @@ ORDER BY NumCollabs DESC
 LIMIT 10;
 ```
 
-5) List the 10 most popular heroes in the MCU:
+5) List the 10 most popular heroes and most popular comic series in the MCU:
 
 Quickly, name the five most popular heroes in the MCU! Alright, how did your
 brain decide what to give as the answer? We're assuming that you have no clue,
@@ -111,7 +124,8 @@ to our database engine?
 
 Well, our philosophy is as follows - a popular hero is the one who's "known" by
 more other heroes, or in terms of our MCU graph, a hero that the other heroes have
-more connections (edges) to than some other hero is deemed "more popular".
+more connections (edges) to than some other hero is deemed "more popular". We'll
+apply analogous reasoning to define the "most popular" comic book series as well.
 This philosophy is the one underlying Google's search engine, and the algorithm
 embodying it is PageRank, so it would be convenient if we could make use of it.
 
@@ -126,17 +140,38 @@ further queries on them. In this particular case, the PageRank algorithm is
 implemented as a Python module, and can be found in the query module directory
 `/usr/lib/memgraph/query_modules/`, along with its description and the examples
 of usage. What you as a user must know is that the pagerank procedure automagically
-takes the MCU graph as an argument, and returns a record of pairs of "Hero" nodes and the
+takes the MCU graph as an argument, and returns a record of pairs of nodes and the
 corresponding rank values (rank is a number representing the "popularity" of a given node).
 
 ```opencypher
 CALL pagerank.pagerank(0.85, 'personalization', 150) YIELD node, rank
-RETURN node.name AS MostPopularHero
+WITH
+collect(node.name) as MostPopularHeroes,
+rank
+RETURN MostPopularHeroes
 ORDER BY rank DESC
 LIMIT 10;
 ```
 
 How do the results of this query match with your own list? Not bad, right?
+
+Alright, so how do we find the most "popular" comic series? Well, all we have
+to remember is that a "ComicSeries" node has an attribute "title" which denotes,
+of course, its title. Instead of collecting hero names with
+"collect(node.name)", we'll just replace it with "collect(node.title)" and leave
+the rest as it was above, except for the name of the return values. Sweet!
+
+```opencypher
+CALL pagerank.pagerank(0.85, 'personalization', 150) YIELD node, rank
+WITH
+collect(node.title) as MostPopularComicSeries,
+rank
+RETURN MostPopularComicSeries
+ORDER BY rank DESC
+LIMIT 10;
+```
+
+And that, folks, is all there is to it, so go and try out some graph magic of your own!
 
 If you're interested in the PageRank algorithm, we recommend you start [here](https://en.wikipedia.org/wiki/PageRank).
 
