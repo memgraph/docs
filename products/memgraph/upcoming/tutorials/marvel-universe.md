@@ -163,29 +163,25 @@ takes the MCU graph as an argument, and returns a record of pairs of nodes and t
 corresponding rank values (rank is a number representing the "popularity" of a given node).
 
 ```opencypher
-CALL pagerank.pagerank(0.85, 'personalization', 150) YIELD node, rank
+CALL pagerank.pagerank() YIELD node, rank
 WITH
-collect(node.name) as MostPopularHeroes,
-rank
-RETURN MostPopularHeroes
+node, rank
+WHERE node:Hero
+RETURN node.name AS MostPopularHeroes
 ORDER BY rank DESC
 LIMIT 10;
 ```
 
 How do the results of this query match with your own list? Not bad, right?
 
-Alright, so how do we find the most "popular" comic series? Well, all we have
-to remember is that a "ComicSeries" node has an attribute "title" which denotes,
-of course, its title. Instead of collecting hero names with
-"collect(node.name)", we'll just replace it with "collect(node.title)" and leave
-the rest as it was above, except for the name of the return values. Sweet!
+Now, let's figure out the most popular comic series:
 
 ```opencypher
-CALL pagerank.pagerank(0.85, 'personalization', 150) YIELD node, rank
+CALL pagerank.pagerank() YIELD node, rank
 WITH
-collect(node.title) as MostPopularComicSeries,
-rank
-RETURN MostPopularComicSeries
+node, rank
+WHERE node:ComicSeries
+RETURN node.title AS MostPopularComicSeries
 ORDER BY rank DESC
 LIMIT 10;
 ```
