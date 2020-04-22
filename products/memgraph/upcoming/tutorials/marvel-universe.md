@@ -60,7 +60,17 @@ to query Memgraph via the console.
 
 Here are some queries you might find interesting:
 
-1) List all the heroes that have "SPIDER" in their name
+1) List all the comic series present in the database, next to the number of comics it contains:
+
+```opencypher
+MATCH (s:ComicSeries)-[:IsPartOfSeries]-(c:Comic)
+WITH s.title as Series,
+c as Comic
+return Series, count(Comic) as ComicCount
+ORDER BY Series;
+```
+
+2) List all the heroes that have "SPIDER" in their name
 
 If you take a peek at the Hero nodes, you'll find that their names, while
 accurate in most cases, can be a bit mangled. We didn't have time to check and
@@ -78,7 +88,7 @@ RETURN h.name as PotentialSpiderDude
 We recommend you search for your heroes of interest this way, might save you
 some time!
 
-2) List all the heroes that have appeared together with Spider-Man/Peter Parker in a comic:
+3) List all the heroes that have appeared together with Spider-Man/Peter Parker in a comic:
 
 ```opencypher
 MATCH (:Hero {name: "SPIDER-MAN/PETER PARKER"})-[:AppearedInSameComic]->(h:Hero)
@@ -90,32 +100,40 @@ by loading the scraped MCU data (as used in the paper linked to in the
 introduction) contains an edge between two Hero nodes for every comic they
 appear in together. So, to remove duplicates, we had to plug in the "DISTINCT" keyword.
 
-3) List all the comic issues where Spider-Man (Peter Parker) and Venom (Eddie Brock) appear together:
+4) List all the comic issues where Spider-Man (Peter Parker) and Venom (Eddie Brock) appear together:
 
 ```opencypher
 MATCH (:Hero {name: "SPIDER-MAN/PETER PARKER"})-[:AppearedIn]->(c:Comic)<-[:AppearedIn]-(:Hero {name: "VENOM/EDDIE BROCK"})
 RETURN c.name AS SpideyAndVenomComic;
 ```
 
-4) List all the comic series in which Spider-Man/Peter Parker appears:
+5) List all the comic series in which Spider-Man/Peter Parker appears:
 
 ```opencypher
 MATCH (:Hero {name: "SPIDER-MAN/PETER PARKER"})-[:AppearedIn]->(c:Comic)-[:IsPartOfSeries]-(s:ComicSeries)
 RETURN DISTINCT s.title as SpideySeries;
 ```
 
-4) List 10 heroes with whom Spider-Man (Peter Parker) appeared most frequently together:
+6) List 10 heroes with whom Spider-Man (Peter Parker) appeared most frequently together:
 
 ```opencypher
-MATCH (:Hero {name: "SPIDER-MAN/PETER PARKER"})-[r:AppearedInSameComic]->(h:Hero) WITH
-h.name AS SpideyBuddy,
-count(r) AS NumCollabs
-RETURN SpideyBuddy, NumCollabs
-ORDER BY NumCollabs DESC
+MATCH (:Hero {name: "SPIDER-MAN/PETER PARKER"})-[:AppearedIn]->(c:Comic)<-[:AppearedIn]-(h:Hero)
+WITH
+distinct(h) AS SpideyFriend,
+count(h) AS FriendCount
+RETURN SpideyFriend, FriendCount
+ORDER BY FriendCount DESC
 LIMIT 10;
 ```
 
-5) List the 10 most popular heroes and 10 most popular comic series in the MCU:
+7) Find if there's a connection between Peter Parker/Spider-Man and Beef:
+
+```opencypher
+MATCH p=(:Hero {name: "SPIDER-MAN/PETER PARKER"})-[*bfs 1..10]-(b:Hero {name: "BEEF"})
+return p;
+```
+
+8) List the 10 most popular heroes and 10 most popular comic series in the MCU:
 
 Quickly, name the five most popular heroes in the MCU! Alright, how did your
 brain decide what to give as the answer? We're assuming that you have no clue,
