@@ -41,8 +41,9 @@ Now, the data we'll be using in our queries can be classified as follows:
       labeled "AppearedIn"
     * edges connecting two "Hero" nodes that appeared in the same comic are
       labeled "AppearedInSameComic"
-    * edges connecting a "Comic" node and its corresponding comic series it's
-      part of are labeled "IsPartOfSeries"
+    * edges connecting a "Comic" node and its corresponding "ComicSeries" node,
+      representing the inclusion relationship between a particular comic issue
+      and the series it's part of, are labeled "IsPartOfSeries"
 
 A visual scheme of our graph database is given below.
 
@@ -114,7 +115,7 @@ ORDER BY NumCollabs DESC
 LIMIT 10;
 ```
 
-5) List the 10 most popular heroes and most popular comic series in the MCU:
+5) List the 10 most popular heroes and 10 most popular comic series in the MCU:
 
 Quickly, name the five most popular heroes in the MCU! Alright, how did your
 brain decide what to give as the answer? We're assuming that you have no clue,
