@@ -94,7 +94,7 @@ RETURN c.name AS SpideyAndVenomComic
 ORDER BY SpideyAndVenomComic;
 ```
 
-5) List all the comic series in which Spider-Man/Peter Parker appears:
+4) List all the comic series in which Spider-Man/Peter Parker appears:
 
 ```opencypher
 MATCH (:Hero {name: "SPIDER-MAN/PETER PARKER"})-[:AppearedIn]->(c:Comic)-[:IsPartOfSeries]-(s:ComicSeries)
@@ -102,7 +102,7 @@ RETURN DISTINCT s.title as SpideySeries
 ORDER BY SpideySeries;
 ```
 
-6) List 10 heroes with whom Spider-Man (Peter Parker) appeared most frequently together:
+5) List 10 heroes with whom Spider-Man (Peter Parker) appeared most frequently together:
 
 ```opencypher
 MATCH (:Hero {name: "SPIDER-MAN/PETER PARKER"})-[:AppearedIn]->(c:Comic)<-[:AppearedIn]-(h:Hero)
@@ -114,7 +114,7 @@ ORDER BY FriendCount DESC
 LIMIT 10;
 ```
 
-7) Find if there's a connection between Peter Parker/Spider-Man and Beef:
+6) Find if there's a connection between Peter Parker/Spider-Man and Beef:
 
 "Who the hell is Beef?", you might ask. Well, let's just run a
 breadth-first-search starting from good ol' Spider-Man, with the constraint that we
@@ -128,7 +128,7 @@ MATCH p=(:Hero {name: "SPIDER-MAN/PETER PARKER"})-[*bfs 1..10]-(b:Hero {name: "B
 return p;
 ```
 
-8) List the 10 most popular heroes and comic series in the MCU:
+7) List the 10 most popular heroes and comic series in the MCU:
 
 Quickly, name the five most popular heroes in the MCU! Alright, how did your
 brain decide what to give as the answer? We're assuming that you have no clue,
