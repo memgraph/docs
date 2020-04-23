@@ -10,6 +10,7 @@ We highly recommend checking out the other articles from this series:
   * [Exploring the European Road Network](exploring-the-european-road-network.md)
   * [Backpacking Through Europe](backpacking-through-europe.md)
   * [Movie Recommendation System](movie-recommendation.md)
+  * [Marvel Comic Universe Social Network](marvel-universe.md)
 
 ### Introduction
 

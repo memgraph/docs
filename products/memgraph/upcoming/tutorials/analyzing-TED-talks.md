@@ -188,3 +188,4 @@ We recommend checking out other tutorials from this series:
   * [Backpacking Through Europe](backpacking-through-europe.md)
   * [Graphing the Premier League](graphing-the-premier-league.md)
   * [Movie Recommendation System](movie-recommendation.md)
+  * [Marvel Comic Universe Social Network](marvel-universe.md)

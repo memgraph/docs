@@ -10,6 +10,7 @@ We highly recommend checking out the other articles from this series:
   * [Analyzing TED Talks](analyzing-TED-talks.md)
   * [Graphing the Premier League](graphing-the-premier-league.md)
   * [Movie Recommendation System](movie-recommendation.md)
+  * [Marvel Comic Universe Social Network](marvel-universe.md)
 
 ### Introduction
 
