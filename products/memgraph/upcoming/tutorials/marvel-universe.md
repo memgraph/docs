@@ -10,6 +10,14 @@ wanted to know who's Spider-Man's best super-buddy, or wanted to find all the
 comic issues where Hulk, Wolverine, Thor, and Black Panther appear together, look
 no further and fire up that Memgraph copy of yours!
 
+We highly recommend checking out the other articles from this series:
+
+  * [Analyzing TED Talks](analyzing-TED-talks.md)
+  * [Graphing the Premier League](graphing-the-premier-league.md)
+  * [Exploring the European Road Network](exploring-the-european-road-network.md)
+  * [Backpacking Through Europe](backpacking-through-europe.md)
+  * [Movie Recommendation System](movie-recommendation.md)
+
 ### Data Model
 
 Although the MCU is chock-full of heroes, the real hero here is Russ Chappell,

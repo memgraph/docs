@@ -6,10 +6,12 @@ information.
 
 We highly recommend checking out the other articles from this series:
 
-  * [Backpacking Through Europe](backpacking-through-europe.md)
   * [Analyzing TED Talks](analyzing-TED-talks.md)
-  * [Graphing the Premier League](graphing-the-premier-league.md)
+  * [Exploring the European Road Network](exploring-the-european-road-network.md)
+  * [Backpacking Through Europe](backpacking-through-europe.md)
   * [Movie Recommendation System](movie-recommendation.md)
+  * [Graphing the Premier League](graphing-the-premier-league.md)
+  * [Marvel Comic Universe Social Network](marvel-universe.md)
 
 ### Introduction
 
