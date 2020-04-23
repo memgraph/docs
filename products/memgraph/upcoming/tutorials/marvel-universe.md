@@ -3,7 +3,7 @@
 ### Introduction
 
 Spandex. Muscles. Big egos. Bad hair. No, we're not talking about your high
-school thrash metal band. We're talking one of the largest fictional social
+school thrash metal band. We're talking about one of the largest fictional social
 networks that is the Marvel Comic Universe! Here we'll teach you how to navigate
 this complex and confusing assembly of heroes and villains. If you've ever
 wanted to know who's Spider-Man's best super-buddy, or wanted to find all the
@@ -25,31 +25,28 @@ We've used a slightly modified version of this data to create a graph database
 snapshot ready for use.
 
 Now, the data we'll be using in our queries can be classified as follows:
-  * nodes, labeled as "Hero", "Comic", or "ComicSeries
+  * nodes, labeled as "Hero", "Comic", or "ComicSeries"
     * a "Hero" node has a "name" attribute corresponding to both a hero's
       moniker and her/his real name (e.g. "SPIDER-MAN/PETER PARKER")
-    * a "Comic" node has a "name" attribute corresponding to the abbreviated
-      comic series name and the issue/volume number if it's included (e.g.
-      "Astonishing Tales Vol. 2 12")
+    * a "Comic" node has a "name" attribute corresponding to the comic series name
+      and the issue/volume number if it's included (e.g.  "Astonishing Tales Vol. 2 12")
     * a "ComicSeries" node has a "title" attribute corresponding to the title of
       the series a given comic is a part of, e.g. the "Comic" node
-      "AMAZING SPIDER-MAN VOL 2. 15" is part of series "AMAZING SPIDER-MAN VOL 2.".
+      "AVENGERS VOL. 3 17" is part of the "AVENGERS VOL. 3" series.
       In addition, each "ComicSeries" node has a "publishYear" attribute, which
       is a list of years in which the series was published.
-  * edges, labeled "AppearedIn", "AppearedInSameComic", or "IsPartOfSeries"
+  * edges, of type "AppearedIn", "AppearedInSameComic", or "IsPartOfSeries"
     * edges connecting a "Hero" node to the "Comic" node it appears in are
-      labeled "AppearedIn"
+      of type "AppearedIn"
     * edges connecting two "Hero" nodes that appeared in the same comic are
-      labeled "AppearedInSameComic"
+      of type "AppearedInSameComic"
     * edges connecting a "Comic" node and its corresponding "ComicSeries" node,
       representing the inclusion relationship between a particular comic issue
-      and the series it's part of, are labeled "IsPartOfSeries"
+      and the series it's part of, are of type "IsPartOfSeries"
 
 A visual scheme of our graph database is given below.
 
 ![](../data/mcu_metagraph.png)
-
-Complete mapping of abbreviated comic titles to the full ones can be found [here](https://www.chronologyproject.com/key.php).
 
 ### Importing the Snapshot
 
@@ -60,7 +57,7 @@ to query Memgraph via the console.
 
 Here are some queries you might find interesting:
 
-1) List all the comic series present in the database, next to the number of comics it contains:
+1) List all the comic series present in the database, along with the number of comics it contains:
 
 ```opencypher
 MATCH (s:ComicSeries)-[:IsPartOfSeries]-(c:Comic)
@@ -70,7 +67,7 @@ return Series, count(Comic) as ComicCount
 ORDER BY Series;
 ```
 
-2) List all the heroes that have "SPIDER" in their name
+2) List all heroes that have "SPIDER" in their name:
 
 If you take a peek at the Hero nodes, you'll find that their names, while
 accurate in most cases, can be a bit mangled. We didn't have time to check and
@@ -83,35 +80,26 @@ regex-matching operator "=~").
 MATCH (h:Hero) WHERE
 h.name =~ ".*SPIDER.+"
 RETURN h.name as PotentialSpiderDude
+ORDER BY PotentialSpiderDude;
 ```
 
 We recommend you search for your heroes of interest this way, might save you
 some time!
 
-3) List all the heroes that have appeared together with Spider-Man/Peter Parker in a comic:
-
-```opencypher
-MATCH (:Hero {name: "SPIDER-MAN/PETER PARKER"})-[:AppearedInSameComic]->(h:Hero)
-RETURN DISTINCT h.name AS SpiderAssociate;
-```
-
-Wonder why we've used the "DISTINCT" keyword? Here's why - the data graph we got
-by loading the scraped MCU data (as used in the paper linked to in the
-introduction) contains an edge between two Hero nodes for every comic they
-appear in together. So, to remove duplicates, we had to plug in the "DISTINCT" keyword.
-
-4) List all the comic issues where Spider-Man (Peter Parker) and Venom (Eddie Brock) appear together:
+3) List all the comic issues where Spider-Man (Peter Parker) and Venom (Eddie Brock) appear together:
 
 ```opencypher
 MATCH (:Hero {name: "SPIDER-MAN/PETER PARKER"})-[:AppearedIn]->(c:Comic)<-[:AppearedIn]-(:Hero {name: "VENOM/EDDIE BROCK"})
-RETURN c.name AS SpideyAndVenomComic;
+RETURN c.name AS SpideyAndVenomComic
+ORDER BY SpideyAndVenomComic;
 ```
 
 5) List all the comic series in which Spider-Man/Peter Parker appears:
 
 ```opencypher
 MATCH (:Hero {name: "SPIDER-MAN/PETER PARKER"})-[:AppearedIn]->(c:Comic)-[:IsPartOfSeries]-(s:ComicSeries)
-RETURN DISTINCT s.title as SpideySeries;
+RETURN DISTINCT s.title as SpideySeries
+ORDER BY SpideySeries;
 ```
 
 6) List 10 heroes with whom Spider-Man (Peter Parker) appeared most frequently together:
@@ -128,12 +116,19 @@ LIMIT 10;
 
 7) Find if there's a connection between Peter Parker/Spider-Man and Beef:
 
+"Who the hell is Beef?", you might ask. Well, let's just run a
+breadth-first-search starting from good ol' Spider-Man, with the constraint that we
+stay within the "radius" of maximum 10 hops from him, and see whether there's a
+way Spidey can reach Beef. According to the six degrees of separation
+philosophy, we should be able to find him on some path of maximally six hops
+away, but we relax that strategy a bit just to be sure.
+
 ```opencypher
 MATCH p=(:Hero {name: "SPIDER-MAN/PETER PARKER"})-[*bfs 1..10]-(b:Hero {name: "BEEF"})
 return p;
 ```
 
-8) List the 10 most popular heroes and 10 most popular comic series in the MCU:
+8) List the 10 most popular heroes and comic series in the MCU:
 
 Quickly, name the five most popular heroes in the MCU! Alright, how did your
 brain decide what to give as the answer? We're assuming that you have no clue,
