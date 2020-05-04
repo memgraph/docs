@@ -9,6 +9,8 @@ ACID Transactions                                     |     +     |     +
 Optimized for Low Latency and High&#8209;Throughput   |     +     |     +
 Support for Custom Query Modules (C and Python API)   |     +     |     +
 CSV Import Tool                                       |     +     |     +
+Development, Testing and Evaluation Use               |     +     |     +
+Production and Commercial Use                         |           |     +
 Query Modules with Graph Algorithms                   |           |     +
 Authentication                                        |           |     +
 Advanced Password Policies                            |           |     +
