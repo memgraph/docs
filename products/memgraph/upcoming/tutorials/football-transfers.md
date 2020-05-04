@@ -34,8 +34,8 @@ of football transfers that include most popular leagues.
 * Each Football transfer has a team which makes transfere of player and 
 team to which player is transfered to, so we identify three types of nodes &mdash;
 `Team`, `Transfer` and `Player`  . 
-* We add an edge of type `:MakesTransfer` pointing from `Team` player is being
-transfered from to a `Transfer`. Also, we add an edge of type `:ToTeam` pointing
+* We add an edge of type `:TransFor` pointing from `Team` player is being
+transfered from to a `Transfer`. Also, we add an edge of type `:TransTo` pointing
 from the `Transfer` to the `Team` player is being transfered to.
 From node `Transfer` we add edge of type `:OfPlayer` pointing to `Player` 
 * Each team has a name so we can add property `name` to `Team` node.
