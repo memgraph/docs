@@ -60,7 +60,7 @@ In the queries below, we are using [OpenCypher](https://www.opencypher.org)
 to query Memgraph via the console.
 
 
-1) Find 20 most expensive transfers
+1) Let's say you want to find 20 most expensive transfers
 
 ```opencypher
 MATCH (t:Transfer)-[:ofPlayer]->(p:Player)
@@ -79,7 +79,7 @@ MATCH (p:Player {name:"Neymar"})<-[:ofPlayer]-(t:Transfer)-[:toClub]->(n:Team)
 RETURN DISTINCT n.name as name
 ```
 
-3)Find players related by club and count them by position
+3)Find players that played for certain club and count them by position.
 
 ```opencypher
 MATCH (m:Team {name: "FC Barcelona"})
@@ -108,7 +108,7 @@ MATCH (t)-[r1:toClub]->(b:Team)
 return p,b,r1
 ```
 
-6) Find teams that  most players went to from their club 
+6) Find teams that  most players went to from let's say "FC Barcelona"
 
 ```opencypher
 MATCH (m:Team {name: "FC Barcelona"})-[:makesTransfer]->(t:Transfer)-[:ofPlayer]->(p:Player)
@@ -118,7 +118,7 @@ ORDER BY numberOfPlayers DESC
 ```
 
 
-7) Find most popular clubs in certain year
+7) Find most popular clubs in certain year. Results may suprise you.
 
 ```opencypher 
 MATCH (y:Year {year:2004})<-[:inYear]-(t:Transfer)-[:ofPlayer]->(player:Player)
@@ -128,7 +128,7 @@ ORDER BY NumberOfPlayers DESC, ClubName
 LIMIT 20;
 ```
 
-8) Most money spend on player per position
+8) Most money spend on player per position.
 
 ```opencypher 
 MATCH (a:Team )-[:makesTransfer ]->(t:Transfer)-[:ofPlayer ]-> (p:Player )MATCH (t)-[r1:toClub]->(b:Team {name:"FC Barcelona"})
@@ -145,7 +145,28 @@ MATCH (t)-[r1:toClub]->(m:Team {name:"FC Barcelona"})
 MATCH (t)-[:inYear]->(y:Year)
 WHERE t.fee IS NOT NULL AND (y.year IN [2018,2019])
 RETURN collect( p.name) AS names, p.position AS position, SUM(t.fee) AS moneySpentPerPosition
+```
+
+10) If you want to find indirect transfers of players between two clubs you can do that also
+
 ```opencypher 
+MATCH    (player:Player)<-[:OfPlayer]-(t:Transfer) <- [:TransFrom]-(n:Team {name:"FC Barcelona"}), (player)<-[r1:OfPlayer]-(tr:Transfer)
+WITH     collect(tr) as transfers,player
+MATCH    path_indirect = ( (a:Team)-[ *bfs ..8 (e, n | 'Player' IN labels(n) OR 'Team' IN labels(n) OR ('Transfer' in labels(n) AND n in transfers) )]->(b:Team) )
+WHERE    a.name = "FC Barcelona" AND    b.name = "Sevilla FC"
+RETURN path_indirect,player
+```
+Let's say you want to find indirect transfers between "FC Barcelona" and  "Sevilla FC".
+First it makes sense to find players that had at some point transfer from FC Barcelona. That way
+we don't need to look for all players, just ones that had transfer from FC Barcelona.
+
+Then off to fun part.
+
+
+(e, v | condition) is called a filter lambda. It's a function that takes an edge symbol e and a vertex symbol n 
+and decides whether this edge and vertex pair should be considered valid in breadth-first expansion by returning
+true or false (or Null). In the above example, lambda is returning true if vertex has label "Team" or has label "Transfer"
+and it is one of the transfers of players that had transfer from FC Barcelona.
 
 ### Where To Next?
 
