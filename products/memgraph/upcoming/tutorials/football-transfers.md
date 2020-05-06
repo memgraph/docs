@@ -48,11 +48,11 @@ and finishes in autumn, mainly due to weather conditions encountered during the 
 ### Data Model
 
 In this article, we will present a graph model of a large-sized dataset
-of football transfers that include the most popular leagues. When we say large-sized dataset,
+of football transfers that include the most famous leagues. When we say large-sized dataset,
 what we think by that is the dataset that has all transfers from season 1992/1993 to season 2019/2020
 in nine leagues that are supported. Those leagues are Eredivisie, English Championship,
 English Premier League, French Ligue 1, German Bundesliga, Italian Serie A, Portuguese Liga Nos,
-Russian Premier Liga and currently the best league Spanish Primera Division.
+Russian Premier Liga and Spanish Primera Division.
 
 
 * Each Football transfer has a team which makes a transfer and team to which player is transferred to,
@@ -69,10 +69,10 @@ The label `season` will be in string format and label `year` in number format.
 
 Till this point we only described nodes. Now we need to describe how those nodes are connected.
 
-* An edge of type `: TRANSFERED_FROM` pointing from `Team` player is being transferred from
-to the node `Transfer`. Also, we add an edge of type `: TRANSFERED_TO` pointing from the `Transfer`
+* An edge of type `: TRANSFERRED_FROM` pointing from `Team` player is being transferred from
+to the node `Transfer`. Also, we add an edge of type `: TRANSFERRED_TO` pointing from the `Transfer`
 to the `Team` player is being transferred to.
-* From node `Player` we add an edge of type `: TRANSFERED_IN` pointing to `Transfer`. 
+* From node `Player` we add an edge of type `: TRANSFERRED_IN` pointing to `Transfer`. 
 * Each transfer is made in a specific season, so we create
 edge  `: HAPPENED_IN` pointing from the node
 `Transfer` to the node `Season`.
@@ -118,44 +118,43 @@ only during this run of Memgraph.
 In the queries below, we are using [OpenCypher](https://www.opencypher.org) 
 to query Memgraph via the console.
 
-N.B. When time
 
 1) Let's say you want to find 20 most expensive transfers.
 As mentioned before fee is represented in millions of euros.
 
 ```opencypher
-MATCH (t:Transfer)<-[:TRANSFERED_IN]-(p:Player)
+MATCH (t:Transfer)<-[:TRANSFERRED_IN]-(p:Player)
 WHERE t.fee is NOT NULL
-RETURN  t.fee ,p.name 
+RETURN  t.fee as transfer_fee ,p.name AS player_name
 ORDER BY t.fee DESC LIMIT 20
 ```
 
 2) What about finding the most expensive transfer per season? 
 
 ```opencypher
-MATCH path = (s:Season)<-[:HAPPENED_IN]-(t:Transfer)<-[:TRANSFERED_IN]-(p:Player)
+MATCH path = (s:Season)<-[:HAPPENED_IN]-(t:Transfer)<-[:TRANSFERRED_IN]-(p:Player)
 WHERE t.fee is NOT NULL
 WITH  s.name as season, MAX(t.fee) as maxFee
 RETURN  maxFee,season
 ORDER BY maxFee DESC
 ```
 
-//OVO TREBAM JOS POPRAVIT
-3) Find all clubs for which player has played
+
+3)How about finding out for which teams has your favorite player played for?
+Instead of Sime Vrsaljko, you can instead put the name of your favorite player.
 
 ```opencypher
-MATCH (p:Player {name:"Neymar"})<-[:ofPlayer]-(t:Transfer)<-[:makesTransfer]-(m:Team) 
-RETURN DISTINCT m.name as name
-UNION 
-MATCH (p:Player {name:"Neymar"})<-[:ofPlayer]-(t:Transfer)-[:toClub]->(n:Team) 
-RETURN DISTINCT n.name as name
+MATCH (p:Player)-[:TRANSFERRED_IN]->(t:Transfer)-[]-(m:Team)
+WHERE p.name="Sime Vrsaljko"
+WITH DISTINCT m
+RETURN m.name AS team_name
 ```
 
-4)Find players that were transferred to and played for FC Barcelona and count them by position.
-Also collect their names.
+4)Find players that were transferred to and played for FC Barcelona and
+count them by the position they have in the game.
 
 ```opencypher
-MATCH (m:Team)<-[:TRANSFERED_TO]-(t:Transfer)<-[:TRANSFERED_IN]-(p:Player)
+MATCH (m:Team)<-[:TRANSFERRED_TO]-(t:Transfer)<-[:TRANSFERRED_IN]-(p:Player)
 WHERE m.name="FC Barcelona"
 WITH * ORDER BY p.name
 WITH DISTINCT p
@@ -165,71 +164,99 @@ ORDER BY position_count DESC
 
 5) Football has seen a lot of rivalries develop between clubs during its rich and long history,
 some of which can be traced back more than a century. Now one of the most famous ones is between
-FC Barcelona and Real Madrid C.F. Let's find out were there any transfers from FC Barcelona to Real Madrid C.F.
+FC Barcelona and Real Madrid. Let's find out were there any transfers between FC Barcelona and Real Madrid.
 
 ```opencypher
-MATCH path_teams = (m:Team )-[:TRANSFERED_FROM]->(t:Transfer)-[:TRANSFERED_TO]->(n:Team)
-WHERE m.name="FC Barcelona" AND n.name="Real Madrid"
-MATCH path_player = (t)<-[:TRANSFERED_IN]-(p:Player)
-RETURN path_teams,path_player
+MATCH path_teams = (m:Team )-[:TRANSFERRED_FROM]-(t:Transfer)-[:TRANSFERRED_TO]-(n:Team)
+WHERE (m.name="FC Barcelona" AND n.name="Real Madrid") OR (m.name="Real Madrid" AND n.name="FC Barcelona")
+MATCH path_player = (t)<-[:TRANSFERRED_IN]-(p:Player)RETURN path_teams,path_player
 ```
 
 
-// OVO NADALJE JOS NISAM FIXAO
-6) Find out what are the teams that players went from FC Barcelona.
+6) FC Barcelona is one of the biggest clubs in the world. Players often want to stay there as long as possible.
+But what about those players who didn't fit in well? Where do they go?
 
 ```opencypher
-MATCH (m:Team {name: "FC Barcelona"})-[:makesTransfer]->(t:Transfer)-[:ofPlayer]->(p:Player)
-MATCH (t)-[:toClub]->(n:Team)
-RETURN n.name, collect(p.name), COUNT(p) AS numberOfPlayers
-ORDER BY numberOfPlayers DESC
+MATCH (m:Team )-[:TRANSFERRED_FROM]->(t:Transfer)<-[:TRANSFERRED_IN]-(p:Player), (t)-[:TRANSFERRED_TO]->(n:Team)
+WHERE m.name="FC Barcelona"
+RETURN n.name as team_name, collect(p.name) as names, COUNT(p) AS number_of_players
+ORDER BY number_of_players DESC
 ```
 
 
-7) Find most popular clubs in certain year. Results may suprise you.
+7) What are the teams that most players went to in season 2003/2004? The results may surprise you. 
 
 ```opencypher 
-MATCH (y:Year {year:2004})<-[:inYear]-(t:Transfer)-[:ofPlayer]->(player:Player)
-MATCH (t)-[:toClub]->(n:Team)
-RETURN n.name as ClubName, COUNT(t) AS NumberOfPlayers
-ORDER BY NumberOfPlayers DESC, ClubName
+MATCH (s:Season {name:"2003/2004"})<-[:HAPPENED_IN]-(t:Transfer)<-[:TRANSFERRED_IN]-(player:Player)
+MATCH (t)-[:TRANSFERRED_TO]->(n:Team)
+WITH DISTINCT player, n
+RETURN n.name as team_name, COUNT(player) AS number_of_players,collect(player) as names
+ORDER BY number_of_players DESC, team_name
 LIMIT 20;
 ```
 
-8) Most money spend on player per position.
+8)In great teams, there are usually players who seem to be irreplaceable. When they leave,
+the board is often struggling to find a proper replacement for them. That's why there are more
+transfers on those positions. Let's find out on which positions in season
+2015/2016 FC Barcelona spent money.
 
 ```opencypher 
-MATCH (a:Team )-[:makesTransfer ]->(t:Transfer)-[:ofPlayer ]-> (p:Player )MATCH (t)-[r1:toClub]->(b:Team {name:"FC Barcelona"})
-WHERE t.fee IS NOT NULL 
+MATCH (n:Team )-[:TRANSFERRED_FROM ]->(t:Transfer)<-[:TRANSFERRED_IN]-(p:Player ),
+(s:Season)<-[:HAPPENED_IN]-(t)-[r1:TRANSFERRED_TO]->(m:Team)
+WHERE t.fee IS NOT NULL AND (s.name IN ["2015/2016","2016/2017"]) AND m.name="FC Barcelona"
+RETURN collect( p.name) AS names, p.position AS position, SUM(t.fee) AS money_spent_per_position
+```
+
+9) But what was the most money FC Barcelona spent per position from 1992/1993 season to 2019/2020?
+
+```opencypher 
+MATCH (a:Team )-[:TRANSFERRED_FROM ]->(t:Transfer)<-[:TRANSFERRED_IN ]-(p:Player ), (t)-[:TRANSFERRED_TO]->(b:Team)
+WHERE t.fee IS NOT NULL AND b.name="FC Barcelona"
 WITH max(t.fee) as maxMoneySpent, p.position AS position
 RETURN maxMoneySpent, position
 ```
 
-9)Sum of money spent on reinforcing team per position in certain years
+10) Now, let us find who were the most expensive players per position in our team FC Barcelona. 
 
 ```opencypher 
-MATCH (n:Team )-[:makesTransfer ]->(t:Transfer)-[:ofPlayer ]-> (p:Player )
-MATCH (t)-[r1:toClub]->(m:Team {name:"FC Barcelona"})
-MATCH (t)-[:inYear]->(y:Year)
-WHERE t.fee IS NOT NULL AND (y.year IN [2018,2019])
-RETURN collect( p.name) AS names, p.position AS position, SUM(t.fee) AS moneySpentPerPosition
+MATCH
+    (barca:Team)<-[:TRANSFERRED_TO]-(t:Transfer)<-[:TRANSFERRED_IN]-(p:Player), (t)-[:HAPPENED_IN]->(s:Season)
+WHERE 
+    t.fee is NOT NULL AND 
+    barca.name = "FC Barcelona"
+WITH p.position as player_position, max(t.fee) as max_fee
+
+MATCH
+    (p:Player)-[:TRANSFERRED_IN]->(t:Transfer)-[:HAPPENED_IN]->(s:Season)
+WHERE
+    p.position = player_position AND
+    t.fee = max_fee 
+RETURN
+    max_fee, player_position, collect(p.name) as player_names
 ```
 
-10) If you want to find indirect transfers of players between two clubs you can do that also
+
+11) If you want to find indirect transfers of players between two clubs you can do that also
 
 ```opencypher 
-MATCH    (player:Player)<-[:OfPlayer]-(t:Transfer) <- [:TransFrom]-(n:Team {name:"FC Barcelona"}), (player)<-[r1:OfPlayer]-(tr:Transfer)
-WITH     collect(tr) as transfers,player
-MATCH    path_indirect = ( (a:Team)-[ *bfs ..8 (e, n | 'Player' IN labels(n) OR 'Team' IN labels(n) OR ('Transfer' in labels(n) AND n in transfers) )]->(b:Team) )
-WHERE    a.name = "FC Barcelona" AND    b.name = "Sevilla FC"
-RETURN path_indirect,player
+MATCH
+    (t:Transfer)<-[e:TRANSFERRED_IN]-(player:Player)-[:TRANSFERRED_IN]->(:Transfer)<-[:TRANSFERRED_FROM]-(team:Team)
+WHERE
+    team.name = "FC Barcelona"
+WITH player, collect(t) as transfers, collect(e) as connections
+MATCH
+  path_indirect = (a:Team)-[*bfs..10 (e, n | 'Team' IN labels(n) OR ('Transfer' in labels(n) AND n in transfers) )]->(b:Team)
+WHERE
+  a.name = "FC Barcelona" AND
+  b.name = "Sevilla FC"
+UNWIND connections as connection
+RETURN player, connection, path_indirect
 ```
 Let's say you want to find indirect transfers between "FC Barcelona" and  "Sevilla FC".
-First it makes sense to find players that had at some point transfer from FC Barcelona. That way
+Firstly it makes sense to find players that had at some point transfer from FC Barcelona. That way
 we don't need to look for all players, just ones that had transfer from FC Barcelona.
 
-Then off to fun part.
-
+Then off to the fun part.
 
 (e, v | condition) is called a filter lambda. It's a function that takes an edge symbol e and a vertex symbol n 
 and decides whether this edge and vertex pair should be considered valid in breadth-first expansion by returning
