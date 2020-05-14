@@ -17,8 +17,8 @@ a player's registration from one association football club to another.
 In general, the players can only be transferred during a transfer window
 and according to the rules. The transfer window is a period during the year
 in which a football team can transfer players. There are two transfer windows per season:
-winter and summer windows. Winter transfer windows are throughout January while the summer
-windows are from July till August.
+winter and summer windows. Winter transfer windows are throughout January while
+the summer windows are from July till August.
 
 Usually some sort of compensation is paid for the player's rights,
 which is known as a transfer fee. When a player moves from one team to another,
@@ -26,15 +26,14 @@ their old contract is terminated and they negotiate a new one with the team
 they are moving to. In some cases, however, transfers can function similarly
 to player trades, as teams can offer another player on their team as part of the fee.
 
-As you may presume, there is a lot of money in the game of transfers.
-
-According to FIFA, in 2018, from January till September, there were 15,626 international transfers
+As you may presume, there is a lot of money in the game of transfers.According to FIFA,
+in 2018, from January till September, there were 15,626 international transfers
 with fees totaling US$ 7.5 billion dollars.
 
-In an organized sports league, a typical season is the part of one year in which regulated games
-of the sport are in session. In football, it is generally from August or September to May,
-although in some countries - such as Northern Europe or East Asia - the season starts in the spring 
-and finishes in autumn, due to weather conditions encountered during the winter.
+Season is the part of one year in which regulated games of the sport are in session. In football,
+a typical season is generally from August or September to May, although in some
+countries - such as Northern Europe or East Asia - the season starts in the spring and finishes in autumn,
+due to weather conditions encountered during the winter. 
 
 
 ### Data Model
@@ -46,29 +45,26 @@ in nine leagues that are supported. Those leagues are Eredivisie, English Champi
 English Premier League, French Ligue 1, German Bundesliga, Italian Serie A, Portuguese Liga Nos,
 Russian Premier Liga and Spanish Primera Division.
 
-
-* Each football transfer has a team which makes a transfer and team to which player is transferred to,
- so that will be our first label &mdash `Team`. Each label `Team` has a name so we will add the property `name`. 
-* Also, most of the teams in our dataset will have the league in which they compete so we will add
-label `League` with property `name`.
-* Following what we just described, there is also a player that is part of the transfer and that will be our next
-label &mdash `Player`. That label will have the properties `name` and `position` with the property position describing
-the position of the player on a football field.
-* We will add the property `age`, describing player's age when the transfer was done, to the new label that we will create,
-and that is node `Transfer`. This node will be a connection between nodes `Player` and two nodes of type `Team` that take
-part in the transfer.  Label `Transfer` will also have a  property `fee`. Fee represents millions of euros that were paid as
-compensation for the player's rights.
-* The Last node in our model will be `Season`. It will have properties `season` and `year`.
-The property `season` will be in string format and property `year` in number format.
+The model consists of the following nodes:
+* `Team` - a football team with a property `name` (e.g. `"FC Barcelona"`).
+* `Player` - a professional football player, contains properties `name` (e.g. `"Luka Modric"`)
+and `position` (e.g. `"Central Midfield"`).
+* `League` - a football league where multiple teams play in, contains one property
+`name` (e.g. `"Premier League"`).
+* `Transfer` - represents a football transfer that connects a `Player` 
+that is transferred from one `Team` to another `Team`
+within a `Season`. Transfer contains one optional property `fee` (e.g. `80.50`)
+that represents a transfer fee in millions of euros.
+* `Season` - a football season with two properties `name` (e.g. `"2019/2020"`)
+and `year` (e.g. `2019`).
 
 Till this point we only described nodes. Now we need to describe how those nodes are connected.
 
-* A Type `: TRANSFERRED_FROM` pointing from label `Team` player is being transferred from to the label `Transfer`.
-Also, we add a Type `: TRANSFERRED_TO` pointing from the `Transfer` to the `Team` player is being transferred to.
-* From label `Player` we add a Type `: TRANSFERRED_IN` pointing to a label `Transfer`. 
-* Each transfer is made in a specific season, so we create Type  `: HAPPENED_IN` pointing from the label
-`Transfer` to the label `Season`.
-* Each `Team` plays in specific league so we add a Type `: PLAYS_IN` pointing from label `Team` to label `League`
+* `: TRANSFERRED_FROM` pointing from label `Team` player is being transferred from to the label `Transfer`.
+* `: TRANSFERRED_TO` pointing from the `Transfer` to the `Team` player is being transferred to.
+* `: TRANSFERRED_IN` pointing from node `Player` that is being transferred in this transfer to the node `Transfer`. 
+* `: HAPPENED_IN` pointing from the node `Transfer` in which transfer happened into the node `Season`
+* `: PLAYS_IN` this relationship is optional. It points from node `Team` to the node `League` in which the team plays in.
 
 
 ![](../data/FootballTransfers_metagraph.png)
@@ -106,13 +102,13 @@ docker run -p 7687:7687 \
 You should note that any modifications of the database state will persist
 only during this run of Memgraph.
 
-Now that we have loaded snapshot in Memgraph, we are ready to get some interesting
-information out of it. 
-
 ### Example Queries using OpenCypher
 
 In the queries below, we are using [OpenCypher](https://www.opencypher.org) 
 to query Memgraph via the console.
+
+Now when we have a dataset of football transfers from season 1992/1993 to season 2019/2020
+loaded in Memgraph, we are ready to gain some information out of it.
 
 
 1) Let's say you want to find 20 most expensive transfers.
@@ -147,9 +143,9 @@ WITH DISTINCT team
 RETURN team.name AS team_name
 ```
 
-You might wonder why are we using [] in cipher traversal. As you now want to find teams
+You might wonder why are we using [] in cypher traversal. As you now want to find teams
 the player was transferred from and teams the player was transferred to, you don't want to
-specify then Type of connection between label `Transfer` and `Team`.
+specify then type of connection between label `Transfer` and `Team`.
 
 4) Find players that were transferred to and played for FC Barcelona and
 count them by the position they have in the game.
@@ -164,7 +160,7 @@ ORDER BY position_count DESC
 
 5) Football has seen a lot of rivalries develop between clubs during its rich and long history.
 One of the most famous ones is between fierce rivals FC Barcelona and Real Madrid.
-There is the term, El Clasico, for a match between those two teams.  Let's find out were there any transfers between
+There is the term, El Clasico, for a match between those two teams.  Let's find all the transfers between
 FC Barcelona and Real Madrid.
 
 ```opencypher
@@ -262,19 +258,19 @@ RETURN player, teams
 Let's say you want to find indirect transfers between "FC Barcelona" and  "Sevilla FC".
 Firstly you need to find players that had at some point transfer from FC Barcelona.
 That way we don't need to look for all players, just ones that had transfer from FC Barcelona.
-Now that we have these players and their transfers, we are ready to find other teams between FC Barcelona and Sevilla FC.
+Now that we have these players and that we have collected their transfers, we are ready to find
+other teams between FC Barcelona and Sevilla FC. We need to collect their transfers for the next part of the query.
 
-For this part we will use the breadth-first search (BFS) algorithm  and lambda filter, (e, v | condition).
-It's a function that takes an edge symbol e and a vertex symbol v and decides whether this edge and vertex pair 
+For this part we will use the breadth-first search (BFS) algorithm and lambda filter, (e, v | condition).
+It's a function that takes an edge symbol `e` and a vertex symbol `v` and decides whether this edge and vertex pair 
 should be considered valid in breadth-first expansion by returning true or false (or Null). In the above example,
-lambda is returning true if vertex has label "Team" or has label "Transfer" and it is one of the transfers of players
-that had transfer from FC Barcelona.  It needs to be Team or Transfer because of our data model that connects team
-that made transfer and that transfer with team player is being transferred to. 
+lambda is returning true if vertex has label `Team` or has label `Transfer` and it is one of the transfers of players
+that had transfer from FC Barcelona.  It needs to be `Team` or `Transfer` because to get from team 
+that made transfer to team player is being transferred you need to pass through node `Transfer` that connects those two.
 
 If you are running this in MemgraphLab with visuals, you can change the query in some way to get a full graph of two teams,
 both transfers and players. In first part you need to collect the connections between each transfer and player.
 And instead of returning list you can just return the path_indirect variable.
-
 
 12) Let's now find only indirect transfers between two clubs. In last query we found all transfers between two clubs.
 Now we need small change in query to only get indirect transfers.
