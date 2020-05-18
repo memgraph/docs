@@ -6,7 +6,7 @@ information.
 
 ### Introduction
 
-Football is a word that could mean one of several sports.In this article,
+Football is a word that could mean one of several sports. In this article,
 we are referring to the best-known type of football, association football.
 In North America, South Africa, and Australia to avoid confusion with other
 types of football, this it is called "soccer". 
