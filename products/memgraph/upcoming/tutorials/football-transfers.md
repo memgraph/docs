@@ -59,11 +59,11 @@ and `year` (e.g. `2019`).
 
 Till this point we only described nodes. Now we need to describe how those nodes are connected.
 
-* `: TRANSFERRED_FROM` pointing from label `Team` player is being transferred from to the label `Transfer`.
-* `: TRANSFERRED_TO` pointing from the `Transfer` to the `Team` player is being transferred to.
-* `: TRANSFERRED_IN` pointing from node `Player` that is being transferred in this transfer to the node `Transfer`. 
-* `: HAPPENED_IN` pointing from the node `Transfer` in which transfer happened into the node `Season`
-* `: PLAYS_IN` this relationship is optional. It points from node `Team` to the node `League` in which the team plays in.
+* `: TRANSFERRED_FROM` - connects team node `Team` to node `Transfer` representing a team where the player is being transferred from.
+* `: TRANSFERRED_TO` - connects node `Transfer` to team node `Team` where player is being transferred to.
+* `: TRANSFERRED_IN` - connects player node `Player` to node `Transfer` representing a player that was transferred in the connected transfer.
+* `: HAPPENED_IN` - connects node `Transfer` to the node `Season` in which transfer has happened.
+* `: PLAYS_IN` - connects node `Team` that plays in league node `League`.
 
 
 ![](../data/FootballTransfers_metagraph.png)
