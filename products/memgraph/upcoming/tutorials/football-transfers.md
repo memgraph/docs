@@ -30,10 +30,8 @@ As you may presume, there is a lot of money involved in the game of transfers. A
 in 2018, from January till September, there were 15,626 international transfers
 with fees totaling US$ 7.5 billion dollars.
 
-Season is the part of one year in which regulated games of the sport are in session. In football,
-a typical season is generally from August or September to May, although in some
-countries - such as Northern Europe or East Asia - the season starts in the spring and finishes in autumn,
-due to weather conditions encountered during the winter. 
+Football season is that part of the year during which football matches are held. A typical football
+season is generally from August/September to May, although in some countries, such as Northern Europe or East Asia, the season starts in the spring and finishes in autumn due to weather conditions encountered during the winter. 
 
 
 ### Data Model
