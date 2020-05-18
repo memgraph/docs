@@ -311,8 +311,8 @@ WITH collect (path_rows.name) as teams, player
 RETURN player, teams
 ```
 
-In this query, the only difference is that we first need to find players who had direct transfer to Sevilla.
-And in the next MATCH we check whether players that were transferred from FC Barcelona,
+In this query, the only difference is that we need to find players who had a direct transfer to Sevilla first.
+In the next `MATCH` we use that information to check whether players that were transferred from FC Barcelona,
 didn't have direct transfer to Sevilla FC. 
 
 
