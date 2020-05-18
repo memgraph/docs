@@ -251,16 +251,18 @@ And then we return the result.
 11) If you want to find all player transfers between two clubs you can do that also.
 
 ```opencypher 
-MATCH   (t:Transfer)<-[:TRANSFERRED_IN]-(player:Player)-[:TRANSFERRED_IN]->(:Transfer)<-[:TRANSFERRED_FROM]-(team:Team)
-WHERE   team.name = "FC Barcelona"
+MATCH (t:Transfer)<-[:TRANSFERRED_IN]-(player:Player)-[:TRANSFERRED_IN]->(:Transfer)<-[:TRANSFERRED_FROM]-(team:Team)
+WHERE team.name = "FC Barcelona"
 WITH player, collect(t) as transfers
-MATCH  path_indirect = (a:Team)-[*bfs..10 (e, n | 'Team' IN labels(n) OR ('Transfer' in labels(n) AND n in transfers) )]->(b:Team)
-WHERE  a.name = "FC Barcelona" AND  b.name = "Sevilla FC"
-WITH nodes(path_indirect) as path_of_player, player
-UNWIND path_of_player as path_row
-MATCH (path_row:Team)
-WITH collect (path_row.name) as teams, player
-RETURN player, teams
+MATCH player_path = (a:Team)-[*bfs..10 (e, n | 'Team' IN labels(n) OR ('Transfer' in labels(n) AND n in transfers) )]->(b:Team)
+WHERE
+  a.name = "FC Barcelona" AND
+  b.name = "Sevilla FC"
+UNWIND nodes(player_path) as player_path_node
+WITH player_path_node, player
+WHERE 'Team' in labels(player_path_node)
+WITH collect(player_path_node.name) as team_names, player
+RETURN player.name as player_name, team_names
 ```
 In the above query, we will find all players that transferred from "FC Barcelona" to "Sevilla FC". It 
 will include direct transfers (from "FC Barcelona" to "Sevilla FC") and indirect transfers (from "FC Barcelona"
@@ -272,8 +274,8 @@ It's a function that takes an edge symbol `e` and a vertex symbol `v` and decide
 should be considered valid in breadth-first expansion by returning true or false (or Null). In the above example,
 lambda is returning true if a vertex has a label `Team` or a label `Transfer`. If a vertex is `Transfer` there is an
 additional check where we need to make sure the transfer is one of the transfers of players transferred from "FC Barcelona".
-that had transfer from FC Barcelona.  It needs to be `Team` or `Transfer` because to get from team 
-that made transfer to team player is being transferred you need to pass through node `Transfer` that connects those two.
+It needs to be either `Team` or `Transfer` because to get from a team that made the transfer to
+the team where the player is being transferred to, we need to go through the node `Transfer` that connects those two teams. So the traversal from "FC Barcelona" to "Sevilla FC" will go through the following nodes: Transfer, Team, Transfer, Team, Transfer, etc.
 
 If you are running this in MemgraphLab with visuals, you can change the query in some way to get a full graph of two teams,
 both transfers and players. In first part you need to collect the connections between each transfer and player.
@@ -283,16 +285,19 @@ And instead of returning list you can just return the path_indirect variable.
 Now we need small change in query to only get indirect transfers.
 
 ```opencypher
-MATCH  (player:Player)-[:TRANSFERRED_IN]->(t:Transfer)<-[:TRANSFERRED_FROM]-(barca:Team),
-    (t)-[:TRANSFERRED_TO]->(sevilla:Team)
+MATCH
+  (player:Player)-[:TRANSFERRED_IN]->(t:Transfer)<-[:TRANSFERRED_FROM]-(barca:Team),
+  (t)-[:TRANSFERRED_TO]->(sevilla:Team)
 WHERE 
-    barca.name="FC Barcelona" AND  sevilla.name="Sevilla FC"
+  barca.name = "FC Barcelona" AND
+  sevilla.name = "Sevilla FC"
 WITH collect(player) as players_direct_to_sevilla
 MATCH
-    (t:Transfer)<-[e:TRANSFERRED_IN]-(player:Player)-[:TRANSFERRED_IN]->(tr:Transfer)<-[:TRANSFERRED_FROM]-(barca:Team)
+  (t:Transfer)<-[e:TRANSFERRED_IN]-(player:Player)-[:TRANSFERRED_IN]->(:Transfer)<-[:TRANSFERRED_FROM]-(barca:Team)
 WHERE
-    barca.name = "FC Barcelona" AND NOT player  in players_direct_to_sevilla
-WITH player, collect(t) as transfers, collect(e) as connections
+  barca.name = "FC Barcelona" AND
+  NOT player IN players_direct_to_sevilla
+WITH player, collect(t) as transfers
 MATCH
   path_indirect = (a:Team)-[*bfs..10 (e, n | 'Team' IN labels(n) OR ('Transfer' in labels(n) AND n in transfers) )]->(b:Team)
 WHERE
