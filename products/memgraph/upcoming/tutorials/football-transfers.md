@@ -262,16 +262,16 @@ MATCH (path_row:Team)
 WITH collect (path_row.name) as teams, player
 RETURN player, teams
 ```
-Let's say you want to find indirect transfers between "FC Barcelona" and  "Sevilla FC".
-Firstly you need to find players that had at some point transfer from FC Barcelona.
-That way we don't need to look for all players, just ones that had transfer from FC Barcelona.
-Now that we have these players and that we have collected their transfers, we are ready to find
-other teams between FC Barcelona and Sevilla FC. We need to collect their transfers for the next part of the query.
+In the above query, we will find all players that transferred from "FC Barcelona" to "Sevilla FC". It 
+will include direct transfers (from "FC Barcelona" to "Sevilla FC") and indirect transfers (from "FC Barcelona"
+to one or multiple other clubs and lastly "Sevilla FC"). That is the reason why we started first `MATCH` with
+searching for all players and transfers that were transferred from "FC Barcelona". Next up is the player transfer traversal through transfers and teams all the way to the "Sevilla FC".
 
-For this part we will use the breadth-first search (BFS) algorithm and lambda filter, (e, v | condition).
+For this part, we used the breadth-first search (BFS) algorithm with lambda filter `(e, v | condition)`.
 It's a function that takes an edge symbol `e` and a vertex symbol `v` and decides whether this edge and vertex pair 
 should be considered valid in breadth-first expansion by returning true or false (or Null). In the above example,
-lambda is returning true if vertex has label `Team` or has label `Transfer` and it is one of the transfers of players
+lambda is returning true if a vertex has a label `Team` or a label `Transfer`. If a vertex is `Transfer` there is an
+additional check where we need to make sure the transfer is one of the transfers of players transferred from "FC Barcelona".
 that had transfer from FC Barcelona.  It needs to be `Team` or `Transfer` because to get from team 
 that made transfer to team player is being transferred you need to pass through node `Transfer` that connects those two.
 
