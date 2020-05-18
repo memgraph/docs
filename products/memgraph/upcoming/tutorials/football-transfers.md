@@ -198,26 +198,34 @@ the club board is often struggling to find a proper replacement for them. Let's 
 club "FC Barcelona" spent money on in season 2015/2016.
 
 ```opencypher 
-MATCH (:Team )-[:TRANSFERRED_FROM ]->(t:Transfer)<-[:TRANSFERRED_IN]-(player:Player),
-(s:Season)<-[:HAPPENED_IN]-(t)-[:TRANSFERRED_TO]->(m:Team)
-WHERE t.fee IS NOT NULL AND (s.name IN ["2015/2016", "2016/2017"]) AND m.name = "FC Barcelona"
-RETURN collect(player.name) AS names, player.position AS position, ROUND(SUM(t.fee)) + 'M €' AS money_spent_per_position
+MATCH
+  (:Team)-[:TRANSFERRED_FROM ]->(t:Transfer)<-[:TRANSFERRED_IN]-(player:Player),
+  (s:Season)<-[:HAPPENED_IN]-(t)-[:TRANSFERRED_TO]->(m:Team)
+WHERE 
+  t.fee IS NOT NULL AND 
+  s.name IN ["2015/2016", "2016/2017"] AND
+  m.name = "FC Barcelona"
+RETURN collect(player.name) AS player_names, player.position AS player_position, ROUND(SUM(t.fee)) + 'M €' AS money_spent_per_position
 ```
 
-9) But what what was the highest transfer amounts FC Barcelona spent per position from 1992/1993 till 2019/2020?
-
-```opencypher 
-MATCH (:Team )-[:TRANSFERRED_FROM ]->(t:Transfer)<-[:TRANSFERRED_IN ]-(player:Player), 
-(t)-[:TRANSFERRED_TO]->(team:Team)
-WHERE t.fee IS NOT NULL AND team.name="FC Barcelona"
-RETURN MAX(t.fee) + 'M €' AS max_money_spent, player.position as player_position
-```
-
-10) Now, let us find who were the most expensive players per positions in our team FC Barcelona. 
+9) But what was the highest transfer amount per position FC Barcelona spent on in seasons from 1992/1993 till 2019/2020?
 
 ```opencypher 
 MATCH
-    (team:Team)<-[:TRANSFERRED_TO]-(t:Transfer)<-[:TRANSFERRED_IN]-(p:Player), (t)-[:HAPPENED_IN]->(s:Season)
+  (:Team)-[:TRANSFERRED_FROM]->(t:Transfer)<-[:TRANSFERRED_IN]-(player:Player), 
+  (t)-[:TRANSFERRED_TO]->(team:Team)
+WHERE
+  t.fee IS NOT NULL AND
+  team.name = "FC Barcelona"
+RETURN MAX(t.fee) + 'M €' AS max_money_spent, player.position as player_position
+```
+
+10) Now, let's find who were the most expensive players per position in team FC Barcelona. 
+
+```opencypher 
+MATCH
+    (team:Team)<-[:TRANSFERRED_TO]-(t:Transfer)<-[:TRANSFERRED_IN]-(p:Player),
+    (t)-[:HAPPENED_IN]->(s:Season)
 WHERE 
     t.fee is NOT NULL AND 
     team.name = "FC Barcelona"
@@ -240,7 +248,7 @@ The next part of the query is used to find who were those players.
 We match those players who were transferred to FC Barcelona with the maximum fee on that position.
 And then we return the result.
 
-11) If you want to find all transfers of players between two clubs you can do that also.
+11) If you want to find all player transfers between two clubs you can do that also.
 
 ```opencypher 
 MATCH   (t:Transfer)<-[:TRANSFERRED_IN]-(player:Player)-[:TRANSFERRED_IN]->(:Transfer)<-[:TRANSFERRED_FROM]-(team:Team)
