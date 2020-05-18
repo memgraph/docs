@@ -130,7 +130,6 @@ RETURN  ROUND(max_fee) + 'M €' as max_transfer_fee, season_name
 ORDER BY max_fee DESC
 ```
 
-
 3) How about finding out which teams your favorite player has played for?
 If you wish to check the teams for another player, replace "Sime Vrsaljko"
 with the name of your favorite player.
@@ -142,9 +141,10 @@ WITH DISTINCT team
 RETURN team.name AS team_name
 ```
 
-You might wonder why are we using [] in cypher traversal. As you now want to find teams
-the player was transferred from and teams the player was transferred to, you don't want to
-specify then type of connection between label `Transfer` and `Team`.
+You might wonder why we haven't specified a direction in our Cypher traversal with `(:Transfer)-[]-(:Team)`. 
+As we want to find the teams that player was transferred from (`(:Transfer)<-[]-(:Team)`) and transferred to
+(`(:Transfer)-[]->(:Team)`), we want to collect both inbound and outbound connections. In order to do so, we
+omit the arrow (`>`, `<`) in our Cypher command.
 
 4) Find players that were transferred to and played for FC Barcelona and
 count them by the position they have in the game.
