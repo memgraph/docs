@@ -147,11 +147,11 @@ As we want to find the teams that player was transferred from (`(:Transfer)<-[]-
 omit the arrow (`>`, `<`) in our Cypher command.
 
 4) Find players that were transferred to and played for FC Barcelona and
-count them by the position they have in the game.
+count them by the player game position.
 
 ```opencypher
-MATCH (m:Team)<-[:TRANSFERRED_TO]-(t:Transfer)<-[:TRANSFERRED_IN]-(player:Player)
-WHERE m.name = "FC Barcelona"
+MATCH (team:Team)<-[:TRANSFERRED_TO]-(t:Transfer)<-[:TRANSFERRED_IN]-(player:Player)
+WHERE team.name = "FC Barcelona"
 WITH DISTINCT player
 RETURN player.position as player_position, COUNT(player) AS position_count, collect(player.name) as player_names
 ORDER BY position_count DESC
@@ -159,22 +159,23 @@ ORDER BY position_count DESC
 
 5) Football has seen a lot of rivalries develop between clubs during its rich and long history.
 One of the most famous ones is between fierce rivals FC Barcelona and Real Madrid.
-There is the term, El Clasico, for a match between those two teams.  Let's find all the transfers between
+There is a term, El Clasico, for a match between those two teams. Let's find all the transfers between
 FC Barcelona and Real Madrid.
 
 ```opencypher
-MATCH (m:Team )-[:TRANSFERRED_FROM]-(t:Transfer)-[:TRANSFERRED_TO]-(n:Team)
-WHERE (m.name = "FC Barcelona" AND n.name = "Real Madrid") OR (m.name = "Real Madrid" AND n.name = "FC Barcelona")
+MATCH (m:Team)-[:TRANSFERRED_FROM]-(t:Transfer)-[:TRANSFERRED_TO]-(n:Team)
+WHERE
+  (m.name = "FC Barcelona" AND n.name = "Real Madrid") OR
+  (m.name = "Real Madrid" AND n.name = "FC Barcelona")
 MATCH (t)<-[:TRANSFERRED_IN]-(p:Player)
 RETURN m.name as transferred_from_team, p.name as player_name, n.name as transfered_to_team
 ```
-
 
 6) FC Barcelona is one of the most valuable football clubs in the world. Players often want to play there as long as possible.
 But what about those players who didn't fit in well? Where do they go?
 
 ```opencypher
-MATCH (m:Team )-[:TRANSFERRED_FROM]->(t:Transfer)<-[:TRANSFERRED_IN]-(p:Player), (t)-[:TRANSFERRED_TO]->(n:Team)
+MATCH (m:Team)-[:TRANSFERRED_FROM]->(t:Transfer)<-[:TRANSFERRED_IN]-(p:Player), (t)-[:TRANSFERRED_TO]->(n:Team)
 WHERE m.name = "FC Barcelona"
 RETURN n.name as team_name, collect(p.name) as player_names, COUNT(p) AS number_of_players
 ORDER BY number_of_players DESC
