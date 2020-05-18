@@ -181,7 +181,6 @@ RETURN n.name as team_name, collect(p.name) as player_names, COUNT(p) AS number_
 ORDER BY number_of_players DESC
 ```
 
-
 7) What are the teams that most players went to in season 2003/2004? The results may surprise you. 
 
 ```opencypher 
@@ -189,14 +188,14 @@ MATCH (season:Season)<-[:HAPPENED_IN]-(t:Transfer)<-[:TRANSFERRED_IN]-(player:Pl
 MATCH (t)-[:TRANSFERRED_TO]->(team:Team)
 WHERE season.name = "2003/2004"
 WITH DISTINCT player, team
-RETURN team.name as team_name, COUNT(player) AS number_of_players, collect(player.name) as names_of_players
+RETURN team.name as team_name, COUNT(player) AS number_of_players, collect(player.name) as player_names
 ORDER BY number_of_players DESC, team_name
 LIMIT 20;
 ```
 
-8) In great teams, there are  players who seem to be irreplaceable. When they leave,
-the club board is often struggling to find a proper replacement for them.Let's find out on which positions
-in season 2015/2016 FC Barcelona spent money.
+8) In great teams, there are players who seem to be irreplaceable. When they leave,
+the club board is often struggling to find a proper replacement for them. Let's find out which positions
+club "FC Barcelona" spent money on in season 2015/2016.
 
 ```opencypher 
 MATCH (:Team )-[:TRANSFERRED_FROM ]->(t:Transfer)<-[:TRANSFERRED_IN]-(player:Player),
