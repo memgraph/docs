@@ -26,7 +26,7 @@ their old contract is terminated and they negotiate a new one with the team
 they are moving to. In some cases, however, transfers can function similarly
 to player trades, as teams can offer another player on their team as part of the fee.
 
-As you may presume, there is a lot of money in the game of transfers.According to FIFA,
+As you may presume, there is a lot of money involved in the game of transfers. According to FIFA,
 in 2018, from January till September, there were 15,626 international transfers
 with fees totaling US$ 7.5 billion dollars.
 
