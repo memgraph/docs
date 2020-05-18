@@ -36,12 +36,13 @@ season is generally from August/September to May, although in some countries, su
 
 ### Data Model
 
-In this article, we will present a graph model of a large-sized dataset
-of football transfers that include the most famous leagues. When we say large-sized dataset,
-what we think by that is the dataset that has all transfers from season 1992/1993 to season 2019/2020
-in nine leagues that are supported. Those leagues are Eredivisie, English Championship,
-English Premier League, French Ligue 1, German Bundesliga, Italian Serie A, Portuguese Liga Nos,
-Russian Premier Liga and Spanish Primera Division.
+In this article, we will present a graph model of football transfers 
+from season 1992/1993 to season 2019/2020 in following five leagues:
+* English Premier League
+* French Ligue 1
+* German Bundesliga
+* Italian Serie A
+* Spanish Primera Division
 
 The model consists of the following nodes:
 * `Team` - a football team with a property `name` (e.g. `"FC Barcelona"`).
