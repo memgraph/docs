@@ -123,7 +123,7 @@ ORDER BY t.fee DESC LIMIT 20
 2) What about finding the most expensive transfer per season? 
 
 ```opencypher
-MATCH  (s:Season)<-[:HAPPENED_IN]-(t:Transfer)<-[:TRANSFERRED_IN]-(:Player)
+MATCH (s:Season)<-[:HAPPENED_IN]-(t:Transfer)<-[:TRANSFERRED_IN]-(:Player)
 WHERE t.fee is NOT NULL
 WITH  s.name as season_name, MAX(t.fee) as max_fee
 RETURN  ROUND(max_fee) + 'M €' as max_transfer_fee, season_name
