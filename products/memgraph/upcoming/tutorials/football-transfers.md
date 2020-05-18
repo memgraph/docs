@@ -8,8 +8,8 @@ information.
 
 Football is a word that could mean one of several sports. In this article,
 we are referring to the best-known type of football, association football.
-In North America, South Africa, and Australia to avoid confusion with other
-types of football, this it is called "soccer". 
+In North America, South Africa, and Australia, to avoid confusion with other
+types of football, it is called "soccer". 
 
 In professional football, a transfer is the action taken whenever a player
 under contract moves between teams. It refers to the transferring of
