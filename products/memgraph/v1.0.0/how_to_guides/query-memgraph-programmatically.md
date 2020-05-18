@@ -11,12 +11,13 @@ for some popular programming languages are listed below:
   * [Java](https://github.com/neo4j/neo4j-java-driver)
   * [Python](https://github.com/neo4j/neo4j-python-driver)
   * [JavaScript](https://github.com/neo4j/neo4j-javascript-driver)
+  * [Node.js](https://github.com/neo4j/neo4j-javascript-driver)
   * [C#](https://github.com/neo4j/neo4j-dotnet-driver)
   * [Ruby](https://github.com/neo4jrb/neo4j)
   * [Haskell](https://github.com/zmactep/hasbolt)
   * [PHP](https://github.com/graphaware/neo4j-bolt-php)
 
-### Secure Sockets Layer (SSL)
+### Secure Sockets Layer (SSL) {#secure-sockets-layer}
 
 Secure connections are supported and enabled by default. The server initially
 ships with a self-signed testing certificate. The certificate can be replaced
@@ -36,6 +37,7 @@ supported languages:
   * [Python](#python-example)
   * [Java](#java-example)
   * [JavaScript](#javascript-example)
+  * [Node.js](#node-js-example)
   * [C#](#c-sharp-example)
 
 Examples for the languages listed above are equivalent.
@@ -131,51 +133,134 @@ public class JavaQuickStart {
 The details about Javascript driver can be found on
 [GitHub](https://github.com/neo4j/neo4j-javascript-driver).
 
-Here is an example related to `Node.js`. Memgraph doesn't have integrated
-support for `WebSocket` which is required during the execution in any web
-browser. If you want to run `openCypher` queries from a web browser,
-[websockify](https://github.com/novnc/websockify) has to be up and running.
+Memgraph doesn't have integrated support for `WebSocket` which is required
+during the execution of Cypher commands in any web browser. If you want to
+run `openCypher` queries from a web browser,
+[websockify](https://github.com/novnc/websockify-js) has to be up and running.
 Requests from web browsers are wrapped into `WebSocket` messages, and a proxy
 is needed to handle the overhead. The proxy has to be configured to point out
 to Memgraph's Bolt port and web browser driver has to send requests to the
-proxy port.
+proxy port. Presented with Cypher language, the communication goes like this:
+
+```
+(:Browser:Javascript)-[:CONNECTS_TO]->(:Websockify { mode: "WS" })-[:PROXY_TO]->(:Memgraph { "encryption": "off" })
+```
+
+Proxy `Websockify` runs in unencrypted HTTP (ws://) mode by default which is a
+not secure Websocket protocol, so to match that, Memgraph needs to be running
+with encryption turned off. Check [Secure Sockets Layer (SSL)](#secure-sockets-layer)
+for more details on how to run Memgraph without encryption.
+
+The code snippet below outlines a basic usage example which executes a couple
+of elementary queries. Make sure to start Websockify to proxy queries to the
+database:
+
+```bash
+cd websockify
+npm install
+./websockify.js 9999 :7687
+```
+
+```html
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Javascript Browser Example | Memgraph</title>
+  <script src="https://cdn.jsdelivr.net/npm/neo4j-driver"></script>
+</head>
+<body>
+  <p>Check console for Cypher query outputs...</p>
+  <script>
+    const driver = neo4j.driver(
+      "bolt://localhost:9999",
+      neo4j.auth.basic("", ""),
+    );
+
+    (async function main() {
+      const session = driver.session();
+      
+      try {
+        await session.run("MATCH (n) DETACH DELETE n");
+        console.log("Database cleared.");
+
+        await session.run("CREATE (alice: Person {name: 'Alice', age: 22})");
+        console.log("Record created.");
+
+        const result = await session.run("MATCH (n) RETURN n");
+        console.log("Record matched:");
+        const alice = result.records[0].get("n");
+        console.log(alice.labels[0]);
+        console.log(alice.properties["name"]);
+
+      } catch (error) {
+        console.error(error);
+      } finally {
+        session.close();
+      }
+
+      driver.close();
+    })();
+  </script>
+</body>
+</html>
+```
+
+### Node.js Example {#node-js-example}
+
+The details about Javascript driver can be found on
+[GitHub](https://github.com/neo4j/neo4j-javascript-driver).
+
+Here is an example related to `Node.js`. Make sure to use version `^1.7.6`
+of `neo4j-driver` package due to unsupported Bolt connection changes added
+in the later versions of the driver:
+
+Content of the `package.json`:
+
+```json
+{
+  "dependencies": {
+    "neo4j-driver": "^1.7.6",
+  }
+}
+```
 
 The code snippet below outlines a basic usage example which connects to the
 database and executes a couple of elementary queries.
 
 ```javascript
-var neo4j = require('neo4j-driver').v1;
-var driver = neo4j.driver("bolt://localhost:7687",
-                          neo4j.auth.basic("neo4j", "1234"));
-var session = driver.session();
+const neo4j = require('neo4j-driver').v1;
+const driver = neo4j.driver(
+  "bolt://localhost:7687",
+  neo4j.auth.basic("", ""),
+);
 
-function die() {
-  session.close();
+async function main() {
+  const session = driver.session();
+  
+  try {
+    await session.run("MATCH (n) DETACH DELETE n");
+    console.log("Database cleared.");
+
+    await session.run("CREATE (alice: Person {name: 'Alice', age: 22})");
+    console.log("Record created.");
+
+    const result = await session.run("MATCH (n) RETURN n");
+    console.log("Record matched:");
+    const alice = result.records[0].get("n");
+    console.log(alice.labels[0]);
+    console.log(alice.properties["name"]);
+
+  } catch (error) {
+    console.error(error);
+  } finally {
+    session.close();
+  }
+
   driver.close();
 }
 
-function run_query(query, callback) {
-  var run = session.run(query, {});
-  run.then(callback).catch(function (error) {
-    console.log(error);
-    die();
-  });
-}
-
-run_query("MATCH (n) DETACH DELETE n", function (result) {
-  console.log("Database cleared.");
-  run_query("CREATE (alice: Person {name: 'Alice', age: 22})", function (result) {
-    console.log("Record created.");
-    run_query("MATCH (n) RETURN n", function (result) {
-      console.log("Record matched.");
-      var alice = result.records[0].get("n");
-      console.log(alice.labels[0]);
-      console.log(alice.properties["name"]);
-      session.close();
-      driver.close();
-    });
-  });
-});
+main();
 ```
 
 #### C# Example {#c-sharp-example}
