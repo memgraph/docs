@@ -1,7 +1,8 @@
 ## How to Use Query Modules Provided by Memgraph?
 
 Memgraph supports extending the query language with user-written procedures.
-These procedures are grouped into modules, which can then be loaded on startup.
+These procedures are grouped into modules, which can be loaded either on startup
+or afterwards using the built-in utility module.
 
 ### Utility Query Module
 
@@ -11,8 +12,8 @@ This module offers three procedures with the following signatures:
 
 * `mg.procedures() :: (name :: STRING, signature :: STRING)`: lists loaded
   procedures and their signatures
-* `mg.reload(module_name :: STRING) :: ()`: reloads the given module
-* `mg.reload_all() :: ()`: reloads all loaded modules
+* `mg.load(module_name :: STRING) :: ()`: loads or reloads the given module
+* `mg.load_all() :: ()`: loads or reloads all modules
 
 For example, invoking `mg.procedures()` from openCypher like so:
 
@@ -29,8 +30,8 @@ might yield the following result:
 | louvain.communities | louvain.communities() :: (community :: INTEGER, id :: INTEGER)    |
 | louvain.modularity  | louvain.modularity() :: (modularity :: FLOAT)                     |
 | mg.procedures       | mg.procedures() :: (name :: STRING, signature :: STRING)          |
-| mg.reload           | mg.reload(module_name :: STRING) :: ()                            |
-| mg.reload_all       | mg.reload_all() :: ()                                             |
+| mg.load             | mg.load(module_name :: STRING) :: ()                              |
+| mg.load_all         | mg.load_all() :: ()                                               |
 +---------------------+-------------------------------------------------------------------+
 ```
 
@@ -38,17 +39,26 @@ In this case, we can see that Memgraph has successfully loaded all utility query
 procedures as well as two additional procedures from the `louvain` query module.
 This module is included in Memgraph's Enterprise offering.
 
-If we wish to reload the `louvain` module, we can simply invoke:
+To load a module (named e.g. `hello`) that wasn't loaded on startup (perhaps
+because it was added to Memgraph's query modules directory after the fact), we
+can simply invoke:
 
 ```opencypher
-CALL mg.reload("louvain");
+CALL mg.load("hello");
 ```
 
-As you might have guessed from the name, the following query will reload all
-loaded modules:
+If we wish to reload an existing module, say the `louvain` module above, we
+again use the same procedure:
 
 ```opencypher
-CALL mg.reload_all();
+CALL mg.load("louvain");
+```
+
+Lastly, if we wish to reload all existing modules and load any newly added ones
+we can use:
+
+```opencypher
+CALL mg.load_all();
 ```
 
 ### Community Graph Algorithms as Query Modules

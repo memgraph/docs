@@ -22,7 +22,7 @@ docker run -p 7687:7687 \
   memgraph
 ```
 
-Memgraph will now attempt to load the query modules form all `*.so` and `*.py`
+Memgraph will now attempt to load the query modules from all `*.so` and `*.py`
 files it finds in the default (`/usr/lib/memgraph/query_modules`) directory.
 The `*.so` modules are written using the C API and the `*.py` modules are
 written using the Python API. Each file corresponds to one query module. Names
