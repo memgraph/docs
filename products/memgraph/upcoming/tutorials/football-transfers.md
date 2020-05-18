@@ -31,7 +31,9 @@ in 2018, from January till September, there were 15,626 international transfers
 with fees totaling US$ 7.5 billion dollars.
 
 Football season is that part of the year during which football matches are held. A typical football
-season is generally from August/September to May, although in some countries, such as Northern Europe or East Asia, the season starts in the spring and finishes in autumn due to weather conditions encountered during the winter. 
+season is generally from August/September to May, although in some countries, such as Northern Europe
+or East Asia, the season starts in the spring and finishes in autumn due to weather conditions encountered
+during the winter. 
 
 
 ### Data Model
@@ -59,9 +61,11 @@ and `year` (e.g. `2019`).
 
 Till this point we only described nodes. Now we need to describe how those nodes are connected.
 
-* `: TRANSFERRED_FROM` - connects team node `Team` to node `Transfer` representing a team where the player is being transferred from.
+* `: TRANSFERRED_FROM` - connects team node `Team` to node `Transfer` representing a team
+where the player is being transferred from.
 * `: TRANSFERRED_TO` - connects node `Transfer` to team node `Team` where player is being transferred to.
-* `: TRANSFERRED_IN` - connects player node `Player` to node `Transfer` representing a player that was transferred in the connected transfer.
+* `: TRANSFERRED_IN` - connects player node `Player` to node `Transfer` representing a player
+that was transferred in the connected transfer.
 * `: HAPPENED_IN` - connects node `Transfer` to the node `Season` in which transfer has happened.
 * `: PLAYS_IN` - connects node `Team` that plays in league node `League`.
 
@@ -114,8 +118,10 @@ loaded in Memgraph, we are ready to gain some information out of it.
 As mentioned before, transfers fees are represented in millions of euros.
 
 ```opencypher
-MATCH (t:Transfer)<-[:TRANSFERRED_IN]-(p:Player)
-WHERE t.fee is NOT NULL
+MATCH 
+    (t:Transfer)<-[:TRANSFERRED_IN]-(p:Player)
+WHERE 
+    t.fee is NOT NULL
 RETURN ROUND(t.fee) + 'M €' as transfer_fee, p.name AS player_name
 ORDER BY t.fee DESC LIMIT 20
 ```
@@ -123,8 +129,10 @@ ORDER BY t.fee DESC LIMIT 20
 2) What about finding the most expensive transfer per season? 
 
 ```opencypher
-MATCH (s:Season)<-[:HAPPENED_IN]-(t:Transfer)<-[:TRANSFERRED_IN]-(:Player)
-WHERE t.fee is NOT NULL
+MATCH 
+    (s:Season)<-[:HAPPENED_IN]-(t:Transfer)<-[:TRANSFERRED_IN]-(:Player)
+WHERE 
+    t.fee is NOT NULL
 WITH  s.name as season_name, MAX(t.fee) as max_fee
 RETURN  ROUND(max_fee) + 'M €' as max_transfer_fee, season_name
 ORDER BY max_fee DESC
@@ -135,8 +143,10 @@ If you wish to check the teams for another player, replace "Sime Vrsaljko"
 with the name of your favorite player.
 
 ```opencypher
-MATCH (player:Player)-[:TRANSFERRED_IN]->(t:Transfer)-[]-(team:Team)
-WHERE player.name = "Sime Vrsaljko"
+MATCH 
+    (player:Player)-[:TRANSFERRED_IN]->(t:Transfer)-[]-(team:Team)
+WHERE 
+    player.name = "Sime Vrsaljko"
 WITH DISTINCT team
 RETURN team.name AS team_name
 ```
@@ -150,8 +160,10 @@ omit the arrow (`>`, `<`) in our Cypher command.
 count them by the player game position.
 
 ```opencypher
-MATCH (team:Team)<-[:TRANSFERRED_TO]-(t:Transfer)<-[:TRANSFERRED_IN]-(player:Player)
-WHERE team.name = "FC Barcelona"
+MATCH 
+    (team:Team)<-[:TRANSFERRED_TO]-(t:Transfer)<-[:TRANSFERRED_IN]-(player:Player)
+WHERE 
+    team.name = "FC Barcelona"
 WITH DISTINCT player
 RETURN player.position as player_position, COUNT(player) AS position_count, collect(player.name) as player_names
 ORDER BY position_count DESC
@@ -163,11 +175,13 @@ There is a term, El Clasico, for a match between those two teams. Let's find all
 FC Barcelona and Real Madrid.
 
 ```opencypher
-MATCH (m:Team)-[:TRANSFERRED_FROM]-(t:Transfer)-[:TRANSFERRED_TO]-(n:Team)
+MATCH 
+    (m:Team)-[:TRANSFERRED_FROM]-(t:Transfer)-[:TRANSFERRED_TO]-(n:Team)
 WHERE
-  (m.name = "FC Barcelona" AND n.name = "Real Madrid") OR
-  (m.name = "Real Madrid" AND n.name = "FC Barcelona")
-MATCH (t)<-[:TRANSFERRED_IN]-(p:Player)
+    (m.name = "FC Barcelona" AND n.name = "Real Madrid") OR
+    (m.name = "Real Madrid" AND n.name = "FC Barcelona")
+MATCH
+    (t)<-[:TRANSFERRED_IN]-(p:Player)
 RETURN m.name as transferred_from_team, p.name as player_name, n.name as transfered_to_team
 ```
 
@@ -175,8 +189,10 @@ RETURN m.name as transferred_from_team, p.name as player_name, n.name as transfe
 But what about those players who didn't fit in well? Where do they go?
 
 ```opencypher
-MATCH (m:Team)-[:TRANSFERRED_FROM]->(t:Transfer)<-[:TRANSFERRED_IN]-(p:Player), (t)-[:TRANSFERRED_TO]->(n:Team)
-WHERE m.name = "FC Barcelona"
+MATCH 
+    (m:Team)-[:TRANSFERRED_FROM]->(t:Transfer)<-[:TRANSFERRED_IN]-(p:Player), (t)-[:TRANSFERRED_TO]->(n:Team)
+WHERE 
+    m.name = "FC Barcelona"
 RETURN n.name as team_name, collect(p.name) as player_names, COUNT(p) AS number_of_players
 ORDER BY number_of_players DESC
 ```
@@ -184,9 +200,11 @@ ORDER BY number_of_players DESC
 7) What are the teams that most players went to in season 2003/2004? The results may surprise you. 
 
 ```opencypher 
-MATCH (season:Season)<-[:HAPPENED_IN]-(t:Transfer)<-[:TRANSFERRED_IN]-(player:Player)
-MATCH (t)-[:TRANSFERRED_TO]->(team:Team)
-WHERE season.name = "2003/2004"
+MATCH 
+    (season:Season)<-[:HAPPENED_IN]-(t:Transfer)<-[:TRANSFERRED_IN]-(player:Player),
+    (t)-[:TRANSFERRED_TO]->(team:Team)
+WHERE 
+    season.name = "2003/2004"
 WITH DISTINCT player, team
 RETURN team.name as team_name, COUNT(player) AS number_of_players, collect(player.name) as player_names
 ORDER BY number_of_players DESC, team_name
@@ -251,13 +269,16 @@ And then we return the result.
 11) If you want to find all player transfers between two clubs you can do that also.
 
 ```opencypher 
-MATCH (t:Transfer)<-[:TRANSFERRED_IN]-(player:Player)-[:TRANSFERRED_IN]->(:Transfer)<-[:TRANSFERRED_FROM]-(team:Team)
-WHERE team.name = "FC Barcelona"
-WITH player, collect(t) as transfers
-MATCH player_path = (a:Team)-[*bfs..10 (e, n | 'Team' IN labels(n) OR ('Transfer' in labels(n) AND n in transfers) )]->(b:Team)
+MATCH 
+    (t:Transfer)<-[:TRANSFERRED_IN]-(player:Player)-[:TRANSFERRED_IN]->(:Transfer)<-[:TRANSFERRED_FROM]-(team:Team)
 WHERE
-  a.name = "FC Barcelona" AND
-  b.name = "Sevilla FC"
+    team.name = "FC Barcelona"
+WITH player, collect(t) as transfers
+MATCH 
+    player_path = (a:Team)-[*bfs..10 (e, n | 'Team' IN labels(n) OR ('Transfer' in labels(n) AND n in transfers) )]->(b:Team)
+WHERE
+    a.name = "FC Barcelona" AND
+    b.name = "Sevilla FC"
 UNWIND nodes(player_path) as player_path_node
 WITH player_path_node, player
 WHERE 'Team' in labels(player_path_node)
@@ -267,7 +288,8 @@ RETURN player.name as player_name, team_names
 In the above query, we will find all players that transferred from "FC Barcelona" to "Sevilla FC". It 
 will include direct transfers (from "FC Barcelona" to "Sevilla FC") and indirect transfers (from "FC Barcelona"
 to one or multiple other clubs and lastly "Sevilla FC"). That is the reason why we started first `MATCH` with
-searching for all players and transfers that were transferred from "FC Barcelona". Next up is the player transfer traversal through transfers and teams all the way to the "Sevilla FC".
+searching for all players and transfers that were transferred from "FC Barcelona". Next up is the player transfer
+traversal through transfers and teams all the way to the "Sevilla FC".
 
 For this part, we used the breadth-first search (BFS) algorithm with lambda filter `(e, v | condition)`.
 It's a function that takes an edge symbol `e` and a vertex symbol `v` and decides whether this edge and vertex pair 
@@ -275,11 +297,9 @@ should be considered valid in breadth-first expansion by returning true or false
 lambda is returning true if a vertex has a label `Team` or a label `Transfer`. If a vertex is `Transfer` there is an
 additional check where we need to make sure the transfer is one of the transfers of players transferred from "FC Barcelona".
 It needs to be either `Team` or `Transfer` because to get from a team that made the transfer to
-the team where the player is being transferred to, we need to go through the node `Transfer` that connects those two teams. So the traversal from "FC Barcelona" to "Sevilla FC" will go through the following nodes: Transfer, Team, Transfer, Team, Transfer, etc.
+the team where the player is being transferred to, we need to go through the node `Transfer` that connects those two teams.
+So the traversal from "FC Barcelona" to "Sevilla FC" will go through the following nodes: Transfer, Team, Transfer, Team, Transfer, etc.
 
-If you are running this in MemgraphLab with visuals, you can change the query in some way to get a full graph of two teams,
-both transfers and players. In first part you need to collect the connections between each transfer and player.
-And instead of returning list you can just return the path_indirect variable.
 
 12) Let's now find only indirect transfers between two clubs. In last query we found all transfers between two clubs.
 Now we need small change in query to only get indirect transfers.
@@ -303,19 +323,53 @@ MATCH
 WHERE
   a.name = "FC Barcelona" AND
   b.name = "Sevilla FC"
-WITH nodes(path_indirect) as path_of_player, player
-UNWIND path_of_player as path_rows
-MATCH 
-    (path_rows:Team)
-WITH collect (path_rows.name) as teams, player
-RETURN player, teams
+UNWIND nodes(path_indirect) as player_path_node
+WITH player_path_node, player
+WHERE 'Team' in labels(player_path_node)
+WITH collect(player_path_node.name) as team_names, player
+RETURN player.name as player_name, team_names
 ```
 
 In this query, the only difference is that we need to find players who had a direct transfer to Sevilla first.
 In the next `MATCH` we use that information to check whether players that were transferred from FC Barcelona,
 didn't have direct transfer to Sevilla FC. 
 
+If you are running this in [MemgraphLab](https://memgraph.com/product/lab) with visuals you can change the query
+in some way to get a full graph of two teams, both transfers and players.
 
+```opencypher
+MATCH
+    (player:Player)-[:TRANSFERRED_IN]->(t:Transfer)<-[:TRANSFERRED_FROM]-(barca:Team),
+    (t)-[:TRANSFERRED_TO]->(sevilla:Team)
+WHERE 
+    barca.name="FC Barcelona" AND
+    sevilla.name="Sevilla FC"
+WITH collect(player) as players_direct_to_sevilla
+MATCH
+    (t:Transfer)<-[e:TRANSFERRED_IN]-(player:Player)-[:TRANSFERRED_IN]->(tr:Transfer)<-[:TRANSFERRED_FROM]-(barca:Team)
+WHERE
+    barca.name = "FC Barcelona" AND NOT player  in players_direct_to_sevilla
+WITH player, collect(t) as transfers, collect(e) as connections
+MATCH
+    path_indirect = (a:Team)-[*bfs..10 (e, n | 'Team' IN labels(n) OR ('Transfer' in labels(n) AND n in transfers) )]->(b:Team)
+WHERE
+    a.name = "FC Barcelona" AND
+    b.name = "Sevilla FC"
+UNWIND connections as connection
+RETURN player, connection, path_indirect
+```
+
+The first part of the query where we check whether the player was transferred from "FC Barcelona"
+to "Sevilla FC" stays the same. In the next part where we collect the transfers of those players that were transferred from FC Barcelona,
+we also need to collect those edges `e` between each transfer and player, because MemgraphLab can only draw connections between nodes that we
+return in the last part of the query. And instead of using function UNWIND to return teams as a list, we can just return the variable containing
+the path of the player. If you look closely now at that path variable, you can see that it doesn't contain connections between player and transfer.
+That's the reason why we need to collect those connections between transfer and player in the first place. But we can't just return those connections.
+We need to unwind them and return each connection between `Transfer` and `Player` corresponding to that player's path.
+
+Here is a picture of how it will look if you run the query in MemgraphLab.
+
+![](../data/football_transfers_MemgraphLab_visual.png)
 ### Where To Next?
 
 We recommend checking out other tutorials from this series:
