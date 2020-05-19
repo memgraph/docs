@@ -258,13 +258,11 @@ RETURN
     max_fee, player_position, collect(p.name) as player_names
 ```
 
-This query would be shorter if we only wanted to find what was the maximum fee per position.
-But we also want to find the names of those players. 
-So, in the first part of the query, we are looking for the maximum fee per position.
-Everything around the MAX function is used to group elements. 
-The next part of the query is used to find who were those players.
-We match those players who were transferred to FC Barcelona with the maximum fee on that position.
-And then we return the result.
+If we needed to get the maximum transfer fee per position we would only need first `MATCH` in the
+above query making it way shorter. In order to match which players had maximum transfer fees per position
+our query is split into two parts:
+* First `MATCH` in the query finds the maximum transfer fee per position.
+* Second `MATCH` in the query is finding all players transferred to "FC Barcelona" with the same position and transfer fee equal to the maximum one from the previous query.
 
 11) If you want to find all player transfers between two clubs you can do that also.
 
