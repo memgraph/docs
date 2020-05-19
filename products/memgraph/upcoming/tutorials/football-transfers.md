@@ -52,10 +52,11 @@ The model consists of the following nodes:
 and `position` (e.g. `"Central Midfield"`).
 * `League` - a football league where multiple teams play in, contains one property
 `name` (e.g. `"Premier League"`).
-* `Transfer` - represents a football transfer that connects a `Player` 
+* `Transfer` - represents football transfer that connects a `Player` 
 that is transferred from one `Team` to another `Team`
 within a `Season`. Transfer contains one optional property `fee` (e.g. `80.50`)
-that represents a transfer fee in millions of euros.
+that represents a transfer fee in millions of euros and one regular property `year` (e.g `1995`)
+that represents how old was a player when the transfer occurred.
 * `Season` - a football season with two properties `name` (e.g. `"2019/2020"`)
 and `year` (e.g. `2019`).
 
@@ -70,7 +71,7 @@ that was transferred in the connected transfer.
 * `: PLAYS_IN` - connects node `Team` that plays in league node `League`.
 
 
-![](../data/FootballTransfers_metagraph.png)
+![](../data/football_transfers_metahraph.png)
 
 ### Importing the Snapshot
 
