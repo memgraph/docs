@@ -217,12 +217,12 @@ club "FC Barcelona" spent money on in season 2015/2016.
 
 ```opencypher 
 MATCH
-  (:Team)-[:TRANSFERRED_FROM ]->(t:Transfer)<-[:TRANSFERRED_IN]-(player:Player),
-  (s:Season)<-[:HAPPENED_IN]-(t)-[:TRANSFERRED_TO]->(m:Team)
+    (:Team)-[:TRANSFERRED_FROM ]->(t:Transfer)<-[:TRANSFERRED_IN]-(player:Player),
+    (s:Season)<-[:HAPPENED_IN]-(t)-[:TRANSFERRED_TO]->(m:Team)
 WHERE 
-  t.fee IS NOT NULL AND 
-  s.name IN ["2015/2016", "2016/2017"] AND
-  m.name = "FC Barcelona"
+    t.fee IS NOT NULL AND 
+    s.name IN ["2015/2016", "2016/2017"] AND
+    m.name = "FC Barcelona"
 RETURN collect(player.name) AS player_names, player.position AS player_position, ROUND(SUM(t.fee)) + 'M €' AS money_spent_per_position
 ```
 
@@ -230,11 +230,11 @@ RETURN collect(player.name) AS player_names, player.position AS player_position,
 
 ```opencypher 
 MATCH
-  (:Team)-[:TRANSFERRED_FROM]->(t:Transfer)<-[:TRANSFERRED_IN]-(player:Player), 
-  (t)-[:TRANSFERRED_TO]->(team:Team)
+    (:Team)-[:TRANSFERRED_FROM]->(t:Transfer)<-[:TRANSFERRED_IN]-(player:Player), 
+    (t)-[:TRANSFERRED_TO]->(team:Team)
 WHERE
-  t.fee IS NOT NULL AND
-  team.name = "FC Barcelona"
+    t.fee IS NOT NULL AND
+    team.name = "FC Barcelona"
 RETURN MAX(t.fee) + 'M €' AS max_money_spent, player.position as player_position
 ```
 
@@ -304,23 +304,23 @@ Now we need small change in query to only get indirect transfers.
 
 ```opencypher
 MATCH
-  (player:Player)-[:TRANSFERRED_IN]->(t:Transfer)<-[:TRANSFERRED_FROM]-(barca:Team),
-  (t)-[:TRANSFERRED_TO]->(sevilla:Team)
+    (player:Player)-[:TRANSFERRED_IN]->(t:Transfer)<-[:TRANSFERRED_FROM]-(barca:Team),
+    (t)-[:TRANSFERRED_TO]->(sevilla:Team)
 WHERE 
-  barca.name = "FC Barcelona" AND
-  sevilla.name = "Sevilla FC"
+    barca.name = "FC Barcelona" AND
+    sevilla.name = "Sevilla FC"
 WITH collect(player) as players_direct_to_sevilla
 MATCH
-  (t:Transfer)<-[e:TRANSFERRED_IN]-(player:Player)-[:TRANSFERRED_IN]->(:Transfer)<-[:TRANSFERRED_FROM]-(barca:Team)
+    (t:Transfer)<-[e:TRANSFERRED_IN]-(player:Player)-[:TRANSFERRED_IN]->(:Transfer)<-[:TRANSFERRED_FROM]-(barca:Team)
 WHERE
-  barca.name = "FC Barcelona" AND
-  NOT player IN players_direct_to_sevilla
+    barca.name = "FC Barcelona" AND
+    NOT player IN players_direct_to_sevilla
 WITH player, collect(t) as transfers
 MATCH
-  path_indirect = (a:Team)-[*bfs..10 (e, n | 'Team' IN labels(n) OR ('Transfer' in labels(n) AND n in transfers) )]->(b:Team)
+    path_indirect = (a:Team)-[*bfs..10 (e, n | 'Team' IN labels(n) OR ('Transfer' in labels(n) AND n in transfers) )]->(b:Team)
 WHERE
-  a.name = "FC Barcelona" AND
-  b.name = "Sevilla FC"
+    a.name = "FC Barcelona" AND
+    b.name = "Sevilla FC"
 UNWIND nodes(path_indirect) as player_path_node
 WITH player_path_node, player
 WHERE 'Team' in labels(player_path_node)
