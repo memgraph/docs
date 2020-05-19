@@ -59,7 +59,7 @@ that represents a transfer fee in millions of euros.
 * `Season` - a football season with two properties `name` (e.g. `"2019/2020"`)
 and `year` (e.g. `2019`).
 
-Till this point we only described nodes. Now we need to describe how those nodes are connected.
+Nodes are connected with the following edges:
 
 * `: TRANSFERRED_FROM` - connects team node `Team` to node `Transfer` representing a team
 where the player is being transferred from.
