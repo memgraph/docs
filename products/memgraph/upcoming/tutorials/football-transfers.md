@@ -133,8 +133,8 @@ MATCH
     (s:Season)<-[:HAPPENED_IN]-(t:Transfer)<-[:TRANSFERRED_IN]-(:Player)
 WHERE 
     t.fee is NOT NULL
-WITH  s.name as season_name, MAX(t.fee) as max_fee
-RETURN  ROUND(max_fee) + 'M €' as max_transfer_fee, season_name
+WITH s.name as season_name, MAX(t.fee) as max_fee
+RETURN ROUND(max_fee) + 'M €' as max_transfer_fee, season_name
 ORDER BY max_fee DESC
 ```
 
