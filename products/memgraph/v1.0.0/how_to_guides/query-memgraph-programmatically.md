@@ -89,7 +89,7 @@ driver.close()
 
 #### Java Example
 
-The details about Java driver can be found on
+Details about Java driver can be found on
 [GitHub](https://github.com/neo4j/neo4j-java-driver).
 
 The code snippet below outlines a basic usage example which connects to the
@@ -130,7 +130,7 @@ public class JavaQuickStart {
 
 #### JavaScript Example
 
-The details about Javascript driver can be found on
+Details about Javascript driver can be found on
 [GitHub](https://github.com/neo4j/neo4j-javascript-driver).
 
 Memgraph doesn't have integrated support for `WebSocket` which is required
@@ -146,8 +146,8 @@ proxy port. Presented with Cypher language, the communication goes like this:
 (:Browser:Javascript)-[:CONNECTS_TO]->(:Websockify { mode: "WS" })-[:PROXY_TO]->(:Memgraph { "encryption": "off" })
 ```
 
-Proxy `Websockify` runs in unencrypted HTTP (ws://) mode by default which is a
-not secure Websocket protocol, so to match that, Memgraph needs to be running
+Proxy `Websockify` runs in unencrypted HTTP (ws://) mode by default which
+isn't encrypted, so to match that, Memgraph needs to be running
 with encryption turned off. Check [Secure Sockets Layer (SSL)](#secure-sockets-layer)
 for more details on how to run Memgraph without encryption.
 
@@ -208,14 +208,14 @@ npm install
 
 ### Node.js Example {#node-js-example}
 
-The details about Javascript driver can be found on
+Details about Javascript driver can be found on
 [GitHub](https://github.com/neo4j/neo4j-javascript-driver).
 
 Here is an example related to `Node.js`. Make sure to use version `^1.7.6`
 of `neo4j-driver` package due to unsupported Bolt connection changes added
-in the later versions of the driver:
+in later versions of the driver:
 
-Content of the `package.json`:
+The snippet of the `package.json` file:
 
 ```json
 {
@@ -265,7 +265,7 @@ main();
 
 #### C# Example {#c-sharp-example}
 
-The details about C# driver can be found on
+Details about C# driver can be found on
 [GitHub](https://github.com/neo4j/neo4j-dotnet-driver).
 
 The code snipped below outlines a basic usage example which connects to the
