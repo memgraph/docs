@@ -299,7 +299,7 @@ the team where the player is being transferred to, we need to go through the nod
 So the traversal from "FC Barcelona" to "Sevilla FC" will go through the following nodes: Transfer, Team, Transfer, Team, Transfer, etc.
 
 
-12) Let's now find only indirect transfers between two clubs. In last query we found all transfers between two clubs.
+12) In the previous query, we found all transfers between two clubs. Let's filter out direct ones now.
 Now we need small change in query to only get indirect transfers.
 
 ```opencypher
