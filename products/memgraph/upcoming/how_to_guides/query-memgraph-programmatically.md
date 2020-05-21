@@ -36,9 +36,9 @@ supported languages:
 
   * [Python](#python-example)
   * [Java](#java-example)
-  * [JavaScript](#javascript-example)
-  * [Node.js](#node-js-example)
   * [C#](#c-sharp-example)
+  * [Node.js](#node-js-example)
+  * [JavaScript](#javascript-example)
 
 Examples for the languages listed above are equivalent.
 
@@ -128,6 +128,97 @@ public class JavaQuickStart {
 }
 ```
 
+#### C# Example {#c-sharp-example}
+
+Details about C# driver can be found on
+[GitHub](https://github.com/neo4j/neo4j-dotnet-driver).
+
+The code snipped below outlines a basic usage example which connects to the
+database and executes a couple of elementary queries.
+
+```csh
+using System;
+using System.Linq;
+using Neo4j.Driver.V1;
+
+public class Basic {
+  public static void Main(string[] args) {
+    // Initialize the driver.
+    var config = Config.DefaultConfig;
+    using(var driver = GraphDatabase.Driver("bolt://localhost:7687", AuthTokens.None, config))
+      using(var session = driver.Session())
+      {
+        // Run basic queries.
+        session.Run("MATCH (n) DETACH DELETE n").Consume();
+        session.Run("CREATE (alice:Person {name: \"Alice\", age: 22})").Consume();
+        var result = session.Run("MATCH (n) RETURN n").First();
+        var alice = (INode) result["n"];
+        Console.WriteLine(alice["name"]);
+        Console.WriteLine(string.Join(", ", alice.Labels));
+        Console.WriteLine(alice["age"]);
+      }
+    Console.WriteLine("All ok!");
+  }
+}
+```
+
+### Node.js Example {#node-js-example}
+
+Details about Javascript driver can be found on
+[GitHub](https://github.com/neo4j/neo4j-javascript-driver).
+
+Here is an example related to `Node.js`. Make sure to use version `^1.7.6`
+of `neo4j-driver` package due to unsupported Bolt connection changes added
+in later versions of the driver:
+
+The snippet of the `package.json` file:
+
+```json
+{
+  "dependencies": {
+    "neo4j-driver": "^1.7.6",
+  }
+}
+```
+
+The code snippet below outlines a basic usage example which connects to the
+database and executes a couple of elementary queries.
+
+```javascript
+const neo4j = require('neo4j-driver').v1;
+const driver = neo4j.driver(
+  "bolt://localhost:7687",
+  neo4j.auth.basic("", ""),
+);
+
+async function main() {
+  const session = driver.session();
+  
+  try {
+    await session.run("MATCH (n) DETACH DELETE n");
+    console.log("Database cleared.");
+
+    await session.run("CREATE (alice: Person {name: 'Alice', age: 22})");
+    console.log("Record created.");
+
+    const result = await session.run("MATCH (n) RETURN n");
+    console.log("Record matched:");
+    const alice = result.records[0].get("n");
+    console.log(alice.labels[0]);
+    console.log(alice.properties["name"]);
+
+  } catch (error) {
+    console.error(error);
+  } finally {
+    session.close();
+  }
+
+  driver.close();
+}
+
+main();
+```
+
 #### JavaScript Example
 
 > **Disclaimer**: Running queries directly from a web browser is **not a recommended**
@@ -208,95 +299,4 @@ npm install
   </script>
 </body>
 </html>
-```
-
-### Node.js Example {#node-js-example}
-
-Details about Javascript driver can be found on
-[GitHub](https://github.com/neo4j/neo4j-javascript-driver).
-
-Here is an example related to `Node.js`. Make sure to use version `^1.7.6`
-of `neo4j-driver` package due to unsupported Bolt connection changes added
-in later versions of the driver:
-
-The snippet of the `package.json` file:
-
-```json
-{
-  "dependencies": {
-    "neo4j-driver": "^1.7.6",
-  }
-}
-```
-
-The code snippet below outlines a basic usage example which connects to the
-database and executes a couple of elementary queries.
-
-```javascript
-const neo4j = require('neo4j-driver').v1;
-const driver = neo4j.driver(
-  "bolt://localhost:7687",
-  neo4j.auth.basic("", ""),
-);
-
-async function main() {
-  const session = driver.session();
-  
-  try {
-    await session.run("MATCH (n) DETACH DELETE n");
-    console.log("Database cleared.");
-
-    await session.run("CREATE (alice: Person {name: 'Alice', age: 22})");
-    console.log("Record created.");
-
-    const result = await session.run("MATCH (n) RETURN n");
-    console.log("Record matched:");
-    const alice = result.records[0].get("n");
-    console.log(alice.labels[0]);
-    console.log(alice.properties["name"]);
-
-  } catch (error) {
-    console.error(error);
-  } finally {
-    session.close();
-  }
-
-  driver.close();
-}
-
-main();
-```
-
-#### C# Example {#c-sharp-example}
-
-Details about C# driver can be found on
-[GitHub](https://github.com/neo4j/neo4j-dotnet-driver).
-
-The code snipped below outlines a basic usage example which connects to the
-database and executes a couple of elementary queries.
-
-```csh
-using System;
-using System.Linq;
-using Neo4j.Driver.V1;
-
-public class Basic {
-  public static void Main(string[] args) {
-    // Initialize the driver.
-    var config = Config.DefaultConfig;
-    using(var driver = GraphDatabase.Driver("bolt://localhost:7687", AuthTokens.None, config))
-      using(var session = driver.Session())
-      {
-        // Run basic queries.
-        session.Run("MATCH (n) DETACH DELETE n").Consume();
-        session.Run("CREATE (alice:Person {name: \"Alice\", age: 22})").Consume();
-        var result = session.Run("MATCH (n) RETURN n").First();
-        var alice = (INode) result["n"];
-        Console.WriteLine(alice["name"]);
-        Console.WriteLine(string.Join(", ", alice.Labels));
-        Console.WriteLine(alice["age"]);
-      }
-    Console.WriteLine("All ok!");
-  }
-}
 ```
