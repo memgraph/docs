@@ -8,14 +8,15 @@ communication with graph databases and Memgraph supports
 [Version 1](https://boltprotocol.org/v1) of the protocol. Bolt protocol drivers
 for some popular programming languages are listed below:
 
-  * [Java](https://github.com/neo4j/neo4j-java-driver)
   * [Python](https://github.com/neo4j/neo4j-python-driver)
-  * [JavaScript](https://github.com/neo4j/neo4j-javascript-driver)
-  * [Node.js](https://github.com/neo4j/neo4j-javascript-driver)
+  * [Java](https://github.com/neo4j/neo4j-java-driver)
   * [C#](https://github.com/neo4j/neo4j-dotnet-driver)
+  * [Node.js](https://github.com/neo4j/neo4j-javascript-driver)
+  * [JavaScript](https://github.com/neo4j/neo4j-javascript-driver)
   * [Ruby](https://github.com/neo4jrb/neo4j)
   * [Haskell](https://github.com/zmactep/hasbolt)
   * [PHP](https://github.com/graphaware/neo4j-bolt-php)
+  * [Go](https://github.com/neo4j/neo4j-go-driver)
 
 ### Secure Sockets Layer (SSL) {#secure-sockets-layer}
 
@@ -89,7 +90,7 @@ driver.close()
 
 #### Java Example
 
-Details about Java driver can be found on
+Details about the Java driver can be found on
 [GitHub](https://github.com/neo4j/neo4j-java-driver).
 
 The code snippet below outlines a basic usage example which connects to the
@@ -130,7 +131,7 @@ public class JavaQuickStart {
 
 #### C# Example {#c-sharp-example}
 
-Details about C# driver can be found on
+Details about the C# driver can be found on
 [GitHub](https://github.com/neo4j/neo4j-dotnet-driver).
 
 The code snipped below outlines a basic usage example which connects to the
@@ -164,7 +165,7 @@ public class Basic {
 
 ### Node.js Example {#node-js-example}
 
-Details about Javascript driver can be found on
+Details about the Javascript driver can be found on
 [GitHub](https://github.com/neo4j/neo4j-javascript-driver).
 
 Here is an example related to `Node.js`. Make sure to use version `^1.7.6`
@@ -225,7 +226,7 @@ main();
 **usage** because of additional requirements and possible performance issues. In other
 words, we encourage users to use server-side libraries and clients for top performance.
 
-Details about Javascript driver can be found on
+Details about the Javascript driver can be found on
 [GitHub](https://github.com/neo4j/neo4j-javascript-driver).
 
 Memgraph doesn't have integrated support for `WebSocket` which is required
