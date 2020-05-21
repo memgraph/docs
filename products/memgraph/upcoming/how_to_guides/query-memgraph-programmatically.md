@@ -130,6 +130,10 @@ public class JavaQuickStart {
 
 #### JavaScript Example
 
+> **Disclaimer**: Running queries directly from a web browser is **not a recommended**
+**usage** because of additional requirements and possible performance issues. In other
+words, we encourage users to use server-side libraries and clients for top performance.
+
 Details about Javascript driver can be found on
 [GitHub](https://github.com/neo4j/neo4j-javascript-driver).
 
