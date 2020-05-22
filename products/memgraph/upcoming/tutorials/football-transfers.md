@@ -302,7 +302,7 @@ So the traversal from "FC Barcelona" to "Sevilla FC" will go through the followi
 
 
 12) In the previous query, we found all transfers between two clubs. Let's filter out direct ones now.
-Now we need small change in query to only get indirect transfers.
+We need to add a small change in the query to only get indirect transfers.
 
 ```opencypher
 MATCH
@@ -379,6 +379,7 @@ With that in mind, our results contain all the information for the graph visual:
 Here is a picture of how it will look if you run the query in MemgraphLab.
 
 ![](../data/football_transfers_MemgraphLab_visual.png)
+
 ### Where To Next?
 
 We recommend checking out other tutorials from this series:
