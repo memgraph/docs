@@ -177,12 +177,11 @@ FC Barcelona and Real Madrid.
 
 ```opencypher
 MATCH 
-    (m:Team)-[:TRANSFERRED_FROM]-(t:Transfer)-[:TRANSFERRED_TO]-(n:Team)
+    (m:Team)-[:TRANSFERRED_FROM]-(t:Transfer)-[:TRANSFERRED_TO]-(n:Team),
+    (t)<-[:TRANSFERRED_IN]-(p:Player)
 WHERE
     (m.name = "FC Barcelona" AND n.name = "Real Madrid") OR
     (m.name = "Real Madrid" AND n.name = "FC Barcelona")
-MATCH
-    (t)<-[:TRANSFERRED_IN]-(p:Player)
 RETURN m.name as transferred_from_team, p.name as player_name, n.name as transfered_to_team
 ```
 
@@ -223,7 +222,7 @@ MATCH
     (s:Season)<-[:HAPPENED_IN]-(t)-[:TRANSFERRED_TO]->(m:Team)
 WHERE 
     t.fee IS NOT NULL AND 
-    s.name IN ["2015/2016", "2016/2017"] AND
+    s.name = "2015/2016" AND
     m.name = "FC Barcelona"
 RETURN collect(player.name) AS player_names, player.position AS player_position, ROUND(SUM(t.fee)) + 'M €' AS money_spent_per_position
 ```
@@ -350,14 +349,14 @@ MATCH
 WHERE
     barca.name = "FC Barcelona" AND
     NOT player in players_direct_to_sevilla
-WITH player, collect(t) as transfers, collect(e) as connections
+WITH player, collect(t) as transfers, collect(e) as player_to_transfers
 MATCH
     path_indirect = (a:Team)-[*bfs..10 (e, n | 'Team' IN labels(n) OR ('Transfer' in labels(n) AND n in transfers) )]->(b:Team)
 WHERE
     a.name = "FC Barcelona" AND
     b.name = "Sevilla FC"
-UNWIND connections as connection
-RETURN player, connection, path_indirect
+UNWIND player_to_transfers as player_to_transfer
+RETURN player, player_to_transfer, path_indirect
 ```
 
 MemgraphLab graph visual representation draws nodes and edges from query results. If you only have
@@ -374,7 +373,7 @@ is connected to which transfer.
 With that in mind, our results contain all the information for the graph visual:
 * A path that contains `Transfer` and `Team` nodes, and all the edges collected on the `Team` to `Team` traversal
 * A list of `Player` nodes
-* A list of `Player - Transfer` edges```
+* A list of `Player - Transfer` edges
 
 Here is a picture of how it will look if you run the query in MemgraphLab.
 
