@@ -80,7 +80,7 @@ import it when starting Memgraph using the `--data-directory` option.
 
 ```plaintext
 sudo -u memgraph \
-  /usr/lib/memgraph/memgraph --data-directory /usr/share/memgraph/examples/TEDTalk \
+  /usr/lib/memgraph/memgraph --data-directory /usr/share/memgraph/examples/FootballTransfers \
     --storage-snapshot-interval-sec=0 --storage-wal-enabled=false \
     --storage-snapshot-on-exit=false --storage-properties-on-edges=true
 ```
@@ -98,7 +98,7 @@ When using Docker, the example can simply be imported with the following command
 ```plaintext
 docker run -p 7687:7687 \
   -v mg_lib:/var/lib/memgraph -v mg_log:/var/log/memgraph -v mg_etc:/etc/memgraph \
-  memgraph --data-directory /usr/share/memgraph/examples/TEDTalk \
+  memgraph --data-directory /usr/share/memgraph/examples/FootballTransfers \
   --storage-snapshot-interval-sec=0 --storage-wal-enabled=false \
   --storage-snapshot-on-exit=false --storage-properties-on-edges=true
 ```
@@ -191,7 +191,8 @@ But what about those players who didn't fit in well? Where do they go?
 
 ```opencypher
 MATCH 
-    (m:Team)-[:TRANSFERRED_FROM]->(t:Transfer)<-[:TRANSFERRED_IN]-(p:Player), (t)-[:TRANSFERRED_TO]->(n:Team)
+    (m:Team)-[:TRANSFERRED_FROM]->(t:Transfer)<-[:TRANSFERRED_IN]-(p:Player),
+    (t)-[:TRANSFERRED_TO]->(n:Team)
 WHERE 
     m.name = "FC Barcelona"
 RETURN n.name as team_name, collect(p.name) as player_names, COUNT(p) AS number_of_players
@@ -218,7 +219,7 @@ club "FC Barcelona" spent money on in season 2015/2016.
 
 ```opencypher 
 MATCH
-    (:Team)-[:TRANSFERRED_FROM ]->(t:Transfer)<-[:TRANSFERRED_IN]-(player:Player),
+    (:Team)-[:TRANSFERRED_FROM]->(t:Transfer)<-[:TRANSFERRED_IN]-(player:Player),
     (s:Season)<-[:HAPPENED_IN]-(t)-[:TRANSFERRED_TO]->(m:Team)
 WHERE 
     t.fee IS NOT NULL AND 
@@ -260,7 +261,7 @@ RETURN
 ```
 
 If we needed to get the maximum transfer fee per position we would only need first `MATCH` in the
-above query making it way shorter. In order to match which players had maximum transfer fees per position
+above query, making it way shorter. In order to match players with maximum transfer fees per position
 our query is split into two parts:
 * First `MATCH` in the query finds the maximum transfer fee per position.
 * Second `MATCH` in the query is finding all players transferred to "FC Barcelona" with the same position and transfer fee equal to the maximum one from the previous query.
@@ -333,8 +334,8 @@ In this query, the only difference is that we need to find players who had a dir
 In the next `MATCH` we use that information to check whether players that were transferred from FC Barcelona,
 didn't have direct transfer to Sevilla FC. 
 
-If you are running this in [MemgraphLab](https://memgraph.com/product/lab) with visuals you can change the query
-in some way to get a full graph of two teams, both transfers and players.
+If you are running this in [MemgraphLab](https://memgraph.com/product/lab) you can change the query
+a bit in order to get all nodes and edges required for a visual graph representation of players transferring through teams.
 
 ```opencypher
 MATCH
@@ -347,7 +348,8 @@ WITH collect(player) as players_direct_to_sevilla
 MATCH
     (t:Transfer)<-[e:TRANSFERRED_IN]-(player:Player)-[:TRANSFERRED_IN]->(tr:Transfer)<-[:TRANSFERRED_FROM]-(barca:Team)
 WHERE
-    barca.name = "FC Barcelona" AND NOT player  in players_direct_to_sevilla
+    barca.name = "FC Barcelona" AND
+    NOT player in players_direct_to_sevilla
 WITH player, collect(t) as transfers, collect(e) as connections
 MATCH
     path_indirect = (a:Team)-[*bfs..10 (e, n | 'Team' IN labels(n) OR ('Transfer' in labels(n) AND n in transfers) )]->(b:Team)
@@ -358,13 +360,21 @@ UNWIND connections as connection
 RETURN player, connection, path_indirect
 ```
 
-The first part of the query where we check whether the player was transferred from "FC Barcelona"
-to "Sevilla FC" stays the same. In the next part where we collect the transfers of those players that were transferred from FC Barcelona,
-we also need to collect those edges `e` between each transfer and player, because MemgraphLab can only draw connections between nodes that we
-return in the last part of the query. And instead of using function UNWIND to return teams as a list, we can just return the variable containing
-the path of the player. If you look closely now at that path variable, you can see that it doesn't contain connections between player and transfer.
-That's the reason why we need to collect those connections between transfer and player in the first place. But we can't just return those connections.
-We need to unwind them and return each connection between `Transfer` and `Player` corresponding to that player's path.
+MemgraphLab graph visual representation draws nodes and edges from query results. If you only have
+nodes in the results then only nodes will be drawn on the canvas. If you have both nodes and edges present in the
+results, MemgraphLab is able to draw nodes and connections between them because it has all the information relevant
+for drawing.
+
+In order to change the query to accommodate that, we need to change the types of results that are returned
+and collect any missing edge or node information throughout the query. The first part of the query where we
+check whether the player was transferred from "FC Barcelona" to "Sevilla FC" stays the same. In order to draw
+all connections from players to transfers, we need to collect edges connecting them. That is the reason why we
+are collecting edges `e` through variable `player_to_transfers` because it contains information on which player
+is connected to which transfer.
+With that in mind, our results contain all the information for the graph visual:
+* A path that contains `Transfer` and `Team` nodes, and all the edges collected on the `Team` to `Team` traversal
+* A list of `Player` nodes
+* A list of `Player - Transfer` edges```
 
 Here is a picture of how it will look if you run the query in MemgraphLab.
 
