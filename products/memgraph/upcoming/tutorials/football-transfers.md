@@ -263,7 +263,8 @@ If we needed to get the maximum transfer fee per position we would only need fir
 above query, making it way shorter. In order to match players with maximum transfer fees per position
 our query is split into two parts:
 * First `MATCH` in the query finds the maximum transfer fee per position.
-* Second `MATCH` in the query is finding all players transferred to "FC Barcelona" with the same position and transfer fee equal to the maximum one from the previous query.
+* Second `MATCH` in the query is finding all players transferred to "FC Barcelona" with the same position and transfer 
+fee equal to the maximum one from the previous query.
 
 11) If you want to find all player transfers between two clubs you can do that also.
 
@@ -298,7 +299,6 @@ additional check where we need to make sure the transfer is one of the transfers
 It needs to be either `Team` or `Transfer` because to get from a team that made the transfer to
 the team where the player is being transferred to, we need to go through the node `Transfer` that connects those two teams.
 So the traversal from "FC Barcelona" to "Sevilla FC" will go through the following nodes: Transfer, Team, Transfer, Team, Transfer, etc.
-
 
 12) In the previous query, we found all transfers between two clubs. Let's filter out direct ones now.
 We need to add a small change in the query to only get indirect transfers.
