@@ -71,7 +71,7 @@ that was transferred in the connected transfer.
 * `: PLAYS_IN` - connects node `Team` that plays in league node `League`.
 
 
-![](../data/football_transfers_metahraph.png)
+![](../data/football_transfers_metagraph.png)
 
 ### Importing the Snapshot
 
