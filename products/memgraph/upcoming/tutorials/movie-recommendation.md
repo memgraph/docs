@@ -231,4 +231,3 @@ Here we use `REDUCE` function. Reduce function accumulate list elements
 into a single result by applying an expression.
 In our query, this function starts with 0 and sums up squared differences.
 `COLLECT` function is used for putting squared differences into the list.
-
