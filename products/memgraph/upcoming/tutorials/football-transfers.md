@@ -62,13 +62,13 @@ and `year` (e.g. `2019`).
 
 Nodes are connected with the following edges:
 
-* `: TRANSFERRED_FROM` - connects team node `Team` to node `Transfer` representing a team
+* `:TRANSFERRED_FROM` - connects team node `Team` to node `Transfer` representing a team
 where the player is being transferred from.
-* `: TRANSFERRED_TO` - connects node `Transfer` to team node `Team` where player is being transferred to.
-* `: TRANSFERRED_IN` - connects player node `Player` to node `Transfer` representing a player
+* `:TRANSFERRED_TO` - connects node `Transfer` to team node `Team` where player is being transferred to.
+* `:TRANSFERRED_IN` - connects player node `Player` to node `Transfer` representing a player
 that was transferred in the connected transfer.
-* `: HAPPENED_IN` - connects node `Transfer` to the node `Season` in which transfer has happened.
-* `: PLAYS_IN` - connects node `Team` that plays in league node `League`.
+* `:HAPPENED_IN` - connects node `Transfer` to the node `Season` in which transfer has happened.
+* `:PLAYS_IN` - connects node `Team` that plays in league node `League`.
 
 
 ![](../data/football_transfers_metagraph.png)
