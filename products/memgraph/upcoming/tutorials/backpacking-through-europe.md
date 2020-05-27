@@ -11,6 +11,7 @@ We highly recommend checking out the other articles from this series:
   * [Movie Recommendation System](movie-recommendation.md)
   * [Exploring the European Road Network](exploring-the-european-road-network.md)
   * [Marvel Comic Universe Social Network](marvel-universe.md)
+  * [Football Transfers](football-transfers.md)
 
 ### Introduction
 
@@ -155,7 +156,7 @@ RETURN trip, total_cost;
 Here we used the *weight lambda* to specify the cost of expanding to the
 specified vertex using the given edge (`v.cost_per_night_USD`), and the
 *total cost* symbol to calculate the cost of the trip.
-This can be done using an edge property like in the 
+This can be done using an edge property like in the
 [Exploring the European Road Network](exploring-the-european-road-network.md)
 tutorial.
 Here we use `cost_per_night` property of the city vertex `v` as our weight.
@@ -185,7 +186,7 @@ Let's list our top 10 options sorted by the total trip cost and number of
 cities in the path.
 
 ```opencypher
-MATCH path = (n:City {name: "Paris"})-[:CloseTo *3..5]-(m:City {name: "Zagreb"}) 
+MATCH path = (n:City {name: "Paris"})-[:CloseTo *3..5]-(m:City {name: "Zagreb"})
 WITH nodes(path) AS trip
 WITH extract(city in trip | [city, trip]) AS lst
 UNWIND lst AS rows

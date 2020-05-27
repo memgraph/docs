@@ -11,6 +11,7 @@ We highly recommend checking out the other articles from this series:
   * [Exploring the European Road Network](exploring-the-european-road-network.md)
   * [Backpacking Through Europe](backpacking-through-europe.md)
   * [Marvel Comic Universe Social Network](marvel-universe.md)
+  * [Football Transfers](football-transfers.md)
 
 ### Introduction
 
@@ -230,4 +231,3 @@ Here we use `REDUCE` function. Reduce function accumulate list elements
 into a single result by applying an expression.
 In our query, this function starts with 0 and sums up squared differences.
 `COLLECT` function is used for putting squared differences into the list.
-

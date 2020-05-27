@@ -16,11 +16,11 @@ this data as a graph and demonstrate a few example queries.
 ### Data Model
 
 * Each TED talk has a main speaker, so we
-identify two types of nodes &mdash; `Talk` and `Speaker`. 
+identify two types of nodes &mdash; `Talk` and `Speaker`.
 * We add an edge of type `Gave` pointing to a `Talk` from its main `Speaker`.
 * Each speaker has a name so we can add property `name` to `Speaker` node.
 * We'll add properties `name`, `title` and `description` to node
-`Talk`. 
+`Talk`.
 * Each talk is given in a specific TED event, so we can
 create node `Event` with property `name` and relationship `InEvent` between
 talk and event.
@@ -46,8 +46,8 @@ sudo -u memgraph \
     --storage-snapshot-on-exit=false --storage-properties-on-edges=true
 ```
 
-When using Memgraph installed from a Debian or RPM package, 
-the currently running Memgraph server needs to be stopped before 
+When using Memgraph installed from a Debian or RPM package,
+the currently running Memgraph server needs to be stopped before
 importing the example, using the following command:
 
 ```plaintext
@@ -69,10 +69,10 @@ only during this run of Memgraph.
 
 ### Example Queries using OpenCypher
 
-In the queries below, we are using [OpenCypher](https://www.opencypher.org) 
+In the queries below, we are using [OpenCypher](https://www.opencypher.org)
 to query Memgraph via the console.
 
- 
+
 1) Find all talks given by specific speaker:
 
 ```opencypher
@@ -189,3 +189,4 @@ We recommend checking out other tutorials from this series:
   * [Graphing the Premier League](graphing-the-premier-league.md)
   * [Movie Recommendation System](movie-recommendation.md)
   * [Marvel Comic Universe Social Network](marvel-universe.md)
+  * [Football Transfers](football-transfers.md)

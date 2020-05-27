@@ -29,6 +29,7 @@ Full Activity Auditing                                |           |     +
     * [Backpacking Through Europe](tutorials/backpacking-through-europe.md)
     * [Movie Recommendation System](tutorials/movie-recommendation.md)
     * [Marvel Comic Universe Social Network](tutorials/marvel-universe.md)
+    * [Football Transfers](football-transfers.md)
   * [How to](how_to_guides/how-to-guides-overview.md)
     * [Inspect and Profile OpenCypher Queries Using Memgraph?](how_to_guides/explain-profile.md)
     * [Import Data?](how_to_guides/import-data.md)
