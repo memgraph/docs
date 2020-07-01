@@ -21,7 +21,7 @@ We highly recommend checking out the other articles from this series:
 ### Data Model
 
 Although the MCU is chock-full of heroes, the real hero here is Russ Chappell,
-who painstakingly gathered the MCU data for the [Marvel Chronology Project](www.chronologyproject.com).
+who painstakingly gathered the MCU data for the [Marvel Chronology Project](http://www.chronologyproject.com).
 In addition, R. Alberich, J. Miro-Julia, and F. Rossello, three data scientists,
 scraped the Chronology Project database, processed the data and put it into a
 format that can be easily imported into any data-processing framework available
@@ -57,6 +57,37 @@ A visual scheme of our graph database is given below.
 ![](../data/mcu_metagraph.png)
 
 ### Importing the Snapshot
+
+We have prepared a database snapshot for this example, so the user can easily
+import it when starting Memgraph using the `--data-directory` option.
+
+```plaintext
+sudo -u memgraph \
+  /usr/lib/memgraph/memgraph --data-directory /usr/share/memgraph/examples/Marvel \
+    --storage-snapshot-interval-sec=0 --storage-wal-enabled=false \
+    --storage-snapshot-on-exit=false --storage-properties-on-edges=true
+```
+
+When using Memgraph installed from DEB or RPM package, the currently running
+Memgraph server may need to be stopped before importing the example. The user
+can do so using the following command:
+
+```plaintext
+systemctl stop memgraph
+```
+
+When using Docker, the example can be imported with the following command:
+
+```plaintext
+docker run -p 7687:7687 \
+  -v mg_lib:/var/lib/memgraph -v mg_log:/var/log/memgraph -v mg_etc:/etc/memgraph \
+  memgraph --data-directory /usr/share/memgraph/examples/Marvel \
+  --storage-snapshot-interval-sec=0 --storage-wal-enabled=false \
+  --storage-snapshot-on-exit=false --storage-properties-on-edges=true
+```
+
+The user should note that any modifications of the database state will persist
+only during this run of Memgraph.
 
 ### Example Queries using OpenCypher
 
