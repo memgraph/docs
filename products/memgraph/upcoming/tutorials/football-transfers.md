@@ -124,7 +124,7 @@ MATCH
 WHERE
     t.fee is NOT NULL
 RETURN ROUND(t.fee) + 'M €' as transfer_fee, p.name AS player_name
-ORDER BY t.fee DESC LIMIT 20
+ORDER BY t.fee DESC LIMIT 20;
 ```
 
 2) What about finding the most expensive transfer per season?
@@ -136,7 +136,7 @@ WHERE
     t.fee is NOT NULL
 WITH s.name as season_name, MAX(t.fee) as max_fee
 RETURN ROUND(max_fee) + 'M €' as max_transfer_fee, season_name
-ORDER BY max_fee DESC
+ORDER BY max_fee DESC;
 ```
 
 3) How about finding out which teams your favorite player has played for?
@@ -149,7 +149,7 @@ MATCH
 WHERE
     player.name = "Sime Vrsaljko"
 WITH DISTINCT team
-RETURN team.name AS team_name
+RETURN team.name AS team_name;
 ```
 
 You might wonder why we haven't specified a direction in our Cypher traversal with `(:Transfer)-[]-(:Team)`.
@@ -167,7 +167,7 @@ WHERE
     team.name = "FC Barcelona"
 WITH DISTINCT player
 RETURN player.position as player_position, COUNT(player) AS position_count, collect(player.name) as player_names
-ORDER BY position_count DESC
+ORDER BY position_count DESC;
 ```
 
 5) Football has seen a lot of rivalries develop between clubs during its rich and long history.
@@ -182,7 +182,7 @@ MATCH
 WHERE
     (m.name = "FC Barcelona" AND n.name = "Real Madrid") OR
     (m.name = "Real Madrid" AND n.name = "FC Barcelona")
-RETURN m.name as transferred_from_team, p.name as player_name, n.name as transfered_to_team
+RETURN m.name as transferred_from_team, p.name as player_name, n.name as transfered_to_team;
 ```
 
 6) FC Barcelona is one of the most valuable football clubs in the world. Players often want to play there as long as possible.
@@ -195,7 +195,7 @@ MATCH
 WHERE
     m.name = "FC Barcelona"
 RETURN n.name as team_name, collect(p.name) as player_names, COUNT(p) AS number_of_players
-ORDER BY number_of_players DESC
+ORDER BY number_of_players DESC;
 ```
 
 7) What are the teams that most players went to in season 2003/2004? The results may surprise you.
@@ -225,6 +225,7 @@ WHERE
     s.name = "2015/2016" AND
     m.name = "FC Barcelona"
 RETURN collect(player.name) AS player_names, player.position AS player_position, ROUND(SUM(t.fee)) + 'M €' AS money_spent_per_position
+ORDER BY money_spent_per_position DESC;
 ```
 
 9) But what was the highest transfer amount per position FC Barcelona spent on in seasons from 1992/1993 till 2019/2020?
@@ -237,6 +238,7 @@ WHERE
     t.fee IS NOT NULL AND
     team.name = "FC Barcelona"
 RETURN MAX(t.fee) + 'M €' AS max_money_spent, player.position as player_position
+ORDER BY max_money_spent DESC;
 ```
 
 10) Now, let's find who were the most expensive players per position in team FC Barcelona.
@@ -257,6 +259,7 @@ WHERE
     team.name = "FC Barcelona"
 RETURN
     max_fee, player_position, collect(p.name) as player_names
+ORDER BY max_fee DESC;
 ```
 
 If we needed to get the maximum transfer fee per position we would only need first `MATCH` in the
@@ -283,7 +286,7 @@ UNWIND nodes(player_path) as player_path_node
 WITH player_path_node, player
 WHERE 'Team' in labels(player_path_node)
 WITH collect(player_path_node.name) as team_names, player
-RETURN player.name as player_name, team_names
+RETURN player.name as player_name, team_names;
 ```
 In the above query, we will find all players that transferred from "FC Barcelona" to "Sevilla FC". It
 will include direct transfers (from "FC Barcelona" to "Sevilla FC") and indirect transfers (from "FC Barcelona"
@@ -326,7 +329,7 @@ UNWIND nodes(path_indirect) as player_path_node
 WITH player_path_node, player
 WHERE 'Team' in labels(player_path_node)
 WITH collect(player_path_node.name) as team_names, player
-RETURN player.name as player_name, team_names
+RETURN player.name as player_name, team_names;
 ```
 
 In this query, the only difference is that we need to find players who had a direct transfer to Sevilla first.
@@ -356,7 +359,7 @@ WHERE
     a.name = "FC Barcelona" AND
     b.name = "Sevilla FC"
 UNWIND player_to_transfers as player_to_transfer
-RETURN player, player_to_transfer, path_indirect
+RETURN player, player_to_transfer, path_indirect;
 ```
 
 MemgraphLab graph visual representation draws nodes and edges from query results. If you only have
