@@ -8,6 +8,7 @@ communication with graph databases and Memgraph supports
 [Version 1](https://boltprotocol.org/v1) of the protocol. Bolt protocol drivers
 for some popular programming languages are listed below:
 
+  * [C/C++](https://github.com/memgraph/mgclient)
   * [Python](https://github.com/neo4j/neo4j-python-driver)
   * [Java](https://github.com/neo4j/neo4j-java-driver)
   * [C#](https://github.com/neo4j/neo4j-dotnet-driver)
