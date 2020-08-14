@@ -81,6 +81,7 @@ alice = only_row["n"]
 # Print out what we retrieved.
 print("Found a vertex with labels '{}', name '{}' and age {}".format(
   alice['name'], alice.labels, alice['age'])
+)
 
 # Remove all the data from the database.
 session.run('MATCH (n) DETACH DELETE n').consume()
