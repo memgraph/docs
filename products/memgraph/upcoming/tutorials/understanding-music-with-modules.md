@@ -9,35 +9,35 @@ are listed in our [tutorial overview section](tutorials-overview.md).
 
 ### Introduction
 
-Getting useful information from your data is always challenging. With Memgraph
+Getting useful information from your data is always challenging. With Memgraph,
 you can manipulate and extract a huge amount of information by writing queries.
-Memgraph even offers a set of built-in graph algorithms you can use in your
-queries extending your power over the data. But what if you wanted to do more?
+Memgraph even offers a set of built-in graph algorithms. You can use those algorithms
+in your queries, extending your power over the data. But what if you wanted to do more?
 
 At its core, Memgraph "simply" builds a graph from your data. Graphs were always
 interesting to scientists and engineers because of their interesting properties
 allowing you to represent a specific kind of data in an intuitive way which
-makes extracting useful information much easier. Because of that, a field called
-graph theory emerged in mathematics producing a great number of algorithms,
+makes extracting useful information much easier. A field called
+graph theory emerged in mathematics, producing a great number of algorithms,
 metrics, and other functions that are applied to the graphs.
 
 Memgraph allows you to use the underlying graph in your functions by using
 `Query modules`, and those functions are called procedures. In this tutorial,
 we'll see how easy it is to extend the capabilities of Memgraph using Python.
-Also, will show you how to use one of the most popular Python libraries for
-graphs, called [NetworkX](https://networkx.github.io/), which contains an insane
-amount of functions and algorithms for the graphs.
+It will also show you how to use one of the most popular Python libraries for graphs,
+called [NetworkX](https://networkx.github.io/), which contains an insane amount
+of functions and algorithms for the graphs.
 
 ### Data model
 
 Social graphs is a relatively recent term. Simply said, it's a representation of
-a social network. Social networks appear in a variety of sites e.g. Youtube,
+a social network. Social networks appear in various sites, e.g., Youtube,
 which is primarily a site for watching videos, can be classified as a social
 network. For this tutorial, we'll use data consisting of users of the music
 streaming platform called [Deezer](https://www.deezer.com/).
 
-The data consists of around 50k Deezer users from Croatia but we prepared a
-subset of the dataset consisting only of 2k users. Each user is defined by id
+The data consists of around 50k Deezer users from Croatia, but we prepared a
+subset of the dataset only composed of 2k users. Each user is defined by id
 and a list of genres he loved. The edges represent the mutual friendship between
 the users. You can find a more detailed explanation of the dataset on the
 [github](https://github.com/benedekrozemberczki/datasets#deezer-social-networks)
@@ -56,11 +56,10 @@ For more detailed explanation take a look at
 [How to Use and Implement Query Modules](../how_to_guides/use-and-implement-query-modules.md).
 
 ```plaintext
-sudo -u memgraph \
-  /usr/lib/memgraph/memgraph --data-directory /usr/share/memgraph/examples/Europe \
-    --storage-snapshot-interval-sec=0 --storage-wal-enabled=false \
-    --storage-snapshot-on-exit=false --storage-properties-on-edges=true
-    --query-modules-directory=/path/to/your/modules/directory
+/usr/lib/memgraph/memgraph --data-directory /usr/share/memgraph/examples/Music \
+ --storage-snapshot-interval-sec=0 --storage-wal-enabled=false \
+ --storage-snapshot-on-exit=false --storage-properties-on-edges=true
+ --query-modules-directory=/modules
 ```
 
 When using Memgraph installed from DEB or RPM package, the currently running
@@ -77,8 +76,8 @@ When using Docker, the example can be imported with the following command
 ```plaintext
 docker run -p 7687:7687 \
   -v mg_lib:/var/lib/memgraph -v mg_log:/var/log/memgraph -v mg_etc:/etc/memgraph \
-  -v $(pwd)/path/to/your/modules/directory:/path/to/mount/of/modules/directory \
-  memgraph --data-directory /usr/share/memgraph/examples/Europe \
+  -v $(pwd)/modules:/modules \
+  memgraph --data-directory /usr/share/memgraph/examples/Music \
   --storage-snapshot-interval-sec=0 --storage-wal-enabled=false \
   --storage-snapshot-on-exit=false --storage-properties-on-edges=true
   --query-modules-directory=/path/to/mount/of/modules/directory
@@ -106,13 +105,13 @@ We will define a procedure called `genre_count`:
 ```python
 import mgp
 
+
 @mgp.read_proc
 def genre_count(context: mgp.ProcCtx,
                 genre: str
-               ) -> mgp.Record(genre=str, count=int):
+                ) -> mgp.Record(genre=str, count=int):
     count = len(
-        [v for v in context.graph.vertices if genre in v.properties['genres']]
-    )
+        [v for v in context.graph.vertices if genre in v.properties['genres']])
     return mgp.Record(genre=genre, count=count)
 ```
 
@@ -120,17 +119,16 @@ Let's reload the modules and check the results:
 
 ```opencypher
 CALL deezer_example.genre_count("Pop")
-YIELD genre, count
-RETURN genre, count;
+YIELD *;
 ```
 
 We can notice multiple things:
 
 - import of the `mgp` module which contains helper functions and types for
   defining custom procedures
-- `@mgp.read_proc` which marks the function as a procedure
-- every argument is defined with a type
-- result is defined as an object of `mgp.Record` which also has defined types of
+- `@mgp.read_proc` decorator which marks the function as a procedure
+- every argument is annotated with a type
+- result is defined as an object of `mgp.Record` which also has annotated types of
   its members
 
 This example is probably not that interesting to you because we can get the same
@@ -151,10 +149,10 @@ appears in top n places.
 ```python
 from collections import defaultdict
 
+
 @mgp.read_proc
 def in_top_n_percentage(context: mgp.ProcCtx,
-                        n: int
-                       ) -> mgp.Record(in_top_n_percentages=list):
+                        n: int) -> mgp.Record(in_top_n_percentages=list):
     genre_count = defaultdict(lambda: {'total_count': 0, 'in_top_n_count': 0})
 
     for v in context.graph.vertices:
@@ -162,7 +160,7 @@ def in_top_n_percentage(context: mgp.ProcCtx,
             genre_count[genre]['total_count'] += 1
             genre_count[genre]['in_top_n_count'] += index < n
 
-    get_percentage = lambda genre, counts: {
+    def get_percentage(genre, counts): return {
         'genre': genre,
         'percentage': counts['in_top_n_count'] / counts['total_count'],
         'size': counts['total_count']
@@ -170,9 +168,10 @@ def in_top_n_percentage(context: mgp.ProcCtx,
 
     return mgp.Record(
         in_top_n_percentages=[
-            get_percentage(g, c) for g, c in genre_count.items()
-        ]
-    )
+            get_percentage(
+                genre,
+                counts) for genre,
+            counts in genre_count.items()])
 ```
 
 Let's see what we got:
@@ -203,17 +202,18 @@ graph to `networkX.Graph`.
 import networkx as nx
 import networkx.algorithms as nxa
 
+
 def _create_undirected_graph(context: mgp.ProcCtx) -> nx.Graph:
     g = nx.Graph()
 
     for v in context.graph.vertices:
         context.check_must_abort()
-        g.add_node(v.id)
+        g.add_node(v)
 
     for v in context.graph.vertices:
         context.check_must_abort()
         for e in v.out_edges:
-            g.add_edge(e.from_vertex.id, e.to_vertex.id)
+            g.add_edge(e.from_vertex, e.to_vertex)
 
     return g
 ```
@@ -226,47 +226,41 @@ like to calculate the
 
 ```python
 @mgp.read_proc
-def analyse_graph(context: mgp.ProcCtx) -> mgp.Record(average_clustering=float,
-                                                      has_bridges=bool):
+def analyze_graph(
+        context: mgp.ProcCtx) -> mgp.Record(
+        average_clustering=float,
+        has_bridges=bool):
     g = _create_undirected_graph(context)
     return mgp.Record(
         average_clustering=nxa.average_clustering(g),
-        has_bridges=nxa.has_bridges(g)
-    )
+        has_bridges=nxa.has_bridges(g))
 ```
 
 And to get and display the data let's run the following command:
 
 ```opencypher
-CALL deezer_example.analyse_graph()
-YIELD *
-RETURN *;
+CALL deezer_example.analyze_graph()
+YIELD *;
 ```
 
 Another interesting property of a node in a graph is its
 [centrality](https://en.wikipedia.org/wiki/Centrality). Centrality tells us how
 important a node is for a graph. In our case, it would mean higher the
 centrality, more popular the user is. Let's find out which user is the most
-popular in our network and take a peak at his/hers music taste. We will use the
+popular in our network and take a peek at his/hers music taste. We will use the
 [betweenness centrality](https://en.wikipedia.org/wiki/Betweenness_centrality).
 
 ```python
 @mgp.read_proc
-def betweenness_centrality(context: mgp.ProcCtx) -> mgp.Record(centralities=list):
+def betweenness_centrality(
+        context: mgp.ProcCtx) -> mgp.Record(centralities=list):
     g = _create_undirected_graph(context)
-
-    def get_centrality_info(user_id, centrality):
-        return {
-            'user': context.graph.get_vertex_by_id(user_id),
-            'centrality': centrality
-        }
-
-    centralities = nxa.centrality.betweenness_centrality(g)
     return mgp.Record(
         centralities=[
-            get_centrality_info(id, ct) for id, ct in centralities.items()
-        ]
-    )
+            {
+                'user': context.graph.get_vertex_by_id(user_id),
+                'centrality': centrality} for user_id,
+            centrality in nxa.centrality.betweenness_centrality(g).items()])
 ```
 
 Now let's take a look at the results:
@@ -295,11 +289,10 @@ return the percentage which tells us how many of the users have that genre in
 their list. In the end, music is something that connects us!
 
 ```python
-import itertools
-
-def _get_communities(context: mgp.ProcCtx,
-                     community_function,
-                     calculate_quality: bool):
+def _get_communities(
+        context: mgp.ProcCtx,
+        community_function,
+        calculate_quality: bool):
     g = _create_undirected_graph(context)
 
     communities = list(community_function(g))
@@ -313,9 +306,7 @@ def _get_communities(context: mgp.ProcCtx,
     else:
         quality = {}
 
-    communities = [
-        list(map(context.graph.get_vertex_by_id, com)) for com in communities
-    ]
+    communities = [list(community) for community in communities]
 
     def get_community_info(community):
         info = {
@@ -323,21 +314,23 @@ def _get_communities(context: mgp.ProcCtx,
         }
 
         genre_count = defaultdict(lambda: 0)
-        for genre in itertools.chain(*[u.properties["genres"] for u in community]):
-            genre_count[genre] += 1
+        for genre in itertools.chain(
+                *[user.properties["genres"] for user in community]):
+            if genre != 'Pop':
+                genre_count[genre] += 1
 
         if len(genre_count) != 0:
-            mpg = max(genre_count.items(), key=lambda item: item[1])
+            mpg = max(
+                genre_count.items(),
+                key=lambda item: item[1])
 
             info['most_popular_genre'] = mpg[0]
             info['most_popular_genre_percentage'] = mpg[1] / info['size']
 
         return info
 
-    return mgp.Record(
-        communities=[get_community_info(c) for c in communities],
-        quality=quality
-    )
+    return mgp.Record(communities=[get_community_info(c)
+                                   for c in communities], quality=quality)
 ```
 
 Now that we have our function in place let's test some algorithms. We will be
@@ -348,26 +341,27 @@ and
 
 ```python
 @mgp.read_proc
-def greedy_modularity_communities(context: mgp.ProcCtx,
-                                  calculate_quality: bool=False
-                                 ) -> mgp.Record(communities=list, q
-                                                 quality=mgp.Any):
+def greedy_modularity_communities(
+        context: mgp.ProcCtx,
+        calculate_quality: bool = False) -> mgp.Record(
+        communities=list,
+        quality=mgp.Map):
     return _get_communities(
         context,
         nxa.community.greedy_modularity_communities,
-        calculate_quality
-    )
+        calculate_quality)
+
 
 @mgp.read_proc
-def label_propagation_communities(context: mgp.ProcCtx,
-                                  calculate_quality: bool=False
-                                 ) -> mgp.Record(communities=list,
-                                                 quality=mgp.Any):
+def label_propagation_communities(
+        context: mgp.ProcCtx,
+        calculate_quality: bool = False) -> mgp.Record(
+        communities=list,
+        quality=mgp.Map):
     return _get_communities(
         context,
         nxa.community.label_propagation_communities,
-        calculate_quality
-    )
+        calculate_quality)
 ```
 
 In the above snippet, we can notice an optional argument `calculate_quality` and
@@ -397,10 +391,14 @@ RETURN community.most_popular_genre, community.most_popular_genre_percentage, co
 ORDER BY community.size DESC;
 ```
 
+Your results should look something like this:
+![](../data/community_genre_statistics.png)
+
 Hmm, `Pop` sure is popular. Let's ignore that genre:
 
 ```python
-for genre in itertools.chain(*[user.properties["genres"] for user in community]):
+for genre in itertools.chain(
+        *[user.properties["genres"] for user in community]):
     if genre != 'Pop':
         genre_count[genre] += 1
 ```
@@ -410,10 +408,10 @@ dance!
 
 We saw the biggest communities in our network using two different methods. It's
 hard to say which of the methods did better so let's check a couple of metrics
-by calling the same procedure with enabled `calculate_quality`:
+by calling the same procedure with `calculate_quality` set to true:
 
 ```opencypher
-CALL deezer_example.greedy_modularity_communities(True)
+CALL deezer_example.greedy_modularity_communities(true)
 YIELD communities, quality
 RETURN quality;
 ```
@@ -421,7 +419,7 @@ RETURN quality;
 and
 
 ```opencypher
-CALL deezer_example.label_propagation_communities(True)
+CALL deezer_example.label_propagation_communities(true)
 YIELD communities, quality
 RETURN quality;
 ```
@@ -439,9 +437,5 @@ over the data. Using packages like `NetworkX` you get a huge amount of already
 implemented graph algorithms while Memgraph allows you complete access to its
 internal graph.
 
-<<<<<<< HEAD
-If you are not a big fan of Python, don't worry! We have C API with the exact same functionalities.
-=======
-If you are not a big fan of Python, don't worry! We have C API with the exact
+If you are not a big fan of Python, don't worry! We have a C API with the exact
 same functionalities.
->>>>>>> 80 chars max len
