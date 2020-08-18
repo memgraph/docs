@@ -258,8 +258,8 @@ def betweenness_centrality(
     return mgp.Record(
         centralities=[
             {
-                'user': context.graph.get_vertex_by_id(user_id),
-                'centrality': centrality} for user_id,
+                'user': user,
+                'centrality': centrality} for user,
             centrality in nxa.centrality.betweenness_centrality(g).items()])
 ```
 
@@ -279,9 +279,13 @@ finish. The issue of slower `NetworkX` implementations is something we at
 Memgraph would like to address in the future.
 
 For our last trick, let's try to locate communities inside our network.
-Communities are a set of nodes that are densely connected internally. As for
-centrality, there are multiple algorithms for finding communities in a graph. We
-will write a function that takes a method for calculating communities, uses it
+Communities are a set of nodes that are densely connected.  
+The goal of the community detection algorithms can be nicely described
+with the next visualization:
+![](../data/community_detection_visualization.png)
+
+As for centrality, there are multiple algorithms for finding communities in a graph.
+We will write a function that takes a method for calculating communities, uses it
 to find the communities, and, optionally, calculates some metrics specific to
 the graph partitioning so we can compare algorithms. To make things more
 interesting, let's find out which genre is the most popular in the community and
@@ -299,9 +303,9 @@ def _get_communities(
 
     if calculate_quality:
         quality = {
-            'coverage': nxa.community.quality.coverage(g, communities[:]),
-            'modularity': nxa.community.quality.modularity(g, communities[:]),
-            'performance': nxa.community.quality.performance(g, communities[:])
+            'coverage': nxa.community.quality.coverage(g, communities),
+            'modularity': nxa.community.quality.modularity(g, communities),
+            'performance': nxa.community.quality.performance(g, communities)
         }
     else:
         quality = {}
