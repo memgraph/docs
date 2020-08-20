@@ -6,59 +6,59 @@ information.
 
 ### Introduction
 
-In the last few years, a subset of the artifical intelligence called machine
+In the last few years, a subset of artificial intelligence called machine
 learning started to develop rapidly. Today, there's a small chance that you
 haven't at least heard someone mention it. Even though the field isn't
 completely new, faster development of the hardware enabled machine learning
-to tackle new challanges that were nearly impossible before.
+to tackle new challenges that were nearly impossible before.
 
-For now, machine learning has the most success in the computer vision field.
-Because of insane amount of information contained in a single image, it was
+For now, machine learning has had the most success in the computer vision field.
+Because of the insane amount of information contained in a single image, it was
 hard to develop algorithms that achieve both high accuracy and speed.
 With machine learning, we can finally solve various problems just by sending
 the data to the model and let the machine find any patterns present in the
 images.
 
-Computer vision isn't the only field reaping the benefits of the machine learning.
-Email filtering, detection of malwares, translations, sentiment analysis,
+Computer vision isn't the only field reaping the benefits of machine learning.
+Email filtering, detection of malware, translations, sentiment analysis,
 recommendation system all use machine learning in some way.
 
-The most important thing is the data. Every day, we generate insane amount
-of data and, for many different things, there exists some kind of connection
+The most important thing is the data. Every day, we generate an insane amount
+of data, and, for many different things, there exists some kind of connection
 between the data. That kind of data can be represented with graphs.
-Nodes by itself can contain certain amount of data, i.e. nodes are defined
+Nodes by itself can contain a certain amount of data, i.e. nodes are defined
 by their features. With edges, the amount of information we have about a
-single node increases because we can use nodes and edges in its neighbourhood.
+single node increases because we can use nodes and edges in its neighborhood.
 Considering all that, we can say for sure that machine learning is something
-that could work really well with graphs.
+that could work well with graphs.
 
-Lately, many papers about graph-based machine learning emerged with a lot
+Lately, many papers about graph machine learning emerged with a lot
 of interesting problems being solved using it, e.g. node classification
 and link prediction that tries to find missing connections in the graph.
 
 Also, something that will surely help the advancement of the graph-based
 machine learning, is a library supporting it. The library that we will be using
 throughout the tutorial and that we recommend is [StellarGraph](https://github.com/stellargraph/stellargraph).
-StellarGraph contains great amount of algorithms and methods that enable
+StellarGraph contains a great number of algorithms and methods that enable
 easier definitions of the machine learning models that use graphs in any way.
 It's really simple to use and it offers great integration with Keras.
 
-In this tutorial, we will mostly follow StellarGraph tutorial for the node
+In this tutorial, we will mostly follow StellarGraph's tutorial for the node
 classification using the Cora dataset and [GCN](https://arxiv.org/pdf/1703.06103.pdf). The purpose of this tutorial is to
-show how, through modules, you can easely train a model and get predictions
+show how, through modules, you can easily train a model and get predictions
 using the data saved in the Memgraph database.
 
 ### Data Model
 
 For our tutorial, we will be using the Cora dataset. The dataset consists of
 2708 scientific publications classified into one of seven classes where
-each classes represents the subject of the publication. 5429 links represent
+each class represents the subject of the publication. 5429 links represent
 citation. Even though the original dataset is a directed graph we will ignore
 the edge direction.
 
-Each publication is defined with a 0/1 word vector where each field of vector
-represents absence/presence of the corresponding word from the dictionary
-which consists of 1433 unique words.
+Each publication is defined with a 0/1 word vector where each field of the
+vector represents the absence/presence of the corresponding word from the
+dictionary which consists of 1433 unique words.
 
 ### Importing the Snapshot
 
@@ -83,7 +83,7 @@ systemctl stop memgraph
 
 ### Initial setup
 First, we need to create our Python script that will contain the procedures.
-Let's create in our query modules directory a file named cora_ml.py.
+Let's create in our query modules directory a file named `cora_ml.py`.
 
 At the beginning of the file we will add all the necessary imports:
 
@@ -145,7 +145,10 @@ def _get_stellar_graph(context: mgp.ProcCtx):
 ### Training a model
 
 Now that we have a way to transform our graph to a `StellarGraph` object we
-can easily use everything `stellargraph` package provides.
+can easily use everything the StellarGraph provides.
+Let's start defining the procedure that will train a model on our data.
+We will name the procedure `train` and it will return the `test_acc` and
+`test_loss` measured after the training.
 
 ```python
 @mgp.read_proc
@@ -169,8 +172,8 @@ paired with their targets.
 ```
 
 To train our model we need to represent our targets differently. For our model,
-every subject will be represented using One-Hot encoding. We can also easily
-achieve that by using `LabelBinarizer` from `sklearn`.
+every subject will be represented using One-Hot encoding. We can easily
+achieve that by using `LabelBinarizer` also from `sklearn`.
 
 ```python
     target_encoding = preprocessing.LabelBinarizer()
@@ -180,11 +183,11 @@ achieve that by using `LabelBinarizer` from `sklearn`.
     test_targets = target_encoding.transform(test_subjects)
 ```
 
-Let's save our encoding mappings so we can transform our models output in different
-procedures:
+Let's save our encoding mappings so that we can transform our model's output in
+different procedures:
 
 ```python
-    with open('class_encodings', 'w+') as encodings:
+    with open('/home/memgraph/class_encodings', 'w+') as encodings:
         encodings.write(','.join(target_encoding.classes_))
 ```
 
@@ -196,19 +199,19 @@ as its first argument. Also, we can send the name of the method we will be
 using, `gcn`, which will adapt the data for that specific method.
 
 ```python
-generator = FullBatchNodeGenerator(G, method='gcn')
+    generator = FullBatchNodeGenerator(G, method='gcn')
 ```
 
-Now we can use that generator for our 3 sets. We need our training data
+Now, we can use that generator for our 3 sets. We need our training data
 first:
 
 ```python
     train_gen = generator.flow(train_subjects.index, train_targets)
 ```
 
-Next thing we need to is to define the model. `stellargraph` package contains
-`GCN` class which stacks set amount of [graph convolution](https://stellargraph.readthedocs.io/en/latest/api.html#stellargraph.layer.gcn.GraphConvolution) and [dropout](https://www.tensorflow.org/api_docs/python/tf/keras/layers/Dropout) layers.
-We will be using two GCN layers with 16 units each. The activation applyed to
+The next thing we need to do is to define the model. StellarGraph contains
+`GCN` class which stacks a set amount of [graph convolution](https://stellargraph.readthedocs.io/en/latest/api.html#stellargraph.layer.gcn.GraphConvolution) and [dropout](https://www.tensorflow.org/api_docs/python/tf/keras/layers/Dropout) layers.
+We will be using two GCN layers with 16 units each. The activation applied to
 each GCN layer's output will be ReLU and the rate of dropout is 50%.
 
 ```python
@@ -224,7 +227,7 @@ each GCN layer's output will be ReLU and the rate of dropout is 50%.
 ```
 
 To create a Keras model we need input and output tensors of the GCN model.
-We can do that via the `GCN.in_out_tensors`:
+We can get that via the `GCN.in_out_tensors`:
 
 ```python
     x_inp, x_out = gcn.in_out_tensors()
@@ -233,7 +236,7 @@ We can do that via the `GCN.in_out_tensors`:
 `x_out` is a TensorFlow tensor that holds a 16-dimensional vector for each
 node. Using that, we need to compute our class prediction. We can use a dense layer
 that has 7 units (number of classes) and applies softmax activation to its
-outputs. Softmax ensures that the output consists of the probabilities for the
+outputs. Softmax ensures that the output consists of the probabilities for
 each class and the class with the highest probability is our predicted value.
 
 ```python
@@ -245,7 +248,7 @@ each class and the class with the highest probability is our predicted value.
 Now the only thing left to do is creating the Keras model which takes `x_inp`
 as the input tensor and the output tensors are the predictions from the final
 dense layer. Because there are 7 possible classes, we will be using
-cross-entropy loss function.
+categorical cross-entropy loss function.
 
 ```python
     model = Model(inputs=x_inp, outputs=predictions)
@@ -256,7 +259,7 @@ cross-entropy loss function.
     )
 ```
 
-We would also like to keep an eye on the models generalisation performance.
+We would also like to keep an eye on the model's generalization performance.
 We will use our validation set and the first thing we need to do is create a
 generator:
 
@@ -313,7 +316,7 @@ against it. As always, we need to create our generator first:
 test_gen = generator.flow(test_subjects.index, test_targets)
 ```
 
-To evaluate our model we simply call model's `evaluate` method:
+To evaluate our model we simply call the model's `evaluate` method:
 
 ```python
 test_metrics = model.evaluate(test_gen)
@@ -335,12 +338,12 @@ YIELD *;
 ### Classifying our data
 
 Now that we have trained our model and saved it we would like to use it to
-classifiy our data. To avoid the creation of the `StellarGraph` and loading
-of the model for every single procedure call let's define helper procedures
+classify our data. To avoid the creation of the `StellarGraph` and loading
+of the model for every single procedure call let's define a helper procedure
 that will create a `StellarGraph` from the Memgraph graph and store it
 globally. We will do the same for our trained model.
 
-Procedure for creating the `StellarGraph` object should look like this:
+The procedure for creating the `StellarGraph` object should look like this:
 
 ```python
 stellar_graph = None
@@ -368,8 +371,8 @@ def load_model(context: mgp.ProcCtx) -> mgp.Record():
     return mgp.Record()
 ```
 
-We can notice `custom_keras_layers` from the StellarGraph which enables loading
-of the Keras models containing StellarGraph layers.
+We can notice StellarGraph's `custom_keras_layers` which enables loading
+of the Keras models containing StellarGraph's layers.
 
 Let's call them now:
 
@@ -380,14 +383,15 @@ CALL cora_ml.load_model();
 
 After everything is loaded we can start classifying our vertices by defining
 a procedure that calls model's `predict` method. We need to load our class
-encodings so we can return our prediction in a nicer, more understandable form.
+encodings so that we can return our prediction in a nicer, more understandable
+form.
 
 ```python
 @mgp.read_proc
 def predict(context: mgp.ProcCtx,
             vertex: mgp.Vertex) -> mgp.Record(prediction=str,
                                               gt=str):
-    with open('class_encodings', 'r') as encodings_file:
+    with open('/home/memgraph/class_encodings', 'r') as encodings_file:
         encodings = encodings_file.read().split(',')
 
     if stellar_graph is None:
@@ -402,7 +406,7 @@ def predict(context: mgp.ProcCtx,
         prediction)], gt=vertex.properties['subject'])
 ```
 
-Let's classify 50 vertices, print their ID, prediction and their correct
+Let's classify 50 vertices, print their ID, predicted subject and their correct
 subject:
 
 ```opencypher
@@ -419,11 +423,13 @@ RETURN n.id, prediction, gt;
 You're probably wondering why did we use GCN layers in our models. You can
 easily define a model that can classify the papers by only using their
 features.
-Let's and try to do that!
+Let's try to do that!
+
 We will define a model that's almost identical to the previous model, the
 only difference is that we will replace the GCN layers with the dense layers
-that have same number of units and same activation function. We will use the
-same ratio of the sets.
+that have same number of units and same activation function. We will split our
+dataset into 3 groups using the same group sizes used for the training of
+the GCN model.
 
 ```python
 @mgp
@@ -487,27 +493,27 @@ def train_without_gcn(context: mgp.ProcCtx
 Now let's see call the procedure and see the results:
 
 ```opencypher
-CALL cora_ml.train_without_gcn() 
+CALL cora_ml.train_without_gcn()
 YIELD *;
 ```
 
 Using the GCN layers we got 80% accuracy on the test data. When we replaced
 GCN layers with dense layers, the accuracy drops to 53%.
 
-Our trainining set consists only of 140 nodes which is relatively small so it
-shouldn't come as a surprise that most models would struggle to learn something
-useful from it. 
+Our training set consists only of 140 nodes so it's a relatively small set
+and it shouldn't come as a surprise that most models would struggle to learn
+something useful from it.
 Even though our GCN model used a training set of the same size, it adds the
-information about the nodes neighbourhood which drasticly improves our results.
+information about the node's neighborhood which drastically improves our results.
 
-### Conclusion 
+### Conclusion
 
-Graphs provide great amount of information that can definitely be useful for
+Graphs provide a great amount of information that can definitely be useful for
 machine learning models for some classic problems like classification.
 We can also use them to solve some problems unique to the graph-structured data.
-Example of this would be:
+Examples of this would be:
 * Link prediction - inferring missing or finding hidden relationships between entities
-* Community detecion - inferring communities or clusters of nodes
+* Community detection - inferring communities or clusters of nodes
 * Graph classification - classifying the graph as a one single unit
 
 We definitely recommend you to read "[Knowing Your Neighbours: Machine Learning on Graphs](https://medium.com/stellargraph/knowing-your-neighbours-machine-learning-on-graphs-9b7c3d0d5896)"
@@ -517,10 +523,10 @@ Also, we encourage you to visit [StellarGraph's site](https://www.stellargraph.i
 It's a great library that is constantly being improved following the latest
 innovations in machine learning. The most important thing is the great
 integration with the TensorFlow enabling you, if you are already familiar with
-machine learning, to start immediately experimenting with models that use 
+machine learning, to start immediately experimenting with models that use
 graphs.
 
 The field is relatively new and more useful applications alongside performance
-improvements are guranteed to come. At Memgraph we're aware of the potential of 
+improvements are guranteed to come. At Memgraph we're aware of the potential of
 the machine learning applied to graphs and we're always open to any suggestions
 that would make our database better to use in the said field.
