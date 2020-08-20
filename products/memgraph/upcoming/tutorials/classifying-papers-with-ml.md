@@ -4,6 +4,16 @@ This article is a part of a series intended to show how to use Memgraph
 on real-world data to retrieve some interesting and useful
 information.
 
+We highly recommend checking out the other articles from this series:
+
+- [Backpacking Through Europe](backpacking-through-europe.md)
+- [Analyzing TED Talks](analyzing-TED-talks.md)
+- [Graphing the Premier League](graphing-the-premier-league.md)
+- [Movie Recommendation System](movie-recommendation.md)
+- [Exploring the European Road Network](exploring-the-european-road-network.md)
+- [Marvel Comic Universe Social Network](marvel-universe.md)
+- [Backpacking Through Europe](backpacking-through-europe.md)
+
 ### Introduction
 
 In the last few years, a subset of artificial intelligence called machine
