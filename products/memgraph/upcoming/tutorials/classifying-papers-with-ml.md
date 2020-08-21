@@ -348,73 +348,34 @@ YIELD *;
 ### Classifying our data
 
 Now that we have trained our model and saved it, we would like to use it to
-classify our data. To avoid creating the `StellarGraph` and loading
-of the model for every single procedure call let's define a helper procedure
-that will create a `StellarGraph` from the Memgraph graph and store it
-globally. We will do the same for our trained model.
+classify our data. 
 
-The procedure for creating the `StellarGraph` object should look like this:
-
-```python
-stellar_graph = None
-
-
-@mgp.read_proc
-def load_stellar_graph(context: mgp.ProcCtx) -> mgp.Record():
-    global stellar_graph
-    stellar_graph, _ = _get_stellar_graph(context)
-    return mgp.Record()
-```
-
-and the procedure for loading the model:
-
-```python
-prediction_model = None
-
-
-@mgp.read_proc
-def load_model(context: mgp.ProcCtx) -> mgp.Record():
-    global prediction_model
-    prediction_model = tf.keras.models.load_model(
-        '/home/memgraph/cora-model',
-        custom_objects=sg.custom_keras_layers)
-    return mgp.Record()
-```
-
-We can notice StellarGraph's `custom_keras_layers` which enables loading
-of the Keras models containing StellarGraph's layers.
-
-Let's call them now:
-
-```opencypher
-CALL cora_ml.load_stellar_graph();
-CALL cora_ml.load_model();
-```
-
-After everything is loaded, we can start classifying our vertices by defining
-a procedure that calls model's `predict` method. We need to load our class
-encodings so that we can return our prediction in a nicer, more understandable
-form.
+We can start classifying our vertices by defining a procedure that calls 
+model's `predict` method. We need to load our class encodings so that we can 
+return our predictions in a nicer, more understandable form.
 
 ```python
 @mgp.read_proc
 def predict(context: mgp.ProcCtx,
-            vertex: mgp.Vertex) -> mgp.Record(prediction=str,
-                                              gt=str):
+            vertices: mgp.List[mgp.Vertex]) -> mgp.Record(node=mgp.Vertex,
+                                                          prediction=str):
     with open('/home/memgraph/class_encodings', 'r') as encodings_file:
         encodings = encodings_file.read().split(',')
-
-    if stellar_graph is None:
-        raise Exception("Stellar graph needs to be loaded")
-    if prediction_model is None:
-        raise Exception("Model needs to be loaded")
+    stellar_graph, _ = _get_stellar_graph(context)
+    prediction_model = tf.keras.models.load_model(
+        '/home/memgraph/cora-model',
+        custom_objects=sg.custom_keras_layers
+    )   
     generator = FullBatchNodeGenerator(stellar_graph, 'gcn')
-    vertex_flow = generator.flow([vertex.id])
-    prediction = prediction_model.predict(vertex_flow)
+    vertex_flow = generator.flow([vertex.id for vertex in vertices])
+    predictions = prediction_model.predict(vertex_flow)
 
-    return mgp.Record(prediction=encodings[np.argmax(
-        prediction)], gt=vertex.properties['subject'])
+    return [mgp.Record(node=vertex, prediction=encodings[np.argmax(
+        prediction)]) for vertex, prediction in zip(vertices, predictions[0])]
 ```
+
+We can notice StellarGraph's `custom_keras_layers` which enables loading
+of the Keras models containing StellarGraph's layers.
 
 Let's classify 50 vertices, print their ID, predicted subject and their correct
 subject:
@@ -423,9 +384,10 @@ subject:
 MATCH (n)
 WITH n
 LIMIT 50
-CALL cora_ml.predict(n)
+WITH collect(n) as nodes
+CALL cora_ml.predict(nodes)
 YIELD *
-RETURN n.id, prediction, gt;
+RETURN node.id, node.subject as gt, prediction;
 ```
 
 ### Why GCN?
