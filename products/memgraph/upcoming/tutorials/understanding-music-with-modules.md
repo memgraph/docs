@@ -151,7 +151,9 @@ from collections import defaultdict
 
 @mgp.read_proc
 def in_top_n_percentage(context: mgp.ProcCtx,
-                        n: int) -> mgp.Record(in_top_n_percentages=list):
+                        n: int) -> mgp.Record(genre=str,
+                                              percentage=float,
+                                              size=int):
     genre_count = defaultdict(lambda: {'total_count': 0, 'in_top_n_count': 0})
 
     for v in context.graph.vertices:
@@ -159,30 +161,27 @@ def in_top_n_percentage(context: mgp.ProcCtx,
             genre_count[genre]['total_count'] += 1
             genre_count[genre]['in_top_n_count'] += index < n
 
-    def get_percentage(genre, counts): return {
-        'genre': genre,
-        'percentage': counts['in_top_n_count'] / counts['total_count'],
-        'size': counts['total_count']
-    }
+    def get_record(genre, counts): return mgp.Record(
+        genre=genre,
+        percentage=counts['in_top_n_count'] / counts['total_count'],
+        size=counts['total_count']
+    )
 
-    return mgp.Record(
-        in_top_n_percentages=[
-            get_percentage(
-                genre,
-                counts) for genre,
-            counts in genre_count.items()])
+    return [get_record(
+        genre,
+        counts) for genre,
+        counts in genre_count.items()]
 ```
 
 Let's see what we got:
 
 ```opencypher
 CALL deezer_example.in_top_n_percentage(3)
-YIELD in_top_n_percentages
-UNWIND in_top_n_percentages AS itnp
-WITH itnp
-WHERE itnp.size > 10
-RETURN itnp.genre, itnp.percentage, itnp.size
-ORDER BY itnp.percentage DESC;
+YIELD *
+WITH genre, percentage, size
+WHERE size > 10
+RETURN genre, percentage, size
+ORDER BY percentage DESC;
 ```
 
 As said in the introduction, we want to use the power of the graphs to extract
@@ -252,24 +251,21 @@ popular in our network and take a peek at his/hers music taste. We will use the
 ```python
 @mgp.read_proc
 def betweenness_centrality(
-        context: mgp.ProcCtx) -> mgp.Record(centralities=list):
+        context: mgp.ProcCtx) -> mgp.Record(node=mgp.Vertex,
+                                            centrality=mgp.Number):
     g = _create_undirected_graph(context)
-    return mgp.Record(
-        centralities=[
-            {
-                'user': user,
-                'centrality': centrality} for user,
-            centrality in nxa.centrality.betweenness_centrality(g).items()])
+    return [mgp.Record(node=node, centrality=centrality)
+            for node,
+            centrality in nxa.centrality.betweenness_centrality(g).items()]
 ```
 
 Now let's take a look at the results:
 
 ```
 CALL deezer_example.betweenness_centrality()
-YIELD centralities
-UNWIND centralities as c
-RETURN c.user, c.centrality
-ORDER BY c.centrality DESC
+YIELD *
+RETURN node.id, node.genres, centrality
+ORDER BY centrality DESC
 LIMIT 10;
 ```
 
@@ -278,7 +274,7 @@ finish. The issue of slower `NetworkX` implementations is something we at
 Memgraph would like to address in the future.
 
 For our last trick, let's try to locate communities inside our network.
-Communities are a set of nodes that are densely connected.  
+Communities are a set of nodes that are densely connected.
 The goal of the community detection algorithms can be nicely described
 with the next visualization:
 ![](../data/community_detection_visualization.png)
@@ -428,6 +424,37 @@ RETURN quality;
 
 I think it should come as a no surprise that an algorithm that maximizes
 modularity has higher modularity...
+
+### Optimized NetworkX intergration
+As noted before, we at Memgraph are aware of NetworkX's potential but the
+performance for some functions isn't that good. We decided to tackle this
+problem by writing a wrapper object for Memgraph's graph and with smarter usage
+of NetworkX algorithms. To make things even more convenient, we decided to
+implement procedures that call NetworkX functions with our graphs, so you have
+out-of-the-box access to the graph algorithms. NetworkX contains a huge
+amount of functions, and writing procedures for all of them require insane
+effort, so don't blame us if some of the algorithms aren't available. We are
+always open to any feedback, so if you think that an implementation for
+an algorithm is needed, we will surely take that into account.
+
+To demonstrate performance improvement, we will calculate the betweenness
+centrality again, this time by using Memgraph's procedure.
+
+To get access to the NetworkX procedures, start your Memgraph server without
+modifying the query modules directory path. That way, the path will be set to
+the default path, which contains `nxalg` module.
+
+Now let's call the procedure:
+```opencypher
+CALL nxalg.betweenness_centrality()
+YIELD *
+RETURN node.id, node.genres, betweenness
+ORDER BY betweenness DESC
+LIMIT 10;
+```
+
+You should get the same results as with our previous procedure for
+the betweenness centrality but in a much lower time.
 
 ### Further reading
 
