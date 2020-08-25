@@ -18,6 +18,7 @@ for some popular programming languages are listed below:
   * [JavaScript](https://github.com/neo4j/neo4j-javascript-driver)
   * [C#](https://github.com/neo4j/neo4j-dotnet-driver)
   * [Ruby](https://github.com/neo4jrb/neo4j)
+  * [Rust](https://github.com/memgraph/rsmgclient)
   * [Haskell](https://github.com/zmactep/hasbolt)
   * [PHP](https://github.com/graphaware/neo4j-bolt-php)
 

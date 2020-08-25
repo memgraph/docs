@@ -62,9 +62,10 @@
 
 ## Memgraph Clients
 
-* [pymgclient](https://memgraph.github.io/pymgclient)
-* [mgclient](https://github.com/memgraph/mgclient)
-* [mgconsole](https://github.com/memgraph/mgconsole)
+* [C/C++](https://github.com/memgraph/mgclient)
+* [CLI Console](https://github.com/memgraph/mgconsole)
+* [Python](https://memgraph.github.io/pymgclient)
+* [Rust](https://github.com/memgraph/rsmgclient)
 
 ## Machine Learning
 
