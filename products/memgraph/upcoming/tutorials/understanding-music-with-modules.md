@@ -58,7 +58,7 @@ For more detailed explanation take a look at
 ```plaintext
 /usr/lib/memgraph/memgraph --data-directory /usr/share/memgraph/examples/Music \
  --storage-snapshot-interval-sec=0 --storage-wal-enabled=false \
- --storage-snapshot-on-exit=false --storage-properties-on-edges=true
+ --storage-snapshot-on-exit=false --storage-properties-on-edges=true \
  --query-modules-directory=/modules
 ```
 
@@ -79,8 +79,8 @@ docker run -p 7687:7687 \
   -v $(pwd)/modules:/modules \
   memgraph --data-directory /usr/share/memgraph/examples/Music \
   --storage-snapshot-interval-sec=0 --storage-wal-enabled=false \
-  --storage-snapshot-on-exit=false --storage-properties-on-edges=true
-  --query-modules-directory=/path/to/mount/of/modules/directory
+  --storage-snapshot-on-exit=false --storage-properties-on-edges=true \
+  --query-modules-directory=/modules
 ```
 
 The user should note that any modifications of the database state will persist
