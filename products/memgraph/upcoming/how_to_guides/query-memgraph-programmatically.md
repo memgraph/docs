@@ -8,16 +8,17 @@ communication with graph databases and Memgraph supports
 [Version 1](https://boltprotocol.org/v1) of the protocol. Bolt protocol drivers
 for some popular programming languages are listed below:
 
-  * [C/C++](https://github.com/memgraph/mgclient)
-  * [Python](https://github.com/neo4j/neo4j-python-driver)
-  * [Java](https://github.com/neo4j/neo4j-java-driver)
   * [C#](https://github.com/neo4j/neo4j-dotnet-driver)
-  * [Node.js](https://github.com/neo4j/neo4j-javascript-driver)
-  * [JavaScript](https://github.com/neo4j/neo4j-javascript-driver)
-  * [Ruby](https://github.com/neo4jrb/neo4j)
-  * [Haskell](https://github.com/zmactep/hasbolt)
-  * [PHP](https://github.com/graphaware/neo4j-bolt-php)
+  * [C/C++](https://github.com/memgraph/mgclient)
   * [Go](https://github.com/neo4j/neo4j-go-driver)
+  * [Haskell](https://github.com/zmactep/hasbolt)
+  * [Java](https://github.com/neo4j/neo4j-java-driver)
+  * [JavaScript](https://github.com/neo4j/neo4j-javascript-driver)
+  * [Node.js](https://github.com/neo4j/neo4j-javascript-driver)
+  * [PHP](https://github.com/graphaware/neo4j-bolt-php)
+  * [Python](https://github.com/memgraph/pymgclient)
+  * [Ruby](https://github.com/neo4jrb/neo4j)
+  * [Rust](https://github.com/memgraph/rsmgclient)
 
 ### Secure Sockets Layer (SSL) {#secure-sockets-layer}
 
