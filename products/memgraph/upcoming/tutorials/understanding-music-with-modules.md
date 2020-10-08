@@ -425,7 +425,7 @@ RETURN quality;
 I think it should come as a no surprise that an algorithm that maximizes
 modularity has higher modularity...
 
-### Optimized NetworkX intergration
+### Optimized NetworkX integration
 As noted before, we at Memgraph are aware of NetworkX's potential but the
 performance for some functions isn't that good. We decided to tackle this
 problem by writing a wrapper object for Memgraph's graph and with smarter usage
