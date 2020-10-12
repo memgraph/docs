@@ -15,3 +15,4 @@ So far we have covered the following topics:
   * [Backpacking Through Europe](backpacking-through-europe.md)
   * [Movie Recommendation System](movie-recommendation.md)
   * [Marvel Comic Universe Social Network](marvel-universe.md)
+  * [Querying video game sales](video-game-sales.md)
