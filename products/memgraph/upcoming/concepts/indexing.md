@@ -17,9 +17,10 @@ At Memgraph, we support two types of indexes:
   * label index
   * label-property index
 
-Label indexing is enabled by default in Memgraph, i.e., Memgraph automatically
-indexes labeled data. By doing so we optimize queries which fetch nodes by
-label:
+Label indexing is NOT enabled by default in Memgraph, i.e., Memgraph will not
+automatically index labeled data. Therefore, it is up to the user to perform
+the indexing explicitly. By doing so, one can optimize queries that fetch
+nodes by label:
 
 ```opencypher
 MATCH (n: Label) ... RETURN n;

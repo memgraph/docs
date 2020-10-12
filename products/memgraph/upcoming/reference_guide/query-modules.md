@@ -98,6 +98,17 @@ offering.
 * `mg`: Utility module that offers more insight into custom query modules.
 * `louvain` [Enterprise]: Louvain algorithm for community detection.
 * `connectivity` [Enterprise]: Algorithms that analyse graph connectivity.
+* `nxalg` : Wrapper functions providing the most common algorithms found
+            in the NetworkX package. The users can extend the module with
+            their own custom functions based on NetworkX algorithms.
+
+NOTE:
+If you intend to implement your custom algorithms based on the NetworkX package,
+please note that we provide the extra library `mgp_networkx.py` module
+containing data structures that adapt the native graph for use with NetworkX
+algorithms. It can be used to implement custom algorithms with the added benefit of
+better memory usage.
+
 
 The utility module offers the following functionality:
 
@@ -120,7 +131,6 @@ provides the following Python modules based on
 * `graph_analyzer`: Module that offers more insights about the stored graph. To
   get a detailed list of provided functionalities within this module run
   `CALL graph_analyzer.help() YIELD *;`.
-* `pagerank`: Page Rank algorithm for centrality calculations.
 * `wcc`: Module that offers analysis of weakly connected components.
 
 For more detailed examples on how to use each of these query modules, we
