@@ -15,7 +15,7 @@ We highly recommend checking out the other articles from this series:
 
 ### Introduction
 
-The data presented below is taken from the page [VGChartz](https://www.vgchartz.com/) which contains a large amount of information on game sales throughout history (In this example
+The data presented below is taken from the page [VGChartz](https://www.vgchartz.com/) which contains a large amount of information on game sales throughout history (in this example
 we use data available from 1980 - 2016). In addition to all the interesting
 information that we are going to go through, there are also the unexplored ones that we leave for you to explore.
 Using the knowledge of 'openCypher' and Memgraph, discover the curiosities of the world of video games.
