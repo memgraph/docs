@@ -11,7 +11,7 @@ We highly recommend checking out the other articles from this series:
   * [Graphing the Premier League](graphing-the-premier-league.md)
   * [Movie Recommendation System](movie-recommendation.md)
   * [Marvel Comic Universe Social Network](marvel-universe.md)
-  * [Football Transfers](football-transfers.md)
+  * [Querying video game sales](video-game-sales.md)
 
 ### Introduction
 
