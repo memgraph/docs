@@ -145,47 +145,6 @@ CALL graph_analyzer.analyze_subgraph(nodes, edges) YIELD name, value
 RETURN name, value;
 ```
 
-#### Page Rank
-
-The `pagerank.py` module allows you to run the [Page
-Rank](https://en.wikipedia.org/wiki/PageRank) algorithm on the data stored in
-Memgraph. To illustrate the functionality, the following graph will be used:
-
-![](../data/pagerank_graph.png)
-
-To load the graph into Memgraph, the following query should be used:
-
-```opencypher
-CREATE (na {name: "Page A"})
-CREATE (nb {name: "Page B"})
-CREATE (nc {name: "Page C"})
-CREATE (nd {name: "Page D"})
-CREATE (na)-[:e]->(nb)
-CREATE (na)-[:e]->(nc)
-CREATE (nc)-[:e]->(na)
-CREATE (nb)-[:e]->(nc)
-CREATE (nd)-[:e]->(nc);
-```
-
-By executing `pagerank.pagerank()`, Memgraph will return the rank for each
-node as follows:
-
-```opencypher
-CALL pagerank.pagerank() YIELD *;
-+--------------------+----------+
-| node               | rank     |
-+--------------------+----------+
-| ({name: "Page C"}) | 0.39415  |
-| ({name: "Page D"}) | 0.0375   |
-| ({name: "Page A"}) | 0.372526 |
-| ({name: "Page B"}) | 0.195824 |
-+--------------------+----------+
-```
-
-NOTE: A documented list of Page Rank parameters is located inside the
-`pagerank.py` file installed with your Memgraph package in
-`/usr/lib/memgraph/query_modules`.
-
 #### Weakly Connected Components
 
 The `wcc.py` query module can run
@@ -496,3 +455,51 @@ As expected, nodes numbered 1, 2, and 3 are all in one connected component,
 node numbered 4 is in its own component, nodes numbered 5, 6, 7, 8, 9, 10 and
 11 are in another component and, finally, nodes numbered 12, 13, 14 and 15 are
 in the last component.
+
+### NetworkX Algorithms Module
+
+In addition to standalone community graph algorithms implemented as Python
+modules, we implemented a module providing NetworkX integration with Memgraph.
+This module, named nxalgo, provides a comprehensive set of thin wrappers
+around most of the algorithms present in the NetworkX package. The wrapper
+functions now have the capability to create a NetworkX compatible graph-like
+object that can stream the native database graph directly, functions, saving
+on memory usage significantly.
+
+For example, you can run the [Page Rank](https://en.wikipedia.org/wiki/PageRank)
+algorithm on the data stored in Memgraph. To illustrate the functionality, the
+following graph will be used:
+
+![](../data/pagerank_graph.png)
+
+To load the graph into Memgraph, the following query should be used:
+
+```opencypher
+CREATE (na {name: "Page A"})
+CREATE (nb {name: "Page B"})
+CREATE (nc {name: "Page C"})
+CREATE (nd {name: "Page D"})
+CREATE (na)-[:e]->(nb)
+CREATE (na)-[:e]->(nc)
+CREATE (nc)-[:e]->(na)
+CREATE (nb)-[:e]->(nc)
+CREATE (nd)-[:e]->(nc);
+```
+
+By executing `nxalg.pagerank()`, Memgraph will return the rank for each
+node as follows:
+
+```opencypher
+CALL nxalg.pagerank() YIELD *;
++--------------------+----------+
+| node               | rank     |
++--------------------+----------+
+| ({name: "Page C"}) | 0.39415  |
+| ({name: "Page D"}) | 0.0375   |
+| ({name: "Page A"}) | 0.372526 |
+| ({name: "Page B"}) | 0.195824 |
++--------------------+----------+
+```
+
+NetworkX algorithms are located inside the `nxalg.py` file installed with
+your Memgraph package in `/usr/lib/memgraph/query_modules`.
