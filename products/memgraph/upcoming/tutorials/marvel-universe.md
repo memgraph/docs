@@ -1,5 +1,12 @@
 ## Marvel Comic Universe Social Network
 
+This article is a part of a series intended to show how to use Memgraph
+on real-world data to retrieve some interesting and useful
+information.
+
+We highly recommend checking out the other articles from this series which
+are listed in our [tutorial overivew section](tutorials-overview.md).
+
 ### Introduction
 
 Spandex. Muscles. Big egos. Bad hair. No, we're not talking about your high
