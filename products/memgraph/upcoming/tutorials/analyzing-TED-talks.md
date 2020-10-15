@@ -5,7 +5,7 @@ on real-world data to retrieve some interesting and useful
 information.
 
 We highly recommend checking out the other articles from this series which
-are listed in our [tutorial overivew section](tutorials-overview.md).
+are listed in our [tutorial overview section](tutorials-overview.md).
 
 ### Introduction
 
