@@ -4,15 +4,8 @@ This article is a part of a series intended to show users how to use Memgraph
 on real-world data and, by doing so, retrieve some interesting and useful
 information.
 
-We highly recommend checking out the other articles from this series:
-
-  * [Analyzing TED Talks](analyzing-TED-talks.md)
-  * [Graphing the Premier League](graphing-the-premier-league.md)
-  * [Exploring the European Road Network](exploring-the-european-road-network.md)
-  * [Backpacking Through Europe](backpacking-through-europe.md)
-  * [Marvel Comic Universe Social Network](marvel-universe.md)
-  * [Querying video game sales](video-game-sales.md)
-
+We highly recommend checking out the other articles from this series which
+are listed in our [tutorial overview section](tutorials-overview.md).
 
 ### Introduction
 
@@ -232,4 +225,3 @@ Here we use `REDUCE` function. Reduce function accumulate list elements
 into a single result by applying an expression.
 In our query, this function starts with 0 and sums up squared differences.
 `COLLECT` function is used for putting squared differences into the list.
-

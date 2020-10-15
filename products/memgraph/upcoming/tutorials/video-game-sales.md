@@ -4,14 +4,8 @@ All of us who grew up with game consoles know the feeling of fresh plastic under
 the boxes have changed and even moved to the cloud, but the goals of publishers and developers have remained
 the same, to sell as many copies of their game as possible. Take your Memgraph and explore how successful were the various consoles and games, and which teams stand behind the most successful titles in history.
 
-We highly recommend checking out the other articles from this series:
-
-  * [Analyzing TED Talks](analyzing-TED-talks.md)
-  * [Graphing the Premier League](graphing-the-premier-league.md)
-  * [Exploring the European Road Network](exploring-the-european-road-network.md)
-  * [Backpacking Through Europe](backpacking-through-europe.md)
-  * [Movie Recommendation System](movie-recommendation-system.md)
-  * [Marvel Comic Universe Social Network](marvel-universe.md)
+We highly recommend checking out the other articles from this series which
+are listed in our [tutorial overview section](tutorials-overview.md).
 
 ### Introduction
 

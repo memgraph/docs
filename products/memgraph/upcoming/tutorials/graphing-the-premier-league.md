@@ -4,14 +4,8 @@ This article is a part of a series intended to show users how to use Memgraph
 on real-world data and, by doing so, retrieve some interesting and useful
 information.
 
-We highly recommend checking out the other articles from this series:
-
-  * [Analyzing TED Talks](analyzing-TED-talks.md)
-  * [Exploring the European Road Network](exploring-the-european-road-network.md)
-  * [Backpacking Through Europe](backpacking-through-europe.md)
-  * [Movie Recommendation System](movie-recommendation.md)
-  * [Marvel Comic Universe Social Network](marvel-universe.md)
-  * [Querying video game sales](video-game-sales.md)
+We highly recommend checking out the other articles from this series which
+are listed in our [tutorial overview section](tutorials-overview.md).
 
 ### Introduction
 

@@ -4,6 +4,9 @@ This article is a part of a series intended to show how to use Memgraph
 on real-world data to retrieve some interesting and useful
 information.
 
+We highly recommend checking out the other articles from this series which
+are listed in our [tutorial overview section](tutorials-overview.md).
+
 ### Introduction
 
 Football is a word that could mean one of several sports. In this article,
@@ -381,13 +384,3 @@ With that in mind, our results contain all the information for the graph visual:
 Here is a picture of how it will look if you run the query in MemgraphLab.
 
 ![](../data/football_transfers_MemgraphLab_visual.png)
-
-### Where To Next?
-
-We recommend checking out other tutorials from this series:
-
-  * [Exploring the European Road Network](exploring-the-european-road-network.md)
-  * [Backpacking Through Europe](backpacking-through-europe.md)
-  * [Graphing the Premier League](graphing-the-premier-league.md)
-  * [Movie Recommendation System](movie-recommendation.md)
-  * [Marvel Comic Universe Social Network](marvel-universe.md)
