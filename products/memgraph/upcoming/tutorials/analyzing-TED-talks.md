@@ -4,6 +4,9 @@ This article is a part of a series intended to show how to use Memgraph
 on real-world data to retrieve some interesting and useful
 information.
 
+We highly recommend checking out the other articles from this series which
+are listed in our [tutorial overview section](tutorials-overview.md).
+
 ### Introduction
 
 [TED](https://www.ted.com/) is a nonprofit organization devoted to spreading
@@ -179,14 +182,3 @@ WITH DISTINCT n, m ORDER BY m.name
 RETURN n.name AS Speaker, COLLECT(m.name) AS Others
 ORDER BY Speaker;
 ```
-
-### Where To Next?
-
-We recommend checking out other tutorials from this series:
-
-  * [Exploring the European Road Network](exploring-the-european-road-network.md)
-  * [Backpacking Through Europe](backpacking-through-europe.md)
-  * [Graphing the Premier League](graphing-the-premier-league.md)
-  * [Movie Recommendation System](movie-recommendation.md)
-  * [Marvel Comic Universe Social Network](marvel-universe.md)
-  * [Football Transfers](football-transfers.md)

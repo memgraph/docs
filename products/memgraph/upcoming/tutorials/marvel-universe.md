@@ -1,5 +1,12 @@
 ## Marvel Comic Universe Social Network
 
+This article is a part of a series intended to show how to use Memgraph
+on real-world data to retrieve some interesting and useful
+information.
+
+We highly recommend checking out the other articles from this series which
+are listed in our [tutorial overview section](tutorials-overview.md).
+
 ### Introduction
 
 Spandex. Muscles. Big egos. Bad hair. No, we're not talking about your high
@@ -9,15 +16,6 @@ this complex and confusing assembly of heroes and villains. If you've ever
 wanted to know who's Spider-Man's best super-buddy, or wanted to find all the
 comic issues where Hulk, Wolverine, Thor, and Black Panther appear together, look
 no further and fire up that Memgraph copy of yours!
-
-We highly recommend checking out the other articles from this series:
-
-  * [Analyzing TED Talks](analyzing-TED-talks.md)
-  * [Graphing the Premier League](graphing-the-premier-league.md)
-  * [Exploring the European Road Network](exploring-the-european-road-network.md)
-  * [Backpacking Through Europe](backpacking-through-europe.md)
-  * [Movie Recommendation System](movie-recommendation.md)
-  * [Football Transfers](football-transfers.md)
 
 ### Data Model
 
