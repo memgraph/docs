@@ -1,4 +1,4 @@
-t## Querying video game sales
+## Querying video game sales
 
 All of us who grew up with game consoles know the feeling of fresh plastic under our arms. Over the years, 
 the boxes have changed and even moved to the cloud, but the goals of publishers and developers have remained
