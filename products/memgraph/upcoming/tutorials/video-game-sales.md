@@ -1,4 +1,4 @@
-## Querying video game sales
+t## Querying video game sales
 
 All of us who grew up with game consoles know the feeling of fresh plastic under our arms. Over the years, 
 the boxes have changed and even moved to the cloud, but the goals of publishers and developers have remained
@@ -71,7 +71,7 @@ a top 10 on the screen.
 
 ```opencypher
 MATCH (g:Game)-[:Sold]->(c:Console)
-RETURN c.name as Console, COUNT(g) AS NumGames
+RETURN c.name AS Console, COUNT(g) AS NumGames
 ORDER BY NumGames DESC
 LIMIT 10;
 ```
@@ -81,7 +81,7 @@ To find a *Pokémon* franchise, simply compare if 'Pokemon' is presented in the 
 
 ```opencypher
 MATCH (g:Game)
-WITH g.name AS name, g.year as year, g.critic_score as score
+WITH g.name AS name, g.year AS year, g.critic_score AS score
 WHERE toupper(name) CONTAINS  'POKEMON'
 RETURN name AS GameName, year AS Year, score AS CriticScore
 ORDER BY year, score;
@@ -126,9 +126,9 @@ meaning summation of regional sales.
 MATCH (g:Game)
 WITH  g, g.TOT AS total
 ORDER BY total DESC
-WITH g.year AS year, COLLECT(g) AS games, ROUND(SUM(total)* 100) / 100 as yearSale
+WITH g.year AS year, COLLECT(g) AS games, ROUND(SUM(total)* 100) / 100 AS yearSale
 ORDER BY year
-RETURN year AS Year, EXTRACT(game in games | {game: game.name, sale: game.TOT}) as GameSales, yearSale AS TotalYearSale;
+RETURN year AS Year, EXTRACT(game in games | {game: game.name, sale: game.TOT}) AS GameSales, yearSale AS TotalYearSale;
 ```
 
 `EXTRACT` function can be used to loop through the list and change its elements. In this case, we are looping through the list of games, extracting only important information, and making an `Object` with properties `game` and `sale`.
@@ -166,10 +166,10 @@ each time they developed a game, it has been sold in a larger amount of units. D
 
 ```opencypher
 MATCH (c:Console)<-[s:Sold]-(g:Game)
-WITH  g as game, g.TOT AS sale
+WITH  g AS game, g.TOT AS sale
 ORDER BY game.year ASC
 MATCH (game)-[:DevelopedBy]->(d:Developer)
-WITH d as developer, COLLECT(game.name) AS games, COLLECT(sale) AS sales
+WITH d AS developer, COLLECT(game.name) AS games, COLLECT(sale) AS sales
 WHERE SIZE(games) >= 3
 WITH developer, games, sales, EXTRACT(i IN RANGE(1, SIZE(games) - 1) | sales[i] - sales[i-1]) AS difference
 WHERE ALL(diff IN difference WHERE diff > 0)
