@@ -269,9 +269,15 @@ ORDER BY centrality DESC
 LIMIT 10;
 ```
 
-Note: calculating betweenness centrality for each node can take some time to
+---
+**NOTE**
+
+Calculating betweenness centrality for each node can take some time to
 finish. The issue of slower `NetworkX` implementations is something we at
-Memgraph would like to address in the future.
+Memgraph would like to address in the future. An exmaple of this can be seen
+in the next section of this tutorial.
+
+---
 
 For our last trick, let's try to locate communities inside our network.
 Communities are a set of nodes that are densely connected.
