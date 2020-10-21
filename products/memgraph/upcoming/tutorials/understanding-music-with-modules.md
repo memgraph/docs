@@ -56,10 +56,11 @@ For more detailed explanation take a look at
 [How to Use and Implement Query Modules](../how_to_guides/use-and-implement-query-modules.md).
 
 ```plaintext
-/usr/lib/memgraph/memgraph --data-directory /usr/share/memgraph/examples/Music \
- --storage-snapshot-interval-sec=0 --storage-wal-enabled=false \
- --storage-snapshot-on-exit=false --storage-properties-on-edges=true \
- --query-modules-directory=/modules
+sudo -u memgraph \
+  /usr/lib/memgraph/memgraph --data-directory /usr/share/memgraph/examples/Music \
+   --storage-snapshot-interval-sec=0 --storage-wal-enabled=false \
+   --storage-snapshot-on-exit=false --storage-properties-on-edges=true \
+   --query-modules-directory=/modules
 ```
 
 When using Memgraph installed from DEB or RPM package, the currently running
