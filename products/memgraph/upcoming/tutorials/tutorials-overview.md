@@ -16,3 +16,4 @@ So far we have covered the following topics:
   * [Movie Recommendation System](movie-recommendation.md)
   * [Marvel Comic Universe Social Network](marvel-universe.md)
   * [Football Transfers](football-transfers.md)
+  * [Understanding music (with modules)](understanding-music-with-modules.md)
