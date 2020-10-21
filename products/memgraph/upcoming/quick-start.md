@@ -1,7 +1,7 @@
 ## Quick Start
 
 This article briefly outlines the basic steps necessary to install and run
-Memgraph. It also introduces how to make queries using [OpenCypher](https://www.opencypher.org). 
+Memgraph. It also introduces how to make queries using [OpenCypher](https://www.opencypher.org).
 Finally, please be aware of and understand the implications of
 [telemetry](#telemetry) as used by the Memgraph team.
 
@@ -85,7 +85,7 @@ issuing the following command:
 yum --nogpgcheck localinstall /path/to/memgraph-<version>.rpm
 ```
 
-After successful installation, Memgraph can be started as a 
+After successful installation, Memgraph can be started as a
 service using the following command:
 
 ```plaintext
@@ -204,8 +204,8 @@ with Docker, as described in the [querying](#querying) section.
 
 ### Querying {#querying}
 
-Memgraph supports the [openCypher](https://www.opencypher.org) query language 
-which has been developed by [Neo4j](http://neo4j.com). 
+Memgraph supports the [openCypher](https://www.opencypher.org) query language
+which has been developed by [Neo4j](http://neo4j.com).
 It is a declarative language developed specifically
 for interaction with graph databases, which is currently going through a
 vendor-independent standardization process.
@@ -214,25 +214,29 @@ The easiest way to execute openCypher queries against Memgraph is by using
 Memgraph's command-line tool, `mg_client`, which is installed
 together with Memgraph.
 
+NOTE: `mg_client` is deprecated tool still coming within Memgraph package.
+[mgconsole](https://github.com/memgraph/mgconsole) will replace `mg_client` in
+the future. If possible, please use `mgconsole` instead.
+
 If you installed Memgraph using Docker, you will need to run the client
-using the following command (remember to replace `HOST` with valid IP of 
+using the following command (remember to replace `HOST` with valid IP of
 the container - see [Note for OS X/macOS Users](#OSX-note)):
 
 ```plaintext
-docker run -it --entrypoint=mg_client memgraph --host HOST
+docker run -it --entrypoint=mg_client memgraph --host HOST --use-ssl=False
 ```
 
-Otherwise, you can connect to the running Memgraph instance by 
+Otherwise, you can connect to the running Memgraph instance by
 issuing the following shell command:
 
 ```plaintext
-mg_client
+mg_client --use-ssl=False
 ```
 
 After the client has started it should present a command prompt similar to:
 
 ```plaintext
-mg_client 0.14.0
+mg_client 1.2.0-community
 Type :help for shell usage
 Quit the shell by typing Ctrl-D(eof) or :quit
 Connected to 'memgraph://127.0.0.1:7687'
@@ -258,7 +262,7 @@ MATCH (u:User)-[r]->(x) RETURN u, r, x;
 
 #### Stopping Memgraph
 
-If the Memgraph configuration is altered, Memgraph needs to be restarted. 
+If the Memgraph configuration is altered, Memgraph needs to be restarted.
 If you installed Memgraph using Docker, to stop Memgraph, press `Ctrl-c`.
 
 Otherwise, to shut down the Memgraph server, issue the following command:
@@ -270,10 +274,10 @@ systemctl stop memgraph
 ### Telemetry {#telemetry}
 
 Telemetry is an automated process by which data is collected at
-a remote point. At Memgraph, we use telemetry for the sole purpose 
-of improving our product, thereby collecting data about the machine 
-that executes the database (CPU, memory, OS and kernel information) 
-as well as data about the database runtime (CPU usage, memory usage, 
+a remote point. At Memgraph, we use telemetry for the sole purpose
+of improving our product, thereby collecting data about the machine
+that executes the database (CPU, memory, OS and kernel information)
+as well as data about the database runtime (CPU usage, memory usage,
 vertices and edges count).
 
 Here at Memgraph, we care deeply about the privacy of our users and do not
