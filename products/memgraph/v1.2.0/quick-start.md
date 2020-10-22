@@ -65,6 +65,7 @@ journalctl --unit memgraph
 If successful, you should receive an output similar to the following:
 
 ```plaintext
+Nov 23 13:40:13 hostname memgraph[14654]: Using secure Bolt connection (with SSL)
 Nov 23 13:40:13 hostname memgraph[14654]: Starting 8 BoltS workers
 Nov 23 13:40:13 hostname memgraph[14654]: BoltS server is fully armed and operational
 Nov 23 13:40:13 hostname memgraph[14654]: BoltS listening on 0.0.0.0 at 7687
