@@ -3,10 +3,10 @@
 ### Supported Languages
 
 If users wish to query Memgraph programmatically, they can do so using the
-[Bolt protocol](https://boltprotocol.org). Bolt was designed for efficient
-communication with graph databases and Memgraph supports
-[Version 1](https://boltprotocol.org/v1) of the protocol. Bolt protocol drivers
-for some popular programming languages are listed below:
+[Bolt protocol](https://boltprotocol.org/). Bolt was designed for efficient
+communication with graph databases and Memgraph supports [Version
+4](https://7687.org/) of the protocol. Bolt protocol drivers for some popular
+programming languages are listed below:
 
   * [C#](https://github.com/neo4j/neo4j-dotnet-driver)
   * [C/C++](https://github.com/memgraph/mgclient)
@@ -56,7 +56,7 @@ The code snippet below outlines a basic usage example which connects to the
 database and executes a couple of elementary queries.
 
 ```python
-from neo4j.v1 import GraphDatabase, basic_auth
+from neo4j import GraphDatabase, basic_auth
 
 # Initialize and configure the driver.
 #   * provide the correct URL where Memgraph is reachable;
@@ -69,21 +69,21 @@ session = driver.session()
 
 # Execute openCypher queries.
 # After each query, call either `consume()` or `data()`
-session.run('CREATE (alice:Person {name: "Alice", age: 22})').consume()
+session.run('CREATE (alice:Person {name: "Alice", age: 22});').consume()
 
 # Get all the vertices from the database (potentially multiple rows).
-vertices = session.run('MATCH (n) RETURN n').data()
+vertices = session.run('MATCH (n) RETURN n;').values()
 # Assuming we started with an empty database, we should have Alice
 # as the only row in the results.
 only_row = vertices.pop()
-alice = only_row["n"]
+alice = only_row[0]
 
 # Print out what we retrieved.
 print("Found a vertex with labels '{}', name '{}' and age {}".format(
-  alice['name'], alice.labels, alice['age'])
+    ','.join([label for label in alice.labels]), alice['name'], alice['age']))
 
 # Remove all the data from the database.
-session.run('MATCH (n) DETACH DELETE n').consume()
+session.run('MATCH (n) DETACH DELETE n;').consume()
 
 # Close the session and the driver.
 session.close()

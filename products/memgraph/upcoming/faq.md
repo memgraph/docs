@@ -38,7 +38,7 @@ Memgraph doesn’t support the Tinkerpop API stack because Tinkerpop is highly d
 
 10. ##### How do you interface with the system?
 
-Memgraph supports the [openCypher](http://www.opencypher.org) query language to query the database. It’s a declarative query language designed to query graphs. Communication between clients and the database is done via the [Bolt protocol](https://boltprotocol.org). In any programming language ([Python](https://github.com/neo4j/neo4j-python-driver), [Java](https://github.com/neo4j/neo4j-java-driver), [C#](https://github.com/neo4j/neo4j-dotnet-driver), [JS](https://github.com/neo4j/neo4j-javascript-driver), [C/C++](https://neo4j-client.net), etc.), there is a library (aka driver) which can be used to run queries against the database.
+Memgraph supports the [openCypher](http://www.opencypher.org) query language to query the database. It’s a declarative query language designed to query graphs. Communication between clients and the database is done via the [Bolt protocol](https://boltprotocol.org). In any programming language ([Python](https://github.com/neo4j/neo4j-python-driver), [Java](https://github.com/neo4j/neo4j-java-driver), [C#](https://github.com/neo4j/neo4j-dotnet-driver), [JS](https://github.com/neo4j/neo4j-javascript-driver), [C/C++](https://github.com/memgraph/mgclient), etc.), there is a library (aka driver) which can be used to run queries against the database.
 
 11. ##### How do you upgrade?
 
