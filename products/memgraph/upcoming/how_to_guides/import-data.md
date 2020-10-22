@@ -5,6 +5,12 @@ imported either using the [CSV import tool](#import-csv) or using saved
 [cypher queries](#import-cypher) with `mg_client` running in non-interactive
 mode.
 
+{% hint style="info" %}
+NOTE: `mg_client` is deprecated tool still coming within Memgraph package.
+[mgconsole](https://github.com/memgraph/mgconsole) will replace `mg_client` in
+the future. If possible, please use `mgconsole` instead.
+{% endhint %}
+
 ### CSV Import Tool {#import-csv}
 
 CSV is a universal and very versatile data format used to store large
@@ -366,14 +372,14 @@ non-interactive mode. The user can import queries saved in e.g. `queries.txt`
 by issuing the following shell command:
 
 ```plaintext
-mg_client < queries.txt
+mg_client --use-ssl=False < queries.txt
 ```
 
 If you installed Memgraph using Docker, you will need to run the client using
 the following command:
 
 ```plaintext
-docker run -i --entrypoint=mg_client memgraph --host HOST < queries.txt
+docker run -i --entrypoint=mg_client memgraph --host HOST --use-ssl=False < queries.txt
 ```
 
 Remember to replace `HOST` with valid IP of the container (see
