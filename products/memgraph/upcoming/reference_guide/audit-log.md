@@ -8,10 +8,9 @@ All audit logs are written to
 `<MEMGRAPH_DURABILITY_DIRECTORY>/audit/audit.log`.  The log is rotated using
 `logrotate`, so entries in the `audit.log` file are always the newest entries.
 Entries in `audit.log.1`, `audit.log.2.gz`, etc.  are older entries. The
-default log rotation configuration can be found in
-`/etc/logrotate.d/memgraph_audit`. By default, the log is rotated every day and
-a full year of entries is preserved. You can modify the values to your own
-needs and preferences.
+default log rotation configuration can be found in `/etc/logrotate.d/memgraph`.
+By default, the log is rotated every day and a full year of entries is
+preserved. You can modify the values to your own needs and preferences.
 
 ### Format
 

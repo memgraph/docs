@@ -1,22 +1,23 @@
 ## Quick Start
 
 This article briefly outlines the basic steps necessary to install and run
-Memgraph. It also introduces how to make queries using [OpenCypher](https://www.opencypher.org).
-Finally, please be aware of and understand the implications of
-[telemetry](#telemetry) as used by the Memgraph team.
+Memgraph. It also introduces how to make queries using
+[OpenCypher](https://www.opencypher.org).  Finally, please be aware of and
+understand the implications of [telemetry](#telemetry) as used by the Memgraph
+team.
 
 ### Installation
 
 Memgraph is available to [download as a binary](https://memgraph.com/download/)
 in the following formats:
 
-  * [Debian package for Debian 9 (Stretch)](#debian-installation)
-  * [RPM package for CentOS 7](#RPM-installation)
+  * [Debian package](#debian-installation)
+  * [RPM package](#RPM-installation)
   * [Docker image](#docker-installation)
 
 It is important to note that newer versions of Memgraph are currently not
-backward compatible with older versions. This is mainly noticeable by
-being unable to load storage snapshots between different versions.
+backward compatible with older versions. This is mainly noticeable by being
+unable to load storage snapshots between different versions.
 
 #### Debian Package Installation {#debian-installation}
 
@@ -65,7 +66,6 @@ journalctl --unit memgraph
 If successful, you should receive an output similar to the following:
 
 ```plaintext
-Nov 23 13:40:13 hostname memgraph[14654]: Starting 8 BoltS workers
 Nov 23 13:40:13 hostname memgraph[14654]: BoltS server is fully armed and operational
 Nov 23 13:40:13 hostname memgraph[14654]: BoltS listening on 0.0.0.0 at 7687
 ```
@@ -101,8 +101,6 @@ journalctl --unit memgraph
 If successful, the you should receive an output similar to the following:
 
 ```plaintext
-Nov 23 13:40:13 hostname memgraph[14654]: Using secure Bolt connection (with SSL)
-Nov 23 13:40:13 hostname memgraph[14654]: Starting 8 BoltS workers
 Nov 23 13:40:13 hostname memgraph[14654]: BoltS server is fully armed and operational
 Nov 23 13:40:13 hostname memgraph[14654]: BoltS listening on 0.0.0.0 at 7687
 ```
@@ -146,9 +144,8 @@ docker run -p 7687:7687 \
 If successful, you should see the following message:
 
 ```plaintext
-Starting 8 workers
-Server is fully armed and operational
-Listening on 0.0.0.0 at 7687
+Bolt server is fully armed and operational
+Bolt listening on 0.0.0.0:7687
 ```
 
 At this point, Memgraph is ready for you to [submit queries](#querying).
@@ -239,7 +236,6 @@ mg_client --use-ssl=False
 After the client has started it should present a command prompt similar to:
 
 ```plaintext
-mg_client 1.2.0-community
 Type :help for shell usage
 Quit the shell by typing Ctrl-D(eof) or :quit
 Connected to 'memgraph://127.0.0.1:7687'
@@ -276,32 +272,26 @@ systemctl stop memgraph
 
 ### Telemetry {#telemetry}
 
-Telemetry is an automated process by which data is collected at
-a remote point. At Memgraph, we use telemetry for the sole purpose
-of improving our product, thereby collecting data about the machine
-that executes the database (CPU, memory, OS and kernel information)
-as well as data about the database runtime (CPU usage, memory usage,
-vertices and edges count).
+Telemetry is an automated process by which data is collected at a remote point.
+At Memgraph, we use telemetry for the sole purpose of improving our product,
+thereby collecting data about the machine that executes the database (CPU,
+memory, OS and kernel information) as well as data about the database runtime
+(CPU usage, memory usage, vertices and edges count).
 
 Here at Memgraph, we care deeply about the privacy of our users and do not
 collect any sensitive information. If you wish to disable Memgraph's telemetry
 features, you can do so easily, either by altering the line in
-`/etc/memgraph/memgraph.conf` that enables telemetry (set `--telemetry-enabled=true`
-to the following `--telemetry-enabled=false`), or by including `--telemetry-enabled=false`
-as a command-line argument when running the executable.
+`/etc/memgraph/memgraph.conf` that enables telemetry (set
+`--telemetry-enabled=true` to the following `--telemetry-enabled=false`), or by
+including `--telemetry-enabled=false` as a command-line argument when running
+the executable.
 
 ### Where To Next?
 
-To learn more about the openCypher language, visit our
-[reference guide](reference_guide/reference-overview.md) article.
-For real-world examples of how to use Memgraph, we strongly suggest reading
-through the following articles:
-
-  * [Analyzing TED Talks](tutorials/analyzing-TED-talks.md)
-  * [Graphing the Premier League](tutorials/graphing-the-premier-league.md)
-  * [Exploring the European Road Network](tutorials/exploring-the-european-road-network.md)
-
-Details on what can be stored in Memgraph can be found in the article about
-[Data Storage](concepts/storage.md).
+To learn more about the openCypher language, visit our [Reference
+Guide](reference_guide/reference-overview.md) article.  For real-world examples
+of how to use Memgraph, we strongly suggest reading through
+[Tutorials](tutorials/tutorials-overview.md). Details on what can be stored in
+Memgraph can be found in the article about [Data Storage](concepts/storage.md).
 
 We *welcome and encourage* your feedback!
