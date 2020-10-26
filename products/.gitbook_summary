@@ -35,7 +35,7 @@
     * [Indexing](memgraph/v1.2.0/reference_guide/indexing.md)
     * [Graph Algorithms](memgraph/v1.2.0/reference_guide/graph-algorithms.md)
     * [Query Modules](memgraph/v1.2.0/reference_guide/query-modules.md)
-    * [NetworkX](memgraph/v1.2.0/reference_guide/networkx.md)
+    * [NetworkX](memgraph/v1.2.0/reference_guide/networkx/networkx.md)
         * [Graph Analyzer](memgraph/v1.2.0/reference_guide/networkx/graph_analyzer/graph_analyzer.md)
         * [Weakly Connected Components](memgraph/v1.2.0/reference_guide/networkx/wcc/wcc.md)
         * [NetworkX Algorithms](memgraph/v1.2.0/reference_guide/networkx/nxalg/nxalg.md)
