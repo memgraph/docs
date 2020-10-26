@@ -1,4 +1,4 @@
-## NetworkX Algorithms as Query Modules
+## NetworkX With Query Modules
 
 Memgraph provides three query modules that use the NetworkX library:
 * [**graph_analyzer**](memgraph/v1.2.0/reference_guide/networkx/graph_analyzer/graph_analyzer.md)

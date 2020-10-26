@@ -1,5 +1,6 @@
 # graph_analyzer module
 
+This module offers more insights about the stored graph or a subgraph.
 
 ### graph_analyzer.analyze(context: mgp.ProcCtx, analyses: mgp.Nullable.typing.List[str] = None)
 Shows graph information.
