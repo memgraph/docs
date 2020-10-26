@@ -5,7 +5,7 @@
 Compute all shortest simple paths in the graph.
 
 
-* **Parameters**
+**Parameters**
 
     
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
@@ -32,12 +32,12 @@ Compute all shortest simple paths in the graph.
 
 
 
-* **Returns**
+**Returns**
 
     A generator of all paths between source and target.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(paths=mgp.List[mgp.List[mgp.Vertex]])
