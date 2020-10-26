@@ -30,10 +30,10 @@ be the set of all nodes not in `S`.
 
 **Returns**
 
-    The node boundary of `nbunch1` with respect to `nbunch2`.
+The node boundary of `nbunch1` with respect to `nbunch2`.
 
 
 
 **Return type**
 
-    mgp.Record(boundary=mgp.List[mgp.Vertex])
+mgp.Record(boundary=mgp.List[mgp.Vertex])

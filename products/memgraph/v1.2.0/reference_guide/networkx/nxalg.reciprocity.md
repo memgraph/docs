@@ -26,10 +26,10 @@ the total number of edges attached to node u.
 
 **Returns**
 
-    Reciprocity keyed by node label.
+Reciprocity keyed by node label.
 
 
 
 **Return type**
 
-    mgp.Record(node=mgp.Nullable[mgp.Vertex], reciprocity=mgp.Nullable[float])
+mgp.Record(node=mgp.Nullable[mgp.Vertex], reciprocity=mgp.Nullable[float])

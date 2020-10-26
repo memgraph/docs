@@ -24,10 +24,10 @@ in undirected graphs, only one orientation of the pair is counted.
 
 **Returns**
 
-    The Wiener index of the graph `G`.
+The Wiener index of the graph `G`.
 
 
 
 **Return type**
 
-    mgp.Record(wiener_index=mgp.Number)
+mgp.Record(wiener_index=mgp.Number)

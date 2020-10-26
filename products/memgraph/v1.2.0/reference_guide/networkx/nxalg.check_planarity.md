@@ -16,10 +16,10 @@ any edge intersections.
 
 **Returns**
 
-    `is_planar` is true if the graph is planar.
+`is_planar` is true if the graph is planar.
 
 
 
 **Return type**
 
-    mgp.Record(is_planar=bool)
+mgp.Record(is_planar=bool)

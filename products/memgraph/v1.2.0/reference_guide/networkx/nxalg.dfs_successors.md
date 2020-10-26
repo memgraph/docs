@@ -21,10 +21,10 @@ Returns dictionary of successors in depth-first-search from source.
 
 **Returns**
 
-    A dictionary with nodes as keys and list of successor nodes as values.
+A dictionary with nodes as keys and list of successor nodes as values.
 
 
 
 **Return type**
 
-    mgp.Record(node=mgp.Vertex, successors=mgp.List[mgp.Vertex])
+mgp.Record(node=mgp.Vertex, successors=mgp.List[mgp.Vertex])

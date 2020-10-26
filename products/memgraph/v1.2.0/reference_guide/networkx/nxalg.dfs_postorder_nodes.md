@@ -21,10 +21,10 @@ Generate nodes in a depth-first-search post-ordering starting at source.
 
 **Returns**
 
-    A generator of nodes in a depth-first-search post-ordering.
+A generator of nodes in a depth-first-search post-ordering.
 
 
 
 **Return type**
 
-    mgp.Record(nodes=mgp.List[mgp.Vertex])
+mgp.Record(nodes=mgp.List[mgp.Vertex])

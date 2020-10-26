@@ -17,11 +17,11 @@ Returns the immediate dominators of all nodes of a directed graph.
 
 **Returns**
 
-    A dictionary containing the immediate dominators of each node reachable from
+A dictionary containing the immediate dominators of each node reachable from
     `start`.
 
 
 
 **Return type**
 
-    mgp.Record(node=mgp.Vertex, dominator=mgp.Vertex)
+mgp.Record(node=mgp.Vertex, dominator=mgp.Vertex)

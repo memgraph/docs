@@ -27,10 +27,10 @@ Iterate over edges in a breadth-first-search starting at source.
 
 **Returns**
 
-    A generator of edges in the breadth-first-search.
+A generator of edges in the breadth-first-search.
 
 
 
 **Return type**
 
-    mgp.Record(edges=mgp.List[mgp.Edge])
+mgp.Record(edges=mgp.List[mgp.Edge])

@@ -19,10 +19,10 @@ undirected edge in a multigraph.
 
 **Returns**
 
-    A boolean that is True if `G` is a forest.
+A boolean that is True if `G` is a forest.
 
 
 
 **Return type**
 
-    mgp.Record(is_forest=bool)
+mgp.Record(is_forest=bool)

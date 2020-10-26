@@ -31,10 +31,10 @@ a strongly regular graph.
 
 **Returns**
 
-    Whether `G` is strongly regular.
+Whether `G` is strongly regular.
 
 
 
 **Return type**
 
-    mgp.Record(is_strongly_regular=bool)
+mgp.Record(is_strongly_regular=bool)

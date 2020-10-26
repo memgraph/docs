@@ -56,10 +56,10 @@ an algorithm to rank web pages.
 
 **Returns**
 
-    Dictionary of nodes with PageRank as value.
+Dictionary of nodes with PageRank as value.
 
 
 
 **Return type**
 
-    mgp.Record(node=mgp.Vertex, rank=float)
+mgp.Record(node=mgp.Vertex, rank=float)

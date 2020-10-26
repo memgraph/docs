@@ -35,11 +35,11 @@ It works for both directed and undirected graphs.
 
 **Returns**
 
-    Node connectivity of `G`, or local node connectivity if source
+Node connectivity of `G`, or local node connectivity if source
     and target are provided.
 
 
 
 **Return type**
 
-    mgp.Record(connectivity=int)
+mgp.Record(connectivity=int)

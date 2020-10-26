@@ -15,10 +15,10 @@ The center is the set of nodes with eccentricity equal to the radius.
 
 **Returns**
 
-    List of nodes in center.
+List of nodes in center.
 
 
 
 **Return type**
 
-    mgp.Record(center=mgp.List[mgp.Vertex])
+mgp.Record(center=mgp.List[mgp.Vertex])

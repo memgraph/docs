@@ -16,10 +16,10 @@ A maximal matching cannot add more edges and still be a matching.
 
 **Returns**
 
-    A maximal matching of the graph.
+A maximal matching of the graph.
 
 
 
 **Return type**
 
-    mgp.Record(edges=mgp.List[mgp.Edge])
+mgp.Record(edges=mgp.List[mgp.Edge])

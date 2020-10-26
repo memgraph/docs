@@ -21,10 +21,10 @@ member of `D`.
 
 **Returns**
 
-    A dominating set for `G`.
+A dominating set for `G`.
 
 
 
 **Return type**
 
-    mgp.Record(dominating_set=mgp.List[mgp.Vertex])
+mgp.Record(dominating_set=mgp.List[mgp.Vertex])

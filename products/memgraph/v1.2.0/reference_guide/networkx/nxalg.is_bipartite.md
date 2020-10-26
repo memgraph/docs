@@ -13,10 +13,10 @@ Returns True if graph `G` is bipartite, False if not.
 
 **Returns**
 
-    True if `G` is bipartite and False otherwise.
+True if `G` is bipartite and False otherwise.
 
 
 
 **Return type**
 
-    mgp.Record(is_bipartite=bool)
+mgp.Record(is_bipartite=bool)

@@ -36,10 +36,10 @@ in the graph with respect to the node degree.
 
 **Returns**
 
-    Assortativity of graph by degree.
+Assortativity of graph by degree.
 
 
 
 **Return type**
 
-    mgp.Record(assortativity=float)
+mgp.Record(assortativity=float)

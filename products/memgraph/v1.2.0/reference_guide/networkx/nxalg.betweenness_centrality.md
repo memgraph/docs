@@ -40,10 +40,10 @@ Compute the shortest-path betweenness centrality for nodes.
 
 **Returns**
 
-    Dictionary of nodes with betweenness centrality as the value.
+Dictionary of nodes with betweenness centrality as the value.
 
 
 
 **Return type**
 
-    mgp.Record(node=mgp.Vertex, betweenness=mgp.Number)
+mgp.Record(node=mgp.Vertex, betweenness=mgp.Number)

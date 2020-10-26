@@ -34,7 +34,7 @@ in which distance is measured from the center nodes to the target node.
 
 **Returns**
 
-    A mapping from center node to set of all nodes in the graph
+A mapping from center node to set of all nodes in the graph
     closer to that center node than to any other center node. The
     keys of the dictionary are the element of `center_nodes`, and
     the values of the dictionary form a partition of the nodes of
@@ -44,4 +44,4 @@ in which distance is measured from the center nodes to the target node.
 
 **Return type**
 
-    mgp.Record(center=mgp.Vertex, cell=mgp.List[mgp.Vertex])
+mgp.Record(center=mgp.Vertex, cell=mgp.List[mgp.Vertex])

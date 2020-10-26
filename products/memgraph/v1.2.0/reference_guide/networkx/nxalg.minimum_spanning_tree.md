@@ -28,10 +28,10 @@ Returns a minimum spanning tree or forest on an undirected graph `G`.
 
 **Returns**
 
-    A minimum spanning tree or forest.
+A minimum spanning tree or forest.
 
 
 
 **Return type**
 
-    mgp.Record(nodes=mgp.List[mgp.Vertex], edges=mgp.List[mgp.Edge])
+mgp.Record(nodes=mgp.List[mgp.Vertex], edges=mgp.List[mgp.Edge])

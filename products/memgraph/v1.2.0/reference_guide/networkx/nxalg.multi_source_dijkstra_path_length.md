@@ -42,10 +42,10 @@ all other reachable nodes for a weighted graph.
 
 **Returns**
 
-    Dict keyed by node to shortest path length to nearest source.
+Dict keyed by node to shortest path length to nearest source.
 
 
 
 **Return type**
 
-    mgp.Record(target=mgp.Vertex, length=mgp.Number)
+mgp.Record(target=mgp.Vertex, length=mgp.Number)

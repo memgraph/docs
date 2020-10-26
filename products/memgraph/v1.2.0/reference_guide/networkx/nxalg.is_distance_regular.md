@@ -19,10 +19,10 @@ between `x` and `y`, independently of the choice of `x` and `y`.
 
 **Returns**
 
-    True if the graph is Distance Regular, False otherwise.
+True if the graph is Distance Regular, False otherwise.
 
 
 
 **Return type**
 
-    mgp.Record(is_distance_regular=bool)
+mgp.Record(is_distance_regular=bool)

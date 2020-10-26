@@ -17,10 +17,10 @@ Returns all nodes reachable from `source` in `G`.
 
 **Returns**
 
-    The descendants of `source` in `G`.
+The descendants of `source` in `G`.
 
 
 
 **Return type**
 
-    mgp.Record(descendants=mgp.List[mgp.Vertex])
+mgp.Record(descendants=mgp.List[mgp.Vertex])

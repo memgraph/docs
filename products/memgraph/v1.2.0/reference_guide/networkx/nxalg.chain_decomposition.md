@@ -31,7 +31,7 @@ cycle or path is called a *chain*.
 
 **Returns**
 
-    A list of edges representing a chain. There is no guarantee on
+A list of edges representing a chain. There is no guarantee on
     the orientation of the edges in each chain (for example, if a
     chain includes the edge joining nodes 1 and 2, the chain may
     include either (1, 2) or (2, 1)).
@@ -40,4 +40,4 @@ cycle or path is called a *chain*.
 
 **Return type**
 
-    mgp.Record(chains=mgp.List[mgp.List[mgp.Edge]])
+mgp.Record(chains=mgp.List[mgp.List[mgp.Edge]])

@@ -21,10 +21,10 @@ in cycles in a directed graph.
 
 **Returns**
 
-    Flow hierarchy value.
+Flow hierarchy value.
 
 
 
 **Return type**
 
-    mgp.Record(flow_hierarchy=float)
+mgp.Record(flow_hierarchy=float)

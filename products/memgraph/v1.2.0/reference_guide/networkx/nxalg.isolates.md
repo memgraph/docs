@@ -17,10 +17,10 @@ out-neighbors.
 
 **Returns**
 
-    An iterator over the isolates of `G`.
+An iterator over the isolates of `G`.
 
 
 
 **Return type**
 
-    mgp.Record(isolates=mgp.List[mgp.Vertex])
+mgp.Record(isolates=mgp.List[mgp.Vertex])

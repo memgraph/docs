@@ -23,11 +23,11 @@ edge that does not belong to any cycle.
 
 **Returns**
 
-    An edge in the graph whose removal disconnects the graph (or
+An edge in the graph whose removal disconnects the graph (or
     causes the number of connected components to increase).
 
 
 
 **Return type**
 
-    mgp.Record(bridges=mgp.List[mgp.Edge])
+mgp.Record(bridges=mgp.List[mgp.Edge])

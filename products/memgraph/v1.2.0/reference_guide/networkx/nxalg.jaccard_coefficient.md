@@ -22,11 +22,11 @@ Compute the Jaccard coefficient of all node pairs in `ebunch`.
 
 **Returns**
 
-    An iterator of 3-tuples in the form `(u, v, p)` where `(u, v)` is a
+An iterator of 3-tuples in the form `(u, v, p)` where `(u, v)` is a
     pair of nodes and `p` is their Jaccard coefficient.
 
 
 
 **Return type**
 
-    mgp.Record(u=mgp.Vertex, v=mgp.Vertex, coef=float)
+mgp.Record(u=mgp.Vertex, v=mgp.Vertex, coef=float)

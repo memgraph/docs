@@ -38,7 +38,7 @@ Compute shortest paths in the graph.
 
 **Returns**
 
-    All returned paths include both the `source` and `target` in the path.
+All returned paths include both the `source` and `target` in the path.
 
     If the `source` and `target` are both specified, return a single list
     of nodes in a shortest path from the `source` to the `target`.
@@ -59,4 +59,4 @@ Compute shortest paths in the graph.
 
 **Return type**
 
-    mgp.Record(source=mgp.Vertex, target=mgp.Vertex, path=mgp.List[mgp.Vertex])
+mgp.Record(source=mgp.Vertex, target=mgp.Vertex, path=mgp.List[mgp.Vertex])

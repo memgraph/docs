@@ -23,10 +23,10 @@ Notice that by convention a dyad is considered a biconnected component.
 
 **Returns**
 
-    A list of sets of nodes, one set for each biconnected component.
+A list of sets of nodes, one set for each biconnected component.
 
 
 
 **Return type**
 
-    mgp.Record(components=mgp.List[mgp.List[mgp.Vertex]])
+mgp.Record(components=mgp.List[mgp.List[mgp.Vertex]])

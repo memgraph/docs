@@ -15,10 +15,10 @@ A branching is a directed forest with maximum in-degree equal to 1.
 
 **Returns**
 
-    A boolean that is True if `G` is a branching.
+A boolean that is True if `G` is a branching.
 
 
 
 **Return type**
 
-    mgp.Record(is_branching=bool)
+mgp.Record(is_branching=bool)

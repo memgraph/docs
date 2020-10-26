@@ -15,10 +15,10 @@ G is semi-Eulerian if it has an Eulerian path but no Eulerian circuit.
 
 **Returns**
 
-    True if `G` is semi-Eulerian.
+True if `G` is semi-Eulerian.
 
 
 
 **Return type**
 
-    mgp.Record(is_semieulerian=bool)
+mgp.Record(is_semieulerian=bool)

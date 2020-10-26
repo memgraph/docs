@@ -24,10 +24,10 @@ can be reached through adjacent (sharing `k-1` nodes) k-cliques.
 
 **Returns**
 
-    Sets of nodes, one for each k-clique community.
+Sets of nodes, one for each k-clique community.
 
 
 
 **Return type**
 
-    mgp.Record(communities=mgp.List[mgp.List[mgp.Vertex]])
+mgp.Record(communities=mgp.List[mgp.List[mgp.Vertex]])

@@ -20,10 +20,10 @@ Returns True if `G` has a path from `source` to `target`.
 
 **Returns**
 
-    True if `G` has a path from `source` to `target`.
+True if `G` has a path from `source` to `target`.
 
 
 
 **Return type**
 
-    mgp.Record(has_path=bool)
+mgp.Record(has_path=bool)

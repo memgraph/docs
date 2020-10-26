@@ -40,7 +40,7 @@ Compute shortest path lengths in the graph.
 
 **Returns**
 
-    If the `source` and `target` are both specified, return the length of
+If the `source` and `target` are both specified, return the length of
     the shortest path from the `source` to the `target`.
 
     If only the `source` is specified, return a dict keyed by `target`
@@ -58,4 +58,4 @@ Compute shortest path lengths in the graph.
 
 **Return type**
 
-    mgp.Record(source=mgp.Vertex, target=mgp.Vertex, length=mgp.Number)
+mgp.Record(source=mgp.Vertex, target=mgp.Vertex, length=mgp.Number)

@@ -15,10 +15,10 @@ The diameter is the maximum eccentricity.
 
 **Returns**
 
-    Diameter of graph.
+Diameter of graph.
 
 
 
 **Return type**
 
-    mgp.Record(diameter=int)
+mgp.Record(diameter=int)

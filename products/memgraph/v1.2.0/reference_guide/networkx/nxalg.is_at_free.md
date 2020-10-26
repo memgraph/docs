@@ -18,10 +18,10 @@ found the graph is not AT-free and False is returned.
 
 **Returns**
 
-    True if `G` is AT-free and False otherwise.
+True if `G` is AT-free and False otherwise.
 
 
 
 **Return type**
 
-    mgp.Record(is_at_free=bool)
+mgp.Record(is_at_free=bool)

@@ -17,11 +17,11 @@ Generates nodes in each maximal k-edge-connected component in `G`.
 
 **Returns**
 
-    A generator of k-edge-ccs. Each set of returned nodes
+A generator of k-edge-ccs. Each set of returned nodes
     will have k-edge-connectivity in the graph `G`.
 
 
 
 **Return type**
 
-    mgp.Record(components=mgp.List[mgp.List[mgp.Vertex]])
+mgp.Record(components=mgp.List[mgp.List[mgp.Vertex]])

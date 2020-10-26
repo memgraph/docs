@@ -13,11 +13,11 @@ Return nodes in strongly connected components of graph.
 
 **Returns**
 
-    A list of sets of nodes, one for each strongly connected
+A list of sets of nodes, one for each strongly connected
     component of `G`.
 
 
 
 **Return type**
 
-    mgp.Record(components=mgp.List[mgp.List[mgp.Vertex]])
+mgp.Record(components=mgp.List[mgp.List[mgp.Vertex]])

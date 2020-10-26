@@ -17,10 +17,10 @@ order.
 
 **Returns**
 
-    An list of nodes in topological sorted order.
+An list of nodes in topological sorted order.
 
 
 
 **Return type**
 
-    mgp.Record(nodes=mgp.Nullable[mgp.List[mgp.Vertex]])
+mgp.Record(nodes=mgp.Nullable[mgp.List[mgp.Vertex]])

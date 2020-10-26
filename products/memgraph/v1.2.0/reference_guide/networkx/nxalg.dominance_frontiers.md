@@ -17,11 +17,11 @@ Returns the dominance frontiers of all nodes of a directed graph.
 
 **Returns**
 
-    A dictionary containing the dominance frontiers of each node reachable from
+A dictionary containing the dominance frontiers of each node reachable from
     `start` as lists.
 
 
 
 **Return type**
 
-    mgp.Record(node=mgp.Vertex, frontier=mgp.List[mgp.Vertex])
+mgp.Record(node=mgp.Vertex, frontier=mgp.List[mgp.Vertex])

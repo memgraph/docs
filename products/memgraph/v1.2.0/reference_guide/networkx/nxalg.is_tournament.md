@@ -17,10 +17,10 @@ each pair of distinct nodes.
 
 **Returns**
 
-    Whether the given graph is a tournament graph.
+Whether the given graph is a tournament graph.
 
 
 
 **Return type**
 
-    mgp.Record(is_tournament=bool)
+mgp.Record(is_tournament=bool)

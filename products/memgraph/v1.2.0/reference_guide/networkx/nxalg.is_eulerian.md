@@ -17,10 +17,10 @@ once.
 
 **Returns**
 
-    True if `G` is Eulerian.
+True if `G` is Eulerian.
 
 
 
 **Return type**
 
-    mgp.Record(is_eulerian=bool)
+mgp.Record(is_eulerian=bool)

@@ -21,10 +21,10 @@ Returns oriented tree constructed from a depth-first-search from source.
 
 **Returns**
 
-    An oriented tree.
+An oriented tree.
 
 
 
 **Return type**
 
-    mgp.Record(tree=mgp.List[mgp.Vertex])
+mgp.Record(tree=mgp.List[mgp.Vertex])

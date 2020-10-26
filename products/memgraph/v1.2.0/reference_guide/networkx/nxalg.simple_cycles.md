@@ -20,11 +20,11 @@ algorithm. There may be better algorithms for some cases.
 
 **Returns**
 
-    A list of elementary cycles in the graph.
+A list of elementary cycles in the graph.
     Each cycle is represented by a list of nodes along the cycle.
 
 
 
 **Return type**
 
-    mgp.Record(cycles=mgp.List[mgp.List[mgp.Vertex]])
+mgp.Record(cycles=mgp.List[mgp.List[mgp.Vertex]])

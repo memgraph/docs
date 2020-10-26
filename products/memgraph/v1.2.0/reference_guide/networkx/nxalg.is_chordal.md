@@ -16,10 +16,10 @@ A graph is chordal if every cycle of length at least 4 has a chord
 
 **Returns**
 
-    True if `G` is a chordal graph and False otherwise.
+True if `G` is a chordal graph and False otherwise.
 
 
 
 **Return type**
 
-    mgp.Record(is_chordal=bool)
+mgp.Record(is_chordal=bool)

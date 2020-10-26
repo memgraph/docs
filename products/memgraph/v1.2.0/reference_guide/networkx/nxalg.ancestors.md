@@ -17,10 +17,10 @@ Returns all nodes having a path to `source` in `G`.
 
 **Returns**
 
-    The ancestors of source in `G`.
+The ancestors of source in `G`.
 
 
 
 **Return type**
 
-    mgp.Record(ancestors=mgp.List[mgp.Vertex])
+mgp.Record(ancestors=mgp.List[mgp.Vertex])

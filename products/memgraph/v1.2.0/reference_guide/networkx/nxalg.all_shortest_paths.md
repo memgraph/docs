@@ -34,10 +34,10 @@ Compute all shortest simple paths in the graph.
 
 **Returns**
 
-    A generator of all paths between source and target.
+A generator of all paths between source and target.
 
 
 
 **Return type**
 
-    mgp.Record(paths=mgp.List[mgp.List[mgp.Vertex]])
+mgp.Record(paths=mgp.List[mgp.List[mgp.Vertex]])

@@ -22,10 +22,10 @@ pair of nodes in the sequence is adjacent in the graph.
 
 **Returns**
 
-    Whether the given list of nodes represents a simple path in `G`.
+Whether the given list of nodes represents a simple path in `G`.
 
 
 
 **Return type**
 
-    mgp.Record(is_simple_path=bool)
+mgp.Record(is_simple_path=bool)

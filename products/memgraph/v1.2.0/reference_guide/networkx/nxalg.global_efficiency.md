@@ -18,10 +18,10 @@ nodes.
 
 **Returns**
 
-    The average global efficiency of the graph.
+The average global efficiency of the graph.
 
 
 
 **Return type**
 
-    mgp.Record(global_efficiency=float)
+mgp.Record(global_efficiency=float)

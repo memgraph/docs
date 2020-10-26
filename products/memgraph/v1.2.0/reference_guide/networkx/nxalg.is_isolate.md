@@ -21,10 +21,10 @@ out-neighbors.
 
 **Returns**
 
-    True if and only if `n` has no neighbors.
+True if and only if `n` has no neighbors.
 
 
 
 **Return type**
 
-    mgp.Record(is_isolate=bool)
+mgp.Record(is_isolate=bool)

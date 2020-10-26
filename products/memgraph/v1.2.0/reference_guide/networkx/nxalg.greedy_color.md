@@ -50,11 +50,11 @@ given strategy determines the order in which nodes are colored.
 
 **Returns**
 
-    A dictionary with keys representing nodes and values representing
+A dictionary with keys representing nodes and values representing
     corresponding coloring.
 
 
 
 **Return type**
 
-    mgp.Record(node=mgp.Vertex, color=int)
+mgp.Record(node=mgp.Vertex, color=int)

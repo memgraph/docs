@@ -27,10 +27,10 @@ nonzero degrees belong to a single connected component.
 
 **Returns**
 
-    True if `G` has an eulerian path.
+True if `G` has an eulerian path.
 
 
 
 **Return type**
 
-    mgp.Record(has_eulerian_path=bool)
+mgp.Record(has_eulerian_path=bool)

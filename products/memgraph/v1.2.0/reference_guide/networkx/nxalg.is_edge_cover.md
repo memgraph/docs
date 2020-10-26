@@ -21,10 +21,10 @@ has an edge from the set, incident on it.
 
 **Returns**
 
-    Whether the set of edges is a valid edge cover of the graph.
+Whether the set of edges is a valid edge cover of the graph.
 
 
 
 **Return type**
 
-    mgp.Record(is_edge_cover=bool)
+mgp.Record(is_edge_cover=bool)

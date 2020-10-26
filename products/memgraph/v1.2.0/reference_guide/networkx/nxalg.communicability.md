@@ -16,11 +16,11 @@ closed walks of different lengths starting at node `u` and ending at node `v`.
 
 **Returns**
 
-    Dictionary of dictionaries keyed by nodes with communicability
+Dictionary of dictionaries keyed by nodes with communicability
     as the value.
 
 
 
 **Return type**
 
-    mgp.Record(node1=mgp.Vertex, node2=mgp.Vertex, communicability=mgp.Number)
+mgp.Record(node1=mgp.Vertex, node2=mgp.Vertex, communicability=mgp.Number)

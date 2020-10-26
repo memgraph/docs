@@ -19,10 +19,10 @@ efficiency* is the average of the local efficiencies of each node.
 
 **Returns**
 
-    The average local efficiency of the graph.
+The average local efficiency of the graph.
 
 
 
 **Return type**
 
-    mgp.Record(local_efficiency=float)
+mgp.Record(local_efficiency=float)

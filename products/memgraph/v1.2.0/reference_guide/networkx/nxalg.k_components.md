@@ -30,11 +30,11 @@ of node independent paths between two nodes.
 
 **Returns**
 
-    Dictionary with connectivity level `k` as key and a list of
+Dictionary with connectivity level `k` as key and a list of
     sets of nodes that form a k-component of level `k` as values.
 
 
 
 **Return type**
 
-    mgp.Record(k=int, components=mgp.List[mgp.List[mgp.Vertex]])
+mgp.Record(k=int, components=mgp.List[mgp.List[mgp.Vertex]])

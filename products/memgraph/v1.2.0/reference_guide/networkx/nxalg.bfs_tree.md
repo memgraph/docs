@@ -26,10 +26,10 @@ starting at source.
 
 **Returns**
 
-    An oriented tree.
+An oriented tree.
 
 
 
 **Return type**
 
-    mgp.Record(tree=mgp.List[mgp.Vertex])
+mgp.Record(tree=mgp.List[mgp.Vertex])

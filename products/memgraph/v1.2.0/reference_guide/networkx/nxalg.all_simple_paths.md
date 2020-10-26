@@ -26,7 +26,7 @@ A simple path is a path with no repeated nodes.
 
 **Returns**
 
-    A generator that produces lists of simple paths. If there are no paths
+A generator that produces lists of simple paths. If there are no paths
     between the source and target within the given cutoff the generator
     produces no output.
 
@@ -34,4 +34,4 @@ A simple path is a path with no repeated nodes.
 
 **Return type**
 
-    mgp.Record(paths=mgp.List[mgp.List[mgp.Vertex]])
+mgp.Record(paths=mgp.List[mgp.List[mgp.Vertex]])

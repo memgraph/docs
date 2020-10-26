@@ -16,10 +16,10 @@ triads are present in a directed graph.
 
 **Returns**
 
-    Dictionary with triad names as keys and number of occurrences as values.
+Dictionary with triad names as keys and number of occurrences as values.
 
 
 
 **Return type**
 
-    mgp.Record(triad=str, count=int)
+mgp.Record(triad=str, count=int)

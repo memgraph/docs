@@ -21,11 +21,11 @@ suffer from recursion depth issues.
 
 **Returns**
 
-    An iterator over maximal cliques, each of which is a list of
+An iterator over maximal cliques, each of which is a list of
     nodes in `G`. The order of cliques is arbitrary.
 
 
 
 **Return type**
 
-    mgp.Record(cliques=mgp.List[mgp.List[mgp.Vertex]])
+mgp.Record(cliques=mgp.List[mgp.List[mgp.Vertex]])

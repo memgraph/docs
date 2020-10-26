@@ -18,10 +18,10 @@ that node.
 
 **Returns**
 
-    A dictionary keyed by node to the core number.
+A dictionary keyed by node to the core number.
 
 
 
 **Return type**
 
-    mgp.Record(node=mgp.Vertex, core=mgp.Number)
+mgp.Record(node=mgp.Vertex, core=mgp.Number)

@@ -23,10 +23,10 @@ Compute the clustering coefficient for nodes.
 
 **Returns**
 
-    Clustering coefficient at specified nodes.
+Clustering coefficient at specified nodes.
 
 
 
 **Return type**
 
-    mgp.Record(node=mgp.Vertex, clustering=mgp.Number)
+mgp.Record(node=mgp.Vertex, clustering=mgp.Number)

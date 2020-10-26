@@ -28,10 +28,10 @@ The two graphs `G1` and `G2` must be the same type.
 
 **Returns**
 
-    True if the graphs `G1` and `G2` are isomorphic and False otherwise.
+True if the graphs `G1` and `G2` are isomorphic and False otherwise.
 
 
 
 **Return type**
 
-    mgp.Record(is_isomorphic=bool)
+mgp.Record(is_isomorphic=bool)

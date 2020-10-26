@@ -42,10 +42,10 @@ reachable nodes for a weighted graph.
 
 **Returns**
 
-    Dictionary of shortest paths keyed by target.
+Dictionary of shortest paths keyed by target.
 
 
 
 **Return type**
 
-    mgp.Record(target=mgp.Vertex, path=mgp.List[mgp.Vertex])
+mgp.Record(target=mgp.Vertex, path=mgp.List[mgp.Vertex])

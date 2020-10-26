@@ -35,7 +35,7 @@ The orientation of directed edges is controlled by `orientation`.
 
 **Returns**
 
-    A list of directed edges indicating the path taken for the loop.
+A list of directed edges indicating the path taken for the loop.
     If no cycle is found, then an exception is raised.
     For graphs, an edge is of the form `(u, v)` where `u` and `v`
     are the tail and head of the edge as determined by the traversal.
@@ -49,4 +49,4 @@ The orientation of directed edges is controlled by `orientation`.
 
 **Return type**
 
-    mgp.Record(cycle=mgp.Nullable[mgp.List[mgp.Edge]])
+mgp.Record(cycle=mgp.Nullable[mgp.List[mgp.Edge]])

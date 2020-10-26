@@ -21,11 +21,11 @@ Returns an iterator of predecessors in breadth-first-search from source.
 
 **Returns**
 
-    (node, predecessors) iterator where predecessors is the list of
+(node, predecessors) iterator where predecessors is the list of
     predecessors of the node.
 
 
 
 **Return type**
 
-    mgp.Record(node=mgp.Vertex, predecessor=mgp.Vertex)
+mgp.Record(node=mgp.Vertex, predecessor=mgp.Vertex)

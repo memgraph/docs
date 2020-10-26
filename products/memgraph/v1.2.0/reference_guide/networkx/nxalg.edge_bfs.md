@@ -35,7 +35,7 @@ all edges are generated.
 
 **Returns**
 
-    A directed edge indicating the path taken by the breadth-first-search.
+A directed edge indicating the path taken by the breadth-first-search.
     For graphs, edge is of the form `(u, v)` where `u` and `v`
     are the tail and head of the edge as determined by the traversal.
     For multigraphs, edge is of the form `(u, v, key)`, where `key` is
@@ -48,4 +48,4 @@ all edges are generated.
 
 **Return type**
 
-    mgp.Record(edges=mgp.List[mgp.Edge])
+mgp.Record(edges=mgp.List[mgp.Edge])

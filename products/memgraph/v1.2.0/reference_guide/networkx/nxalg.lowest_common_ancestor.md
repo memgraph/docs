@@ -20,11 +20,11 @@ Compute the lowest common ancestor of the given pair of nodes.
 
 **Returns**
 
-    The lowest common ancestor of `node1` and `node2`,
+The lowest common ancestor of `node1` and `node2`,
     or default if they have no common ancestors.
 
 
 
 **Return type**
 
-    mgp.Record(ancestor=mgp.Nullable[mgp.Vertex])
+mgp.Record(ancestor=mgp.Nullable[mgp.Vertex])
