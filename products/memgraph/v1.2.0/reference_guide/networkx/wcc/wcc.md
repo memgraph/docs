@@ -20,6 +20,8 @@ For example, weakly connected components in a subgraph formed from all
 vertices labeled `Person` and edges between such vertices can be obtained
 using the following openCypher query:
 
+#### Examples
+
 `MATCH (n:Person)-[e]->(m:Person)
 WITH collect(n) AS nodes, collect(e) AS edges
 CALL wcc.get_components(nodes, edges) YIELD *
