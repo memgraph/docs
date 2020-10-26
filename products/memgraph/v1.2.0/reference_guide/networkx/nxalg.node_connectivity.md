@@ -18,7 +18,7 @@ bound on the actual number of node independent paths between two nodes.
 It works for both directed and undirected graphs.
 
 
-* **Parameters**
+**Parameters**
 
     
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
@@ -33,13 +33,13 @@ It works for both directed and undirected graphs.
 
 
 
-* **Returns**
+**Returns**
 
     Node connectivity of `G`, or local node connectivity if source
     and target are provided.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(connectivity=int)

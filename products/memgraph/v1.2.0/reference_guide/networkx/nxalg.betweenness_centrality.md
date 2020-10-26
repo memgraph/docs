@@ -5,7 +5,7 @@
 Compute the shortest-path betweenness centrality for nodes.
 
 
-* **Parameters**
+**Parameters**
 
     
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
@@ -38,12 +38,12 @@ Compute the shortest-path betweenness centrality for nodes.
 
 
 
-* **Returns**
+**Returns**
 
     Dictionary of nodes with betweenness centrality as the value.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(node=mgp.Vertex, betweenness=mgp.Number)

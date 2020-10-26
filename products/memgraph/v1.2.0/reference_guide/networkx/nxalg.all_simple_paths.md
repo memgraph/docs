@@ -7,7 +7,7 @@ Generate all simple paths in the graph `G` from source to target.
 A simple path is a path with no repeated nodes.
 
 
-* **Parameters**
+**Parameters**
 
     
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
@@ -24,7 +24,7 @@ A simple path is a path with no repeated nodes.
 
 
 
-* **Returns**
+**Returns**
 
     A generator that produces lists of simple paths. If there are no paths
     between the source and target within the given cutoff the generator
@@ -32,6 +32,6 @@ A simple path is a path with no repeated nodes.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(paths=mgp.List[mgp.List[mgp.Vertex]])

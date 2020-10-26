@@ -9,7 +9,7 @@ be decided if we just check whether all nodes of the graph
 has an edge from the set, incident on it.
 
 
-* **Parameters**
+**Parameters**
 
     
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
@@ -19,12 +19,12 @@ has an edge from the set, incident on it.
 
 
 
-* **Returns**
+**Returns**
 
     Whether the set of edges is a valid edge cover of the graph.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(is_edge_cover=bool)

@@ -11,18 +11,18 @@ distance `j` from `y` depends only on `i,j` and the graph distance
 between `x` and `y`, independently of the choice of `x` and `y`.
 
 
-* **Parameters**
+**Parameters**
 
     **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
 
 
 
-* **Returns**
+**Returns**
 
     True if the graph is Distance Regular, False otherwise.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(is_distance_regular=bool)

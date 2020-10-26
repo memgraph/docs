@@ -10,18 +10,18 @@ AT-free and True is returned. If at least one asteroidal triple is
 found the graph is not AT-free and False is returned.
 
 
-* **Parameters**
+**Parameters**
 
     **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
 
 
 
-* **Returns**
+**Returns**
 
     True if `G` is AT-free and False otherwise.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(is_at_free=bool)

@@ -13,7 +13,7 @@ it is the ratio of the number of edges in both directions to
 the total number of edges attached to node u.
 
 
-* **Parameters**
+**Parameters**
 
     
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
@@ -24,12 +24,12 @@ the total number of edges attached to node u.
 
 
 
-* **Returns**
+**Returns**
 
     Reciprocity keyed by node label.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(node=mgp.Nullable[mgp.Vertex], reciprocity=mgp.Nullable[float])

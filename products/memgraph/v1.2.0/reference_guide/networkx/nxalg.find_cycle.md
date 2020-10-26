@@ -8,7 +8,7 @@ The cycle is a list of edges indicating the cyclic path.
 The orientation of directed edges is controlled by `orientation`.
 
 
-* **Parameters**
+**Parameters**
 
     
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
@@ -33,7 +33,7 @@ The orientation of directed edges is controlled by `orientation`.
 
 
 
-* **Returns**
+**Returns**
 
     A list of directed edges indicating the path taken for the loop.
     If no cycle is found, then an exception is raised.
@@ -47,6 +47,6 @@ The orientation of directed edges is controlled by `orientation`.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(cycle=mgp.Nullable[mgp.List[mgp.Edge]])

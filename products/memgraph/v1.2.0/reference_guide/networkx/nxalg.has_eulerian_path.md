@@ -19,18 +19,18 @@ two vertices have an odd degree and all of its vertices with
 nonzero degrees belong to a single connected component.
 
 
-* **Parameters**
+**Parameters**
 
     **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
 
 
 
-* **Returns**
+**Returns**
 
     True if `G` has an eulerian path.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(has_eulerian_path=bool)

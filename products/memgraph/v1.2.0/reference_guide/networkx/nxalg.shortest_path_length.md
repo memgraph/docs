@@ -5,7 +5,7 @@
 Compute shortest path lengths in the graph.
 
 
-* **Parameters**
+**Parameters**
 
     
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
@@ -38,7 +38,7 @@ Compute shortest path lengths in the graph.
 
 
 
-* **Returns**
+**Returns**
 
     If the `source` and `target` are both specified, return the length of
     the shortest path from the `source` to the `target`.
@@ -56,6 +56,6 @@ Compute shortest path lengths in the graph.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(source=mgp.Vertex, target=mgp.Vertex, length=mgp.Number)

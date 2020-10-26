@@ -5,19 +5,19 @@
 Return nodes in strongly connected components of graph.
 
 
-* **Parameters**
+**Parameters**
 
     **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
 
 
 
-* **Returns**
+**Returns**
 
     A list of sets of nodes, one for each strongly connected
     component of `G`.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(components=mgp.List[mgp.List[mgp.Vertex]])

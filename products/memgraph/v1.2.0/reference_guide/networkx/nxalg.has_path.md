@@ -5,7 +5,7 @@
 Returns True if `G` has a path from `source` to `target`.
 
 
-* **Parameters**
+**Parameters**
 
     
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
@@ -18,12 +18,12 @@ Returns True if `G` has a path from `source` to `target`.
 
 
 
-* **Returns**
+**Returns**
 
     True if `G` has a path from `source` to `target`.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(has_path=bool)

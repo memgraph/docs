@@ -9,7 +9,7 @@ zero). For directed graphs, this means no in-neighbors and no
 out-neighbors.
 
 
-* **Parameters**
+**Parameters**
 
     
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
@@ -19,12 +19,12 @@ out-neighbors.
 
 
 
-* **Returns**
+**Returns**
 
     True if and only if `n` has no neighbors.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(is_isolate=bool)

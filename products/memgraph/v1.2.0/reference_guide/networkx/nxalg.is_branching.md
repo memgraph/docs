@@ -7,18 +7,18 @@ Returns True if `G` is a branching.
 A branching is a directed forest with maximum in-degree equal to 1.
 
 
-* **Parameters**
+**Parameters**
 
     **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
 
 
 
-* **Returns**
+**Returns**
 
     A boolean that is True if `G` is a branching.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(is_branching=bool)

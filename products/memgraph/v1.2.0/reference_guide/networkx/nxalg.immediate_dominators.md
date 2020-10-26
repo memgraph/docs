@@ -5,7 +5,7 @@
 Returns the immediate dominators of all nodes of a directed graph.
 
 
-* **Parameters**
+**Parameters**
 
     
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
@@ -15,13 +15,13 @@ Returns the immediate dominators of all nodes of a directed graph.
 
 
 
-* **Returns**
+**Returns**
 
     A dictionary containing the immediate dominators of each node reachable from
     `start`.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(node=mgp.Vertex, dominator=mgp.Vertex)

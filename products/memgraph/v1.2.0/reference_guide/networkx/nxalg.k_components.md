@@ -17,7 +17,7 @@ a fast approximation algorithm for finding good lower bounds of the number
 of node independent paths between two nodes.
 
 
-* **Parameters**
+**Parameters**
 
     
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
@@ -28,13 +28,13 @@ of node independent paths between two nodes.
 
 
 
-* **Returns**
+**Returns**
 
     Dictionary with connectivity level `k` as key and a list of
     sets of nodes that form a k-component of level `k` as values.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(k=int, components=mgp.List[mgp.List[mgp.Vertex]])

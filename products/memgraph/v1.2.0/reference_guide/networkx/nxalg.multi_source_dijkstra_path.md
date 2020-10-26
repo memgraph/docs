@@ -9,7 +9,7 @@ Compute shortest path between any of the source nodes and all other
 reachable nodes for a weighted graph.
 
 
-* **Parameters**
+**Parameters**
 
     
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
@@ -40,12 +40,12 @@ reachable nodes for a weighted graph.
 
 
 
-* **Returns**
+**Returns**
 
     Dictionary of shortest paths keyed by target.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(target=mgp.Vertex, path=mgp.List[mgp.Vertex])

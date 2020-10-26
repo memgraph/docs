@@ -5,18 +5,18 @@
 Returns True if graph `G` is bipartite, False if not.
 
 
-* **Parameters**
+**Parameters**
 
     **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
 
 
 
-* **Returns**
+**Returns**
 
     True if `G` is bipartite and False otherwise.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(is_bipartite=bool)

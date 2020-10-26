@@ -10,7 +10,7 @@ no node appears more than once in the sequence and each adjacent
 pair of nodes in the sequence is adjacent in the graph.
 
 
-* **Parameters**
+**Parameters**
 
     
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
@@ -20,12 +20,12 @@ pair of nodes in the sequence is adjacent in the graph.
 
 
 
-* **Returns**
+**Returns**
 
     Whether the given list of nodes represents a simple path in `G`.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(is_simple_path=bool)

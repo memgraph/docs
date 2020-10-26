@@ -13,19 +13,19 @@ list of nodes. It is an iterative implementation, so should not
 suffer from recursion depth issues.
 
 
-* **Parameters**
+**Parameters**
 
     **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
 
 
 
-* **Returns**
+**Returns**
 
     An iterator over maximal cliques, each of which is a list of
     nodes in `G`. The order of cliques is arbitrary.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(cliques=mgp.List[mgp.List[mgp.Vertex]])

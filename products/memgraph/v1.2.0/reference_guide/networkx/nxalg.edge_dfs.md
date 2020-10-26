@@ -8,7 +8,7 @@ Return the edges of `G` in a depth-first-search order continuing until
 all edges are generated.
 
 
-* **Parameters**
+**Parameters**
 
     
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
@@ -32,7 +32,7 @@ all edges are generated.
 
 
 
-* **Returns**
+**Returns**
 
     A directed edge indicating the path taken by the depth-first traversal.
     For graphs, edge is of the form `(u, v)` where `u` and `v`
@@ -45,6 +45,6 @@ all edges are generated.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(edges=mgp.List[mgp.Edge])

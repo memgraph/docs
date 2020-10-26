@@ -8,7 +8,7 @@ A k-clique community is the union of all cliques of size `k` that
 can be reached through adjacent (sharing `k-1` nodes) k-cliques.
 
 
-* **Parameters**
+**Parameters**
 
     
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
@@ -22,12 +22,12 @@ can be reached through adjacent (sharing `k-1` nodes) k-cliques.
 
 
 
-* **Returns**
+**Returns**
 
     Sets of nodes, one for each k-clique community.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(communities=mgp.List[mgp.List[mgp.Vertex]])

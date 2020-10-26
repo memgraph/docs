@@ -10,18 +10,18 @@ global efficiency* of a graph is the average efficiency of all pairs of
 nodes.
 
 
-* **Parameters**
+**Parameters**
 
     **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
 
 
 
-* **Returns**
+**Returns**
 
     The average global efficiency of the graph.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(global_efficiency=float)

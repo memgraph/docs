@@ -15,18 +15,18 @@ components of the graph.
 Notice that by convention a dyad is considered a biconnected component.
 
 
-* **Parameters**
+**Parameters**
 
     **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
 
 
 
-* **Returns**
+**Returns**
 
     A list of sets of nodes, one set for each biconnected component.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(components=mgp.List[mgp.List[mgp.Vertex]])

@@ -9,18 +9,18 @@ multi-edges, in which there is exactly one directed edge joining
 each pair of distinct nodes.
 
 
-* **Parameters**
+**Parameters**
 
     **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
 
 
 
-* **Returns**
+**Returns**
 
     Whether the given graph is a tournament graph.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(is_tournament=bool)

@@ -5,7 +5,7 @@
 Iterate over edges in a breadth-first-search starting at source.
 
 
-* **Parameters**
+**Parameters**
 
     
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
@@ -25,12 +25,12 @@ Iterate over edges in a breadth-first-search starting at source.
 
 
 
-* **Returns**
+**Returns**
 
     A generator of edges in the breadth-first-search.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(edges=mgp.List[mgp.Edge])

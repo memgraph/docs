@@ -11,18 +11,18 @@ underlying graph is obtained by treating each directed edge as a single
 undirected edge in a multigraph.
 
 
-* **Parameters**
+**Parameters**
 
     **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
 
 
 
-* **Returns**
+**Returns**
 
     A boolean that is True if `G` is a tree.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(is_tree=bool)

@@ -9,7 +9,7 @@ neighbours of a node can have the same color as the node itself. The
 given strategy determines the order in which nodes are colored.
 
 
-* **Parameters**
+**Parameters**
 
     
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
@@ -48,13 +48,13 @@ given strategy determines the order in which nodes are colored.
 
 
 
-* **Returns**
+**Returns**
 
     A dictionary with keys representing nodes and values representing
     corresponding coloring.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(node=mgp.Vertex, color=int)

@@ -8,7 +8,7 @@ The *node expansion* is the quotient of the size of the node
 boundary of `S` and the cardinality of `S`.
 
 
-* **Parameters**
+**Parameters**
 
     
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
@@ -18,12 +18,12 @@ boundary of `S` and the cardinality of `S`.
 
 
 
-* **Returns**
+**Returns**
 
     The node expansion of the set `S`.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(node_expansion=mgp.Number)

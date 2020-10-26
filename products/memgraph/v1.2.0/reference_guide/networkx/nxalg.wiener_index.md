@@ -9,7 +9,7 @@ distances between each pair of reachable nodes. For pairs of nodes
 in undirected graphs, only one orientation of the pair is counted.
 
 
-* **Parameters**
+**Parameters**
 
     
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
@@ -22,12 +22,12 @@ in undirected graphs, only one orientation of the pair is counted.
 
 
 
-* **Returns**
+**Returns**
 
     The Wiener index of the graph `G`.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(wiener_index=mgp.Number)

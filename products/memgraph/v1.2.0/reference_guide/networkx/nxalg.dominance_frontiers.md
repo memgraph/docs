@@ -5,7 +5,7 @@
 Returns the dominance frontiers of all nodes of a directed graph.
 
 
-* **Parameters**
+**Parameters**
 
     
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
@@ -15,13 +15,13 @@ Returns the dominance frontiers of all nodes of a directed graph.
 
 
 
-* **Returns**
+**Returns**
 
     A dictionary containing the dominance frontiers of each node reachable from
     `start` as lists.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(node=mgp.Vertex, frontier=mgp.List[mgp.Vertex])

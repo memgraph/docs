@@ -5,7 +5,7 @@
 Compute the clustering coefficient for nodes.
 
 
-* **Parameters**
+**Parameters**
 
     
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
@@ -21,12 +21,12 @@ Compute the clustering coefficient for nodes.
 
 
 
-* **Returns**
+**Returns**
 
     Clustering coefficient at specified nodes.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(node=mgp.Vertex, clustering=mgp.Number)

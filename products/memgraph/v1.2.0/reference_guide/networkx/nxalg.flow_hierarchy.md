@@ -8,7 +8,7 @@ Flow hierarchy is defined as the fraction of edges not participating
 in cycles in a directed graph.
 
 
-* **Parameters**
+**Parameters**
 
     
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
@@ -19,12 +19,12 @@ in cycles in a directed graph.
 
 
 
-* **Returns**
+**Returns**
 
     Flow hierarchy value.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(flow_hierarchy=float)

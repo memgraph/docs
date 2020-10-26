@@ -9,18 +9,18 @@ zero). For directed graphs, this means no in-neighbors and no
 out-neighbors.
 
 
-* **Parameters**
+**Parameters**
 
     **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
 
 
 
-* **Returns**
+**Returns**
 
     An iterator over the isolates of `G`.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(isolates=mgp.List[mgp.Vertex])

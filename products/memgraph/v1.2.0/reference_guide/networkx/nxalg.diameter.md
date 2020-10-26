@@ -7,18 +7,18 @@ Returns the diameter of the graph `G`.
 The diameter is the maximum eccentricity.
 
 
-* **Parameters**
+**Parameters**
 
     **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
 
 
 
-* **Returns**
+**Returns**
 
     Diameter of graph.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(diameter=int)

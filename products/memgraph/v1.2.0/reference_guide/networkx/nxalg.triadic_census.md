@@ -8,18 +8,18 @@ The triadic census is a count of how many of the 16 possible types of
 triads are present in a directed graph.
 
 
-* **Parameters**
+**Parameters**
 
     **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
 
 
 
-* **Returns**
+**Returns**
 
     Dictionary with triad names as keys and number of occurrences as values.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(triad=str, count=int)

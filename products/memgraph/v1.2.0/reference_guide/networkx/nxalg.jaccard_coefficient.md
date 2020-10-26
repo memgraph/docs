@@ -5,7 +5,7 @@
 Compute the Jaccard coefficient of all node pairs in `ebunch`.
 
 
-* **Parameters**
+**Parameters**
 
     
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
@@ -20,13 +20,13 @@ Compute the Jaccard coefficient of all node pairs in `ebunch`.
 
 
 
-* **Returns**
+**Returns**
 
     An iterator of 3-tuples in the form `(u, v, p)` where `(u, v)` is a
     pair of nodes and `p` is their Jaccard coefficient.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(u=mgp.Vertex, v=mgp.Vertex, coef=float)

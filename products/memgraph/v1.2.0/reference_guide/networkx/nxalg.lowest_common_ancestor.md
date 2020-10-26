@@ -5,7 +5,7 @@
 Compute the lowest common ancestor of the given pair of nodes.
 
 
-* **Parameters**
+**Parameters**
 
     
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
@@ -18,13 +18,13 @@ Compute the lowest common ancestor of the given pair of nodes.
 
 
 
-* **Returns**
+**Returns**
 
     The lowest common ancestor of `node1` and `node2`,
     or default if they have no common ancestors.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(ancestor=mgp.Nullable[mgp.Vertex])

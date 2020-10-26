@@ -5,7 +5,7 @@
 Returns an iterator of successors in breadth-first-search from source.
 
 
-* **Parameters**
+**Parameters**
 
     
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
@@ -19,13 +19,13 @@ Returns an iterator of successors in breadth-first-search from source.
 
 
 
-* **Returns**
+**Returns**
 
     (node, successors) iterator where successors is the list of
     successors of the node.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(node=mgp.Vertex, successors=mgp.List[mgp.Vertex])

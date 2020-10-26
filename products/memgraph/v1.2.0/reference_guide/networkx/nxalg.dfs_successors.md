@@ -5,7 +5,7 @@
 Returns dictionary of successors in depth-first-search from source.
 
 
-* **Parameters**
+**Parameters**
 
     
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
@@ -19,12 +19,12 @@ Returns dictionary of successors in depth-first-search from source.
 
 
 
-* **Returns**
+**Returns**
 
     A dictionary with nodes as keys and list of successor nodes as values.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(node=mgp.Vertex, successors=mgp.List[mgp.Vertex])

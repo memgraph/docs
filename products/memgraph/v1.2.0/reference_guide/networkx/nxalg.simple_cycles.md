@@ -12,19 +12,19 @@ This is a nonrecursive, iterator/generator version of Johnson’s
 algorithm. There may be better algorithms for some cases.
 
 
-* **Parameters**
+**Parameters**
 
     **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
 
 
 
-* **Returns**
+**Returns**
 
     A list of elementary cycles in the graph.
     Each cycle is represented by a list of nodes along the cycle.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(cycles=mgp.List[mgp.List[mgp.Vertex]])

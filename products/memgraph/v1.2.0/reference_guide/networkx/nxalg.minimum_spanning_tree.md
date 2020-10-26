@@ -5,7 +5,7 @@
 Returns a minimum spanning tree or forest on an undirected graph `G`.
 
 
-* **Parameters**
+**Parameters**
 
     
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
@@ -26,12 +26,12 @@ Returns a minimum spanning tree or forest on an undirected graph `G`.
 
 
 
-* **Returns**
+**Returns**
 
     A minimum spanning tree or forest.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(nodes=mgp.List[mgp.Vertex], edges=mgp.List[mgp.Edge])

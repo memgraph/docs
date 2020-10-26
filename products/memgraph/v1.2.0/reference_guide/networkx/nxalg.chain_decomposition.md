@@ -15,7 +15,7 @@ non-overlapping segment, which is a path instead of a cycle. Each
 cycle or path is called a *chain*.
 
 
-* **Parameters**
+**Parameters**
 
     
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
@@ -29,7 +29,7 @@ cycle or path is called a *chain*.
 
 
 
-* **Returns**
+**Returns**
 
     A list of edges representing a chain. There is no guarantee on
     the orientation of the edges in each chain (for example, if a
@@ -38,6 +38,6 @@ cycle or path is called a *chain*.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(chains=mgp.List[mgp.List[mgp.Edge]])

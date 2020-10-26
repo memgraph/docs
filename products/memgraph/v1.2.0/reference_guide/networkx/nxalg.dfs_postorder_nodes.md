@@ -5,7 +5,7 @@
 Generate nodes in a depth-first-search post-ordering starting at source.
 
 
-* **Parameters**
+**Parameters**
 
     
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
@@ -19,12 +19,12 @@ Generate nodes in a depth-first-search post-ordering starting at source.
 
 
 
-* **Returns**
+**Returns**
 
     A generator of nodes in a depth-first-search post-ordering.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(nodes=mgp.List[mgp.Vertex])

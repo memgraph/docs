@@ -5,7 +5,7 @@
 Returns all nodes reachable from `source` in `G`.
 
 
-* **Parameters**
+**Parameters**
 
     
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
@@ -15,12 +15,12 @@ Returns all nodes reachable from `source` in `G`.
 
 
 
-* **Returns**
+**Returns**
 
     The descendants of `source` in `G`.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(descendants=mgp.List[mgp.Vertex])

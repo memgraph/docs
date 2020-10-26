@@ -6,7 +6,7 @@ Returns an oriented tree constructed from of a breadth-first-search
 starting at source.
 
 
-* **Parameters**
+**Parameters**
 
     
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
@@ -24,12 +24,12 @@ starting at source.
 
 
 
-* **Returns**
+**Returns**
 
     An oriented tree.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(tree=mgp.List[mgp.Vertex])

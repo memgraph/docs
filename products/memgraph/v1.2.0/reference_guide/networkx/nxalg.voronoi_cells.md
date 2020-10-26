@@ -14,7 +14,7 @@ For directed graphs, this will compute the “outward” Voronoi cells
 in which distance is measured from the center nodes to the target node.
 
 
-* **Parameters**
+**Parameters**
 
     
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
@@ -32,7 +32,7 @@ in which distance is measured from the center nodes to the target node.
 
 
 
-* **Returns**
+**Returns**
 
     A mapping from center node to set of all nodes in the graph
     closer to that center node than to any other center node. The
@@ -42,6 +42,6 @@ in which distance is measured from the center nodes to the target node.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(center=mgp.Vertex, cell=mgp.List[mgp.Vertex])

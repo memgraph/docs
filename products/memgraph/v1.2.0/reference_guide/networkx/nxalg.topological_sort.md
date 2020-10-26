@@ -9,18 +9,18 @@ edge from u to v implies that u appears before v in the topological sort
 order.
 
 
-* **Parameters**
+**Parameters**
 
     **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
 
 
 
-* **Returns**
+**Returns**
 
     An list of nodes in topological sorted order.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(nodes=mgp.Nullable[mgp.List[mgp.Vertex]])

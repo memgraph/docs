@@ -9,7 +9,7 @@ the structure of the incoming links. It was originally designed as
 an algorithm to rank web pages.
 
 
-* **Parameters**
+**Parameters**
 
     
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
@@ -54,12 +54,12 @@ an algorithm to rank web pages.
 
 
 
-* **Returns**
+**Returns**
 
     Dictionary of nodes with PageRank as value.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(node=mgp.Vertex, rank=float)

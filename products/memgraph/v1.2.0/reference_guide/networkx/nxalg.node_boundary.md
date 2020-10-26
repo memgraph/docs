@@ -10,7 +10,7 @@ edge joining `u` to `v`. If `T` is not specified, it is assumed to
 be the set of all nodes not in `S`.
 
 
-* **Parameters**
+**Parameters**
 
     
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
@@ -28,12 +28,12 @@ be the set of all nodes not in `S`.
 
 
 
-* **Returns**
+**Returns**
 
     The node boundary of `nbunch1` with respect to `nbunch2`.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(boundary=mgp.List[mgp.Vertex])

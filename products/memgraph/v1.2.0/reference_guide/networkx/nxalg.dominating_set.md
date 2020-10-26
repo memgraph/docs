@@ -9,7 +9,7 @@ A *dominating set* for a graph with node set `V` is a subset `D` of
 member of `D`.
 
 
-* **Parameters**
+**Parameters**
 
     
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
@@ -19,12 +19,12 @@ member of `D`.
 
 
 
-* **Returns**
+**Returns**
 
     A dominating set for `G`.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(dominating_set=mgp.List[mgp.Vertex])

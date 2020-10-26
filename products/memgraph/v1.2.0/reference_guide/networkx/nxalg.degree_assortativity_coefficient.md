@@ -8,7 +8,7 @@ Assortativity measures the similarity of connections
 in the graph with respect to the node degree.
 
 
-* **Parameters**
+**Parameters**
 
     
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
@@ -34,12 +34,12 @@ in the graph with respect to the node degree.
 
 
 
-* **Returns**
+**Returns**
 
     Assortativity of graph by degree.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(assortativity=float)

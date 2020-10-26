@@ -11,18 +11,18 @@ subgraph induced by the neighbors of the node. The *average local
 efficiency* is the average of the local efficiencies of each node.
 
 
-* **Parameters**
+**Parameters**
 
     **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
 
 
 
-* **Returns**
+**Returns**
 
     The average local efficiency of the graph.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(local_efficiency=float)

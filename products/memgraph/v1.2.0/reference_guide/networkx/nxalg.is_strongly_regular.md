@@ -23,18 +23,18 @@ Conversely, if a distance-regular graph has diameter two, then it is
 a strongly regular graph.
 
 
-* **Parameters**
+**Parameters**
 
     **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
 
 
 
-* **Returns**
+**Returns**
 
     Whether `G` is strongly regular.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(is_strongly_regular=bool)

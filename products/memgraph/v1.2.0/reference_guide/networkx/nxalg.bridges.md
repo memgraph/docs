@@ -9,7 +9,7 @@ connected components of the graph to increase.  Equivalently, a bridge is an
 edge that does not belong to any cycle.
 
 
-* **Parameters**
+**Parameters**
 
     
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
@@ -21,13 +21,13 @@ edge that does not belong to any cycle.
 
 
 
-* **Returns**
+**Returns**
 
     An edge in the graph whose removal disconnects the graph (or
     causes the number of connected components to increase).
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(bridges=mgp.List[mgp.Edge])

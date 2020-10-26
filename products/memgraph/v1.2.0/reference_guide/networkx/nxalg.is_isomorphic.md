@@ -7,7 +7,7 @@ Returns True if the graphs `G1` and `G2` are isomorphic and False otherwise.
 The two graphs `G1` and `G2` must be the same type.
 
 
-* **Parameters**
+**Parameters**
 
     
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
@@ -26,12 +26,12 @@ The two graphs `G1` and `G2` must be the same type.
 
 
 
-* **Returns**
+**Returns**
 
     True if the graphs `G1` and `G2` are isomorphic and False otherwise.
 
 
 
-* **Return type**
+**Return type**
 
     mgp.Record(is_isomorphic=bool)
