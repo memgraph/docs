@@ -13,7 +13,7 @@ efficiency* is the average of the local efficiencies of each node.
 
 **Parameters**
 
-    **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
+    * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
 
 
 

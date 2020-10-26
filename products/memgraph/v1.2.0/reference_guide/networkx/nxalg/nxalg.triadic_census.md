@@ -10,7 +10,7 @@ triads are present in a directed graph.
 
 **Parameters**
 
-    **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
+    * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
 
 
 

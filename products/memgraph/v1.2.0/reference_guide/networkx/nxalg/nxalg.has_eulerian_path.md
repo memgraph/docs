@@ -21,7 +21,7 @@ nonzero degrees belong to a single connected component.
 
 **Parameters**
 
-    **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
+    * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
 
 
 

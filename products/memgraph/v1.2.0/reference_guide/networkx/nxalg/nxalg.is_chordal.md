@@ -10,7 +10,7 @@ A graph is chordal if every cycle of length at least 4 has a chord
 
 **Parameters**
 
-    **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
+    * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
 
 
 

@@ -9,7 +9,7 @@ A branching is a directed forest with maximum in-degree equal to 1.
 
 **Parameters**
 
-    **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
+    * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
 
 
 

@@ -13,7 +13,7 @@ between `x` and `y`, independently of the choice of `x` and `y`.
 
 **Parameters**
 
-    **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
+    * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
 
 
 

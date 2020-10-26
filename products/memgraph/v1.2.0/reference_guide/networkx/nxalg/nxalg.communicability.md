@@ -10,7 +10,7 @@ closed walks of different lengths starting at node `u` and ending at node `v`.
 
 **Parameters**
 
-    **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
+    * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
 
 
 

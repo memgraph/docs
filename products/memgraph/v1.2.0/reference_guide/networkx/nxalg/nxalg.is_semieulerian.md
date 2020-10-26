@@ -9,7 +9,7 @@ G is semi-Eulerian if it has an Eulerian path but no Eulerian circuit.
 
 **Parameters**
 
-    **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
+    * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
 
 
 
