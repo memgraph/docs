@@ -33,6 +33,7 @@
     * [Indexing](memgraph/v1.2.0/reference_guide/indexing.md)
     * [Graph Algorithms](memgraph/v1.2.0/reference_guide/graph-algorithms.md)
     * [Query Modules](memgraph/v1.2.0/reference_guide/query-modules.md)
+    * [NetworkX](memgraph/v1.2.0/reference_guide/networkx.md)
     * [Security (Enterprise)](memgraph/v1.2.0/reference_guide/security.md)
     * [Auth Module (Enterprise)](memgraph/v1.2.0/reference_guide/auth-module.md)
     * [LDAP Security (Enterprise)](memgraph/v1.2.0/reference_guide/ldap-security.md)
