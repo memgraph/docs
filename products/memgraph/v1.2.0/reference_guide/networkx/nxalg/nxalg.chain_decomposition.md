@@ -21,7 +21,7 @@ cycle or path is called a *chain*.
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
 
 
-    * **mgp.Nullable****[****mgp.Vertex****]** – (default=None)
+    * **root** (*mgp.Nullable[mgp.Vertex]*) – (default=None)
     Optional. A node in the graph `G`. If specified, only the chain
     decomposition for the connected component containing this node
     will be returned. This node indicates the root of the depth-first
