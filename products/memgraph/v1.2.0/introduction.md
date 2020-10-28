@@ -10,28 +10,42 @@ multi-version concurrency control and asynchronous IO.
 
 ### Installation
 
-Visit the [Quick Start](https://docs.memgraph.com/memgraph/quick-start#installation) guide to find out more about the installation process.
+Visit the [Quick Start](quick-start#installation) guide to find out more about the installation process.
 
 ### Querying
 
 Memgraph uses the openCypher query language. Learn how to query Memgraph:
-* within the **command-line** by visiting the [Quick Start](https://docs.memgraph.com/memgraph/quick-start#querying) guide,
-* **programmatically** by following the [How To Query Memgraph Programmatically](https://docs.memgraph.com/memgraph/how-to-guides-overview/query-memgraph-programmatically) guide.
+* within the **command-line** by visiting the [Quick Start](quick-start#querying) guide,
+* **programmatically** by following the [How To Query Memgraph Programmatically](how-to-guides-overview/query-memgraph-programmatically) guide.
 
 ### Importing Data
 
 Data can be imported from CSV files using the CSV Import Tool or by using openCypher queries. 
-Take a look ak the [How to Import Data](https://docs.memgraph.com/memgraph/how-to-guides-overview/import-data) guide.
+Take a look ak the [How to Import Data](how-to-guides-overview/import-data) guide.
 
 ### Query Modules
 
 Memgraph supports extending the query language with user-written procedures. 
 These procedures are grouped into modules, which can then be loaded either on startup or later on. 
 To learn more about query modules take a look at the following guides:
-* [How to Load Query Modules?](load-query-modules.md)
-* [How to Call Query Module Procedures?](call-query-module-procedures.md)
-* [How to Implement Query Modules?](implement-query-modules.md)
-* [How to Use Query Modules Provided by Memgraph?](use-query-modules-provided-by-memgraph.md)
+* [How to Load Query Modules?](how-to-guides-overview/load-query-modules.md),
+* [How to Call Query Module Procedures?](how-to-guides-overview/call-query-module-procedures.md),
+* [How to Implement Query Modules?](how-to-guides-overview/implement-query-modules.md),
+* [How to Use Query Modules Provided by Memgraph?](how-to-guides-overview/use-query-modules-provided-by-memgraph.md).
+
+### User Privileges
+
+Memgraph comes with the option of granting, denying or revoking a certain set of privileges to users or groups of users.
+To learn more visit:
+* [How to Manage User Privileges? (Enterprise)](how-to-guides-overview/manage-user-privileges),
+* [Security (Enterprise)](reference-overview/security).
+
+### Authentication and Authorization
+
+Memgraph supports authentication and (optional) authorization using a custom built external auth module.
+To learn more visit:
+* [Auth Module (Enterprise)](reference-overview/auth-module),
+* [LDAP Security (Enterprise)](reference-overview/ldap-security).
 
 ## Supported Features
 
