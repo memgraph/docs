@@ -101,14 +101,18 @@ offering.
 * `nxalg` : Wrapper functions providing the most common algorithms found in the
   NetworkX package. The users can extend the module with their own custom
   functions based on NetworkX algorithms.
+* `graph_analyzer`: Module that offers more insights about the stored graph. To
+  get a detailed list of provided functionalities within this module run
+  `CALL graph_analyzer.help() YIELD *;`.
+* `wcc`: Module that offers analysis of weakly connected components.
 
-NOTE:
-If you intend to implement your custom algorithms based on the NetworkX
+{% hint style="info" %}
+NOTE: If you intend to implement your custom algorithms based on the NetworkX
 package, please note that we provide the extra library `mgp_networkx.py` module
 containing data structures that adapt the native graph for use with NetworkX
 algorithms. It can be used to implement custom algorithms with the added
 benefit of better memory usage.
-
+{% endhint %}
 
 The utility module offers the following functionality:
 
@@ -123,16 +127,3 @@ query:
 ```
 CALL mg.procedures() YIELD *;
 ```
-
-In addition to low-level modules listed above, the Memgraph Community offering
-provides the following Python modules based on
-[NetworkX](https://networkx.github.io/) algorithms.
-
-* `graph_analyzer`: Module that offers more insights about the stored graph. To
-  get a detailed list of provided functionalities within this module run
-  `CALL graph_analyzer.help() YIELD *;`.
-* `wcc`: Module that offers analysis of weakly connected components.
-
-For more detailed examples on how to use each of these query modules, we
-suggest you take a look at this
-[how-to-guide](../how_to_guides/use-query-modules-provided-by-memgraph.md)
