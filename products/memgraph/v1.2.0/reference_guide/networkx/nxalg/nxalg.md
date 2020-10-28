@@ -7,6 +7,7 @@ compatible graph-like object that can stream the native database graph
 directly saving on memory usage significantly.
 
 
+
 ### nxalg.all_shortest_paths(ctx: mgp.ProcCtx, source: mgp.Vertex, target: mgp.Vertex, weight: mgp.Nullable.str = None, method: str = 'dijkstra')
 Compute all shortest simple paths in the graph.
 
