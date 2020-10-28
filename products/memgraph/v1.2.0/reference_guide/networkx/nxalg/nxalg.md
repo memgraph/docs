@@ -8,6 +8,7 @@ directly saving on memory usage significantly.
 
 
 
+
 ### nxalg.all_shortest_paths(ctx: mgp.ProcCtx, source: mgp.Vertex, target: mgp.Vertex, weight: mgp.Nullable.str = None, method: str = 'dijkstra')
 Compute all shortest simple paths in the graph.
 
@@ -41,7 +42,7 @@ Compute all shortest simple paths in the graph.
 
 **Returns**
 
-A generator of all paths between source and target.
+A list of all paths between source and target.
 
 
 
@@ -52,7 +53,7 @@ mgp.Record(paths=mgp.List[mgp.List[mgp.Vertex]])
 
 
 ### nxalg.all_simple_paths(ctx: mgp.ProcCtx, source: mgp.Vertex, target: mgp.Vertex, cutoff: mgp.Nullable.int = None)
-Generate all simple paths in the graph `G` from source to target.
+Return all simple paths in the graph `G` from source to target.
 
 A simple path is a path with no repeated nodes.
 
@@ -76,9 +77,8 @@ A simple path is a path with no repeated nodes.
 
 **Returns**
 
-A generator that produces lists of simple paths. If there are no paths
-    between the source and target within the given cutoff the generator
-    produces no output.
+A list of simple path lists. If there are no paths
+    between the source and target within the given cutoff there is no output.
 
 
 
@@ -189,7 +189,7 @@ Iterate over edges in a breadth-first-search starting at source.
 
 **Returns**
 
-A generator of edges in the breadth-first-search.
+A list of edges in the breadth-first-search.
 
 
 
@@ -329,7 +329,7 @@ mgp.Record(components=mgp.List[mgp.List[mgp.Vertex]])
 
 
 ### nxalg.bridges(ctx: mgp.ProcCtx, root: mgp.Nullable.mgp.Vertex = None)
-Generate all bridges in a graph.
+Return all bridges in a graph.
 
 A *bridge* in a graph is an edge whose removal causes the number of
 connected components of the graph to increase.  Equivalently, a bridge is an
@@ -350,7 +350,7 @@ edge that does not belong to any cycle.
 
 **Returns**
 
-An edge in the graph whose removal disconnects the graph (or
+A list of edges in the graph whose removal disconnects the graph (or
     causes the number of connected components to increase).
 
 
@@ -610,7 +610,7 @@ mgp.Record(descendants=mgp.List[mgp.Vertex])
 
 
 ### nxalg.dfs_postorder_nodes(ctx: mgp.ProcCtx, source: mgp.Vertex, depth_limit: mgp.Nullable.int = None)
-Generate nodes in a depth-first-search post-ordering starting at source.
+Return nodes in a depth-first-search post-ordering starting at source.
 
 
 **Parameters**
@@ -629,7 +629,7 @@ Generate nodes in a depth-first-search post-ordering starting at source.
 
 **Returns**
 
-A generator of nodes in a depth-first-search post-ordering.
+A list of nodes in a depth-first-search post-ordering.
 
 
 
@@ -670,7 +670,7 @@ mgp.Record(node=mgp.Vertex, predecessor=mgp.Vertex)
 
 
 ### nxalg.dfs_preorder_nodes(ctx: mgp.ProcCtx, source: mgp.Vertex, depth_limit: mgp.Nullable.int = None)
-Generate nodes in a depth-first-search pre-ordering starting at source.
+Return nodes in a depth-first-search pre-ordering starting at source.
 
 
 **Parameters**
@@ -691,7 +691,7 @@ Generate nodes in a depth-first-search pre-ordering starting at source.
 
 **Returns**
 
-A generator of nodes in a depth-first-search pre-ordering.
+A list of nodes in a depth-first-search pre-ordering.
 
 
 
@@ -1817,7 +1817,7 @@ mgp.Record(k=int, components=mgp.List[mgp.List[mgp.Vertex]])
 
 
 ### nxalg.k_edge_components(ctx: mgp.ProcCtx, k: int)
-Generates nodes in each maximal k-edge-connected component in `G`.
+Returns nodes in each maximal k-edge-connected component in `G`.
 
 
 **Parameters**
@@ -1832,7 +1832,7 @@ Generates nodes in each maximal k-edge-connected component in `G`.
 
 **Returns**
 
-A generator of k-edge-ccs. Each set of returned nodes
+A list of k-edge-ccs. Each set of returned nodes
     will have k-edge-connectivity in the graph `G`.
 
 
@@ -2004,7 +2004,7 @@ reachable nodes for a weighted graph.
 
 **Returns**
 
-Dictionary of shortest paths keyed by target.
+A dictionary of shortest paths keyed by target.
 
 
 
@@ -2356,21 +2356,16 @@ Compute shortest paths in the graph.
 **Returns**
 
 All returned paths include both the `source` and `target` in the path.
-
     If the `source` and `target` are both specified, return a single list
     of nodes in a shortest path from the `source` to the `target`.
-
     If only the `source` is specified, return a dictionary keyed by
     targets with a list of nodes in a shortest path from the `source`
     to one of the targets.
-
     If only the `target` is specified, return a dictionary keyed by
     sources with a list of nodes in a shortest path from one of the
     sources to the `target`.
-
     If neither the `source` nor `target` are specified return a dictionary
     of dictionaries with `path[source][target]=[list of nodes in path]`.
-
 
 
 
@@ -2421,17 +2416,13 @@ Compute shortest path lengths in the graph.
 
 If the `source` and `target` are both specified, return the length of
     the shortest path from the `source` to the `target`.
-
     If only the `source` is specified, return a dict keyed by `target`
     to the shortest path length from the `source` to that `target`.
-
     If only the `target` is specified, return a dict keyed by `source`
     to the shortest path length from that `source` to the `target`.
-
     If neither the `source` nor `target` are specified, return an iterator
     over (source, dictionary) where dictionary is keyed by `target` to
     shortest path length from `source` to that `target`.
-
 
 
 
