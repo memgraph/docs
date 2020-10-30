@@ -2,7 +2,7 @@
 
 
 ### nxalg.is_eulerian(ctx: mgp.ProcCtx)
-Returns True if and only if `G` is Eulerian.
+Returns `True` if and only if `G` is Eulerian.
 
 A graph is *Eulerian* if it has an Eulerian circuit. An *Eulerian
 circuit* is a closed walk that includes each edge of a graph exactly

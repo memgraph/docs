@@ -2,7 +2,7 @@
 
 
 ### nxalg.is_tree(ctx: mgp.ProcCtx)
-Returns True if `G` is a tree.
+Returns `True` if `G` is a tree.
 
 A *tree* is a connected graph with no undirected cycles.
 

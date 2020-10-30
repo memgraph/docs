@@ -41,7 +41,7 @@ A directed edge indicating the path taken by the breadth-first-search.
     For multigraphs, edge is of the form `(u, v, key)`, where `key` is
     the key of the edge. When the graph is directed, then u and `v`
     are always in the order of the actual directed edge.
-    If `orientation` is not None then the edge tuple is extended to include
+    If `orientation` is not `None` then the edge tuple is extended to include
     the direction of traversal (‘forward’ or ‘reverse’) on that edge.
 
 

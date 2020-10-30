@@ -21,7 +21,7 @@ out-neighbors.
 
 **Returns**
 
-True if and only if `n` has no neighbors.
+`True` if and only if `n` has no neighbors.
 
 
 

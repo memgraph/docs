@@ -14,7 +14,7 @@ all edges are generated.
     * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
 
 
-    * **source** (*mgp.Nullable[mgp.Vertex]*) – The node from which the traversal begins. If None, then a source
+    * **source** (*mgp.Nullable[mgp.Vertex]*) – The node from which the traversal begins. If `None`, then a source
     is chosen arbitrarily and repeatedly until all edges from each node in
     the graph are searched.
 

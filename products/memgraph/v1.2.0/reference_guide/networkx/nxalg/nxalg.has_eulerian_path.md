@@ -2,7 +2,7 @@
 
 
 ### nxalg.has_eulerian_path(ctx: mgp.ProcCtx)
-Return True if `G` has an Eulerian path.
+Returns `True` if `G` has an Eulerian path.
 
 An *Eulerian path* is a path in a graph that uses each edge of a graph
 exactly once.

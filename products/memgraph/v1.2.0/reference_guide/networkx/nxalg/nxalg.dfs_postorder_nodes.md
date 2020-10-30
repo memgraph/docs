@@ -2,7 +2,7 @@
 
 
 ### nxalg.dfs_postorder_nodes(ctx: mgp.ProcCtx, source: mgp.Vertex, depth_limit: mgp.Nullable.int = None)
-Return nodes in a depth-first-search post-ordering starting at source.
+Returns nodes in a depth-first-search post-ordering starting at source.
 
 
 **Parameters**

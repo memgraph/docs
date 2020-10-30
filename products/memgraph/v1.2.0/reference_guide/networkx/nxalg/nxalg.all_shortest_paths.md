@@ -4,7 +4,7 @@
 ### nxalg.all_shortest_paths(ctx: mgp.ProcCtx, source: mgp.Vertex, target: mgp.Vertex, weight: mgp.Nullable.str = None, method: str = 'dijkstra')
 Compute all shortest simple paths in the graph.
 
-> A simple path is a path with no repeated nodes.
+A simple path is a path with no repeated nodes.
 
 
 **Parameters**

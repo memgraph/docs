@@ -2,7 +2,7 @@
 
 
 ### nxalg.has_path(ctx: mgp.ProcCtx, source: mgp.Vertex, target: mgp.Vertex)
-Returns True if `G` has a path from `source` to `target`.
+Returns `True` if `G` has a path from `source` to `target`.
 
 
 **Parameters**
@@ -20,7 +20,7 @@ Returns True if `G` has a path from `source` to `target`.
 
 **Returns**
 
-True if `G` has a path from `source` to `target`.
+`True` if `G` has a path from `source` to `target`.
 
 
 

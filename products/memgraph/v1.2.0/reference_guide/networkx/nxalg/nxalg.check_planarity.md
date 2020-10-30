@@ -16,7 +16,7 @@ any edge intersections.
 
 **Returns**
 
-`is_planar` is true if the graph is planar.
+`is_planar` is `True` if the graph is planar.
 
 
 

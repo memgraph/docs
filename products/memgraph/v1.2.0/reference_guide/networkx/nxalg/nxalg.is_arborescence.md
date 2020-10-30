@@ -15,7 +15,7 @@ An *arborescence* is a directed tree with maximum in-degree equal to 1.
 
 **Returns**
 
-A boolean that is True if `G` is an arborescence.
+A boolean that is `True` if `G` is an arborescence.
 
 
 
