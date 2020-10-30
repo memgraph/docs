@@ -41,7 +41,7 @@ C API described in the next section. This file (`mgp.py`) can be found in
 the Memgraph installation directory, under `python_support`. On the standard
 Debian installation, this will be under `/usr/lib/memgraph/python_support`.
 
-Next we have a `procedure` function. This function will serve as the callback
+Next, we have a `procedure` function. This function will serve as the callback
 for our `py_example.procedure` invocation through openCypher.
 
 ```python
@@ -57,7 +57,7 @@ def procedure(context: mgp.ProcCtx,
   ...
 ```
 
-This procedure needs to be a callable which optionally takes `ProcCtx` as the
+This procedure needs to be callable which optionally takes `ProcCtx` as the
 first argument. Other arguments will be bound to values passed in the
 cypher query. The full signature of this procedure needs to be annotated
 with types. The return type must be `Record(field_name=type, ...)` and the
@@ -117,7 +117,7 @@ that called our procedure. A `mgp.Graph` instance has a property `vertices`
 which allows us to access a `mgp.Vertices` object which can be iterated upon.
 
 Similarly, each `mgp.Vertex` object has `in_edges` and `out_edges` properties
-which allow us to iterate over corresponding `mgp.Edge` objects. The rest of the
+which allow us to iterate over the corresponding `mgp.Edge` objects. The rest of the
 code logic from the previous snippet is self-explanatory, we simply increase the
 adequate variables on each traversed vertex or edge.
 
@@ -142,21 +142,21 @@ that all users thoroughly inspect the `mgp.py` source file.
 
 {% hint style="info" %}
 NOTE: You should not globally store any graph elements when writing your own
-query modules with intent to use them in a different procedure invocation.
+query modules with the intent to use them in a different procedure invocation.
 {% endhint %}
 
 ### C API
 
 Query modules can be implemented using the C API provided by Memgraph. Such
-modules need to be compiled to a shared library, so that they can be loaded
+modules need to be compiled to a shared library so that they can be loaded
 when Memgraph starts. This means that you can write the procedures in any
 programming language which can work with C and can be compiled to the ELF
 shared library format.
 
 {% hint style="info" %}
 WARNING: If your programming language of choice throws exceptions, these
-exceptions must never leave the scope of your module! You should have a top
-level exception handler which returns with an error value and potentially logs
+exceptions must never leave the scope of your module! You should have a top-level 
+exception handler which returns with an error value and potentially logs
 the error message. Exceptions which cross the module boundary will cause all
 sorts of unexpected issues.
 {% endhint %}
@@ -207,21 +207,21 @@ void procedure(const mgp_list *args, const mgp_graph *graph,
 
 
 The `procedure` function will receive the list of arguments (`args`) which are
-passed in the query. Parameter `result` is used to fill in the resulting
+passed in the query. The parameter `result` is used to fill in the resulting
 records of the procedure. Parameters `graph` and `memory` are context
 parameters of the procedure, and they are used in some parts of the provided C
 API. For more information on what exactly is possible via C API, take a look
 at the `mg_procedure.h` file, as well as the `example.c` found in
 `/usr/lib/memgraph/query_modules/src`
 
-Then comes the required `mgp_init_module` function. It's primary purpose is to
+Then comes the required `mgp_init_module` function. Its primary purpose is to
 register procedures which can then be invoked through openCypher. Although the
 example registers a single `procedure`, you can register multiple different
 procedures in a single module. Each of these can be invoked using
 `CALL <module>.<procedure> ...` syntax. The `<module-name>` will correspond to
 the name of the shared library. Since we compile our example into
 `example.so`, then the module is called `example`. Procedure names can be
-different than their corresponding implementation callbacks, because the
+different than their corresponding implementation callbacks because the
 procedure name is defined when registering a procedure.
 
 ```c
@@ -250,7 +250,7 @@ you really need to setup some global state, you may do so in the
 `mgp_init_module` but using the standard global allocators.
 
 Consequently, you may want to reset any global state or release global
-resource in the following function.
+resources in the following function.
 
 ```c
 int mgp_shutdown_module() {
@@ -260,5 +260,5 @@ int mgp_shutdown_module() {
 ```
 
 As previously mentioned, no exceptions should leave your module. If you are
-writing the module in a language which throws them, you probably want
+writing the module in a language that throws them, you probably want
 exception handlers in `mgp_init_module` and `mgp_shutdown_module` as well.

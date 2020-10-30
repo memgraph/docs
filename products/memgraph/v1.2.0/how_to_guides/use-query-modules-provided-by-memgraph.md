@@ -10,10 +10,10 @@ pip3 install networkx
 ```
 
 {% hint style="info" %}
-NOTE: The following "How to Guides" provide explanation of basic usage. To find
+NOTE: The following "How to Guides" provide an explanation of basic usage. To find
 out more details about each module and documentation of each procedure, please
 take a look at our [Reference Guide](https://docs.memgraph.com/memgraph/reference-overview) 
-or the query module source files. On Linux, the files are located in
+or the query module source files. The files are located in the directory 
 `/usr/lib/memgraph/query_modules`.
 {% endhint %}
 
@@ -179,7 +179,7 @@ with an arbitrary expression to further filter matched set of results.
 If you have purchased Memgraph's Enterprise edition, you have access to
 certain graph algorithms in the form of query modules. These modules were
 implemented by our own team using C++ and should offer some additional
-performance benefits. Currently we have implemented the following algorithms:
+performance benefits. Currently, we have implemented the following algorithms:
 
 * Louvain algorithm for community detection.
 * Weakly connected components.
@@ -188,7 +188,7 @@ performance benefits. Currently we have implemented the following algorithms:
 
 In essence, this algorithm is a heuristic method which can be used to extract
 the community structure of fairly sizeable networks. In the simplest of terms,
-the algorithm attempts to assign graph nodes to communities in a way which
+the algorithm attempts to assign graph nodes to communities in a way that
 maximizes the so-called [modularity
 measure](https://en.wikipedia.org/wiki/Modularity_(networks)). For more details,
 we advise you to study the [original paper](https://arxiv.org/pdf/0803.0476.pdf).
@@ -210,7 +210,7 @@ docker run -p 7687:7687 \
   memgraph
 ```
 
-Suppose that Memgraph is currently storing a graph as depicted on the figure
+Suppose that Memgraph is currently storing a graph as depicted in the figure
 below where numbers in the vertices are stored as properties in the graph.
 
 ![](../data/louvain_graph.png)
@@ -310,14 +310,14 @@ O(nlog(n)).
 
 #### Weakly Connected Components
 
-One of the most important features you might be interested when exploring a
+One of the most important features you might be interested in when exploring a
 certain graph is its connectivity. There are many ways in which we might express
 to which extent we are interested in the connectivity of a graph, but one of the
 simplest ones is by counting the number of its weakly connected components and
 by determining which vertex corresponds to which connected component.
 
 The concept of weakly connected components is natural and simple, two nodes
-belong to the same component if path between them exists in a given graph.
+belong to the same component if a path between them exists in a given graph.
 Otherwise, we say those nodes are disconnected.
 
 This query module should be provided as a shared object (`.so`) file called
@@ -337,7 +337,7 @@ docker run -p 7687:7687 \
   memgraph
 ```
 
-Suppose that Memgraph is currently storing a graph as depicted on the figure
+Suppose that Memgraph is currently storing a graph as depicted in the figure
 below where numbers in the vertices are stored as properties in the graph.
 This graph obviously has 4 weakly connected components.
 

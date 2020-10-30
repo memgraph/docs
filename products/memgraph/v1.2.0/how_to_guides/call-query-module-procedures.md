@@ -15,7 +15,7 @@ are not interested in any fields, the `YIELD` part can be omitted. The
 procedure will still run in such a case, but the record fields will not be
 stored in variables. In the above example, we assume that `example.procedure`
 will produce a record with 2 fields, `args` and `result`. Trying to `YIELD`
-fields which are not part of the produced record will result in an error.
+fields that are not part of the produced record will result in an error.
 
 Procedures may be called standalone as in the above example, or as a part of a
 larger query. This is useful if we want the procedure to work on data the
