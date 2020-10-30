@@ -33,6 +33,22 @@ To learn more about query modules take a look at the following guides:
 * [How to Implement Query Modules?](how-to-guides-overview/implement-query-modules.md),
 * [How to Use Query Modules Provided by Memgraph?](how-to-guides-overview/use-query-modules-provided-by-memgraph.md).
 
+### Machine Learning
+
+Memgraph TensorFlow op wraps the high-performance Memgraph client for use with TensorFlow, 
+allowing natural data transfer between Memgraph and TensorFlow at any point of the model.
+If you are interested in using Memgraph for machine learning puroposes take a look at:
+* [How to Setup Memgraph Tensorflow Op?](how-to-guides-overview/tensorflow-setup.md),
+* [TensorFlow Op Reference](reference_guide/tensorflow.md).
+
+Memgraph supports extending the query language with user-written procedures. 
+These procedures are grouped into modules, which can then be loaded either on startup or later on. 
+To learn more about query modules take a look at the following guides:
+* [How to Load Query Modules?](how-to-guides-overview/load-query-modules.md),
+* [How to Call Query Module Procedures?](how-to-guides-overview/call-query-module-procedures.md),
+* [How to Implement Query Modules?](how-to-guides-overview/implement-query-modules.md),
+* [How to Use Query Modules Provided by Memgraph?](how-to-guides-overview/use-query-modules-provided-by-memgraph.md).
+
 ### User Privileges
 
 Memgraph comes with the option of granting, denying or revoking a certain set of privileges to users or groups of users.

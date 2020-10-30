@@ -10,7 +10,7 @@ A TensorFlow op (operation) is a fundamental building block of all TensorFlow
 models.
 Memgraph TensorFlow op wraps the high-performance Memgraph client for
 use with TensorFlow, allowing natural data transfer between Memgraph and
-TensorFlow at any point of the model.
+TensorFlow at any point in the model.
 
 See TensorFlow
 [Graphs and Session guide](https://www.tensorflow.org/guide/graphs)
@@ -18,7 +18,7 @@ for more information.
 
 ### API
 
-Memgraph TensorFlow op API consists of inputs, attributes and outputs.
+Memgraph TensorFlow op API consists of inputs, attributes, and outputs.
 
 #### Input
 
@@ -26,20 +26,19 @@ There are two inputs:
   * query
   * input list
 
-The query is a string. The query is an `openCypher`
-query supported by Memgraph.
+The input `query` is a string and represents an `openCypher` query. 
 Memgraph TensorFlow op has some [limitations](#limitations) on the query.
 
-Input list is a query parameter. Name of this parameter is `$input_list`.
+The input `list` is a query parameter. The name of this parameter is `$input_list`.
 
 Let's see one simple example:
 ```openCypher
 MATCH (p :User) WHERE p.id IN $input_list RETURN p.id;
 ```
 
-Query execution replaces `$input_list` with provided op input
+The query execution replaces `$input_list` with the provided op input
 ([see python example for more](../how_to_guides/tensorflow-setup.md#example)).
-Input list is the only query parameter used by Memgraph TensorFlow op.
+`$input_list` is the only query parameter used by Memgraph TensorFlow op.
 
 #### Attributes
 
@@ -151,8 +150,8 @@ Input list (`$input_list`) can contain only elements of `int64` type.
 
 #### Output types:
 
-Output matrix contains only elements with the same data type. The data type can
-be `int64`, `double`, `bool` and `string`.
+The output matrix contains only elements with the same data type. 
+The data type can be `int64`, `double`, `bool` and `string`.
 `Null` is not allowed in matrix output.
 
 An exceptional case is a `string` data type. In this case, the query result
@@ -162,7 +161,7 @@ and vice versa can have unwanted performance issues.
 
 #### Output Lists
 
-If the query contains list as output, the list expands into the row.
+If the query contains a list as output, the list expands into the row.
 All corresponding lists must have the same size.
 
 ### Error Handling
@@ -189,35 +188,35 @@ Memgraph TensorFlow op reports internal errors:
 
 ### Introduction
 
-Memgraph Parallel Tensorflop Op is a way to speed up performance of queries in
-a data parallel way. The parallelization is done by splitting the input list
+Memgraph Parallel Tensorflop Op is a way to speed up the performance of queries in
+a data-parallel way. The parallelization is done by splitting the input list
 into chunks, running the query on each chunk of the input list independently
 and simply concatenating the results into a single tensor.
 
 ### API
 
-The inputs, outputs and errors are all equivalent to the regular
-Memgraph Tensorflow Op, with the exception of the parallel op having one
-addional attribute
+The inputs, outputs, and errors are all equivalent to the regular
+Memgraph TensorFlow Op, with the exception of the parallel op having one
+additional attribute
 
   * `num_workers`, default: `2`
 
 `num_workers` determines how many parallel connections to Memgraph the parallel
-Tensorflow Op will maintain and into how many chunks the input list is broken.
+TensorFlow Op will maintain and into how many chunks the input list is broken.
 
 ### Important Considerations and Semantic Differences
 
-Under the hood, the Parallel Tensorflow Op runs each of your queries as several
+Under the hood, the Parallel TensorFlow Op runs each of your queries as several
 independent queries. The exact number matches the `num_workers` attribute.
 
 Your input list is split into chunks, such that every worker gets a chunk of
 approximately equal size.
-The only way to utilize paralleism is to use input lists.
+The only way to utilize parallelism is to use input lists.
 
 Since the queries are independent, the queries' semantics can change depending
 on the number of workers.
-Running with a single worker is semantically equivalent of using the regular
-Memgraph Tensorflow Op.
+Running with a single worker is semantically equivalent to using the regular
+Memgraph TensorFlow Op.
 Running with multiple workers, any query which assumes it's seeing all the
 results is likely to produce unexpected results.
 
@@ -238,7 +237,7 @@ This might be the result with `num_workers = 2`:
 The first worker is assigned a chunk of size three and the second worker a
 chunk of size two.
 Hence the first three elements are sorted amongst each other and the last
-two elements are sorted amongts each other, but the entire result is not
+two elements are sorted amongst each other, but the entire result is not
 sorted.
 
 |result|
@@ -254,6 +253,6 @@ chunk, meaning the total result might have `(num_workers * limit)` rows.
 
 Using `WHERE something in $input_list` will cause unexpected results.
 
-The parallel Memgraph Tensorflow op is best used when the input list is full
+The parallel Memgraph TensorFlow op is best used when the input list is full
 of "ids" of nodes to be found and something independent has to be done for
-each found node, such as return its features, or its neighbours.
+each found node, such as return its features, or its neighbors.
