@@ -2,9 +2,9 @@
 
 
 ### nxalg.is_branching(ctx: mgp.ProcCtx)
-Returns True if `G` is a branching.
+Returns `True` if `G` is a branching.
 
-A branching is a directed forest with maximum in-degree equal to 1.
+A *branching* is a directed forest with maximum in-degree equal to 1.
 
 
 **Parameters**
@@ -15,7 +15,7 @@ A branching is a directed forest with maximum in-degree equal to 1.
 
 **Returns**
 
-A boolean that is True if `G` is a branching.
+A boolean that is `True` if `G` is a branching.
 
 
 

@@ -2,9 +2,9 @@
 
 
 ### nxalg.k_clique_communities(ctx: mgp.ProcCtx, k: int, cliques: mgp.Nullable.mgp.List.mgp.List.mgp.Vertex = None)
-Find k-clique communities in graph using the percolation method.
+Find k-clique communities in a graph using the percolation method.
 
-A k-clique community is the union of all cliques of size `k` that
+A *k-clique community* is the union of all cliques of size `k` that
 can be reached through adjacent (sharing `k-1` nodes) k-cliques.
 
 

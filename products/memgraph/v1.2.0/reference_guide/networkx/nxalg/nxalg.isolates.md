@@ -2,7 +2,7 @@
 
 
 ### nxalg.isolates(ctx: mgp.ProcCtx)
-Iterator over isolates in the graph.
+Returns a list of isolates in the graph.
 
 An *isolate* is a node with no neighbors (that is, with degree
 zero). For directed graphs, this means no in-neighbors and no
@@ -17,7 +17,7 @@ out-neighbors.
 
 **Returns**
 
-An iterator over the isolates of `G`.
+A list of isolates in `G`.
 
 
 

@@ -21,7 +21,7 @@ Returns an iterator of successors in breadth-first-search from source.
 
 **Returns**
 
-(node, successors) iterator where successors is the list of
+`(node, successors)` iterator where `successors` is the list of
     successors of the node.
 
 

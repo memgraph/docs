@@ -1,9 +1,11 @@
-# graph_analyzer module
+# Graph Analyzer Module
 
-This module offers more insights about the stored graph or a subgraph.
+This module offers insights about the stored graph or a subgraph.
+
 
 ### graph_analyzer.analyze(context: mgp.ProcCtx, analyses: mgp.Nullable.typing.List[str] = None)
 Shows graph information.
+
 In case of multiple results, only the first 10 will be shown.
 
 
@@ -30,7 +32,7 @@ Information about the graph.
 mgp.Record(name=str, value=str)
 
 
-#### Examples
+### Examples
 
 Return all information:
 `CALL graph_analyzer.analyze() WITH YIELD * ;`
@@ -41,6 +43,7 @@ Call with parameter:
 
 ### graph_analyzer.analyze_subgraph(context: mgp.ProcCtx, vertices: mgp.List.mgp.Vertex, edges: mgp.List.mgp.Edge, analyses: mgp.Nullable.typing.List[str] = None)
 Shows subgraph information.
+
 In case of multiple results, only the first 10 will be shown.
 
 
@@ -73,7 +76,7 @@ Information about the subgraph.
 mgp.Record(name=str, value=str)
 
 
-#### Examples
+### Examples
 
 Return all information:
 `MATCH (n)-[e]->(m) WITH

@@ -2,9 +2,9 @@
 
 
 ### nxalg.degree_assortativity_coefficient(ctx: mgp.ProcCtx, x: str = 'out', y: str = 'in', weight: mgp.Nullable.str = None, nodes: mgp.Nullable.mgp.List.mgp.Vertex = None)
-Compute degree assortativity of graph.
+Compute degree assortativity of a graph.
 
-Assortativity measures the similarity of connections
+*Assortativity* measures the similarity of connections
 in the graph with respect to the node degree.
 
 
@@ -24,12 +24,12 @@ in the graph with respect to the node degree.
 
     * **weight** (*mgp.Nullable[str]*) – (default=None)
     The edge attribute that holds the numerical value used
-    as a weight.  If None, then each edge has weight 1.
+    as a weight.  If `None`, then each edge has weight 1.
     The degree is the sum of the edge weights adjacent to the node.
 
 
     * **nodes** (*mgp.Nullable[mgp.List[mgp.Vertex]]*) – (default=None)
-    Compute degree assortativity only for nodes in container.
+    Compute degree assortativity only for nodes in a container.
     The default is all nodes.
 
 

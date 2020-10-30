@@ -4,7 +4,7 @@
 ### nxalg.pagerank(ctx: mgp.ProcCtx, alpha: mgp.Number = 0.85, personalization: mgp.Nullable.str = None, max_iter: int = 100, tol: mgp.Number = 1e-06, nstart: mgp.Nullable.str = None, weight: mgp.Nullable.str = 'weight', dangling: mgp.Nullable.str = None)
 Returns the PageRank of the nodes in the graph.
 
-PageRank computes a ranking of the nodes in the graph G based on
+*PageRank* computes a ranking of the nodes in the graph `G` based on
 the structure of the incoming links. It was originally designed as
 an algorithm to rank web pages.
 
@@ -21,8 +21,8 @@ an algorithm to rank web pages.
 
     * **personalization** (*mgp.Nullable[str]*) – (default=None)
     The “personalization vector” consisting of a dictionary with a
-    key some subset of graph nodes and personalization value each of those.
-    At least one personalization value must be non-zero.
+    subset of graph nodes as a key and maps personalization value
+    for each subset. At least one personalization value must be non-zero.
     If not specified, a nodes personalization value will be zero.
     By default, a uniform distribution is used.
 
@@ -40,7 +40,7 @@ an algorithm to rank web pages.
 
 
     * **weight** (*mgp.Nullable[str]*) – (default=’weight’)
-    Edge data key to use as weight. If None weights are set to 1.
+    Edge data key to use as weight. If `None`, weights are set to 1.
 
 
     * **dangling** (*mgp.Nullable[str]*) – (default=None)
@@ -49,8 +49,8 @@ an algorithm to rank web pages.
     value is the weight of that outedge. By default, dangling nodes are given
     outedges according to the personalization vector (uniform if not
     specified). This must be selected to result in an irreducible transition
-    matrix (see notes under google_matrix). It may be common to have the
-    dangling dict to be the same as the personalization dict.
+    matrix. It may be common to have the dangling dict to be the same as
+    the personalization dict.
 
 
 

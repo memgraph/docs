@@ -4,6 +4,9 @@
 ### nxalg.jaccard_coefficient(ctx: mgp.ProcCtx, ebunch: mgp.Nullable.mgp.List.mgp.List.mgp.Vertex = None)
 Compute the Jaccard coefficient of all node pairs in `ebunch`.
 
+*Jaccard coefficient* compares members of two sets to see
+which members are shared and which are distinct.
+
 
 **Parameters**
 
@@ -14,9 +17,9 @@ Compute the Jaccard coefficient of all node pairs in `ebunch`.
     * **ebunch** (*mgp.Nullable**[**mgp.List**[**mgp.List[mgp.Vertex]**]**]*) – (default=None)
     Jaccard coefficient will be computed for each pair of nodes
     given in the iterable. The pairs must be given as 2-tuples
-    (u, v) where u and v are nodes in the graph. If `ebunch` is None
-    then all non-existent edges in the graph will be used.
-    Default value: None.
+    `(u, v)` where `u` and `v` are nodes in the graph.
+    If `ebunch` is `None` then all non-existent edges in the
+    graph will be used.
 
 
 

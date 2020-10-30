@@ -3,7 +3,7 @@
 
 ### nxalg.bfs_tree(ctx: mgp.ProcCtx, source: mgp.Vertex, reverse: bool = False, depth_limit: mgp.Nullable.int = None)
 Returns an oriented tree constructed from of a breadth-first-search
-starting at source.
+starting at `source`.
 
 
 **Parameters**
@@ -16,7 +16,7 @@ starting at source.
 
 
     * **reverse** (*bool*) – (default=False)
-    If True traverse a directed graph in the reverse direction.
+    If `True`, traverse a directed graph in the reverse direction.
 
 
     * **depth_limit** (*mgp.Nullable[int]*) – (default=None)

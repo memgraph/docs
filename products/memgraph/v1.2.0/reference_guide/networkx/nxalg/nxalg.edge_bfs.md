@@ -15,20 +15,20 @@ all edges are generated.
 
 
     * **source** (*mgp.Nullable[mgp.Vertex]*) – (default=None)
-    The node from which the traversal begins. If None, then a source
+    The node from which the traversal begins. If `None`, then a source
     is chosen arbitrarily and repeatedly until all edges from each node in
     the graph are searched.
 
 
     * **orientation** (*mgp.Nullable[str]*) – (default=None)
-    For directed graphs and directed multigraphs, edge traversals need not
-    respect the original orientation of the edges.
-    When set to ‘reverse’ every edge is traversed in the reverse direction.
+    For directed graphs and directed multigraphs, edge traversals
+    need not respect the original orientation of the edges.
+    When set to ‘reverse’, every edge is traversed in the reverse direction.
     When set to ‘ignore’, every edge is treated as undirected.
     When set to ‘original’, every edge is treated as directed.
     In all three cases, the returned edge tuples add a last entry to
     indicate the direction in which that edge was traversed.
-    If `orientation` is None, the returned edge has no direction indicated.
+    If `orientation` is `None`, the returned edge has no direction indicated.
     The direction is respected, but not reported.
 
 

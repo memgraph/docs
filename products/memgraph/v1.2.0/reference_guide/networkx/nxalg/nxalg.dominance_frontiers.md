@@ -4,6 +4,10 @@
 ### nxalg.dominance_frontiers(ctx: mgp.ProcCtx, start: mgp.Vertex)
 Returns the dominance frontiers of all nodes of a directed graph.
 
+The *dominance frontier* of a node `d` is the set of all
+nodes such that `d` dominates an immediate
+predecessor of a node, but `d` does not strictly dominate that node.
+
 
 **Parameters**
 

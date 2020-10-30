@@ -2,7 +2,7 @@
 
 
 ### nxalg.bridges(ctx: mgp.ProcCtx, root: mgp.Nullable.mgp.Vertex = None)
-Generate all bridges in a graph.
+Return all bridges in a graph.
 
 A *bridge* in a graph is an edge whose removal causes the number of
 connected components of the graph to increase.  Equivalently, a bridge is an
@@ -17,13 +17,13 @@ edge that does not belong to any cycle.
 
     * **root** (*mgp.Nullable[mgp.Vertex]*) – (default=None)
     A node in the graph `G`. If specified, only the bridges in the
-    connected component containing this node will be returned.
+    connected components containing this node will be returned.
 
 
 
 **Returns**
 
-An edge in the graph whose removal disconnects the graph (or
+A list of edges in the graph whose removal disconnects the graph (or
     causes the number of connected components to increase).
 
 

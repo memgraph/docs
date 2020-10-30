@@ -4,6 +4,10 @@
 ### nxalg.immediate_dominators(ctx: mgp.ProcCtx, start: mgp.Vertex)
 Returns the immediate dominators of all nodes of a directed graph.
 
+> The immediate dominator of a node is the unique node that
+> Strictly dominates a node `n` but does not strictly dominate any other node
+> That dominates `n`.
+
 
 **Parameters**
 

@@ -4,7 +4,7 @@
 ### nxalg.flow_hierarchy(ctx: mgp.ProcCtx, weight: mgp.Nullable.str = None)
 Returns the flow hierarchy of a directed network.
 
-Flow hierarchy is defined as the fraction of edges not participating
+*Flow hierarchy* is defined as the fraction of edges not participating
 in cycles in a directed graph.
 
 
@@ -15,7 +15,7 @@ in cycles in a directed graph.
 
 
     * **weight** (*mgp.Nullable[str]*) – (default=None)
-    Attribute to use for node weights. If None the weight defaults to 1.
+    Attribute to use for node weights. If `None`, the weight defaults to 1.
 
 
 

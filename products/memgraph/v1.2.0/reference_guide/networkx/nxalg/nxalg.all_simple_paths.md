@@ -2,7 +2,7 @@
 
 
 ### nxalg.all_simple_paths(ctx: mgp.ProcCtx, source: mgp.Vertex, target: mgp.Vertex, cutoff: mgp.Nullable.int = None)
-Generate all simple paths in the graph `G` from source to target.
+Return all simple paths in the graph `G` from source to target.
 
 A simple path is a path with no repeated nodes.
 
@@ -26,9 +26,8 @@ A simple path is a path with no repeated nodes.
 
 **Returns**
 
-A generator that produces lists of simple paths. If there are no paths
-    between the source and target within the given cutoff the generator
-    produces no output.
+A list of simple path lists. If there are no paths
+    between the source and target within the given cutoff there is no output.
 
 
 

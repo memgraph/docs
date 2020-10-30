@@ -24,7 +24,7 @@ Compute shortest path lengths in the graph.
 
 
     * **weight** (*mgp.Nullable[str]*) – (default=None)
-    If None, every edge has weight/distance/cost 1.
+    If `None`, every edge has weight/distance/cost 1.
     If a string, use this edge attribute as the edge weight.
     Any edge attribute not present defaults to 1.
 
@@ -33,8 +33,8 @@ Compute shortest path lengths in the graph.
     The algorithm to use to compute the path length.
     Supported options: ‘dijkstra’, ‘bellman-ford’.
     Other inputs produce a ValueError.
-    If weight is None, unweighted graph methods are used, and this
-    suggestion is ignored.
+    If `weight` is `None`, unweighted graph methods are used
+    and this suggestion is ignored.
 
 
 
@@ -42,17 +42,13 @@ Compute shortest path lengths in the graph.
 
 If the `source` and `target` are both specified, return the length of
     the shortest path from the `source` to the `target`.
-
     If only the `source` is specified, return a dict keyed by `target`
     to the shortest path length from the `source` to that `target`.
-
     If only the `target` is specified, return a dict keyed by `source`
     to the shortest path length from that `source` to the `target`.
-
     If neither the `source` nor `target` are specified, return an iterator
     over (source, dictionary) where dictionary is keyed by `target` to
     shortest path length from `source` to that `target`.
-
 
 
 

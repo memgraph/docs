@@ -4,7 +4,7 @@
 ### nxalg.simple_cycles(ctx: mgp.ProcCtx)
 Find simple cycles (elementary circuits) of a directed graph.
 
-A simple cycle, or elementary circuit, is a closed path where
+A *simple cycle*, or *elementary circuit*, is a closed path where
 no node appears twice. Two elementary circuits are distinct if they
 are not cyclic permutations of each other.
 
@@ -21,7 +21,7 @@ algorithm. There may be better algorithms for some cases.
 **Returns**
 
 A list of elementary cycles in the graph.
-    Each cycle is represented by a list of nodes along the cycle.
+    Each cycle is represented by a list of nodes in the cycle.
 
 
 

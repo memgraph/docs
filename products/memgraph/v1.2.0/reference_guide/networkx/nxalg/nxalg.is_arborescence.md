@@ -2,9 +2,9 @@
 
 
 ### nxalg.is_arborescence(ctx: mgp.ProcCtx)
-Returns True if `G` is an arborescence.
+Returns `True` if `G` is an arborescence.
 
-An arborescence is a directed tree with maximum in-degree equal to 1.
+An *arborescence* is a directed tree with maximum in-degree equal to 1.
 
 
 **Parameters**

@@ -2,7 +2,8 @@
 
 
 ### nxalg.is_isomorphic(ctx: mgp.ProcCtx, nodes1: mgp.List.mgp.Vertex, edges1: mgp.List.mgp.Edge, nodes2: mgp.List.mgp.Vertex, edges2: mgp.List.mgp.Edge)
-Returns True if the graphs `G1` and `G2` are isomorphic and False otherwise.
+Returns `True` if the graphs `G1` and `G2` are isomorphic
+and `False` otherwise.
 
 The two graphs `G1` and `G2` must be the same type.
 
@@ -28,7 +29,8 @@ The two graphs `G1` and `G2` must be the same type.
 
 **Returns**
 
-True if the graphs `G1` and `G2` are isomorphic and False otherwise.
+`True` if the graphs `G1` and `G2` are isomorphic
+    and `False` otherwise.
 
 
 

@@ -4,7 +4,7 @@
 ### nxalg.core_number(ctx: mgp.ProcCtx)
 Returns the core number for each vertex.
 
-A k-core is a maximal subgraph that contains nodes of degree `k` or more.
+A *k-core* is a maximal subgraph that contains nodes of degree `k` or more.
 
 The core number of a node is the largest value `k` of a k-core containing
 that node.

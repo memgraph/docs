@@ -2,7 +2,7 @@
 
 
 ### nxalg.dfs_tree(ctx: mgp.ProcCtx, source: mgp.Vertex, depth_limit: mgp.Nullable.int = None)
-Returns oriented tree constructed from a depth-first-search from source.
+Returns an oriented tree constructed from a depth-first-search from source.
 
 
 **Parameters**

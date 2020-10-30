@@ -5,7 +5,7 @@
 Returns a list of sets of nodes, one set for each biconnected
 component of the graph
 
-Biconnected components are maximal subgraphs such that the removal of a
+*Biconnected components* are maximal subgraphs such that the removal of a
 node (and all edges incident on that node) will not disconnect the
 subgraph. Note that nodes may be part of more than one biconnected
 component.  Those nodes are articulation points or cut vertices.  The

@@ -2,7 +2,11 @@
 
 
 ### nxalg.k_edge_components(ctx: mgp.ProcCtx, k: int)
-Generates nodes in each maximal k-edge-connected component in `G`.
+Returns nodes in each maximal k-edge-connected component in `G`.
+
+A connected graph is *k-edge-connected* if it remains connected
+whenever fewer than k edges are removed. The edge-connectivity of
+a graph is the largest k for which the graph is k-edge-connected.
 
 
 **Parameters**
@@ -17,7 +21,7 @@ Generates nodes in each maximal k-edge-connected component in `G`.
 
 **Returns**
 
-A generator of k-edge-ccs. Each set of returned nodes
+A list of k-edge-ccs. Each set of returned nodes
     will have k-edge-connectivity in the graph `G`.
 
 

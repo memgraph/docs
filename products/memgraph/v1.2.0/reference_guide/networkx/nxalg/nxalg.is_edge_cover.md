@@ -4,9 +4,9 @@
 ### nxalg.is_edge_cover(ctx: mgp.ProcCtx, cover: mgp.List.mgp.Edge)
 Decides whether a set of edges is a valid edge cover of the graph.
 
-Given a set of edges, whether it is an edge covering can
-be decided if we just check whether all nodes of the graph
-has an edge from the set, incident on it.
+Given a set of edges, it can be decided whether the set is
+an *edge covering* if checked whether all nodes of the graph
+have an edge from the set incident on it.
 
 
 **Parameters**

@@ -20,14 +20,14 @@ all edges are generated.
 
 
     * **orientation** (*mgp.Nullable[str]*) – (default=None)
-    For directed graphs and directed multigraphs, edge traversals need not
-    respect the original orientation of the edges.
-    When set to ‘reverse’ every edge is traversed in the reverse direction.
+    For directed graphs and directed multigraphs, edge traversals
+    need not respect the original orientation of the edges.
+    When set to ‘reverse’, every edge is traversed in the reverse direction.
     When set to ‘ignore’, every edge is treated as undirected.
     When set to ‘original’, every edge is treated as directed.
     In all three cases, the returned edge tuples add a last entry to
     indicate the direction in which that edge was traversed.
-    If `orientation` is None, the returned edge has no direction indicated.
+    If `orientation` is `None`, the returned edge has no direction indicated.
     The direction is respected, but not reported.
 
 
@@ -40,7 +40,7 @@ A directed edge indicating the path taken by the depth-first traversal.
     For multigraphs, edge is of the form `(u, v, key)`, where `key` is
     the key of the edge. When the graph is directed, then `u` and `v`
     are always in the order of the actual directed edge.
-    If `orientation` is not None then the edge tuple is extended to include
+    If `orientation` is not `None` then the edge tuple is extended to include
     the direction of traversal (‘forward’ or ‘reverse’) on that edge.
 
 

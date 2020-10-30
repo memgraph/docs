@@ -4,7 +4,7 @@
 ### nxalg.center(ctx: mgp.ProcCtx)
 Returns the center of the graph `G`.
 
-The center is the set of nodes with eccentricity equal to the radius.
+The *center* is the set of nodes with eccentricity equal to the radius.
 
 
 **Parameters**

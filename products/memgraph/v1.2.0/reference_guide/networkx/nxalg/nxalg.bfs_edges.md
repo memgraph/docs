@@ -17,7 +17,7 @@ Iterate over edges in a breadth-first-search starting at source.
 
 
     * **reverse** (*bool*) – (default=False)
-    If True traverse a directed graph in the reverse direction.
+    If `True`, traverse a directed graph in the reverse direction.
 
 
     * **depth_limit** (*mgp.Nullable[int]*) – (default=None)
@@ -27,7 +27,7 @@ Iterate over edges in a breadth-first-search starting at source.
 
 **Returns**
 
-A generator of edges in the breadth-first-search.
+A list of edges in the breadth-first-search.
 
 
 

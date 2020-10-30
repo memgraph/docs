@@ -2,7 +2,7 @@
 
 
 ### nxalg.dfs_preorder_nodes(ctx: mgp.ProcCtx, source: mgp.Vertex, depth_limit: mgp.Nullable.int = None)
-Generate nodes in a depth-first-search pre-ordering starting at source.
+Return nodes in a depth-first-search pre-ordering starting at source.
 
 
 **Parameters**
@@ -13,7 +13,7 @@ Generate nodes in a depth-first-search pre-ordering starting at source.
 
     * **source** (*mgp.Vertex*) – Specify starting node for depth-first search and return nodes in
     the component reachable from
-    this node..
+    this node.
 
 
     * **depth_limit** (*mgp.Nullable[int]*) – (default=None)
@@ -23,7 +23,7 @@ Generate nodes in a depth-first-search pre-ordering starting at source.
 
 **Returns**
 
-A generator of nodes in a depth-first-search pre-ordering.
+A list of nodes in a depth-first-search pre-ordering.
 
 
 

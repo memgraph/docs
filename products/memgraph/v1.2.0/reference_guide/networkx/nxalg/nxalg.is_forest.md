@@ -2,9 +2,9 @@
 
 
 ### nxalg.is_forest(ctx: mgp.ProcCtx)
-Returns True if `G` is a forest.
+Returns `True` if `G` is a forest.
 
-A forest is a graph with no undirected cycles.
+A *forest* is a graph with no undirected cycles.
 
 For directed graphs, `G` is a forest if the underlying graph is a forest.
 The underlying graph is obtained by treating each directed edge as a single
@@ -19,7 +19,7 @@ undirected edge in a multigraph.
 
 **Returns**
 
-A boolean that is True if `G` is a forest.
+A boolean that is `True` if `G` is a forest.
 
 
 

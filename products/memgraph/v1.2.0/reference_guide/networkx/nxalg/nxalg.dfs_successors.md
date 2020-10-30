@@ -2,7 +2,7 @@
 
 
 ### nxalg.dfs_successors(ctx: mgp.ProcCtx, source: mgp.Vertex, depth_limit: mgp.Nullable.int = None)
-Returns dictionary of successors in depth-first-search from source.
+Returns a dictionary of successors in depth-first-search from source.
 
 
 **Parameters**

@@ -4,7 +4,7 @@
 ### nxalg.is_tournament(ctx: mgp.ProcCtx)
 Returns True if and only if `G` is a tournament.
 
-A tournament is a directed graph, with neither self-loops nor
+A *tournament* is a directed graph, with neither self-loops nor
 multi-edges, in which there is exactly one directed edge joining
 each pair of distinct nodes.
 

@@ -4,7 +4,7 @@
 ### nxalg.is_semieulerian(ctx: mgp.ProcCtx)
 Return True if `G` is semi-Eulerian.
 
-G is semi-Eulerian if it has an Eulerian path but no Eulerian circuit.
+`G` is semi-Eulerian if it has an Eulerian path but no Eulerian circuit.
 
 
 **Parameters**
@@ -15,7 +15,7 @@ G is semi-Eulerian if it has an Eulerian path but no Eulerian circuit.
 
 **Returns**
 
-True if `G` is semi-Eulerian.
+`True` if `G` is semi-Eulerian.
 
 
 

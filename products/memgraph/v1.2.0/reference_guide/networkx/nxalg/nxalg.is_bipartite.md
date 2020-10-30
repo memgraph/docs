@@ -2,7 +2,11 @@
 
 
 ### nxalg.is_bipartite(ctx: mgp.ProcCtx)
-Returns True if graph `G` is bipartite, False if not.
+Returns `True` if graph `G` is bipartite, `False` if not.
+
+A *bipartite graph* (or bigraph) is a graph whose vertices can be
+divided into two disjoint and independent sets\`\`u\`\` and `v` and such that
+every edge connects a vertex in `u` one in `v`.
 
 
 **Parameters**
@@ -13,7 +17,7 @@ Returns True if graph `G` is bipartite, False if not.
 
 **Returns**
 
-True if `G` is bipartite and False otherwise.
+`True` if `G` is bipartite and `False` otherwise.
 
 
 

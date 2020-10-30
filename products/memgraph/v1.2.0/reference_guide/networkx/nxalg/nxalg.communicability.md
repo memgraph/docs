@@ -4,7 +4,7 @@
 ### nxalg.communicability(ctx: mgp.ProcCtx)
 Returns communicability between all pairs of nodes in `G`.
 
-The communicability between pairs of nodes in `G` is the sum of
+The *communicability* between pairs of nodes in `G` is the sum of
 closed walks of different lengths starting at node `u` and ending at node `v`.
 
 

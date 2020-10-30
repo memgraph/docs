@@ -2,7 +2,7 @@
 
 
 ### nxalg.is_simple_path(ctx: mgp.ProcCtx, nodes: mgp.List.mgp.Vertex)
-Returns True if and only if the given nodes form a simple path in
+Returns `True` if and only if the given nodes form a simple path in
 `G`.
 
 A *simple path* in a graph is a nonempty sequence of nodes in which

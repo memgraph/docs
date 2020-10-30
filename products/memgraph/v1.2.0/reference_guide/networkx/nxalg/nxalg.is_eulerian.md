@@ -17,7 +17,7 @@ once.
 
 **Returns**
 
-True if `G` is Eulerian.
+`True` if `G` is Eulerian.
 
 
 

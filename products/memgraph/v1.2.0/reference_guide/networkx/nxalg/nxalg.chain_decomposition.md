@@ -8,7 +8,7 @@ The *chain decomposition* of a graph with respect a depth-first
 search tree is a set of cycles or paths derived from the set of
 fundamental cycles of the tree in the following manner. Consider
 each fundamental cycle with respect to the given tree, represented
-as a list of edges beginning with the nontree edge oriented away
+as a list of edges beginning with the non tree edge oriented away
 from the root of the tree. For each fundamental cycle, if it
 overlaps with any previous fundamental cycle, just take the initial
 non-overlapping segment, which is a path instead of a cycle. Each

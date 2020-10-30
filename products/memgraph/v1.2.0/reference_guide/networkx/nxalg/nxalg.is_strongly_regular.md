@@ -2,7 +2,7 @@
 
 
 ### nxalg.is_strongly_regular(ctx: mgp.ProcCtx)
-Returns True if and only if the given graph is strongly
+Returns `True` if and only if the given graph is strongly
 regular.
 
 An undirected graph is *strongly regular* if
@@ -19,8 +19,8 @@ common,
 in common.
 
 Each strongly regular graph is a distance-regular graph.
-Conversely, if a distance-regular graph has diameter two, then it is
-a strongly regular graph.
+Conversely, if a distance-regular graph has a diameter of two,
+then it is a strongly regular graph.
 
 
 **Parameters**

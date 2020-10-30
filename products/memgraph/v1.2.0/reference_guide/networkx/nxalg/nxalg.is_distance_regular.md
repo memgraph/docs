@@ -2,7 +2,7 @@
 
 
 ### nxalg.is_distance_regular(ctx: mgp.ProcCtx)
-Returns True if the graph is distance regular, False otherwise.
+Returns `True` if the graph is distance regular, `False` otherwise.
 
 A connected graph `G` is distance-regular if for any nodes `x,y`
 and any integers `i,j=0,1,...,d` (where `d` is the graph
@@ -19,7 +19,7 @@ between `x` and `y`, independently of the choice of `x` and `y`.
 
 **Returns**
 
-True if the graph is Distance Regular, False otherwise.
+`True` if the graph is Distance Regular, `False` otherwise.
 
 
 

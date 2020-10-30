@@ -2,7 +2,7 @@
 
 
 ### nxalg.strongly_connected_components(ctx: mgp.ProcCtx)
-Return nodes in strongly connected components of graph.
+Returns nodes in strongly connected components of a graph.
 
 
 **Parameters**
@@ -13,7 +13,7 @@ Return nodes in strongly connected components of graph.
 
 **Returns**
 
-A list of sets of nodes, one for each strongly connected
+A list of lists of nodes, one for each strongly connected
     component of `G`.
 
 

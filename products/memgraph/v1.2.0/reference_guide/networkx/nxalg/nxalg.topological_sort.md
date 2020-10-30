@@ -4,9 +4,9 @@
 ### nxalg.topological_sort(ctx: mgp.ProcCtx)
 Returns nodes in topologically sorted order.
 
-A topological sort is a nonunique permutation of the nodes such that an
-edge from u to v implies that u appears before v in the topological sort
-order.
+A *topological sort* is a non unique permutation of the nodes such that an
+edge from `u` to `v` implies that `u` appears before `v` in the
+topological sort order.
 
 
 **Parameters**
@@ -17,7 +17,7 @@ order.
 
 **Returns**
 
-An list of nodes in topological sorted order.
+A list of nodes in topological sorted order.
 
 
 
