@@ -1,9 +1,9 @@
 
-# Quick start guide to style script
+# Quick Start Guide to Style Script
 
 This guide will show you how to easily get started with style script. For 
-complete list available features consult [style script reference](TODO: style 
-script documentation).
+complete list available features consult 
+[style script reference](https://docs.memgraph.com/memgraph-lab/style_script).
 
 ## Graph example
 
