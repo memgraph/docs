@@ -58,7 +58,7 @@
 
 ## Memgraph Lab
 
-* [How to install on OSX?](lab/v1.1.0/how_to_install_memgraph_lab_on_macos.md)
+* [How to install on OSX?](lab/v1.2.0/how_to_install_memgraph_lab_on_macos.md)
 * [Quick Start Guide to Style Script](lab/v1.2.0/quick_start_guide_to_style_script.md)
 * [Style Script](lab/v1.2.0/style_script.md)
 * [Changelog](lab/CHANGELOG.md)
