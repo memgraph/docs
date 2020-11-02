@@ -72,7 +72,7 @@ In our case, the example procedure returns 4 fields:
 - `vertex_count`: number of vertices in the database.
 - `avg_degree`: average degree of vertices.
 - `props`: properties map of the Vertex or Edge object passed in `required_arg`.
-   In case a Path instance is passed, procedure returns the properties map of
+   In case a Path instance is passed, the procedure returns the properties map of
    the starting vertex.
 
 This procedure can be invoked in openCypher as follows:
@@ -178,7 +178,7 @@ compiler. For example, using `clang`:
 clang -Wall -shared -fPIC -I /usr/include/memgraph example.c -o example.so
 ```
 
-Next we have a `procedure` function. This function will serve as the callback
+Next, we have a `procedure` function. This function will serve as the callback
 for our `example.procedure` invocation through openCypher.
 
 ```c
@@ -246,7 +246,7 @@ documentation on functions prefixed with `mgp_proc_`.
 
 The passed in `memory` argument is only alive throughout the execution of
 `mgp_init_module`, so you must not allocate any global resources with it. If
-you really need to setup some global state, you may do so in the
+you really need to set up some global state, you may do so in the
 `mgp_init_module` but using the standard global allocators.
 
 Consequently, you may want to reset any global state or release global

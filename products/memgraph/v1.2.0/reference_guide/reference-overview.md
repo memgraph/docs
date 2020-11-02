@@ -16,6 +16,7 @@ Our reference guide currently consists of the following articles:
   * [Indexing](indexing.md)
   * [Graph Algorithms](graph-algorithms.md)
   * [Query Modules](query-modules.md)
+  * [NetworkX](networkx/networkx.md)
   * [Security](security.md)
   * [Auth Module](auth-module.md)
   * [LDAP Security](ldap-security.md)

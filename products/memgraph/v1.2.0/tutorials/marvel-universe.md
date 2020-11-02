@@ -121,7 +121,7 @@ RETURN h.name as PotentialSpiderDude
 ORDER BY PotentialSpiderDude;
 ```
 
-We recommend you search for your heroes of interest this way, might save you
+We recommend you search for your heroes of interest this way, which might save you
 some time!
 
 3) List all the comic issues where Spider-Man (Peter Parker) and Venom (Eddie Brock) appear together:
@@ -191,7 +191,7 @@ return the results of this processing to the query engine, so we can perform
 further queries on them. In this particular case, the PageRank algorithm is
 implemented as a Python module, and can be found in the query module directory
 `/usr/lib/memgraph/query_modules/`, along with its description and the examples
-of usage. What you as a user must know is that the pagerank procedure automagically
+of usage. What you as a user must know is that the pagerank procedure automatically 
 takes the MCU graph as an argument, and returns a record of pairs of nodes and the
 corresponding rank values (rank is a number representing the "popularity" of a given node).
 
@@ -233,8 +233,8 @@ list of things we think you could pull off:
   "heroes", but if you were the mayor of the Marvel Comic Universe Town, you
   wouldn't give those guys medals of honor, would you? It would be pretty cool
   if we could classify the MCU entities into "Hero" and "Villain" categories.
-  Then you could ask the query engine to give you a list of Spidey's arch
-  nemeses in addition to Spidey's best hero buddies.
+  Then you could ask the query engine to give you a list of Spidey's 
+  arch-nemeses in addition to Spidey's best hero buddies.
 * similar to the previous idea, it would be insanely cool if someone would add
   more attributes to the heroes like "Superpower", "Level", "Affiliation",
   "Signature moves" etc. If you had that, you could perhaps make a simple
@@ -244,5 +244,5 @@ list of things we think you could pull off:
   analyses on the social network like closeness centrality, Louvain modularity
   etc.
 
-Now go and use your graph database superpowers for greater good! Although the
+Now go and use your graph database superpowers for the greater good! Although the
 comic universe is full of heroes, there's always room for one more!

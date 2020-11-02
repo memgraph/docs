@@ -7,7 +7,7 @@ The wcc.py query module can run WCC analysis on a sub-graph of the whole graph.
 This procedure finds weakly connected components of a given subgraph of a
 directed graph.
 
-The subgraph is defined by a list of vertices and a list edges which are
+The subgraph is defined by a list of vertices and a list of edges which are
 passed as arguments of the procedure.
 
 
@@ -18,7 +18,7 @@ passed as arguments of the procedure.
     list of vertices along with all vertices that are endpoints of provided edges.
 
 
-    * **edges** (*mgp.List[mgp.Edge]*) – Aset of edges of a subgraph contains all edges from the list of provided edges.
+    * **edges** (*mgp.List[mgp.Edge]*) – A set of edges of a subgraph contains all edges from the list of provided edges.
 
 
 

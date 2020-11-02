@@ -161,7 +161,7 @@ CALL wcc.get_components(nodes, edges) YIELD components, n_components
 RETURN components, n_components;
 ```
 
-Expected result follows:
+The expected result follows:
 
 ```
 +--------------------------------------------------+--------------+
