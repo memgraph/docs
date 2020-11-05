@@ -17,18 +17,18 @@ Provides API for usage in custom openCypher procedures.
 
 |                | Name           |
 | -------------- | -------------- |
-| struct | **[mgp_label](Classes/structmgp__label.md)** <br>Label of a vertex.  |
-| struct | **[mgp_edge_type](Classes/structmgp__edge__type.md)** <br>Type of an edge.  |
-| struct | **[mgp_property](Classes/structmgp__property.md)** <br>Reference to a named property value.  |
-| struct | **[mgp_vertex_id](Classes/structmgp__vertex__id.md)** <br>ID of a vertex; valid during a single query execution.  |
-| struct | **[mgp_edge_id](Classes/structmgp__edge__id.md)** <br>ID of an edge; valid during a single query execution.  |
+| struct | **mgp_label** <br>Label of a vertex.  |
+| struct | **mgp_edge_type** <br>Type of an edge.  |
+| struct | **mgp_property** <br>Reference to a named property value.  |
+| struct | **mgp_vertex_id** <br>ID of a vertex; valid during a single query execution.  |
+| struct | **mgp_edge_id** <br>ID of an edge; valid during a single query execution.  |
 
 ## Types
 
 |                | Name           |
 | -------------- | -------------- |
-| enum | **[mgp_value_type](Files/mg__procedure_8h.md#enum-mgp_value_type)** { MGP_VALUE_TYPE_NULL, MGP_VALUE_TYPE_BOOL, MGP_VALUE_TYPE_INT, MGP_VALUE_TYPE_DOUBLE, MGP_VALUE_TYPE_STRING, MGP_VALUE_TYPE_LIST, MGP_VALUE_TYPE_MAP, MGP_VALUE_TYPE_VERTEX, MGP_VALUE_TYPE_EDGE, MGP_VALUE_TYPE_PATH }<br>All available types that can be stored in a mgp_value.  |
-| typedef void(*)(const struct mgp_list *, const struct mgp_graph *, struct mgp_result *, struct mgp_memory *) | **[mgp_proc_cb](Files/mg__procedure_8h.md#typedef-mgp_proc_cb)** <br>Entry-point for a query module procedure, invoked through openCypher.  |
+| enum | **[mgp_value_type](#enum-mgp_value_type)** { MGP_VALUE_TYPE_NULL, MGP_VALUE_TYPE_BOOL, MGP_VALUE_TYPE_INT, MGP_VALUE_TYPE_DOUBLE, MGP_VALUE_TYPE_STRING, MGP_VALUE_TYPE_LIST, MGP_VALUE_TYPE_MAP, MGP_VALUE_TYPE_VERTEX, MGP_VALUE_TYPE_EDGE, MGP_VALUE_TYPE_PATH }<br>All available types that can be stored in a mgp_value.  |
+| typedef void(*)(const struct mgp_list *, const struct mgp_graph *, struct mgp_result *, struct mgp_memory *) | **[mgp_proc_cb](#typedef-mgp_proc_cb)** <br>Entry-point for a query module procedure, invoked through openCypher.  |
 
 
 
@@ -37,118 +37,118 @@ Provides API for usage in custom openCypher procedures.
 |                | Name           |
 | -------------- | -------------- |
 | void * | **[mgp_alloc](#function-mgp_alloc)**(struct mgp_memory * memory, size_t size_in_bytes) <br>Allocate a block of memory with given size in bytes.  |
-| void * | **[mgp_aligned_alloc](Files/mg__procedure_8h.md#function-mgp_aligned_alloc)**(struct mgp_memory * memory, size_t size_in_bytes, size_t alignment) <br>Allocate an aligned block of memory with given size in bytes.  |
-| void | **[mgp_free](Files/mg__procedure_8h.md#function-mgp_free)**(struct mgp_memory * memory, void * ptr) <br>Deallocate an allocation from mgp_alloc or mgp_aligned_alloc.  |
-| void | **[mgp_value_destroy](Files/mg__procedure_8h.md#function-mgp_value_destroy)**(struct mgp_value * val) <br>Free the memory used by the given mgp_value instance.  |
-| struct mgp_value * | **[mgp_value_make_null](Files/mg__procedure_8h.md#function-mgp_value_make_null)**(struct mgp_memory * memory) <br>Construct a value representing `null` in openCypher.  |
-| struct mgp_value * | **[mgp_value_make_bool](Files/mg__procedure_8h.md#function-mgp_value_make_bool)**(int val, struct mgp_memory * memory) <br>Construct a boolean value.  |
-| struct mgp_value * | **[mgp_value_make_int](Files/mg__procedure_8h.md#function-mgp_value_make_int)**(int64_t val, struct mgp_memory * memory) <br>Construct an integer value.  |
-| struct mgp_value * | **[mgp_value_make_double](Files/mg__procedure_8h.md#function-mgp_value_make_double)**(double val, struct mgp_memory * memory) <br>Construct a double floating point value.  |
-| struct mgp_value * | **[mgp_value_make_string](Files/mg__procedure_8h.md#function-mgp_value_make_string)**(const char * val, struct mgp_memory * memory) <br>Construct a character string value from a NULL terminated string.  |
-| struct mgp_value * | **[mgp_value_make_list](Files/mg__procedure_8h.md#function-mgp_value_make_list)**(struct mgp_list * val) <br>Create a mgp_value storing a mgp_list.  |
-| struct mgp_value * | **[mgp_value_make_map](Files/mg__procedure_8h.md#function-mgp_value_make_map)**(struct mgp_map * val) <br>Create a mgp_value storing a mgp_map.  |
-| struct mgp_value * | **[mgp_value_make_vertex](Files/mg__procedure_8h.md#function-mgp_value_make_vertex)**(struct mgp_vertex * val) <br>Create a mgp_value storing a mgp_vertex.  |
-| struct mgp_value * | **[mgp_value_make_edge](Files/mg__procedure_8h.md#function-mgp_value_make_edge)**(struct mgp_edge * val) <br>Create a mgp_value storing a mgp_edge.  |
-| struct mgp_value * | **[mgp_value_make_path](Files/mg__procedure_8h.md#function-mgp_value_make_path)**(struct mgp_path * val) <br>Create a mgp_value storing a mgp_path.  |
-| enum [mgp_value_type](Files/mg__procedure_8h.md#enum-mgp_value_type) | **[mgp_value_get_type](Files/mg__procedure_8h.md#function-mgp_value_get_type)**(const struct mgp_value * val) <br>Return the type of the value contained in mgp_value.  |
-| int | **[mgp_value_is_null](Files/mg__procedure_8h.md#function-mgp_value_is_null)**(const struct mgp_value * val) <br>Return non-zero if the given mgp_value represents `null`.  |
-| int | **[mgp_value_is_bool](Files/mg__procedure_8h.md#function-mgp_value_is_bool)**(const struct mgp_value * val) <br>Return non-zero if the given mgp_value stores a boolean.  |
-| int | **[mgp_value_is_int](Files/mg__procedure_8h.md#function-mgp_value_is_int)**(const struct mgp_value * val) <br>Return non-zero if the given mgp_value stores an integer.  |
-| int | **[mgp_value_is_double](Files/mg__procedure_8h.md#function-mgp_value_is_double)**(const struct mgp_value * val) <br>Return non-zero if the given mgp_value stores a double floating-point.  |
-| int | **[mgp_value_is_string](Files/mg__procedure_8h.md#function-mgp_value_is_string)**(const struct mgp_value * val) <br>Return non-zero if the given mgp_value stores a character string.  |
-| int | **[mgp_value_is_list](Files/mg__procedure_8h.md#function-mgp_value_is_list)**(const struct mgp_value * val) <br>Return non-zero if the given mgp_value stores a list of values.  |
-| int | **[mgp_value_is_map](Files/mg__procedure_8h.md#function-mgp_value_is_map)**(const struct mgp_value * val) <br>Return non-zero if the given mgp_value stores a map of values.  |
-| int | **[mgp_value_is_vertex](Files/mg__procedure_8h.md#function-mgp_value_is_vertex)**(const struct mgp_value * val) <br>Return non-zero if the given mgp_value stores a vertex.  |
-| int | **[mgp_value_is_edge](Files/mg__procedure_8h.md#function-mgp_value_is_edge)**(const struct mgp_value * val) <br>Return non-zero if the given mgp_value stores an edge.  |
-| int | **[mgp_value_is_path](Files/mg__procedure_8h.md#function-mgp_value_is_path)**(const struct mgp_value * val) <br>Return non-zero if the given mgp_value stores a path.  |
-| int | **[mgp_value_get_bool](Files/mg__procedure_8h.md#function-mgp_value_get_bool)**(const struct mgp_value * val) <br>Return the contained boolean value.  |
-| int64_t | **[mgp_value_get_int](Files/mg__procedure_8h.md#function-mgp_value_get_int)**(const struct mgp_value * val) <br>Return the contained integer.  |
-| double | **[mgp_value_get_double](Files/mg__procedure_8h.md#function-mgp_value_get_double)**(const struct mgp_value * val) <br>Return the contained double floating-point.  |
-| const char * | **[mgp_value_get_string](Files/mg__procedure_8h.md#function-mgp_value_get_string)**(const struct mgp_value * val) <br>Return the contained character string.  |
-| const struct mgp_list * | **[mgp_value_get_list](Files/mg__procedure_8h.md#function-mgp_value_get_list)**(const struct mgp_value * val) <br>Return the contained list of values.  |
-| const struct mgp_map * | **[mgp_value_get_map](Files/mg__procedure_8h.md#function-mgp_value_get_map)**(const struct mgp_value * val) <br>Return the contained map of values.  |
-| const struct mgp_vertex * | **[mgp_value_get_vertex](Files/mg__procedure_8h.md#function-mgp_value_get_vertex)**(const struct mgp_value * val) <br>Return the contained vertex.  |
-| const struct mgp_edge * | **[mgp_value_get_edge](Files/mg__procedure_8h.md#function-mgp_value_get_edge)**(const struct mgp_value * val) <br>Return the contained edge.  |
-| const struct mgp_path * | **[mgp_value_get_path](Files/mg__procedure_8h.md#function-mgp_value_get_path)**(const struct mgp_value * val) <br>Return the contained path.  |
-| struct mgp_list * | **[mgp_list_make_empty](Files/mg__procedure_8h.md#function-mgp_list_make_empty)**(size_t capacity, struct mgp_memory * memory) <br>Create an empty list with given capacity.  |
-| void | **[mgp_list_destroy](Files/mg__procedure_8h.md#function-mgp_list_destroy)**(struct mgp_list * list) <br>Free the memory used by the given mgp_list and contained elements.  |
-| int | **[mgp_list_append](Files/mg__procedure_8h.md#function-mgp_list_append)**(struct mgp_list * list, const struct mgp_value * val) <br>Append a copy of mgp_value to mgp_list if capacity allows.  |
-| int | **[mgp_list_append_extend](Files/mg__procedure_8h.md#function-mgp_list_append_extend)**(struct mgp_list * list, const struct mgp_value * val) <br>Append a copy of mgp_value to mgp_list increasing capacity if needed.  |
-| size_t | **[mgp_list_size](Files/mg__procedure_8h.md#function-mgp_list_size)**(const struct mgp_list * list) <br>Return the number of elements stored in mgp_list.  |
-| size_t | **[mgp_list_capacity](Files/mg__procedure_8h.md#function-mgp_list_capacity)**(const struct mgp_list * list) <br>Return the total number of elements for which there's already allocated memory in mgp_list.  |
-| const struct mgp_value * | **[mgp_list_at](Files/mg__procedure_8h.md#function-mgp_list_at)**(const struct mgp_list * list, size_t index) <br>Return the element in mgp_list at given position.  |
-| struct mgp_map * | **[mgp_map_make_empty](Files/mg__procedure_8h.md#function-mgp_map_make_empty)**(struct mgp_memory * memory) <br>Create an empty map of character strings to mgp_value instances.  |
-| void | **[mgp_map_destroy](Files/mg__procedure_8h.md#function-mgp_map_destroy)**(struct mgp_map * map) <br>Free the memory used by the given mgp_map and contained items.  |
-| int | **[mgp_map_insert](Files/mg__procedure_8h.md#function-mgp_map_insert)**(struct mgp_map * map, const char * key, const struct mgp_value * value) <br>Insert a new mapping from a NULL terminated character string to a value.  |
-| size_t | **[mgp_map_size](Files/mg__procedure_8h.md#function-mgp_map_size)**(const struct mgp_map * map) <br>Return the number of items stored in mgp_map.  |
-| const struct mgp_value * | **[mgp_map_at](Files/mg__procedure_8h.md#function-mgp_map_at)**(const struct mgp_map * map, const char * key) <br>Return the mapped mgp_value to the given character string.  |
-| const char * | **[mgp_map_item_key](Files/mg__procedure_8h.md#function-mgp_map_item_key)**(const struct mgp_map_item * item) <br>Get the key of the mapped item.  |
-| const struct mgp_value * | **[mgp_map_item_value](Files/mg__procedure_8h.md#function-mgp_map_item_value)**(const struct mgp_map_item * item) <br>Get the value of the mapped item.  |
-| struct mgp_map_items_iterator * | **[mgp_map_iter_items](Files/mg__procedure_8h.md#function-mgp_map_iter_items)**(const struct mgp_map * map, struct mgp_memory * memory) <br>Start iterating over items contained in the given map.  |
-| void | **[mgp_map_items_iterator_destroy](Files/mg__procedure_8h.md#function-mgp_map_items_iterator_destroy)**(struct mgp_map_items_iterator * it) <br>Deallocate memory used by mgp_map_items_iterator.  |
-| const struct mgp_map_item * | **[mgp_map_items_iterator_get](Files/mg__procedure_8h.md#function-mgp_map_items_iterator_get)**(const struct mgp_map_items_iterator * it) <br>Get the current item pointed to by the iterator.  |
-| const struct mgp_map_item * | **[mgp_map_items_iterator_next](Files/mg__procedure_8h.md#function-mgp_map_items_iterator_next)**(struct mgp_map_items_iterator * it) <br>Advance the iterator to the next item stored in map and return it.  |
-| struct mgp_path * | **[mgp_path_make_with_start](Files/mg__procedure_8h.md#function-mgp_path_make_with_start)**(const struct mgp_vertex * vertex, struct mgp_memory * memory) <br>Create a path with the copy of the given starting vertex.  |
-| struct mgp_path * | **[mgp_path_copy](Files/mg__procedure_8h.md#function-mgp_path_copy)**(const struct mgp_path * path, struct mgp_memory * memory) <br>Copy a mgp_path.  |
-| void | **[mgp_path_destroy](Files/mg__procedure_8h.md#function-mgp_path_destroy)**(struct mgp_path * path) <br>Free the memory used by the given mgp_path and contained vertices and edges.  |
-| int | **[mgp_path_expand](Files/mg__procedure_8h.md#function-mgp_path_expand)**(struct mgp_path * path, const struct mgp_edge * edge) <br>Append an edge continuing from the last vertex on the path.  |
-| size_t | **[mgp_path_size](Files/mg__procedure_8h.md#function-mgp_path_size)**(const struct mgp_path * path) <br>Return the number of edges in a mgp_path.  |
-| const struct mgp_vertex * | **[mgp_path_vertex_at](Files/mg__procedure_8h.md#function-mgp_path_vertex_at)**(const struct mgp_path * path, size_t index) <br>Return the vertex from a path at given index.  |
-| const struct mgp_edge * | **[mgp_path_edge_at](Files/mg__procedure_8h.md#function-mgp_path_edge_at)**(const struct mgp_path * path, size_t index) <br>Return the edge from a path at given index.  |
-| int | **[mgp_path_equal](Files/mg__procedure_8h.md#function-mgp_path_equal)**(const struct mgp_path * p1, const struct mgp_path * p2) <br>Return non-zero if given paths are equal, otherwise 0.  |
-| int | **[mgp_result_set_error_msg](Files/mg__procedure_8h.md#function-mgp_result_set_error_msg)**(struct mgp_result * res, const char * error_msg) <br>Set the error as the result of the procedure.  |
-| struct mgp_result_record * | **[mgp_result_new_record](Files/mg__procedure_8h.md#function-mgp_result_new_record)**(struct mgp_result * res) <br>Create a new record for results.  |
-| int | **[mgp_result_record_insert](Files/mg__procedure_8h.md#function-mgp_result_record_insert)**(struct mgp_result_record * record, const char * field_name, const struct mgp_value * val) <br>Assign a value to a field in the given record.  |
-| void | **[mgp_properties_iterator_destroy](Files/mg__procedure_8h.md#function-mgp_properties_iterator_destroy)**(struct mgp_properties_iterator * it) <br>Free the memory used by a mgp_properties_iterator.  |
-| const struct [mgp_property](Classes/structmgp__property.md) * | **[mgp_properties_iterator_get](Files/mg__procedure_8h.md#function-mgp_properties_iterator_get)**(const struct mgp_properties_iterator * it) <br>Get the current property pointed to by the iterator.  |
-| const struct [mgp_property](Classes/structmgp__property.md) * | **[mgp_properties_iterator_next](Files/mg__procedure_8h.md#function-mgp_properties_iterator_next)**(struct mgp_properties_iterator * it) <br>Advance the iterator to the next property and return it.  |
-| void | **[mgp_edges_iterator_destroy](Files/mg__procedure_8h.md#function-mgp_edges_iterator_destroy)**(struct mgp_edges_iterator * it) <br>Free the memory used by a mgp_edges_iterator.  |
-| struct [mgp_vertex_id](Classes/structmgp__vertex__id.md) | **[mgp_vertex_get_id](Files/mg__procedure_8h.md#function-mgp_vertex_get_id)**(const struct mgp_vertex * v) <br>Get the ID of given vertex.  |
-| struct mgp_vertex * | **[mgp_vertex_copy](Files/mg__procedure_8h.md#function-mgp_vertex_copy)**(const struct mgp_vertex * v, struct mgp_memory * memory) <br>Copy a mgp_vertex.  |
-| void | **[mgp_vertex_destroy](Files/mg__procedure_8h.md#function-mgp_vertex_destroy)**(struct mgp_vertex * v) <br>Free the memory used by a mgp_vertex.  |
-| int | **[mgp_vertex_equal](Files/mg__procedure_8h.md#function-mgp_vertex_equal)**(const struct mgp_vertex * v1, const struct mgp_vertex * v2) <br>Return non-zero if given vertices are equal, otherwise 0.  |
-| size_t | **[mgp_vertex_labels_count](Files/mg__procedure_8h.md#function-mgp_vertex_labels_count)**(const struct mgp_vertex * v) <br>Return the number of labels a given vertex has.  |
-| struct [mgp_label](Classes/structmgp__label.md) | **[mgp_vertex_label_at](Files/mg__procedure_8h.md#function-mgp_vertex_label_at)**(const struct mgp_vertex * v, size_t index) <br>Return [mgp_label](Classes/structmgp__label.md) in mgp_vertex at given index.  |
-| int | **[mgp_vertex_has_label](Files/mg__procedure_8h.md#function-mgp_vertex_has_label)**(const struct mgp_vertex * v, struct [mgp_label](Classes/structmgp__label.md) label) <br>Return non-zero if the given vertex has the given label.  |
-| int | **[mgp_vertex_has_label_named](Files/mg__procedure_8h.md#function-mgp_vertex_has_label_named)**(const struct mgp_vertex * v, const char * label_name) <br>Return non-zero if the given vertex has a label with given name.  |
-| struct mgp_value * | **[mgp_vertex_get_property](Files/mg__procedure_8h.md#function-mgp_vertex_get_property)**(const struct mgp_vertex * v, const char * property_name, struct mgp_memory * memory) <br>Get a copy of a vertex property mapped to a given name.  |
-| struct mgp_properties_iterator * | **[mgp_vertex_iter_properties](Files/mg__procedure_8h.md#function-mgp_vertex_iter_properties)**(const struct mgp_vertex * v, struct mgp_memory * memory) <br>Start iterating over properties stored in the given vertex.  |
-| struct mgp_edges_iterator * | **[mgp_vertex_iter_in_edges](Files/mg__procedure_8h.md#function-mgp_vertex_iter_in_edges)**(const struct mgp_vertex * v, struct mgp_memory * memory) <br>Start iterating over inbound edges of the given vertex.  |
-| struct mgp_edges_iterator * | **[mgp_vertex_iter_out_edges](Files/mg__procedure_8h.md#function-mgp_vertex_iter_out_edges)**(const struct mgp_vertex * v, struct mgp_memory * memory) <br>Start iterating over outbound edges of the given vertex.  |
-| const struct mgp_edge * | **[mgp_edges_iterator_get](Files/mg__procedure_8h.md#function-mgp_edges_iterator_get)**(const struct mgp_edges_iterator * it) <br>Get the current edge pointed to by the iterator.  |
-| const struct mgp_edge * | **[mgp_edges_iterator_next](Files/mg__procedure_8h.md#function-mgp_edges_iterator_next)**(struct mgp_edges_iterator * it) <br>Advance the iterator to the next edge and return it.  |
-| struct [mgp_edge_id](Classes/structmgp__edge__id.md) | **[mgp_edge_get_id](Files/mg__procedure_8h.md#function-mgp_edge_get_id)**(const struct mgp_edge * e) <br>Get the ID of given edge.  |
-| struct mgp_edge * | **[mgp_edge_copy](Files/mg__procedure_8h.md#function-mgp_edge_copy)**(const struct mgp_edge * e, struct mgp_memory * memory) <br>Copy a mgp_edge.  |
-| void | **[mgp_edge_destroy](Files/mg__procedure_8h.md#function-mgp_edge_destroy)**(struct mgp_edge * e) <br>Free the memory used by a mgp_edge.  |
-| int | **[mgp_edge_equal](Files/mg__procedure_8h.md#function-mgp_edge_equal)**(const struct mgp_edge * e1, const struct mgp_edge * e2) <br>Return non-zero if given edges are equal, otherwise 0.  |
-| struct [mgp_edge_type](Classes/structmgp__edge__type.md) | **[mgp_edge_get_type](Files/mg__procedure_8h.md#function-mgp_edge_get_type)**(const struct mgp_edge * e) <br>Return the type of the given edge.  |
-| const struct mgp_vertex * | **[mgp_edge_get_from](Files/mg__procedure_8h.md#function-mgp_edge_get_from)**(const struct mgp_edge * e) <br>Return the source vertex of the given edge.  |
-| const struct mgp_vertex * | **[mgp_edge_get_to](Files/mg__procedure_8h.md#function-mgp_edge_get_to)**(const struct mgp_edge * e) <br>Return the destination vertex of the given edge.  |
-| struct mgp_value * | **[mgp_edge_get_property](Files/mg__procedure_8h.md#function-mgp_edge_get_property)**(const struct mgp_edge * e, const char * property_name, struct mgp_memory * memory) <br>Get a copy of a edge property mapped to a given name.  |
-| struct mgp_properties_iterator * | **[mgp_edge_iter_properties](Files/mg__procedure_8h.md#function-mgp_edge_iter_properties)**(const struct mgp_edge * e, struct mgp_memory * memory) <br>Start iterating over properties stored in the given edge.  |
-| struct mgp_vertex * | **[mgp_graph_get_vertex_by_id](Files/mg__procedure_8h.md#function-mgp_graph_get_vertex_by_id)**(const struct mgp_graph * g, struct [mgp_vertex_id](Classes/structmgp__vertex__id.md) id, struct mgp_memory * memory) <br>Return the vertex corresponding to given ID.  |
-| void | **[mgp_vertices_iterator_destroy](Files/mg__procedure_8h.md#function-mgp_vertices_iterator_destroy)**(struct mgp_vertices_iterator * it) <br>Free the memory used by a mgp_vertices_iterator.  |
-| struct mgp_vertices_iterator * | **[mgp_graph_iter_vertices](Files/mg__procedure_8h.md#function-mgp_graph_iter_vertices)**(const struct mgp_graph * g, struct mgp_memory * memory) <br>Start iterating over vertices of the given graph.  |
-| const struct mgp_vertex * | **[mgp_vertices_iterator_get](Files/mg__procedure_8h.md#function-mgp_vertices_iterator_get)**(const struct mgp_vertices_iterator * it) <br>Get the current vertex pointed to by the iterator.  |
-| const struct mgp_vertex * | **[mgp_vertices_iterator_next](Files/mg__procedure_8h.md#function-mgp_vertices_iterator_next)**(struct mgp_vertices_iterator * it) <br>Advance the iterator to the next vertex and return it.  |
-| const struct mgp_type * | **[mgp_type_any](Files/mg__procedure_8h.md#function-mgp_type_any)**() <br>Get the type representing any value that isn't `null`.  |
-| const struct mgp_type * | **[mgp_type_bool](Files/mg__procedure_8h.md#function-mgp_type_bool)**() <br>Get the type representing boolean values.  |
-| const struct mgp_type * | **[mgp_type_string](Files/mg__procedure_8h.md#function-mgp_type_string)**() <br>Get the type representing character string values.  |
-| const struct mgp_type * | **[mgp_type_int](Files/mg__procedure_8h.md#function-mgp_type_int)**() <br>Get the type representing integer values.  |
-| const struct mgp_type * | **[mgp_type_float](Files/mg__procedure_8h.md#function-mgp_type_float)**() <br>Get the type representing floating-point values.  |
-| const struct mgp_type * | **[mgp_type_number](Files/mg__procedure_8h.md#function-mgp_type_number)**() <br>Get the type representing any number value.  |
-| const struct mgp_type * | **[mgp_type_map](Files/mg__procedure_8h.md#function-mgp_type_map)**() <br>Get the type representing map values.  |
-| const struct mgp_type * | **[mgp_type_node](Files/mg__procedure_8h.md#function-mgp_type_node)**() <br>Get the type representing graph node values.  |
-| const struct mgp_type * | **[mgp_type_relationship](Files/mg__procedure_8h.md#function-mgp_type_relationship)**() <br>Get the type representing graph relationship values.  |
-| const struct mgp_type * | **[mgp_type_path](Files/mg__procedure_8h.md#function-mgp_type_path)**() <br>Get the type representing a graph path (walk) from one node to another.  |
-| const struct mgp_type * | **[mgp_type_list](Files/mg__procedure_8h.md#function-mgp_type_list)**(const struct mgp_type * element_type) <br>Build a type representing a list of values of given `element_type`.  |
-| const struct mgp_type * | **[mgp_type_nullable](Files/mg__procedure_8h.md#function-mgp_type_nullable)**(const struct mgp_type * type) <br>Build a type representing either a `null` value or a value of given `type`.  |
-| struct mgp_proc * | **[mgp_module_add_read_procedure](Files/mg__procedure_8h.md#function-mgp_module_add_read_procedure)**(struct mgp_module * module, const char * name, [mgp_proc_cb](Files/mg__procedure_8h.md#typedef-mgp_proc_cb) cb) <br>Register a read-only procedure with a module.  |
-| int | **[mgp_proc_add_arg](Files/mg__procedure_8h.md#function-mgp_proc_add_arg)**(struct mgp_proc * proc, const char * name, const struct mgp_type * type) <br>Add a required argument to a procedure.  |
-| int | **[mgp_proc_add_opt_arg](Files/mg__procedure_8h.md#function-mgp_proc_add_opt_arg)**(struct mgp_proc * proc, const char * name, const struct mgp_type * type, const struct mgp_value * default_value) <br>Add an optional argument with a default value to a procedure.  |
-| int | **[mgp_proc_add_result](Files/mg__procedure_8h.md#function-mgp_proc_add_result)**(struct mgp_proc * proc, const char * name, const struct mgp_type * type) <br>Add a result field to a procedure.  |
-| int | **[mgp_proc_add_deprecated_result](Files/mg__procedure_8h.md#function-mgp_proc_add_deprecated_result)**(struct mgp_proc * proc, const char * name, const struct mgp_type * type) <br>Add a result field to a procedure and mark it as deprecated.  |
-| int | **[mgp_must_abort](Files/mg__procedure_8h.md#function-mgp_must_abort)**(const struct mgp_graph * graph) <br>Return non-zero if the currently executing procedure should abort as soon as possible.  |
+| void * | **[mgp_aligned_alloc](#function-mgp_aligned_alloc)**(struct mgp_memory * memory, size_t size_in_bytes, size_t alignment) <br>Allocate an aligned block of memory with given size in bytes.  |
+| void | **[mgp_free](#function-mgp_free)**(struct mgp_memory * memory, void * ptr) <br>Deallocate an allocation from mgp_alloc or mgp_aligned_alloc.  |
+| void | **[mgp_value_destroy](#function-mgp_value_destroy)**(struct mgp_value * val) <br>Free the memory used by the given mgp_value instance.  |
+| struct mgp_value * | **[mgp_value_make_null](#function-mgp_value_make_null)**(struct mgp_memory * memory) <br>Construct a value representing `null` in openCypher.  |
+| struct mgp_value * | **[mgp_value_make_bool](#function-mgp_value_make_bool)**(int val, struct mgp_memory * memory) <br>Construct a boolean value.  |
+| struct mgp_value * | **[mgp_value_make_int](#function-mgp_value_make_int)**(int64_t val, struct mgp_memory * memory) <br>Construct an integer value.  |
+| struct mgp_value * | **[mgp_value_make_double](#function-mgp_value_make_double)**(double val, struct mgp_memory * memory) <br>Construct a double floating point value.  |
+| struct mgp_value * | **[mgp_value_make_string](#function-mgp_value_make_string)**(const char * val, struct mgp_memory * memory) <br>Construct a character string value from a NULL terminated string.  |
+| struct mgp_value * | **[mgp_value_make_list](#function-mgp_value_make_list)**(struct mgp_list * val) <br>Create a mgp_value storing a mgp_list.  |
+| struct mgp_value * | **[mgp_value_make_map](#function-mgp_value_make_map)**(struct mgp_map * val) <br>Create a mgp_value storing a mgp_map.  |
+| struct mgp_value * | **[mgp_value_make_vertex](#function-mgp_value_make_vertex)**(struct mgp_vertex * val) <br>Create a mgp_value storing a mgp_vertex.  |
+| struct mgp_value * | **[mgp_value_make_edge](#function-mgp_value_make_edge)**(struct mgp_edge * val) <br>Create a mgp_value storing a mgp_edge.  |
+| struct mgp_value * | **[mgp_value_make_path](#function-mgp_value_make_path)**(struct mgp_path * val) <br>Create a mgp_value storing a mgp_path.  |
+| enum [mgp_value_type](#enum-mgp_value_type) | **[mgp_value_get_type](#function-mgp_value_get_type)**(const struct mgp_value * val) <br>Return the type of the value contained in mgp_value.  |
+| int | **[mgp_value_is_null](#function-mgp_value_is_null)**(const struct mgp_value * val) <br>Return non-zero if the given mgp_value represents `null`.  |
+| int | **[mgp_value_is_bool](#function-mgp_value_is_bool)**(const struct mgp_value * val) <br>Return non-zero if the given mgp_value stores a boolean.  |
+| int | **[mgp_value_is_int](#function-mgp_value_is_int)**(const struct mgp_value * val) <br>Return non-zero if the given mgp_value stores an integer.  |
+| int | **[mgp_value_is_double](#function-mgp_value_is_double)**(const struct mgp_value * val) <br>Return non-zero if the given mgp_value stores a double floating-point.  |
+| int | **[mgp_value_is_string](#function-mgp_value_is_string)**(const struct mgp_value * val) <br>Return non-zero if the given mgp_value stores a character string.  |
+| int | **[mgp_value_is_list](#function-mgp_value_is_list)**(const struct mgp_value * val) <br>Return non-zero if the given mgp_value stores a list of values.  |
+| int | **[mgp_value_is_map](#function-mgp_value_is_map)**(const struct mgp_value * val) <br>Return non-zero if the given mgp_value stores a map of values.  |
+| int | **[mgp_value_is_vertex](#function-mgp_value_is_vertex)**(const struct mgp_value * val) <br>Return non-zero if the given mgp_value stores a vertex.  |
+| int | **[mgp_value_is_edge](#function-mgp_value_is_edge)**(const struct mgp_value * val) <br>Return non-zero if the given mgp_value stores an edge.  |
+| int | **[mgp_value_is_path](#function-mgp_value_is_path)**(const struct mgp_value * val) <br>Return non-zero if the given mgp_value stores a path.  |
+| int | **[mgp_value_get_bool](#function-mgp_value_get_bool)**(const struct mgp_value * val) <br>Return the contained boolean value.  |
+| int64_t | **[mgp_value_get_int](#function-mgp_value_get_int)**(const struct mgp_value * val) <br>Return the contained integer.  |
+| double | **[mgp_value_get_double](#function-mgp_value_get_double)**(const struct mgp_value * val) <br>Return the contained double floating-point.  |
+| const char * | **[mgp_value_get_string](#function-mgp_value_get_string)**(const struct mgp_value * val) <br>Return the contained character string.  |
+| const struct mgp_list * | **[mgp_value_get_list](#function-mgp_value_get_list)**(const struct mgp_value * val) <br>Return the contained list of values.  |
+| const struct mgp_map * | **[mgp_value_get_map](#function-mgp_value_get_map)**(const struct mgp_value * val) <br>Return the contained map of values.  |
+| const struct mgp_vertex * | **[mgp_value_get_vertex](#function-mgp_value_get_vertex)**(const struct mgp_value * val) <br>Return the contained vertex.  |
+| const struct mgp_edge * | **[mgp_value_get_edge](#function-mgp_value_get_edge)**(const struct mgp_value * val) <br>Return the contained edge.  |
+| const struct mgp_path * | **[mgp_value_get_path](#function-mgp_value_get_path)**(const struct mgp_value * val) <br>Return the contained path.  |
+| struct mgp_list * | **[mgp_list_make_empty](#function-mgp_list_make_empty)**(size_t capacity, struct mgp_memory * memory) <br>Create an empty list with given capacity.  |
+| void | **[mgp_list_destroy](#function-mgp_list_destroy)**(struct mgp_list * list) <br>Free the memory used by the given mgp_list and contained elements.  |
+| int | **[mgp_list_append](#function-mgp_list_append)**(struct mgp_list * list, const struct mgp_value * val) <br>Append a copy of mgp_value to mgp_list if capacity allows.  |
+| int | **[mgp_list_append_extend](#function-mgp_list_append_extend)**(struct mgp_list * list, const struct mgp_value * val) <br>Append a copy of mgp_value to mgp_list increasing capacity if needed.  |
+| size_t | **[mgp_list_size](#function-mgp_list_size)**(const struct mgp_list * list) <br>Return the number of elements stored in mgp_list.  |
+| size_t | **[mgp_list_capacity](#function-mgp_list_capacity)**(const struct mgp_list * list) <br>Return the total number of elements for which there's already allocated memory in mgp_list.  |
+| const struct mgp_value * | **[mgp_list_at](#function-mgp_list_at)**(const struct mgp_list * list, size_t index) <br>Return the element in mgp_list at given position.  |
+| struct mgp_map * | **[mgp_map_make_empty](#function-mgp_map_make_empty)**(struct mgp_memory * memory) <br>Create an empty map of character strings to mgp_value instances.  |
+| void | **[mgp_map_destroy](#function-mgp_map_destroy)**(struct mgp_map * map) <br>Free the memory used by the given mgp_map and contained items.  |
+| int | **[mgp_map_insert](#function-mgp_map_insert)**(struct mgp_map * map, const char * key, const struct mgp_value * value) <br>Insert a new mapping from a NULL terminated character string to a value.  |
+| size_t | **[mgp_map_size](#function-mgp_map_size)**(const struct mgp_map * map) <br>Return the number of items stored in mgp_map.  |
+| const struct mgp_value * | **[mgp_map_at](#function-mgp_map_at)**(const struct mgp_map * map, const char * key) <br>Return the mapped mgp_value to the given character string.  |
+| const char * | **[mgp_map_item_key](#function-mgp_map_item_key)**(const struct mgp_map_item * item) <br>Get the key of the mapped item.  |
+| const struct mgp_value * | **[mgp_map_item_value](#function-mgp_map_item_value)**(const struct mgp_map_item * item) <br>Get the value of the mapped item.  |
+| struct mgp_map_items_iterator * | **[mgp_map_iter_items](#function-mgp_map_iter_items)**(const struct mgp_map * map, struct mgp_memory * memory) <br>Start iterating over items contained in the given map.  |
+| void | **[mgp_map_items_iterator_destroy](#function-mgp_map_items_iterator_destroy)**(struct mgp_map_items_iterator * it) <br>Deallocate memory used by mgp_map_items_iterator.  |
+| const struct mgp_map_item * | **[mgp_map_items_iterator_get](#function-mgp_map_items_iterator_get)**(const struct mgp_map_items_iterator * it) <br>Get the current item pointed to by the iterator.  |
+| const struct mgp_map_item * | **[mgp_map_items_iterator_next](#function-mgp_map_items_iterator_next)**(struct mgp_map_items_iterator * it) <br>Advance the iterator to the next item stored in map and return it.  |
+| struct mgp_path * | **[mgp_path_make_with_start](#function-mgp_path_make_with_start)**(const struct mgp_vertex * vertex, struct mgp_memory * memory) <br>Create a path with the copy of the given starting vertex.  |
+| struct mgp_path * | **[mgp_path_copy](#function-mgp_path_copy)**(const struct mgp_path * path, struct mgp_memory * memory) <br>Copy a mgp_path.  |
+| void | **[mgp_path_destroy](#function-mgp_path_destroy)**(struct mgp_path * path) <br>Free the memory used by the given mgp_path and contained vertices and edges.  |
+| int | **[mgp_path_expand](#function-mgp_path_expand)**(struct mgp_path * path, const struct mgp_edge * edge) <br>Append an edge continuing from the last vertex on the path.  |
+| size_t | **[mgp_path_size](#function-mgp_path_size)**(const struct mgp_path * path) <br>Return the number of edges in a mgp_path.  |
+| const struct mgp_vertex * | **[mgp_path_vertex_at](#function-mgp_path_vertex_at)**(const struct mgp_path * path, size_t index) <br>Return the vertex from a path at given index.  |
+| const struct mgp_edge * | **[mgp_path_edge_at](#function-mgp_path_edge_at)**(const struct mgp_path * path, size_t index) <br>Return the edge from a path at given index.  |
+| int | **[mgp_path_equal](#function-mgp_path_equal)**(const struct mgp_path * p1, const struct mgp_path * p2) <br>Return non-zero if given paths are equal, otherwise 0.  |
+| int | **[mgp_result_set_error_msg](#function-mgp_result_set_error_msg)**(struct mgp_result * res, const char * error_msg) <br>Set the error as the result of the procedure.  |
+| struct mgp_result_record * | **[mgp_result_new_record](#function-mgp_result_new_record)**(struct mgp_result * res) <br>Create a new record for results.  |
+| int | **[mgp_result_record_insert](#function-mgp_result_record_insert)**(struct mgp_result_record * record, const char * field_name, const struct mgp_value * val) <br>Assign a value to a field in the given record.  |
+| void | **[mgp_properties_iterator_destroy](#function-mgp_properties_iterator_destroy)**(struct mgp_properties_iterator * it) <br>Free the memory used by a mgp_properties_iterator.  |
+| const struct [mgp_property](Classes/structmgp__property.md) * | **[mgp_properties_iterator_get](#function-mgp_properties_iterator_get)**(const struct mgp_properties_iterator * it) <br>Get the current property pointed to by the iterator.  |
+| const struct [mgp_property](Classes/structmgp__property.md) * | **[mgp_properties_iterator_next](#function-mgp_properties_iterator_next)**(struct mgp_properties_iterator * it) <br>Advance the iterator to the next property and return it.  |
+| void | **[mgp_edges_iterator_destroy](#function-mgp_edges_iterator_destroy)**(struct mgp_edges_iterator * it) <br>Free the memory used by a mgp_edges_iterator.  |
+| struct [mgp_vertex_id](Classes/structmgp__vertex__id.md) | **[mgp_vertex_get_id](#function-mgp_vertex_get_id)**(const struct mgp_vertex * v) <br>Get the ID of given vertex.  |
+| struct mgp_vertex * | **[mgp_vertex_copy](#function-mgp_vertex_copy)**(const struct mgp_vertex * v, struct mgp_memory * memory) <br>Copy a mgp_vertex.  |
+| void | **[mgp_vertex_destroy](#function-mgp_vertex_destroy)**(struct mgp_vertex * v) <br>Free the memory used by a mgp_vertex.  |
+| int | **[mgp_vertex_equal](#function-mgp_vertex_equal)**(const struct mgp_vertex * v1, const struct mgp_vertex * v2) <br>Return non-zero if given vertices are equal, otherwise 0.  |
+| size_t | **[mgp_vertex_labels_count](#function-mgp_vertex_labels_count)**(const struct mgp_vertex * v) <br>Return the number of labels a given vertex has.  |
+| struct [mgp_label](Classes/structmgp__label.md) | **[mgp_vertex_label_at](#function-mgp_vertex_label_at)**(const struct mgp_vertex * v, size_t index) <br>Return [mgp_label](Classes/structmgp__label.md) in mgp_vertex at given index.  |
+| int | **[mgp_vertex_has_label](#function-mgp_vertex_has_label)**(const struct mgp_vertex * v, struct [mgp_label](Classes/structmgp__label.md) label) <br>Return non-zero if the given vertex has the given label.  |
+| int | **[mgp_vertex_has_label_named](#function-mgp_vertex_has_label_named)**(const struct mgp_vertex * v, const char * label_name) <br>Return non-zero if the given vertex has a label with given name.  |
+| struct mgp_value * | **[mgp_vertex_get_property](#function-mgp_vertex_get_property)**(const struct mgp_vertex * v, const char * property_name, struct mgp_memory * memory) <br>Get a copy of a vertex property mapped to a given name.  |
+| struct mgp_properties_iterator * | **[mgp_vertex_iter_properties](#function-mgp_vertex_iter_properties)**(const struct mgp_vertex * v, struct mgp_memory * memory) <br>Start iterating over properties stored in the given vertex.  |
+| struct mgp_edges_iterator * | **[mgp_vertex_iter_in_edges](#function-mgp_vertex_iter_in_edges)**(const struct mgp_vertex * v, struct mgp_memory * memory) <br>Start iterating over inbound edges of the given vertex.  |
+| struct mgp_edges_iterator * | **[mgp_vertex_iter_out_edges](#function-mgp_vertex_iter_out_edges)**(const struct mgp_vertex * v, struct mgp_memory * memory) <br>Start iterating over outbound edges of the given vertex.  |
+| const struct mgp_edge * | **[mgp_edges_iterator_get](#function-mgp_edges_iterator_get)**(const struct mgp_edges_iterator * it) <br>Get the current edge pointed to by the iterator.  |
+| const struct mgp_edge * | **[mgp_edges_iterator_next](#function-mgp_edges_iterator_next)**(struct mgp_edges_iterator * it) <br>Advance the iterator to the next edge and return it.  |
+| struct [mgp_edge_id](Classes/structmgp__edge__id.md) | **[mgp_edge_get_id](#function-mgp_edge_get_id)**(const struct mgp_edge * e) <br>Get the ID of given edge.  |
+| struct mgp_edge * | **[mgp_edge_copy](#function-mgp_edge_copy)**(const struct mgp_edge * e, struct mgp_memory * memory) <br>Copy a mgp_edge.  |
+| void | **[mgp_edge_destroy](#function-mgp_edge_destroy)**(struct mgp_edge * e) <br>Free the memory used by a mgp_edge.  |
+| int | **[mgp_edge_equal](#function-mgp_edge_equal)**(const struct mgp_edge * e1, const struct mgp_edge * e2) <br>Return non-zero if given edges are equal, otherwise 0.  |
+| struct [mgp_edge_type](Classes/structmgp__edge__type.md) | **[mgp_edge_get_type](#function-mgp_edge_get_type)**(const struct mgp_edge * e) <br>Return the type of the given edge.  |
+| const struct mgp_vertex * | **[mgp_edge_get_from](#function-mgp_edge_get_from)**(const struct mgp_edge * e) <br>Return the source vertex of the given edge.  |
+| const struct mgp_vertex * | **[mgp_edge_get_to](#function-mgp_edge_get_to)**(const struct mgp_edge * e) <br>Return the destination vertex of the given edge.  |
+| struct mgp_value * | **[mgp_edge_get_property](#function-mgp_edge_get_property)**(const struct mgp_edge * e, const char * property_name, struct mgp_memory * memory) <br>Get a copy of a edge property mapped to a given name.  |
+| struct mgp_properties_iterator * | **[mgp_edge_iter_properties](#function-mgp_edge_iter_properties)**(const struct mgp_edge * e, struct mgp_memory * memory) <br>Start iterating over properties stored in the given edge.  |
+| struct mgp_vertex * | **[mgp_graph_get_vertex_by_id](#function-mgp_graph_get_vertex_by_id)**(const struct mgp_graph * g, struct [mgp_vertex_id](Classes/structmgp__vertex__id.md) id, struct mgp_memory * memory) <br>Return the vertex corresponding to given ID.  |
+| void | **[mgp_vertices_iterator_destroy](#function-mgp_vertices_iterator_destroy)**(struct mgp_vertices_iterator * it) <br>Free the memory used by a mgp_vertices_iterator.  |
+| struct mgp_vertices_iterator * | **[mgp_graph_iter_vertices](#function-mgp_graph_iter_vertices)**(const struct mgp_graph * g, struct mgp_memory * memory) <br>Start iterating over vertices of the given graph.  |
+| const struct mgp_vertex * | **[mgp_vertices_iterator_get](#function-mgp_vertices_iterator_get)**(const struct mgp_vertices_iterator * it) <br>Get the current vertex pointed to by the iterator.  |
+| const struct mgp_vertex * | **[mgp_vertices_iterator_next](#function-mgp_vertices_iterator_next)**(struct mgp_vertices_iterator * it) <br>Advance the iterator to the next vertex and return it.  |
+| const struct mgp_type * | **[mgp_type_any](#function-mgp_type_any)**() <br>Get the type representing any value that isn't `null`.  |
+| const struct mgp_type * | **[mgp_type_bool](#function-mgp_type_bool)**() <br>Get the type representing boolean values.  |
+| const struct mgp_type * | **[mgp_type_string](#function-mgp_type_string)**() <br>Get the type representing character string values.  |
+| const struct mgp_type * | **[mgp_type_int](#function-mgp_type_int)**() <br>Get the type representing integer values.  |
+| const struct mgp_type * | **[mgp_type_float](#function-mgp_type_float)**() <br>Get the type representing floating-point values.  |
+| const struct mgp_type * | **[mgp_type_number](#function-mgp_type_number)**() <br>Get the type representing any number value.  |
+| const struct mgp_type * | **[mgp_type_map](#function-mgp_type_map)**() <br>Get the type representing map values.  |
+| const struct mgp_type * | **[mgp_type_node](#function-mgp_type_node)**() <br>Get the type representing graph node values.  |
+| const struct mgp_type * | **[mgp_type_relationship](#function-mgp_type_relationship)**() <br>Get the type representing graph relationship values.  |
+| const struct mgp_type * | **[mgp_type_path](#function-mgp_type_path)**() <br>Get the type representing a graph path (walk) from one node to another.  |
+| const struct mgp_type * | **[mgp_type_list](#function-mgp_type_list)**(const struct mgp_type * element_type) <br>Build a type representing a list of values of given `element_type`.  |
+| const struct mgp_type * | **[mgp_type_nullable](#function-mgp_type_nullable)**(const struct mgp_type * type) <br>Build a type representing either a `null` value or a value of given `type`.  |
+| struct mgp_proc * | **[mgp_module_add_read_procedure](#function-mgp_module_add_read_procedure)**(struct mgp_module * module, const char * name, [mgp_proc_cb](#typedef-mgp_proc_cb) cb) <br>Register a read-only procedure with a module.  |
+| int | **[mgp_proc_add_arg](#function-mgp_proc_add_arg)**(struct mgp_proc * proc, const char * name, const struct mgp_type * type) <br>Add a required argument to a procedure.  |
+| int | **[mgp_proc_add_opt_arg](#function-mgp_proc_add_opt_arg)**(struct mgp_proc * proc, const char * name, const struct mgp_type * type, const struct mgp_value * default_value) <br>Add an optional argument with a default value to a procedure.  |
+| int | **[mgp_proc_add_result](#function-mgp_proc_add_result)**(struct mgp_proc * proc, const char * name, const struct mgp_type * type) <br>Add a result field to a procedure.  |
+| int | **[mgp_proc_add_deprecated_result](#function-mgp_proc_add_deprecated_result)**(struct mgp_proc * proc, const char * name, const struct mgp_type * type) <br>Add a result field to a procedure and mark it as deprecated.  |
+| int | **[mgp_must_abort](#function-mgp_must_abort)**(const struct mgp_graph * graph) <br>Return non-zero if the currently executing procedure should abort as soon as possible.  |
 
 
 
@@ -4087,8 +4087,8 @@ Get the type representing map values.
 
 **See**: 
 
-  * [mgp_type_node](Files/mg__procedure_8h.md#function-mgp_type_node)
-  * [mgp_type_relationship](Files/mg__procedure_8h.md#function-mgp_type_relationship)
+  * [mgp_type_node](#function-mgp_type_node)
+  * [mgp_type_relationship](#function-mgp_type_relationship)
 
 
 
