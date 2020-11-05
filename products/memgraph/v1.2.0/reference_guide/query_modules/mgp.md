@@ -1,6 +1,40 @@
-# Weakly Connected Components Module
+# Query Modules Python API
 
-This module provides the API for usage in custom openCypher procedures.
+This is the API documentation for `mgp.py`  which contains definitions of the public Python API provided by Memgraph. In essence, this is a wrapper around the `[C API](mg_procedure.md)`. This source file can be found in the Memgraph installation directory, under `python_support`. On the standard Debian installation, this will be under `/usr/lib/memgraph/python_support`.
+
+## Contents
+
+|                | Name           |
+| -------------- | -------------- |
+| method | **[mgp.read_proc](#class-mgp.read_proc)** <br>Register a function as a read-only procedure of the current module.  |
+| exception | **[mgp.AbortError](#exception-mgp.AbortError)** <br>Signals that the procedure was asked to abort its execution.  |
+| class | **[mgp.Deprecated](#class-mgp.Deprecated)** <br>Annotate a resulting Record’s field as deprecated.  |
+| class | **[mgp.Edge](#class-mgp.Edge)** <br>Edge in the graph database.  |
+| class | **[mgp.EdgeType](#class-mgp.EdgeType)** <br>Type of an Edge.  |
+| class | **[mgp.Graph](#class-mgp.Graph)** <br>State of the graph database in current ProcCtx.  |
+| class | **[mgp.Label](#class-mgp.Label)** <br>Label of a Vertex.  |
+| class | **[mgp.Path](#class-mgp.Path)** <br>Path containing Vertex and Edge instances.  |
+| class | **[mgp.ProcCtx](#class-mgp.ProcCtx)** <br>Context of a procedure being executed.  |
+| class | **[mgp.Properties](#class-mgp.Properties)** <br>A collection of properties either on a Vertex or an Edge.  |
+| class | **[mgp.Property](#class-mgp.Property)** <br>Named property value of a Vertex or an Edge.  |
+| class | **[mgp.Record](#class-mgp.Record)** <br>Represents a record of resulting field values.  |
+| class | **[mgp.Vertex](#class-mgp.Vertex)** <br>Vertex in the graph database.  |
+| class | **[mgp.Vertices](#class-mgp.Vertices)** <br>Iterable over vertices in a graph.  |
+
+
+### mgp.read_proc(func: Callable[[…], mgp.Record])
+Register `func` as a read-only procedure of the current module.
+
+`read_proc` is meant to be used as a decorator function to register module
+procedures. The registered `func` needs to be a callable which optionally
+takes `ProcCtx` as the first argument. Other arguments of `func` will be
+bound to values passed in the cypherQuery. The full signature of `func`
+needs to be annotated with types. The return type must be
+`Record(field_name=type, ...)` and the procedure must produce either a
+complete Record or None. To mark a field as deprecated, use
+`Record(field_name=Deprecated(type), ...)`. Multiple records can be
+produced by returning an iterable of them. Registering generator functions
+is currently not supported.
 
 
 ### exception mgp.AbortError()
@@ -186,6 +220,7 @@ Raise InvalidContextError.
 ### class mgp.Property(name, value)
 Bases: `tuple`
 
+Named property value of a Vertex or an Edge.
 
 #### name()
 Alias for field number 0
@@ -251,18 +286,3 @@ Iterable over vertices in a graph.
 
 #### is_valid()
 Return True if self is in valid context and may be used.
-
-
-### mgp.read_proc(func: Callable[[…], mgp.Record])
-Register `func` as a a read-only procedure of the current module.
-
-`read_proc` is meant to be used as a decorator function to register module
-procedures. The registered `func` needs to be a callable which optionally
-takes `ProcCtx` as the first argument. Other arguments of `func` will be
-bound to values passed in the cypherQuery. The full signature of `func`
-needs to be annotated with types. The return type must be
-`Record(field_name=type, ...)` and the procedure must produce either a
-complete Record or None. To mark a field as deprecated, use
-`Record(field_name=Deprecated(type), ...)`. Multiple records can be
-produced by returning an iterable of them. Registering generator functions
-is currently not supported.
