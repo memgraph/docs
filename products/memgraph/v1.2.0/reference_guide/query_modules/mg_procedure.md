@@ -36,7 +36,7 @@ Provides API for usage in custom openCypher procedures.
 
 |                | Name           |
 | -------------- | -------------- |
-| void * | **[mgp_alloc](Files/mg__procedure_8h.md#function-mgp_alloc)**(struct mgp_memory * memory, size_t size_in_bytes) <br>Allocate a block of memory with given size in bytes.  |
+| void * | **[mgp_alloc](#mgp_alloc)**(struct mgp_memory * memory, size_t size_in_bytes) <br>Allocate a block of memory with given size in bytes.  |
 | void * | **[mgp_aligned_alloc](Files/mg__procedure_8h.md#function-mgp_aligned_alloc)**(struct mgp_memory * memory, size_t size_in_bytes, size_t alignment) <br>Allocate an aligned block of memory with given size in bytes.  |
 | void | **[mgp_free](Files/mg__procedure_8h.md#function-mgp_free)**(struct mgp_memory * memory, void * ptr) <br>Deallocate an allocation from mgp_alloc or mgp_aligned_alloc.  |
 | void | **[mgp_value_destroy](Files/mg__procedure_8h.md#function-mgp_value_destroy)**(struct mgp_value * val) <br>Free the memory used by the given mgp_value instance.  |
