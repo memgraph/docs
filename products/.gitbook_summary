@@ -13,6 +13,7 @@
     * [Marvel Comic Universe Social Network](memgraph/v1.2.0/tutorials/marvel-universe.md)
     * [Movie Recommendation System](memgraph/v1.2.0/tutorials/movie-recommendation.md)
     * [Understanding Music (with Modules)](memgraph/v1.2.0/tutorials/understanding-music-with-modules.md)
+    * [Social Network Analysis with NetworkX](memgraph/v1.2.0/tutorials/social-network-analysis.md)
 * [How to](memgraph/v1.2.0/how_to_guides/how-to-guides-overview.md)
     * [Inspect and Profile OpenCypher Queries Using Memgraph?](memgraph/v1.2.0/how_to_guides/explain-profile.md)
     * [Import Data?](memgraph/v1.2.0/how_to_guides/import-data.md)

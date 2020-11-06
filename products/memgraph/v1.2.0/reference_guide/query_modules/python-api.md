@@ -6,23 +6,23 @@ This is the API documentation for `mgp.py`  which contains definitions of the pu
 
 |                | Name           |
 | -------------- | -------------- |
-| method | **[mgp.read_proc](#mgp.read_proc(func:-Callable[[…],-mgp.Record]))** <br>Register a function as a read-only procedure of the current module.  |
-| exception | **[mgp.AbortError](#exception-mgp.AbortError())** <br>Signals that the procedure was asked to abort its execution.  |
-| class | **[mgp.Deprecated](#class-mgp.Deprecated(type_))** <br>Annotate a resulting Record’s field as deprecated.  |
-| class | **[mgp.Edge](#class-mgp.Edge(edge))** <br>Edge in the graph database.  |
-| class | **[mgp.EdgeType](#class-mgp.EdgeType(name))** <br>Type of an Edge.  |
-| class | **[mgp.Graph](#class-mgp.Graph(graph))** <br>State of the graph database in current ProcCtx.  |
-| class | **[mgp.Label](#class-mgp.Label(name))** <br>Label of a Vertex.  |
-| class | **[mgp.Path](#class-mgp.Path(starting_vertex_or_path:-Union[_mgp.Path,-mgp.Vertex]))** <br>Path containing Vertex and Edge instances.  |
-| class | **[mgp.ProcCtx](#class-mgp.ProcCtx(graph))** <br>Context of a procedure being executed.  |
-| class | **[mgp.Properties](#class-mgp.Properties(vertex_or_edge))** <br>A collection of properties either on a Vertex or an Edge.  |
-| class | **[mgp.Property](#class-mgp.Property(name,-value))** <br>Named property value of a Vertex or an Edge.  |
-| class | **[mgp.Record](#class-mgp.Record(\*\*kwargs))** <br>Represents a record of resulting field values.  |
-| class | **[mgp.Vertex](#class-mgp.Vertex(vertex))** <br>Vertex in the graph database.  |
-| class | **[mgp.Vertices](#class-mgp.Vertices(graph))** <br>Iterable over vertices in a graph.  |
+| method | **[mgp.read_proc](#mgp.read_proc)** <br>Register a function as a read-only procedure of the current module.  |
+| exception | **[mgp.AbortError](#mgp.AbortError)** <br>Signals that the procedure was asked to abort its execution.  |
+| class | **[mgp.Deprecated](#mgp.Deprecated)** <br>Annotate a resulting Record’s field as deprecated.  |
+| class | **[mgp.Edge](#cmgp.Edge)** <br>Edge in the graph database.  |
+| class | **[mgp.EdgeType](#mgp.EdgeType)** <br>Type of an Edge.  |
+| class | **[mgp.Graph](#mgp.Graph)** <br>State of the graph database in current ProcCtx.  |
+| class | **[mgp.Label](#mgp.Label)** <br>Label of a Vertex.  |
+| class | **[mgp.Path](#mgp.Path)** <br>Path containing Vertex and Edge instances.  |
+| class | **[mgp.ProcCtx](#mgp.ProcCtx)** <br>Context of a procedure being executed.  |
+| class | **[mgp.Properties](#mgp.Properties)** <br>A collection of properties either on a Vertex or an Edge.  |
+| class | **[mgp.Property](#mgp.Property)** <br>Named property value of a Vertex or an Edge.  |
+| class | **[mgp.Record](#mgp.Record)** <br>Represents a record of resulting field values.  |
+| class | **[mgp.Vertex](#mgp.Vertex)** <br>Vertex in the graph database.  |
+| class | **[mgp.Vertices](#mgp.Vertices)** <br>Iterable over vertices in a graph.  |
 
 
-## mgp.read_proc(func: Callable[[…], mgp.Record])
+## mgp.read_proc(func: Callable[[…], mgp.Record]) {#mgp.read_proc}
 Register `func` as a read-only procedure of the current module.
 
 `read_proc` is meant to be used as a decorator function to register module
@@ -37,13 +37,13 @@ produced by returning an iterable of them. Registering generator functions
 is currently not supported.
 
 
-## exception mgp.AbortError()
+## exception mgp.AbortError() {#mgp.AbortError}
 Bases: `Exception`
 
 Signals that the procedure was asked to abort its execution.
 
 
-## class mgp.Deprecated(type_)
+## class mgp.Deprecated(type_) {#mgp.Deprecated}
 Bases: `object`
 
 Annotate a resulting Record’s field as deprecated.
@@ -51,7 +51,7 @@ Annotate a resulting Record’s field as deprecated.
 
 #### field_type()
 
-## class mgp.Edge(edge)
+## class mgp.Edge(edge) {#mgp.Edge}
 Bases: `object`
 
 Edge in the graph database.
@@ -85,7 +85,7 @@ Raise InvalidContextError.
 Raise InvalidContextError.
 
 
-## class mgp.EdgeType(name)
+## class mgp.EdgeType(name) {#mgp.EdgeType}
 Bases: `object`
 
 Type of an Edge.
@@ -93,7 +93,7 @@ Type of an Edge.
 
 #### property name()
 
-## class mgp.Graph(graph)
+## class mgp.Graph(graph) {#mgp.Graph}
 Bases: `object`
 
 State of the graph database in current ProcCtx.
@@ -130,7 +130,7 @@ Bases: `Exception`
 Signals using a graph element instance outside of the registered procedure.
 
 
-## class mgp.Label(name)
+## class mgp.Label(name) {#mgp.Label}
 Bases: `object`
 
 Label of a Vertex.
@@ -138,7 +138,7 @@ Label of a Vertex.
 
 #### property name()
 
-## class mgp.Path(starting_vertex_or_path: Union[_mgp.Path, mgp.Vertex])
+## class mgp.Path(starting_vertex_or_path: Union[_mgp.Path, mgp.Vertex]) {#mgp.Path}
 Bases: `object`
 
 Path containing Vertex and Edge instances.
@@ -170,7 +170,7 @@ Vertices ordered from the start to the end of the path.
 Raise InvalidContextError if using an invalid Path instance.
 
 
-## class mgp.ProcCtx(graph)
+## class mgp.ProcCtx(graph) {#mgp.ProcCtx}
 Bases: `object`
 
 Context of a procedure being executed.
@@ -189,7 +189,7 @@ Raise InvalidContextError if context is invalid.
 
 #### must_abort()
 
-## class mgp.Properties(vertex_or_edge)
+## class mgp.Properties(vertex_or_edge) {#mgp.Properties}
 Bases: `object`
 
 A collection of properties either on a Vertex or an Edge.
@@ -217,7 +217,7 @@ Iterate over property values.
 Raise InvalidContextError.
 
 
-## class mgp.Property(name, value)
+## class mgp.Property(name, value) {#mgp.Property}
 Bases: `tuple`
 
 Named property value of a Vertex or an Edge.
@@ -230,7 +230,7 @@ Alias for field number 0
 Alias for field number 1
 
 
-## class mgp.Record(\*\*kwargs)
+## class mgp.Record(\*\*kwargs) {#mgp.Record}
 Bases: `object`
 
 Represents a record of resulting field values.
@@ -244,7 +244,7 @@ Bases: `Exception`
 Signals a typing annotation is not supported as a _mgp.CypherType.
 
 
-## class mgp.Vertex(vertex)
+## class mgp.Vertex(vertex) {#mgp.Vertex}
 Bases: `object`
 
 Vertex in the graph database.
@@ -278,7 +278,7 @@ Raise InvalidContextError.
 Raise InvalidContextError.
 
 
-## class mgp.Vertices(graph)
+## class mgp.Vertices(graph) {#mgp.Vertices}
 Bases: `object`
 
 Iterable over vertices in a graph.

@@ -19,7 +19,7 @@ RETURN c2, c2.name
 
 ## 2. Optional typed and named relationship
 
-The `OPTIONAL MATCH` clouse allows you to use the same conventions as `MATCH` when it comes to handlinig variables and relationship types.
+The `OPTIONAL MATCH` clause allows you to use the same conventions as `MATCH` when it comes to handling variables and relationship types.
 
 ```openCypher
 MATCH (contry:Country { name: 'United Kingdom' })
@@ -27,4 +27,4 @@ OPTIONAL MATCH (contry)-[r:LIVES_IN]->()
 RETURN contry.name, r
 ```
 
-Because there are no outgouing relationships of type `LIVES_IN` for the node, the value of r is `null` while the value of `contry.name` is `'United Kingdom'`.
+Because there are no outgoing relationships of type `LIVES_IN` for the node, the value of r is `null` while the value of `contry.name` is `'United Kingdom'`.
