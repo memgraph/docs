@@ -11,7 +11,7 @@ In this tutorial, we will show you how to perform simple network analysis with t
 We are going to use the Karate Club graph, a network of friendships between 34 members of a karate club at a US university, as described by Wayne Zachary in 1977. It is a very popular data set in social network analysis and is very often referenced in such tutorials. 
 The nodes in the graph represent the members while the relationships between them are of type `FRIENDS_WITH`. You can differentiate the nodes by using their unique `id` property.
 
-![Karate Club](https://raw.githubusercontent.com/g-despot/images/master/karate_club.png =400x)
+<img src="https://raw.githubusercontent.com/g-despot/images/master/karate_club.png" height=360 />
 
 ## Importing the Data
 
@@ -55,9 +55,9 @@ To learn more about the CSV Import Tool visit the how-to guide: [Import Data](..
 ## Using Existing NetworkX Algorithms
 
 There are three ways to execute queries and procedures in Memgraph:
-1. using the command-line tool `mg_client`, which comes with Memgraph ([Querying](../quick-start.md#querying))
-1. programmatically, by using the Bolt protocol ([how-to guide](../how_to_guides/query-memgraph-programmatically.md))
-1. from **Memgraph Lab**, a visual user interface which you can download [here](https://memgraph.com/download).
+ 1. using the command-line tool `mg_client`, which comes with Memgraph ([Querying](../quick-start.md#querying))
+ 2. programmatically, by using the Bolt protocol ([how-to guide](../how_to_guides/query-memgraph-programmatically.md))
+ 3. from **Memgraph Lab**, a visual user interface which you can download [here](https://memgraph.com/download).
 
 In this tutorial, we are using results from the command-line tool because of their text format but, it's alright to use Memgraph Lab instead. You can open Memgraph Lab and in the tab **Query** execute the following command:
 
