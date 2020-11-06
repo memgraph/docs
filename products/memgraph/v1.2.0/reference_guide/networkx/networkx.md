@@ -6,3 +6,5 @@ that utilize the NetworkX library:
 * [**Graph Analyzer**](graph_analyzer/graph_analyzer.md)
 * [**Weakly Connected Components**](wcc/wcc.md)
 * [**NetworkX Algorithms**](nxalg/nxalg.md)
+
+You can also take a look at our guide [How to Use Query Modules Provided by Memgraph?](../../how-to-guides-overview/use-query-modules-provided-by-memgraph.md).

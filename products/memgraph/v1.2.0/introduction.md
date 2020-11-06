@@ -33,6 +33,11 @@ To learn more about query modules take a look at the following guides:
 * [How to Implement Query Modules?](how-to-guides-overview/implement-query-modules.md)
 * [How to Use Query Modules Provided by Memgraph?](how-to-guides-overview/use-query-modules-provided-by-memgraph.md)
 
+### NetworkX
+
+Memgraph includes a set of Python query modules based on the [NetworkX](https://networkx.github.io/) library of algorithms.
+You can find more information about all the avaliable algorithms in the [NetworkX Reference Guide](reference_guide/networkx/networkx.md)
+
 ### Machine Learning
 
 Memgraph TensorFlow op wraps the high-performance Memgraph client for use with TensorFlow, 

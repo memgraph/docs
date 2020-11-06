@@ -64,7 +64,7 @@ with types. The return type must be `Record(field_name=type, ...)` and the
 procedure must produce either a complete `Record` or `None`. As you can see,
 the procedure is passed to a `read_proc` decorator which handles read-only
 procedures. You can also inspect the definition of said decorator in the
-`mgp.py` file.
+`mgp.py` file or take a look at the Python API [reference guide](../reference-guide/python-api.md).
 
 In our case, the example procedure returns 4 fields:
 
@@ -211,8 +211,8 @@ passed in the query. The parameter `result` is used to fill in the resulting
 records of the procedure. Parameters `graph` and `memory` are context
 parameters of the procedure, and they are used in some parts of the provided C
 API. For more information on what exactly is possible via C API, take a look
-at the `mg_procedure.h` file, as well as the `example.c` found in
-`/usr/lib/memgraph/query_modules/src`
+at the `mg_procedure.h` file  or at the C API [reference guide](../reference-guide/c-api.md), 
+as well as the `example.c` found in `/usr/lib/memgraph/query_modules/src`
 
 Then comes the required `mgp_init_module` function. Its primary purpose is to
 register procedures which can then be invoked through openCypher. Although the
