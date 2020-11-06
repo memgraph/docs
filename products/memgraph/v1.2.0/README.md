@@ -53,7 +53,7 @@ Full Activity Auditing                                |           |     +
     * [Reading and Writing](reference_guide/reading-and-writing.md)
     * [Indexing](reference_guide/indexing.md)
     * [Graph Algorithms](reference_guide/graph-algorithms.md)
-    * [Query Modules](reference_guide/query-modules.md)
+    * [Query Modules](reference_guide/query_modules/query-modules.md)
     * [Security](reference_guide/security.md)
     * [Auth Module](reference_guide/auth-module.md)
     * [LDAP Security](reference_guide/ldap-security.md)

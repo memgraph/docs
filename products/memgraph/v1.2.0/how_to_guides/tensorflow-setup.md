@@ -1,21 +1,21 @@
 ## How to Setup Memgraph Tensorflow Op?
 
-[TensorFlow](https://www.tensorflow.org/) is an open source software
+[TensorFlow](https://www.tensorflow.org/) is an open-source software
 library for high-performance numerical computation.
 A TensorFlow op (operation) is a fundamental building block of all TensorFlow
 models.
 
 Memgraph TensorFlow op wraps the high-performance Memgraph client for
 use with TensorFlow, allowing natural data transfer between Memgraph and
-TensorFlow at any point of the model.
+TensorFlow at any point in the model.
 
 At this point, we strongly advise you to read
 the TensorFlow section of our
-[reference guide](../reference_guide/tensorflow.md).
+[Reference Guide](../reference_guide/tensorflow.md).
 
-In this article, we assume you have installed Python 3 and TensorFlow pip
-package. See [link](https://www.tensorflow.org/install/pip?lang=python3) for
-more.
+In this article, we assume you have installed Python 3 and the TensorFlow pip
+package. See the [link](https://www.tensorflow.org/install/pip?lang=python3) for
+more information.
 We also assume that you have installed and
 running Memgraph ([see more](../quick-start.md))
 
@@ -46,7 +46,7 @@ Computation:
 output = sess.run(memgraph_op, {query_holder: query,
                                 input_list_holder: input_list})
 ```
-The output is a tuple, where the first element is header and the second
+The output is a tuple, where the first element is the header and the second
 element is a result matrix.
 
 #### Example
@@ -141,7 +141,7 @@ Computation:
 output = sess.run(memgraph_op, {query_holder: query,
                                 input_list_holder: input_list})
 ```
-The output is a tuple, where the first element is header and the second
+The output is a tuple, where the first element is the header and the second
 element is a result matrix.
 
 #### Example

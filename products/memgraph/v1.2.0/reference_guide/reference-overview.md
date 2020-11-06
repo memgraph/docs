@@ -10,12 +10,14 @@ not yet supported features of the language are listed.
 
 Our reference guide currently consists of the following articles:
 
+  * [Configuration Settings](configuration.md)
   * [Reading Existing Data](reading-existing-data.md)
   * [Writing New Data](writing-new-data.md)
   * [Reading and Writing](reading-and-writing.md)
   * [Indexing](indexing.md)
   * [Graph Algorithms](graph-algorithms.md)
-  * [Query Modules](query-modules.md)
+  * [Query Modules](query_modules/query-modules.md)
+  * [NetworkX](networkx/networkx.md)
   * [Security](security.md)
   * [Auth Module](auth-module.md)
   * [LDAP Security](ldap-security.md)

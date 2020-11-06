@@ -98,7 +98,7 @@ To verify that Memgraph is running, run the following command:
 journalctl --unit memgraph
 ```
 
-If successful, the you should receive an output similar to the following:
+If successful, you should receive an output similar to the following:
 
 ```plaintext
 Nov 23 13:40:13 hostname memgraph[14654]: BoltS server is fully armed and operational
@@ -154,7 +154,7 @@ At this point, Memgraph is ready for you to [submit queries](#querying).
 ##### Configuration
 
 The Memgraph configuration is available in Docker's named volume `mg_etc`. On
-Linux systems it should be in
+Linux systems, it should be in
 `/var/lib/docker/volumes/mg_etc/_data/memgraph.conf`.
 
 
@@ -213,7 +213,7 @@ Memgraph's command-line tool, `mg_client`, which is installed
 together with Memgraph.
 
 {% hint style="info" %}
-NOTE: `mg_client` is deprecated tool still coming within Memgraph package.
+NOTE: `mg_client` is a deprecated tool still coming within the Memgraph package.
 [mgconsole](https://github.com/memgraph/mgconsole) will replace `mg_client` in
 the future. If possible, please use `mgconsole` instead.
 {% endhint %}
@@ -242,7 +242,7 @@ Connected to 'memgraph://127.0.0.1:7687'
 memgraph>
 ```
 
-At this point it is possible to execute openCypher queries on Memgraph. Each
+At this point, it is possible to execute openCypher queries on Memgraph. Each
 query needs to end with the `;` (*semicolon*) character. For example:
 
 ```opencypher

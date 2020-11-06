@@ -82,7 +82,7 @@ RETURN m.title ORDER BY m.title LIMIT 10;
 
 4) Uniqueness constraint for genre:
 
-Let's create new unique constraint:
+Let's create a new unique constraint:
 
 ```opencypher
 CREATE CONSTRAINT ON (g:Genre) ASSERT g.name IS UNIQUE;

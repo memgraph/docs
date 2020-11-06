@@ -1,67 +1,4 @@
-## How to Use Query Modules Provided by Memgraph?
-
-Memgraph supports extending the query language with user-written procedures.
-These procedures are grouped into modules, which can be loaded either on startup
-or afterwards using the built-in utility module.
-
-### Utility Query Module
-
-Query procedures that allow the users to gain more insight into other query
-modules and their procedures are written under our utility `mg` query module.
-This module offers three procedures with the following signatures:
-
-* `mg.procedures() :: (name :: STRING, signature :: STRING)`: lists loaded
-  procedures and their signatures
-* `mg.load(module_name :: STRING) :: ()`: loads or reloads the given module
-* `mg.load_all() :: ()`: loads or reloads all modules
-
-For example, invoking `mg.procedures()` from openCypher like so:
-
-```opencypher
-CALL mg.procedures() YIELD *;
-```
-
-might yield the following result:
-
-```plaintext
-+---------------------+-------------------------------------------------------------------+
-| name                | signature                                                         |
-+---------------------+-------------------------------------------------------------------+
-| louvain.communities | louvain.communities() :: (community :: INTEGER, id :: INTEGER)    |
-| louvain.modularity  | louvain.modularity() :: (modularity :: FLOAT)                     |
-| mg.procedures       | mg.procedures() :: (name :: STRING, signature :: STRING)          |
-| mg.load             | mg.load(module_name :: STRING) :: ()                              |
-| mg.load_all         | mg.load_all() :: ()                                               |
-+---------------------+-------------------------------------------------------------------+
-```
-
-In this case, we can see that Memgraph has successfully loaded all utility query
-procedures as well as two additional procedures from the `louvain` query module.
-This module is included in Memgraph's Enterprise offering.
-
-To load a module (named e.g. `hello`) that wasn't loaded on startup (perhaps
-because it was added to Memgraph's query modules directory after the fact), we
-can simply invoke:
-
-```opencypher
-CALL mg.load("hello");
-```
-
-If we wish to reload an existing module, say the `louvain` module above, we
-again use the same procedure:
-
-```opencypher
-CALL mg.load("louvain");
-```
-
-Lastly, if we wish to reload all existing modules and load any newly added ones
-we can use:
-
-```opencypher
-CALL mg.load_all();
-```
-
-### Community Graph Algorithms as Query Modules
+## Use Query Modules Provided by Memgraph?
 
 Memgraph Community edition comes with a set of Python query modules based on
 the [NetworkX](https://networkx.github.io/) library of algorithms. The modules
@@ -72,10 +9,61 @@ be installed by running the following command:
 pip3 install networkx
 ```
 
-NOTE: The following "How to Guides" provide explanation of basic usage. To find
+{% hint style="info" %}
+NOTE: The following "How to Guides" provide an explanation of basic usage. To find
 out more details about each module and documentation of each procedure, please
-take a look at installed Python files. On Linux, the files are located in
+take a look at our [Reference Guide](../reference_guide/reference-overview.md) 
+or the query module source files. The files are located in the directory 
 `/usr/lib/memgraph/query_modules`.
+{% endhint %}
+
+### NetworkX Algorithms Module
+
+In addition to standalone community graph algorithms implemented as Python
+modules, we implemented a module providing NetworkX integration with Memgraph.
+This module, named `nxalgo`, provides a comprehensive set of thin wrappers
+around most of the algorithms present in the NetworkX package. The wrapper
+functions now have the capability to create a NetworkX compatible graph-like
+object that can stream the native database graph directly, saving
+on memory usage significantly.
+
+For example, you can run the [Page Rank](https://en.wikipedia.org/wiki/PageRank)
+algorithm on the data stored in Memgraph. To illustrate the functionality, the
+following graph will be used:
+
+![](../data/pagerank_graph.png)
+
+To load the graph into Memgraph, the following query should be used:
+
+```opencypher
+CREATE (na {name: "Page A"})
+CREATE (nb {name: "Page B"})
+CREATE (nc {name: "Page C"})
+CREATE (nd {name: "Page D"})
+CREATE (na)-[:e]->(nb)
+CREATE (na)-[:e]->(nc)
+CREATE (nc)-[:e]->(na)
+CREATE (nb)-[:e]->(nc)
+CREATE (nd)-[:e]->(nc);
+```
+
+By executing `nxalg.pagerank()`, Memgraph will return the rank for each
+node as follows:
+
+```opencypher
+CALL nxalg.pagerank() YIELD *;
++--------------------+----------+
+| node               | rank     |
++--------------------+----------+
+| ({name: "Page C"}) | 0.39415  |
+| ({name: "Page D"}) | 0.0375   |
+| ({name: "Page A"}) | 0.372526 |
+| ({name: "Page B"}) | 0.195824 |
++--------------------+----------+
+```
+
+NetworkX algorithms are located inside the `nxalg.py` file installed with
+your Memgraph package in `/usr/lib/memgraph/query_modules`.
 
 #### Graph Analyzer
 
@@ -173,7 +161,7 @@ CALL wcc.get_components(nodes, edges) YIELD components, n_components
 RETURN components, n_components;
 ```
 
-Expected result follows:
+The expected result follows:
 
 ```
 +--------------------------------------------------+--------------+
@@ -191,7 +179,7 @@ with an arbitrary expression to further filter matched set of results.
 If you have purchased Memgraph's Enterprise edition, you have access to
 certain graph algorithms in the form of query modules. These modules were
 implemented by our own team using C++ and should offer some additional
-performance benefits. Currently we have implemented the following algorithms:
+performance benefits. Currently, we have implemented the following algorithms:
 
 * Louvain algorithm for community detection.
 * Weakly connected components.
@@ -200,7 +188,7 @@ performance benefits. Currently we have implemented the following algorithms:
 
 In essence, this algorithm is a heuristic method which can be used to extract
 the community structure of fairly sizeable networks. In the simplest of terms,
-the algorithm attempts to assign graph nodes to communities in a way which
+the algorithm attempts to assign graph nodes to communities in a way that
 maximizes the so-called [modularity
 measure](https://en.wikipedia.org/wiki/Modularity_(networks)). For more details,
 we advise you to study the [original paper](https://arxiv.org/pdf/0803.0476.pdf).
@@ -222,7 +210,7 @@ docker run -p 7687:7687 \
   memgraph
 ```
 
-Suppose that Memgraph is currently storing a graph as depicted on the figure
+Suppose that Memgraph is currently storing a graph as depicted in the figure
 below where numbers in the vertices are stored as properties in the graph.
 
 ![](../data/louvain_graph.png)
@@ -322,14 +310,14 @@ O(nlog(n)).
 
 #### Weakly Connected Components
 
-One of the most important features you might be interested when exploring a
+One of the most important features you might be interested in when exploring a
 certain graph is its connectivity. There are many ways in which we might express
 to which extent we are interested in the connectivity of a graph, but one of the
 simplest ones is by counting the number of its weakly connected components and
 by determining which vertex corresponds to which connected component.
 
 The concept of weakly connected components is natural and simple, two nodes
-belong to the same component if path between them exists in a given graph.
+belong to the same component if a path between them exists in a given graph.
 Otherwise, we say those nodes are disconnected.
 
 This query module should be provided as a shared object (`.so`) file called
@@ -349,7 +337,7 @@ docker run -p 7687:7687 \
   memgraph
 ```
 
-Suppose that Memgraph is currently storing a graph as depicted on the figure
+Suppose that Memgraph is currently storing a graph as depicted in the figure
 below where numbers in the vertices are stored as properties in the graph.
 This graph obviously has 4 weakly connected components.
 
@@ -455,51 +443,3 @@ As expected, nodes numbered 1, 2, and 3 are all in one connected component,
 node numbered 4 is in its own component, nodes numbered 5, 6, 7, 8, 9, 10 and
 11 are in another component and, finally, nodes numbered 12, 13, 14 and 15 are
 in the last component.
-
-### NetworkX Algorithms Module
-
-In addition to standalone community graph algorithms implemented as Python
-modules, we implemented a module providing NetworkX integration with Memgraph.
-This module, named nxalgo, provides a comprehensive set of thin wrappers
-around most of the algorithms present in the NetworkX package. The wrapper
-functions now have the capability to create a NetworkX compatible graph-like
-object that can stream the native database graph directly, functions, saving
-on memory usage significantly.
-
-For example, you can run the [Page Rank](https://en.wikipedia.org/wiki/PageRank)
-algorithm on the data stored in Memgraph. To illustrate the functionality, the
-following graph will be used:
-
-![](../data/pagerank_graph.png)
-
-To load the graph into Memgraph, the following query should be used:
-
-```opencypher
-CREATE (na {name: "Page A"})
-CREATE (nb {name: "Page B"})
-CREATE (nc {name: "Page C"})
-CREATE (nd {name: "Page D"})
-CREATE (na)-[:e]->(nb)
-CREATE (na)-[:e]->(nc)
-CREATE (nc)-[:e]->(na)
-CREATE (nb)-[:e]->(nc)
-CREATE (nd)-[:e]->(nc);
-```
-
-By executing `nxalg.pagerank()`, Memgraph will return the rank for each
-node as follows:
-
-```opencypher
-CALL nxalg.pagerank() YIELD *;
-+--------------------+----------+
-| node               | rank     |
-+--------------------+----------+
-| ({name: "Page C"}) | 0.39415  |
-| ({name: "Page D"}) | 0.0375   |
-| ({name: "Page A"}) | 0.372526 |
-| ({name: "Page B"}) | 0.195824 |
-+--------------------+----------+
-```
-
-NetworkX algorithms are located inside the `nxalg.py` file installed with
-your Memgraph package in `/usr/lib/memgraph/query_modules`.
