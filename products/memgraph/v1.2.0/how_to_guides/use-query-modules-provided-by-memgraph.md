@@ -12,7 +12,7 @@ pip3 install networkx
 {% hint style="info" %}
 NOTE: The following "How to Guides" provide an explanation of basic usage. To find
 out more details about each module and documentation of each procedure, please
-take a look at our [Reference Guide](https://docs.memgraph.com/memgraph/reference-overview) 
+take a look at our [Reference Guide](../reference_guide/reference-overview.md) 
 or the query module source files. The files are located in the directory 
 `/usr/lib/memgraph/query_modules`.
 {% endhint %}
