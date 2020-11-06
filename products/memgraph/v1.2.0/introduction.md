@@ -16,49 +16,49 @@ Visit the [Quick Start](quick-start#installation) guide to find out more about t
 
 Memgraph uses the openCypher query language. Learn how to query Memgraph:
 * within the **command-line** by visiting the [Quick Start](quick-start#querying) guide or
-* **programmatically** by following the [How To Query Memgraph Programmatically](how-to-guides-overview/query-memgraph-programmatically) guide.
+* **programmatically** by following the [How To Query Memgraph Programmatically](how-to-guides/query-memgraph-programmatically) guide.
 
 ### Importing Data
 
 Data can be imported from CSV files using the CSV Import Tool or by using openCypher queries. 
-Take a look at the [How to Import Data](how-to-guides-overview/import-data) guide.
+Take a look at the [How to Import Data](how-to-guides/import-data) guide.
 
 ### Query Modules
 
 Memgraph supports extending the query language with user-written procedures. 
 These procedures are grouped into modules, which can then be loaded either on startup or later on. 
 To learn more about query modules take a look at the following guides:
-* [How to Load Query Modules?](how-to-guides-overview/load-query-modules.md)
-* [How to Call Query Module Procedures?](how-to-guides-overview/call-query-module-procedures.md)
-* [How to Implement Query Modules?](how-to-guides-overview/implement-query-modules.md)
-* [How to Use Query Modules Provided by Memgraph?](how-to-guides-overview/use-query-modules-provided-by-memgraph.md)
+* [How to Load Query Modules?](how-to-guides/load-query-modules.md)
+* [How to Call Query Module Procedures?](how-to-guides/call-query-module-procedures.md)
+* [How to Implement Query Modules?](how-to-guides/implement-query-modules.md)
+* [How to Use Query Modules Provided by Memgraph?](how-to-guides/use-query-modules-provided-by-memgraph.md)
 
 ### NetworkX
 
 Memgraph includes a set of Python query modules based on the [NetworkX](https://networkx.github.io/) library of algorithms.
-You can find more information about all the avaliable algorithms in the [NetworkX Reference Guide](reference_guide/networkx/networkx.md)
+You can find more information about all the available algorithms in the [NetworkX Reference Guide](reference_guide/networkx/networkx.md)
 
 ### Machine Learning
 
 Memgraph TensorFlow op wraps the high-performance Memgraph client for use with TensorFlow, 
 allowing natural data transfer between Memgraph and TensorFlow at any point of the model.
 If you are interested in using Memgraph for machine learning purposes  take a look at:
-* [How to Setup Memgraph Tensorflow Op?](how-to-guides-overview/tensorflow-setup.md)
+* [How to Setup Memgraph Tensorflow Op?](how-to-guides/tensorflow-setup.md)
 * [TensorFlow Op Reference](reference_guide/tensorflow.md)
 
 ### User Privileges
 
 Memgraph comes with the option of granting, denying or revoking a certain set of privileges to users or groups of users.
 To learn more visit:
-* [How to Manage User Privileges? (Enterprise)](how-to-guides-overview/manage-user-privileges)
-* [Security (Enterprise)](reference-overview/security)
+* [How to Manage User Privileges? (Enterprise)](how-to-guides/manage-user-privileges)
+* [Security (Enterprise)](reference_guide/security)
 
 ### Authentication and Authorization
 
 Memgraph supports authentication and (optional) authorization using a custom-built external auth module.
 To learn more visit:
-* [Auth Module (Enterprise)](reference-overview/auth-module)
-* [LDAP Security (Enterprise)](reference-overview/ldap-security)
+* [Auth Module (Enterprise)](reference_guide/auth-module)
+* [LDAP Security (Enterprise)](reference_guide/ldap-security)
 
 ## Supported Features
 
