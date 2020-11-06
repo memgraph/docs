@@ -219,7 +219,7 @@ def _create_undirected_graph(context: mgp.ProcCtx) -> nx.Graph:
 
 Now let's get some information about the graph. As our data represents social
 network we would like to know if it has
-[bridges](<https://en.wikipedia.org/wiki/Bridge_(graph_theory)>) and we would
+[bridges](https://tinyurl.com/y3angsdb) and we would
 like to calculate the
 [average clustering](https://en.wikipedia.org/wiki/Clustering_coefficient).
 
