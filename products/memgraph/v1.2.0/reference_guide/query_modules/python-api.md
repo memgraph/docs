@@ -22,7 +22,7 @@ This is the API documentation for `mgp.py`  which contains definitions of the pu
 | class | **[mgp.Vertices](#class-mgp.Vertices)** <br>Iterable over vertices in a graph.  |
 
 
-### mgp.read_proc(func: Callable[[…], mgp.Record])
+## mgp.read_proc(func: Callable[[…], mgp.Record])
 Register `func` as a read-only procedure of the current module.
 
 `read_proc` is meant to be used as a decorator function to register module
@@ -37,13 +37,13 @@ produced by returning an iterable of them. Registering generator functions
 is currently not supported.
 
 
-### exception mgp.AbortError()
+## exception mgp.AbortError()
 Bases: `Exception`
 
 Signals that the procedure was asked to abort its execution.
 
 
-### class mgp.Deprecated(type_)
+## class mgp.Deprecated(type_)
 Bases: `object`
 
 Annotate a resulting Record’s field as deprecated.
@@ -51,7 +51,7 @@ Annotate a resulting Record’s field as deprecated.
 
 #### field_type()
 
-### class mgp.Edge(edge)
+## class mgp.Edge(edge)
 Bases: `object`
 
 Edge in the graph database.
@@ -85,7 +85,7 @@ Raise InvalidContextError.
 Raise InvalidContextError.
 
 
-### class mgp.EdgeType(name)
+## class mgp.EdgeType(name)
 Bases: `object`
 
 Type of an Edge.
@@ -93,7 +93,7 @@ Type of an Edge.
 
 #### property name()
 
-### class mgp.Graph(graph)
+## class mgp.Graph(graph)
 Bases: `object`
 
 State of the graph database in current ProcCtx.
@@ -130,7 +130,7 @@ Bases: `Exception`
 Signals using a graph element instance outside of the registered procedure.
 
 
-### class mgp.Label(name)
+## class mgp.Label(name)
 Bases: `object`
 
 Label of a Vertex.
@@ -138,7 +138,7 @@ Label of a Vertex.
 
 #### property name()
 
-### class mgp.Path(starting_vertex_or_path: Union[_mgp.Path, mgp.Vertex])
+## class mgp.Path(starting_vertex_or_path: Union[_mgp.Path, mgp.Vertex])
 Bases: `object`
 
 Path containing Vertex and Edge instances.
@@ -170,7 +170,7 @@ Vertices ordered from the start to the end of the path.
 Raise InvalidContextError if using an invalid Path instance.
 
 
-### class mgp.ProcCtx(graph)
+## class mgp.ProcCtx(graph)
 Bases: `object`
 
 Context of a procedure being executed.
@@ -189,7 +189,7 @@ Raise InvalidContextError if context is invalid.
 
 #### must_abort()
 
-### class mgp.Properties(vertex_or_edge)
+## class mgp.Properties(vertex_or_edge)
 Bases: `object`
 
 A collection of properties either on a Vertex or an Edge.
@@ -217,7 +217,7 @@ Iterate over property values.
 Raise InvalidContextError.
 
 
-### class mgp.Property(name, value)
+## class mgp.Property(name, value)
 Bases: `tuple`
 
 Named property value of a Vertex or an Edge.
@@ -230,7 +230,7 @@ Alias for field number 0
 Alias for field number 1
 
 
-### class mgp.Record(\*\*kwargs)
+## class mgp.Record(\*\*kwargs)
 Bases: `object`
 
 Represents a record of resulting field values.
@@ -244,7 +244,7 @@ Bases: `Exception`
 Signals a typing annotation is not supported as a _mgp.CypherType.
 
 
-### class mgp.Vertex(vertex)
+## class mgp.Vertex(vertex)
 Bases: `object`
 
 Vertex in the graph database.
@@ -278,7 +278,7 @@ Raise InvalidContextError.
 Raise InvalidContextError.
 
 
-### class mgp.Vertices(graph)
+## class mgp.Vertices(graph)
 Bases: `object`
 
 Iterable over vertices in a graph.

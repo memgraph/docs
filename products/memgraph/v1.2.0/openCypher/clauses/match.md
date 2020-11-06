@@ -1,5 +1,7 @@
 # MATCH
 
+This clause is used to obtain data from Memgraph by matching it to a given pattern.
+
 1. Basic node matching
     1. Get all nodes
     2. Get all nodes with a label
@@ -16,8 +18,6 @@
     1. Variable length relationships
     2. Variable length relationships with multiple relationship types
     3. Returning multiple relationships with variable length
-
-
 
 ## 1. Basic Usage
 

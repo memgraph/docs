@@ -1,6 +1,6 @@
 # Memgraph Configuration
 
-The main Memgraph configuration file is available in /etc/memgraph/memgraph.conf.
+The main Memgraph configuration file is available in `/etc/memgraph/memgraph.conf`.
 You can modify that file to suit your specific needs. Additional configuration can be specified by
 including another configuration file, in a file pointed to by the
 `MEMGRAPH_CONFIG` environment variable or by passing arguments on the command
