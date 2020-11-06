@@ -91,7 +91,7 @@ sorts of unexpected issues.
 
 For a more detailed example on how to implement your own query modules, we
 suggest you take a look at this [how-to
-guide](../how_to_guides/implement-query-modules.md).
+guide](../../how_to_guides/implement-query-modules.md).
 
 ### Query Modules Provided by Memgraph
 
