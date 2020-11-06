@@ -53,7 +53,7 @@ the query modules by changing the `--query-modules-directory` flag in the main
 configuration file(`/etc/memgraph/memgraph.conf`) or by supplying it as a
 command-line parameter using the directory containing our modules as the value.
 For a more detailed explanation take a look at
-[How to Use and Implement Query Modules](../how_to_guides/use-and-implement-query-modules.md).
+[How to Load Query Modules](../how_to_guides/load-query-modules.md).
 
 ```plaintext
 sudo -u memgraph \
@@ -466,7 +466,7 @@ the betweenness centrality but in a much lower time.
 ### Further reading
 
 We encourage you to take a look at our `How to` for the modules at the
-[How to Use and Implement Query Modules?](../how_to_guides/use-and-implement-query-modules.md).
+[How to Implement Query Modules?](../how_to_guides/implement-query-modules.md).
 
 This tutorial showed you how with a little effort you can extend your control
 over the data. Using packages like `NetworkX` you get a huge amount of already

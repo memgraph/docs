@@ -183,7 +183,7 @@ embodying it is PageRank, so it would be convenient if we could make use of it.
 
 However, the query engine doesn't support PageRank out-of-the-box, so we have to
 come up with a way to plug in PageRank to our database. That's precisely the
-purpose of [query modules](../reference_guide/query-modules.md)!
+purpose of [query modules](../reference_guide/query_modules/query-modules.md)!
 
 Long story short, the query module system enables us to write C or Python modules
 that can access the data stored in our graph database, do some processing, and
