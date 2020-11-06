@@ -9,13 +9,13 @@ In this tutorial, we will show you how to perform simple network analysis with t
 
 ## Data Model
 We are going to use the Karate Club graph, a network of friendships between 34 members of a karate club at a US university, as described by Wayne Zachary in 1977. It is a very popular data set in social network analysis and is very often referenced in such tutorials. 
-The nodes in the graph are labeled `PERSON` while the relationships between them are of type `FRIENDS_WITH`. You can differentiate the nodes by using their unique `id` property.
+The nodes in the graph represent the members while the relationships between them are of type `FRIENDS_WITH`. You can differentiate the nodes by using their unique `id` property.
 
 ![Karate Club](https://raw.githubusercontent.com/g-despot/images/master/karate_club.png =400x)
 
 ## Importing the Data
 
-The simplest way of populating our database is by using the built-in [CSV Import Tool](../how_to_guides/import-data.md). The CSV files for this data set can be downloaded [from here](). 
+The simplest way of populating our database is by using the built-in [CSV Import Tool](../how_to_guides/import-data.md). The CSV files for this data set can be downloaded [from here](https://github.com/g-despot/sng-tutorial). 
 
 Use the following command to import the files:
 
