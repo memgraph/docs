@@ -56,7 +56,7 @@ query the database instance. It’s a declarative query language designed to
 query graphs. Communication between clients and the database is done via the
 [Bolt protocol](https://boltprotocol.org). For the list of supported
 programming languages please take a look
-[here](how-to-guides-overview/query-memgraph-programmatically.md).
+[here](how_to_guides/query-memgraph-programmatically.md).
 
 ##### How do you upgrade?
 
@@ -70,4 +70,4 @@ priority list. What we do offer is support when the upgrade is needed.
 Memgraph supports extending the query language with user-written procedures. 
 These procedures are grouped into modules, which can then be loaded on startup.
 Query modules can be implemented by using the Python API or C API.
-Take a look at our guide [How to Implement Query Modules](how-to-guides-overview/implement-query-modules.md).
+Take a look at our guide [How to Implement Query Modules](how_to_guides/implement-query-modules.md).
