@@ -88,16 +88,16 @@ This is the API documentation for `mg_procedure.h` which contains declarations o
 | struct mgp_result_record * | **[mgp_result_new_record](#function-mgp_result_new_record)**(struct mgp_result * res) <br>Create a new record for results.  |
 | int | **[mgp_result_record_insert](#function-mgp_result_record_insert)**(struct mgp_result_record * record, const char * field_name, const struct mgp_value * val) <br>Assign a value to a field in the given record.  |
 | void | **[mgp_properties_iterator_destroy](#function-mgp_properties_iterator_destroy)**(struct mgp_properties_iterator * it) <br>Free the memory used by a mgp_properties_iterator.  |
-| const struct [mgp_property](Classes/structmgp__property.md) * | **[mgp_properties_iterator_get](#function-mgp_properties_iterator_get)**(const struct mgp_properties_iterator * it) <br>Get the current property pointed to by the iterator.  |
-| const struct [mgp_property](Classes/structmgp__property.md) * | **[mgp_properties_iterator_next](#function-mgp_properties_iterator_next)**(struct mgp_properties_iterator * it) <br>Advance the iterator to the next property and return it.  |
+| const struct mgp_property * | **[mgp_properties_iterator_get](#function-mgp_properties_iterator_get)**(const struct mgp_properties_iterator * it) <br>Get the current property pointed to by the iterator.  |
+| const struct mgp_property * | **[mgp_properties_iterator_next](#function-mgp_properties_iterator_next)**(struct mgp_properties_iterator * it) <br>Advance the iterator to the next property and return it.  |
 | void | **[mgp_edges_iterator_destroy](#function-mgp_edges_iterator_destroy)**(struct mgp_edges_iterator * it) <br>Free the memory used by a mgp_edges_iterator.  |
-| struct [mgp_vertex_id](Classes/structmgp__vertex__id.md) | **[mgp_vertex_get_id](#function-mgp_vertex_get_id)**(const struct mgp_vertex * v) <br>Get the ID of given vertex.  |
+| struct mgp_vertex_id | **[mgp_vertex_get_id](#function-mgp_vertex_get_id)**(const struct mgp_vertex * v) <br>Get the ID of given vertex.  |
 | struct mgp_vertex * | **[mgp_vertex_copy](#function-mgp_vertex_copy)**(const struct mgp_vertex * v, struct mgp_memory * memory) <br>Copy a mgp_vertex.  |
 | void | **[mgp_vertex_destroy](#function-mgp_vertex_destroy)**(struct mgp_vertex * v) <br>Free the memory used by a mgp_vertex.  |
 | int | **[mgp_vertex_equal](#function-mgp_vertex_equal)**(const struct mgp_vertex * v1, const struct mgp_vertex * v2) <br>Return non-zero if given vertices are equal, otherwise 0.  |
 | size_t | **[mgp_vertex_labels_count](#function-mgp_vertex_labels_count)**(const struct mgp_vertex * v) <br>Return the number of labels a given vertex has.  |
-| struct [mgp_label](Classes/structmgp__label.md) | **[mgp_vertex_label_at](#function-mgp_vertex_label_at)**(const struct mgp_vertex * v, size_t index) <br>Return [mgp_label](Classes/structmgp__label.md) in mgp_vertex at given index.  |
-| int | **[mgp_vertex_has_label](#function-mgp_vertex_has_label)**(const struct mgp_vertex * v, struct [mgp_label](Classes/structmgp__label.md) label) <br>Return non-zero if the given vertex has the given label.  |
+| struct mgp_label | **[mgp_vertex_label_at](#function-mgp_vertex_label_at)**(const struct mgp_vertex * v, size_t index) <br>Return mgp_label in mgp_vertex at given index.  |
+| int | **[mgp_vertex_has_label](#function-mgp_vertex_has_label)**(const struct mgp_vertex * v, struct mgp_label label) <br>Return non-zero if the given vertex has the given label.  |
 | int | **[mgp_vertex_has_label_named](#function-mgp_vertex_has_label_named)**(const struct mgp_vertex * v, const char * label_name) <br>Return non-zero if the given vertex has a label with given name.  |
 | struct mgp_value * | **[mgp_vertex_get_property](#function-mgp_vertex_get_property)**(const struct mgp_vertex * v, const char * property_name, struct mgp_memory * memory) <br>Get a copy of a vertex property mapped to a given name.  |
 | struct mgp_properties_iterator * | **[mgp_vertex_iter_properties](#function-mgp_vertex_iter_properties)**(const struct mgp_vertex * v, struct mgp_memory * memory) <br>Start iterating over properties stored in the given vertex.  |
@@ -105,16 +105,16 @@ This is the API documentation for `mg_procedure.h` which contains declarations o
 | struct mgp_edges_iterator * | **[mgp_vertex_iter_out_edges](#function-mgp_vertex_iter_out_edges)**(const struct mgp_vertex * v, struct mgp_memory * memory) <br>Start iterating over outbound edges of the given vertex.  |
 | const struct mgp_edge * | **[mgp_edges_iterator_get](#function-mgp_edges_iterator_get)**(const struct mgp_edges_iterator * it) <br>Get the current edge pointed to by the iterator.  |
 | const struct mgp_edge * | **[mgp_edges_iterator_next](#function-mgp_edges_iterator_next)**(struct mgp_edges_iterator * it) <br>Advance the iterator to the next edge and return it.  |
-| struct [mgp_edge_id](Classes/structmgp__edge__id.md) | **[mgp_edge_get_id](#function-mgp_edge_get_id)**(const struct mgp_edge * e) <br>Get the ID of given edge.  |
+| struct mgp_edge_id | **[mgp_edge_get_id](#function-mgp_edge_get_id)**(const struct mgp_edge * e) <br>Get the ID of given edge.  |
 | struct mgp_edge * | **[mgp_edge_copy](#function-mgp_edge_copy)**(const struct mgp_edge * e, struct mgp_memory * memory) <br>Copy a mgp_edge.  |
 | void | **[mgp_edge_destroy](#function-mgp_edge_destroy)**(struct mgp_edge * e) <br>Free the memory used by a mgp_edge.  |
 | int | **[mgp_edge_equal](#function-mgp_edge_equal)**(const struct mgp_edge * e1, const struct mgp_edge * e2) <br>Return non-zero if given edges are equal, otherwise 0.  |
-| struct [mgp_edge_type](Classes/structmgp__edge__type.md) | **[mgp_edge_get_type](#function-mgp_edge_get_type)**(const struct mgp_edge * e) <br>Return the type of the given edge.  |
+| struct mgp_edge_type | **[mgp_edge_get_type](#function-mgp_edge_get_type)**(const struct mgp_edge * e) <br>Return the type of the given edge.  |
 | const struct mgp_vertex * | **[mgp_edge_get_from](#function-mgp_edge_get_from)**(const struct mgp_edge * e) <br>Return the source vertex of the given edge.  |
 | const struct mgp_vertex * | **[mgp_edge_get_to](#function-mgp_edge_get_to)**(const struct mgp_edge * e) <br>Return the destination vertex of the given edge.  |
 | struct mgp_value * | **[mgp_edge_get_property](#function-mgp_edge_get_property)**(const struct mgp_edge * e, const char * property_name, struct mgp_memory * memory) <br>Get a copy of a edge property mapped to a given name.  |
 | struct mgp_properties_iterator * | **[mgp_edge_iter_properties](#function-mgp_edge_iter_properties)**(const struct mgp_edge * e, struct mgp_memory * memory) <br>Start iterating over properties stored in the given edge.  |
-| struct mgp_vertex * | **[mgp_graph_get_vertex_by_id](#function-mgp_graph_get_vertex_by_id)**(const struct mgp_graph * g, struct [mgp_vertex_id](Classes/structmgp__vertex__id.md) id, struct mgp_memory * memory) <br>Return the vertex corresponding to given ID.  |
+| struct mgp_vertex * | **[mgp_graph_get_vertex_by_id](#function-mgp_graph_get_vertex_by_id)**(const struct mgp_graph * g, struct mgp_vertex_id id, struct mgp_memory * memory) <br>Return the vertex corresponding to given ID.  |
 | void | **[mgp_vertices_iterator_destroy](#function-mgp_vertices_iterator_destroy)**(struct mgp_vertices_iterator * it) <br>Free the memory used by a mgp_vertices_iterator.  |
 | struct mgp_vertices_iterator * | **[mgp_graph_iter_vertices](#function-mgp_graph_iter_vertices)**(const struct mgp_graph * g, struct mgp_memory * memory) <br>Start iterating over vertices of the given graph.  |
 | const struct mgp_vertex * | **[mgp_vertices_iterator_get](#function-mgp_vertices_iterator_get)**(const struct mgp_vertices_iterator * it) <br>Get the current vertex pointed to by the iterator.  |
@@ -2699,7 +2699,7 @@ Get the current property pointed to by the iterator.
 
 
 
-When the mgp_properties_iterator_next is invoked, the previous [mgp_property](Classes/structmgp__property.md) is invalidated and its value must not be used. NULL is returned if the end of the iteration has been reached. 
+When the mgp_properties_iterator_next is invoked, the previous mgp_property is invalidated and its value must not be used. NULL is returned if the end of the iteration has been reached. 
 
 
 ### function mgp_properties_iterator_next
@@ -2737,7 +2737,7 @@ Advance the iterator to the next property and return it.
 
 
 
-The previous [mgp_property](Classes/structmgp__property.md) obtained through mgp_properties_iterator_get will be invalidated, and you must not use its value. NULL is returned if the end of the iteration has been reached. 
+The previous mgp_property obtained through mgp_properties_iterator_get will be invalidated, and you must not use its value. NULL is returned if the end of the iteration has been reached. 
 
 
 ### function mgp_edges_iterator_destroy
@@ -2975,7 +2975,7 @@ struct mgp_label mgp_vertex_label_at(
 )
 ```
 
-Return [mgp_label](Classes/structmgp__label.md) in mgp_vertex at given index. 
+Return mgp_label in mgp_vertex at given index. 
 
 
 
@@ -3002,7 +3002,7 @@ Return [mgp_label](Classes/structmgp__label.md) in mgp_vertex at given index.
 
 
 
-If the index is out of bounds, [mgp_label.name](Classes/structmgp__label.md#variable-name) is set to NULL. 
+If the index is out of bounds, mgp_label.name is set to NULL. 
 
 
 ### function mgp_vertex_has_label

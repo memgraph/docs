@@ -6,20 +6,20 @@ This is the API documentation for `mgp.py`  which contains definitions of the pu
 
 |                | Name           |
 | -------------- | -------------- |
-| method | **[mgp.read_proc](#class-mgp.read_proc)** <br>Register a function as a read-only procedure of the current module.  |
-| exception | **[mgp.AbortError](#exception-mgp.AbortError)** <br>Signals that the procedure was asked to abort its execution.  |
-| class | **[mgp.Deprecated](#class-mgp.Deprecated)** <br>Annotate a resulting Record’s field as deprecated.  |
-| class | **[mgp.Edge](#class-mgp.Edge)** <br>Edge in the graph database.  |
-| class | **[mgp.EdgeType](#class-mgp.EdgeType)** <br>Type of an Edge.  |
-| class | **[mgp.Graph](#class-mgp.Graph)** <br>State of the graph database in current ProcCtx.  |
-| class | **[mgp.Label](#class-mgp.Label)** <br>Label of a Vertex.  |
-| class | **[mgp.Path](#class-mgp.Path)** <br>Path containing Vertex and Edge instances.  |
-| class | **[mgp.ProcCtx](#class-mgp.ProcCtx)** <br>Context of a procedure being executed.  |
-| class | **[mgp.Properties](#class-mgp.Properties)** <br>A collection of properties either on a Vertex or an Edge.  |
-| class | **[mgp.Property](#class-mgp.Property)** <br>Named property value of a Vertex or an Edge.  |
-| class | **[mgp.Record](#class-mgp.Record)** <br>Represents a record of resulting field values.  |
-| class | **[mgp.Vertex](#class-mgp.Vertex)** <br>Vertex in the graph database.  |
-| class | **[mgp.Vertices](#class-mgp.Vertices)** <br>Iterable over vertices in a graph.  |
+| method | **[mgp.read_proc](#mgp.read_proc(func:-Callable[[…],-mgp.Record]))** <br>Register a function as a read-only procedure of the current module.  |
+| exception | **[mgp.AbortError](#exception-mgp.AbortError())** <br>Signals that the procedure was asked to abort its execution.  |
+| class | **[mgp.Deprecated](#class-mgp.Deprecated(type_))** <br>Annotate a resulting Record’s field as deprecated.  |
+| class | **[mgp.Edge](#class-mgp.Edge(edge))** <br>Edge in the graph database.  |
+| class | **[mgp.EdgeType](#class-mgp.EdgeType(name))** <br>Type of an Edge.  |
+| class | **[mgp.Graph](#class-mgp.Graph(graph))** <br>State of the graph database in current ProcCtx.  |
+| class | **[mgp.Label](#class-mgp.Label(name))** <br>Label of a Vertex.  |
+| class | **[mgp.Path](#class-mgp.Path(starting_vertex_or_path:-Union[_mgp.Path,-mgp.Vertex]))** <br>Path containing Vertex and Edge instances.  |
+| class | **[mgp.ProcCtx](#class-mgp.ProcCtx(graph))** <br>Context of a procedure being executed.  |
+| class | **[mgp.Properties](#class-mgp.Properties(vertex_or_edge))** <br>A collection of properties either on a Vertex or an Edge.  |
+| class | **[mgp.Property](#class-mgp.Property(name,-value))** <br>Named property value of a Vertex or an Edge.  |
+| class | **[mgp.Record](#class-mgp.Record(\*\*kwargs))** <br>Represents a record of resulting field values.  |
+| class | **[mgp.Vertex](#class-mgp.Vertex(vertex))** <br>Vertex in the graph database.  |
+| class | **[mgp.Vertices](#class-mgp.Vertices(graph))** <br>Iterable over vertices in a graph.  |
 
 
 ## mgp.read_proc(func: Callable[[…], mgp.Record])
