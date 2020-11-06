@@ -74,7 +74,7 @@ RETURN city
 ### 2.4 Get a relationship
 
 If you want to return the relationship between two nodes or a property of the relationship, a variable is required.
-A directed or undirected realtionship can be used.
+A directed or undirected relationship can be used.
 
 This query returns the relationship and its type:
 
@@ -93,7 +93,7 @@ RETURN r.name
 ### 2.5 Get a relationship with a type
 
 To return a relationship with a specified type you need to use the type syntax.
-A directed or undirected realtionship can be used.
+A directed or undirected relationship can be used.
 
 ```openCypher
 MATCH (:Country { name: 'France' })<--[r:IN]
@@ -111,7 +111,7 @@ RETURN c.name
 
 ### 2.7 Uncommon characters in relationship types 
 
-If a type has non-letter characters, like spaces for example, the backtick symbol ` needs to be used to quote these.
+If a type has non-letter characters, like spaces, for example, the backtick symbol \` needs to be used to quote these.
 If the relationship type `LIVING_IN` had a space instead of an underscore.
 
 ```openCypher
@@ -132,8 +132,8 @@ RETURN person.name
 
 ### 3.1 Variable length relationships
 
-If a node needs to be specified by its distance in relationship→node hops, the following sytax is used: `-[:TYPE*minHops..maxHops]→`.
-minHops and maxHops are optional and default to 1 and infinity respectively. The dots can be ommited if both are not specified or if 
+If a node needs to be specified by its distance in relationship→node hops, the following syntax is used: `-[:TYPE*minHops..maxHops]→`.
+minHops and maxHops are optional and default to 1 and infinity respectively. The dots can be omitted if both are not specified or if 
 only one is set which implies a fixed length pattern.
 
 ```openCypher
@@ -152,7 +152,7 @@ RETURN person
 
 ### 3.3 Returning multiple relationships with variable length
 
-If a variable length is used, the list of relationships can be returnes by adding `variable=` at the beginning of the `MATCH` clause.
+If a variable length is used, the list of relationships can be returned by adding `variable=` at the beginning of the `MATCH` clause.
 
 ```openCypher
 MATCH p=(country { name: 'France' })-[:LIVING_IN*2]-(person)

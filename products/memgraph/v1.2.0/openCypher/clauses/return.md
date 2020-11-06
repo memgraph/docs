@@ -1,4 +1,4 @@
-# WHERE
+# RETURN
 
 The `RETURN` clause defines which data should be included in the resulting set. 
 
@@ -43,7 +43,7 @@ RETURN c.name
 
 ## 4. Returning multiple elements
 
-To return multiple elements seperate them with a comma character.
+To return multiple elements separate them with a comma character.
 
 ```openCypher
 MATCH (c:Country { name: 'United Kingdom'})
@@ -61,7 +61,7 @@ RETURN *
 
 # 6. Handling uncommon character
 
-Uncommon character are handled using placeholder variables enclosed with the symbol `\``.
+Uncommon characters are handled using placeholder variables enclosed with the symbol `\``.
 
 ```openCypher
 MATCH (`An uncommon variable!`)
@@ -71,7 +71,7 @@ RETURN `An uncommon variable!`.value
 
 # 7. Returning element with alias
 
-You can specify an alias for a element in the `RETURN` statement using `AS`.
+You can specify an alias for an element in the `RETURN` statement using `AS`.
 
 ```openCypher
 MATCH (c:Country { name: 'United Kingdom'})
