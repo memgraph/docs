@@ -15,7 +15,7 @@ The `CREATE` clause is used to create nodes and relationships of a graph.
 
 ### 1.1 Creating a single node
 
-Use the following query to create a signle node.
+Use the following query to create a single node.
 The `RETURN` clause is used to return results. A newly created node can be returned in the same query.
 
 ```openCypher

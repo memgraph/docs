@@ -42,7 +42,7 @@ MATCH (n)-[r]->(m) RETURN n,r,m;
 
 ## 1. Delete a node
 
-The `DELETE` clause can be used to delte a node.
+The `DELETE` clause can be used to delete a node.
 
 ```opencypher
 MATCH (c:Country { name: 'United Kingdom' })
@@ -58,7 +58,7 @@ This will however result in an error because `DELETE` can only be used on nodes 
 
 ## 2. Delete a node and its relationships
 
-The `DELETE` clause can be used to delte a node along with all of its relationships with the keyword `DETACH`.
+The `DELETE` clause can be used to delete a node along with all of its relationships with the keyword `DETACH`.
 
 ```opencypher
 MATCH (n:Country { name: 'United Kingdom' })
