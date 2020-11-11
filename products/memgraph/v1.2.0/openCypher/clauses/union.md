@@ -1,0 +1,65 @@
+# UNION
+
+The `UNION` clause is used to combine the result of multiple queries.
+
+1. Combine queries and retain duplicates
+2. Combine queries and remove duplicates
+
+## Data Set
+
+```openCypher
+MATCH (n) DETACH DELETE n;
+
+CREATE (c1:Country { name: 'Germany'});
+CREATE (c2:Country { name: 'France'});
+CREATE (c3:Country { name: 'United Kingdom'});
+CREATE (c3:Country { name: 'United Kingdom'});
+
+CREATE (:Person { name: 'John'});
+
+MATCH (c1),(c2)
+WHERE c1.name= 'Germany' AND c2.name = 'France'
+CREATE (c2)<-[:WORKING_IN { date_of_start: 2014 }]-(p:Person { name: 'John' })-[:LIVING_IN { date_of_start: 2014 }]->(c1);
+
+MATCH (c)
+WHERE c.name= 'United Kingdom'
+CREATE (c)<-[:WORKING_IN { date_of_start: 2014 }]-(p:Person { name: 'Harry' })-[:LIVING_IN { date_of_start: 2013 }]->(c);
+
+MATCH (p1),(p2)
+WHERE p1.name = 'John' AND p2.name = 'Harry'
+CREATE (p1)-[:FRIENDS_WITH { date_of_start: 2011 }]->(p2);
+
+MATCH (p1),(p2)
+WHERE p1.name = 'John' AND p2.name = 'Harry'
+CREATE (p1)<-[:FRIENDS_WITH { date_of_start: 2012 }]-(:Person { name: 'Anna' })-[:FRIENDS_WITH { date_of_start: 2014 }]->(p2);
+
+MATCH (p),(c1),(c2)
+WHERE p.name = 'Anna' AND c1.name = 'United Kingdom' AND c2.name = 'Germany'
+CREATE (c2)<-[:LIVING_IN { date_of_start: 2014 }]-(p)-[:LIVING_IN { date_of_start: 2014 }]->(c1);
+
+MATCH (n)-[r]->(m) RETURN n,r,m;
+```
+
+## 1. Combine queries and retain duplicates
+
+To combine two or more queries and return their results without removing duplicates, use the `UNION ALL` clause.
+
+```opencypher
+MATCH (c:Country) 
+RETURN c.name as columnName
+UNION ALL 
+MATCH (p:Person)
+RETURN p.name AS columnName
+```
+
+## 2. Combine queries and remove duplicates
+
+To combine two or more queries and return their results without removing duplicates, use the `UNION` clause without `ALL`.
+
+```opencypher
+MATCH (c:Country) 
+RETURN c.name as columnName
+UNION 
+MATCH (p:Person)
+RETURN p.name AS columnName
+```

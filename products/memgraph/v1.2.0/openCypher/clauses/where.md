@@ -19,6 +19,38 @@ The difference when using `WHERE` with these clauses is that it only filter the 
     3. Get related nodes with a directed relationship
     4. Get a relationship
 
+## Data Set
+
+```openCypher
+MATCH (n) DETACH DELETE n;
+
+CREATE (c1:Country { name: 'Germany', language: 'German', continent: 'Europe', population: 83000000 });
+CREATE (c2:Country { name: 'France', language: 'French', continent: 'Europe', population: 67000000 });
+CREATE (c3:Country { name: 'United Kingdom', language: 'English', continent: 'Europe', population: 66000000 });
+
+MATCH (c1),(c2)
+WHERE c1.name= 'Germany' AND c2.name = 'France'
+CREATE (c2)<-[:WORKING_IN { date_of_start: 2014 }]-(p:Person { name: 'John' })-[:LIVING_IN { date_of_start: 2014 }]->(c1);
+
+MATCH (c)
+WHERE c.name= 'United Kingdom'
+CREATE (c)<-[:WORKING_IN { date_of_start: 2014 }]-(p:Person { name: 'Harry' })-[:LIVING_IN { date_of_start: 2013 }]->(c);
+
+MATCH (p1),(p2)
+WHERE p1.name = 'John' AND p2.name = 'Harry'
+CREATE (p1)-[:FRIENDS_WITH { date_of_start: 2011 }]->(p2);
+
+MATCH (p1),(p2)
+WHERE p1.name = 'John' AND p2.name = 'Harry'
+CREATE (p1)<-[:FRIENDS_WITH { date_of_start: 2012 }]-(:Person { name: 'Anna' })-[:FRIENDS_WITH { date_of_start: 2014 }]->(p2);
+
+MATCH (p),(c1),(c2)
+WHERE p.name = 'Anna' AND c1.name = 'United Kingdom' AND c2.name = 'Germany'
+CREATE (c2)<-[:LIVING_IN { date_of_start: 2014 }]-(p)-[:LIVING_IN { date_of_start: 2014 }]->(c1);
+
+MATCH (n)-[r]->(m) RETURN n,r,m;
+```
+
 ## 1. Basic Usage
 
 ### 1.1 Boolean Operators
@@ -27,7 +59,7 @@ Standard boolean operators like `NOT`, `AND`, `OR` and `XOR` can be used.
 
 ```openCypher
 MATCH (c:Country)
-WHERE c.language = 'english' AND  c.continent = 'Asia'
+WHERE c.language = 'English' AND  c.continent = 'Europe'
 RETURN c.name
 ```
 
@@ -37,7 +69,7 @@ Standard inequality operators like `<`, `<=`, `>` and `>=` can be used.
 
 ```openCypher
 MATCH (c:Country)
-WHERE c.language = 'english' AND  (c.population > 400000000)
+WHERE (c.population > 80000000)
 RETURN c.name
 ```
 
@@ -57,18 +89,18 @@ Just as labels, node properties can be used in the WHERE clause to filter nodes.
 
 ```openCypher
 MATCH (c:Country)
-WHERE c.population > 1000000000
+WHERE c.population < 70000000
 RETURN c.name
 ```
 
 ### 1.5 Filter with relationship properties
 
-Just as with node properties, relationship properties can be used.
+Just as with node properties, relationship properties can be used as filters.
 
 ```openCypher
-MATCH (:Country {name: 'United Kingdom'})-[b:BORDERS]-(country:Country)
-WHERE b.type > 'LAND BORDER'
-RETURN country
+MATCH (:Country {name: 'United Kingdom'})-[r]-(p)
+WHERE r.date_of_start = 2014
+RETURN p
 ```
 
 ### 1.6 Check if property is not null
@@ -94,7 +126,7 @@ Operator           | Description
 
  ```openCypher
 MATCH (c:Country)
-WHERE c.name STARTS WITH 'C' AND NOT c.name CONTAINS 'roati'
+WHERE c.name STARTS WITH 'G' AND NOT c.name CONTAINS 't'
 RETURN c.name
 ```
 
@@ -103,10 +135,10 @@ RETURN c.name
 Inside `WHERE` clause, you can use regular expressions for text filtering. To
 use a regular expression, you need to use the `=~` operator.
 
-For example, finding all `Person` nodes which have a name ending with `son`.
+For example, finding all `Person` nodes which have a name ending with `a`.
 
 ```opencypher
-MATCH (n :Person) WHERE n.name =~ ".*son$" RETURN n;
+MATCH (n :Person) WHERE n.name =~ ".*a$" RETURN n;
 ```
 
 The regular expression syntax is based on the modified ECMAScript regular

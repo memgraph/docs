@@ -1,6 +1,6 @@
 # MATCH
 
-This clause is used to obtain data from Memgraph by matching it to a given pattern.
+The `MATCH` clause is used to obtain data from the database by matching it to a given pattern.
 
 1. Basic node matching
     1. Get all nodes
@@ -10,14 +10,46 @@ This clause is used to obtain data from Memgraph by matching it to a given patte
     2. Get related nodes with a label
     3. Get related nodes with a directed relationship
     4. Get a relationship
-    5. Get a relationship with a type
-    6. Get relationships with multiple types
+    5. Matching on a relationship with a type
+    6. Matching on relationships with multiple types
     7. Uncommon characters in relationship types 
     8. Match with multiple relationships
 3. Matching with variable length relationships
     1. Variable length relationships
     2. Variable length relationships with multiple relationship types
     3. Returning multiple relationships with variable length
+
+## Data Set
+
+```openCypher
+MATCH (n) DETACH DELETE n;
+
+CREATE (c1:Country { name: 'Germany', language: 'German', continent: 'Europe', population: 83000000 });
+CREATE (c2:Country { name: 'France', language: 'French', continent: 'Europe', population: 67000000 });
+CREATE (c3:Country { name: 'United Kingdom', language: 'English', continent: 'Europe', population: 66000000 });
+
+MATCH (c1),(c2)
+WHERE c1.name= 'Germany' AND c2.name = 'France'
+CREATE (c2)<-[:WORKING_IN { date_of_start: 2014 }]-(p:Person { name: 'John' })-[:LIVING_IN { date_of_start: 2014 }]->(c1);
+
+MATCH (c)
+WHERE c.name= 'United Kingdom'
+CREATE (c)<-[:WORKING_IN { date_of_start: 2014 }]-(p:Person { name: 'Harry' })-[:LIVING_IN { date_of_start: 2013 }]->(c);
+
+MATCH (p1),(p2)
+WHERE p1.name = 'John' AND p2.name = 'Harry'
+CREATE (p1)-[:FRIENDS_WITH { date_of_start: 2011 }]->(p2);
+
+MATCH (p1),(p2)
+WHERE p1.name = 'John' AND p2.name = 'Harry'
+CREATE (p1)<-[:FRIENDS_WITH { date_of_start: 2012 }]-(:Person { name: 'Anna' })-[:FRIENDS_WITH { date_of_start: 2014 }]->(p2);
+
+MATCH (p),(c1),(c2)
+WHERE p.name = 'Anna' AND c1.name = 'United Kingdom' AND c2.name = 'Germany'
+CREATE (c2)<-[:LIVING_IN { date_of_start: 2014 }]-(p)-[:LIVING_IN { date_of_start: 2014 }]->(c1);
+
+MATCH (n)-[r]->(m) RETURN n,r,m;
+```
 
 ## 1. Basic Usage
 
@@ -26,8 +58,22 @@ This clause is used to obtain data from Memgraph by matching it to a given patte
 Without specifying labels, the query will return all the nodes in a graph.
 
 ```openCypher
-MATCH n 
-RETURN n
+MATCH (n) 
+RETURN n;
+```
+
+Output:
+```
++-----------------------------------------------------------------------------------------------------+
+| n                                                                                                   |
++-----------------------------------------------------------------------------------------------------+
+| (:Country {continent: "Europe", language: "German", name: "Germany", population: 83000000})         |
+| (:Country {continent: "Europe", language: "French", name: "France", population: 67000000})          |
+| (:Country {continent: "Europe", language: "English", name: "United Kingdom", population: 66000000}) |
+| (:Person {name: "John"})                                                                            |
+| (:Person {name: "Harry"})                                                                           |
+| (:Person {name: "Anna"})                                                                            |
++-----------------------------------------------------------------------------------------------------+
 ```
 
 ### 1.2 Get all nodes with a label
@@ -35,8 +81,19 @@ RETURN n
 By specifying the label of a node, all the nodes with that label are returned.
 
 ```openCypher
-MATCH (c:Country) AND 
-RETURN c
+MATCH (c:Country)
+RETURN c;
+```
+
+Output:
+```
++-----------------------------------------------------------------------------------------------------+
+| c                                                                                                   |
++-----------------------------------------------------------------------------------------------------+
+| (:Country {continent: "Europe", language: "German", name: "Germany", population: 83000000})         |
+| (:Country {continent: "Europe", language: "French", name: "France", population: 67000000})          |
+| (:Country {continent: "Europe", language: "English", name: "United Kingdom", population: 66000000}) |
++-----------------------------------------------------------------------------------------------------+
 ```
 
 ## 2. Matching nodes using relationships
@@ -47,8 +104,20 @@ By using the *related to* symbol `--`, nodes that have a relationship with the s
 The symbol represents an undirected relationship which means the direction of the relationship is not taken into account.
 
 ```openCypher
-MATCH (:Country { name: 'France' })--(n)
-RETURN n
+MATCH (:Person { name: 'John' })--(n)
+RETURN n;
+```
+
+Output:
+```
++---------------------------------------------------------------------------------------------+
+| n                                                                                           |
++---------------------------------------------------------------------------------------------+
+| (:Person {name: "Anna"})                                                                    |
+| (:Country {continent: "Europe", language: "French", name: "France", population: 67000000})  |
+| (:Country {continent: "Europe", language: "German", name: "Germany", population: 83000000}) |
+| (:Person {name: "Harry"})                                                                   |
++---------------------------------------------------------------------------------------------+
 ```
 
 ### 2.2 Get related nodes with a label
@@ -56,8 +125,18 @@ RETURN n
 To only return *related to* nodes with a specific label you need to add it using the label syntax.
 
 ```openCypher
-MATCH (:Country { name: 'France' })--(city:City)
-RETURN city
+MATCH (:Person { name: 'John' })--(p:Person)
+RETURN p;
+```
+
+Output:
+```
++---------------------------+
+| p                         |
++---------------------------+
+| (:Person {name: "Harry"}) |
+| (:Person {name: "Anna"})  |
++---------------------------+
 ```
 
 ### 2.3 Get related nodes with a directed relationship
@@ -67,8 +146,8 @@ The *related to* symbol `--` can be extended by using:
  * `<--` to specify ingoing relationships.
 
 ```openCypher
-MATCH (:Country { name: 'France' })<--(city:City)
-RETURN city
+MATCH (:Country { name: 'France' })<--(p:Person)
+RETURN p
 ```
 
 ### 2.4 Get a relationship
@@ -79,33 +158,33 @@ A directed or undirected relationship can be used.
 This query returns the relationship and its type:
 
 ```openCypher
-MATCH (:Country { name: 'France' })<-[r]-(city:City)
-RETURN r, type(r)
+MATCH (:Person { name: 'John' })-[r]->()
+RETURN type(r)
 ```
 
-This query returns the property `name` of the relationship:
+This query also returns the property `date_of_start` of the relationship:
 
 ```openCypher
-MATCH (:Country { name: 'France' })<-[r]-(city:City)
-RETURN r.name
+MATCH (:Person { name: 'John' })-[r]->()
+RETURN type(r), r.date_of_start
 ```
 
-### 2.5 Get a relationship with a type
+### 2.5 Match on a relationship with a type
 
 To return a relationship with a specified type you need to use the type syntax.
 A directed or undirected relationship can be used.
 
 ```openCypher
-MATCH (:Country { name: 'France' })<--[r:IN]
-RETURN r.name
+MATCH (p:Person { name: 'John' })-[:LIVING_IN]-(c)
+RETURN c.name
 ```
 
-### 2.6 Get relationships with multiple types
+### 2.6 Match on a relationships with multiple types
 
 To return relationships with any of the specified types, the types need to be chained together with the pipe symbol `|`.
 
 ```openCypher
-MATCH (:Person { name: 'John' })--[c:LIVING_IN|WORKING_IN]
+MATCH (p:Person { name: 'John' })-[:LIVING_IN|:WORKING_IN]-(c)
 RETURN c.name
 ```
 
@@ -124,8 +203,8 @@ RETURN r.name
 Multiple relationship statements can be specified in the query.
 
 ```openCypher
-MATCH (:Country { name: 'France' })<-[l:LIVING_IN]-(person)-[w:WORKING_IN]->(:Country { name: 'Germany' })
-RETURN person.name
+MATCH (:Country { name: 'France' })<-[l:WORKING_IN]-(p)-[w:LIVING_IN]->(:Country { name: 'Germany' })
+RETURN p.name
 ```
 
 ## 3. Matching with variable length relationships
@@ -137,8 +216,8 @@ minHops and maxHops are optional and default to 1 and infinity respectively. The
 only one is set which implies a fixed length pattern.
 
 ```openCypher
-MATCH (uk { name: 'United Kingdom' })<-[:WORKING_IN*1..2]-(person:Person)
-RETURN person
+MATCH ({ name: 'United Kingdom' })-[:LIVING_IN*1..2]-(n)
+RETURN n
 ```
 
 ### 3.2 Variable length relationships with multiple relationship types
@@ -146,8 +225,8 @@ RETURN person
 If variable lengths are used with multiple stacked up relationship types, `*minHops..maxHops` applies to any combination of relationships.
 
 ```openCypher
-MATCH (country { name: 'United Kingdom' })<-[:WORKING_IN|LIVING_IN*1..2]-(person:Person)
-RETURN person
+MATCH ({ name: 'United Kingdom' })<-[:WORKING_IN|FRIENDS_WITH*1..2]-(P:Person)
+RETURN P
 ```
 
 ### 3.3 Returning multiple relationships with variable length
@@ -155,6 +234,6 @@ RETURN person
 If a variable length is used, the list of relationships can be returned by adding `variable=` at the beginning of the `MATCH` clause.
 
 ```openCypher
-MATCH p=(country { name: 'France' })-[:LIVING_IN*2]-(person)
+MATCH p=({ name: 'John' })<-[:FRIENDS_WITH*2]-()
 RETURN relationships(p)
 ```

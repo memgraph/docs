@@ -13,6 +13,37 @@ The `RETURN` clause defines which data should be included in the resulting set.
 9. Returning expressions
 10. Returning unique results
 
+## Data Set
+
+```openCypher
+MATCH (n) DETACH DELETE n;
+
+CREATE (c1:Country { name: 'Germany'});
+CREATE (c2:Country { name: 'France'});
+CREATE (c3:Country { name: 'United Kingdom'});
+
+MATCH (c1),(c2)
+WHERE c1.name= 'Germany' AND c2.name = 'France'
+CREATE (c2)<-[:WORKING_IN { date_of_start: 2014 }]-(p:Person { name: 'John' })-[:LIVING_IN { date_of_start: 2014 }]->(c1);
+
+MATCH (c)
+WHERE c.name= 'United Kingdom'
+CREATE (c)<-[:WORKING_IN { date_of_start: 2014 }]-(p:Person { name: 'Harry' })-[:LIVING_IN { date_of_start: 2013 }]->(c);
+
+MATCH (p1),(p2)
+WHERE p1.name = 'John' AND p2.name = 'Harry'
+CREATE (p1)-[:FRIENDS_WITH { date_of_start: 2011 }]->(p2);
+
+MATCH (p1),(p2)
+WHERE p1.name = 'John' AND p2.name = 'Harry'
+CREATE (p1)<-[:FRIENDS_WITH { date_of_start: 2012 }]-(:Person { name: 'Anna' })-[:FRIENDS_WITH { date_of_start: 2014 }]->(p2);
+
+MATCH (p),(c1),(c2)
+WHERE p.name = 'Anna' AND c1.name = 'United Kingdom' AND c2.name = 'Germany'
+CREATE (c2)<-[:LIVING_IN { date_of_start: 2014 }]-(p)-[:LIVING_IN { date_of_start: 2014 }]->(c1);
+
+MATCH (n)-[r]->(m) RETURN n,r,m;
+```
 
 ## 1. Returning nodes
 
@@ -28,8 +59,8 @@ RETURN c
 The relationship variable needs to be added to the `RETURN` statement.
 
 ```openCypher
-MATCH (c:Country { name: 'United Kingdom'})-[r]-(:City { name: 'London'})
-RETURN r
+MATCH (c:Country { name: 'United Kingdom'})-[r]-(:Person { name: 'Harry'})
+RETURN type(r)
 ```
 
 ## 3. Returning properties
@@ -55,7 +86,7 @@ RETURN c.name, c.population, c.continent
 To return all the elements from a query use the `*` symbol.
 
 ```openCypher
-MATCH (c:Country { name: 'United Kingdom'})-[r]-(:City { name: 'London'})
+MATCH (:Country { name: 'United Kingdom'})-[]-(p:Person)
 RETURN *
 ```
 
@@ -89,11 +120,11 @@ RETURN c.color
 
 # 9. Returning expressions
 
- Expressions can be included in the RETURN statement.
+ Expressions can be included in the `RETURN` statement.
 
 ```openCypher
 MATCH (c:Country { name: 'United Kingdom'})
-RETURN c.population > 1000, "Literal"
+RETURN c.name = 'United Kingdom', "Literal"
 ```
 
 # 10. Returning unique results
@@ -101,6 +132,6 @@ RETURN c.population > 1000, "Literal"
 The `RETURN` statement can be followed by the `DISTINCT` operator, which will remove duplicate results.
 
 ```openCypher
-MATCH (c1:Country)-[:BORDERS]-(c2:Country)
-RETURN DISTINCT c1, c2
+MATCH ()-[:LIVING_IN]->(c)
+RETURN DISTINCT c
 ```
