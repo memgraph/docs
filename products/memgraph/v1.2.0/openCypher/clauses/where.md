@@ -60,7 +60,16 @@ Standard boolean operators like `NOT`, `AND`, `OR` and `XOR` can be used.
 ```openCypher
 MATCH (c:Country)
 WHERE c.language = 'English' AND  c.continent = 'Europe'
-RETURN c.name
+RETURN c.name;
+```
+
+Output:
+```
++----------------+
+| c.name         |
++----------------+
+| United Kingdom |
++----------------+
 ```
 
 ### 1.2 Inequality Operators Operators
@@ -70,7 +79,16 @@ Standard inequality operators like `<`, `<=`, `>` and `>=` can be used.
 ```openCypher
 MATCH (c:Country)
 WHERE (c.population > 80000000)
-RETURN c.name
+RETURN c.name;
+```
+
+Output:
+```
++---------+
+| c.name  |
++---------+
+| Germany |
++---------+
 ```
 
 ### 1.3 Filter with node labels
@@ -80,7 +98,18 @@ Nodes can be filtered by their label using the `WHERE` clause instead of specify
 ```openCypher
 MATCH (c)
 WHERE c:Country
-RETURN c.name
+RETURN c.name;
+```
+
+Output:
+```
++----------------+
+| c.name         |
++----------------+
+| Germany        |
+| France         |
+| United Kingdom |
++----------------+
 ```
 
 ### 1.4 Filter with node properties
@@ -90,7 +119,17 @@ Just as labels, node properties can be used in the WHERE clause to filter nodes.
 ```openCypher
 MATCH (c:Country)
 WHERE c.population < 70000000
-RETURN c.name
+RETURN c.name;
+```
+
+Output:
+```
++----------------+
+| c.name         |
++----------------+
+| France         |
+| United Kingdom |
++----------------+
 ```
 
 ### 1.5 Filter with relationship properties
@@ -100,7 +139,17 @@ Just as with node properties, relationship properties can be used as filters.
 ```openCypher
 MATCH (:Country {name: 'United Kingdom'})-[r]-(p)
 WHERE r.date_of_start = 2014
-RETURN p
+RETURN p;
+```
+
+Output:
+```
++---------------------------+
+| p                         |
++---------------------------+
+| (:Person {name: "Harry"}) |
+| (:Person {name: "Anna"})  |
++---------------------------+
 ```
 
 ### 1.6 Check if property is not null
@@ -110,7 +159,16 @@ To check if a node or relationship property exists use the `IS NOT NULL` option.
 ```openCypher
 MATCH (c:Country)
 WHERE c.name = 'United Kingdom' AND c.population IS NOT NULL
-RETURN c.name, c.population
+RETURN c.name, c.population;
+```
+
+Output:
+```
++----------------+----------------+
+| c.name         | c.population   |
++----------------+----------------+
+| United Kingdom | 66000000       |
++----------------+----------------+
 ```
 
 ## 2. String Matching
@@ -127,7 +185,16 @@ Operator           | Description
  ```openCypher
 MATCH (c:Country)
 WHERE c.name STARTS WITH 'G' AND NOT c.name CONTAINS 't'
-RETURN c.name
+RETURN c.name;
+```
+
+Output:
+```
++---------+
+| c.name  |
++---------+
+| Germany |
++---------+
 ```
 
 ## 3. Regular Expressions
@@ -139,6 +206,15 @@ For example, finding all `Person` nodes which have a name ending with `a`.
 
 ```opencypher
 MATCH (n :Person) WHERE n.name =~ ".*a$" RETURN n;
+```
+
+Output:
+```
++--------------------------+
+| n                        |
++--------------------------+
+| (:Person {name: "Anna"}) |
++--------------------------+
 ```
 
 The regular expression syntax is based on the modified ECMAScript regular

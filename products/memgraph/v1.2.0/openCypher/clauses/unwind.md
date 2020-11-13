@@ -16,6 +16,17 @@ UNWIND [1,2,3] AS listElement
 RETURN listElement;
 ```
 
+Output:
+```
++-------------+
+| listElement |
++-------------+
+| 1           |
+| 2           |
+| 3           |
++-------------+
+```
+
 ## 2. Distinct list
 
 The `UNWIND` clause can be used to remove duplicates from a list.
@@ -27,6 +38,15 @@ WITH DISTINCT listElement
 RETURN collect(listElement) AS distinctElements;
 ```
 
+Output:
+```
++------------------+
+| distinctElements |
++------------------+
+| [1, 2, 3]        |
++------------------+
+```
+
 ## 3. Expression returning lists
 
 An expression that returns a list can be used with the `UNWIND` clause.
@@ -35,6 +55,20 @@ An expression that returns a list can be used with the `UNWIND` clause.
 WITH [1,2,3] AS listOne, [4,5,6] AS listTwo 
 UNWIND (listOne + listTwo) AS list
 RETURN list;
+```
+
+Output:
+```
++------+
+| list |
++------+
+| 1    |
+| 2    |
+| 3    |
+| 4    |
+| 5    |
+| 6    |
++------+
 ```
 
 ## 4. Unwinding lists of lists
@@ -48,3 +82,19 @@ UNWIND listOneElement AS element
 RETURN element;
 ```
 
+Output:
+```
++---------+
+| element |
++---------+
+| 1       |
+| 2       |
+| 3       |
+| 4       |
+| 5       |
+| 6       |
+| 7       |
+| 8       |
+| 9       |
++---------+
+```

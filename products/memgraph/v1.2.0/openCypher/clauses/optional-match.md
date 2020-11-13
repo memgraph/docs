@@ -12,9 +12,9 @@ missing parts of the pattern will be filled with null values.
 ```openCypher
 MATCH (n) DETACH DELETE n;
 
-CREATE (c1:Country { name: 'Germany'});
-CREATE (c2:Country { name: 'France'});
-CREATE (c3:Country { name: 'United Kingdom'});
+CREATE (c1:Country { name: 'Germany', language: 'German', continent: 'Europe', population: 83000000 });
+CREATE (c2:Country { name: 'France', language: 'French', continent: 'Europe', population: 67000000 });
+CREATE (c3:Country { name: 'United Kingdom', language: 'English', continent: 'Europe', population: 66000000 });
 
 MATCH (c1),(c2)
 WHERE c1.name= 'Germany' AND c2.name = 'France'
@@ -48,7 +48,16 @@ The returned property of an optional element that is `NULL` will also be `NULL`.
 ```openCypher
 MATCH (c1:Country { name: 'France' })
 OPTIONAL MATCH (c1)--(c2:Country { name: 'Germany' })
-RETURN c2
+RETURN c2;
+```
+
+Output:
+```
++------+
+| c2   |
++------+
+| Null |
++------+
 ```
 
 ## 2. Optional typed and named relationship
@@ -58,7 +67,16 @@ The `OPTIONAL MATCH` clause allows you to use the same conventions as `MATCH` wh
 ```openCypher
 MATCH (c:Country { name: 'United Kingdom' })
 OPTIONAL MATCH (c)-[r:LIVES_IN]->()
-RETURN c.name, r
+RETURN c.name, r;
+```
+
+Output:
+```
++----------------+----------------+
+| c.name         | r              |
++----------------+----------------+
+| United Kingdom | Null           |
++----------------+----------------+
 ```
 
 Because there are no outgoing relationships of type `LIVES_IN` for the node, the value of r is `null` while the value of `contry.name` is `'United Kingdom'`.

@@ -39,13 +39,15 @@ CREATE (c2)<-[:LIVING_IN { date_of_start: 2014 }]-(p)-[:LIVING_IN { date_of_star
 MATCH (n)-[r]->(m) RETURN n,r,m;
 ```
 
-1. Merging nodes with labels
+## 1. Merging nodes
+
+### 1.1 Merging nodes with labels
 
 If `MERGE` is used on a node with a label that doesn't exist in the database, the node is created.
 
 ```openCypher
 MERGE (city:City)
-RETURN city
+RETURN city;
 ```
 
 Output:
@@ -57,13 +59,13 @@ Output:
 +---------+
 ```
 
-2. Merging nodes with properties
+### 1.2 Merging nodes with properties
 
 If `MERGE` is used on a node with properties that don't match any existing node, that node is created.
 
 ```openCypher
 MERGE (city { name: 'London' })
-RETURN city
+RETURN city;
 ```
 
 Output:
@@ -75,13 +77,13 @@ Output:
 +--------------------+
 ```
 
-3. Merging nodes with labels and properties
+### 1.3 Merging nodes with labels and properties
 
 If `MERGE` is used on a node with labels and properties that don't match any existing node, that node is created.
 
 ```openCypher
 MERGE (city:City { name: 'London' })
-RETURN city
+RETURN city;
 ```
 
 Output:
@@ -93,14 +95,14 @@ Output:
 +--------------------------+
 ```
 
-4. Merging nodes with existing node properties
+### 1.4 Merging nodes with existing node properties
 
 If `MERGE` is used with properties on an existing node, a new node is created for each unique value of that property.
 
 ```openCypher
 MATCH (p:Person)
 MERGE (h:Human { name: p.name })
-RETURN h.name
+RETURN h.name;
 ```
 
 Output:
@@ -114,14 +116,75 @@ Output:
 +--------+
 ```
 
-5. Merging with `ON CREATE`
+## 2. Merging relationships
+
+### 2.1 Merging relationships
+
+Just as with nodes, `MERGE` can be used to match or create relationships.
+
+```openCypher
+MATCH (p1:Person { name: 'John' }), (p2:Person { name: 'Anna' })
+MERGE (p1)-[r:RELATED]->(p2)
+RETURN r;
+```
+
+Output:
+```
++-----------+
+| r         |
++-----------+
+| [RELATED] |
++-----------+
+```
+
+Multiple relationships can be matched or created with `MERGE` in the same query.
+
+```openCypher
+MATCH (p1:Person { name: 'John' }), (p2:Person { name: 'Anna' })
+MERGE (p1)-[r1:RELATED_TO]->(p2)-[r2:RELATED_TO]->(p1)
+RETURN r1, r2;
+```
+
+Output:
+```
++--------------+--------------+
+| r1           | r2           |
++--------------+--------------+
+| [RELATED_TO] | [RELATED_TO] |
++--------------+--------------+
+```
+
+### 2.1 Merging on undirected relationships
+
+If `MERGE` is used on an undirected relationship, the direction will be chosen at random.
+
+```openCypher
+MATCH (p1:Person { name: 'John' }), (p2:Person { name: 'Anna' })
+MERGE path=((p1)-[r:WORKS_WITH]-(p2))
+RETURN path;
+```
+
+Output:
+```
++-----------------------------------------------------------------+
+| p                                                               |
++-----------------------------------------------------------------+
+| (:Person {name: "John"})-[WORKS_WITH]->(:Person {name: "Anna"}) |
++-----------------------------------------------------------------+
+```
+
+In this example, a path is returned to show the direction of the relationships.
+
+## 3. Merging with `ON CREATE` and `ON MATCH`
+
+### 3.1 Merging with `ON CREATE`
 
 The `ON CREATE` part of a `MERGE` clause will only be executed if the node needs to be created.
 
 ```openCypher
 MERGE (p:Person { name: 'Lucille' })
 ON CREATE SET p.date_of_creation = timestamp()
-RETURN p.name, p.date_of_creation
+RETURN p.name, p.date_of_creation;
 ```
 
 Output:
@@ -133,14 +196,14 @@ Output:
 +--------------------+--------------------+
 ```
 
-6. Merging with `ON MATCH`
+### 3.2 Merging with `ON MATCH`
 
 The `ON MATCH` part of a `MERGE` clause will only be executed if the node is found.
 
 ```openCypher
 MERGE (p:Person { name: 'John' })
 ON MATCH SET p.found = TRUE
-RETURN p.name, p.found
+RETURN p.name, p.found;
 ```
 
 Output:
@@ -152,7 +215,7 @@ Output:
 +---------+---------+
 ```
 
-7. Merging with `ON CREATE` and `ON MATCH`
+### 3.3 Merging with `ON CREATE` and `ON MATCH`
 
 The `MERGE` clause can be used with both the `ON CREATE` and `ON MATCH` options.
 
@@ -160,7 +223,7 @@ The `MERGE` clause can be used with both the `ON CREATE` and `ON MATCH` options.
 MERGE (p:Person { name: 'Angela' })
 ON CREATE SET p.notFound = TRUE
 ON MATCH SET p.found = TRUE
-RETURN p.name, p.notFound, p.found
+RETURN p.name, p.notFound, p.found;
 ```
 
 Output:
@@ -171,5 +234,3 @@ Output:
 | Angela     | true       | Null       |
 +------------+------------+------------+
 ```
-
-1. Merging on a relationship

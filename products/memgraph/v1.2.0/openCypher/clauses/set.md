@@ -16,9 +16,9 @@ The `SET` clause is used to update labels on nodes and properties on nodes and r
 ```openCypher
 MATCH (n) DETACH DELETE n;
 
-CREATE (c1:Country { name: 'Germany'});
-CREATE (c2:Country { name: 'France'});
-CREATE (c3:Country { name: 'United Kingdom'});
+CREATE (c1:Country { name: 'Germany', language: 'German', continent: 'Europe', population: 83000000 });
+CREATE (c2:Country { name: 'France', language: 'French', continent: 'Europe', population: 67000000 });
+CREATE (c3:Country { name: 'United Kingdom', language: 'English', continent: 'Europe', population: 66000000 });
 
 MATCH (c1),(c2)
 WHERE c1.name= 'Germany' AND c2.name = 'France'
@@ -49,8 +49,17 @@ The `SET` clause can be used to set the value of a property on a node or relatio
 
 ```openCypher
 MATCH (c:Country { name: 'Germany' })
-SET c.population = 83000000
-RETURN c
+SET c.population = 83000001
+RETURN c.name, c.population;
+```
+
+Output:
+```
++--------------+--------------+
+| c.name       | c.population |
++--------------+--------------+
+| Germany      | 83000001     |
++--------------+--------------+
 ```
 
 ## 2. Set multiple properties
@@ -59,8 +68,17 @@ The `SET` clause can be used to set the value of multiple properties nodes or re
 
 ```openCypher
 MATCH (c:Country { name: 'Germany' })
-SET c.population = 83000000, c.continent = 'Europe'
-RETURN c
+SET c.capital = 'Berlin', c.population = 83000002
+RETURN c.name, c.population, c.capital;
+```
+
+Output:
+```
++--------------+--------------+--------------+
+| c.name       | c.population | c.capital    |
++--------------+--------------+--------------+
+| Germany      | 83000002     | Berlin       |
++--------------+--------------+--------------+
 ```
 
 ## 3. Set node label
@@ -70,7 +88,16 @@ The `SET` clause can be used to set the label on a node. If the node has a label
 ```openCypher
 MATCH (c { name: 'Germany' })
 SET c:Land
-RETURN c
+RETURN labels(c);
+```
+
+Output:
+```
++---------------------+
+| labels(c)           |
++---------------------+
+| ["Country", "Land"] |
++---------------------+
 ```
 
 Multiple labels can be also set.
@@ -78,7 +105,16 @@ Multiple labels can be also set.
 ```openCypher
 MATCH (c { name: 'Germany' })
 SET c:Place:Area
-RETURN c
+RETURN labels(c);
+```
+
+Output:
+```
++--------------------------------------+
+| labels(c)                            |
++--------------------------------------+
+| ["Country", "Land", "Place", "Area"] |
++--------------------------------------+
 ```
 
 ## 4. Update a property
@@ -87,8 +123,17 @@ The `SET` clause can be used to update the value or type of a property on a node
 
 ```openCypher
 MATCH (c:Country { name: 'Germany' })
-SET c.population = 84000000
-RETURN c
+SET c.population = 'not available'
+RETURN c.population;
+```
+
+Output:
+```
++---------------+
+| c.population  |
++---------------+
+| not available |
++---------------+
 ```
 
 ## 5. Removing a property
@@ -98,7 +143,16 @@ The `SET` clause can be used to remove the value of a property on a node or rela
 ```openCypher
 MATCH (c:Country { name: 'Germany' })
 SET c.population = NULL
-RETURN c
+RETURN c.population;
+```
+
+Output:
+```
++--------------+
+| c.population |
++--------------+
+| Null         |
++--------------+
 ```
 
 ## 6. Copy all properties
@@ -108,7 +162,16 @@ If `SET` is used to copy the properties of one node/relationship to another, all
 ```openCypher
 MATCH (c1:Country { name: 'Germany' }), (c2:Country { name: 'France' })
 SET c2 = c1
-RETURN c2, c1
+RETURN c2, c1;
+```
+
+Output:
+```
++----------------------------------------------------------------------------+----------------------------------------------------------------------------+
+| c2                                                                         | c1                                                                         |
++----------------------------------------------------------------------------+----------------------------------------------------------------------------+
+| (:Country {continent: "Europe", language: "German", name: "Germany"})      | (:Country:Land {continent: "Europe", language: "German", name: "Germany"}) |
++----------------------------------------------------------------------------+----------------------------------------------------------------------------+
 ```
 
 ## 7. Replacing all properties using map
@@ -119,7 +182,16 @@ The properties that are not on the node or relationship but are in the map will 
 ```openCypher
 MATCH (c:Country { name: 'Germany' })
 SET c = { name: 'Germany', population: '85000000'}
-RETURN c
+RETURN c;
+```
+
+Output:
+```
++------------------------------------------------------+
+| c                                                    |
++------------------------------------------------------+
+| (:Country {name: "Germany", population: "85000000"}) |
++------------------------------------------------------+
 ```
 
 If an empty map is used, all the properties of a node or relationship will be set to `NULL`.
@@ -127,7 +199,16 @@ If an empty map is used, all the properties of a node or relationship will be se
 ```openCypher
 MATCH (c:Country { name: 'Germany' })
 SET c = { }
-RETURN c
+RETURN c;
+```
+
+Output:
+```
++------------+
+| c          |
++------------+
+| (:Country) |
++------------+
 ```
 
 ## 8. Updating all properties using map
@@ -138,5 +219,14 @@ The properties that are not on the node or relationship but are in the map will 
 ```openCypher
 MATCH (c:Country { name: 'Germany' })
 SET c += { name: 'Germany', population: '85000000'}
-RETURN c
+RETURN c;
+```
+
+Output:
+```
++-----------------------------------------------------------------------------------------------+
+| c                                                                                             |
++-----------------------------------------------------------------------------------------------+
+| (:Country {continent: "Europe", language: "German", name: "Germany", population: "85000000"}) |
++-----------------------------------------------------------------------------------------------+
 ```

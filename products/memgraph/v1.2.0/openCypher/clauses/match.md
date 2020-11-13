@@ -147,7 +147,16 @@ The *related to* symbol `--` can be extended by using:
 
 ```openCypher
 MATCH (:Country { name: 'France' })<--(p:Person)
-RETURN p
+RETURN p;
+```
+
+Output:
+```
++--------------------------+
+| p                        |
++--------------------------+
+| (:Person {name: "John"}) |
++--------------------------+
 ```
 
 ### 2.4 Get a relationship
@@ -159,14 +168,36 @@ This query returns the relationship and its type:
 
 ```openCypher
 MATCH (:Person { name: 'John' })-[r]->()
-RETURN type(r)
+RETURN type(r);
+```
+
+Output:
+```
++--------------+
+| type(r)      |
++--------------+
+| WORKING_IN   |
+| LIVING_IN    |
+| FRIENDS_WITH |
++--------------+
 ```
 
 This query also returns the property `date_of_start` of the relationship:
 
 ```openCypher
 MATCH (:Person { name: 'John' })-[r]->()
-RETURN type(r), r.date_of_start
+RETURN type(r), r.date_of_start;
+```
+
+Output:
+```
++-----------------+-----------------+
+| type(r)         | r.date_of_start |
++-----------------+-----------------+
+| WORKING_IN      | 2014            |
+| LIVING_IN       | 2014            |
+| FRIENDS_WITH    | 2011            |
++-----------------+-----------------+
 ```
 
 ### 2.5 Match on a relationship with a type
@@ -176,7 +207,16 @@ A directed or undirected relationship can be used.
 
 ```openCypher
 MATCH (p:Person { name: 'John' })-[:LIVING_IN]-(c)
-RETURN c.name
+RETURN c.name;
+```
+
+Output:
+```
++---------+
+| c.name  |
++---------+
+| Germany |
++---------+
 ```
 
 ### 2.6 Match on a relationships with multiple types
@@ -185,17 +225,27 @@ To return relationships with any of the specified types, the types need to be ch
 
 ```openCypher
 MATCH (p:Person { name: 'John' })-[:LIVING_IN|:WORKING_IN]-(c)
-RETURN c.name
+RETURN c.name;
+```
+
+Output:
+```
++---------+
+| c.name  |
++---------+
+| France  |
+| Germany |
++---------+
 ```
 
 ### 2.7 Uncommon characters in relationship types 
 
 If a type has non-letter characters, like spaces, for example, the backtick symbol \` needs to be used to quote these.
-If the relationship type `LIVING_IN` had a space instead of an underscore.
+If the relationship type `LIVING_IN` had a space instead of an underscore, a possible query would look like this.
 
 ```openCypher
 MATCH (:Country { name: 'France' })<-[r:`LIVING IN`]-()
-RETURN r.name
+RETURN r.name;
 ```
 
 ### 2.8 Match with multiple relationships
@@ -204,7 +254,16 @@ Multiple relationship statements can be specified in the query.
 
 ```openCypher
 MATCH (:Country { name: 'France' })<-[l:WORKING_IN]-(p)-[w:LIVING_IN]->(:Country { name: 'Germany' })
-RETURN p.name
+RETURN p.name;
+```
+
+Output:
+```
++--------+
+| p.name |
++--------+
+| John   |
++--------+
 ```
 
 ## 3. Matching with variable length relationships
@@ -217,7 +276,18 @@ only one is set which implies a fixed length pattern.
 
 ```openCypher
 MATCH ({ name: 'United Kingdom' })-[:LIVING_IN*1..2]-(n)
-RETURN n
+RETURN n;
+```
+
+Output:
+```
++---------------------------------------------------------------------------------------------+
+| n                                                                                           |
++---------------------------------------------------------------------------------------------+
+| (:Person {name: "Harry"})                                                                   |
+| (:Person {name: "Anna"})                                                                    |
+| (:Country {continent: "Europe", language: "German", name: "Germany", population: 83000000}) |
++---------------------------------------------------------------------------------------------+
 ```
 
 ### 3.2 Variable length relationships with multiple relationship types
@@ -226,7 +296,18 @@ If variable lengths are used with multiple stacked up relationship types, `*minH
 
 ```openCypher
 MATCH ({ name: 'United Kingdom' })<-[:WORKING_IN|FRIENDS_WITH*1..2]-(P:Person)
-RETURN P
+RETURN P;
+```
+
+Output:
+```
++---------------------------+
+| P                         |
++---------------------------+
+| (:Person {name: "John"})  |
+| (:Person {name: "Harry"}) |
+| (:Person {name: "Anna"})  |
++---------------------------+
 ```
 
 ### 3.3 Returning multiple relationships with variable length
@@ -234,6 +315,15 @@ RETURN P
 If a variable length is used, the list of relationships can be returned by adding `variable=` at the beginning of the `MATCH` clause.
 
 ```openCypher
-MATCH p=({ name: 'John' })<-[:FRIENDS_WITH*2]-()
-RETURN relationships(p)
+MATCH p=({ name: 'John' })<-[:FRIENDS_WITH*1..2]-()
+RETURN relationships(p);
+```
+
+Output:
+```
++----------------------------------------+
+| relationships(p)                       |
++----------------------------------------+
+| [[FRIENDS_WITH {date_of_start: 2012}]] |
++----------------------------------------+
 ```

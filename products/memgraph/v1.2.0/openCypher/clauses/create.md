@@ -48,7 +48,7 @@ Output:
 +------------+
 ```
 
-If you wish to add more labels to a node, use the following syntax:
+If you wish to add multiple labels to a node, use the following syntax:
 
 ```openCypher
 CREATE (n:Country:City)

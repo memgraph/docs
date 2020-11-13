@@ -10,9 +10,9 @@ The `REMOVE` clause is used to remove labels and properties from nodes and edges
 ```openCypher
 MATCH (n) DETACH DELETE n;
 
-CREATE (c1:Country { name: 'Germany'});
-CREATE (c2:Country { name: 'France'});
-CREATE (c3:Country { name: 'United Kingdom'});
+CREATE (c1:Country { name: 'Germany', language: 'German', continent: 'Europe', population: 83000000 });
+CREATE (c2:Country { name: 'France', language: 'French', continent: 'Europe', population: 67000000 });
+CREATE (c3:Country { name: 'United Kingdom', language: 'English', continent: 'Europe', population: 66000000 });
 
 MATCH (c1),(c2)
 WHERE c1.name= 'Germany' AND c2.name = 'France'
@@ -44,7 +44,16 @@ The `REMOVE` clause can be used to remove a property from a node or relationship
 ```opencypher
 MATCH (n:Country { name: 'United Kingdom' })
 REMOVE n.name
-RETURN n
+RETURN n;
+```
+
+Output:
+```
++-----------------------------------------------------------------------------+
+| n                                                                           |
++-----------------------------------------------------------------------------+
+| (:Country {continent: "Europe", language: "English", population: 66000000}) |
++-----------------------------------------------------------------------------+
 ```
 
 The `REMOVE` clause can't be used to remove all properties from a node or relationship. Instead, take a look at the `SET` clause.
@@ -56,20 +65,40 @@ The `REMOVE` clause can be used to remove a label from a node.
 ```opencypher
 MATCH (n:Country { name: 'United Kingdom' })
 REMOVE n:Country
-RETURN n
+RETURN n;
+```
+
+Output:
+```
++--------------------------------------------------------------------------------------------+
+| n                                                                                          |
++--------------------------------------------------------------------------------------------+
+| ({continent: "Europe", language: "English", name: "United Kingdom", population: 66000000}) |
++--------------------------------------------------------------------------------------------+
 ```
 
 Let's add the label `Country` back to the node with the name `United Kingdom` and the aditional label `Kingdom`.
 
 ```opencypher
 MATCH (n { name: 'United Kingdom' })
-SET n:Country:Kingdom
+SET n:Country:Kingdom;
 ```
 
 You can now remove multiple labels from a node at the same time. 
 
 ```opencypher
-MATCH (n:Country { name: 'United Kingdom' })
-REMOVE n:Country:Kingdom
-RETURN n
++--------------------------------------------------------------------------------------------+
+| n                                                                                          |
++--------------------------------------------------------------------------------------------+
+| ({continent: "Europe", language: "English", name: "United Kingdom", population: 66000000}) |
++--------------------------------------------------------------------------------------------+
+```
+
+Output:
+```
++------+
+| c2   |
++------+
+| Null |
++------+
 ```

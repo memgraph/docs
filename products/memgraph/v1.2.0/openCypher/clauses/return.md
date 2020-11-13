@@ -18,9 +18,9 @@ The `RETURN` clause defines which data should be included in the resulting set.
 ```openCypher
 MATCH (n) DETACH DELETE n;
 
-CREATE (c1:Country { name: 'Germany'});
-CREATE (c2:Country { name: 'France'});
-CREATE (c3:Country { name: 'United Kingdom'});
+CREATE (c1:Country { name: 'Germany', language: 'German', continent: 'Europe', population: 83000000 });
+CREATE (c2:Country { name: 'France', language: 'French', continent: 'Europe', population: 67000000 });
+CREATE (c3:Country { name: 'United Kingdom', language: 'English', continent: 'Europe', population: 66000000 });
 
 MATCH (c1),(c2)
 WHERE c1.name= 'Germany' AND c2.name = 'France'
@@ -51,7 +51,16 @@ The node variable needs to be added to the `RETURN` statement.
 
 ```openCypher
 MATCH (c:Country { name: 'United Kingdom'})
-RETURN c
+RETURN c;
+```
+
+Output:
+```
++-----------------------------------------------------------------------------------------------------+
+| c                                                                                                   |
++-----------------------------------------------------------------------------------------------------+
+| (:Country {continent: "Europe", language: "English", name: "United Kingdom", population: 66000000}) |
++-----------------------------------------------------------------------------------------------------+
 ```
 
 ## 2. Returning relationships
@@ -60,7 +69,17 @@ The relationship variable needs to be added to the `RETURN` statement.
 
 ```openCypher
 MATCH (c:Country { name: 'United Kingdom'})-[r]-(:Person { name: 'Harry'})
-RETURN type(r)
+RETURN type(r);
+```
+
+Output:
+```
++------------+
+| type(r)    |
++------------+
+| WORKING_IN |
+| LIVING_IN  |
++------------+
 ```
 
 ## 3. Returning properties
@@ -69,7 +88,16 @@ The property of a node or a relationship can be returned by using the dot separa
 
 ```openCypher
 MATCH (c:Country { name: 'United Kingdom'})
-RETURN c.name
+RETURN c.name;
+```
+
+Output:
+```
++----------------+
+| c.name         |
++----------------+
+| United Kingdom |
++----------------+
 ```
 
 ## 4. Returning multiple elements
@@ -78,7 +106,16 @@ To return multiple elements separate them with a comma character.
 
 ```openCypher
 MATCH (c:Country { name: 'United Kingdom'})
-RETURN c.name, c.population, c.continent
+RETURN c.name, c.population, c.continent;
+```
+
+Output:
+```
++----------------+----------------+----------------+
+| c.name         | c.population   | c.continent    |
++----------------+----------------+----------------+
+| United Kingdom | 66000000       | Europe         |
++----------------+----------------+----------------+
 ```
 
 # 5. Returning all elements
@@ -87,17 +124,29 @@ To return all the elements from a query use the `*` symbol.
 
 ```openCypher
 MATCH (:Country { name: 'United Kingdom'})-[]-(p:Person)
-RETURN *
+RETURN *;
+```
+
+Output:
+```
++---------------------------+
+| p                         |
++---------------------------+
+| (:Person {name: "Harry"}) |
+| (:Person {name: "Harry"}) |
+| (:Person {name: "Anna"})  |
++---------------------------+
 ```
 
 # 6. Handling uncommon character
 
 Uncommon characters are handled using placeholder variables enclosed with the symbol `\``.
+Fpr example, a query could look like this:
 
 ```openCypher
 MATCH (`An uncommon variable!`)
 WHERE `An uncommon variable!`.name = 'A'
-RETURN `An uncommon variable!`.value
+RETURN `An uncommon variable!`.value;
 ```
 
 # 7. Returning element with alias
@@ -106,7 +155,16 @@ You can specify an alias for an element in the `RETURN` statement using `AS`.
 
 ```openCypher
 MATCH (c:Country { name: 'United Kingdom'})
-RETURN c.name AS Name
+RETURN c.name AS Name;
+```
+
+Output:
+```
++----------------+
+| Name           |
++----------------+
+| United Kingdom |
++----------------+
 ```
 
 # 8. Optional properties
@@ -115,7 +173,16 @@ If the property being returned does not exist, `null` will be returned.
 
 ```openCypher
 MATCH (c:Country { name: 'United Kingdom'})
-RETURN c.color
+RETURN c.color;
+```
+
+Output:
+```
++---------+
+| c.color |
++---------+
+| Null    |
++---------+
 ```
 
 # 9. Returning expressions
@@ -124,7 +191,16 @@ RETURN c.color
 
 ```openCypher
 MATCH (c:Country { name: 'United Kingdom'})
-RETURN c.name = 'United Kingdom', "Literal"
+RETURN c.name = 'United Kingdom', "Literal";
+```
+
+Output:
+```
++---------------------------+---------------------------+
+| c.name = 'United Kingdom' | "Literal"                 |
++---------------------------+---------------------------+
+| true                      | Literal                   |
++---------------------------+---------------------------+
 ```
 
 # 10. Returning unique results
@@ -133,5 +209,15 @@ The `RETURN` statement can be followed by the `DISTINCT` operator, which will re
 
 ```openCypher
 MATCH ()-[:LIVING_IN]->(c)
-RETURN DISTINCT c
+RETURN DISTINCT c;
+```
+
+Output:
+```
++-----------------------------------------------------------------------------------------------------+
+| c                                                                                                   |
++-----------------------------------------------------------------------------------------------------+
+| (:Country {continent: "Europe", language: "German", name: "Germany", population: 83000000})         |
+| (:Country {continent: "Europe", language: "English", name: "United Kingdom", population: 66000000}) |
++-----------------------------------------------------------------------------------------------------+
 ```
