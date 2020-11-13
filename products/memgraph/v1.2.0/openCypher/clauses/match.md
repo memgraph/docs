@@ -2,22 +2,22 @@
 
 The `MATCH` clause is used to obtain data from the database by matching it to a given pattern.
 
-1. Basic node matching
-    1. Get all nodes
-    2. Get all nodes with a label
-2. Basic matching with relationships
-    1. Get all related nodes
-    2. Get related nodes with a label
-    3. Get related nodes with a directed relationship
-    4. Get a relationship
-    5. Matching on a relationship with a type
-    6. Matching on relationships with multiple types
-    7. Uncommon characters in relationship types 
-    8. Match with multiple relationships
-3. Matching with variable length relationships
-    1. Variable length relationships
-    2. Variable length relationships with multiple relationship types
-    3. Returning multiple relationships with variable length
+1. [Basic node matching](#1-basic-node-matching)
+    1. [Get all nodes](#1-1-get-all-nodes)
+    2. [Get all nodes with a label](#1-2-get-all-nodes-with-a-label)
+2. [Basic matching with relationships](#2-basic-matching-with-relationships)
+    1. [Get all related nodes](#2-1-get-all-related-nodes)
+    2. [Get related nodes with a label](#2-2-get-related-nodes-with-a-label)
+    3. [Get related nodes with a directed relationship](#2-3-get-related-nodes-with-a-directed-relationship)
+    4. [Get a relationship](#2-4-get-a-relationship)
+    5. [Matching on a relationship with a type](#2-5-matching-on-a-relationship-with-a-type)
+    6. [Matching on relationships with multiple types](#2-6-matching-on-relationships-with-multiple-types)
+    7. [Uncommon characters in relationship types](#2-7-uncommon-characters-in-relationship-types)
+    8. [Match with multiple relationships](#2-8-match-with-multiple-relationships)
+3. [Matching with variable length relationships](#3-matching-with-variable-length-relationships)
+    1. [Variable length relationships](#3-1-variable-length-relationships)
+    2. [Variable length relationships with multiple relationship types](#3-2-variable-length-relationships-with-multiple-relationship-types)
+    3. [Returning multiple relationships with variable length](#3-3-returning-multiple-relationships-with-variable-length)
 
 ## Data Set
 

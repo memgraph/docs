@@ -2,11 +2,10 @@
 
 The `DELETE` clause is used to delete nodes and edges from the database.
 
-0. Data set
-1. Delete a node 
-2. Delete a node and its relationships
-3. Delete a relationship
-4. Delete everything
+1. [Deleting a node](#1-deleting-a-node)
+2. [Deleting a node and its relationships](#2-deleting-a-node-and-its-relationships)
+3. [Deleting a relationship](#3-deleting-a-relationship)
+4. [Deleting everything](#4-deleting-everything)
 
 ## Data Set
 
@@ -15,7 +14,7 @@ locally by executing the queries at the end of the page: [Data Set Queries](#Dat
 
 <img src="https://raw.githubusercontent.com/g-despot/images/master/data_set.png" height=400 />
 
-## 1. Delete a node
+## 1. Deleting a node
 
 The `DELETE` clause can be used to delete a node.
 
@@ -31,7 +30,7 @@ Failed to remove node because of it's existing connections. Consider using DETAC
 
 This will however result in an error because `DELETE` can only be used on nodes that have no relationships.
 
-## 2. Delete a node and its relationships
+## 2. Deleting a node and its relationships
 
 The `DELETE` clause can be used to delete a node along with all of its relationships with the keyword `DETACH`.
 
@@ -45,7 +44,7 @@ Output:
 Empty set (0.001 sec)
 ```
 
-## 3. Delete a relationship
+## 3. Deleting a relationship
 
 The `DELETE` clause can be used to delete a relationship.
 
@@ -59,7 +58,7 @@ Output:
 Empty set (0.003 sec)
 ```
 
-## 4. Delete everything
+## 4. Deleting everything
 
 To delete all nodes and relationships in a graph, use the following query.
 

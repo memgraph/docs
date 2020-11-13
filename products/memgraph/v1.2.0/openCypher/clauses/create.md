@@ -1,6 +1,6 @@
 # CREATE
 
-The `CREATE` clause is used to create nodes and relationships of a graph.
+The `CREATE` clause is used to create nodes and relationships in a graph.
 
 1. [Creating nodes](#1-creating-nodes)
     1. [Creating a single node](#1-1-creating-a-single-node)
@@ -104,7 +104,7 @@ Output:
 
 ### 2.1 Creating a relationship between two nodes
 
-To create a relationship between two nodes we need to specify which nodes 
+To create a relationship between two nodes, we need to specify which nodes 
 either by creating them or filtering them with the `WHERE` clause.
 
 ```openCypher
