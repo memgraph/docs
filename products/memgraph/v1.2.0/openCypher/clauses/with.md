@@ -1,11 +1,11 @@
-# OPTIONAL MATCH
+# WITH
 
-The `MATCH` clause can be modified by prepending the `OPTIONAL` keyword. 
-`OPTIONAL MATCH` clause behaves the same as a regular `MATCH`, but when it fails to find the pattern, 
-missing parts of the pattern will be filled with null values.
+The `WITH` is used to chain together parts of a query, piping the results from one to be used as starting points or criteria in the next.
 
-1. [Get optional relationships](#1-get-optional-relationships)
-2. [Matching with variable length relationships](#2-matching-with-variable-length-relationships)
+1. [Filter on aggregate functions](#1-filter-on-aggregate-functions)
+2. [Sorting results](#2-sorting-results)
+3. [Limited path searches](#3-limited-path-searches)
+
 
 ## Data Set
 
@@ -14,47 +14,71 @@ locally by executing the queries at the end of the page: [Data Set Queries](#Dat
 
 <img src="https://raw.githubusercontent.com/g-despot/images/master/data_set.png" height=400 />
 
-## 1. Get optional relationships
+## 1. Filter on aggregate functions
 
-Using `OPTIONAL MATCH` when returning a relationship that doesn't exist will return the default value `NULL` instead.
-
-The returned property of an optional element that is `NULL` will also be `NULL`.
+Aggregated results have to pass through a `WITH` if you want to filter them.
 
 ```openCypher
-MATCH (c1:Country { name: 'France' })
-OPTIONAL MATCH (c1)--(c2:Country { name: 'Germany' })
-RETURN c2;
+MATCH (p:Person { name: 'John' })--(person)-->()
+WITH person, count(*) AS foaf
+WHERE foaf > 1
+RETURN person.name;
 ```
 
 Output:
 ```
-+------+
-| c2   |
-+------+
-| Null |
-+------+
++-------------+
+| person.name |
++-------------+
+| Harry       |
+| Anna        |
++-------------+
 ```
 
-## 2. Optional typed and named relationship
+## 2. Sorting results
 
-The `OPTIONAL MATCH` clause allows you to use the same conventions as `MATCH` when it comes to handling variables and relationship types.
+The `WITH` clause can be used to order results before using `collect()` on them.
 
 ```openCypher
-MATCH (c:Country { name: 'United Kingdom' })
-OPTIONAL MATCH (c)-[r:LIVES_IN]->()
-RETURN c.name, r;
+MATCH (n)
+WITH n
+ORDER BY n.name ASC LIMIT 3
+RETURN collect(n.name);
 ```
 
 Output:
 ```
-+----------------+----------------+
-| c.name         | r              |
-+----------------+----------------+
-| United Kingdom | Null           |
-+----------------+----------------+
++-------------------------------+
+| collect(n.name)               |
++-------------------------------+
+| ["Anna", "France", "Germany"] |
++-------------------------------+
 ```
 
-Because there are no outgoing relationships of type `LIVES_IN` for the node, the value of r is `null` while the value of `contry.name` is `'United Kingdom'`.
+## 3. Limited path searches
+
+The `WITH` clause can be used to match paths, limit to a certain number, 
+and then match again using those paths as a base.
+
+```openCypher
+MATCH (p1 { name: 'John' })--(p2)
+WITH p2
+ORDER BY p2.name ASC LIMIT 1
+MATCH (p2)--(p3)
+RETURN p3.name;
+```
+
+Output:
+```
++----------------+
+| p3.name        |
++----------------+
+| John           |
+| Harry          |
+| Germany        |
+| United Kingdom |
++----------------+
+```
 
 ## Data set Queries
 

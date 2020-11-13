@@ -1,11 +1,9 @@
-# OPTIONAL MATCH
+# UNION
 
-The `MATCH` clause can be modified by prepending the `OPTIONAL` keyword. 
-`OPTIONAL MATCH` clause behaves the same as a regular `MATCH`, but when it fails to find the pattern, 
-missing parts of the pattern will be filled with null values.
+The `UNION` clause is used to combine the result of multiple queries.
 
-1. [Get optional relationships](#1-get-optional-relationships)
-2. [Matching with variable length relationships](#2-matching-with-variable-length-relationships)
+1. [Combine queries and retain duplicates](#1-combine-queries-and-retain-duplicates)
+2. [Combine queries and remove duplicates](#2-combine-queries-and-remove-duplicates)
 
 ## Data Set
 
@@ -14,47 +12,67 @@ locally by executing the queries at the end of the page: [Data Set Queries](#Dat
 
 <img src="https://raw.githubusercontent.com/g-despot/images/master/data_set.png" height=400 />
 
-## 1. Get optional relationships
+## 1. Combine queries and retain duplicates
 
-Using `OPTIONAL MATCH` when returning a relationship that doesn't exist will return the default value `NULL` instead.
+To combine two or more queries and return their results without removing duplicates, use the `UNION ALL` clause.
+First, let's add a few existing nodes to the data set.
 
-The returned property of an optional element that is `NULL` will also be `NULL`.
+```opencypher
+CREATE (:Person { name: 'John' });
+CREATE (:Person { name: 'Anna' });
+```
 
-```openCypher
-MATCH (c1:Country { name: 'France' })
-OPTIONAL MATCH (c1)--(c2:Country { name: 'Germany' })
-RETURN c2;
+A query with the `UNION ALL` clause could look like this:
+
+```opencypher
+MATCH (c:Country) 
+RETURN c.name as columnName
+UNION ALL 
+MATCH (p:Person)
+RETURN p.name AS columnName;
 ```
 
 Output:
 ```
-+------+
-| c2   |
-+------+
-| Null |
-+------+
++----------------+
+| columnName     |
++----------------+
+| Germany        |
+| France         |
+| United Kingdom |
+| John           |
+| Harry          |
+| Anna           |
+| John           |
+| Anna           |
++----------------+
 ```
 
-## 2. Optional typed and named relationship
+## 2. Combine queries and remove duplicates
 
-The `OPTIONAL MATCH` clause allows you to use the same conventions as `MATCH` when it comes to handling variables and relationship types.
+To combine two or more queries and return their results without removing duplicates, use the `UNION` clause without `ALL`.
 
-```openCypher
-MATCH (c:Country { name: 'United Kingdom' })
-OPTIONAL MATCH (c)-[r:LIVES_IN]->()
-RETURN c.name, r;
+```opencypher
+MATCH (c:Country) 
+RETURN c.name as columnName
+UNION 
+MATCH (p:Person)
+RETURN p.name AS columnName;
 ```
 
 Output:
 ```
-+----------------+----------------+
-| c.name         | r              |
-+----------------+----------------+
-| United Kingdom | Null           |
-+----------------+----------------+
++----------------+
+| columnName     |
++----------------+
+| Germany        |
+| France         |
+| United Kingdom |
+| John           |
+| Harry          |
+| Anna           |
++----------------+
 ```
-
-Because there are no outgoing relationships of type `LIVES_IN` for the node, the value of r is `null` while the value of `contry.name` is `'United Kingdom'`.
 
 ## Data set Queries
 
@@ -87,6 +105,9 @@ CREATE (p1)<-[:FRIENDS_WITH { date_of_start: 2012 }]-(:Person { name: 'Anna' })-
 MATCH (p),(c1),(c2)
 WHERE p.name = 'Anna' AND c1.name = 'United Kingdom' AND c2.name = 'Germany'
 CREATE (c2)<-[:LIVING_IN { date_of_start: 2014 }]-(p)-[:LIVING_IN { date_of_start: 2014 }]->(c1);
+
+CREATE (:Person { name: 'John' });
+CREATE (:Person { name: 'Anna' });
 
 MATCH (n)-[r]->(m) RETURN n,r,m;
 ```

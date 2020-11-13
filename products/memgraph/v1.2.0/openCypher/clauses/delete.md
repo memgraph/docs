@@ -1,11 +1,11 @@
-# OPTIONAL MATCH
+# DELETE
 
-The `MATCH` clause can be modified by prepending the `OPTIONAL` keyword. 
-`OPTIONAL MATCH` clause behaves the same as a regular `MATCH`, but when it fails to find the pattern, 
-missing parts of the pattern will be filled with null values.
+The `DELETE` clause is used to delete nodes and edges from the database.
 
-1. [Get optional relationships](#1-get-optional-relationships)
-2. [Matching with variable length relationships](#2-matching-with-variable-length-relationships)
+1. [Deleting a node](#1-deleting-a-node)
+2. [Deleting a node and its relationships](#2-deleting-a-node-and-its-relationships)
+3. [Deleting a relationship](#3-deleting-a-relationship)
+4. [Deleting everything](#4-deleting-everything)
 
 ## Data Set
 
@@ -14,47 +14,63 @@ locally by executing the queries at the end of the page: [Data Set Queries](#Dat
 
 <img src="https://raw.githubusercontent.com/g-despot/images/master/data_set.png" height=400 />
 
-## 1. Get optional relationships
+## 1. Deleting a node
 
-Using `OPTIONAL MATCH` when returning a relationship that doesn't exist will return the default value `NULL` instead.
+The `DELETE` clause can be used to delete a node.
 
-The returned property of an optional element that is `NULL` will also be `NULL`.
-
-```openCypher
-MATCH (c1:Country { name: 'France' })
-OPTIONAL MATCH (c1)--(c2:Country { name: 'Germany' })
-RETURN c2;
-```
-
-Output:
-```
-+------+
-| c2   |
-+------+
-| Null |
-+------+
-```
-
-## 2. Optional typed and named relationship
-
-The `OPTIONAL MATCH` clause allows you to use the same conventions as `MATCH` when it comes to handling variables and relationship types.
-
-```openCypher
+```opencypher
 MATCH (c:Country { name: 'United Kingdom' })
-OPTIONAL MATCH (c)-[r:LIVES_IN]->()
-RETURN c.name, r;
+DELETE c;
 ```
 
 Output:
 ```
-+----------------+----------------+
-| c.name         | r              |
-+----------------+----------------+
-| United Kingdom | Null           |
-+----------------+----------------+
+Failed to remove node because of it's existing connections. Consider using DETACH DELETE.
 ```
 
-Because there are no outgoing relationships of type `LIVES_IN` for the node, the value of r is `null` while the value of `contry.name` is `'United Kingdom'`.
+This will however result in an error because `DELETE` can only be used on nodes that have no relationships.
+
+## 2. Deleting a node and its relationships
+
+The `DELETE` clause can be used to delete a node along with all of its relationships with the keyword `DETACH`.
+
+```opencypher
+MATCH (n:Country { name: 'United Kingdom' })
+DETACH DELETE n;
+```
+
+Output:
+```
+Empty set (0.001 sec)
+```
+
+## 3. Deleting a relationship
+
+The `DELETE` clause can be used to delete a relationship.
+
+```opencypher
+MATCH (n:Country { name: 'Germany' })-[r:LIVING_IN]-()
+DELETE r;
+```
+
+Output:
+```
+Empty set (0.003 sec)
+```
+
+## 4. Deleting everything
+
+To delete all nodes and relationships in a graph, use the following query.
+
+```opencypher
+MATCH (n)
+DETACH DELETE n;
+```
+
+Output:
+```
+Empty set (0.001 sec)
+```
 
 ## Data set Queries
 
