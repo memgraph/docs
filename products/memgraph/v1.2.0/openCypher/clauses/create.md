@@ -2,14 +2,14 @@
 
 The `CREATE` clause is used to create nodes and relationships of a graph.
 
-1. Creating nodes
-    1. Creating a single node
-    2. Creating a node with properties
-    3. Creating multiple nodes
-2. Creating relationships
-    1. Creating a relationship between two nodes
-    2. Creating a relationship with properties
-3. Creating a path 
+1. [Creating nodes](#1-Creating-nodes)
+    1. [Creating a single node](#11-Creating-a-single-node)
+    2. [Creating a node with properties](#12-Creating-a-node-with-properties)
+    3. [Creating multiple nodes](#13-Creating-multiple-nodes)
+2. [Creating relationships](#2-Creating-relationships)
+    1. [Creating a relationship between two nodes](#21-Creating-a-relationship-between-two-nodes)
+    2. [Creating a relationship with properties](#22-Creating-a-relationship-with-properties)
+3. [Creating a path](#3-Creating-a-path)
 
 ## 1. Creating nodes
 
@@ -160,7 +160,7 @@ Output:
 +---------------------------------+
 ```
 
-## 3 Creating a path
+## 3. Creating a path
 
 When creating a path, all of the parts of the pattern that don't exist will be created.
 

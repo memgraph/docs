@@ -2,12 +2,15 @@
 
 The `WITH` is used to chain together parts of a query, piping the results from one to be used as starting points or criteria in the next.
 
-1. [Filter on aggregate functions](#1.-Filter-on-aggregate-functions)
-2. [Sorting results](#2.-Sorting-results)
-3. [Limited path searches](#3.-Limited-path-searches)
+1. [Filter on aggregate functions](#1-Filter-on-aggregate-functions)
+2. [Sorting results](#2-Sorting-results)
+3. [Limited path searches](#3-Limited-path-searches)
 
 
 ## Data Set
+
+The following examples are executed with this data set in the database. You can create this data set 
+locally by executing the queries at the end of the page: [Data Set Queries](#Data-set-queries).
 
 <img src="https://raw.githubusercontent.com/g-despot/images/master/data_set.png" height=400 />
 
@@ -77,7 +80,10 @@ Output:
 +----------------+
 ```
 
-## Data set queries
+## Data set Queries
+
+We encourage you to try out the examples by yourself. Just run the following queries to 
+get the data set we have been exploring in our examples.
 
 ```openCypher
 MATCH (n) DETACH DELETE n;
