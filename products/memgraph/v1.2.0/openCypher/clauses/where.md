@@ -6,18 +6,18 @@ The difference when using `WHERE` with these clauses is that it only filter the 
 
 `WHERE` is part of the directly preceding `MATCH` or `OPTIONAL MATCH` clause and should always be used like that to avoid problems with performance or results.
 
-1. Basic usage
-    1. Boolean Operators
-    2. Inequality Operators Operators
-    3. Filter with node labels
-    4. Filter with node properties
-    5. Filter with relationship properties
-    6. Check if property is not null 
-2. Basic matching with relationships
-    1. Get all related nodes
-    2. Get related nodes with a label
-    3. Get related nodes with a directed relationship
-    4. Get a relationship
+1. [Basic usage](#1-basic-usage)
+    1. [Boolean Operators](#1-1-boolean-operators)
+    2. [Inequality Operators Operators](#1-2-inequality-operators-operators)
+    3. [Filter with node labels](#1-3-filter-with-node-labels)
+    4. [Filter with node properties](#1-4-filter-with-node-properties)
+    5. [Filter with relationship properties](#1-5-filter-with-relationship-properties)
+    6. [Check if property is not null](#1-6-check-if-property-is-not-null)
+2. [Basic matching with relationships](#1-basic-matching-with-relationships)
+    1. [Get all related nodes](#2-1-get-all-related-nodes)
+    2. [Get related nodes with a label](#2-2-get-related-nodes-with-a-label)
+    3. [Get related nodes with a directed relationship](#2-3-get-related-nodes-with-a-directed-relationship)
+    4. [Get a relationship](#2-4-get-a-relationship)
 
 ## Data Set
 
@@ -153,8 +153,8 @@ string operators for easier matching of substrings:
 
 Operator           | Description
 -------------------|------------
- `a STARTS WITH b` | Returns true if prefix of string a is equal to string b.
- `a ENDS WITH b`   | Returns true if suffix of string a is equal to string b.
+ `a STARTS WITH b` | Returns true if the prefix of string a is equal to string b.
+ `a ENDS WITH b`   | Returns true if the suffix of string a is equal to string b.
  `a CONTAINS b`    | Returns true if some substring of string a is equal to string b.
 
  ```openCypher

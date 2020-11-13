@@ -2,8 +2,8 @@
 
 The `UNION` clause is used to combine the result of multiple queries.
 
-1. Combine queries and retain duplicates
-2. Combine queries and remove duplicates
+1. [Combine queries and retain duplicates](#1-combine-queries-and-retain-duplicates)
+2. [Combine queries and remove duplicates](#2-combine-queries-and-remove-duplicates)
 
 ## Data Set
 

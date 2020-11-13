@@ -2,16 +2,16 @@
 
 The `RETURN` clause defines which data should be included in the resulting set. 
 
-1. Returning nodes
-2. Returning relationships
-3. Returning properties
-4. Returning multiple elements
-5. Returning all elements
-6. Handling uncommon character
-7. Returning element with alias
-8. Optional properties
-9. Returning expressions
-10. Returning unique results
+1. [Returning nodes](#1-returning-nodes)
+2. [Returning relationships](#2-returning-relationships)
+3. [Returning properties](#3-returning-properties)
+4. [Returning multiple elements](#4-returning-multiple-elements)
+5. [Returning all elements](#5-returning-all-elements)
+6. [Handling uncommon characters](#6-Handling-uncommon-characters)
+7. [Returning elements with an alias](#7-returning-elements-with-an-alias)
+8. [Optional properties](#8-optional-properties)
+9. [Returning expressions](#9-returning-expressions)
+10. [Returning unique results](#10-returning-unique-results)
 
 ## Data Set
 
@@ -95,7 +95,7 @@ Output:
 
 # 5. Returning all elements
 
-To return all the elements from a query use the `*` symbol.
+To return all the elements from a query, use the `*` symbol.
 
 ```openCypher
 MATCH (:Country { name: 'United Kingdom'})-[]-(p:Person)
@@ -113,10 +113,10 @@ Output:
 +---------------------------+
 ```
 
-# 6. Handling uncommon character
+# 6. Handling uncommon characters
 
 Uncommon characters are handled using placeholder variables enclosed with the symbol `\``.
-Fpr example, a query could look like this:
+For example, a query could look like this:
 
 ```openCypher
 MATCH (`An uncommon variable!`)
@@ -124,7 +124,7 @@ WHERE `An uncommon variable!`.name = 'A'
 RETURN `An uncommon variable!`.value;
 ```
 
-# 7. Returning element with alias
+# 7. Returning elements with an alias
 
 You can specify an alias for an element in the `RETURN` statement using `AS`.
 

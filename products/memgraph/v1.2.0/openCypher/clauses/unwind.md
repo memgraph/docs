@@ -2,10 +2,10 @@
 
 The `UNWIND` clause is used to unwind a list of values as individual rows.
 
-1. Unwinding lists
-2. Distinct list
-3. Expression returning lists
-4. Unwinding lists of lists
+1. [Unwinding lists](#1-unwinding-lists)
+2. [Distinct list](#2-distinct-list)
+3. [Expression returning lists](#3-expression-returning-lists)
+4. [Unwinding lists of lists](#4-unwinding-lists-of-lists)
 
 ## 1. Unwinding lists
 

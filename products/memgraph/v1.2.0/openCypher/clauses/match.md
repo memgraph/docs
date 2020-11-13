@@ -2,10 +2,10 @@
 
 The `MATCH` clause is used to obtain data from the database by matching it to a given pattern.
 
-1. [Basic node matching](#1-basic-node-matching)
+1. [Matching nodes](#1-matching-nodes)
     1. [Get all nodes](#1-1-get-all-nodes)
     2. [Get all nodes with a label](#1-2-get-all-nodes-with-a-label)
-2. [Basic matching with relationships](#2-basic-matching-with-relationships)
+2. [Matching relationships](#2-matching-relationships)
     1. [Get all related nodes](#2-1-get-all-related-nodes)
     2. [Get related nodes with a label](#2-2-get-related-nodes-with-a-label)
     3. [Get related nodes with a directed relationship](#2-3-get-related-nodes-with-a-directed-relationship)
@@ -26,7 +26,7 @@ locally by executing the queries at the end of the page: [Data Set Queries](#Dat
 
 <img src="https://raw.githubusercontent.com/g-despot/images/master/data_set.png" height=400 />
 
-## 1. Basic Usage
+## 1. Matching nodes
 
 ### 1.1 Get all nodes
 
@@ -71,7 +71,7 @@ Output:
 +-----------------------------------------------------------------------------------------------------+
 ```
 
-## 2. Matching nodes using relationships
+## 2. Matching relationships
 
 ### 2.1 Get all related nodes
 
@@ -194,7 +194,7 @@ Output:
 +---------+
 ```
 
-### 2.6 Match on a relationships with multiple types
+### 2.6 Matching on relationships with multiple types
 
 To return relationships with any of the specified types, the types need to be chained together with the pipe symbol `|`.
 

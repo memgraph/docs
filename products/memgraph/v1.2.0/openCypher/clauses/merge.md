@@ -2,10 +2,18 @@
 
 The `MERGE` clause is used to ensure that a pattern you are looking for exists in the database. This means that if the pattern is not found, it will be created. In a way, this clause is like a combination of `MATCH` and `CREATE`.
 
-1. Merging nodes
-2. Merging relationships
-2. Merge with `ON CREATE` and `ON MATCH`
-3. 
+1. [Merging nodes](#1-merging-nodes)
+    1. [Merging nodes with labels](#1-1-merging-nodes-with-labels)
+    2. [Merging nodes with properties](#1-2-merging-nodes-with-properties)
+    3. [Merging nodes with labels and properties](#1-3-merging-nodes-with-labels-and-properties)
+    4. [Merging nodes with existing node properties](#1-4-merging-nodes-with-existing-node-properties)
+2. [Merging relationships](#2-merging-relationships)
+    1. [Merging relationships](#2-1-merging-relationships)
+    2. [Merging on undirected relationships](#2-2-merging-on-undirected-relationships)
+3. [Merging with ON CREATE and ON MATCH](#3-merging-with-on-create-and-on-match)
+    1. [Merging with ON CREATE](#3-1-merging-with-on-create)
+    2. [Merging with ON MATCH](#3-2-merging-with-on-match)
+    3. [Merging with ON CREATE and ON MATCH](#3-3-merging-with-on-create-and-on-match)
 
 ## Data Set
 

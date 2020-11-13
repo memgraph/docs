@@ -2,9 +2,9 @@
 
 The `WITH` is used to chain together parts of a query, piping the results from one to be used as starting points or criteria in the next.
 
-1. [Filter on aggregate functions](#1-Filter-on-aggregate-functions)
-2. [Sorting results](#2-Sorting-results)
-3. [Limited path searches](#3-Limited-path-searches)
+1. [Filter on aggregate functions](#1-filter-on-aggregate-functions)
+2. [Sorting results](#2-sorting-results)
+3. [Limited path searches](#3-limited-path-searches)
 
 
 ## Data Set

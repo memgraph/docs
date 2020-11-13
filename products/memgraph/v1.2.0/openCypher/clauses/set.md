@@ -2,14 +2,14 @@
 
 The `SET` clause is used to update labels on nodes and properties on nodes and relationships.
 
-1. Set a property
-2. Set multiple properties
-3. Set node label
-4. Update a property
-5. Removing a property
-6. Copy all properties
-7. Replacing all properties using map
-8. Updating all properties using map
+1. [Setting a property](#1-setting-a-property)
+2. [Setting multiple properties](#2-setting-multiple-properties)
+3. [Setting node labels](#3-setting-node-labels)
+4. [Update a property](#4-update-a-property)
+5. [Remove a property](#5-remove-a-property)
+6. [Copy all properties](#6-copy-all-properties)
+7. [Replace all properties using map](#7-Replace-all-properties-using-map)
+8. [Update all properties using map](#8-update-all-properties-using-map)
 
 ## Data Set
 
@@ -18,7 +18,7 @@ locally by executing the queries at the end of the page: [Data Set Queries](#Dat
 
 <img src="https://raw.githubusercontent.com/g-despot/images/master/data_set.png" height=400 />
 
-## 1. Set a property
+## 1. Setting a property
 
 The `SET` clause can be used to set the value of a property on a node or relationship.
 
@@ -37,7 +37,7 @@ Output:
 +--------------+--------------+
 ```
 
-## 2. Set multiple properties
+## 2. Setting multiple properties
 
 The `SET` clause can be used to set the value of multiple properties nodes or relationships by separating them with a comma.
 
@@ -56,9 +56,9 @@ Output:
 +--------------+--------------+--------------+
 ```
 
-## 3. Set node label
+## 3. Setting node labels
 
-The `SET` clause can be used to set the label on a node. If the node has a label, a new one will be added while te old one is left as is.
+The `SET` clause can be used to set the label on a node. If the node has a label, a new one will be added while the old one is left as is.
 
 ```openCypher
 MATCH (c { name: 'Germany' })
@@ -111,7 +111,7 @@ Output:
 +---------------+
 ```
 
-## 5. Removing a property
+## 5. Remove a property
 
 The `SET` clause can be used to remove the value of a property on a node or relationship by setting it to `NULL`. 
 
@@ -149,7 +149,7 @@ Output:
 +----------------------------------------------------------------------------+----------------------------------------------------------------------------+
 ```
 
-## 7. Replacing all properties using map
+## 7. Replace all properties using map
 
 If `SET` is used with the property replacement operator `=`, all the properties in the map that are on the node or relationship will be updated.
 The properties that are not on the node or relationship but are in the map will be added. The properties that are not in the map will be removed. 
@@ -186,10 +186,10 @@ Output:
 +------------+
 ```
 
-## 8. Updating all properties using map
+## 8. Update all properties using map
 
 If `SET` is used with the property mutation operator `+=`, all the properties in the map that are on the node or relationship will be updated.
-The properties that are not on the node or relationship but are in the map will be added. The properties that are not in the map will be left as is. 
+The properties that are not on the node or relationship but are in the map will be added. Properties that are not present in the map will be left as is. 
 
 ```openCypher
 MATCH (c:Country { name: 'Germany' })

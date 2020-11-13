@@ -4,8 +4,8 @@ The `MATCH` clause can be modified by prepending the `OPTIONAL` keyword.
 `OPTIONAL MATCH` clause behaves the same as a regular `MATCH`, but when it fails to find the pattern, 
 missing parts of the pattern will be filled with null values.
 
-1. Get optional relationships
-2. Matching with variable length relationships
+1. [Get optional relationships](#1-get-optional-relationships)
+2. [Matching with variable length relationships](#2-matching-with-variable-length-relationships)
 
 ## Data Set
 

@@ -2,8 +2,8 @@
 
 The `REMOVE` clause is used to remove labels and properties from nodes and edges.
 
-1. Removing a property
-2. Removing a label
+1. [Removing a property](#1-removing-a-property)
+2. [Removing a label](#2-removing-a-label)
 
 ## Data Set
 
@@ -52,7 +52,7 @@ Output:
 +--------------------------------------------------------------------------------------------+
 ```
 
-Let's add the label `Country` back to the node with the name `United Kingdom` and the aditional label `Kingdom`.
+Let's add the label `Country` back to the node with the name `United Kingdom` and the additional label `Kingdom`.
 
 ```opencypher
 MATCH (n { name: 'United Kingdom' })
