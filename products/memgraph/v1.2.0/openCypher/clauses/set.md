@@ -8,13 +8,13 @@ The `SET` clause is used to update labels on nodes and properties on nodes and r
 4. [Update a property](#4-update-a-property)
 5. [Remove a property](#5-remove-a-property)
 6. [Copy all properties](#6-copy-all-properties)
-7. [Replace all properties using map](#7-Replace-all-properties-using-map)
+7. [Replace all properties using map](#7-replace-all-properties-using-map)
 8. [Update all properties using map](#8-update-all-properties-using-map)
 
 ## Data Set
 
 The following examples are executed with this data set. You can create this data set 
-locally by executing the queries at the end of the page: [Data Set Queries](#Data-set-queries).
+locally by executing the queries at the end of the page: [Data Set](#data-set-queries).
 
 <img src="https://raw.githubusercontent.com/g-despot/images/master/data_set.png" height=400 />
 

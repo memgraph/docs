@@ -22,7 +22,7 @@ The `MATCH` clause is used to obtain data from the database by matching it to a 
 ## Data Set
 
 The following examples are executed with this data set. You can create this data set 
-locally by executing the queries at the end of the page: [Data Set Queries](#Data-set-queries).
+locally by executing the queries at the end of the page: [Data Set](#data-set-queries).
 
 <img src="https://raw.githubusercontent.com/g-despot/images/master/data_set.png" height=400 />
 
@@ -175,7 +175,7 @@ Output:
 +-----------------+-----------------+
 ```
 
-### 2.5 Match on a relationship with a type
+### 2.5 Matching on a relationship with a type
 
 To return a relationship with a specified type you need to use the type syntax.
 A directed or undirected relationship can be used.

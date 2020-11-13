@@ -7,7 +7,7 @@ The `RETURN` clause defines which data should be included in the resulting set.
 3. [Returning properties](#3-returning-properties)
 4. [Returning multiple elements](#4-returning-multiple-elements)
 5. [Returning all elements](#5-returning-all-elements)
-6. [Handling uncommon characters](#6-Handling-uncommon-characters)
+6. [Handling uncommon characters](#6-handling-uncommon-characters)
 7. [Returning elements with an alias](#7-returning-elements-with-an-alias)
 8. [Optional properties](#8-optional-properties)
 9. [Returning expressions](#9-returning-expressions)
@@ -16,7 +16,7 @@ The `RETURN` clause defines which data should be included in the resulting set.
 ## Data Set
 
 The following examples are executed with this data set. You can create this data set 
-locally by executing the queries at the end of the page: [Data Set Queries](#Data-set-queries).
+locally by executing the queries at the end of the page: [Data Set](#data-set-queries).
 
 <img src="https://raw.githubusercontent.com/g-despot/images/master/data_set.png" height=400 />
 

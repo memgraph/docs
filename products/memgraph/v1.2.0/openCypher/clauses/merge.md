@@ -18,7 +18,7 @@ The `MERGE` clause is used to ensure that a pattern you are looking for exists i
 ## Data Set
 
 The following examples are executed with this data set. You can create this data set 
-locally by executing the queries at the end of the page: [Data Set Queries](#Data-set-queries).
+locally by executing the queries at the end of the page: [Data Set](#data-set-queries).
 
 <img src="https://raw.githubusercontent.com/g-despot/images/master/data_set.png" height=400 />
 
@@ -137,7 +137,7 @@ Output:
 +--------------+--------------+
 ```
 
-### 2.1 Merging on undirected relationships
+### 2.2 Merging on undirected relationships
 
 If `MERGE` is used on an undirected relationship, the direction will be chosen at random.
 

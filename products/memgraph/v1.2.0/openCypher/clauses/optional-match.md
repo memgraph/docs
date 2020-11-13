@@ -5,7 +5,7 @@ The `MATCH` clause can be modified by prepending the `OPTIONAL` keyword.
 missing parts of the pattern will be filled with null values.
 
 1. [Get optional relationships](#1-get-optional-relationships)
-2. [Matching with variable length relationships](#2-matching-with-variable-length-relationships)
+2. [Optional typed and named relationship](#2-optional-typed-and-named-relationship)
 
 ## Data Set
 
