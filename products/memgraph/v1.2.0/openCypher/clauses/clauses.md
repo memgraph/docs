@@ -1,9 +1,4 @@
-# openCypher manual
-
-`openCypher` is the most widely adopted, fully-specified, and open query language for property graph databases.
-It provides an intuitive way to work with property graphs.
-
-## Clauses
+# openCypher Clauses
 
 The `openCypher` language enables users to perform standard database operations by using the following clauses:
   * [`MATCH`](clauses/match.md), which searches for patterns;
@@ -16,7 +11,3 @@ The `openCypher` language enables users to perform standard database operations 
   * [`REMOVE`](clauses/remove.md), for removing labels and properties;
   * [`MERGE`](clauses/merge.md), for creating patterns if they do not exist;
   * [`WITH`](clauses/with.md), for combining multiple reads and writes.
-
-## Functions
-
-`openCypher` supports a large number of functions. The list can be found here: [openCypher Functions](functions.md).

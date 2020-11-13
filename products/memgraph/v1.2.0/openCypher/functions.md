@@ -1,6 +1,6 @@
 ## Functions
 
-This section contains the list of other supported functions.
+This section contains the list of supported functions.
 
  Name            | Description
 -----------------|------------

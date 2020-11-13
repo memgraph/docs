@@ -128,7 +128,7 @@
     * [Differences](memgraph/v1.2.0/reference_guide/differences.md)
 * [openCypher Manual](memgraph/v1.2.0/openCypher/open-cypher.md)
     * [Functions](memgraph/v1.2.0/openCypher/functions.md)
-    * [Clauses]()
+    * [Clauses](memgraph/v1.2.0/openCypher/clauses/clauses.md)
         * [CREATE](memgraph/v1.2.0/openCypher/clauses/create.md)
         * [DELETE](memgraph/v1.2.0/openCypher/clauses/delete.md)
         * [MATCH](memgraph/v1.2.0/openCypher/clauses/match.md)
