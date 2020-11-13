@@ -17,7 +17,7 @@ The `MERGE` clause is used to ensure that a pattern you are looking for exists i
 
 ## Data Set
 
-The following examples are executed with this data set in the database. You can create this data set 
+The following examples are executed with this data set. You can create this data set 
 locally by executing the queries at the end of the page: [Data Set Queries](#Data-set-queries).
 
 <img src="https://raw.githubusercontent.com/g-despot/images/master/data_set.png" height=400 />
@@ -220,8 +220,8 @@ Output:
 
 ## Data set Queries
 
-We encourage you to try out the examples by yourself. Just run the following queries to 
-get the data set we have been exploring in our examples.
+We encourage you to try out the examples by yourself.
+You can get our data set locally by executing the following query block.
 
 ```openCypher
 MATCH (n) DETACH DELETE n;
