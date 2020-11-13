@@ -13,11 +13,8 @@ The difference when using `WHERE` with these clauses is that it only filter the 
     4. [Filter with node properties](#1-4-filter-with-node-properties)
     5. [Filter with relationship properties](#1-5-filter-with-relationship-properties)
     6. [Check if property is not null](#1-6-check-if-property-is-not-null)
-2. [Basic matching with relationships](#1-basic-matching-with-relationships)
-    1. [Get all related nodes](#2-1-get-all-related-nodes)
-    2. [Get related nodes with a label](#2-2-get-related-nodes-with-a-label)
-    3. [Get related nodes with a directed relationship](#2-3-get-related-nodes-with-a-directed-relationship)
-    4. [Get a relationship](#2-4-get-a-relationship)
+2. [String matching](#2-string-matching)
+3. [Regular Expressions](#3-regular-expressions)
 
 ## Data Set
 
@@ -146,7 +143,7 @@ Output:
 +----------------+----------------+
 ```
 
-## 2. String Matching
+## 2. String matching
 
 Apart from comparison and concatenation operators openCypher provides special
 string operators for easier matching of substrings:
@@ -172,7 +169,7 @@ Output:
 +---------+
 ```
 
-## 3. Regular Expressions
+## 3. Regular expressions
 
 Inside `WHERE` clause, you can use regular expressions for text filtering. To
 use a regular expression, you need to use the `=~` operator.
