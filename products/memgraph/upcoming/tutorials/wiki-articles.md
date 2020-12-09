@@ -44,7 +44,7 @@ Who are Article's parents? Categories!
 
 
 0. lets get some articles and random term
-```
+```opencypher
 MATCH (a:Article)-[:CONTAINS]->(t:Term)
 WITH a, rand() AS number, t
 RETURN DISTINCT a.name as `Random Article`, t.name as `First Term` ORDER BY number LIMIT 5;
@@ -55,13 +55,60 @@ RETURN DISTINCT a.name as `Random Article`, t.name as `First Term` ORDER BY numb
 MATCH (a:Article {name: "Protein"})-[r:CONTAINS]->(t:Term)
 RETURN DISTINCT t.name as Term, r.count as Count ORDER BY r.count DESC LIMIT 20;
 ```
-2. Let's check the most unique terms
+
+
+2. Let's check the term which is most frequent
 ```opencypher
 MATCH (a:Article {name: "Protein"})-[r:CONTAINS]->(t:Term)
-RETURN DISTINCT t.name as Term, r.count as Count ORDER BY r.count DESC LIMIT 20;
+WITH sum(r.count) AS total_terms
+MATCH (a:Article {name: "Protein"})-[r:CONTAINS]->(t:Term)
+WITH r, t, total_terms
+RETURN DISTINCT t.name as Term, toFloat(r.count) / total_terms as term_frequency, r.count as term_count, total_terms
+ORDER BY term_frequency
+DESC LIMIT 20;
 ```
 
-3. Let's see which article overlaps the most (using the most unique term formula)
+
+
+TEMP
+
+
+
+
+MATCH (:Article)
+WITH count(*) AS number_of_articles
+
+MATCH (a:Article {name: "Protein"})-[r:CONTAINS]->(t:Term {name: "body"})<-[r2:CONTAINS]-(total_articles:Article)
+WHERE a.name != total_articles.name
+WITH distinct total_articles, sum(r.count) AS terms_in_protein, number_of_articles
+ORDER BY total_articles.names
+RETURN total_articles;
+
+1. Let's see which gives most information
+
+```opencypher
+MATCH (:Article)
+WITH count(*) AS number_of_articles
+
+MATCH (a:Article {name: "Protein"})-[r:CONTAINS]->(t:Term)
+WITH sum(r.count) AS terms_in_protein, number_of_articles
+
+MATCH (a:Article {name: "Protein"})-[r:CONTAINS]->(t:Term)<-[r2:CONTAINS]-(total_articles:Article)
+WHERE a.name != total_articles.name
+WITH DISTINCT total_articles, t, toFloat(r.count) as term_in_protein, terms_in_protein, number_of_articles
+
+RETURN DISTINCT
+t.name as Term,
+term_in_protein,
+terms_in_protein,
+term_in_protein / terms_in_protein as a,
+count(total_articles) as b,
+number_of_articles as c,
+((term_in_protein / terms_in_protein) * (-log(toFloat(count(total_articles)+1)/number_of_articles))) as tfidf
+
+ORDER BY tfidf DESC
+LIMIT 50;
+```
 
 4. Find shortest path between two Articles (e.g. "Bone" and "Fire")
              A -> B means that A has hyperlink to B
@@ -72,14 +119,18 @@ MATCH p = (:Article {name: "Protein"})
           (:Article {name: "Paris"})
 RETURN nodes(p);
 
-3. get articles with term "Croatia" exclduing the term "War"
+5. get articles with term "Croatia" exclduing the term "War"
+```opencypher
+MATCH (a:Article {name: "Protein"})-[r:CONTAINS]->(t:Term)
+RETURN DISTINCT t.name as Term, r.count as Count ORDER BY r.count DESC LIMIT 20;
+```
 
-4. Shortest article in the dataset 
+6. Shortest article in the dataset 
 
-5. Find the category which coverst most amount of articles
+7. Find the category which coverst most amount of articles
 
-6. Find the most popular term in given category
+8. Find the most popular term in given category
 
-7.  find if there are any categoreis with the same name as articles
+9.  find if there are any categoreis with the same name as articles
 
-8.  find article in category "History?" with terms "abc", "brlj", "phyislohy"
+10.  find article in category "History?" with terms "abc", "brlj", "phyislohy"
