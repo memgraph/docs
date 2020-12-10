@@ -11,7 +11,7 @@ The following datasets (reduced) were used to create this demo:
 # Data model
 Wikipedia Articles is a [graph](https://en.wikipedia.org/wiki/Graph_theory#:~:text=In%20mathematics%2C%20graph%20theory%20is,also%20called%20links%20or%20lines) dataset consisting of the [nodes](https://en.wikipedia.org/wiki/Vertex_(graph_theory)) and [edges](https://en.wikipedia.org/wiki/Glossary_of_graph_theory_terms#edge).
 
-**Nodes** can be of the following types:
+**Nodes** can have the following labels:
 
 1. `Article` with a property `name`
 2. `Term`  with a property `name`
@@ -39,6 +39,7 @@ Who are Article's parents? Categories!
 >Wikipedia `Category` is a parent of many `Articles`. This relation is represented with an edge `:PARENT_OF`. If `Category` is a parent of an `Article` they are connected with an edge `:PARENT_OF` (from  `Category` to `Article`). An `Article` can have multiple parent `Categories`.
 
 
+Here's a visual representation of the graph model:
 
 ![](../data/wiki_tutorial_graph.png)
 
@@ -46,7 +47,7 @@ Who are Article's parents? Categories!
 
 In the queries below, we are, as usual, using [OpenCypher](https://www.opencypher.org/) to query Memgraph via the console.
 
-1. First, let's explore the dataset by sampling 5 random `Categories` and `Articles`
+1. First, let's explore the dataset by sampling 5 random `Categories` and 5 random `Articles`
 ```opencypher
 MATCH (c:Category)-[:PARENT_OF]->(a:Article)
 WITH a, c, rand() AS number
@@ -55,8 +56,8 @@ c.name as `random Category`,
 a.name as `with a random Article`
 ORDER BY number
 LIMIT 5;
-
-
+```
+```opencypher
 MATCH (a:Article)-[:CONTAINS]->(t:Term)
 WITH a, t,  rand() AS number
 RETURN DISTINCT
@@ -68,7 +69,7 @@ LIMIT 5;
 
 2. Which `Article` is the largest? The one that contains the most amount of `Terms`. `r.count` is an edge property that tells us how many `Terms` does an `Article` contain. All we need to do is `sum` those properties!
 ```opencypher
-MATCH (a:Article)-[r:CONTAINS]->(t:Term)
+MATCH (a:Article)-[r:CONTAINS]->(:Term)
 RETURN a.name as `Article`, sum(r.count) as `Number of terms`
 ORDER BY `Number of terms` DESC LIMIT 10;
 ```
@@ -76,7 +77,7 @@ ORDER BY `Number of terms` DESC LIMIT 10;
 
 3. Which `Category` has the most `Articles`? This time, we can't use `r.count` property of an edge. But we can `count` the edges!
 ```opencypher
-MATCH (c:Category)-[r:PARENT_OF]->(a:Article)
+MATCH (c:Category)-[r:PARENT_OF]->(:Article)
 WITH DISTINCT c, r
 RETURN DISTINCT c.name as `Category`, count(r) as `Number of articles`
 ORDER BY `Number of articles` DESC LIMIT 10;
@@ -108,7 +109,7 @@ LIMIT 10;
 
 6. Absolute values are fine, but how we get [term frequency](https://en.wikipedia.org/wiki/Tf%E2%80%93idf#Term_frequency_2) for our `Terms`? Notice we propagate `total_terms` with `WITH`.
 ```opencypher
-MATCH (a:Article {name: "Protein"})-[r:CONTAINS]->(t:Term)
+MATCH (:Article {name: "Protein"})-[r:CONTAINS]->(:Term)
 WITH sum(r.count) AS total_terms
 
 MATCH (a:Article {name: "Protein"})-[r:CONTAINS]->(t:Term)
@@ -126,7 +127,6 @@ DESC LIMIT 10;
 ```
 
 7. Stopwords like "where", "or" and "make" usually show up in Wikipedia articles and other texts. Thankfully, this dataset doesn't contain any stopwords. But how can we, in general, know how important a `Term` is in an `Article` ? It may be the case that the `Term` appears in multiple `Articles` very often. Therefore, it's not so important and doesn't give us much new information. [tf-idf](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) is a popular numerical statistic that gives us the answer to our problem. It takes into account how often does a `Term` appear in the `Article` "Protein" and how often in `Articles` overall. Let's calculate `tf_idf` for all `Terms` in an `Article` "Protein" 
-
 ```opencypher
 MATCH (:Article)
 WITH count(*) AS number_of_articles
@@ -140,7 +140,6 @@ AND toLower(a.name) != toLower(t.name)
 AND toLower(a.name+"s") != toLower(t.name)
 WITH DISTINCT total_articles, t, toFloat(r.count) as term_in_protein, terms_in_protein, number_of_articles
 
-
 RETURN DISTINCT
 t.name as Term,
 term_in_protein / terms_in_protein as tf, 
@@ -151,8 +150,7 @@ ORDER BY tf_idf DESC
 LIMIT 10;
 ```
 
-
-8. Let's find a peaceful `Articles` that contain a `Term` "Croatia"/"croatia" and doesn't contain the `Term` "war". `Articles` whose `name` contains "war" are also excluded.
+8. Let's find peaceful `Articles` that contain a `Term` "Croatia"/"croatia" and doesn't contain the `Term` "war". `Articles` whose `name` contains "war" are also excluded.
 ```opencypher
 MATCH (term1:Term)<-[r1:CONTAINS]-(a:Article)-[r2:CONTAINS]->(term2:Term)
 WHERE toLower(term1.name) != "war"
@@ -162,8 +160,7 @@ RETURN DISTINCT a.name as `Article`, r2.count as ` "croatia" term count`
 ORDER BY r2.count DESC LIMIT 10;
 ```
 
-
-9. Which `Categories` contain a substring of their child `Article's` names? Symbol `=~` denotes a [regular expression](https://docs.memgraph.com/memgraph/reference-overview/reading-existing-data#regular-expressions).
+9. Which `Articles` contain a substring of some `Term` that appears in that `Article`? Symbol `=~` denotes a [regular expression](https://docs.memgraph.com/memgraph/reference-overview/reading-existing-data#regular-expressions).
 ```opencypher
 MATCH (a:Article)-[:CONTAINS]->(t:Term)
 WHERE toLower(a.name) =~ (".*"+t.name+".*")
