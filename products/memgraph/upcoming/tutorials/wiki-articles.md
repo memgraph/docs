@@ -67,7 +67,7 @@ ORDER BY number
 LIMIT 5;
 ```
 
-2. Which `Article` is the largest? The one that contains the most amount of `Terms`. `r.count` is an edge property that tells us how many `Terms` does an `Article` contain. All we need to do is `sum` those properties!
+1. "Too much text!". Which `Article` is the largest? The one that contains the most amount of `Terms`. `r.count` is an edge property that tells us how many `Terms` does an `Article` contain. All we need to do is `sum` those properties!
 ```opencypher
 MATCH (a:Article)-[r:CONTAINS]->(:Term)
 RETURN a.name as `Article`, sum(r.count) as `Number of terms`
@@ -75,8 +75,7 @@ ORDER BY `Number of terms` DESC LIMIT 10;
 ```
 
 
-3. Which `Category` has the most `Articles`? This time, we can't use `r.count` property of an edge. But we can `count` the edges!
-```opencypher
+3. "Richest category". Which `Category` has the most `Articles`? This time, we can't use `r.count` property of an edge. But we can `count` the edges!```opencypher
 MATCH (c:Category)-[r:PARENT_OF]->(:Article)
 WITH DISTINCT c, r
 RETURN DISTINCT c.name as `Category`, count(r) as `Number of articles`
@@ -84,8 +83,7 @@ ORDER BY `Number of articles` DESC LIMIT 10;
 ```
 
 
-4. What is the most popular `Term` in an `Article` "Protein"?
-```opencypher
+4. "Center of attention". What is the most popular `Term` in an `Article` "Protein"?```opencypher
 MATCH (a:Article {name: "Protein"})-[r:CONTAINS]->(t:Term)
 RETURN DISTINCT
 t.name as Term,
@@ -94,7 +92,7 @@ ORDER BY r.count DESC
 LIMIT 10;
 ```
 
-5. How can we filter these redundant proteins? Let's add a condition to ignore `Terms` with variation on "Protein"
+5. "Thank you, Captain Obvious". How can we filter these redundant "proteins"? Let's add a condition to ignore `Terms` with variation on "Protein"
 ```opencypher
 MATCH (a:Article {name: "Protein"})-[r:CONTAINS]->(t:Term)
 WHERE toLower(a.name) != toLower(t.name)
@@ -107,7 +105,7 @@ LIMIT 10;
 ```
 
 
-6. Absolute values are fine, but how we get [term frequency](https://en.wikipedia.org/wiki/Tf%E2%80%93idf#Term_frequency_2) for our `Terms`? Notice we propagate `total_terms` with `WITH`.
+6. "Relative > absolute". Absolute values are fine, but how we get [term frequency](https://en.wikipedia.org/wiki/Tf%E2%80%93idf#Term_frequency_2) for our `Terms`? Notice we propagate `total_terms` with `WITH`.
 ```opencypher
 MATCH (:Article {name: "Protein"})-[r:CONTAINS]->(:Term)
 WITH sum(r.count) AS total_terms
@@ -126,7 +124,7 @@ ORDER BY term_frequency
 DESC LIMIT 10;
 ```
 
-7. Stopwords like "where", "or" and "make" usually show up in Wikipedia articles and other texts. Thankfully, this dataset doesn't contain any stopwords. But how can we, in general, know how important a `Term` is in an `Article` ? It may be the case that the `Term` appears in multiple `Articles` very often. Therefore, it's not so important and doesn't give us much new information. [tf-idf](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) is a popular numerical statistic that gives us the answer to our problem. It takes into account how often does a `Term` appear in the `Article` "Protein" and how often in `Articles` overall. Let's calculate `tf_idf` for all `Terms` in an `Article` "Protein" 
+7. "The real MVP". Stopwords like "where", "or" and "make" usually show up in Wikipedia articles and other texts. Thankfully, this dataset doesn't contain any stopwords. But how can we, in general, know how important a `Term` is in an `Article` ? It may be the case that the `Term` appears in multiple `Articles` very often. Therefore, it's not so important and doesn't give us much new information. [tf-idf](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) is a popular numerical statistic that gives us the answer to our problem. It takes into account how often does a `Term` appear in the `Article` "Protein" and how often in `Articles` overall. Let's calculate `tf_idf` for all `Terms` in an `Article` "Protein" 
 ```opencypher
 MATCH (:Article)
 WITH count(*) AS number_of_articles
@@ -150,7 +148,7 @@ ORDER BY tf_idf DESC
 LIMIT 10;
 ```
 
-8. Let's find peaceful `Articles` that contain a `Term` "Croatia"/"croatia" and doesn't contain the `Term` "war". `Articles` whose `name` contains "war" are also excluded.
+8. "Find some peace". Let's find `Articles` that contain a `Term` "Croatia"/"croatia" and doesn't contain the `Term` "war". `Articles` whose `name` contains "war" are also excluded.
 ```opencypher
 MATCH (term1:Term)<-[r1:CONTAINS]-(a:Article)-[r2:CONTAINS]->(term2:Term)
 WHERE toLower(term1.name) != "war"
@@ -160,7 +158,7 @@ RETURN DISTINCT a.name as `Article`, r2.count as ` "croatia" term count`
 ORDER BY r2.count DESC LIMIT 10;
 ```
 
-9. Which `Articles` contain a substring of some `Term` that appears in that `Article`? Symbol `=~` denotes a [regular expression](https://docs.memgraph.com/memgraph/reference-overview/reading-existing-data#regular-expressions).
+9. "Like father, like son". Which `Articles` contain a substring of some `Term` that appears in that `Article`? Symbol `=~` denotes a [regular expression](https://docs.memgraph.com/memgraph/reference-overview/reading-existing-data#regular-expressions).
 ```opencypher
 MATCH (a:Article)-[:CONTAINS]->(t:Term)
 WHERE toLower(a.name) =~ (".*"+t.name+".*")
@@ -170,7 +168,7 @@ RETURN `Article`, `Term`
 LIMIT 10;
 ```
 
-10. Which `Articles` under `Category` "Windows games" contain the `Term` "sega" ?
+10. "Sega's blue hedgehog". Which `Articles` under `Category` "Windows games" contain the `Term` "sega" ?
 ```opencypher
 MATCH (c:Category {name: "Windows games"})-[:PARENT_OF]->(a:Article)-[r:CONTAINS]->(t:Term)
 WHERE toLower(t.name) = "sega"
