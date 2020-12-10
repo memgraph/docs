@@ -1,7 +1,7 @@
 
 # Introduction
 
-Free, multilingual, widely avaliable subset of collected world's knowledge. The first Wikipedia edit happened in 2001 which started the avalanche of written Wikipedia articles. There were more than 6,200,000 English Wikipedia articles in 2020. Wikipedia is a common starting point for general information, backed up by reliable sources outside of the site. Quality of articles is maintained by various editors, which anyone can become.
+A free, multilingual, widely available subset of collected world's knowledge. The first Wikipedia edit happened in 2001 which started the avalanche of written Wikipedia articles. There were more than 6,200,000 English Wikipedia articles in 2020. Wikipedia is a common starting point for general information, backed up by reliable sources outside of the site. Quality of articles is maintained by various editors, which anyone can become.
 
 In this demo, you will explore the contents and contexts of 339 featured Wikipedia articles.
 
@@ -40,51 +40,92 @@ Who are Article's parents? Categories!
 
 
 
-![](pics/wiki-tutorial-graph.png)
+![](../data/wiki_tutorial_graph.png)
 
+# Example queries
 
-0. lets get some articles and random term
+In the queries below, we are, as usual, using [OpenCypher](https://www.opencypher.org/) to query Memgraph via the console.
+
+1. First, let's explore the dataset by sampling 5 random `Categories` and `Articles`
 ```opencypher
+MATCH (c:Category)-[:PARENT_OF]->(a:Article)
+WITH a, c, rand() AS number
+RETURN DISTINCT
+c.name as `random Category`,
+a.name as `with a random Article`
+ORDER BY number
+LIMIT 5;
+
+
 MATCH (a:Article)-[:CONTAINS]->(t:Term)
-WITH a, rand() AS number, t
-RETURN DISTINCT a.name as `Random Article`, t.name as `First Term` ORDER BY number LIMIT 5;
+WITH a, t,  rand() AS number
+RETURN DISTINCT
+a.name as `random Article`,
+t.name as `with a random Term`
+ORDER BY number
+LIMIT 5;
 ```
 
-1. Let's check out most common term in a given article
+2. Which `Article` is the largest? The one that contains the most amount of `Terms`. `r.count` is an edge property that tells us how many `Terms` does an `Article` contain. All we need to do is `sum` those properties!
+```opencypher
+MATCH (a:Article)-[r:CONTAINS]->(t:Term)
+RETURN a.name as `Article`, sum(r.count) as `Number of terms`
+ORDER BY `Number of terms` DESC LIMIT 10;
+```
+
+
+3. Which `Category` has the most `Articles`? This time, we can't use `r.count` property of an edge. But we can `count` the edges!
+```opencypher
+MATCH (c:Category)-[r:PARENT_OF]->(a:Article)
+WITH DISTINCT c, r
+RETURN DISTINCT c.name as `Category`, count(r) as `Number of articles`
+ORDER BY `Number of articles` DESC LIMIT 10;
+```
+
+
+4. What is the most popular `Term` in an `Article` "Protein"?
 ```opencypher
 MATCH (a:Article {name: "Protein"})-[r:CONTAINS]->(t:Term)
-RETURN DISTINCT t.name as Term, r.count as Count ORDER BY r.count DESC LIMIT 20;
+RETURN DISTINCT
+t.name as Term,
+r.count as Count
+ORDER BY r.count DESC
+LIMIT 10;
+```
+
+5. How can we filter these redundant proteins? Let's add a condition to ignore `Terms` with variation on "Protein"
+```opencypher
+MATCH (a:Article {name: "Protein"})-[r:CONTAINS]->(t:Term)
+WHERE toLower(a.name) != toLower(t.name)
+AND toLower(a.name+"s") != toLower(t.name)
+RETURN DISTINCT
+t.name as Term,
+r.count as Count
+ORDER BY r.count DESC
+LIMIT 10;
 ```
 
 
-2. Let's check the term which is most frequent
+6. Absolute values are fine, but how we get [term frequency](https://en.wikipedia.org/wiki/Tf%E2%80%93idf#Term_frequency_2) for our `Terms`? Notice we propagate `total_terms` with `WITH`.
 ```opencypher
 MATCH (a:Article {name: "Protein"})-[r:CONTAINS]->(t:Term)
 WITH sum(r.count) AS total_terms
+
 MATCH (a:Article {name: "Protein"})-[r:CONTAINS]->(t:Term)
+WHERE toLower(a.name) != toLower(t.name)
+AND toLower(a.name+"s") != toLower(t.name)
 WITH r, t, total_terms
-RETURN DISTINCT t.name as Term, toFloat(r.count) / total_terms as term_frequency, r.count as term_count, total_terms
+
+RETURN DISTINCT
+t.name as Term,
+r.count as `Term count`,
+total_terms as `Total number of terms`,
+toFloat(r.count) / total_terms as term_frequency
 ORDER BY term_frequency
-DESC LIMIT 20;
+DESC LIMIT 10;
 ```
 
-
-
-TEMP
-
-
-
-
-MATCH (:Article)
-WITH count(*) AS number_of_articles
-
-MATCH (a:Article {name: "Protein"})-[r:CONTAINS]->(t:Term {name: "body"})<-[r2:CONTAINS]-(total_articles:Article)
-WHERE a.name != total_articles.name
-WITH distinct total_articles, sum(r.count) AS terms_in_protein, number_of_articles
-ORDER BY total_articles.names
-RETURN total_articles;
-
-1. Let's see which gives most information
+7. Stopwords like "where", "or" and "make" usually show up in Wikipedia articles and other texts. Thankfully, this dataset doesn't contain any stopwords. But how can we, in general, know how important a `Term` is in an `Article` ? It may be the case that the `Term` appears in multiple `Articles` very often. Therefore, it's not so important and doesn't give us much new information. [tf-idf](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) is a popular numerical statistic that gives us the answer to our problem. It takes into account how often does a `Term` appear in the `Article` "Protein" and how often in `Articles` overall. Let's calculate `tf_idf` for all `Terms` in an `Article` "Protein" 
 
 ```opencypher
 MATCH (:Article)
@@ -94,43 +135,48 @@ MATCH (a:Article {name: "Protein"})-[r:CONTAINS]->(t:Term)
 WITH sum(r.count) AS terms_in_protein, number_of_articles
 
 MATCH (a:Article {name: "Protein"})-[r:CONTAINS]->(t:Term)<-[r2:CONTAINS]-(total_articles:Article)
-WHERE a.name != total_articles.name
+WHERE toLower(a.name) != toLower(total_articles.name)
+AND toLower(a.name) != toLower(t.name)
+AND toLower(a.name+"s") != toLower(t.name)
 WITH DISTINCT total_articles, t, toFloat(r.count) as term_in_protein, terms_in_protein, number_of_articles
+
 
 RETURN DISTINCT
 t.name as Term,
-term_in_protein,
-terms_in_protein,
-term_in_protein / terms_in_protein as a,
-count(total_articles) as b,
-number_of_articles as c,
-((term_in_protein / terms_in_protein) * (-log(toFloat(count(total_articles)+1)/number_of_articles))) as tfidf
+term_in_protein / terms_in_protein as tf, 
+(-log(toFloat(count(total_articles)+1)/number_of_articles)) as idf,
+((term_in_protein / terms_in_protein) * (-log(toFloat(count(total_articles)+1)/number_of_articles))) as tf_idf
 
-ORDER BY tfidf DESC
-LIMIT 50;
+ORDER BY tf_idf DESC
+LIMIT 10;
 ```
 
-4. Find shortest path between two Articles (e.g. "Bone" and "Fire")
-             A -> B means that A has hyperlink to B
-             Bone -> Skeleton -> Human -> Human History -> Fire
 
-MATCH p = (:Article {name: "Protein"})
-          -[:Road * bfs]->
-          (:Article {name: "Paris"})
-RETURN nodes(p);
-
-5. get articles with term "Croatia" exclduing the term "War"
+8. Let's find a peaceful `Articles` that contain a `Term` "Croatia"/"croatia" and doesn't contain the `Term` "war". `Articles` whose `name` contains "war" are also excluded.
 ```opencypher
-MATCH (a:Article {name: "Protein"})-[r:CONTAINS]->(t:Term)
-RETURN DISTINCT t.name as Term, r.count as Count ORDER BY r.count DESC LIMIT 20;
+MATCH (term1:Term)<-[r1:CONTAINS]-(a:Article)-[r2:CONTAINS]->(term2:Term)
+WHERE toLower(term1.name) != "war"
+AND NOT toLower(a.name) =~ ".*war.*"
+AND toLower(term2.name) = "croatia"
+RETURN DISTINCT a.name as `Article`, r2.count as ` "croatia" term count`
+ORDER BY r2.count DESC LIMIT 10;
 ```
 
-6. Shortest article in the dataset 
 
-7. Find the category which coverst most amount of articles
+9. Which `Categories` contain a substring of their child `Article's` names? Symbol `=~` denotes a [regular expression](https://docs.memgraph.com/memgraph/reference-overview/reading-existing-data#regular-expressions).
+```opencypher
+MATCH (a:Article)-[:CONTAINS]->(t:Term)
+WHERE toLower(a.name) =~ (".*"+t.name+".*")
+AND NOT t.name =~ "[0-9]+"
+WITH distinct a, t
+RETURN `Article`, `Term`
+LIMIT 10;
+```
 
-8. Find the most popular term in given category
-
-9.  find if there are any categoreis with the same name as articles
-
-10.  find article in category "History?" with terms "abc", "brlj", "phyislohy"
+10. Which `Articles` under `Category` "Windows games" contain the `Term` "sega" ?
+```opencypher
+MATCH (c:Category {name: "Windows games"})-[:PARENT_OF]->(a:Article)-[r:CONTAINS]->(t:Term)
+WHERE toLower(t.name) = "sega"
+RETURN a.name as `Article`, r.count as `"Sega" term count`
+ORDER BY r.count DESC LIMIT 20;
+```
