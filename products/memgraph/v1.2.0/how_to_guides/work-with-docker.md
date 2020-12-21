@@ -34,7 +34,7 @@ docker run -p 7687:7687 \
 
 At this point, Memgraph is ready for you to [submit queries](../quick-start.md#querying).
 
-For an explanation of how to write custom query modules, follow our [how-to guide](implement-query-modules).
+For an explanation of how to write custom query modules, follow our [how-to guide](implement-query-modules.md).
 
 
 ### Importing custom data
@@ -44,7 +44,7 @@ If you wish to test and run your procedures on a custom dataset, first you need 
 `docker run -v mg_lib:/var/lib/memgraph -v mg_etc:/etc/memgraph -v mg_import:/import-data \
   --entrypoint=mg_import_csv memgraph`
   
-You can pass CSV files containing nodes and relationships with `--nodes` and `--relationships` flags respectively. Multiple files can be specified by repeating either of the flags. At least one node needs to be specified, but relationships are not required. For more information on how to structure your CSV file, please refer to our [Import tool guide](import-data#import-csv).
+You can pass CSV files containing nodes and relationships with `--nodes` and `--relationships` flags respectively. Multiple files can be specified by repeating either of the flags. At least one node needs to be specified, but relationships are not required. For more information on how to structure your CSV file, please refer to our [Import tool guide](import-data.md#import-csv).
 
 To import the snapshot, you will need to copy your files where Docker can see them by creating another container and filling it with your data: 
 
@@ -139,6 +139,6 @@ CALL example.procedure("string-argument") YIELD *;
 
 Each procedure returns either zero or more records, where each record contains named fields. The `YIELD` part is used to select fields we are interested in. Custom procedures may be called standalone or as part of a larger query. This is useful if we want the procedure to work on data the query is producing. 
 
-With this, your developing environment is ready and you are able to easily implement and run your own query modules. Check out our [Reference Guide](../reference_guide_/query-modules#query-modules-provided-by-memgraph) to see which Query Modules are included in Memgraph. 
+With this, your developing environment is ready and you are able to easily implement and run your own query modules. Check out our [Reference Guide](../reference_guide/query-modules/query-modules.md#query-modules-provided-by-memgraph) to see which Query Modules are included in Memgraph. 
 
 
