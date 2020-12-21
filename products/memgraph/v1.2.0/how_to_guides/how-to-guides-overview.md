@@ -17,3 +17,4 @@ So far we have covered the following topics:
   * [How to Manage User Privileges?](manage-user-privileges.md)
   * [How to Manage Users Using LDAP?](manage-users-using-ldap.md)
   * [How to Setup Memgraph Tensorflow Op?](tensorflow-setup.md)
+  * [Set up a Development Environment with Docker](work-with-docker.md)

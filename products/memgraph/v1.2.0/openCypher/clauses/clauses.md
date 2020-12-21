@@ -1,6 +1,6 @@
-# openCypher Clauses
+## Cypher Clauses
 
-The `openCypher` language enables users to perform standard database operations by using the following clauses:
+The `Cypher` language enables users to perform standard database operations by using the following clauses:
   * [`MATCH`](match.md), which searches for patterns;
   * [`WHERE`](where.md), for filtering the matched data;
   * [`RETURN`](return.md), for defining what will be presented to the user in the result set;

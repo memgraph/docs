@@ -48,4 +48,4 @@ ON CREATE SET m.prop = "created" ON MATCH SET m.prop = "existed";
 ```
 
 For more details, click [this
-link](https://neo4j.com/docs/developer-manual/current/cypher/clauses/merge/).
+link](../openCypher/clauses/merge.md).

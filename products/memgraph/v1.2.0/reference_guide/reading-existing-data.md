@@ -68,13 +68,13 @@ MATCH path = ()-[r*2..4]->() RETURN path;
 ```
 
 More details on how `MATCH` works can be found
-[here](https://neo4j.com/docs/developer-manual/current/cypher/clauses/match/).
+[here](../openCypher/clauses/match.md).
 
 The `MATCH` clause can be modified by prepending the `OPTIONAL` keyword.
 `OPTIONAL MATCH` clause behaves the same as a regular `MATCH`, but when it
 fails to find the pattern, missing parts of the pattern will be filled with
 `null` values. Examples can be found
-[here](https://neo4j.com/docs/developer-manual/current/cypher/clauses/optional-match/).
+[here](../openCypher/clauses/optional-match.md).
 
 ### WHERE
 
@@ -88,7 +88,7 @@ MATCH (n :Person) WHERE n.age > 20 RETURN n;
 ```
 
 Additional examples can be found
-[here](https://neo4j.com/docs/developer-manual/current/cypher/clauses/where/).
+[here](../openCypher/clauses/where.md).
 
 #### Regular Expressions
 
@@ -155,7 +155,7 @@ Besides choosing what will be the result and how it will be named, the
   * perform aggregations (such as `count`).
 
 More details on `RETURN` can be found
-[here](https://neo4j.com/docs/developer-manual/current/cypher/clauses/return/).
+[here](../openCypher/clauses/return.md).
 
 #### SKIP & LIMIT
 

@@ -77,7 +77,7 @@ In our case, the example procedure returns 4 fields:
 
 This procedure can be invoked in openCypher as follows:
 
-```opencypher
+```openCypher
 MATCH (n) WITH n LIMIT 1 CALL py_example.procedure(n, 1) YIELD * RETURN *;
 ```
 

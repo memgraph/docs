@@ -5,7 +5,7 @@
 OpenCypher has a special syntax for calling procedures in loaded query
 modules. For example:
 
-```opencypher
+```openCypher
 CALL example.procedure("string-argument") YIELD args, result;
 ```
 
@@ -21,7 +21,7 @@ Procedures may be called standalone as in the above example, or as a part of a
 larger query. This is useful if we want the procedure to work on data the
 query is producing. For example:
 
-```
+```openCypher
 MATCH (node) CALL example.procedure(node) YIELD result RETURN *;
 ```
 
@@ -35,7 +35,7 @@ If a procedure returns a record with a field name that may clash with some
 variable we already have in a query, that field name can be aliased into some
 other name. For example:
 
-```opencypher
+```openCypher
 MATCH (result) CALL example.procedure(42) YIELD result AS procedure_result RETURN *;
 ```
 
@@ -47,7 +47,7 @@ when running a procedure is `100 MB`.  If your query procedure requires more
 memory to be able to yield its results, you can increase the memory limit using
 the following syntax:
 
-```opencypher
+```openCypher
 CALL example.procedure(arg1, arg2, ...) MEMORY LIMIT 100 KB YIELD result;
 CALL example.procedure(arg1, arg2, ...) MEMORY LIMIT 100 MB YIELD result;
 CALL example.procedure(arg1, arg2, ...) MEMORY UNLIMITED YIELD result;

@@ -38,9 +38,9 @@ docker rm mg_import_helper
 Now we can run the importer with the following command:
 
 ```
-docker run -v mg_lib:/var/lib/memgraph /
-    -v mg_etc:/etc/memgraph -v mg_import:/import-data /
-    --entrypoint=mg_import_csv memgraph --nodes /import-data/nodes.csv /
+docker run -v mg_lib:/var/lib/memgraph \
+    -v mg_etc:/etc/memgraph -v mg_import:/import-data \
+    --entrypoint=mg_import_csv memgraph --nodes /import-data/nodes.csv \
     --relationships /import-data/relationships.csv
 ```
 
