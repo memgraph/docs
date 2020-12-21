@@ -139,6 +139,6 @@ CALL example.procedure("string-argument") YIELD *;
 
 Each procedure returns either zero or more records, where each record contains named fields. The `YIELD` part is used to select fields we are interested in. Custom procedures may be called standalone or as part of a larger query. This is useful if we want the procedure to work on data the query is producing. 
 
-With this, your developing environment is ready and you are able to easily implement and run your own query modules. Check out our [Reference Guide](../reference_guide/query-modules/query-modules.md#query-modules-provided-by-memgraph) to see which Query Modules are included in Memgraph. 
+With this, your developing environment is ready and you are able to easily implement and run your own query modules. Check out our [Reference Guide](../reference_guide/query_modules/query-modules.md#query-modules-provided-by-memgraph) to see which Query Modules are included in Memgraph. 
 
 
