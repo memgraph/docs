@@ -23,7 +23,7 @@ develop, debug and profile database queries and visualize query results.
 
 ## Memgraph Cloud
 
-To offer its users more flexibility and better experience, Memgraph provides
+To offer its users more flexibility and a better experience, Memgraph provides
 fully managed graph DBMS as a service (in the Cloud). Users do not need to set
 up or maintain a database instance. It is Memgraph's responsibility to oversee
 the infrastructure (deployment, upgrade, update, removal, data backup,
