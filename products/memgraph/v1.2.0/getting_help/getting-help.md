@@ -1,6 +1,7 @@
 ## Getting help
 
-**[FAQ](./faq.md)** - You can visit the Frequently Asked Questions page to see if we already provided an answer to your inqury.
+You can visit the **[Frequently Asked Questions](./faq.md)** page to see if we already provided an answer to your inqury.
+{% page-ref page="./faq.md" %}
 
 **[Memgraph Forum](https://discourse.memgraph.com/)** - The Memgraph community forum is the best place to get fast and accurate answers from both our team and other Memgraph developers.
 
@@ -13,7 +14,3 @@
 * have any other kind of technical inquery.
 
 You can also always email us at **[tech@memgraph.com](mailto:tech@memgraph.com)**.
-
-{% page-ref page="./developer-community.md" %}
-{% page-ref page="./developer-support.md" %}
-{% page-ref page="./faq.md" %}

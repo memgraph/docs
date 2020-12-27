@@ -186,9 +186,3 @@
 * [Quick Start Guide to Style Script](lab/v1.2.0/quick_start_guide_to_style_script.md)
 * [Style Script](lab/v1.2.0/style_script.md)
 * [Changelog](lab/CHANGELOG.md)
-
-## Machine Learning
-
-* [TensorFlow Op](tensorflow_op/README.md)
-    * [How to Setup TensorFlow Op?](memgraph/v1.2.0/how_to_guides/tensorflow-setup.md)
-    * [TensorFlow Op Reference](memgraph/v1.2.0/reference_guide/tensorflow.md)
