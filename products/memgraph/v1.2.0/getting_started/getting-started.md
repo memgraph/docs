@@ -1,4 +1,4 @@
-{ "title": "Getting started guide" }
+{% "title": "Getting started guide" %}
 
 ### Where to start?
 
