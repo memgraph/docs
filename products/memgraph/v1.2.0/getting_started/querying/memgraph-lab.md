@@ -3,15 +3,15 @@
 This article outlines the basic steps necessary to query a running Memgraph database instance from **Memgraph Lab**.
 
 ### Prerequisites
-Before you proceed with the installation guide make sure that you have:
+Before you proceed with the guide, make sure that you have:
 * Installed the latest version of **Memgraph Lab** which you can get from the official [download page](https://memgraph.com/download/).
-* A running Memgraph database instance. Instructions on how to do setup Memgraph can be [found here](https://docs.docker.com/get-docker/).
+* A running Memgraph database instance. Instructions on how to do setup Memgraph can be [found here](../installation/installation.md).
 
 ### Connecting to the database
 
 Make sure that Memgraph is running and open Memgraph Lab.
 If you are starting with a fresh database instance, you don't have to change any of the options.
-make sure that the log in information is correct:
+
 1. Leave the `Username` and `Password` fields **empty**.
 2. The `Host` field can be either **`localhost`**, **`127.0.0.1`** or **`0.0.0.0`**.
 3. The `Port` field should be **`7687`**. Every Memgraph instance is listening on this port by default.
@@ -21,6 +21,3 @@ If you fail to connect, make sure that your database instance is up and running.
 If the `Host` address is wrong, take a look at the [Docker Note]() in the installation guide.
 
 ![Memgraph Lab]()
-
-### Querying the database
-

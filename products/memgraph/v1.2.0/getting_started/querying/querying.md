@@ -57,8 +57,6 @@ To find created nodes and relationships, execute the following query:
 MATCH (u:User)-[r]->(x) RETURN u, r, x;
 ```
 
-
-
 ### Telemetry {#telemetry}
 
 Telemetry is an automated process by which data is collected at a remote point.
