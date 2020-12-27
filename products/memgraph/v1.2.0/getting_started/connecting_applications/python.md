@@ -12,8 +12,7 @@ To follow this guide, you will need:
 * The [**pymgclient driver**](https://github.com/memgraph/pymgclient). A Memgraph database adapter for the Python programming language. **(if you are not using Docker)**
 
 {% hint style="info" %}
-**NOTE:** We recommend using Docker because it simplifies installing the driver dependencies.<br/>
-If you don't wish to use Docker, you will need to install the **pymgclient driver** locally.
+**NOTE:** We recommend using Docker because it simplifies installing the driver dependencies. If you don't wish to use Docker, you will need to install the **pymgclient driver** locally.
 {% endhint %}
 
 ### Basic setup

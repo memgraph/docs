@@ -10,7 +10,7 @@ At the end of this guide, you will have created a simple Go **`Hello, World!`** 
 #### Prerequisites
 
 To follow this guide, you will need:
-* A **running Memgraph instance**. If you need to setup Memgraph, take a look at the [Installation guide]().
+* A **running Memgraph instance**. If you need to setup Memgraph, take a look at the [Installation guide](../installation/installation.md).
 * A basic understanding of graph databases and the property graph model.
 * The newest version of Go [installed](https://golang.org/doc/install).
 
@@ -83,7 +83,7 @@ You should see an output similar to the following:
 Node 1: Hello, World!
 ```
 
-### Where To Next?
+### Where to next?
 
-To learn more about the Cypher language, visit our [Reference Guide]() article. For real-world examples of how to use Memgraph, we strongly suggest reading through [Tutorials]().
-Commands:
+For real-world examples of how to use Memgraph, we suggest you take a look at the **[Tutorials](../../tutorials/tutorials.md)** page.<br/>
+You can also browse through the **[Database functionalities](../../database_functionalities/database-functionalities.md)** section to get an overview of all the funcionalities Memgraph offers.

@@ -6,7 +6,7 @@ At the end of this guide, you will have created a simple .NET console **`Hello, 
 #### Prerequisites
 
 For this guide you will need:
-* A running Memgraph instance. If you need to setup Memgraph, take a look  at the [Quick Start]() guide.
+* A **running Memgraph instance**. If you need to setup Memgraph, take a look at the [Installation guide](../installation/installation.md).
 * A basic understanding of graph databases and the property graph model.
 
 ### Driver
@@ -118,6 +118,7 @@ namespace MemgraphApp
 }
 ```
 
-### Where To Next?
+### Where to next?
 
-To learn more about the Cypher language, visit our [Reference Guide]() article. For real-world examples of how to use Memgraph, we strongly suggest reading through [Tutorials]().
+For real-world examples of how to use Memgraph, we suggest you take a look at the **[Tutorials](../../tutorials/tutorials.md)** page.<br/>
+You can also browse through the **[Database functionalities](../../database_functionalities/database-functionalities.md)** section to get an overview of all the funcionalities Memgraph offers.

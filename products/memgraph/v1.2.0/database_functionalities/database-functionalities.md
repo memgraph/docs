@@ -19,16 +19,23 @@ To learn more about query modules take a look at the following guides:
 * [Load and call query modules](./query_modules/load-call-query-modules.md)
 * [Implement custom query modules](./query_modules/implement-query-modules.md)
 
-### Inspect and profile cypher queries 
+### Inspect and profile Cypher queries 
 
 Memgraph also enables you to inspect and profile the execution of a query and get a detailed report 
 on how the query's plan behaved. Take a look at the guides:
 * [Inspecting queries](./inspecting-queries.md)
 * [Profiling queries](./profiling-queries.md)
 
+### Machine learning
+
+Memgraph TensorFlow op wraps the high-performance Memgraph client for use with TensorFlow, 
+allowing natural data transfer between Memgraph and TensorFlow at any point of the model.
+If you are interested in using Memgraph for machine learning purposes  take a look at:
+* [TensorFlow Op Setup](./tensorflow-setup.md) 
+
 ### User Privileges
 
-Memgraph comes with the option of granting, denying or revoking a certain set of privileges to users or groups of users.
+Memgraph comes with the option of granting, denying, or revoking a certain set of privileges to users or groups of users.
 To learn more visit:
 * [User Privileges (Enterprise)](./manage-user-privileges.md)
 

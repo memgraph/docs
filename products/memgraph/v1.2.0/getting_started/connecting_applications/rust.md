@@ -6,14 +6,13 @@ At the end of this guide, you will have created a simple Rust **`Hello, World!`*
 #### Prerequisites
 
 To follow this guide, you will need:
-* A **running Memgraph instance**. If you need to setup Memgraph, take a look at the [Installation guide]().
+* A **running Memgraph instance**. If you need to setup Memgraph, take a look at the [Installation guide](../installation/installation.md).
 * A basic understanding of graph databases and the property graph model.
 * **Docker** installed and running. Instructions on how to setup Docker can be found on the [official Docker website](https://docs.docker.com/get-docker/).
 * The [**rsmgclient driver**](https://github.com/memgraph/rsmgclient). A Memgraph database adapter for the Rust programming language. **(if you are not using Docker)**
 
 {% hint style="info" %}
-**NOTE:** We recommend using Docker because it simplifies installing the driver dependencies.<br/>
-If you don't wish to use Docker, you will need to install the **rsmgclient driver** locally.
+**NOTE:** We recommend using Docker because it simplifies installing the driver dependencies. If you don't wish to use Docker, you will need to install the **rsmgclient driver** locally.
 {% endhint %}
 
 ### Basic setup
@@ -148,5 +147,5 @@ Columns: u, m
 
 ### Where to next?
 
-For real-world examples of how to use Memgraph, we suggest you take a look at the [Tutorials page]().<br/>
-You can also browse through the [Database functionalities]() section to get an overview of all the funcionalities Memgraph offers.
+For real-world examples of how to use Memgraph, we suggest you take a look at the **[Tutorials](../../tutorials/tutorials.md)** page.<br/>
+You can also browse through the **[Database functionalities](../../database_functionalities/database-functionalities.md)** section to get an overview of all the funcionalities Memgraph offers.

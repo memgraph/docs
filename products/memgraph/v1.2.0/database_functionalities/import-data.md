@@ -6,7 +6,7 @@ imported either using the [CSV import tool](#import-csv) or using saved
 mode.
 
 {% hint style="info" %}
-NOTE: `mg_client` is deprecated tool still coming within Memgraph package.
+**NOTE:** `mg_client` is deprecated tool still coming within Memgraph package.
 [mgconsole](https://github.com/memgraph/mgconsole) will replace `mg_client` in
 the future. If possible, please use `mgconsole` instead.
 {% endhint %}
