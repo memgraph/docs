@@ -106,6 +106,6 @@ EXPLAIN MERGE (n) RETURN n;
 ```
 
 The `Merge` logical operator (constructed as a result of the `MERGE` construct)
-can take input from upto 3 places. The `On Match` and `On Create` branches are
+can take input from up to 3 places. The `On Match` and `On Create` branches are
 "pulled from" only if a match was found or if a new vertex has to be created,
 respectively.
