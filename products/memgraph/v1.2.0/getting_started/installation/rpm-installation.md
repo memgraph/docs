@@ -41,7 +41,7 @@ the following command:
 systemctl enable memgraph
 ```
 
-At this point, Memgraph is ready for you to [submit queries](#querying).
+At this point, Memgraph is ready for you to [submit queries](../querying/querying.md).
 
 #### Configuration
 The Memgraph configuration is available in `/etc/memgraph/memgraph.conf`.

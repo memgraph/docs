@@ -41,7 +41,7 @@ Bolt server is fully armed and operational
 Bolt listening on 0.0.0.0:7687
 ```
 
-At this point, Memgraph is ready for you to [submit queries](#querying).
+At this point, Memgraph is ready for you to [submit queries](../querying/querying.md).
 
 
 #### Configuration
@@ -91,4 +91,4 @@ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' 939
 
 The command above should yield the IP that should be used when
 connecting to Memgraph and instead of `HOST` when firing up the `mg_client`
-with Docker, as described in the [querying](#querying) section.
+with Docker, as described in the [querying](../querying/querying.md) section.

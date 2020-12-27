@@ -1,4 +1,4 @@
-# Getting started guide
+## Getting started
 
 ### Where to start?
 
@@ -9,3 +9,4 @@ We recommend following these topics to get aquainted with Memgraph:
 4. Build an application with Memgraph
 
 ### Getting help
+

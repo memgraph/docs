@@ -56,7 +56,7 @@ Nov 23 13:40:13 hostname memgraph[14654]: BoltS server is fully armed and operat
 Nov 23 13:40:13 hostname memgraph[14654]: BoltS listening on 0.0.0.0 at 7687
 ```
 
-At this point, Memgraph is ready for you to [submit queries](#querying).
+At this point, Memgraph is ready for you to [submit queries](../querying/querying.md).
 
 #### Configuration
 The Memgraph configuration is available in `/etc/memgraph/memgraph.conf`.
