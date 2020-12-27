@@ -66,7 +66,7 @@ guide.
 The remainder of this article outlines a recommended workflow of
 user management within an internal database of a fictitious company.
 
-### Creating an Administrator
+### Creating an administrator
 
 As it was stated in the introduction, after the first user is created, Memgraph
 will execute a query for a given user if the effective status of a corresponding
@@ -93,7 +93,7 @@ one as an `admin` user they have just created. The remainder of the article
 is written from the viewpoint of an administrator which is granted
 all privileges.
 
-### Creating Other Users
+### Creating other users
 
 Our fictitious company is internally divided into teams, and each team has
 its own supervisor. All employees of the company need to access and modify
@@ -112,7 +112,7 @@ executing the following:
   GRANT MATCH, MERGE, SET TO alice;
 ```
 
-### Creating User Roles
+### Creating user roles
 
 Each team supervisor needs to have additional privileges that allow them to
 create new data or delete existing data from the database. Instead of tediously

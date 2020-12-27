@@ -1,4 +1,4 @@
-## Use Query Modules Provided by Memgraph?
+## How to use query modules provided by Memgraph
 
 Memgraph Community edition comes with a set of Python query modules based on
 the [NetworkX](https://networkx.github.io/) library of algorithms. The modules

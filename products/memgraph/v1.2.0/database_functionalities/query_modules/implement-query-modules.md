@@ -1,10 +1,10 @@
-## Implement Query Modules?
+## How to implement custom query modules
 
 We are going to examine how the query module `example` is implemented using 
 the C API and the Python API. Both query modules can be found in the 
 `/usr/lib/memgraph/query_modules` directory.
 
-### Using Docker With Query Modules 
+### Using Docker with query modules 
 
 If you are using Docker to run Memgraph you will have to create a volume 
 and mount it to access the `query_modules` directory. This can be done by 

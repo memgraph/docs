@@ -1,6 +1,4 @@
-## How to Inspect and Profile OpenCypher Queries Using Memgraph?
-
-### Inspecting Queries
+## Inspecting queries
 
 Before a Cypher query is executed, it is converted into an internal form
 suitable for execution, known as a *plan*. A plan is a tree-like data structure
@@ -111,41 +109,3 @@ The `Merge` logical operator (constructed as a result of the `MERGE` construct)
 can take input from upto 3 places. The `On Match` and `On Create` branches are
 "pulled from" only if a match was found or if a new vertex has to be created,
 respectively.
-
-### Profiling Queries
-
-Along with inspecting a query's plan as described in the [previous
-section](#inspecting-queries), it is also possible to profile the execution of a
-query and get a detailed report on how the query's plan behaved. For every
-logical operator the following info is provided:
-
-- `OPERATOR` &mdash; the name of the operator, just like in the output of an
-  `EXPLAIN` query.
-
-- `ACTUAL HITS` &mdash; the number of times a particular logical operator was
-  pulled from.
-
-- `RELATIVE TIME` &mdash; the amount of time that was spent processing a
-  particular logical operator, relative to the execution of the whole plan.
-
-- `ABSOLUTE TIME` &mdash; the amount of time that was spent processing a
-  particular logical operator.
-
-A simple example to illustrate the output:
-
-```opencypher
-PROFILE MATCH (n :Node)-[:Edge]-(m :Node) WHERE n.prop = 42 RETURN *;
-```
-
-```plaintext
-+---------------+---------------+---------------+---------------+
-| OPERATOR      | ACTUAL HITS   | RELATIVE TIME | ABSOLUTE TIME |
-+---------------+---------------+---------------+---------------+
-| * Produce     | 1             |   7.134628 %  |   0.003949 ms |
-| * Filter      | 1             |  12.734765 %  |   0.007049 ms |
-| * Expand      | 1             |   5.181460 %  |   0.002868 ms |
-| * ScanAll     | 1             |   3.325061 %  |   0.001840 ms |
-| * ScanAll     | 1             |  71.061241 %  |   0.039334 ms |
-| * Once        | 2             |   0.562844 %  |   0.000312 ms |
-+---------------+---------------+---------------+---------------+
-```
