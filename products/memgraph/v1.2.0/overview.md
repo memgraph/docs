@@ -32,6 +32,13 @@ To learn more about query modules take a look at the following guides:
 * [Load and call query modules](database_functionalities/query_modules/load-call-query-modules.md)
 * [Implement custom query modules](database_functionalities/query_modules/implement-query-modules.md)
 
+### Inspect and profile cypher queries 
+
+Memgraph also enables you to inspect and profile the execution of a query and get a detailed report 
+on how the query's plan behaved. Take a look at the guides:
+* [Inspecting queries](database_functionalities/inspecting-queries.md)
+* [Profiling queries](database_functionalities/profiling-queries.md)
+
 ### NetworkX
 
 Memgraph includes a set of Python query modules based on the [NetworkX](https://networkx.github.io/) library of algorithms.
