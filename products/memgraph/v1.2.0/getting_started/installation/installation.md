@@ -3,9 +3,9 @@
 This article briefly outlines the basic steps necessary to install and run Memgraph.
 
 Memgraph is available to [download as a binary](https://memgraph.com/download/) in the following formats:
-  * **[Docker (Windows, Linux, macOS)](#docker-installation)**
-  * **[Debian package](#debian-installation)**
-  * **[RPM package](#RPM-installation)**
+  * **[Docker (Windows, Linux, macOS)](./docker-installation.md)**
+  * **[Debian package](./debian-installation.md)**
+  * **[RPM package](./RPM-installation.md)**
 
 We recommend using Docker because it simplifies the installation process and offers a lot of flexibility to new users.
 

@@ -1,4 +1,4 @@
-### Querying {#querying}
+## Querying
 
 Memgraph supports the [openCypher](https://www.opencypher.org) query language
 which has been developed by [Neo4j](http://neo4j.com).
@@ -18,22 +18,22 @@ the future. If possible, please use `mgconsole` instead.
 
 If you installed Memgraph using Docker, you will need to run the client
 using the following command (remember to replace `HOST` with valid IP of
-the container - see [Note for OS X/macOS Users](#OSX-note)):
+the container - see [Docker Note](../installation/docker-installation.md#docker-note)):
 
-```plaintext
+```
 docker run -it --entrypoint=mg_client memgraph --host HOST --use-ssl=False
 ```
 
 Otherwise, you can connect to the running Memgraph instance by
 issuing the following shell command:
 
-```plaintext
+```
 mg_client --use-ssl=False
 ```
 
 After the client has started it should present a command prompt similar to:
 
-```plaintext
+```
 Type :help for shell usage
 Quit the shell by typing Ctrl-D(eof) or :quit
 Connected to 'memgraph://127.0.0.1:7687'
