@@ -1,7 +1,3 @@
----
-tags: In Review, Quick Start, Python
----
-
 ## Quick start: Python and Memgraph
 
 #### Goals
