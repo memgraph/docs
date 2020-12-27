@@ -166,10 +166,10 @@
     * [Rust](https://github.com/memgraph/rsmgclient)
 * [Upcoming Features](memgraph/v1.2.0/upcoming-features.md)
 * [Changelog](memgraph/CHANGELOG.md)
-* [Getting help](memgraph/v1.2.0/getting_help/overview.md)
+* [Getting help](memgraph/v1.2.0/getting_help/getting-help-overview.md)
     * [Developer community](memgraph/v1.2.0/getting_help/developer-community.md)
     * [Developer support](memgraph/v1.2.0/getting_help/developer-support.md)
-    * [FAQ](memgraph/v1.2.0/faq.md)
+    * [FAQ](memgraph/v1.2.0/getting_help/faq.md)
 
 ## Highly Available Memgraph
 
