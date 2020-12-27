@@ -11,7 +11,7 @@
     * [Querying the database](memgraph/v1.2.0/getting_started/querying/querying.md)
         * [Memgraph Lab](memgraph/v1.2.0/getting_started/querying/memgraph-lab.md)
         * [Memgraph Playground](https://playground.memgraph.com/)
-    * [Building applications]()
+    * [Building applications](memgraph/v1.2.0/getting_started/connecting_applications/connecting-applications.md)
         * [Python](memgraph/v1.2.0/getting_started/connecting_applications/python.md)
         * [Rust](memgraph/v1.2.0/getting_started/connecting_applications/rust.md)
         * [C Sharp](memgraph/v1.2.0/getting_started/connecting_applications/c-sharp.md)
