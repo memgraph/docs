@@ -1,9 +1,8 @@
 ## Profiling queries
 
-Along with inspecting a query's plan as described in the [previous
-section](#inspecting-queries), it is also possible to profile the execution of a
-query and get a detailed report on how the query's plan behaved. For every
-logical operator the following info is provided:
+Along with inspecting a query's plan as described in the [Inspecting queries](./inspecting-queries.md), 
+it is also possible to profile the execution of a query and get a detailed report 
+on how the query's plan behaved. For every logical operator the following info is provided:
 
 - `OPERATOR` &mdash; the name of the operator, just like in the output of an
   `EXPLAIN` query.

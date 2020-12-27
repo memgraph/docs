@@ -25,7 +25,7 @@ As an example, let's inspect the plan produced for a simple query:
 EXPLAIN MATCH (n) RETURN n;
 ```
 
-```plaintext
+```
 +----------------+
 | QUERY PLAN     |
 +----------------+
@@ -55,7 +55,7 @@ A slightly more complicated example would be:
 EXPLAIN MATCH (n :Node)-[:Edge]-(m :Node) WHERE n.prop = 42 RETURN *;
 ```
 
-```plaintext
+```
 +--------------------------------+
 | QUERY PLAN                     |
 +--------------------------------+
@@ -88,7 +88,7 @@ be:
 EXPLAIN MERGE (n) RETURN n;
 ```
 
-```plaintext
+```
 +------------------+
 | QUERY PLAN       |
 +------------------+
