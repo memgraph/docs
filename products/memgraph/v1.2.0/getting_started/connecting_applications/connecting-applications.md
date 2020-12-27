@@ -2,7 +2,7 @@
 
 ### Quick start guides
 
-The following guides describe how to create a simple **`Hello, World!`** program that connects to the Memgraph database and execute simple queries:
+The following guides describe how to create a simple **`Hello, World!`** program that connects to the Memgraph database and executes simple queries:
 {% page-ref page="./python.md" %}
 {% page-ref page="./rust.md" %}
 {% page-ref page="./c-sharp.md" %}

@@ -19,13 +19,13 @@ If you don't wish to use Docker, you will need to install the **pymgclient drive
 ### Basic setup
 
 We'll be using a **Dockerized Python program** to demonstrate how to connect to a running Memgraph database instance.<br/>
-If you don't wish to use Docker, the steps might be slightly different, but the code is most likley the same or very similar.<br/>
+If you don't wish to use Docker, the steps might be slightly different, but the code is most likely the same or very similar.<br/>
 
 Let's jump in and connect a simple program to Memgraph.
 
-1. Create a new directory for your program, for example `/memgraph_python` and position yourself in it.
-2. Create a `requirements.txt` file which will contain a list of items to be installed using **pip**. Leave it empty for the purposes of this guide.
-3. Create a new file in the project root directory `/memgraph_python` and name it  `Dockerfile`. Add the following code to it:
+**1.** Create a new directory for your program, for example `/memgraph_python` and position yourself in it.
+**2.** Create a `requirements.txt` file which will contain a list of items to be installed using **pip**. Leave it empty for the purposes of this guide.
+**3.** Create a new file in the project root directory `/memgraph_python` and name it  `Dockerfile`. Add the following code to it:
 
 ```Dockerfile
 # Set base image (host OS)
@@ -68,8 +68,8 @@ COPY src/ .
 CMD [ "python", "./program.py" ]
 ```
 
-4. Create a directory for you source code, for example `/src` and position yourself in it.
-5. To make the actual program, create a new Python script. Name it `program.py` and add the following code:
+**4.** Create a directory for your source code, for example, `/src` and position yourself in it.
+**5.** To make the actual program, create a new Python script. Name it `program.py` and add the following code:
 
 ```Python
 import mgclient
@@ -101,20 +101,20 @@ row = cursor.fetchone()
 print(row[0])
 ```
 
-5. Don't forget to change the host address in your code.<br/>
+**6.** Don't forget to change the host address in your code.<br/>
 Find the **`CONTAINER ID`** with `docker ps` and use it in the following command to retrieve the address:
 
 ```
 docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' CONTAINER ID
 ```
 
-6. To run the application, first, you need to create a Docker image with:
+**7.** To run the application, first, you need to create a Docker image with:
 
 ```
 docker build -t memgraph_python .
 ```
 
-6. Now, you can run the application with the following command:
+**8.** Now, you can run the application with the following command:
 
 ```
 docker run memgraph_python
@@ -128,5 +128,5 @@ Node 1: Hello, World!
 
 ### Where to next?
 
-For real-world examples of how to use Memgraph, we suggest you take a look at the [Tutorials page]().<br/>
-You can also browse through the [Database functionalities]() section to get an overview of all the funcionalities Memgraph offers.
+For real-world examples of how to use Memgraph, we suggest you take a look at the **[Tutorials](../../tutorials/tutorials.md)** page.<br/>
+You can also browse through the **[Database functionalities](../../database_functionalities/database-functionalities.md)** section to get an overview of all the funcionalities Memgraph offers.
