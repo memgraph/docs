@@ -1,4 +1,4 @@
-## Quick start: Python and Memgraph
+# Quick start: Python and Memgraph
 
 #### Goals
 At the end of this guide, you will have created a simple Python **`Hello, World!`** program that connects to the Memgraph database and executes simple queries.
