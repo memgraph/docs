@@ -27,7 +27,7 @@
     * [Movie Recommendation System](memgraph/v1.2.0/tutorials/movie-recommendation.md)
     * [Understanding Music (with Modules)](memgraph/v1.2.0/tutorials/understanding-music-with-modules.md)
     * [Social Network Analysis with NetworkX](memgraph/v1.2.0/tutorials/social-network-analysis.md)
-* [Database functionalities](memgraph/v1.2.0/database_functionalities/overview.md)
+* [Database functionalities](memgraph/v1.2.0/database_functionalities/database-functionalities.md)
     * [Import data](memgraph/v1.2.0/database_functionalities/import-data.md)
     * [Query modules](memgraph/v1.2.0/database_functionalities/query_modules/overview.md)
         * [Built-in query modules](memgraph/v1.2.0/database_functionalities/query_modules/built-in-query-modules.md)
