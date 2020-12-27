@@ -1,4 +1,4 @@
-## Understanding music (with modules)
+## Understanding music (with query modules)
 
 This article is part of a series intended to show users how to use Memgraph on
 real-world data and, by doing so, retrieve some interesting and useful

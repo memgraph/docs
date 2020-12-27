@@ -17,7 +17,7 @@
         * [C Sharp](memgraph/v1.2.0/getting_started/connecting_applications/c-sharp.md)
         * [Go](memgraph/v1.2.0/getting_started/connecting_applications/go.md)
         * [JavaScript](memgraph/v1.2.0/getting_started/connecting_applications/javascript.md)
-* [Tutorials](memgraph/v1.2.0/tutorials/tutorials-overview.md)
+* [Tutorials](memgraph/v1.2.0/tutorials/tutorials.md)
     * [Analyzing TED Talks](memgraph/v1.2.0/tutorials/analyzing-TED-talks.md)
     * [Backpacking Through Europe](memgraph/v1.2.0/tutorials/backpacking-through-europe.md)
     * [Exploring the European Road Network](memgraph/v1.2.0/tutorials/exploring-the-european-road-network.md)
@@ -38,6 +38,7 @@
     * [Enforce constraints](memgraph/v1.2.0/database_functionalities/overview.md)
         * [Existence constraint](memgraph/v1.2.0/database_functionalities/existence-constraint.md)
         * [Uniqueness constraint](memgraph/v1.2.0/database_functionalities/uniqueness_constraint.md)
+    * [TensorFlow setup](memgraph/v1.2.0/database_functionalities/tensorflow-setup.md)
     * [User privileges (Enterprise)](memgraph/v1.2.0/database_functionalities/manage-user-privileges.md)
     * [Authentication and authorization (Enterprise)](memgraph/v1.2.0/database_functionalities/manage-users-using-ldap.md)
 * [Concepts](memgraph/v1.2.0/concepts/concepts-overview.md)
@@ -164,8 +165,6 @@
 * [Upcoming Features](memgraph/v1.2.0/upcoming-features.md)
 * [Changelog](memgraph/CHANGELOG.md)
 * [Getting help](memgraph/v1.2.0/getting_help/getting-help.md)
-    * [Developer community](memgraph/v1.2.0/getting_help/developer-community.md)
-    * [Developer support](memgraph/v1.2.0/getting_help/developer-support.md)
     * [FAQ](memgraph/v1.2.0/getting_help/faq.md)
 
 ## Highly Available Memgraph
