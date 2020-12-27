@@ -2,11 +2,13 @@
 
 ### Where to start?
 
-We recommend following these topics to get aquainted with Memgraph:
-1. Install Memgraph
-2. Learn how to query the database
-3. Play with the Cypher language in Memgraph Playground 
-4. Build an application with Memgraph
+We recommend exploring some of these topics to get aquainted with Memgraph:
+
+* **[Install Memgraph](./installation/installation.md)** or try out **[Memgraph Cloud](https://memgraph.com/product/cloud)**
+* Learn how to **[query the database](./querying/querying.md)**
+* Play with the Cypher language in **[Memgraph Playground](https://playground.memgraph.com/)**
+* **[Build an application](./connecting_applications)** with Memgraph in one of our supported languages and frameworks
 
 ### Getting help
 
+{% include "../getting_help/getting-help.md" %}
