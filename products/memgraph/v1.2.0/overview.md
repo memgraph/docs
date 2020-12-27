@@ -21,17 +21,16 @@ Memgraph uses the openCypher query language. Learn how to query Memgraph:
 ### Importing Data
 
 Data can be imported from CSV files using the CSV Import Tool or by using openCypher queries. 
-Take a look at the [How to Import Data](how_to_guides/import-data.md) guide.
+Take a look at the [Import data](database_functionalities/import-data.md) guide.
 
 ### Query Modules
 
 Memgraph supports extending the query language with user-written procedures. 
 These procedures are grouped into modules, which can then be loaded either on startup or later on. 
 To learn more about query modules take a look at the following guides:
-* [How to Load Query Modules?](how_to_guides/load-query-modules.md)
-* [How to Call Query Module Procedures?](how_to_guides/call-query-module-procedures.md)
-* [How to Implement Query Modules?](how_to_guides/implement-query-modules.md)
-* [How to Use Query Modules Provided by Memgraph?](how_to_guides/use-query-modules-provided-by-memgraph.md)
+* [Built-in query modules](database_functionalities/query_modules/built-in-query-modules.md)
+* [Load and call query modules](database_functionalities/query_modules/load-call-query-modules.md)
+* [Implement custom query modules](database_functionalities/query_modules/implement-query-modules.md)
 
 ### NetworkX
 
