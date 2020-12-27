@@ -6,7 +6,7 @@ At the end of this guide, you will have created a simple Python **`Hello, World!
 #### Prerequisites
 
 To follow this guide, you will need:
-* A **running Memgraph instance**. If you need to setup Memgraph, take a look at the [Installation guide]().
+* A **running Memgraph instance**. If you need to setup Memgraph, take a look at the [Installation guide](../installation/installation.md).
 * A basic understanding of graph databases and the property graph model.
 * **Docker** installed and running. Instructions on how to setup Docker can be found on the [official Docker website](https://docs.docker.com/get-docker/).
 * The [**pymgclient driver**](https://github.com/memgraph/pymgclient). A Memgraph database adapter for the Python programming language. **(if you are not using Docker)**
@@ -23,8 +23,8 @@ If you don't wish to use Docker, the steps might be slightly different, but the 
 
 Let's jump in and connect a simple program to Memgraph.
 
-**1.** Create a new directory for your program, for example `/memgraph_python` and position yourself in it.
-**2.** Create a `requirements.txt` file which will contain a list of items to be installed using **pip**. Leave it empty for the purposes of this guide.
+**1.** Create a new directory for your program, for example `/memgraph_python` and position yourself in it.<br/>
+**2.** Create a `requirements.txt` file which will contain a list of items to be installed using **pip**. Leave it empty for the purposes of this guide.<br/>
 **3.** Create a new file in the project root directory `/memgraph_python` and name it  `Dockerfile`. Add the following code to it:
 
 ```Dockerfile
@@ -68,7 +68,7 @@ COPY src/ .
 CMD [ "python", "./program.py" ]
 ```
 
-**4.** Create a directory for your source code, for example, `/src` and position yourself in it.
+**4.** Create a directory for your source code, for example, `/src` and position yourself in it.<br/>
 **5.** To make the actual program, create a new Python script. Name it `program.py` and add the following code:
 
 ```Python
