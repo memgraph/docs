@@ -51,6 +51,12 @@ If the Memgraph configuration is altered, Memgraph needs to be restarted.
 
 To shut down the Memgraph server, issue the following command:
 
-```plaintext
+```
 systemctl stop memgraph
 ```
+
+### Where to next?
+
+To learn how to query the database, take a look at the **[Querying](../querying/querying.md)** guide or **[Memgraph Playground](https://playground.memgraph.com/)** for interactive tutorials.<br/>
+Visit the **[Building applications](../connecting_applications/connecting_applications.md)** page if you need to 
+connect to the database programmatically.

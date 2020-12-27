@@ -75,7 +75,7 @@ address. Fortunately, that IP address can be found as follows:
 By issuing the command `docker ps` the user should get an output similar to the
 following:
 
-```plaintext
+```
 CONTAINER ID        IMAGE               COMMAND                  CREATED        ...
 9397623cd87e        memgraph            "/usr/lib/memgraph/m…"   2 seconds ago  ...
 ```
@@ -85,7 +85,7 @@ image.  In our case, that is `9397623cd87e`.
 
 2) Use the container ID to retrieve an IP of the container
 
-```plaintext
+```
 docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' 9397623cd87e
 ```
 
@@ -95,6 +95,6 @@ with Docker, as described in the [querying](../querying/querying.md) section.
 
 ### Where to next?
 
-To learn how to query the database, take a look at the **[Querying](../querying/querying.md)** guide or **[Memgraph Playground](https://playground.memgraph.com/)** for interactive tutorials. 
+To learn how to query the database, take a look at the **[Querying](../querying/querying.md)** guide or **[Memgraph Playground](https://playground.memgraph.com/)** for interactive tutorials.<br/>
 Visit the **[Building applications](../connecting_applications/connecting_applications.md)** page if you need to 
 connect to the database programmatically.

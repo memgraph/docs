@@ -29,7 +29,7 @@ Errors were encountered while processing:
 To install missing dependencies and finish the installation of the Memgraph
 package, just issue the following command:
 
-```plaintext
+```
 apt-get install -f
 ```
 
@@ -39,19 +39,19 @@ configuring the Memgraph package.
 On successful installation, Memgraph should already be running. To
 confirm it, you can start it explicitly as follows:
 
-```plaintext
+```
 systemctl start memgraph
 ```
 
 To verify that Memgraph is running, run the following:
 
-```plaintext
+```
 journalctl --unit memgraph
 ```
 
 If successful, you should receive an output similar to the following:
 
-```plaintext
+```
 Nov 23 13:40:13 hostname memgraph[14654]: BoltS server is fully armed and operational
 Nov 23 13:40:13 hostname memgraph[14654]: BoltS listening on 0.0.0.0 at 7687
 ```
@@ -66,6 +66,12 @@ If the Memgraph configuration is altered, Memgraph needs to be restarted.
 
 To shut down the Memgraph server, issue the following command:
 
-```plaintext
+```
 systemctl stop memgraph
 ```
+
+### Where to next?
+
+To learn how to query the database, take a look at the **[Querying](../querying/querying.md)** guide or **[Memgraph Playground](https://playground.memgraph.com/)** for interactive tutorials.<br/>
+Visit the **[Building applications](../connecting_applications/connecting_applications.md)** page if you need to 
+connect to the database programmatically.

@@ -57,7 +57,7 @@ To find created nodes and relationships, execute the following query:
 MATCH (u:User)-[r]->(x) RETURN u, r, x;
 ```
 
-### Telemetry {#telemetry}
+### Telemetry
 
 Telemetry is an automated process by which data is collected at a remote point.
 At Memgraph, we use telemetry for the sole purpose of improving our product,
@@ -73,7 +73,7 @@ features, you can do so easily, either by altering the line in
 including `--telemetry-enabled=false` as a command-line argument when running
 the executable.
 
-### Where To Next?
+### Where to next?
 
 To learn more about the openCypher language, visit our [Reference
 Guide](reference_guide/reference-overview.md) article.  For real-world examples of how to use Memgraph, we strongly suggest reading through
