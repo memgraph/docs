@@ -39,7 +39,7 @@
         * [Existence constraint](memgraph/v1.2.0/database_functionalities/existence-constraint.md)
         * [Uniqueness constraint](memgraph/v1.2.0/database_functionalities/uniqueness_constraint.md)
     * [User privileges (Enterprise)](memgraph/v1.2.0/database_functionalities/manage-user-privileges.md)
-    * [Authentication and Authorization (Enterprise)](memgraph/v1.2.0/database_functionalities/manage-users-using-ldap.md)
+    * [Authentication and authorization (Enterprise)](memgraph/v1.2.0/database_functionalities/manage-users-using-ldap.md)
 * [Concepts](memgraph/v1.2.0/concepts/concepts-overview.md)
     * [Storage](memgraph/v1.2.0/concepts/storage.md)
     * [Graph Algorithms](memgraph/v1.2.0/concepts/graph-algorithms.md)

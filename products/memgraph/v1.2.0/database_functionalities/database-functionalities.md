@@ -1,13 +1,14 @@
 ## How-to Guides Overview
 
-Articles within the this section serve as a cookbook for getting
+Articles within this section serve as a cookbook for getting
 things done as fast as possible. These articles tend to provide a step-by-step
 guide on how to use certain Memgraph features or solve a particular problem.
 
 ### Import data
 
 Data can be imported from CSV files using the CSV Import Tool or by using openCypher queries. 
-Take a look at the [Import data](./import-data.md) guide.
+To learn more visit:
+* [Import data](./import-data.md)
 
 ### Query modules
 
@@ -29,10 +30,10 @@ on how the query's plan behaved. Take a look at the guides:
 
 Memgraph comes with the option of granting, denying or revoking a certain set of privileges to users or groups of users.
 To learn more visit:
-* [How to Manage User Privileges? (Enterprise)](./manage-user-privileges.md)
+* [User Privileges (Enterprise)](./manage-user-privileges.md)
 
 ### Authentication and Authorization
 
 Memgraph supports authentication and (optional) authorization using a custom-built external auth module.
 To learn more visit:
-* [How to Manage Users Using LDAP? (Enterprise)](./manage-users-using-ldap.md)
+* [Authentication and authorization (Enterprise)](./manage-users-using-ldap.md)
