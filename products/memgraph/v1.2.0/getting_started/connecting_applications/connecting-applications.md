@@ -3,11 +3,11 @@
 ### Quick start guides
 
 The following guides describe how to create a simple **`Hello, World!`** program that connects to the Memgraph database and execute simple queries:
-{% page-ref page="memgraph/v1.2.0/getting_started/connecting_applications/python.md" %}
-{% page-ref page="memgraph/v1.2.0/getting_started/connecting_applications/rust.md" %}
-{% page-ref page="memgraph/v1.2.0/getting_started/connecting_applications/c-sharp.md" %}
-{% page-ref page="memgraph/v1.2.0/getting_started/connecting_applications/go.md" %}
-{% page-ref page="memgraph/v1.2.0/getting_started/connecting_applications/javascript.md" %}
+{% page-ref page="./python.md" %}
+{% page-ref page="./rust.md" %}
+{% page-ref page="./c-sharp.md" %}
+{% page-ref page="./go.md" %}
+{% page-ref page="./javascript.md" %}
 
 ### Supported Languages
 
