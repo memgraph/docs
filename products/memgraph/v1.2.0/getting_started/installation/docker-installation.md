@@ -51,7 +51,7 @@ Linux systems, it should be in
 `/var/lib/docker/volumes/mg_etc/_data/memgraph.conf`.
 
 
-#### Named Volumes
+#### Named volumes
 If it happens that the named volumes are reused between different Memgraph
 versions, Docker will overwrite a folder within the container with existing
 data from the host machine. If a new file is introduced, or two versions of
@@ -63,7 +63,7 @@ from the host with the following command:
 ```
 docker volume rm <volume_name>
 ```
-#### Note for Docker Users {#docker-note}
+#### Note for docker users {#docker-note}
 
 Although unlikely, some OS X/macOS users might experience minor difficulties
 after the Docker installation. Instead of running on
@@ -92,3 +92,9 @@ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' 939
 The command above should yield the IP that should be used when
 connecting to Memgraph and instead of `HOST` when firing up the `mg_client`
 with Docker, as described in the [querying](../querying/querying.md) section.
+
+### Where to next?
+
+To learn how to query the database, take a look at the **[Querying](../querying/querying.md)** guide or **[Memgraph Playground](https://playground.memgraph.com/)** for interactive tutorials. 
+Visit the **[Building applications](../connecting_applications/connecting_applications.md)** page if you need to 
+connect to the database programmatically.

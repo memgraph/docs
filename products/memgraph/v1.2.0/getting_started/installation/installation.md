@@ -13,7 +13,7 @@ We recommend using Docker because it simplifies the installation process and off
 Newer versions of Memgraph are currently not backward compatible with older versions. This is mainly noticeable by being unable to load storage snapshots between different versions.
 {% endhint %}
 
-## Memgraph Cloud
+### Memgraph Cloud
 
 If you don't want to install Memgraph locally, you can try out **[Memgraph Cloud](https://memgraph.com/product/cloud)** for free. 
 

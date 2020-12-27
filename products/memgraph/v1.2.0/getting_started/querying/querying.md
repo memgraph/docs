@@ -76,9 +76,5 @@ the executable.
 ### Where To Next?
 
 To learn more about the openCypher language, visit our [Reference
-Guide](reference_guide/reference-overview.md) article.  For real-world examples
-of how to use Memgraph, we strongly suggest reading through
-[Tutorials](tutorials/tutorials-overview.md). Details on what can be stored in
-Memgraph can be found in the article about [Data Storage](concepts/storage.md).
-
-We *welcome and encourage* your feedback!
+Guide](reference_guide/reference-overview.md) article.  For real-world examples of how to use Memgraph, we strongly suggest reading through
+[Tutorials](tutorials/tutorials-overview.md). Details on what can be stored in Memgraph can be found in the article about [Data Storage](concepts/storage.md).

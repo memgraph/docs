@@ -2,7 +2,7 @@
 
 ### Where to start?
 
-We recommend exploring some of these topics to get aquainted with Memgraph:
+We recommend exploring some of these topics to get acquainted with Memgraph:
 
 * **[Install Memgraph](./installation/installation.md)** or try out **[Memgraph Cloud](https://memgraph.com/product/cloud)**
 * Learn how to **[query the database](./querying/querying.md)**
@@ -22,9 +22,9 @@ We recommend exploring some of these topics to get aquainted with Memgraph:
 **[StackOverflow](https://stackoverflow.com/questions/tagged/memgraphdb)** - You can always post a question on StackOverflow with the tag **memgraphdb**.
 
 **[Support Page](https://airtable.com/shrcmWpvn74kudboV)** - You can create a support ticket if you:
-* need to report a bug or a techincal issue
+* need to report a bug or a technical issue
 * have a feature request or suggestion for us
-* need information that is not present in out documentation
-* have any other kind of technical inquery.
+* need information that is not present in our documentation
+* have any other kind of technical inquiry.
 
 You can also always email us at **[tech@memgraph.com](mailto:tech@memgraph.com)**.
