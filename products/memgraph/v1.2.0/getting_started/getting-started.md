@@ -9,6 +9,11 @@ We recommend exploring some of these topics to get aquainted with Memgraph:
 * Play with the Cypher language in **[Memgraph Playground](https://playground.memgraph.com/)**
 * Build an application with Memgraph in one of our supported languages and frameworks
     * **[Python](./connecting_applications/python.md)**
+    * **[Rust](./connecting_applications/rust.md)**
+    * **[C#](./connecting_applications/c-sharp.md)**
+    * **[Java](./connecting_applications/java.md)**
+    * **[Go](./connecting_applications/go.md)**
+    * **[JavaScript](./connecting_applications/javascript.md)**
 
 ### Getting help
 
@@ -22,4 +27,4 @@ We recommend exploring some of these topics to get aquainted with Memgraph:
 * need information that is not present in out documentation
 * have any other kind of technical inquery.
 
-You can also always email us at **tech@memgraph.com**.
+You can also always email us at **[tech@memgraph.com](mailto:tech@memgraph.com)**.
