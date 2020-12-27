@@ -66,7 +66,7 @@ You should see an output similar to the following:
 Node 1: Hello, World!
 ```
 
-## Alternative Setup
+### Alternative Setup
 
 If you want to try out more complex operations, feel free to use the refactored code below.
 
