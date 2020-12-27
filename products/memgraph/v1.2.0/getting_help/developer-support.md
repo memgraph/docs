@@ -6,4 +6,4 @@ You can create a support ticket on our **[Support Page](https://airtable.com/shr
 * need information that is not present in out documentation
 * have any other kind of technical inquery.
 
-You can also email us at **[tech@memgraph.com]**(tech@memgraph.com).
+You can also always email us at **tech@memgraph.com**.
