@@ -29,7 +29,7 @@
     * [Social Network Analysis with NetworkX](memgraph/v1.2.0/tutorials/social-network-analysis.md)
 * [Database functionalities](memgraph/v1.2.0/database_functionalities/database-functionalities.md)
     * [Import data](memgraph/v1.2.0/database_functionalities/import-data.md)
-    * [Query modules](memgraph/v1.2.0/database_functionalities/query_modules/overview.md)
+    * [Query modules](memgraph/v1.2.0/database_functionalities/query_modules/query-modules.md)
         * [Built-in query modules](memgraph/v1.2.0/database_functionalities/query_modules/built-in-query-modules.md)
         * [Load and call query modules](memgraph/v1.2.0/database_functionalities/query_modules/load-call-query-modules.md)
         * [Implement custom query modules](memgraph/v1.2.0/database_functionalities/query_modules/implement-query-modules.md)
