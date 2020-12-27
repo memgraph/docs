@@ -1,4 +1,4 @@
-## How-to Guides Overview
+## Database functionalities
 
 Articles within this section serve as a cookbook for getting
 things done as fast as possible. These articles tend to provide a step-by-step

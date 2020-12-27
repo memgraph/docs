@@ -1,17 +1,21 @@
 # Overview
 
-## Memgraph v1.2.0
+## Memgraph
 
 Memgraph is an ACID compliant high performance transactional in-memory graph
 database management system featuring highly concurrent data structures,
 multi-version concurrency control and asynchronous IO.
 
-## Highly Available Memgraph v0.1.0
+{% page-ref page="memgraph/v1.2.0/getting_started/getting-started.md" %}
+{% page-ref page="memgraph/v1.2.0/database_functionalities/database-functionalities.md" %}
+{% page-ref page="memgraph/v1.2.0/reference_guide/reference-guide.md" %}
+
+## Highly Available Memgraph
 
 HA Memgraph is an ACID compliant, highly available, transactional, in-memory
 graph database management system based on the Raft protocol.
 
-## Memgraph Lab v1.2.0
+## Memgraph Lab
 
 Memgraph Lab is a lightweight and intuitive openCypher and Bolt compatible
 integrated development environment (IDE), designed to help you import data,

@@ -44,7 +44,7 @@
     * [Storage](memgraph/v1.2.0/concepts/storage.md)
     * [Graph Algorithms](memgraph/v1.2.0/concepts/graph-algorithms.md)
     * [Indexing](memgraph/v1.2.0/concepts/indexing.md)
-* [Reference Guide](memgraph/v1.2.0/reference_guide/reference-overview.md)
+* [Reference Guide](memgraph/v1.2.0/reference_guide/reference-guide.md)
     * [Configuration](memgraph/v1.2.0/reference_guide/configuration.md)
     * [Reading Existing Data](memgraph/v1.2.0/reference_guide/reading-existing-data.md)
     * [Writing New Data](memgraph/v1.2.0/reference_guide/writing-new-data.md)
