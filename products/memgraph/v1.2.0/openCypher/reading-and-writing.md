@@ -1,4 +1,4 @@
-## Reading and Writing
+## Reading and writing
 
 OpenCypher supports combining multiple reads and writes using the
 `WITH` clause. In addition to combining, the `MERGE` clause is provided which

@@ -2,7 +2,7 @@
 
 The following sections describe some of the other supported features.
 
-### String Operators
+### String operators {#string-operators}
 
 Apart from comparison and concatenation operators openCypher provides special
 string operators for easier matching of substrings:

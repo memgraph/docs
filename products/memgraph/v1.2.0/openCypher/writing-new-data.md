@@ -1,4 +1,4 @@
-## Writing New Data
+## Writing new data
 
 For adding new data, you can use the following clauses.
 

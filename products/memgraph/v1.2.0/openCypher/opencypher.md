@@ -3,6 +3,13 @@
 `Cypher` is the most widely adopted, fully-specified, and open query language for property graph databases.
 It provides an intuitive way to work with property graphs.
 
+### Getting started
+
+Take a look at the following guides if you are new to the Cypher query language:
+{% page-ref page="./reading-existing-data.md" %}
+{% page-ref page="./writing-new-data.md" %}
+{% page-ref page="./reading-and-writing.md" %}
+
 ### Clauses
 
 The `Cypher` language enables users to perform standard database operations by using the following clauses:
@@ -20,3 +27,8 @@ The `Cypher` language enables users to perform standard database operations by u
 ### Functions
 
 `Cypher` supports a large number of functions. The list can be found here: [Cypher Functions](functions.md).
+
+### Other features
+
+The following sections describe some of the other supported features in Memgraph:
+* [String operators](./other-features.md#string-operators)

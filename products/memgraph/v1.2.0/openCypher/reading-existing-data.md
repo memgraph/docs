@@ -1,13 +1,14 @@
-## Reading Existing Data
+## Reading existing data
 
 The simplest usage of the language is to find data stored in the
 database. For that purpose, the following clauses are offered:
 
-  * `MATCH`, which searches for patterns;
-  * `WHERE`, for filtering the matched data and
-  * `RETURN`, for defining what will be presented to the user in the result
+  * `MATCH` which searches for patterns;
+  * `WHERE` for filtering the matched data and
+  * `RETURN` for defining what will be presented to the user in the result
     set.
   * `UNION` and `UNION ALL` for combining results from multiple queries.
+  * `UNWIND` for unwinding a list of values as individual rows.
 
 ### MATCH
 
@@ -90,7 +91,7 @@ MATCH (n :Person) WHERE n.age > 20 RETURN n;
 Additional examples can be found
 [here](./clauses/where.md).
 
-#### Regular Expressions
+#### Regular expressions
 
 Inside `WHERE` clause, you can use regular expressions for text filtering. To
 use a regular expression, you need to use the `=~` operator.
@@ -301,11 +302,10 @@ MATCH(n: Person) RETURN n.name AS name UNION ALL MATCH(n: Movie) RETURN n.name A
 
 The `UNWIND` clause is used to unwind a list of values as individual rows.
 
-Example. Produce rows out of a single list.
+Example, produce rows out of a single list.
 
 ```opencypher
 UNWIND [1,2,3] AS listElement RETURN listElement;
 ```
 
-More examples are
-[here](./clauses/unwind.md).
+More examples can be found [here](./clauses/unwind.md).
