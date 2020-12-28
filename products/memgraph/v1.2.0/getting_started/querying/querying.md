@@ -73,8 +73,13 @@ features, you can do so easily, either by altering the line in
 including `--telemetry-enabled=false` as a command-line argument when running
 the executable.
 
+### Getting help
+
+Visit the **Getting help** page in case you run into any kind of problem or you have additional questions.
+{% page-ref page="../../getting_help/getting-help.md" %}
+
 ### Where to next?
 
-To learn more about the openCypher language, visit our [Reference
-Guide](reference_guide/reference-overview.md) article.  For real-world examples of how to use Memgraph, we strongly suggest reading through
-[Tutorials](tutorials/tutorials-overview.md). Details on what can be stored in Memgraph can be found in the article about [Data Storage](concepts/storage.md).
+To learn more about the **openCypher** language, visit our **[Cypher manual](../../cypher_manual/cypher-manual.md)**.  
+For real-world examples of how to use Memgraph, we strongly suggest going through one of the available **[Tutorials](tutorials/tutorials-overview.md)**. 
+Details on what can be stored in Memgraph can be found in the article about **[Data Storage](concepts/storage.md)**.

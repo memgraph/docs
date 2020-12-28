@@ -21,3 +21,14 @@ If you fail to connect, make sure that your database instance is up and running.
 If the `Host` address is wrong, take a look at the [Docker Note](../installation/docker-installation.md#docker-note) in the installation guide.
 
 ![Memgraph Lab](../../data/memgraph_lab_login.png)
+
+### Getting help
+
+Visit the **Getting help** page in case you run into any kind of problem or you have additional questions.
+{% page-ref page="../../getting_help/getting-help.md" %}
+
+### Where to next?
+
+To learn more about the **openCypher** language, visit our **[Cypher manual](../../cypher_manual/cypher-manual.md)**.  
+For real-world examples of how to use Memgraph, we strongly suggest going through one of the available **[Tutorials](tutorials/tutorials-overview.md)**. 
+Details on what can be stored in Memgraph can be found in the article about **[Data Storage](concepts/storage.md)**.

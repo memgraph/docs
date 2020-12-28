@@ -55,6 +55,11 @@ To shut down the Memgraph server, issue the following command:
 systemctl stop memgraph
 ```
 
+### Getting help
+
+Visit the **Getting help** page in case you run into any kind of problem or you have additional questions.
+{% page-ref page="../../getting_help/getting-help.md" %}
+
 ### Where to next?
 
 To learn how to query the database, take a look at the **[Querying](../querying/querying.md)** guide or **[Memgraph Playground](https://playground.memgraph.com/)** for interactive tutorials.<br/>

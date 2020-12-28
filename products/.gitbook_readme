@@ -21,7 +21,7 @@ Memgraph Lab is a lightweight and intuitive openCypher and Bolt compatible
 integrated development environment (IDE), designed to help you import data,
 develop, debug, and profile database queries and visualize query results.
 
-![Memgraph Lab](../../data/product-hunt-gallery-lab.png)
+![Memgraph Lab](memgraph/v1.2.0/data/product-hunt-gallery-lab.png)
 
 ## Memgraph Cloud
 
@@ -31,7 +31,7 @@ up or maintain a database instance. It is Memgraph's responsibility to oversee
 the infrastructure (deployment, upgrade, update, removal, data backup,
 security, etc.).
 
-![Memgraph Cloud](../../data/product-hunt-gallery-cloud.png)
+![Memgraph Cloud](memgraph/v1.2.0/data/product-hunt-gallery-cloud.png)
 
 ## Note
 

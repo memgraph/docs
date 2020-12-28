@@ -119,6 +119,11 @@ namespace MemgraphApp
 }
 ```
 
+### Getting help
+
+Visit the **Getting help** page in case you run into any kind of problem or you have additional questions.
+{% page-ref page="../../getting_help/getting-help.md" %}
+
 ### Where to next?
 
 For real-world examples of how to use Memgraph, we suggest you take a look at the **[Tutorials](../../tutorials/tutorials.md)** page.<br />  
