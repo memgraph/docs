@@ -16,8 +16,7 @@ the TensorFlow section of our
 In this article, we assume you have installed Python 3 and the TensorFlow pip
 package. See the [link](https://www.tensorflow.org/install/pip?lang=python3) for
 more information.
-We also assume that you have installed and
-running Memgraph ([see more](../quick-start.md))
+We also assume that you have installed and are running Memgraph ([see more](../getting_started/installation/installation.md))
 
 ### Memgraph Tensorflow Op Usage
 

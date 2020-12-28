@@ -24,7 +24,7 @@ SHOW CONSTRAINT INFO;
 
 You should get a result similar to this:
 
-```plaintext
+```
 +-----------------+-----------------+-----------------+
 | constraint type | label           | properties      |
 +-----------------+-----------------+-----------------+
@@ -36,8 +36,8 @@ Trying to modify the database in a way that violates the constraint will yield
 an error `Unable to commit due to unique constraint violation on
 :Employee(email)`.
 
-Naturally, you can also specifiy multiple properties when creating uniqueness
-constraint. For example, we might want to enforce that all employees have a
+Naturally, you can also specify multiple properties when creating uniqueness
+constraints. For example, we might want to enforce that all employees have a
 unique `(name, surname)` pair (obviously, this would be a bad decision in real
 life). This can be achieved by the following query:
 
@@ -47,7 +47,7 @@ CREATE CONSTRAINT ON (n:Employee) ASSERT n.name, n.surname IS UNIQUE;
 
 At this point, `SHOW CONSTRAINT INFO;` yields the following result:
 
-```plaintext
+```
 +-----------------+-----------------+-----------------+
 | constraint type | label           | properties      |
 +-----------------+-----------------+-----------------+

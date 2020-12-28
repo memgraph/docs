@@ -1,6 +1,6 @@
 ## Existence constraint
 
-Existence constraint enforces that each each vertex that has a specific `label`
+Existence constraint enforces that each vertex that has a specific `label`
 also must have the specified `property`. Only one label and property can be
 supplied at a time.  This constraint can be enforced using the following
 language construct:
@@ -18,7 +18,7 @@ CREATE CONSTRAINT ON (n:Employee) ASSERT exists (n.first_name);
 CREATE CONSTRAINT ON (n:Employee) ASSERT exists (n.last_name);
 ```
 
-You can confirm that your constraint were successfully created by issuing the
+You can confirm that your constraint was successfully created by issuing the
 following query:
 
 ```opencypher
@@ -27,7 +27,7 @@ SHOW CONSTRAINT INFO;
 
 You should get a result similar to this:
 
-```plaintext
+```
 +-----------------+-----------------+-----------------+
 | constraint type | label           | properties      |
 +-----------------+-----------------+-----------------+
