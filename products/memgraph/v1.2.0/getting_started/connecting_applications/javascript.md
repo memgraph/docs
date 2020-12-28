@@ -12,27 +12,27 @@ To follow this guide, you will need:
 
 ### Basic Setup
 
-We'll be using **Express.js** to demonstrate how to connect to a running Memgraph instance.<br/>
-Express.js is a web application framework that enables us to create complete Node.js applications.<br/>
+We'll be using **Express.js** to demonstrate how to connect to a running Memgraph instance.<br />  
+Express.js is a web application framework that enables us to create complete Node.js applications.<br />  
 If you don't wish to use it, the steps might be slightly different, but the code is most likley the same or very similar.
 
 Let's jump in and connect a simple program to Memgraph.
 
-1. Create a new directory for your application, for example `/MyApp` and position yourself in it.
-2. Create a `package.json` file with the command: 
+**1.** Create a new directory for your application, for example `/MyApp` and position yourself in it.<br />  
+**2.** Create a `package.json` file with the command: 
 
 ```
 npm init
 ```
 
-3. Install **Express.js** and the **Bolt driver** in the `/MyApp` directory while adding them to the dependencies list. 
+**3.** Install **Express.js** and the **Bolt driver** in the `/MyApp` directory while adding them to the dependencies list. 
 
 ```
 npm install express --save
 npm install neo4j-driver --save
 ```
 
-4. To make the actual program, create a `program.js` file and add the following code:
+**4.** To make the actual program, create a `program.js` file and add the following code:
 
 ```JavaScript
 const express = require('express')
@@ -69,7 +69,7 @@ app.listen(port, () => {
 })
 ```
 
-5. Run the application with the following command:
+**5.** Run the application with the following command:
 
 ```
 node .\program.js

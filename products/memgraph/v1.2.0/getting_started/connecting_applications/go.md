@@ -8,7 +8,7 @@ At the end of this guide, you will have created a simple Go **`Hello, World!`** 
 To follow this guide, you will need:
 * A **running Memgraph instance**. If you need to setup Memgraph, take a look at the [Installation guide](../installation/installation.md).
 * A basic understanding of graph databases and the property graph model.
-* The newest version of Go [installed](https://golang.org/doc/install).
+* The newest version of **Go** [installed](https://golang.org/doc/install).
 
 ### Basic Setup
 
@@ -16,8 +16,8 @@ We'll be using a simple Go application to demonstrate how to connect to a runnin
 
 Let's jump in and create our application.
 
-1. Create a new directory for your app, for example `/MyApp` and position yourself in it.
-2. Create a `program.go` file and add the following code: 
+**1.** Create a new directory for your app, for example `/MyApp` and position yourself in it.<br />  
+**2.** Create a `program.go` file and add the following code: 
 
 ```Go
 package main
@@ -61,13 +61,13 @@ func main() {
 }
 ```
 
-3. Add the **Bolt driver** in the `/MyApp` directory with the command:
+**3.** Add the **Bolt driver** in the `/MyApp` directory with the command:
 
 ```
 go get github.com/neo4j/neo4j-go-driver/neo4j
 ```
 
-4. Run the app with the following command:
+**4.** Run the app with the following command:
 
 ```
 go run .\program.go
@@ -81,5 +81,5 @@ Node 1: Hello, World!
 
 ### Where to next?
 
-For real-world examples of how to use Memgraph, we suggest you take a look at the **[Tutorials](../../tutorials/tutorials.md)** page.<br/>
+For real-world examples of how to use Memgraph, we suggest you take a look at the **[Tutorials](../../tutorials/tutorials.md)** page.<br />  
 You can also browse through the **[Database functionalities](../../database_functionalities/database-functionalities.md)** section to get an overview of all the functionalities Memgraph offers.

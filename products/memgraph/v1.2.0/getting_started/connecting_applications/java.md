@@ -13,14 +13,14 @@ For this guide you will need:
 ### Basic Setup
 
 We'll be using Eclipse IDE 2020-09 on Windows 10 to connect a simple Java console application to a running Memgraph instance using **Maven**.
-If you're using a different IDE, the steps might be slightly different, but the code is probably the same or very similar.<br/>
+If you're using a different IDE, the steps might be slightly different, but the code is probably the same or very similar.<br />  
 
 Let's jump in and connect a simple program to Memgraph.
 
-1. Open **Eclipse** and create a new **Maven project**.
-2. Select the **Create a simple project** option.
-3. For the **Group Id** field put `com.memgraph.app` and for **Artifact Id** put `my-app`. Afterwards, click the **Finish** button.
-4. Open the `pom.xml` file and add the following dependency:
+**1.** Open **Eclipse** and create a new **Maven project**.<br />  
+**2.** Select the **Create a simple project** option.<br />  
+**3.** For the **Group Id** field put `com.memgraph.app` and for **Artifact Id** put `my-app`. Afterwards, click the **Finish** button.<br />  
+**4.** Open the `pom.xml` file and add the following dependency:
 
 ```
 <dependencies>
@@ -32,7 +32,7 @@ Let's jump in and connect a simple program to Memgraph.
   </dependencies>
 ```
 
-5. Create the `HelloWorld.java` program and copy the following code:
+**5.** Create the `HelloWorld.java` program and copy the following code:
 
 ```Java
 import org.neo4j.driver.AuthTokens;

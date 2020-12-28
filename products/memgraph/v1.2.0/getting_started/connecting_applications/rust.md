@@ -17,24 +17,24 @@ To follow this guide, you will need:
 
 ### Basic setup
 
-We'll be using a **Dockerized Rust program** to demonstrate how to connect to a running Memgraph database instance.<br/>
-If you don't wish to use Docker, the steps might be slightly different, but the code is most likley the same or very similar.<br/>
+We'll be using a **Dockerized Rust program** to demonstrate how to connect to a running Memgraph database instance.<br />  
+If you don't wish to use Docker, the steps might be slightly different, but the code is most likley the same or very similar.<br />  
 
 Let's jump in and connect a simple program to Memgraph.
 
-1. Create a new Rust project with the name **memgraph_rust** by running the following command:
+**1.** Create a new Rust project with the name **memgraph_rust** by running the following command:
 
 ```
 cargo new memgraph_rust --bin
 ```
 
-2. Add the following line to the `Cargo.toml` file under the line `[dependencies]`:
+**2.** Add the following line to the `Cargo.toml` file under the line `[dependencies]`:
 
 ```
 rsmgclient = "0.1.1"
 ```
 
-3. To create the actual program, add the following code to the `src/main.rs` file:
+**3.** To create the actual program, add the following code to the `src/main.rs` file:
 
 ```Rust
 use rsmgclient::{ConnectParams, Connection, SSLMode};
@@ -80,7 +80,7 @@ fn main(){
 }
 ```
 
-4. Create a new file in the project root directory `/memgraph_rust` and name it  `Dockerfile`. Add the following code to it:
+**4.** Create a new file in the project root directory `/memgraph_rust` and name it  `Dockerfile`. Add the following code to it:
 
 ```Dockerfile
 # Set base image (host OS)
@@ -118,20 +118,20 @@ RUN cargo build
 CMD [ "cargo", "run" ]
 ```
 
-5. Don't forget to change the host address in your code.<br/>
+**5.** Don't forget to change the host address in your code.<br />  
 Find the **`CONTAINER ID`** with `docker ps` and use it in the following command to retrieve the address:
 
 ```
 docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' CONTAINER ID
 ```
 
-6. To run the application, first, you need to create a Docker image with:
+**6.** To run the application, first, you need to create a Docker image with:
 
 ```
 docker build -t memgraph_rust .
 ```
 
-7. Now, you can start the application with the following command:
+**7.** Now, you can start the application with the following command:
 
 ```
 docker run memgraph_rust

@@ -17,16 +17,17 @@ The driver documentation can be found here: [Neo4j .NET Driver](https://github.c
 ### Basic Setup
 
 We'll be using Visual Studio 2019 on Windows 10 to connect a simple .NET console application to a running Memgraph instance.
-If you're using a different IDE, the steps might be slightly different, but the code is probably the same or very similar.<br/>
+If you're using a different IDE, the steps might be slightly different, but the code is probably the same or very similar.<br />  
 
 Let's jump in and connect a simple program to Memgraph.
 
-1. Open **Visual Studio** and create a new project.
-2. Find and select the **Console App (.NET Core)** template by using the search box.
-3. Name your project ***MemgraphApp***, choose an appropriate location for it, and click **Create**.
-4. Select the **Tools > NuGet Package Manager > Package Manager Console** menu command.
-5. Once the console opens, check that the **Default project** drop-down list shows the project into which you want to install the package.<br/>If you have a single project in the solution, it is already selected.
-6. Enter the command **Install-Package Neo4j.Driver.Simple**.
+**1.** Open **Visual Studio** and create a new project.<br />  
+**2.** Find and select the **Console App (.NET Core)** template by using the search box.<br />  
+**3.** Name your project ***MemgraphApp***, choose an appropriate location for it, and click **Create**.<br />  
+**4.** Select the **Tools > NuGet Package Manager > Package Manager Console** menu command.<br />  
+**5.** Once the console opens, check that the **Default project** drop-down list shows the project into which you want to install the package.<br />  
+If you have a single project in the solution, it is already selected.<br />  
+**6.** Enter the command **Install-Package Neo4j.Driver.Simple**.
 
 Now, you should have the newest version of the driver installed and can proceed to copy the following code into the **Program.cs** file.
 
@@ -120,5 +121,5 @@ namespace MemgraphApp
 
 ### Where to next?
 
-For real-world examples of how to use Memgraph, we suggest you take a look at the **[Tutorials](../../tutorials/tutorials.md)** page.<br/>
+For real-world examples of how to use Memgraph, we suggest you take a look at the **[Tutorials](../../tutorials/tutorials.md)** page.<br />  
 You can also browse through the **[Database functionalities](../../database_functionalities/database-functionalities.md)** section to get an overview of all the functionalities Memgraph offers.
