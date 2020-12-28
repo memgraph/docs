@@ -1,9 +1,9 @@
-## Query Modules
+## Query modules
 
 Memgraph supports extending the query language with user-written procedures.
 These procedures are grouped into modules, which can then be loaded on startup.
 
-### Loading Query Modules
+### Loading query modules
 
 Upon startup, Memgraph will attempt to load the query modules form all `*.so`
 and `*.py` files it finds in the default (`/usr/lib/memgraph/query_modules`)
@@ -14,7 +14,7 @@ modules, just change the `--query-modules-directory` flag in the main
 configuration file (`/etc/memgraph/memgraph.conf`) or supply it as
 a command-line parameter (e.g. when using Docker).
 
-### Syntax for Calling Procedures
+### Syntax for calling procedures
 
 OpenCypher has a special syntax for calling procedures in loaded query
 modules:
@@ -49,7 +49,7 @@ other name. For example:
 MATCH (node) CALL module.procedure(42) YIELD node AS result RETURN *;
 ```
 
-### Controlling Procedure Memory Usage
+### Controlling procedure memory usage
 
 When running a procedure, Memgraph controls the maximum memory usage that the
 procedure may consume during its execution.  By default, the upper memory limit
@@ -66,7 +66,7 @@ CALL module.procedure(arg1, arg2, ...) MEMORY UNLIMITED YIELD res1, res2, ...;
 The limit can either be specified to a specific value (either in `KB` or in
 `MB`), or it can be set to unlimited.
 
-### Implementing Query Modules
+### Implementing custom query modules
 
 Query modules can be implemented by either using the C API or Python API
 provided by Memgraph.
@@ -92,7 +92,7 @@ sorts of unexpected issues.
 For a more detailed example on how to implement your own query modules, we
 suggest you take a look at the [Implement custom query modules](../../database_functionalities/query_modules/implement-query-modules.md) guide.
 
-### Query Modules Provided by Memgraph
+### Query modules provided by Memgraph
 
 The following query modules have been implemented by the Memgraph
 team. Note that some of them are only available in Memgraph's Enterprise
