@@ -141,3 +141,8 @@ within the database can be done by the following command:
 ```openCypher
   SET ROLE FOR bob TO supervisor;
 ```
+
+### Where to next?
+
+To learn more about Memgraph's functionalities, visit the **[Reference guide](../../reference_guide/reference-guide.md)**.
+For real-world examples of how to use Memgraph, we strongly suggest going through one of the available **[Tutorials](tutorials/tutorials-overview.md)**.

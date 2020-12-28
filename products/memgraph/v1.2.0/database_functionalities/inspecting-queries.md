@@ -109,3 +109,8 @@ The `Merge` logical operator (constructed as a result of the `MERGE` construct)
 can take input from up to 3 places. The `On Match` and `On Create` branches are
 "pulled from" only if a match was found or if a new vertex has to be created,
 respectively.
+
+### Where to next?
+
+To learn more about Memgraph's functionalities, visit the **[Reference guide](../reference_guide/reference-guide.md)**.
+For real-world examples of how to use Memgraph, we strongly suggest going through one of the available **[Tutorials](tutorials/tutorials-overview.md)**.

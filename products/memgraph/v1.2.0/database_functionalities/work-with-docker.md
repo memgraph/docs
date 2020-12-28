@@ -141,4 +141,7 @@ Each procedure returns either zero or more records, where each record contains n
 
 With this, your developing environment is ready and you are able to easily implement and run your own query modules. Check out our [Reference Guide](../reference_guide/query_modules/query-modules.md#query-modules-provided-by-memgraph) to see which Query Modules are included in Memgraph. 
 
+### Where to next?
 
+To learn more about Memgraph's functionalities, visit the **[Reference guide](../../reference_guide/reference-guide.md)**.
+For real-world examples of how to use Memgraph, we strongly suggest going through one of the available **[Tutorials](tutorials/tutorials-overview.md)**.

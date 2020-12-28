@@ -11,7 +11,7 @@ Memgraph's command-line tool, `mg_client`, which is installed
 together with Memgraph.
 
 {% hint style="info" %}
-NOTE: `mg_client` is a deprecated tool still coming within the Memgraph package.
+**NOTE:** `mg_client` is a deprecated tool still coming within the Memgraph package.
 [mgconsole](https://github.com/memgraph/mgconsole) will replace `mg_client` in
 the future. If possible, please use `mgconsole` instead.
 {% endhint %}

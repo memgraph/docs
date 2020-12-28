@@ -34,3 +34,8 @@ PROFILE MATCH (n :Node)-[:Edge]-(m :Node) WHERE n.prop = 42 RETURN *;
 | * Once        | 2             |   0.562844 %  |   0.000312 ms |
 +---------------+---------------+---------------+---------------+
 ```
+
+### Where to next?
+
+To learn more about Memgraph's functionalities, visit the **[Reference guide](../reference_guide/reference-guide.md)**.
+For real-world examples of how to use Memgraph, we strongly suggest going through one of the available **[Tutorials](tutorials/tutorials-overview.md)**.

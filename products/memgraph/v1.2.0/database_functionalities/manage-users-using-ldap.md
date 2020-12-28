@@ -245,3 +245,8 @@ allowed to log in because their role (administrator) doesn't exist.
 If both automatic role creation and automatic user creation are disabled, then
 both the user and the role must exist for a user to successfully log in to the
 database.
+
+### Where to next?
+
+To learn more about Memgraph's functionalities, visit the **[Reference guide](../../reference_guide/reference-guide.md)**.
+For real-world examples of how to use Memgraph, we strongly suggest going through one of the available **[Tutorials](tutorials/tutorials-overview.md)**.

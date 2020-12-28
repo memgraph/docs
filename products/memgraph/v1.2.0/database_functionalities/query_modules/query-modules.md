@@ -7,3 +7,8 @@ To learn more about query modules take a look at the following guides:
 {% page-ref page="./built-in-query-modules.md" %}
 {% page-ref page="./load-call-query-modules.md" %}
 {% page-ref page="./implement-query-modules.md" %}
+
+### Where to next?
+
+To learn more about the **query modules**, visit the **[Reference guide](../../reference_guide/reference-guide.md)**.
+For real-world examples of how to use query modules, we strongly suggest going through one of the available **[Tutorials](tutorials/tutorials-overview.md)** that utilize them.

@@ -1,4 +1,4 @@
-## How to Import Data?
+## Import data
 
 Memgraph comes with tools for importing data into the database. Data can be
 imported either using the [CSV import tool](#import-csv) or using saved
