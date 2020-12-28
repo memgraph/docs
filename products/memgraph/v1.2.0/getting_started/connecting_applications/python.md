@@ -17,7 +17,7 @@ To follow this guide, you will need:
 
 ### Basic setup
 
-We'll be using a **Dockerized Python program** to demonstrate how to connect to a running Memgraph database instance.<br />  
+We'll be using a **Dockerized Python program** to demonstrate how to connect to a running Memgraph database instance.
 If you don't wish to use Docker, the steps might be slightly different, but the code is most likely the same or very similar.<br />  
 
 Let's jump in and connect a simple program to Memgraph.
@@ -100,7 +100,7 @@ row = cursor.fetchone()
 print(row[0])
 ```
 
-**6.** Don't forget to change the host address in your code.<br />  
+**6.** Don't forget to change the host address in your code.
 Find the **`CONTAINER ID`** with `docker ps` and use it in the following command to retrieve the address:
 
 ```

@@ -25,7 +25,7 @@ Let's jump in and connect a simple program to Memgraph.
 **2.** Find and select the **Console App (.NET Core)** template by using the search box.<br />  
 **3.** Name your project ***MemgraphApp***, choose an appropriate location for it, and click **Create**.<br />  
 **4.** Select the **Tools > NuGet Package Manager > Package Manager Console** menu command.<br />  
-**5.** Once the console opens, check that the **Default project** drop-down list shows the project into which you want to install the package.<br />  
+**5.** Once the console opens, check that the **Default project** drop-down list shows the project into which you want to install the package.
 If you have a single project in the solution, it is already selected.<br />  
 **6.** Enter the command **Install-Package Neo4j.Driver.Simple**.
 

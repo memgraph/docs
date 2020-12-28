@@ -17,7 +17,7 @@ To follow this guide, you will need:
 
 ### Basic setup
 
-We'll be using a **Dockerized Rust program** to demonstrate how to connect to a running Memgraph database instance.<br />  
+We'll be using a **Dockerized Rust program** to demonstrate how to connect to a running Memgraph database instance.
 If you don't wish to use Docker, the steps might be slightly different, but the code is most likley the same or very similar.<br />  
 
 Let's jump in and connect a simple program to Memgraph.
@@ -147,5 +147,5 @@ Columns: u, m
 
 ### Where to next?
 
-For real-world examples of how to use Memgraph, we suggest you take a look at the **[Tutorials](../../tutorials/tutorials.md)** page.<br/>
+For real-world examples of how to use Memgraph, we suggest you take a look at the **[Tutorials](../../tutorials/tutorials.md)** page.<br />  
 You can also browse through the **[Database functionalities](../../database_functionalities/database-functionalities.md)** section to get an overview of all the functionalities Memgraph offers.
