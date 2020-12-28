@@ -2,9 +2,9 @@
 
 ## Memgraph
 
-Memgraph is an ACID compliant high performance transactional in-memory graph
+Memgraph is an ACID-compliant high performance transactional in-memory graph
 database management system featuring highly concurrent data structures,
-multi-version concurrency control and asynchronous IO.
+multi-version concurrency control, and asynchronous IO.
 
 {% page-ref page="memgraph/v1.2.0/getting_started/getting-started.md" %}
 {% page-ref page="memgraph/v1.2.0/database_functionalities/database-functionalities.md" %}
@@ -19,7 +19,9 @@ graph database management system based on the Raft protocol.
 
 Memgraph Lab is a lightweight and intuitive openCypher and Bolt compatible
 integrated development environment (IDE), designed to help you import data,
-develop, debug and profile database queries and visualize query results.
+develop, debug, and profile database queries and visualize query results.
+
+![Memgraph Lab](../../data/product-hunt-gallery-lab.png)
 
 ## Memgraph Cloud
 
@@ -28,6 +30,8 @@ fully managed graph DBMS as a service (in the Cloud). Users do not need to set
 up or maintain a database instance. It is Memgraph's responsibility to oversee
 the infrastructure (deployment, upgrade, update, removal, data backup,
 security, etc.).
+
+![Memgraph Cloud](../../data/product-hunt-gallery-cloud.png)
 
 ## Note
 
