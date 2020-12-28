@@ -1,4 +1,4 @@
-## Memgraph TensorFlow Op
+## Memgraph TensorFlow op
 
 ### Introduction
 

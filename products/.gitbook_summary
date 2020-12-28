@@ -136,6 +136,7 @@
             * [nxalg.triadic_census](memgraph/v1.2.0/reference_guide/networkx/nxalg/nxalg.triadic_census.md)
             * [nxalg.voronoi_cells](memgraph/v1.2.0/reference_guide/networkx/nxalg/nxalg.voronoi_cells.md)
             * [nxalg.wiener_index](memgraph/v1.2.0/reference_guide/networkx/nxalg/nxalg.wiener_index.md)
+    * [TensorFlow op](memgraph/v1.2.0/reference_guide/tensorflow.md)
     * [Security (Enterprise)](memgraph/v1.2.0/reference_guide/security.md)
     * [Auth Module (Enterprise)](memgraph/v1.2.0/reference_guide/auth-module.md)
     * [LDAP Security (Enterprise)](memgraph/v1.2.0/reference_guide/ldap-security.md)
