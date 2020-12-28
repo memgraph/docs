@@ -41,29 +41,30 @@ on how the query's plan behaved. Take a look at the guides:
 ### NetworkX
 
 Memgraph includes a set of Python query modules based on the [NetworkX](https://networkx.github.io/) library of algorithms.
-You can find more information about all the available algorithms in the [NetworkX Reference Guide](./reference_guide/networkx/networkx.md)
+You can find more information about all the available algorithms in the [NetworkX Reference guide](./reference_guide/networkx/networkx.md)
 
 ### Machine learning
 
 Memgraph TensorFlow op wraps the high-performance Memgraph client for use with TensorFlow, 
 allowing natural data transfer between Memgraph and TensorFlow at any point of the model.
 If you are interested in using Memgraph for machine learning purposes  take a look at:
-* [TensorFlow Op Setup](./database_functionalities/tensorflow-setup.md) 
-* [TensorFlow Op Reference](./reference_guide/tensorflow.md)
+* [TensorFlow op setup](./database_functionalities/tensorflow-setup.md) 
+* [TensorFlow op reference](./reference_guide/tensorflow.md)
 
 ### User privileges
 
 Memgraph comes with the option of granting, denying, or revoking a certain set of privileges to users or groups of users.
 To learn more visit:
-* [How to Manage User Privileges? (Enterprise)](./database_functionalities/manage-user-privileges.md)
+* [User privileges (Enterprise)](./database_functionalities/manage-user-privileges.md)
 * [Security (Enterprise)](reference_guide/security.md)
 
 ### Authentication and authorization
 
 Memgraph supports authentication and (optional) authorization using a custom-built external auth module.
 To learn more visit:
-* [Auth Module (Enterprise)](reference_guide/auth-module.md)
-* [LDAP Security (Enterprise)](reference_guide/ldap-security.md)
+* [Authentication and authorization (Enterprise)](./database_functionalities/manage-users-using-ldap.md)
+* [Auth module (Enterprise)](reference_guide/auth-module.md)
+* [LDAP security (Enterprise)](reference_guide/ldap-security.md)
 
 ## Supported features
 

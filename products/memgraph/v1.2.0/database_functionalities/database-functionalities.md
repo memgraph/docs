@@ -31,15 +31,15 @@ on how the query's plan behaved. Take a look at the guides:
 Memgraph TensorFlow op wraps the high-performance Memgraph client for use with TensorFlow, 
 allowing natural data transfer between Memgraph and TensorFlow at any point of the model.
 If you are interested in using Memgraph for machine learning purposes  take a look at:
-* [TensorFlow Op Setup](./tensorflow-setup.md) 
+* [TensorFlow op Setup](./tensorflow-setup.md) 
 
-### User Privileges
+### User privileges
 
 Memgraph comes with the option of granting, denying, or revoking a certain set of privileges to users or groups of users.
 To learn more visit:
-* [User Privileges (Enterprise)](./manage-user-privileges.md)
+* [User privileges (Enterprise)](./manage-user-privileges.md)
 
-### Authentication and Authorization
+### Authentication and authorization
 
 Memgraph supports authentication and (optional) authorization using a custom-built external auth module.
 To learn more visit:
