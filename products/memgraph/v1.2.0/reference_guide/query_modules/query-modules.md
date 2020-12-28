@@ -81,8 +81,8 @@ Modules implemented using the Python API need to be written in Python version
 `/usr/lib/memgraph/python_support/mgp.py` file and in the 
 [reference guide](python-api.md).
 
-{% hint style="info" %}
-WARNING: If your programming language of choice throws exceptions, these
+{% hint style="warning" %}
+**WARNING:** If your programming language of choice throws exceptions, these
 exceptions must never leave the scope of your module! You should have a top
 level exception handler which returns with an error value and potentially logs
 the error message. Exceptions which cross the module boundary will cause all
@@ -90,8 +90,7 @@ sorts of unexpected issues.
 {% endhint %}
 
 For a more detailed example on how to implement your own query modules, we
-suggest you take a look at this [how-to
-guide](../../how_to_guides/implement-query-modules.md).
+suggest you take a look at the [Implement custom query modules](../../database_functionalities/query_modules/implement-query-modules.md) guide.
 
 ### Query Modules Provided by Memgraph
 
@@ -111,7 +110,7 @@ offering.
 * `wcc`: Module that offers analysis of weakly connected components.
 
 {% hint style="info" %}
-NOTE: If you intend to implement your custom algorithms based on the NetworkX
+**NOTE:** If you intend to implement your custom algorithms based on the NetworkX
 package, please note that we provide the extra library `mgp_networkx.py` module
 containing data structures that adapt the native graph for use with NetworkX
 algorithms. It can be used to implement custom algorithms with the added

@@ -21,7 +21,7 @@ An index stores additional information on certain types of data, so that retriev
 
 ### Built-in graph algorithms
 
-Memgraph comes with custom built algorithms that are implemented using C++: **Filtering variable length paths**, **Breadth first search** and **Weighted shortest path**.
+Memgraph comes with custom-built algorithms that are implemented using C++: **Filtering variable-length paths**, **Breadth-first search**, and **Weighted shortest path**.
 {% page-ref page="./graph-algorithms.md" %}
 
 ### Query modules
