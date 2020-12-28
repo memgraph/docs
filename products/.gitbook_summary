@@ -138,7 +138,7 @@
     * [Auth module (Enterprise)](memgraph/v1.2.0/reference_guide/auth-module.md)
     * [LDAP security (Enterprise)](memgraph/v1.2.0/reference_guide/ldap-security.md)
     * [Audit log (Enterprise)](memgraph/v1.2.0/reference_guide/audit-log.md)
-* [Cypher manual](memgraph/v1.2.0/openCypher/open-cypher.md)
+* [Cypher manual](memgraph/v1.2.0/openCypher/opencypher.md)
     * [Reading existing data](memgraph/v1.2.0/openCypher/reading-existing-data.md)
     * [Writing new data](memgraph/v1.2.0/openCypher/writing-new-data.md)
     * [Reading and writing](memgraph/v1.2.0/openCypher/reading-and-writing.md)
