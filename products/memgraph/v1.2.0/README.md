@@ -24,7 +24,7 @@ Full Activity Auditing                                |           |     +
 
   * [About Memgraph](#about-memgraph)
   * [Quick Start](quick-start.md)
-  * [Tutorials](tutorials/tutorials-overview.md)
+  * [Tutorials](tutorials/tutorials.md)
     * [Analyzing TED Talks](tutorials/analyzing-TED-talks.md)
     * [Backpacking Through Europe](tutorials/backpacking-through-europe.md)
     * [Exploring the European Road Network](tutorials/exploring-the-european-road-network.md)
