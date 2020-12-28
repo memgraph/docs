@@ -26,9 +26,18 @@ The **Cypher** language enables users to perform standard database operations by
 
 ### Functions
 
-**Cypher** supports a large number of functions. The list can be found here: [Cypher Functions](./functions.md).
+**Cypher** supports a large number of functions. The list can be found here: [Cypher functions](./functions.md).
 
 ### Other features
 
 The following sections describe some of the other supported features in Memgraph:
 * [String operators](./other-features.md#string-operators)
+* [Parameters](./other-features.md#parameters)
+* [CASE expression](./other-features.md#case)
+* [Inspecting and profiling queries](./other-features.md#inspecting-and-profiling)
+
+### Differences
+
+Although we try to implement openCypher query language as closely to the
+language reference as possible, we had to make some changes to enhance the
+user experience. You can find the differences in [this article](./differences.md).

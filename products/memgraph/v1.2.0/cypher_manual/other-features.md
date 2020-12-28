@@ -13,7 +13,7 @@ Operator           | Description
  `a ENDS WITH b`   | Returns true if suffix of string a is equal to string b.
  `a CONTAINS b`    | Returns true if some substring of string a is equal to string b.
 
-### Parameters
+### Parameters {#parameters}
 
 When automating the queries for Memgraph, it comes in handy to change only
 some parts of the query. Usually, these parts are values which are used for
@@ -54,7 +54,7 @@ session.run('CREATE (alice:Person {name: $0, age: $1}',
 To use parameters with some other driver please consult appropriate
 documentation.
 
-### CASE
+### CASE {#case}
 
 Conditional expressions can be expressed in openCypher language by simple and
 generic form of `CASE` expression. A simple form is used to compare an expression
@@ -77,7 +77,7 @@ MATCH (n)
 RETURN CASE WHEN n.height < 30 THEN "short" WHEN n.height > 300 THEN "tall" END
 ```
 
-### Inspecting and profiling queries
+### Inspecting and profiling queries {#inspecting-and-profiling}
 
 The `EXPLAIN` and `PROFILE` operators can be used to inspect and profile a
 particular Cypher query in order to see its internal representation and the
