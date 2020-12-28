@@ -169,6 +169,18 @@
 * [Getting help](memgraph/v1.2.0/getting_help/getting-help.md)
     * [FAQ](memgraph/v1.2.0/getting_help/faq.md)
 
+## Memgraph Lab
+
+* [Quick start: Memgraph Lab](lab/v1.2.0/quick-start.md)
+* [How to install on OSX?](lab/v1.2.0/how_to_install_memgraph_lab_on_macos.md)
+* [Quick start guide to Style Script](lab/v1.2.0/quick_start_guide_to_style_script.md)
+* [Style Script](lab/v1.2.0/style_script.md)
+* [Changelog](lab/CHANGELOG.md)
+
+## Memgraph Cloud
+
+* [How to connect to Memgraph Cloud?](memgraph_cloud/how-to-connect.md)
+
 ## Highly Available Memgraph
 
 * [Introduction](ha_memgraph/v0.1.0/introduction.md)
@@ -177,15 +189,3 @@
 * [Changelog](ha_memgraph/CHANGELOG.md)
 * [Known issues](ha_memgraph/known-issues.md)
 * [FAQ](ha_memgraph/v0.1.0/faq.md)
-
-## Memgraph Cloud
-
-* [How to connect to Memgraph Cloud?](memgraph_cloud/how-to-connect.md)
-
-## Memgraph Lab
-
-* [Quick start: Memgraph Lab](lab/v1.2.0/quick-start.md)
-* [How to install on OSX?](lab/v1.2.0/how_to_install_memgraph_lab_on_macos.md)
-* [Quick start guide to Style Script](lab/v1.2.0/quick_start_guide_to_style_script.md)
-* [Style Script](lab/v1.2.0/style_script.md)
-* [Changelog](lab/CHANGELOG.md)
