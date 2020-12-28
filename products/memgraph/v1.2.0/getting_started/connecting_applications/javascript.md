@@ -12,9 +12,9 @@ To follow this guide, you will need:
 
 ### Basic Setup
 
-We'll be using **Express.js** to demonstrate how to connect to a running Memgraph instance.<br />  
-Express.js is a web application framework that enables us to create complete Node.js applications.<br />  
-If you don't wish to use it, the steps might be slightly different, but the code is most likley the same or very similar.
+We'll be using **Express.js** to demonstrate how to connect to a running Memgraph instance.
+Express.js is a web application framework that enables us to create complete Node.js applications.
+If you don't wish to use it, the steps might be slightly different, but the code is most likely the same or very similar.
 
 Let's jump in and connect a simple program to Memgraph.
 
@@ -83,5 +83,5 @@ Node 1: Hello, World!
 
 ### Where to next?
 
-For real-world examples of how to use Memgraph, we suggest you take a look at the **[Tutorials](../../tutorials/tutorials.md)** page.<br/>
+For real-world examples of how to use Memgraph, we suggest you take a look at the **[Tutorials](../../tutorials/tutorials.md)** page.<br />  
 You can also browse through the **[Database functionalities](../../database_functionalities/database-functionalities.md)** section to get an overview of all the functionalities Memgraph offers.
