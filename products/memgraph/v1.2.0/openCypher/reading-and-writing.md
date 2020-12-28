@@ -48,4 +48,4 @@ ON CREATE SET m.prop = "created" ON MATCH SET m.prop = "existed";
 ```
 
 For more details, click [this
-link](../openCypher/clauses/merge.md).
+link](./clauses/merge.md).

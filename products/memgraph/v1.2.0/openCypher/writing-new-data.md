@@ -33,7 +33,7 @@ CREATE (node :Label {property: "my property value"});
 ```
 
 Additional information on `CREATE` is
-[here](../openCypher/clauses/create.md).
+[here](./clauses/create.md).
 
 ### SET
 
@@ -47,7 +47,7 @@ MATCH (n :Person) SET n.age = n.age + 1;
 ```
 
 Click
-[here](../openCypher/clauses/set.md)
+[here](./clauses/set.md)
 for a more detailed explanation on what can be done with `SET`.
 
 ### DELETE
@@ -78,7 +78,7 @@ MATCH (node) DETACH DELETE node;
 ```
 
 More examples are
-[here](../openCypher/clauses/delete.md).
+[here](./clauses/delete.md).
 
 ### REMOVE
 

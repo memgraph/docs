@@ -68,13 +68,13 @@ MATCH path = ()-[r*2..4]->() RETURN path;
 ```
 
 More details on how `MATCH` works can be found
-[here](../openCypher/clauses/match.md).
+[here](./clauses/match.md).
 
 The `MATCH` clause can be modified by prepending the `OPTIONAL` keyword.
 `OPTIONAL MATCH` clause behaves the same as a regular `MATCH`, but when it
 fails to find the pattern, missing parts of the pattern will be filled with
 `null` values. Examples can be found
-[here](../openCypher/clauses/optional-match.md).
+[here](./clauses/optional-match.md).
 
 ### WHERE
 
@@ -88,7 +88,7 @@ MATCH (n :Person) WHERE n.age > 20 RETURN n;
 ```
 
 Additional examples can be found
-[here](../openCypher/clauses/where.md).
+[here](./clauses/where.md).
 
 #### Regular Expressions
 
@@ -155,7 +155,7 @@ Besides choosing what will be the result and how it will be named, the
   * perform aggregations (such as `count`).
 
 More details on `RETURN` can be found
-[here](../openCypher/clauses/return.md).
+[here](./clauses/return.md).
 
 #### SKIP & LIMIT
 
@@ -296,3 +296,16 @@ Example, get all names that are shared between persons and movies (including dup
 ```opencypher
 MATCH(n: Person) RETURN n.name AS name UNION ALL MATCH(n: Movie) RETURN n.name AS name;
 ```
+
+### UNWIND
+
+The `UNWIND` clause is used to unwind a list of values as individual rows.
+
+Example. Produce rows out of a single list.
+
+```opencypher
+UNWIND [1,2,3] AS listElement RETURN listElement;
+```
+
+More examples are
+[here](./clauses/unwind.md).

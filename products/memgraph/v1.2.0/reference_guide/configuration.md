@@ -60,7 +60,7 @@ Each configuration setting is in the form: `--setting-name=value`.
 | --telemetry-enabled=true | Set to true to enable telemetry. We collect information about the running system (CPU and memory information) <br>and information about the database runtime (vertex and edge counts and resource usage) to allow for easier improvement of the product. | `[bool]` |
 
 
-## Additional Configuration Inclusion
+## Additional configuration inclusion
 
 You can include additional configuration files from this file. Additional
 files are processed after this file. Settings that are set in the additional
