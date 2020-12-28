@@ -2,10 +2,12 @@
 
 ## v1.2.0
 
+{% hint style="warning" %}
 ### Breaking Changes
 
 * SSL is disabled by default (`--bolt-cert-file` and `--bolt-key-file` are
   empty). This change might only affect the client connection configuration.
+{% endhint %}
 
 ### Major Features and Improvements
 

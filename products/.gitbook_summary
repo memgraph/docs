@@ -162,7 +162,7 @@
 * [Drivers]()
     * [C/C++](https://github.com/memgraph/mgclient)
     * [CLI Console](https://github.com/memgraph/mgconsole)
-    * [Python](https://memgraph.github.io/pymgclient)
+    * [Python](https://github.com/memgraph/pymgclient)
     * [Rust](https://github.com/memgraph/rsmgclient)
 * [Upcoming features](memgraph/v1.2.0/upcoming-features.md)
 * [Changelog](memgraph/CHANGELOG.md)

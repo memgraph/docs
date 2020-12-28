@@ -70,4 +70,11 @@ priority list. What we do offer is support when the upgrade is needed.
 Memgraph supports extending the query language with user-written procedures. 
 These procedures are grouped into modules, which can then be loaded on startup.
 Query modules can be implemented by using the Python API or C API.
-Take a look at our guide [How to Implement Query Modules](../database_functionalities/implement-query-modules.md).
+Take a look at our guide [Implement custom query modules](../database_functionalities/implement-query-modules.md).
+
+##### Why is my Memgraph instance relativly slow?
+
+Label indexing is not enabled by default in Memgraph, i.e., Memgraph will not 
+automatically index labeled data. Therefore, it is up to the user to perform the 
+indexing explicitly. Visit the [Reference guide](../reference_guide/indexing.md) 
+to find out more about creating indexes.
