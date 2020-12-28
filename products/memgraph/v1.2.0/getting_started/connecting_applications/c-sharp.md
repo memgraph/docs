@@ -60,7 +60,7 @@ namespace MemgraphApp
 }
 ```
 
-You should see an output similar to the following:
+Once you run the program, you should see an output similar to the following:
 
 ```
 Node 1: Hello, World!
@@ -121,4 +121,4 @@ namespace MemgraphApp
 ### Where to next?
 
 For real-world examples of how to use Memgraph, we suggest you take a look at the **[Tutorials](../../tutorials/tutorials.md)** page.<br/>
-You can also browse through the **[Database functionalities](../../database_functionalities/database-functionalities.md)** section to get an overview of all the funcionalities Memgraph offers.
+You can also browse through the **[Database functionalities](../../database_functionalities/database-functionalities.md)** section to get an overview of all the functionalities Memgraph offers.
