@@ -12,7 +12,7 @@ multi-version concurrency control, and asynchronous IO.
 
 ## Highly Available Memgraph
 
-HA Memgraph is an ACID compliant, highly available, transactional, in-memory
+HA Memgraph is an ACID-compliant, highly available, transactional, in-memory
 graph database management system based on the Raft protocol.
 
 ## Memgraph Lab
