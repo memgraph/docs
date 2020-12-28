@@ -10,17 +10,12 @@ multi-version concurrency control, and asynchronous IO.
 {% page-ref page="memgraph/v1.2.0/database_functionalities/database-functionalities.md" %}
 {% page-ref page="memgraph/v1.2.0/reference_guide/reference-guide.md" %}
 
-## Highly Available Memgraph
-
-HA Memgraph is an ACID-compliant, highly available, transactional, in-memory
-graph database management system based on the Raft protocol.
-
 ## Memgraph Lab
 
 Memgraph Lab is a lightweight and intuitive openCypher and Bolt compatible
 integrated development environment (IDE), designed to help you import data,
 develop, debug, and profile database queries and visualize query results.
-
+{% page-ref page="lab/v1.2.0/quick-start.md" %}
 ![Memgraph Lab](memgraph/v1.2.0/data/product-hunt-gallery-lab.png)
 
 ## Memgraph Cloud
@@ -30,8 +25,13 @@ fully managed graph DBMS as a service (in the Cloud). Users do not need to set
 up or maintain a database instance. It is Memgraph's responsibility to oversee
 the infrastructure (deployment, upgrade, update, removal, data backup,
 security, etc.).
+{% page-ref page="lab/v1.2.0/quick-start.md" %}
+![Memgraph Cloud](memgraph_cloud/how-to-connect.png)
 
-![Memgraph Cloud](memgraph/v1.2.0/data/product-hunt-gallery-cloud.png)
+## Highly Available Memgraph
+
+HA Memgraph is an ACID-compliant, highly available, transactional, in-memory
+graph database management system based on the Raft protocol.
 
 ## Note
 
