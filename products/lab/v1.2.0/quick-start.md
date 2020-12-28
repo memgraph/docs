@@ -20,7 +20,7 @@ If you are starting with a fresh database instance, you don't have to change any
 If you fail to connect, make sure that your database instance is up and running. 
 If the `Host` address is wrong, take a look at the [Docker Note](../../memgraph/v1.2.0/getting_started/installation/docker-installation.md#docker-note) in the installation guide.
 
-![Memgraph Lab](../data/memgraph_lab_login.png)
+![Memgraph Lab](./data/memgraph_lab_login.png)
 
 ### Executing queries
 
@@ -44,7 +44,7 @@ MATCH (u:User)-[r]->(x) RETURN u, r, x;
 ### Where to next?
 
 To learn more about the **Cypher** language, visit the **[Cypher manual](../../memgraph/v1.2.0/cypher_manual/cypher-manual.md)** or **[Memgraph Playground](https://playground.memgraph.com/)** for interactive guides.
-For real-world examples of how to use Memgraph, we strongly suggest going through one of the available **[Tutorials](../../memgraph/v1.2.0/tutorials/tutorials-overview.md)**. 
+For real-world examples of how to use Memgraph, we strongly suggest going through one of the available **[Tutorials](../../memgraph/v1.2.0/tutorials/tutorials.md)**. 
 Details on what can be stored in Memgraph can be found in the article about **[Data storage](../../memgraph/v1.2.0/concepts/storage.md)**.
 
 ### Getting help
