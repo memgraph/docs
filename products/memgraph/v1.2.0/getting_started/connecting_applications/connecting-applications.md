@@ -6,6 +6,7 @@ The following guides describe how to create a simple **`Hello, World!`** program
 {% page-ref page="./python.md" %}
 {% page-ref page="./rust.md" %}
 {% page-ref page="./c-sharp.md" %}
+{% page-ref page="./java.md" %}
 {% page-ref page="./go.md" %}
 {% page-ref page="./javascript.md" %}
 
