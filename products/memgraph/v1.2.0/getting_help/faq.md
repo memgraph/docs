@@ -72,9 +72,15 @@ These procedures are grouped into modules, which can then be loaded on startup.
 Query modules can be implemented by using the Python API or C API.
 Take a look at our guide [Implement custom query modules](../database_functionalities/implement-query-modules.md).
 
-##### Why is my Memgraph instance relativly slow?
+##### Why is my Memgraph instance relatively slow?
 
 Label indexing is not enabled by default in Memgraph, i.e., Memgraph will not 
 automatically index labeled data. Therefore, it is up to the user to perform the 
 indexing explicitly. Visit the [Reference guide](../reference_guide/indexing.md) 
 to find out more about creating indexes.
+
+##### What are the Cypher implentation differences compared to Neo4j?
+
+Although we try to implement openCypher query language as closely to the
+language reference as possible, we had to make some changes to enhance the
+user experience. You can find the differences listed in the [Cypher manual](../cypher_manual/differences.md).
