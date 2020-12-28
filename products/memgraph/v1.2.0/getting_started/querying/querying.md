@@ -62,8 +62,8 @@ MATCH (u:User)-[r]->(x) RETURN u, r, x;
 Telemetry is an automated process by which data is collected at a remote point.
 At Memgraph, we use telemetry for the sole purpose of improving our product,
 thereby collecting data about the machine that executes the database (CPU,
-memory, OS and kernel information) as well as data about the database runtime
-(CPU usage, memory usage, vertices and edges count).
+memory, OS, and kernel information) as well as data about the database runtime
+(CPU usage, memory usage, vertices, and edges count).
 
 Here at Memgraph, we care deeply about the privacy of our users and do not
 collect any sensitive information. If you wish to disable Memgraph's telemetry
@@ -73,13 +73,13 @@ features, you can do so easily, either by altering the line in
 including `--telemetry-enabled=false` as a command-line argument when running
 the executable.
 
+### Where to next?
+
+To learn more about the **openCypher** language, visit the **[Cypher manual](../../cypher_manual/cypher-manual.md)** or **[Memgraph Playground](https://playground.memgraph.com/)** for interactive guides.
+For real-world examples of how to use Memgraph, we strongly suggest going through one of the available **[Tutorials](tutorials/tutorials-overview.md)**. 
+Details on what can be stored in Memgraph can be found in the article about **[Data Storage](concepts/storage.md)**.
+
 ### Getting help
 
 Visit the **Getting help** page in case you run into any kind of problem or you have additional questions.
 {% page-ref page="../../getting_help/getting-help.md" %}
-
-### Where to next?
-
-To learn more about the **openCypher** language, visit our **[Cypher manual](../../cypher_manual/cypher-manual.md)**.  
-For real-world examples of how to use Memgraph, we strongly suggest going through one of the available **[Tutorials](tutorials/tutorials-overview.md)**. 
-Details on what can be stored in Memgraph can be found in the article about **[Data Storage](concepts/storage.md)**.

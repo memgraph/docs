@@ -22,13 +22,32 @@ If the `Host` address is wrong, take a look at the [Docker Note](../installation
 
 ![Memgraph Lab](../../data/memgraph_lab_login.png)
 
+### Executing queries
+
+Now, you can execute Cypher queries on Memgraph.
+Open the **Query** tab, located in the left sidebar, copy the following query and press the **Run query** button:
+
+```opencypher
+CREATE (u:User {name: "Alice"})-[:Likes]->(m:Software {name: "Memgraph"});
+```
+
+The query above will create 2 nodes in the database, one labeled "User" with name
+"Alice" and the other labeled "Software" with name "Memgraph". It will also
+create a relationship that "Alice" *likes* "Memgraph".
+
+To find created nodes and relationships, execute the following query:
+
+```opencypher
+MATCH (u:User)-[r]->(x) RETURN u, r, x;
+```
+
+### Where to next?
+
+To learn more about the **openCypher** language, visit the **[Cypher manual](../../cypher_manual/cypher-manual.md)** or **[Memgraph Playground](https://playground.memgraph.com/)** for interactive guides.
+For real-world examples of how to use Memgraph, we strongly suggest going through one of the available **[Tutorials](tutorials/tutorials-overview.md)**. 
+Details on what can be stored in Memgraph can be found in the article about **[Data Storage](concepts/storage.md)**.
+
 ### Getting help
 
 Visit the **Getting help** page in case you run into any kind of problem or you have additional questions.
 {% page-ref page="../../getting_help/getting-help.md" %}
-
-### Where to next?
-
-To learn more about the **openCypher** language, visit our **[Cypher manual](../../cypher_manual/cypher-manual.md)**.  
-For real-world examples of how to use Memgraph, we strongly suggest going through one of the available **[Tutorials](tutorials/tutorials-overview.md)**. 
-Details on what can be stored in Memgraph can be found in the article about **[Data Storage](concepts/storage.md)**.
