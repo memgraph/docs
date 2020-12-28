@@ -15,8 +15,8 @@ multi-version concurrency control, and asynchronous IO.
 Memgraph Lab is a lightweight and intuitive openCypher and Bolt compatible
 integrated development environment (IDE), designed to help you import data,
 develop, debug, and profile database queries and visualize query results.
-{% page-ref page="lab/v1.2.0/quick-start.md" %}
-![Memgraph Lab](memgraph/v1.2.0/data/product-hunt-gallery-lab.png)
+{% page-ref page="./lab/v1.2.0/quick-start.md" %}
+![Memgraph Lab](./memgraph/v1.2.0/data/product-hunt-gallery-lab.png)
 
 ## Memgraph Cloud
 
@@ -25,8 +25,8 @@ fully managed graph DBMS as a service (in the Cloud). Users do not need to set
 up or maintain a database instance. It is Memgraph's responsibility to oversee
 the infrastructure (deployment, upgrade, update, removal, data backup,
 security, etc.).
-{% page-ref page="lab/v1.2.0/quick-start.md" %}
-![Memgraph Cloud](memgraph_cloud/how-to-connect.png)
+{% page-ref page="./memgraph_cloud/how-to-connect.md" %}
+![Memgraph Cloud](./memgraph/v1.2.0/data/product-hunt-gallery-cloud.png)
 
 ## Highly Available Memgraph
 
