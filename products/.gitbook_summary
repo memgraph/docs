@@ -9,7 +9,7 @@
         * [Debian GNU/Linux](memgraph/v1.2.0/getting_started/installation/debian-installation.md)
         * [RPM Package](memgraph/v1.2.0/getting_started/installation/rpm-installation.md)
     * [Querying the database](memgraph/v1.2.0/getting_started/querying/querying.md)
-        * [Memgraph Lab](memgraph/v1.2.0/getting_started/querying/memgraph-lab.md)
+        * [Quick start: Memgraph Lab](lab/v1.2.0/quick-start.md)
         * [Memgraph Playground](https://playground.memgraph.com/)
     * [Building applications](memgraph/v1.2.0/getting_started/connecting_applications/connecting-applications.md)
         * [Python](memgraph/v1.2.0/getting_started/connecting_applications/python.md)
@@ -184,6 +184,7 @@
 
 ## Memgraph Lab
 
+* [Quick start: Memgraph Lab](lab/v1.2.0/quick-start.md)
 * [How to install on OSX?](lab/v1.2.0/how_to_install_memgraph_lab_on_macos.md)
 * [Quick start guide to Style Script](lab/v1.2.0/quick_start_guide_to_style_script.md)
 * [Style Script](lab/v1.2.0/style_script.md)
