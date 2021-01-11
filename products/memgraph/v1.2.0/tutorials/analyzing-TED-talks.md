@@ -72,7 +72,7 @@ only during this run of Memgraph.
 
 ### Example Queries using OpenCypher
 
-In the queries below, we are using [OpenCypher](https://www.opencypher.org) 
+In the queries below, we are using [Cypher](../cypher_manual/cypher-manual.md) 
 to query Memgraph via the console.
 
  

@@ -339,7 +339,7 @@ In this query, the only difference is that we need to find players who had a dir
 In the next `MATCH` we use that information to check whether players that were transferred from FC Barcelona,
 didn't have direct transfer to Sevilla FC.
 
-If you are running this in [MemgraphLab](https://memgraph.com/product/lab) you can change the query
+If you are running this in [Memgraph Lab](https://memgraph.com/product/lab) you can change the query
 a bit in order to get all nodes and edges required for a visual graph representation of players transferring through teams.
 
 ```opencypher
