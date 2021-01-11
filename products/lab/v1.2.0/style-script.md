@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Style script is a language for customizing visual display of graphs. The main 
+Style script is a language for customizing the visual display of graphs. The main 
 building blocks of style script are expressions and directives. Style script 
 files are a sequence of expressions and directives.
 
@@ -14,15 +14,14 @@ example expression
 Add(2, 5) 
   -> 7
 ```
-creates a new value 7 from values 2 and 5. There are a lot of functions built in
-to style script so there are many wazs to combine values. There is even a
-function to create a new functions.
+creates a new value 7 from values 2 and 5. There are a lot of functions built into style script so there are even more ways to combine values. There is even a
+function to create new functions.
 
 When expressions are evaluated, values are created. There are several types of 
 style script values: `Boolean`, `Color`, `Number`, `String`, `Array`,
 `Dictionary`, `Function`and `Null`.
 
-Expression can be either literal expressions, name expressions or function 
+An expression can be either literal expressions, name expressions or function 
 applications. Literal expressions exist for `Color`s, `Number`s and `String`s. 
 
 This is a literal expression for `String`s.
@@ -30,8 +29,8 @@ This is a literal expression for `String`s.
 "Hello"
   -> Hello
 ```
-It evaluates to the value `"Hello"` of type `String`. Newline character and 
-double quote can be escaped in strings using \\ (backslash).
+It evaluates to the value `"Hello"` of type `String`. The newline character and 
+double quotes can be escaped in strings using \\ (backslash).
 ```
 "In the end he said: \"I am Iron Man!\""
   -> In the end he said: "I am Iron Man!"
@@ -45,8 +44,8 @@ These are literal expressions for `Number`s.
   -> 3.14159
 ```
 
-Literal expressions for `Color`s are hex strings starting with '#'. This is the
-literal expression for color red.
+Literal expressions for colors are hex strings starting with '#'. This is a 
+literal expression for the color red.
 ```
 #ff0000
   -> #ff0000
@@ -54,8 +53,8 @@ literal expression for color red.
 
 Name expressions are names that can be evaluated if there are values bound to
 them in the environment (lexical scope). Names can start with any of the 
-lower case or upper case letter of English alphabet and apart from those can 
-contains digits and the following characters: ?, !, $, -, _, ., *. Names can be 
+lower case or upper case letters of the English alphabet and apart from those can 
+contain digits and the following characters: ?, !, $, -, _, ., *. Names can be 
 defined using the `Define` function.
 ```
 Define(superhero, "Iron Man")
@@ -66,9 +65,9 @@ In the previous example the value `"Iron Man"` was bound to the name
 `superhero`. After that name expression `superhero` evaluates to the value 
 `"Iron Man"` fo type `String`.
 
-There are many builtin names that are bound to useful values. Most used are 
+There are many built-in names that are bound to useful values. Most used are 
 boolean values which are bound to `True` and `False` and null value which is
-bound to `Null`. Also all the css web colors are bound to their names.
+bound to `Null`. Also, all the CSS web colors are bound to their names.
 ```
 dodgerblue
   -> #1e90ff
@@ -76,14 +75,14 @@ forestgreen
   -> #228b22
 ```
 
-Third type of expressions are function application expressions. A function can 
+The third type of expressions are function application expressions. A function can 
 be applied to the list of expressions (arguments) in the following way.
 ```
 Concat("Agents", " ", "of", " ", "S.H.I.E.L.D.")
   -> Agents of S.H.I.E.L.D.
 ```
 Here the function `Concat` was applied to the list of string literal expressions
-to produce their concatenation. Arguments can be any expressions.
+to produce their concatenation. Any expression can be an argument.
 
 Not all expressions have to be evaluated. For example, when calling `If` 
 function one argument will not be evaluated.
@@ -108,7 +107,7 @@ square(2)
   -> 4
 ```
 In the previous example the name `x` isn't evaluated in the first line, and
-neither is the expression `Mul(x, x)`. In the second line when function `square`
+neither is the expression `Mul(x, x)`. In the second line when the function `square`
 is called number 2 will be bound to the name `x` and only then will `Mul(x, x)`
 be evaluated.
 
