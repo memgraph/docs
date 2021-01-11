@@ -12,11 +12,11 @@ multi-version concurrency control, and asynchronous IO.
 
 Visit the [Installation](./getting_started/installation/installation.md) guide to find out more about the installation process.
 
-### Querying the database
+### Querying the Database
 
 Memgraph uses the openCypher query language. Learn how to query Memgraph:
 * within the **command-line** by visiting the [Querying](./getting_started/querying/querying.md) guide or
-* visually by following the [Quick start: Memgraph Lab](../../lab/v1.2.0/quick-start.md) guide.
+* visually by following the [Quick start: Memgraph Lab](../../../lab/v1.2.0/quick-start.md) guide.
 
 ### Importing data
 
