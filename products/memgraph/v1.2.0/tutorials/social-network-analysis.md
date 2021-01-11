@@ -50,7 +50,7 @@ The data is imported and you can start Memgraph by executing the following comma
 docker run -p 7687:7687 -v mg_lib:/var/lib/memgraph -v mg_log:/var/log/memgraph -v mg_etc:/etc/memgraph memgraph
 ```
 
-To learn more about the CSV Import Tool visit the how-to guide: [Import Data](../database_functionalities/import-data.md).
+To learn more about the CSV Import Tool visit the how-to guide: [Import data](../database_functionalities/import-data.md).
 
 ## Using Existing NetworkX Algorithms
 
@@ -211,6 +211,6 @@ The resulting communities are:
 
 ## Further reading
 
-If you want to find out more about query modules, take a look at our guide on how to create your own: [How to Implement Query Modules?](../database_functionalities/query_modules/implement-query-modules.md).
+If you want to find out more about query modules, take a look at our guide on how to create your own: [Implement custom query modules](../database_functionalities/query_modules/implement-query-modules.md).
 
-You can also visit our [NetworkX Reference Guide](../reference_guide/networkx/networkx.md) to find out which NetworkX algorithms are already available in Memgraph.
+You can also visit our [NetworkX Reference guide](../reference_guide/networkx/networkx.md) to find out which NetworkX algorithms are already available in Memgraph.

@@ -92,7 +92,7 @@ To summarize, in this dataset we have the following data:
 
 For detailed information about the LDAP integration you should first see the
 reference guide:
-[LDAP Security](../reference_guide/ldap-security.md).
+[LDAP security](../reference_guide/ldap-security.md).
 
 ### Authentication
 
@@ -100,7 +100,7 @@ Before enabling LDAP authentication, Memgraph should be prepared for the
 integration. Here we assume that you have an already running Memgraph instance
 that doesn't have any users in its local authentication storage. For more
 details on how the native authentication storage works in Memgraph you should
-see: [How to Manage User Privileges?](manage-user-privileges.md).
+see: [User privileges](./manage-user-privileges.md).
 
 First you should create the user that should be the database administrator.  It
 is important to have in mind that the username that you create *must* exist in
@@ -249,4 +249,4 @@ database.
 ### Where to next?
 
 To learn more about Memgraph's functionalities, visit the **[Reference guide](../../reference_guide/reference-guide.md)**.
-For real-world examples of how to use Memgraph, we strongly suggest going through one of the available **[Tutorials](tutorials/tutorials.md)**.
+For real-world examples of how to use Memgraph, we strongly suggest going through one of the available **[Tutorials](../tutorials/tutorials.md)**.

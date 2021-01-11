@@ -56,7 +56,7 @@ We could naturally cluster those privileges into groups:
   * Privilege to view and alter users, roles and privileges (`AUTH`)
 
 If you are unfamiliar with any of these commands, you can look them up in our
-[reference guide](../reference_guide/reference-overview.md).
+[Cypher manual](../cypher_manual/cypher-manual.md).
 
 Similarly, the complete list of commands which can be executed under `AUTH`
 privilege can be viewed in the
@@ -145,4 +145,4 @@ within the database can be done by the following command:
 ### Where to next?
 
 To learn more about Memgraph's functionalities, visit the **[Reference guide](../../reference_guide/reference-guide.md)**.
-For real-world examples of how to use Memgraph, we strongly suggest going through one of the available **[Tutorials](tutorials/tutorials.md)**.
+For real-world examples of how to use Memgraph, we strongly suggest going through one of the available **[Tutorials](../tutorials/tutorials.md)**.

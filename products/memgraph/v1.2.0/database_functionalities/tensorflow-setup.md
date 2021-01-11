@@ -11,7 +11,7 @@ TensorFlow at any point in the model.
 
 At this point, we strongly advise you to read
 the TensorFlow section of our
-[Reference Guide](../reference_guide/tensorflow.md).
+[Reference guide](../reference_guide/tensorflow.md).
 
 In this article, we assume you have installed Python 3 and the TensorFlow pip
 package. See the [link](https://www.tensorflow.org/install/pip?lang=python3) for
@@ -217,4 +217,4 @@ if __name__ == "__main__":
 ### Where to next?
 
 To learn more about Memgraph's functionalities, visit the **[Reference guide](../../reference_guide/reference-guide.md)**.
-For real-world examples of how to use Memgraph, we strongly suggest going through one of the available **[Tutorials](tutorials/tutorials.md)**.
+For real-world examples of how to use Memgraph, we strongly suggest going through one of the available **[Tutorials](../tutorials/tutorials.md)**.

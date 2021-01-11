@@ -63,7 +63,7 @@ from the host with the following command:
 ```
 docker volume rm <volume_name>
 ```
-#### Note for docker users {#docker-note}
+#### Note for Docker users {#docker-note}
 
 Although unlikely, some OS X/macOS users might experience minor difficulties
 after the Docker installation. Instead of running on

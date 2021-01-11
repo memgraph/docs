@@ -12,7 +12,7 @@ pip3 install networkx
 {% hint style="info" %}
 NOTE: The following "How to Guides" provide an explanation of basic usage. To find
 out more details about each module and documentation of each procedure, please
-take a look at our [Reference Guide](../reference_guide/reference-overview.md) 
+take a look at our [Reference Guide](../../reference_guide/reference-overview.md) 
 or the query module source files. The files are located in the directory 
 `/usr/lib/memgraph/query_modules`.
 {% endhint %}
@@ -31,7 +31,7 @@ For example, you can run the [Page Rank](https://en.wikipedia.org/wiki/PageRank)
 algorithm on the data stored in Memgraph. To illustrate the functionality, the
 following graph will be used:
 
-![](../data/pagerank_graph.png)
+![](../../data/pagerank_graph.png)
 
 To load the graph into Memgraph, the following query should be used:
 
@@ -70,7 +70,7 @@ your Memgraph package in `/usr/lib/memgraph/query_modules`.
 The purpose of this module is to get more insights about the stored graph. To
 illustrate functionality the following graph will be used:
 
-![](../data/graph_analyzer_graph.png)
+![](../../data/graph_analyzer_graph.png)
 
 To create the graph, the following query should be executed:
 
@@ -140,7 +140,7 @@ The `wcc.py` query module can run
 a sub-graph of the whole graph. To illustrate the number of weakly connected
 components and nodes within each component, the following graph will be used:
 
-![](../data/simple_wcc.png)
+![](../../data/simple_wcc.png)
 
 To create the graph, run the following query:
 
@@ -213,7 +213,7 @@ docker run -p 7687:7687 \
 Suppose that Memgraph is currently storing a graph as depicted in the figure
 below where numbers in the vertices are stored as properties in the graph.
 
-![](../data/louvain_graph.png)
+![](../../data/louvain_graph.png)
 
 To create the above graph, execute the following query:
 
@@ -341,7 +341,7 @@ Suppose that Memgraph is currently storing a graph as depicted in the figure
 below where numbers in the vertices are stored as properties in the graph.
 This graph obviously has 4 weakly connected components.
 
-![](../data/wcc_graph.png)
+![](../../data/wcc_graph.png)
 
 To create the above graph, execute the following query:
 
@@ -440,6 +440,6 @@ We should observe the following result:
 ```
 
 As expected, nodes numbered 1, 2, and 3 are all in one connected component,
-node numbered 4 is in its own component, nodes numbered 5, 6, 7, 8, 9, 10 and
+node numbered 4 is in its own component, nodes numbered 5, 6, 7, 8, 9, 10, and
 11 are in another component and, finally, nodes numbered 12, 13, 14 and 15 are
 in the last component.
