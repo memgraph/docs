@@ -1,4 +1,4 @@
-# Style script
+# Quick start: Style script
 
 ## Introduction
 
