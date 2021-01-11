@@ -37,7 +37,7 @@ property per each node and an edge type and one property per edge.
 
 ##### Does Memgraph offer a cloud graph database as a service?
 
-Yes, we offer full-managed Memgraph on our cloud infrastructure as a service.
+Yes, we offer fully-managed Memgraph on our cloud infrastructure as a service.
 For more details please visit our [cloud pages](https://cloud.memgraph.com/).
 In addition, [Memgraph Playground](https://playground.memgraph.com/) is a
 testing environment where you can play with various graph datasets.
@@ -70,7 +70,7 @@ priority list. What we do offer is support when the upgrade is needed.
 Memgraph supports extending the query language with user-written procedures. 
 These procedures are grouped into modules, which can then be loaded on startup.
 Query modules can be implemented by using the Python API or C API.
-Take a look at our guide [Implement custom query modules](../database_functionalities/implement-query-modules.md).
+Take a look at our guide [Implement custom query modules](../database_functionalities/query_modules/implement-query-modules.md).
 
 ##### Why is my Memgraph instance relatively slow?
 
@@ -79,7 +79,7 @@ automatically index labeled data. Therefore, it is up to the user to perform the
 indexing explicitly. Visit the [Reference guide](../reference_guide/indexing.md) 
 to find out more about creating indexes.
 
-##### What are the Cypher implentation differences compared to Neo4j?
+##### What are the Cypher implementation differences compared to Neo4j?
 
 Although we try to implement openCypher query language as closely to the
 language reference as possible, we had to make some changes to enhance the
