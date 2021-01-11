@@ -13,7 +13,7 @@
 Docker is the easiest way to run Memgraph. Once you have successfully installed
 Docker, you will now install the Memgraph Docker image and import it.  Download
 the latest version of the Memgraph Docker Image by visiting [the download
-page](https://memgraph.com/download).
+page](https://memgraph.com/download). 
 
 ![](data/download_memgraph.png)
 

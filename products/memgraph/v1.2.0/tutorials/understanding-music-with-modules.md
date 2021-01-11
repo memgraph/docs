@@ -1,11 +1,11 @@
-## Understanding music (with modules)
+## Understanding music (with query modules)
 
 This article is part of a series intended to show users how to use Memgraph on
 real-world data and, by doing so, retrieve some interesting and useful
 information.
 
 We highly recommend checking out the other articles from this series which
-are listed in our [tutorial overview section](tutorials-overview.md).
+are listed in our [tutorial overview section](tutorials.md).
 
 ### Introduction
 
@@ -52,8 +52,8 @@ Also, we need to set up the directory from which the Memgraph will search for
 the query modules by changing the `--query-modules-directory` flag in the main
 configuration file(`/etc/memgraph/memgraph.conf`) or by supplying it as a
 command-line parameter using the directory containing our modules as the value.
-For a more detailed explanation take a look at
-[How to Load Query Modules](../how_to_guides/load-query-modules.md).
+For a more detailed explanation take a look at 
+[Load and call query modules](../database_functionalities/query_modules/load-call-query-modules.md).
 
 ```plaintext
 sudo -u memgraph \
@@ -466,7 +466,7 @@ the betweenness centrality but in a much lower time.
 ### Further reading
 
 We encourage you to take a look at our `How to` for the modules at the
-[How to Implement Query Modules?](../how_to_guides/implement-query-modules.md).
+[How to Implement Query Modules?](../database_functionalities/query_modules/implement-query-modules.md).
 
 This tutorial showed you how with a little effort you can extend your control
 over the data. Using packages like `NetworkX` you get a huge amount of already

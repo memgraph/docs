@@ -3,8 +3,8 @@
 NetworkX is a Python package for the creation, manipulation, and study of the structure, 
 dynamics, and functions of complex networks. Memgraph currently provides three query modules 
 that utilize the NetworkX library:
-* [**Graph Analyzer**](graph_analyzer/graph_analyzer.md)
-* [**Weakly Connected Components**](wcc/wcc.md)
-* [**NetworkX Algorithms**](nxalg/nxalg.md)
+{% page-ref page="./graph_analyzer/graph_analyzer.md" %}
+{% page-ref page="./wcc/wcc.md" %}
+{% page-ref page="./nxalg/nxalg.md" %}
 
-You can also take a look at our guide [How to Use Query Modules Provided by Memgraph?](../../how_to_guides/use-query-modules-provided-by-memgraph.md).
+You can also take a look at our [Built-in query modules](../../database_functionalities/query_modules/built-in-query-modules.md) guide to find out more about how to use them.

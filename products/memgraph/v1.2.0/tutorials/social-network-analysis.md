@@ -15,7 +15,7 @@ The nodes in the graph represent the members while the relationships between the
 
 ## Importing the Data
 
-The simplest way of populating our database is by using the built-in [CSV Import Tool](../how_to_guides/import-data.md). The CSV files for this data set can be downloaded [from here](https://github.com/g-despot/sng-tutorial). 
+The simplest way of populating our database is by using the built-in [CSV Import Tool](../database_functionalities/import-data.md). The CSV files for this data set can be downloaded [from here](https://github.com/g-despot/sng-tutorial). 
 
 Use the following command to import the files:
 
@@ -50,13 +50,13 @@ The data is imported and you can start Memgraph by executing the following comma
 docker run -p 7687:7687 -v mg_lib:/var/lib/memgraph -v mg_log:/var/log/memgraph -v mg_etc:/etc/memgraph memgraph
 ```
 
-To learn more about the CSV Import Tool visit the how-to guide: [Import Data](../how_to_guides/import-data.md).
+To learn more about the CSV Import Tool visit the how-to guide: [Import data](../database_functionalities/import-data.md).
 
 ## Using Existing NetworkX Algorithms
 
 There are three ways to execute queries and procedures in Memgraph:
-* using the command-line tool `mg_client`, which comes with Memgraph ([Querying](../quick-start.md#querying))
-* programmatically, by using the Bolt protocol ([how-to guide](../how_to_guides/query-memgraph-programmatically.md))
+* using the command-line tool `mg_client`, which comes with Memgraph ([Querying](../getting_started/querying/querying.md))
+* programmatically, by using the Bolt protocol ([how-to guide](../getting_started/connecting_applications/connecting-applications.md))
 * from **Memgraph Lab**, a visual user interface which you can download [here](https://memgraph.com/download).
 
 In this tutorial, we are using results from the command-line tool because of their text format but, it's alright to use Memgraph Lab instead. You can open Memgraph Lab and in the tab **Query** execute the following command:
@@ -211,6 +211,6 @@ The resulting communities are:
 
 ## Further reading
 
-If you want to find out more about query modules, take a look at our guide on how to create your own: [How to Implement Query Modules?](../how_to_guides/implement-query-modules.md).
+If you want to find out more about query modules, take a look at our guide on how to create your own: [Implement custom query modules](../database_functionalities/query_modules/implement-query-modules.md).
 
-You can also visit our [NetworkX Reference Guide](../reference_guide/networkx/networkx.md) to find out which NetworkX algorithms are already available in Memgraph.
+You can also visit our [NetworkX Reference guide](../reference_guide/networkx/networkx.md) to find out which NetworkX algorithms are already available in Memgraph.

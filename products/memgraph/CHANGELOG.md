@@ -2,10 +2,12 @@
 
 ## v1.2.0
 
+{% hint style="warning" %}
 ### Breaking Changes
 
 * SSL is disabled by default (`--bolt-cert-file` and `--bolt-key-file` are
   empty). This change might only affect the client connection configuration.
+{% endhint %}
 
 ### Major Features and Improvements
 
@@ -117,6 +119,7 @@
 
 ## v0.50.0
 
+{% hint style="warning" %}
 ### Breaking Changes
 
 * [Enterprise Ed.] Remove support for Kafka streams.
@@ -124,6 +127,7 @@
 * Removed support for unique constraints.
 * Label indices aren't created automatically, create them explicitly instead.
 * Renamed several database flags. Please see the configuration file for a list of current flags.
+{% endhint %}
 
 ### Major Features and Improvements
 
@@ -148,6 +152,7 @@
 
 ## v0.15.0
 
+{% hint style="warning" %}
 ### Breaking Changes
 
 * Snapshot and write-ahead log format changed (not backward compatible).
@@ -155,6 +160,7 @@
 * Removed support for unique index. Use unique constraints instead.
 * `CREATE UNIQUE INDEX ON :label (property)` replaced with `CREATE CONSTRAINT ON (n:label) ASSERT n.property IS UNIQUE`.
 * Changed semantics for `COUNTER` openCypher function.
+{% endhint %}
 
 ### Major Features and Improvements
 
@@ -189,9 +195,11 @@
 
 ## v0.14.0
 
+{% hint style="warning" %}
 ### Breaking Changes
 
 * Write-ahead log format changed (not backward compatible).
+{% endhint %}
 
 ### Major Features and Improvements
 
@@ -208,10 +216,12 @@
 
 ## v0.13.0
 
+{% hint style="warning" %}
 ### Breaking Changes
 
 * Write-ahead log format changed (not backward compatible).
 * Snapshot format changed (not backward compatible).
+{% endhint %}
 
 ### Major Features and Improvements
 
@@ -239,9 +249,11 @@
 
 ## v0.12.0
 
+{% hint style="warning" %}
 ### Breaking Changes
 
 * Snapshot format changed (not backward compatible).
+{% endhint %}
 
 ### Major Features and Improvements
 
@@ -271,9 +283,11 @@
 
 ## v0.10.0
 
+{% hint style="warning" %}
 ### Breaking Changes
 
 * Snapshot format changed (not backward compatible).
+{% endhint %}
 
 ### Major Features and Improvements
 
@@ -299,10 +313,12 @@
 
 ## v0.9.0
 
+{% hint style="warning" %}
 ### Breaking Changes
 
 * Snapshot format changed (not backward compatible).
 * Snapshot configuration flags changed, general durability flags added.
+{% endhint %}
 
 ### Major Features and Improvements
 
