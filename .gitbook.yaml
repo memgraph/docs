@@ -5,8 +5,25 @@ structure:
   summary: .gitbook_summary
 
 redirects:  
-    memgraph/overview: memgraph/v1.2.0/overview.md
+    memgraph/introduction: memgraph/v1.2.0/overview.md
     memgraph/quick-start: memgraph/v1.2.0/getting_started/getting-started.md
     memgraph/tutorials-overview: memgraph/v1.2.0/tutorials/tutorials.md
     memgraph/how-to-guides-overview: memgraph/v1.2.0/database_functionalities/database-functionalities.md
-    how-to-guides-overview/query-memgraph-programmatically: memgraph/v1.2.0/getting_started/connecting_applications/connecting-applications.md
+    memgraph/how-to-guides-overview/explain-profile: memgraph/v1.2.0/database_functionalities/profiling-queries.md
+    memgraph/how-to-guides-overview/import-data: memgraph/v1.2.0/database_functionalities/import-data.md
+    memgraph/how-to-guides-overview/query-memgraph-programmatically: memgraph/v1.2.0/getting_started/connecting_applications/connecting-applications.md
+    memgraph/how-to-guides-overview/enforce-constraints: memgraph/v1.2.0/database_functionalities/constraints/constraints.md
+    memgraph/how-to-guides-overview/load-query-modules: memgraph/v1.2.0/database_functionalities/query_modules/load-call-query-modules.md
+    memgraph/how-to-guides-overview/call-query-module-procedures: memgraph/v1.2.0/database_functionalities/query_modules/load-call-query-modules.md
+    memgraph/how-to-guides-overview/implement-query-modules: memgraph/v1.2.0/database_functionalities/query_modules/implement-query-modules.md
+    memgraph/how-to-guides-overview/use-query-modules-provided-by-memgraph: memgraph/v1.2.0/database_functionalities/query_modules/built-in-query-modules.md
+    memgraph/how-to-guides-overview/manage-user-privileges: memgraph/v1.2.0/database_functionalities/manage-user-privileges.md
+    memgraph/how-to-guides-overview/manage-users-using-ldap: memgraph/v1.2.0/database_functionalities/manage-users-using-ldap.md
+    #memgraph/how-to-guides-overview/work-with-docker: memgraph/v1.2.0/database_functionalities/work-with-docker.md
+    memgraph/reference-overview/reading-existing-data: memgraph/v1.2.0/cypher_manual/reading-existing-data.md
+    memgraph/reference-overview/writing-new-data: memgraph/v1.2.0/cypher_manual/writing-new-data.md
+    memgraph/reference-overview/reading-and-writing: memgraph/v1.2.0/cypher_manual/reading-and-writing.md
+    memgraph/reference-overview/other-features: memgraph/v1.2.0/cypher_manual/other-features.md
+    memgraph/reference-overview/differences: memgraph/v1.2.0/cypher_manual/differences.md
+    machine-learning/tensorflow-op: memgraph/v1.2.0/database_functionalities/tensorflow-setup.md
+    machine-learning/tensorflow-op/tensorflow: memgraph/v1.2.0/database_functionalities/tensorflow-setup.md
