@@ -30,7 +30,7 @@ redirects:
     memgraph/how-to-guides-overview/use-query-modules-provided-by-memgraph: memgraph/v1.2.0/database_functionalities/query_modules/built-in-query-modules.md
     memgraph/how-to-guides-overview/manage-user-privileges: memgraph/v1.2.0/database_functionalities/manage-user-privileges.md
     memgraph/how-to-guides-overview/manage-users-using-ldap: memgraph/v1.2.0/database_functionalities/manage-users-using-ldap.md
-    #memgraph/how-to-guides-overview/work-with-docker: memgraph/v1.2.0/database_functionalities/work-with-docker.md
+    memgraph/how-to-guides-overview/work-with-docker: memgraph/v1.2.0/database_functionalities/work-with-docker.md
     #Reference guide
     memgraph/reference-overview/configuration: memgraph/v1.2.0/reference_guide/configuration.md
     memgraph/reference-overview/reading-existing-data: memgraph/v1.2.0/cypher_manual/reading-existing-data.md
@@ -72,3 +72,5 @@ redirects:
     machine-learning/tensorflow-op/tensorflow: memgraph/v1.2.0/database_functionalities/tensorflow-setup.md
     #Help
     memgraph/faq: memgraph/v1.2.0/getting_help/faq.md
+    #Memgraph Lab
+    memgraph-lab/style_script: lab/v1.2.0/style-script.md
