@@ -3,3 +3,10 @@ root: ./products
 structure:
   readme: .gitbook_readme
   summary: .gitbook_summary
+
+redirects:  
+    memgraph/overview: memgraph/v1.2.0/overview.md
+    memgraph/quick-start: memgraph/v1.2.0/getting_started/getting-started.md
+    memgraph/tutorials-overview: memgraph/v1.2.0/tutorials/tutorials.md
+    memgraph/how-to-guides-overview: memgraph/v1.2.0/database_functionalities/database-functionalities.md
+    how-to-guides-overview/query-memgraph-programmatically: memgraph/v1.2.0/getting_started/connecting_applications/connecting-applications.md
