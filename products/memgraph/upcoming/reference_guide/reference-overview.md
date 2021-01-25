@@ -20,6 +20,7 @@ Our reference guide currently consists of the following articles:
   * [Auth Module](auth-module.md)
   * [LDAP Security](ldap-security.md)
   * [Audit Log](audit-log.md)
+  * [Replication](replication.md)
   * [TensorFlow Op](tensorflow.md)
   * [Other Features](other-features.md)
   * [Differences](differences.md)
