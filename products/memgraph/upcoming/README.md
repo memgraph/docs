@@ -24,7 +24,7 @@ Full Activity Auditing                                |           |     +
 
   * [About Memgraph](#about-memgraph)
   * [Quick Start](quick-start.md)
-  * [Tutorials](tutorials/tutorials-overview.md)
+  * [Tutorials](tutorials/tutorials.md)
     * [Analyzing TED Talks](tutorials/analyzing-TED-talks.md)
     * [Backpacking Through Europe](tutorials/backpacking-through-europe.md)
     * [Exploring the European Road Network](tutorials/exploring-the-european-road-network.md)
@@ -53,7 +53,7 @@ Full Activity Auditing                                |           |     +
     * [Reading and Writing](reference_guide/reading-and-writing.md)
     * [Indexing](reference_guide/indexing.md)
     * [Graph Algorithms](reference_guide/graph-algorithms.md)
-    * [Query Modules](reference_guide/query-modules.md)
+    * [Query Modules](reference_guide/query_modules/query-modules.md)
     * [Security](reference_guide/security.md)
     * [Auth Module](reference_guide/auth-module.md)
     * [LDAP Security](reference_guide/ldap-security.md)

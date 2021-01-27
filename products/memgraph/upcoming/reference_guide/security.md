@@ -1,7 +1,7 @@
 ## Security [Enterprise]
 
 Before reading this article we highly recommend going through a how-to guide
-on [managing user privileges](../how_to_guides/manage-user-privileges.md)
+on [managing user privileges](../database_functionalities/manage-user-privileges.md)
 which contains more thorough explanations of the concepts behind `openCypher`
 commands listed in this article.
 

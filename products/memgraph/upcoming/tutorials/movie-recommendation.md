@@ -5,7 +5,7 @@ on real-world data and, by doing so, retrieve some interesting and useful
 information.
 
 We highly recommend checking out the other articles from this series which
-are listed in our [tutorial overview section](tutorials-overview.md).
+are listed in our [tutorial overview section](tutorials.md).
 
 ### Introduction
 
@@ -82,7 +82,7 @@ RETURN m.title ORDER BY m.title LIMIT 10;
 
 4) Uniqueness constraint for genre:
 
-Let's create new unique constraint:
+Let's create a new unique constraint:
 
 ```opencypher
 CREATE CONSTRAINT ON (g:Genre) ASSERT g.name IS UNIQUE;

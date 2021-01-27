@@ -1,11 +1,11 @@
-## Understanding music (with modules)
+## Understanding music (with query modules)
 
-This article is a part of a series intended to show users how to use Memgraph on
+This article is part of a series intended to show users how to use Memgraph on
 real-world data and, by doing so, retrieve some interesting and useful
 information.
 
 We highly recommend checking out the other articles from this series which
-are listed in our [tutorial overview section](tutorials-overview.md).
+are listed in our [tutorial overview section](tutorials.md).
 
 ### Introduction
 
@@ -40,7 +40,7 @@ The data consists of around 50k Deezer users from Croatia, but we prepared a
 subset of the dataset only composed of 2k users. Each user is defined by id
 and a list of genres he loved. The edges represent the mutual friendship between
 the users. You can find a more detailed explanation of the dataset on the
-[github](https://github.com/benedekrozemberczki/datasets#deezer-social-networks)
+[GitHub](https://github.com/benedekrozemberczki/datasets#deezer-social-networks)
 alongside many more similar datasets kindly provided by the same authors.
 
 ### Importing the Snapshot and defining a directory with user modules
@@ -52,8 +52,8 @@ Also, we need to set up the directory from which the Memgraph will search for
 the query modules by changing the `--query-modules-directory` flag in the main
 configuration file(`/etc/memgraph/memgraph.conf`) or by supplying it as a
 command-line parameter using the directory containing our modules as the value.
-For more detailed explanation take a look at
-[How to Use and Implement Query Modules](../how_to_guides/use-and-implement-query-modules.md).
+For a more detailed explanation take a look at 
+[Load and call query modules](../database_functionalities/query_modules/load-call-query-modules.md).
 
 ```plaintext
 sudo -u memgraph \
@@ -193,7 +193,7 @@ and more. To be precise, we'll be using `NetworkX` that has a huge amount of
 utility functions and graph algorithms implemented.
 
 To use `NetworkX` algorithms we need to transform our graph to a type `NetworkX`
-recognizes. In our case, we need to use undirected graph `networkX.Graph`. To
+recognizes. In our case, we need to use an undirected graph `networkX.Graph`. To
 make our lives easier, let's write a helper function that transforms Memgraph
 graph to `networkX.Graph`.
 
@@ -219,7 +219,7 @@ def _create_undirected_graph(context: mgp.ProcCtx) -> nx.Graph:
 
 Now let's get some information about the graph. As our data represents social
 network we would like to know if it has
-[bridges](<https://en.wikipedia.org/wiki/Bridge_(graph_theory)>) and we would
+[bridges](https://tinyurl.com/y3angsdb) and we would
 like to calculate the
 [average clustering](https://en.wikipedia.org/wiki/Clustering_coefficient).
 
@@ -245,8 +245,8 @@ YIELD *;
 Another interesting property of a node in a graph is its
 [centrality](https://en.wikipedia.org/wiki/Centrality). Centrality tells us how
 important a node is for a graph. In our case, it would mean higher the
-centrality, more popular the user is. Let's find out which user is the most
-popular in our network and take a peek at his/hers music taste. We will use the
+centrality, the more popular the user is. Let's find out which user is the most
+popular in our network and take a peek at his/her music taste. We will use the
 [betweenness centrality](https://en.wikipedia.org/wiki/Betweenness_centrality).
 
 ```python
@@ -275,7 +275,7 @@ LIMIT 10;
 
 Calculating betweenness centrality for each node can take some time to
 finish. The issue of slower `NetworkX` implementations is something we at
-Memgraph would like to address in the future. An exmaple of this can be seen
+Memgraph would like to address in the future. An example of this can be seen
 in the next section of this tutorial.
 
 ---
@@ -291,7 +291,7 @@ We will write a function that takes a method for calculating communities, uses i
 to find the communities, and, optionally, calculates some metrics specific to
 the graph partitioning so we can compare algorithms. To make things more
 interesting, let's find out which genre is the most popular in the community and
-return the percentage which tells us how many of the users have that genre in
+return the percentage which tells us how many of the users have that genre on
 their list. In the end, music is something that connects us!
 
 ```python
@@ -429,7 +429,7 @@ YIELD communities, quality
 RETURN quality;
 ```
 
-I think it should come as a no surprise that an algorithm that maximizes
+I think it should come as no surprise that an algorithm that maximizes
 modularity has higher modularity...
 
 ### Optimized NetworkX integration
@@ -466,7 +466,7 @@ the betweenness centrality but in a much lower time.
 ### Further reading
 
 We encourage you to take a look at our `How to` for the modules at the
-[How to Use and Implement Query Modules?](../how_to_guides/use-and-implement-query-modules.md).
+[How to Implement Query Modules?](../database_functionalities/query_modules/implement-query-modules.md).
 
 This tutorial showed you how with a little effort you can extend your control
 over the data. Using packages like `NetworkX` you get a huge amount of already
