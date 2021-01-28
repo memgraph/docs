@@ -9,12 +9,11 @@ main or replica. The main instance is the instance that accepts writes to the
 database and replicates its state to the replicas. In a cluster, there can only
 be one main. There can be one or more replicas. None of the replicas will accept
 write queries, but they will always accept read queries (there is an exception
-to this rule and is described below). Replicas can also be configured to be
-replicas of replicas, not necessarily replicas of the main. Each instance will
-always be reachable using the standard supported communication protocols. The
-replication will replicate WAL data. All data is transported through a custom
-binary protocol that will try remain backward compatible, so that replication
-immediately allows for zero downtime upgrades.
+to this rule and is described below).  ach instance will always be reachable
+using the standard supported communication protocols. The replication will
+replicate WAL data. All data is transported through a custom binary protocol
+that will try remain backward compatible, so that replication immediately allows
+for zero downtime upgrades.
 
 Each replica can be configured to accept replicated data in one of the following
 modes:

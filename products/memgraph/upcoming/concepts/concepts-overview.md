@@ -9,3 +9,4 @@ So far we have covered the following topics:
   * [Data Storage](storage.md)
   * [Graph Algorithms](graph-algorithms.md)
   * [Indexing](indexing.md)
+  * [Replication](replication.md)

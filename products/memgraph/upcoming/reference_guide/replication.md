@@ -3,7 +3,7 @@
 ### How to Setup a Memgraph Cluster with Replication?
 
 Replication configuration is done primarily through Memgraph Cypher commands. This
-allows the cluster to be dynamically rearranged (new leader election, addition
+allows the cluster to be dynamically rearranged (promoting a new main, addition
 of a new replica, etc.).
 
 Each Memgraph instance when first started will be a main. You have to change
@@ -11,12 +11,12 @@ the role of all replica nodes using the following query before you
 can enable replication on the main:
 
 ```plaintext
-SET REPLICATION ROLE TO (MAIN|REPLICA) WITH PORT <port_number>;
+SET REPLICATION ROLE TO (MAIN|REPLICA) [WITH PORT <port_number>];
 ```
 
 Note that the "WITH PORT <port_number>" part of the query sets the replication port,
 but it applies only to the replica. In other words, if you try to set the
-replication port as the main, a semantic exception will be thrown.
+replication port as the main, the query will fail.
 After you have set your replica instance to the correct operating role, you can
 enable replication in the main instance by issuing the following Memgraph Cypher
 command:
