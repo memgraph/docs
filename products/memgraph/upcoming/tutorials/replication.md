@@ -1,8 +1,7 @@
-## Replication
+## How to Set Up Replication on a Small Cluster (Enterprise)
 
-This article is a part of a series intended to showcase Memgraph's features and
-on realistic scenarios, and bring the user up to speed on developing with
-Memgraph.
+This article is a part of a series intended to showcase Memgraph's features,
+and bring the user up to speed on developing with Memgraph.
 
 We highly recommend checking out the other articles from this series which
 are listed in our [tutorial overview section](tutorials.md).
@@ -20,7 +19,7 @@ The cluster consists of four nodes, a single main and three replicas:
 * the main node, containing the original data to be replicated to other nodes,
 * a node that will be replicated to using the sync mode,
 * a node that will be replicated to using the async mode,
-* a node that will be replicated to using the sync-with-timeout mode .
+* a node that will be replicated to using the sync-with-timeout mode.
 
 We'll be hitting the main node with create queries, creating nodes and edges,
 while running BFS on the replicas, and observing the effects of different sync
@@ -29,16 +28,16 @@ modes used.
 ### Configuring the cluster
 
 We'll use Docker to set up and run the cluster on your local machine, so make
-sure you have it installed and ready, and grab your Memgraph docker image or
-binary. Look [here](https://docs.memgraph.com/memgraph/getting-started/installation/docker-installation) for instructions.
-In addition, make sure you have either [mg_client](https://github.com/memgraph/mgclient/tree/release/1.0) or [mgconsole](https://github.com/memgraph/mgconsole) installed.
+sure you have it installed and ready, and grab your Memgraph docker image.
+Look [here](https://docs.memgraph.com/memgraph/getting-started/installation/docker-installation) for instructions.
+In addition, make sure you have either [mgclient](https://github.com/memgraph/mgclient) or [mgconsole](https://github.com/memgraph/mgconsole) installed.
 
 We have to setup the cluster nodes' ports properly, so we'll use the following
 mapping:
 * the main node will have port 7687 assigned
 * the sync node will have port 7688 assigned
 * the async node will have port 7689 assigned
-* the sync-with-timeout node will have port 7690 assigned .
+* the sync-with-timeout node will have port 7690 assigned.
 Note that we could've chosen arbitrary ports.
 
 We fire up the terminal, and for each Memgraph instance (node)  we have to start, we'll
@@ -89,7 +88,7 @@ Once we're connected to a replica, we set its replication role to "REPLICA" by
 issuing
 
 ```plaintext
-SET REPLICATION ROLE TO REPLICA WITH PORT 10000
+SET REPLICATION ROLE TO REPLICA WITH PORT 10000;
 ```
 
 Note that the port 10000 is arbitrary, and any available port number may be used
@@ -107,7 +106,7 @@ Then, for every replica, we issue the query that registers it:
 ```plaintext
 REGISTER REPLICA r1 SYNC TO "172.17.0.3:10000";
 REGISTER REPLICA r2 ASYNC TO "172.17.0.4:10000";
-REGISTER REPLICA r3 SYNC WITH TIMEOUT 0.001 TO "172.17.0.5:10000";
+REGISTER REPLICA r3 SYNC WITH TIMEOUT 1 TO "172.17.0.5:10000";
 ```
 
 Now we can create some nodes and edges on the main, and observe them replicate
