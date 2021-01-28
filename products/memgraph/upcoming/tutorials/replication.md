@@ -17,8 +17,7 @@ behavior of the available synchronization modes.
 
 The cluster consists of four nodes, a single main and three replicas:
 
-* the main node, containing the original data to be replicated to other
-    nodes,
+* the main node, containing the original data to be replicated to other nodes,
 * a node that will be replicated to using the sync mode,
 * a node that will be replicated to using the async mode,
 * a node that will be replicated to using the sync-with-timeout mode .
@@ -32,7 +31,7 @@ modes used.
 We'll use Docker to set up and run the cluster on your local machine, so make
 sure you have it installed and ready, and grab your Memgraph docker image or
 binary. Look [here](https://docs.memgraph.com/memgraph/getting-started/installation/docker-installation) for instructions.
-In addition, make sure you have either [mg_client]( https://github.com/memgraph/mgclient/tree/release/1.0) or [mgconsole](https://github.com/memgraph/mgconsole) installed.
+In addition, make sure you have either [mg_client](https://github.com/memgraph/mgclient/tree/release/1.0) or [mgconsole](https://github.com/memgraph/mgconsole) installed.
 
 We have to setup the cluster nodes' ports properly, so we'll use the following
 mapping:
@@ -122,9 +121,10 @@ CREATE (n:N {p: "This is going to be replicated!"});
 After that, we can switch to any replica and try to match this node:
 
 ```plaintext
-MATCH (n:Node) RETURN n;
+MATCH (n:N) RETURN n;
 ```
 Lo and behold, we get:
+
 ```plaintext
 +---------------------------------------------+
 | n                                           |
