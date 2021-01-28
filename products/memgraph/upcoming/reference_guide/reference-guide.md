@@ -57,3 +57,8 @@ To learn more visit:
 
 Memgraph supports all query audit logging. When enabled, the audit log contains records of all queries executed on the database.
 {% page-ref page="./audit-log.md" %}
+
+### Making a backup
+
+Memgraph comes with couple of queries that allow you to safely make a backup of the files containing its data.
+{% page-ref page='./making-a-backup.md %}
