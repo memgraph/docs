@@ -1,6 +1,6 @@
-## User Facing Setup
+## User facing setup
 
-### How to Setup a Memgraph Cluster with Replication?
+### How to set up a Memgraph cluster with replication?
 
 Replication configuration is done primarily through Memgraph Cypher commands. This
 allows the cluster to be dynamically rearranged (promoting a new main, addition
@@ -46,7 +46,7 @@ Each Memgraph instance will remember what the configuration was set to and will
 automatically resume with its role when restarted.
 
 
-### How to See the Current Replication Status?
+### How to see the current replication status?
 
 To see the replication ROLE of the current Memgraph instance, you can issue the
 following query:
@@ -68,7 +68,7 @@ To delete a replica, issue the following query:
 DROP REPLICA 'name';
 ```
 
-### How to Promote a New Main?
+### How to promote a new main?
 
 When you have an already set-up cluster, to promote a new main, just set the
 replica that you want to be a main to the main role.
@@ -82,7 +82,7 @@ able to replicate its data to the replica (the new main) anymore and will enter
 an error state. You must ensure that at any given point in time there aren't
 two mains in the cluster.
 
-## Limitations and Potential Features
+## Limitations and potential features
 
 Currently, we do not support chained replicas, i.e. a replica can't have its
 own replica. When this feature becomes available, the user will be able to 
@@ -108,7 +108,7 @@ if a main crashes, a suitable replica will take its place as the new main. If
 the crashed main goes back online, it will not be able to reclaim its previous
 role, but will be forced to be a replica of the new main.
 In the upcoming releases, we might be adding more advanced recovery mechanisms.
-However, users are able to setup their own recovery policies using the basic
+However, users are able to set up their own recovery policies using the basic
 recovery mechanisms we currently provide, that can cover a wide range of
 real-life scenarios.
 
