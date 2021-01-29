@@ -180,12 +180,3 @@
 ## Memgraph Cloud
 
 * [How to connect to Memgraph Cloud?](memgraph_cloud/how-to-connect.md)
-
-## Highly Available Memgraph
-
-* [Introduction](ha_memgraph/v0.1.0/introduction.md)
-* [How to install, Configure and Run HA Memgraph?](ha_memgraph/v0.1.0/how_to_guides/install-configure-and-run-ha-memgraph.md)
-* [How to query HA Memgraph programmatically?](ha_memgraph/v0.1.0/how_to_guides/query-ha-memgraph-programmatically.md)
-* [Changelog](ha_memgraph/CHANGELOG.md)
-* [Known issues](ha_memgraph/known-issues.md)
-* [FAQ](ha_memgraph/v0.1.0/faq.md)
