@@ -4,7 +4,7 @@ This article is a part of a series intended to showcase Memgraph's features
 and bring the user up to speed on developing with Memgraph.
 
 We highly recommend checking out the other articles from this series which
-are listed in our [tutorial overview section](tutorials.md).
+are listed in our [database functionalities section](database-functionalities.md).
 
 ### Introduction
 
@@ -25,7 +25,7 @@ The cluster consists of four nodes, a single main and three replicas:
 
 We'll use Docker to set up and run the cluster on your local machine, so make
 sure you have it installed and ready, and grab your Memgraph docker image.
-Look [here](https://docs.memgraph.com/memgraph/getting-started/installation/docker-installation) for instructions.
+Look [here](../getting_started/installation/docker-installation.md) for instructions.
 We assume you have already set up a client for running queries like [mgconsole](https://github.com/memgraph/mgconsole) installed.
 You can also use any of the supported drivers like [mgclient](https://github.com/memgraph/mgclient) or any of the Neo4j drivers.
 
@@ -118,3 +118,8 @@ Lo and behold, we get:
 ```
 
 Now, go on and have fun with more complex graphs! Happy hacking!
+
+### Where to next?
+
+To learn more about replication in Memgraph, visit the **[Reference guide](../reference_guide/replication.md)**.
+For real-world examples of how to use Memgraph, we strongly suggest going through one of the available **[Tutorials](../tutorials/tutorials.md)**.

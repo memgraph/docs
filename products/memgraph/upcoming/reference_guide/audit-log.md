@@ -1,4 +1,4 @@
-## Audit Log [Enterprise]
+## Audit log [Enterprise]
 
 Memgraph supports all query audit logging. When enabled, the audit log contains
 records of all queries executed on the database.  Each executed query is one
@@ -43,7 +43,7 @@ CREATE (n {name: $name})                          | {"name": "alice"}
 MATCH (n), (m) CREATE (n)-[:e {when: $when}]->(m) | {"when": 42}
 MATCH (n), (m) SET n.value = m.value              | {}
 
-### Parsing the Log
+### Parsing the log
 
 If you wish to parse the log, the following Python snippet shows how to extract
 data from the audit log:

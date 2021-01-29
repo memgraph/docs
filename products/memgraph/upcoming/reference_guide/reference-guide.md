@@ -41,6 +41,11 @@ Memgraph TensorFlow op wraps the high-performance Memgraph client for use with T
 allowing natural data transfer between Memgraph and TensorFlow at any point of the model.
 {% page-ref page="./tensorflow.md" %}
 
+### Backup
+
+Memgraph comes with a couple of queries that allow you to safely make a backup of the files containing its data.
+{% page-ref page="./backup.md" %}
+
 ### User privileges
 
 Memgraph comes with the option of granting, denying, or revoking a certain set of privileges to users or groups of users.
@@ -58,7 +63,7 @@ To learn more visit:
 Memgraph supports all query audit logging. When enabled, the audit log contains records of all queries executed on the database.
 {% page-ref page="./audit-log.md" %}
 
-### Making a backup
+### Replication
 
-Memgraph comes with a couple of queries that allow you to safely make a backup of the files containing its data.
-{% page-ref page='./making-a-backup.md %}
+Memgraph supports replication and allows you to create a cluster of nodes running Memgraph instances. 
+{% page-ref page="./replication.md" %}

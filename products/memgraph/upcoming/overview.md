@@ -6,6 +6,24 @@ Memgraph is an ACID-compliant high performance transactional in-memory graph
 database management system featuring highly concurrent data structures,
 multi-version concurrency control, and asynchronous IO.
 
+
+Supported feature                                                       | Community | Enterprise
+------------------------------------------------------------------------|-----------|-----------
+Hybrid In&#8209;Memory / On&#8209;Disk Storage Engine                   |     +     |     +
+ACID Transactions                                                       |     +     |     +
+Optimized for Low Latency and High&#8209;Throughput                     |     +     |     +
+[Support for Custom Query Modules (C and Python API)](#query-modules)   |     +     |     +
+[CSV Import Tool](#importing-data)                                      |     +     |     +
+Development, Testing, and Evaluation Use                                |     +     |     +
+[Query Modules with Graph Algorithms](#query-modules)                   |     +     |     +
+Production and Commercial Use                                           |           |     +
+[Authentication](#authentication-and-authorization)                     |           |     +
+[Advanced Password Policies](#user-privileges)                          |           |     +
+[Fine&#8209;Grained Access Control](#user-privileges)                   |           |     +
+[Auth Module](#authentication-and-authorization)                        |           |     +
+[Full Activity Auditing](#audit-log)                                    |           |     +
+[Replication](#replication)                                             |           |     +
+
 ## Resources
 
 ### Installation
@@ -41,7 +59,7 @@ on how the query's plan behaved. Take a look at the guides:
 ### NetworkX
 
 Memgraph includes a set of Python query modules based on the [NetworkX](https://networkx.github.io/) library of algorithms.
-You can find more information about all the available algorithms in the [NetworkX Reference guide](./reference_guide/networkx/networkx.md)
+You can find more information about all the available algorithms in the [NetworkX Reference guide](./reference_guide/networkx/networkx.md).
 
 ### Machine learning
 
@@ -50,6 +68,11 @@ allowing natural data transfer between Memgraph and TensorFlow at any point of t
 If you are interested in using Memgraph for machine learning purposes  take a look at:
 * [TensorFlow op setup](./database_functionalities/tensorflow-setup.md) 
 * [TensorFlow op reference](./reference_guide/tensorflow.md)
+
+### Backup
+
+Memgraph comes with a couple of queries that allow you to safely make a backup of the files containing its data:
+* [Backup](./reference_guide/backup.md)
 
 ### User privileges
 
@@ -66,20 +89,13 @@ To learn more visit:
 * [Auth module (Enterprise)](reference_guide/auth-module.md)
 * [LDAP security (Enterprise)](reference_guide/ldap-security.md)
 
-## Supported features
+### Audit log
 
-Feature                                               | Community | Enterprise
-------------------------------------------------------|-----------|-----------
-Hybrid In&#8209;Memory / On&#8209;Disk Storage Engine |     +     |     +
-ACID Transactions                                     |     +     |     +
-Optimized for Low Latency and High&#8209;Throughput   |     +     |     +
-Support for Custom Query Modules (C and Python API)   |     +     |     +
-CSV Import Tool                                       |     +     |     +
-Development, Testing, and Evaluation Use              |     +     |     +
-Query Modules with Graph Algorithms                   |     +     |     +
-Production and Commercial Use                         |           |     +
-Authentication                                        |           |     +
-Advanced Password Policies                            |           |     +
-Fine&#8209;Grained Access Control                     |           |     +
-Auth Module                                           |           |     +
-Full Activity Auditing                                |           |     +
+Memgraph supports all query audit logging. When enabled, the audit log contains records of all queries executed on the database.
+* [Audit log (Enterprise)](reference_guide/audit-log.md)
+
+### Replication
+
+Memgraph supports replication and the following guide demonstrates how to create a simple cluster of nodes running
+Memgraph instances: 
+* [Replication (Enterprise)](./database_functionalities/replication.md)
