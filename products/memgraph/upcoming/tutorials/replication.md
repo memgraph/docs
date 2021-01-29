@@ -21,16 +21,13 @@ The cluster consists of four nodes, a single main and three replicas:
 * a node that will be replicated to using the async mode,
 * a node that will be replicated to using the sync-with-timeout mode.
 
-We'll be hitting the main node with create queries, creating nodes and edges,
-while running BFS on the replicas, and observing the effects of different sync
-modes used.
-
 ### Configuring the cluster
 
 We'll use Docker to set up and run the cluster on your local machine, so make
 sure you have it installed and ready, and grab your Memgraph docker image.
 Look [here](https://docs.memgraph.com/memgraph/getting-started/installation/docker-installation) for instructions.
-In addition, make sure you have either [mgclient](https://github.com/memgraph/mgclient) or [mgconsole](https://github.com/memgraph/mgconsole) installed.
+We assume you have already setup a client for running queries like [mgconsole](https://github.com/memgraph/mgconsole) installed.
+You can also use any of the supported drivers like [mgclient](https://github.com/memgraph/mgclient) or any of the Neo4j drivers.
 
 We have to setup the cluster nodes' ports properly, so we'll use the following
 mapping:
@@ -132,4 +129,4 @@ Lo and behold, we get:
 +---------------------------------------------+
 ```
 
-Now, let's try something more complex.
+Now, go on and have fun with more complex graphs! Happy hacking!
