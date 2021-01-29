@@ -28,11 +28,6 @@ security, etc.).
 {% page-ref page="./memgraph_cloud/how-to-connect.md" %}
 ![Memgraph Cloud](./memgraph/v1.2.0/data/product-hunt-gallery-cloud.png)
 
-## Highly Available Memgraph
-
-HA Memgraph is an ACID-compliant, highly available, transactional, in-memory
-graph database management system based on the Raft protocol.
-
 ## Note
 
 These pages contain only the documents related to the latest versions of
