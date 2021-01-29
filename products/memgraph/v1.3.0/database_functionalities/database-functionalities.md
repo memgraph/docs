@@ -32,10 +32,10 @@ Memgraph supports replication and the following guide demonstrates how to create
 Memgraph instances: 
 * [Replication](./replication.md)
 
-### Making a backup
+### Backup
 
-Memgraph comes with a couple of queries that allow you to safely make a backup of the files containing its data.
-* [Making a backup](../reference_guide/making-a-backup.md)
+Memgraph comes with a couple of queries that allow you to safely make a backup of the files containing its data:
+* [Backup](../reference_guide/backup.md)
 
 ### Machine learning
 

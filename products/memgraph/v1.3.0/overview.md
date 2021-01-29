@@ -38,10 +38,21 @@ on how the query's plan behaved. Take a look at the guides:
 * [Inspecting queries](./database_functionalities/inspecting-queries.md)
 * [Profiling queries](./database_functionalities/profiling-queries.md)
 
+### Replication
+
+Memgraph supports replication and the following guide demonstrates how to create a simple cluster of nodes running
+Memgraph instances: 
+* [Replication](./database_functionalities/replication.md)
+
+### Backup
+
+Memgraph comes with a couple of queries that allow you to safely make a backup of the files containing its data:
+* [Backup](./reference_guide/backup.md)
+
 ### NetworkX
 
 Memgraph includes a set of Python query modules based on the [NetworkX](https://networkx.github.io/) library of algorithms.
-You can find more information about all the available algorithms in the [NetworkX Reference guide](./reference_guide/networkx/networkx.md)
+You can find more information about all the available algorithms in the [NetworkX Reference guide](./reference_guide/networkx/networkx.md).
 
 ### Machine learning
 

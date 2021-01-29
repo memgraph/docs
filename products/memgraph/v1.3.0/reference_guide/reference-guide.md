@@ -35,21 +35,21 @@ These procedures are grouped into modules, which can then be loaded either on st
 Memgraph includes a set of Python query modules based on the [NetworkX](https://networkx.github.io/) library of algorithms.
 You can find more information about all the available algorithms in the {% page-ref page="./networkx/networkx.md" %}
 
-### Machine learning
-
-Memgraph TensorFlow op wraps the high-performance Memgraph client for use with TensorFlow, 
-allowing natural data transfer between Memgraph and TensorFlow at any point of the model.
-{% page-ref page="./tensorflow.md" %}
-
 ### Replication
 
 Memgraph supports replication and allows you to create a cluster of nodes running Memgraph instances. 
 {% page-ref page="./replication.md" %}
 
-### Making a backup
+### Backup
 
 Memgraph comes with a couple of queries that allow you to safely make a backup of the files containing its data.
-{% page-ref page='./making-a-backup.md %}
+{% page-ref page='./backup.md %}
+
+### Machine learning
+
+Memgraph TensorFlow op wraps the high-performance Memgraph client for use with TensorFlow, 
+allowing natural data transfer between Memgraph and TensorFlow at any point of the model.
+{% page-ref page="./tensorflow.md" %}
 
 ### User privileges
 
