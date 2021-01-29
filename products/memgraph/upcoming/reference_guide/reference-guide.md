@@ -60,5 +60,5 @@ Memgraph supports all query audit logging. When enabled, the audit log contains 
 
 ### Making a backup
 
-Memgraph comes with couple of queries that allow you to safely make a backup of the files containing its data.
+Memgraph comes with a couple of queries that allow you to safely make a backup of the files containing its data.
 {% page-ref page='./making-a-backup.md %}
