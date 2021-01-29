@@ -44,7 +44,7 @@ allowing natural data transfer between Memgraph and TensorFlow at any point of t
 ### Backup
 
 Memgraph comes with a couple of queries that allow you to safely make a backup of the files containing its data.
-{% page-ref page='./backup.md %}
+{% page-ref page="./backup.md" %}
 
 ### User privileges
 

@@ -138,7 +138,7 @@
     * [Auth module (Enterprise)](memgraph/v1.3.0/reference_guide/auth-module.md)
     * [LDAP security (Enterprise)](memgraph/v1.3.0/reference_guide/ldap-security.md)
     * [Audit log (Enterprise)](memgraph/v1.3.0/reference_guide/audit-log.md)
-    * [Replication (Enterprise)](memgraph/v1.3.0/reference_guide/tensorflow.md)
+    * [Replication (Enterprise)](memgraph/v1.3.0/reference_guide/replication.md)
 * [Cypher manual](memgraph/v1.3.0/cypher_manual/cypher-manual.md)
     * [Reading existing data](memgraph/v1.3.0/cypher_manual/reading-existing-data.md)
     * [Writing new data](memgraph/v1.3.0/cypher_manual/writing-new-data.md)
