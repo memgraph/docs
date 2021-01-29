@@ -34,7 +34,7 @@ docker run -p 7687:7687 \
 If successful, you should see a message similar to the following :
 
 ```
-You are running Memgraph v1.2.0-community
+You are running Memgraph v1.3.0-community
 Using non-secure Bolt connection (without SSL)
 Starting 12 Bolt workers
 Bolt server is fully armed and operational
