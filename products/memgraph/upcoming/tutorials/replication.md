@@ -19,7 +19,7 @@ The cluster consists of four nodes, a single main and three replicas:
 * the main node, containing the original data to be replicated to other nodes,
 * a node that will be replicated to using the sync mode,
 * a node that will be replicated to using the async mode,
-* a node that will be replicated to using the sync-with-timeout mode.
+* a node that will be replicated to using the semi-sync mode.
 
 ### Configuring the cluster
 
@@ -29,23 +29,14 @@ Look [here](https://docs.memgraph.com/memgraph/getting-started/installation/dock
 We assume you have already setup a client for running queries like [mgconsole](https://github.com/memgraph/mgconsole) installed.
 You can also use any of the supported drivers like [mgclient](https://github.com/memgraph/mgclient) or any of the Neo4j drivers.
 
-We have to setup the cluster nodes' ports properly, so we'll use the following
-mapping:
-* the main node will have port 7687 assigned
-* the sync node will have port 7688 assigned
-* the async node will have port 7689 assigned
-* the sync-with-timeout node will have port 7690 assigned.
-Note that we could've chosen arbitrary ports.
-
 We fire up the terminal, and for each Memgraph instance (node)  we have to start, we'll
 run:
 
 ```plaintext
-docker run --rm -p PORT:7687 memgraph:1.3.0-enterprise
+docker run --rm memgraph:1.3.0-enterprise
 ```
 
-where PORT runs from 7687 to 7690. The above commands will start a Memgraph
-node, and map it to the appropriate port on your host machine.
+The above commands will start a Memgraph node, and assign it its own IP address. 
 
 Now, to set up the cluster, we'll have to start an mg_client or mgconsole
 instance for every running Memgraph node, and connect to it. To do this, we
@@ -68,20 +59,17 @@ can start setting up the replication. Let's say the ip addresses are as follows:
 * main:                      172.17.0.2
 * sync replica:              172.17.0.3
 * async replica:             172.17.0.4
-* sync-with-timeout replica: 172.17.0.5 .
+* semi-sync replica:         172.17.0.5 .
 
 Let's assume we're using mgconsole to connect to and query the nodes. Firstly,
 we have to set up the replicas. We connect to a replica by running
 
 ```plaintext
-mgconsole --host REPLICA_IP_ADDRESS --port REPLICA_PORT --use-ssl=false
+mgconsole --host REPLICA_IP_ADDRESS --use-ssl=false
 ```
 
-where REPLICA_IP_ADDRESS is the address we found in the previous step, and the
-REPLICA_PORT is the port corresponding to that address. Remember, nodes with
-ports 7688 to 7690 are replicas.
-
-Once we're connected to a replica, we set its replication role to "REPLICA" by
+where REPLICA_IP_ADDRESS is the address we found in the previous step. Once
+we're connected to a replica, we set its replication role to "REPLICA" by
 issuing
 
 ```plaintext
@@ -95,7 +83,7 @@ Now, it's time to set up the main. Again, we connect to the main using
 mgconsole:
 
 ```plaintext
-mgconsole --host 172.17.0.2 --port 7687 --use-ssl=false
+mgconsole --host 172.17.0.2 --use-ssl=false
 ```
 
 Then, for every replica, we issue the query that registers it:
