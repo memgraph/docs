@@ -70,6 +70,6 @@ to grind to a halt when you have a non-responsive replica.
 Each replica, when added to the cluster (in any mode), will first start out as
 an asynchronous replica. That will allow replicas that have fallen behind to
 first catch-up to the current state of the database. When the replica is in a
-state that it isn't lagging behind the main it will then be promoted (in a brief
-stop-the-world operation) to a semi-synchronous or synchronous replica. Slaves
-that are added as asynchronous replicas will remain asynchronous.
+state that it isn't lagging behind the main it will then be promoted to a
+semi-synchronous or synchronous replica. Replicas that are added as asynchronous
+replicas will remain asynchronous.
