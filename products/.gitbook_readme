@@ -6,17 +6,17 @@ Memgraph is an ACID-compliant high performance transactional in-memory graph
 database management system featuring highly concurrent data structures,
 multi-version concurrency control, and asynchronous IO.
 
-{% page-ref page="memgraph/v1.2.0/getting_started/getting-started.md" %}
-{% page-ref page="memgraph/v1.2.0/database_functionalities/database-functionalities.md" %}
-{% page-ref page="memgraph/v1.2.0/reference_guide/reference-guide.md" %}
+{% page-ref page="memgraph/v1.3.0/getting_started/getting-started.md" %}
+{% page-ref page="memgraph/v1.3.0/database_functionalities/database-functionalities.md" %}
+{% page-ref page="memgraph/v1.3.0/reference_guide/reference-guide.md" %}
 
 ## Memgraph Lab
 
 Memgraph Lab is a lightweight and intuitive openCypher and Bolt compatible
 integrated development environment (IDE), designed to help you import data,
 develop, debug, and profile database queries and visualize query results.
-{% page-ref page="./lab/v1.2.0/quick-start.md" %}
-![Memgraph Lab](./memgraph/v1.2.0/data/product-hunt-gallery-lab.png)
+{% page-ref page="./lab/v1.3.0/quick-start.md" %}
+![Memgraph Lab](./memgraph/v1.3.0/data/product-hunt-gallery-lab.png)
 
 ## Memgraph Cloud
 
@@ -26,7 +26,7 @@ up or maintain a database instance. It is Memgraph's responsibility to oversee
 the infrastructure (deployment, upgrade, update, removal, data backup,
 security, etc.).
 {% page-ref page="./memgraph_cloud/how-to-connect.md" %}
-![Memgraph Cloud](./memgraph/v1.2.0/data/product-hunt-gallery-cloud.png)
+![Memgraph Cloud](./memgraph/v1.3.0/data/product-hunt-gallery-cloud.png)
 
 ## Note
 

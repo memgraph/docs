@@ -4,7 +4,7 @@ While running, Memgraph generates a couple of different files in its data
 directory. The directory includes multiple different subdirectories, one of
 them being the storage directory which contains the durability files. In that
 directory Memgraph periodically generates snapshots and WAL files that
-contain Memgrap's data in a recoverable format.
+contain Memgraph's data in a recoverable format.
 
 Making a backup of a Memgraph instance would consist of simply copying the
 data directory. This is not possible to do without additional help because
