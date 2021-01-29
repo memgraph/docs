@@ -6,7 +6,7 @@ guide on how to use certain Memgraph features or solve a particular problem.
 
 ### Import data
 
-Data can be imported from CSV files using the CSV Import Tool or by using openCypher queries. 
+Data can be imported from CSV files using the CSV Import Tool or by using Cypher queries. 
 To learn more visit:
 * [Import data](./import-data.md)
 
@@ -26,23 +26,17 @@ on how the query's plan behaved. Take a look at the guides:
 * [Inspecting queries](./inspecting-queries.md)
 * [Profiling queries](./profiling-queries.md)
 
-### Replication
-
-Memgraph supports replication and the following guide demonstrates how to create a simple cluster of nodes running
-Memgraph instances: 
-* [Replication](./replication.md)
-
-### Backup
-
-Memgraph comes with a couple of queries that allow you to safely make a backup of the files containing its data:
-* [Backup](../reference_guide/backup.md)
-
 ### Machine learning
 
 Memgraph TensorFlow op wraps the high-performance Memgraph client for use with TensorFlow, 
 allowing natural data transfer between Memgraph and TensorFlow at any point of the model.
 If you are interested in using Memgraph for machine learning purposes  take a look at:
 * [TensorFlow op Setup](./tensorflow-setup.md) 
+
+### Backup
+
+Memgraph comes with a couple of queries that allow you to safely make a backup of the files containing its data:
+* [Backup](../reference_guide/backup.md)
 
 ### User privileges
 
@@ -55,3 +49,9 @@ To learn more visit:
 Memgraph supports authentication and (optional) authorization using a custom-built external auth module.
 To learn more visit:
 * [Authentication and authorization (Enterprise)](./manage-users-using-ldap.md)
+
+### Replication
+
+Memgraph supports replication and the following guide demonstrates how to create a simple cluster of nodes running
+Memgraph instances: 
+* [Replication (Enterprise)](./replication.md)

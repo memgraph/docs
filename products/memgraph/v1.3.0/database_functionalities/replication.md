@@ -25,7 +25,7 @@ The cluster consists of four nodes, a single main and three replicas:
 
 We'll use Docker to set up and run the cluster on your local machine, so make
 sure you have it installed and ready, and grab your Memgraph docker image.
-Look [here](../getting-started/installation/docker-installation.md) for instructions.
+Look [here](../getting_started/installation/docker-installation.md) for instructions.
 We assume you have already set up a client for running queries like [mgconsole](https://github.com/memgraph/mgconsole) installed.
 You can also use any of the supported drivers like [mgclient](https://github.com/memgraph/mgclient) or any of the Neo4j drivers.
 

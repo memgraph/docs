@@ -38,17 +38,6 @@ on how the query's plan behaved. Take a look at the guides:
 * [Inspecting queries](./database_functionalities/inspecting-queries.md)
 * [Profiling queries](./database_functionalities/profiling-queries.md)
 
-### Replication
-
-Memgraph supports replication and the following guide demonstrates how to create a simple cluster of nodes running
-Memgraph instances: 
-* [Replication](./database_functionalities/replication.md)
-
-### Backup
-
-Memgraph comes with a couple of queries that allow you to safely make a backup of the files containing its data:
-* [Backup](./reference_guide/backup.md)
-
 ### NetworkX
 
 Memgraph includes a set of Python query modules based on the [NetworkX](https://networkx.github.io/) library of algorithms.
@@ -61,6 +50,11 @@ allowing natural data transfer between Memgraph and TensorFlow at any point of t
 If you are interested in using Memgraph for machine learning purposes  take a look at:
 * [TensorFlow op setup](./database_functionalities/tensorflow-setup.md) 
 * [TensorFlow op reference](./reference_guide/tensorflow.md)
+
+### Backup
+
+Memgraph comes with a couple of queries that allow you to safely make a backup of the files containing its data:
+* [Backup](./reference_guide/backup.md)
 
 ### User privileges
 
@@ -76,6 +70,12 @@ To learn more visit:
 * [Authentication and authorization (Enterprise)](./database_functionalities/manage-users-using-ldap.md)
 * [Auth module (Enterprise)](reference_guide/auth-module.md)
 * [LDAP security (Enterprise)](reference_guide/ldap-security.md)
+
+### Replication
+
+Memgraph supports replication and the following guide demonstrates how to create a simple cluster of nodes running
+Memgraph instances: 
+* [Replication (Enterprise)](./database_functionalities/replication.md)
 
 ## Supported features
 
