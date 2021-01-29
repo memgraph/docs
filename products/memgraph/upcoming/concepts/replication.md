@@ -1,6 +1,6 @@
 # Replication
 
-## High Level Context
+## High-level context
 
 Replication is a method that ensures that multiple database instances are
 storing the same data. To enable replication, there must be at least two
@@ -21,7 +21,7 @@ modes:
  - asynchronous
  - semi-synchronous
 
-### Synchronous Replication
+### Synchronous replication
 
 When the data is replicated to a replica synchronously, all of the data of a
 currently pending transaction must be sent to the synchronous replica before the
@@ -35,7 +35,7 @@ query execution to a halt.
 This mode is good when you absolutely need to be sure that all data is always
 consistent between the main and the replica.
 
-### Asynchronous Replication
+### Asynchronous replication
 
 When the data is replicated to a replica asynchronously, all pending
 transactions are immediately committed and their data is replicated to the
@@ -49,7 +49,7 @@ being changed).
 This mode is good when you don't care about consistency and only need an
 eventually consistent cluster, but you care about performance.
 
-### Semi-synchronous Replication
+### Semi-synchronous replication
 
 When the data is replicated to a replica semi-synchronously, the data is
 replicated using both the synchronous and asynchronous methodology. The data is
@@ -65,7 +65,7 @@ This mode is useful when you want the replication to be synchronous to ensure
 that the data within the cluster is consistent, but you don't want the main
 to grind to a halt when you have a non-responsive replica.
 
-### Addition of a New Replica
+### Addition of a new replica
 
 Each replica, when added to the cluster (in any mode), will first start out as
 an asynchronous replica. That will allow replicas that have fallen behind to
