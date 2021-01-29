@@ -1,14 +1,14 @@
-## Making a backup 
+## Making a backup
 
 While running, Memgraph generates couple of different files in its data
 directory. The directory includes multiple different subdirectories, one of
-them being the storage directory which contains the durablity files. In that 
-directory Memgraph generates periodically snapshots and WAL files which
-contain Memgrap's data in a recoverable format. 
+them being the storage directory which contains the durability files. In that
+directory Memgraph periodically generates snapshots and WAL files which
+contain Memgrap's data in a recoverable format.
 
 Making a backup of a Memgraph instance would consist of simply copying the
 data directory. This is not possible to do without additional help because
-the durabiltiy files are being deleted after some event is triggered
+the durabiltiy files can be deleted when an event is triggered
 (number of snapshots exceeded the maximum allowed number).
 
 To disable this behaviour you can use the following query:
