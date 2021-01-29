@@ -1,6 +1,6 @@
-## How to Set Up Replication on a Small Cluster (Enterprise)
+## How to set up replication on a small cluster (Enterprise)
 
-This article is a part of a series intended to showcase Memgraph's features,
+This article is a part of a series intended to showcase Memgraph's features
 and bring the user up to speed on developing with Memgraph.
 
 We highly recommend checking out the other articles from this series which
@@ -26,7 +26,7 @@ The cluster consists of four nodes, a single main and three replicas:
 We'll use Docker to set up and run the cluster on your local machine, so make
 sure you have it installed and ready, and grab your Memgraph docker image.
 Look [here](https://docs.memgraph.com/memgraph/getting-started/installation/docker-installation) for instructions.
-We assume you have already setup a client for running queries like [mgconsole](https://github.com/memgraph/mgconsole) installed.
+We assume you have already set up a client for running queries like [mgconsole](https://github.com/memgraph/mgconsole) installed.
 You can also use any of the supported drivers like [mgclient](https://github.com/memgraph/mgclient) or any of the Neo4j drivers.
 
 We fire up the terminal, and for each Memgraph instance (node)  we have to start, we'll
