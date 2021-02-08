@@ -116,7 +116,8 @@ module.exports = {
       label: 'Concepts',
       items: ['concepts/storage',
         'concepts/graph-algorithms',
-        'concepts/indexing',],
+        'concepts/indexing',
+        'concepts/replication',],
     },
     {
       type: 'category',
