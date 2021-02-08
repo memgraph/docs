@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="generator" content="Docusaurus v2.0.0-alpha.70">
+<link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="Memgraph Docs Blog RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="Memgraph Docs Blog Atom Feed">
+<link rel="search" type="application/opensearchdescription+xml" title="Memgraph Docs" href="/opensearch.xml">
+<script src="https://docs.memgraph.com/js/analytics.js"></script><title data-react-helmet="true">RETURN clause | Memgraph Docs</title><meta data-react-helmet="true" name="twitter:card" content="summary_large_image"><meta data-react-helmet="true" name="docsearch:language" content="en"><meta data-react-helmet="true" name="docsearch:version" content="current"><meta data-react-helmet="true" name="docsearch:docusaurus_tag" content="docs-cypher-manual-current"><meta data-react-helmet="true" property="og:title" content="RETURN clause | Memgraph Docs"><meta data-react-helmet="true" name="description" content="The RETURN clause defines which data should be included in the resulting set."><meta data-react-helmet="true" property="og:description" content="The RETURN clause defines which data should be included in the resulting set."><meta data-react-helmet="true" property="og:url" content="https://docs.memgraph.com/cypher-manual/clauses/return"><link data-react-helmet="true" rel="shortcut icon" href="/img/social-logo-round-corners.png"><link data-react-helmet="true" rel="preconnect" href="https://BH4D9OD16A-dsn.algolia.net" crossorigin="anonymous"><link data-react-helmet="true" rel="canonical" href="https://docs.memgraph.com/cypher-manual/clauses/return"><link rel="stylesheet" href="/styles.8ace48be.css">
+<link rel="preload" href="/styles.06f88032.js" as="script">
+<link rel="preload" href="/runtime~main.709d9e6c.js" as="script">
+<link rel="preload" href="/main.b19436c4.js" as="script">
+<link rel="preload" href="/1.0ef0cd43.js" as="script">
+<link rel="preload" href="/2.cec97469.js" as="script">
+<link rel="preload" href="/123.885e8308.js" as="script">
+<link rel="preload" href="/126.8348d2a6.js" as="script">
+<link rel="preload" href="/08713178.0c1b649c.js" as="script">
+<link rel="preload" href="/17896441.a596db69.js" as="script">
+<link rel="preload" href="/c98606b4.1756a0f1.js" as="script">
+</head>
+<body>
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){var t=null;try{t=localStorage.getItem("theme")}catch(t){}return t}();t(null!==e?e:"light")}()</script><div id="__docusaurus">
+<nav aria-label="Skip navigation links"><button type="button" tabindex="0" class="skipToContent_11B0">Skip to main content</button></nav><nav class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><div aria-label="Navigation bar toggle" class="navbar__toggle" role="button" tabindex="0"><svg aria-label="Menu" width="30" height="30" viewBox="0 0 30 30" role="img" focusable="false"><title>Menu</title><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></div><a class="navbar__brand" href="/"><img src="/img/social-logo-round-corners.png" alt="Memgraph Logo" class="themedImage_YANc themedImage--light_3CMI navbar__logo"><img src="/img/social-logo-round-corners.png" alt="Memgraph Logo" class="themedImage_YANc themedImage--dark_3ARp navbar__logo"><strong class="navbar__title">Docs</strong></a><div class="navbar__item dropdown dropdown--hoverable dropdown--left"><a class="navbar__item navbar__link" href="/memgraph/overview">Memgraph DB</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/memgraph/getting-started">Getting started</a></li><li><a class="dropdown__link" href="/memgraph/getting-started/installation">Installation</a></li><li><a class="dropdown__link" href="/memgraph/database-functionalities">Database functionalities</a></li><li><a class="dropdown__link" href="/memgraph/getting-started/connecting-applications">Building applications</a></li><li><a class="dropdown__link" href="/memgraph/reference-guide">Reference guide</a></li></ul></div><a class="navbar__item navbar__link" href="/memgraph-lab/">Memgraph Lab</a><a class="navbar__item navbar__link" href="/memgraph-cloud/">Memgraph Cloud</a><div class="navbar__item dropdown dropdown--hoverable dropdown--left"><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/cypher-manual/">Cypher manual</a><ul class="dropdown__menu"><li><a aria-current="page" class="dropdown__link dropdown__link--active" href="/cypher-manual/">Overview</a></li><li><a class="dropdown__link" href="/cypher-manual/functions">Functions</a></li><li><a class="dropdown__link" href="/cypher-manual//clauses">Clauses</a></li><li><a class="dropdown__link" href="/cypher-manual/other-features">Other features</a></li><li><a class="dropdown__link" href="/cypher-manual/differences">Differences</a></li></ul></div></div><div class="navbar__items navbar__items--right"><a href="https://github.com/memgraph" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub</a><div class="react-toggle react-toggle--disabled displayOnlyInLargeViewport_2N3Q"><div class="react-toggle-track"><div class="react-toggle-track-check"><span class="toggle_3NWk">🌜</span></div><div class="react-toggle-track-x"><span class="toggle_3NWk">🌞</span></div></div><div class="react-toggle-thumb"></div><input type="checkbox" disabled="" aria-label="Dark mode toggle" class="react-toggle-screenreader-only"></div><button type="button" class="DocSearch DocSearch-Button" aria-label="Search"><span class="DocSearch-Button-Container"><svg width="20" height="20" class="DocSearch-Search-Icon" viewBox="0 0 20 20"><path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="DocSearch-Button-Placeholder">Search</span></span></button></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div><div class="navbar-sidebar"><div class="navbar-sidebar__brand"><a class="navbar__brand" href="/"><img src="/img/social-logo-round-corners.png" alt="Memgraph Logo" class="themedImage_YANc themedImage--light_3CMI navbar__logo"><img src="/img/social-logo-round-corners.png" alt="Memgraph Logo" class="themedImage_YANc themedImage--dark_3ARp navbar__logo"><strong class="navbar__title">Docs</strong></a></div><div class="navbar-sidebar__items"><div class="menu"><ul class="menu__list"><li class="menu__list-item menu__list-item--collapsed"><a class="menu__link menu__link--sublist" role="button" href="/memgraph/overview">Memgraph DB</a><ul class="menu__list"><li class="menu__list-item"><a class="menu__link" href="/memgraph/getting-started">Getting started</a></li><li class="menu__list-item"><a class="menu__link" href="/memgraph/getting-started/installation">Installation</a></li><li class="menu__list-item"><a class="menu__link" href="/memgraph/database-functionalities">Database functionalities</a></li><li class="menu__list-item"><a class="menu__link" href="/memgraph/getting-started/connecting-applications">Building applications</a></li><li class="menu__list-item"><a class="menu__link" href="/memgraph/reference-guide">Reference guide</a></li></ul></li><li class="menu__list-item"><a class="menu__link" href="/memgraph-lab/">Memgraph Lab</a></li><li class="menu__list-item"><a class="menu__link" href="/memgraph-cloud/">Memgraph Cloud</a></li><li class="menu__list-item menu__list-item--collapsed"><a aria-current="page" class="menu__link menu__link--sublist navbar__link--active" role="button" href="/cypher-manual/">Cypher manual</a><ul class="menu__list"><li class="menu__list-item"><a aria-current="page" class="menu__link menu__link--active" href="/cypher-manual/">Overview</a></li><li class="menu__list-item"><a class="menu__link" href="/cypher-manual/functions">Functions</a></li><li class="menu__list-item"><a class="menu__link" href="/cypher-manual//clauses">Clauses</a></li><li class="menu__list-item"><a class="menu__link" href="/cypher-manual/other-features">Other features</a></li><li class="menu__list-item"><a class="menu__link" href="/cypher-manual/differences">Differences</a></li></ul></li><li class="menu__list-item"><a href="https://github.com/memgraph" target="_blank" rel="noopener noreferrer" class="menu__link">GitHub</a></li></ul></div></div></div></nav><div class="main-wrapper"><div class="docPage_vMrn"><div class="docSidebarContainer_3Ak5" role="complementary"><div class="sidebar_3gvy"><div class="menu menu--responsive thin-scrollbar menu_1yIk"><button aria-label="Open Menu" aria-haspopup="true" class="button button--secondary button--sm menu__button" type="button"><svg aria-label="Menu" class="sidebarMenuIcon_1CUI" width="24" height="24" viewBox="0 0 30 30" role="img" focusable="false"><title>Menu</title><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><ul class="menu__list"><li class="menu__list-item"><a class="menu__link" href="/cypher-manual/">Overview</a></li><li class="menu__list-item"><a class="menu__link" href="/cypher-manual/reading-existing-data">Reading existing data</a></li><li class="menu__list-item"><a class="menu__link" href="/cypher-manual/writing-new-data">Writing new data</a></li><li class="menu__list-item"><a class="menu__link" href="/cypher-manual/reading-and-writing">Reading and writing</a></li><li class="menu__list-item"><a class="menu__link" href="/cypher-manual/functions">Functions</a></li><li class="menu__list-item"><a class="menu__link menu__link--sublist menu__link--active" href="#!">Clauses</a><ul class="menu__list"><li class="menu__list-item"><a class="menu__link" tabindex="0" href="/cypher-manual/clauses">Clauses overview</a></li><li class="menu__list-item"><a class="menu__link" tabindex="0" href="/cypher-manual/clauses/create">CREATE</a></li><li class="menu__list-item"><a class="menu__link" tabindex="0" href="/cypher-manual/clauses/delete">DELETE</a></li><li class="menu__list-item"><a class="menu__link" tabindex="0" href="/cypher-manual/clauses/match">MATCH</a></li><li class="menu__list-item"><a class="menu__link" tabindex="0" href="/cypher-manual/clauses/merge">MERGE</a></li><li class="menu__list-item"><a class="menu__link" tabindex="0" href="/cypher-manual/clauses/optional-match">OPTIONAL MATCH</a></li><li class="menu__list-item"><a class="menu__link" tabindex="0" href="/cypher-manual/clauses/remove">REMOVE</a></li><li class="menu__list-item"><a aria-current="page" class="menu__link menu__link--active active" tabindex="0" href="/cypher-manual/clauses/return">RETURN</a></li><li class="menu__list-item"><a class="menu__link" tabindex="0" href="/cypher-manual/clauses/set">SET</a></li><li class="menu__list-item"><a class="menu__link" tabindex="0" href="/cypher-manual/clauses/union">UNION</a></li><li class="menu__list-item"><a class="menu__link" tabindex="0" href="/cypher-manual/clauses/unwind">UNWIND</a></li><li class="menu__list-item"><a class="menu__link" tabindex="0" href="/cypher-manual/clauses/where">WHERE</a></li><li class="menu__list-item"><a class="menu__link" tabindex="0" href="/cypher-manual/clauses/with">WITH</a></li></ul></li><li class="menu__list-item"><a class="menu__link" href="/cypher-manual/other-features">Other features</a></li><li class="menu__list-item"><a class="menu__link" href="/cypher-manual/differences">Differences</a></li></ul></div></div></div><main class="docMainContainer_2iGs"><div class="container padding-vert--lg docItemWrapper_1bxp"><div class="row"><div class="col docItemCol_U38p"><div class="docItemContainer_a7m4"><article><header><h1 class="docTitle_Oumm">RETURN clause</h1></header><div class="markdown"><p>The <code>RETURN</code> clause defines which data should be included in the resulting set. </p><ol><li><a href="#1-returning-nodes">Returning nodes</a></li><li><a href="#2-returning-relationships">Returning relationships</a></li><li><a href="#3-returning-properties">Returning properties</a></li><li><a href="#4-returning-multiple-elements">Returning multiple elements</a></li><li><a href="#5-returning-all-elements">Returning all elements</a></li><li><a href="#6-handling-uncommon-characters">Handling uncommon characters</a></li><li><a href="#7-returning-elements-with-an-alias">Returning elements with an alias</a></li><li><a href="#8-optional-properties">Optional properties</a></li><li><a href="#9-returning-expressions">Returning expressions</a></li><li><a href="#10-returning-unique-results">Returning unique results</a></li></ol><h2 id="data-set">Data Set</h2><p>The following examples are executed with this data set. You can create this data set
+locally by executing the queries at the end of the page: <a href="#data-set-queries">Data Set</a>.</p><img src="https://raw.githubusercontent.com/g-despot/images/master/data_set.png" alt="Data set" style="height:380px"><h2 id="1-returning-nodes">1. Returning nodes</h2><p>The node variable needs to be added to the <code>RETURN</code> statement.</p><pre><code class="language-cypher">MATCH (c:Country { name: &#x27;United Kingdom&#x27;})
+RETURN c;
+</code></pre><p>Output:</p><pre><code>+-----------------------------------------------------------------------------------------------------+
+| c                                                                                                   |
++-----------------------------------------------------------------------------------------------------+
+| (:Country {continent: &quot;Europe&quot;, language: &quot;English&quot;, name: &quot;United Kingdom&quot;, population: 66000000}) |
++-----------------------------------------------------------------------------------------------------+
+</code></pre><h2 id="2-returning-relationships">2. Returning relationships</h2><p>The relationship variable needs to be added to the <code>RETURN</code> statement.</p><pre><code class="language-cypher">MATCH (c:Country { name: &#x27;United Kingdom&#x27;})-[r]-(:Person { name: &#x27;Harry&#x27;})
+RETURN type(r);
+</code></pre><p>Output:</p><pre><code>+------------+
+| type(r)    |
++------------+
+| WORKING_IN |
+| LIVING_IN  |
++------------+
+</code></pre><h2 id="3-returning-properties">3. Returning properties</h2><p>The property of a node or a relationship can be returned by using the dot separator.</p><pre><code class="language-cypher">MATCH (c:Country { name: &#x27;United Kingdom&#x27;})
+RETURN c.name;
+</code></pre><p>Output:</p><pre><code>+----------------+
+| c.name         |
++----------------+
+| United Kingdom |
++----------------+
+</code></pre><h2 id="4-returning-multiple-elements">4. Returning multiple elements</h2><p>To return multiple elements separate them with a comma character.</p><pre><code class="language-cypher">MATCH (c:Country { name: &#x27;United Kingdom&#x27;})
+RETURN c.name, c.population, c.continent;
+</code></pre><p>Output:</p><pre><code>+----------------+----------------+----------------+
+| c.name         | c.population   | c.continent    |
++----------------+----------------+----------------+
+| United Kingdom | 66000000       | Europe         |
++----------------+----------------+----------------+
+</code></pre><h2 id="5-returning-all-elements">5. Returning all elements</h2><p>To return all the elements from a query, use the <code>*</code> symbol.</p><pre><code class="language-cypher">MATCH (:Country { name: &#x27;United Kingdom&#x27;})-[]-(p:Person)
+RETURN *;
+</code></pre><p>Output:</p><pre><code>+---------------------------+
+| p                         |
++---------------------------+
+| (:Person {name: &quot;Harry&quot;}) |
+| (:Person {name: &quot;Harry&quot;}) |
+| (:Person {name: &quot;Anna&quot;})  |
++---------------------------+
+</code></pre><h2 id="6-handling-uncommon-characters">6. Handling uncommon characters</h2><p>Uncommon characters are handled using placeholder variables enclosed with the symbol ```.
+For example, a query could look like this:</p><pre><code class="language-cypher">MATCH (`An uncommon variable!`)
+WHERE `An uncommon variable!`.name = &#x27;A&#x27;
+RETURN `An uncommon variable!`.value;
+</code></pre><h2 id="7-returning-elements-with-an-alias">7. Returning elements with an alias</h2><p>You can specify an alias for an element in the <code>RETURN</code> statement using <code>AS</code>.</p><pre><code class="language-cypher">MATCH (c:Country { name: &#x27;United Kingdom&#x27;})
+RETURN c.name AS Name;
+</code></pre><p>Output:</p><pre><code>+----------------+
+| Name           |
++----------------+
+| United Kingdom |
++----------------+
+</code></pre><h2 id="8-optional-properties">8. Optional properties</h2><p>If the property being returned does not exist, <code>null</code> will be returned.</p><pre><code class="language-cypher">MATCH (c:Country { name: &#x27;United Kingdom&#x27;})
+RETURN c.color;
+</code></pre><p>Output:</p><pre><code>+---------+
+| c.color |
++---------+
+| Null    |
++---------+
+</code></pre><h2 id="9-returning-expressions">9. Returning expressions</h2><p> Expressions can be included in the <code>RETURN</code> statement.</p><pre><code class="language-cypher">MATCH (c:Country { name: &#x27;United Kingdom&#x27;})
+RETURN c.name = &#x27;United Kingdom&#x27;, &quot;Literal&quot;;
+</code></pre><p>Output:</p><pre><code>+---------------------------+---------------------------+
+| c.name = &#x27;United Kingdom&#x27; | &quot;Literal&quot;                 |
++---------------------------+---------------------------+
+| true                      | Literal                   |
++---------------------------+---------------------------+
+</code></pre><h2 id="10-returning-unique-results">10. Returning unique results</h2><p>The <code>RETURN</code> statement can be followed by the <code>DISTINCT</code> operator, which will remove duplicate results.</p><pre><code class="language-cypher">MATCH ()-[:LIVING_IN]-&gt;(c)
+RETURN DISTINCT c;
+</code></pre><p>Output:</p><pre><code>+-----------------------------------------------------------------------------------------------------+
+| c                                                                                                   |
++-----------------------------------------------------------------------------------------------------+
+| (:Country {continent: &quot;Europe&quot;, language: &quot;German&quot;, name: &quot;Germany&quot;, population: 83000000})         |
+| (:Country {continent: &quot;Europe&quot;, language: &quot;English&quot;, name: &quot;United Kingdom&quot;, population: 66000000}) |
++-----------------------------------------------------------------------------------------------------+
+</code></pre><h2 id="data-set-queries">Data set Queries</h2><p>We encourage you to try out the examples by yourself.
+You can get our data set locally by executing the following query block.</p><pre><code class="language-cypher">MATCH (n) DETACH DELETE n;
+
+CREATE (c1:Country { name: &#x27;Germany&#x27;, language: &#x27;German&#x27;, continent: &#x27;Europe&#x27;, population: 83000000 });
+CREATE (c2:Country { name: &#x27;France&#x27;, language: &#x27;French&#x27;, continent: &#x27;Europe&#x27;, population: 67000000 });
+CREATE (c3:Country { name: &#x27;United Kingdom&#x27;, language: &#x27;English&#x27;, continent: &#x27;Europe&#x27;, population: 66000000 });
+
+MATCH (c1),(c2)
+WHERE c1.name= &#x27;Germany&#x27; AND c2.name = &#x27;France&#x27;
+CREATE (c2)&lt;-[:WORKING_IN { date_of_start: 2014 }]-(p:Person { name: &#x27;John&#x27; })-[:LIVING_IN { date_of_start: 2014 }]-&gt;(c1);
+
+MATCH (c)
+WHERE c.name= &#x27;United Kingdom&#x27;
+CREATE (c)&lt;-[:WORKING_IN { date_of_start: 2014 }]-(p:Person { name: &#x27;Harry&#x27; })-[:LIVING_IN { date_of_start: 2013 }]-&gt;(c);
+
+MATCH (p1),(p2)
+WHERE p1.name = &#x27;John&#x27; AND p2.name = &#x27;Harry&#x27;
+CREATE (p1)-[:FRIENDS_WITH { date_of_start: 2011 }]-&gt;(p2);
+
+MATCH (p1),(p2)
+WHERE p1.name = &#x27;John&#x27; AND p2.name = &#x27;Harry&#x27;
+CREATE (p1)&lt;-[:FRIENDS_WITH { date_of_start: 2012 }]-(:Person { name: &#x27;Anna&#x27; })-[:FRIENDS_WITH { date_of_start: 2014 }]-&gt;(p2);
+
+MATCH (p),(c1),(c2)
+WHERE p.name = &#x27;Anna&#x27; AND c1.name = &#x27;United Kingdom&#x27; AND c2.name = &#x27;Germany&#x27;
+CREATE (c2)&lt;-[:LIVING_IN { date_of_start: 2014 }]-(p)-[:LIVING_IN { date_of_start: 2014 }]-&gt;(c1);
+
+MATCH (n)-[r]-&gt;(m) RETURN n,r,m;
+</code></pre></div></article><div class="margin-vert--xl"><div class="row"><div class="col"><a href="https://github.com/memgraph/docs/tree/main/cypher-manual/clauses/return.md" target="_blank" rel="noreferrer noopener"><svg fill="currentColor" height="1.2em" width="1.2em" preserveAspectRatio="xMidYMid meet" role="img" viewBox="0 0 40 40" class="iconEdit_2LL7"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div></div></div><div class="margin-vert--lg"><nav class="pagination-nav" aria-label="Blog list page navigation"><div class="pagination-nav__item"><a class="pagination-nav__link" href="/cypher-manual/clauses/remove"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">« REMOVE clause</div></a></div><div class="pagination-nav__item pagination-nav__item--next"><a class="pagination-nav__link" href="/cypher-manual/clauses/set"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">SET clause »</div></a></div></nav></div></div></div><div class="col col--3"><div class="tableOfContents_2xL- thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#data-set" class="table-of-contents__link">Data Set</a></li><li><a href="#1-returning-nodes" class="table-of-contents__link">1. Returning nodes</a></li><li><a href="#2-returning-relationships" class="table-of-contents__link">2. Returning relationships</a></li><li><a href="#3-returning-properties" class="table-of-contents__link">3. Returning properties</a></li><li><a href="#4-returning-multiple-elements" class="table-of-contents__link">4. Returning multiple elements</a></li><li><a href="#5-returning-all-elements" class="table-of-contents__link">5. Returning all elements</a></li><li><a href="#6-handling-uncommon-characters" class="table-of-contents__link">6. Handling uncommon characters</a></li><li><a href="#7-returning-elements-with-an-alias" class="table-of-contents__link">7. Returning elements with an alias</a></li><li><a href="#8-optional-properties" class="table-of-contents__link">8. Optional properties</a></li><li><a href="#9-returning-expressions" class="table-of-contents__link">9. Returning expressions</a></li><li><a href="#10-returning-unique-results" class="table-of-contents__link">10. Returning unique results</a></li><li><a href="#data-set-queries" class="table-of-contents__link">Data set Queries</a></li></ul></div></div></div></div></main></div></div><footer class="footer footer--dark"><div class="container"><div class="row footer__links"><div class="col footer__col"><h4 class="footer__title">Documentation</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" href="/memgraph/overview">Memgraph DB</a></li><li class="footer__item"><a class="footer__link-item" href="/memgraph-lab">Memgraph Lab</a></li><li class="footer__item"><a class="footer__link-item" href="/memgraph-cloud">Memgraph Cloud</a></li><li class="footer__item"><a class="footer__link-item" href="/cypher-manual">Cypher manual</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Community</h4><ul class="footer__items"><li class="footer__item"><a href="https://stackoverflow.com/questions/tagged/memgraphdb" target="_blank" rel="noopener noreferrer" class="footer__link-item">Stack Overflow</a></li><li class="footer__item"><a href="https://discourse.memgraph.com" target="_blank" rel="noopener noreferrer" class="footer__link-item">Developer Forum</a></li><li class="footer__item"><a href="https://twitter.com/memgraphdb" target="_blank" rel="noopener noreferrer" class="footer__link-item">Twitter</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">More</h4><ul class="footer__items"><li class="footer__item"><a href="https://github.com/memgraph" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub</a></li><li class="footer__item"><a href="https://www.youtube.com/channel/UCZ3HOJvHGxtQ_JHxOselBYg" target="_blank" rel="noopener noreferrer" class="footer__link-item">Youtube</a></li></ul></div></div><div class="footer__bottom text--center"><div class="margin-bottom--sm"><a href="https://memgraph.com" target="_blank" rel="noopener noreferrer" class="footerLogoLink_31Aa"><img class="footer__logo" alt="Memgraph Logo" src="/img/Memgraph-logo-white-rgb.png"></a></div><div class="footer__copyright">Copyright © 2021 Memgraph. Built by developers, for developers!</div></div></div></footer></div>
+<script src="/styles.06f88032.js"></script>
+<script src="/runtime~main.709d9e6c.js"></script>
+<script src="/main.b19436c4.js"></script>
+<script src="/1.0ef0cd43.js"></script>
+<script src="/2.cec97469.js"></script>
+<script src="/123.885e8308.js"></script>
+<script src="/126.8348d2a6.js"></script>
+<script src="/08713178.0c1b649c.js"></script>
+<script src="/17896441.a596db69.js"></script>
+<script src="/c98606b4.1756a0f1.js"></script>
+</body>
+</html>

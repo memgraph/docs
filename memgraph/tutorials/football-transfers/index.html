@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="generator" content="Docusaurus v2.0.0-alpha.70">
+<link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="Memgraph Docs Blog RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="Memgraph Docs Blog Atom Feed">
+<link rel="search" type="application/opensearchdescription+xml" title="Memgraph Docs" href="/opensearch.xml">
+<script src="https://docs.memgraph.com/js/analytics.js"></script><title data-react-helmet="true">Football transfers | Memgraph Docs</title><meta data-react-helmet="true" name="twitter:card" content="summary_large_image"><meta data-react-helmet="true" name="docsearch:language" content="en"><meta data-react-helmet="true" name="docsearch:version" content="current"><meta data-react-helmet="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-react-helmet="true" property="og:title" content="Football transfers | Memgraph Docs"><meta data-react-helmet="true" name="description" content="This article is a part of a series intended to show how to use Memgraph"><meta data-react-helmet="true" property="og:description" content="This article is a part of a series intended to show how to use Memgraph"><meta data-react-helmet="true" property="og:url" content="https://docs.memgraph.com/memgraph/tutorials/football-transfers"><link data-react-helmet="true" rel="shortcut icon" href="/img/social-logo-round-corners.png"><link data-react-helmet="true" rel="preconnect" href="https://BH4D9OD16A-dsn.algolia.net" crossorigin="anonymous"><link data-react-helmet="true" rel="canonical" href="https://docs.memgraph.com/memgraph/tutorials/football-transfers"><link rel="stylesheet" href="/styles.8ace48be.css">
+<link rel="preload" href="/styles.06f88032.js" as="script">
+<link rel="preload" href="/runtime~main.709d9e6c.js" as="script">
+<link rel="preload" href="/main.b19436c4.js" as="script">
+<link rel="preload" href="/1.0ef0cd43.js" as="script">
+<link rel="preload" href="/2.cec97469.js" as="script">
+<link rel="preload" href="/123.885e8308.js" as="script">
+<link rel="preload" href="/126.8348d2a6.js" as="script">
+<link rel="preload" href="/935f2afb.741916a7.js" as="script">
+<link rel="preload" href="/17896441.a596db69.js" as="script">
+<link rel="preload" href="/0575c7b1.8de26e5b.js" as="script">
+</head>
+<body>
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){var t=null;try{t=localStorage.getItem("theme")}catch(t){}return t}();t(null!==e?e:"light")}()</script><div id="__docusaurus">
+<nav aria-label="Skip navigation links"><button type="button" tabindex="0" class="skipToContent_11B0">Skip to main content</button></nav><nav class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><div aria-label="Navigation bar toggle" class="navbar__toggle" role="button" tabindex="0"><svg aria-label="Menu" width="30" height="30" viewBox="0 0 30 30" role="img" focusable="false"><title>Menu</title><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></div><a class="navbar__brand" href="/"><img src="/img/social-logo-round-corners.png" alt="Memgraph Logo" class="themedImage_YANc themedImage--light_3CMI navbar__logo"><img src="/img/social-logo-round-corners.png" alt="Memgraph Logo" class="themedImage_YANc themedImage--dark_3ARp navbar__logo"><strong class="navbar__title">Docs</strong></a><div class="navbar__item dropdown dropdown--hoverable dropdown--left"><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/memgraph/overview">Memgraph DB</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/memgraph/getting-started">Getting started</a></li><li><a class="dropdown__link" href="/memgraph/getting-started/installation">Installation</a></li><li><a class="dropdown__link" href="/memgraph/database-functionalities">Database functionalities</a></li><li><a class="dropdown__link" href="/memgraph/getting-started/connecting-applications">Building applications</a></li><li><a class="dropdown__link" href="/memgraph/reference-guide">Reference guide</a></li></ul></div><a class="navbar__item navbar__link" href="/memgraph-lab/">Memgraph Lab</a><a class="navbar__item navbar__link" href="/memgraph-cloud/">Memgraph Cloud</a><div class="navbar__item dropdown dropdown--hoverable dropdown--left"><a class="navbar__item navbar__link" href="/cypher-manual/">Cypher manual</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/cypher-manual/">Overview</a></li><li><a class="dropdown__link" href="/cypher-manual/functions">Functions</a></li><li><a class="dropdown__link" href="/cypher-manual//clauses">Clauses</a></li><li><a class="dropdown__link" href="/cypher-manual/other-features">Other features</a></li><li><a class="dropdown__link" href="/cypher-manual/differences">Differences</a></li></ul></div></div><div class="navbar__items navbar__items--right"><a href="https://github.com/memgraph" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub</a><div class="react-toggle react-toggle--disabled displayOnlyInLargeViewport_2N3Q"><div class="react-toggle-track"><div class="react-toggle-track-check"><span class="toggle_3NWk">🌜</span></div><div class="react-toggle-track-x"><span class="toggle_3NWk">🌞</span></div></div><div class="react-toggle-thumb"></div><input type="checkbox" disabled="" aria-label="Dark mode toggle" class="react-toggle-screenreader-only"></div><button type="button" class="DocSearch DocSearch-Button" aria-label="Search"><span class="DocSearch-Button-Container"><svg width="20" height="20" class="DocSearch-Search-Icon" viewBox="0 0 20 20"><path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="DocSearch-Button-Placeholder">Search</span></span></button></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div><div class="navbar-sidebar"><div class="navbar-sidebar__brand"><a class="navbar__brand" href="/"><img src="/img/social-logo-round-corners.png" alt="Memgraph Logo" class="themedImage_YANc themedImage--light_3CMI navbar__logo"><img src="/img/social-logo-round-corners.png" alt="Memgraph Logo" class="themedImage_YANc themedImage--dark_3ARp navbar__logo"><strong class="navbar__title">Docs</strong></a></div><div class="navbar-sidebar__items"><div class="menu"><ul class="menu__list"><li class="menu__list-item menu__list-item--collapsed"><a aria-current="page" class="menu__link menu__link--sublist navbar__link--active" role="button" href="/memgraph/overview">Memgraph DB</a><ul class="menu__list"><li class="menu__list-item"><a class="menu__link" href="/memgraph/getting-started">Getting started</a></li><li class="menu__list-item"><a class="menu__link" href="/memgraph/getting-started/installation">Installation</a></li><li class="menu__list-item"><a class="menu__link" href="/memgraph/database-functionalities">Database functionalities</a></li><li class="menu__list-item"><a class="menu__link" href="/memgraph/getting-started/connecting-applications">Building applications</a></li><li class="menu__list-item"><a class="menu__link" href="/memgraph/reference-guide">Reference guide</a></li></ul></li><li class="menu__list-item"><a class="menu__link" href="/memgraph-lab/">Memgraph Lab</a></li><li class="menu__list-item"><a class="menu__link" href="/memgraph-cloud/">Memgraph Cloud</a></li><li class="menu__list-item menu__list-item--collapsed"><a class="menu__link menu__link--sublist" role="button" href="/cypher-manual/">Cypher manual</a><ul class="menu__list"><li class="menu__list-item"><a class="menu__link" href="/cypher-manual/">Overview</a></li><li class="menu__list-item"><a class="menu__link" href="/cypher-manual/functions">Functions</a></li><li class="menu__list-item"><a class="menu__link" href="/cypher-manual//clauses">Clauses</a></li><li class="menu__list-item"><a class="menu__link" href="/cypher-manual/other-features">Other features</a></li><li class="menu__list-item"><a class="menu__link" href="/cypher-manual/differences">Differences</a></li></ul></li><li class="menu__list-item"><a href="https://github.com/memgraph" target="_blank" rel="noopener noreferrer" class="menu__link">GitHub</a></li></ul></div></div></div></nav><div class="main-wrapper"><div class="docPage_vMrn"><div class="docSidebarContainer_3Ak5" role="complementary"><div class="sidebar_3gvy"><div class="menu menu--responsive thin-scrollbar menu_1yIk"><button aria-label="Open Menu" aria-haspopup="true" class="button button--secondary button--sm menu__button" type="button"><svg aria-label="Menu" class="sidebarMenuIcon_1CUI" width="24" height="24" viewBox="0 0 30 30" role="img" focusable="false"><title>Menu</title><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><ul class="menu__list"><li class="menu__list-item"><a class="menu__link" href="/memgraph/overview">Overview</a></li><li class="menu__list-item menu__list-item--collapsed"><a class="menu__link menu__link--sublist" href="#!">Getting started</a><ul class="menu__list"><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/getting-started">Where to start?</a></li><li class="menu__list-item menu__list-item--collapsed"><a class="menu__link menu__link--sublist" href="#!" tabindex="-1">Installation</a><ul class="menu__list"><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/getting-started/installation">Installation overview</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/getting-started/installation/docker-installation">Docker (Windows, Linux, macOS)</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/getting-started/installation/debian-installation">Debian GNU/Linux</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/getting-started/installation/rpm-installation">RPM package</a></li></ul></li><li class="menu__list-item menu__list-item--collapsed"><a class="menu__link menu__link--sublist" href="#!" tabindex="-1">Querying the database</a><ul class="menu__list"><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/getting-started/querying/querying">Querying the database</a></li><li class="menu__list-item"><a href="https://docs.memgraph.com/memgraph-lab" target="_blank" rel="noreferrer noopener" class="menu__link" tabindex="-1">Memgraph Lab</a></li><li class="menu__list-item"><a href="https://playground.memgraph.com/" target="_blank" rel="noreferrer noopener" class="menu__link" tabindex="-1">Memgraph Playground</a></li></ul></li><li class="menu__list-item menu__list-item--collapsed"><a class="menu__link menu__link--sublist" href="#!" tabindex="-1">Building applications</a><ul class="menu__list"><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/getting-started/connecting-applications">Building applications</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/getting-started/connecting-applications/python">Python</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/getting-started/connecting-applications/rust">Rust</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/getting-started/connecting-applications/c-sharp">C#</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/getting-started/connecting-applications/java">Java</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/getting-started/connecting-applications/go">Go</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/getting-started/connecting-applications/javascript">JavaScript</a></li></ul></li></ul></li><li class="menu__list-item"><a class="menu__link menu__link--sublist menu__link--active" href="#!">Tutorials</a><ul class="menu__list"><li class="menu__list-item"><a class="menu__link" tabindex="0" href="/memgraph/tutorials/tutorials">Tutorials overview</a></li><li class="menu__list-item"><a class="menu__link" tabindex="0" href="/memgraph/tutorials/analyzing-ted-talks">Analyzing TED Talks</a></li><li class="menu__list-item"><a class="menu__link" tabindex="0" href="/memgraph/tutorials/backpacking-through-europe">Backpacking through Europe</a></li><li class="menu__list-item"><a class="menu__link" tabindex="0" href="/memgraph/tutorials/exploring-the-european-road-network">Exploring the European road network</a></li><li class="menu__list-item"><a aria-current="page" class="menu__link menu__link--active active" tabindex="0" href="/memgraph/tutorials/football-transfers">Football transfers</a></li><li class="menu__list-item"><a class="menu__link" tabindex="0" href="/memgraph/tutorials/graphing-the-premier-league">Graphing the Premier League</a></li><li class="menu__list-item"><a class="menu__link" tabindex="0" href="/memgraph/tutorials/marvel-universe">Marvel Comic Universe social network</a></li><li class="menu__list-item"><a class="menu__link" tabindex="0" href="/memgraph/tutorials/movie-recommendation">Movie recommendation system</a></li><li class="menu__list-item"><a class="menu__link" tabindex="0" href="/memgraph/tutorials/social-network-analysis">Social network analysis with NetworkX</a></li><li class="menu__list-item"><a class="menu__link" tabindex="0" href="/memgraph/tutorials/understanding-music-with-modules">Understanding music (with query modules)</a></li></ul></li><li class="menu__list-item menu__list-item--collapsed"><a class="menu__link menu__link--sublist" href="#!">Database functionalities</a><ul class="menu__list"><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/database-functionalities">Database functionalities overview</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/database-functionalities/import-data">Import data</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/database-functionalities/inspecting-queries">Inspecting queries</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/database-functionalities/profiling-queries">Profiling queries</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/database-functionalities/tensorflow-setup">TensorFlow Op</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/reference-guide/backup">Backup</a></li><li class="menu__list-item menu__list-item--collapsed"><a class="menu__link menu__link--sublist" href="#!" tabindex="-1">Enforcing constraints</a><ul class="menu__list"><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/database-functionalities/constraints/existence-constraint">Existence constraint</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/database-functionalities/constraints/uniqueness-constraint">Uniqueness constraint</a></li></ul></li><li class="menu__list-item menu__list-item--collapsed"><a class="menu__link menu__link--sublist" href="#!" tabindex="-1">Query modules</a><ul class="menu__list"><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/database-functionalities/query-modules/built-in-query-modules">Built-in query modules</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/database-functionalities/query-modules/load-call-query-modules">Load and call custom query modules</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/database-functionalities/query-modules/implement-query-modules">Implement custom query modules</a></li></ul></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/database-functionalities/manage-user-privileges">User privileges (Enterprise)</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/database-functionalities/manage-users-using-ldap">Authentication and authorization (Enterprise)</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/database-functionalities/replication">Replication (Enterprise)</a></li></ul></li><li class="menu__list-item menu__list-item--collapsed"><a class="menu__link menu__link--sublist" href="#!">Reference guide</a><ul class="menu__list"><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/reference-guide">Reference guide overview</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/reference-guide/configuration">Memgraph configuration</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/reference-guide/indexing">Indexing</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/reference-guide/graph-algorithms">Graph algorithms</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/reference-guide/tensorflow">TensorFlow Op</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/reference-guide/backup">Backup</a></li><li class="menu__list-item menu__list-item--collapsed"><a class="menu__link menu__link--sublist" href="#!" tabindex="-1">Query modules</a><ul class="menu__list"><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/reference-guide/query-modules">Query modules</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/reference-guide/query-modules/c-api">C API</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/reference-guide/query-modules/python-api">Python API</a></li></ul></li><li class="menu__list-item menu__list-item--collapsed"><a class="menu__link menu__link--sublist" href="#!" tabindex="-1">NetworkX</a><ul class="menu__list"><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/reference-guide/networkx">NetworkX overview</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/reference-guide/networkx/graph-analyzer">Graph Analyzer</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/reference-guide/networkx/nxalg">NetworkX Algorithms</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/reference-guide/networkx/wcc">Weakly Connected Components</a></li></ul></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/reference-guide/security">Security (Enterprise)</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/reference-guide/auth-module">Auth module (Enterprise)</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/reference-guide/ldap-security">LDAP Security (Enterprise)</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/reference-guide/audit-log">Audit log (Enterprise)</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/reference-guide/replication">Replication (Enterprise)</a></li></ul></li><li class="menu__list-item menu__list-item--collapsed"><a class="menu__link menu__link--sublist" href="#!">Concepts</a><ul class="menu__list"><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/concepts/storage">Storage</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/concepts/graph-algorithms">Graph algorithms</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/concepts/indexing">Indexing</a></li></ul></li><li class="menu__list-item menu__list-item--collapsed"><a class="menu__link menu__link--sublist" href="#!">Drivers</a><ul class="menu__list"><li class="menu__list-item"><a href="https://github.com/memgraph/mgclient" target="_blank" rel="noreferrer noopener" class="menu__link" tabindex="-1">C/C++</a></li><li class="menu__list-item"><a href="https://github.com/memgraph/mgconsole" target="_blank" rel="noreferrer noopener" class="menu__link" tabindex="-1">CLI Console</a></li><li class="menu__list-item"><a href="https://github.com/memgraph/pymgclient" target="_blank" rel="noreferrer noopener" class="menu__link" tabindex="-1">Python</a></li><li class="menu__list-item"><a href="https://github.com/memgraph/rsmgclient" target="_blank" rel="noreferrer noopener" class="menu__link" tabindex="-1">Rust</a></li></ul></li><li class="menu__list-item"><a class="menu__link" href="/memgraph/upcoming-features">Upcoming features</a></li><li class="menu__list-item"><a class="menu__link" href="/memgraph/changelog">Changelog</a></li><li class="menu__list-item menu__list-item--collapsed"><a class="menu__link menu__link--sublist" href="#!">Getting help</a><ul class="menu__list"><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/getting-help/getting-help">Getting help</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/memgraph/getting-help/faq">FAQ</a></li></ul></li></ul></div></div></div><main class="docMainContainer_2iGs"><div class="container padding-vert--lg docItemWrapper_1bxp"><div class="row"><div class="col docItemCol_U38p"><div class="docItemContainer_a7m4"><article><header><h1 class="docTitle_Oumm">Football transfers</h1></header><div class="markdown"><p>This article is a part of a series intended to show how to use Memgraph
+on real-world data to retrieve some interesting and useful
+information.</p><p>We highly recommend checking out the other articles from this series which
+are listed in our <a href="/memgraph/tutorials/tutorials">tutorial overview section</a>.</p><h2 id="introduction">Introduction</h2><p>Football is a word that could mean one of several sports. In this article,
+we are referring to the best-known type of football, association football.
+In North America, South Africa, and Australia, to avoid confusion with other
+types of football, it is called &quot;soccer&quot;.</p><p>In professional football, a transfer is the action taken whenever a player
+under contract moves between teams. It refers to the transferring of
+a player&#x27;s registration from one association football club to another.
+In general, the players can only be transferred during a transfer window
+and according to the rules. The transfer window is a period during the year
+in which a football team can transfer players. There are two transfer windows per season:
+winter and summer windows. Winter transfer windows are throughout January while
+the summer windows are from July till August.</p><p>Usually some sort of compensation is paid for the player&#x27;s rights,
+which is known as a transfer fee. When a player moves from one team to another,
+their old contract is terminated and they negotiate a new one with the team
+they are moving to. In some cases, however, transfers can function similarly
+to player trades, as teams can offer another player on their team as part of the fee.</p><p>As you may presume, there is a lot of money involved in the game of transfers. According to FIFA,
+in 2018, from January till September, there were 15,626 international transfers
+with fees totaling US$ 7.5 billion dollars.</p><p>Football season is that part of the year during which football matches are held. A typical football
+season is generally from August/September to May, although in some countries, such as Northern Europe
+or East Asia, the season starts in the spring and finishes in autumn due to weather conditions encountered
+during the winter.</p><h2 id="data-model">Data model</h2><p>In this article, we will present a graph model of football transfers
+from season 1992/1993 to season 2019/2020 in following five leagues:</p><ul><li>English Premier League</li><li>French Ligue 1</li><li>German Bundesliga</li><li>Italian Serie A</li><li>Spanish Primera Division</li></ul><p>The model consists of the following nodes:</p><ul><li><code>Team</code> - a football team with a property <code>name</code> (e.g. <code>&quot;FC Barcelona&quot;</code>).</li><li><code>Player</code> - a professional football player, contains properties <code>name</code> (e.g. <code>&quot;Luka Modric&quot;</code>)
+and <code>position</code> (e.g. <code>&quot;Central Midfield&quot;</code>).</li><li><code>League</code> - a football league where multiple teams play in, contains one property
+<code>name</code> (e.g. <code>&quot;Premier League&quot;</code>).</li><li><code>Transfer</code> - represents football transfer that connects a <code>Player</code>
+that is transferred from one <code>Team</code> to another <code>Team</code>
+within a <code>Season</code>. Transfer contains one optional property <code>fee</code> (e.g. <code>80.50</code>)
+that represents a transfer fee in millions of euros and one regular property <code>year</code> (e.g <code>1995</code>)
+that represents how old was a player when the transfer occurred.</li><li><code>Season</code> - a football season with two properties <code>name</code> (e.g. <code>&quot;2019/2020&quot;</code>)
+and <code>year</code> (e.g. <code>2019</code>).</li></ul><p>Nodes are connected with the following edges:</p><ul><li><code>:TRANSFERRED_FROM</code> - connects team node <code>Team</code> to node <code>Transfer</code> representing a team
+where the player is being transferred from.</li><li><code>:TRANSFERRED_TO</code> - connects node <code>Transfer</code> to team node <code>Team</code> where player is being transferred to.</li><li><code>:TRANSFERRED_IN</code> - connects player node <code>Player</code> to node <code>Transfer</code> representing a player
+that was transferred in the connected transfer.</li><li><code>:HAPPENED_IN</code> - connects node <code>Transfer</code> to the node <code>Season</code> in which transfer has happened.</li><li><code>:PLAYS_IN</code> - connects node <code>Team</code> that plays in league node <code>League</code>.</li></ul><p><img src="/assets/images/football_transfers_metagraph-806b7a2d1ce3bb5b54d8d1dcc925f45f.png"></p><h2 id="importing-the-snapshot">Importing the snapshot</h2><p>We have prepared a database snapshot for this example, so you can easily
+import it when starting Memgraph using the <code>--data-directory</code> option.</p><pre><code class="language-plaintext">sudo -u memgraph \
+  /usr/lib/memgraph/memgraph --data-directory /usr/share/memgraph/examples/FootballTransfers \
+    --storage-snapshot-interval-sec=0 --storage-wal-enabled=false \
+    --storage-snapshot-on-exit=false --storage-properties-on-edges=true
+</code></pre><p>When using Memgraph installed from a Debian or RPM package,
+the currently running Memgraph server needs to be stopped before
+importing the example, using the following command:</p><pre><code class="language-plaintext">systemctl stop memgraph
+</code></pre><p>When using Docker, the example can simply be imported with the following command:</p><pre><code class="language-plaintext">docker run -p 7687:7687 \
+  -v mg_lib:/var/lib/memgraph -v mg_log:/var/log/memgraph -v mg_etc:/etc/memgraph \
+  memgraph --data-directory /usr/share/memgraph/examples/FootballTransfers \
+  --storage-snapshot-interval-sec=0 --storage-wal-enabled=false \
+  --storage-snapshot-on-exit=false --storage-properties-on-edges=true
+</code></pre><p>You should note that any modifications of the database state will persist
+only during this run of Memgraph.</p><h2 id="example-queries-using-cypher">Example queries using Cypher</h2><p>In the queries below, we are using <a href="../../cypher-manual/overview">Cypher</a>
+to query Memgraph via the console.</p><p>Now when we have a dataset of football transfers from season 1992/1993 to season 2019/2020
+loaded in Memgraph, we are ready to gain some information out of it.</p><p>1) Let&#x27;s say you want to find 20 most expensive transfers.
+As mentioned before, transfers fees are represented in millions of euros.</p><pre><code class="language-cypher">MATCH
+    (t:Transfer)&lt;-[:TRANSFERRED_IN]-(p:Player)
+WHERE
+    t.fee is NOT NULL
+RETURN ROUND(t.fee) + &#x27;M €&#x27; as transfer_fee, p.name AS player_name
+ORDER BY t.fee DESC LIMIT 20;
+</code></pre><p>2) What about finding the most expensive transfer per season?</p><pre><code class="language-cypher">MATCH
+    (s:Season)&lt;-[:HAPPENED_IN]-(t:Transfer)&lt;-[:TRANSFERRED_IN]-(:Player)
+WHERE
+    t.fee is NOT NULL
+WITH s.name as season_name, MAX(t.fee) as max_fee
+RETURN ROUND(max_fee) + &#x27;M €&#x27; as max_transfer_fee, season_name
+ORDER BY max_fee DESC;
+</code></pre><p>3) How about finding out which teams your favorite player has played for?
+If you wish to check the teams for another player, replace &quot;Sime Vrsaljko&quot;
+with the name of your favorite player.</p><pre><code class="language-cypher">MATCH
+    (player:Player)-[:TRANSFERRED_IN]-&gt;(t:Transfer)-[]-(team:Team)
+WHERE
+    player.name = &quot;Sime Vrsaljko&quot;
+WITH DISTINCT team
+RETURN team.name AS team_name;
+</code></pre><p>You might wonder why we haven&#x27;t specified a direction in our Cypher traversal with <code>(:Transfer)-[]-(:Team)</code>.
+As we want to find the teams that player was transferred from (<code>(:Transfer)&lt;-[]-(:Team)</code>) and transferred to
+(<code>(:Transfer)-[]-&gt;(:Team)</code>), we want to collect both inbound and outbound connections. In order to do so, we
+omit the arrow (<code>&gt;</code>, <code>&lt;</code>) in our Cypher command.</p><p>4) Find players that were transferred to and played for FC Barcelona and
+count them by the player game position.</p><pre><code class="language-cypher">MATCH
+    (team:Team)&lt;-[:TRANSFERRED_TO]-(t:Transfer)&lt;-[:TRANSFERRED_IN]-(player:Player)
+WHERE
+    team.name = &quot;FC Barcelona&quot;
+WITH DISTINCT player
+RETURN player.position as player_position, COUNT(player) AS position_count, collect(player.name) as player_names
+ORDER BY position_count DESC;
+</code></pre><p>5) Football has seen a lot of rivalries develop between clubs during its rich and long history.
+One of the most famous ones is between fierce rivals FC Barcelona and Real Madrid.
+There is a term, El Clasico, for a match between those two teams. Let&#x27;s find all the transfers between
+FC Barcelona and Real Madrid.</p><pre><code class="language-cypher">MATCH
+    (m:Team)-[:TRANSFERRED_FROM]-(t:Transfer)-[:TRANSFERRED_TO]-(n:Team),
+    (t)&lt;-[:TRANSFERRED_IN]-(p:Player)
+WHERE
+    (m.name = &quot;FC Barcelona&quot; AND n.name = &quot;Real Madrid&quot;) OR
+    (m.name = &quot;Real Madrid&quot; AND n.name = &quot;FC Barcelona&quot;)
+RETURN m.name as transferred_from_team, p.name as player_name, n.name as transfered_to_team;
+</code></pre><p>6) FC Barcelona is one of the most valuable football clubs in the world. Players often want to play there as long as possible.
+But what about those players who didn&#x27;t fit in well? Where do they go?</p><pre><code class="language-cypher">MATCH
+    (m:Team)-[:TRANSFERRED_FROM]-&gt;(t:Transfer)&lt;-[:TRANSFERRED_IN]-(p:Player),
+    (t)-[:TRANSFERRED_TO]-&gt;(n:Team)
+WHERE
+    m.name = &quot;FC Barcelona&quot;
+RETURN n.name as team_name, collect(p.name) as player_names, COUNT(p) AS number_of_players
+ORDER BY number_of_players DESC;
+</code></pre><p>7) What are the teams that most players went to in season 2003/2004? The results may surprise you.</p><pre><code class="language-cypher">MATCH
+    (season:Season)&lt;-[:HAPPENED_IN]-(t:Transfer)&lt;-[:TRANSFERRED_IN]-(player:Player),
+    (t)-[:TRANSFERRED_TO]-&gt;(team:Team)
+WHERE
+    season.name = &quot;2003/2004&quot;
+WITH DISTINCT player, team
+RETURN team.name as team_name, COUNT(player) AS number_of_players, collect(player.name) as player_names
+ORDER BY number_of_players DESC, team_name
+LIMIT 20;
+</code></pre><p>8) In great teams, there are players who seem to be irreplaceable. When they leave,
+the club board is often struggling to find a proper replacement for them. Let&#x27;s find out which positions
+club &quot;FC Barcelona&quot; spent money on in season 2015/2016.</p><pre><code class="language-cypher">MATCH
+    (:Team)-[:TRANSFERRED_FROM]-&gt;(t:Transfer)&lt;-[:TRANSFERRED_IN]-(player:Player),
+    (s:Season)&lt;-[:HAPPENED_IN]-(t)-[:TRANSFERRED_TO]-&gt;(m:Team)
+WHERE
+    t.fee IS NOT NULL AND
+    s.name = &quot;2015/2016&quot; AND
+    m.name = &quot;FC Barcelona&quot;
+RETURN collect(player.name) AS player_names, player.position AS player_position, ROUND(SUM(t.fee)) + &#x27;M €&#x27; AS money_spent_per_position
+ORDER BY money_spent_per_position DESC;
+</code></pre><p>9) But what was the highest transfer amount per position FC Barcelona spent on in seasons from 1992/1993 till 2019/2020?</p><pre><code class="language-cypher">MATCH
+    (:Team)-[:TRANSFERRED_FROM]-&gt;(t:Transfer)&lt;-[:TRANSFERRED_IN]-(player:Player),
+    (t)-[:TRANSFERRED_TO]-&gt;(team:Team)
+WHERE
+    t.fee IS NOT NULL AND
+    team.name = &quot;FC Barcelona&quot;
+RETURN MAX(t.fee) + &#x27;M €&#x27; AS max_money_spent, player.position as player_position
+ORDER BY max_money_spent DESC;
+</code></pre><p>10) Now, let&#x27;s find who were the most expensive players per position in team FC Barcelona.</p><pre><code class="language-cypher">MATCH
+    (team:Team)&lt;-[:TRANSFERRED_TO]-(t:Transfer)&lt;-[:TRANSFERRED_IN]-(p:Player),
+    (t)-[:HAPPENED_IN]-&gt;(s:Season)
+WHERE
+    t.fee is NOT NULL AND
+    team.name = &quot;FC Barcelona&quot;
+WITH p.position as player_position, max(t.fee) as max_fee
+MATCH
+    (p:Player)-[:TRANSFERRED_IN]-&gt;(t:Transfer)-[:TRANSFERRED_TO]-&gt;(team:Team)
+WHERE
+    p.position = player_position AND
+    t.fee = max_fee AND
+    team.name = &quot;FC Barcelona&quot;
+RETURN
+    max_fee, player_position, collect(p.name) as player_names
+ORDER BY max_fee DESC;
+</code></pre><p>If we needed to get the maximum transfer fee per position we would only need first <code>MATCH</code> in the
+above query, making it way shorter. In order to match players with maximum transfer fees per position
+our query is split into two parts:</p><ul><li>First <code>MATCH</code> in the query finds the maximum transfer fee per position.</li><li>Second <code>MATCH</code> in the query is finding all players transferred to &quot;FC Barcelona&quot; with the same position and transfer
+fee equal to the maximum one from the previous query.</li></ul><p>11) If you want to find all player transfers between two clubs you can do that also.</p><pre><code class="language-cypher">MATCH
+    (t:Transfer)&lt;-[:TRANSFERRED_IN]-(player:Player)-[:TRANSFERRED_IN]-&gt;(:Transfer)&lt;-[:TRANSFERRED_FROM]-(team:Team)
+WHERE
+    team.name = &quot;FC Barcelona&quot;
+WITH player, collect(t) as transfers
+MATCH
+    player_path = (a:Team)-[*bfs..10 (e, n | &#x27;Team&#x27; IN labels(n) OR (&#x27;Transfer&#x27; in labels(n) AND n in transfers) )]-&gt;(b:Team)
+WHERE
+    a.name = &quot;FC Barcelona&quot; AND
+    b.name = &quot;Sevilla FC&quot;
+UNWIND nodes(player_path) as player_path_node
+WITH player_path_node, player
+WHERE &#x27;Team&#x27; in labels(player_path_node)
+WITH collect(player_path_node.name) as team_names, player
+RETURN player.name as player_name, team_names;
+</code></pre><p>In the above query, we will find all players that transferred from &quot;FC Barcelona&quot; to &quot;Sevilla FC&quot;. It
+will include direct transfers (from &quot;FC Barcelona&quot; to &quot;Sevilla FC&quot;) and indirect transfers (from &quot;FC Barcelona&quot;
+to one or multiple other clubs and lastly &quot;Sevilla FC&quot;). That is the reason why we started first <code>MATCH</code> with
+searching for all players and transfers that were transferred from &quot;FC Barcelona&quot;. Next up is the player transfer
+traversal through transfers and teams all the way to the &quot;Sevilla FC&quot;.</p><p>For this part, we used the breadth-first search (BFS) algorithm with lambda filter <code>(e, v | condition)</code>.
+It&#x27;s a function that takes an edge symbol <code>e</code> and a vertex symbol <code>v</code> and decides whether this edge and vertex pair
+should be considered valid in breadth-first expansion by returning true or false (or Null). In the above example,
+lambda is returning true if a vertex has a label <code>Team</code> or a label <code>Transfer</code>. If a vertex is <code>Transfer</code> there is an
+additional check where we need to make sure the transfer is one of the transfers of players transferred from &quot;FC Barcelona&quot;.
+It needs to be either <code>Team</code> or <code>Transfer</code> because to get from a team that made the transfer to
+the team where the player is being transferred to, we need to go through the node <code>Transfer</code> that connects those two teams.
+So the traversal from &quot;FC Barcelona&quot; to &quot;Sevilla FC&quot; will go through the following nodes: Transfer, Team, Transfer, Team, Transfer, etc.</p><p>12) In the previous query, we found all transfers between two clubs. Let&#x27;s filter out direct ones now.
+We need to add a small change in the query to only get indirect transfers.</p><pre><code class="language-cypher">MATCH
+    (player:Player)-[:TRANSFERRED_IN]-&gt;(t:Transfer)&lt;-[:TRANSFERRED_FROM]-(barca:Team),
+    (t)-[:TRANSFERRED_TO]-&gt;(sevilla:Team)
+WHERE
+    barca.name = &quot;FC Barcelona&quot; AND
+    sevilla.name = &quot;Sevilla FC&quot;
+WITH collect(player) as players_direct_to_sevilla
+MATCH
+    (t:Transfer)&lt;-[e:TRANSFERRED_IN]-(player:Player)-[:TRANSFERRED_IN]-&gt;(:Transfer)&lt;-[:TRANSFERRED_FROM]-(barca:Team)
+WHERE
+    barca.name = &quot;FC Barcelona&quot; AND
+    NOT player IN players_direct_to_sevilla
+WITH player, collect(t) as transfers
+MATCH
+    path_indirect = (a:Team)-[*bfs..10 (e, n | &#x27;Team&#x27; IN labels(n) OR (&#x27;Transfer&#x27; in labels(n) AND n in transfers) )]-&gt;(b:Team)
+WHERE
+    a.name = &quot;FC Barcelona&quot; AND
+    b.name = &quot;Sevilla FC&quot;
+UNWIND nodes(path_indirect) as player_path_node
+WITH player_path_node, player
+WHERE &#x27;Team&#x27; in labels(player_path_node)
+WITH collect(player_path_node.name) as team_names, player
+RETURN player.name as player_name, team_names;
+</code></pre><p>In this query, the only difference is that we need to find players who had a direct transfer to Sevilla first.
+In the next <code>MATCH</code> we use that information to check whether players that were transferred from FC Barcelona,
+didn&#x27;t have direct transfer to Sevilla FC.</p><p>If you are running this in <a href="https://memgraph.com/product/lab">Memgraph Lab</a> you can change the query
+a bit in order to get all nodes and edges required for a visual graph representation of players transferring through teams.</p><pre><code class="language-cypher">MATCH
+    (player:Player)-[:TRANSFERRED_IN]-&gt;(t:Transfer)&lt;-[:TRANSFERRED_FROM]-(barca:Team),
+    (t)-[:TRANSFERRED_TO]-&gt;(sevilla:Team)
+WHERE
+    barca.name=&quot;FC Barcelona&quot; AND
+    sevilla.name=&quot;Sevilla FC&quot;
+WITH collect(player) as players_direct_to_sevilla
+MATCH
+    (t:Transfer)&lt;-[e:TRANSFERRED_IN]-(player:Player)-[:TRANSFERRED_IN]-&gt;(tr:Transfer)&lt;-[:TRANSFERRED_FROM]-(barca:Team)
+WHERE
+    barca.name = &quot;FC Barcelona&quot; AND
+    NOT player in players_direct_to_sevilla
+WITH player, collect(t) as transfers, collect(e) as player_to_transfers
+MATCH
+    path_indirect = (a:Team)-[*bfs..10 (e, n | &#x27;Team&#x27; IN labels(n) OR (&#x27;Transfer&#x27; in labels(n) AND n in transfers) )]-&gt;(b:Team)
+WHERE
+    a.name = &quot;FC Barcelona&quot; AND
+    b.name = &quot;Sevilla FC&quot;
+UNWIND player_to_transfers as player_to_transfer
+RETURN player, player_to_transfer, path_indirect;
+</code></pre><p>MemgraphLab graph visual representation draws nodes and edges from query results. If you only have
+nodes in the results then only nodes will be drawn on the canvas. If you have both nodes and edges present in the
+results, MemgraphLab is able to draw nodes and connections between them because it has all the information relevant
+for drawing.</p><p>In order to change the query to accommodate that, we need to change the types of results that are returned
+and collect any missing edge or node information throughout the query. The first part of the query where we
+check whether the player was transferred from &quot;FC Barcelona&quot; to &quot;Sevilla FC&quot; stays the same. In order to draw
+all connections from players to transfers, we need to collect edges connecting them. That is the reason why we
+are collecting edges <code>e</code> through variable <code>player_to_transfers</code> because it contains information on which player
+is connected to which transfer.
+With that in mind, our results contain all the information for the graph visual:</p><ul><li>A path that contains <code>Transfer</code> and <code>Team</code> nodes, and all the edges collected on the <code>Team</code> to <code>Team</code> traversal</li><li>A list of <code>Player</code> nodes</li><li>A list of <code>Player - Transfer</code> edges</li></ul><p>Here is a picture of how it will look if you run the query in MemgraphLab.</p><p><img src="/assets/images/football_transfers_MemgraphLab_visual-401b4e11da9efdd4068f80ac8b614ef1.png"></p></div></article><div class="margin-vert--xl"><div class="row"><div class="col"><a href="https://github.com/memgraph/docs/tree/main/docs/tutorials/football-transfers.md" target="_blank" rel="noreferrer noopener"><svg fill="currentColor" height="1.2em" width="1.2em" preserveAspectRatio="xMidYMid meet" role="img" viewBox="0 0 40 40" class="iconEdit_2LL7"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div></div></div><div class="margin-vert--lg"><nav class="pagination-nav" aria-label="Blog list page navigation"><div class="pagination-nav__item"><a class="pagination-nav__link" href="/memgraph/tutorials/exploring-the-european-road-network"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">« Exploring the European road network</div></a></div><div class="pagination-nav__item pagination-nav__item--next"><a class="pagination-nav__link" href="/memgraph/tutorials/graphing-the-premier-league"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Graphing the Premier League »</div></a></div></nav></div></div></div><div class="col col--3"><div class="tableOfContents_2xL- thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#introduction" class="table-of-contents__link">Introduction</a></li><li><a href="#data-model" class="table-of-contents__link">Data model</a></li><li><a href="#importing-the-snapshot" class="table-of-contents__link">Importing the snapshot</a></li><li><a href="#example-queries-using-cypher" class="table-of-contents__link">Example queries using Cypher</a></li></ul></div></div></div></div></main></div></div><footer class="footer footer--dark"><div class="container"><div class="row footer__links"><div class="col footer__col"><h4 class="footer__title">Documentation</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" href="/memgraph/overview">Memgraph DB</a></li><li class="footer__item"><a class="footer__link-item" href="/memgraph-lab">Memgraph Lab</a></li><li class="footer__item"><a class="footer__link-item" href="/memgraph-cloud">Memgraph Cloud</a></li><li class="footer__item"><a class="footer__link-item" href="/cypher-manual">Cypher manual</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Community</h4><ul class="footer__items"><li class="footer__item"><a href="https://stackoverflow.com/questions/tagged/memgraphdb" target="_blank" rel="noopener noreferrer" class="footer__link-item">Stack Overflow</a></li><li class="footer__item"><a href="https://discourse.memgraph.com" target="_blank" rel="noopener noreferrer" class="footer__link-item">Developer Forum</a></li><li class="footer__item"><a href="https://twitter.com/memgraphdb" target="_blank" rel="noopener noreferrer" class="footer__link-item">Twitter</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">More</h4><ul class="footer__items"><li class="footer__item"><a href="https://github.com/memgraph" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub</a></li><li class="footer__item"><a href="https://www.youtube.com/channel/UCZ3HOJvHGxtQ_JHxOselBYg" target="_blank" rel="noopener noreferrer" class="footer__link-item">Youtube</a></li></ul></div></div><div class="footer__bottom text--center"><div class="margin-bottom--sm"><a href="https://memgraph.com" target="_blank" rel="noopener noreferrer" class="footerLogoLink_31Aa"><img class="footer__logo" alt="Memgraph Logo" src="/img/Memgraph-logo-white-rgb.png"></a></div><div class="footer__copyright">Copyright © 2021 Memgraph. Built by developers, for developers!</div></div></div></footer></div>
+<script src="/styles.06f88032.js"></script>
+<script src="/runtime~main.709d9e6c.js"></script>
+<script src="/main.b19436c4.js"></script>
+<script src="/1.0ef0cd43.js"></script>
+<script src="/2.cec97469.js"></script>
+<script src="/123.885e8308.js"></script>
+<script src="/126.8348d2a6.js"></script>
+<script src="/935f2afb.741916a7.js"></script>
+<script src="/17896441.a596db69.js"></script>
+<script src="/0575c7b1.8de26e5b.js"></script>
+</body>
+</html>
