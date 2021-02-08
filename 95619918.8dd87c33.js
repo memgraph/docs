@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[78],{149:function(e){e.exports=JSON.parse('{"pluginId":"cloud","version":"current","label":"Next","isLast":true,"docsSidebars":{"cloud":[{"type":"link","label":"Getting started","href":"/docs/memgraph-cloud/"}]},"permalinkToSidebar":{"/docs/memgraph-cloud/":"cloud"}}')}}]);
