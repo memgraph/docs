@@ -1,4 +1,4 @@
-const baseUrl = '/';
+const baseUrl = '/docs/';
 
 module.exports = {
   title: 'Memgraph Docs',
