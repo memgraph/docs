@@ -80,7 +80,7 @@ module.exports = {
             },
             {
               label: 'Clauses',
-              to: '/cypher-manual//clauses',
+              to: '/cypher-manual/clauses',
             },
             {
               label: 'Other features',
