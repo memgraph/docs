@@ -468,6 +468,23 @@ module.exports = {
             to: '/cypher-manual/clauses/with',
             from: ['/memgraph/open-cypher/clauses/with',],
           },
+          //Concepts redirects
+          {
+            to: '/memgraph/concepts/indexing',
+            from: ['/memgraph/concepts-overview/indexing',],
+          },
+          {
+            to: '/memgraph/concepts/storage',
+            from: ['/memgraph/concepts-overview/storage',],
+          },
+          {
+            to: '/memgraph/concepts/graph-algorithms',
+            from: ['/memgraph/concepts-overview/graph-algorithms',],
+          },
+          {
+            to: '/memgraph/concepts/replication',
+            from: ['/memgraph/concepts-overview/replication',],
+          },
           //Machine learning redirects
           {
             to: '/memgraph/database-functionalities/tensorflow-setup',
