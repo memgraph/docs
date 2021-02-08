@@ -181,13 +181,15 @@ module.exports = {
           routeBasePath: 'memgraph',
           sidebarPath: require.resolve('./sidebarsMemgraph.js'),
           editUrl:
-            'https://github.com/memgraph/docs/tree/main/',
+            'https://github.com/memgraph/docs/tree/master/',
         },
+        /*
         blog: {
           showReadingTime: true,
           editUrl:
             'https://github.com/facebook/docusaurus/edit/master/website/blog/',
         },
+        */
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
@@ -203,7 +205,7 @@ module.exports = {
         routeBasePath: 'memgraph-lab',
         sidebarPath: require.resolve('./sidebarsLab.js'),
         editUrl:
-          'https://github.com/memgraph/docs/tree/main/',
+          'https://github.com/memgraph/docs/tree/master/',
       },
     ],
     [
@@ -214,7 +216,7 @@ module.exports = {
         routeBasePath: 'memgraph-cloud',
         sidebarPath: require.resolve('./sidebarsCloud.js'),
         editUrl:
-          'https://github.com/memgraph/docs/tree/main/',
+          'https://github.com/memgraph/docs/tree/master/',
       },
     ],
     [
@@ -225,7 +227,7 @@ module.exports = {
         routeBasePath: 'cypher-manual',
         sidebarPath: require.resolve('./sidebarsCypherManual.js'),
         editUrl:
-          'https://github.com/memgraph/docs/tree/main/',
+          'https://github.com/memgraph/docs/tree/master/',
       },
     ],
     [
