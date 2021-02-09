@@ -1,33 +1,15 @@
-# Website
+# Memgraph Docs
 
-This website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
+This repository contains the source files and various generators for the
+Memgraph documentation available at
+[docs.memgraph.com](https://docs.memgraph.com). Since we are writing our
+technical documentation using markdown, it is also nicely rendered by GitHub as
+you can see by following [this
+link](https://github.com/memgraph/docs/blob/master/docs/overview.md).
 
-## Installation
+## Contribute to the documentation
 
-```console
-yarn install
-```
-
-## Local Development
-
-```console
-yarn start
-```
-
-This command starts a local development server and open up a browser window. Most changes are reflected live without having to restart the server.
-
-## Build
-
-```console
-yarn build
-```
-
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-## Deployment
-
-```console
-GIT_USER=<Your GitHub username> USE_SSH=true yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+If you want to contribute to the documentation, please take a look at
+[CONTRIBUTING](CONTRIBUTING.md) guide for details about the writing style and 
+main ideas behind the documentation. In case you notice any problems or need additional
+information, feel free to [create an issue](https://github.com/memgraph/docs/issues).
