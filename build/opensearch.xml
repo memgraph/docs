@@ -4,8 +4,8 @@
   <ShortName>Memgraph Docs</ShortName>
   <Description>Search Memgraph Docs</Description>
   <InputEncoding>UTF-8</InputEncoding>
-  <Image width="16" height="16" type="image/x-icon">https://g-despot.github.io/img/social-logo-round-corners.png</Image>
-  <Url type="text/html" method="get" template="https://g-despot.github.io/search?q={searchTerms}"/>
-  <Url type="application/opensearchdescription+xml" rel="self" template="https://g-despot.github.io/opensearch.xml" />
-  <moz:SearchForm>https://g-despot.github.io</moz:SearchForm>
+  <Image width="16" height="16" type="image/x-icon">https://docs.memgraph.com/img/social-logo-round-corners.png</Image>
+  <Url type="text/html" method="get" template="https://docs.memgraph.com/search?q={searchTerms}"/>
+  <Url type="application/opensearchdescription+xml" rel="self" template="https://docs.memgraph.com/opensearch.xml" />
+  <moz:SearchForm>https://docs.memgraph.com</moz:SearchForm>
 </OpenSearchDescription>

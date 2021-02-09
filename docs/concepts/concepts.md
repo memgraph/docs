@@ -1,4 +1,9 @@
-## Concepts Overview
+---
+id: concepts
+title: Concepts
+sidebar_label: Concepts overview
+slug: /concepts
+---
 
 Articles within the concepts section serve as an in-depth introduction into
 inner workings of Memgraph. These tend to be quite technical in nature and

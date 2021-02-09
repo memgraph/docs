@@ -162,12 +162,10 @@ module.exports = {
       },
       copyright: `Copyright © ${new Date().getFullYear()} Memgraph. Built by developers, for developers!`,
     },
-    /*
     algolia: {
       apiKey: '05acf33bff73974c131732d34307085e',
       indexName: 'g-despot',
     },
-    */
     prism: {
       additionalLanguages: ['cypher'],
     },
