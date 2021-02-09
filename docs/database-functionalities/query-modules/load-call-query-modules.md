@@ -48,10 +48,10 @@ Query procedures that allow the users to gain more insight into other query
 modules and their procedures are written under our utility `mg` query module.
 This module offers three procedures with the following signatures:
 
-* `mg.procedures() :: (name :: STRING, signature :: STRING)`: lists loaded
-  procedures and their signatures
-* `mg.load(module_name :: STRING) :: ()`: loads or reloads the given module
-* `mg.load_all() :: ()`: loads or reloads all modules
+* `mg.procedures() :: (name :: STRING, signature :: STRING)`: Lists loaded
+  procedures and their signatures.
+* `mg.load(module_name :: STRING) :: ()`: Loads or reloads the given module.
+* `mg.load_all() :: ()`: Loads or reloads all modules.
 
 For example, invoking `mg.procedures()` from openCypher like so:
 

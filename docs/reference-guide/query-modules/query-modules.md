@@ -126,8 +126,8 @@ The utility module offers the following functionality:
 
 * `mg.procedures() :: (name :: STRING, signature :: STRING)`: Lists loaded
   procedures and their signatures.
-* `mg.reload(module_name :: STRING) :: ()`: Reloads the given module.
-* `mg.reload_all() :: ()`: Reloads all loaded modules.
+* `mg.load(module_name :: STRING) :: ()`: Loads or reloads the given module.
+* `mg.load_all() :: ()`: Loads or reloads all modules.
 
 To get a detailed list of all procedures from all modules, run the following
 query:
