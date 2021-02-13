@@ -48,7 +48,7 @@ MATCH (u:User)-[r]->(x) RETURN u, r, x;
 
 ## Where to next?
 
-To learn more about the **Cypher** language, visit the **[Cypher manual](../cypher-manual/overview)** or **[Memgraph Playground](https://playground.memgraph.com/)** for interactive guides.
+To learn more about the **Cypher** language, visit the **[Cypher manual](../cypher-manual)** or **[Memgraph Playground](https://playground.memgraph.com/)** for interactive guides.
 For real-world examples of how to use Memgraph, we strongly suggest going through one of the available **[Tutorials](../memgraph/tutorials/tutorials)**. 
 Details on what can be stored in Memgraph can be found in the article about **[Data storage](../memgraph/concepts/storage)**.
 
