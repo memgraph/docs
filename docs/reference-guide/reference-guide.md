@@ -9,7 +9,7 @@ slug: /reference-guide
 reference guide contains the details of implemented features. Additionally,
 not yet supported features of the language are listed.
 
-## [Cypher query language](../../cypher-manual/overview)
+## [Cypher query language](/cypher-manual)
 
 **Cypher** is a declarative graph query language that allows for expressive and efficient data querying in a property graph. It aims to be intuitive and easy to learn while
 providing a powerful interface for working with graph-based data. 
@@ -26,12 +26,12 @@ An index stores additional information on certain types of data, so that retriev
 
 Memgraph comes with custom-built algorithms that are implemented using C++: **Filtering variable-length paths**, **Breadth-first search**, and **Weighted shortest path**.
 
-## [Query modules](./query-modules)
+## [Query modules](/reference-guide/query-modules/query-modules.md)
 
 Memgraph supports extending the query language with user-written procedures. 
 These procedures are grouped into modules, which can then be loaded either on startup or later on.
 
-## [NetworkX](./networkx)
+## [NetworkX](/reference-guide/networkx/networkx.md)
 
 Memgraph includes a set of Python query modules based on the [NetworkX](https://networkx.github.io/) library of algorithms.
 You can find more information about all the available algorithms in the [NetxorkX reference guide](./networkx).
