@@ -9,7 +9,7 @@ At the end of this guide, you will have created a simple Go **`Hello, World!`** 
 ## Prerequisites
 
 To follow this guide, you will need:
-* A **running Memgraph instance**. If you need to setup Memgraph, take a look at the [Installation guide](../installation).
+* A **running Memgraph instance**. If you need to setup Memgraph, take a look at the [Installation guide](/getting-started/installation/installation.md).
 * A basic understanding of graph databases and the property graph model.
 * The newest version of **Go** [installed](https://golang.org/doc/install).
 

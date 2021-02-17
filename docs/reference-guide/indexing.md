@@ -13,15 +13,8 @@ retrieving said data becomes more efficient. Downsides of indexing are:
 Carefully choosing which data to index can tremendously improve data retrieval
 efficiency, and thus make index downsides negligible.
 
-Memgraph automatically indexes labeled data. This improves queries
-which fetch nodes by label:
-
-```cypher
-MATCH (n :Label) ... RETURN n;
-```
-
-Indexing can also be applied to data with a specific combination of label and
-property. These are not automatically created, instead a user needs to create
+Indexing can be applied to data with a specific label or a combination of label and
+property. They are not automatically created, instead a user needs to create
 them explicitly. Creation is done using a special
 `CREATE INDEX ON :Label(property)` language construct.
 

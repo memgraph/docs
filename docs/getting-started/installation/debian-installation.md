@@ -77,7 +77,7 @@ systemctl stop memgraph
 ## Where to next?
 
 To learn how to query the database, take a look at the **[Querying](../querying/querying.md)** guide or **[Memgraph Playground](https://playground.memgraph.com/)** for interactive tutorials.<br/>
-Visit the **[Building applications](../connecting-applications)** page if you need to 
+Visit the **[Building applications](/getting-started/connecting-applications/connecting-applications.md)** page if you need to 
 connect to the database programmatically.
 
 ## Getting help

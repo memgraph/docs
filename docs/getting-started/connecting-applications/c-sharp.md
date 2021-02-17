@@ -9,7 +9,7 @@ At the end of this guide, you will have created a simple .NET console **`Hello, 
 ## Prerequisites
 
 For this guide you will need:
-* A **running Memgraph instance**. If you need to setup Memgraph, take a look at the [Installation guide](../installation).
+* A **running Memgraph instance**. If you need to setup Memgraph, take a look at the [Installation guide](/getting-started/installation/installation.md).
 * A basic understanding of graph databases and the property graph model.
 
 ## Driver
