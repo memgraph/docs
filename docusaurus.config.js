@@ -236,6 +236,10 @@ module.exports = {
             to: '/memgraph/overview',
             from: ['/memgraph/introduction',],
           },
+          {
+            to: '/memgraph/getting-started',
+            from: ['/memgraph/quick-start',],
+          },
           //Tutorial redirects
           {
             to: '/memgraph/tutorials/tutorials',
