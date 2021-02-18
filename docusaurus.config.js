@@ -509,7 +509,7 @@ module.exports = {
             from: ['/memgraph-lab/style_script',],
           },
           {
-            to: '/memgraph-lab/memgraph-lab/installation/osx-installation',
+            to: '/memgraph-lab/installation/osx-installation',
             from: ['/memgraph-lab/how_to_install_memgraph_lab_on_macos',],
           },
         ],
