@@ -12,8 +12,8 @@ module.exports = {
   projectName: 'docs',
   scripts: [
     {
-      src: `https://docs.memgraph.com/js/analytics.js`,
-      //src: `http://localhost:3000/docs/js/analytics.js`,
+      src: `https://docs.memgraph.com/js/load-analytics.js`,
+      //src: `http://localhost:3000/js/load-analytics.js`,
     },
   ],
   themeConfig: {
@@ -507,6 +507,10 @@ module.exports = {
           {
             to: '/memgraph-lab/style-script/quick-start',
             from: ['/memgraph-lab/style_script',],
+          },
+          {
+            to: '/memgraph-lab/memgraph-lab/installation/osx-installation',
+            from: ['/memgraph-lab/how_to_install_memgraph_lab_on_macos',],
           },
         ],
       },
