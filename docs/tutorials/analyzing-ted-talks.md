@@ -76,9 +76,9 @@ docker run -p 7687:7687 \
 The user should note that any modifications of the database state will persist
 only during this run of Memgraph.
 
-### Example Queries using OpenCypher
+### Example queries using Cypher
 
-In the queries below, we are using [Cypher](../../cypher-manual/overview) 
+In the queries below, we are using [Cypher](/cypher-manual) 
 to query Memgraph via the console.
 
  

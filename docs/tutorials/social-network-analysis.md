@@ -20,7 +20,7 @@ The nodes in the graph represent the members while the relationships between the
 
 ## Importing the data
 
-The simplest way of populating our database is by using the built-in [CSV Import Tool](../database-functionalities/import-data). The CSV files for this data set can be downloaded [from here](https://github.com/g-despot/sng-tutorial). 
+The simplest way of populating our database is by using the built-in [CSV Import Tool](/database-functionalities/import-data.md). The CSV files for this data set can be downloaded [from here](https://github.com/g-despot/sng-tutorial). 
 
 Use the following command to import the files:
 
@@ -60,8 +60,8 @@ To learn more about the CSV Import Tool visit the how-to guide: [Import data](..
 ## Using existing NetworkX algorithms
 
 There are three ways to execute queries and procedures in Memgraph:
-* using the command-line tool `mg_client`, which comes with Memgraph: **[Querying the database](../getting-started/querying/querying.md)**
-* programmatically, by using the Bolt protocol: **[Building applications](../getting-started/connecting-applications)**
+* using the command-line tool `mg_client`, which comes with Memgraph: **[Querying the database](/getting-started/querying/querying.md)**
+* programmatically, by using the Bolt protocol: **[Building applications](/getting-started/connecting-applications/connecting-applications.md)**
 * from **Memgraph Lab**, a visual user interface which you can download **[here](https://memgraph.com/download)**.
 
 In this tutorial, we are using results from the command-line tool because of their text format but, it's alright to use Memgraph Lab instead. You can open Memgraph Lab and in the tab **Query** execute the following command:
@@ -218,4 +218,4 @@ The resulting communities are:
 
 If you want to find out more about query modules, take a look at our guide on how to create your own: [Implement custom query modules](../database-functionalities/query-modules/implement-query-modules.md).
 
-You can also visit our [NetworkX Reference guide](../reference-guide/networkx) to find out which NetworkX algorithms are already available in Memgraph.
+You can also visit our [NetworkX Reference guide](/reference-guide/networkx/networkx.md) to find out which NetworkX algorithms are already available in Memgraph.

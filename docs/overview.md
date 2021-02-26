@@ -32,13 +32,13 @@ Production and Commercial Use                                           |       
 
 ### Installation
 
-Visit the [Installation](./getting-started/installation) guide to find out more about the installation process.
+Visit the [Installation](/getting-started/installation/installation.md) guide to find out more about the installation process.
 
 ### Querying the database
 
 Memgraph uses the openCypher query language. Learn how to query Memgraph:
 * within the **command-line** by visiting the [Querying](./getting-started/querying/querying.md) guide or
-* visually by following the [Quick start: Memgraph Lab](../memgraph-lab) guide.
+* visually by following the [Quick start: Memgraph Lab](/memgraph-lab) guide.
 
 ### Importing data
 
@@ -63,7 +63,7 @@ on how the query's plan behaved. Take a look at the guides:
 ### NetworkX
 
 Memgraph includes a set of Python query modules based on the [NetworkX](https://networkx.github.io/) library of algorithms.
-You can find more information about all the available algorithms in the [NetworkX Reference guide](./reference-guide/networkx).
+You can find more information about all the available algorithms in the [NetworkX Reference guide](/reference-guide/networkx/networkx.md).
 
 ### Machine learning
 

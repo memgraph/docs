@@ -9,7 +9,7 @@ This article outlines the basic steps necessary to query a running Memgraph data
 
 ## Prerequisites
 Before you proceed with the guide, make sure that you have:
-* Installed the latest version of **Memgraph Lab** which you can get from the official [download page](https://memgraph.com/download/).
+* Installed the latest version of **Memgraph Lab** which you can get from the official [download page](https://memgraph.com/download#Lab-download).
 * A running Memgraph database instance. Instructions on how to do setup Memgraph can be [found here](../memgraph/getting-started/installation).
 
 ## Connecting to the database

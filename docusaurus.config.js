@@ -250,6 +250,10 @@ module.exports = {
             from: ['/memgraph/tutorials-overview/analyzing-TED-talks',],
           },
           {
+            to: '/memgraph/tutorials/analyzing-ted-talks',
+            from: ['/memgraph/tutorials-overview/analyzing-ted-talks',],
+          },
+          {
             to: '/memgraph/tutorials/backpacking-through-europe',
             from: ['/memgraph/tutorials-overview/backpacking-through-europe',],
           },
@@ -333,6 +337,10 @@ module.exports = {
           {
             to: '/memgraph/database-functionalities/work-with-docker',
             from: ['/memgraph/how-to-guides-overview/work-with-docker',],
+          },
+          {
+            to: '/memgraph/reference-guide/backup',
+            from: ['/memgraph/database-functionalities/backup',],
           },
           //Reference guide redirects
           {

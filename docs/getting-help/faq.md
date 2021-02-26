@@ -60,7 +60,7 @@ query the database instance. It’s a declarative query language designed to
 query graphs. Communication between clients and the database is done via the
 [Bolt protocol](https://boltprotocol.org). For the list of supported
 programming languages please take a look
-[here](../getting-started/connecting-applications).
+[here](/getting-started/connecting-applications/connecting-applications.md).
 
 ### How do you upgrade?
 
@@ -87,4 +87,4 @@ to find out more about creating indexes.
 
 Although we try to implement openCypher query language as closely to the
 language reference as possible, we had to make some changes to enhance the
-user experience. You can find the differences listed in the [Cypher manual](../../cypher-manual/differences).
+user experience. You can find the differences listed in the [Cypher manual](/cypher-manual/differences).
