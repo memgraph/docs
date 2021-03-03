@@ -149,7 +149,7 @@ The results are:
 
 Memgraph comes with over 70 NetworkX algorithms, but if the algorithm you require is missing, you can add it yourself as a Query Module.
 
-If you are using Docker to run Memgraph you need to create a volume and mount it to access the directory `/usr/lib/memgraph/query-modules`. This can be done by creating an empty directory `~modules` on your host machine and executing the following command:
+If you are using Docker to run Memgraph you need to create a volume and mount it to access the directory `/usr/lib/memgraph/query_modules`. This can be done by creating an empty directory `~modules` on your host machine and executing the following command:
 
 ```
 docker volume create --driver local --opt type=none  --opt device=~modules --opt o=bind modules
@@ -158,10 +158,10 @@ docker volume create --driver local --opt type=none  --opt device=~modules --opt
 Now, you can start Memgraph and mount the created volume:
 
 ```
-docker run -it --rm -v modules:/usr/lib/memgraph/query-modules -p 7687:7687 memgraph
+docker run -it --rm -v modules:/usr/lib/memgraph/query_modules -p 7687:7687 memgraph
 ```
 
-Everything from the directory `/usr/lib/memgraph/query-modules` will be visible/editable in your mounted volume and vice versa.
+Everything from the directory `/usr/lib/memgraph/query_modules` will be visible/editable in your mounted volume and vice versa.
 
 ### Community detection
 

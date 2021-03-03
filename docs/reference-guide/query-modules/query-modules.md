@@ -11,7 +11,7 @@ These procedures are grouped into modules, which can then be loaded on startup.
 ## Loading query modules
 
 Upon startup, Memgraph will attempt to load the query modules form all `*.so`
-and `*.py` files it finds in the default (`/usr/lib/memgraph/query-modules`)
+and `*.py` files it finds in the default (`/usr/lib/memgraph/query_modules`)
 directory.
 
 If you want to change the directory in which Memgraph searches for query

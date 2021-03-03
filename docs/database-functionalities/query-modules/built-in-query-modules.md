@@ -18,7 +18,7 @@ NOTE: The following "How to Guides" provide an explanation of basic usage. To fi
 out more details about each module and documentation of each procedure, please
 take a look at our [Reference guide](../../reference-guide) 
 or the query module source files. The files are located in the directory 
-`/usr/lib/memgraph/query-modules`.
+`/usr/lib/memgraph/query_modules`.
 :::
 
 ## NetworkX Algorithms Module
@@ -67,7 +67,7 @@ CALL nxalg.pagerank() YIELD *;
 ```
 
 NetworkX algorithms are located inside the `nxalg.py` file installed with
-your Memgraph package in `/usr/lib/memgraph/query-modules`.
+your Memgraph package in `/usr/lib/memgraph/query_modules`.
 
 ## Graph Analyzer
 
@@ -199,7 +199,7 @@ we advise you to study the [original paper](https://arxiv.org/pdf/0803.0476.pdf)
 
 This query module should be provided as a shared object (`.so`) file called
 `louvain.so`. Assuming the standard installation on Debian, that file should be
-located in `/usr/lib/memgraph/query-modules`. Again, we can simply run Memgraph with
+located in `/usr/lib/memgraph/query_modules`. Again, we can simply run Memgraph with
 the following command:
 
 ```plaintext
@@ -326,7 +326,7 @@ Otherwise, we say those nodes are disconnected.
 
 This query module should be provided as a shared object (`.so`) file called
 `connectivity.so`. Assuming the standard installation on Debian, that file
-should be located in `/usr/lib/memgraph/query-modules`. Again, we can simply run
+should be located in `/usr/lib/memgraph/query_modules`. Again, we can simply run
 Memgraph with the following command:
 
 ```plaintext

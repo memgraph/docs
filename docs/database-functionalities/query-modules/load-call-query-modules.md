@@ -10,7 +10,7 @@ These procedures are grouped into modules, which can then be loaded on startup.
 ## Loading query modules on startup
 
 The Memgraph installation comes with the `example.so` and `py_example.py` query
-modules which are located in `/usr/lib/memgraph/query-modules` directory.
+modules which are located in `/usr/lib/memgraph/query_modules` directory.
 Assuming the standard installation on Debian, you would run Memgraph with the
 following command:
 
@@ -27,7 +27,7 @@ docker run -p 7687:7687 \
 ```
 
 Memgraph will now attempt to load the query modules from all `*.so` and `*.py`
-files it finds in the default (`/usr/lib/memgraph/query-modules`) directory.
+files it finds in the default (`/usr/lib/memgraph/query_modules`) directory.
 The `*.so` modules are written using the C API and the `*.py` modules are
 written using the Python API. Each file corresponds to one query module. Names
 of these files will be mapped to query module names.  So in our case, we have

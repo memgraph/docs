@@ -6,12 +6,12 @@ sidebar_label: Implement custom query modules
 
 We are going to examine how the query module `example` is implemented using 
 the C API and the Python API. Both query modules can be found in the 
-`/usr/lib/memgraph/query-modules` directory.
+`/usr/lib/memgraph/query_modules` directory.
 
 ## Using Docker with query modules 
 
 If you are using Docker to run Memgraph you will have to create a volume 
-and mount it to access the `query-modules` directory. This can be done by 
+and mount it to access the `query_modules` directory. This can be done by 
 creating an empty directory `~modules` and executing the following command:
 
 ```shell
@@ -21,10 +21,10 @@ docker volume create --driver local --opt type=none  --opt device=~modules --opt
 Now, you can start Memgraph and mount the created volume:
 
 ```shell
-docker run -it --rm -v modules:/usr/lib/memgraph/query-modules -p 7687:7687 memgraph
+docker run -it --rm -v modules:/usr/lib/memgraph/query_modules -p 7687:7687 memgraph
 ```
 
-Everything from the directory `/usr/lib/memgraph/query-modules` will be 
+Everything from the directory `/usr/lib/memgraph/query_modules` will be 
 visible/editable in your mounted `modules` volume and vice versa.
 
 ## Python API
@@ -216,7 +216,7 @@ records of the procedure. Parameters `graph` and `memory` are context
 parameters of the procedure, and they are used in some parts of the provided C
 API. For more information on what exactly is possible via C API, take a look
 at the `mg_procedure.h` file  or at the C API [reference guide](../../reference-guide/query-modules/c-api.md), 
-as well as the `example.c` found in `/usr/lib/memgraph/query-modules/src`
+as well as the `example.c` found in `/usr/lib/memgraph/query_modules/src`
 
 Then comes the required `mgp_init_module` function. Its primary purpose is to
 register procedures which can then be invoked through openCypher. Although the
