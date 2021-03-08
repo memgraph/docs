@@ -114,7 +114,7 @@ NOTE: `mg_client` is a deprecated tool still coming within the Memgraph package.
 
  
 * using the command-line tool, `mg_client`, which comes with Memgraph, ([Querying](../getting-started/querying/querying.md))
-* [programmatically](../getting-started/connecting-applications) by using the Bolt protocol,
+* [programmatically](/getting-started/connecting-applications) by using the Bolt protocol,
 * from **Memgraph Lab**, a visual user interface that can be downloaded [here](https://memgraph.com/download).
 
 If you've decided to use the command-line tool, you will need to run the following command:
@@ -149,9 +149,9 @@ CALL example.procedure("string-argument") YIELD *;
 
 Each procedure returns either zero or more records, where each record contains named fields. The `YIELD` part is used to select fields we are interested in. Custom procedures may be called standalone or as part of a larger query. This is useful if we want the procedure to work on data the query is producing. 
 
-With this, your developing environment is ready and you are able to easily implement and run your own query modules. Check out our [Reference Guide](../reference-guide/query-modules) to see which Query Modules are included in Memgraph. 
+With this, your developing environment is ready and you are able to easily implement and run your own query modules. Check out our [Reference Guide](/reference-guide/query-modules) to see which Query Modules are included in Memgraph. 
 
 ### Where to next?
 
-To learn more about Memgraph's functionalities, visit the **[Reference guide](../reference-guide)**.
-For real-world examples of how to use Memgraph, we strongly suggest going through one of the available **[Tutorials](../tutorials/tutorials.md)**.
+To learn more about Memgraph's functionalities, visit the **[Reference guide](/reference-guide)**.
+For real-world examples of how to use Memgraph, we strongly suggest going through one of the available **[Tutorials](/tutorials/tutorials)**.

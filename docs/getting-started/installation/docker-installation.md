@@ -30,23 +30,34 @@ docker load -i /path/to/memgraph-<version>-docker.tar.gz
 To start Memgraph, use the following command:
 
 ```
-docker run -p 7687:7687 \
-  -v mg_lib:/var/lib/memgraph -v mg_log:/var/log/memgraph -v mg_etc:/etc/memgraph \
-  memgraph
+docker run -p 7687:7687 memgraph
 ```
 
 If successful, you should see a message similar to the following :
 
 ```
 You are running Memgraph v1.3.0-community
-Using non-secure Bolt connection (without SSL)
-Starting 12 Bolt workers
-Bolt server is fully armed and operational
-Bolt listening on 0.0.0.0:7687
 ```
 
 At this point, Memgraph is ready for you to [submit queries](../querying/querying.md).
 
+:::info
+The username and password for connecting to the database are empty by default.
+:::
+
+### Stopping the database instance
+
+To stop a Memgraph database instance, run the following command:
+
+```
+docker stop CONTAINER_NAME
+```
+
+You can find the name of the container (`CONTAINER_NAME`) by running:
+
+```
+docker ps
+```
 
 ### Configuration
 
@@ -54,8 +65,8 @@ The Memgraph configuration is available in Docker's named volume `mg_etc`. On
 Linux systems, it should be in
 `/var/lib/docker/volumes/mg_etc/_data/memgraph.conf`.
 
-
 ### Named volumes
+
 If it happens that the named volumes are reused between different Memgraph
 versions, Docker will overwrite a folder within the container with existing
 data from the host machine. If a new file is introduced, or two versions of
@@ -67,6 +78,7 @@ from the host with the following command:
 ```
 docker volume rm <volume_name>
 ```
+
 ### Note for Docker users
 
 Although unlikely, some OS X/macOS users might experience minor difficulties
@@ -99,6 +111,7 @@ with Docker, as described in the [querying](../querying/querying.md) section.
 
 ## Where to next?
 
+If you need more information on working with Docker, check out [this guide](/database-functionalities/work-with-docker).<br/>
 To learn how to query the database, take a look at the **[Querying](../querying/querying.md)** guide or **[Memgraph Playground](https://playground.memgraph.com/)** for interactive tutorials.<br/>
 Visit the **[Building applications](/getting-started/connecting-applications/connecting-applications.md)** page if you need to 
 connect to the database programmatically. 
