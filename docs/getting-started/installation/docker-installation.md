@@ -118,4 +118,4 @@ connect to the database programmatically.
 
 ## Getting help
 
-Visit the **[Getting help](../../getting-help/getting-help.md)** page in case you run into any kind of problem or you have additional questions.
+Visit the **[Getting help](/getting-help/getting-help.md)** page in case you run into any kind of problem or you have additional questions.

@@ -81,10 +81,10 @@ the executable.
 
 ### Where to next?
 
-To learn more about the **Cypher** language, visit the **[Cypher manual](../../../cypher-manual/overview)** or **[Memgraph Playground](https://playground.memgraph.com/)** for interactive guides.
-For real-world examples of how to use Memgraph, we strongly suggest going through one of the available **[Tutorials](../../tutorials/tutorials.md)**. 
-Details on what can be stored in Memgraph can be found in the article about **[Data storage](../../concepts/storage.md)**.
+To learn more about the **Cypher** language, visit the **[Cypher manual](/cypher-manual)** or **[Memgraph Playground](https://playground.memgraph.com/)** for interactive guides.
+For real-world examples of how to use Memgraph, we strongly suggest going through one of the available **[Tutorials](/tutorials/tutorials.md)**. 
+Details on what can be stored in Memgraph can be found in the article about **[Data storage](/concepts/storage.md)**.
 
 ### Getting help
 
-Visit the **[Getting help](../../getting-help/getting-help.md)** page in case you run into any kind of problem or you have additional questions.
+Visit the **[Getting help](/getting-help/getting-help.md)** page in case you run into any kind of problem or you have additional questions.
