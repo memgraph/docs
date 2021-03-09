@@ -52,6 +52,7 @@ module.exports = {
         'tutorials/graphing-the-premier-league',
         'tutorials/marvel-universe',
         'tutorials/movie-recommendation',
+        'tutorials/got-deaths',
         'tutorials/social-network-analysis',
         'tutorials/understanding-music-with-modules'],
     },
