@@ -30,40 +30,15 @@ Each movie can be connected with `:ofGenre` edge to different genres.
 A user can rate some movie. Rating is modeled with `:Rating` edge
 and this edge has property `score` &mdash; float number between 0 and 5.
 
-![](../data/movie_metagraph.png)
+![Movies](../data/movie_metagraph.png)
 
-### Importing the snapshot
+## Importing the dataset
 
-We have prepared a database snapshot for this example, so the user can easily
-import it when starting Memgraph using the `--data-directory` option.
+To import the dataset, download the [Memgraph Lab](https://memgraph.com/product/lab) 
+desktop application and navigate to the `Datasets` tab in the sidebar. From there, 
+choose the dataset `MovieLens: Movies, genres and users` and continue with the tutorial.
 
-```plaintext
-sudo -u memgraph \
-  /usr/lib/memgraph/memgraph --data-directory /usr/share/memgraph/examples/Movie \
-    --storage-snapshot-interval-sec=0 --storage-wal-enabled=false \
-    --storage-snapshot-on-exit=false --storage-properties-on-edges=true
-```
-When using Memgraph installed from DEB or RPM package, the currently running
-Memgraph server may need to be stopped before importing the example. The user
-can do so using the following command:
-
-```plaintext
-systemctl stop memgraph
-```
-When using Docker, the example can be imported with the following command:
-
-```plaintext
-docker run -p 7687:7687 \
-  -v mg_lib:/var/lib/memgraph -v mg_log:/var/log/memgraph -v mg_etc:/etc/memgraph \
-  memgraph --data-directory /usr/share/memgraph/examples/Movie \
-  --storage-snapshot-interval-sec=0 --storage-wal-enabled=false \
-  --storage-snapshot-on-exit=false --storage-properties-on-edges=true
-```
-
-The user should note that any modifications of the database state will persist
-only during this run of Memgraph.
-
-### Example queries
+## Example queries
 
 1) List first 10 movies sorted by title
 

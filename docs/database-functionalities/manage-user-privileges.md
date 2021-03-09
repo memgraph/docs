@@ -60,7 +60,7 @@ We could naturally cluster those privileges into groups:
   * Privilege to view and alter users, roles and privileges (`AUTH`)
 
 If you are unfamiliar with any of these commands, you can look them up in our
-[Cypher manual](../../cypher-manual/overview).
+[Cypher manual](/cypher-manual).
 
 Similarly, the complete list of commands which can be executed under `AUTH`
 privilege can be viewed in the

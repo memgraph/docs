@@ -4,8 +4,6 @@ title: Analyzing TED Talks
 sidebar_label: Analyzing TED Talks
 ---
 
-## Analyzing TED Talks
-
 This article is a part of a series intended to show how to use Memgraph
 on real-world data to retrieve some interesting and useful
 information.
@@ -13,7 +11,7 @@ information.
 We highly recommend checking out the other articles from this series which
 are listed in our [tutorial overview section](./tutorials.md).
 
-### Introduction
+## Introduction
 
 [TED](https://www.ted.com/) is a nonprofit organization devoted to spreading
 ideas, usually in the form of short, powerful talks.
@@ -22,7 +20,7 @@ topics &mdash; from science to business to global issues.
 Here we present a small dataset which consists of 97 talks, show how to model
 this data as a graph and demonstrate a few example queries.
 
-### Data Model
+## Data Model
 
 * Each TED talk has a main speaker, so we
 identify two types of nodes &mdash; `Talk` and `Speaker`. 
@@ -41,42 +39,21 @@ predefined string values. Therefore we add node `Rating` with these values as
 property `name` and relationship`HasRating` with property `user_count` between
 talk and rating nodes.
 
-![](../data/TED_metagraph.png)
+![TED](../data/TED_metagraph.png)
 
-### Importing the Snapshot
+## Exploring the dataset
 
-We have prepared a database snapshot for this example, so the user can easily
-import it when starting Memgraph using the `--data-directory` option.
+You have two options for exploring this dataset. 
+If you just want to take a look at the dataset and try out a few queries, open 
+[Memgraph Playground](https://playground.memgraph.com/) and continue with 
+the tutorial there. Note that you will not be able to execute `write` operations.
 
-```plaintext
-sudo -u memgraph \
-  /usr/lib/memgraph/memgraph --data-directory /usr/share/memgraph/examples/TEDTalk \
-    --storage-snapshot-interval-sec=0 --storage-wal-enabled=false \
-    --storage-snapshot-on-exit=false --storage-properties-on-edges=true
-```
+On the other hand, if you would like to add changes to the dataset, download the 
+[Memgraph Lab](https://memgraph.com/product/lab) desktop application and navigate 
+to the `Datasets` tab in the sidebar. From there, choose the dataset 
+`TED talks` and continue with the tutorial.
 
-When using Memgraph installed from a Debian or RPM package, 
-the currently running Memgraph server needs to be stopped before 
-importing the example, using the following command:
-
-```plaintext
-systemctl stop memgraph
-```
-
-When using Docker, the example can simply be imported with the following command:
-
-```plaintext
-docker run -p 7687:7687 \
-  -v mg_lib:/var/lib/memgraph -v mg_log:/var/log/memgraph -v mg_etc:/etc/memgraph \
-  memgraph --data-directory /usr/share/memgraph/examples/TEDTalk \
-  --storage-snapshot-interval-sec=0 --storage-wal-enabled=false \
-  --storage-snapshot-on-exit=false --storage-properties-on-edges=true
-```
-
-The user should note that any modifications of the database state will persist
-only during this run of Memgraph.
-
-### Example queries using Cypher
+## Example queries using Cypher
 
 In the queries below, we are using [Cypher](/cypher-manual) 
 to query Memgraph via the console.

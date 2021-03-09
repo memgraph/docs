@@ -57,42 +57,21 @@ Now, the data we'll be using in our queries can be classified as follows:
 
 A visual scheme of our graph database is given below.
 
-![](../data/mcu_metagraph.png)
+![MCU](../data/mcu_metagraph.png)
 
-### Importing the snapshot
+## Exploring the dataset
 
-We have prepared a database snapshot for this example, so the user can easily
-import it when starting Memgraph using the `--data-directory` option.
+You have two options for exploring this dataset. 
+If you just want to take a look at the dataset and try out a few queries, open 
+[Memgraph Playground](https://playground.memgraph.com/) and continue with 
+the tutorial there. Note that you will not be able to execute `write` operations.
 
-```plaintext
-sudo -u memgraph \
-  /usr/lib/memgraph/memgraph --data-directory /usr/share/memgraph/examples/Marvel \
-    --storage-snapshot-interval-sec=0 --storage-wal-enabled=false \
-    --storage-snapshot-on-exit=false --storage-properties-on-edges=true
-```
+On the other hand, if you would like to add changes to the dataset, download the 
+[Memgraph Lab](https://memgraph.com/product/lab) desktop application and navigate 
+to the `Datasets` tab in the sidebar. From there, choose the dataset 
+`Marvel Comic Universe social network` and continue with the tutorial.
 
-When using Memgraph installed from DEB or RPM package, the currently running
-Memgraph server may need to be stopped before importing the example. The user
-can do so using the following command:
-
-```plaintext
-systemctl stop memgraph
-```
-
-When using Docker, the example can be imported with the following command:
-
-```plaintext
-docker run -p 7687:7687 \
-  -v mg_lib:/var/lib/memgraph -v mg_log:/var/log/memgraph -v mg_etc:/etc/memgraph \
-  memgraph --data-directory /usr/share/memgraph/examples/Marvel \
-  --storage-snapshot-interval-sec=0 --storage-wal-enabled=false \
-  --storage-snapshot-on-exit=false --storage-properties-on-edges=true
-```
-
-The user should note that any modifications of the database state will persist
-only during this run of Memgraph.
-
-### Example queries using Cypher
+## Example queries using Cypher
 
 In the queries below, we are, as usual, using [Cypher](/cypher-manual)
 to query Memgraph via the console.
@@ -227,7 +206,7 @@ And that, folks, is all there is to it, so go and try out some graph magic of yo
 
 If you're interested in the PageRank algorithm, we recommend you start [here](https://en.wikipedia.org/wiki/PageRank).
 
-### Nifty things you could do
+## Nifty things you could do
 
 While the thing we've shown you how to do might be fun for a while, there are
 loads of cool things you could do to improve the fun-factor. Here's a very short

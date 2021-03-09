@@ -47,49 +47,39 @@ the users. You can find a more detailed explanation of the dataset on the
 [GitHub](https://github.com/benedekrozemberczki/datasets#deezer-social-networks)
 alongside many more similar datasets kindly provided by the same authors.
 
-## Importing the snapshot and defining a directory with user modules
+## Importing the dataset
 
-We have prepared a database snapshot for this example, so the user can easily
-import it when starting Memgraph using the `--data-directory` option.
+To import the dataset, download the [Memgraph Lab](https://memgraph.com/product/lab) 
+desktop application and navigate to the `Datasets` tab in the sidebar. From there, 
+choose the dataset `Music genres social network` and continue with the tutorial.
 
-Also, we need to set up the directory from which the Memgraph will search for
-the query modules by changing the `--query-modules-directory` flag in the main
+## Defining a directory with query modules
+
+We need to set up the directory from which Memgraph will search for
+custom query modules by changing the `--query-modules-directory` flag in the main
 configuration file(`/etc/memgraph/memgraph.conf`) or by supplying it as a
 command-line parameter using the directory containing our modules as the value.
 For a more detailed explanation take a look at 
 [Load and call query modules](../database-functionalities/query-modules/load-call-query-modules.md).
 
-```plaintext
-sudo -u memgraph \
-  /usr/lib/memgraph/memgraph --data-directory /usr/share/memgraph/examples/Music \
-   --storage-snapshot-interval-sec=0 --storage-wal-enabled=false \
-   --storage-snapshot-on-exit=false --storage-properties-on-edges=true \
-   --query-modules-directory=/modules
+```
+sudo -u memgraph /usr/lib/memgraph/memgraph --query-modules-directory=/modules
 ```
 
-When using Memgraph installed from DEB or RPM package, the currently running
-Memgraph server may need to be stopped before importing the example. The user
-can do so using the following command:
+When using Memgraph installed from a DEB or RPM package, the currently running
+Memgraph server may need to be stopped. The user can do so using the following command:
 
-```plaintext
+```
 systemctl stop memgraph
 ```
 
-When using Docker, the example can be imported with the following command
-(notice how we need to mount the query module directory first):
+When using Docker, the query module directory can be mounted with the following command:
 
 ```plaintext
 docker run -p 7687:7687 \
-  -v mg_lib:/var/lib/memgraph -v mg_log:/var/log/memgraph -v mg_etc:/etc/memgraph \
   -v $(pwd)/modules:/modules \
-  memgraph --data-directory /usr/share/memgraph/examples/Music \
-  --storage-snapshot-interval-sec=0 --storage-wal-enabled=false \
-  --storage-snapshot-on-exit=false --storage-properties-on-edges=true \
-  --query-modules-directory=/modules
+  memgraph --query-modules-directory=/modules
 ```
-
-The user should note that any modifications of the database state will persist
-only during this run of Memgraph.
 
 ## Example queries and procedures
 

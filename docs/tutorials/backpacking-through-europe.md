@@ -41,42 +41,21 @@ neighboring countries. This edge also has the `eu_border` property.
 Every city node is connected to its parent country node via the `:Inside`
 edge.
 
-![](../data/backpacking_metagraph.png)
+![Backpacking](../data/backpacking_metagraph.png)
 
-## Importing the Snapshot
+## Exploring the dataset
 
-We have prepared a database snapshot for this example, so the user can easily
-import it when starting Memgraph using the `--data-directory` option.
+You have two options for exploring this dataset. 
+If you just want to take a look at the dataset and try out a few queries, open 
+[Memgraph Playground](https://playground.memgraph.com/) and continue with 
+the tutorial there. Note that you will not be able to execute `write` operations.
 
-```plaintext
-sudo -u memgraph \
-  /usr/lib/memgraph/memgraph --data-directory /usr/share/memgraph/examples/Backpacking \
-    --storage-snapshot-interval-sec=0 --storage-wal-enabled=false \
-    --storage-snapshot-on-exit=false --storage-properties-on-edges=true
-```
+On the other hand, if you would like to add changes to the dataset, download the 
+[Memgraph Lab](https://memgraph.com/product/lab) desktop application and navigate 
+to the `Datasets` tab in the sidebar. From there, choose the dataset 
+`Backpacking through Europe` and continue with the tutorial.
 
-When using Memgraph installed from DEB or RPM package, the currently running
-Memgraph server may need to be stopped before importing the example. The user
-can do so using the following command:
-
-```plaintext
-systemctl stop memgraph
-```
-
-When using Docker, the example can be imported with the following command:
-
-```plaintext
-docker run -p 7687:7687 \
-  -v mg_lib:/var/lib/memgraph -v mg_log:/var/log/memgraph -v mg_etc:/etc/memgraph \
-  memgraph --data-directory /usr/share/memgraph/examples/Backpacking \
-  --storage-snapshot-interval-sec=0 --storage-wal-enabled=false \
-  --storage-snapshot-on-exit=false --storage-properties-on-edges=true
-```
-
-The user should note that any modifications of the database state will persist
-only during this run of Memgraph.
-
-## Example Queries
+## Example queries
 
 1) Let's list the top 10 cities with the cheapest hostels by cost per night
 from the European Backpacker Index.

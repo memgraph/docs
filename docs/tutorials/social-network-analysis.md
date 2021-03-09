@@ -18,44 +18,11 @@ The nodes in the graph represent the members while the relationships between the
   style={{height: 400}}
 />
 
-## Importing the data
+## Importing the dataset
 
-The simplest way of populating our database is by using the built-in [CSV Import Tool](/database-functionalities/import-data.md). The CSV files for this data set can be downloaded [from here](https://github.com/g-despot/sng-tutorial). 
-
-Use the following command to import the files:
-
-```
-sudo -u memgraph mg_import_csv --nodes nodes.csv --relationships relationships.csv
-```
-
-If you are using Memgraph with Docker, there are a few more steps. First, we need to copy the CSV files where the Docker image can see them by executing the following commands:
-
-```
-docker container create --name mg_import_helper -v mg_import:/import-data busybox
-
-docker cp nodes.csv mg_import_helper:/import-data
-
-docker cp relationships.csv mg_import_helper:/import-data
-
-docker rm mg_import_helper
-```
-
-Now we can run the importer with the following command:
-
-```
-docker run -v mg_lib:/var/lib/memgraph \
-    -v mg_etc:/etc/memgraph -v mg_import:/import-data \
-    --entrypoint=mg_import_csv memgraph --nodes /import-data/nodes.csv \
-    --relationships /import-data/relationships.csv
-```
-
-The data is imported and you can start Memgraph by executing the following command:
-
-```
-docker run -p 7687:7687 -v mg_lib:/var/lib/memgraph -v mg_log:/var/log/memgraph -v mg_etc:/etc/memgraph memgraph
-```
-
-To learn more about the CSV Import Tool visit the how-to guide: [Import data](../database-functionalities/import-data.md).
+To import the dataset, download the [Memgraph Lab](https://memgraph.com/product/lab) 
+desktop application and navigate to the `Datasets` tab in the sidebar. From there, 
+choose the dataset `Karate club friendship network` and continue with the tutorial.
 
 ## Using existing NetworkX algorithms
 

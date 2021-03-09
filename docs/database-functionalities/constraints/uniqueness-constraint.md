@@ -73,5 +73,5 @@ Now, `SHOW CONSTRAINT INFO;` yields an empty set.
 
 ### Where to next?
 
-To learn more about Memgraph's functionalities, visit the **[Reference guide](../../reference-guide)**.
+To learn more about Memgraph's functionalities, visit the **[Reference guide](/reference-guide)**.
 For real-world examples of how to use Memgraph, we strongly suggest going through one of the available **[Tutorials](../../tutorials/tutorials.md)**.
