@@ -20,6 +20,7 @@ So far we have covered the following topics with basic tutorials:
   * [Movie Recommendation System](movie-recommendation.md)
   * [Marvel Comic Universe Social Network](marvel-universe.md)
   * [Football Transfers](football-transfers.md)
+  * [Game of Thrones deaths](got-deaths.md)
 
 If you are looking for more complex tutorials that include the usage of database 
 functionalities such as query modules, then take a look at these:
