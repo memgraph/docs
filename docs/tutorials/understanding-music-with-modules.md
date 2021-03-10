@@ -194,6 +194,7 @@ graph to `networkX.Graph`.
 ```python
 import networkx as nx
 import networkx.algorithms as nxa
+import itertools
 
 
 def _create_undirected_graph(context: mgp.ProcCtx) -> nx.Graph:
