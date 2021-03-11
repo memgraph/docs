@@ -40,7 +40,7 @@ mgp.Record(name=str, value=str)
 
 Return all information:
 
-    CALL graph_analyzer.analyze() WITH YIELD * ;
+    CALL graph_analyzer.analyze() YIELD * ;
 
 Call with parameter:
 
