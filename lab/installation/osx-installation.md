@@ -17,7 +17,7 @@ sidebar_label: Install on macOS
 Docker is the easiest way to run Memgraph. Once you have successfully installed
 Docker, you will now install the Memgraph Docker image and import it.  Download
 the latest version of the Memgraph Docker Image by visiting [the download
-page](https://memgraph.com/download). 
+page](https://memgraph.com/download).
 
 ![](../data/download_memgraph.png)
 
@@ -65,7 +65,7 @@ Enterprise users and are not required if you’re using Memgraph Core.
 
 The default connection string set to `bolt://localhost:7687`. If you're using a
 different port you will have to change the connection string to point to that
-port. i.e. `bolt://localhost:<your port number>`
+port, i.e. `bolt://localhost:<your port number>`.
 
 Click on connect and you should be presented with the following dashboard:
 
@@ -84,7 +84,7 @@ to Memgraph. You are now ready to start building your graph and queries.
 
 ## Step 3 - Create a Simple Graph
 
-Let’s create a simple graph and run some queries. This will make sure
+Let's create a simple graph and run some queries. This will make sure
 everything is running properly.
 
 Go to the "Queries" tab or click the "+" Icon, enter the following openCypher
