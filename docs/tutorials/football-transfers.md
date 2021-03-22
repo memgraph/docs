@@ -105,21 +105,18 @@ loaded in Memgraph, we are ready to gain some information out of it.
 As mentioned before, transfers fees are represented in millions of euros.
 
 ```cypher
-MATCH
-    (t:Transfer)<-[:TRANSFERRED_IN]-(p:Player)
-WHERE
-    t.fee is NOT NULL
-RETURN ROUND(t.fee) + 'M €' as transfer_fee, p.name AS player_name
-ORDER BY t.fee DESC LIMIT 20;
+MATCH (t:Transfer)<-[:TRANSFERRED_IN]-(p:Player)
+WHERE t.fee is NOT NULL
+RETURN ROUND(t.fee) + 'M €' as transfer_fee, p.name as player_name
+ORDER BY t.fee DESC
+LIMIT 20;
 ```
 
 2) What about finding the most expensive transfer per season?
 
 ```cypher
-MATCH
-    (s:Season)<-[:HAPPENED_IN]-(t:Transfer)<-[:TRANSFERRED_IN]-(:Player)
-WHERE
-    t.fee is NOT NULL
+MATCH (s:Season)<-[:HAPPENED_IN]-(t:Transfer)<-[:TRANSFERRED_IN]-(:Player)
+WHERE t.fee is NOT NULL
 WITH s.name as season_name, MAX(t.fee) as max_fee
 RETURN ROUND(max_fee) + 'M €' as max_transfer_fee, season_name
 ORDER BY max_fee DESC;
@@ -130,12 +127,9 @@ If you wish to check the teams for another player, replace "Sime Vrsaljko"
 with the name of your favorite player.
 
 ```cypher
-MATCH
-    (player:Player)-[:TRANSFERRED_IN]->(t:Transfer)-[]-(team:Team)
-WHERE
-    player.name = "Sime Vrsaljko"
+MATCH (player:Player {name: "Sime Vrsaljko"})-[:TRANSFERRED_IN]->(t:Transfer)-[]-(team:Team)
 WITH DISTINCT team
-RETURN team.name AS team_name;
+RETURN team.name as team_name;
 ```
 
 You might wonder why we haven't specified a direction in our Cypher traversal with `(:Transfer)-[]-(:Team)`.
@@ -147,12 +141,11 @@ omit the arrow (`>`, `<`) in our Cypher command.
 count them by the player game position.
 
 ```cypher
-MATCH
-    (team:Team)<-[:TRANSFERRED_TO]-(t:Transfer)<-[:TRANSFERRED_IN]-(player:Player)
-WHERE
-    team.name = "FC Barcelona"
+MATCH (team:Team {name: "FC Barcelona"})<-[:TRANSFERRED_TO]-(t:Transfer)<-[:TRANSFERRED_IN]-(player:Player)
 WITH DISTINCT player
-RETURN player.position as player_position, COUNT(player) AS position_count, collect(player.name) as player_names
+RETURN player.position as player_position,
+       COUNT(player) AS position_count,
+       collect(player.name) as player_names
 ORDER BY position_count DESC;
 ```
 
@@ -163,12 +156,11 @@ FC Barcelona and Real Madrid.
 
 ```cypher
 MATCH
-    (m:Team)-[:TRANSFERRED_FROM]-(t:Transfer)-[:TRANSFERRED_TO]-(n:Team),
-    (t)<-[:TRANSFERRED_IN]-(p:Player)
-WHERE
-    (m.name = "FC Barcelona" AND n.name = "Real Madrid") OR
-    (m.name = "Real Madrid" AND n.name = "FC Barcelona")
-RETURN m.name as transferred_from_team, p.name as player_name, n.name as transfered_to_team;
+  (:Team {name: "FC Barcelona"})-[r1]-(t:Transfer)-[r2]-(:Team {name: "Real Madrid"}),
+  (t)<-[:TRANSFERRED_IN]-(p:Player)
+RETURN p.name as player_name,
+       substring(type(r1), 12) as barcelona_side,
+       substring(type(r2), 12) as madrid_side
 ```
 
 6) FC Barcelona is one of the most valuable football clubs in the world. Players often want to play there as long as possible.
@@ -178,9 +170,10 @@ But what about those players who didn't fit in well? Where do they go?
 MATCH
     (m:Team)-[:TRANSFERRED_FROM]->(t:Transfer)<-[:TRANSFERRED_IN]-(p:Player),
     (t)-[:TRANSFERRED_TO]->(n:Team)
-WHERE
-    m.name = "FC Barcelona"
-RETURN n.name as team_name, collect(p.name) as player_names, COUNT(p) AS number_of_players
+WHERE m.name = "FC Barcelona"
+RETURN n.name as team_name,
+       collect(p.name) as player_names,
+       COUNT(p) as number_of_players
 ORDER BY number_of_players DESC;
 ```
 
@@ -188,12 +181,12 @@ ORDER BY number_of_players DESC;
 
 ```cypher
 MATCH
-    (season:Season)<-[:HAPPENED_IN]-(t:Transfer)<-[:TRANSFERRED_IN]-(player:Player),
+    (season:Season {name: "2003/2004"})<-[:HAPPENED_IN]-(t:Transfer)<-[:TRANSFERRED_IN]-(player:Player),
     (t)-[:TRANSFERRED_TO]->(team:Team)
-WHERE
-    season.name = "2003/2004"
 WITH DISTINCT player, team
-RETURN team.name as team_name, COUNT(player) AS number_of_players, collect(player.name) as player_names
+RETURN team.name as team_name,
+       COUNT(player) as number_of_players,
+       collect(player.name) as player_names
 ORDER BY number_of_players DESC, team_name
 LIMIT 20;
 ```
@@ -205,12 +198,11 @@ club "FC Barcelona" spent money on in season 2015/2016.
 ```cypher
 MATCH
     (:Team)-[:TRANSFERRED_FROM]->(t:Transfer)<-[:TRANSFERRED_IN]-(player:Player),
-    (s:Season)<-[:HAPPENED_IN]-(t)-[:TRANSFERRED_TO]->(m:Team)
-WHERE
-    t.fee IS NOT NULL AND
-    s.name = "2015/2016" AND
-    m.name = "FC Barcelona"
-RETURN collect(player.name) AS player_names, player.position AS player_position, ROUND(SUM(t.fee)) + 'M €' AS money_spent_per_position
+    (s:Season {name: "2015/2016"})<-[:HAPPENED_IN]-(t)-[:TRANSFERRED_TO]->(m:Team {name: "FC Barcelona"})
+WHERE t.fee IS NOT NULL
+RETURN collect(player.name) as player_names,
+       player.position as player_position,
+       ROUND(SUM(t.fee)) + 'M €' as money_spent_per_position
 ORDER BY money_spent_per_position DESC;
 ```
 
@@ -219,11 +211,10 @@ ORDER BY money_spent_per_position DESC;
 ```cypher
 MATCH
     (:Team)-[:TRANSFERRED_FROM]->(t:Transfer)<-[:TRANSFERRED_IN]-(player:Player),
-    (t)-[:TRANSFERRED_TO]->(team:Team)
-WHERE
-    t.fee IS NOT NULL AND
-    team.name = "FC Barcelona"
-RETURN MAX(t.fee) + 'M €' AS max_money_spent, player.position as player_position
+    (t)-[:TRANSFERRED_TO]->(team:Team {name: "FC Barcelona"})
+WHERE t.fee IS NOT NULL
+RETURN MAX(t.fee) + 'M €' AS max_money_spent,
+       player.position as player_position
 ORDER BY max_money_spent DESC;
 ```
 
@@ -231,20 +222,12 @@ ORDER BY max_money_spent DESC;
 
 ```cypher
 MATCH
-    (team:Team)<-[:TRANSFERRED_TO]-(t:Transfer)<-[:TRANSFERRED_IN]-(p:Player),
+    (team:Team {name: "FC Barcelona"})<-[:TRANSFERRED_TO]-(t:Transfer)<-[:TRANSFERRED_IN]-(p:Player),
     (t)-[:HAPPENED_IN]->(s:Season)
-WHERE
-    t.fee is NOT NULL AND
-    team.name = "FC Barcelona"
+WHERE t.fee is NOT NULL
 WITH p.position as player_position, max(t.fee) as max_fee
-MATCH
-    (p:Player)-[:TRANSFERRED_IN]->(t:Transfer)-[:TRANSFERRED_TO]->(team:Team)
-WHERE
-    p.position = player_position AND
-    t.fee = max_fee AND
-    team.name = "FC Barcelona"
-RETURN
-    max_fee, player_position, collect(p.name) as player_names
+MATCH (p:Player {position: player_position})-[:TRANSFERRED_IN]->(t:Transfer {fee: max_fee})-[:TRANSFERRED_TO]->(team:Team {name: "FC Barcelona"})
+RETURN max_fee, player_position, collect(p.name) as player_names
 ORDER BY max_fee DESC;
 ```
 
@@ -258,21 +241,13 @@ fee equal to the maximum one from the previous query.
 11) If you want to find all player transfers between two clubs you can do that also.
 
 ```cypher
-MATCH
-    (t:Transfer)<-[:TRANSFERRED_IN]-(player:Player)-[:TRANSFERRED_IN]->(:Transfer)<-[:TRANSFERRED_FROM]-(team:Team)
-WHERE
-    team.name = "FC Barcelona"
+MATCH (t:Transfer)<-[:TRANSFERRED_IN]-(player:Player)-[:TRANSFERRED_IN]->(:Transfer)<-[:TRANSFERRED_FROM]-(team:Team {name: "FC Barcelona"})
 WITH player, collect(t) as transfers
-MATCH
-    player_path = (a:Team)-[*bfs..10 (e, n | 'Team' IN labels(n) OR ('Transfer' in labels(n) AND n in transfers) )]->(b:Team)
-WHERE
-    a.name = "FC Barcelona" AND
-    b.name = "Sevilla FC"
+MATCH player_path = (a:Team {name: "FC Barcelona"})-[*bfs..10 (e, n | 'Team' IN labels(n) OR ('Transfer' in labels(n) AND n in transfers) )]->(b:Team {name: "Sevilla FC"})
 UNWIND nodes(player_path) as player_path_node
 WITH player_path_node, player
 WHERE 'Team' in labels(player_path_node)
-WITH collect(player_path_node.name) as team_names, player
-RETURN player.name as player_name, team_names;
+RETURN player.name as player_name, collect(player_path_node.name) as team_names
 ```
 In the above query, we will find all players that transferred from "FC Barcelona" to "Sevilla FC". It
 will include direct transfers (from "FC Barcelona" to "Sevilla FC") and indirect transfers (from "FC Barcelona"
