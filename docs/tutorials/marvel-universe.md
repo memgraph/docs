@@ -82,10 +82,8 @@ Here are some queries you might find interesting:
 
 ```cypher
 MATCH (s:ComicSeries)-[:IsPartOfSeries]-(c:Comic)
-WITH s.title as Series,
-c as Comic
-return Series, count(Comic) as ComicCount
-ORDER BY Series;
+return s.title as series, count(c) as comics
+ORDER BY series;
 ```
 
 2) List all heroes that have "SPIDER" in their name:
@@ -98,10 +96,17 @@ for. One of the most flexible ways is to use regex matching (represented by the
 regex-matching operator "=~").
 
 ```cypher
-MATCH (h:Hero) WHERE
-h.name =~ ".*SPIDER.+"
-RETURN h.name as PotentialSpiderDude
-ORDER BY PotentialSpiderDude;
+MATCH (hero:Hero)
+WHERE hero.name =~ ".*SPIDER.*"
+RETURN hero.name as hero_name
+```
+
+or
+
+```cypher
+MATCH (hero: Hero)
+WHERE hero.name CONTAINS "SPIDER"
+RETURN hero.name as hero_name
 ```
 
 We recommend you search for your heroes of interest this way, which might save you
@@ -111,8 +116,8 @@ some time!
 
 ```cypher
 MATCH (:Hero {name: "SPIDER-MAN/PETER PARKER"})-[:AppearedIn]->(c:Comic)<-[:AppearedIn]-(:Hero {name: "VENOM/EDDIE BROCK"})
-RETURN c.name AS SpideyAndVenomComic
-ORDER BY SpideyAndVenomComic;
+RETURN c.name as comic
+ORDER BY comic
 ```
 
 4) List all the comic series in which Spider-Man/Peter Parker appears:
@@ -127,10 +132,7 @@ ORDER BY SpideySeries;
 
 ```cypher
 MATCH (:Hero {name: "SPIDER-MAN/PETER PARKER"})-[:AppearedIn]->(c:Comic)<-[:AppearedIn]-(h:Hero)
-WITH
-distinct(h) AS SpideyFriend,
-count(h) AS FriendCount
-RETURN SpideyFriend, FriendCount
+RETURN distinct(h) AS SpideyFriend, count(h) AS FriendCount
 ORDER BY FriendCount DESC
 LIMIT 10;
 ```
