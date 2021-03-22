@@ -163,15 +163,13 @@ Let's list our top 10 options sorted by the total trip cost and number of
 cities in the path.
 
 ```cypher
-MATCH path = (n:City {name: "Paris"})-[:CloseTo *3..5]-(m:City {name: "Zagreb"}) 
-WITH nodes(path) AS trip
-WITH extract(city in trip | [city, trip]) AS lst
-UNWIND lst AS rows
-WITH rows[0] AS city, extract(city in rows[1] | city.name) AS trip
-RETURN trip,
-       toInteger(sum(city.total_USD)) AS trip_cost_USD,
-       count(trip) AS city_count
-ORDER BY trip_cost_USD, city_count DESC LIMIT 10;
+MATCH path = (:City {name: "Paris"}) - [:CloseTo * 3..5] - (:City {name: "Zagreb"})
+WITH nodes(path) AS list
+UNWIND list AS rows
+RETURN EXTRACT(city IN list | city.name) AS cities,
+       ROUND(SUM(rows.total_USD)) AS cost,
+       count(list) AS city_count
+ORDER BY cost, city_count DESC LIMIT 10
 ```
 
 Here we can see the usage of the variable length paths.
