@@ -431,7 +431,7 @@ later in the query.
 The clause reads row by row from a CSV file, and binds the contents of the
 parsed row to the variable you specified.
 
-It's important to note that the parser parses the values as strings. It' up to
+It's important to note that the parser parses the values as strings. It's up to
 the user to convert the parsed row values to the appropriate type. This can be
 done using the built-in conversion functions such as `ToInteger`, `ToFloat`,
 `ToBoolean` etc. Consult the documentation on the available conversion functions.
@@ -495,7 +495,9 @@ LOAD CSV FROM "file.csv" WITH HEADER AS row ;
 
 On the other hand, the following query is valid:
 
-`MATCH (n) LOAD CSV FROM "file.csv" WITH HEADER AS row ;`
+```plaintext
+MATCH (n) LOAD CSV FROM "file.csv" WITH HEADER AS row ;
+```
 
 Note that the row variable doesn't have to used in any subsequent clause.
 
@@ -509,7 +511,7 @@ SET n.p = row ;
 ```
 
 Let's say the `MATCH (n)` clause finds five nodes, whereas the "file.csv" has
-only 2 rows. Then only first two nodes returned by the `MATCH (n)` will have
+only 2 rows. Then only the first two nodes returned by the `MATCH (n)` will have
 their properties set, using the two rows from the file.
 Similarly, if the `MATCH (n)` clause finds two nodes, whereas the "file.csv" has
 five rows, the two nodes returned by `MATCH (n)` will have their properties
