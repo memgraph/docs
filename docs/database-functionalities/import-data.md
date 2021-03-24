@@ -518,3 +518,15 @@ five rows, the two nodes returned by `MATCH (n)` will have their properties
 set with values from the first two rows of the file.
 In general, the clause that exhausts its results sooner will dictate how many
 times the "loop" will be executed.
+
+Finally, note that the `LOAD CSV` clause can be used at most once per query.
+Trying to use multiple `LOAD CSV` clauses within a single query will throw an exception.
+In other words, queries such as
+
+```plaintext
+LOAD CSV FROM "x.csv" WITH HEADER as x
+LOAD CSV FROM "y.csv" WITH HEADER as y
+CREATE (n:A { p1 : x, p2 : y });
+```
+
+are invalid.
