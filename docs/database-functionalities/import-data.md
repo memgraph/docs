@@ -496,7 +496,7 @@ LOAD CSV FROM "file.csv" WITH HEADER AS row ;
 On the other hand, the following query is valid:
 
 ```plaintext
-MATCH (n) LOAD CSV FROM "file.csv" WITH HEADER AS row ;
+MERGE (n:A) LOAD CSV FROM "file.csv" WITH HEADER AS row ;
 ```
 
 Note that the row variable doesn't have to used in any subsequent clause.
