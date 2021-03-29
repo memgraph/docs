@@ -92,7 +92,11 @@ module.exports = {
             },
           ]
         },
-        //{to: 'blog', label: 'Blog', position:   'left'},
+        {
+          type: 'docsVersionDropdown',
+          docsPluginId: 'memgraph',
+          position: 'right',
+        },
         {
           href: 'https://github.com/memgraph',
           label: 'GitHub',
@@ -175,19 +179,18 @@ module.exports = {
       '@docusaurus/preset-classic',
       {
         docs: {
+          id: 'memgraph', 
           path: 'docs',
           routeBasePath: 'memgraph',
           sidebarPath: require.resolve('./sidebarsMemgraph.js'),
           editUrl:
             'https://github.com/memgraph/docs/tree/master/',
+            versions: {
+              current: {
+                label: `1.4.0 🚧`,
+              },
+            },
         },
-        /*
-        blog: {
-          showReadingTime: true,
-          editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/blog/',
-        },
-        */
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
