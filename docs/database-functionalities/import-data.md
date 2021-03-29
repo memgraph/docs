@@ -5,9 +5,9 @@ sidebar_label: Import data
 ---
 
 Memgraph comes with tools for importing data into the database. Data can be
-imported using the [CSV import tool](#csv-import-tool), using saved [cypher queries](#importing-cypher-queries)
-with `mg_client` running in non-interactive mode, or programatically using the
-`LOAD CSV` Cypher clause.
+imported programatically using the `LOAD CSV` Cypher clause, using the [CSV import tool](#csv-import-tool),
+or using saved [cypher queries](#importing-cypher-queries) with `mg_client` running
+in non-interactive mode.
 
 :::info
 **NOTE:** `mg_client` is deprecated tool still coming within Memgraph package.
@@ -448,7 +448,7 @@ The value bound to the row variable will be a map of the form:
 ```
 
 To access a given field, you can use the property lookup syntax. Let's assume
-that the CSV file's contents are as follows:
+that the CSV file contents are as follows:
 
 ```plaintext
 x|y|z
@@ -470,7 +470,7 @@ in this mode, there are no restrictions on the number of values a row contains.
 This isn't recommended, as the user must manually handle the varying number of
 values in a row.
 
-Let's assume that the CSV file's contents are as follows:
+Let's assume that the CSV file contents are as follows:
 
 ```plaintext
 1|2|3
@@ -481,7 +481,7 @@ The following query will load row by row from the file, and create a new node
 for each row with properties based on the parsed row values:
 
 ```plaintext
-LOAD CSV "xyz.csv" WITH HEADER DELIMITER "|" AS row
+LOAD CSV "xyz.csv" NO HEADER DELIMITER "|" AS row
 CREATE (n:A {x: ToInteger(row[0]), y: ToInteger(row[1]), z: ToInteger(row[2])}) ; 
   ```
 
@@ -499,7 +499,7 @@ On the other hand, the following query is valid:
 MERGE (n:A) LOAD CSV FROM "file.csv" WITH HEADER AS row ;
 ```
 
-Note that the row variable doesn't have to used in any subsequent clause.
+Note that the row variable doesn't have to be used in any subsequent clause.
 
 Also, it's important to note how the `LOAD CSV` result exhaustion works. Let's
 assume the following query:
