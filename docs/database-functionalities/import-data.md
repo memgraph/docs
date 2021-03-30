@@ -459,7 +459,7 @@ x|y|z
 The following query will load row by row from the file, and create a new node
 for each row with properties based on the parsed row values:
 
-```plaintext
+```cypher
 LOAD CSV "xyz.csv" WITH HEADER DELIMITER "|" AS row
 CREATE (n:A {x: ToInteger(row.x), y: ToInteger(row.y), z: ToInteger(row.z)}) ; 
 ```
@@ -480,7 +480,7 @@ Let's assume that the CSV file contents are as follows:
 The following query will load row by row from the file, and create a new node
 for each row with properties based on the parsed row values:
 
-```plaintext
+```cypher
 LOAD CSV "xyz.csv" NO HEADER DELIMITER "|" AS row
 CREATE (n:A {x: ToInteger(row[0]), y: ToInteger(row[1]), z: ToInteger(row[2])}) ; 
   ```
@@ -489,13 +489,13 @@ The clause can't stand on its own, meaning there has to be at least one more
 clause in the query, in addition to it. In other words, the following query will
 throw an exception:
 
-```plaintext
+```cypher
 LOAD CSV FROM "file.csv" WITH HEADER AS row ;
 ```
 
 On the other hand, the following query is valid:
 
-```plaintext
+```cypher
 MERGE (n:A) LOAD CSV FROM "file.csv" WITH HEADER AS row ;
 ```
 
@@ -504,7 +504,7 @@ Note that the row variable doesn't have to be used in any subsequent clause.
 Also, it's important to note how the `LOAD CSV` result exhaustion works. Let's
 assume the following query:
 
-```plaintext
+```cypher
 MATCH (n)
 LOAD CSV FROM "file.csv" WITH HEADER as row
 SET n.p = row ;
@@ -523,7 +523,7 @@ Finally, note that the `LOAD CSV` clause can be used at most once per query.
 Trying to use multiple `LOAD CSV` clauses within a single query will throw an exception.
 In other words, queries such as
 
-```plaintext
+```cypher
 LOAD CSV FROM "x.csv" WITH HEADER as x
 LOAD CSV FROM "y.csv" WITH HEADER as y
 CREATE (n:A { p1 : x, p2 : y });
