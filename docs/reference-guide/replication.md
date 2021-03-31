@@ -1,7 +1,7 @@
 ---
 id: replication
-title: Replication (Enterprise)
-sidebar_label: Replication (Enterprise)
+title: Replication
+sidebar_label: Replication
 ---
 
 ## User facing setup

@@ -33,7 +33,7 @@ Each configuration setting is in the form: `--setting-name=value`.
 | --query-cost-planner=true | Use the cost-estimating query planner. | `[bool]` |
 | --query-execution-timeout-sec=180 | Maximum allowed query execution time. <br/>Queries exceeding this limit will be aborted. Value of 0 means no limit. | `[uint64]` |
 | --query-max-plans=1000 | Maximum number of generated plans for a query. | `[uint64]` |
-| --query-modules-directory=/usr/lib/memgraph/query-modules | Directory where modules with custom query procedures are stored. | `[string]` |
+| --query-modules-directory=/usr/lib/memgraph/query-modules | Directory where modules with custom query procedures are stored. NOTE: Multiple comma-separated directories can be defined. | `[string]` |
 | --query-plan-cache-ttl=60 | Time to live for cached query plans, in seconds. | `[int32]` |
 | --query-vertex-count-to-expand-existing=10 | Maximum count of indexed vertices which provoke indexed lookup and then expand to existing, <br/>instead of a regular expand. Default is 10, to turn off use -1. | `[int64]` |
 
@@ -61,6 +61,7 @@ Each configuration setting is in the form: `--setting-name=value`.
 | --data-directory=/var/lib/memgraph | Path to directory in which to save all permanent data. | `[string]` |
 | --log-file=/var/log/memgraph/memgraph.log | Path to where the log should be stored. | `[string]` |
 | --log-level | Minimum log level. Allowed values: TRACE, DEBUG, INFO, WARNING, ERROR, CRITICAL | `[string]` |
+| --memory-limit=0 | Total memory limit in MiB. Set to 0 to use the default values which are 100% of the phyisical memory if the swap is enabled and 90% of the physical memory otherwise. |  `[uint64]` |
 | --memory-warning-threshold=1024 | Memory warning threshold, in MB. If Memgraph detects there is less available RAM it will log a warning. <br/>Set to 0 to disable. | `[uint64]` |
 | --telemetry-enabled=true | Set to true to enable telemetry. We collect information about the running system (CPU and memory information) <br/>and information about the database runtime (vertex and edge counts and resource usage) to allow for easier improvement of the product. | `[bool]` |
 

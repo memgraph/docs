@@ -64,7 +64,9 @@ module.exports = {
         'database-functionalities/inspecting-queries',
         'database-functionalities/profiling-queries',
         'database-functionalities/tensorflow-setup',
+        'database-functionalities/replication',
         'reference-guide/backup',
+        'database-functionalities/memory-control',
         {
           type: 'category',
           label: 'Enforcing constraints',
@@ -79,8 +81,7 @@ module.exports = {
             'database-functionalities/query-modules/implement-query-modules'],
         },
         'database-functionalities/manage-user-privileges',
-        'database-functionalities/manage-users-using-ldap',
-        'database-functionalities/replication',],
+        'database-functionalities/manage-users-using-ldap',],
     },
     {
       type: 'category',
@@ -90,6 +91,7 @@ module.exports = {
         'reference-guide/indexing',
         'reference-guide/graph-algorithms',
         'reference-guide/tensorflow',
+        'reference-guide/replication',
         'reference-guide/backup',
         {
           type: 'category',
@@ -109,8 +111,7 @@ module.exports = {
         'reference-guide/security',
         'reference-guide/auth-module',
         'reference-guide/ldap-security',
-        'reference-guide/audit-log',
-        'reference-guide/replication',],
+        'reference-guide/audit-log',],
     },
     {
       type: 'category',

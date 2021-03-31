@@ -38,6 +38,12 @@ allowing natural data transfer between Memgraph and TensorFlow at any point of t
 If you are interested in using Memgraph for machine learning purposes  take a look at:
 * [TensorFlow op Setup](./tensorflow-setup.md) 
 
+## Replication
+
+Memgraph supports replication and the following guide demonstrates how to create a simple cluster of nodes running
+Memgraph instances: 
+* [Replication](./replication.md)
+
 ## Backup
 
 Memgraph comes with a couple of queries that allow you to safely make a backup of the files containing its data:
@@ -54,9 +60,3 @@ To learn more visit:
 Memgraph supports authentication and (optional) authorization using a custom-built external auth module.
 To learn more visit:
 * [Authentication and authorization (Enterprise)](./manage-users-using-ldap.md)
-
-## Replication
-
-Memgraph supports replication and the following guide demonstrates how to create a simple cluster of nodes running
-Memgraph instances: 
-* [Replication (Enterprise)](./replication.md)
