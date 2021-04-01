@@ -62,7 +62,7 @@ and `position` (e.g. `"Central Midfield"`).
 * `Transfer` - represents football transfer that connects a `Player`
 that is transferred from one `Team` to another `Team`
 within a `Season`. Transfer contains one optional property `fee` (e.g. `80.50`)
-that represents a transfer fee in millions of euros and one regular property `year` (e.g `1995`)
+that represents a transfer fee in millions of euros and one regular property `year` (e.g. `1995`)
 that represents how old was a player when the transfer occurred.
 * `Season` - a football season with two properties `name` (e.g. `"2019/2020"`)
 and `year` (e.g. `2019`).
@@ -82,14 +82,14 @@ that was transferred in the connected transfer.
 
 ## Exploring the dataset
 
-You have two options for exploring this dataset. 
-If you just want to take a look at the dataset and try out a few queries, open 
-[Memgraph Playground](https://playground.memgraph.com/) and continue with 
+You have two options for exploring this dataset.
+If you just want to take a look at the dataset and try out a few queries, open
+[Memgraph Playground](https://playground.memgraph.com/) and continue with
 the tutorial there. Note that you will not be able to execute `write` operations.
 
-On the other hand, if you would like to add changes to the dataset, download the 
-[Memgraph Lab](https://memgraph.com/product/lab) desktop application and navigate 
-to the `Datasets` tab in the sidebar. From there, choose the dataset 
+On the other hand, if you would like to add changes to the dataset, download the
+[Memgraph Lab](https://memgraph.com/product/lab) desktop application and navigate
+to the `Datasets` tab in the sidebar. From there, choose the dataset
 `Football player's transfers` and continue with the tutorial.
 
 ## Example queries using Cypher

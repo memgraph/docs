@@ -4,8 +4,8 @@ title: Style script reference guide
 sidebar_label: Reference guide
 ---
 
-Style script is a language for customizing the visual display of graphs. The main 
-building blocks of style script are expressions and directives. Style script 
+Style script is a language for customizing the visual display of graphs. The main
+building blocks of style script are expressions and directives. Style script
 files are a sequence of expressions and directives.
 
 ## Expressions
@@ -13,25 +13,25 @@ files are a sequence of expressions and directives.
 Expressions are used to combine values to create new values using functions. For
 example expression
 ```
-Add(2, 5) 
+Add(2, 5)
   -> 7
 ```
 creates a new value 7 from values 2 and 5. There are a lot of functions built into style script so there are even more ways to combine values. There is even a
 function to create new functions.
 
-When expressions are evaluated, values are created. There are several types of 
+When expressions are evaluated, values are created. There are several types of
 style script values: `Boolean`, `Color`, `Number`, `String`, `Array`,
 `Dictionary`, `Function`and `Null`.
 
-An expression can be either literal expressions, name expressions or function 
-applications. Literal expressions exist for `Color`s, `Number`s and `String`s. 
+An expression can be either literal expressions, name expressions or function
+applications. Literal expressions exist for `Color`s, `Number`s and `String`s.
 
 This is a literal expression for `String`s.
 ```
 "Hello"
   -> Hello
 ```
-It evaluates to the value `"Hello"` of type `String`. The newline character and 
+It evaluates to the value `"Hello"` of type `String`. The newline character and
 double quotes can be escaped in strings using \\ (backslash).
 ```
 "In the end he said: \"I am Iron Man!\""
@@ -46,7 +46,7 @@ These are literal expressions for `Number`s.
   -> 3.14159
 ```
 
-Literal expressions for colors are hex strings starting with '#'. This is a 
+Literal expressions for colors are hex strings starting with '#'. This is a
 literal expression for the color red.
 ```
 #ff0000
@@ -54,20 +54,20 @@ literal expression for the color red.
 ```
 
 Name expressions are names that can be evaluated if there are values bound to
-them in the environment (lexical scope). Names can start with any of the 
-lower case or upper case letters of the English alphabet and apart from those can 
-contain digits and the following characters: ?, !, $, -, _, ., *. Names can be 
+them in the environment (lexical scope). Names can start with any of the
+lower case or upper case letters of the English alphabet and apart from those can
+contain digits and the following characters: ?, !, $, -, _, ., *. Names can be
 defined using the `Define` function.
 ```
 Define(superhero, "Iron Man")
 superhero
   -> Iron Man
 ```
-In the previous example the value `"Iron Man"` was bound to the name 
-`superhero`. After that name expression `superhero` evaluates to the value 
-`"Iron Man"` fo type `String`.
+In the previous example the value `"Iron Man"` was bound to the name
+`superhero`. After that name expression `superhero` evaluates the value
+`"Iron Man"` to type `String`.
 
-There are many built-in names that are bound to useful values. Most used are 
+There are many built-in names that are bound to useful values. Most used are
 boolean values which are bound to `True` and `False` and null value which is
 bound to `Null`. Also, all the CSS web colors are bound to their names.
 ```
@@ -77,7 +77,7 @@ forestgreen
   -> #228b22
 ```
 
-The third type of expressions are function application expressions. A function can 
+The third type of expressions are function application expressions. A function can
 be applied to the list of expressions (arguments) in the following way.
 ```
 Concat("Agents", " ", "of", " ", "S.H.I.E.L.D.")
@@ -86,7 +86,7 @@ Concat("Agents", " ", "of", " ", "S.H.I.E.L.D.")
 Here the function `Concat` was applied to the list of string literal expressions
 to produce their concatenation. Any expression can be an argument.
 
-Not all expressions have to be evaluated. For example, when calling `If` 
+Not all expressions have to be evaluated. For example, when calling `If`
 function one argument will not be evaluated.
 ```
 Define(mood, "happy")
@@ -99,12 +99,12 @@ If(Equals?(mood, "happy"),
 In the previous example expression `Format("{} is not happy today", name)` will
 not be evaluated because its value is not needed.
 
-Some other function will not evaluate their arguments because they are 
-interested in their names and not values. For example, when creating a new 
-function argument names aren't evaluated, but are remembered to be later bound 
+Some other function will not evaluate their arguments because they are
+interested in their names and not values. For example, when creating a new
+function argument names aren't evaluated, but are remembered to be later bound
 to the function arguments when the function is called.
 ```
-Define(square, Fucntion(x, Mul(x, x)))
+Define(square, Function(x, Mul(x, x)))
 square(2)
   -> 4
 ```
@@ -117,10 +117,10 @@ be evaluated.
 ## Directives
 
 Directives are the second building block of style script. Directive names start
-with '@'. The name is followed by the optional expression (filter) which is 
-followed by an opening curly brace, directive body and a closing curly brace. 
-The directive body is a list of pairs of property names and expressions. 
-Property names and expressions are separated by a colon and after every 
+with '@'. The name is followed by the optional expression (filter) which is
+followed by an opening curly brace, directive body and a closing curly brace.
+The directive body is a list of pairs of property names and expressions.
+Property names and expressions are separated by a colon and after every
 expression a newline must follow. The directive structure is the following.
 ```
 @<DirectiveName> <expression>? {
@@ -130,10 +130,10 @@ expression a newline must follow. The directive structure is the following.
   <property-name-n>: <expression-n>
 }
 ```
-Like in CSS, directives defined later override properties of the previous 
-directives. 
+Like in CSS, directives defined later override properties of the previous
+directives.
 
-Style script currently has two directives: `@NodeStyle`, for defining visual 
+Style script currently has two directives: `@NodeStyle`, for defining visual
 style of graph nodes, and `@EdgeStyle` for defining visual style of graph edges.
 
 An example of a directive is `@NodeStyle` directive which can be used to specify
@@ -150,23 +150,23 @@ style properties of a graph node.
 
 `@NodeStyle` directive is used for defining style properties of a graph node. It
 is possible to filter the nodes to which the directive applies by providing an
-optional predicate after directive name and before the opening curly brace. 
+optional predicate after directive name and before the opening curly brace.
 
-Before any expressions are evaluated (including the predicate) the name `node` 
-is bound to the graph node for which the directive is being evaluated. Graph 
+Before any expressions are evaluated (including the predicate) the name `node`
+is bound to the graph node for which the directive is being evaluated. Graph
 node is of type `Dictionary` and has all information about the node (properties,
 labels).
 
-Here is an example of `@NodeStyle` directive that is applied to all graph nodes 
+Here is an example of `@NodeStyle` directive that is applied to all graph nodes
 with the label superhero
 ```
 @NodeStyle HasLabel?(node, vehicle) {
-  label: Format("{}, horsepower: {}", 
+  label: Format("{}, horsepower: {}",
                 Property(node, "model"),
                 Property(node, "horsepower"))
 }
 ```
-Predicate can be any expression that returns a value of type `Boolean`. It 
+Predicate can be any expression that returns a value of type `Boolean`. It
 should depend on `node`, because if it doesn't, it will either be applied to all
 nodes or to no nodes.
 ```
@@ -178,7 +178,7 @@ nodes or to no nodes.
 }
 ```
 
-Here is the list of all properties that can be defined in the `@NodeStyle` 
+Here is the list of all properties that can be defined in the `@NodeStyle`
 directive, along with their expected types.
 
 - `border-color`: `Color`
@@ -200,18 +200,18 @@ directive, along with their expected types.
 - `shadow-size`: `Number`
 - `shadow-offset-x`: `Number`
 - `shadow-offset-y`: `Number`
-- `shape`: `String` (`"dot"`, `"square"`, `"diamond"`, `"triangle"`, 
+- `shape`: `String` (`"dot"`, `"square"`, `"diamond"`, `"triangle"`,
   `"triangleDown"`, `"star"`)
 - `size`: `Number`
 
 ### `@EdgeStyle`
 
-`@EdgeStyle` directive is used for defining style properties of a graph edge. 
-Most things work like `@NodeStyle` directive with one exception: the directive 
-will bind the name `edge` to the edge for which the directive is being 
+`@EdgeStyle` directive is used for defining style properties of a graph edge.
+Most things work like `@NodeStyle` directive with one exception: the directive
+will bind the name `edge` to the edge for which the directive is being
 evaluated (`@NodeStyle` binds the name `node`).
 
-Here is the list of all properties that can be defined in the `@EdgeStyle` 
+Here is the list of all properties that can be defined in the `@EdgeStyle`
 directive, along with their expected types.
 
 - `arrow-size`: `Number`
@@ -234,10 +234,10 @@ directive, along with their expected types.
 
 ## File Structure
 
-Style script files are composed of expressions and directives. All expressions 
+Style script files are composed of expressions and directives. All expressions
 outside directives are evaluated first in the global environment. This is useful
-for defining names using function `Define`. After that `@NodeStyle` and 
-`@EdgeStyle` directives are evaluated for each node and edge, respectively. All 
+for defining names using function `Define`. After that `@NodeStyle` and
+`@EdgeStyle` directives are evaluated for each node and edge, respectively. All
 the names in the global environment are visible while applying the directives so
 they can be used for defining property values inside directives.
 
@@ -284,7 +284,7 @@ Creates and returns an array of given values.
 - `value`: `String`
 - Returns: `Number`
 
-Parses the given string and returns a number. The string should contain only one 
+Parses the given string and returns a number. The string should contain only one
 number in base 10 and nothing else.
 
 ### `AsText(value)`
@@ -322,7 +322,7 @@ Returns `True` if `array` contains `value`, `False` otherwise.
 - `string1`, `string2`, `string3`, `...`: `String`
 - Returns: `String`
 
-Concatanetes given strings.
+Concatenates given strings.
 
 ### `Darker(color)`
 
@@ -359,7 +359,7 @@ Evaluates all given expressions and returns the value of last one.
 - `val2`: `Any`
 - Returns: `Any`
 
-Returns `True` if given values are equal, `False` otherwise. `Number`s, 
+Returns `True` if given values are equal, `False` otherwise. `Number`s,
 `String`s and `Boolean`s are compared by value, while objects of all other types
 are compared by identity.
 
@@ -383,14 +383,14 @@ Returns 2.71828... raised to the power `value`.
 - `val1`, `val2`, `...`: `Any`
 - Returns: `String``
 
-Substitutes occurences of curly brace pairs in `formatString` with textual 
-representations of given values. First occurrence is substituted with first 
-value, second occurrence with second value and so on. 
+Substitutes occurrences of curly brace pairs in `formatString` with textual
+representations of given values. First occurrence is substituted with first
+value, second occurrence with second value and so on.
 
 Examples:
 
 ```
-Format("{}, {}!", "Hello", "World") 
+Format("{}, {}!", "Hello", "World")
   -> Hello, World!
 ```
 Text inside curly braces is ignored.
@@ -406,9 +406,9 @@ Format("{name}: {age}", "Antun", 23)
 - Returns: `Function`
 
 Creates a function. `body` is the expression to evaluate when the function is
-called. All arguments except `body` are argument names of the function to 
-create. When the created function is called names `arg1`, `arg2`, `...` are 
-bound to function arguments and available in the `body` expression. This 
+called. All arguments except `body` are argument names of the function to
+create. When the created function is called names `arg1`, `arg2`, `...` are
+bound to function arguments and available in the `body` expression. This
 function is most useful in combination with `Define`.
 
 Examples:
@@ -421,7 +421,7 @@ makeGreeting("World")
 ```
 
 ```
-Define(pow, Function(x, n, 
+Define(pow, Function(x, n,
   If(Equals?(n, 1),
     x,
     Mul(x, pow(x, Sub(n, 1))))))
@@ -435,8 +435,8 @@ pow(2, 10)
 - `key`: `Number` if `obj` is `Array`, `String` if `obj` is `Dictionary`
 - Returns: `Any`
 
-If `obj` is `Array`, returns the element with index `key` of array `obj` 
-(indexing is zero based). If `obj` is `Dictionary` returns the value for key 
+If `obj` is `Array`, returns the element with index `key` of array `obj`
+(indexing is zero based). If `obj` is `Dictionary` returns the value for key
 `key`.
 
 ### `Greater?(value1, value2)`
@@ -452,7 +452,7 @@ Returns `True` if `value1` is greater than `value2`, `False` otherwise.
 - `color`: `Color`
 - Returns: `Number`
 
-Returns green component of given color. The value will be between 0 and 255 
+Returns green component of given color. The value will be between 0 and 255
 (both inclusive).
 
 ### `HasLabel?(node, label)`
@@ -580,7 +580,7 @@ Returns the property with name `propertyName` of given graph node or graph edge.
 
 - Returns: `Number`
 
-Returns a random number between 0 (inclusive) and 1 (exclusive). All the 
+Returns a random number between 0 (inclusive) and 1 (exclusive). All the
 possible numbers are equally likely to be returned.
 
 ### `RandomElement(array)`
@@ -596,7 +596,7 @@ to be chosen.
 - `bound`: `Number`
 - Returns: `Number`
 
-Returns a random integer between 0 (inclusive) and `bound` (exclusive). All the 
+Returns a random integer between 0 (inclusive) and `bound` (exclusive). All the
 possible numbers are equally likely to be returned.
 
 ### `Red(color)`
@@ -621,7 +621,7 @@ Creates a new color with given components.
 - `value`: `Array`, `Dictionary` or `String`
 - Returns: `Number`
 
-If `value` is of type `Array` or `Dictionary`, returns its size. If `value` is 
+If `value` is of type `Array` or `Dictionary`, returns its size. If `value` is
 of type `String`, returns its length;
 
 ### `Sqrt(value)`
