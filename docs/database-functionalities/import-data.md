@@ -5,9 +5,9 @@ sidebar_label: Import data
 ---
 
 Memgraph comes with tools for importing data into the database. Data can be
-imported either using the [CSV import tool](#csv-import-tool) or using saved
-[cypher queries](#importing-cypher-queries) with `mg_client` running in non-interactive
-mode.
+imported programatically using the `LOAD CSV` Cypher clause, using the [CSV import tool](#csv-import-tool),
+or using saved [cypher queries](#importing-cypher-queries) with `mg_client` running
+in non-interactive mode.
 
 :::info
 **NOTE:** `mg_client` is a deprecated tool still coming within the Memgraph package.
@@ -15,7 +15,7 @@ mode.
 the future. If possible, please use `mgconsole` instead.
 :::
 
-### CSV Import Tool
+## CSV Import Tool
 
 CSV is a universal and very versatile data format used to store large
 quantities of data.  Each Memgraph database instance has a CSV import tool
@@ -31,7 +31,7 @@ format](https://neo4j.com/docs/operations-manual/current/tools/import/).  If
 you already have a pipeline set-up for Neo4j, you should only replace
 `neo4j-admin import` with `mg_import_csv`.
 
-#### CSV File Format
+### CSV File Format
 
 Each row of a CSV file represents a single entry that should be imported into
 the database.  Both nodes and relationships can be imported into the database
@@ -82,7 +82,7 @@ for row in csv.reader(stream, delimiter=',', doublequote=True,
 For more information about the meaning of the above values, see:
 https://docs.python.org/3/library/csv.html#csv.Dialect
 
-##### Properties
+#### Properties
 
 Both nodes and relationships can have properties added to them.  When importing
 properties, the CSV importer uses the name specified in the header of the
@@ -115,7 +115,7 @@ CREATE ({first_name: "John", last_name: "Doe", number: 1, aliases: ["Johnny", "J
 CREATE ({first_name: "Melissa", last_name: "Doe", number: 2, aliases: ["Mel"]});
 ```
 
-##### Nodes
+#### Nodes
 
 When importing nodes, several more types can be specified in the header of the
 CSV file (along with all property types):
@@ -140,7 +140,7 @@ treated as an array type so that multiple additional labels can be specified
 for each node.  The value is split using the array delimiter
 (`--array-delimiter` flag).
 
-##### Relationships
+#### Relationships
 
 In order to be able to import relationships, you must import the nodes in the
 same invocation of `mg_import_csv` that is used to import the relationships.
@@ -171,7 +171,7 @@ The `TYPE` field type sets the type of the relationship.  Each relationship
 specified in the CSV file, it can also be set externally for the whole CSV
 file.  The name of this field is ignored.
 
-#### CSV Importer Flags
+### CSV Importer Flags
 
 The importer has many command line options that allow you to customize the way
 the importer loads your data.
@@ -245,7 +245,7 @@ The `--trim-strings` flag (default `false`) tells the importer to trim all of
 the loaded CSV field values before processing them further.  Trimming the
 fields removes all leading and trailing whitespace from them.
 
-#### How to Use the CSV Import Tool?
+### How to Use the CSV Import Tool?
 
 The import tool is run from the console, using the `mg_import_csv` command.
 The tool should be run as user `memgraph`, using the following command:
@@ -298,7 +298,7 @@ When using Docker, this translates to:
 docker run --entrypoint=mg_import_csv memgraph --help
 ```
 
-#### Example
+### Example
 
 Let's import a simple dataset.
 
@@ -369,7 +369,7 @@ docker run -v mg_lib:/var/lib/memgraph -v mg_etc:/etc/memgraph -v mg_import:/imp
 
 Next time you run Memgraph, the dataset will be loaded.
 
-### Importing Cypher Queries
+## Importing Cypher queries
 
 When Memgraph is running, cypher queries are imported by running `mg_client` in
 non-interactive mode. The user can import queries saved in e.g. `queries.txt`
@@ -394,3 +394,140 @@ For more information about `mg_client` options run:
 ```plaintext
 mg_client --help
 ```
+
+## Using the `LOAD CSV` Cypher clause
+
+The `LOAD CSV` clause enables you to load and use data from a CSV file of your
+choosing in a row-based manner, within a query. We support the Excel CSV dialect,
+as it's the most commonly used one.
+
+The syntax of the clause is:
+
+```plaintext
+LOAD CSV FROM <csv-file-path> ( WITH | NO ) HEADER [IGNORE BAD] [DELIMITER <delimiter-string>] [QUOTE <quote-string>] AS <variable-name>
+```
+
+* `<csv-file-path` is a string holding the path to the CSV file. There are no
+restrictions on where in your filesystem the file can be located, as long as
+the path is valid (i.e. the file exists).
+
+* `( WITH | NO ) HEADER ` flag specifies whether the CSV file is to be
+parsed as though it has or hasn't got a header.
+
+* `IGNORE BAD` flag specifies whether rows containing errors should be ignored or
+not. If it's set, the parser attempts to return the first valid row from the CSV
+file. If it isn't set, an exception will be thrown on first invalid row
+encountered.
+
+* `DELIMITER <delimiter-string>` option enables you to specify the CSV delimiter
+character. If it isn't set, the default delimiter character `,` is assumed.
+
+* `QUOTE <quote-string>` option enables you to specify the CSV quote character.
+If it isn't set, the default quote character `"` is assumed.
+
+* `<variable-name>` is a symbolic name representing the variable to which the
+contents of the parsed row will be bound to, enabling access to the row contents
+later in the query.
+
+The clause reads row by row from a CSV file, and binds the contents of the
+parsed row to the variable you specified.
+
+It's important to note that the parser parses the values as strings. It's up to
+the user to convert the parsed row values to the appropriate type. This can be
+done using the built-in conversion functions such as `ToInteger`, `ToFloat`,
+`ToBoolean` etc. Consult the documentation on the available conversion functions.
+
+Depending on how you set the `HEADER` option (`WITH` or `NO`), a row will
+be parsed as either a map or a list.
+
+If the `WITH HEADER` option is set, the very first line in the file will be
+parsed as the header, and any remaining rows will be parsed as regular rows.
+The value bound to the row variable will be a map of the form:
+
+```plaintext
+{ ( "header_field" : "row_value" )? ( , "header_field" : "row_value" )* }
+```
+
+To access a given field, you can use the property lookup syntax. Let's assume
+that the CSV file contents are as follows:
+
+```plaintext
+x|y|z
+1|2|3
+4|5|6
+```
+
+The following query will load row by row from the file, and create a new node
+for each row with properties based on the parsed row values:
+
+```cypher
+LOAD CSV "xyz.csv" WITH HEADER DELIMITER "|" AS row
+CREATE (n:A {x: ToInteger(row.x), y: ToInteger(row.y), z: ToInteger(row.z)}) ; 
+```
+
+If the `NO HEADER` option is set, then each row is parsed as a list of values.
+The contents of the row can be accessed using the list index syntax. Note that
+in this mode, there are no restrictions on the number of values a row contains.
+This isn't recommended, as the user must manually handle the varying number of
+values in a row.
+
+Let's assume that the CSV file contents are as follows:
+
+```plaintext
+1|2|3
+4|5|6
+```
+
+The following query will load row by row from the file, and create a new node
+for each row with properties based on the parsed row values:
+
+```cypher
+LOAD CSV "xyz.csv" NO HEADER DELIMITER "|" AS row
+CREATE (n:A {x: ToInteger(row[0]), y: ToInteger(row[1]), z: ToInteger(row[2])}) ; 
+  ```
+
+The clause can't stand on its own, meaning there has to be at least one more
+clause in the query, in addition to it. In other words, the following query will
+throw an exception:
+
+```cypher
+LOAD CSV FROM "file.csv" WITH HEADER AS row ;
+```
+
+On the other hand, the following query is valid:
+
+```cypher
+MERGE (n:A) LOAD CSV FROM "file.csv" WITH HEADER AS row ;
+```
+
+Note that the row variable doesn't have to be used in any subsequent clause.
+
+Also, it's important to note how the `LOAD CSV` result exhaustion works. Let's
+assume the following query:
+
+```cypher
+MATCH (n)
+LOAD CSV FROM "file.csv" WITH HEADER as row
+SET n.p = row ;
+```
+
+Let's say the `MATCH (n)` clause finds five nodes, whereas the "file.csv" has
+only 2 rows. Then only the first two nodes returned by the `MATCH (n)` will have
+their properties set, using the two rows from the file.
+Similarly, if the `MATCH (n)` clause finds two nodes, whereas the "file.csv" has
+five rows, the two nodes returned by `MATCH (n)` will have their properties
+set with values from the first two rows of the file.
+In general, the clause that exhausts its results sooner will dictate how many
+times the "loop" will be executed.
+
+Finally, note that the `LOAD CSV` clause can be used at most once per query.
+Trying to use multiple `LOAD CSV` clauses within a single query will throw an exception.
+In other words, queries such as
+
+```cypher
+LOAD CSV FROM "x.csv" WITH HEADER as x
+LOAD CSV FROM "y.csv" WITH HEADER as y
+CREATE (n:A { p1 : x, p2 : y });
+```
+
+are invalid.
