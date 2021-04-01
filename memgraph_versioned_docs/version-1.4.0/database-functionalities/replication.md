@@ -36,8 +36,8 @@ You can also use any of the supported drivers like [mgclient](https://github.com
 We fire up the terminal, and for each Memgraph instance (node)  we have to start, we'll
 run:
 
-```plaintext
-docker run --rm memgraph:1.3.0-enterprise
+```bash
+docker run --rm memgraph
 ```
 
 The above commands will start a Memgraph node, and assign it its own IP address. 
@@ -46,14 +46,14 @@ Now, to set up the cluster, we'll have to start an mg_client or mgconsole
 instance for every running Memgraph node, and connect to it. To do this, we
 have to figure out their IP addresses. Running
 
-```plaintext
+```bash
 docker ps
 ```
 
 will list all the running docker processes, along with their "CONTAINER ID" and
 "NAME". Running
 
-```plaintext
+```bash
 docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' container_name_or_id
 ```
 
@@ -68,7 +68,7 @@ can start setting up the replication. Let's say the ip addresses are as follows:
 Let's assume we're using mgconsole to connect to and query the nodes. Firstly,
 we have to set up the replicas. We connect to a replica by running
 
-```plaintext
+```bash
 mgconsole --host REPLICA_IP_ADDRESS --use-ssl=false
 ```
 
@@ -76,7 +76,7 @@ where REPLICA_IP_ADDRESS is the address we found in the previous step. Once
 we're connected to a replica, we set its replication role to "REPLICA" by
 issuing
 
-```plaintext
+```cypher
 SET REPLICATION ROLE TO REPLICA WITH PORT 10000;
 ```
 
@@ -86,13 +86,13 @@ instead. We repeat the process for all replicas.
 Now, it's time to set up the main. Again, we connect to the main using
 mgconsole:
 
-```plaintext
+```bash
 mgconsole --host 172.17.0.2 --use-ssl=false
 ```
 
 Then, for every replica, we issue the query that registers it:
 
-```plaintext
+```cypher
 REGISTER REPLICA r1 SYNC TO "172.17.0.3:10000";
 REGISTER REPLICA r2 ASYNC TO "172.17.0.4:10000";
 REGISTER REPLICA r3 SYNC WITH TIMEOUT 1 TO "172.17.0.5:10000";
@@ -102,13 +102,13 @@ Now we can create some nodes and edges on the main, and observe them replicate
 to the replicas. Firstly, we switch to the mgconsole instance connected to the
 main, and then issue:
 
-```plaintext
+```cypher
 CREATE (n:N {p: "This is going to be replicated!"});
 ```
 
 After that, we can switch to any replica and try to match this node:
 
-```plaintext
+```cypher
 MATCH (n:N) RETURN n;
 ```
 Lo and behold, we get:
