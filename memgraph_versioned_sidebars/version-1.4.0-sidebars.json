@@ -1,0 +1,404 @@
+{
+  "version-1.4.0/memgraph": [
+    {
+      "type": "doc",
+      "id": "version-1.4.0/overview"
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Getting started",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-1.4.0/getting-started/getting-started"
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Installation",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-1.4.0/getting-started/installation/installation"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.4.0/getting-started/installation/docker-installation"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.4.0/getting-started/installation/debian-installation"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.4.0/getting-started/installation/rpm-installation"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Querying the database",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-1.4.0/getting-started/querying/querying"
+            },
+            {
+              "type": "link",
+              "label": "Memgraph Lab",
+              "href": "https://docs.memgraph.com/memgraph-lab"
+            },
+            {
+              "type": "link",
+              "label": "Memgraph Playground",
+              "href": "https://playground.memgraph.com/"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Building applications",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-1.4.0/getting-started/connecting-applications/connecting-applications"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.4.0/getting-started/connecting-applications/python"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.4.0/getting-started/connecting-applications/rust"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.4.0/getting-started/connecting-applications/c-sharp"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.4.0/getting-started/connecting-applications/java"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.4.0/getting-started/connecting-applications/go"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.4.0/getting-started/connecting-applications/javascript"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Tutorials",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-1.4.0/tutorials/tutorials"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.4.0/tutorials/analyzing-ted-talks"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.4.0/tutorials/backpacking-through-europe"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.4.0/tutorials/exploring-the-european-road-network"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.4.0/tutorials/football-transfers"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.4.0/tutorials/graphing-the-premier-league"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.4.0/tutorials/marvel-universe"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.4.0/tutorials/movie-recommendation"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.4.0/tutorials/got-deaths"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.4.0/tutorials/social-network-analysis"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.4.0/tutorials/understanding-music-with-modules"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Database functionalities",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-1.4.0/database-functionalities/database-functionalities"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.4.0/database-functionalities/import-data"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.4.0/database-functionalities/inspecting-queries"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.4.0/database-functionalities/profiling-queries"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.4.0/database-functionalities/tensorflow-setup"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.4.0/database-functionalities/replication"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.4.0/reference-guide/backup"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.4.0/database-functionalities/memory-control"
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Enforcing constraints",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-1.4.0/database-functionalities/constraints/existence-constraint"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.4.0/database-functionalities/constraints/uniqueness-constraint"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Query modules",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-1.4.0/database-functionalities/query-modules/built-in-query-modules"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.4.0/database-functionalities/query-modules/load-call-query-modules"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.4.0/database-functionalities/query-modules/implement-query-modules"
+            }
+          ]
+        },
+        {
+          "type": "doc",
+          "id": "version-1.4.0/database-functionalities/manage-user-privileges"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.4.0/database-functionalities/manage-users-using-ldap"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Reference guide",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-1.4.0/reference-guide/reference-guide"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.4.0/reference-guide/configuration"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.4.0/reference-guide/indexing"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.4.0/reference-guide/graph-algorithms"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.4.0/reference-guide/tensorflow"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.4.0/reference-guide/replication"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.4.0/reference-guide/backup"
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Query modules",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-1.4.0/reference-guide/query-modules/query-modules"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.4.0/reference-guide/query-modules/c-api"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.4.0/reference-guide/query-modules/python-api"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "NetworkX",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-1.4.0/reference-guide/networkx/networkx"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.4.0/reference-guide/networkx/graph-analyzer"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.4.0/reference-guide/networkx/nxalg"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.4.0/reference-guide/networkx/wcc"
+            }
+          ]
+        },
+        {
+          "type": "doc",
+          "id": "version-1.4.0/reference-guide/security"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.4.0/reference-guide/auth-module"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.4.0/reference-guide/ldap-security"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.4.0/reference-guide/audit-log"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Concepts",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-1.4.0/concepts/concepts"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.4.0/concepts/storage"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.4.0/concepts/graph-algorithms"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.4.0/concepts/indexing"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.4.0/concepts/replication"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.4.0/concepts/telemetry"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Drivers",
+      "items": [
+        {
+          "type": "link",
+          "label": "C/C++",
+          "href": "https://github.com/memgraph/mgclient"
+        },
+        {
+          "type": "link",
+          "label": "CLI Console",
+          "href": "https://github.com/memgraph/mgconsole"
+        },
+        {
+          "type": "link",
+          "label": "Python",
+          "href": "https://github.com/memgraph/pymgclient"
+        },
+        {
+          "type": "link",
+          "label": "Rust",
+          "href": "https://github.com/memgraph/rsmgclient"
+        }
+      ]
+    },
+    {
+      "type": "doc",
+      "id": "version-1.4.0/upcoming-features"
+    },
+    {
+      "type": "doc",
+      "id": "version-1.4.0/changelog"
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Getting help",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-1.4.0/getting-help/getting-help"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.4.0/getting-help/faq"
+        }
+      ]
+    }
+  ]
+}

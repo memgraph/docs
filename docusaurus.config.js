@@ -187,7 +187,7 @@ module.exports = {
             'https://github.com/memgraph/docs/tree/master/',
             versions: {
               current: {
-                label: `1.4.0 🚧`,
+                label: `Unreleased 🚧`,
               },
             },
         },
