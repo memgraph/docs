@@ -79,10 +79,12 @@ features, you can do so easily, either by altering the line in
 including `--telemetry-enabled=false` as a command-line argument when running
 the executable.
 
+To learn more about telemetry in Memgraph, visit the [concept page](/concepts/telemetry.md).
+
 ### Where to next?
 
 To learn more about the **Cypher** language, visit the **[Cypher manual](/cypher-manual)** or **[Memgraph Playground](https://playground.memgraph.com/)** for interactive guides.
-For real-world examples of how to use Memgraph, we strongly suggest going through one of the available **[Tutorials](/tutorials/tutorials.md)**. 
+For real-world examples of how to use Memgraph, we strongly suggest going through one of the available **[Tutorials](/tutorials/tutorials.md)**.
 Details on what can be stored in Memgraph can be found in the article about **[Data storage](/concepts/storage.md)**.
 
 ### Getting help

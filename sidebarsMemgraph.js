@@ -120,7 +120,8 @@ module.exports = {
         'concepts/storage',
         'concepts/graph-algorithms',
         'concepts/indexing',
-        'concepts/replication',],
+        'concepts/replication',
+        'concepts/telemetry',],
     },
     {
       type: 'category',
