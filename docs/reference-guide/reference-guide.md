@@ -41,7 +41,12 @@ You can find more information about all the available algorithms in the [Netxork
 Memgraph TensorFlow op wraps the high-performance Memgraph client for use with TensorFlow, 
 allowing natural data transfer between Memgraph and TensorFlow at any point of the model.
 
-### [Backup](./backup.md)
+## [Replication](./replication.md)
+
+Memgraph comes with a couple of queries that allow you to safely make a backup of the files containing its data. 
+Memgraph supports replication and allows you to create a cluster of nodes running Memgraph instances. 
+
+## [Backup](./backup.md)
 
 Memgraph comes with a couple of queries that allow you to safely make a backup of the files containing its data.
 
@@ -59,9 +64,3 @@ To learn more visit:
 ## [Audit log](./audit-log.md)
 
 Memgraph supports all query audit logging. When enabled, the audit log contains records of all queries executed on the database.
-
-## [Replication](./replication.md)
-
-
-Memgraph comes with a couple of queries that allow you to safely make a backup of the files containing its data. 
-Memgraph supports replication and allows you to create a cluster of nodes running Memgraph instances. 

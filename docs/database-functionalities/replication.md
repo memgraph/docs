@@ -1,7 +1,7 @@
 ---
 id: replication
-title: How to set up replication on a small cluster (Enterprise)
-sidebar_label: Replication (Enterprise)
+title: How to set up replication on a small cluster
+sidebar_label: Replication
 ---
 
 This article is a part of a series intended to showcase Memgraph's features

@@ -16,6 +16,7 @@ Supported feature                                                       | Commun
 Hybrid In&#8209;Memory / On&#8209;Disk Storage Engine                   |     +     |     +
 ACID Transactions                                                       |     +     |     +
 Optimized for Low Latency and High&#8209;Throughput                     |     +     |     +
+[Replication](#replication)                                             |     +     |     +
 [Support for Custom Query Modules (C and Python API)](#query-modules)   |     +     |     +
 [CSV Import Tool](#importing-data)                                      |     +     |     +
 Development, Testing, and Evaluation Use                                |     +     |     +
@@ -26,7 +27,6 @@ Production and Commercial Use                                           |       
 [Fine&#8209;Grained Access Control](#user-privileges)                   |           |     +
 [Auth Module](#authentication-and-authorization)                        |           |     +
 [Full Activity Auditing](#audit-log)                                    |           |     +
-[Replication](#replication)                                             |           |     +
 
 ## Resources
 
@@ -73,6 +73,12 @@ If you are interested in using Memgraph for machine learning purposes  take a lo
 * [TensorFlow op setup](./database-functionalities/tensorflow-setup.md) 
 * [TensorFlow op reference](./reference-guide/tensorflow.md)
 
+### Replication
+
+Memgraph supports replication and the following guide demonstrates how to create a simple cluster of nodes running
+Memgraph instances: 
+* [Replication](./database-functionalities/replication.md)
+
 ### Backup
 
 Memgraph comes with a couple of queries that allow you to safely make a backup of the files containing its data:
@@ -97,9 +103,3 @@ To learn more visit:
 
 Memgraph supports all query audit logging. When enabled, the audit log contains records of all queries executed on the database.
 * [Audit log (Enterprise)](./reference-guide/audit-log.md)
-
-### Replication
-
-Memgraph supports replication and the following guide demonstrates how to create a simple cluster of nodes running
-Memgraph instances: 
-* [Replication (Enterprise)](./database-functionalities/replication.md)
