@@ -70,7 +70,7 @@ RETURN m.title;
 
 ```cypher
 MATCH (n:Speaker)-[:Gave]->(m)
-RETURN n.name, COUNT(m) AS talksGiven
+RETURN n.name, count(m) AS talksGiven
 ORDER BY talksGiven
 DESC LIMIT 20;
 ```
@@ -82,7 +82,7 @@ MATCH (n:Talk {name: "Michael Green: Why we should build wooden skyscrapers"})
       -[:HasTag]->(t:Tag)<-[:HasTag]-(m:Talk)
 WITH *
 ORDER BY m.name
-RETURN t.name, COLLECT(m.name) AS names, COUNT(m) AS talksCount
+RETURN t.name, collect(m.name) AS names, count(m) AS talksCount
 ORDER BY talksCount DESC;
 ```
 
@@ -90,7 +90,7 @@ ORDER BY talksCount DESC;
 
 ```cypher
 MATCH (t:Tag)<-[:HasTag]-(n:Talk)
-RETURN t.name AS tag, COUNT(n) AS talksCount
+RETURN t.name AS tag, count(n) AS talksCount
 ORDER BY talksCount DESC, tag
 LIMIT 20;
 ```
@@ -129,7 +129,7 @@ MATCH (t:Talk {title: "New insights on poverty"})
       -[:HasTag]->(tag:Tag)<-[:HasTag]-(m)
 WITH *
 ORDER BY tag.name
-RETURN m.title as title, COLLECT(tag.name) as names, COUNT(tag) as tagCount
+RETURN m.title as title, collect(tag.name) as names, count(tag) as tagCount
 ORDER BY tagCount DESC, title;
 ```
 
@@ -140,7 +140,7 @@ TED events.
 
 ```cypher
 MATCH (n:Event)<-[:InEvent]-(t:Talk)
-RETURN n.name AS event, COUNT(t) AS talksCount
+RETURN n.name AS event, count(t) AS talksCount
 ORDER BY talksCount DESC, event
 LIMIT 20;
 ```
@@ -149,7 +149,7 @@ LIMIT 20;
 
 ```cypher
 MATCH (n:Event {name:"TED2006"})<-[:InEvent]-(t:Talk)-[:HasTag]->(tag:Tag)
-RETURN tag.name as tag, COUNT(t) AS talksCount
+RETURN tag.name as tag, count(t) AS talksCount
 ORDER BY talksCount DESC, tag
 LIMIT 20;
 ```
@@ -158,7 +158,7 @@ LIMIT 20;
 
 ```cypher
 MATCH (n:Speaker)-[:Gave]->(t:Talk)-[:InEvent]->(e:Event)
-WITH n, COUNT(e) AS eventsCount
+WITH n, count(e) AS eventsCount
 WHERE eventsCount > 2
 RETURN n.name as speaker, eventsCount
 ORDER BY eventsCount DESC, speaker;
@@ -172,6 +172,6 @@ MATCH (n:Speaker)-[:Gave]->()-[:InEvent]->(e:Event)<-[:InEvent]-()<-[:Gave]-(m:S
 WHERE n.name != m.name
 WITH DISTINCT n, m
 ORDER BY m.name
-RETURN n.name AS speaker, COLLECT(m.name) AS others
+RETURN n.name AS speaker, collect(m.name) AS others
 ORDER BY speaker;
 ```
