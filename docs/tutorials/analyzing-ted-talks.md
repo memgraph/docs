@@ -23,11 +23,11 @@ this data as a graph and demonstrate a few example queries.
 ## Data Model
 
 * Each TED talk has a main speaker, so we
-identify two types of nodes &mdash; `Talk` and `Speaker`. 
+identify two types of nodes &mdash; `Talk` and `Speaker`.
 * We add an edge of type `Gave` pointing to a `Talk` from its main `Speaker`.
 * Each speaker has a name so we can add property `name` to `Speaker` node.
 * We'll add properties `name`, `title` and `description` to node
-`Talk`. 
+`Talk`.
 * Each talk is given in a specific TED event, so we can
 create node `Event` with property `name` and relationship `InEvent` between
 talk and event.
@@ -43,22 +43,22 @@ talk and rating nodes.
 
 ## Exploring the dataset
 
-You have two options for exploring this dataset. 
-If you just want to take a look at the dataset and try out a few queries, open 
-[Memgraph Playground](https://playground.memgraph.com/) and continue with 
+You have two options for exploring this dataset.
+If you just want to take a look at the dataset and try out a few queries, open
+[Memgraph Playground](https://playground.memgraph.com/) and continue with
 the tutorial there. Note that you will not be able to execute `write` operations.
 
-On the other hand, if you would like to add changes to the dataset, download the 
-[Memgraph Lab](https://memgraph.com/product/lab) desktop application and navigate 
-to the `Datasets` tab in the sidebar. From there, choose the dataset 
+On the other hand, if you would like to add changes to the dataset, download the
+[Memgraph Lab](https://memgraph.com/product/lab) desktop application and navigate
+to the `Datasets` tab in the sidebar. From there, choose the dataset
 `TED talks` and continue with the tutorial.
 
 ## Example queries using Cypher
 
-In the queries below, we are using [Cypher](/cypher-manual) 
+In the queries below, we are using [Cypher](/cypher-manual)
 to query Memgraph via the console.
 
- 
+
 1) Find all talks given by specific speaker:
 
 ```cypher
@@ -70,8 +70,9 @@ RETURN m.title;
 
 ```cypher
 MATCH (n:Speaker)-[:Gave]->(m)
-RETURN n.name, COUNT(m) AS TalksGiven
-ORDER BY TalksGiven DESC LIMIT 20;
+RETURN n.name, COUNT(m) AS talksGiven
+ORDER BY talksGiven
+DESC LIMIT 20;
 ```
 
 3) Find talks related by tag to specific talk and count them:
@@ -79,17 +80,19 @@ ORDER BY TalksGiven DESC LIMIT 20;
 ```cypher
 MATCH (n:Talk {name: "Michael Green: Why we should build wooden skyscrapers"})
       -[:HasTag]->(t:Tag)<-[:HasTag]-(m:Talk)
-WITH * ORDER BY m.name
-RETURN t.name, COLLECT(m.name), COUNT(m) AS TalksCount
-ORDER BY TalksCount DESC;
+WITH *
+ORDER BY m.name
+RETURN t.name, COLLECT(m.name) AS names, COUNT(m) AS talksCount
+ORDER BY talksCount DESC;
 ```
 
 4) Find 20 most frequently used tags:
 
 ```cypher
 MATCH (t:Tag)<-[:HasTag]-(n:Talk)
-RETURN t.name AS Tag, COUNT(n) AS TalksCount
-ORDER BY TalksCount DESC, Tag LIMIT 20;
+RETURN t.name AS tag, COUNT(n) AS talksCount
+ORDER BY talksCount DESC, tag
+LIMIT 20;
 ```
 
 5) Find 20 talks most rated as "Funny". If you want to query by other ratings,
@@ -98,8 +101,10 @@ Confusing, Longwinded, Unconvincing, Fascinating, Ingenious, Courageous, Funny,
 Informative and Inspiring.
 
 ```cypher
-MATCH (r:Rating{name:"Funny"})<-[e:HasRating]-(m:Talk)
-RETURN m.name, e.user_count ORDER BY e.user_count DESC LIMIT 20;
+MATCH (r:Rating {name: "Funny"})<-[e:HasRating]-(m:Talk)
+RETURN m.name, e.user_count
+ORDER BY e.user_count DESC
+LIMIT 20;
 ```
 
 6) Find inspiring talks and their speakers from the field of technology:
@@ -109,7 +114,8 @@ MATCH (n:Talk)-[:HasTag]->(m:Tag {name: "technology"})
 MATCH (n)-[r:HasRating]->(p:Rating {name: "Inspiring"})
 MATCH (n)<-[:Gave]-(s:Speaker)
 WHERE r.user_count > 1000
-RETURN n.title, s.name, r.user_count ORDER BY r.user_count DESC;
+RETURN n.title, s.name, r.user_count
+ORDER BY r.user_count DESC;
 ```
 
 7) Now let's see one real-world example &mdash; how to make a real-time
@@ -119,10 +125,12 @@ the same speaker on a similar topic:
 
 ```cypher
 MATCH (n:Speaker {name: "Hans Rosling"})-[:Gave]->(m:Talk)
-MATCH (t:Talk {title: "New insights on poverty"})-[:HasTag]->(tag:Tag)<-[:HasTag]-(m)
-WITH * ORDER BY tag.name
-RETURN m.title as Title, COLLECT(tag.name), COUNT(tag) as TagCount
-ORDER BY TagCount DESC, Title;
+MATCH (t:Talk {title: "New insights on poverty"})
+      -[:HasTag]->(tag:Tag)<-[:HasTag]-(m)
+WITH *
+ORDER BY tag.name
+RETURN m.title as title, COLLECT(tag.name) as names, COUNT(tag) as tagCount
+ORDER BY tagCount DESC, title;
 ```
 
 The following few queries are focused on extracting information about
@@ -132,8 +140,8 @@ TED events.
 
 ```cypher
 MATCH (n:Event)<-[:InEvent]-(t:Talk)
-RETURN n.name as Event, COUNT(t) AS TalksCount
-ORDER BY TalksCount DESC, Event
+RETURN n.name AS event, COUNT(t) AS talksCount
+ORDER BY talksCount DESC, event
 LIMIT 20;
 ```
 
@@ -141,8 +149,8 @@ LIMIT 20;
 
 ```cypher
 MATCH (n:Event {name:"TED2006"})<-[:InEvent]-(t:Talk)-[:HasTag]->(tag:Tag)
-RETURN tag.name as Tag, COUNT(t) AS TalksCount
-ORDER BY TalksCount DESC, Tag
+RETURN tag.name as tag, COUNT(t) AS talksCount
+ORDER BY talksCount DESC, tag
 LIMIT 20;
 ```
 
@@ -150,9 +158,10 @@ LIMIT 20;
 
 ```cypher
 MATCH (n:Speaker)-[:Gave]->(t:Talk)-[:InEvent]->(e:Event)
-WITH n, COUNT(e) AS EventsCount WHERE EventsCount > 2
-RETURN n.name as Speaker, EventsCount
-ORDER BY EventsCount DESC, Speaker;
+WITH n, COUNT(e) AS eventsCount
+WHERE eventsCount > 2
+RETURN n.name as speaker, eventsCount
+ORDER BY eventsCount DESC, speaker;
 ```
 
 11) For each speaker search for other speakers that participated in same
@@ -161,7 +170,8 @@ events:
 ```cypher
 MATCH (n:Speaker)-[:Gave]->()-[:InEvent]->(e:Event)<-[:InEvent]-()<-[:Gave]-(m:Speaker)
 WHERE n.name != m.name
-WITH DISTINCT n, m ORDER BY m.name
-RETURN n.name AS Speaker, COLLECT(m.name) AS Others
-ORDER BY Speaker;
+WITH DISTINCT n, m
+ORDER BY m.name
+RETURN n.name AS speaker, COLLECT(m.name) AS others
+ORDER BY speaker;
 ```
