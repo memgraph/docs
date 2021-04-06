@@ -43,7 +43,7 @@ The model consists of the following nodes:
     `name` attribute corresponding to the name of the episode (e.g. `"Mothers Mercy"`) and `imdb_rating`
     episode corresponding to the IMDB rating of the episode (e.g. "9.1")
 * a `Season` node has a `number` attribute corresponding to the number of the season (e.g. `10`)
-* a `Character` node has a `name` attribute corresponding to the character's name (e.g. `"Castle Black"`)
+* a `Location` node has a `name` attribute corresponding to the location's name (e.g. `"Castle Black"`)
 
 Nodes are connected with the following edges:
 * `:KILLED` - connect two Character nodes and they have 2 attributes, 
