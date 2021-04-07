@@ -43,20 +43,29 @@ choose the dataset `MovieLens: Movies, genres and users` and continue with the t
 1) List first 10 movies sorted by title
 
 ```cypher
-MATCH (m :Movie) RETURN m ORDER BY m.title LIMIT 10;
+MATCH (movie:Movie)
+RETURN movie
+ORDER BY movie.title
+LIMIT 10;
 ```
 
 2) List last 15 users sorted by name
 
 ```cypher
-MATCH (u: User) RETURN u ORDER BY u.name DESC LIMIT 15;
+MATCH (user:User)
+RETURN user
+ORDER BY user.name DESC
+LIMIT 15;
 ```
 
 3) List 10 movies that have *Comedy* and *Action* genres and sort them by title
 
 ```cypher
-MATCH (m :Movie)-[:ofGenre]->(:Genre {name:"Action"}), (m)-[:ofGenre]->(:Genre {name:"Comedy"})
-RETURN m.title ORDER BY m.title LIMIT 10;
+MATCH (movie:Movie)-[:ofGenre]->(:Genre {name:"Action"})
+MATCH (movie)-[:ofGenre]->(:Genre {name:"Comedy"})
+RETURN movie.title
+ORDER BY movie.title
+LIMIT 10;
 ```
 
 4) Uniqueness constraint for genre:
@@ -64,7 +73,7 @@ RETURN m.title ORDER BY m.title LIMIT 10;
 Let's create a new unique constraint:
 
 ```cypher
-CREATE CONSTRAINT ON (g:Genre) ASSERT g.name IS UNIQUE;
+CREATE CONSTRAINT ON (genre:Genre) ASSERT genre.name IS UNIQUE;
 ```
 And now we can try to create new `Genre` node with existing `name': "Comedy":
 
@@ -76,13 +85,17 @@ This query returns an error because genre "Comedy" already exists.
 5) Average score for *Star Wars* movie:
 
 ```cypher
-MATCH (u :User)-[r :Rating]->(m :Movie {title:"Star Wars"}) RETURN AVG(r.score);
+MATCH (:User)-[rating:Rating]->(:Movie {title:"Star Wars"})
+RETURN avg(rating.score);
 ```
 
 6) Average scores for first 10 movies:
 
 ```cypher
-MATCH (u :User)-[r :Rating]->(m:Movie) RETURN m.title, AVG(r.score) AS score ORDER BY score DESC LIMIT 10;
+MATCH (:User)-[:Rating]->(movie:Movie)
+RETURN movie.title, avg(r.score) AS score
+ORDER BY score DESC
+LIMIT 10;
 ```
 
 7) Create a new user and rate some movies:
@@ -93,7 +106,8 @@ CREATE (:User {id:1000, name:"Aladin"});
 Check if new user is created:
 
 ```cypher
-MATCH (u:User{name:"Aladin"}) RETURN u;
+MATCH (user:User{name:"Aladin"})
+RETURN user;
 ```
 Rate some movies:
 
@@ -137,16 +151,21 @@ The idea is to implement simple [memory based collaborative filtering](https://e
 Let's recommend some movies for user Aladin:
 
 ```cypher
-MATCH (u:User{id:1000})-[r:Rating]-(m:Movie)-[other_r:Rating]-(other:User)
+MATCH (u:User{id:1000})-[r:Rating]-(m:Movie)
+      -[other_r:Rating]-(other:User)
 WITH other.id AS other_id,
-AVG(ABS(r.score-other_r.score)) AS similarity, COUNT(*) AS similar_user_count
+     avg(abs(r.score-other_r.score)) AS similarity,
+     count(*) AS similar_user_count
 WHERE similar_user_count > 2
-WITH other_id ORDER BY similarity LIMIT 10
-WITH COLLECT(other_id) AS similar_user_set
+WITH other_id
+ORDER BY similarity
+LIMIT 10
+WITH collect(other_id) AS similar_user_set
 MATCH (some_movie: Movie)-[fellow_rate:Rating]-(fellow_user:User)
-WHERE fellow_user.id in similar_user_set
-WITH some_movie, AVG(fellow_rate.score) AS prediction_score
-RETURN some_movie.title AS Title, prediction_score ORDER BY prediction_score DESC;
+WHERE fellow_user.id IN similar_user_set
+WITH some_movie, avg(fellow_rate.score) AS prediction_score
+RETURN some_movie.title AS Title, prediction_score
+ORDER BY prediction_score DESC;
 ```
 How does this query work?
 
@@ -170,9 +189,12 @@ with the same movies and similar scores:
 
 ```cypher
 WITH other.id AS other_id,
-AVG(ABS(r.score-other_r.score)) AS similarity, COUNT(*) AS similar_user_count
+     avg(abs(r.score-other_r.score)) AS similarity,
+     count(*) AS similar_user_count
 WHERE similar_user_count > 2
-WITH other_id ORDER BY similarity LIMIT 10;
+WITH other_id
+ORDER BY similarity
+LIMIT 10;
 ```
 Here we calculate similarities as the average distance between
 target user score and some other user score on the same set of movies.
@@ -187,9 +209,10 @@ calculate the average score for all movies in the database.
 
 ```cypher
 MATCH (some_movie: Movie)-[fellow_rate:Rating]-(fellow_user:User)
-WHERE fellow_user.id in similar_user_set
-WITH some_movie, AVG(fellow_rate.score) AS prediction_score
-RETURN some_movie.title AS Title, prediction_score ORDER BY prediction_score DESC;
+WHERE fellow_user.id IN similar_user_set
+WITH some_movie, avg(fellow_rate.score) AS prediction_score
+RETURN some_movie.title AS title, prediction_score
+ORDER BY prediction_score DESC;
 ```
 We encourage you to play with some parameters, like similar user count limit
 and similar user set size limit.
@@ -197,11 +220,9 @@ You can also try to use different similarity functions,
 for example [Euclidean distance](https://en.wikipedia.org/wiki/Euclidean_distance):
 
 ```cypher
-SQRT(REDUCE(a=0, x in COLLECT((r.score - other_r.score) * (r.score - other_r.score)) | a + x))
-AS similarity;
+sqrt(reduce(a=0, x IN collect((r.score - other_r.score) * (r.score - other_r.score)) | a + x)) AS similarity;
 ```
-Here we use `REDUCE` function. Reduce function accumulate list elements
+Here we use `reduce` function. Reduce function accumulate list elements
 into a single result by applying an expression.
 In our query, this function starts with 0 and sums up squared differences.
-`COLLECT` function is used for putting squared differences into the list.
-
+`collect` function is used for putting squared differences into the list.
