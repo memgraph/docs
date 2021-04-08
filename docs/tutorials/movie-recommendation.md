@@ -112,36 +112,36 @@ RETURN user;
 Rate some movies:
 
 ```cypher
-MATCH (u:User{id:1000}), (m:Movie{title:"Trois couleurs : Rouge"})
-MERGE (u)-[:Rating{score:3.0}]-(m);
-MATCH (u:User{id:1000}), (m:Movie{title:"20,000 Leagues Under the Sea"})
-MERGE (u)-[:Rating{score:1.0}]-(m);
-MATCH (u:User{id:1000}), (m:Movie{title:"Star Trek: Generations"})
-MERGE (u)-[:Rating{score:0.5}]-(m);
-MATCH (u:User{id:1000}), (m:Movie{title:"Rebecca"})
-MERGE (u)-[:Rating{score:3.0}]-(m);
-MATCH (u:User{id:1000}), (m:Movie{title:"The 39 Steps"})
-MERGE (u)-[:Rating{score:4.5}]-(m);
-MATCH (u:User{id:1000}), (m:Movie{title:"Faster, Pussycat! Kill! Kill!"})
-MERGE (u)-[:Rating{score:3.5}]-(m);
-MATCH (u:User{id:1000}), (m:Movie{title:"Once Were Warriors"})
-MERGE (u)-[:Rating{score:3.5}]-(m);
-MATCH (u:User{id:1000}), (m:Movie{title:"Sleepless in Seattle"})
-MERGE (u)-[:Rating{score:4.0}]-(m);
-MATCH (u:User{id:1000}), (m:Movie{title:"Don Juan DeMarco"})
-MERGE (u)-[:Rating{score:4.0}]-(m);
-MATCH (u:User{id:1000}), (m:Movie{title:"Jack & Sarah"})
-MERGE (u)-[:Rating{score:1.5}]-(m);
-MATCH (u:User{id:1000}), (m:Movie{title:"Mr. Holland's Opus"})
-MERGE (u)-[:Rating{score:2.0}]-(m);
-MATCH (u:User{id:1000}), (m:Movie{title:"The Getaway"})
-MERGE (u)-[:Rating{score:3.0}]-(m);
-MATCH (u:User{id:1000}), (m:Movie{title:"Color of Night"})
-MERGE (u)-[:Rating{score:4.0}]-(m);
-MATCH (u:User{id:1000}), (m:Movie{title:"Reality Bites"})
-MERGE (u)-[:Rating{score:2.5}]-(m);
-MATCH (u:User{id:1000}), (m:Movie{title:"Notorious"})
-MERGE (u)-[:Rating{score:3.5}]-(m);
+MATCH (u:User {id:1000}), (m:Movie {title:"Trois couleurs : Rouge"})
+MERGE (u)-[:Rating {score:3.0}]-(m);
+MATCH (u:User {id:1000}), (m:Movie {title:"20,000 Leagues Under the Sea"})
+MERGE (u)-[:Rating {score:1.0}]-(m);
+MATCH (u:User {id:1000}), (m:Movie {title:"Star Trek: Generations"})
+MERGE (u)-[:Rating {score:0.5}]-(m);
+MATCH (u:User {id:1000}), (m:Movie {title:"Rebecca"})
+MERGE (u)-[:Rating {score:3.0}]-(m);
+MATCH (u:User {id:1000}), (m:Movie {title:"The 39 Steps"})
+MERGE (u)-[:Rating {score:4.5}]-(m);
+MATCH (u:User {id:1000}), (m:Movie {title:"Faster, Pussycat! Kill! Kill!"})
+MERGE (u)-[:Rating {score:3.5}]-(m);
+MATCH (u:User {id:1000}), (m:Movie {title:"Once Were Warriors"})
+MERGE (u)-[:Rating {score:3.5}]-(m);
+MATCH (u:User {id:1000}), (m:Movie {title:"Sleepless in Seattle"})
+MERGE (u)-[:Rating {score:4.0}]-(m);
+MATCH (u:User {id:1000}), (m:Movie {title:"Don Juan DeMarco"})
+MERGE (u)-[:Rating {score:4.0}]-(m);
+MATCH (u:User {id:1000}), (m:Movie {title:"Jack & Sarah"})
+MERGE (u)-[:Rating {score:1.5}]-(m);
+MATCH (u:User {id:1000}), (m:Movie {title:"Mr. Holland's Opus"})
+MERGE (u)-[:Rating {score:2.0}]-(m);
+MATCH (u:User {id:1000}), (m:Movie {title:"The Getaway"})
+MERGE (u)-[:Rating {score:3.0}]-(m);
+MATCH (u:User {id:1000}), (m:Movie {title:"Color of Night"})
+MERGE (u)-[:Rating {score:4.0}]-(m);
+MATCH (u:User {id:1000}), (m:Movie {title:"Reality Bites"})
+MERGE (u)-[:Rating {score:2.5}]-(m);
+MATCH (u:User {id:1000}), (m:Movie {title:"Notorious"})
+MERGE (u)-[:Rating {score:3.5}]-(m);
 ```
 
 8) Recommendation system:
@@ -151,7 +151,7 @@ The idea is to implement simple [memory based collaborative filtering](https://e
 Let's recommend some movies for user Aladin:
 
 ```cypher
-MATCH (u:User{id:1000})-[r:Rating]-(m:Movie)
+MATCH (u:User {id:1000})-[r:Rating]-(m:Movie)
       -[other_r:Rating]-(other:User)
 WITH other.id AS other_id,
      avg(abs(r.score-other_r.score)) AS similarity,
@@ -182,7 +182,7 @@ For the target user (Aladin) and some other user we are searching
 for the same movies:
 
 ```cypher
-MATCH (u:User{id:1000})-[r:Rating]-(m:Movie)-[other_r:Rating]-(other:User);
+MATCH (u:User {id:1000})-[r:Rating]-(m:Movie)-[other_r:Rating]-(other:User);
 ```
 But this is not enough for finding similar users. We need to choose users
 with the same movies and similar scores:
