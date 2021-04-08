@@ -106,7 +106,7 @@ As mentioned before, transfers fees are represented in millions of euros.
 
 ```cypher
 MATCH (t:Transfer)<-[:TRANSFERRED_IN]-(p:Player)
-WHERE t.fee is NOT NULL
+WHERE t.fee IS NOT NULL
 RETURN round(t.fee) + 'M €' AS transfer_fee, p.name AS player_name
 ORDER BY t.fee DESC
 LIMIT 20;
@@ -116,7 +116,7 @@ LIMIT 20;
 
 ```cypher
 MATCH (s:Season)<-[:HAPPENED_IN]-(t:Transfer)<-[:TRANSFERRED_IN]-(:Player)
-WHERE t.fee is NOT NULL
+WHERE t.fee IS NOT NULL
 WITH s.name AS season_name, max(t.fee) AS max_fee
 RETURN round(max_fee) + 'M €' AS max_transfer_fee, season_name
 ORDER BY max_fee DESC;
@@ -216,9 +216,9 @@ ORDER BY max_money_spent DESC;
 ```cypher
 MATCH (team:Team)<-[:TRANSFERRED_TO]-(t:Transfer)<-[:TRANSFERRED_IN]-(p:Player),
       (t)-[:HAPPENED_IN]->(s:Season)
-WHERE t.fee is NOT NULL AND
+WHERE t.fee IS NOT NULL AND
       team.name = "FC Barcelona"
-WITH p.position AS player_position, max(t.fee) as max_fee
+WITH p.position AS player_position, max(t.fee) AS max_fee
 MATCH (p:Player)-[:TRANSFERRED_IN]->(t:Transfer)-[:TRANSFERRED_TO]->(team:Team)
 WHERE p.position = player_position AND
       t.fee = max_fee AND
