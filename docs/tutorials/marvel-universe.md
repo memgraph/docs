@@ -130,7 +130,7 @@ ORDER BY spidey_and_venom_comic;
 MATCH (:Hero {name: "SPIDER-MAN/PETER PARKER"})
       -[:AppearedIn]->(c:Comic)
       -[:IsPartOfSeries]-(s:ComicSeries)
-RETURN DISTINCT s.title as series
+RETURN DISTINCT s.title AS series
 ORDER BY series;
 ```
 
@@ -214,7 +214,7 @@ LIMIT 10;
 Or we can do it without query modules:
 
 ```cypher
-MATCH (hero: Hero) - [r] - ()
+MATCH (hero:Hero)-[r]-()
 RETURN hero.name, count(r) AS relationships
 ORDER BY relationships DESC
 LIMIT 10;
