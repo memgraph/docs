@@ -58,12 +58,14 @@ module.exports = {
           position: 'left',
           activeBaseRegex: `/lab/`,
         },
+        /*
         {
           to: '/memgraph-cloud/',
           label: 'Memgraph Cloud',
           position: 'left',
           activeBaseRegex: `/cloud/`,
         },
+        */
         {
           to: '/cypher-manual/',
           label: 'Cypher manual',
@@ -118,10 +120,12 @@ module.exports = {
               label: 'Memgraph Lab',
               to: '/memgraph-lab',
             },
+            /*
             {
               label: 'Memgraph Cloud',
               to: '/memgraph-cloud',
             },
+            */
             {
               label: 'Cypher manual',
               to: '/cypher-manual',
@@ -209,6 +213,7 @@ module.exports = {
           'https://github.com/memgraph/docs/tree/master/',
       },
     ],
+    /*
     [
       '@docusaurus/plugin-content-docs',
       {
@@ -220,6 +225,7 @@ module.exports = {
           'https://github.com/memgraph/docs/tree/master/',
       },
     ],
+    */
     [
       '@docusaurus/plugin-content-docs',
       {

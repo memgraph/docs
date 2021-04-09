@@ -10,6 +10,7 @@ module.exports = {
           label: 'Installation',
           items: ['getting-started/installation/installation',
             'getting-started/installation/docker-installation',
+            'getting-started/installation/wsl-installation',
             'getting-started/installation/debian-installation',
             'getting-started/installation/rpm-installation'],
         },

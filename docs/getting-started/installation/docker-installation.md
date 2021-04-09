@@ -36,7 +36,7 @@ docker run -p 7687:7687 memgraph
 If successful, you should see a message similar to the following :
 
 ```
-You are running Memgraph v1.3.0-community
+You are running Memgraph v1.4.0-community
 ```
 
 At this point, Memgraph is ready for you to [submit queries](../querying/querying.md).
