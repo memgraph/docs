@@ -81,11 +81,9 @@ Here are some queries you might find interesting:
 1) List all the comic series present in the database, along with the number of comics it contains:
 
 ```cypher
-MATCH (s:ComicSeries)-[:IsPartOfSeries]-(c:Comic)
-WITH s.title as Series,
-c as Comic
-return Series, count(Comic) as ComicCount
-ORDER BY Series;
+MATCH (series:ComicSeries)-[:IsPartOfSeries]-(comic:Comic)
+RETURN series.title AS title, count(comic)
+ORDER BY title;
 ```
 
 2) List all heroes that have "SPIDER" in their name:
@@ -98,10 +96,19 @@ for. One of the most flexible ways is to use regex matching (represented by the
 regex-matching operator "=~").
 
 ```cypher
-MATCH (h:Hero) WHERE
-h.name =~ ".*SPIDER.+"
-RETURN h.name as PotentialSpiderDude
-ORDER BY PotentialSpiderDude;
+MATCH (hero:Hero)
+WHERE hero.name =~ ".*SPIDER.*"
+RETURN hero.name AS potential_spider_dude
+ORDER BY potential_spider_dude;
+```
+
+The other option is to use the CONTAINS operator:
+
+```cypher
+MATCH (hero:Hero)
+WHERE hero.name CONTAINS "SPIDER"
+RETURN hero.name AS potential_spider_dude
+ORDER BY potential_spider_dude;
 ```
 
 We recommend you search for your heroes of interest this way, which might save you
@@ -110,28 +117,31 @@ some time!
 3) List all the comic issues where Spider-Man (Peter Parker) and Venom (Eddie Brock) appear together:
 
 ```cypher
-MATCH (:Hero {name: "SPIDER-MAN/PETER PARKER"})-[:AppearedIn]->(c:Comic)<-[:AppearedIn]-(:Hero {name: "VENOM/EDDIE BROCK"})
-RETURN c.name AS SpideyAndVenomComic
-ORDER BY SpideyAndVenomComic;
+MATCH (:Hero {name: "SPIDER-MAN/PETER PARKER"})
+      -[:AppearedIn]->(c:Comic)
+      <-[:AppearedIn]-(:Hero {name: "VENOM/EDDIE BROCK"})
+RETURN c.name AS spidey_and_venom_comic
+ORDER BY spidey_and_venom_comic;
 ```
 
 4) List all the comic series in which Spider-Man/Peter Parker appears:
 
 ```cypher
-MATCH (:Hero {name: "SPIDER-MAN/PETER PARKER"})-[:AppearedIn]->(c:Comic)-[:IsPartOfSeries]-(s:ComicSeries)
-RETURN DISTINCT s.title as SpideySeries
-ORDER BY SpideySeries;
+MATCH (:Hero {name: "SPIDER-MAN/PETER PARKER"})
+      -[:AppearedIn]->(c:Comic)
+      -[:IsPartOfSeries]-(s:ComicSeries)
+RETURN DISTINCT s.title AS series
+ORDER BY series;
 ```
 
 5) List 10 heroes with whom Spider-Man (Peter Parker) appeared most frequently together:
 
 ```cypher
-MATCH (:Hero {name: "SPIDER-MAN/PETER PARKER"})-[:AppearedIn]->(c:Comic)<-[:AppearedIn]-(h:Hero)
-WITH
-distinct(h) AS SpideyFriend,
-count(h) AS FriendCount
-RETURN SpideyFriend, FriendCount
-ORDER BY FriendCount DESC
+MATCH (:Hero {name: "SPIDER-MAN/PETER PARKER"})
+      -[:AppearedIn]->(c:Comic)
+      <-[:AppearedIn]-(h:Hero)
+RETURN DISTINCT h AS spidey_friend, count(h) AS friend_count
+ORDER BY friend_count DESC
 LIMIT 10;
 ```
 
@@ -145,8 +155,9 @@ philosophy, we should be able to find him on some path of maximally six hops
 away, but we relax that strategy a bit just to be sure.
 
 ```cypher
-MATCH p=(:Hero {name: "SPIDER-MAN/PETER PARKER"})-[*bfs 1..10]-(b:Hero {name: "BEEF"})
-return p;
+MATCH p = (:Hero {name: "SPIDER-MAN/PETER PARKER"})
+          -[*bfs 1..10]-(b:Hero {name: "BEEF"})
+RETURN p;
 ```
 
 7) List the 10 most popular heroes and comic series in the MCU:
@@ -180,10 +191,9 @@ corresponding rank values (rank is a number representing the "popularity" of a g
 
 ```cypher
 CALL pagerank.pagerank() YIELD node, rank
-WITH
-node, rank
+WITH node, rank
 WHERE node:Hero
-RETURN node.name AS MostPopularHeroes
+RETURN node.name AS most_popular_heroes
 ORDER BY rank DESC
 LIMIT 10;
 ```
@@ -194,11 +204,19 @@ Now, let's figure out the most popular comic series:
 
 ```cypher
 CALL pagerank.pagerank() YIELD node, rank
-WITH
-node, rank
+WITH node, rank
 WHERE node:ComicSeries
-RETURN node.title AS MostPopularComicSeries
+RETURN node.title AS most_popular_comic_series
 ORDER BY rank DESC
+LIMIT 10;
+```
+
+Or we can do it without query modules:
+
+```cypher
+MATCH (hero:Hero)-[r]-()
+RETURN hero.name, count(r) AS relationships
+ORDER BY relationships DESC
 LIMIT 10;
 ```
 
