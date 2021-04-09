@@ -55,8 +55,8 @@ to the `Datasets` tab in the sidebar. From there, choose the dataset
 
 ```cypher
 MATCH (n:Game)
-RETURN DISTINCT n.league AS League
-ORDER BY League;
+RETURN DISTINCT n.league
+ORDER BY n.league;
 ```
 
 2) We have stored a certain number of seasons for each league. What is the
@@ -64,8 +64,8 @@ oldest/newest season we have included?
 
 ```cypher
 MATCH (n:Game)
-RETURN DISTINCT n.league AS League, MIN(n.season) AS Oldest, MAX(n.season) AS Newest
-ORDER BY League;
+RETURN DISTINCT n.league AS league, min(n.season) AS oldest, max(n.season) AS newest
+ORDER BY league;
 ```
 
 3) You have already seen one game between Chelsea and Arsenal, let's list all of
@@ -73,9 +73,9 @@ them in chronological order.
 
 ```cypher
 MATCH (n:Team {name: "Chelsea"})-[e:Played]->(w:Game)<-[f:Played]-(m:Team {name: "Arsenal"})
-RETURN w.date AS Date, e.side AS Chelsea, f.side AS Arsenal,
+RETURN w.date AS date, e.side AS chelsea, f.side AS arsenal,
        w.FT_home_score AS home_score, w.FT_away_score AS away_score
-ORDER BY Date;
+ORDER BY date;
 ```
 
 4) How about filtering games in which Chelsea won?
@@ -83,9 +83,9 @@ ORDER BY Date;
 ```cypher
 MATCH (n:Team {name: "Chelsea"})-[e:Played {outcome: "won"}]->
       (w:Game)<-[f:Played]-(m:Team {name: "Arsenal"})
-RETURN w.date AS Date, e.side AS Chelsea, f.side AS Arsenal,
+RETURN w.date AS date, e.side AS chelsea, f.side AS arsenal,
        w.FT_home_score AS home_score, w.FT_away_score AS away_score
-ORDER BY Date;
+ORDER BY date;
 ```
 
 5) Home field advantage is a thing in football. Let's list the number of home
@@ -94,8 +94,8 @@ defeats for each Premier League team in the 2016/2017 season.
 ```cypher
 MATCH (n:Team)-[:Played {side: "home", outcome: "lost"}]->
       (w:Game {league: "ENG-Premier League", season: 2016})
-RETURN n.name AS Team, count(w) AS home_defeats
-ORDER BY home_defeats, Team;
+RETURN n.name AS team, count(w) AS home_defeats
+ORDER BY home_defeats, team;
 ```
 
 6) At the end of the season the team with the most points wins the league. For
@@ -105,18 +105,18 @@ at the end of 2016/2017 season.
 
 ```cypher
 MATCH (n:Team {name: "Chelsea"})-[:Played {outcome: "drew"}]->(w:Game {season: 2016})
-WITH n, COUNT(w) AS draw_points
+WITH n, count(w) AS draw_points
 MATCH (n)-[:Played {outcome: "won"}]->(w:Game {season: 2016})
-RETURN draw_points + 3 * COUNT(w) AS total_points;
+RETURN draw_points + 3 * count(w) AS total_points;
 ```
 
 7) In fact, why not retrieve the whole table?
 
 ```cypher
 MATCH (n)-[:Played {outcome: "drew"}]->(w:Game {league: "ENG-Premier League", season: 2016})
-WITH n, COUNT(w) AS draw_points
+WITH n, count(w) AS draw_points
 MATCH (n)-[:Played {outcome: "won"}]->(w:Game {league: "ENG-Premier League", season: 2016})
-RETURN n.name AS Team, draw_points + 3 * COUNT(w) AS total_points
+RETURN n.name AS team, draw_points + 3 * count(w) AS total_points
 ORDER BY total_points DESC;
 ```
 
@@ -126,7 +126,7 @@ at the end of the 2016/2017 season. WARNING: This might shock you.
 
 ```cypher
 MATCH (w:Game {season: 2016})
-RETURN w.league, AVG(w.FT_home_score) + AVG(w.FT_away_score) AS avg_goals_per_game
+RETURN w.league, avg(w.FT_home_score) + avg(w.FT_away_score) AS avg_goals_per_game
 ORDER BY avg_goals_per_game DESC;
 ```
 
@@ -136,11 +136,11 @@ of the match. Let's count such occurrences during all supported seasons across
 all supported leagues.
 
 ```cypher
-MATCH (g:Game) WHERE
-(g.HT_result = "H" AND g.FT_result = "A") OR
-(g.HT_result = "A" AND g.FT_result = "H")
-RETURN g.league AS League, count(g) AS Comebacks
-ORDER BY Comebacks DESC;
+MATCH (g:Game)
+WHERE (g.HT_result = "H" AND g.FT_result = "A") OR
+      (g.HT_result = "A" AND g.FT_result = "H")
+RETURN g.league AS league, count(g) AS comebacks
+ORDER BY comebacks DESC;
 ```
 
 10) Exciting leagues also tend to be very unpredictable. On that note, let's
@@ -152,5 +152,5 @@ MATCH (a)-[:Played {outcome: "won"}]->(p:Game {league: "ENG-Premier League", sea
       (b)-[:Played {outcome: "won"}]->(q:Game {league: "ENG-Premier League", season: 2016})<--
       (c)-[:Played {outcome: "won"}]->(r:Game {league: "ENG-Premier League", season: 2016})<--(a)
 WHERE p.date < q.date AND q.date < r.date
-RETURN a.name AS Team1, b.name AS Team2, c.name AS Team3;
+RETURN a.name AS team1, b.name AS team2, c.name AS team3;
 ```
