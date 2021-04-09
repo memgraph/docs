@@ -43,7 +43,7 @@ The model consists of the following nodes:
     `name` attribute corresponding to the name of the episode (e.g. `"Mothers Mercy"`) and `imdb_rating`
     episode corresponding to the IMDB rating of the episode (e.g. "9.1")
 * a `Season` node has a `number` attribute corresponding to the number of the season (e.g. `10`)
-* a `Character` node has a `name` attribute corresponding to the character's name (e.g. `"Castle Black"`)
+* a `Location` node has a `name` attribute corresponding to the location's name (e.g. `"Castle Black"`)
 
 Nodes are connected with the following edges:
 * `:KILLED` - connect two Character nodes and they have 2 attributes, 
@@ -82,49 +82,49 @@ Here are some queries you might find interesting:
 1) Let's start with a couple of simple queries. List the locations where most deaths occurred.
 Can you guess which one is it?
 
-```opencypher
-MATCH (l:Location)<-[:HAPPENED_IN]-(d:Death) 
-RETURN l.name AS location_name, COUNT(d) AS death_count
-ORDER BY death_count DESC
+```cypher
+MATCH (l:Location)<-[:HAPPENED_IN]-(d:Death)
+RETURN l.name AS location_name, count(d) AS death_count
+ORDER BY death_count DESC;
 ```
 
 2) Now that we have the location with the most deaths, let's list the episodes with the most deaths
 as well.
 
-```opencypher
+```cypher
 MATCH (d:Death)-[:HAPPENED_IN]->(e:Episode)
-RETURN e.name AS episode_name, COUNT(d) AS kill_count
-ORDER BY kill_count DESC
+RETURN e.name AS episode_name, count(d) AS kill_count
+ORDER BY kill_count DESC;
 ```
 
 3) List the number of kills per season. If you have watched the show, you should be able to guess this one.
 
-```opencypher
+```cypher
 MATCH (d:Death)-[:HAPPENED_IN]->(s:Season) 
-RETURN s.number AS season_number, COUNT(d) AS death_count
-ORDER BY season_number ASC
+RETURN s.number AS season_number, count(d) AS death_count
+ORDER BY season_number ASC;
 ```
 
 4) The most poorly rated season by far was the last one, but can you guess the best one?
-Let's list the seasons by IMDB ratings. The problem we get with using the `AVG()` function is that it
-gives us too many decimals, therefore a useful solution is given in this example using `ROUND()`.
+Let's list the seasons by IMDB ratings. The problem we get with using the `avg()` function is that it
+gives us too many decimals, therefore a useful solution is given in this example using `round()`.
 
-```opencypher
+```cypher
 MATCH (e:Episode)-[:PART_OF]->(s:Season) 
-RETURN s.number AS season_name, ROUND(100 * AVG(e.imdb_rating))/100 AS rating
-ORDER BY rating DESC
+RETURN s.number AS season_name, round(100 * avg(e.imdb_rating))/100 AS rating
+ORDER BY rating DESC;
 ```
 
 5) There are many methods by which characters were killed such as sword or Dragonfire, but let's list victims
 of unique methods.
 
-```opencypher
+```cypher
 MATCH (:Character)-[k:KILLED]->(:Character)
-WITH k.method AS kill_method, COUNT(k.method) AS method_count
+WITH k.method AS kill_method, count(k.method) AS method_count
 WHERE method_count < 2
 MATCH (killer:Character)-[k:KILLED]->(victim:Character)
 WHERE k.method = kill_method
-RETURN kill_method, victim.name AS victim
+RETURN kill_method, victim.name AS victim;
 ```
 
 6) Daenerys Stormborn of House Targaryen, the First of Her Name, Queen of the Andals and the First Men,
@@ -132,12 +132,12 @@ Protector of the Seven Kingdoms, the Mother of Dragons, the Khaleesi of the Grea
 the Breaker of Chains or shortened to "Daenerys Targaryen" in our database is the biggest killer on
 the show. Let's list all the episodes she killed in as well as characters she killed.
 
-```opencypher
+```cypher
 MATCH (daenerys:Character {name: 'Daenerys Targaryen'})-[:KILLED]->(victim:Character)
 MATCH (daenerys)-[:KILLER_IN]->(d:Death)<-[:VICTIM_IN]-(victim)
 MATCH (d)-[:HAPPENED_IN]-(e:Episode)
-RETURN DISTINCT(victim.name) AS victim, COUNT(d) AS kill_count, e.name AS episode_name
-ORDER BY kill_count DESC
+RETURN DISTINCT victim.name AS victim, count(d) AS kill_count, e.name AS episode_name
+ORDER BY kill_count DESC;
 ```
 
 
@@ -146,21 +146,24 @@ than others, but that doesn't matter in the end, what matters is efficiency. Let
 the best Kill/Death Ratios or KDR for short. Here we came across one additional problem. If an allegiance had more 
 deaths than kills, the KDR would be 0. This can easily be fixed with the `toFloat()` function.
 
-```opencypher
+```cypher
 MATCH (:Character)-[death:KILLED]->(:Character)-[:LOYAL_TO]->(a:Allegiance)
-WITH a, sum(death.count) as deaths
+WITH a, sum(death.count) AS deaths
 MATCH (:Character)<-[kill:KILLED]-(:Character)-[:LOYAL_TO]->(a)
-RETURN a.name AS allegiance_name, SUM(kill.count) AS kills, deaths, ROUND(100 *(TOFLOAT(SUM(kill.count))/deaths))/100 AS KDR
+RETURN a.name AS allegiance_name,
+       sum(kill.count) AS kills,
+       deaths,
+       round(100 *(tofloat(sum(kill.count))/deaths))/100 AS KDR
 ORDER BY KDR DESC;
 ```
 
 8) One of the best-rated episodes, Battle of the Bastards, showed us a fight between two houses: Stark and Bolton.
 Let's see which one had more casualties.
 
-```opencypher
+```cypher
 MATCH (c:Character)-[:LOYAL_TO]->(a:Allegiance)
 MATCH (c)-[:VICTIM_IN]-(d:Death)-[:HAPPENED_IN]-(:Episode {name: 'Battle of the Bastards'})
-RETURN a.name AS house_name, COUNT(d) AS death_count
+RETURN a.name AS house_name, count(d) AS death_count
 ORDER BY death_count DESC
 LIMIT 2;
 ```
@@ -168,7 +171,7 @@ LIMIT 2;
 9) One of the biggest features of Memgraph is drawing the graphs of queries we execute. Let's visualize all the
 Loyalties with Characters. Execute the following query and head out to the `GRAPH` tab.
 
-```opencypher
+```cypher
 MATCH (character:Character)-[loyal_to:LOYAL_TO]-(allegiance)
 RETURN character, loyal_to, allegiance;
 ```
@@ -176,19 +179,19 @@ RETURN character, loyal_to, allegiance;
 10) Remember that shocking last episode of the fifth season when they killed Jon Snow and we totally thought
 he was gonna stay dead? Well, let's list all the characters that would survive if he actually stayed dead.
 
-```opencypher
+```cypher
 MATCH (jon:Character {name: 'Jon Snow'})-[:KILLED]->(victim:Character)
 MATCH (jon)-[:VICTIM_IN]->(jon_death:Death)
 MATCH (jon)-[:KILLER_IN]->(victim_death:Death)<-[:VICTIM_IN]-(victim)
-WHERE victim_death.order>jon_death.order
-RETURN DISTINCT(victim.name) AS victim, COUNT(victim_death) AS kill_count
-ORDER BY kill_count DESC
+WHERE victim_death.order > jon_death.order
+RETURN DISTINCT victim.name AS victim, count(victim_death) AS kill_count
+ORDER BY kill_count DESC;
 ```
 
 11) If we want to see the above example in graph form, we have to add some modifications to
 the query, such as saving paths to variables that could be then written in `RETURN`.
 
-```opencypher
+```cypher
 MATCH (jon:Character {name: 'Jon Snow'})-[:KILLED]->(victim:Character)
 MATCH (jon)-[:VICTIM_IN]->(jon_death:Death)
 MATCH (jon)-[killed:KILLER_IN]->(victim_death:Death)<-[died:VICTIM_IN]-(victim)
@@ -198,25 +201,25 @@ RETURN jon, killed, victim_death, died, victim;
 
 12) Let's see how it looks like if we want to visualize all of Jon Snow kills with their locations.
 
-```opencypher
+```cypher
 MATCH (jon:Character {name: 'Jon Snow'})-[:KILLED]->(victim:Character)
 MATCH (jon)-[:KILLER_IN]->(death:Death)<-[victim_to_death:VICTIM_IN]-(victim)
 MATCH (death)-[death_to_location:HAPPENED_IN]->(location:Location)
-RETURN victim,victim_to_death,death,death_to_location,location
+RETURN victim, victim_to_death, death, death_to_location, location
 ```
 
 13) Who do you think was the biggest traitor in terms of killing in its own allegiance? Well, let's check it out!
 
-```opencypher
+```cypher
 MATCH (killer:Character)-[:KILLED]->(victim:Character)
 MATCH (killer)-[:LOYAL_TO]->(a:Allegiance)<-[:LOYAL_TO]-(victim)
-RETURN killer.name AS traitor, COUNT(victim) AS kill_count
-ORDER BY kill_count DESC
+RETURN killer.name AS traitor, count(victim) AS kill_count
+ORDER BY kill_count DESC;
 ```
 
 14) To visualize the last example, we have to add paths between nodes in the result. 
 
-```opencypher
+```cypher
 MATCH (killer:Character)-[killed:KILLED]->(victim:Character)
 MATCH (killer)-[:LOYAL_TO]->(allegiance:Allegiance)<-[loyal_to:LOYAL_TO]-(victim)
 RETURN killer, killed, victim, loyal_to, allegiance;
@@ -226,7 +229,7 @@ RETURN killer, killed, victim, loyal_to, allegiance;
 gruesome path of kills. An example kill path is: `Jon Snow` killed `5` `Lannister Soldiers` and they killed
 `10` `Stark soldiers` with total `kill_count` of `15`.
 
-```opencypher
+```cypher
 MATCH p = (:Character)-[:KILLED * wShortest (e,v | e.count) kill_count]->(:Character)
 RETURN nodes(p) AS kill_list, kill_count
 ORDER BY kill_count DESC
