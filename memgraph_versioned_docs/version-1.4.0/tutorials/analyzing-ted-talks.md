@@ -129,7 +129,7 @@ MATCH (t:Talk {title: "New insights on poverty"})
       -[:HasTag]->(tag:Tag)<-[:HasTag]-(m)
 WITH *
 ORDER BY tag.name
-RETURN m.title as title, collect(tag.name) as names, count(tag) as tagCount
+RETURN m.title AS title, collect(tag.name) AS names, count(tag) AS tagCount
 ORDER BY tagCount DESC, title;
 ```
 
@@ -149,7 +149,7 @@ LIMIT 20;
 
 ```cypher
 MATCH (n:Event {name:"TED2006"})<-[:InEvent]-(t:Talk)-[:HasTag]->(tag:Tag)
-RETURN tag.name as tag, count(t) AS talksCount
+RETURN tag.name AS tag, count(t) AS talksCount
 ORDER BY talksCount DESC, tag
 LIMIT 20;
 ```
@@ -160,7 +160,7 @@ LIMIT 20;
 MATCH (n:Speaker)-[:Gave]->(t:Talk)-[:InEvent]->(e:Event)
 WITH n, count(e) AS eventsCount
 WHERE eventsCount > 2
-RETURN n.name as speaker, eventsCount
+RETURN n.name AS speaker, eventsCount
 ORDER BY eventsCount DESC, speaker;
 ```
 
