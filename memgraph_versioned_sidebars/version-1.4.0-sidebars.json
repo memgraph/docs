@@ -28,6 +28,10 @@
             },
             {
               "type": "doc",
+              "id": "version-1.4.0/getting-started/installation/wsl-installation"
+            },
+            {
+              "type": "doc",
               "id": "version-1.4.0/getting-started/installation/debian-installation"
             },
             {
