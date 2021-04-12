@@ -15,7 +15,7 @@ Before you proceed with the installation guide make sure that you have:
 
 ## Installation guide {#installation-guide}
 
-After downloading Memgraph as a Debian package and starting you Debian app, install Memgraph by running the following:
+After downloading Memgraph as a Debian package and starting your Debian app, install Memgraph by running the following:
 
 ```
 sudo dpkg -i /path/to/memgraph_<version>.deb
@@ -46,7 +46,7 @@ You are running Memgraph v1.4.0-community
 
 At this point, Memgraph is ready for you to [submit queries](../querying/querying.md).
 
-:::caution
+:::caution Potential installation error
 You could get errors while installing the package with the above commands if you
 don't have all of Memgraph's dependencies installed. The issues mostly look
 like the following:

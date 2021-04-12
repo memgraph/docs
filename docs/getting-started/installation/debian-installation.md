@@ -23,7 +23,7 @@ sudo dpkg -i /path/to/memgraph_<version>.deb
 In order to perform some actions on your operating system like installing new software, you may need **superuser** privileges (commonly called **root**). 
 :::
 
-:::caution
+:::caution Potential installation error
 You could get errors while installing the package with the above command if you
 don't have all of Memgraph's dependencies installed. The issues mostly look
 like the following:
@@ -69,6 +69,7 @@ Apr 08 06:16:23 Going-Merry memgraph[459969]: You are running Memgraph v1.4.0-co
 At this point, Memgraph is ready for you to [submit queries](../querying/querying.md).
 
 ### Configuration
+
 The Memgraph configuration is available in `/etc/memgraph/memgraph.conf`.
 If the Memgraph configuration is altered, Memgraph needs to be restarted.
 
