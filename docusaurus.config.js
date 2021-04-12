@@ -213,7 +213,6 @@ module.exports = {
           'https://github.com/memgraph/docs/tree/master/',
       },
     ],
-    /*
     [
       '@docusaurus/plugin-content-docs',
       {
@@ -225,7 +224,6 @@ module.exports = {
           'https://github.com/memgraph/docs/tree/master/',
       },
     ],
-    */
     [
       '@docusaurus/plugin-content-docs',
       {

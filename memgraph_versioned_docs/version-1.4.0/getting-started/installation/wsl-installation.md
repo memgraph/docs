@@ -1,31 +1,53 @@
 ---
-id: debian-installation
-title: Install Memgraph for Debian
-sidebar_label: Debian GNU/Linux
+id: wsl-installation
+title: Install Memgraph with WSL
+sidebar_label: Windows Subsystem for Linux
 ---
 
-This article briefly outlines the basic steps necessary to install the Memgraph Debian package.
+This article briefly outlines the basic steps necessary to install the Memgraph Debian package on Windows Subsystem for Linux.
 
 ## Prerequisites
 
 Before you proceed with the installation guide make sure that you have:
 * Downloaded the latest **Memgraph Debian Package** which can be [found here](https://memgraph.com/download/).
+* **Windows Subsystem for Linux** installed. You can find instructions on how to install it [here](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
+* The **Debian app** from the [Microsoft Store](https://www.microsoft.com/en-us/p/debian/9msvkqc78pk6?activetab=pivot:overviewtab).
 
 ## Installation guide {#installation-guide}
 
-After downloading Memgraph as a Debian package, install it by running the
-following:
+After downloading Memgraph as a Debian package and starting your Debian app, install Memgraph by running the following:
 
 ```
 sudo dpkg -i /path/to/memgraph_<version>.deb
 ```
 
+:::note Where is the download directory?
+Usually, you can find the download directory in this location `/mnt/<drive>/Users/<username>`
+:::
+
 :::note Why use sudo?
 In order to perform some actions on your operating system like installing new software, you may need **superuser** privileges (commonly called **root**). 
 :::
 
+Normally, you would start Memgraph using `systemd`, but unfortunately, this is not an option in WSL. 
+We can bypass this inconvenience by using the command `runuser` which allows us to run commands with a substitute user and group ID.
+
+Start the Memgraph server by issuing the following command:
+ 
+```
+sudo runuser -l memgraph -c '/usr/lib/memgraph/memgraph'
+```
+
+If Memgraph has been installed correctly, you will see something like this:
+
+```
+You are running Memgraph v1.4.0-community
+```
+
+At this point, Memgraph is ready for you to [submit queries](../querying/querying.md).
+
 :::caution Potential installation error
-You could get errors while installing the package with the above command if you
+You could get errors while installing the package with the above commands if you
 don't have all of Memgraph's dependencies installed. The issues mostly look
 like the following:
 
@@ -47,40 +69,9 @@ The above command will install all missing dependencies and will finish
 configuring the Memgraph package.
 :::
 
-On successful installation, Memgraph should already be running. To
-confirm it, you can start it explicitly as follows:
-
-```
-sudo systemctl start memgraph
-```
-
-To verify that Memgraph is running, run the following:
-
-```
-sudo journalctl --unit memgraph
-```
-
-If successful, you should receive an output similar to the following:
-
-```
-Apr 08 06:16:23 Going-Merry systemd[1]: Started Memgraph: High performance, in-memory, transactional graph>
-Apr 08 06:16:23 Going-Merry memgraph[459969]: You are running Memgraph v1.4.0-community
-```
-
-At this point, Memgraph is ready for you to [submit queries](../querying/querying.md).
-
 ### Configuration
-
 The Memgraph configuration is available in `/etc/memgraph/memgraph.conf`.
 If the Memgraph configuration is altered, Memgraph needs to be restarted.
-
-### Stopping Memgraph
-
-To shut down the Memgraph server, issue the following command:
-
-```
-sudo systemctl stop memgraph
-```
 
 ## Where to next?
 

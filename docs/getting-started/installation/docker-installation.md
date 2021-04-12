@@ -8,6 +8,7 @@ This article briefly outlines the basic steps necessary to install and run
 Memgraph with Docker.
 
 ## Prerequisites
+
 Before you proceed with the installation guide make sure that you have:
 * Installed **Docker**. Instructions on how to do this can be found on the
  [official Docker website](https://docs.docker.com/get-docker/).

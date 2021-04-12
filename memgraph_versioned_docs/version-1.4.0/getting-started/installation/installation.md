@@ -12,6 +12,9 @@ Memgraph is available to [download as a binary](https://memgraph.com/download/) 
   * **[Debian package](./debian-installation.md)**
   * **[RPM package](./rpm-installation.md)**
 
+You can also install the Memgraph Debian package on Windows using the Debian app via **Windows Subsystem for Linux**:
+*  **[WSL installation](./wsl-installation.md)**
+
 We recommend using Docker because it simplifies the installation process and offers a lot of flexibility to new users.
 
 :::info

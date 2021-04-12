@@ -7,6 +7,7 @@ sidebar_label: Debian GNU/Linux
 This article briefly outlines the basic steps necessary to install the Memgraph Debian package.
 
 ## Prerequisites
+
 Before you proceed with the installation guide make sure that you have:
 * Downloaded the latest **Memgraph Debian Package** which can be [found here](https://memgraph.com/download/).
 
@@ -16,9 +17,14 @@ After downloading Memgraph as a Debian package, install it by running the
 following:
 
 ```
-dpkg -i /path/to/memgraph_<version>.deb
+sudo dpkg -i /path/to/memgraph_<version>.deb
 ```
 
+:::note Why use sudo?
+In order to perform some actions on your operating system like installing new software, you may need **superuser** privileges (commonly called **root**). 
+:::
+
+:::caution Potential installation error
 You could get errors while installing the package with the above command if you
 don't have all of Memgraph's dependencies installed. The issues mostly look
 like the following:
@@ -34,35 +40,37 @@ To install missing dependencies and finish the installation of the Memgraph
 package, just issue the following command:
 
 ```
-apt-get install -f
+sudo apt-get install -f
 ```
 
 The above command will install all missing dependencies and will finish
 configuring the Memgraph package.
+:::
 
 On successful installation, Memgraph should already be running. To
 confirm it, you can start it explicitly as follows:
 
 ```
-systemctl start memgraph
+sudo systemctl start memgraph
 ```
 
 To verify that Memgraph is running, run the following:
 
 ```
-journalctl --unit memgraph
+sudo journalctl --unit memgraph
 ```
 
 If successful, you should receive an output similar to the following:
 
 ```
-Nov 23 13:40:13 hostname memgraph[14654]: BoltS server is fully armed and operational
-Nov 23 13:40:13 hostname memgraph[14654]: BoltS listening on 0.0.0.0 at 7687
+Apr 08 06:16:23 Going-Merry systemd[1]: Started Memgraph: High performance, in-memory, transactional graph>
+Apr 08 06:16:23 Going-Merry memgraph[459969]: You are running Memgraph v1.4.0-community
 ```
 
 At this point, Memgraph is ready for you to [submit queries](../querying/querying.md).
 
 ### Configuration
+
 The Memgraph configuration is available in `/etc/memgraph/memgraph.conf`.
 If the Memgraph configuration is altered, Memgraph needs to be restarted.
 
@@ -71,7 +79,7 @@ If the Memgraph configuration is altered, Memgraph needs to be restarted.
 To shut down the Memgraph server, issue the following command:
 
 ```
-systemctl stop memgraph
+sudo systemctl stop memgraph
 ```
 
 ## Where to next?
