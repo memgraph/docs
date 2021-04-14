@@ -14,6 +14,7 @@ The following guides describe how to create a simple **`Hello, World!`** program
 * [Java](./java.md)
 * [Go](./go.md)
 * [JavaScript](./javascript.md)
+* [PHP](./php.md)
 
 ## Supported Languages
 
@@ -29,7 +30,7 @@ of the protocol. Bolt protocol drivers for some popular programming languages ar
   * [Java](https://github.com/neo4j/neo4j-java-driver)
   * [JavaScript](https://github.com/neo4j/neo4j-javascript-driver)
   * [Node.js](https://github.com/neo4j/neo4j-javascript-driver)
-  * [PHP](https://github.com/graphaware/neo4j-bolt-php)
+  * [PHP](https://github.com/neo4j-php/neo4j-php-client)
   * [Python](https://github.com/memgraph/pymgclient)
   * [Ruby](https://github.com/neo4jrb/neo4j)
   * [Rust](https://github.com/memgraph/rsmgclient)

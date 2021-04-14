@@ -9,7 +9,7 @@ At the end of this guide, you will have created a simple Java console **`Hello, 
 ## Prerequisites
 
 For this guide you will need:
-* A **running Memgraph instance**. If you need to setup Memgraph, take a look at the [Installation guide](/getting-started/installation/installation.md).
+* A **running Memgraph instance**. If you need to set up Memgraph, take a look at the [Installation guide](/getting-started/installation/installation.md).
 * A basic understanding of graph databases and the property graph model.
 * Java 8 or 11 installed.
 

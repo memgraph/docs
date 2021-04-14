@@ -93,6 +93,10 @@
             {
               "type": "doc",
               "id": "version-1.4.0/getting-started/connecting-applications/javascript"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.4.0/getting-started/connecting-applications/php"
             }
           ]
         }

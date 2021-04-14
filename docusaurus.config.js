@@ -175,7 +175,7 @@ module.exports = {
       indexName: 'g-despot',
     },
     prism: {
-      additionalLanguages: ['cypher'],
+      additionalLanguages: ['cypher', 'php'],
     },
   },
   presets: [
