@@ -30,7 +30,7 @@ of the protocol. Bolt protocol drivers for some popular programming languages ar
   * [Java](https://github.com/neo4j/neo4j-java-driver)
   * [JavaScript](https://github.com/neo4j/neo4j-javascript-driver)
   * [Node.js](https://github.com/neo4j/neo4j-javascript-driver)
-  * [PHP](https://github.com/neo4j-php/neo4j-php-client)
+  * [PHP](https://github.com/neo4j-php/Bolt)
   * [Python](https://github.com/memgraph/pymgclient)
   * [Ruby](https://github.com/neo4jrb/neo4j)
   * [Rust](https://github.com/memgraph/rsmgclient)
