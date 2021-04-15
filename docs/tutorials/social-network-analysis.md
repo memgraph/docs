@@ -34,7 +34,8 @@ There are three ways to execute queries and procedures in Memgraph:
 In this tutorial, we are using results from the command-line tool because of their text format but, it's alright to use Memgraph Lab instead. You can open Memgraph Lab and in the tab **Query** execute the following command:
 
 ```cypher
-MATCH (s)-[r]-(t) RETURN s,r,t;
+MATCH (s)-[r]-(t)
+RETURN s, r, t;
 ```
 
 This is going to return all the relationships inside our network. Now we have a better overview of what we are dealing with, so it’s time to get some useful information about the network.
@@ -80,7 +81,7 @@ Let's try running the algorithm on a node with the `id` 13 and ordering the resu
 CALL nxalg.jaccard_coefficient()
 YIELD *
 WITH  u, v, coef
-WHERE u.id='13'
+WHERE u.id = '13'
 RETURN u, v, coef
 ORDER BY coef DESC;
 ```
@@ -166,7 +167,7 @@ And now it can be called:
 ```cypher
 CALL communities.detect() 
 YIELD communities
-UNWIND communities as community
+UNWIND communities AS community
 RETURN community
 ```
 
