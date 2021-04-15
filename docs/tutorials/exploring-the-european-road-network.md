@@ -47,14 +47,17 @@ to the `Datasets` tab in the sidebar. From there, choose the dataset
 1) Let's list all of the countries in our road network.
 
 ```cypher
-MATCH (c:Country) RETURN c.name ORDER BY c.name;
+MATCH (c:Country)
+RETURN c.name
+ORDER BY c.name;
 ```
 
 2) Which Croatian cities are in our road network?
 
 ```cypher
 MATCH (c:City)-[:In_]->(:Country {name: "Croatia"})
-RETURN c.name ORDER BY c.name;
+RETURN c.name
+ORDER BY c.name;
 ```
 
 3) Which cities in our road network are less than 200 km away from Zagreb?
@@ -62,7 +65,8 @@ RETURN c.name ORDER BY c.name;
 ```cypher
 MATCH (:City {name: "Zagreb"})-[r:Road]->(c:City)
 WHERE r.length < 200
-RETURN c.name ORDER BY c.name;
+RETURN c.name
+ORDER BY c.name;
 ```
 
 Now let's try some queries using Memgraph's graph traversal capabilities.
@@ -123,7 +127,7 @@ shortest path from Zagreb to Paris along with the total length of the path.
 MATCH p = (:City {name: "Zagreb"})
           -[:Road * wShortest (e, v | e.length) total_weight]->
           (:City {name: "Paris"})
-RETURN nodes(p) as cities, total_weight;
+RETURN nodes(p) AS cities, total_weight;
 ```
 
 As you can see, the syntax is quite similar to breadth-first search syntax.
@@ -142,7 +146,7 @@ more that 200 km in one go for our bike route.
 MATCH p = (:City {name: "Zagreb"})
       -[:Road * wShortest (e, v | e.length) total_weight (e, v | e.length <= 200)]->
       (:City {name: "Paris"})
-RETURN nodes(p) as cities, total_weight;
+RETURN nodes(p) AS cities, total_weight;
 ```
 
 9) Let's try and find 10 cities that are furthest away from Zagreb.
@@ -152,7 +156,8 @@ MATCH (:City {name: "Zagreb"})
       -[:Road * wShortest (e, v | e.length) total_weight]->
       (c:City)
 RETURN c, total_weight
-ORDER BY total_weight DESC LIMIT 10;
+ORDER BY total_weight DESC
+LIMIT 10;
 ```
 
 It is not surprising to see that they are all in Siberia.
