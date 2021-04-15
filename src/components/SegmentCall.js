@@ -12,7 +12,11 @@ export default (function () {
                 title: document.title,
                 path: location.pathname
             });
+            
             hotjar.initialize(1822641, 6);
+            
+            fbq('init', '880656202502108');
+            fbq('track', 'PageView');
         },
     };
 })();

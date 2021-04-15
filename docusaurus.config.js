@@ -58,12 +58,14 @@ module.exports = {
           position: 'left',
           activeBaseRegex: `/lab/`,
         },
+        /*
         {
           to: '/memgraph-cloud/',
           label: 'Memgraph Cloud',
           position: 'left',
           activeBaseRegex: `/cloud/`,
         },
+        */
         {
           to: '/cypher-manual/',
           label: 'Cypher manual',
@@ -92,7 +94,11 @@ module.exports = {
             },
           ]
         },
-        //{to: 'blog', label: 'Blog', position:   'left'},
+        {
+          type: 'docsVersionDropdown',
+          docsPluginId: 'memgraph',
+          position: 'right',
+        },
         {
           href: 'https://github.com/memgraph',
           label: 'GitHub',
@@ -114,10 +120,12 @@ module.exports = {
               label: 'Memgraph Lab',
               to: '/memgraph-lab',
             },
+            /*
             {
               label: 'Memgraph Cloud',
               to: '/memgraph-cloud',
             },
+            */
             {
               label: 'Cypher manual',
               to: '/cypher-manual',
@@ -167,7 +175,7 @@ module.exports = {
       indexName: 'g-despot',
     },
     prism: {
-      additionalLanguages: ['cypher'],
+      additionalLanguages: ['cypher', 'php'],
     },
   },
   presets: [
@@ -175,19 +183,18 @@ module.exports = {
       '@docusaurus/preset-classic',
       {
         docs: {
+          id: 'memgraph', 
           path: 'docs',
           routeBasePath: 'memgraph',
           sidebarPath: require.resolve('./sidebarsMemgraph.js'),
           editUrl:
             'https://github.com/memgraph/docs/tree/master/',
+            versions: {
+              current: {
+                label: `Unreleased 🚧`,
+              },
+            },
         },
-        /*
-        blog: {
-          showReadingTime: true,
-          editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/blog/',
-        },
-        */
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },

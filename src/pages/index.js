@@ -41,7 +41,7 @@ function Home() {
             <div className={styles.indexCtas}>
               <Link
                 className={styles.indexCtasGetStartedButton}
-                to={useBaseUrl('/memgraph/overview')}>
+                to={useBaseUrl('/memgraph/getting-started')}>
                 Get Started
               </Link>
               {/*
