@@ -130,8 +130,8 @@ result using the following query:
 
 ```cypher
 MATCH (n)
-WITH n, "Pop" as genre
-WHERE genre in n.genres
+WITH n, "Pop" AS genre
+WHERE genre IN n.genres
 RETURN genre, count(n);
 ```
 
@@ -384,7 +384,7 @@ and
 ```cypher
 CALL deezer_example.label_propagation_communities()
 YIELD communities
-UNWIND communities as community
+UNWIND communities AS community
 WITH community
 WHERE community.size > 10
 RETURN community.most_popular_genre, community.most_popular_genre_percentage, community.size
