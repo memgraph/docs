@@ -1,4 +1,4 @@
-# Memgraph Docs
+# Memgraph Docs 
 
 This repository contains the source files and various generators for the
 Memgraph documentation available at
