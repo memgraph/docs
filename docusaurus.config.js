@@ -110,7 +110,7 @@ module.exports = {
             },
             {
               label: 'Usage',
-              to: '/mage/usage',
+              to: '/mage/usage/calling-procedures',
             },
             {
               label: 'Contributing',

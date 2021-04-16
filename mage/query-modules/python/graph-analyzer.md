@@ -1,14 +1,14 @@
 ---
 id: graph-analyzer
-title: Graph Analyzer
-sidebar_label: Graph Analyzer
+title: The graph_analyzer module
+sidebar_label: graph_analyzer
 ---
 
 This module offers insights about the stored graph or a subgraph.
 
 ## `analyze(context, analyses)`
-Shows graph information.
-In case of multiple results, only the first 10 will be shown.
+Shows graph information. In case of multiple results, only the first 10 will be
+shown.
 
 
 **Parameters**
@@ -17,9 +17,8 @@ In case of multiple results, only the first 10 will be shown.
 * **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
 
 
-* **analyses** (*mgp.Nullable[List[str]]*) – (default=None)
-    A list of graph analyses to run.
-    If NULL, all available analyses are run.
+* **analyses** (*mgp.Nullable[List[str]]*) – (default=None) A list of graph
+    analyses to run. If NULL, all available analyses are run.
 
 
 
@@ -46,8 +45,8 @@ Call with parameter:
 
 
 ## `analyze_subgraph(context, vertices, edges, analyses)`
-Shows subgraph information.
-In case of multiple results, only the first 10 will be shown.
+Shows subgraph information. In case of multiple results, only the first 10 will
+be shown.
 
 
 **Parameters**
@@ -62,9 +61,8 @@ In case of multiple results, only the first 10 will be shown.
 * **edges** (*mgp.List[mgp.Edge]*) – List of edges in the subgraph.
 
 
-* **analyses** (*mgp.Nullable[List[str]]*) – (default=None)
-    A list of graph analyses to run.
-    If NULL, all available analyses are run.
+* **analyses** (*mgp.Nullable[List[str]]*) – (default=None) A list of graph
+    analyses to run. If NULL, all available analyses are run.
 
 
 
