@@ -215,17 +215,17 @@ module.exports = {
       '@docusaurus/preset-classic',
       {
         docs: {
-          id: 'memgraph', 
+          id: 'memgraph',
           path: 'docs',
           routeBasePath: 'memgraph',
           sidebarPath: require.resolve('./sidebarsMemgraph.js'),
           editUrl:
             'https://github.com/memgraph/docs/tree/master/',
-            versions: {
-              current: {
-                label: `Unreleased 🚧`,
-              },
+          versions: {
+            current: {
+              label: `Unreleased 🚧`,
             },
+          },
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
