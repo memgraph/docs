@@ -1,0 +1,83 @@
+---
+id: installation
+title: How to install MAGE? 
+sidebar_label: Installation
+---
+
+import Tabs from '@theme/Tabs'; 
+import TabItem from '@theme/TabItem';
+
+## Prerequisites
+
+To build and install MAGE query modules you will need: **Python3**, **Make**,
+**CMake** and **Clang**.
+
+<Tabs
+  groupId="installation-method"
+  defaultValue="docker"
+  values={[
+    {label: 'Docker', value: 'docker'},
+    {label: 'Install from source', value: 'source'},
+  ]
+}>
+  <TabItem value="docker">
+
+## Installing with Docker 
+
+**1.** Make sure to have the `memgraph:latest` Docker Image. 
+
+**2.** Build the **MAGE** tagged Docker image with the following command:  
+
+```shell
+docker build . -t memgraph:mage
+```
+
+**3.** Start Memgraph with the following command and enjoy **MAGE**:
+
+```shell
+docker run -p 7687:7687 memgraph:mage
+```
+
+:::info
+Note that query modules are loaded into Memgraph on startup so if your instance
+was already running you will need to execute the following query to load them:
+
+```shell
+CALL mg.load_all();
+```
+
+If you want to find out more about loading query modules, visit [this
+guide](/usage/loading-modules.md).
+:::
+
+  </TabItem>
+  <TabItem value="source">
+
+## Installing from source 
+
+**1.** Run the `build` script. It will generate a `dist` directory with all the
+needed files.  
+
+```shell
+python3 build
+```
+
+**2.** Copy the contents of the newly created `dist` directory to
+`/usr/lib/memgraph/query_modules`.  
+**3.** Start Memgraph and enjoy **MAGE**!  
+
+:::info
+Note that query modules are loaded into Memgraph on startup so if your instance
+was already running you will need to execute the following query to load them:
+
+```shell
+CALL mg.load_all();
+```
+
+If you want to find out more about loading query modules, visit [this
+guide](/usage/loading-modules.md).
+:::
+  
+  </TabItem>
+</Tabs>
+

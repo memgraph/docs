@@ -95,6 +95,34 @@ module.exports = {
           ]
         },
         {
+          to: '/mage',
+          label: 'MAGE',
+          position: 'left',
+          activeBaseRegex: `/mage/`,
+          items: [
+            {
+              label: 'Overview',
+              to: '/mage',
+            },
+            {
+              label: 'Installation',
+              to: '/mage/installation',
+            },
+            {
+              label: 'Usage',
+              to: '/mage/usage/calling-procedures',
+            },
+            {
+              label: 'Contributing',
+              to: '/mage/contributing',
+            },
+            {
+              label: 'Getting help',
+              to: '/mage/getting-help',
+            },
+          ]
+        },
+        {
           type: 'docsVersionDropdown',
           docsPluginId: 'memgraph',
           position: 'right',
@@ -129,6 +157,10 @@ module.exports = {
             {
               label: 'Cypher manual',
               to: '/cypher-manual',
+            },
+            {
+              label: 'MAGE',
+              to: '/mage',
             },
           ],
         },
@@ -231,6 +263,17 @@ module.exports = {
         path: 'cypher-manual',
         routeBasePath: 'cypher-manual',
         sidebarPath: require.resolve('./sidebarsCypherManual.js'),
+        editUrl:
+          'https://github.com/memgraph/docs/tree/master/',
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'mage',
+        path: 'mage',
+        routeBasePath: 'mage',
+        sidebarPath: require.resolve('./sidebarsMAGE.js'),
         editUrl:
           'https://github.com/memgraph/docs/tree/master/',
       },
