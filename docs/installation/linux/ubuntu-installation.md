@@ -1,10 +1,12 @@
 ---
-id: debian-installation
-title: Install Memgraph for Debian
-sidebar_label: Debian GNU/Linux
+id: ubuntu-installation
+title: Install Memgraph on Ubuntu
+sidebar_label: Ubuntu
+slug: /install-memgraph-on-ubuntu
 ---
 
-This article briefly outlines the basic steps necessary to install the Memgraph Debian package.
+This article briefly outlines the basic steps necessary to install and run
+Memgraph on Ubuntu.
 
 ## Prerequisites
 

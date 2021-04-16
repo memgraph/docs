@@ -1,0 +1,115 @@
+---
+id: linux-installation-troubleshooting
+title: Troubleshooting installation on Linux
+sidebar_label: Installation troubleshooting
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  groupId="operating-systems"
+  defaultValue="docker"
+  values={[
+    {label: 'Docker 🐳', value: 'docker'},
+    {label: 'Ubuntu/Debian', value: 'debian'},
+  ]}>
+  <TabItem value="docker">
+
+## Issues with connection to database
+
+```shell
+docker run memgraph 
+```
+
+While this will start your Memgraph instance, not specifying the port will cause
+problems when trying to connect to Memgraph via **Memgraph Lab** or
+**mgconsole**. To avoid this, you should add a port to your command:
+
+```shell
+docker run -p 7687:7687 memgraph
+```
+
+## Issues with connecting **mg_client** to database
+
+```shell
+docker run -it --entrypoint=mg_client memgraph --host HOST --use-ssl=False
+```
+
+Although unlikely, some users might experience minor difficulties after the
+Docker installation. Instead of running on localhost, a Docker container for
+Memgraph may be running on a custom IP address. Fortunately, that IP address can
+be found as follows:
+
+1) Determine the container ID of the Memgraph container By issuing the command
+docker ps the user should get an output similar to the following:
+
+```shell
+CONTAINER ID        IMAGE               COMMAND                  CREATED
+9397623cd87e        memgraph            "/usr/lib/memgraph/m…"   2 seconds ago  
+...
+
+At this point, it is important to remember the container ID of the Memgraph
+image. In our case, that is 9397623cd87e.
+
+2) Use the container ID to retrieve an IP of the container
+
+```shell
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' 9397623cd87e
+```
+
+The command above should yield the IP that should be used when connecting to
+Memgraph and instead of HOST when firing up the mg_client with Docker, as
+described in the [querying](/getting-started/querying/querying.md) section.
+
+## Issues with connecting **mg_console** to database
+
+```shell
+docker run -it --entrypoint=mg_client memgraph --host HOST --use-ssl=False
+```
+
+When trying to fire up the mg_console with Docker, you need to run the client.
+Although unlikely, sometimes there are issues with connecting to the Docker
+container’s IP address because it is running on the custom IP rather than the
+localhost. If you encounter the following error:
+
+Replace localhost with host.docker.localhost in the command.
+
+  </TabItem>
+  <TabItem value="debian">
+
+## Unable to install package with `dpkg` command
+
+While running the following command: 
+
+```shell
+dpkg -i /path/to/memgraph_<version>.deb
+```
+
+you may encounter errors that resemble the following: 
+
+```shell
+dpkg: error processing package memgraph (--install): dependency problems -
+leaving unconfigured Errors were encountered while processing: memgraph
+```
+
+These errors indicate that you don’t have all of Memgraph’s dependencies
+installed. To install the missing dependencies and finish Memgraph installation,
+issue the following command:
+
+```shell
+sudo apt-get install -f
+```
+
+## Multiple notes when starting Memgraph
+
+When you start your Memgraph instance, you may see the following list of notes
+show up in your terminal: 
+
+If you wish to work with NetworkX modules within Memgraph, you need to install
+the following Python libraries: NumPy, Scipy and Networkx. How to install Python
+libraries in WSL, follow this guide.  If you are not interested in working with
+those modules, you can ignore the warnings. 
+
+  </TabItem>
+</Tabs>

@@ -1,13 +1,14 @@
 ---
 id: rpm-installation
-title: Install Memgraph RPM package
+title: Install Memgraph from RPM package
 sidebar_label: RPM package
+slug: /install-memgraph-with-rpm
 ---
 
-This article briefly outlines the basic steps necessary to install the Memgraph
-RPM package.
+This article briefly outlines the basic steps necessary to install and run
+Memgraph from a RPM package.
 
-### Prerequisites
+## Prerequisites
 
 Before you proceed with the installation guide make sure that you have:
 * Downloaded the latest **Memgraph RPM Package** which can be [found

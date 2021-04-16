@@ -1,17 +1,19 @@
 ---
 id: wsl-installation
-title: Install Memgraph with WSL
+title: Install Memgraph on Windows with WSL
 sidebar_label: Windows Subsystem for Linux
 ---
 
-This article briefly outlines the basic steps necessary to install the Memgraph Debian package on Windows Subsystem for Linux.
+This article briefly outlines the basic steps necessary to install and run
+Memgraph on Windows with the Windows Subsystem for Linux.
 
 ## Prerequisites
 
 Before you proceed with the installation guide make sure that you have:
-* Downloaded the latest **Memgraph Debian Package** which can be [found here](https://memgraph.com/download/).
-* **Windows Subsystem for Linux** installed. You can find instructions on how to install it [here](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
-* The **Debian app** from the [Microsoft Store](https://www.microsoft.com/en-us/p/debian/9msvkqc78pk6?activetab=pivot:overviewtab).
+
+- Downloaded the latest **Memgraph Debian Package** which can be [found here](https://memgraph.com/download/).
+- **Windows Subsystem for Linux** installed. You can find instructions on how to install it [here](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
+- The **Debian app** from the [Microsoft Store](https://www.microsoft.com/en-us/p/debian/9msvkqc78pk6?activetab=pivot:overviewtab).
 
 ## Installation guide {#installation-guide}
 
@@ -29,11 +31,11 @@ Usually, you can find the download directory in this location `/mnt/<drive>/User
 In order to perform some actions on your operating system like installing new software, you may need **superuser** privileges (commonly called **root**). 
 :::
 
-Normally, you would start Memgraph using `systemd`, but unfortunately, this is not an option in WSL. 
+Normally, you would start Memgraph using `systemd`, but unfortunately, this is not an option in WSL.
 We can bypass this inconvenience by using the command `runuser` which allows us to run commands with a substitute user and group ID.
 
 Start the Memgraph server by issuing the following command:
- 
+
 ```
 sudo runuser -l memgraph -c '/usr/lib/memgraph/memgraph'
 ```
@@ -70,13 +72,14 @@ configuring the Memgraph package.
 :::
 
 ### Configuration
+
 The Memgraph configuration is available in `/etc/memgraph/memgraph.conf`.
 If the Memgraph configuration is altered, Memgraph needs to be restarted.
 
 ## Where to next?
 
 To learn how to query the database, take a look at the **[Querying](../querying/querying.md)** guide or **[Memgraph Playground](https://playground.memgraph.com/)** for interactive tutorials.<br/>
-Visit the **[Building applications](/getting-started/connecting-applications/connecting-applications.md)** page if you need to 
+Visit the **[Building applications](/getting-started/connecting-applications/connecting-applications.md)** page if you need to
 connect to the database programmatically.
 
 ## Getting help

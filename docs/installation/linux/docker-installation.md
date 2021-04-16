@@ -1,18 +1,20 @@
 ---
 id: docker-installation
-title: Install Memgraph with Docker
-sidebar_label: Docker (Windows, Linux, macOS)
+title: Install Memgraph on Linux with Docker
+sidebar_label: Docker 🐳
+slug: /install-memgraph-on-linux-docker
 ---
 
 This article briefly outlines the basic steps necessary to install and run
-Memgraph with Docker.
+Memgraph on Linux with Docker.
 
 ## Prerequisites
 
 Before you proceed with the installation guide make sure that you have:
-* Installed **Docker**. Instructions on how to do this can be found on the
- [official Docker website](https://docs.docker.com/get-docker/).
-* Downloaded the latest **Memgraph Docker Image** which can be [found here](https://memgraph.com/download/).
+
+- Installed **Docker**. Instructions on how to do this can be found on the
+  [official Docker website](https://docs.docker.com/get-docker/).
+- Downloaded the latest **Memgraph Docker Image** which can be [found here](https://memgraph.com/download/).
 
 :::info
 Memgraph's Docker image was built with **Docker version `1.12`** and should be
@@ -21,7 +23,7 @@ compatible with all newer versions.
 
 ## Installation guide
 
-If you installed Docker and downloaded the latest Memgraph  Docker image, import the 
+If you installed Docker and downloaded the latest Memgraph Docker image, import the
 image using the following command:
 
 ```
@@ -87,7 +89,7 @@ after the Docker installation. Instead of running on
 `localhost`, a Docker container for Memgraph may be running on a custom IP
 address. Fortunately, that IP address can be found as follows:
 
-1) Determine the container ID of the Memgraph container
+1. Determine the container ID of the Memgraph container
 
 By issuing the command `docker ps` the user should get an output similar to the
 following:
@@ -98,9 +100,9 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 ```
 
 At this point, it is important to remember the container ID of the Memgraph
-image.  In our case, that is `9397623cd87e`.
+image. In our case, that is `9397623cd87e`.
 
-2) Use the container ID to retrieve an IP of the container
+2. Use the container ID to retrieve an IP of the container
 
 ```
 docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' 9397623cd87e
@@ -114,8 +116,8 @@ with Docker, as described in the [querying](../querying/querying.md) section.
 
 If you need more information on working with Docker, check out **[this guide](../../database-functionalities/work-with-docker.md)**.<br/>
 To learn how to query the database, take a look at the **[Querying](../querying/querying.md)** guide or **[Memgraph Playground](https://playground.memgraph.com/)** for interactive tutorials.<br/>
-Visit the **[Building applications](/getting-started/connecting-applications/connecting-applications.md)** page if you need to 
-connect to the database programmatically. 
+Visit the **[Building applications](/getting-started/connecting-applications/connecting-applications.md)** page if you need to
+connect to the database programmatically.
 
 ## Getting help
 
