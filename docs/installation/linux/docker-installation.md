@@ -84,36 +84,6 @@ the following command:
 docker volume rm <volume_name>
 ```
 
-### Note for Docker users
-
-Although unlikely, some OS X/macOS users might experience minor difficulties
-after the Docker installation. Instead of running on `localhost`, a Docker
-container for Memgraph may be running on a custom IP address. Fortunately, that
-IP address can be found as follows:
-
-1. Determine the container ID of the Memgraph container
-
-By issuing the command `docker ps` the user should get an output similar to the
-following:
-
-```
-CONTAINER ID        IMAGE               COMMAND                  CREATED        ...
-9397623cd87e        memgraph            "/usr/lib/memgraph/m…"   2 seconds ago  ...
-```
-
-At this point, it is important to remember the container ID of the Memgraph
-image. In our case, that is `9397623cd87e`.
-
-2. Use the container ID to retrieve an IP of the container
-
-```
-docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' 9397623cd87e
-```
-
-The command above should yield the IP that should be used when connecting to
-Memgraph and instead of `HOST` when firing up the `mg_client` with Docker, as
-described in the [querying](/getting-started/querying/querying.md) section.
-
 ## Where to next?
 
 If you need more information on working with Docker, check out **[this

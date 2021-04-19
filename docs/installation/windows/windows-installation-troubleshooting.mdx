@@ -73,6 +73,10 @@ Although unlikely, sometimes there are issues with connecting to the Docker
 container’s IP address because it is running on the custom IP rather than the
 localhost. If you encounter the following error:
 
+```shell
+Connection failure: Couldn't connect to 127.0.0.1:7687!
+```
+
 Replace localhost with host.docker.localhost in the command.
 
 
@@ -115,6 +119,28 @@ sudo apt-get install -f
 
 When you start your Memgraph instance, you may see the following list of notes
 show up in your terminal: 
+
+```shell
+You are running Memgraph v1.4.0-community
+
+NOTE: Please install networkx to be able to use graph_analyzer module. Using Python:
+3.8.2 (default, Jul 16 2020, 14:00:26)
+[GCC 9.3.0]
+
+NOTE: Please install networkx to be able to use Memgraph NetworkX wrappers. Using Python:
+3.8.2 (default, Jul 16 2020, 14:00:26)
+[GCC 9.3.0]
+
+NOTE: Please install networkx, numpy, scipy to be able to use proxied NetworkX algorithms. E.g., CALL nxalg.pagerank(...).
+Using Python:
+3.8.2 (default, Jul 16 2020, 14:00:26)
+[GCC 9.3.0]
+
+NOTE: Please install networkx to be able to use wcc module.
+Using Python:
+3.8.2 (default, Jul 16 2020, 14:00:26)
+[GCC 9.3.0]
+```
 
 If you wish to work with NetworkX modules within Memgraph, you need to install
 the following Python libraries: NumPy, Scipy and Networkx. How to install Python
