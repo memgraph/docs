@@ -19,7 +19,7 @@ Before you proceed with the installation guide make sure that you have:
 After downloading Memgraph as a Debian package, install it by running the
 following:
 
-```
+```console
 sudo dpkg -i /path/to/memgraph_<version>.deb
 ```
 
@@ -33,7 +33,7 @@ You could get errors while installing the package with the above command if you
 don't have all of Memgraph's dependencies installed. The issues mostly look like
 the following:
 
-```
+```console
 dpkg: error processing package memgraph (--install):
  dependency problems - leaving unconfigured
 Errors were encountered while processing:
@@ -43,7 +43,7 @@ Errors were encountered while processing:
 To install missing dependencies and finish the installation of the Memgraph
 package, just issue the following command:
 
-```
+```console
 sudo apt-get install -f
 ```
 
@@ -54,19 +54,19 @@ configuring the Memgraph package.
 On successful installation, Memgraph should already be running. To confirm it,
 you can start it explicitly as follows:
 
-```
+```console
 sudo systemctl start memgraph
 ```
 
 To verify that Memgraph is running, run the following:
 
-```
+```console
 sudo journalctl --unit memgraph
 ```
 
 If successful, you should receive an output similar to the following:
 
-```
+```console
 Apr 08 06:16:23 Going-Merry systemd[1]: Started Memgraph: High performance, in-memory, transactional graph>
 Apr 08 06:16:23 Going-Merry memgraph[459969]: You are running Memgraph v1.4.0-community
 ```
@@ -77,13 +77,15 @@ queries](/getting-started/querying/querying.md).
 ### Configuration
 
 The Memgraph configuration is available in `/etc/memgraph/memgraph.conf`. If the
-Memgraph configuration is altered, Memgraph needs to be restarted.
+configuration file is altered, Memgraph needs to be restarted. To learn about
+all the configuration options, check out the [Reference
+guide](/reference-guide/configuration.md).
 
 ### Stopping Memgraph
 
 To shut down the Memgraph server, issue the following command:
 
-```
+```console
 sudo systemctl stop memgraph
 ```
 
@@ -98,5 +100,9 @@ page if you need to connect to the database programmatically.
 
 ## Getting help
 
-Visit the **[Getting help](/getting-help/getting-help.md)** page in case you run
-into any kind of problem or you have additional questions.
+If you run into problems during the installation process, check out our
+**[installation troubleshooting
+guide](/installation/linux/linux-installation-troubleshooting.mdx)** to see if
+have already covered the topic. For more information on the installation process
+and for additional questions, visit the **[Getting
+help](/getting-help/getting-help.md)** page.

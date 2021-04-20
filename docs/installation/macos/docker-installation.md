@@ -22,24 +22,36 @@ Memgraph's Docker image was built with **Docker version `1.12`** and
 should be compatible with all newer versions.
 :::
 
-## Installation guide
+## Installation guide {#installation-guide}
 
 If you installed Docker and downloaded the latest Memgraph Docker image, import
 the image using the following command:
 
-```
+```console
 docker load -i /path/to/memgraph-<version>-docker.tar.gz
 ```
 
 To start Memgraph, use the following command:
 
+```console
+docker run -p 7687:7687 \
+  -v mg_lib:/var/lib/memgraph \
+  -v mg_log:/var/log/memgraph \
+  -v mg_etc:/etc/memgraph \
+  memgraph
 ```
-docker run -p 7687:7687 memgraph
-```
+
+:::info Docker Volumes
+Docker containers don’t persist data by default (all changes are lost when the
+container is stopped). You need to use local volumes to store the data
+permanently which is why Memgraph is started with the `-v` flags. More
+information on Docker Volumes can be found
+[here](https://docs.docker.com/storage/volumes/).
+:::
 
 If successful, you should see a message similar to the following :
 
-```
+```console
 You are running Memgraph v1.4.0-community
 ```
 
@@ -47,21 +59,20 @@ At this point, Memgraph is ready for you to [submit
 queries](/getting-started/querying/querying.md).
 
 :::info 
-The username and password for connecting to the database are empty by
-default.
+The username and password for connecting to the database are empty by default.
 :::
 
 ### Stopping the database instance
 
 To stop a Memgraph database instance, run the following command:
 
-```
+```console
 docker stop CONTAINER_NAME
 ```
 
 You can find the name of the container (`CONTAINER_NAME`) by running:
 
-```
+```console
 docker ps
 ```
 
@@ -69,7 +80,20 @@ docker ps
 
 The Memgraph configuration is available in Docker's named volume `mg_etc`. On
 Linux systems, it should be in
-`/var/lib/docker/volumes/mg_etc/_data/memgraph.conf`.
+`/var/lib/docker/volumes/mg_etc/_data/memgraph.conf`. Keep in mind that this way
+of specifying configuration options is only valid if Memgraph was started [using
+volumes](#installation-guide).
+
+When using Docker, you can also specify the configuration options in the `docker
+run` command:
+
+```console
+docker run -p 7687:7687 memgraph --bolt-port=7687
+```
+
+To learn about
+all the configuration options, check out the [Reference
+guide](/reference-guide/configuration.md).
 
 ### Named volumes
 
@@ -99,5 +123,9 @@ page if you need to connect to the database programmatically.
 
 ## Getting help
 
-Visit the **[Getting help](/getting-help/getting-help.md)** page in case you run
-into any kind of problem or you have additional questions.
+If you run into problems during the installation process, check out our
+**[installation troubleshooting
+guide](/installation/macos/macos-installation-troubleshooting.mdx)** to see if
+have already covered the topic. For more information on the installation process
+and for additional questions, visit the **[Getting
+help](/getting-help/getting-help.md)** page.

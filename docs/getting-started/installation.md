@@ -26,11 +26,6 @@ following installation methods:
 * **[Debian](/installation/linux/debian-installation.md)**
 * **[RPM package](/installation/linux/rpm-installation.md)**
 
-:::note 
-We recommend using Docker because it simplifies the installation process
-and offers a lot of flexibility to new users.
-:::
-
 :::info 
 Newer versions of Memgraph are currently not backward compatible with
 older versions. This is mainly noticeable by being unable to load storage
@@ -44,11 +39,6 @@ Memgraph is available for [download in multiple
 formats](https://memgraph.com/download/).<br/> You can chose one of the
 following installation methods:
 * **[Docker](/installation/macos/docker-installation.md)**
-
-:::note 
-We recommend using Docker because it simplifies the installation process
-and offers a lot of flexibility to new users.
-:::
 
 :::info 
 Newer versions of Memgraph are currently not backward compatible with

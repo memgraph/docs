@@ -96,5 +96,9 @@ page if you need to connect to the database programmatically.
 
 ## Getting help
 
-Visit the **[Getting help](/getting-help/getting-help.md)** page in case you run
-into any kind of problem or you have additional questions.
+If you run into problems during the installation process, check out our
+**[installation troubleshooting
+guide](/installation/windows/windows-installation-troubleshooting.mdx)** to see if
+have already covered the topic. For more information on the installation process
+and for additional questions, visit the **[Getting
+help](/getting-help/getting-help.md)** page.

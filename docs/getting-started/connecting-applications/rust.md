@@ -9,7 +9,7 @@ At the end of this guide, you will have created a simple Rust **`Hello, World!`*
 ## Prerequisites
 
 To follow this guide, you will need:
-* A **running Memgraph instance**. If you need to set up Memgraph, take a look at the [Installation guide](/getting-started/installation/installation.md).
+* A **running Memgraph instance**. If you need to set up Memgraph, take a look at the [Installation guide](/getting-started/installation.md).
 * A basic understanding of graph databases and the property graph model.
 * **Docker** installed and running. Instructions on how to setup Docker can be found on the [official Docker website](https://docs.docker.com/get-docker/).
 * The [**rsmgclient driver**](https://github.com/memgraph/rsmgclient). A Memgraph database adapter for the Rust programming language. **(if you are not using Docker)**

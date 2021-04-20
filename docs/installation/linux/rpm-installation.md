@@ -18,7 +18,7 @@ Before you proceed with the installation guide make sure that you have:
 After downloading the Memgraph RPM package, you can install it by issuing the
 following command:
 
-```
+```console
 yum --nogpgcheck localinstall /path/to/memgraph-<version>.rpm
 ```
 
@@ -31,19 +31,19 @@ option, please configure system properly.
 After successful installation, Memgraph can be started as a service using the
 following command:
 
-```
+```console
 systemctl start memgraph
 ```
 
 To verify that Memgraph is running, run the following command:
 
-```
+```console
 journalctl --unit memgraph
 ```
 
 If successful, you should receive an output similar to the following:
 
-```
+```console
 Nov 23 13:40:13 hostname memgraph[14654]: BoltS server is fully armed and operational
 Nov 23 13:40:13 hostname memgraph[14654]: BoltS listening on 0.0.0.0 at 7687
 ```
@@ -51,7 +51,7 @@ Nov 23 13:40:13 hostname memgraph[14654]: BoltS listening on 0.0.0.0 at 7687
 If you want the Memgraph service to start automatically on each startup, run the
 following command:
 
-```
+```console
 systemctl enable memgraph
 ```
 
@@ -59,14 +59,17 @@ At this point, Memgraph is ready for you to [submit
 queries](/getting-started/querying/querying.md).
 
 ### Configuration
+
 The Memgraph configuration is available in `/etc/memgraph/memgraph.conf`. If the
-Memgraph configuration is altered, Memgraph needs to be restarted.
+configuration file is altered, Memgraph needs to be restarted. To learn about
+all the configuration options, check out the [Reference
+guide](/reference-guide/configuration.md).
 
 ### Stopping Memgraph
 
 To shut down the Memgraph server, issue the following command:
 
-```
+```console
 systemctl stop memgraph
 ```
 
@@ -81,5 +84,9 @@ page if you need to connect to the database programmatically.
 
 ## Getting help
 
-Visit the **[Getting help](/getting-help/getting-help.md)** page in case you run
-into any kind of problem or you have additional questions.
+If you run into problems during the installation process, check out our
+**[installation troubleshooting
+guide](/installation/linux/linux-installation-troubleshooting.mdx)** to see if
+have already covered the topic. For more information on the installation process
+and for additional questions, visit the **[Getting
+help](/getting-help/getting-help.md)** page.

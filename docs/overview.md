@@ -32,7 +32,7 @@ Production and Commercial Use                                           |       
 
 ### Installation
 
-Visit the [Installation](/getting-started/installation/installation.md) guide to find out more about the installation process.
+Visit the [Installation](/getting-started/installation.md) guide to find out more about the installation process.
 
 ### Querying the database
 
