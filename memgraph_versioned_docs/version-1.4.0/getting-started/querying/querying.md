@@ -24,7 +24,7 @@ the future. If possible, please use `mgconsole` instead.
 
 If you installed Memgraph using Docker, you will need to run the client
 using the following command (remember to replace `HOST` with valid IP of
-the container - see [Docker Note](../installation/docker-installation.md#note-for-docker-users)):
+the container - see [Docker Note](/database-functionalities/work-with-docker.md#docker-container-ip-address)):
 
 ```
 docker run -it --entrypoint=mg_client memgraph --host HOST --use-ssl=False

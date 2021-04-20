@@ -215,17 +215,17 @@ module.exports = {
       '@docusaurus/preset-classic',
       {
         docs: {
-          id: 'memgraph', 
+          id: 'memgraph',
           path: 'docs',
           routeBasePath: 'memgraph',
           sidebarPath: require.resolve('./sidebarsMemgraph.js'),
           editUrl:
             'https://github.com/memgraph/docs/tree/master/',
-            versions: {
-              current: {
-                label: `Unreleased 🚧`,
-              },
+          versions: {
+            current: {
+              label: `Unreleased 🚧`,
             },
+          },
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -385,7 +385,7 @@ module.exports = {
             from: ['/memgraph/how-to-guides-overview/manage-users-using-ldap',],
           },
           {
-            to: '/memgraph/database-functionalities/work-with-docker',
+            to: '/memgraph/how-to-work-with-docker',
             from: ['/memgraph/how-to-guides-overview/work-with-docker',],
           },
           {
@@ -569,6 +569,27 @@ module.exports = {
           {
             to: '/memgraph-lab/installation/osx-installation',
             from: ['/memgraph-lab/how_to_install_memgraph_lab_on_macos',],
+          },
+          //Memgraph installation redirects
+          {
+            to: '/memgraph/getting-started/installation',
+            from: ['/memgraph/getting-started/installation/docker-installation',],
+          },
+          {
+            to: '/memgraph/install-memgraph-on-windows-wsl',
+            from: ['/memgraph/getting-started/installation/wsl-installation',],
+          },
+          {
+            to: '/memgraph/install-memgraph-on-debian',
+            from: ['/memgraph/getting-started/installation/debian-installation',],
+          },
+          {
+            to: '/memgraph/install-memgraph-from-rpm',
+            from: ['/memgraph/getting-started/installation/rpm-installation',],
+          },
+          {
+            to: '/memgraph/how-to-work-with-docker',
+            from: ['/memgraph/database-functionalities/work-with-docker',],
           },
         ],
       },

@@ -14,31 +14,8 @@
           "id": "version-1.4.0/getting-started/getting-started"
         },
         {
-          "collapsed": true,
-          "type": "category",
-          "label": "Installation",
-          "items": [
-            {
-              "type": "doc",
-              "id": "version-1.4.0/getting-started/installation/installation"
-            },
-            {
-              "type": "doc",
-              "id": "version-1.4.0/getting-started/installation/docker-installation"
-            },
-            {
-              "type": "doc",
-              "id": "version-1.4.0/getting-started/installation/wsl-installation"
-            },
-            {
-              "type": "doc",
-              "id": "version-1.4.0/getting-started/installation/debian-installation"
-            },
-            {
-              "type": "doc",
-              "id": "version-1.4.0/getting-started/installation/rpm-installation"
-            }
-          ]
+          "type": "doc",
+          "id": "version-1.4.0/getting-started/installation"
         },
         {
           "collapsed": true,
@@ -97,6 +74,74 @@
             {
               "type": "doc",
               "id": "version-1.4.0/getting-started/connecting-applications/php"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Installation",
+      "items": [
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Linux",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-1.4.0/installation/linux/docker-installation"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.4.0/installation/linux/ubuntu-installation"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.4.0/installation/linux/debian-installation"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.4.0/installation/linux/rpm-installation"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.4.0/installation/linux/linux-installation-troubleshooting"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "macOS",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-1.4.0/installation/macos/docker-installation"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.4.0/installation/macos/macos-installation-troubleshooting"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Windows",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-1.4.0/installation/windows/docker-installation"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.4.0/installation/windows/wsl-installation"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.4.0/installation/windows/windows-installation-troubleshooting"
             }
           ]
         }

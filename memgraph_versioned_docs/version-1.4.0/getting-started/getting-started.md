@@ -7,7 +7,7 @@ slug: /getting-started
 
 We recommend exploring some of these topics to get acquainted with Memgraph:
 
-* **[Install Memgraph](/getting-started/installation/installation.md)** or try out **[Memgraph Cloud](https://memgraph.com/product/cloud)**
+* **[Install Memgraph](/getting-started/installation.md)** or try out **[Memgraph Cloud](https://memgraph.com/product/cloud)**
 * Learn how to **[query the database](./querying/querying.md)**
 * Play with the Cypher language in **[Memgraph Playground](https://playground.memgraph.com/)**
 * Build an application with Memgraph in one of our supported languages and frameworks
@@ -17,6 +17,7 @@ We recommend exploring some of these topics to get acquainted with Memgraph:
     * **[Java](./connecting-applications/java.md)**
     * **[Go](./connecting-applications/go.md)**
     * **[JavaScript](./connecting-applications/javascript.md)**
+    * **[PHP](./connecting-applications/php.md)**
 
 ## Getting help
 
