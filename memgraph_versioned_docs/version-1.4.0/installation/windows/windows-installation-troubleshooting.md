@@ -72,7 +72,7 @@ Image. In our case, that is `9397623cd87e`.
 **2.** Use the this ID to retrieve the IP address of the Container:
 
 ```console 
-docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' 9397623cd87e 
+docker inspect -f "{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}" 9397623cd87e 
 ```
 
 The command above will yield the IP address that should be used when connecting
