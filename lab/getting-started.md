@@ -23,7 +23,7 @@ If you are starting with a fresh database instance, you don't have to change any
 4. The `Encrypted` option should be **disabled** by default.
 
 If you fail to connect, make sure that your database instance is up and running. 
-If the `Host` address is wrong, take a look at the [Docker note](../memgraph/getting-started/installation/docker-installation#note-for-docker-users) in the installation guide.
+If the `Host` address is wrong, take a look at the [Docker note](/memgraph/how-to-work-with-docker#docker-container-ip-address) in the installation guide.
 
 ![Memgraph Lab](./data/memgraph_lab_login.png)
 

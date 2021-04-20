@@ -1,18 +1,19 @@
 ---
-id: windows-installation-troubleshooting
-title: Troubleshooting installation on Windows
+id: linux-installation-troubleshooting
+title: Troubleshooting installation on Linux
 sidebar_label: Installation troubleshooting
+slug: /linux-installation-troubleshooting
 ---
 
-import Tabs from "@theme/Tabs";
-import TabItem from "@theme/TabItem";
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 <Tabs
   groupId="operating-systems"
   defaultValue="docker"
   values={[
     {label: 'Docker 🐳', value: 'docker'},
-    {label: 'Windows Subsystem for Linux (WSL)', value: 'wsl'}
+    {label: 'Ubuntu/Debian', value: 'debian'},
   ]}>
   <TabItem value="docker">
 
@@ -30,25 +31,6 @@ container's port to the host using the `-p` flag and by specifying the port:
 ```console 
 docker run -p 7687:7687 memgraph 
 ```
-
-## Issues with connecting **mg_client** to the database
-
-```console 
-docker run -it --entrypoint=mg_client memgraph --host HOST --use-ssl=False 
-```
-
-Although unlikely, sometimes there are issues with connecting **mg_client** to
-the Docker Container’s IP address because it is running on a custom IP rather
-than `localhost`. This problem is most often accompanied with the following
-error:
-
-```console 
-Connection failure: Couldn't connect to 127.0.0.1:7687! 
-```
-
-To fix this issue, just replace `HOST` from the first command with
-`host.docker.internal`. To find out more about networking in Docker, take a
-look at [this guide](https://docs.docker.com/docker-for-windows/networking/).
 
 ## Find the IP address of a Docker Container
 
@@ -84,15 +66,7 @@ docker run -it --entrypoint=mg_client memgraph --host HOST --use-ssl=False
 ```
 
   </TabItem>
-  <TabItem value="wsl">
-
-## Accessing files from your Windows system
-
-Usually, you can find the Windows users directories in this location:
-
-```console
-/mnt/<drive>/Users/<username>
-```
+  <TabItem value="debian">
 
 ## Unable to install the Memgraph package with `dpkg`
 
@@ -150,8 +124,8 @@ install the following Python libraries:
 * [SciPy](https://www.scipy.org/) 
 * [NetworkX](https://networkx.org/)
 
-For more information on how to install Python libraries in WSL, follow [this
-guide](https://docs.microsoft.com/en-us/windows/python/web-frameworks#install-python-pip-and-venv).
+For more information on how to install Python libraries in Linux, follow [this
+guide](https://packaging.python.org/tutorials/installing-packages/).
 If you are not interested in working with query modules that depend on these
 libraries, you can ignore the warnings.
 

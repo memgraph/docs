@@ -387,7 +387,7 @@ docker run -i --entrypoint=mg_client memgraph --host HOST --use-ssl=False < quer
 ```
 
 Remember to replace `HOST` with valid IP of the container (see
-[Note for Docker users](../getting-started/installation/docker-installation.md#note-for-docker-users)).
+[Note for Docker users](/database-functionalities/work-with-docker.md#docker-container-ip-address)).
 
 For more information about `mg_client` options run:
 

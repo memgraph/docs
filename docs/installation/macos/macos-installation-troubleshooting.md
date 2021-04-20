@@ -2,6 +2,7 @@
 id: macos-installation-troubleshooting
 title: Troubleshooting installation on macOS
 sidebar_label: Installation troubleshooting
+slug: /macos-installation-troubleshooting
 ---
 
 ## Issues when connecting to Memgraph

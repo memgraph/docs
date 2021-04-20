@@ -29,14 +29,14 @@ The cluster consists of four nodes, a single main and three replicas:
 
 We'll use Docker to set up and run the cluster on your local machine, so make
 sure you have it installed and ready, and grab your Memgraph docker image.
-Look [here](../getting-started/installation/docker-installation.md) for instructions.
+Look [here](/getting-started/installation.md) for instructions.
 We assume you have already set up a client for running queries like [mgconsole](https://github.com/memgraph/mgconsole) installed.
 You can also use any of the supported drivers like [mgclient](https://github.com/memgraph/mgclient) or any of the Neo4j drivers.
 
 We fire up the terminal, and for each Memgraph instance (node)  we have to start, we'll
 run:
 
-```bash
+```console
 docker run --rm memgraph
 ```
 
@@ -46,14 +46,14 @@ Now, to set up the cluster, we'll have to start an mg_client or mgconsole
 instance for every running Memgraph node, and connect to it. To do this, we
 have to figure out their IP addresses. Running
 
-```bash
+```console
 docker ps
 ```
 
 will list all the running docker processes, along with their "CONTAINER ID" and
 "NAME". Running
 
-```bash
+```console
 docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' container_name_or_id
 ```
 
@@ -68,7 +68,7 @@ can start setting up the replication. Let's say the ip addresses are as follows:
 Let's assume we're using mgconsole to connect to and query the nodes. Firstly,
 we have to set up the replicas. We connect to a replica by running
 
-```bash
+```console
 mgconsole --host REPLICA_IP_ADDRESS --use-ssl=false
 ```
 
@@ -86,7 +86,7 @@ instead. We repeat the process for all replicas.
 Now, it's time to set up the main. Again, we connect to the main using
 mgconsole:
 
-```bash
+```console
 mgconsole --host 172.17.0.2 --use-ssl=false
 ```
 

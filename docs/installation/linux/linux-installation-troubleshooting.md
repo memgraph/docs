@@ -2,6 +2,7 @@
 id: linux-installation-troubleshooting
 title: Troubleshooting installation on Linux
 sidebar_label: Installation troubleshooting
+slug: /linux-installation-troubleshooting
 ---
 
 import Tabs from '@theme/Tabs';
