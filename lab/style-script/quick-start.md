@@ -44,7 +44,7 @@ can use images from [there](https://cdn.countryflags.com). Their API expects a
 country name as a part of URL path so we will make the following directive.
 
 ```
-@NodeStyle HasLabel?[node, "Country"] {
+@NodeStyle HasLabel?(node, "Country") {
   image-url: Format("https://cdn.countryflags.com/thumbs/{}/flag-800.png",
                     LowerCase(Proeprty(node, "name")))
 }

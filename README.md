@@ -10,7 +10,7 @@ link](https://github.com/memgraph/docs/blob/master/docs/overview.md).
 ## Contribute to the documentation
 
 If you want to contribute to the documentation, please take a look at
-[CONTRIBUTING](CONTRIBUTING.md) guide for details about the writing style and 
+[CONTRIBUTING](CONTRIBUTING.md) guide for details about the writing style and
 main ideas behind the documentation. In case you notice any problems or need additional
 information, feel free to [create an issue](https://github.com/memgraph/docs/issues).
 
