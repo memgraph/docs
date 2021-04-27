@@ -11,8 +11,7 @@ module.exports = {
     {
       type: 'category',
       label: 'Query modules',
-      items: ['query-modules/python/collapse',
-        'query-modules/python/distance-calculator',
+      items: ['query-modules/python/distance-calculator',
         'query-modules/python/graph-analyzer',
         'query-modules/python/graph-coloring',
         'query-modules/python/nxalg',

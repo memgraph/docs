@@ -43,8 +43,6 @@ Query modules implemented in **Python**:
   possible route that visits each vertex exactly once.
 * **[set_cover](/query-modules/python/set-cover.md)**: The algorithm for finding
   minimum cost subcollection of sets that covers all elements of a universe.
-* **[collapse](/query-modules/python/collapse.md)**: Module for collapsing
-  specifically connected graph nodes into different subgraphs.
 
 Query modules implemented in **C/C++**:
 * **[connectivity_module](https://github.com/memgraph/mage/tree/main/cpp/connectivity_module)**:
