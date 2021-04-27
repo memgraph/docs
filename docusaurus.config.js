@@ -123,6 +123,28 @@ module.exports = {
           ]
         },
         {
+          label: 'Tool & Drivers',
+          position: 'left',
+          items: [
+            {
+              label: 'CLI mgconsole',
+              to: '/mgconsole',
+            },
+            {
+              label: 'Python driver',
+              to: '/pymgclient',
+            },
+            {
+              label: 'Rust driver',
+              to: '/rsmgclient',
+            },
+            {
+              label: 'Other drivers',
+              to: '/memgraph/getting-started/connecting-applications',
+            },
+          ]
+        },
+        {
           type: 'docsVersionDropdown',
           docsPluginId: 'memgraph',
           position: 'right',
@@ -207,7 +229,7 @@ module.exports = {
       indexName: 'g-despot',
     },
     prism: {
-      additionalLanguages: ['cypher', 'php'],
+      additionalLanguages: ['cypher', 'php', 'rust'],
     },
   },
   presets: [
@@ -218,7 +240,7 @@ module.exports = {
           id: 'memgraph',
           path: 'docs',
           routeBasePath: 'memgraph',
-          sidebarPath: require.resolve('./sidebarsMemgraph.js'),
+          sidebarPath: require.resolve('./sidebars/sidebarsMemgraph.js'),
           editUrl:
             'https://github.com/memgraph/docs/tree/master/',
           versions: {
@@ -240,7 +262,7 @@ module.exports = {
         id: 'lab',
         path: 'lab',
         routeBasePath: 'memgraph-lab',
-        sidebarPath: require.resolve('./sidebarsLab.js'),
+        sidebarPath: require.resolve('./sidebars/sidebarsLab.js'),
         editUrl:
           'https://github.com/memgraph/docs/tree/master/',
       },
@@ -251,7 +273,7 @@ module.exports = {
         id: 'cloud',
         path: 'cloud',
         routeBasePath: 'memgraph-cloud',
-        sidebarPath: require.resolve('./sidebarsCloud.js'),
+        sidebarPath: require.resolve('./sidebars/sidebarsCloud.js'),
         editUrl:
           'https://github.com/memgraph/docs/tree/master/',
       },
@@ -262,7 +284,7 @@ module.exports = {
         id: 'cypher-manual',
         path: 'cypher-manual',
         routeBasePath: 'cypher-manual',
-        sidebarPath: require.resolve('./sidebarsCypherManual.js'),
+        sidebarPath: require.resolve('./sidebars/sidebarsCypherManual.js'),
         editUrl:
           'https://github.com/memgraph/docs/tree/master/',
       },
@@ -273,7 +295,40 @@ module.exports = {
         id: 'mage',
         path: 'mage',
         routeBasePath: 'mage',
-        sidebarPath: require.resolve('./sidebarsMAGE.js'),
+        sidebarPath: require.resolve('./sidebars/sidebarsMAGE.js'),
+        editUrl:
+          'https://github.com/memgraph/docs/tree/master/',
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'mgconsole',
+        path: 'tools/mgconsole',
+        routeBasePath: 'mgconsole',
+        sidebarPath: require.resolve('./sidebars/sidebarsMgconsole.js'),
+        editUrl:
+          'https://github.com/memgraph/docs/tree/master/',
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'pymgclient',
+        path: 'tools/pymgclient',
+        routeBasePath: 'pymgclient',
+        sidebarPath: require.resolve('./sidebars/sidebarsPymgclient.js'),
+        editUrl:
+          'https://github.com/memgraph/docs/tree/master/',
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'rsmgclient',
+        path: 'tools/rsmgclient',
+        routeBasePath: 'rsmgclient',
+        sidebarPath: require.resolve('./sidebars/sidebarsRsmgclient.js'),
         editUrl:
           'https://github.com/memgraph/docs/tree/master/',
       },

@@ -155,18 +155,23 @@ module.exports = {
       },
       {
         type: 'link',
-        label: 'CLI Console',
-        href: 'https://github.com/memgraph/mgconsole'
+        label: 'CLI mgconsole',
+        href: '/mgconsole'
       },
       {
         type: 'link',
-        label: 'Python',
-        href: 'https://github.com/memgraph/pymgclient'
+        label: 'Python driver',
+        href: '/pymgclient'
       },
       {
         type: 'link',
-        label: 'Rust',
-        href: 'https://github.com/memgraph/rsmgclient'
+        label: 'Rust driver',
+        href: '/rsmgclient'
+      },
+      {
+        type: 'link',
+        label: 'Other drivers',
+        href: '/memgraph/getting-started/connecting-applications'
       },],
     },
     'upcoming-features',
