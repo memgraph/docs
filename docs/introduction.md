@@ -1,32 +1,26 @@
 ---
-id: overview
-title: Memgraph overview
-sidebar_label: Overview
-slug: /overview
+id: introduction
+title: Memgraph introduction
+sidebar_label: Introduction
+slug: /introduction
 ---
 
-## About Memgraph
+## Introduction to Memgraph
 
-Memgraph is an ACID-compliant high performance transactional in-memory graph
-database management system featuring highly concurrent data structures,
-multi-version concurrency control, and asynchronous IO.
+Welcome to MemgraphDb! MemgraphDB is an ACID-compliant, high performance, transactional in-memory [graph database](https://en.wikipedia.org/wiki/Graph_database). This documentation contains explanations of key concepts present in Memgraph, functionalities it offers, presents the Cypher query language, and provides tutorials for easier understanding and usage of the database.
 
-Supported feature                                                       | Community | Enterprise
-------------------------------------------------------------------------|-----------|-----------
-Hybrid In&#8209;Memory / On&#8209;Disk Storage Engine                   |     +     |     +
-ACID Transactions                                                       |     +     |     +
-Optimized for Low Latency and High&#8209;Throughput                     |     +     |     +
-[Replication](#replication)                                             |     +     |     +
-[Support for Custom Query Modules (C and Python API)](#query-modules)   |     +     |     +
-[CSV Import Tool](#importing-data)                                      |     +     |     +
-Development, Testing, and Evaluation Use                                |     +     |     +
-[Query Modules with Graph Algorithms](#query-modules)                   |     +     |     +
-Production and Commercial Use                                           |           |     +
-[Authentication](#authentication-and-authorization)                     |           |     +
-[Advanced Password Policies](#user-privileges)                          |           |     +
-[Fine&#8209;Grained Access Control](#user-privileges)                   |           |     +
-[Auth Module](#authentication-and-authorization)                        |           |     +
-[Full Activity Auditing](#audit-log)                                    |           |     +
+MemgraphDB offers both *Community* and *Enterprise* versions of the database:
+
+* The *Community* version has full support for all key features such as in-memory storage, ACID transactions, replication, import tool, built-in query modules with graph algorithms, programming APIs and Cypher query language.
+* The *Enterprise* version offers additional enterprise-oriented features like authentication and fine-grained access control.
+
+A full list of features can be found in the [Database functionalities](https://docs.memgraph.com/memgraph/database-functionalities) section of the documentation or further down below.
+
+### Interaction
+
+If you wish to use Memgraph in your production environment as persistent storage for your data, you can query Memgraph programmatically as well! This can be achieved by utilizing the [Bolt protocol](https://7687.org) in the following programming languages: C#, C/C++, Go, Haskell, Java, JavaScript, Node.js, PHP, Python, Ruby and Rust. For more information on how to query Memgraph programmatically, check out [this guide](https://docs.memgraph.com/memgraph/getting-started/connecting-applications).
+
+
 
 ## Resources
 
@@ -103,3 +97,21 @@ To learn more visit:
 
 Memgraph supports all query audit logging. When enabled, the audit log contains records of all queries executed on the database.
 * [Audit log (Enterprise)](./reference-guide/audit-log.md)
+
+## Features 
+Supported feature                                                       | Community | Enterprise
+------------------------------------------------------------------------|-----------|-----------
+Hybrid In&#8209;Memory / On&#8209;Disk Storage Engine                   |     +     |     +
+ACID Transactions                                                       |     +     |     +
+Optimized for Low Latency and High&#8209;Throughput                     |     +     |     +
+[Replication](#replication)                                             |     +     |     +
+[Support for Custom Query Modules (C and Python API)](#query-modules)   |     +     |     +
+[CSV Import Tool](#importing-data)                                      |     +     |     +
+Development, Testing, and Evaluation Use                                |     +     |     +
+[Query Modules with Graph Algorithms](#query-modules)                   |     +     |     +
+Production and Commercial Use                                           |           |     +
+[Authentication](#authentication-and-authorization)                     |           |     +
+[Advanced Password Policies](#user-privileges)                          |           |     +
+[Fine&#8209;Grained Access Control](#user-privileges)                   |           |     +
+[Auth Module](#authentication-and-authorization)                        |           |     +
+[Full Activity Auditing](#audit-log)                                    |           |     +
