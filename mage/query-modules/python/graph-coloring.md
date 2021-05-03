@@ -6,7 +6,7 @@ sidebar_label: graph_coloring
 
 ## ` color_graph(context, parameters, edge_property)`
 
-A procedure that performs graph coloring algorithm.
+A procedure that performs the graph coloring algorithm.
 
 **Parameters**
 
@@ -21,7 +21,7 @@ A procedure that performs graph coloring algorithm.
 |-	|-	|-	|-	|
 | algorithm 	| String 	| QA 	| An optimization strategy used to find graph coloring. 	|
 | no_of_colors 	| Integer 	| 10 	| The number of colors used to color the nodes of the graph. 	|
-| no_of_processes 	| Integer 	| 1 	| The number of processes used to execute the algorithm in parallel 	|
+| no_of_processes 	| Integer 	| 1 	| The number of processes used to execute the algorithm in parallel. 	|
 | population_size 	| Integer 	| 15 	| The number of different solutions that are improved through iterations. 	|
 | population_factory 	| String 	| ChainChunkFactory 	| The name of a function that generates an initial population. 	|
 | init_algorithms 	| List[String] 	| [SDO, LDO] 	| Contains algorithms used to initialize the solutions.  	|
@@ -88,7 +88,7 @@ A procedure that performs graph coloring algorithm on the given subgraph.
 |-	|-	|-	|-	|
 | algorithm 	| String 	| QA 	| An optimization strategy used to find graph coloring. 	|
 | no_of_colors 	| Integer 	| 10 	| The number of colors used to color the nodes of the graph. 	|
-| no_of_processes 	| Integer 	| 1 	| The number of processes used to execute the algorithm in parallel 	|
+| no_of_processes 	| Integer 	| 1 	| The number of processes used to execute the algorithm in parallel. 	|
 | population_size 	| Integer 	| 15 	| The number of different solutions that are improved through iterations. 	|
 | population_factory 	| String 	| ChainChunkFactory 	| The name of a function that generates an initial population. 	|
 | init_algorithms 	| List[String] 	| [SDO, LDO] 	| Contains algorithms used to initialize the solutions.  	|
