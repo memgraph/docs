@@ -2,6 +2,7 @@
 id: querying
 title: Querying the database
 sidebar_label: Querying the database
+slug: /getting-started/querying
 ---
 
 ## Querying using console

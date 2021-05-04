@@ -591,6 +591,11 @@ module.exports = {
             to: '/memgraph/how-to-work-with-docker',
             from: ['/memgraph/database-functionalities/work-with-docker',],
           },
+          //Memgraph getting started redirects
+          {
+            to: '/memgraph/getting-started/querying',
+            from: ['/memgraph/getting-started/querying/querying',],
+          },
         ],
       },
     ],
