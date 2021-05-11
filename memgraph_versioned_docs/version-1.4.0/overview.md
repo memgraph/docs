@@ -21,7 +21,7 @@ Optimized for Low Latency and High&#8209;Throughput                     |     + 
 [CSV Import Tool](#importing-data)                                      |     +     |     +
 Development, Testing, and Evaluation Use                                |     +     |     +
 [Query Modules with Graph Algorithms](#query-modules)                   |     +     |     +
-Production and Commercial Use                                           |           |     +
+Production use                                                          |     +     |     +
 [Authentication](#authentication-and-authorization)                     |           |     +
 [Advanced Password Policies](#user-privileges)                          |           |     +
 [Fine&#8209;Grained Access Control](#user-privileges)                   |           |     +
