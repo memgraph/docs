@@ -461,7 +461,7 @@ The following query will load row by row from the file, and create a new node
 for each row with properties based on the parsed row values:
 
 ```cypher
-LOAD CSV "xyz.csv" WITH HEADER DELIMITER "|" AS row
+LOAD CSV FROM "xyz.csv" WITH HEADER DELIMITER "|" AS row
 CREATE (n:A {x: ToInteger(row.x), y: ToInteger(row.y), z: ToInteger(row.z)}) ; 
 ```
 
@@ -482,7 +482,7 @@ The following query will load row by row from the file, and create a new node
 for each row with properties based on the parsed row values:
 
 ```cypher
-LOAD CSV "xyz.csv" NO HEADER DELIMITER "|" AS row
+LOAD CSV FROM "xyz.csv" NO HEADER DELIMITER "|" AS row
 CREATE (n:A {x: ToInteger(row[0]), y: ToInteger(row[1]), z: ToInteger(row[2])}) ; 
   ```
 
