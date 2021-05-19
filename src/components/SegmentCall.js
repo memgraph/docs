@@ -17,6 +17,10 @@ export default (function () {
             
             fbq('init', '880656202502108');
             fbq('track', 'PageView');
+
+            if (window.ldfdr.pageview && typeof window.ldfdr.pageview === 'function') { 
+                window.ldfdr.pageview();
+             }
         },
     };
 })();
