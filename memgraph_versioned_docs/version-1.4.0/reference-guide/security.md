@@ -85,7 +85,7 @@ Similarly, querying which role a certain user has can be done as:
 At the moment, privileges are confined to users' abilities to perform certain
 `OpenCypher` queries. Namely users can be given permission to execute a subset
 of the following commands: `CREATE`, `DELETE`, `MATCH`, `MERGE`, `SET`,
-`REMOVE`, `INDEX`, `AUTH`, `STREAM`.
+`REMOVE`, `INDEX` and `AUTH`.
 
 Granting a certain set of privileges to a specific user or user role can be
 done by issuing the following command:
@@ -94,11 +94,11 @@ done by issuing the following command:
   GRANT privilege_list TO user_or_role;
 ```
 
-For example, granting `AUTH` and `STREAM` privileges to users with the role
+For example, granting `AUTH` and `INDEX` privileges to users with the role
 `moderator` would be written as:
 
 ```cypher
-  GRANT AUTH, STREAM TO moderator:
+  GRANT AUTH, INDEX TO moderator:
 ```
 
 Similarly, denying privileges is done using the `DENY` keyword instead of
@@ -108,9 +108,9 @@ Both denied and granted privileges can be revoked, meaning that their status is
 not defined for that user or role. Revoking is done using the `REVOKE` keyword.
 The users should note that, although semantically unintuitive, the level of a
 certain privilege can be raised by using `REVOKE`. For instance, suppose a user
-has been denied a `STREAM` privilege, but the role it belongs to is granted
-that privilege. Currently, the user is unable to use data streaming features,
-but, after revoking the user's `STREAM` privilege, they will be able to do so.
+has been denied a `INDEX` privilege, but the role it belongs to is granted
+that privilege. Currently, the user is unable to use indexing features,
+but, after revoking the user's `INDEX` privilege, they will be able to do so.
 
 Finally, if you wish to grant, deny or revoke all privileges and find it tedious
 to explicitly list them, you can use the `ALL PRIVILEGES` construct instead.
