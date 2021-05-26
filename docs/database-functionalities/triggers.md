@@ -55,7 +55,7 @@ Few examples would be:
 `ON --> DELETE` - trigger the statements only if an edge was deleted during the transaction execution.
 
 Each event comes with certain information that can be used in the openCypher statements the trigger executes. The information is contained in the
-form of predefined variables. (LINK TO THE PART ABOUT THE PREDEFINED VARIABLES)
+form of [predefined variables](#predefined-variables).
 
 If no event type is specified, the trigger executes its statements every time, and all the predefined variables can be used.
 
