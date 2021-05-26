@@ -14,7 +14,7 @@ are listed in our [database functionalities section](./database-functionalities.
 
 Memgraph supports running openCypher statements after a certain event happens during transaction execution, i.e. triggers.
 
-As user, you can create triggers, delete them, and print them out.
+You can create triggers, delete them, and print them out.
 All the triggers are persisted on the disk, so no information is lost between the runs.
 
 ## Creating a trigger
@@ -27,14 +27,14 @@ CREATE TRIGGER trigger_name ( ON ( () | --> ) CREATE | UPDATE | DELETE )
 EXECUTE openCypherStatements
 ```
 
-At first, the query may seem complex, so let's talk about the different parts of it independently.
+The query may seem complex, so let's break it down.
 
 ### Trigger name
-Each created trigger should be defined with a name. The name needs to be unique globally.
-E.g. two triggers for different event still can't have the same name.
+Each created trigger must have a globally unique name.
+This implies that a pair of triggers for different events can't have the same name.
 
 ### Event type
-Optionally, users can define for which event should the trigger execute its statements.
+Optionally, users can define on which event a trigger should execute its statements.
 The event type is defined using the following part:
 
 ```plaintext
@@ -46,8 +46,8 @@ There are three main event types:
   - UPDATE
   - DELETE
 
-For each of the event types, user can denote if he wants to execute trigger's statements just on the events
-that happened on a vertex or just on an edge. Vertex is denoted using `()` and edges using `-->`.
+For each event type, users can specify whether to execute the trigger statements only on the events
+that happened on a vertex, or on an edge. Vertices are denoted with `()`, and edges with `-->`.
 
 Few examples would be:
 `ON CREATE` - trigger the statements only if an object (vertex and/or edge) was created during the transaction execution.
@@ -55,23 +55,22 @@ Few examples would be:
 `ON --> DELETE` - trigger the statements only if an edge was deleted during the transaction execution.
 
 Each event comes with certain information that can be used in the openCypher statements the trigger executes. The information is contained in the
-form of predefined vairables. (LINK TO THE PART ABOUT THE PREDEFINED VARIABLES)
+form of predefined variables. (LINK TO THE PART ABOUT THE PREDEFINED VARIABLES)
 
 If no event type is specified, the trigger executes its statements every time, and all the predefined variables can be used.
 
-### Phase of executing statetements
-Trigger can execute its statements at specified phase, before or after comitting the transaction that triggered it.
-If `BEFORE COMMIT` option is used, the trigger will execute its statements as part of that transaction before it's committed.
-If `AFTER COMMIT` option is used, the trigger will execute its statements assynchrnously after that transaction is committed.
+### Statement execution phase
+A trigger can execute its statements at a specified phase, before or after committing the transaction that triggered it.
+If the `BEFORE COMMIT` option is used, the trigger will execute its statements as part of that transaction before it's committed.
+If the `AFTER COMMIT` option is used, the trigger will execute its statements asynchronously after that transaction is committed.
 
 ### Execute statements
-Trigger can execute any valid openCypher query. There are no rules, only difference is introduction of the predefined variables based
-on the event type specified for the trigger.
+A trigger can execute any valid openCypher query. No specific constraints are imposed on the queries. The only way trigger queries (i.e. statements) differ to standard queries is that a trigger query may use predefined variables, which are based on the event type specified for the trigger.
 
-### Predfined variables
+### Predefined variables
 Statements that a trigger executes can contain certain predefined variables which contain information about the event that triggered it.
 
-Based on the event type, following predefined variables are available:
+Based on the event type, the following predefined variables are available:
 | Event type | Predefined variables |
 | ---------- | -------------------- |
 | ON CREATE  | createdVertices, createdEdges, createdObjects|
@@ -284,7 +283,7 @@ DROP TRIGGER trigger_name;
 ```
 
 ## Trigger info
-User can get info about all the triggers by using the following query:
+Users can get info about all the triggers by using the following query:
 
 ```plaintext
 SHOW TRIGGERS;
