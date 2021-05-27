@@ -87,6 +87,7 @@ module.exports = {
         'database-functionalities/profiling-queries',
         'database-functionalities/tensorflow-setup',
         'database-functionalities/replication',
+        'database-functionalities/triggers',
         'reference-guide/backup',
         'database-functionalities/memory-control',
         {

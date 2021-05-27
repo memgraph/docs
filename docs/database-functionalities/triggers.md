@@ -50,9 +50,9 @@ For each event type, users can specify whether to execute the trigger statements
 that happened on a vertex, or on an edge. Vertices are denoted with `()`, and edges with `-->`.
 
 Few examples would be:
-`ON CREATE` - trigger the statements only if an object (vertex and/or edge) was created during the transaction execution.
-`ON () UPDATE` - trigger the statements only if a vertex was updated (e.g. property was set on it) during the transaction execution.
-`ON --> DELETE` - trigger the statements only if an edge was deleted during the transaction execution.
+* `ON CREATE` - trigger the statements only if an object (vertex and/or edge) was created during the transaction execution.
+* `ON () UPDATE` - trigger the statements only if a vertex was updated (e.g. property was set on it) during the transaction execution.
+* `ON --> DELETE` - trigger the statements only if an edge was deleted during the transaction execution.
 
 Each event comes with certain information that can be used in the openCypher statements the trigger executes. The information is contained in the
 form of [predefined variables](#predefined-variables).
@@ -71,6 +71,7 @@ A trigger can execute any valid openCypher query. No specific constraints are im
 Statements that a trigger executes can contain certain predefined variables which contain information about the event that triggered it.
 
 Based on the event type, the following predefined variables are available:
+
 | Event type | Predefined variables |
 | ---------- | -------------------- |
 | ON CREATE  | createdVertices, createdEdges, createdObjects|
@@ -289,6 +290,7 @@ Users can get info about all the triggers by using the following query:
 SHOW TRIGGERS;
 ```
 which returns results in the following format:
+
 |trigger name| statement | event type | phase | 
 |----------- |---------- | -----------| ------|
 | name of the trigger| statement which trigger executes | event which triggers the statement | phase at which the trigger executes its statement |
