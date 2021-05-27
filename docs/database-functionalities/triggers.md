@@ -50,9 +50,9 @@ For each event type, users can specify whether to execute the trigger statements
 that happened on a vertex, or on an edge. Vertices are denoted with `()`, and edges with `-->`.
 
 Few examples would be:
-`ON CREATE` - trigger the statements only if an object (vertex and/or edge) was created during the transaction execution.
-`ON () UPDATE` - trigger the statements only if a vertex was updated (e.g. property was set on it) during the transaction execution.
-`ON --> DELETE` - trigger the statements only if an edge was deleted during the transaction execution.
+* `ON CREATE` - trigger the statements only if an object (vertex and/or edge) was created during the transaction execution.
+* `ON () UPDATE` - trigger the statements only if a vertex was updated (e.g. property was set on it) during the transaction execution.
+* `ON --> DELETE` - trigger the statements only if an edge was deleted during the transaction execution.
 
 Each event comes with certain information that can be used in the openCypher statements the trigger executes. The information is contained in the
 form of [predefined variables](#predefined-variables).
@@ -65,12 +65,13 @@ If the `BEFORE COMMIT` option is used, the trigger will execute its statements a
 If the `AFTER COMMIT` option is used, the trigger will execute its statements asynchronously after that transaction is committed.
 
 ### Execute statements
-A trigger can execute any valid openCypher query. No specific constraints are imposed on the queries. The only way trigger queries (i.e. statements) differ to standard queries is that a trigger query may use predefined variables, which are based on the event type specified for the trigger.
+A trigger can execute any valid openCypher query. No specific constraints are imposed on the queries. The only way trigger queries (i.e. statements) differ from standard queries is that a trigger query may use predefined variables, which are based on the event type specified for the trigger.
 
 ### Predefined variables
 Statements that a trigger executes can contain certain predefined variables which contain information about the event that triggered it.
 
 Based on the event type, the following predefined variables are available:
+
 | Event type | Predefined variables |
 | ---------- | -------------------- |
 | ON CREATE  | createdVertices, createdEdges, createdObjects|
@@ -134,7 +135,7 @@ If the element contains a deleted edge, it will be in the following format
 
 #### General notes about the predefined variables for updates
 Setting an element to `NULL` is counted as a removal.
-The changes are looked at the transaction level only. That means if the value under a same property on a same object was changed multiple times, only one update will be generated. Same applies for the labels on the vertex.
+The changes are looked at on the transaction level only. That means if the value under a property on the same object was changed multiple times, only one update will be generated. The same applies for the labels on the vertex.
 
 #### setVertexProperties
 List of all set vertex properties.
@@ -212,7 +213,7 @@ List of updates consisting of set and removed properties on edges.
 List of updates consisting of set and removed properties on edges and vertices, and set and removed labels on vertices.
 
 #### Elements of the predefined variables for update
-Each element has similar format as the previously defined elements.
+Each element has a similar format as the previously defined elements.
 
 If the element contains information about a set vertex property, it's in the following format:
 ```json
@@ -289,6 +290,7 @@ Users can get info about all the triggers by using the following query:
 SHOW TRIGGERS;
 ```
 which returns results in the following format:
+
 |trigger name| statement | event type | phase | 
 |----------- |---------- | -----------| ------|
-| name of the trigger| statement which trigger executes | event which triggers the statement | phase at which the trigger executes its statement |
+| name of the trigger| statement which the trigger executes | event which triggers the statement | phase at which the trigger executes its statement |
