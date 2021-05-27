@@ -31,7 +31,7 @@ The query may seem complex, so let's break it down.
 
 ### Trigger name
 Each created trigger must have a globally unique name.
-This implies that a pair of triggers for different events can't have the same name.
+This implies that you can't have a pair of triggers with the same name, even if they apply to different events.
 
 ### Event type
 Optionally, users can define on which event a trigger should execute its statements.
