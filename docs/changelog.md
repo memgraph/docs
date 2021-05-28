@@ -4,7 +4,26 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
-## v1.4.0
+## v1.5.0 - May 28, 2021
+
+### Major Features and Improvements
+
+* Added database triggers. You can now create, delete, and print out triggers that execute Cypher statements. You can create custom
+  actions whenever a node or an edge is created, updated, or deleted. All the triggers are persisted on the disk, so no information is lost between runs.
+* Replaced mg_client with the mgconsole command-line interface, which ships directly with Memgraph. You can now install mgconsole
+  directly on Windows and macOS.
+
+### Bug Fixes
+
+* Fixed parsing of types for Python procedures for types nested in `mgp.List`.
+  For example, parsing of `mgp.List[mgp.Map]` works now.
+* Fixed memory tracking issues. Some of the allocation and deallocation wasn't
+  tracked during the query execution.
+* Fixed reading CSV files that are using CRLF as the newline symbol.
+* Fixed permission issues for `LOAD CSV`, `FREE MEMORY`, `LOCK DATA DIRECTORY`,
+  and replication queries.
+
+## v1.4.0 - Apr 2, 2021
 
 :::warning
 ### Breaking Changes
@@ -38,7 +57,7 @@ sidebar_label: Changelog
 * Fixed reloading of the modules with changed result names.
 * Fixed profile query to show the correct name of the ScanAll operator variant.
 
-## v1.3.0
+## v1.3.0 - Jan 26, 2021
 
 :::warning
 ### Breaking Changes
@@ -74,7 +93,7 @@ sidebar_label: Changelog
 * Added cleanup of query executions if not in an explicit transaction.
 * Fix RPC dangling reference.
 
-## v1.2.0
+## v1.2.0 - Oct 20, 2020
 
 :::warning
 ### Breaking Changes
@@ -104,7 +123,7 @@ sidebar_label: Changelog
 * Fix `DISCARD` message handling. The query is now executed before discarding
   the results.
 
-## v1.1.0
+## v1.1.0 - Jul 1, 2020
 
 ### Major Features and Improvements
 
@@ -145,7 +164,7 @@ sidebar_label: Changelog
 * Added Marvel Comic Universe tutorial.
 * Added FootballTransfers tutorial.
 
-## v1.0.0
+## v1.0.0 - Apr 3, 2020
 
 ### Major Features and Improvements
 
@@ -191,7 +210,7 @@ sidebar_label: Changelog
   modules.
 * Removed `early access` wording from the Community Offering license.
 
-## v0.50.0
+## v0.50.0 - Dec 11, 2019
 
 :::warning
 ### Breaking Changes
@@ -224,7 +243,7 @@ sidebar_label: Changelog
 * Reduce memory usage in query execution.
 * Fix bug that crashes the database when `EXPLAIN` is used.
 
-## v0.15.0
+## v0.15.0 - Jul 17, 2019
 
 :::warning
 ### Breaking Changes
@@ -260,14 +279,14 @@ sidebar_label: Changelog
 * Add movie tutorial.
 * Add backpacking tutorial.
 
-## v0.14.1
+## v0.14.1 - Jan 22, 2019
 
 ### Bug Fixes and Other Changes
 
 * Fix bug in explicit transaction handling.
 * Fix bug in edge filtering by edge type and destination.
 
-## v0.14.0
+## v0.14.0 - Oct 30, 2018
 
 :::warning
 ### Breaking Changes
@@ -288,7 +307,7 @@ sidebar_label: Changelog
 * Fix a minor issue with `mg_import_csv`.
 * Fix an issue with `EXPLAIN`.
 
-## v0.13.0
+## v0.13.0 - Oct 18, 2018
 
 :::warning
 ### Breaking Changes
@@ -321,7 +340,7 @@ sidebar_label: Changelog
 * Revise and make user visible error messages consistent.
 * Improve aborting time consuming execution.
 
-## v0.12.0
+## v0.12.0 - Jul 4, 2018
 
 :::warning
 ### Breaking Changes
@@ -337,7 +356,7 @@ sidebar_label: Changelog
 * Added `timestamp` function to openCypher.
 * Added support for dynamic property access with `[]` operator.
 
-## v0.11.0
+## v0.11.0 - Jun 20, 2018
 
 ### Major Features and Improvements
 
@@ -355,7 +374,7 @@ sidebar_label: Changelog
 * Document issues with Docker on OS X.
 * Add BFS and Dijkstra's algorithm examples to documentation.
 
-## v0.10.0
+## v0.10.0 - Apr 24, 2018
 
 :::warning
 ### Breaking Changes
@@ -385,7 +404,7 @@ sidebar_label: Changelog
 * Commit log automatically garbage collected.
 * Add minor performance improvements.
 
-## v0.9.0
+## v0.9.0 - Dec 18, 2017
 
 :::warning
 ### Breaking Changes
