@@ -297,10 +297,6 @@ module.exports = {
           },
           {
             to: '/memgraph/tutorials/analyzing-ted-talks',
-            from: ['/memgraph/tutorials-overview/analyzing-TED-talks',],
-          },
-          {
-            to: '/memgraph/tutorials/analyzing-ted-talks',
             from: ['/memgraph/tutorials-overview/analyzing-ted-talks',],
           },
           {

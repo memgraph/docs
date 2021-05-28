@@ -31,7 +31,7 @@ function Home() {
                   __html: translate({
                     id: 'homepage.hero.title',
                     message:
-                    "The world's most <b>powerful</b> graph <b>database</b>",
+                    "<b>Memgraph 1.5</b> is now available",
                     description:
                       'Welcome to the Memgraph Docs homepage.',
                   }),
@@ -69,7 +69,7 @@ function Home() {
               <div className="col">
               <div className={styles.rcorners}>
               <a href={useBaseUrl('/memgraph-lab')}>
-              {<ImageSwitcher 
+              {<ImageSwitcher
                 className={styles.featureImage}
                 alt="Memgraph Lab"
                   lightImageSrc={useBaseUrl('img/icons-white/conconnector.png')}
@@ -79,8 +79,8 @@ function Home() {
                 </h2>
               </a>
                 <p className="padding-horiz--md">
-                Memgraph Lab is a lightweight and intuitive visual user interface, 
-                designed to help you with every stage of your graph development 
+                Memgraph Lab is a lightweight and intuitive visual user interface,
+                designed to help you with every stage of your graph development
                 and learning process.
                 </p>
               </div>
@@ -88,7 +88,7 @@ function Home() {
               <div className="col">
               <div className={styles.rcorners}>
               <a href={useBaseUrl('/cypher-manual/')}>
-              {<ImageSwitcher 
+              {<ImageSwitcher
                 className={styles.featureImage}
                 alt="Cypher manual"
                   lightImageSrc={useBaseUrl('img/icons-white/book.png')}
@@ -98,7 +98,7 @@ function Home() {
                 </h2>
                 </a>
                 <p className="padding-horiz--md">
-                Cypher is the most widely adopted, fully-specified, and open query language 
+                Cypher is the most widely adopted, fully-specified, and open query language
                 for property graph databases. It provides an intuitive way to work with property graphs.
                 </p>
               </div>
@@ -106,7 +106,7 @@ function Home() {
               <div className="col">
               <div className={styles.rcorners}>
               <a href={useBaseUrl('/memgraph/database-functionalities')}>
-              <ImageSwitcher 
+              <ImageSwitcher
                 className={styles.featureImage}
                 alt="Database functionalities"
                   lightImageSrc={useBaseUrl('img/icons-white/cogs.png')}
@@ -127,7 +127,7 @@ function Home() {
               <div className="col col--4 col--offset-2">
               <div className={styles.rcorners}>
               <a href={useBaseUrl('/memgraph/tutorials/tutorials')}>
-              <ImageSwitcher 
+              <ImageSwitcher
                 className={styles.featureImage}
                 alt="Tutorials"
                   lightImageSrc={useBaseUrl('img/icons-white/idea-alt.png')}
@@ -137,18 +137,18 @@ function Home() {
                 </h2>
                 </a>
                 <p className="padding-horiz--md">
-                  
-                Our tutorials provide the user with a reasonably-sized 
-                dataset and some example queries that showcase how to use Memgraph 
-                on that particular dataset. 
-                  
+
+                Our tutorials provide the user with a reasonably-sized
+                dataset and some example queries that showcase how to use Memgraph
+                on that particular dataset.
+
                 </p>
               </div>
               </div>
               <div className="col col--4">
               <div className={styles.rcorners}>
               <a href="https://discourse.memgraph.com">
-              <ImageSwitcher 
+              <ImageSwitcher
                 className={styles.featureImage}
                 alt="Developer Forum"
                   lightImageSrc={useBaseUrl('img/icons-white/blog.png')}
@@ -158,10 +158,10 @@ function Home() {
                 </h2>
                 </a>
                 <p className="padding-horiz--md">
-                  
-                    You can always leave a post on our developer forum. 
+
+                    You can always leave a post on our developer forum.
                     We encourage you to leave feedback and submit ideas so we can make our product even better for everyone.
-                  
+
                 </p>
                 </div>
               </div>
