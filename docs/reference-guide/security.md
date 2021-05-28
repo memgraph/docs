@@ -85,7 +85,8 @@ Similarly, querying which role a certain user has can be done as:
 At the moment, privileges are confined to users' abilities to perform certain
 `OpenCypher` queries. Namely users can be given permission to execute a subset
 of the following commands: `CREATE`, `DELETE`, `MATCH`, `MERGE`, `SET`,
-`REMOVE`, `INDEX` and `AUTH`.
+`REMOVE`, `INDEX`, `AUTH`, `REPLICATION`, `READ_FILE`, `FREE_MEMORY`, `LOCK_PATH`,
+and `TRIGGER`.
 
 Granting a certain set of privileges to a specific user or user role can be
 done by issuing the following command:
