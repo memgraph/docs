@@ -597,7 +597,6 @@ module.exports = {
     ],
   ],
   clientModules: [
-    require.resolve('./src/components/SegmentCall.js'),
-    require.resolve('./src/components/HotJarCall.js'),
+    require.resolve('./src/components/analyticsCall.js'),
   ],
 };
