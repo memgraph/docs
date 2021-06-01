@@ -40,9 +40,9 @@ run:
 docker run --rm memgraph
 ```
 
-The above commands will start a Memgraph node, and assign it its own IP address. 
+The above commands will start a Memgraph node, and assign it its own IP address.
 
-Now, to set up the cluster, we'll have to start an mg_client or mgconsole
+Now, to set up the cluster, we'll have to start an `mgconsole`
 instance for every running Memgraph node, and connect to it. To do this, we
 have to figure out their IP addresses. Running
 

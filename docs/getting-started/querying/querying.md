@@ -14,28 +14,22 @@ for interaction with graph databases, which is currently going through a
 vendor-independent standardization process.
 
 The easiest way to execute openCypher queries against Memgraph is by using
-Memgraph's command-line tool, `mg_client`, which is installed
+Memgraph's command-line tool, [mgconsole](https://github.com/memgraph/mgconsole), which is installed
 together with Memgraph.
-
-:::info
-**NOTE:** `mg_client` is a deprecated tool still coming within the Memgraph package.
-[mgconsole](https://github.com/memgraph/mgconsole) will replace `mg_client` in
-the future. If possible, please use `mgconsole` instead.
-:::
 
 If you installed Memgraph using Docker, you will need to run the client
 using the following command (remember to replace `HOST` with valid IP of
 the container - see [Docker Note](/database-functionalities/work-with-docker.md#docker-container-ip-address)):
 
 ```
-docker run -it --entrypoint=mg_client memgraph --host HOST --use-ssl=False
+docker run -it --entrypoint=mgconsole memgraph --host HOST --use-ssl=False
 ```
 
 Otherwise, you can connect to the running Memgraph instance by
 issuing the following shell command:
 
 ```
-mg_client --use-ssl=False
+mgconsole --use-ssl=False
 ```
 
 After the client has started it should present a command prompt similar to:

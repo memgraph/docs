@@ -6,14 +6,8 @@ sidebar_label: Import data
 
 Memgraph comes with tools for importing data into the database. Data can be
 imported programatically using the `LOAD CSV` Cypher clause, using the [CSV import tool](#csv-import-tool),
-or using saved [cypher queries](#importing-cypher-queries) with `mg_client` running
+or using saved [cypher queries](#importing-cypher-queries) with `mgconsole` running
 in non-interactive mode.
-
-:::info
-**NOTE:** `mg_client` is a deprecated tool still coming within the Memgraph package.
-[mgconsole](https://github.com/memgraph/mgconsole) will replace `mg_client` in
-the future. If possible, please use `mgconsole` instead.
-:::
 
 ## CSV Import Tool
 
@@ -371,28 +365,28 @@ Next time you run Memgraph, the dataset will be loaded.
 
 ## Importing Cypher queries
 
-When Memgraph is running, cypher queries are imported by running `mg_client` in
+When Memgraph is running, cypher queries are imported by running `mgconsole` in
 non-interactive mode. The user can import queries saved in e.g. `queries.txt`
 by issuing the following shell command:
 
 ```plaintext
-mg_client --use-ssl=False < queries.txt
+mgconsole --use-ssl=False < queries.txt
 ```
 
 If you installed Memgraph using Docker, you will need to run the client using
 the following command:
 
 ```plaintext
-docker run -i --entrypoint=mg_client memgraph --host HOST --use-ssl=False < queries.txt
+docker run -i --entrypoint=mgconsole memgraph --host HOST --use-ssl=False < queries.txt
 ```
 
 Remember to replace `HOST` with valid IP of the container (see
 [Note for Docker users](/database-functionalities/work-with-docker.md#docker-container-ip-address)).
 
-For more information about `mg_client` options run:
+For more information about `mgconsole` options run:
 
 ```plaintext
-mg_client --help
+mgconsole --help
 ```
 
 ## Using the `LOAD CSV` Cypher clause
@@ -462,7 +456,7 @@ for each row with properties based on the parsed row values:
 
 ```cypher
 LOAD CSV FROM "xyz.csv" WITH HEADER DELIMITER "|" AS row
-CREATE (n:A {x: ToInteger(row.x), y: ToInteger(row.y), z: ToInteger(row.z)}) ; 
+CREATE (n:A {x: ToInteger(row.x), y: ToInteger(row.y), z: ToInteger(row.z)}) ;
 ```
 
 If the `NO HEADER` option is set, then each row is parsed as a list of values.
@@ -483,7 +477,7 @@ for each row with properties based on the parsed row values:
 
 ```cypher
 LOAD CSV FROM "xyz.csv" NO HEADER DELIMITER "|" AS row
-CREATE (n:A {x: ToInteger(row[0]), y: ToInteger(row[1]), z: ToInteger(row[2])}) ; 
+CREATE (n:A {x: ToInteger(row[0]), y: ToInteger(row[1]), z: ToInteger(row[2])}) ;
   ```
 
 The clause can't stand on its own, meaning there has to be at least one more

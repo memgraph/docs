@@ -19,17 +19,17 @@ import TabItem from '@theme/TabItem';
 
 ## Issues when connecting to Memgraph
 
-```console 
-docker run memgraph 
+```console
+docker run memgraph
 ```
 
 While this command will start a Memgraph instance, not publishing the port will
-cause problems when trying to connect to the database via **Memgraph Lab**,
-**mg_client** or **mgconsole**. To avoid this, you should publish the
+cause problems when trying to connect to the database via **Memgraph Lab** or
+**mgconsole**. To avoid this, you should publish the
 container's port to the host using the `-p` flag and by specifying the port:
 
-```console 
-docker run -p 7687:7687 memgraph 
+```console
+docker run -p 7687:7687 memgraph
 ```
 
 ## Find the IP address of a Docker Container
@@ -42,9 +42,9 @@ be found as follows:
 **1.** Determine the ID of the Memgraph Container by issuing the
 command `docker ps`. The user should get an output similar to the following:
 
-```console 
+```console
 CONTAINER ID    IMAGE       COMMAND                  CREATED
-9397623cd87e    memgraph    "/usr/lib/memgraph/m…"   2 seconds ago 
+9397623cd87e    memgraph    "/usr/lib/memgraph/m…"   2 seconds ago
 ```
 
 At this point, it is important to remember the container ID of the Memgraph
@@ -52,17 +52,17 @@ Image. In our case, that is `9397623cd87e`.
 
 **2.** Use the this ID to retrieve the IP address of the Container:
 
-```console 
-docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' 9397623cd87e 
+```console
+docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' 9397623cd87e
 ```
 
 The command above will yield the IP address that should be used when connecting
-to Memgraph via **Memgraph Lab**, **mgconsole** or **mg_client** as described in
+to Memgraph via **Memgraph Lab** or **mgconsole** as described in
 the [querying](/getting-started/querying/querying.md) section. Just replace
-`HOST` from the following command with the appropriate IP address: 
+`HOST` from the following command with the appropriate IP address:
 
-```console 
-docker run -it --entrypoint=mg_client memgraph --host HOST --use-ssl=False 
+```console
+docker run -it --entrypoint=mgconsole memgraph --host HOST --use-ssl=False
 ```
 
   </TabItem>
@@ -119,9 +119,9 @@ Using Python:
 ```
 
 If you wish to work with built-in NetworkX modules in Memgraph, you need to
-install the following Python libraries: 
+install the following Python libraries:
 * [NumPy](https://numpy.org/)
-* [SciPy](https://www.scipy.org/) 
+* [SciPy](https://www.scipy.org/)
 * [NetworkX](https://networkx.org/)
 
 For more information on how to install Python libraries in Linux, follow [this

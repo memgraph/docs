@@ -4,12 +4,12 @@ title: Social network analysis with NetworkX
 sidebar_label: Social network analysis with NetworkX
 ---
 
-## Introduction 
+## Introduction
 
 In this tutorial, we will show you how to perform simple network analysis with the NetworkX library and data stored in Memgraph DB. You will also acquire a basic understanding of **Query Modules**, an easy method for extending the query language with user-written procedures.
 
 ## Data model
-We are going to use the Karate Club graph, a network of friendships between 34 members of a karate club at a US university, as described by Wayne Zachary in 1977. It is a very popular data set in social network analysis and is very often referenced in such tutorials. 
+We are going to use the Karate Club graph, a network of friendships between 34 members of a karate club at a US university, as described by Wayne Zachary in 1977. It is a very popular data set in social network analysis and is very often referenced in such tutorials.
 The nodes in the graph represent the members while the relationships between them are of type `FRIENDS_WITH`. You can differentiate the nodes by using their unique `id` property.
 
 <img
@@ -20,14 +20,14 @@ The nodes in the graph represent the members while the relationships between the
 
 ## Importing the dataset
 
-To import the dataset, download the [Memgraph Lab](https://memgraph.com/product/lab) 
-desktop application and navigate to the `Datasets` tab in the sidebar. From there, 
+To import the dataset, download the [Memgraph Lab](https://memgraph.com/product/lab)
+desktop application and navigate to the `Datasets` tab in the sidebar. From there,
 choose the dataset `Karate club friendship network` and continue with the tutorial.
 
 ## Using existing NetworkX algorithms
 
 There are three ways to execute queries and procedures in Memgraph:
-* using the command-line tool `mg_client`, which comes with Memgraph: **[Querying the database](/getting-started/querying/querying.md)**
+* using the command-line tool `mgconsole`, which comes with Memgraph: **[Querying the database](/getting-started/querying/querying.md)**
 * programmatically, by using the Bolt protocol: **[Building applications](/getting-started/connecting-applications/connecting-applications.md)**
 * from **Memgraph Lab**, a visual user interface which you can download **[here](https://memgraph.com/download)**.
 
@@ -40,13 +40,13 @@ RETURN s, r, t;
 
 This is going to return all the relationships inside our network. Now we have a better overview of what we are dealing with, so it’s time to get some useful information about the network.
 
-To analyze the network we will use the built-in procedure ```analyze()``` from the ```graph_analyzer``` query module. This module utilizes the NetworkX library to retrieve graph information. Run the following query: 
+To analyze the network we will use the built-in procedure ```analyze()``` from the ```graph_analyzer``` query module. This module utilizes the NetworkX library to retrieve graph information. Run the following query:
 
 ```cypher
 CALL graph_analyzer.analyze() YIELD *;
 ```
 
-You will get details about the graph like the number of nodes, edges, bridges... and many more. 
+You will get details about the graph like the number of nodes, edges, bridges... and many more.
 
 ### Betweenness centrality
 
@@ -74,7 +74,7 @@ The result should be:
 
 ### Link prediction
 
-A very common problem in network analysis is link prediction. The algorithm predicts which new interactions among the network members are likely to occur in the near future. One way of predicting these links is by measuring the “proximity” of nodes in a network. This can be done by using the Jaccard coefficient. 
+A very common problem in network analysis is link prediction. The algorithm predicts which new interactions among the network members are likely to occur in the near future. One way of predicting these links is by measuring the “proximity” of nodes in a network. This can be done by using the Jaccard coefficient.
 Let's try running the algorithm on a node with the `id` 13 and ordering the results descending by the value of the coefficient:
 
 ```cypher
@@ -155,17 +155,17 @@ def detect(
         list(s) for s in next(communities_generator)])
 ```
 
-We just created a query module with the procedure `detect()` that utilizes the Girvan–Newman method to find communities in a graph. 
+We just created a query module with the procedure `detect()` that utilizes the Girvan–Newman method to find communities in a graph.
 Before we can call it, the newly created query module has to be loaded:
 
 ```cypher
 CALL mg.load_all();
 ```
 
-And now it can be called: 
+And now it can be called:
 
 ```cypher
-CALL communities.detect() 
+CALL communities.detect()
 YIELD communities
 UNWIND communities AS community
 RETURN community
