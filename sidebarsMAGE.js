@@ -11,7 +11,9 @@ module.exports = {
     {
       type: 'category',
       label: 'Query modules',
-      items: ['query-modules/python/weakly-connected-components',
+      items: [
+        'query-modules/python/cycles',
+        'query-modules/python/weakly-connected-components',
         'query-modules/python/distance-calculator',
         'query-modules/python/graph-analyzer',
         'query-modules/python/graph-coloring',
