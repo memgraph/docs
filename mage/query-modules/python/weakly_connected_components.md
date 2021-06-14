@@ -1,11 +1,23 @@
 ---
 id: weakly-connected-components
-title: Weakly connected components
-sidebar_label: Weakly connected components
+title: weakly_connected_components
+sidebar_label: weakly_connected_components
 ---
 
 import Tabs from '@theme/Tabs'; 
 import TabItem from '@theme/TabItem';
+
+export const Highlight = ({children, color}) => (
+  <span
+    style={{
+      backgroundColor: color,
+      borderRadius: '2px',
+      color: '#fff',
+      padding: '0.2rem',
+    }}>
+    {children}
+  </span>
+);
 
 [![docs-source](https://img.shields.io/badge/source-weakly_connected_components-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/cpp/connectivity_module/connectivity_module.cpp)
 
@@ -17,9 +29,11 @@ Algorithm implemented within this module does exactly that, it searches for diff
 the graph. Within component, nodes have connections toward each other, while between components there
 is no edge that connects nodes from separate components. 
 
-* graph-direction :arrow_right: **undirected**
-* edge-weight :arrow_right: **unweighted**
-* alg-parallel :arrow_right: **sequential**
+| Trait               | Value                                                 |
+| ------------------- | ----------------------------------------------------- |
+| **Graph direction** | <Highlight color="#FB6E00">**undirected**</Highlight> |
+| **Edge weights**    | <Highlight color="#FB6E00">**unweighted**</Highlight> |
+| **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight> |
 
 ## Procedures
 
@@ -37,15 +51,16 @@ YIELD node, component_id;
 ```
 
 ## Example
-
-#### Preparing data:
+#### 2 components example
 
 <Tabs
   groupId="example"
   defaultValue="visualization"
   values={[
-    {label: 'Visualization', value: 'visualization'},
-    {label: 'Cypher commands', value: 'cypher'},
+    {label: 'Step 1: Input graph', value: 'visualization'},
+    {label: 'Step 2: Cypher load commands', value: 'cypher'},
+    {label: 'Step 3: Running command', value: 'run'},
+    {label: 'Step 4: Results', value: 'result'},
   ]
 }>
   <TabItem value="visualization">
@@ -68,17 +83,17 @@ MERGE (a:Node {id: 3}) MERGE (b:Node {id: 5}) CREATE (a)-[:RELATION]->(b);
 
   </TabItem>
 
-</Tabs>
-
-
-#### Running the query:
+  <TabItem value="run">
 
 ```cypher
 CALL weakly_connected_components.get() 
 YIELD node, component_id;
 ```
 
-### Results:
+  </TabItem>
+
+
+  <TabItem value="result">
 
 ```plaintext
 +-----------------+-----------------+
@@ -93,3 +108,6 @@ YIELD node, component_id;
 +-----------------+-----------------+
 ```
 
+  </TabItem>
+
+</Tabs>
