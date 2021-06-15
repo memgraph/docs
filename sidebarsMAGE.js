@@ -16,6 +16,7 @@ module.exports = {
         'query-modules/python/bipartite-matching',
         'query-modules/python/bridges',
         'query-modules/python/cycles',
+        'query-modules/python/pagerank',
         'query-modules/python/weakly-connected-components',
         'query-modules/python/distance-calculator',
         'query-modules/python/graph-analyzer',
