@@ -12,6 +12,7 @@ module.exports = {
       type: 'category',
       label: 'Query modules',
       items: [
+        'query-modules/python/bipartite-matching',
         'query-modules/python/cycles',
         'query-modules/python/weakly-connected-components',
         'query-modules/python/distance-calculator',
