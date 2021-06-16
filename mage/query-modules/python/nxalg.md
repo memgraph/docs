@@ -371,320 +371,145 @@ in the graph with respect to the node degree.
 ```cypher
 
 ```
-### ``
+### `descendants(source)`
 
-
-
-#### Input:
-
-* `  ` ➡  
-
-#### Output:
-
-* `   ` ➡ 
-
-#### Usage:
-```cypher
-
-```
-### ``
-
-
-
-#### Input:
-
-* `  ` ➡  
-
-#### Output:
-
-* `   ` ➡ 
-
-#### Usage:
-```cypher
-
-```
-### ``
-
-
-
-#### Input:
-
-* `  ` ➡  
-
-#### Output:
-
-* `   ` ➡ 
-
-#### Usage:
-```cypher
-
-```
-### ``
-
-
-
-#### Input:
-
-* `  ` ➡  
-
-#### Output:
-
-* `   ` ➡ 
-
-#### Usage:
-```cypher
-
-```
-### ``
-
-
-
-#### Input:
-
-* `  ` ➡  
-
-#### Output:
-
-* `   ` ➡ 
-
-#### Usage:
-```cypher
-
-```
-## `descendants(source)`
 Returns all nodes reachable from `source` in `G`.
 
 
-**Parameters**
+#### Input:
 
+* `source: Vertex` ➡  A node in `G`.
 
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
+#### Output:
 
+* `descendants: List[Vertex]` ➡ The descendants of `source` in `G`.
 
-* **source** (*node*) – A node in `G`.
+#### Usage:
+```cypher
 
+```
+### `dfs_postorder_nodes(source, depth_limit)`
 
-
-**Returns**
-
-The descendants of `source` in `G`.
-
-
-
-**Return type**
-
-mgp.Record(descendants=mgp.List[mgp.Vertex])
-
-
-
-## `dfs_postorder_nodes(source, depth_limit)`
 Returns nodes in a depth-first-search post-ordering starting at source.
 
+#### Input:
 
-**Parameters**
+* `source: Vertex` ➡  Specify the maximum search depth.
+* `depth_limit: int(NULL)` ➡  Specify the maximum search depth.
 
+#### Output:
 
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
+* `nodes: List[Vertex]` ➡ A list of nodes in a depth-first-search post-ordering.
 
+#### Usage:
+```cypher
 
-* **source** (*mgp.Vertex*) – Specify starting node for depth-first search.
+```
+### `dfs_predecessors(source, depth_limit)`
 
-
-* **depth_limit** (*mgp.Nullable[int]*) – (default=None)
-Specify the maximum search depth.
-
-
-
-**Returns**
-
-A list of nodes in a depth-first-search post-ordering.
-
-
-
-**Return type**
-
-mgp.Record(nodes=mgp.List[mgp.Vertex])
-
-
-
-## `dfs_predecessors(source, depth_limit)`
 Returns a dictionary of predecessors in depth-first-search from source.
 
+#### Input:
 
-**Parameters**
+* `source: Vertex` ➡  Specify the maximum search depth.
+* `depth_limit: int(NULL)` ➡  Specify the maximum search depth.
 
+#### Output:
 
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
+* `node: Vertex` ➡ Node we are looking a predecessor for.
+* `predecessor: Vertex` ➡ predecessor of a given node.
 
+#### Usage:
+```cypher
 
-* **source** (*mgp.Vertex*) – Specify starting node for depth-first search.
+```
+### `dfs_preorder_nodes(source, depth_limit)`
 
-
-* **depth_limit** (*mgp.Nullable[int]*) – (default=None)
-Specify the maximum search depth.
-
-
-
-**Returns**
-
-A dictionary with nodes as keys and predecessor nodes as values.
-
-
-
-**Return type**
-
-mgp.Record(node=mgp.Vertex, predecessor=mgp.Vertex)
-
-
-
-## `dfs_preorder_nodes(source, depth_limit)`
 Returns nodes in a depth-first-search pre-ordering starting at source.
 
+#### Input:
 
-**Parameters**
+* `source: Vertex` ➡  Specify starting node for depth-first search and return nodes in the component reachable from this node.
+* `depth_limit: int(NULL)` ➡  Specify the maximum search depth.
 
+#### Output:
 
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
+* `nodes: List[Vertex]` ➡ A list of nodes in a depth-first-search pre-ordering.
 
+#### Usage:
+```cypher
 
-* **source** (*mgp.Vertex*) – Specify starting node for depth-first search and return nodes in
-the component reachable from
-this node.
+```
+### `dfs_successors(source, depth_limit)`
 
-
-* **depth_limit** (*mgp.Nullable[int]*) – (default=None)
-Specify the maximum search depth.
-
-
-
-**Returns**
-
-A list of nodes in a depth-first-search pre-ordering.
-
-
-
-**Return type**
-
-mgp.Record(nodes=mgp.List[mgp.Vertex])
-
-
-
-## `dfs_successors(source, depth_limit)`
 Returns a dictionary of successors in depth-first-search from source.
 
+#### Input:
 
-**Parameters**
+* `source: Vertex` ➡  Specify starting node for depth-first search and return nodes in the component reachable from this node.
+* `depth_limit: int(NULL)` ➡  Specify the maximum search depth.
 
+#### Output:
 
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
+* `node: Vertex` ➡ Node to calculate successors
+* `successors: LIst[Vertex]` ➡ Successors of a given nodes
 
+#### Usage:
+```cypher
 
-* **source** (*mgp.Vertex*) – Specify starting node for depth-first search.
+```
+### `dfs_tree(source, depth_limit)`
 
-
-* **depth_limit** (*mgp.Nullable[int]*) – (default=None)
-Specify the maximum search depth.
-
-
-
-**Returns**
-
-A dictionary with nodes as keys and list of successor nodes as values.
-
-
-
-**Return type**
-
-mgp.Record(node=mgp.Vertex, successors=mgp.List[mgp.Vertex])
-
-
-
-## `dfs_tree(source, depth_limit)`
 Returns an oriented tree constructed from a depth-first-search from source.
 
+#### Input:
 
-**Parameters**
+* `source: Vertex` ➡  Specify starting node for depth-first search.
+* `depth_limit: int(NULL)` ➡  Specify the maximum search depth.
 
+#### Output:
 
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
+* `tree: List[Vertex]` ➡ An oriented tree in a form of a list. 
 
+#### Usage:
+```cypher
 
-* **source** (*mgp.Vertex*) – Specify starting node for depth-first search.
-
-
-* **depth_limit** (*mgp.Nullable[int]*) – (default=None)
-Specify the maximum search depth.
-
-
-
-**Returns**
-
-An oriented tree.
-
-
-
-**Return type**
-
-mgp.Record(tree=mgp.List[mgp.Vertex])
-
-
-
-## `diameter(ctx)`
+```
+### `diameter()`
 Returns the diameter of the graph `G`.
 
 The diameter is the maximum eccentricity.
 
+#### Output:
 
-**Parameters**
+* `diameter: int` ➡ Diameter of graph.
 
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
+#### Usage:
+```cypher
 
+```
+### `dominance_frontiers(start)`
 
-
-**Returns**
-
-Diameter of graph.
-
-
-
-**Return type**
-
-mgp.Record(diameter=int)
-
-
-
-## `dominance_frontiers(start)`
 Returns the dominance frontiers of all nodes of a directed graph.
 
 The *dominance frontier* of a node `d` is the set of all
 nodes such that `d` dominates an immediate
 predecessor of a node, but `d` does not strictly dominate that node.
 
+#### Input:
 
-**Parameters**
+* `start: Vertex` ➡  The start node of dominance computation.
 
+#### Output:
 
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
+* `node: Vertex` ➡ Node to calculate frontier.
+* `frontier: List[Vertex]` ➡ Dominance frontier for a given node.
 
+#### Usage:
+```cypher
 
-* **start** (*mgp.Vertex*) – The start node of dominance computation.
-
-
-
-**Returns**
-
-A dictionary containing the dominance frontiers of each node reachable from
-`start` as lists.
-
-
-
-**Return type**
-
-mgp.Record(node=mgp.Vertex, frontier=mgp.List[mgp.Vertex])
-
-
-
-## `dominating_set(start)`
+```
+### `dominating_set(start)`
 Finds a dominating set for the graph `G`.
 
 A *dominating set* for a graph with node set `V` is a subset `D` of
@@ -692,77 +517,150 @@ A *dominating set* for a graph with node set `V` is a subset `D` of
 member of `D`.
 
 
-**Parameters**
+#### Input:
 
+* `start: Vertex` ➡  Node to use as a starting point for the algorithm.
 
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
+#### Output:
 
+* `dominating_set: List[Vertex]` ➡ A dominating set for `G`.
 
-* **start** (*mgp.Vertex*) – Node to use as a starting point for the algorithm.
+#### Usage:
+```cypher
 
-
-
-**Returns**
-
-A dominating set for `G`.
-
-
-
-**Return type**
-
-mgp.Record(dominating_set=mgp.List[mgp.Vertex])
-
-
-
-## `edge_bfs(source, orientation)`
+```
+### `edge_bfs(source, orientation)`
 A directed, breadth-first-search of edges in `G`, beginning at `source`.
 
 Return the edges of `G` in a breadth-first-search order continuing until
 all edges are generated.
 
 
-**Parameters**
+#### Input:
 
+* `source: Vertex` ➡  The node from which the traversal begins. If `None`, then a source is chosen arbitrarily and repeatedly until all edges from each node in the graph are searched.
+* `orientation: str(NULL)` ➡  For directed graphs and directed multigraphs, edge traversals need not respect the original orientation of the edges. When set to ‘reverse’, every edge is traversed in the reverse direction. When set to ‘ignore’, every edge is treated as undirected. When set to ‘original’, every edge is treated as directed. In all three cases, the returned edge tuples add a last entry to indicate the direction in which that edge was traversed. If `orientation` is `None`, the returned edge has no direction indicated. The direction is respected, but not reported.
 
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
+#### Output:
 
+* `edges: List[Edges]` ➡ A directed edge indicating the path taken by the breadth-first-search. For graphs, edge is of the form `(u, v)` where `u` and `v` are the tail and head of the edge as determined by the traversal. For multigraphs, edge is of the form `(u, v, key)`, where `key` is the key of the edge. When the graph is directed, then u and `v` are always in the order of the actual directed edge. If `orientation` is not `None` then the edge tuple is extended to include the direction of traversal (‘forward’ or ‘reverse’) on that edge.
 
-* **source** (*mgp.Nullable[mgp.Vertex]*) – (default=None)
-The node from which the traversal begins. If `None`, then a source
-is chosen arbitrarily and repeatedly until all edges from each node in
-the graph are searched.
+#### Usage:
+```cypher
 
-
-* **orientation** (*mgp.Nullable[str]*) – (default=None)
-For directed graphs and directed multigraphs, edge traversals
-need not respect the original orientation of the edges.
-When set to ‘reverse’, every edge is traversed in the reverse direction.
-When set to ‘ignore’, every edge is treated as undirected.
-When set to ‘original’, every edge is treated as directed.
-In all three cases, the returned edge tuples add a last entry to
-indicate the direction in which that edge was traversed.
-If `orientation` is `None`, the returned edge has no direction indicated.
-The direction is respected, but not reported.
+```
+### ``
 
 
 
-**Returns**
+#### Input:
 
-A directed edge indicating the path taken by the breadth-first-search.
-For graphs, edge is of the form `(u, v)` where `u` and `v`
-are the tail and head of the edge as determined by the traversal.
-For multigraphs, edge is of the form `(u, v, key)`, where `key` is
-the key of the edge. When the graph is directed, then u and `v`
-are always in the order of the actual directed edge.
-If `orientation` is not `None` then the edge tuple is extended to include
-the direction of traversal (‘forward’ or ‘reverse’) on that edge.
+* `  ` ➡  
+
+#### Output:
+
+* `   ` ➡ 
+
+#### Usage:
+```cypher
+
+```
+### ``
 
 
 
-**Return type**
+#### Input:
 
-mgp.Record(edges=mgp.List[mgp.Edge])
+* `  ` ➡  
 
+#### Output:
+
+* `   ` ➡ 
+
+#### Usage:
+```cypher
+
+```
+### ``
+
+
+
+#### Input:
+
+* `  ` ➡  
+
+#### Output:
+
+* `   ` ➡ 
+
+#### Usage:
+```cypher
+
+```
+### ``
+
+
+
+#### Input:
+
+* `  ` ➡  
+
+#### Output:
+
+* `   ` ➡ 
+
+#### Usage:
+```cypher
+
+```
+### ``
+
+
+
+#### Input:
+
+* `  ` ➡  
+
+#### Output:
+
+* `   ` ➡ 
+
+#### Usage:
+```cypher
+
+```
+### ``
+
+
+
+#### Input:
+
+* `  ` ➡  
+
+#### Output:
+
+* `   ` ➡ 
+
+#### Usage:
+```cypher
+
+```
+### ``
+
+
+
+#### Input:
+
+* `  ` ➡  
+
+#### Output:
+
+* `   ` ➡ 
+
+#### Usage:
+```cypher
+
+```
 
 
 ## `edge_dfs(source, orientation)`
