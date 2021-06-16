@@ -12,6 +12,7 @@ module.exports = {
       type: 'category',
       label: 'Query modules',
       items: [
+        'query-modules/python/betweenness-centrality',
         'query-modules/python/biconnected-components',
         'query-modules/python/bipartite-matching',
         'query-modules/python/bridges',
