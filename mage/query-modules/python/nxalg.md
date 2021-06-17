@@ -549,140 +549,17 @@ all edges are generated.
 ```cypher
 
 ```
-### ``
+### `edge_dfs(source, orientation)`
 
-
-
-#### Input:
-
-* `  ` ➡  
-
-#### Output:
-
-* `   ` ➡ 
-
-#### Usage:
-```cypher
-
-```
-### ``
-
-
-
-#### Input:
-
-* `  ` ➡  
-
-#### Output:
-
-* `   ` ➡ 
-
-#### Usage:
-```cypher
-
-```
-### ``
-
-
-
-#### Input:
-
-* `  ` ➡  
-
-#### Output:
-
-* `   ` ➡ 
-
-#### Usage:
-```cypher
-
-```
-### ``
-
-
-
-#### Input:
-
-* `  ` ➡  
-
-#### Output:
-
-* `   ` ➡ 
-
-#### Usage:
-```cypher
-
-```
-### ``
-
-
-
-#### Input:
-
-* `  ` ➡  
-
-#### Output:
-
-* `   ` ➡ 
-
-#### Usage:
-```cypher
-
-```
-### ``
-
-
-
-#### Input:
-
-* `  ` ➡  
-
-#### Output:
-
-* `   ` ➡ 
-
-#### Usage:
-```cypher
-
-```
-### ``
-
-
-
-#### Input:
-
-* `  ` ➡  
-
-#### Output:
-
-* `   ` ➡ 
-
-#### Usage:
-```cypher
-
-```
-
-
-## `edge_dfs(source, orientation)`
 A directed, depth-first-search of edges in `G`, beginning at `source`.
 
 Return the edges of `G` in a depth-first-search order continuing until
 all edges are generated.
 
+#### Input:
 
-**Parameters**
-
-
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
-
-
-* **source** (*mgp.Nullable[mgp.Vertex]*) – The node from which the traversal begins. If `None`, then a source
-is chosen arbitrarily and repeatedly until all edges from each node in
-the graph are searched.
-
-
-* **orientation** (*mgp.Nullable[str]*) – (default=None)
-For directed graphs and directed multigraphs, edge traversals
+* `source: Vertex(NULL)` ➡  The node from which the traversal begins. If `None`, then a source is chosen arbitrarily and repeatedly until all edges from each node in the graph are searched.
+* `orientation: str(NULL)` ➡  For directed graphs and directed multigraphs, edge traversals
 need not respect the original orientation of the edges.
 When set to ‘reverse’, every edge is traversed in the reverse direction.
 When set to ‘ignore’, every edge is treated as undirected.
@@ -692,11 +569,9 @@ indicate the direction in which that edge was traversed.
 If `orientation` is `None`, the returned edge has no direction indicated.
 The direction is respected, but not reported.
 
+#### Output:
 
-
-**Returns**
-
-A directed edge indicating the path taken by the depth-first traversal.
+* `edges: List[Edge]` ➡ A directed edge indicating the path taken by the depth-first traversal.
 For graphs, edge is of the form `(u, v)` where `u` and `v`
 are the tail and head of the edge as determined by the traversal.
 For multigraphs, edge is of the form `(u, v, key)`, where `key` is
@@ -705,15 +580,12 @@ are always in the order of the actual directed edge.
 If `orientation` is not `None` then the edge tuple is extended to include
 the direction of traversal (‘forward’ or ‘reverse’) on that edge.
 
+#### Usage:
+```cypher
 
+```
+### `find_cliques()`
 
-**Return type**
-
-mgp.Record(edges=mgp.List[mgp.Edge])
-
-
-
-## `find_cliques(ctx)`
 Returns all maximal cliques in an undirected graph.
 
 For each node `v`, a *maximal clique* for `v` is a largest complete
@@ -724,162 +596,75 @@ This function returns an iterator over cliques, each of which is a
 list of nodes. It is an iterative implementation, so should not
 suffer from recursion depth issues.
 
+#### Output:
 
-**Parameters**
-
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
-
-
-
-**Returns**
-
-An iterator over maximal cliques, each of which is a list of
+* `cliques: List[List[Vertex]]` ➡ An iterator over maximal cliques, each of which is a list of
 nodes in `G`. The order of cliques is arbitrary.
 
+#### Usage:
+```cypher
 
+```
+### `find_cycle(source, orientation)`
 
-**Return type**
-
-mgp.Record(cliques=mgp.List[mgp.List[mgp.Vertex]])
-
-
-
-## `find_cycle(source, orientation)`
 Returns a cycle found via depth-first traversal.
 
 A *cycle* is a closed path in the graph.
 The orientation of directed edges is determined by `orientation`.
 
+#### Input:
 
-**Parameters**
+* `source: List[Vertex](NULL)` ➡  The node from which the traversal begins. If `None`, then a source is chosen arbitrarily and repeatedly until all edges from each node in the graph are searched.
+* `orientation: str(NULL)` ➡  For directed graphs and directed multigraphs, edge traversals
+need not respect the original orientation of the edges. When set to ‘reverse’ every edge is traversed in the reverse direction. When set to ‘ignore’, every edge is treated as undirected. When set to ‘original’, every edge is treated as directed. In all three cases, the yielded edge tuples add a last entry to indicate the direction in which that edge was traversed. If `orientation` is `None`, the yielded edge has no direction indicated. The direction is respected, but not reported.
 
+#### Output:
 
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
+* `   ` ➡ A list of directed edges indicating the path taken for the loop. If no cycle is found, then an exception is raised. For graphs, an edge is of the form `(u, v)` where `u` and `v` are the tail and the head of the edge as determined by the traversal. For multigraphs, an edge is of the form `(u, v, key)`, where `key` is the key of the edge. When the graph is directed, then `u` and `v` are always in the order of the actual directed edge. If `orientation` is not `None` then the edge tuple is extended to include the direction of traversal (‘forward’ or ‘reverse’) on that edge.
 
+#### Usage:
+```cypher
 
-* **source** (*mgp.Nullable[mgp.List[mgp.Vertex]]*) – (default=None)
-The node from which the traversal begins. If `None`, then a source
-is chosen arbitrarily and repeatedly until all edges from each node in
-the graph are searched.
+```
 
+### `flow_hierarchy(weight)`
 
-* **orientation** (*mgp.Nullable[str]*) – (default=None)
-For directed graphs and directed multigraphs, edge traversals
-need not respect the original orientation of the edges.
-When set to ‘reverse’ every edge is traversed in the reverse direction.
-When set to ‘ignore’, every edge is treated as undirected.
-When set to ‘original’, every edge is treated as directed.
-In all three cases, the yielded edge tuples add a last entry to
-indicate the direction in which that edge was traversed.
-If `orientation` is `None`, the yielded edge has no direction indicated.
-The direction is respected, but not reported.
-
-
-
-**Returns**
-
-A list of directed edges indicating the path taken for the loop.
-If no cycle is found, then an exception is raised.
-For graphs, an edge is of the form `(u, v)` where `u` and `v`
-are the tail and the head of the edge as determined by the traversal.
-For multigraphs, an edge is of the form `(u, v, key)`, where `key` is
-the key of the edge. When the graph is directed, then `u` and `v`
-are always in the order of the actual directed edge.
-If `orientation` is not `None` then the edge tuple is extended to include
-the direction of traversal (‘forward’ or ‘reverse’) on that edge.
-
-
-
-**Return type**
-
-mgp.Record(cycle=mgp.Nullable[mgp.List[mgp.Edge]])
-
-
-
-## `flow_hierarchy(weight)`
 Returns the flow hierarchy of a directed network.
 
-*Flow hierarchy* is defined as the fraction of edges not participating
-in cycles in a directed graph.
+*Flow hierarchy* is defined as the fraction of edges not participating in cycles in a directed graph.
+
+#### Input:
+
+* `weight: str(NULL)` ➡  Attribute to use for node weights. If `None`, the weight defaults to 1.
+
+#### Output:
+
+* `flow_hierarchy: double` ➡  Flow hierarchy value.
+
+#### Usage:
+```cypher
+
+```
+### `global_efficiency()`
+
+Returns the average global efficiency of the graph. The *efficiency* of a pair of nodes in a graph is the multiplicative inverse of the shortest path distance between the nodes. The *average global efficiency* of a graph is the average efficiency of all pairs of nodes.
+
+#### Output:
+
+* `global_efficiency: double` ➡  The average global efficiency of the graph.
+
+#### Usage:
+```cypher
+
+```
+### `greedy_color(strategy, interchange)`
+Color a graph using various strategies of greedy graph coloring. Attempts to color a graph using as few colors as possible, where no neighbours of a node can have the same color as the node itself. The given strategy determines the order in which nodes are colored.
 
 
-**Parameters**
+#### Input:
 
-
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
-
-
-* **weight** (*mgp.Nullable[str]*) – (default=None)
-Attribute to use for node weights. If `None`, the weight defaults to 1.
-
-
-
-**Returns**
-
-Flow hierarchy value.
-
-
-
-**Return type**
-
-mgp.Record(flow_hierarchy=float)
-
-
-
-## `global_efficiency(ctx)`
-Returns the average global efficiency of the graph.
-
-The *efficiency* of a pair of nodes in a graph is the multiplicative
-inverse of the shortest path distance between the nodes. The *average
-global efficiency* of a graph is the average efficiency of all pairs of
-nodes.
-
-
-**Parameters**
-
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
-
-
-
-**Returns**
-
-The average global efficiency of the graph.
-
-
-
-**Return type**
-
-mgp.Record(global_efficiency=float)
-
-
-
-## `greedy_color(strategy, interchange)`
-Color a graph using various strategies of greedy graph coloring.
-
-Attempts to color a graph using as few colors as possible, where no
-neighbours of a node can have the same color as the node itself.
-The given strategy determines the order in which nodes are colored.
-
-
-**Parameters**
-
-
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
-
-
-* **strategy** (*str*) – (default=’largest_first’)
-The parameter `function(G,colors)` is a function
-(or a string representing a function) that provides
-the coloring strategy, by returning nodes in the order they
-should be colored. `G` is the graph, and `colors` is a
-dictionary of the currently assigned colors, keyed by nodes. The
-function must return an iterable over all the nodes in `G`.
-If the strategy function is an iterator generator (a function with
-`yield` statements), keep in mind that the `colors` dictionary
-will be updated after each `yield`, since
-this function chooses colors greedily.
-If `strategy` is a string, it must be one of the following,
-each of which represents one of the built-in strategy functions.
+* `strategy` ➡  The parameter `function(G,colors)` is a function (or a string representing a function) that provides the coloring strategy, by returning nodes in the order they should be colored. `G` is the graph, and `colors` is a dictionary of the currently assigned colors, keyed by nodes. The function must return an iterable over all the nodes in `G`. If the strategy function is an iterator generator (a function with
+`yield` statements), keep in mind that the `colors` dictionary will be updated after each `yield`, since this function chooses colors greedily. If `strategy` is a string, it must be one of the following, each of which represents one of the built-in strategy functions.
 `'largest_first'`
 `'random_sequential'`
 `'smallest_last'`
@@ -889,1511 +674,716 @@ each of which represents one of the built-in strategy functions.
 `'connected_sequential'` (alias for the previous strategy)
 `'saturation_largest_first'`
 `'DSATUR'` (alias for the previous strategy)
+* `interchange: bool(False)` ➡  Will use the color interchange algorithm if set to `True`. Note that `saturation_largest_first` and `independent_set` do not work with interchange. Furthermore, if you use interchange with your own strategy function, you cannot rely on the values in the `colors` argument.
+#### Output:
 
+* `node: Vertex` ➡ Vertex to color.
+* `color: int` ➡ Color index of a certain node.
 
-* **interchange** (*bool*) – (default=False)
-Will use the color interchange algorithm if set to `True`.
-Note that `saturation_largest_first` and `independent_set`
-do not work with interchange. Furthermore, if you use
-interchange with your own strategy function, you cannot rely
-on the values in the `colors` argument.
+#### Usage:
+```cypher
 
+```
+### `has_eulerian_path()`
 
-
-**Returns**
-
-A dictionary with keys representing nodes and values representing
-corresponding coloring.
-
-
-
-**Return type**
-
-mgp.Record(node=mgp.Vertex, color=int)
-
-
-
-## `has_eulerian_path(ctx)`
-Returns `True` if `G` has an Eulerian path.
-
-An *Eulerian path* is a path in a graph that uses each edge of a graph
-exactly once.
-
-A directed graph has an Eulerian path if:
+ An *Eulerian path* is a path in a graph that uses each edge of a graph exactly once.
+ A directed graph has an Eulerian path if:
 * at most one vertex has `out_degree - in_degree = 1`,
 * at most one vertex has `in_degree - out_degree = 1`,
 * every other vertex has equal in_degree and out_degree,
-* and all of its vertices with nonzero degree belong to a
-single connected component of the underlying undirected graph.
+* and all of its vertices with nonzero degree belong to a single connected component of the underlying undirected graph.
+ An undirected graph has an Eulerian path if exactly zero or two vertices have an odd degree and all of its vertices with nonzero degrees belong to a single connected component.
 
-An undirected graph has an Eulerian path if exactly zero or
-two vertices have an odd degree and all of its vertices with
-nonzero degrees belong to a single connected component.
+#### Output:
 
+* `has_eulerian_path: bool` ➡ `True` if `G` has an eulerian path.
 
-**Parameters**
+#### Usage:
+```cypher
 
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
-
-
-
-**Returns**
-
-`True` if `G` has an eulerian path.
+```
 
 
+### `has_path(source, target)`
 
-**Return type**
-
-mgp.Record(has_eulerian_path=bool)
-
-
-
-## `has_path(source, target)`
 Returns `True` if `G` has a path from `source` to `target`.
 
+#### Input:
 
-**Parameters**
+* `source: Vertex` ➡  Starting node for the path.
+* `target: Vertex` ➡  Ending node for the path.
 
+#### Output:
 
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
+* `has_path: bool` ➡  `True` if `G` has a path from `source` to `target`.
 
+#### Usage:
+```cypher
 
-* **source** (*mgp.Vertex*) – Starting node for the path.
+```
 
+### `immediate_dominators(start)`
 
-* **target** (*mgp.Vertex*) – Ending node for the path.
+Returns the immediate dominators of all nodes of a directed graph. The immediate dominator of a node is the unique node that Strictly dominates a node `n` but does not strictly dominate any other node That dominates `n`.
 
+#### Input:
 
+* `start: Vertex` ➡  The start node of dominance computation.
 
-**Returns**
+#### Output:
 
-`True` if `G` has a path from `source` to `target`.
+* `node: Vertex` ➡  Vertex to calculate dominator for.
+* `dominator: Vertex` ➡  Dominator node for certain vertex.
 
+#### Usage:
+```cypher
 
+```
 
-**Return type**
+### `is_arborescence()`
 
-mgp.Record(has_path=bool)
+Returns `True` if `G` is an arborescence. An *arborescence* is a directed tree with maximum in-degree equal to 1.
 
+#### Output:
 
+* `is_arborescence: bool` ➡  A boolean that is `True` if `G` is an arborescence.
 
-## `immediate_dominators(start)`
-Returns the immediate dominators of all nodes of a directed graph.
+#### Usage:
+```cypher
 
-The immediate dominator of a node is the unique node that
-Strictly dominates a node `n` but does not strictly dominate any other node
-That dominates `n`.
+```
 
+### `is_at_free()`
 
-**Parameters**
+Check if a graph is AT-free. The method uses the find_asteroidal_triple method to recognize an AT-free graph. If no asteroidal triple is found, the graph is AT-free and `True` is returned. If at least one asteroidal triple is found, the graph is not AT-free and `False` is returned.
 
+#### Output:
 
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
+* `is_at_free: bool` ➡  `True` if `G` is AT-free and `False` otherwise.
 
+#### Usage:
+```cypher
 
-* **start** (*mgp.Vertex*) – The start node of dominance computation.
+```
+### `is_bipartite()`
 
+Returns `True` if graph `G` is bipartite, `False` if not. A *bipartite graph* (or bigraph) is a graph whose vertices can be divided into two disjoint and independent sets\`\`u\`\` and `v` and such that every edge connects a vertex in `u` one in `v`.
 
+#### Output:
 
-**Returns**
+* `is_bipartite: bool` ➡  `True` if `G` is bipartite and `False` otherwise.
 
-A dictionary containing the immediate dominators of each node reachable from
-`start`.
+#### Usage:
+```cypher
 
+```
 
+### `is_branching()`
 
-**Return type**
+Returns `True` if `G` is a branching. A *branching* is a directed forest with maximum in-degree equal to 1.  
 
-mgp.Record(node=mgp.Vertex, dominator=mgp.Vertex)
+#### Output:
 
+* `is_branching: bool` ➡   A boolean that is `True` if `G` is a branching.
 
+#### Usage:
+```cypher
 
-## `is_arborescence(ctx)`
-Returns `True` if `G` is an arborescence.
+```
 
-An *arborescence* is a directed tree with maximum in-degree equal to 1.
+### `is_chordal(ctx)`
 
+Checks whether `G` is a chordal graph. A graph is *chordal* if every cycle of length at least 4 has a chord (an edge joining two nodes not adjacent in the cycle).
 
-**Parameters**
+#### Output:
 
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
+* `is_chordal: bool` ➡  `True` if `G` is a chordal graph and `False` otherwise.
 
+#### Usage:
+```cypher
 
+```
 
-**Returns**
+### `is_distance_regular(ctx)`
 
-A boolean that is `True` if `G` is an arborescence.
+Returns `True` if the graph is distance regular, `False` otherwise. A connected graph `G` is distance-regular if for any nodes `x,y` and any integers `i,j=0,1,...,d` (where `d` is the graph diameter), the number of vertices at distance `i` from `x` and distance `j` from `y` depends only on `i,j` and the graph distance between `x` and `y`, independently of the choice of `x` and `y`.
 
+#### Output:
 
+* `is_distance_regular: bool` ➡  `True` if the graph is Distance Regular, `False` otherwise.
 
-**Return type**
+#### Usage:
+```cypher
 
-mgp.Record(is_arborescence=bool)
+```
+### `is_edge_cover(cover)`
 
+Decides whether a set of edges is a valid edge cover of the graph. Given a set of edges, it can be decided whether the set is an *edge covering* if checked whether all nodes of the graph have an edge from the set incident on it.
+#### Input:
 
+* `cover: List[Edge]` ➡   A list of edges to be checked.
 
-## `is_at_free(ctx)`
-Check if a graph is AT-free.
+#### Output:
 
-The method uses the find_asteroidal_triple method to recognize
-an AT-free graph. If no asteroidal triple is found, the graph is
-AT-free and `True` is returned. If at least one asteroidal triple is
-found, the graph is not AT-free and `False` is returned.
+* `is_edge_cover: bool` ➡  Whether the set of edges is a valid edge cover of the graph.
 
+#### Usage:
+```cypher
 
-**Parameters**
+```
 
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
+### `is_eulerian()`
 
+Returns `True` if and only if `G` is Eulerian. A graph is *Eulerian* if it has an Eulerian circuit. An *Eulerian circuit* is a closed walk that includes each edge of a graph exactly once.
 
+#### Output:
 
-**Returns**
+* `is_eulerian: bool` ➡  `True` if `G` is Eulerian.
 
-`True` if `G` is AT-free and `False` otherwise.
+#### Usage:
+```cypher
 
+```
+### `is_forest()`
 
+Returns `True` if `G` is a forest. A *forest* is a graph with no undirected cycles.
+ For directed graphs, `G` is a forest if the underlying graph is a forest. The underlying graph is obtained by treating each directed edge as a single undirected edge in a multigraph.
+#### Output:
 
-**Return type**
+* `is_forest: bool` ➡  A boolean that is `True` if `G` is a forest.
 
-mgp.Record(is_at_free=bool)
+#### Usage:
+```cypher
 
+```
 
+### `is_isolate(n)`
 
-## `is_bipartite(ctx)`
-Returns `True` if graph `G` is bipartite, `False` if not.
-
-A *bipartite graph* (or bigraph) is a graph whose vertices can be
-divided into two disjoint and independent sets\`\`u\`\` and `v` and such that
-every edge connects a vertex in `u` one in `v`.
-
-
-**Parameters**
-
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
-
-
-
-**Returns**
-
-`True` if `G` is bipartite and `False` otherwise.
-
-
-
-**Return type**
-
-mgp.Record(is_bipartite=bool)
-
-
-
-## `is_branching(ctx)`
-Returns `True` if `G` is a branching.
-
-A *branching* is a directed forest with maximum in-degree equal to 1.
-
-
-**Parameters**
-
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
-
-
-
-**Returns**
-
-A boolean that is `True` if `G` is a branching.
-
-
-
-**Return type**
-
-mgp.Record(is_branching=bool)
-
-
-
-## `is_chordal(ctx)`
-Checks whether `G` is a chordal graph.
-
-A graph is *chordal* if every cycle of length at least 4 has a chord
-(an edge joining two nodes not adjacent in the cycle).
-
-
-**Parameters**
-
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
-
-
-
-**Returns**
-
-`True` if `G` is a chordal graph and `False` otherwise.
-
-
-
-**Return type**
-
-mgp.Record(is_chordal=bool)
-
-
-
-## `is_distance_regular(ctx)`
-Returns `True` if the graph is distance regular, `False` otherwise.
-
-A connected graph `G` is distance-regular if for any nodes `x,y`
-and any integers `i,j=0,1,...,d` (where `d` is the graph
-diameter), the number of vertices at distance `i` from `x` and
-distance `j` from `y` depends only on `i,j` and the graph distance
-between `x` and `y`, independently of the choice of `x` and `y`.
-
-
-**Parameters**
-
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
-
-
-
-**Returns**
-
-`True` if the graph is Distance Regular, `False` otherwise.
-
-
-
-**Return type**
-
-mgp.Record(is_distance_regular=bool)
-
-
-
-## `is_edge_cover(cover)`
-Decides whether a set of edges is a valid edge cover of the graph.
-
-Given a set of edges, it can be decided whether the set is
-an *edge covering* if checked whether all nodes of the graph
-have an edge from the set incident on it.
-
-
-**Parameters**
-
-
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
-
-
-* **cover** (*mgp.List[mgp.Edge]*) – A list of edges to be checked.
-
-
-
-**Returns**
-
-Whether the set of edges is a valid edge cover of the graph.
-
-
-
-**Return type**
-
-mgp.Record(is_edge_cover=bool)
-
-
-
-## `is_eulerian(ctx)`
-Returns `True` if and only if `G` is Eulerian.
-
-A graph is *Eulerian* if it has an Eulerian circuit. An *Eulerian
-circuit* is a closed walk that includes each edge of a graph exactly
-once.
-
-
-**Parameters**
-
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
-
-
-
-**Returns**
-
-`True` if `G` is Eulerian.
-
-
-
-**Return type**
-
-mgp.Record(is_eulerian=bool)
-
-
-
-## `is_forest(ctx)`
-Returns `True` if `G` is a forest.
-
-A *forest* is a graph with no undirected cycles.
-
-For directed graphs, `G` is a forest if the underlying graph is a forest.
-The underlying graph is obtained by treating each directed edge as a single
-undirected edge in a multigraph.
-
-
-**Parameters**
-
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
-
-
-
-**Returns**
-
-A boolean that is `True` if `G` is a forest.
-
-
-
-**Return type**
-
-mgp.Record(is_forest=bool)
-
-
-
-## `is_isolate(n)`
 Determines whether a node is an isolate.
+ An *isolate* is a node with no neighbors (that is, with degree zero). For directed graphs, this means no in-neighbors and no out-neighbors.
 
-An *isolate* is a node with no neighbors (that is, with degree
-zero). For directed graphs, this means no in-neighbors and no
-out-neighbors.
+#### Input:
 
+* `n: Vertex` ➡  A node in `G`.
 
-**Parameters**
+#### Output:
 
+* `is_isolate: bool` ➡  `True` if and only if `n` has no neighbors.
 
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
+#### Usage:
+```cypher
 
+```
+### `is_isomorphic(nodes1, edges1, nodes2, edges2)`
 
-* **n** (*mgp.Vertex*) – A node in `G`.
+Returns `True` if the graphs `G1` and `G2` are isomorphic and `False` otherwise. The two graphs `G1` and `G2` must be the same type.
 
+#### Input:
 
+* `nodes1: List[Vertex]` ➡  Nodes in `G1`.
+* `edges1: List[Edge]` ➡  Edges in `G1`.
+* `nodes2: List[Vertex]` ➡  Nodes in `G2`.
+* `edges2: List[Edge]` ➡   Edges in `G2`.
 
-**Returns**
+#### Output:
 
-`True` if and only if `n` has no neighbors.
+* `is_isomorphic: bool` ➡  `True` if the graphs `G1` and `G2` are isomorphic and `False` otherwise.
 
+#### Usage:
+```cypher
 
+```
 
-**Return type**
+### `is_semieulerian(ctx)`
 
-mgp.Record(is_isolate=bool)
-
-
-
-## `is_isomorphic(nodes1, edges1, nodes2, edges2)`
-Returns `True` if the graphs `G1` and `G2` are isomorphic
-and `False` otherwise.
-
-The two graphs `G1` and `G2` must be the same type.
-
-
-**Parameters**
-
-
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
-
-
-* **nodes1** (*mgp.List[mgp.Vertex]*) – Nodes in `G1`.
-
-
-* **edges1** (*mgp.List[mgp.Edge]*) – Edges in `G1`.
-
-
-* **nodes2** (*mgp.List[mgp.Vertex]*) – Nodes in `G2`.
-
-
-* **edges2** (*mgp.List[mgp.Edge]*) – Edges in `G2`.
-
-
-
-**Returns**
-
-`True` if the graphs `G1` and `G2` are isomorphic
-and `False` otherwise.
-
-
-
-**Return type**
-
-mgp.Record(is_isomorphic=bool)
-
-
-
-## `is_semieulerian(ctx)`
 Returns `True` if `G` is semi-Eulerian.
 
 `G` is semi-Eulerian if it has an Eulerian path but no Eulerian circuit.
 
+#### Input:
 
-**Parameters**
+* `` ➡  
 
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
+#### Output:
 
+* `is_semieulerian: bool` ➡  `True` if `G` is semi-Eulerian.
 
+#### Usage:
+```cypher
 
-**Returns**
+```
+### `is_simple_path(nodes)`
 
-`True` if `G` is semi-Eulerian.
-
-
-
-**Return type**
-
-mgp.Record(is_semieulerian=bool)
-
-
-
-## `is_simple_path(nodes)`
 Returns `True` if and only if the given nodes form a simple path in
 `G`.
+ A *simple path* in a graph is a nonempty sequence of nodes in which no node appears more than once in the sequence and each adjacent pair of nodes in the sequence is adjacent in the graph.
 
-A *simple path* in a graph is a nonempty sequence of nodes in which
-no node appears more than once in the sequence and each adjacent
-pair of nodes in the sequence is adjacent in the graph.
+#### Input:
 
+* `nodes: List[Vertex]` ➡  A list of one or more nodes in the graph `G`.
 
-**Parameters**
+#### Output:
 
+* `is_simple_path: bool` ➡  Whether the given list of nodes represents a simple path in `G`. 
 
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
+#### Usage:
+```cypher
 
+```
 
-* **nodes** (*mgp.List[mgp.Vertex]*) – A list of one or more nodes in the graph `G`.
+### `is_strongly_regular()`
 
-
-
-**Returns**
-
-Whether the given list of nodes represents a simple path in `G`.
-
-
-
-**Return type**
-
-mgp.Record(is_simple_path=bool)
-
-
-
-## `is_strongly_regular(ctx)`
-Returns `True` if and only if the given graph is strongly
-regular.
-
-An undirected graph is *strongly regular* if
+Returns `True` if and only if the given graph is strongly regular.
+ An undirected graph is *strongly regular* if:
 
 
 * it is regular,
 
 
-* each pair of adjacent vertices has the same number of neighbors in
-common,
+* each pair of adjacent vertices has the same number of neighbors in common,
 
 
-* each pair of nonadjacent vertices has the same number of neighbors
-in common.
+* each pair of nonadjacent vertices has the same number of neighbors in common.
+ Each strongly regular graph is a distance-regular graph. Conversely, if a distance-regular graph has a diameter of two, then it is a strongly regular graph.
 
-Each strongly regular graph is a distance-regular graph.
-Conversely, if a distance-regular graph has a diameter of two,
-then it is a strongly regular graph.
+#### Output:
 
+* `is_strongly_regular: bool` ➡   Whether `G` is strongly regular.
 
-**Parameters**
+#### Usage:
+```cypher
 
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
+```
 
-
-
-**Returns**
-
-Whether `G` is strongly regular.
-
-
-
-**Return type**
-
-mgp.Record(is_strongly_regular=bool)
-
-
-
-## `is_tournament(ctx)`
+### `is_tournament()`
 Returns `True` if and only if `G` is a tournament.
+ A *tournament* is a directed graph, with neither self-loops nor multi-edges, in which there is exactly one directed edge joining each pair of distinct nodes.
 
-A *tournament* is a directed graph, with neither self-loops nor
-multi-edges, in which there is exactly one directed edge joining
-each pair of distinct nodes.
+#### Output:
 
+* `is_tournament: bool` ➡   Whether the given graph is a tournament graph.
 
-**Parameters**
+#### Usage:
+```cypher
 
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
+```
+### `is_tree()`
 
-
-
-**Returns**
-
-Whether the given graph is a tournament graph.
-
-
-
-**Return type**
-
-mgp.Record(is_tournament=bool)
-
-
-
-## `is_tree(ctx)`
 Returns `True` if `G` is a tree.
+ A *tree* is a connected graph with no undirected cycles.
+ For directed graphs, `G` is a tree if the underlying graph is a tree. The underlying graph is obtained by treating each directed edge as a single undirected edge in a multigraph.
 
-A *tree* is a connected graph with no undirected cycles.
+#### Output:
 
-For directed graphs, `G` is a tree if the underlying graph is a tree. The
-underlying graph is obtained by treating each directed edge as a single
-undirected edge in a multigraph.
+* `is_tree: bool` ➡   A boolean that is `True` if `G` is a tree.
 
+#### Usage:
+```cypher
 
-**Parameters**
-
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
-
-
-
-**Returns**
-
-A boolean that is `True` if `G` is a tree.
-
-
-
-**Return type**
-
-mgp.Record(is_tree=bool)
-
-
-
-## `isolates(ctx)`
+```
+### `isolates()`
 Returns a list of isolates in the graph.
+ An *isolate* is a node with no neighbors (that is, with degree zero). For directed graphs, this means no in-neighbors and no out-neighbors.
+#### Input:
 
-An *isolate* is a node with no neighbors (that is, with degree
-zero). For directed graphs, this means no in-neighbors and no
-out-neighbors.
+* `` ➡  
 
+#### Output:
 
-**Parameters**
+* `isolates: List[Vertex]` ➡   A list of isolates in `G`.
 
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
+#### Usage:
+```cypher
 
-
-
-**Returns**
-
-A list of isolates in `G`.
-
-
-
-**Return type**
-
-mgp.Record(isolates=mgp.List[mgp.Vertex])
-
-
-
-## `jaccard_coefficient(ebunch)`
+```
+### `jaccard_coefficient(ebunch)`
 Compute the Jaccard coefficient of all node pairs in `ebunch`.
 
-*Jaccard coefficient* compares members of two sets to see
-which members are shared and which are distinct.
+*Jaccard coefficient* compares members of two sets to see which members are shared and which are distinct.
+#### Input:
 
+* `ebunch: LIst[List[Vertex]](NULL)` ➡  Jaccard coefficient will be computed for each pair of nodes given in the iterable. The pairs must be given as 2-tuples
+`(u, v)` where `u` and `v` are nodes in the graph. If `ebunch` is `None` then all non-existent edges in the graph will be used.
 
-**Parameters**
+#### Output:
 
+* `u: Vertex` ➡  First node in pair.
+* `v: Vertex` ➡  Second node in pair.
+* `coef: Vertex` ➡  Jaccard coefficient.
 
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
+#### Usage:
+```cypher
 
-
-* **ebunch** (*mgp.Nullable**[**mgp.List**[**mgp.List[mgp.Vertex]**]**]*) – (default=None)
-Jaccard coefficient will be computed for each pair of nodes
-given in the iterable. The pairs must be given as 2-tuples
-`(u, v)` where `u` and `v` are nodes in the graph.
-If `ebunch` is `None` then all non-existent edges in the
-graph will be used.
-
-
-
-**Returns**
-
-An iterator of 3-tuples in the form `(u, v, p)` where `(u, v)` is a
-pair of nodes and `p` is their Jaccard coefficient.
-
-
-
-**Return type**
-
-mgp.Record(u=mgp.Vertex, v=mgp.Vertex, coef=float)
-
-
-
-## `k_clique_communities(k, cliques)`
+```
+### `k_clique_communities(k, cliques)`
 Find k-clique communities in a graph using the percolation method.
+ A *k-clique community* is the union of all cliques of size `k` that can be reached through adjacent (sharing `k-1` nodes) k-cliques.
+#### Input:
 
-A *k-clique community* is the union of all cliques of size `k` that
-can be reached through adjacent (sharing `k-1` nodes) k-cliques.
+* `k: int` ➡  Size of the smallest clique.
+* `cliques: List[List[Vertex]](NULL)` ➡  Precomputed cliques (use networkx.find_cliques(G)).
 
+#### Output:
 
-**Parameters**
+* `communities: List[List[Vertex]]` ➡   Sets of nodes, one for each k-clique community.
 
+#### Usage:
+```cypher
 
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
-
-
-* **k** (*int*) – Size of the smallest clique.
-
-
-* **cliques** (*mgp.Nullable**[**mgp.List**[**mgp.List[mgp.Vertex]**]**]*) – (default=None)
-Precomputed cliques (use networkx.find_cliques(G)).
-
-
-
-**Returns**
-
-Sets of nodes, one for each k-clique community.
-
-
-
-**Return type**
-
-mgp.Record(communities=mgp.List[mgp.List[mgp.Vertex]])
-
-
-
-## `k_components(density)`
+```
+### `k_components(density)`
 Returns the approximate k-component structure of a graph `G`.
+ A *k-component* is a maximal subgraph of a graph `G` that has, at least, node connectivity `k`: we need to remove at least `k` nodes to break it into more components. k-components have an inherent hierarchical structure because they are nested in terms of connectivity: a connected graph can contain several 2-components, each of which can contain one or more 3-components, and so forth.
+ This implementation is based on the fast heuristics to approximate the k-component structure of a graph. This, in turn, is based on a fast approximation algorithm for finding good lower bounds of the number of node independent paths between two nodes.
+#### Input:
 
-A *k-component* is a maximal subgraph of a graph `G` that has, at least,
-node connectivity `k`: we need to remove at least `k` nodes to break it
-into more components. k-components have an inherent hierarchical
-structure because they are nested in terms of connectivity: a connected
-graph can contain several 2-components, each of which can contain
-one or more 3-components, and so forth.
+* `min_density: double(0.95)` ➡   Density relaxation threshold.
 
-This implementation is based on the fast heuristics to approximate
-the k-component structure of a graph. This, in turn, is based on
-a fast approximation algorithm for finding good lower bounds of the number
-of node independent paths between two nodes.
+#### Output:
 
+* `k: int` ➡  Connectivity level k
+* `components: List[List[Vertex]]` ➡  List of sets of nodes that form a k-component of level `k` as values.
 
-**Parameters**
+#### Usage:
+```cypher
 
-
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
-
-
-* **min_density** (*mgp.Number*) – (default=0.95)
-Density relaxation threshold.
-
-
-
-**Returns**
-
-Dictionary with connectivity level `k` as key and a list of
-sets of nodes that form a k-component of level `k` as values.
-
-
-
-**Return type**
-
-mgp.Record(k=int, components=mgp.List[mgp.List[mgp.Vertex]])
-
-
-
-## `k_edge_components(k)`
+```
+### `k_edge_components(k)`
 Returns nodes in each maximal k-edge-connected component in `G`.
+A connected graph is *k-edge-connected* if it remains connected whenever fewer than k edges are removed. The edge-connectivity of a graph is the largest k for which the graph is k-edge-connected.
+#### Input:
 
-A connected graph is *k-edge-connected* if it remains connected
-whenever fewer than k edges are removed. The edge-connectivity of
-a graph is the largest k for which the graph is k-edge-connected.
+* `k: int` ➡  Desired edge connectivity.
 
+#### Output:
 
-**Parameters**
+* `components: List[List[Vertex]]` ➡   A list of k-edge-ccs. Each set of returned nodes will have k-edge-connectivity in the graph `G`.
 
+#### Usage:
+```cypher
 
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
-
-
-* **k** (*int*) – Desired edge connectivity.
-
-
-
-**Returns**
-
-A list of k-edge-ccs. Each set of returned nodes
-will have k-edge-connectivity in the graph `G`.
-
-
-
-**Return type**
-
-mgp.Record(components=mgp.List[mgp.List[mgp.Vertex]])
-
-
-
-## `local_efficiency(ctx)`
+```
+### `local_efficiency(ctx)`
 Returns the average local efficiency of the graph.
+ The *efficiency* of a pair of nodes in a graph is the multiplicative inverse of the shortest path distance between the nodes. The *local efficiency* of a node in the graph is the average global efficiency of the subgraph induced by the neighbors of the node. The *average local efficiency* is the average of the local efficiencies of each node.
+#### Output:
 
-The *efficiency* of a pair of nodes in a graph is the multiplicative
-inverse of the shortest path distance between the nodes. The *local
-efficiency* of a node in the graph is the average global efficiency of the
-subgraph induced by the neighbors of the node. The *average local
-efficiency* is the average of the local efficiencies of each node.
+* `local_efficiency: double` ➡   The average local efficiency of the graph.
 
+#### Usage:
+```cypher
 
-**Parameters**
-
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
-
-
-
-**Returns**
-
-The average local efficiency of the graph.
-
-
-
-**Return type**
-
-mgp.Record(local_efficiency=float)
-
-
-
-## `lowest_common_ancestor(node1, node2)`
+```
+### `lowest_common_ancestor(node1, node2)`
 Compute the lowest common ancestor of the given pair of nodes.
+#### Input:
+
+* `node1: Vertex` ➡  A node in the graph.
+* `node2: Vertex` ➡  A node in the graph.
+
+#### Output:
+
+* `ancestor: Vertex` ➡  The lowest common ancestor of `node1` and `node2`, or default if they have no common ancestors.
 
 
-**Parameters**
+#### Usage:
+```cypher
 
+```
+### `maximal_matching`
+ A *matching* is a subset of edges in which no node occurs more than once. A *maximal matching* cannot add more edges and still be a matching.
 
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
+#### Output:
 
+* `edges: List[Edge]` ➡   A maximal matching of the graph.
 
-* **node1** (*mgp.Vertex*) – A node in the graph.
+#### Usage:
+```cypher
 
-
-* **node2** (*mgp.Vertex*) – A node in the graph.
-
-
-
-**Returns**
-
-The lowest common ancestor of `node1` and `node2`,
-or default if they have no common ancestors.
-
-
-
-**Return type**
-
-mgp.Record(ancestor=mgp.Nullable[mgp.Vertex])
-
-
-
-## `maximal_matching(ctx)`
-Find a maximal matching in the graph.
-
-A *matching* is a subset of edges in which no node occurs more than once.
-A *maximal matching* cannot add more edges and still be a matching.
-
-
-**Parameters**
-
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
-
-
-
-**Returns**
-
-A maximal matching of the graph.
-
-
-
-**Return type**
-
-mgp.Record(edges=mgp.List[mgp.Edge])
-
-
-
-## `minimum_spanning_tree(weight, algorithm, ignore_nan)`
+```
+### `minimum_spanning_tree(weight, algorithm, ignore_nan)`
 Returns a minimum spanning tree or forest on an undirected graph `G`.
+ A *minimum spanning tree* is a subset of the edges of a connected, undirected graph that connects all of the vertices together without any cycles.
+#### Input:
 
-A *minimum spanning tree* is a subset of the edges of a
-connected, undirected graph that connects all of the
-vertices together without any cycles.
+* `weight: str("weight")` ➡  Data key to use for edge weights.
+* `algorithm: str("kruskal")` ➡  The algorithm to use when finding a minimum spanning tree. Valid choices are ‘kruskal’, ‘prim’, or ‘boruvka’.
+* `ignore_nan: bool(False)` ➡  If `NaN` is found as an edge weight normally an exception is raised. If `ignore_nan` is `True` then that edge is ignored.
 
+#### Output:
 
-**Parameters**
+* `node: List[Vertex]` ➡  A minimum spanning tree or forest.
+* `edges: List[Edge]` ➡  A minimum spanning tree or forest.
 
+#### Usage:
+```cypher
 
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
+```
+### `multi_source_dijkstra_path(ources, cutoff, weight)`
 
+#### Input:
 
-* **weight** (*str*) – (default=’weight’)
-Data key to use for edge weights.
+* `sources: List[Vertex]` ➡  Starting nodes for paths. If this is a set containing a single node, then all paths computed by this function will start from that node. If there are two or more nodes in the set, the computed paths may begin from any one of the start nodes.
+* `cutoff: int(NULL)` ➡   Depth to stop the search. Only return paths with `length <= cutoff`.
+* `weight: str` ➡  If this is a string, then edge weights will be accessed via the edge attribute with this key (that is, the weight of the edge joining `u` to `v` will be `G.edges[u, v][weight]`). If no such edge attribute exists, the weight of the edge is assumed to be one. If this is a function, the weight of an edge is the value returned by the function. The function must accept exactly three positional arguments: the two endpoints of an edge and the dictionary of edge attributes for that edge. The function must return a number.
+* `sources: List[Vertex]` ➡  
 
+#### Output:
 
-* **algorithm** (*str*) – (default=’kruskal’)
-The algorithm to use when finding a minimum spanning tree.
-Valid choices are ‘kruskal’, ‘prim’, or ‘boruvka’.
+* `target: Vertex` ➡ Target key for shortest path
+* `path: List[Vertex]` ➡  Shortest path in a list
 
+#### Usage:
+```cypher
 
-* **ignore_nan** (*bool*) – (default=False)
-If `NaN` is found as an edge weight normally an exception is raised.
-If `ignore_nan` is `True` then that edge is ignored.
+```
+### `multi_source_dijkstra_path_length(sources, cutoff, weight)`
+Find shortest weighted path lengths in `G` from a given set of source nodes.
+ Compute the shortest path length between any of the source nodes and all other reachable nodes for a weighted gra
+#### Input:
 
+* `sources: List[Vertex]` ➡  Starting nodes for paths. If this is a set containing a single node, then all paths computed by this function will start from that node. If there are two or more nodes in the set, the computed paths may begin from any one of the start nodes.
+* `cutoff: int(NULL)` ➡  Depth to stop the search. Only return paths with `length <= cutoff`.
+* `weight: str` ➡  If this is a string, then edge weights will be accessed via the edge attribute with this key (that is, the weight of the edge joining `u` to `v` will be `G.edges[u, v][weight]`). If no such edge attribute exists, the weight of the edge is assumed to be one. If this is a function, the weight of an edge is the value returned by the function. The function must accept exactly three positional arguments: the two endpoints of an edge and the dictionary of edge attributes for that edge. The function must return a number.
 
+#### Output:
 
-**Returns**
+* `target: Vertex` ➡ Target key for shortest path
+* `length: double` ➡  Shortest path length
+ 
 
-A minimum spanning tree or forest.
+#### Usage:
+```cypher
 
-
-
-**Return type**
-
-mgp.Record(nodes=mgp.List[mgp.Vertex], edges=mgp.List[mgp.Edge])
-
-
-
-## `multi_source_dijkstra_path(ources, cutoff, weight)`
-Find shortest weighted paths in `G` from a given set of source
-nodes.
-
-Compute shortest path between any of the source nodes and all other
-reachable nodes for a weighted graph.
-
-
-**Parameters**
-
-
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
-
-
-* **sources** (*mgp.List[mgp.Vertex]*) – Starting nodes for paths. If this is a set containing a
-single node, then all paths computed by this function will start
-from that node. If there are two or more nodes in the set, the
-computed paths may begin from any one of the start nodes.
-
-
-* **cutoff** (*mgp.Nullable[int]*) – (default=None)
-Depth to stop the search. Only return paths with `length <= cutoff`.
-
-
-* **weight** (*string function*) – If this is a string, then edge weights will be accessed via the
-edge attribute with this key (that is, the weight of the edge
-joining `u` to `v` will be `G.edges[u, v][weight]`). If no
-such edge attribute exists, the weight of the edge is assumed to
-be one. If this is a function, the weight of an edge is the value
-returned by the function. The function must accept exactly three
-positional arguments: the two endpoints of an edge and the
-dictionary of edge attributes for that edge. The function must
-return a number.
-
-
-
-**Returns**
-
-A dictionary of shortest paths keyed by target.
-
-
-
-**Return type**
-
-mgp.Record(target=mgp.Vertex, path=mgp.List[mgp.Vertex])
-
-
-
-## `multi_source_dijkstra_path_length(sources, cutoff, weight)`
-Find shortest weighted path lengths in `G` from a given set of
-source nodes.
-
-Compute the shortest path length between any of the source nodes and
-all other reachable nodes for a weighted graph.
-
-
-**Parameters**
-
-
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
-
-
-* **sources** (*mgp.List[mgp.Vertex]*) – Starting nodes for paths. If this is a set containing a
-single node, then all paths computed by this function will start
-from that node. If there are two or more nodes in the set, the
-computed paths may begin from any one of the start nodes.
-
-
-* **cutoff** (*mgp.Nullable[int]*) – (default=None)
-Depth to stop the search. Only return paths with `length <= cutoff`.
-
-
-* **weight** (*str*) – If this is a string, then edge weights will be accessed via the
-edge attribute with this key (that is, the weight of the edge
-joining `u` to `v` will be `G.edges[u, v][weight]`). If no
-such edge attribute exists, the weight of the edge is assumed to
-be one. If this is a function, the weight of an edge is the value
-returned by the function. The function must accept exactly three
-positional arguments: the two endpoints of an edge and the
-dictionary of edge attributes for that edge. The function must
-return a number.
-
-
-
-**Returns**
-
-Dict keyed by node to shortest path length to nearest source.
-
-
-
-**Return type**
-
-mgp.Record(target=mgp.Vertex, length=mgp.Number)
-
-
-
-## `node_boundary(nbunch1, bunch2)`
+```
+### `node_boundary(nbunch1, bunch2)`
 Returns the node boundary of `nbunch1`.
+ The *node boundary* of a set `S` with respect to a set `T` is the set of nodes `v` in `T` such that for some `u` in `S`, there is an edge joining `u` to `v`. If `T` is not specified, it is assumed to be the set of all nodes not in `S`.
+#### Input:
 
-The *node boundary* of a set `S` with respect to a set `T` is the
-set of nodes `v` in `T` such that for some `u` in `S`, there is an
-edge joining `u` to `v`. If `T` is not specified, it is assumed to
-be the set of all nodes not in `S`.
+* `nbunch1: List[Vertex]` ➡  List of nodes in the graph representing the set of nodes whose node boundary will be returned. (This is the set `S` from the definition above.)
+* `nbunch2: List[Vertex](NULL)` ➡  List of nodes representing the target (or “exterior”) set of nodes. (This is the set `T` from the definition above.) If not specified, this is assumed to be the set of all nodes in `G` not in `nbunch1`.
 
+#### Output:
 
-**Parameters**
+* `boundary: List[Vertex]` ➡   The node boundary of `nbunch1` with respect to `nbunch2`.
 
+#### Usage:
+```cypher
 
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
-
-
-* **nbunch1** (*mgp.List[mgp.Vertex]*) – List of nodes in the graph representing the set of nodes
-whose node boundary will be returned. (This is the set `S` from
-the definition above.)
-
-
-* **nbunch2** (*mgp.Nullable[mgp.List[mgp.Vertex]]*) – List of nodes representing the target (or “exterior”) set of
-nodes. (This is the set `T` from the definition above.) If not
-specified, this is assumed to be the set of all nodes in `G`
-not in `nbunch1`.
-
-
-
-**Returns**
-
-The node boundary of `nbunch1` with respect to `nbunch2`.
-
-
-
-**Return type**
-
-mgp.Record(boundary=mgp.List[mgp.Vertex])
-
-
-
-## `node_connectivity(source, target)`
+```
+### `node_connectivity(source, target)`
 Returns an approximation for node connectivity for a graph or digraph `G`.
 
-*Node connectivity* is equal to the minimum number of nodes that
-must be removed to disconnect `G` or render it trivial. By Menger’s theorem,
-this is equal to the number of node independent paths (paths that
-share no nodes other than `source` and `target`).
+*Node connectivity* is equal to the minimum number of nodes that must be removed to disconnect `G` or render it trivial. By Menger’s theorem, this is equal to the number of node independent paths (paths that share no nodes other than `source` and `target`).
+ If `source` and `target` nodes are provided, this function returns the local node connectivity: the minimum number of nodes that must be removed to break all paths from source to `target` in `G`.
+ This algorithm is based on a fast approximation that gives a strict lower bound on the actual number of node independent paths between two nodes. It works for both directed and undirected graphs.
+#### Input:
 
-If `source` and `target` nodes are provided, this function returns the
-local node connectivity: the minimum number of nodes that must be
-removed to break all paths from source to `target` in `G`.
+* `source: Vertex(NULL)` ➡  Source node.
+* `target: Vertex(NULL)` ➡   Target node.
 
-This algorithm is based on a fast approximation that gives a strict lower
-bound on the actual number of node independent paths between two nodes.
-It works for both directed and undirected graphs.
+#### Output:
 
+* `connectivity: int` ➡  Node connectivity of `G`, or local node connectivity if `source` and `target` are provided.
 
-**Parameters**
+#### Usage:
+```cypher
 
-
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
-
-
-* **source** (*mgp.Nullable[mgp.Vertex]*) – (default=None)
-Source node.
-
-
-* **target** (*mgp.Nullable[mgp.Vertex]*) – (default=None)
-Target node.
-
-
-
-**Returns**
-
-Node connectivity of `G`, or local node connectivity if `source`
-and `target` are provided.
-
-
-
-**Return type**
-
-mgp.Record(connectivity=int)
-
-
-
-## `node_expansion(s)`
+```
+### `node_expansion(s)`
 Returns the node expansion of the set `S`.
+ The *node expansion* is the quotient of the size of the node boundary of `S` and the cardinality of `S`.
+#### Input:
 
-The *node expansion* is the quotient of the size of the node
-boundary of `S` and the cardinality of `S`.
+* `s: List[Vertex]` ➡  A sequence of nodes in `G`.
 
+#### Output:
 
-**Parameters**
+* `node_expansion: double` ➡   The node expansion of the set `S`.
 
+#### Usage:
+```cypher
 
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
-
-
-* **s** (*mgp.List[mgp.Vertex]*) – A sequence of nodes in `G`.
-
-
-
-**Returns**
-
-The node expansion of the set `S`.
-
-
-
-**Return type**
-
-mgp.Record(node_expansion=mgp.Number)
-
-
-
-## `non_randomness(k)`
+```
+### `non_randomness(k)`
 Compute the non-randomness of graph `G`.
+The first returned value `non_randomness` is the sum of non-randomness values of all edges within the graph (where the non-randomness of an edge tends to be small when the two nodes linked by that edge are from two different communities).
+The second computed value `relative_non_randomness` is a relative measure that indicates to what extent graph `G` is different from random graphs in terms of probability. When it is close to 0, the graph tends to be more likely generated by an Erdos Renyi model.
+#### Input:
 
-The first returned value `non_randomness` is the sum of non-randomness
-values of all edges within the graph (where the non-randomness of an edge
-tends to be small when the two nodes linked by that edge are from two different
-communities).
+* `k: int(NULL)` ➡  The number of communities in `G`. If `k` is not set, the function will use a default community detection algorithm to set it.
 
-The second computed value `relative_non_randomness` is a relative measure
-that indicates to what extent graph `G` is different from random graphs in terms
-of probability. When it is close to 0, the graph tends to be more
-likely generated by an Erdos Renyi model.
+#### Output:
 
+* `non_randomness: double` ➡  Non-randomness of a graph
+* `relative_non_randomness: double` ➡  Relative non-randomness of a graph
 
-**Parameters**
+#### Usage:
+```cypher
 
+```
+### `pagerank(alpha, personalization, max_iter, tol, nstart, weight, dangling)`
 
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
+#### Input:
 
-
-* **k** (*mgp.Nullable[int]*) – (default=None)
-The number of communities in `G`.
-If `k` is not set, the function will use a default community
-detection algorithm to set it.
-
-
-
-**Returns**
-
-Non-randomness and Relative non-randomness of the graph.
+* `alpha: double(0.85)` ➡  Damping parameter for PageRank.
+* `personalization: str(NULL)` ➡  The “personalization vector” consisting of a dictionary with a subset of graph nodes as a key and maps personalization value for each subset. At least one personalization value must be non-zero. If not specified, a nodes personalization value will be zero. By default, a uniform distribution is used.
+* `max_iter: int(100)` ➡  Maximum number of iterations in power method eigenvalue solver.
+* `tol: double(1e-06)` ➡  Error tolerance used to check convergence in power method solver.
+* `nstart: str(NULL)` ➡ Starting value of PageRank iteration for each node. 
+* `weight: str("weight")` ➡  Edge data key to use as weight. If `None`, weights are set to 1.
+* `dangling: str(NULL)` ➡  The outedges to be assigned to any “dangling” nodes, i.e., nodes without any outedges. The dict key is the node the outedge points to and the dict value is the weight of that outedge. By default, dangling nodes are given outedges according to the personalization vector (uniform if not specified). This must be selected to result in an irreducible transition matrix. It may be common to have the dangling dict to be the same as the personalization dict.
 
 
+#### Output:
 
-**Return type**
+* `node: Vertex` ➡ Vertex to calculate pagerank for.
+* `rank: double` ➡ Node PageRank.
 
-mgp.Record(non_randomness=float, relative_non_randomness=float)
+#### Usage:
+```cypher
 
-
-
-## `pagerank(alpha, personalization, max_iter, tol, nstart, weight, dangling)`
-Returns the PageRank of the nodes in the graph.
-
-*PageRank* computes a ranking of the nodes in the graph `G` based on
-the structure of the incoming links. It was originally designed as
-an algorithm to rank web pages.
-
-
-**Parameters**
-
-
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
-
-
-* **alpha** (*mgp.Number*) – (default=0.85)
-Damping parameter for PageRank.
-
-
-* **personalization** (*mgp.Nullable[str]*) – (default=None)
-The “personalization vector” consisting of a dictionary with a
-subset of graph nodes as a key and maps personalization value
-for each subset. At least one personalization value must be non-zero.
-If not specified, a nodes personalization value will be zero.
-By default, a uniform distribution is used.
-
-
-* **max_iter** (*int*) – (default=100)
-Maximum number of iterations in power method eigenvalue solver.
-
-
-* **tol** (*mgp.Number*) – (default=1e-06)
-Error tolerance used to check convergence in power method solver.
-
-
-* **nstart** (*mgp.Nullable[str]*) – (default=None)
-Starting value of PageRank iteration for each node.
-
-
-* **weight** (*mgp.Nullable[str]*) – (default=’weight’)
-Edge data key to use as weight. If `None`, weights are set to 1.
-
-
-* **dangling** (*mgp.Nullable[str]*) – (default=None)
-The outedges to be assigned to any “dangling” nodes, i.e., nodes without
-any outedges. The dict key is the node the outedge points to and the dict
-value is the weight of that outedge. By default, dangling nodes are given
-outedges according to the personalization vector (uniform if not
-specified). This must be selected to result in an irreducible transition
-matrix. It may be common to have the dangling dict to be the same as
-the personalization dict.
-
-
-
-**Returns**
-
-Dictionary of nodes with PageRank as value.
-
-
-
-**Return type**
-
-mgp.Record(node=mgp.Vertex, rank=float)
-
-
-
-## `reciprocity(nodes)`
+```
+### `reciprocity(nodes)`
 Compute the reciprocity in a directed graph.
+The *reciprocity* of a directed graph is defined as the ratio of the number of edges pointing in both directions to the total number of edges in the graph.
+The reciprocity of a single node `u` is defined similarly, it is the ratio of the number of edges in both directions to the total number of edges attached to node `u`.
+#### Input:
 
-The *reciprocity* of a directed graph is defined as the ratio
-of the number of edges pointing in both directions to the total
-number of edges in the graph.
+* `nodes: List[Vertex]` ➡  Compute reciprocity for nodes in this container.
 
-The reciprocity of a single node `u` is defined similarly,
-it is the ratio of the number of edges in both directions to
-the total number of edges attached to node `u`.
+#### Output:
 
+* `node: Vertex` ➡ Node to calculate reciprocity. 
+* `reciprocity: double` ➡ Reciprocity value
 
-**Parameters**
+#### Usage:
+```cypher
 
+```
+### `shortest_path(source, target, weight, method)`
 
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
+#### Input:
 
+* `source: Vertex(NULL)` ➡  Starting node for the path. If not specified, compute shortest path lengths using all nodes as source nodes.
+* `target: Vertex(NULL)` ➡  Ending node for the path. If not specified, compute shortest path lengths using all nodes as target nodes.
+* `weight: str(NULL)` ➡  If `None`, every edge has weight/distance/cost 1. If a string, use this edge attribute as the edge weight. Any edge attribute not present defaults to 1.
+* `method: str("dijkstra")` ➡  The algorithm to use to compute the path length. Supported options: ‘dijkstra’, ‘bellman-ford’. Other inputs produce a ValueError. If `weight` is `None`, unweighted graph methods are used and this suggestion is ignored.
 
-* **nodes** (*mgp.Nullable[mgp.List[mgp.Vertex]]*) – (default=None)
-Compute reciprocity for nodes in this container.
+#### Output:
 
+* `source: Vertex` ➡   Source node.
+* `target: Vertex` ➡   Target node.
+* `path: List[Vertex]` ➡   All returned paths include both the `source` and `target` in the path. If the `source` and `target` are both specified, return a single list of nodes in a shortest path from the `source` to the `target`. If only the `source` is specified, return a dictionary keyed by targets with a list of nodes in a shortest path from the `source` to one of the targets. If only the `target` is specified, return a dictionary keyed by sources with a list of nodes in a shortest path from one of the sources to the `target`. If neither the `source` nor `target` are specified return a dictionary of dictionaries with `path[source][target]=[list of nodes in path]`.
 
+#### Usage:
+```cypher
 
-**Returns**
-
-Reciprocity keyed by node label.
-
-
-
-**Return type**
-
-mgp.Record(node=mgp.Nullable[mgp.Vertex], reciprocity=mgp.Nullable[float])
-
-
-
-## `shortest_path(source, target, weight, method)`
-Compute shortest paths in the graph.
-
-
-**Parameters**
-
-
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
-
-
-* **source** (*mgp.Nullable[mgp.Vertex]*) – (default=None)
-Starting node for the path. If not specified, compute shortest
-paths for each possible starting node.
-
-
-* **target** (*mgp.Nullable[mgp.Vertex]*) – (default=None)
-Ending node for the path. If not specified, compute shortest
-paths to all possible nodes.
-
-
-* **weight** (*mgp.Nullable[str]*) – (default=None)
-If `None`, every edge has weight/distance/cost 1.
-If a string, use this edge attribute as the edge weight.
-Any edge attribute not present defaults to 1.
-
-
-* **method** (*str*) – (default=’dijkstra’)
-The algorithm used to compute the path.
-Supported options: ‘dijkstra’, ‘bellman-ford’.
-Other inputs produce a ValueError.
-If `weight` is `None`, unweighted graph methods are used
-and this suggestion is ignored.
-
-
-
-**Returns**
-
-All returned paths include both the `source` and `target` in the path.
-If the `source` and `target` are both specified, return a single list
-of nodes in a shortest path from the `source` to the `target`.
-If only the `source` is specified, return a dictionary keyed by
-targets with a list of nodes in a shortest path from the `source`
-to one of the targets.
-If only the `target` is specified, return a dictionary keyed by
-sources with a list of nodes in a shortest path from one of the
-sources to the `target`.
-If neither the `source` nor `target` are specified return a dictionary
-of dictionaries with `path[source][target]=[list of nodes in path]`.
-
-
-
-**Return type**
-
-mgp.Record(source=mgp.Vertex, target=mgp.Vertex, path=mgp.List[mgp.Vertex])
-
-
-
-## `shortest_path_length(source, target, weight, method)`
+```
+### `shortest_path_length(source, target, weight, method)`
 Compute shortest path lengths in the graph.
+#### Input:
 
+* `source: Vertex(NULL)` ➡  Starting node for the path. If not specified, compute shortest path lengths using all nodes as source nodes.
+* `target: Vertex(NULL)` ➡  Ending node for the path. If not specified, compute shortest path lengths using all nodes as target nodes.
+* `weight: str(NULL)` ➡  If `None`, every edge has weight/distance/cost 1. If a string, use this edge attribute as the edge weight. Any edge attribute not present defaults to 1.
+* `method: str("dijkstra")` ➡  The algorithm to use to compute the path length. Supported options: ‘dijkstra’, ‘bellman-ford’. Other inputs produce a ValueError. If `weight` is `None`, unweighted graph methods are used and this suggestion is ignored.
 
-**Parameters**
+#### Output:
 
+* `source: Vertex` ➡   Source node.
+* `target: Vertex` ➡   Target node.
+* `length: double` ➡   If the `source` and `target` are both specified, return the length of the shortest path from the `source` to the `target`. If only the `source` is specified, return a dict keyed by `target` to the shortest path length from the `source` to that `target`. If only the `target` is specified, return a dict keyed by `source` to the shortest path length from that `source` to the `target`. If neither the `source` nor `target` are specified, return an iterator over (source, dictionary) where dictionary is keyed by `target` to shortest path length from `source` to that `target`.
 
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
+#### Usage:
+```cypher
 
-
-* **source** (*mgp.Nullable[mgp.Vertex]*) – (default=None)
-Starting node for the path.
-If not specified, compute shortest path lengths using all nodes as
-source nodes.
-
-
-* **target** (*mgp.Nullable[mgp.Vertex]*) – (default=None)
-Ending node for the path.
-If not specified, compute shortest path lengths using all nodes as
-target nodes.
-
-
-* **weight** (*mgp.Nullable[str]*) – (default=None)
-If `None`, every edge has weight/distance/cost 1.
-If a string, use this edge attribute as the edge weight.
-Any edge attribute not present defaults to 1.
-
-
-* **method** (*str*) – (default=’dijkstra’)
-The algorithm to use to compute the path length.
-Supported options: ‘dijkstra’, ‘bellman-ford’.
-Other inputs produce a ValueError.
-If `weight` is `None`, unweighted graph methods are used
-and this suggestion is ignored.
-
-
-
-**Returns**
-
-If the `source` and `target` are both specified, return the length of
-the shortest path from the `source` to the `target`.
-If only the `source` is specified, return a dict keyed by `target`
-to the shortest path length from the `source` to that `target`.
-If only the `target` is specified, return a dict keyed by `source`
-to the shortest path length from that `source` to the `target`.
-If neither the `source` nor `target` are specified, return an iterator
-over (source, dictionary) where dictionary is keyed by `target` to
-shortest path length from `source` to that `target`.
-
-
-
-**Return type**
-
-mgp.Record(source=mgp.Vertex, target=mgp.Vertex, length=mgp.Number)
-
-
-
-## `simple_cycles(ctx)`
+```
+### `simple_cycles()`
 Find simple cycles (elementary circuits) of a directed graph.
+ A *simple cycle*, or *elementary circuit*, is a closed path where no node appears twice. Two elementary circuits are distinct if they are not cyclic permutations of each other.
+ This is a nonrecursive, iterator/generator version of Johnson’s algorithm. There may be better algorithms for some cases.
 
-A *simple cycle*, or *elementary circuit*, is a closed path where
-no node appears twice. Two elementary circuits are distinct if they
-are not cyclic permutations of each other.
+#### Output:
 
-This is a nonrecursive, iterator/generator version of Johnson’s
-algorithm. There may be better algorithms for some cases.
+* `cycles: List[List[Vertex]]` ➡  A list of elementary cycles in the graph. Each cycle is represented by a list of nodes in the cycle.
 
+#### Usage:
+```cypher
 
-**Parameters**
+```
 
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
-
-
-
-**Returns**
-
-A list of elementary cycles in the graph.
-Each cycle is represented by a list of nodes in the cycle.
-
-
-
-**Return type**
-
-mgp.Record(cycles=mgp.List[mgp.List[mgp.Vertex]])
-
-
-
-## `strongly_connected_components(ctx)`
+### `strongly_connected_components()`
 Returns nodes in strongly connected components of a graph.
+#### Input:
 
+* `` ➡  
 
-**Parameters**
+#### Output:
 
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
+* `components: List[List[Vertex]]` ➡   A list of lists of nodes, one for each strongly connected component of `G`.
 
+#### Usage:
+```cypher
 
-
-**Returns**
-
-A list of lists of nodes, one for each strongly connected
-component of `G`.
-
-
-
-**Return type**
-
-mgp.Record(components=mgp.List[mgp.List[mgp.Vertex]])
-
-
-
-## `topological_sort(ctx)`
+```
+### `topological_sort(ctx)`
 Returns nodes in topologically sorted order.
+ A *topological sort* is a non unique permutation of the nodes such that an edge from `u` to `v` implies that `u` appears before `v` in the topological sort order.
+#### Output:
 
-A *topological sort* is a non unique permutation of the nodes such that an
-edge from `u` to `v` implies that `u` appears before `v` in the
-topological sort order.
+* `nodes: List[Vertex]` ➡   A list of nodes in topological sorted order.
 
+#### Usage:
+```cypher
 
-**Parameters**
+```
+### `triadic_census(ctx)`
+Determines the triadic census of a directed graph. The *triadic census* is a count of how many of the 16 possible types of triads are present in a directed graph.
 
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
+#### Output:
 
+* `triad: str` ➡  Triad name.
+* `cout: int` ➡  Number of occurrences as value.
 
+#### Usage:
+```cypher
 
-**Returns**
+```
+### `voronoi_cells(center_nodes, weight)`
+Returns the Voronoi cells centered at center_nodes with respect to the shortest-path distance metric.
+ If `C` is a set of nodes in the graph and `c` is an element of `C`, the *Voronoi cell* centered at a node `c` is the set of all nodes
+`v` that are closer to `c` than to any other center node in `C` with respect to the shortest-path distance metric.
+ For directed graphs, this will compute the “outward” Voronoi cells in which distance is measured from the center nodes to the target node.
 
-A list of nodes in topological sorted order.
+#### Input:
 
+* `center_nodes: List[Vertex]` ➡  A nonempty set of nodes in the graph `G` that represent the center of the Voronoi cells.
+* `weight: str(NULL)` ➡  The edge attribute (or an arbitrary function) representing the weight of an edge. This keyword argument is as described in the documentation for `networkx.multi_source_dijkstra_path`, for example.
 
+#### Output:
 
-**Return type**
+* `center: Vertex` ➡ Vertex value of center_nodes.
+* `cell: List[Vertex]` ➡  Partition of `G` closer to that center node.
 
-mgp.Record(nodes=mgp.Nullable[mgp.List[mgp.Vertex]])
+#### Usage:
+```cypher
 
-
-
-## `triadic_census(ctx)`
-Determines the triadic census of a directed graph.
-
-The *triadic census* is a count of how many of the 16 possible types of
-triads are present in a directed graph.
-
-
-**Parameters**
-
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
-
-
-
-**Returns**
-
-Dictionary with triad names as keys and number of occurrences as values.
-
-
-
-**Return type**
-
-mgp.Record(triad=str, count=int)
-
-
-
-## `voronoi_cells(center_nodes, weight)`
-Returns the Voronoi cells centered at center_nodes with respect
-to the shortest-path distance metric.
-
-If `C` is a set of nodes in the graph and `c` is an element of `C`,
-the *Voronoi cell* centered at a node `c` is the set of all nodes
-`v` that are closer to `c` than to any other center node in `C` with
-respect to the shortest-path distance metric.
-
-For directed graphs, this will compute the “outward” Voronoi cells
-in which distance is measured from the center nodes to the target node.
-
-
-**Parameters**
-
-
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
-
-
-* **center_nodes** (*mgp.List[mgp.Vertex]*) – A nonempty set of nodes in the graph `G` that represent the
-center of the Voronoi cells.
-
-
-* **weight** (*str*) – (default=’weight’)
-The edge attribute (or an arbitrary function) representing the
-weight of an edge. This keyword argument is as described in the
-documentation for `networkx.multi_source_dijkstra_path`,
-for example.
-
-
-
-**Returns**
-
-A mapping from center node to set of all nodes in the graph
-closer to that center node than to any other center node. The
-keys of the dictionary are the element of `center_nodes`, and
-the values of the dictionary form a partition of the nodes of
-`G`.
-
-
-
-**Return type**
-
-mgp.Record(center=mgp.Vertex, cell=mgp.List[mgp.Vertex])
-
-
-
-## `wiener_index(weight)`
+```
+### `wiener_index(weight)`
 Returns the Wiener index of the given graph.
+ The *Wiener index* of a graph is the sum of the shortest-path distances between each pair of reachable nodes. For pairs of nodes in undirected graphs, only one orientation of the pair is counted.
+#### Input:
 
-The *Wiener index* of a graph is the sum of the shortest-path
-distances between each pair of reachable nodes. For pairs of nodes
-in undirected graphs, only one orientation of the pair is counted.
+* `weight: str(NULL)` ➡ The edge attribute to use as distance when computing shortest-path distances. This is passed directly to the
+`networkx.shortest_path_length` function.  
 
+#### Output:
 
-**Parameters**
+* `wiener_index: double` ➡  The Wiener index of the graph `G`.
 
+#### Usage:
+```cypher
 
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
-
-
-* **weight** (*mgp.Nullable[str]*) – (default=None)
-The edge attribute to use as distance when computing
-shortest-path distances. This is passed directly to the
-`networkx.shortest_path_length` function.
-
-
-
-**Returns**
-
-The Wiener index of the graph `G`.
-
-
-
-**Return type**
-
-mgp.Record(wiener_index=mgp.Number)
+```
