@@ -24,6 +24,7 @@ module.exports = {
         'query-modules/python/pagerank',
         'query-modules/python/set-cover',
         'query-modules/python/tsp',
+        'query-modules/python/vrp',
         'query-modules/cpp/weakly-connected-components'],
     },
     'contributing',
