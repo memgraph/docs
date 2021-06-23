@@ -1,0 +1,29 @@
+.heroContainer {
+  background: linear-gradient(134.3deg, #FFC500 0%, #DD2222 39.99%, #720096 100%);
+  padding: 32px 0 100px;
+}
+
+.heroInner {
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.heroInner div:first-child {
+  max-width: 420px;
+}
+
+.heroInner h1 {
+  font-size: 56px;
+  font-weight: 600;
+  font-family: var(--mg-font-family);
+}
+
+@media (max-width: 968px) {
+  .heroInner div:first-child {
+    max-width: inherit;
+  }
+  .heroInner div:last-child {
+    display: none;
+  }
+}

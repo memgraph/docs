@@ -10,11 +10,18 @@ module.exports = {
   favicon: 'img/social-logo-round-corners.png',
   organizationName: 'memgraph',
   projectName: 'docs',
+  stylesheets: [
+      'https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:500,600',
+      'https://fonts.googleapis.com/css?family=Roboto:400, 500,600',
+  ],
   scripts: [
     {
       src: `https://docs.memgraph.com/js/load-analytics.js`,
       //src: `http://localhost:3000/js/load-analytics.js`,
     },
+    {
+      src: 'https://kit.fontawesome.com/3a9f2eb5b9.js'
+    }
   ],
   themeConfig: {
     navbar: {
