@@ -81,7 +81,6 @@ RETURN distances;
 ```
 
 ## Example
-#### 2 components example
 
 <Tabs
   groupId="example"

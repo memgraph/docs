@@ -50,7 +50,6 @@ YIELD node_from, node_to;
 ```
 
 ## Example
-#### 2 components example
 
 <Tabs
   groupId="example"

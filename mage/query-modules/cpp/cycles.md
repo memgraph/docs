@@ -52,7 +52,6 @@ YIELD cycle_id, node;
 ```
 
 ## Example
-#### 2 components example
 
 <Tabs
   groupId="example"

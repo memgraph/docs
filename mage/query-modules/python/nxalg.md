@@ -52,7 +52,9 @@ Compute all shortest simple paths in the graph. A simple path is a path with no 
 
 #### Usage:
 ```cypher
-
+MATCH (n:Label), (m:Label)
+CALL nxalg.all_shortest_paths(n, m) YIELD *
+RETURN paths;
 ```
 
 ### `all_simple_paths(source, target, cutoff)`
@@ -71,7 +73,9 @@ Returns all simple paths in the graph `G` from source to target. A simple path i
 
 #### Usage:
 ```cypher
-
+MATCH (n:Label), (m:Label)
+CALL nxalg.all_simple_paths(n, m, 5) YIELD *
+RETURN paths;
 ```
 
 ### `ancestors(source)`
@@ -88,7 +92,9 @@ Returns all nodes having a path to `source` in `G`.
 
 #### Usage:
 ```cypher
-
+MATCH (n:Label)
+CALL nxalg.ancestors(n) YIELD *
+RETURN ancestors;
 ```
 
 ### `betweenness_centrality(k, normalized, weight, endpoints, seed)`
@@ -110,12 +116,13 @@ Compute the shortest-path betweenness centrality for nodes. *Betweenness central
 
 #### Usage:
 ```cypher
-
+CALL nxalg.betweenness_centrality(20, True) YIELD *
+RETURN node, betweenness;
 ```
 
 ### `bfs_edges(source, reverse, depth_limit)`
 
-
+Iterate over edges in a breadth-first-search starting at source.
 
 #### Input:
 
@@ -129,7 +136,9 @@ Compute the shortest-path betweenness centrality for nodes. *Betweenness central
 
 #### Usage:
 ```cypher
-
+MATCH (n:Label)
+CALL nxalg.bfs_edges(n, False) YIELD *
+RETURN edges;
 ```
 
 
@@ -144,14 +153,14 @@ Returns an iterator of predecessors in breadth-first-search from source.
 #### Output:
 
 * `node: Vertex` ➡ Node in a graph
-* `predecessors: predecessors` ➡ List of predecessors of given node
+* `predecessors: List[Vertex]` ➡ List of predecessors of given node
 
 #### Usage:
 ```cypher
-
+MATCH (n:Label)
+CALL nxalg.bfs_predecessors(n, 10) YIELD *
+RETURN node, predecessors;
 ```
-
-
 
 ### `bfs_successors(source, depth_limit)`
 
@@ -165,11 +174,13 @@ Returns an iterator of successors in breadth-first-search from source.
 #### Output:
 
 * `node: Vertex` ➡ Node in a graph
-* `successors: predecessors` ➡ List of successors of given node
+* `successors: List[Vertex]` ➡ List of successors of given node
 
 #### Usage:
 ```cypher
-
+MATCH (n:Label)
+CALL nxalg.bfs_successors(n, 5) YIELD *
+RETURN node, successors;
 ```
 
 ### `bfs_tree(source, reverse, depth_limit)`
@@ -188,7 +199,9 @@ Returns an oriented tree constructed from of a breadth-first-search starting at 
 
 #### Usage:
 ```cypher
-
+MATCH (n:Label)
+CALL nxalg.bfs_tree(n, True, 3) YIELD *
+RETURN n, tree;
 ```
 
 
@@ -212,7 +225,8 @@ Notice that by convention a dyad is considered a biconnected component.
 
 #### Usage:
 ```cypher
-
+CALL nxalg.biconnected_components() YIELD *
+RETURN components;
 ```
 
 
@@ -230,14 +244,15 @@ edge that does not belong to any cycle.
 
 #### Output:
 
-* `bridges: List[Edge]` ➡  A node in the graph `G`. If specified, only the bridges in the connected components containing this node will be returned. 
+* `bridges: List[Edge]` ➡  A list of edges in the graph whose removal disconnects the graph (or causes the number of connected components to increase).
 
 #### Usage:
 ```cypher
-
+CALL nxalg.bridges() YIELD *
+RETURN bridges;
 ```
 
-### `center(ctx)`
+### `center()`
 
 Returns the center of the graph `G`.
 
@@ -249,7 +264,8 @@ The *center* is the set of nodes with eccentricity equal to the radius.
 
 #### Usage:
 ```cypher
-
+CALL nxalg.center() YIELD *
+RETURN center;
 ```
 
 ### `chain_decomposition(root)`
@@ -276,7 +292,9 @@ cycle or path is called a *chain*.
 
 #### Usage:
 ```cypher
-
+MATCH (n:Label)
+CALL nxalg.chain_decomposition(n) YIELD *
+RETURN chains;
 ```
 ### `check_planarity()`
 
@@ -291,7 +309,8 @@ any edge intersections.
 
 #### Usage:
 ```cypher
-
+CALL nxalg.check_planarity() YIELD *
+RETURN is_planar;
 ```
 ### `clustering(nodes, weight)`
 Compute the clustering coefficient for nodes.
@@ -312,7 +331,10 @@ in a graph tend to cluster together.
 
 #### Usage:
 ```cypher
-
+MATCH (n:SpecificLabel)
+WITH COLLECT(n) AS cluster_nodes
+CALL nxalg.clustering(cluster_nodes) YIELD *
+RETURN node, clustering;
 ```
 ### `communicability()`
 
@@ -329,7 +351,9 @@ closed walks of different lengths starting at node `u` and ending at node `v`.
 
 #### Usage:
 ```cypher
-
+CALL nxalg.communicability() YIELD *
+RETURN node1, node2, communicability
+ORDER BY communicability DESC;
 ```
 ### `core_number()`
 Returns the core number for each vertex.
@@ -347,7 +371,9 @@ that node.
 
 #### Usage:
 ```cypher
-
+CALL nxalg.core_number() YIELD *
+RETURN node, core
+ORDER BY core DESC;
 ```
 ### `degree_assortativity_coefficient(x, y, weight, nodes)`
 Compute degree assortativity of a graph.
@@ -369,7 +395,8 @@ in the graph with respect to the node degree.
 
 #### Usage:
 ```cypher
-
+CALL nxalg.degree_assortativity_coefficient('out', 'in') YIELD *
+RETURN assortativity;
 ```
 ### `descendants(source)`
 
@@ -386,7 +413,9 @@ Returns all nodes reachable from `source` in `G`.
 
 #### Usage:
 ```cypher
-
+MATCH (source:Label)
+CALL nxalg.descendants(source) YIELD *
+RETURN descendants;
 ```
 ### `dfs_postorder_nodes(source, depth_limit)`
 
@@ -403,7 +432,9 @@ Returns nodes in a depth-first-search post-ordering starting at source.
 
 #### Usage:
 ```cypher
-
+MATCH (source:Label)
+CALL nxalg.dfs_postorder_nodes(source, 10) YIELD *
+RETURN source, nodes;
 ```
 ### `dfs_predecessors(source, depth_limit)`
 
@@ -421,7 +452,9 @@ Returns a dictionary of predecessors in depth-first-search from source.
 
 #### Usage:
 ```cypher
-
+MATCH (source:Label)
+CALL nxalg.dfs_predecessors(source, 10) YIELD *
+RETURN node, predecessor;
 ```
 ### `dfs_preorder_nodes(source, depth_limit)`
 
@@ -438,7 +471,9 @@ Returns nodes in a depth-first-search pre-ordering starting at source.
 
 #### Usage:
 ```cypher
-
+MATCH (source:Label)
+CALL nxalg.dfs_preorder_nodes(source, 10) YIELD *
+RETURN source, nodes AS preoder_nodes; 
 ```
 ### `dfs_successors(source, depth_limit)`
 
@@ -452,11 +487,13 @@ Returns a dictionary of successors in depth-first-search from source.
 #### Output:
 
 * `node: Vertex` ➡ Node to calculate successors
-* `successors: LIst[Vertex]` ➡ Successors of a given nodes
+* `successors: List[Vertex]` ➡ Successors of a given nodes
 
 #### Usage:
 ```cypher
-
+MATCH (source:Label)
+CALL nxalg.dfs_successors(source, 5) YIELD *
+RETURN node, successors; 
 ```
 ### `dfs_tree(source, depth_limit)`
 
@@ -473,7 +510,9 @@ Returns an oriented tree constructed from a depth-first-search from source.
 
 #### Usage:
 ```cypher
-
+MATCH (source:Label)
+CALL nxalg.dfs_tree(source, 7) YIELD *
+RETURN tree; 
 ```
 ### `diameter()`
 Returns the diameter of the graph `G`.
@@ -486,7 +525,8 @@ The diameter is the maximum eccentricity.
 
 #### Usage:
 ```cypher
-
+CALL nxalg.diameter() YIELD *
+RETURN diameter; 
 ```
 ### `dominance_frontiers(start)`
 
@@ -507,7 +547,9 @@ predecessor of a node, but `d` does not strictly dominate that node.
 
 #### Usage:
 ```cypher
-
+MATCH (source:Label)
+CALL nxalg.dominance_frontiers(source) YIELD *
+RETURN node, frontier; 
 ```
 ### `dominating_set(start)`
 Finds a dominating set for the graph `G`.
@@ -527,7 +569,9 @@ member of `D`.
 
 #### Usage:
 ```cypher
-
+MATCH (source:Label)
+CALL nxalg.dominating_set(source) YIELD *
+RETURN dominating_set; 
 ```
 ### `edge_bfs(source, orientation)`
 A directed, breadth-first-search of edges in `G`, beginning at `source`.
@@ -547,7 +591,9 @@ all edges are generated.
 
 #### Usage:
 ```cypher
-
+MATCH (source:Label)
+CALL nxalg.edge_bfs(source, 'ignore') YIELD *
+RETURN source, edges; 
 ```
 ### `edge_dfs(source, orientation)`
 
@@ -582,7 +628,9 @@ the direction of traversal (‘forward’ or ‘reverse’) on that edge.
 
 #### Usage:
 ```cypher
-
+MATCH (source:Label)
+CALL nxalg.edge_dfs(source, 'original') YIELD *
+RETURN source, edges; 
 ```
 ### `find_cliques()`
 
@@ -603,7 +651,8 @@ nodes in `G`. The order of cliques is arbitrary.
 
 #### Usage:
 ```cypher
-
+CALL nxalg.find_cliques() YIELD *
+RETURN cliques; 
 ```
 ### `find_cycle(source, orientation)`
 
@@ -624,7 +673,9 @@ need not respect the original orientation of the edges. When set to ‘reverse�
 
 #### Usage:
 ```cypher
-
+MATCH (source:Label)
+CALL nxalg.find_cycle(source) YIELD *
+RETURN source, edges; 
 ```
 
 ### `flow_hierarchy(weight)`
@@ -643,7 +694,8 @@ Returns the flow hierarchy of a directed network.
 
 #### Usage:
 ```cypher
-
+CALL nxalg.flow_hierarchy() YIELD *
+RETURN flow_hierarchy; 
 ```
 ### `global_efficiency()`
 
@@ -655,7 +707,8 @@ Returns the average global efficiency of the graph. The *efficiency* of a pair o
 
 #### Usage:
 ```cypher
-
+CALL nxalg.global_efficiency() YIELD *
+RETURN global_efficiency; 
 ```
 ### `greedy_color(strategy, interchange)`
 Color a graph using various strategies of greedy graph coloring. Attempts to color a graph using as few colors as possible, where no neighbours of a node can have the same color as the node itself. The given strategy determines the order in which nodes are colored.
@@ -682,7 +735,8 @@ Color a graph using various strategies of greedy graph coloring. Attempts to col
 
 #### Usage:
 ```cypher
-
+CALL nxalg.greedy_color('connected_sequential_bfs') YIELD *
+RETURN node, color; 
 ```
 ### `has_eulerian_path()`
 
@@ -700,7 +754,8 @@ Color a graph using various strategies of greedy graph coloring. Attempts to col
 
 #### Usage:
 ```cypher
-
+CALL nxalg.has_eulerian_path() YIELD *
+RETURN has_eulerian_path; 
 ```
 
 
@@ -719,7 +774,9 @@ Returns `True` if `G` has a path from `source` to `target`.
 
 #### Usage:
 ```cypher
-
+MATCH (n:Label), (m:Label)
+CALL nxalg.has_path(n, m) YIELD *
+RETURN has_path;
 ```
 
 ### `immediate_dominators(start)`
@@ -737,7 +794,9 @@ Returns the immediate dominators of all nodes of a directed graph. The immediate
 
 #### Usage:
 ```cypher
-
+MATCH (n:Label)
+CALL nxalg.immediate_dominators(n) YIELD *
+RETURN node, dominator;
 ```
 
 ### `is_arborescence()`
@@ -750,7 +809,8 @@ Returns `True` if `G` is an arborescence. An *arborescence* is a directed tree w
 
 #### Usage:
 ```cypher
-
+CALL nxalg.is_arborescence() YIELD *
+RETURN is_arborescence;
 ```
 
 ### `is_at_free()`
@@ -763,7 +823,8 @@ Check if a graph is AT-free. The method uses the find_asteroidal_triple method t
 
 #### Usage:
 ```cypher
-
+CALL nxalg.is_at_free() YIELD *
+RETURN is_at_free;
 ```
 ### `is_bipartite()`
 
@@ -775,7 +836,8 @@ Returns `True` if graph `G` is bipartite, `False` if not. A *bipartite graph* (o
 
 #### Usage:
 ```cypher
-
+CALL nxalg.is_bipartite() YIELD *
+RETURN is_bipartite;
 ```
 
 ### `is_branching()`
@@ -788,10 +850,11 @@ Returns `True` if `G` is a branching. A *branching* is a directed forest with ma
 
 #### Usage:
 ```cypher
-
+CALL nxalg.is_branching() YIELD *
+RETURN is_branching;
 ```
 
-### `is_chordal(ctx)`
+### `is_chordal()`
 
 Checks whether `G` is a chordal graph. A graph is *chordal* if every cycle of length at least 4 has a chord (an edge joining two nodes not adjacent in the cycle).
 
@@ -801,10 +864,11 @@ Checks whether `G` is a chordal graph. A graph is *chordal* if every cycle of le
 
 #### Usage:
 ```cypher
-
+CALL nxalg.is_chordal() YIELD *
+RETURN is_chordal;
 ```
 
-### `is_distance_regular(ctx)`
+### `is_distance_regular()`
 
 Returns `True` if the graph is distance regular, `False` otherwise. A connected graph `G` is distance-regular if for any nodes `x,y` and any integers `i,j=0,1,...,d` (where `d` is the graph diameter), the number of vertices at distance `i` from `x` and distance `j` from `y` depends only on `i,j` and the graph distance between `x` and `y`, independently of the choice of `x` and `y`.
 
@@ -814,7 +878,8 @@ Returns `True` if the graph is distance regular, `False` otherwise. A connected 
 
 #### Usage:
 ```cypher
-
+CALL nxalg.is_distance_regular() YIELD *
+RETURN is_distance_regular;
 ```
 ### `is_edge_cover(cover)`
 
@@ -829,7 +894,10 @@ Decides whether a set of edges is a valid edge cover of the graph. Given a set o
 
 #### Usage:
 ```cypher
-
+MATCH (n)-[e]-(m)
+WITH COLLECT(e) AS cover 
+CALL nxalg.is_edge_cover(cover) YIELD *
+RETURN is_edge_cover;
 ```
 
 ### `is_eulerian()`
@@ -842,7 +910,8 @@ Returns `True` if and only if `G` is Eulerian. A graph is *Eulerian* if it has a
 
 #### Usage:
 ```cypher
-
+CALL nxalg.is_eulerian() YIELD *
+RETURN is_eulerian;
 ```
 ### `is_forest()`
 
@@ -854,7 +923,8 @@ Returns `True` if `G` is a forest. A *forest* is a graph with no undirected cycl
 
 #### Usage:
 ```cypher
-
+CALL nxalg.is_forest() YIELD *
+RETURN is_forest;
 ```
 
 ### `is_isolate(n)`
@@ -872,7 +942,9 @@ Determines whether a node is an isolate.
 
 #### Usage:
 ```cypher
-
+MATCH (n)
+CALL nxalg.is_isolate(n) YIELD *
+RETURN is_isolate;
 ```
 ### `is_isomorphic(nodes1, edges1, nodes2, edges2)`
 
@@ -891,18 +963,21 @@ Returns `True` if the graphs `G1` and `G2` are isomorphic and `False` otherwise.
 
 #### Usage:
 ```cypher
-
+MATCH (n:Label1)-[e]-(), (r:Label2)-[f]-()
+WITH 
+COLLECT(n) AS nodes1
+COLLECT(e) AS edges1
+COLLECT(r) AS nodes2
+COLLECT(f) AS edges2
+CALL nxalg.is_isomorphic(nodes1, edges1, nodes2, edges2) YIELD *
+RETURN is_isomorphic;
 ```
 
-### `is_semieulerian(ctx)`
+### `is_semieulerian()`
 
 Returns `True` if `G` is semi-Eulerian.
 
 `G` is semi-Eulerian if it has an Eulerian path but no Eulerian circuit.
-
-#### Input:
-
-* `` ➡  
 
 #### Output:
 
@@ -910,7 +985,8 @@ Returns `True` if `G` is semi-Eulerian.
 
 #### Usage:
 ```cypher
-
+CALL nxalg.is_semieulerian() YIELD *
+RETURN is_semieulerian;
 ```
 ### `is_simple_path(nodes)`
 
@@ -928,7 +1004,10 @@ Returns `True` if and only if the given nodes form a simple path in
 
 #### Usage:
 ```cypher
-
+MATCH (n:Label)
+WITH COLLECT(n) AS nodes
+CALL nxalg.is_simple_path(nodes) YIELD *
+RETURN is_simple_path;
 ```
 
 ### `is_strongly_regular()`
@@ -952,7 +1031,8 @@ Returns `True` if and only if the given graph is strongly regular.
 
 #### Usage:
 ```cypher
-
+CALL nxalg.is_strongly_regular() YIELD *
+RETURN is_strongly_regular;
 ```
 
 ### `is_tournament()`
@@ -965,7 +1045,8 @@ Returns `True` if and only if `G` is a tournament.
 
 #### Usage:
 ```cypher
-
+CALL nxalg.is_tournament() YIELD *
+RETURN is_tournament;
 ```
 ### `is_tree()`
 
@@ -979,22 +1060,19 @@ Returns `True` if `G` is a tree.
 
 #### Usage:
 ```cypher
-
+CALL nxalg.is_tree() YIELD *
+RETURN is_tree;
 ```
 ### `isolates()`
 Returns a list of isolates in the graph.
  An *isolate* is a node with no neighbors (that is, with degree zero). For directed graphs, this means no in-neighbors and no out-neighbors.
-#### Input:
-
-* `` ➡  
-
 #### Output:
 
 * `isolates: List[Vertex]` ➡   A list of isolates in `G`.
-
 #### Usage:
 ```cypher
-
+CALL nxalg.isolates() YIELD *
+RETURN isolates;
 ```
 ### `jaccard_coefficient(ebunch)`
 Compute the Jaccard coefficient of all node pairs in `ebunch`.
@@ -1002,7 +1080,7 @@ Compute the Jaccard coefficient of all node pairs in `ebunch`.
 *Jaccard coefficient* compares members of two sets to see which members are shared and which are distinct.
 #### Input:
 
-* `ebunch: LIst[List[Vertex]](NULL)` ➡  Jaccard coefficient will be computed for each pair of nodes given in the iterable. The pairs must be given as 2-tuples
+* `ebunch: List[List[Vertex]](NULL)` ➡  Jaccard coefficient will be computed for each pair of nodes given in the iterable. The pairs must be given as 2-tuples
 `(u, v)` where `u` and `v` are nodes in the graph. If `ebunch` is `None` then all non-existent edges in the graph will be used.
 
 #### Output:
@@ -1013,7 +1091,8 @@ Compute the Jaccard coefficient of all node pairs in `ebunch`.
 
 #### Usage:
 ```cypher
-
+CALL nxalg.jaccard_coefficient() YIELD *
+RETURN u, v, coef;
 ```
 ### `k_clique_communities(k, cliques)`
 Find k-clique communities in a graph using the percolation method.
@@ -1029,7 +1108,8 @@ Find k-clique communities in a graph using the percolation method.
 
 #### Usage:
 ```cypher
-
+CALL nxalg.k_clique_communities(3) YIELD *
+RETURN communities;
 ```
 ### `k_components(density)`
 Returns the approximate k-component structure of a graph `G`.
@@ -1046,7 +1126,8 @@ Returns the approximate k-component structure of a graph `G`.
 
 #### Usage:
 ```cypher
-
+CALL nxalg.k_components(0.8) YIELD *
+RETURN k, components;
 ```
 ### `k_edge_components(k)`
 Returns nodes in each maximal k-edge-connected component in `G`.
@@ -1061,9 +1142,10 @@ A connected graph is *k-edge-connected* if it remains connected whenever fewer t
 
 #### Usage:
 ```cypher
-
+CALL nxalg.k_edge_components(3) YIELD *
+RETURN components;
 ```
-### `local_efficiency(ctx)`
+### `local_efficiency()`
 Returns the average local efficiency of the graph.
  The *efficiency* of a pair of nodes in a graph is the multiplicative inverse of the shortest path distance between the nodes. The *local efficiency* of a node in the graph is the average global efficiency of the subgraph induced by the neighbors of the node. The *average local efficiency* is the average of the local efficiencies of each node.
 #### Output:
@@ -1072,7 +1154,8 @@ Returns the average local efficiency of the graph.
 
 #### Usage:
 ```cypher
-
+CALL nxalg.local_efficiency() YIELD *
+RETURN local_efficiency;
 ```
 ### `lowest_common_ancestor(node1, node2)`
 Compute the lowest common ancestor of the given pair of nodes.
@@ -1084,13 +1167,14 @@ Compute the lowest common ancestor of the given pair of nodes.
 #### Output:
 
 * `ancestor: Vertex` ➡  The lowest common ancestor of `node1` and `node2`, or default if they have no common ancestors.
-
-
 #### Usage:
 ```cypher
-
+MATCH (n), (m)
+WHERE n != m
+CALL nxalg.local_efficiency(n, m) YIELD *
+RETURN n, m, ancestor;
 ```
-### `maximal_matching`
+### `maximal_matching()`
  A *matching* is a subset of edges in which no node occurs more than once. A *maximal matching* cannot add more edges and still be a matching.
 
 #### Output:
@@ -1099,7 +1183,8 @@ Compute the lowest common ancestor of the given pair of nodes.
 
 #### Usage:
 ```cypher
-
+CALL nxalg.maximal_matching() YIELD *
+RETURN edges;
 ```
 ### `minimum_spanning_tree(weight, algorithm, ignore_nan)`
 Returns a minimum spanning tree or forest on an undirected graph `G`.
@@ -1117,10 +1202,13 @@ Returns a minimum spanning tree or forest on an undirected graph `G`.
 
 #### Usage:
 ```cypher
-
+CALL nxalg.minimum_spanning_tree("weight", "prim", TRUE) YIELD *
+RETURN node, edges;
 ```
-### `multi_source_dijkstra_path(ources, cutoff, weight)`
+### `multi_source_dijkstra_path(sources, cutoff, weight)`
+Find shortest weighted paths in G from a given set of source nodes.
 
+Compute shortest path between any of the source nodes and all other reachable nodes for a weighted graph.
 #### Input:
 
 * `sources: List[Vertex]` ➡  Starting nodes for paths. If this is a set containing a single node, then all paths computed by this function will start from that node. If there are two or more nodes in the set, the computed paths may begin from any one of the start nodes.
@@ -1135,7 +1223,10 @@ Returns a minimum spanning tree or forest on an undirected graph `G`.
 
 #### Usage:
 ```cypher
-
+MATCH (n:Label)
+COLLECT (n) AS sources
+CALL nxalg.multi_source_dijkstra_path(sources, 7) YIELD *
+RETURN target, path;
 ```
 ### `multi_source_dijkstra_path_length(sources, cutoff, weight)`
 Find shortest weighted path lengths in `G` from a given set of source nodes.
@@ -1154,7 +1245,10 @@ Find shortest weighted path lengths in `G` from a given set of source nodes.
 
 #### Usage:
 ```cypher
-
+MATCH (n:Label)
+COLLECT (n) AS sources
+CALL nxalg.multi_source_dijkstra_path_length(sources, 5) YIELD *
+RETURN target, length;
 ```
 ### `node_boundary(nbunch1, bunch2)`
 Returns the node boundary of `nbunch1`.
@@ -1170,7 +1264,10 @@ Returns the node boundary of `nbunch1`.
 
 #### Usage:
 ```cypher
-
+MATCH (n:Label)
+COLLECT (n) AS sources1
+CALL nxalg.node_boundary(sources1) YIELD *
+RETURN boundary;
 ```
 ### `node_connectivity(source, target)`
 Returns an approximation for node connectivity for a graph or digraph `G`.
@@ -1189,7 +1286,9 @@ Returns an approximation for node connectivity for a graph or digraph `G`.
 
 #### Usage:
 ```cypher
-
+MATCH (n:Label), (m:Label)
+CALL nxalg.node_connectivity(n, m) YIELD *
+RETURN connectivity;
 ```
 ### `node_expansion(s)`
 Returns the node expansion of the set `S`.
@@ -1204,7 +1303,10 @@ Returns the node expansion of the set `S`.
 
 #### Usage:
 ```cypher
-
+MATCH (n:Label)
+WITH COLLECT(n) AS s
+CALL nxalg.node_expansion(s) YIELD *
+RETURN node_expansion;
 ```
 ### `non_randomness(k)`
 Compute the non-randomness of graph `G`.
@@ -1221,10 +1323,13 @@ The second computed value `relative_non_randomness` is a relative measure that i
 
 #### Usage:
 ```cypher
-
+CALL nxalg.non_randomness() YIELD *
+RETURN non_randomness, relative_non_randomness;
 ```
 ### `pagerank(alpha, personalization, max_iter, tol, nstart, weight, dangling)`
+Returns the PageRank of the nodes in the graph.
 
+PageRank computes a ranking of the nodes in the graph G based on the structure of the incoming links. It was originally designed as an algorithm to rank web pages.
 #### Input:
 
 * `alpha: double(0.85)` ➡  Damping parameter for PageRank.
@@ -1235,7 +1340,6 @@ The second computed value `relative_non_randomness` is a relative measure that i
 * `weight: str("weight")` ➡  Edge data key to use as weight. If `None`, weights are set to 1.
 * `dangling: str(NULL)` ➡  The outedges to be assigned to any “dangling” nodes, i.e., nodes without any outedges. The dict key is the node the outedge points to and the dict value is the weight of that outedge. By default, dangling nodes are given outedges according to the personalization vector (uniform if not specified). This must be selected to result in an irreducible transition matrix. It may be common to have the dangling dict to be the same as the personalization dict.
 
-
 #### Output:
 
 * `node: Vertex` ➡ Vertex to calculate pagerank for.
@@ -1243,7 +1347,8 @@ The second computed value `relative_non_randomness` is a relative measure that i
 
 #### Usage:
 ```cypher
-
+CALL nxalg.pagerank() YIELD *
+RETURN node, rank;
 ```
 ### `reciprocity(nodes)`
 Compute the reciprocity in a directed graph.
@@ -1260,10 +1365,13 @@ The reciprocity of a single node `u` is defined similarly, it is the ratio of th
 
 #### Usage:
 ```cypher
-
+MATCH(n:Label)
+WITH COLLECT(n) AS nodes
+CALL nxalg.reciprocity(nodes) YIELD *
+RETURN node, reciprocity;
 ```
 ### `shortest_path(source, target, weight, method)`
-
+Compute shortest paths in the graph.
 #### Input:
 
 * `source: Vertex(NULL)` ➡  Starting node for the path. If not specified, compute shortest path lengths using all nodes as source nodes.
@@ -1279,7 +1387,9 @@ The reciprocity of a single node `u` is defined similarly, it is the ratio of th
 
 #### Usage:
 ```cypher
-
+MATCH (n:Label), (m:Label)
+CALL nxalg.shortest_path(n, m) YIELD *
+RETURN source, target, path;
 ```
 ### `shortest_path_length(source, target, weight, method)`
 Compute shortest path lengths in the graph.
@@ -1298,7 +1408,9 @@ Compute shortest path lengths in the graph.
 
 #### Usage:
 ```cypher
-
+MATCH (n:Label), (m:Label)
+CALL nxalg.shortest_path_length(n, m) YIELD *
+RETURN source, target, length;
 ```
 ### `simple_cycles()`
 Find simple cycles (elementary circuits) of a directed graph.
@@ -1311,24 +1423,22 @@ Find simple cycles (elementary circuits) of a directed graph.
 
 #### Usage:
 ```cypher
-
+CALL nxalg.simple_cycles() YIELD *
+RETURN cycles;
 ```
 
 ### `strongly_connected_components()`
 Returns nodes in strongly connected components of a graph.
-#### Input:
-
-* `` ➡  
-
 #### Output:
 
 * `components: List[List[Vertex]]` ➡   A list of lists of nodes, one for each strongly connected component of `G`.
 
 #### Usage:
 ```cypher
-
+CALL nxalg.strongly_connected_components() YIELD *
+RETURN components;
 ```
-### `topological_sort(ctx)`
+### `topological_sort()`
 Returns nodes in topologically sorted order.
  A *topological sort* is a non unique permutation of the nodes such that an edge from `u` to `v` implies that `u` appears before `v` in the topological sort order.
 #### Output:
@@ -1337,19 +1447,21 @@ Returns nodes in topologically sorted order.
 
 #### Usage:
 ```cypher
-
+CALL nxalg.topological_sort() YIELD *
+RETURN nodes;
 ```
-### `triadic_census(ctx)`
+### `triadic_census()`
 Determines the triadic census of a directed graph. The *triadic census* is a count of how many of the 16 possible types of triads are present in a directed graph.
 
 #### Output:
 
 * `triad: str` ➡  Triad name.
-* `cout: int` ➡  Number of occurrences as value.
+* `count: int` ➡  Number of occurrences as value.
 
 #### Usage:
 ```cypher
-
+CALL nxalg.triadic_census() YIELD *
+RETURN triad, count;
 ```
 ### `voronoi_cells(center_nodes, weight)`
 Returns the Voronoi cells centered at center_nodes with respect to the shortest-path distance metric.
@@ -1369,7 +1481,10 @@ Returns the Voronoi cells centered at center_nodes with respect to the shortest-
 
 #### Usage:
 ```cypher
-
+MATCH (n) 
+WITH COLLECT(n) AS center_nodes
+CALL nxalg.voronoi_cells(center_nodes) YIELD *
+RETURN center, cell;
 ```
 ### `wiener_index(weight)`
 Returns the Wiener index of the given graph.
@@ -1385,5 +1500,6 @@ Returns the Wiener index of the given graph.
 
 #### Usage:
 ```cypher
-
+CALL nxalg.voronoi_cells() YIELD *
+RETURN wiener_index;
 ```

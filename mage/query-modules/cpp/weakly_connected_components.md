@@ -31,6 +31,8 @@ is no edge that connects nodes from separate components.
 
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |
+| **Module type**     | <Highlight color="#FB6E00">**algorithm**</Highlight>  |
+| **Implementation**  | <Highlight color="#FB6E00">**C++**</Highlight>        |
 | **Graph direction** | <Highlight color="#FB6E00">**undirected**</Highlight> |
 | **Edge weights**    | <Highlight color="#FB6E00">**unweighted**</Highlight> |
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight> |
@@ -51,7 +53,6 @@ YIELD node, component_id;
 ```
 
 ## Example
-#### 2 components example
 
 <Tabs
   groupId="example"

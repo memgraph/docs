@@ -61,7 +61,6 @@ CALL tsp_module.solve(points) YIELD sources, destinations;
 ```
 
 ## Example
-#### 2 components example
 
 <Tabs
   groupId="example"

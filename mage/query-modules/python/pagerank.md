@@ -72,7 +72,6 @@ YIELD node, rank;
 ```
 
 ## Example
-#### 2 components example
 
 <Tabs
   groupId="example"
