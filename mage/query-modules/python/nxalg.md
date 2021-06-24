@@ -4,7 +4,7 @@ title: nxalg
 sidebar_label: nxalg
 ---
 
-import Tabs from '@theme/Tabs'; 
+import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 export const Highlight = ({children, color}) => (
@@ -132,7 +132,7 @@ Iterate over edges in a breadth-first-search starting at source.
 
 #### Output:
 
-* `edges: List[Edge]` ➡ List of edges in the breadth-first search. 
+* `edges: List[Edge]` ➡ List of edges in the breadth-first search.
 
 #### Usage:
 ```cypher
@@ -191,7 +191,7 @@ Returns an oriented tree constructed from of a breadth-first-search starting at 
 
 * `source: Vertex` ➡  Specify starting node for breadth-first search.
 * `reversed: bool(False)` ➡  If `True`, traverse a directed graph in the reverse direction.
-* `depth_limit: int(NULL)` ➡  Specify the maximum search depth. 
+* `depth_limit: int(NULL)` ➡  Specify the maximum search depth.
 
 #### Output:
 
@@ -272,7 +272,7 @@ RETURN center;
 
 Returns the chain decomposition of a graph.
 
-The *chain decomposition* of a graph with respect a depth-first
+The *chain decomposition* of a graph with respect to a depth-first
 search tree is a set of cycles or paths derived from the set of
 fundamental cycles of the tree in the following manner. Consider
 each fundamental cycle with respect to the given tree, represented
@@ -473,7 +473,7 @@ Returns nodes in a depth-first-search pre-ordering starting at source.
 ```cypher
 MATCH (source:Label)
 CALL nxalg.dfs_preorder_nodes(source, 10) YIELD *
-RETURN source, nodes AS preoder_nodes; 
+RETURN source, nodes AS preoder_nodes;
 ```
 ### `dfs_successors(source, depth_limit)`
 
@@ -493,7 +493,7 @@ Returns a dictionary of successors in depth-first-search from source.
 ```cypher
 MATCH (source:Label)
 CALL nxalg.dfs_successors(source, 5) YIELD *
-RETURN node, successors; 
+RETURN node, successors;
 ```
 ### `dfs_tree(source, depth_limit)`
 
@@ -506,13 +506,13 @@ Returns an oriented tree constructed from a depth-first-search from source.
 
 #### Output:
 
-* `tree: List[Vertex]` ➡ An oriented tree in a form of a list. 
+* `tree: List[Vertex]` ➡ An oriented tree in a form of a list.
 
 #### Usage:
 ```cypher
 MATCH (source:Label)
 CALL nxalg.dfs_tree(source, 7) YIELD *
-RETURN tree; 
+RETURN tree;
 ```
 ### `diameter()`
 Returns the diameter of the graph `G`.
@@ -526,7 +526,7 @@ The diameter is the maximum eccentricity.
 #### Usage:
 ```cypher
 CALL nxalg.diameter() YIELD *
-RETURN diameter; 
+RETURN diameter;
 ```
 ### `dominance_frontiers(start)`
 
@@ -549,7 +549,7 @@ predecessor of a node, but `d` does not strictly dominate that node.
 ```cypher
 MATCH (source:Label)
 CALL nxalg.dominance_frontiers(source) YIELD *
-RETURN node, frontier; 
+RETURN node, frontier;
 ```
 ### `dominating_set(start)`
 Finds a dominating set for the graph `G`.
@@ -571,7 +571,7 @@ member of `D`.
 ```cypher
 MATCH (source:Label)
 CALL nxalg.dominating_set(source) YIELD *
-RETURN dominating_set; 
+RETURN dominating_set;
 ```
 ### `edge_bfs(source, orientation)`
 A directed, breadth-first-search of edges in `G`, beginning at `source`.
@@ -593,7 +593,7 @@ all edges are generated.
 ```cypher
 MATCH (source:Label)
 CALL nxalg.edge_bfs(source, 'ignore') YIELD *
-RETURN source, edges; 
+RETURN source, edges;
 ```
 ### `edge_dfs(source, orientation)`
 
@@ -630,13 +630,13 @@ the direction of traversal (‘forward’ or ‘reverse’) on that edge.
 ```cypher
 MATCH (source:Label)
 CALL nxalg.edge_dfs(source, 'original') YIELD *
-RETURN source, edges; 
+RETURN source, edges;
 ```
 ### `find_cliques()`
 
 Returns all maximal cliques in an undirected graph.
 
-For each node `v`, a *maximal clique* for `v` is a largest complete
+For each node `v`, a *maximal clique* for `v` is the largest complete
 subgraph containing `v`. The largest maximal clique is sometimes
 called the *maximum clique*.
 
@@ -652,7 +652,7 @@ nodes in `G`. The order of cliques is arbitrary.
 #### Usage:
 ```cypher
 CALL nxalg.find_cliques() YIELD *
-RETURN cliques; 
+RETURN cliques;
 ```
 ### `find_cycle(source, orientation)`
 
@@ -675,7 +675,7 @@ need not respect the original orientation of the edges. When set to ‘reverse�
 ```cypher
 MATCH (source:Label)
 CALL nxalg.find_cycle(source) YIELD *
-RETURN source, edges; 
+RETURN source, edges;
 ```
 
 ### `flow_hierarchy(weight)`
@@ -695,7 +695,7 @@ Returns the flow hierarchy of a directed network.
 #### Usage:
 ```cypher
 CALL nxalg.flow_hierarchy() YIELD *
-RETURN flow_hierarchy; 
+RETURN flow_hierarchy;
 ```
 ### `global_efficiency()`
 
@@ -708,10 +708,10 @@ Returns the average global efficiency of the graph. The *efficiency* of a pair o
 #### Usage:
 ```cypher
 CALL nxalg.global_efficiency() YIELD *
-RETURN global_efficiency; 
+RETURN global_efficiency;
 ```
 ### `greedy_color(strategy, interchange)`
-Color a graph using various strategies of greedy graph coloring. Attempts to color a graph using as few colors as possible, where no neighbours of a node can have the same color as the node itself. The given strategy determines the order in which nodes are colored.
+Color a graph using various strategies of greedy graph coloring. Attempts to color a graph using as few colors as possible, where no neighbors of a node can have the same color as the node itself. The given strategy determines the order in which nodes are colored.
 
 
 #### Input:
@@ -736,7 +736,7 @@ Color a graph using various strategies of greedy graph coloring. Attempts to col
 #### Usage:
 ```cypher
 CALL nxalg.greedy_color('connected_sequential_bfs') YIELD *
-RETURN node, color; 
+RETURN node, color;
 ```
 ### `has_eulerian_path()`
 
@@ -755,7 +755,7 @@ RETURN node, color;
 #### Usage:
 ```cypher
 CALL nxalg.has_eulerian_path() YIELD *
-RETURN has_eulerian_path; 
+RETURN has_eulerian_path;
 ```
 
 
@@ -828,7 +828,7 @@ RETURN is_at_free;
 ```
 ### `is_bipartite()`
 
-Returns `True` if graph `G` is bipartite, `False` if not. A *bipartite graph* (or bigraph) is a graph whose vertices can be divided into two disjoint and independent sets\`\`u\`\` and `v` and such that every edge connects a vertex in `u` one in `v`.
+Returns `True` if graph `G` is bipartite, `False` if not. A *bipartite graph* (or bigraph) is a graph whose vertices can be divided into two disjoint and independent sets `u` and `v` and such that every edge connects a vertex in `u` one in `v`.
 
 #### Output:
 
@@ -842,7 +842,7 @@ RETURN is_bipartite;
 
 ### `is_branching()`
 
-Returns `True` if `G` is a branching. A *branching* is a directed forest with maximum in-degree equal to 1.  
+Returns `True` if `G` is a branching. A *branching* is a directed forest with maximum in-degree equal to 1.
 
 #### Output:
 
@@ -895,7 +895,7 @@ Decides whether a set of edges is a valid edge cover of the graph. Given a set o
 #### Usage:
 ```cypher
 MATCH (n)-[e]-(m)
-WITH COLLECT(e) AS cover 
+WITH COLLECT(e) AS cover
 CALL nxalg.is_edge_cover(cover) YIELD *
 RETURN is_edge_cover;
 ```
@@ -964,7 +964,7 @@ Returns `True` if the graphs `G1` and `G2` are isomorphic and `False` otherwise.
 #### Usage:
 ```cypher
 MATCH (n:Label1)-[e]-(), (r:Label2)-[f]-()
-WITH 
+WITH
 COLLECT(n) AS nodes1
 COLLECT(e) AS edges1
 COLLECT(r) AS nodes2
@@ -1000,7 +1000,7 @@ Returns `True` if and only if the given nodes form a simple path in
 
 #### Output:
 
-* `is_simple_path: bool` ➡  Whether the given list of nodes represents a simple path in `G`. 
+* `is_simple_path: bool` ➡  Whether the given list of nodes represents a simple path in `G`.
 
 #### Usage:
 ```cypher
@@ -1214,7 +1214,7 @@ Compute shortest path between any of the source nodes and all other reachable no
 * `sources: List[Vertex]` ➡  Starting nodes for paths. If this is a set containing a single node, then all paths computed by this function will start from that node. If there are two or more nodes in the set, the computed paths may begin from any one of the start nodes.
 * `cutoff: int(NULL)` ➡   Depth to stop the search. Only return paths with `length <= cutoff`.
 * `weight: str` ➡  If this is a string, then edge weights will be accessed via the edge attribute with this key (that is, the weight of the edge joining `u` to `v` will be `G.edges[u, v][weight]`). If no such edge attribute exists, the weight of the edge is assumed to be one. If this is a function, the weight of an edge is the value returned by the function. The function must accept exactly three positional arguments: the two endpoints of an edge and the dictionary of edge attributes for that edge. The function must return a number.
-* `sources: List[Vertex]` ➡  
+* `sources: List[Vertex]` ➡
 
 #### Output:
 
@@ -1230,7 +1230,8 @@ RETURN target, path;
 ```
 ### `multi_source_dijkstra_path_length(sources, cutoff, weight)`
 Find shortest weighted path lengths in `G` from a given set of source nodes.
- Compute the shortest path length between any of the source nodes and all other reachable nodes for a weighted gra
+
+Compute the shortest path length between any of the source nodes and all other reachable nodes for a weighted graph.
 #### Input:
 
 * `sources: List[Vertex]` ➡  Starting nodes for paths. If this is a set containing a single node, then all paths computed by this function will start from that node. If there are two or more nodes in the set, the computed paths may begin from any one of the start nodes.
@@ -1241,7 +1242,7 @@ Find shortest weighted path lengths in `G` from a given set of source nodes.
 
 * `target: Vertex` ➡ Target key for shortest path
 * `length: double` ➡  Shortest path length
- 
+
 
 #### Usage:
 ```cypher
@@ -1336,13 +1337,13 @@ PageRank computes a ranking of the nodes in the graph G based on the structure o
 * `personalization: str(NULL)` ➡  The “personalization vector” consisting of a dictionary with a subset of graph nodes as a key and maps personalization value for each subset. At least one personalization value must be non-zero. If not specified, a nodes personalization value will be zero. By default, a uniform distribution is used.
 * `max_iter: int(100)` ➡  Maximum number of iterations in power method eigenvalue solver.
 * `tol: double(1e-06)` ➡  Error tolerance used to check convergence in power method solver.
-* `nstart: str(NULL)` ➡ Starting value of PageRank iteration for each node. 
+* `nstart: str(NULL)` ➡ Starting value of PageRank iteration for each node.
 * `weight: str("weight")` ➡  Edge data key to use as weight. If `None`, weights are set to 1.
 * `dangling: str(NULL)` ➡  The outedges to be assigned to any “dangling” nodes, i.e., nodes without any outedges. The dict key is the node the outedge points to and the dict value is the weight of that outedge. By default, dangling nodes are given outedges according to the personalization vector (uniform if not specified). This must be selected to result in an irreducible transition matrix. It may be common to have the dangling dict to be the same as the personalization dict.
 
 #### Output:
 
-* `node: Vertex` ➡ Vertex to calculate pagerank for.
+* `node: Vertex` ➡ Vertex to calculate PageRank for.
 * `rank: double` ➡ Node PageRank.
 
 #### Usage:
@@ -1360,7 +1361,7 @@ The reciprocity of a single node `u` is defined similarly, it is the ratio of th
 
 #### Output:
 
-* `node: Vertex` ➡ Node to calculate reciprocity. 
+* `node: Vertex` ➡ Node to calculate reciprocity.
 * `reciprocity: double` ➡ Reciprocity value
 
 #### Usage:
@@ -1471,7 +1472,7 @@ Returns the Voronoi cells centered at center_nodes with respect to the shortest-
 
 #### Input:
 
-* `center_nodes: List[Vertex]` ➡  A nonempty set of nodes in the graph `G` that represent the center of the Voronoi cells.
+* `center_nodes: List[Vertex]` ➡  A nonempty set of nodes in the graph `G` that represent the centers of the Voronoi cells.
 * `weight: str(NULL)` ➡  The edge attribute (or an arbitrary function) representing the weight of an edge. This keyword argument is as described in the documentation for `networkx.multi_source_dijkstra_path`, for example.
 
 #### Output:
@@ -1481,7 +1482,7 @@ Returns the Voronoi cells centered at center_nodes with respect to the shortest-
 
 #### Usage:
 ```cypher
-MATCH (n) 
+MATCH (n)
 WITH COLLECT(n) AS center_nodes
 CALL nxalg.voronoi_cells(center_nodes) YIELD *
 RETURN center, cell;
@@ -1492,7 +1493,7 @@ Returns the Wiener index of the given graph.
 #### Input:
 
 * `weight: str(NULL)` ➡ The edge attribute to use as distance when computing shortest-path distances. This is passed directly to the
-`networkx.shortest_path_length` function.  
+`networkx.shortest_path_length` function.
 
 #### Output:
 

@@ -5,7 +5,7 @@ sidebar_label: graph_analyzer
 ---
 
 
-import Tabs from '@theme/Tabs'; 
+import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 export const Highlight = ({children, color}) => (
@@ -25,7 +25,7 @@ export const Highlight = ({children, color}) => (
 
 ## Abstract
 
-First thing someone should focus on when working with graph is getting a deep analytics of current state. That is what this module is doing. By using the power of NetworkX, various different graph properties are extracted. This module has the ability to run on subgraph once subgraph of nodes is provided as input. Here is a list of analytics that it uses:
+The first thing someone should focus on when working with graphs is getting deep analytics of the current state. That is what this module is doing. By using the power of NetworkX, various different graph properties are extracted. This module has the ability to run on a subgraph if a subgraph of nodes is provided as input. Here is a list of analytics that it uses:
 
 * **nodes**: Number of nodes
 * **edges**: Number of edges
@@ -60,7 +60,7 @@ First thing someone should focus on when working with graph is getting a deep an
 
 #### Input:
 
-* `analyses: List[str](NULL)` ➡ List of analytics names to be fetched. If provided with NULL, whole set of analytics will be included.
+* `analyses: List[str](NULL)` ➡ List of analytics names to be fetched. If provided with NULL, the whole set of analytics will be included.
 
 #### Output:
 
@@ -78,7 +78,7 @@ CALL graph_analyzer.analyze() YIELD *;
 
 * `vertices: List[Vertex]` ➡ Subset of vertices within a graph.
 * `edges: List[Edge]` ➡ Subset of edges in a graph for which analytics will take place.
-* `analyses: List[str](NULL)` ➡ List of analytics names to be fetched. If provided with NULL, whole set of analytics will be included.
+* `analyses: List[str](NULL)` ➡ List of analytics names to be fetched. If provided with NULL, the whole set of analytics will be included.
 
 #### Output:
 
@@ -116,18 +116,18 @@ RETURN name, value;
 
 ```cypher
 MERGE (a:Node {id: 0}) MERGE (b:Node {id: 1}) CREATE (a)-[:RELATION]->(b);
-MERGE (a:Node {id: 1}) MERGE (b:Node {id: 2}) CREATE (a)-[:RELATION]->(b);     
-MERGE (a:Node {id: 1}) MERGE (b:Node {id: 3}) CREATE (a)-[:RELATION]->(b);     
-MERGE (a:Node {id: 2}) MERGE (b:Node {id: 3}) CREATE (a)-[:RELATION]->(b);     
-MERGE (a:Node {id: 2}) MERGE (b:Node {id: 4}) CREATE (a)-[:RELATION]->(b);     
-MERGE (a:Node {id: 3}) MERGE (b:Node {id: 4}) CREATE (a)-[:RELATION]->(b);     
-MERGE (a:Node {id: 1}) MERGE (b:Node {id: 5}) CREATE (a)-[:RELATION]->(b);     
-MERGE (a:Node {id: 0}) MERGE (b:Node {id: 6}) CREATE (a)-[:RELATION]->(b);     
-MERGE (a:Node {id: 5}) MERGE (b:Node {id: 6}) CREATE (a)-[:RELATION]->(b);     
-MERGE (a:Node {id: 5}) MERGE (b:Node {id: 7}) CREATE (a)-[:RELATION]->(b);     
-MERGE (a:Node {id: 5}) MERGE (b:Node {id: 8}) CREATE (a)-[:RELATION]->(b);     
-MERGE (a:Node {id: 7}) MERGE (b:Node {id: 8}) CREATE (a)-[:RELATION]->(b);     
-MERGE (a:Node {id: 8}) MERGE (b:Node {id: 9}) CREATE (a)-[:RELATION]->(b);   
+MERGE (a:Node {id: 1}) MERGE (b:Node {id: 2}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 1}) MERGE (b:Node {id: 3}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 2}) MERGE (b:Node {id: 3}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 2}) MERGE (b:Node {id: 4}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 3}) MERGE (b:Node {id: 4}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 1}) MERGE (b:Node {id: 5}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 0}) MERGE (b:Node {id: 6}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 5}) MERGE (b:Node {id: 6}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 5}) MERGE (b:Node {id: 7}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 5}) MERGE (b:Node {id: 8}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 7}) MERGE (b:Node {id: 8}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 8}) MERGE (b:Node {id: 9}) CREATE (a)-[:RELATION]->(b);
 MERGE (a:Node {id: 10}) MERGE (b:Node {id: 11}) CREATE (a)-[:RELATION]->(b);
 ```
 
@@ -137,7 +137,7 @@ MERGE (a:Node {id: 10}) MERGE (b:Node {id: 11}) CREATE (a)-[:RELATION]->(b);
 
 ```cypher
 CALL graph_analyzer.analyze([
-    "nodes", "edges", "bridges", "articulation_points", 
+    "nodes", "edges", "bridges", "articulation_points",
     "avg_degree", "is_dag", "is_tree", "strongly_components"
     ]) YIELD *;
 ```

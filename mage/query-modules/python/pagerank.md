@@ -4,7 +4,7 @@ title: pagerank
 sidebar_label: pagerank
 ---
 
-import Tabs from '@theme/Tabs'; 
+import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 export const Highlight = ({children, color}) => (
@@ -36,9 +36,9 @@ Rank(n, t + 1) = (1 - d) / number_of_nodes
                 out_degree(in_neighbour_of_n)}
 ```
 
-Where Rank(n, t) is **PageRank** of node n at iteration t. At the end *rank* values are **normalized** to sum 1 to form probability distribution.
+Where Rank(n, t) is **PageRank** of node n at iteration t. In the end, *rank* values are **normalized** to sum 1 to form a probability distribution.
 
-Algorithm is implemented in such way that all available **threads** are used to calculate PageRank, mostly for the scalability purposes.
+The algorithm is implemented in such a way that all available **threads** are used to calculate PageRank, mostly for scalability purposes.
 
 Default arguments are equal to default arguments in [NetworkX](https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.link_analysis.pagerank_alg.pagerank.html) PageRank implementation.
 
@@ -56,18 +56,18 @@ Default arguments are equal to default arguments in [NetworkX](https://networkx.
 
 #### Input:
 
-* `max_iterations: int(100)` ➡ Maximum number of iterations within PageRank algorithm. 
-* `damping_factor: double(0.85)` ➡ PageRanks damping factor. This is probability of continuing the random walk from a random node within graph.
+* `max_iterations: int(100)` ➡ Maximum number of iterations within PageRank algorithm.
+* `damping_factor: double(0.85)` ➡ PageRanks damping factor. This is the  probability of continuing the random walk from a random node within the graph.
 * `stop_epsilon: double(1e-5)` ➡ Value used to terminate the iterations of PageRank. If change from one iteration to another is lower than *stop_epsilon*, execution is stopped.
 
 #### Output:
 
-* `node` ➡ Node in graph, for which pagerank is calculated.
-* `rank` ➡ Normalized ranking of a node. Expresses the probability that random surfer will finish in certain node by a random walk.
+* `node` ➡ Node in graph, for which PageRank is calculated.
+* `rank` ➡ Normalized ranking of a node. Expresses the probability that random surfer will finish in a certain node by a random walk.
 
 #### Usage:
 ```cypher
-CALL pagerank.get() 
+CALL pagerank.get()
 YIELD node, rank;
 ```
 
@@ -93,7 +93,7 @@ YIELD node, rank;
   <TabItem value="cypher">
 
 ```cypher
- 
+
 MERGE (a:Node {id: 1}) MERGE (b:Node {id: 0}) CREATE (a)-[:RELATION]->(b);
 MERGE (a:Node {id: 2}) MERGE (b:Node {id: 0}) CREATE (a)-[:RELATION]->(b);
 MERGE (a:Node {id: 3}) MERGE (b:Node {id: 0}) CREATE (a)-[:RELATION]->(b);
@@ -108,7 +108,7 @@ MERGE (a:Node {id: 0}) MERGE (b:Node {id: 7}) CREATE (a)-[:RELATION]->(b);
   <TabItem value="run">
 
 ```cypher
-CALL pagerank.get() 
+CALL pagerank.get()
 YIELD node, rank;
 ```
 

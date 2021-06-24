@@ -4,7 +4,7 @@ title: bipartite_matching
 sidebar_label: bipartite_matching
 ---
 
-import Tabs from '@theme/Tabs'; 
+import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 export const Highlight = ({children, color}) => (
@@ -24,7 +24,7 @@ export const Highlight = ({children, color}) => (
 
 ## Abstract
 
-Bipartite graph is a graph in which we can divide vertices into two independent sets, such that every edge connects vertices between these sets. No connection can be established within the set. Matching in bipartite graph (bipartite matching) is described as a set of edges that are picked in a way to not share an endpoint. Furthermore, maximum matching is such matching of maximum cardinality of chosen edge set. The algorithm runs in O(|V|*|E|) time where V represents a set of nodes and E represents a set of edges.
+A bipartite graph is a graph in which we can divide vertices into two independent sets, such that every edge connects vertices between these sets. No connection can be established within the set. Matching in bipartite graphs (bipartite matching) is described as a set of edges that are picked in a way to not share an endpoint. Furthermore, maximum matching is such matching of maximum cardinality of the chosen edge set. The algorithm runs in O(|V|*|E|) time where V represents a set of nodes and E represents a set of edges.
 
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |
@@ -40,11 +40,11 @@ Bipartite graph is a graph in which we can divide vertices into two independent 
 
 #### Output:
 
-* `maximum_bipartite_matching` ➡ Maximum bipartite matching, cardinality of maximum matching edge subset. If graph is not bipartite, zero(0) is returned value.
+* `maximum_bipartite_matching` ➡ Maximum bipartite matching, the cardinality of maximum matching edge subset. If graph is not bipartite, zero(0) is returned value.
 
 #### Usage:
 ```cypher
-CALL bipartite_matching.max() 
+CALL bipartite_matching.max()
 YIELD maximum_bipartite_matching;
 ```
 
@@ -82,7 +82,7 @@ MERGE (a:Node {id: 2}) MERGE (b:Node {id: 4}) CREATE (a)-[:RELATION]->(b);
   <TabItem value="run">
 
 ```cypher
-CALL bipartite_matching.max() 
+CALL bipartite_matching.max()
 YIELD maximum_bipartite_matching;
 ```
 

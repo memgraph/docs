@@ -4,7 +4,7 @@ title: biconnected_components
 sidebar_label: biconnected_components
 ---
 
-import Tabs from '@theme/Tabs'; 
+import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 export const Highlight = ({children, color}) => (
@@ -29,7 +29,7 @@ Finding biconnected components means finding a maximal biconnected subgraph. Sub
 - It is possible to go from each node to another within a biconnected subgraph
 - First scenario remains true even after removing any vertex in the subgraph
 
-Algorithm works by finding an articulation points, and then traversing from these articulation points toward other nodes, which all together form one biconnected component.
+The algorithm works by finding articulation points, and then traversing from these articulation points toward other nodes, which all together form one biconnected component.
 
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |
@@ -45,13 +45,13 @@ Algorithm works by finding an articulation points, and then traversing from thes
 
 #### Output:
 
-* `bcc_id` ➡ Biconnected component identifier. There is no order of nodes within one biconnected component. 
+* `bcc_id` ➡ Biconnected component identifier. There is no order of nodes within one biconnected component.
 * `node_from` ➡ First node of an edge contained in biconnected component.
 * `node_to` ➡ Second node of an edge contained in biconnected component
 
 #### Usage:
 ```cypher
-CALL biconnected_components.get() 
+CALL biconnected_components.get()
 YIELD bcc_id, node_from, node_to;
 ```
 
@@ -78,18 +78,18 @@ YIELD bcc_id, node_from, node_to;
 
 ```cypher
 MERGE (a:Node {id: 0}) MERGE (b:Node {id: 1}) CREATE (a)-[:RELATION]->(b);
-MERGE (a:Node {id: 1}) MERGE (b:Node {id: 2}) CREATE (a)-[:RELATION]->(b);     
-MERGE (a:Node {id: 1}) MERGE (b:Node {id: 3}) CREATE (a)-[:RELATION]->(b);     
-MERGE (a:Node {id: 2}) MERGE (b:Node {id: 3}) CREATE (a)-[:RELATION]->(b);     
-MERGE (a:Node {id: 2}) MERGE (b:Node {id: 4}) CREATE (a)-[:RELATION]->(b);     
-MERGE (a:Node {id: 3}) MERGE (b:Node {id: 4}) CREATE (a)-[:RELATION]->(b);     
-MERGE (a:Node {id: 1}) MERGE (b:Node {id: 5}) CREATE (a)-[:RELATION]->(b);     
-MERGE (a:Node {id: 0}) MERGE (b:Node {id: 6}) CREATE (a)-[:RELATION]->(b);     
-MERGE (a:Node {id: 5}) MERGE (b:Node {id: 6}) CREATE (a)-[:RELATION]->(b);     
-MERGE (a:Node {id: 5}) MERGE (b:Node {id: 7}) CREATE (a)-[:RELATION]->(b);     
-MERGE (a:Node {id: 5}) MERGE (b:Node {id: 8}) CREATE (a)-[:RELATION]->(b);     
-MERGE (a:Node {id: 7}) MERGE (b:Node {id: 8}) CREATE (a)-[:RELATION]->(b);     
-MERGE (a:Node {id: 8}) MERGE (b:Node {id: 9}) CREATE (a)-[:RELATION]->(b);   
+MERGE (a:Node {id: 1}) MERGE (b:Node {id: 2}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 1}) MERGE (b:Node {id: 3}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 2}) MERGE (b:Node {id: 3}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 2}) MERGE (b:Node {id: 4}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 3}) MERGE (b:Node {id: 4}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 1}) MERGE (b:Node {id: 5}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 0}) MERGE (b:Node {id: 6}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 5}) MERGE (b:Node {id: 6}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 5}) MERGE (b:Node {id: 7}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 5}) MERGE (b:Node {id: 8}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 7}) MERGE (b:Node {id: 8}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 8}) MERGE (b:Node {id: 9}) CREATE (a)-[:RELATION]->(b);
 MERGE (a:Node {id: 10}) MERGE (b:Node {id: 11}) CREATE (a)-[:RELATION]->(b);
 ```
 
@@ -98,7 +98,7 @@ MERGE (a:Node {id: 10}) MERGE (b:Node {id: 11}) CREATE (a)-[:RELATION]->(b);
   <TabItem value="run">
 
 ```cypher
-CALL biconnected_components.get() 
+CALL biconnected_components.get()
 YIELD bcc_id, node_from, node_to
 WITH bcc_id, node_from, node_to
 MATCH (node_from)-[edge]-(node_to)

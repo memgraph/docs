@@ -4,7 +4,7 @@ title: bridges
 sidebar_label: bridges
 ---
 
-import Tabs from '@theme/Tabs'; 
+import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 export const Highlight = ({children, color}) => (
@@ -24,7 +24,7 @@ export const Highlight = ({children, color}) => (
 
 ## Abstract
 
-Bridge in the graph can be described as an edge which if deleted, creates two disjoint graph components. This algorithm finds bridges within the graph. This algorithm has various practical usages such can be road or internet network design planning. Bridge can represent a bottleneck for many scenarios and it is valuable to have such algorithm to detect it.
+A bridge in the graph can be described as an edge which if deleted, creates two disjoint graph components. This algorithm finds bridges within the graph. This algorithm has various practical usages such can be road or internet network design planning. A bridge can represent a bottleneck for many scenarios and it is valuable to have such an algorithm to detect it.
 
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |
@@ -45,7 +45,7 @@ Bridge in the graph can be described as an edge which if deleted, creates two di
 
 #### Usage:
 ```cypher
-CALL bridges.get() 
+CALL bridges.get()
 YIELD node_from, node_to;
 ```
 

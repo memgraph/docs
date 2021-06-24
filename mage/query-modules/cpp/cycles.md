@@ -4,7 +4,7 @@ title: cycles
 sidebar_label: cycles
 ---
 
-import Tabs from '@theme/Tabs'; 
+import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 export const Highlight = ({children, color}) => (
@@ -24,7 +24,7 @@ export const Highlight = ({children, color}) => (
 
 ## Abstract
 
-In the graph theory, a cycle represents a path within the graph where only starting and ending nodes are similar. Furthermore, cycles can be double connected links between neighboring nodes or self loops. Cycles detection algorithm implemented within MAGE works on an undirected graph and has **no guarantee** of node order in the output. The implemented algorithm (Gibb) is described in the 1982 MIT report called "[Algorithmic approaches to circuit enumeration problems and applications](http://hdl.handle.net/1721.1/68106)" [^1]. Problem is not solvable in polinomial time. It is based on finding all subsets of fundamental cycles which takes about O(2^(|E|-|V|+1)) time where E represents a set of edges and V represents a set of vertices of given graph.
+In graph theory, a cycle represents a path within the graph where only starting and ending nodes are similar. Furthermore, cycles can be double-connected links between neighboring nodes or self-loops. The cycles detection algorithm implemented within MAGE works on an undirected graph and has **no guarantee** of node order in the output. The implemented algorithm (Gibb) is described in the 1982 MIT report called "[Algorithmic approaches to circuit enumeration problems and applications](http://hdl.handle.net/1721.1/68106)" [^1]. The problem is not solvable in polynomial time. It is based on finding all subsets of fundamental cycles which takes about O(2^(|E|-|V|+1)) time where E represents a set of edges and V represents a set of vertices of the given graph.
 
 [^1] [Algorithmic approaches to circuit enumeration problems and applications](http://hdl.handle.net/1721.1/68106), Boon Chai Lee
 
@@ -42,12 +42,12 @@ In the graph theory, a cycle represents a path within the graph where only start
 
 #### Output:
 
-* `cycle_id` ➡ Incremental cycle ID of a certain vertex. There is no guarantee on how nodes are going to be ordered within cycle. Cycle can be represented with minimum  one ID, where it stands for self-loop. 
-* `node` ➡ Vertex object with all properties which is going to be related to the cycle ID which it belongs to.
+* `cycle_id` ➡ Incremental cycle ID of a certain vertex. There is no guarantee on how nodes are going to be ordered within cycle. The cycle can be represented with a minimum of one ID, where it stands for self-loop.
+* `node` ➡ Vertex object with all properties which is going to be related to the cycle ID it belongs to.
 
 #### Usage:
 ```cypher
-CALL cycles.get() 
+CALL cycles.get()
 YIELD cycle_id, node;
 ```
 
@@ -86,7 +86,7 @@ MERGE (a:Node {id: 3}) MERGE (b:Node {id: 4}) CREATE (a)-[:RELATION]->(b);
   <TabItem value="run">
 
 ```cypher
-CALL cycles.get() 
+CALL cycles.get()
 YIELD cycle_id, node;
 ```
 

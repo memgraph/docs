@@ -4,7 +4,7 @@ title: The distance_calculator module
 sidebar_label: distance_calculator
 ---
 
-import Tabs from '@theme/Tabs'; 
+import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 export const Highlight = ({children, color}) => (
@@ -24,7 +24,7 @@ export const Highlight = ({children, color}) => (
 
 ## Abstract
 
-Distance calculator is a module for calculating distance between two geographic locations. It measures the distance along the surface of the earth. Formulae takes into consideration the radius of the earth. For this algorithm, it is necessary to define an object that has longitude and latitude properties like this:
+The distance calculator is a module for calculating distance between two geographic locations. It measures the distance along the surface of the earth. Formulae takes into consideration the radius of the earth. For this algorithm, it is necessary to define an object that has longitude and latitude properties like this:
 
 ```cypher
 (location:Location {lat: 44.1194, lng: 15.2314})
@@ -46,16 +46,16 @@ Distance calculator is a module for calculating distance between two geographic 
 
 * `start: Vertex` ➡ Starting point to measure distance. Required to have *lng* and *lat* properties.
 * `end: Vertex` ➡ Ending point to measure distance. Required to have *lng* and *lat* properties.
-* `metrics: str` ➡ Can be either "m" or "km". These stand for metres and kilometres respectively.
+* `metrics: str` ➡ Can be either "m" or "km". These stand for meters and kilometers respectively.
 
 #### Output:
 
-* `distance: double` ➡ The final result obtained by calculating distance (in 'm' or 'km') between the 2 points who each have its latitude and longitude properties.
+* `distance: double` ➡ The final result obtained by calculating distance (in 'm' or 'km') between the 2 points that each have its latitude and longitude properties.
 
 #### Usage:
 ```cypher
 MATCH (n:Location), (m:Location)
-CALL distance_calculator.single(m, n, 'km') 
+CALL distance_calculator.single(m, n, 'km')
 YIELD distance
 RETURN distance;
 ```
@@ -64,8 +64,8 @@ RETURN distance;
 
 #### Input:
 
-* `start_points: List[Vertex]` ➡ Starting points to measure distance collected in a list. Required to have *lng* and *lat* properties. Must be of same size as *end_points*.
-* `end_points: List[Vertex]` ➡ Ending points to measure distance collected in a list. Required to have *lng* and *lat* properties. Must be of same size as *start_points*.
+* `start_points: List[Vertex]` ➡ Starting points to measure distance collected in a list. Required to have *lng* and *lat* properties. Must be of the same size as *end_points*.
+* `end_points: List[Vertex]` ➡ Ending points to measure distance collected in a list. Required to have *lng* and *lat* properties. Must be of the same size as *start_points*.
 * `metrics: str` ➡ Can be either "m" or "km". These stand for metres and kilometres respectively.
 
 #### Output:

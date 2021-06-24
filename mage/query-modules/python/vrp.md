@@ -4,7 +4,7 @@ title: vrp
 sidebar_label: vrp
 ---
 
-import Tabs from '@theme/Tabs'; 
+import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 export const Highlight = ({children, color}) => (
@@ -24,7 +24,7 @@ export const Highlight = ({children, color}) => (
 
 ## Abstract
 
-VRP or **Vehicle Routing problem** is a generalization of the *Travelling Salesman Problem*. The goal of the problem is to find the shortest route that visits each node once, starting and finishing from the same node, called a depot, while using a fleet of vehicles. Each vehicle does not need to be at every location, it is enough that every node is visited by at least one vehicle. The problem is *NP-hard* in optimization, and therefore methods such as constraint programming, approximations or heuristics are a good approach for solving. The current implementation of VRP includes constraint programming with *GEKKO* solver which works with 1 depot and an arbitrary number of vehicles. Algorithm uses the distance calculator to determine the distance between driving points, and works only with geographical locations, meaning each node needs to have its *lat* and *lng* property.
+VRP or **Vehicle Routing problem** is a generalization of the *Travelling Salesman Problem*. The goal of the problem is to find the shortest route that visits each node once, starting and finishing from the same node, called a depot, while using a fleet of vehicles. Each vehicle does not need to be at every location, it is enough that every node is visited by at least one vehicle. The problem is *NP-hard* in optimization, and therefore methods such as constraint programming, approximations or heuristics are a good approach for solving. The current implementation of VRP includes constraint programming with *GEKKO* solver which works with 1 depot and an arbitrary number of vehicles. The algorithm uses the distance calculator to determine the distance between driving points, and works only with geographical locations, meaning each node needs to have its *lat* and *lng* property.
 
 ```cypher
 (location:Location {lat: 44.1194, lng: 15.2314})
@@ -156,5 +156,5 @@ RETURN n, r, m;
 +------------------------------------------+------------------------------------------+------------------------------------------+
 ```
   </TabItem>
-  
+
 </Tabs>

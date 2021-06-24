@@ -4,7 +4,7 @@ title: tsp
 sidebar_label: tsp
 ---
 
-import Tabs from '@theme/Tabs'; 
+import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 export const Highlight = ({children, color}) => (
@@ -24,7 +24,7 @@ export const Highlight = ({children, color}) => (
 
 ## Abstract
 
-TSP or "Travelling salesman problem" is one of the well known problems in graph theory. Goal of the problem is to find the shortest route that visits each node once, starting and finishing from the same node, given the distance between each one of them. It is NP-hard problem in optimization and therefore there exists no exact solution. Here implemented is trivial, *greedy* and *k-approx* methods that find the solution within a *k-bound* of optimal one. That means that solution is not going to be more than *k* times worse than the best possible. Algorithm uses the distance calculator to determine the distance between points, and works only with geographical locations, meaning each node needs to have its *lat* and *lng* property.
+TSP or "Travelling salesman problem" is one of the well-known problems in graph theory. The goal of the problem is to find the shortest route that visits each node once, starting and finishing from the same node, given the distance between each one of them. It is an NP-hard problem in optimization and therefore there exists no exact solution. Here implemented are trivial, *greedy* and *k-approx* methods that find the solution within a *k-bound* of the optimal one. That means that solution is not going to be more than *k* times worse than the best possible. The algorithm uses the distance calculator to determine the distance between points, and works only with geographical locations, meaning each node needs to have its *lat* and *lng* property.
 
 ```cypher
 (location:Location {lat: 44.1194, lng: 15.2314})

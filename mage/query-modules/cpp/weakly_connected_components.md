@@ -4,7 +4,7 @@ title: weakly_connected_components
 sidebar_label: weakly_connected_components
 ---
 
-import Tabs from '@theme/Tabs'; 
+import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 export const Highlight = ({children, color}) => (
@@ -24,10 +24,10 @@ export const Highlight = ({children, color}) => (
 
 ## Algorithm
 
-First analysis that someone would like to do on graph is usually search for disconnected components.
-Algorithm implemented within this module does exactly that, it searches for different components of 
-the graph. Within component, nodes have connections toward each other, while between components there
-is no edge that connects nodes from separate components. 
+The first analysis that is most often run on a graph is usually a search for disconnected components.
+The algorithm implemented within this module does exactly that, it searches for different components of
+the graph. Within components, nodes have connections toward each other, while between components there
+is no edge that connects nodes from separate components.
 
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |
@@ -48,7 +48,7 @@ is no edge that connects nodes from separate components.
 
 #### Usage:
 ```cypher
-CALL weakly_connected_components.get() 
+CALL weakly_connected_components.get()
 YIELD node, component_id;
 ```
 
@@ -87,7 +87,7 @@ MERGE (a:Node {id: 3}) MERGE (b:Node {id: 5}) CREATE (a)-[:RELATION]->(b);
   <TabItem value="run">
 
 ```cypher
-CALL weakly_connected_components.get() 
+CALL weakly_connected_components.get()
 YIELD node, component_id;
 ```
 
