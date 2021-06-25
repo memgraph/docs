@@ -4,7 +4,7 @@ title: betweenness_centrality
 sidebar_label: betweenness_centrality
 ---
 
-import Tabs from '@theme/Tabs'; 
+import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 export const Highlight = ({children, color}) => (
@@ -42,7 +42,7 @@ Centrality analysis provides information about the node’s importance for an in
 
 #### Input:
 
-* `directed: bool(True)` ➡ If `False` the direction of the edges is ignored 
+* `directed: bool(True)` ➡ If `False` the direction of the edges is ignored
 * `normalized: bool(True)` ➡  If `True` the betweenness values are normalized by `2/((n-1)(n-2))` for graphs, and `1/((n-1)(n-2))` for directed graphs where `n` is the number of nodes.
 * `threads: Integer(number of concurrent threads supported by the implementation)` ➡  The number of threads used to calculate betweenness centrality.
 
@@ -73,7 +73,7 @@ YIELD node, betweeenness_centrality;
 }>
   <TabItem value="visualization">
 
-  <img src="https://i.imgur.com/IFIQoJ2.png"/>
+  <img src="/mage/data/query-modules/cpp/betweenness-centrality/betweenness-centrality-1.png"/>
 
   </TabItem>
 
@@ -82,19 +82,19 @@ YIELD node, betweeenness_centrality;
 
 ```cypher
 MERGE (a:Node {id: 0}) MERGE (b:Node {id: 1}) CREATE (a)-[:RELATION]->(b);
-MERGE (a:Node {id: 1}) MERGE (b:Node {id: 2}) CREATE (a)-[:RELATION]->(b);     
-MERGE (a:Node {id: 3}) MERGE (b:Node {id: 1}) CREATE (a)-[:RELATION]->(b); 
+MERGE (a:Node {id: 1}) MERGE (b:Node {id: 2}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 3}) MERGE (b:Node {id: 1}) CREATE (a)-[:RELATION]->(b);
 MERGE (a:Node {id: 4}) MERGE (b:Node {id: 5}) CREATE (a)-[:RELATION]->(b);
-MERGE (a:Node {id: 5}) MERGE (b:Node {id: 6}) CREATE (a)-[:RELATION]->(b);     
-MERGE (a:Node {id: 7}) MERGE (b:Node {id: 5}) CREATE (a)-[:RELATION]->(b); 
+MERGE (a:Node {id: 5}) MERGE (b:Node {id: 6}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 7}) MERGE (b:Node {id: 5}) CREATE (a)-[:RELATION]->(b);
 MERGE (a:Node {id: 8}) MERGE (b:Node {id: 9}) CREATE (a)-[:RELATION]->(b);
-MERGE (a:Node {id: 9}) MERGE (b:Node {id: 10}) CREATE (a)-[:RELATION]->(b);     
-MERGE (a:Node {id: 11}) MERGE (b:Node {id: 9}) CREATE (a)-[:RELATION]->(b);    
+MERGE (a:Node {id: 9}) MERGE (b:Node {id: 10}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 11}) MERGE (b:Node {id: 9}) CREATE (a)-[:RELATION]->(b);
 MERGE (a:Node {id: 1}) MERGE (b:Node {id: 5}) CREATE (a)-[:RELATION]->(b);
-MERGE (a:Node {id: 5}) MERGE (b:Node {id: 9}) CREATE (a)-[:RELATION]->(b); 
+MERGE (a:Node {id: 5}) MERGE (b:Node {id: 9}) CREATE (a)-[:RELATION]->(b);
 MERGE (a:Node {id: 2}) MERGE (b:Node {id: 4}) CREATE (a)-[:RELATION]->(b);
 MERGE (a:Node {id: 6}) MERGE (b:Node {id: 11}) CREATE (a)-[:RELATION]->(b);
-MERGE (a:Node {id: 3}) MERGE (b:Node {id: 8}) CREATE (a)-[:RELATION]->(b);      
+MERGE (a:Node {id: 3}) MERGE (b:Node {id: 8}) CREATE (a)-[:RELATION]->(b);
 ```
 
   </TabItem>

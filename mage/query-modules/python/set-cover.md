@@ -1,10 +1,10 @@
 ---
 id: set-cover
-title: The set_cover module
+title: set_cover
 sidebar_label: set_cover
 ---
 
-import Tabs from '@theme/Tabs'; 
+import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 export const Highlight = ({children, color}) => (
@@ -25,7 +25,7 @@ export const Highlight = ({children, color}) => (
 ## Abstract
 
 **The Set Cover** problem is one of the problems in graph theory that tries to solve the least possible set of sets that covers all elements inside those sets. Given a set of *n* elements, and a collection of *m* sets containing them, the algorithm tries to identify the **smallest sub-collection** of sets whose union equal to all the elements.
-It is *NP-complete*, however solvable with techniques such as constraint programming. The current algorithm uses *GEKKO* optimizer as a constraint programming solver. 
+It is *NP-complete*, however solvable with techniques such as constraint programming. The current algorithm uses *GEKKO* optimizer as a constraint programming solver.
 
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |
@@ -50,8 +50,8 @@ The input itself represents an *element-set* pair with each row of the lists.
 
 #### Usage
 
-```cypher 
-CALL set_cover.cp_solve([(:Point), (:Point)], [(:Set), (:Set)]) 
+```cypher
+CALL set_cover.cp_solve([(:Point), (:Point)], [(:Set), (:Set)])
 YIELD containing_set;
 ```
 
@@ -69,7 +69,7 @@ YIELD containing_set;
 }>
   <TabItem value="visualization">
 
-  <img src="https://i.imgur.com/0F1pYTh.png"/>
+  <img src="/mage/data/query-modules/python/set-cover/set-cover-1.png"/>
 
   </TabItem>
 
@@ -115,7 +115,7 @@ CREATE (e)-[:LIVES_IN]->(s);
 
   <TabItem value="run">
 
-```cypher 
+```cypher
 MATCH (e:AnimalSpecies)-[l:LIVES_IN]-(s:NationalPark)
 WITH collect(e) AS animal_list, collect(s) AS park_list
 CALL set_cover.cp_solve(animal_list, park_list)
@@ -129,7 +129,7 @@ RETURN animal, l, national_park;
 
   <TabItem value="result">
 
-  <img src="https://i.imgur.com/zyodcLG.png"/>
+  <img src="/mage/data/query-modules/python/set-cover/set-cover-2.png"/>
 
   </TabItem>
 
@@ -150,7 +150,7 @@ The input itself represents an *element-set* pair with each row of the lists.
 
 #### Usage
 
-```cypher 
-CALL set_cover.greedy([(:Point), (:Point)], [(:Set), (:Set)]) 
+```cypher
+CALL set_cover.greedy([(:Point), (:Point)], [(:Set), (:Set)])
 YIELD containing_set;
 ```

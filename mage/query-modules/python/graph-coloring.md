@@ -4,7 +4,7 @@ title: graph_coloring
 sidebar_label: graph_coloring
 ---
 
-import Tabs from '@theme/Tabs'; 
+import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 export const Highlight = ({children, color}) => (
@@ -49,7 +49,7 @@ Changes made in one iteration may not be permanent if they don’t improve the s
 
 #### Input:
 
-* `parameters: Dict[str, Any]({})` ➡ A dictionary that specifies the algorithm configuration. Configuration parameters are explained in the table below. 
+* `parameters: Dict[str, Any]({})` ➡ A dictionary that specifies the algorithm configuration. Configuration parameters are explained in the table below.
 * `edge_property: str(weight)` ➡ Edge property that stores the edge weight. Any edge attribute not present defaults to 1.
 
 
@@ -70,7 +70,7 @@ YIELD node, color;
 #### Input:
 * `vertices: List[Vertex]` ➡ List of vertices in the subgraph.
 * `edges: List[Edge]` ➡ List of edges in the subgraph.
-* `parameters: Dict[str, Any]({})` ➡ A dictionary that specifies the algorithm configuration. Configuration parameters are explained in the table below. 
+* `parameters: Dict[str, Any]({})` ➡ A dictionary that specifies the algorithm configuration. Configuration parameters are explained in the table below.
 * `edge_property: str(weight)` ➡ Edge property that stores the edge weight. Any edge attribute not present defaults to 1.
 
 
@@ -132,7 +132,7 @@ YIELD color, node;
 }>
   <TabItem value="visualization">
 
-  <img src="https://i.imgur.com/GpFsl2z.png"/>
+  <img src="/mage/data/query-modules/python/graph-coloring/graph-coloring-1.png"/>
 
   </TabItem>
 
@@ -154,7 +154,7 @@ MERGE (a:Node {id: 6}) MERGE (b:Node {id: 8}) CREATE (a)-[:RELATION]->(b);
 MERGE (a:Node {id: 0}) MERGE (b:Node {id: 8}) CREATE (a)-[:RELATION]->(b);
 MERGE (a:Node {id: 2}) MERGE (b:Node {id: 4}) CREATE (a)-[:RELATION]->(b);
 MERGE (a:Node {id: 1}) MERGE (b:Node {id: 10}) CREATE (a)-[:RELATION]->(b);
-MERGE (a:Node {id: 10}) MERGE (b:Node {id: 7}) CREATE (a)-[:RELATION]->(b);     
+MERGE (a:Node {id: 10}) MERGE (b:Node {id: 7}) CREATE (a)-[:RELATION]->(b);
 ```
 
   </TabItem>

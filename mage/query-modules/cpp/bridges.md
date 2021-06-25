@@ -63,7 +63,7 @@ YIELD node_from, node_to;
 }>
   <TabItem value="visualization">
 
-  <img src="https://i.imgur.com/rKDQ5cr.png"/>
+  <img src="/mage/data/query-modules/cpp/bridges/bridges-1.png"/>
 
   </TabItem>
 

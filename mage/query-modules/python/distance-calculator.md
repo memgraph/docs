@@ -1,6 +1,6 @@
 ---
 id: distance-calculator
-title: The distance_calculator module
+title: distance_calculator
 sidebar_label: distance_calculator
 ---
 
@@ -94,7 +94,7 @@ RETURN distances;
 }>
   <TabItem value="visualization">
 
-  <img src="https://i.imgur.com/WHLTown.png"/>
+  <img src="/mage/data/query-modules/python/distance-calculator/distance-calculator-1.png"/>
 
   </TabItem>
 

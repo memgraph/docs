@@ -1,6 +1,6 @@
 ---
 id: graph-analyzer
-title: The graph_analyzer module
+title: graph_analyzer
 sidebar_label: graph_analyzer
 ---
 
@@ -107,7 +107,7 @@ RETURN name, value;
 }>
   <TabItem value="visualization">
 
-  <img src="https://i.imgur.com/gbIcFPc.png"/>
+  <img src="/mage/data/query-modules/python/graph-analyzer/graph-analyzer-1.png"/>
 
   </TabItem>
 

@@ -22,7 +22,7 @@ export const Highlight = ({children, color}) => (
 [![docs-source](https://img.shields.io/badge/source-weakly_connected_components-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/cpp/connectivity_module/connectivity_module.cpp)
 
 
-## Algorithm
+## Abstract
 
 The first analysis that is most often run on a graph is usually a search for disconnected components.
 The algorithm implemented within this module does exactly that, it searches for different components of
@@ -66,7 +66,7 @@ YIELD node, component_id;
 }>
   <TabItem value="visualization">
 
-  <img src="https://i.imgur.com/TB0IAkZ.png"/>
+  <img src="/mage/data/query-modules/cpp/weakly-connected-components/weakly-connected-components-1.png"/>
 
   </TabItem>
 

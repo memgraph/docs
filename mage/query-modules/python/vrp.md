@@ -76,7 +76,7 @@ CALL vrp.route(d) YIELD from_vertex, to_vertex, vehicle_id;
   ]}>
   <TabItem value="visualization">
 
-  <img src="https://i.imgur.com/BglFaKM.png"/>
+  <img src="/mage/data/query-modules/python/vrp/vrp-1.png"/>
 
   </TabItem>
 
@@ -113,7 +113,7 @@ RETURN n, r, m;
 
   <TabItem value="result-graph">
 
-  <img src="https://i.imgur.com/VowLxaO.png"/>
+  <img src="/mage/data/query-modules/python/vrp/vrp-2.png"/>
 
   </TabItem>
 
@@ -132,7 +132,7 @@ RETURN n, r, m;
 
   <TabItem value="result_2_vehicles">
 
-  <img src="https://i.imgur.com/2He3kiQ.png"/>
+  <img src="/mage/data/query-modules/python/vrp/vrp-3.png"/>
 
   </TabItem>
 

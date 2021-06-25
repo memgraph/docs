@@ -85,7 +85,7 @@ YIELD node, rank;
 }>
   <TabItem value="visualization">
 
-  <img src="https://i.imgur.com/bu5tmtK.png"/>
+  <img src="/mage/data/query-modules/python/pagerank/pagerank-1.png"/>
 
   </TabItem>
 

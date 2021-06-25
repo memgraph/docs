@@ -69,7 +69,7 @@ YIELD bcc_id, node_from, node_to;
 }>
   <TabItem value="visualization">
 
-  <img src="https://i.imgur.com/gbIcFPc.png"/>
+  <img src="/mage/data/query-modules/cpp/biconnected-components/biconnected-components-1.png"/>
 
   </TabItem>
 

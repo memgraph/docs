@@ -65,7 +65,7 @@ YIELD cycle_id, node;
 }>
   <TabItem value="visualization">
 
-  <img src="https://i.imgur.com/wsWvsbh.png"/>
+  <img src="/mage/data/query-modules/cpp/cycles/cycles-1.png"/>
 
   </TabItem>
 
