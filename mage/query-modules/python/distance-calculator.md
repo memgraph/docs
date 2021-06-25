@@ -94,7 +94,7 @@ RETURN distances;
 }>
   <TabItem value="visualization">
 
-  <img src="/mage/data/query-modules/python/distance-calculator/distance-calculator-1.png"/>
+  <img src={require('../../data/query-modules/python/distance-calculator/distance-calculator-1.png').default}/>
 
   </TabItem>
 

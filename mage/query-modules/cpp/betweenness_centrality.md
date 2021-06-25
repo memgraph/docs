@@ -73,7 +73,7 @@ YIELD node, betweeenness_centrality;
 }>
   <TabItem value="visualization">
 
-  <img src="/mage/data/query-modules/cpp/betweenness-centrality/betweenness-centrality-1.png"/>
+  <img src={require('../../data/query-modules/cpp/betweenness-centrality/betweenness-centrality-1.png').default}/>
 
   </TabItem>
 

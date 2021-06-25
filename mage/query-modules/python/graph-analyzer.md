@@ -107,7 +107,7 @@ RETURN name, value;
 }>
   <TabItem value="visualization">
 
-  <img src="/mage/data/query-modules/python/graph-analyzer/graph-analyzer-1.png"/>
+  <img src={require('../../data/query-modules/python/graph-analyzer/graph-analyzer-1.png').default}/>
 
   </TabItem>
 

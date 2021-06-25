@@ -66,7 +66,7 @@ YIELD node, component_id;
 }>
   <TabItem value="visualization">
 
-  <img src="/mage/data/query-modules/cpp/weakly-connected-components/weakly-connected-components-1.png"/>
+  <img src={require('../../data/query-modules/cpp/weakly-connected-components/weakly-connected-components-1.png').default}/>
 
   </TabItem>
 

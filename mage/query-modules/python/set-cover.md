@@ -69,7 +69,7 @@ YIELD containing_set;
 }>
   <TabItem value="visualization">
 
-  <img src="/mage/data/query-modules/python/set-cover/set-cover-1.png"/>
+  <img src={require('../../data/query-modules/python/set-cover/set-cover-1.png').default}/>
 
   </TabItem>
 
@@ -129,7 +129,7 @@ RETURN animal, l, national_park;
 
   <TabItem value="result">
 
-  <img src="/mage/data/query-modules/python/set-cover/set-cover-2.png"/>
+  <img src={require('../../data/query-modules/python/set-cover/set-cover-2.png').default}/>
 
   </TabItem>
 

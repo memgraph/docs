@@ -62,7 +62,7 @@ YIELD maximum_bipartite_matching;
 }>
   <TabItem value="visualization">
 
-  <img src="/mage/data/query-modules/cpp/bipartite-matching/bipartite-matching-1.png"/>
+  <img src={require('../../data/query-modules/cpp/bipartite-matching/bipartite-matching-1.png').default}/>
 
   </TabItem>
 
