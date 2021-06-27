@@ -29,7 +29,7 @@ Let's jump in and connect a simple program to Memgraph.
 **2.** Create a `requirements.txt` file which will contain a list of items to be installed using **pip**. Leave it empty for the purposes of this guide.<br />
 **3.** Create a new file in the project root directory `/memgraph_python` and name it  `Dockerfile`. Add the following code to it:
 
-```Dockerfile
+```dockerfile
 # Set base image (host OS)
 FROM python:3.8
 
@@ -69,7 +69,7 @@ CMD [ "python", "./program.py" ]
 **4.** Create a directory for your source code, for example, `/src` and position yourself in it.<br />
 **5.** To make the actual program, create a new Python script. Name it `program.py` and add the following code:
 
-```Python
+```python
 import mgclient
 
 # Make a connection to the database
