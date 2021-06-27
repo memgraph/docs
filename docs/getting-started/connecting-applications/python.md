@@ -21,12 +21,12 @@ To follow this guide, you will need:
 ## Basic setup
 
 We'll be using a **Dockerized Python program** to demonstrate how to connect to a running Memgraph database instance.
-If you don't wish to use Docker, the steps might be slightly different, but the code is most likely the same or very similar.<br />  
+If you don't wish to use Docker, the steps might be slightly different, but the code is most likely the same or very similar.<br />
 
 Let's jump in and connect a simple program to Memgraph.
 
-**1.** Create a new directory for your program, for example `/memgraph_python` and position yourself in it.<br />  
-**2.** Create a `requirements.txt` file which will contain a list of items to be installed using **pip**. Leave it empty for the purposes of this guide.<br />  
+**1.** Create a new directory for your program, for example `/memgraph_python` and position yourself in it.<br />
+**2.** Create a `requirements.txt` file which will contain a list of items to be installed using **pip**. Leave it empty for the purposes of this guide.<br />
 **3.** Create a new file in the project root directory `/memgraph_python` and name it  `Dockerfile`. Add the following code to it:
 
 ```Dockerfile
@@ -41,7 +41,6 @@ RUN apt-get update && \
 RUN apt-get install -y git cmake make gcc g++ libssl-dev && \
   git clone https://github.com/memgraph/mgclient.git /mgclient && \
   cd mgclient && \
-  git checkout dd5dcaaed5d7c8b275fbfd5d2ecbfc5006fa5826 && \
   mkdir build && \
   cd build && \
   cmake .. && \
@@ -49,10 +48,7 @@ RUN apt-get install -y git cmake make gcc g++ libssl-dev && \
   make install
 
 # Install pymgclient
-RUN git clone https://github.com/memgraph/pymgclient /pymgclient && \
-  cd pymgclient && \
-  python3 setup.py build && \
-  python3 setup.py install
+RUN pip install pymgclient
 
 # Set the working directory in the container
 WORKDIR /code
@@ -70,7 +66,7 @@ COPY src/ .
 CMD [ "python", "./program.py" ]
 ```
 
-**4.** Create a directory for your source code, for example, `/src` and position yourself in it.<br />  
+**4.** Create a directory for your source code, for example, `/src` and position yourself in it.<br />
 **5.** To make the actual program, create a new Python script. Name it `program.py` and add the following code:
 
 ```Python
@@ -130,7 +126,7 @@ Node 1: Hello, World!
 
 ## Where to next?
 
-For real-world examples of how to use Memgraph, we suggest you take a look at the **[Tutorials](/tutorials/tutorials.md)** page. 
+For real-world examples of how to use Memgraph, we suggest you take a look at the **[Tutorials](/tutorials/tutorials.md)** page.
 You can also browse through the **[Database functionalities](/database-functionalities/database-functionalities.md)** section to get an overview of all the functionalities Memgraph offers.
 
 ## Getting help
