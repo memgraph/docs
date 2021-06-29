@@ -1,101 +1,167 @@
 ---
 id: graph-analyzer
-title: The graph_analyzer module
+title: graph_analyzer
 sidebar_label: graph_analyzer
 ---
 
-This module offers insights about the stored graph or a subgraph.
 
-## `analyze(context, analyses)`
-Shows graph information. In case of multiple results, only the first 10 will be
-shown.
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
+export const Highlight = ({children, color}) => (
+  <span
+    style={{
+      backgroundColor: color,
+      borderRadius: '2px',
+      color: '#fff',
+      padding: '0.2rem',
+    }}>
+    {children}
+  </span>
+);
 
-**Parameters**
-
-    
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
-
-
-* **analyses** (*mgp.Nullable[List[str]]*) – (default=None) A list of graph
-    analyses to run. If NULL, all available analyses are run.
-
-
-
-**Returns**
-
-Information about the graph.
+[![docs-source](https://img.shields.io/badge/source-graph_analyzer-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/graph_analyzer.py)
 
 
+## Abstract
 
-**Return type**
+The first thing someone should focus on when working with graphs is getting deep analytics of the current state. That is what this module is doing. By using the power of NetworkX, various different graph properties are extracted. This module has the ability to run on a subgraph if a subgraph of nodes is provided as input. Here is a list of analytics that it uses:
 
-mgp.Record(name=str, value=str)
+* **nodes**: Number of nodes
+* **edges**: Number of edges
+* **bridges**: Number of bridges
+* **articulation_points**: Number of articulation points
+* **avg_degree**: Average degree
+* **sorted_nodes_degree**: Sorted nodes degree
+* **self_loops**: Self loops
+* **is_bipartite**: Is bipartite
+* **is_plannar**: Is planar
+* **is_biconnected**: Is biconnected
+* **is_weakly_connected**: Is weakly connected
+* **number_of_weakly_components**: Number of weakly connected components
+* **is_strongly_connected**: Is strongly connected
+* **strongly_components**: Number of strongly connected components
+* **is_dag**: Is directed acyclic graph (DAG)
+* **is_eulerian**: Is eulerian
+* **is_forest**: Is forest
+* **is_tree**: Is tree
+
+| Trait               | Value                                                 |
+| ------------------- | ----------------------------------------------------- |
+| **Module type**     | <Highlight color="#FB6E00">**module**</Highlight>     |
+| **Implementation**  | <Highlight color="#FB6E00">**Python**</Highlight>     |
+| **Graph direction** | <Highlight color="#FB6E00">**undirected**</Highlight> |
+| **Edge weights**    | <Highlight color="#FB6E00">**unweighted**</Highlight> |
+| **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight> |
+
+## Procedures
+
+### `analyze(analyses)`
+
+#### Input:
+
+* `analyses: List[str](NULL)` ➡ List of analytics names to be fetched. If provided with NULL, the whole set of analytics will be included.
+
+#### Output:
+
+* `name: str` ➡ The name of the analytics
+* `value: str` ➡ Analytics value, stored as a string
+
+#### Usage:
+```cypher
+CALL graph_analyzer.analyze() YIELD *;
+```
+
+### `analyze_subgraph(vertices, edges, analyses)`
+
+#### Input:
+
+* `vertices: List[Vertex]` ➡ Subset of vertices within a graph.
+* `edges: List[Edge]` ➡ Subset of edges in a graph for which analytics will take place.
+* `analyses: List[str](NULL)` ➡ List of analytics names to be fetched. If provided with NULL, the whole set of analytics will be included.
+
+#### Output:
+
+* `name: str` ➡ The name of the analytics
+* `value: str` ➡ Analytics value, stored as a string
+
+#### Usage:
+```cypher
+MATCH (n)-[e]-(m)
+WITH COLLECT(n) AS nodes_subset, COLLECT(e) AS edges_subset
+CALL graph_analyzer.analyze(nodes_subset, edges_subset) YIELD name, value
+RETURN name, value;
+```
+
+## Example
+
+<Tabs
+  groupId="example"
+  defaultValue="visualization"
+  values={[
+    {label: 'Step 1: Input graph', value: 'visualization'},
+    {label: 'Step 2: Cypher load commands', value: 'cypher'},
+    {label: 'Step 3: Running command', value: 'run'},
+    {label: 'Step 4: Results', value: 'result'},
+  ]
+}>
+  <TabItem value="visualization">
+
+  <img src={require('../../data/query-modules/python/graph-analyzer/graph-analyzer-1.png').default}/>
+
+  </TabItem>
 
 
-### Examples
+  <TabItem value="cypher">
 
-Return all information:
+```cypher
+MERGE (a:Node {id: 0}) MERGE (b:Node {id: 1}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 1}) MERGE (b:Node {id: 2}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 1}) MERGE (b:Node {id: 3}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 2}) MERGE (b:Node {id: 3}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 2}) MERGE (b:Node {id: 4}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 3}) MERGE (b:Node {id: 4}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 1}) MERGE (b:Node {id: 5}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 0}) MERGE (b:Node {id: 6}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 5}) MERGE (b:Node {id: 6}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 5}) MERGE (b:Node {id: 7}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 5}) MERGE (b:Node {id: 8}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 7}) MERGE (b:Node {id: 8}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 8}) MERGE (b:Node {id: 9}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 10}) MERGE (b:Node {id: 11}) CREATE (a)-[:RELATION]->(b);
+```
 
-    CALL graph_analyzer.analyze() YIELD * ;
+  </TabItem>
 
-Call with parameter:
+  <TabItem value="run">
 
-    CALL graph_analyzer.analyze([‘nodes’, ‘edges’]) YIELD * ;
+```cypher
+CALL graph_analyzer.analyze([
+    "nodes", "edges", "bridges", "articulation_points",
+    "avg_degree", "is_dag", "is_tree", "strongly_components"
+    ]) YIELD *;
+```
 
-
-## `analyze_subgraph(context, vertices, edges, analyses)`
-Shows subgraph information. In case of multiple results, only the first 10 will
-be shown.
-
-
-**Parameters**
-
-    
-* **ctx** (*mgp.ProcCtx*) – The context of the procedure being executed.
-
-
-* **vertices** (*mgp.List[mgp.Vertex]*) – List of vertices in the subgraph.
-
-
-* **edges** (*mgp.List[mgp.Edge]*) – List of edges in the subgraph.
-
-
-* **analyses** (*mgp.Nullable[List[str]]*) – (default=None) A list of graph
-    analyses to run. If NULL, all available analyses are run.
-
-
-
-**Returns**
-
-Information about the subgraph.
+  </TabItem>
 
 
+  <TabItem value="result">
 
-**Return type**
+```plaintext
++-------------------------------------------+-------------------------------------------+
+| name                                      | value                                     |
++-------------------------------------------+-------------------------------------------+
+| "Number of nodes"                         | "12"                                      |
+| "Number of edges"                         | "14"                                      |
+| "Number of bridges"                       | "2"                                       |
+| "Number of articulation points"           | "3"                                       |
+| "Average degree"                          | "1.1666666666666667"                      |
+| "Is DAG"                                  | "True"                                    |
+| "Is tree"                                 | "False"                                   |
+| "Number of strongly connected components" | "12"                                      |
++-------------------------------------------+-------------------------------------------+
+```
 
-mgp.Record(name=str, value=str)
+  </TabItem>
 
-
-### Examples
-
-Return all information:
-
-    MATCH (n)-[e]->(m) WITH
-    collect(n) AS nodes,
-    collect(e) AS edges
-    CALL graph_analyzer.analyze_subgraph(nodes, edges) YIELD *
-    RETURN name, value;
-
-Call with parameter:
-
-    MATCH (n)-[e]->(m) WITH
-    collect(n) AS nodes,
-    collect(e) AS edges
-    CALL graph_analyzer.analyze_subgraph(nodes, edges, [‘nodes’, ‘edges’])
-    YIELD *
-    RETURN name, value;
-
-
-## `help()`
-Shows manual page for graph_analyzer.
+</Tabs>

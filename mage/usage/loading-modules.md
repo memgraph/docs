@@ -10,14 +10,15 @@ When started, Memgraph will **automatically attempt to load** the query modules
 from all `*.so` and `*.py` files it finds in the default
 `/usr/lib/memgraph/query_modules` directory. The `*.so` modules are written
 using the C API and the `*.py` modules are written using the Python API. Each
-file corresponds to one query module. The names of these files will be mapped to
-the query module names. For example, `nxalg.py` will be mapped to `py_example`
+file corresponds to one query module with a bunch of different procedures within them. 
+The names of these files will be mapped to the query module names. For example, a procedure 
+`node_connectivity` in `nxalg.py` will be mapped to `nxalg.node_connectivity()`
 in the Cypher query language.
 
 If you want to change the directory in which Memgraph searches for query
 modules, just change the `--query-modules-directory` flag in the main
 configuration file (`/etc/memgraph/memgraph.conf`) or supply it as a
-command-line parameter (e.g. when using Docker).
+command-line parameter when running Memgraph (e.g. when using Docker).
 
 ### Utility query module
 
