@@ -3,3 +3,7 @@
     padding: 0 16px;
     margin: 0 auto;
 }
+
+.mgContainer.small {
+    max-width: 796px;
+}
