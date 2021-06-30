@@ -24,3 +24,21 @@
     row-gap: 24px;
     grid-template-columns: 140px 140px 140px 140px 140px;
 }
+
+@media (max-width: 796px) {
+    .connectToMemgraph__grid {
+        grid-template-columns: 140px 140px 140px 140px;
+    }
+}
+
+@media (max-width: 660px) {
+    .connectToMemgraph__grid {
+        grid-template-columns: 140px 140px 140px;
+    }
+}
+
+@media (max-width: 480px) {
+    .connectToMemgraph__grid {
+        grid-template-columns: 140px 140px;
+    }
+}

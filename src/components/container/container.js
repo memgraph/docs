@@ -8,8 +8,14 @@ export default function Container(props) {
         children,
     } = props;
 
+    let sizeClass = null;
+
+    if (size === 'small') {
+        sizeClass = styles.mgContainer__small;
+    }
+
     return (
-        <div className={`${styles.mgContainer} ${size}`}>
+        <div className={`${styles.mgContainer} ${sizeClass}`}>
             {children}
         </div>
     );

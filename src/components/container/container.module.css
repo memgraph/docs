@@ -4,6 +4,6 @@
     margin: 0 auto;
 }
 
-.mgContainer.small {
+.mgContainer__small {
     max-width: 796px;
 }
