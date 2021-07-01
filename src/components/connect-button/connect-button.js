@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './connect-button.module.css';
+import ImageSwitcher from "../ImageSwitcher";
 
 export default function ConnectButton(props) {
     const {
@@ -7,13 +8,15 @@ export default function ConnectButton(props) {
         url,
         img,
         imgActive,
+        imgDark,
+        imgDarkActive,
     } = props;
 
     return (
         <a href={url} className={styles.connectButton}
            style={styles}>
-            <img src={img} alt={title} className={styles.connectButton__img} />
-            <img src={imgActive} alt={title} className={styles.connectButton__imgActive} />
+            <ImageSwitcher className={styles.connectButton__img} lightImageSrc={img} darkImageSrc={imgDark} />
+            <ImageSwitcher lightImageSrc={imgActive} darkImageSrc={imgDarkActive} alt={title} className={styles.connectButton__imgActive} />
         </a>
     );
 }

@@ -12,87 +12,115 @@ function ConnectToMemgraph() {
     const {siteConfig: {customFields = {}, tagline} = {}} = context;
     const title = "Connect to Memgraph";
 
+    const imgFolder = 'img/connect-page/';
+
     const viaDriver = [
         {
             title: 'Python',
-            img: useBaseUrl('img/connect-page/python-unselected.png'),
-            imgActive: useBaseUrl('img/connect-page/python-selected.png'),
+            img: useBaseUrl(imgFolder + 'python-unselected.png'),
+            imgActive: useBaseUrl(imgFolder + 'python-selected.png'),
+            imgDark: useBaseUrl(imgFolder + 'dark/python-unselected-dm.png'),
+            imgDarkActive: useBaseUrl(imgFolder + 'python-selected.png'),
             url: useBaseUrl('memgraph/getting-started/connecting-applications/python'),
         },
         {
             title: 'C#',
-            img: useBaseUrl('img/connect-page/csharp-unselected.png'),
-            imgActive: useBaseUrl('img/connect-page/csharp-selected.png'),
+            img: useBaseUrl(imgFolder + 'csharp-unselected.png'),
+            imgActive: useBaseUrl(imgFolder + 'csharp-selected.png'),
+            imgDark: useBaseUrl(imgFolder + 'csharp-unselected.png'),
+            imgDarkActive: useBaseUrl(imgFolder + 'csharp-selected.png'),
             url: useBaseUrl('memgraph/getting-started/connecting-applications/c-sharp'),
         },
         {
             title: 'Rust',
-            img: useBaseUrl('img/connect-page/rust-unselected.png'),
-            imgActive: useBaseUrl('img/connect-page/rust-selected.png'),
+            img: useBaseUrl(imgFolder + 'rust-unselected.png'),
+            imgActive: useBaseUrl(imgFolder + 'rust-selected.png'),
+            imgDark: useBaseUrl(imgFolder + 'dark/rust-selected-dm.png'),
+            imgDarkActive: useBaseUrl(imgFolder + 'dark/rust-unselected-dm.svg'),
             url: useBaseUrl('memgraph/getting-started/connecting-applications/rust'),
         },
         {
             title: 'Java',
-            img: useBaseUrl('img/connect-page/java-unselected.png'),
-            imgActive: useBaseUrl('img/connect-page/java-selected.png'),
+            img: useBaseUrl(imgFolder + 'java-unselected.png'),
+            imgActive: useBaseUrl(imgFolder + 'java-selected.png'),
+            imgDark: useBaseUrl(imgFolder + 'dark/java-selected-dm.svg'),
+            imgDarkActive: useBaseUrl(imgFolder + 'dark/java-unselected-dm.svg'),
             url: useBaseUrl('memgraph/getting-started/connecting-applications/java'),
         },
         {
             title: 'GoLang',
-            img: useBaseUrl('img/connect-page/golang-unselected.png'),
-            imgActive: useBaseUrl('img/connect-page/golang-selected.png'),
+            img: useBaseUrl(imgFolder + 'golang-unselected.png'),
+            imgActive: useBaseUrl(imgFolder + 'golang-selected.png'),
+            imgDark: useBaseUrl(imgFolder + 'dark/golang-selected-dm.png'),
+            imgDarkActive: useBaseUrl(imgFolder + 'dark/golang-selected-dm.png'),
             url: useBaseUrl('memgraph/getting-started/connecting-applications/go'),
         },
         {
             title: 'PHP',
-            img: useBaseUrl('img/connect-page/php-unselected.png'),
-            imgActive: useBaseUrl('img/connect-page/php-selected.png'),
+            img: useBaseUrl(imgFolder + 'php-unselected.png'),
+            imgActive: useBaseUrl(imgFolder + 'php-selected.png'),
+            imgDark: useBaseUrl(imgFolder + 'dark/php-selected-dm.png'),
+            imgDarkActive: useBaseUrl(imgFolder + 'dark/php-unselected-dm.png'),
             url: useBaseUrl('memgraph/getting-started/connecting-applications/php'),
         },
         {
             title: 'Ruby',
-            img: useBaseUrl('img/connect-page/ruby-unselected.png'),
-            imgActive: useBaseUrl('img/connect-page/ruby-selected.png'),
+            img: useBaseUrl(imgFolder + 'ruby-unselected.png'),
+            imgActive: useBaseUrl(imgFolder + 'ruby-selected.png'),
+            imgDark: useBaseUrl(imgFolder + 'dark/ruby-selected-dm.svg'),
+            imgDarkActive: useBaseUrl(imgFolder + 'dark/ruby-unselected-dm.png'),
             url: 'https://github.com/neo4jrb/neo4j'
         },
         {
             title: 'JavaScript',
-            img: useBaseUrl('img/connect-page/JS-unselected.png'),
-            imgActive: useBaseUrl('img/connect-page/JS-selected.svg'),
+            img: useBaseUrl(imgFolder + 'JS-unselected.png'),
+            imgActive: useBaseUrl(imgFolder + 'JS-selected.svg'),
+            imgDark: useBaseUrl(imgFolder + 'dark/JS-selected-dm.svg'),
+            imgDarkActive: useBaseUrl(imgFolder + 'JS-selected.svg'),
             url: useBaseUrl('memgraph/getting-started/connecting-applications/javascript'),
         },
         {
             title: 'Haskell',
-            img: useBaseUrl('img/connect-page/haskell-unselected.svg'),
-            imgActive: useBaseUrl('img/connect-page/haskell-selected.svg'),
+            img: useBaseUrl(imgFolder + 'haskell-unselected.svg'),
+            imgActive: useBaseUrl(imgFolder + 'haskell-selected.svg'),
+            imgDark: useBaseUrl(imgFolder + 'haskell-selected.svg'),
+            imgDarkActive: useBaseUrl(imgFolder + 'dark/haskell-unselected-dm.svg'),
             url: useBaseUrl('memgraph/getting-started/connecting-applications/haskell'),
         },
     ];
 
     const viaLab = {
             title: 'MemgraphLab',
-            img: useBaseUrl('img/connect-page/lab-unselected.svg'),
-            imgActive: useBaseUrl('img/connect-page/lab-selected.svg'),
+            img: useBaseUrl(imgFolder + 'lab-unselected.svg'),
+            imgActive: useBaseUrl(imgFolder + 'lab-selected.svg'),
+            imgDark: useBaseUrl(imgFolder + 'dark/lab-selected-dm.svg'),
+            imgDarkActive: useBaseUrl(imgFolder + 'dark/lab-unselected-dm.svg'),
             url: useBaseUrl('memgraph-lab/'),
         };
 
     const viaConsole = [
         {
             title: 'Windows',
-            img: useBaseUrl('img/connect-page/windows-unselected.svg'),
-            imgActive: useBaseUrl('img/connect-page/windows-selected.svg'),
+            img: useBaseUrl(imgFolder + 'windows-unselected.svg'),
+            imgActive: useBaseUrl(imgFolder + 'windows-selected.svg'),
+            imgDark: useBaseUrl(imgFolder + 'dark/windows-selected-dm.svg'),
+            imgDarkActive: useBaseUrl(imgFolder + 'dark/windows-unselected-dm.png'),
             url: useBaseUrl('memgraph/getting-started/querying#querying-using-console'),
         },
         {
             title: 'Apple',
-            img: useBaseUrl('img/connect-page/apple-unselected.svg'),
-            imgActive: useBaseUrl('img/connect-page/apple-selected.svg'),
+            img: useBaseUrl(imgFolder + 'apple-unselected.svg'),
+            imgActive: useBaseUrl(imgFolder + 'apple-selected.svg'),
+            imgDark: useBaseUrl(imgFolder + 'dark/apple-selected-dm.svg'),
+            imgDarkActive: useBaseUrl(imgFolder + 'dark/apple-unselected-dm.png'),
             url: useBaseUrl('memgraph/getting-started/querying#querying-using-console'),
         },
         {
             title: 'Linux',
-            img: useBaseUrl('img/connect-page/linux-unselected.svg'),
-            imgActive: useBaseUrl('img/connect-page/linux-selected.svg'),
+            img: useBaseUrl(imgFolder + 'linux-unselected.svg'),
+            imgActive: useBaseUrl(imgFolder + 'linux-selected.svg'),
+            imgDark: useBaseUrl(imgFolder + 'dark/linux-selected-dm.svg'),
+            imgDarkActive: useBaseUrl(imgFolder + 'dark/linux-unselected-dm.svg'),
             url: useBaseUrl('memgraph/getting-started/querying#querying-using-console'),
         }
     ];
@@ -112,7 +140,7 @@ function ConnectToMemgraph() {
                             <div className={styles.connectToMemgraph__grid}>
                                 {viaDriver.map((item, i) => {
                                     return (
-                                        <ConnectButton key={i} title={item.title} img={item.img} imgActive={item.imgActive} />
+                                        <ConnectButton key={i} title={item.title} img={item.img} imgActive={item.imgActive} imgDark={item.imgDark} imgDarkActive={item.imgDarkActive} />
                                     );
                                 })}
                             </div>
@@ -121,7 +149,7 @@ function ConnectToMemgraph() {
                         <section>
                             <h2>Connect via MemgraphLab</h2>
                             <p>What is Memgraph Lab, how it works, what to expect.</p>
-                            <ConnectButton title={viaLab.title} img={viaLab.img} imgActive={viaLab.imgActive} />
+                            <ConnectButton title={viaLab.title} img={viaLab.img} imgActive={viaLab.imgActive} imgDark={viaLab.imgDark} imgDarkActive={viaLab.imgDarkActive} />
                         </section>
 
                         <section>
@@ -130,7 +158,7 @@ function ConnectToMemgraph() {
                             <div className={styles.connectToMemgraph__grid}>
                                 {viaConsole.map((item, i) => {
                                     return (
-                                        <ConnectButton key={i} title={item.title} img={item.img} imgActive={item.imgActive} />
+                                        <ConnectButton key={i} title={item.title} img={item.img} imgActive={item.imgActive} imgDark={item.imgDark} imgDarkActive={item.imgDarkActive} />
                                     );
                                 })}
                             </div>
