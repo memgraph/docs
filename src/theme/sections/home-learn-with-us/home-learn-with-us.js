@@ -8,19 +8,19 @@ export default function HomeLearnWithUs() {
     const items = [{
         title: 'Playground',
         description: 'No downloads, installations, or registration required. Just choose a tutorial and try out Memgraph in your browser.',
-        url: 'https://memgraph.com/product',
+        url: 'https://playground.memgraph.com/',
         img: useBaseUrl('img/tutorial-playground.svg'),
     },
         {
             title: 'Tutorials',
             description: 'Select one of the many available tutorials and give it a go locally.',
-            url: 'https://memgraph.com/product/lab',
+            url: 'https://docs.memgraph.com/memgraph/tutorials/tutorials',
             img: useBaseUrl('img/tutorials-tut-img.svg'),
         },
         {
             title: 'Code with Buda',
             description: 'Watch as Memgraph’s CTO demonstrates how to use some of the most complex and powerful features.',
-            url: 'https://memgraph.com/product/cloud',
+            url: 'https://www.youtube.com/playlist?list=PL7Eotag2rRhaYDrSNcltkbtj0S3yC7h-u',
             img: useBaseUrl('img/codewbuda-img.svg'),
         }
     ];

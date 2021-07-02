@@ -11,21 +11,21 @@ export default function HomeGetInvolved() {
         {
             title: 'Developer Forum',
             urlText: 'Join',
-            url: '',
+            url: 'https://discourse.memgraph.com/',
             img: useBaseUrl('img/dev-forum.svg'),
             imgDark: useBaseUrl('img/dev-forum-dark-mode.svg'),
         },
         {
             title: 'Stack Overflow',
             urlText: 'Ask Away',
-            url: '',
+            url: 'https://stackoverflow.com/questions/tagged/memgraphdb',
             img: useBaseUrl('img/stack-overflow.svg'),
             imgDark: useBaseUrl('img/stack-overflow-dark-mode.svg'),
         },
         {
             title: 'GitHub',
             urlText: 'Explore',
-            url: '',
+            url: 'https://github.com/memgraph',
             img: useBaseUrl('img/github.svg'),
             imgDark: useBaseUrl('img/github-dark-mode.svg'),
         }
