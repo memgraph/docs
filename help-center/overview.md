@@ -1,7 +1,8 @@
 ---
-id: getting-help
-title: Getting help
-sidebar_label: Getting help
+id: overview
+title: Help Center
+sidebar_label: Help Center
+slug: /
 ---
 
 **[Frequently Asked Questions](./faq.md)** - You can visit the FAQ page to see if we already provided an answer to your inquiry.
