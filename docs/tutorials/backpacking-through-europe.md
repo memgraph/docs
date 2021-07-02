@@ -9,7 +9,7 @@ on real-world data and, by doing so, retrieve some interesting and useful
 information.
 
 We highly recommend checking out the other articles from this series which
-are listed in our [tutorial overview section](tutorials.md).
+are listed in our [tutorial overview section](/tutorials/overview.md).
 
 ## Introduction
 
@@ -45,14 +45,14 @@ edge.
 
 ## Exploring the dataset
 
-You have two options for exploring this dataset. 
-If you just want to take a look at the dataset and try out a few queries, open 
-[Memgraph Playground](https://playground.memgraph.com/) and continue with 
+You have two options for exploring this dataset.
+If you just want to take a look at the dataset and try out a few queries, open
+[Memgraph Playground](https://playground.memgraph.com/) and continue with
 the tutorial there. Note that you will not be able to execute `write` operations.
 
-On the other hand, if you would like to add changes to the dataset, download the 
-[Memgraph Lab](https://memgraph.com/product/lab) desktop application and navigate 
-to the `Datasets` tab in the sidebar. From there, choose the dataset 
+On the other hand, if you would like to add changes to the dataset, download the
+[Memgraph Lab](https://memgraph.com/product/lab) desktop application and navigate
+to the `Datasets` tab in the sidebar. From there, choose the dataset
 `Backpacking through Europe` and continue with the tutorial.
 
 ## Example queries
@@ -133,7 +133,7 @@ RETURN trip, total_cost;
 Here we used the *weight lambda* to specify the cost of expanding to the
 specified vertex using the given edge (`v.cost_per_night_USD`), and the
 *total cost* symbol to calculate the cost of the trip.
-This can be done using an edge property like in the 
+This can be done using an edge property like in the
 [Exploring the European Road Network](exploring-the-european-road-network.md)
 tutorial.
 Here we use `cost_per_night` property of the city vertex `v` as our weight.
@@ -163,7 +163,7 @@ Let's list our top 10 options sorted by the total trip cost and number of
 cities in the path.
 
 ```cypher
-MATCH path = (n:City {name: "Paris"})-[:CloseTo *3..5]-(m:City {name: "Zagreb"}) 
+MATCH path = (n:City {name: "Paris"})-[:CloseTo *3..5]-(m:City {name: "Zagreb"})
 WITH nodes(path) AS trip
 WITH extract(city in trip | [city, trip]) AS lst
 UNWIND lst AS rows

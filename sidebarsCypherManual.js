@@ -1,9 +1,14 @@
 module.exports = {
   cypher_manual: [
     'overview',
-    'reading-existing-data',
-    'writing-new-data',
-    'reading-and-writing',
+    {
+      type: 'category',
+      label: 'Clauses',
+      items: ['getting-started/reading-existing-data',
+        'getting-started/writing-new-data',
+        'getting-started/reading-and-writing',
+      ],
+    },
     'functions',
     {
       type: 'category',
