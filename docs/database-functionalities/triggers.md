@@ -8,7 +8,7 @@ This article is a part of a series intended to showcase Memgraph's features
 and bring the user up to speed on developing with Memgraph.
 
 We highly recommend checking out the other articles from this series which
-are listed in our [database functionalities section](./database-functionalities.md).
+are listed in our [database functionalities section](/database-functionalities/overview.md).
 
 ## Introduction
 
@@ -291,6 +291,6 @@ SHOW TRIGGERS;
 ```
 which returns results in the following format:
 
-|trigger name| statement | event type | phase | 
+|trigger name| statement | event type | phase |
 |----------- |---------- | -----------| ------|
 | name of the trigger| statement which the trigger executes | event which triggers the statement | phase at which the trigger executes its statement |

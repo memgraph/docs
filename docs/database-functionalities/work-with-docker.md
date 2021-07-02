@@ -55,10 +55,10 @@ docker run -p 7687:7687 \
 ```
 
 At this point, Memgraph is ready for you to [submit
-queries](/getting-started/querying/querying.md).
+queries](/connect-to-memgraph/overview.md).
 
 For an explanation of how to write custom query modules, follow our [how-to
-guide](/database-functionalities/query-modules/implement-query-modules.md).
+guide](/reference-guide/query-modules/implement-query-modules.md).
 
 ## Find the IP address of a Docker Container {#docker-container-ip-address}
 
@@ -113,7 +113,7 @@ docker inspect -f "{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}" 9397
 
 The command above will yield the IP address that should be used when connecting
 to Memgraph via **Memgraph Lab** or **mgconsole** as described in
-the [querying](/getting-started/querying/querying.md) section. Just replace
+the [querying](/connect-to-memgraph/overview.md) section. Just replace
 `HOST` from the following command with the appropriate IP address:
 
 ```console
@@ -220,8 +220,8 @@ Now that we have access to our query modules, we can go on and run them.
 There are three ways to execute queries and procedures in Memgraph:
 
 * using the command-line tool, `mgconsole`, which comes with Memgraph,
-  ([Querying](../getting-started/querying/querying.md))
-* [programmatically](../getting-started/connecting-applications/connecting-applications.md)
+  ([Querying](/connect-to-memgraph/overview.md))
+* [programmatically](/connect-to-memgraph/methods/drivers.md)
   by using the Bolt protocol,
 * from **Memgraph Lab**, a visual user interface that can be downloaded
   [here](https://memgraph.com/download).
@@ -269,12 +269,12 @@ useful if we want the procedure to work on data the query is producing.
 
 With this, your developing environment is ready and you are able to easily
 implement and run your own query modules. Check out our [Reference
-Guide](/reference-guide/query-modules/query-modules.md) to see which Query
+Guide](/reference-guide/query-modules/overview.md) to see which Query
 Modules are included in Memgraph.
 
 ## Where to next?
 
 To learn more about Memgraph's functionalities, visit the **[Reference
-guide](/reference-guide/reference-guide.md)**. For real-world examples of how to
+guide](/reference-guide/overview.md)**. For real-world examples of how to
 use Memgraph, we strongly suggest going through one of the available
-**[Tutorials](/tutorials/tutorials.md)**.
+**[Tutorials](/tutorials/overview.md)**.

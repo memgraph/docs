@@ -32,7 +32,7 @@ usually found in `/etc/memgraph/memgraph.conf`.
 
 In addition to the above mentioned data durability and recovery, a snapshot
 file may be generated using *Memgraph's* import tools. For more information,
-take a look at the [Import data](../database-functionalities/import-data.md) 
+take a look at the [Import data](/import-data/overview.md)
 guide.
 
 ## Storable Data Types

@@ -17,7 +17,7 @@ Before you proceed with the installation guide make sure that you have:
 - Downloaded the latest **Memgraph Docker Image** which can be [found
   here](https://memgraph.com/download/).
 
-:::info 
+:::info
 Memgraph's Docker image was built with **Docker version `1.12`** and
 should be compatible with all newer versions.
 :::
@@ -56,9 +56,9 @@ You are running Memgraph v1.4.0-community
 ```
 
 At this point, Memgraph is ready for you to [submit
-queries](/getting-started/querying/querying.md).
+queries](/connect-to-memgraph/overview.md).
 
-:::info 
+:::info
 The username and password for connecting to the database are empty by default.
 :::
 
@@ -114,10 +114,10 @@ docker volume rm <volume_name>
 If you need more information on working with Docker, check out **[this
 guide](/database-functionalities/work-with-docker.md)**.<br/>
 To learn how to query the database, take a look at the
-**[Querying](/getting-started/querying/querying.md)** guide or **[Memgraph
+**[Querying](/connect-to-memgraph/overview.md)** guide or **[Memgraph
 Playground](https://playground.memgraph.com/)** for interactive tutorials.<br/>
 Visit the **[Building
-applications](/getting-started/connecting-applications/connecting-applications.md)**
+applications](/connect-to-memgraph/methods/drivers.md)**
 page if you need to connect to the database programmatically.
 
 ## Getting help

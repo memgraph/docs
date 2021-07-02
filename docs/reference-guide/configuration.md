@@ -1,7 +1,7 @@
 ---
 id: configuration
-title: Memgraph configuration
-sidebar_label: Memgraph configuration
+title: Configuration
+sidebar_label: Configuration
 ---
 
 The main Memgraph configuration file is available in `/etc/memgraph/memgraph.conf`.

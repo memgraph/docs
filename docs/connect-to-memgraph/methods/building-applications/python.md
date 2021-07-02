@@ -9,7 +9,7 @@ At the end of this guide, you will have created a simple Python **`Hello, World!
 ## Prerequisites
 
 To follow this guide, you will need:
-* A **running Memgraph instance**. If you need to set up Memgraph, take a look at the [Installation guide](/getting-started/installation.md).
+* A **running Memgraph instance**. If you need to set up Memgraph, take a look at the [Installation guide](/installation/overview.md).
 * A basic understanding of graph databases and the property graph model.
 * **Docker** installed and running. Instructions on how to setup Docker can be found on the [official Docker website](https://docs.docker.com/get-docker/).
 * The [**pymgclient driver**](https://github.com/memgraph/pymgclient). A Memgraph database adapter for the Python programming language. **(if you are not using Docker)**
@@ -126,9 +126,5 @@ Node 1: Hello, World!
 
 ## Where to next?
 
-For real-world examples of how to use Memgraph, we suggest you take a look at the **[Tutorials](/tutorials/tutorials.md)** page.
-You can also browse through the **[Database functionalities](/database-functionalities/database-functionalities.md)** section to get an overview of all the functionalities Memgraph offers.
-
-## Getting help
-
-Visit the **[Getting help](/getting-help/getting-help.md)** page in case you run into any kind of problem or you have additional questions.
+For real-world examples of how to use Memgraph, we suggest you take a look at the **[Tutorials](/tutorials/overview.md)** page.
+You can also browse through the **[Database functionalities](/database-functionalities/overview.md)** section to get an overview of all the functionalities Memgraph offers.

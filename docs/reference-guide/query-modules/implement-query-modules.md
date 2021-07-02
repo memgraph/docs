@@ -4,14 +4,14 @@ title: Implement custom query modules
 sidebar_label: Implement custom query modules
 ---
 
-We are going to examine how the query module `example` is implemented using 
-the C API and the Python API. Both query modules can be found in the 
+We are going to examine how the query module `example` is implemented using
+the C API and the Python API. Both query modules can be found in the
 `/usr/lib/memgraph/query_modules` directory.
 
-## Using Docker with query modules 
+## Using Docker with query modules
 
-If you are using Docker to run Memgraph you will have to create a volume 
-and mount it to access the `query_modules` directory. This can be done by 
+If you are using Docker to run Memgraph you will have to create a volume
+and mount it to access the `query_modules` directory. This can be done by
 creating an empty directory `~modules` and executing the following command:
 
 ```shell
@@ -24,13 +24,13 @@ Now, you can start Memgraph and mount the created volume:
 docker run -it --rm -v modules:/usr/lib/memgraph/query_modules -p 7687:7687 memgraph
 ```
 
-Everything from the directory `/usr/lib/memgraph/query_modules` will be 
+Everything from the directory `/usr/lib/memgraph/query_modules` will be
 visible/editable in your mounted `modules` volume and vice versa.
 
 ## Python API
 
-Query modules can be implemented using the Python API provided by Memgraph. 
-If you wish to write your own query modules using the Python API, you need 
+Query modules can be implemented using the Python API provided by Memgraph.
+If you wish to write your own query modules using the Python API, you need
 to have Python version `3.5.0` or above installed.
 
 Let's take a look at the `py_example.py` file.
@@ -68,7 +68,7 @@ with types. The return type must be `Record(field_name=type, ...)` and the
 procedure must produce either a complete `Record` or `None`. As you can see,
 the procedure is passed to a `read_proc` decorator which handles read-only
 procedures. You can also inspect the definition of said decorator in the
-`mgp.py` file or take a look at the Python API [reference guide](../../reference-guide/query-modules/python-api.md).
+`mgp.py` file or take a look at the Python API [reference guide](/reference-guide/query-modules/api/python-api.md).
 
 In our case, the example procedure returns 4 fields:
 
@@ -159,7 +159,7 @@ shared library format.
 
 :::info
 WARNING: If your programming language of choice throws exceptions, these
-exceptions must never leave the scope of your module! You should have a top-level 
+exceptions must never leave the scope of your module! You should have a top-level
 exception handler which returns with an error value and potentially logs
 the error message. Exceptions which cross the module boundary will cause all
 sorts of unexpected issues.
@@ -215,7 +215,7 @@ passed in the query. The parameter `result` is used to fill in the resulting
 records of the procedure. Parameters `graph` and `memory` are context
 parameters of the procedure, and they are used in some parts of the provided C
 API. For more information on what exactly is possible via C API, take a look
-at the `mg_procedure.h` file  or at the C API [reference guide](../../reference-guide/query-modules/c-api.md), 
+at the `mg_procedure.h` file  or at the C API [reference guide](/reference-guide/query-modules/api/c-api.md),
 as well as the `example.c` found in `/usr/lib/memgraph/query_modules/src`
 
 Then comes the required `mgp_init_module` function. Its primary purpose is to

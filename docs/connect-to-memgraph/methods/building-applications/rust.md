@@ -9,7 +9,7 @@ At the end of this guide, you will have created a simple Rust **`Hello, World!`*
 ## Prerequisites
 
 To follow this guide, you will need:
-* A **running Memgraph instance**. If you need to set up Memgraph, take a look at the [Installation guide](/getting-started/installation.md).
+* A **running Memgraph instance**. If you need to set up Memgraph, take a look at the [Installation guide](/installation/overview.md).
 * A basic understanding of graph databases and the property graph model.
 * **Docker** installed and running. Instructions on how to setup Docker can be found on the [official Docker website](https://docs.docker.com/get-docker/).
 * The [**rsmgclient driver**](https://github.com/memgraph/rsmgclient). A Memgraph database adapter for the Rust programming language. **(if you are not using Docker)**
@@ -21,7 +21,7 @@ To follow this guide, you will need:
 ## Basic setup
 
 We'll be using a **Dockerized Rust program** to demonstrate how to connect to a running Memgraph database instance.
-If you don't wish to use Docker, the steps might be slightly different, but the code is most likley the same or very similar.<br />  
+If you don't wish to use Docker, the steps might be slightly different, but the code is most likley the same or very similar.<br />
 
 Let's jump in and connect a simple program to Memgraph.
 
@@ -121,7 +121,7 @@ RUN cargo build
 CMD [ "cargo", "run" ]
 ```
 
-**5.** Don't forget to change the host address in your code.<br />  
+**5.** Don't forget to change the host address in your code.<br />
 Find the **`CONTAINER ID`** with `docker ps` and use it in the following command to retrieve the address:
 
 ```
@@ -150,9 +150,5 @@ Columns: u, m
 
 ## Where to next?
 
-For real-world examples of how to use Memgraph, we suggest you take a look at the **[Tutorials](/tutorials/tutorials.md)** page.
-You can also browse through the **[Database functionalities](/database-functionalities/database-functionalities.md)** section to get an overview of all the functionalities Memgraph offers.
-
-## Getting help
-
-Visit the **[Getting help](/getting-help/getting-help.md)** page in case you run into any kind of problem or you have additional questions.
+For real-world examples of how to use Memgraph, we suggest you take a look at the **[Tutorials](/tutorials/overview.md)** page.
+You can also browse through the **[Database functionalities](/database-functionalities/overview.md)** section to get an overview of all the functionalities Memgraph offers.

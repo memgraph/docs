@@ -60,7 +60,7 @@ query the database instance. It’s a declarative query language designed to
 query graphs. Communication between clients and the database is done via the
 [Bolt protocol](https://boltprotocol.org). For the list of supported
 programming languages please take a look
-[here](/getting-started/connecting-applications/connecting-applications.md).
+[here](/connect-to-memgraph/methods/drivers.md).
 
 ### How do you upgrade?
 
@@ -71,16 +71,16 @@ priority list. What we do offer is support when the upgrade is needed.
 
 ### Can you implement custom Cypher procedures?
 
-Memgraph supports extending the query language with user-written procedures. 
+Memgraph supports extending the query language with user-written procedures.
 These procedures are grouped into modules, which can then be loaded on startup.
 Query modules can be implemented by using the Python API or C API.
-Take a look at our guide [Implement custom query modules](../database-functionalities/query-modules/implement-query-modules.md).
+Take a look at our guide [Implement custom query modules](/reference-guide/query-modules/implement-query-modules.md).
 
 ### Why is my Memgraph instance relatively slow?
 
-Label indexing is not enabled by default in Memgraph, i.e., Memgraph will not 
-automatically index labeled data. Therefore, it is up to the user to perform the 
-indexing explicitly. Visit the [Reference guide](../reference-guide/indexing.md) 
+Label indexing is not enabled by default in Memgraph, i.e., Memgraph will not
+automatically index labeled data. Therefore, it is up to the user to perform the
+indexing explicitly. Visit the [Reference guide](/reference-guide/indexing.md)
 to find out more about creating indexes.
 
 ### What are the Cypher implementation differences compared to Neo4j?

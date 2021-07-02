@@ -9,50 +9,50 @@ on real-world data to retrieve some interesting and useful
 information.
 
 We highly recommend checking out the other articles from this series which
-are listed in our [tutorial overview section](./tutorials.md).
+are listed in our [tutorial overview section](/tutorials/overview.md).
 
 ## Introduction
 
-**WARNING** - this tutorial could contain Game of Thrones ***spoilers***.  
+**WARNING** - this tutorial could contain Game of Thrones ***spoilers***.
 
 Game of Thrones is an American fantasy drama television series created by David Benioff and D. B. Weiss for HBO.
 It is an adaptation of A Song of Ice and Fire, George R. R. Martin's series of fantasy novels,  the first of which is
 A Game of Thrones. The Game of Thrones world is full of interesting characters, locations, scenarios, unexpected deaths, and plot twists.
 
 Even though the COVID-19 pandemic hit the entire world in 2020 and is now starting to become one of the worst
-years in recent history, 2019 was also a huge disappointment to all Game of Thrones fans. According to user reactions, a seven-year 
-build-up resulted in a poorly written ending of the last season and ruined the ending of one of the most popular shows on the planet.  
+years in recent history, 2019 was also a huge disappointment to all Game of Thrones fans. According to user reactions, a seven-year
+build-up resulted in a poorly written ending of the last season and ruined the ending of one of the most popular shows on the planet.
 Nonetheless, if you want to know how many characters would have survived if Jon Snow had stayed dead, which House had the best Kill/Death Ratio,
 or who was the biggest traitor in the show, you came to the right place!
 
 ## Data model
 
 Although the Game of Thrones TV show is based on a series of books, our graph database contains only characters from the
-previously mentioned TV shows as the books are still not finished. This tutorial would not be possible without data analyst David 
-Murphy who shared his collection of on-screen deaths on [this link](https://data.world/datasaurusrex/game-of-thones-deaths). For more information, you can visit his [blogpost](https://datasaurus-rex.com/gallery/gotviz-mkiii) with interactive analysis 
+previously mentioned TV shows as the books are still not finished. This tutorial would not be possible without data analyst David
+Murphy who shared his collection of on-screen deaths on [this link](https://data.world/datasaurusrex/game-of-thones-deaths). For more information, you can visit his [blogpost](https://datasaurus-rex.com/gallery/gotviz-mkiii) with interactive analysis
 on the show deaths. We won't be working with kills and deaths that happened off-screen or were tied to the undead (wraiths).
 The dataset we used was slightly modified, in which columns "Episode Name" and "IMDb Rating" were added.
 
 The model consists of the following nodes:
 * a `Character` node has a `name` attribute corresponding to the character's name (e.g. `"Jon Snow"`)
-* an `Allegiance` node has a `name` attribute corresponding to the house name the character 
+* an `Allegiance` node has a `name` attribute corresponding to the house name the character
     is loyal to (e.g.  `"House Stark"`)
-* a `Death` node has an `order` attribute corresponding to the order in which the death happened 
+* a `Death` node has an `order` attribute corresponding to the order in which the death happened
     in the show (e.g. `602`)
-* an `Episode` node has a `number` attribute corresponding to the number of episodes (e.g. `10`), 
+* an `Episode` node has a `number` attribute corresponding to the number of episodes (e.g. `10`),
     `name` attribute corresponding to the name of the episode (e.g. `"Mothers Mercy"`) and `imdb_rating`
     episode corresponding to the IMDB rating of the episode (e.g. "9.1")
 * a `Season` node has a `number` attribute corresponding to the number of the season (e.g. `10`)
 * a `Location` node has a `name` attribute corresponding to the location's name (e.g. `"Castle Black"`)
 
 Nodes are connected with the following edges:
-* `:KILLED` - connect two Character nodes and they have 2 attributes, 
+* `:KILLED` - connect two Character nodes and they have 2 attributes,
   `method` which says how was the character killed (e.g. `"Knife"`) and `count` attribute representing a
-  number of how many of these characters were killed (e.g. if `"Jon Snow"` killed `10` `"Lannister soldiers"` 
+  number of how many of these characters were killed (e.g. if `"Jon Snow"` killed `10` `"Lannister soldiers"`
   then on this edge `count` would be `10`)
 * `:LOYAL_TO` - connects `Character` node with `Allegiance` node representing an allegiance the character is
   loyal to
-* `:VICTIM_IN` and `:KILLER_IN` - connects `Character` node with `Death` node in which death happened 
+* `:VICTIM_IN` and `:KILLER_IN` - connects `Character` node with `Death` node in which death happened
 * `:HAPPENED_IN` - connects node `Death` with `Episode`, `Season` and `Location` nodes representing details
   of the death
 * `:PART_OF` connects node `Episode` with `Season` node which episode is part of
@@ -61,19 +61,19 @@ Nodes are connected with the following edges:
 
 ## Exploring the dataset
 
-You have two options for exploring this dataset. 
-If you just want to take a look at the dataset and try out a few queries, open 
-[Memgraph Playground](https://playground.memgraph.com/) and continue with 
+You have two options for exploring this dataset.
+If you just want to take a look at the dataset and try out a few queries, open
+[Memgraph Playground](https://playground.memgraph.com/) and continue with
 the tutorial there. Note that you will not be able to execute `write` operations.
 
-On the other hand, if you would like to add changes to the dataset, download the 
-[Memgraph Lab](https://memgraph.com/product/lab) desktop application and navigate 
-to the `Datasets` tab in the sidebar. From there, choose the dataset 
+On the other hand, if you would like to add changes to the dataset, download the
+[Memgraph Lab](https://memgraph.com/product/lab) desktop application and navigate
+to the `Datasets` tab in the sidebar. From there, choose the dataset
 `Game of Thrones deaths` and continue with the tutorial.
 
 ## Example queries using Cypher
 
-In the queries below, we are using [Cypher](/cypher-manual) 
+In the queries below, we are using [Cypher](/cypher-manual)
 to query Memgraph via the console.
 
 Here are some queries you might find interesting:
@@ -100,7 +100,7 @@ ORDER BY kill_count DESC;
 3) List the number of kills per season. If you have watched the show, you should be able to guess this one.
 
 ```cypher
-MATCH (d:Death)-[:HAPPENED_IN]->(s:Season) 
+MATCH (d:Death)-[:HAPPENED_IN]->(s:Season)
 RETURN s.number AS season_number, count(d) AS death_count
 ORDER BY season_number ASC;
 ```
@@ -110,7 +110,7 @@ Let's list the seasons by IMDB ratings. The problem we get with using the `avg()
 gives us too many decimals, therefore a useful solution is given in this example using `round()`.
 
 ```cypher
-MATCH (e:Episode)-[:PART_OF]->(s:Season) 
+MATCH (e:Episode)-[:PART_OF]->(s:Season)
 RETURN s.number AS season_name, round(100 * avg(e.imdb_rating))/100 AS rating
 ORDER BY rating DESC;
 ```
@@ -143,7 +143,7 @@ ORDER BY kill_count DESC;
 
 7) Houses or allegiances are one of the main aspects of Westeros. Some houses killed more characters
 than others, but that doesn't matter in the end, what matters is efficiency. Let's list the allegiances with
-the best Kill/Death Ratios or KDR for short. Here we came across one additional problem. If an allegiance had more 
+the best Kill/Death Ratios or KDR for short. Here we came across one additional problem. If an allegiance had more
 deaths than kills, the KDR would be 0. This can easily be fixed with the `toFloat()` function.
 
 ```cypher
@@ -217,7 +217,7 @@ RETURN killer.name AS traitor, count(victim) AS kill_count
 ORDER BY kill_count DESC;
 ```
 
-14) To visualize the last example, we have to add paths between nodes in the result. 
+14) To visualize the last example, we have to add paths between nodes in the result.
 
 ```cypher
 MATCH (killer:Character)-[killed:KILLED]->(victim:Character)

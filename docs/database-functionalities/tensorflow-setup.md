@@ -20,7 +20,7 @@ the TensorFlow section of our
 In this article, we assume you have installed Python 3 and the TensorFlow pip
 package. See the [link](https://www.tensorflow.org/install/pip?lang=python3) for
 more information.
-We also assume that you have installed and are running Memgraph ([see more](/getting-started/installation.md))
+We also assume that you have installed and are running Memgraph ([see more](/installation/overview.md))
 
 ## Memgraph Tensorflow Op usage
 
@@ -220,5 +220,5 @@ if __name__ == "__main__":
 
 ## Where to next?
 
-To learn more about Memgraph's functionalities, visit the **[Reference guide](../reference-guide)**.
-For real-world examples of how to use Memgraph, we strongly suggest going through one of the available **[Tutorials](../tutorials/tutorials.md)**.
+To learn more about Memgraph's functionalities, visit the **[Reference guide](/reference-guide/overview.md)**.
+For real-world examples of how to use Memgraph, we strongly suggest going through one of the available **[Tutorials](../tutorials/overview.md)**.
