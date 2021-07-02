@@ -97,33 +97,42 @@ function ConnectToMemgraph() {
             imgDarkActive: useBaseUrl(imgFolder + 'dark/lab-unselected-dm.svg'),
             url: useBaseUrl('memgraph-lab/'),
         };
-
-    const viaConsole = [
-        {
-            title: 'Windows',
-            img: useBaseUrl(imgFolder + 'windows-unselected.svg'),
-            imgActive: useBaseUrl(imgFolder + 'windows-selected.svg'),
-            imgDark: useBaseUrl(imgFolder + 'dark/windows-unselected-dm.png'),
-            imgDarkActive: useBaseUrl(imgFolder + 'dark/windows-selected-dm.svg'),
-            url: useBaseUrl('memgraph/getting-started/querying#querying-using-console'),
-        },
-        {
-            title: 'Apple',
-            img: useBaseUrl(imgFolder + 'apple-unselected.svg'),
-            imgActive: useBaseUrl(imgFolder + 'apple-selected.svg'),
-            imgDark: useBaseUrl(imgFolder + 'dark/apple-unselected-dm.png'),
-            imgDarkActive: useBaseUrl(imgFolder + 'dark/apple-selected-dm.svg'),
-            url: useBaseUrl('memgraph/getting-started/querying#querying-using-console'),
-        },
-        {
-            title: 'Linux',
-            img: useBaseUrl(imgFolder + 'linux-unselected.svg'),
-            imgActive: useBaseUrl(imgFolder + 'linux-selected.svg'),
-            imgDark: useBaseUrl(imgFolder + 'dark/linux-unselected-dm.svg'),
-            imgDarkActive: useBaseUrl(imgFolder + 'dark/linux-selected-dm.svg'),
-            url: useBaseUrl('memgraph/getting-started/querying#querying-using-console'),
-        }
-    ];
+    {/*
+        const viaConsole = [
+            {
+                title: 'Windows',
+                img: useBaseUrl(imgFolder + 'windows-unselected.svg'),
+                imgActive: useBaseUrl(imgFolder + 'windows-selected.svg'),
+                imgDark: useBaseUrl(imgFolder + 'dark/windows-unselected-dm.png'),
+                imgDarkActive: useBaseUrl(imgFolder + 'dark/windows-selected-dm.svg'),
+                url: useBaseUrl('memgraph/getting-started/querying#querying-using-console'),
+            },
+            {
+                title: 'Apple',
+                img: useBaseUrl(imgFolder + 'apple-unselected.svg'),
+                imgActive: useBaseUrl(imgFolder + 'apple-selected.svg'),
+                imgDark: useBaseUrl(imgFolder + 'dark/apple-unselected-dm.png'),
+                imgDarkActive: useBaseUrl(imgFolder + 'dark/apple-selected-dm.svg'),
+                url: useBaseUrl('memgraph/getting-started/querying#querying-using-console'),
+            },
+            {
+                title: 'Linux',
+                img: useBaseUrl(imgFolder + 'linux-unselected.svg'),
+                imgActive: useBaseUrl(imgFolder + 'linux-selected.svg'),
+                imgDark: useBaseUrl(imgFolder + 'dark/linux-unselected-dm.svg'),
+                imgDarkActive: useBaseUrl(imgFolder + 'dark/linux-selected-dm.svg'),
+                url: useBaseUrl('memgraph/getting-started/querying#querying-using-console'),
+            }
+        ];
+    */}
+    const viaConsole = {
+        title: 'mgconsole',
+        img: useBaseUrl(imgFolder + 'lab-unselected.svg'),
+        imgActive: useBaseUrl(imgFolder + 'lab-selected.svg'),
+        imgDark: useBaseUrl(imgFolder + 'dark/lab-selected-dm.svg'),
+        imgDarkActive: useBaseUrl(imgFolder + 'dark/lab-unselected-dm.svg'),
+        url: useBaseUrl('memgraph/getting-started/querying#querying-using-console'),
+    };
 
     return (
         <Layout
@@ -135,8 +144,8 @@ function ConnectToMemgraph() {
                     <div className={styles.connectToMemgraph}>
                         <h1>{title}</h1>
                         <section>
-                            <h2>Connect via driver</h2>
-                            <p>Connect to Memgraph using one of our official libraries. These are mantained, support new Memgraph features, receive bug fixes, performance echancements, and security patches.</p>
+                            <h2>Connect via Driver</h2>
+                            <p>Connect to Memgraph from your favorite programming language. We support a wide range of drivers.</p>
                             <div className={styles.connectToMemgraph__grid}>
                                 {viaDriver.map((item, i) => {
                                     return (
@@ -147,21 +156,30 @@ function ConnectToMemgraph() {
                         </section>
 
                         <section>
-                            <h2>Connect via MemgraphLab</h2>
-                            <p>What is Memgraph Lab, how it works, what to expect.</p>
+                            <h2>Connect via Memgraph Lab</h2>
+                            <p>Memgraph Lab is an interactive application for querying and visualizing your graphs.</p>
                             <ConnectButton title={viaLab.title} url={viaLab.url} img={viaLab.img} imgActive={viaLab.imgActive} imgDark={viaLab.imgDark} imgDarkActive={viaLab.imgDarkActive} />
                         </section>
-
+                        {/*
+                            <section>
+                                <h2>Connect via mgconsole</h2>
+                                <p>A command-line interface for querying Memgraph.</p>
+                                <div className={styles.connectToMemgraph__grid}>
+                                    {viaConsole.map((item, i) => {
+                                        return (
+                                            <ConnectButton key={i} url={item.url} title={item.title} img={item.img} imgActive={item.imgActive} imgDark={item.imgDark} imgDarkActive={item.imgDarkActive} />
+                                        );
+                                    })}
+                                </div>
+                            </section>
+                        */}
+                        {
+                            // Temporary image, a custom mgconsole image is needed
+                        }
                         <section>
                             <h2>Connect via mgconsole</h2>
-                            <p>What is mgconsole, how it works, what to expect.</p>
-                            <div className={styles.connectToMemgraph__grid}>
-                                {viaConsole.map((item, i) => {
-                                    return (
-                                        <ConnectButton key={i} url={item.url} title={item.title} img={item.img} imgActive={item.imgActive} imgDark={item.imgDark} imgDarkActive={item.imgDarkActive} />
-                                    );
-                                })}
-                            </div>
+                            <p>A command-line interface for querying Memgraph.</p>
+                            <ConnectButton title={viaConsole.title} url={viaConsole.url} img={viaConsole.img} imgActive={viaConsole.imgActive} imgDark={viaConsole.imgDark} imgDarkActive={viaConsole.imgDarkActive} />
                         </section>
                     </div>
                 </Container>
