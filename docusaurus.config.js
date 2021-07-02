@@ -28,7 +28,7 @@ module.exports = {
       title: 'Docs',
       logo: {
         alt: 'Memgraph Logo',
-        src: 'img/social-logo-round-corners.png',
+        src: 'img/memgraph-logo-500x380.png',
       },
       items: [
         {
