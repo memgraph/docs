@@ -23,12 +23,12 @@ following:
 sudo dpkg -i /path/to/memgraph_<version>.deb
 ```
 
-:::note Why use sudo? 
+:::note Why use sudo?
 In order to perform some actions on your operating system like installing new
 software, you may need **superuser** privileges (commonly called **root**). 
 :::
 
-:::caution Potential installation error 
+:::caution Potential installation error
 You could get errors while installing the package with the above command if you
 don't have all of Memgraph's dependencies installed. The issues mostly look like
 the following:
@@ -72,7 +72,7 @@ Apr 08 06:16:23 Going-Merry memgraph[459969]: You are running Memgraph v1.4.0-co
 ```
 
 At this point, Memgraph is ready for you to [submit
-queries](/getting-started/querying/querying.md).
+queries](/connect-to-memgraph/overview.md).
 
 ### Configuration
 
@@ -92,10 +92,10 @@ sudo systemctl stop memgraph
 ## Where to next?
 
 To learn how to query the database, take a look at the
-**[Querying](/getting-started/querying/querying.md)** guide or **[Memgraph
+**[Querying](/connect-to-memgraph/overview.md)** guide or **[Memgraph
 Playground](https://playground.memgraph.com/)** for interactive tutorials.<br/>
 Visit the **[Building
-applications](/getting-started/connecting-applications/connecting-applications.md)**
+applications](/connect-to-memgraph/methods/drivers.md)**
 page if you need to connect to the database programmatically.
 
 ## Getting help
@@ -105,4 +105,4 @@ If you run into problems during the installation process, check out our
 guide](/installation/linux/linux-installation-troubleshooting.md)** to see if
 have already covered the topic. For more information on the installation process
 and for additional questions, visit the **[Getting
-help](/getting-help/getting-help.md)** page.
+help](/help-center)** page.

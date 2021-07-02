@@ -9,7 +9,7 @@ on real-world data to retrieve some interesting and useful
 information.
 
 We highly recommend checking out the other articles from this series which
-are listed in our [tutorial overview section](tutorials.md).
+are listed in our [tutorial overview section](/tutorials/overview.md).
 
 ## Introduction
 
@@ -61,14 +61,14 @@ A visual scheme of our graph database is given below.
 
 ## Exploring the dataset
 
-You have two options for exploring this dataset. 
-If you just want to take a look at the dataset and try out a few queries, open 
-[Memgraph Playground](https://playground.memgraph.com/) and continue with 
+You have two options for exploring this dataset.
+If you just want to take a look at the dataset and try out a few queries, open
+[Memgraph Playground](https://playground.memgraph.com/) and continue with
 the tutorial there. Note that you will not be able to execute `write` operations.
 
-On the other hand, if you would like to add changes to the dataset, download the 
-[Memgraph Lab](https://memgraph.com/product/lab) desktop application and navigate 
-to the `Datasets` tab in the sidebar. From there, choose the dataset 
+On the other hand, if you would like to add changes to the dataset, download the
+[Memgraph Lab](https://memgraph.com/product/lab) desktop application and navigate
+to the `Datasets` tab in the sidebar. From there, choose the dataset
 `Marvel Comic Universe social network` and continue with the tutorial.
 
 ## Example queries using Cypher
@@ -177,7 +177,7 @@ embodying it is PageRank, so it would be convenient if we could make use of it.
 
 However, the query engine doesn't support PageRank out-of-the-box, so we have to
 come up with a way to plug in PageRank to our database. That's precisely the
-purpose of [query modules](/reference-guide/query-modules/query-modules.md)!
+purpose of [query modules](/reference-guide/query-modules/overview.md)!
 
 Long story short, the query module system enables us to write C or Python modules
 that can access the data stored in our graph database, do some processing, and
@@ -185,7 +185,7 @@ return the results of this processing to the query engine, so we can perform
 further queries on them. In this particular case, the PageRank algorithm is
 implemented as a Python module, and can be found in the query module directory
 `/usr/lib/memgraph/query-modules/`, along with its description and the examples
-of usage. What you as a user must know is that the pagerank procedure automatically 
+of usage. What you as a user must know is that the pagerank procedure automatically
 takes the MCU graph as an argument, and returns a record of pairs of nodes and the
 corresponding rank values (rank is a number representing the "popularity" of a given node).
 
@@ -234,7 +234,7 @@ list of things we think you could pull off:
   "heroes", but if you were the mayor of the Marvel Comic Universe Town, you
   wouldn't give those guys medals of honor, would you? It would be pretty cool
   if we could classify the MCU entities into "Hero" and "Villain" categories.
-  Then you could ask the query engine to give you a list of Spidey's 
+  Then you could ask the query engine to give you a list of Spidey's
   arch-nemeses in addition to Spidey's best hero buddies.
 * similar to the previous idea, it would be insanely cool if someone would add
   more attributes to the heroes like "Superpower", "Level", "Affiliation",

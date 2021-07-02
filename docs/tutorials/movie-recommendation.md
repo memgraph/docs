@@ -9,7 +9,7 @@ on real-world data and, by doing so, retrieve some interesting and useful
 information.
 
 We highly recommend checking out the other articles from this series which
-are listed in our [tutorial overview section](tutorials.md).
+are listed in our [tutorial overview section](/tutorials/overview.md).
 
 ## Introduction
 
@@ -34,8 +34,8 @@ and this edge has property `score` &mdash; float number between 0 and 5.
 
 ## Importing the dataset
 
-To import the dataset, download the [Memgraph Lab](https://memgraph.com/product/lab) 
-desktop application and navigate to the `Datasets` tab in the sidebar. From there, 
+To import the dataset, download the [Memgraph Lab](https://memgraph.com/product/lab)
+desktop application and navigate to the `Datasets` tab in the sidebar. From there,
 choose the dataset `MovieLens: Movies, genres and users` and continue with the tutorial.
 
 ## Example queries

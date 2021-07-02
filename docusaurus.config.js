@@ -130,6 +130,12 @@ module.exports = {
           ]
         },
         {
+          to: '/help-center',
+          label: 'Help Center',
+          position: 'left',
+          activeBaseRegex: `/help-center/`,
+        },
+        {
           type: 'docsVersionDropdown',
           docsPluginId: 'memgraph',
           position: 'right',
@@ -281,6 +287,17 @@ module.exports = {
         path: 'mage',
         routeBasePath: 'mage',
         sidebarPath: require.resolve('./sidebarsMAGE.js'),
+        editUrl:
+          'https://github.com/memgraph/docs/tree/master/',
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'help-center',
+        path: 'help-center',
+        routeBasePath: 'help-center',
+        sidebarPath: require.resolve('./sidebarsHelpCenter.js'),
         editUrl:
           'https://github.com/memgraph/docs/tree/master/',
       },

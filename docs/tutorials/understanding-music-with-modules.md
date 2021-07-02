@@ -9,7 +9,7 @@ real-world data and, by doing so, retrieve some interesting and useful
 information.
 
 We highly recommend checking out the other articles from this series which
-are listed in our [tutorial overview section](tutorials.md).
+are listed in our [tutorial overview section](/tutorials/overview.md).
 
 ## Introduction
 
@@ -49,8 +49,8 @@ alongside many more similar datasets kindly provided by the same authors.
 
 ## Importing the dataset
 
-To import the dataset, download the [Memgraph Lab](https://memgraph.com/product/lab) 
-desktop application and navigate to the `Datasets` tab in the sidebar. From there, 
+To import the dataset, download the [Memgraph Lab](https://memgraph.com/product/lab)
+desktop application and navigate to the `Datasets` tab in the sidebar. From there,
 choose the dataset `Music genres social network` and continue with the tutorial.
 
 ## Defining a directory with query modules
@@ -59,8 +59,8 @@ We need to set up the directory from which Memgraph will search for
 custom query modules by changing the `--query-modules-directory` flag in the main
 configuration file(`/etc/memgraph/memgraph.conf`) or by supplying it as a
 command-line parameter using the directory containing our modules as the value.
-For a more detailed explanation take a look at 
-[Load and call query modules](../database-functionalities/query-modules/load-call-query-modules.md).
+For a more detailed explanation take a look at
+[Load and call query modules](/reference-guide/query-modules/load-call-query-modules.md).
 
 ```
 sudo -u memgraph /usr/lib/memgraph/memgraph --query-modules-directory=/modules
@@ -461,7 +461,7 @@ the betweenness centrality but in a much lower time.
 ## Further reading
 
 We encourage you to take a look at our `How to` for the modules at the
-[How to Implement Query Modules?](../database-functionalities/query-modules/implement-query-modules.md).
+[How to Implement Query Modules?](/reference-guide/query-modules/implement-query-modules.md).
 
 This tutorial showed you how with a little effort you can extend your control
 over the data. Using packages like `NetworkX` you get a huge amount of already
