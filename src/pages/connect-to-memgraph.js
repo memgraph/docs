@@ -93,44 +93,17 @@ function ConnectToMemgraph() {
             title: 'MemgraphLab',
             img: useBaseUrl(imgFolder + 'lab-unselected.svg'),
             imgActive: useBaseUrl(imgFolder + 'lab-selected.svg'),
-            imgDark: useBaseUrl(imgFolder + 'dark/lab-selected-dm.svg'),
-            imgDarkActive: useBaseUrl(imgFolder + 'dark/lab-unselected-dm.svg'),
+            imgDark: useBaseUrl(imgFolder + 'dark/lab-unselected-dm.svg'),
+            imgDarkActive: useBaseUrl(imgFolder + 'dark/lab-selected-dm.svg'),
             url: useBaseUrl('memgraph-lab/'),
         };
-    {/*
-        const viaConsole = [
-            {
-                title: 'Windows',
-                img: useBaseUrl(imgFolder + 'windows-unselected.svg'),
-                imgActive: useBaseUrl(imgFolder + 'windows-selected.svg'),
-                imgDark: useBaseUrl(imgFolder + 'dark/windows-unselected-dm.png'),
-                imgDarkActive: useBaseUrl(imgFolder + 'dark/windows-selected-dm.svg'),
-                url: useBaseUrl('memgraph/getting-started/querying#querying-using-console'),
-            },
-            {
-                title: 'Apple',
-                img: useBaseUrl(imgFolder + 'apple-unselected.svg'),
-                imgActive: useBaseUrl(imgFolder + 'apple-selected.svg'),
-                imgDark: useBaseUrl(imgFolder + 'dark/apple-unselected-dm.png'),
-                imgDarkActive: useBaseUrl(imgFolder + 'dark/apple-selected-dm.svg'),
-                url: useBaseUrl('memgraph/getting-started/querying#querying-using-console'),
-            },
-            {
-                title: 'Linux',
-                img: useBaseUrl(imgFolder + 'linux-unselected.svg'),
-                imgActive: useBaseUrl(imgFolder + 'linux-selected.svg'),
-                imgDark: useBaseUrl(imgFolder + 'dark/linux-unselected-dm.svg'),
-                imgDarkActive: useBaseUrl(imgFolder + 'dark/linux-selected-dm.svg'),
-                url: useBaseUrl('memgraph/getting-started/querying#querying-using-console'),
-            }
-        ];
-    */}
+
     const viaConsole = {
         title: 'mgconsole',
-        img: useBaseUrl(imgFolder + 'lab-unselected.svg'),
-        imgActive: useBaseUrl(imgFolder + 'lab-selected.svg'),
-        imgDark: useBaseUrl(imgFolder + 'dark/lab-selected-dm.svg'),
-        imgDarkActive: useBaseUrl(imgFolder + 'dark/lab-unselected-dm.svg'),
+        img: useBaseUrl(imgFolder + 'mgconsole-unselected.svg'),
+        imgActive: useBaseUrl(imgFolder + 'mgconsole-selected.svg'),
+        imgDark: useBaseUrl(imgFolder + 'dark/mgconsole-unselected-dm.svg'),
+        imgDarkActive: useBaseUrl(imgFolder + 'dark/mgconsole-selected-dm.svg'),
         url: useBaseUrl('memgraph/getting-started/querying#querying-using-console'),
     };
 

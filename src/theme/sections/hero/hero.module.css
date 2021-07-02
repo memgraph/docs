@@ -9,7 +9,7 @@
   color: white;
 }
 
-.heroInner div:first-child {
+.heroInner > div:first-child {
   max-width: 420px;
 }
 
@@ -17,6 +17,26 @@
   font-size: 56px;
   font-weight: 600;
   font-family: var(--mg-font-family);
+}
+
+.heroImg {
+  position: relative;
+}
+
+.heroCodeSnippet {
+  position: absolute;
+  left: 20%;
+  top: 20%;
+}
+
+.heroCodeSnippet pre {
+  background: none;
+}
+
+@media (max-width: 1074px) {
+  .heroCodeSnippet pre {
+    font-size: 14px;
+  }
 }
 
 @media (max-width: 968px) {

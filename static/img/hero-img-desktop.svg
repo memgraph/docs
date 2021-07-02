@@ -71,24 +71,14 @@
         <g id="Docs_LandingPage_Design" transform="translate(-596.000000, -92.000000)">
             <g id="Hero" transform="translate(0.000000, 60.000000)">
                 <g id="HeroImage" transform="translate(604.000000, 32.000000)">
-                    <g id="Browser" transform="translate(143.763622, 88.000000)">
-                        <g id="Window">
-                            <rect fill="#292929" opacity="0.183407738" x="0" y="0" width="634" height="382" rx="7"></rect>
-                            <path d="M7,0 L627,0 C630.865993,-7.10171439e-16 634,3.13400675 634,7 L634,22 L634,22 L0,22 L0,7 C4.14730794e-16,3.13400675 3.13400675,-1.78006981e-16 7,0 Z" id="TopBar" fill="url(#linearGradient-1)" opacity="0.808872768"></path>
-                            <g id="Actions" transform="translate(12.000000, 7.000000)" fill="#FFFFFF" opacity="0.802850632">
-                                <circle id="Oval" cx="4.44988774" cy="4.44988774" r="4.44988774"></circle>
-                                <circle id="Oval" cx="21.4498877" cy="4.44988774" r="4.44988774"></circle>
-                                <circle id="Oval" cx="38.4498877" cy="4.44988774" r="4.44988774"></circle>
-                            </g>
+                    <g id="Window" transform="translate(143.763622, 88.000000)">
+                        <rect fill="#292929" opacity="0.183407738" x="0" y="0" width="634" height="382" rx="7"></rect>
+                        <path d="M7,0 L627,0 C630.865993,-7.10171439e-16 634,3.13400675 634,7 L634,22 L634,22 L0,22 L0,7 C4.14730794e-16,3.13400675 3.13400675,-1.78006981e-16 7,0 Z" id="TopBar" fill="url(#linearGradient-1)" opacity="0.808872768"></path>
+                        <g id="Actions" transform="translate(12.000000, 7.000000)" fill="#FFFFFF" opacity="0.802850632">
+                            <circle id="Oval" cx="4.44988774" cy="4.44988774" r="4.44988774"></circle>
+                            <circle id="Oval" cx="21.4498877" cy="4.44988774" r="4.44988774"></circle>
+                            <circle id="Oval" cx="38.4498877" cy="4.44988774" r="4.44988774"></circle>
                         </g>
-                        <text id="CodeSnippet" opacity="0.777297247" font-family="Courier" font-size="16" font-weight="normal" fill="#FFFFFF">
-                            <tspan x="46" y="86">docker pull memgraph/memgraph</tspan>
-                            <tspan x="46" y="105">docker run -p 7687:7687 \</tspan>
-                            <tspan x="46" y="124">  -v mg_lib:/var/lib/memgraph \</tspan>
-                            <tspan x="46" y="143">  -v mg_log:/var/log/memgraph \</tspan>
-                            <tspan x="46" y="162">  -v mg_etc:/etc/memgraph \</tspan>
-                            <tspan x="46" y="181">  memgraph/memgraph</tspan>
-                        </text>
                     </g>
                     <g id="Cube" transform="translate(22.500000, 134.000000) scale(-1, 1) translate(-22.500000, -134.000000) translate(0.000000, 78.000000)">
                         <g opacity="0.2" transform="translate(0.000000, 60.000000)" id="Group">
