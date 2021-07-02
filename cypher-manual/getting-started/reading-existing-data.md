@@ -2,6 +2,7 @@
 id: reading-existing-data
 title: Reading existing data
 sidebar_label: Reading existing data
+slug: /reading-existing-data
 ---
 
 The simplest usage of the language is to find data stored in the

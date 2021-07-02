@@ -2,6 +2,7 @@
 id: writing-new-data
 title: Writing new data
 sidebar_label: Writing new data
+slug: /writing-new-data
 ---
 
 For adding new data, you can use the following clauses.

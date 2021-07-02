@@ -89,4 +89,4 @@ If you run into problems during the installation process, check out our
 guide](/installation/linux/linux-installation-troubleshooting.md)** to see if
 have already covered the topic. For more information on the installation process
 and for additional questions, visit the **[Getting
-help](/getting-help/getting-help.md)** page.
+help](/help-center)** page.

@@ -2,6 +2,7 @@
 id: reading-and-writing
 title: Reading and writing
 sidebar_label: Reading and writing
+slug: /reading-and-writing
 ---
 
 OpenCypher supports combining multiple reads and writes using the
