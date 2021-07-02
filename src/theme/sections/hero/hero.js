@@ -15,7 +15,19 @@ export default function Hero() {
                             your data with Memgraph</p>
                     </div>
                     <div>
-                        <img src={useBaseUrl('img/hero-img-desktop.svg')} />
+                        <div className={styles.heroImg}>
+                            <div className={styles.heroCodeSnippet}>
+                                <pre>{`
+ docker pull memgraph/memgraph
+ docker run -p 7687:7687 \\
+  -v mg_lib:/var/lib/memgraph \\
+  -v mg_log:/var/log/memgraph \\
+  -v mg_etc:/etc/memgraph \\
+  memgraph/memgraph 
+                                `}</pre>
+                            </div>
+                            <img src={useBaseUrl('img/hero-img-desktop.svg')} />
+                        </div>
                     </div>
                 </div>
             </Container>
