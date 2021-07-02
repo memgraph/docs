@@ -140,7 +140,7 @@ function ConnectToMemgraph() {
                             <div className={styles.connectToMemgraph__grid}>
                                 {viaDriver.map((item, i) => {
                                     return (
-                                        <ConnectButton key={i} title={item.title} img={item.img} imgActive={item.imgActive} imgDark={item.imgDark} imgDarkActive={item.imgDarkActive} />
+                                        <ConnectButton key={i} url={item.url} title={item.title} img={item.img} imgActive={item.imgActive} imgDark={item.imgDark} imgDarkActive={item.imgDarkActive} />
                                     );
                                 })}
                             </div>
@@ -149,7 +149,7 @@ function ConnectToMemgraph() {
                         <section>
                             <h2>Connect via MemgraphLab</h2>
                             <p>What is Memgraph Lab, how it works, what to expect.</p>
-                            <ConnectButton title={viaLab.title} img={viaLab.img} imgActive={viaLab.imgActive} imgDark={viaLab.imgDark} imgDarkActive={viaLab.imgDarkActive} />
+                            <ConnectButton title={viaLab.title} url={viaLab.url} img={viaLab.img} imgActive={viaLab.imgActive} imgDark={viaLab.imgDark} imgDarkActive={viaLab.imgDarkActive} />
                         </section>
 
                         <section>
@@ -158,7 +158,7 @@ function ConnectToMemgraph() {
                             <div className={styles.connectToMemgraph__grid}>
                                 {viaConsole.map((item, i) => {
                                     return (
-                                        <ConnectButton key={i} title={item.title} img={item.img} imgActive={item.imgActive} imgDark={item.imgDark} imgDarkActive={item.imgDarkActive} />
+                                        <ConnectButton key={i} url={item.url} title={item.title} img={item.img} imgActive={item.imgActive} imgDark={item.imgDark} imgDarkActive={item.imgDarkActive} />
                                     );
                                 })}
                             </div>
