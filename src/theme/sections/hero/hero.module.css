@@ -31,6 +31,7 @@
 
 .heroCodeSnippet pre {
   background: none;
+  opacity: 0.75;
 }
 
 @media (max-width: 1074px) {
