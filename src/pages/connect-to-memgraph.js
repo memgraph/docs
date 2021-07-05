@@ -85,7 +85,7 @@ function ConnectToMemgraph() {
             imgActive: useBaseUrl(imgFolder + 'haskell-selected.svg'),
             imgDark: useBaseUrl(imgFolder + 'dark/haskell-unselected-dm.svg'),
             imgDarkActive: useBaseUrl(imgFolder + 'haskell-selected.svg'),
-            url: useBaseUrl('memgraph/getting-started/connecting-applications/haskell'),
+            url: 'https://github.com/zmactep/hasbolt',
         },
     ];
 

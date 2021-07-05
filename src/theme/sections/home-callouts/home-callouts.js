@@ -16,7 +16,7 @@ export default function HomeCallouts() {
             title: 'Run Memgraph in the cloud',
             subtitle: 'Explore your data in the cloud through our fully-managed service.',
             urlText: 'Get Started with Cloud',
-            url: 'https://memgraph.com/product/clouad',
+            url: 'https://memgraph.com/product/cloud',
         },
         {
             title: 'Connect to Memgraph',
