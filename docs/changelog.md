@@ -4,6 +4,37 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v1.6.0 - Jul 7, 2021
+
+:::warning
+### Breaking Changes
+* Changed the `LOCK_PATH` permission to `DURABILITY`.
+:::
+
+### Major Feature and Improvements
+
+* Added streams. EXPAND ON THIS
+* Introduced global allocators for Query Modules using C API, so the data can be preserved between multiple runs of the same procedure.
+* Introduced new isolation levels, `READ COMMITTED` and `READ_UNCOMMITTED`. The isolation level can be set with a config.
+  Also, you can set isolation level for a certain session or for a next transaction.
+* The query timeouts are now triggered using a different method. Before, we used the TSC to measure the execution time. Unfortunately, this proved
+  not reliable for certain CPUs (AMD Ryzen 7 and M1) which caused queries to timeout almost instantly. We switched to POSIX timer which
+  should work on every hardware, while not affecting the performance.
+* Added a config with which you can disable LOAD CSV clause. LOAD CSV can read and display data from any file on the system which could prove insecure
+  for some systems. Because of that, we added a config which allows you to disable that clause in every case.
+* Added `CREATE SNAPSHOT` query. Snapshots are created every few minutes, using this query you can trigger snapshot creation instantly.
+* Increased the default query timeout to 10 minutes. Previous default amount of 3 minutes proved to small, especially for queries that use LOAD CSV with
+  a large dataset.
+
+
+### Bug Fixes
+
+* Fixed parsing of certain types in Query Modules using Python API.
+* Fixed a concurrency bug for Query Modules using Python API. Running the same procedure from multiple clients caused Memgraph instance to crash.
+* Fixed restoring triggers that call procedures. Because the triggers were restored before the procedures, the query trigger executes couldn't find
+  the called procedure, which caused the restore to fail.
+
+
 ## v1.5.0 - May 28, 2021
 
 ### Major Features and Improvements
