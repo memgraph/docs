@@ -1,0 +1,53 @@
+.homeLearnWithUs {
+    padding: 85px 0;
+    position: relative;
+}
+
+.homeLearnWithUs__bg {
+    position: absolute;
+    right: 0;
+    z-index: 1;
+}
+
+.homeLearnWithUs__subtitle {
+    max-width: 50%;
+}
+
+.homeLearnWithUs h2 {
+    font-size: 39px;
+    margin-bottom: 42px;
+}
+
+.homeLearnWithUs__items {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: stretch;
+    margin-top: 70px;
+    z-index: 2;
+}
+
+.homeLearnWithUs__items > div {
+    flex: 1;
+    margin-left: 20px;
+}
+
+.homeLearnWithUs__items > div:nth-child(2) {
+    margin-left: 0;
+}
+
+@media (max-width: 1024px) {
+    .homeLearnWithUs__items > div:first-child {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .homeLearnWithUs__items {
+        flex-direction: column;
+    }
+
+    .homeLearnWithUs__items > div {
+        margin: 36px 0;
+    }
+}
