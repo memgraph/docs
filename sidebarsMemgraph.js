@@ -35,10 +35,10 @@ module.exports = {
       type: 'category',
       label: 'Connect to Memgraph',
       items: ['connect-to-memgraph/overview',
-        //'connect-to-memgraph/connect-to-memgraph',
+        'connect-to-memgraph/connect-to-memgraph',
         {
           type: 'category',
-          label: 'Connection methods',
+          label: 'Methods',
           items: ['connect-to-memgraph/methods/mgconsole',
             {
               type: 'link',
