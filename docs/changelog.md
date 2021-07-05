@@ -13,17 +13,20 @@ sidebar_label: Changelog
 
 ### Major Feature and Improvements
 
-* Added streams. EXPAND ON THIS
+* Added support for consuming Kafka streams. You can connect Memgraph to a Kafka cluster, and run queries based on the messages recieved. 
+  Transformation from Kafka to Cypher queries is done using **Transformation Modules**, a concept similar to Query Modules. 
+  Using our Python and C API you can easily define functions that analyse Kafka messages and generate different queries based on them.
+  The stream connection can be configured, tested, stopped, started, checked, and dropped.
 * Introduced global allocators for Query Modules using C API, so the data can be preserved between multiple runs of the same procedure.
 * Introduced new isolation levels, `READ COMMITTED` and `READ_UNCOMMITTED`. The isolation level can be set with a config.
   Also, you can set isolation level for a certain session or for a next transaction.
 * The query timeouts are now triggered using a different method. Before, we used the TSC to measure the execution time. Unfortunately, this proved
   not reliable for certain CPUs (AMD Ryzen 7 and M1) which caused queries to timeout almost instantly. We switched to POSIX timer which
   should work on every hardware, while not affecting the performance.
-* Added a config with which you can disable LOAD CSV clause. LOAD CSV can read and display data from any file on the system which could prove insecure
+* Added a config, `allow-load-csv`, with which you can disable `LOAD CSV` clause. `LOAD CSV` can read and display data from any file on the system which could prove insecure
   for some systems. Because of that, we added a config which allows you to disable that clause in every case.
 * Added `CREATE SNAPSHOT` query. Snapshots are created every few minutes, using this query you can trigger snapshot creation instantly.
-* Increased the default query timeout to 10 minutes. Previous default amount of 3 minutes proved to small, especially for queries that use LOAD CSV with
+* Increased the default query timeout to 10 minutes. Previous default amount of 3 minutes proved to small, especially for queries that use `LOAD CSV` with
   a large dataset.
 
 
