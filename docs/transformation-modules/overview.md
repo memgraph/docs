@@ -17,6 +17,6 @@ streaming engines as well.
 
 For an introduction article and references you can also check: 
 
-* **[Introduction](/transformation-modules/introduction.md)**
-* **[C API](/transformation-modules/api/c-api.md)**
-* **[Python API](/transformation-modules/api/python-api.md)**
+* **[Introduction](./introduction.md)**
+* **[C API](./api/c-api.md)**
+* **[Python API](./api/python-api.md)**
