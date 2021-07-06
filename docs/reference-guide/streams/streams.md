@@ -10,9 +10,10 @@ must
 - Manage a stream via a query
 - Provide a user defined transformation module
 
-The rest of this section describes how to manage streams with memgraph. <br/>
 More information about transformation modules can be found
 **[here](./transformation-modules/api/c-api.md)**
+
+The rest of this section describes how to manage streams with memgraph.
 
 ## Creating a stream (query)
 The general syntax for creating a stream is:
@@ -55,8 +56,10 @@ Drops a stream with name `<stream name>`
 START STREAM <stream name> [LIMIT <count> BATCHES];
 START ALL STREAMS;
 ```
-Starts a stream (or all streams) with name `<stream name>`. <br>
-`<count>` denotes the total number of processed batches. <br>
+Starts a stream (or all streams) with name `<stream name>`.
+
+`<count>` denotes the total number of processed batches.
+
 When a stream is started, it should resume from the last committed 
 offset.
 
@@ -85,5 +88,6 @@ Shows a list of existing streams with the following information:
 TEST STREAM <stream name> [LIMIT <count> BATCHES];
 ```
 Tests the connection of `<stream name>` with `<count>` number of batches.
-After `<count>` batches are processed the transformation result is returned. <br>
+
+After `<count>` batches are processed the transformation result is returned.
 The result can be empty if the batch interval is reached.
