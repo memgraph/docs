@@ -1,0 +1,5 @@
+.linkRightArrow {
+    color: var(--mg-primary);
+    text-decoration: none;
+    font-weight: 500;
+}

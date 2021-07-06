@@ -1,0 +1,33 @@
+.calloutBox {
+    background-color: var(--mg-bg);
+    border-radius: 20px;
+    box-shadow: 0 2px 10px 0 rgba(0,0,0,0.2);
+    padding: 32px 26px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.calloutBox__title {
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    line-height: 25px;
+    font-family: var(--mg-font-family);
+    margin-bottom: 16px;
+}
+
+.calloutBox__subtitle {
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: 24px;
+    color: var(--mg-font-color-light);
+}
+
+.calloutBox__url {
+    margin-top: 16px;
+    color: var(--mg-primary);
+    font-weight: 500;
+}
+

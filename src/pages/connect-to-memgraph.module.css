@@ -1,0 +1,44 @@
+.connectToMemgraph {
+    padding: 64px 0;
+}
+
+.connectToMemgraph h1 {
+    font-size: 54px;
+}
+
+.connectToMemgraph h2 {
+    font-size: 39px;
+}
+
+.connectToMemgraph p {
+    color: var(--mg-font-color-light);
+}
+
+.connectToMemgraph section {
+    padding: 32px 0;
+}
+
+.connectToMemgraph__grid {
+    display: grid;
+    column-gap: 24px;
+    row-gap: 24px;
+    grid-template-columns: 140px 140px 140px 140px 140px;
+}
+
+@media (max-width: 796px) {
+    .connectToMemgraph__grid {
+        grid-template-columns: 140px 140px 140px 140px;
+    }
+}
+
+@media (max-width: 660px) {
+    .connectToMemgraph__grid {
+        grid-template-columns: 140px 140px 140px;
+    }
+}
+
+@media (max-width: 480px) {
+    .connectToMemgraph__grid {
+        grid-template-columns: 140px 140px;
+    }
+}
