@@ -87,5 +87,5 @@ CALL mg.load_all();
 
 For API references, you can also check:
 
-* **[C API](/reference-guide/streams/transformation-modules/api/c-api.md)**
-* **[Python API](/reference-guide/streams/transformation-modules/api/python-api.md)**
+* **[C API](./api/c-api.md)**
+* **[Python API](./api/python-api.md)**
