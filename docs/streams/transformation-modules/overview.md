@@ -5,11 +5,11 @@ sidebar_label: Overview
 slug: /transformation-modules
 ---
 
-Memgraph supports user defined transformations in **C** and **Python**
+Memgraph supports user-defined transformations in **C** and **Python**
 that act on data received from a streaming engine. These transformations 
 are grouped into modules called **Transformation modules** which can then
 be loaded on startup or later on. A module consists of a transformation, a
-query procedure or both.
+query procedure, or both.
 
 This section introduces transformation modules and their similarities 
 with query modules. Currently, we only support transformations for 
@@ -22,9 +22,9 @@ Memgraph attempts to load the modules from all `*.so` and `*.py`
 files it finds in the default (`/usr/lib/memgraph/query_modules`) directory.
 The `*.so` modules are written using the C API and the `*.py` modules are
 written using the Python API. Each file corresponds to one module. Names
-of these files will be mapped to module names.  For example, `hello.so` will 
-will be mapped to `hello` module and a `py_hello.py`
-will be mapped to `py_hello.py` module.
+of these files will be mapped to module names.  For example, `hello.so`  
+will be mapped to the `hello` module and a `py_hello.py` script 
+will be mapped to the `py_hello.py` module.
 
 If you want to change the directory in which Memgraph searches for query
 modules, just change the `--query-modules-directory` flag in the main
@@ -60,11 +60,11 @@ might yield the following result:
 +---------------------+-------------------------------------------------------------------+
 ```
 
-In this case, we can see that Memgraph has already loaded the user defined transformation  
+In this case, we can see that Memgraph has already loaded the user-defined transformation  
 of the module batch.
 
 To load a module (named e.g. `hello`) that wasn't loaded on startup (perhaps
-because it was added to Memgraph's query modules directory afterwards), we
+because it was added to Memgraph's query modules directory afterward), we
 can simply invoke:
 
 ```cypher
@@ -78,14 +78,14 @@ again use the same procedure:
 CALL mg.load("hello");
 ```
 
-Lastly, if we wish to reload all existing modules and load any newly added ones
+Lastly, if we wish to reload all existing modules and load any newly added ones, 
 we can use:
 
 ```cypher
 CALL mg.load_all();
 ```
 
-For API references you can also check: 
+For API references, you can also check: 
 
 * **[C API](./c-api.md)**
 * **[Python API](./python-api.md)**
