@@ -1,13 +1,20 @@
 ---
-id: introduction 
-title: Introduction to transformations
-sidebar_label: Introduction to transformations
+id: overview
+title: Transformation modules 
+sidebar_label: Overview
+slug: /transformation-modules
 ---
 
-Memgraph supports user defined transformations that act on a stream. These transformations,  
-are grouped into modules, which can then be loaded on startup.  
+Memgraph supports user defined transformations in **C** and **Python**
+that act on data received from a streaming engine. These transformations 
+are grouped into modules called **Transformation modules** which can then
+be loaded on startup or later on. A module consists of a transformation, a
+query procedure or both.
 
-A module consists of a transformation, a query procedure or both.
+This section introduces transformation modules and their similarities 
+with query modules. Currently, we only support transformations for 
+Kafka streams but we are aiming to add support for other 
+streaming engines as well. 
 
 ## Loading modules on startup
 
@@ -78,3 +85,7 @@ we can use:
 CALL mg.load_all();
 ```
 
+For API references you can also check: 
+
+* **[C API](./c-api.md)**
+* **[Python API](./python-api.md)**
