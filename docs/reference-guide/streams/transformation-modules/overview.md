@@ -1,20 +1,20 @@
 ---
 id: overview
-title: Transformation modules 
+title: Transformation modules
 sidebar_label: Overview
 slug: /transformation-modules
 ---
 
 Memgraph supports user-defined transformations in **C** and **Python**
-that act on data received from a streaming engine. These transformations 
+that act on data received from a streaming engine. These transformations
 are grouped into modules called **Transformation modules** which can then
 be loaded on startup or later on. A module consists of a transformation, a
 query procedure, or both.
 
-This section introduces transformation modules and their similarities 
-with query modules. Currently, we only support transformations for 
-Kafka streams but we are aiming to add support for other 
-streaming engines as well. 
+This section introduces transformation modules and their similarities
+with query modules. Currently, we only support transformations for
+Kafka streams but we are aiming to add support for other
+streaming engines as well.
 
 ## Loading modules on startup
 
@@ -22,8 +22,8 @@ Memgraph attempts to load the modules from all `*.so` and `*.py`
 files it finds in the default (`/usr/lib/memgraph/query_modules`) directory.
 The `*.so` modules are written using the C API and the `*.py` modules are
 written using the Python API. Each file corresponds to one module. Names
-of these files will be mapped to module names.  For example, `hello.so`  
-will be mapped to the `hello` module and a `py_hello.py` script 
+of these files will be mapped to module names.  For example, `hello.so`
+will be mapped to the `hello` module and a `py_hello.py` script
 will be mapped to the `py_hello.py` module.
 
 If you want to change the directory in which Memgraph searches for query
@@ -33,7 +33,7 @@ a command-line parameter (e.g. when using Docker).
 
 ## Utility mg transformation
 
-Query procedures that allow the users to gain more insight into other modules and 
+Query procedures that allow the users to gain more insight into other modules and
 transformations are written under our utility `mg` query module.
 For transformations this module offers:
 
@@ -60,7 +60,7 @@ might yield the following result:
 +---------------------+-------------------------------------------------------------------+
 ```
 
-In this case, we can see that Memgraph has already loaded the user-defined transformation  
+In this case, we can see that Memgraph has already loaded the user-defined transformation
 of the module batch.
 
 To load a module (named e.g. `hello`) that wasn't loaded on startup (perhaps
@@ -78,14 +78,14 @@ again use the same procedure:
 CALL mg.load("hello");
 ```
 
-Lastly, if we wish to reload all existing modules and load any newly added ones, 
+Lastly, if we wish to reload all existing modules and load any newly added ones,
 we can use:
 
 ```cypher
 CALL mg.load_all();
 ```
 
-For API references, you can also check: 
+For API references, you can also check:
 
-* **[C API](./c-api.md)**
-* **[Python API](./python-api.md)**
+* **[C API](/reference-guide/streams/transformation-modules/api/c-api.md)**
+* **[Python API](/reference-guide/streams/transformation-modules/api/python-api.md)**
