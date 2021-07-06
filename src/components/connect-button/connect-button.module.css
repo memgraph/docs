@@ -1,0 +1,34 @@
+.connectButton {
+    cursor: pointer;
+    height: 84px;
+    width: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #BAB8BB;
+    border-radius: 2px;
+}
+
+.connectButton:hover {
+    border: 1px solid #19AF66;
+}
+
+.connectButton img {
+    max-height: 100%;
+}
+
+.connectButton__imgActive {
+    display: none;
+}
+
+.connectButton__img {
+    display: block;
+}
+
+.connectButton:hover .connectButton__imgActive {
+    display: block;
+}
+
+.connectButton:hover .connectButton__img {
+    display: none;
+}

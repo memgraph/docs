@@ -15,6 +15,34 @@
   --ifm-color-primary-lighter: #FFA133;
   --ifm-color-primary-lightest: #FFBB4D;
   --ifm-code-font-size: 95%;
+  --mg-font-family: 'Encode Sans Condensed', sans-serif;
+  --mg-font-family-alt: 'Roboto', sans-serif;
+  --mg-font-color: #231F20;
+  --mg-font-color-light: #857F87;
+  --mg-body-bg: #ffffff;
+  --mg-bg: #ffffff;
+  --mg-primary: #DD2222;
+  --mg-bg-light: #F9F9F9;
+}
+
+html[data-theme='dark'] {
+  --mg-body-bg: #231F20;
+  --mg-bg: #3E323F;
+  --mg-font-color: #ffffff;
+  --mg-font-color-light: #ffffff;
+  --mg-bg-light: #3E323F;
+}
+
+html {
+  background: var(--mg-body-bg);
+}
+
+body {
+  font-family: var(--mg-font-family-alt);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--mg-font-family);
 }
 
 .docusaurus-highlight-code-line {
@@ -25,5 +53,5 @@
 }
 
 .footer {
-  background-color: #2e333a;
+  background-color: #231F20;
 }
