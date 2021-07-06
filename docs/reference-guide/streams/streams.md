@@ -12,7 +12,7 @@ must
 
 The rest of this section describes how to manage streams with memgraph. 
 More information about transformation modules can be found
-**[here](./transformation-modules/c-api.md)**
+**[here](./transformation-modules/api/c-api.md)**
 
 ## Creating streams query 
 The general syntax for creating a stream is:
