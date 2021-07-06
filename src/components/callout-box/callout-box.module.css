@@ -13,21 +13,16 @@
     font-size: 20px;
     font-weight: 500;
     letter-spacing: 0.2px;
-    line-height: 25px;
+    line-height: 1.5rem;
     font-family: var(--mg-font-family);
-    margin-bottom: 16px;
+    margin-bottom: 1rem;
 }
 
 .calloutBox__subtitle {
-    font-size: 16px;
+    font-size: 1rem;
     letter-spacing: 0;
-    line-height: 24px;
+    line-height: 1.5rem;
     color: var(--mg-font-color-light);
-}
-
-.calloutBox__url {
-    margin-top: 16px;
-    color: var(--mg-primary);
-    font-weight: 500;
+    margin-bottom: 1rem;
 }
 

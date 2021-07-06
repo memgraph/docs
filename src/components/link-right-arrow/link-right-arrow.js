@@ -11,7 +11,7 @@ export default function LinkRightArrow(props) {
 
     return (
         <a href={url} className={styles.linkRightArrow}>
-            {urlText} <i className={iconArrowRight}>&nbsp;</i>
+            <span>{urlText}</span> <i className={iconArrowRight}>&nbsp;</i>
         </a>
     );
 }
