@@ -127,6 +127,22 @@ module.exports = {
             }],
         },
         'reference-guide/replication',
+        {
+          type: 'category',
+          label: 'Streams',
+          items: ['reference-guide/streams/overview',
+          {
+            type: 'category',
+            label: 'Transformation Modules',
+            items: ['reference-guide/streams/transformation-modules/overview',
+              {
+                type: 'category',
+                label: 'API',
+                items: ['reference-guide/streams/transformation-modules/api/c-api',
+                  'reference-guide/streams/transformation-modules/api/python-api',],
+              }],
+          }],
+        },
         'reference-guide/tensorflow',
         'reference-guide/audit-log',
         'reference-guide/auth-module',
