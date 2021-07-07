@@ -37,7 +37,7 @@ Query procedures that allow the users to gain more insight into other modules an
 transformations are written under our utility `mg` query module.
 For transformations this module offers:
 
-* `mg.transformations() :: ()`: Lists all transformations
+* `mg.transformations() :: (name :: STRING)`: Lists all transformations
   procedures and their signatures.
 * `mg.load(module_name :: STRING) :: ()`: Loads or reloads the given module.
 * `mg.load_all() :: ()`: Loads or reloads all modules.
