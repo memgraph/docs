@@ -19,9 +19,9 @@ The rest of this section describes how to manage streams with memgraph.
 The general syntax for creating a stream is:
 ```cypher
 CREATE STREAM <stream name>
-  WITH TOPICS (['<topic1>', '<topic2>'])
-  WITH TRANSFORM <transform procedure>
-  [WITH CONSUMER_GROUP <consumer group name>]
+  TOPICS (['<topic1>', '<topic2>'])
+  TRANSFORM <transform procedure>
+  [CONSUMER_GROUP <consumer group name>]
   [BATCH_INTERVAL <milliseconds>]
   [BATCH_SIZE <size>];
 ```
@@ -83,11 +83,12 @@ Shows a list of existing streams with the following information:
 - batch interval
 - batch size
 
-## Test connection (query)
+## Check stream (query)
 ```cypher
-TEST STREAM <stream name> [LIMIT <count> BATCHES];
+CHECK STREAM <stream name> [LIMIT <count> BATCHES] [TIMEOUT <milliseconds>] ;
 ```
-Tests the connection of `<stream name>` with `<count>` number of batches.
+Checks the stream with name `<stream name>` with  `<count>` number of batches.
 
 After `<count>` batches are processed the transformation result is returned.
 The result can be empty if the batch interval is reached.
+`TIMEOUT` is measured in milliseconds.

@@ -31,7 +31,7 @@ modules, just change the `--query-modules-directory` flag in the main
 configuration file (`/etc/memgraph/memgraph.conf`) or supply it as
 a command-line parameter (e.g. when using Docker).
 
-## Utility mg transformation
+## Utility procedures for transformations
 
 Query procedures that allow the users to gain more insight into other modules and
 transformations are written under our utility `mg` query module.
