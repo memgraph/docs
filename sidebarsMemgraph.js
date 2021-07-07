@@ -130,13 +130,18 @@ module.exports = {
         {
           type: 'category',
           label: 'Streams',
-          items: ['reference-guide/streams/transformation-modules/overview',
-            {
-              type: 'category',
-              label: 'API',
-              items: ['reference-guide/streams/transformation-modules/api/c-api',
-                'reference-guide/streams/transformation-modules/api/python-api',],
-            }],
+          items: ['reference-guide/streams/streams',
+          {
+            type: 'category',
+            label: 'Transformation Modules',
+            items: ['reference-guide/streams/transformation-modules/overview',
+              {   
+                type: 'category',
+                label: 'API',
+                items: ['reference-guide/streams/transformation-modules/api/c-api',
+                  'reference-guide/streams/transformation-modules/api/python-api',],
+              }], 
+          }], 
         },
         'reference-guide/tensorflow',
         'reference-guide/audit-log',
