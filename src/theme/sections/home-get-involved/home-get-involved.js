@@ -40,9 +40,13 @@ export default function HomeGetInvolved() {
                         {items.map((item, i) => {
                             return (
                                 <div key={i}>
-                                    <ImageSwitcher lightImageSrc={item.img} darkImageSrc={item.imgDark} alt={item.title} />
-                                    <div>{item.title}</div>
-                                    <LinkRightArrow url={item.url} urlText={item.urlText} />
+                                    <div className={styles.homeGetInvolved__items__img}>
+                                        <ImageSwitcher lightImageSrc={item.img} darkImageSrc={item.imgDark} alt={item.title} />
+                                    </div>
+                                    <div>
+                                        <div>{item.title}</div>
+                                        <a href={item.url}>{item.urlText}</a>
+                                    </div>
                                 </div>
                             );
                         })
