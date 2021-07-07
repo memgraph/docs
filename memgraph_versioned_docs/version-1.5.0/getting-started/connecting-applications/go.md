@@ -13,7 +13,7 @@ You can find the official Go driver on [GitHub](https://github.com/neo4j/neo4j-g
 ## Prerequisites
 
 To follow this guide, you will need:
-* A **running Memgraph instance**. If you need to set up Memgraph, take a look at the [Installation guide](/installation/overview.md).
+* A **running Memgraph instance**. If you need to set up Memgraph, take a look at the [Installation guide](/getting-started/installation.md).
 * A basic understanding of graph databases and the property graph model.
 * The newest version of **Go** [installed](https://golang.org/doc/install).
 
