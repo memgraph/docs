@@ -90,7 +90,7 @@ const char * mgp_message_topic_name(
   const struct mgp_message* message
 )
 ```
-Returns topic name of the argument `message`. Topic name is NUL terminated.
+Returns topic name of the argument `message`. Topic name is `NULL` terminated.
 
 ### function mgp_message_key_size
 
