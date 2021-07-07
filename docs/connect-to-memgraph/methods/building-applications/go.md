@@ -6,6 +6,10 @@ sidebar_label: Go
 
 At the end of this guide, you will have created a simple Go **`Hello, World!`** program that connects to the Memgraph database and executes simple queries.
 
+:::note Go driver
+You can find the official Go driver on [GitHub](https://github.com/neo4j/neo4j-go-driver).
+:::
+
 ## Prerequisites
 
 To follow this guide, you will need:
@@ -22,55 +26,83 @@ Let's jump in and create our application.
 **1.** Create a new directory for your app, for example `/MyApp` and position yourself in it.<br />
 **2.** Create a `program.go` file and add the following code:
 
-```Go
+```go
 package main
 
-import "github.com/neo4j/neo4j-go-driver/neo4j"
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/neo4j/neo4j-go-driver/v4/neo4j"
+)
 
 func main() {
-    driver, err := neo4j.NewDriver("bolt://localhost:7687", neo4j.BasicAuth("", "", ""))
-
+	dbUri := "bolt://localhost:7687"
+	driver, err := neo4j.NewDriver(dbUri, neo4j.BasicAuth("username", "password", ""))
 	if err != nil {
-		fmt.Println(err)
+		panic(err)
 	}
+	// Handle driver lifetime based on your application lifetime requirements  driver's lifetime is usually
+	// bound by the application lifetime, which usually implies one driver instance per application
 	defer driver.Close()
-
-	session, err := driver.Session(neo4j.AccessModeWrite)
+	item, err := insertItem(driver)
 	if err != nil {
-		fmt.Println(err)
+		panic(err)
 	}
+	fmt.Printf("%v\n", item.Message)
+}
+
+func insertItem(driver neo4j.Driver) (*Item, error) {
+	// Sessions are short-lived, cheap to create and NOT thread safe. Typically create one or more sessions
+	// per request in your web application. Make sure to call Close on the session when done.
+	// For multi-database support, set sessionConfig.DatabaseName to requested database
+	// Session config will default to write mode, if only reads are to be used configure session for
+	// read mode.
+	session := driver.NewSession(neo4j.SessionConfig{})
 	defer session.Close()
-
-	greeting, err := session.WriteTransaction(func(transaction neo4j.Transaction) (interface{}, error) {
-		result, err := transaction.Run(
-			"CREATE (a:Greeting) SET a.message = $message RETURN 'Node ' + id(a) + ': ' + a.message",
-			map[string]interface{}{"message": "Hello, World!"})
-		if err != nil {
-			return nil, err
-		}
-
-		if result.Next() {
-			return result.Record().GetByIndex(0), nil
-		}
-
-		return nil, result.Err()
-	})
+	result, err := session.WriteTransaction(createItemFn)
 	if err != nil {
-		fmt.Println(err)
+		return nil, err
 	}
+	return result.(*Item), nil
+}
 
-	fmt.Println(greeting.(string))
+func createItemFn(tx neo4j.Transaction) (interface{}, error) {
+	records, err := tx.Run(
+		"CREATE (a:Greeting) SET a.message = $message RETURN 'Node ' + id(a) + ': ' + a.message",
+		map[string]interface{}{"message": "Hello, World!"})
+	// In face of driver native errors, make sure to return them directly.
+	// Depending on the error, the driver may try to execute the function again.
+	if err != nil {
+		return nil, err
+	}
+	record, err := records.Single()
+	if err != nil {
+		return nil, err
+	}
+	// You can also retrieve values by name, with e.g. `id, found := record.Get("n.id")`
+	return &Item{
+		Message: record.Values[0].(string),
+	}, nil
+}
+
+type Item struct {
+	Message string
 }
 ```
 
-**3.** Add the **Bolt driver** in the `/MyApp` directory with the command:
+**3.** Create a `go.mod` file by running:
 
 ```
-go get github.com/neo4j/neo4j-go-driver/neo4j
+go mod init example.com/hello
 ```
 
-**4.** Run the app with the following command:
+**4.** Add the **Bolt driver** with the command:
+
+```
+go get github.com/neo4j/neo4j-go-driver/v4@v4.3.1
+```
+
+**5.** Run the app with the following command:
 
 ```
 go run .\program.go
