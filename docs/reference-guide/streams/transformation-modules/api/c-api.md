@@ -14,7 +14,7 @@ This is the additional API documentation for `mg_procedure.h` which contains dec
 
 |                | Name           |
 | -------------- | -------------- |
-| typedef void (\*mgp_trans_cb)(const struct mgp_messages \*, const struct mgp_graph \*, struct mgp_result \*, struct mgp_memory \*); | **[mgp_trans_cb](#typedef-mgp_trans_cb)** <br/>Entry-point for a transformation with a fixed result type |
+| typedef void (\*)(const struct mgp_messages \*, const struct mgp_graph \*, struct mgp_result \*, struct mgp_memory \*); | **[mgp_trans_cb](#typedef-mgp_trans_cb)** <br/>Entry-point for a transformation with a fixed result type |
 
 ## Functions
 
