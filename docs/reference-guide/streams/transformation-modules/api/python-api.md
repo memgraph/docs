@@ -15,9 +15,9 @@ under `python_support`. On the standard Debian installation, this will be under 
 ## `mgp.transformation(func)`
 Register `func` as a transformation of the current module.
 
-`mgp_transformation` is meant to be used as a decorator function to register a transformation 
+`mgp_transformation` is meant to be used as a decorator function to register a transformation
 within the current module. The registered `func` needs to be a callable which either accepts
-a single argument of type `Messages` or two arguments of type `TransCtx` and `Messages` respectively. 
+a single argument of type `Messages` or two arguments of type `TransCtx` and `Messages` respectively.
 The return type is fixed, and it should be of the form:
 `Record(query=str, parameters=mgp.Map)`. Multiple records can be
 produced by returning an iterable of them. Registering generator functions
@@ -42,7 +42,7 @@ def transformation(context: mgp.TransCtx,
 
     return result_queries
 ```
-This transformation extracts the interesting members of each `mgp.Message` and stores them in query `Record`, which wraps a `CREATE` clause 
+This transformation extracts the interesting members of each `mgp.Message` and stores them in query `Record`, which wraps a `CREATE` clause
 with all the interesting members (timestamp, payload, etc.) and an empty parameter list.
 
 Any errors can be reported by raising an Exception.
@@ -50,7 +50,7 @@ Any errors can be reported by raising an Exception.
 ## `class mgp.Message(message)`
 Bases: `object`
 
-Represents a single message. 
+Represents a single message.
 You should not globally store a `Message`.
 
 ### `is_valid()`
@@ -75,7 +75,7 @@ Raises an `InvalidMessageError` if `is_valid()` is false.
 ## `class mgp.Messages(messages)`
 Bases: `object`
 
-Represents a list of messages passed to a transformation. 
+Represents a list of messages passed to a transformation.
 You should not globally store `messages`.
 
 ### `is_valid()`
@@ -101,4 +101,4 @@ You should not globally store a `TransCtx`.
 Raise `InvalidContextError` if context is invalid.
 
 ### `is_valid()`
-Returns true if the context is valid and can be be accessed.
+Returns true if the context is valid and can be accessed.
