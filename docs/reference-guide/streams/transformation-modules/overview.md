@@ -2,7 +2,7 @@
 id: overview
 title: Transformation modules
 sidebar_label: Overview
-slug: /transformation-modules
+slug: /reference-guide/streams/transformation-modules
 ---
 
 Memgraph supports user-defined transformations in **C** and **Python**
