@@ -25,12 +25,12 @@ is currently not supported.
 
 ### Examples
 ```python
-    import mgp
+import mgp
 
-    @mgp.transformation
-    def transformation(context: mgp.TransCtx,
-                       messages: mgp.Messages
-                       ) -> mgp.Record(query=str, parameters=mgp.Map):
+@mgp.transformation
+def transformation(context: mgp.TransCtx,
+                   messages: mgp.Messages
+                   ) -> mgp.Record(query=str, parameters=mgp.Map):
     result_queries = []
 
     for i in range(0, messages.total_messages()):
