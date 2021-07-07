@@ -15,7 +15,7 @@ More information about transformation modules can be found
 
 The rest of this section describes how to manage streams with memgraph.
 
-## Creating a stream (query)
+## Creating a stream
 The general syntax for creating a stream is:
 ```cypher
 CREATE STREAM <stream name>
@@ -45,13 +45,13 @@ The `BATCH_INTERVAL` starts when the:
 - the processing of previous batch is completed
 - the previous batch interval ended without receiving any messages
 
-## Deleting a stream (query)
+## Deleting a stream
 ```cypher
 DROP STREAM <stream name>;
 ```
 Drops a stream with name `<stream name>` 
 
-## Start a stream (query)
+## Start a stream
 ```cypher
 START STREAM <stream name> [LIMIT <count> BATCHES];
 START ALL STREAMS;
@@ -63,14 +63,14 @@ Starts a stream (or all streams) with name `<stream name>`.
 When a stream is started, it should resume from the last committed 
 offset.
 
-## Stop a stream (query)
+## Stop a stream
 ```cypher
 STOP STREAM <stream name>;
 STOP ALL STREAMS;
 ```
 Stops a stream (or all streams) with name `<stream name>`.
 
-## Show (query)
+## Show
 ```cypher
 SHOW STREAMS; 
 ```
@@ -83,12 +83,12 @@ Shows a list of existing streams with the following information:
 - batch interval
 - batch size
 
-## Check stream (query)
+## Check stream
 ```cypher
 CHECK STREAM <stream name> [LIMIT <count> BATCHES] [TIMEOUT <milliseconds>] ;
 ```
-Checks the stream with name `<stream name>` with  `<count>` number of batches.
-
+Checks the stream with name `<stream name>` with `<count>` number of batches.
+If `<count>` is unspecified its default value is 1.
 After `<count>` batches are processed the transformation result is returned.
 The result can be empty if the batch interval is reached.
-`TIMEOUT` is measured in milliseconds.
+`TIMEOUT` is measured in milliseconds and it's defaulted to 30000.
