@@ -4,6 +4,41 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v1.6.0 - Jul 7, 2021
+
+:::warning
+### Breaking Changes
+* Changed the `LOCK_PATH` permission to `DURABILITY`.
+:::
+
+### Major Feature and Improvements
+
+* Added support for consuming Kafka streams. You can connect Memgraph to a Kafka cluster and run queries based on the messages received. 
+  The transformation from Kafka to Cypher queries is done using **Transformation Modules**, a concept similar to Query Modules. 
+  Using our Python and C API, you can easily define functions that analyze Kafka messages and generate different queries based on them.
+  The stream connection can be configured, tested, stopped, started, checked, and dropped.
+* Introduced global allocators for Query Modules using C API, so the data can be preserved between multiple runs of the same procedure.
+* Introduced new isolation levels, `READ COMMITTED` and `READ_UNCOMMITTED`. The isolation level can be set with a config.
+  Also, you can set the isolation level for a certain session or the next transaction. The names of the isolation levels should be self-explanatory,
+  unlike the `SNAPSHOT ISOLATION` which is still the default isolation level.
+* The query timeouts are now triggered using a different method. Before, we used the TSC to measure the execution time. Unfortunately, this proved
+  unreliable for certain CPUs (AMD Ryzen 7 and M1), which caused queries to timeout almost instantly. We switched to POSIX timer which
+  **should** work on every hardware, while not affecting the performance.
+* Added a config, `allow-load-csv`, with which you can disable `LOAD CSV` clause. `LOAD CSV` can read and display data from any file on the system which could be insecure
+  for some systems. Because of that, we added a config that allows you to disable that clause in every case.
+* Added `CREATE SNAPSHOT` query. Snapshots are created every few minutes, using this query you can trigger snapshot creation instantly.
+* Increased the default query timeout to 10 minutes. The previous default amount of 3 minutes proved too small, especially for queries that use `LOAD CSV` with
+  a large dataset.
+
+
+### Bug Fixes
+
+* Fixed parsing of certain types in Query Modules using Python API.
+* Fixed a concurrency bug for Query Modules using Python API. Running the same procedure from multiple clients caused the Memgraph instance to crash.
+* Fixed restoring triggers that call procedures. Because the triggers were restored before the procedures, the query trigger executes couldn't find
+  the called procedure, which caused the restore to fail. Switching up the order was enough to fix the problem.
+
+
 ## v1.5.0 - May 28, 2021
 
 ### Major Features and Improvements
