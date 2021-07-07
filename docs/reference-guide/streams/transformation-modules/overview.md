@@ -61,7 +61,7 @@ might yield the following result:
 ```
 
 In this case, we can see that Memgraph has already loaded the user-defined transformation
-of the module batch.
+of the module `batch`.
 
 To load a module (named e.g. `hello`) that wasn't loaded on startup (perhaps
 because it was added to Memgraph's query modules directory afterward), we
