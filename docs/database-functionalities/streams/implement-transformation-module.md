@@ -170,7 +170,7 @@ CALL mg.transformations() YIELD *;
 
 You should see something like the following:
 
-```
+```plaintext
 +------------------------------------+
 | name                               |
 +------------------------------------+
@@ -285,7 +285,7 @@ CALL mg.transformations() YIELD *;
 
 You should see something like this:
 
-```
+```plaintext
 +----------------------------------------+
 | name                                   |
 +----------------------------------------+
