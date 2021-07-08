@@ -23,7 +23,7 @@ arbitrary address where a Kafka cluster is available).
 
 The very first step is to make sure at least one transformation is loaded into
 Memgraph. If you are not sure, please check the regarding
-[documentation] (/database-functionalities/streams/implement-transformation-module.md).
+[documentation](/database-functionalities/streams/implement-transformation-module.md).
 In this example we are going to use the `transformation.my_transformation`, but
 with the shorter `my.transform` name to make the size of result tables slimmer.
 For the topic name, we are going to use the topic from the Kafka quick start,
