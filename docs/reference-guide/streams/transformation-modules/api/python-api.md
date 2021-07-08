@@ -33,7 +33,7 @@ def transformation(context: mgp.TransCtx,
                    ) -> mgp.Record(query=str, parameters=mgp.Nullable[mgp.Map]):
     result_queries = []
 
-    for i in range(0, messages.total_messages()):
+    for i in range(messages.total_messages()):
         message = messages.message_at(i)
         payload_as_str = message.payload().decode("utf-8")
         result_queries.append(mgp.Record(
