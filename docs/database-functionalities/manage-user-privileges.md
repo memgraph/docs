@@ -47,8 +47,8 @@ roles and privileges can only be executed by users that are granted the
 At the moment, privileges are confined to users' abilities to perform certain
 `OpenCypher` queries. Namely users can be given permission to execute a subset
 of the following commands: `CREATE`, `DELETE`, `MATCH`, `MERGE`, `SET`,
-`REMOVE`, `INDEX`, `STATS`, `AUTH`, `REPLICATION`, `READ_FILE`, `LOCK_PATH`,
-`FREE_MEMORY`, and `TRIGGER`.
+`REMOVE`, `INDEX`, `STATS`, `AUTH`, `REPLICATION`, `READ_FILE`, `DURABILITY`,
+`FREE_MEMORY`, `TRIGGER`, `STREAM`, and `CONFIG`.
 
 We could naturally cluster those privileges into groups:
 
@@ -60,9 +60,11 @@ We could naturally cluster those privileges into groups:
   * Privilege to view and alter users, roles and privileges (`AUTH`)
   * Privilege to use replication queries (`REPLICATION`)
   * Privilege to access files in queries, e.g. `LOAD CSV` clause (`READ_FILE`)
-  * Privilege to lock data directory (`LOCK _PATH`)
+  * Privilege to manage durability files (`DURABILITY`)
   * Privilege to try freeing memory (`FREE_MEMORY`)
   * Privilege to use trigger queries (`TRIGGER`)
+  * Privilege to use stream queries (`STREAM`)
+  * Privilege to configure Memgraph during runtime (`CONFIG`)
 
 If you are unfamiliar with any of these commands, you can look them up in our
 [Cypher manual](/cypher-manual).
