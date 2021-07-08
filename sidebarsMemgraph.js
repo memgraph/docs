@@ -94,6 +94,12 @@ module.exports = {
           items: ['database-functionalities/constraints/existence-constraint',
             'database-functionalities/constraints/uniqueness-constraint'],
         },
+        {
+          type: 'category',
+          label: 'Connecting to Kafka streams',
+          items: ['database-functionalities/streams/implement-transformation-module',
+            'database-functionalities/streams/streams'],
+        },
         'database-functionalities/inspecting-queries',
         'database-functionalities/memory-control',
         'database-functionalities/networkx',
