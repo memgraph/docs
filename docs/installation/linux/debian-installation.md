@@ -51,8 +51,8 @@ The above command will install all missing dependencies and will finish
 configuring the Memgraph package.
 :::
 
-On successful installation, Memgraph should already be running. To confirm it,
-you can start it explicitly as follows:
+On successful installation, Memgraph should already be running. To confirm it, you can start it explicitly as
+follows:
 
 ```console
 sudo systemctl start memgraph
@@ -71,15 +71,9 @@ Apr 08 06:16:23 Going-Merry systemd[1]: Started Memgraph: High performance, in-m
 Apr 08 06:16:23 Going-Merry memgraph[459969]: You are running Memgraph v1.4.0-community
 ```
 
-At this point, Memgraph is ready for you to [submit
-queries](/connect-to-memgraph/overview.md).
-
-### Configuration
-
-The Memgraph configuration is available in `/etc/memgraph/memgraph.conf`. If the
-configuration file is altered, Memgraph needs to be restarted. To learn about
-all the configuration options, check out the [Reference
-guide](/reference-guide/configuration.md).
+If you want to start Memgraph with different configuration settings, check out
+the [section below](#configuration). At this point, Memgraph is ready for you
+to [submit queries](/connect-to-memgraph/overview.md).
 
 ### Stopping Memgraph
 
@@ -88,6 +82,13 @@ To shut down the Memgraph server, issue the following command:
 ```console
 sudo systemctl stop memgraph
 ```
+
+### Configuration
+
+The Memgraph configuration is available in `/etc/memgraph/memgraph.conf`. If the
+configuration file is altered, Memgraph needs to be restarted. To learn about
+all the configuration options, check out the [Reference
+guide](/reference-guide/configuration.md).
 
 ## Where to next?
 

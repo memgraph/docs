@@ -10,18 +10,19 @@ the C API and the Python API. Both query modules can be found in the
 
 ## Using Docker with query modules
 
-If you are using Docker to run Memgraph you will have to create a volume
+If you are using Docker to run Memgraph, you will have to create a volume
 and mount it to access the `query_modules` directory. This can be done by
 creating an empty directory `~modules` and executing the following command:
 
 ```shell
-docker volume create --driver local --opt type=none  --opt device=~modules --opt o=bind modules
+docker volume create --driver local --opt type=none --opt device=/path/to/local/dir --opt o=bind module
 ```
 
+Don't forget to change the path `/path/to/local/dir` to the directory where you want to mount the volume.
 Now, you can start Memgraph and mount the created volume:
 
 ```shell
-docker run -it --rm -v modules:/usr/lib/memgraph/query_modules -p 7687:7687 memgraph
+docker run -it --rm -v module:/usr/lib/memgraph/query_modules -p 7687:7687 memgraph/memgraph
 ```
 
 Everything from the directory `/usr/lib/memgraph/query_modules` will be

@@ -54,8 +54,9 @@ If Memgraph has been installed correctly, you will see something like this:
 You are running Memgraph v1.4.0-community
 ```
 
-At this point, Memgraph is ready for you to [submit
-queries](/connect-to-memgraph/overview.md).
+If you want to start Memgraph with different configuration settings, check out
+the [section below](#configuration). At this point, Memgraph is ready for you
+to [submit queries](/connect-to-memgraph/overview.md).
 
 :::caution
 Potential installation error You could get errors while installing the package

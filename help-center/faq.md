@@ -88,3 +88,24 @@ to find out more about creating indexes.
 Although we try to implement openCypher query language as closely to the
 language reference as possible, we had to make some changes to enhance the
 user experience. You can find the differences listed in the [Cypher manual](/cypher-manual/differences).
+
+### Can you change the log level in Memgraph?
+
+You can change the log level easily by using the `--log-level` flag. The allowed values are `TRACE`, `DEBUG`, `INFO`, `WARNING`, `ERROR`, and `CRITICAL`.
+For more information about using configuration flags, check out the [reference guide](/memgraph/reference-guide/configuration).
+
+### Can you change the memory limit for Memgraph?
+
+You can change the memory limit by using the `--memory-limit` flag. If you want to allocate 2GB for Memgraph then you would use  --memory-limit=2000. For more information about using configuration flags, check out the [reference guide](/memgraph/reference-guide/configuration).
+
+### How to change the directory where snapshots are stored?
+
+You can change the directory where snapshots are stored by using the `--data-directory` flag. For more information about using configuration flags, check out the [reference guide](/memgraph/reference-guide/configuration).
+
+### How to change the directory where log files are stored?
+
+You can change the directory where log files are stored by using the `--log-file` flag. For more information about using configuration flags, check out the [reference guide](/memgraph/reference-guide/configuration).
+
+### How to change the directory where query modules are stored?
+
+You can change the directory where query modules are stored by using the `--query-modules-directory` flag. For more information about using configuration flags, check out the [reference guide](/memgraph/reference-guide/configuration).

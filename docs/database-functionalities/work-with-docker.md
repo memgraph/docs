@@ -58,7 +58,7 @@ At this point, Memgraph is ready for you to [submit
 queries](/connect-to-memgraph/overview.md).
 
 For an explanation of how to write custom query modules, follow our [how-to
-guide](/reference-guide/query-modules/implement-query-modules.md).
+guide](/database-functionalities/query-modules/implement-query-modules.md).
 
 ## Find the IP address of a Docker Container {#docker-container-ip-address}
 
