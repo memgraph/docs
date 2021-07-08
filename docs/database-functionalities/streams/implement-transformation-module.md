@@ -293,3 +293,6 @@ You should see something like this:
 | "transformation.my_transformation"     |
 +----------------------------------------+
 ```
+
+For mote detailed overview check out the [Reference
+guide](/reference-guide/streams/transformation-modules/overview.md).
