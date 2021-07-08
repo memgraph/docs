@@ -33,3 +33,12 @@ UNLOCK DATA DIRECTORY;
 Memgraph will delete the files which should have been deleted before
 and allow any future deletion of the files contained in the data
 directory.
+
+### Creating a snapshot
+
+Snapshot is created periodically based on the time defined with the
+`--storage-snapshot-interval-sec` config. If you want to generate a snapshot
+instantly for the current database state you can use the following query:
+```opencypher
+CREATE SNAPSHOT;
+```
