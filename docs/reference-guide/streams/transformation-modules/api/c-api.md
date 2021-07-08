@@ -136,4 +136,7 @@ Register a transformation to a module. The `name` must be a sequence of digits, 
 lowercase, and uppercase Latin letters. The `name` must begin with a non-digit character.
 Note that Unicode characters are not allowed. Additionally, the `name` is case-sensitive.
 
-Returns 1 if unable to allocate memory for the transformation; if `name` is not valid, or a transformation with the same name was already registered.
+Return non-zero if the transformation is added successfully. Registering might
+fail if unable to allocate memory for the transformation; if `name` is not
+valid, or a transformation with the same name was already registered or if any
+other unexpected failure happens.
