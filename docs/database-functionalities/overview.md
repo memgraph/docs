@@ -23,6 +23,14 @@ allowing natural data transfer between Memgraph and TensorFlow at any point of t
 If you are interested in using Memgraph for machine learning purposes  take a look at:
 * [TensorFlow op Setup](./tensorflow-setup.md)
 
+## [Query modules](/reference-guide/query-modules/overview.md)
+
+Memgraph supports extending the query language with user-written procedures.
+These procedures are grouped into modules, which can then be loaded either on startup or later on.
+To learn more about query modules take a look at the following guides:
+* [Query modules basics](/database-functionalities/query-modules/overview.md)
+* [Implement custom query modules](/database-functionalities/query-modules/implement-query-modules.md)
+
 ## Replication
 
 Memgraph supports replication and the following guide demonstrates how to create a simple cluster of nodes running

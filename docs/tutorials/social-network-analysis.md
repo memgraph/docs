@@ -184,6 +184,6 @@ The resulting communities are:
 
 ## Further reading
 
-If you want to find out more about query modules, take a look at our guide on how to create your own: [Implement custom query modules](/reference-guide/query-modules/implement-query-modules.md).
+If you want to find out more about query modules, take a look at our guide on how to create your own: [Implement custom query modules](/database-functionalities/query-modules/implement-query-modules.md).
 
 You can also visit our [NetworkX Reference guide](/database-functionalities/networkx.md) to find out which NetworkX algorithms are already available in Memgraph.

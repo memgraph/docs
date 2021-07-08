@@ -11,7 +11,7 @@ To learn more about query modules take a look at the following guides:
 
 * **[Implemented query modules - MAGE](/reference-guide/query-modules/available-query-modules.md)**
 * **[Load and call query modules](/reference-guide/query-modules/load-call-query-modules.md)**
-* **[Implement custom query modules](/reference-guide/query-modules/implement-query-modules.md)**
+* **[Implement custom query modules](/database-functionalities/query-modules/implement-query-modules.md)**
 
 You can also check out detailed descriptions of the query modules API:
 * **[Python API](/reference-guide/query-modules/api/python-api.md)**

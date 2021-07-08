@@ -98,6 +98,12 @@ module.exports = {
         'database-functionalities/memory-control',
         'database-functionalities/networkx',
         'database-functionalities/profiling-queries',
+        {
+          type: 'category',
+          label: 'Query modules',
+          items: ['database-functionalities/query-modules/overview',
+            'database-functionalities/query-modules/implement-query-modules',],
+        },
         'database-functionalities/replication',
         'database-functionalities/tensorflow-setup',
         'database-functionalities/triggers',
@@ -118,7 +124,6 @@ module.exports = {
           items: ['reference-guide/query-modules/overview',
             'reference-guide/query-modules/available-query-modules',
             'reference-guide/query-modules/load-call-query-modules',
-            'reference-guide/query-modules/implement-query-modules',
             {
               type: 'category',
               label: 'API',
