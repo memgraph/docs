@@ -58,9 +58,11 @@ Each configuration setting is in the form: `--setting-name=value`.
 | Flag           | Description    | Type           |
 | -------------- | -------------- | -------------- |
 | --also-log-to-stderr=false | log messages go to stderr in addition to logfiles | `[bool]` |
+| --also-log-to-stderr=false | log messages go to stderr in addition to logfiles | `[bool]` |
 | --data-directory=/var/lib/memgraph | Path to directory in which to save all permanent data. | `[string]` |
 | --log-file=/var/log/memgraph/memgraph.log | Path to where the log should be stored. | `[string]` |
 | --log-level | Minimum log level. Allowed values: TRACE, DEBUG, INFO, WARNING, ERROR, CRITICAL | `[string]` |
+| --kafka-bootstrap-servers= | List of Kafka brokers as a comma separated list of broker `host` or `host:port`. | `[string]` |
 | --memory-limit=0 | Total memory limit in MiB. Set to 0 to use the default values which are 100% of the phyisical memory if the swap is enabled and 90% of the physical memory otherwise. |  `[uint64]` |
 | --memory-warning-threshold=1024 | Memory warning threshold, in MB. If Memgraph detects there is less available RAM it will log a warning. <br/>Set to 0 to disable. | `[uint64]` |
 | --telemetry-enabled=true | Set to true to enable telemetry. We collect information about the running system (CPU and memory information) <br/>and information about the database runtime (vertex and edge counts and resource usage) to allow for easier improvement of the product. | `[bool]` |
