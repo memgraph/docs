@@ -15,11 +15,11 @@ under `python_support`. On the standard Debian installation, this will be under 
 ## `mgp.transformation(func)`
 Register `func` as a transformation of the current module.
 
-`mgp_transformation` is meant to be used as a decorator function to register a transformation
+`transformation` is meant to be used as a decorator function to register a transformation
 within the current module. The registered `func` needs to be a callable which either accepts
 a single argument of type `Messages` or two arguments of type `TransCtx` and `Messages` respectively.
 The return type is fixed, and it should be of the form:
-`Record(query=str, parameters=mgp.Map)`. Multiple records can be
+`Record(query=str, parameters=mgp.Nullable[mgp.Map])`. Multiple records can be
 produced by returning an iterable of them. Registering generator functions
 is currently not supported.
 
@@ -30,7 +30,7 @@ import mgp
 @mgp.transformation
 def transformation(context: mgp.TransCtx,
                    messages: mgp.Messages
-                   ) -> mgp.Record(query=str, parameters=mgp.Map):
+                   ) -> mgp.Record(query=str, parameters=mgp.Nullable[mgp.Map]):
     result_queries = []
 
     for i in range(0, messages.total_messages()):

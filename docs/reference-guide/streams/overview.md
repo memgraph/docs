@@ -20,7 +20,7 @@ The general syntax for creating a stream is:
 
 ```cypher
 CREATE STREAM <stream name>
-  TOPICS (['<topic1>', '<topic2>'])
+  TOPICS <topic1> [, <topic2>, ...]
   TRANSFORM <transform procedure>
   [CONSUMER_GROUP <consumer group name>]
   [BATCH_INTERVAL <milliseconds>]
@@ -31,7 +31,8 @@ Create a `STREAM` with name `<stream name>` that consumes messages from
 transformation with name `<transform procedure>`.
 
 Additionally, the user can provide the following optional parameters:
-- `CONSUMER_GROUP` with name `<consumer group name>`.
+- `CONSUMER_GROUP` with name `<consumer group name>`. If not specified, then
+`mg_consumer` will be used as a consumer group name.
 - `BATCH_INTERVAL` denotes the maximum wait time interval for consuming message(s)
 before calling the transformation procedure with the already received message(s).
 This value must be greater than zero and is defaulted to 100.
@@ -56,15 +57,14 @@ Drops a stream with name `<stream name>`.
 ## Start a stream
 
 ```cypher
-START STREAM <stream name> [LIMIT <count> BATCHES];
+START STREAM <stream name>;
 START ALL STREAMS;
 ```
 Starts a stream (or all streams) with name `<stream name>`.
 
-`<count>` denotes the total number of processed batches.
-
-When a stream is started, it should resume from the last committed
-offset.
+When a stream is started, it should resume from the last committed offset. If
+there is no committed offset for the consumer group, then the largest offset
+will be used, therefore only the new messages will be consumed.
 
 ## Stop a stream
 
@@ -82,19 +82,25 @@ SHOW STREAMS;
 Shows a list of existing streams with the following information:
 - stream name
 - list of topics
-- transformation procedure name
-- status
 - consumer group id
 - batch interval
 - batch size
+- transformation procedure name
+- whether the stream is running
 
 ## Check stream
 
 ```cypher
-CHECK STREAM <stream name> [LIMIT <count> BATCHES] [TIMEOUT <milliseconds>] ;
+CHECK STREAM <stream name> [BATCH_LIMIT <count>] [TIMEOUT <milliseconds>] ;
 ```
-Checks the stream with name `<stream name>` with `<count>` number of batches.
+Does a dry-run on stream with name `<stream name>` with `<count>` number of
+batches and returns the result of the transformation: the queries and their
+parameters that would be executed in a normal run.
 If `<count>` is unspecified, its default value is 1.
 After `<count>` batches are processed, the transformation result is returned.
-The result can be empty if the batch interval is reached.
+If `<count>` number of batches are not processed within the specified timeout,
+then an exception is thrown. This might be caused by not receiving enough
+messages.
 `TIMEOUT` is measured in milliseconds, and it's defaulted to 30000.
+
+Checking a stream won't commit any offsets.

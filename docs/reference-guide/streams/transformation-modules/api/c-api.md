@@ -16,6 +16,10 @@ This is the additional API documentation for `mg_procedure.h` that contains decl
 | -------------- | -------------- |
 | typedef void (\*)(const struct mgp_messages \*, const struct mgp_graph \*, struct mgp_result \*, struct mgp_memory \*); | **[mgp_trans_cb](#typedef-mgp_trans_cb)** <br/>Entry-point for a transformation with a fixed result type |
 
+Each record of the result must contain the following fields:
+* the `query` field with a Cypher query as a string that will be executed against the database
+* the `parameters` field with the optional query parameters as a nullable map
+
 ## Functions
 
 |                | Name           |
@@ -132,4 +136,4 @@ Register a transformation to a module. The `name` must be a sequence of digits, 
 lowercase, and uppercase Latin letters. The `name` must begin with a non-digit character.
 Note that Unicode characters are not allowed. Additionally, the `name` is case-sensitive.
 
-Returns 1 if unable to allocate memory for `mgp_trans`; if `name` is not valid, or a transformation with the same name was already registered.
+Returns 1 if unable to allocate memory for the transformation; if `name` is not valid, or a transformation with the same name was already registered.
