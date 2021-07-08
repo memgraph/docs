@@ -5,11 +5,11 @@ sidebar_label: Managing Kafka streams
 ---
 
 To connect Memgraph to a Kafka stream, we obviously need an existing stream.
-As Kafka itself is a quite complex system, we don't aim to to teach you about
+As Kafka itself is a quite complex system, we don't aim to teach you about
 it. If you are not familiar with Kafka, then please check out their [quickstart
 guide](https://kafka.apache.org/quickstart) to get familiar with it. In the
-followings we assume that a Kafka server is available at on the 9092 port of
-thelocal machine ('localhost:9092`) as the default configuration of the Kafka
+followings, we assume that a Kafka server is available on the 9092 port of
+the local machine ('localhost:9092`) as the default configuration of the Kafka
 quick start guide.
 
 ## Configuring Memgraph
@@ -24,10 +24,10 @@ arbitrary address where a Kafka cluster is available).
 The very first step is to make sure at least one transformation is loaded into
 Memgraph. If you are not sure, please check the regarding
 [documentation](/database-functionalities/streams/implement-transformation-module.md).
-In this example we are going to use the `transformation.my_transformation`, but
-with the shorter `my.transform` name to make the size of result tables slimmer.
-For the topic name, we are going to use the topic from the Kafka quick start,
-`quickstart-events`.
+In this example, we are going to use the `transformation.my_transformation`,
+but with the shorter `my.transform` name to make the size of result tables
+slimmer. For the topic name, we are going to use the topic from the Kafka quick
+start, `quickstart-events`.
 
 ```cypher
 CREATE STREAM myStream
@@ -52,7 +52,8 @@ The result should be like this:
 
 ```
 
-The result contains the most important informations about the existing streams, e.g.: its name, topics it is subscribed to, etc..
+The result contains the most important information about the existing streams,
+e.g.: its name, topics it is subscribed to, etc.
 
 ## Check if the stream is working
 
@@ -61,9 +62,9 @@ actual result of the transformation. This can be handy when implementing a
 transformation. To achieve that we can use the `CHECK STREAM` query. This query
 will consume the message from the last committed offset, but won't commit the
 offsets. That means you are free to play around with it, it won't have any
-permanent effect. For a freshly created stream there is probably no committed
-offset, so the `CHECK STREAM` query will wait for new message. By default the
-query will wait `30000` milliseconds (`30` seconds) and after that it will
+permanent effect. For a freshly created stream. there is probably no committed
+offset, so the `CHECK STREAM` query will wait for new messages. By default, the
+query will wait `30000` milliseconds (`30` seconds) and after that, it will
 throw a timeout exception. To give us some more time, use a larger timeout,
 e.g.: `60000` milliseconds (`60` seconds):
 
@@ -71,8 +72,8 @@ e.g.: `60000` milliseconds (`60` seconds):
 CHECK STREAM myStream TIMEOUT 60000;
 ```
 
-If you started query, let's send some messages to the topic in the same way as
-described in the Kafka quick start guide. You should see a similar output:
+If you started the query, let's send some messages to the topic in the same way
+as described in the Kafka quick start guide. You should see a similar output:
 
 ```plaintext
 +--------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
@@ -127,7 +128,7 @@ by executing `MATCH (n: MESSAGE) RETURN n;`:
 As our stream processed at least one message after starting it, it will commit
 the message offset to the Kafka cluster. That means if the stream is stopped
 by stopping it with the `STOP STREAM myStream` query (or by shutting Memgraph
-down), the last committed offset will retreived from the Kafka cluster after
+down), the last committed offset will be retrieved from the Kafka cluster after
 restarting the stream.
 
 :::info
@@ -135,10 +136,10 @@ NOTE: As the committed offsets are stored for the consumer groups on the Kafka
 cluster, if a new stream is created using the same consumer group, it might
 continue consuming the message from the same offset where the previous stream
 stopped. You can mitigate this by using different consumer group names or
-reseting the committed offset via Kafka admin client.
+resetting the committed offset via Kafka admin client.
 :::
 
-Previously we mentioend that the `CHECK STREAM` query doesn't modify the
+Previously we mentioned that the `CHECK STREAM` query doesn't modify the
 committed offsets, which means using `CHECK STREAM` on a stream that already
 has some offsets committed, can result in executing the transformation on the
 same message multiple times. To demonstrate that first let's stop the stream:
@@ -147,7 +148,7 @@ same message multiple times. To demonstrate that first let's stop the stream:
 STOP STREAM myStream;
 ```
 
-And then send a few message to the topic, e.g.: `message A`, `message B` and
+And then send a few messages to the topic, e.g.: `message A`, `message B` and
 `message C`. Then run the same query as before:
 
 ```cypher

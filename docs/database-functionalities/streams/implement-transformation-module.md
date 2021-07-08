@@ -4,17 +4,17 @@ title: Implement transformation modules
 sidebar_label: Implement transformation modules
 ---
 
-The prerequisite of connecting Memgraph to a Kafka stream is having a
+The prerequisite of connecting Memgraph to a Kafka stream is  to have a
 transformation module that can produce Cypher queries based on the received
-messages. We are going to implement a simple transformation that stores the.
+messages. We are going to implement a simple transformation that stores the
 properties of each message in a vertex.
 
 ## Using Docker with transformation modules
 
 If you are using Docker to run Memgraph you will have to create a volume
 and mount it to access the `query_modules` directory. Yes, `query_modules`,
-becauase Memgraph can load transformations and query procedures from the same
-directory, even from the same module. Mouting a volume can be done by
+because Memgraph can load transformations and query procedures from the same
+directory, even from the same module. Mounting a volume can be done by
 creating an empty directory `modules` and executing the following command:
 
 ```shell
@@ -32,7 +32,7 @@ visible/editable in your mounted `modules` volume and vice versa.
 
 In the rest of this page `/usr/lib/memgraph/query_modules` will be used to
 refer to this directory. If you are using Docker, then please do the same but
-wuth the recently created `modules` directory.
+with the recently created `modules` directory.
 
 ## Python API
 
@@ -41,7 +41,7 @@ If you wish to write your own transformation using the Python API, you need to
 have Python version 3.5.0 or above installed.
 
 Let's create a file called `transformation.py` in the
-`/usr/lib/memgraph/query_modules` directory. First the foremost, import the
+`/usr/lib/memgraph/query_modules` directory. First,the foremost, import the
 `mgp` module, which contains definitions of the public Python API provided
 by Memgraph.
 
@@ -49,9 +49,9 @@ by Memgraph.
 import mgp
 ```
 
-Next, we have implement the function that does the transformation. For
-transformations the signature of return type is fixed, while the signature of
-the transformation can vary. The whole signature of a transformation is the
+Next, we have to implement the function that does the transformation. For
+transformations the signature of the return type is fixed, while the signature
+of the transformation can vary. The whole signature of a transformation is the
 following:
 
 ```python
@@ -105,9 +105,9 @@ def my_transformation(messages: mgp.Messages
 ```
 
 As you can see, the query is almost the same for every message, except the
-three property of the messages. This is exactly the case when the `parameters`
-field of the result comes handy. Instead for formatting the string with the
-properties, we can pass the properties as query parameters:
+three properties of the messages. This is exactly the case when the
+`parameters` field of the result is handy. Instead of formatting the string
+with the properties, we can pass the properties as query parameters:
 
 ```python
 import mgp
@@ -186,13 +186,13 @@ be loaded when Memgraph starts. This means that you can write the
 transformations in any programming language which can work with C and can be
 compiled to the ELF shared library format.
 
-In this chapter we assume that Memgraph is installed on a standard Debian or
+In this chapter, we assume that Memgraph is installed on a standard Debian or
 Ubuntu machine where the necessary header file can be found under
-`/usr/include/memgraph`. For other installations the header file can be found
+`/usr/include/memgraph`. For other installations, the header file can be found
 under the `include/memgraph` folder in the Memgraph installation directory.
 
 As we already discussed how transformations work in the Python example, we
-won't go over the transformation itself in details. Also, to keep the
+won't go over the transformation itself in detail. Also, to keep the
 complexity of this example low, this transformation doesn't use the query
 parameters. Apart from that this transformation does the same as the Python
 example, but written in C++17.
@@ -294,5 +294,5 @@ You should see something like this:
 +----------------------------------------+
 ```
 
-For mote detailed overview check out the [Reference
+For more detailed overview check out the [Reference
 guide](/reference-guide/streams/transformation-modules/overview.md).

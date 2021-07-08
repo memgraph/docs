@@ -64,7 +64,7 @@ Memgraph supports all query audit logging. When enabled, the audit log contains 
 
 ## [Streams](/reference-guide/streams/overview.md)
 
-Memgraph can connect to existing Kafka streams. The streams are using user defined transformations to produce Cypher queries based on the received messages.
+Memgraph can connect to existing Kafka streams. The streams are using user-defined transformations to produce Cypher queries based on the received messages.
 To learn more about streams and transformations take a look at the following pages:
 * [Streams overview](/reference-guide/streams/overview.md)
 * [Transformation modules](/reference-guide/streams/transformation-modules/overview.md)
