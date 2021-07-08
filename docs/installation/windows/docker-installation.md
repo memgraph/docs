@@ -49,20 +49,21 @@ information on Docker Volumes can be found
 [here](https://docs.docker.com/storage/volumes/).
 :::
 
-If successful, you should see a message similar to the following :
+If successful, you should see a message similar to the following:
 
 ```console
 You are running Memgraph v1.4.0-community
 ```
 
-At this point, Memgraph is ready for you to [submit
+If you want to start Memgraph with different configuration settings, check out
+the [section below](#configuration). At this point, Memgraph is ready for you to [submit
 queries](/connect-to-memgraph/overview.md).
 
 :::info
 The username and password for connecting to the database are empty by default.
 :::
 
-### Stopping the database instance
+### Stopping Memgraph
 
 To stop a Memgraph database instance, run the following command:
 
