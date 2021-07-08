@@ -149,6 +149,7 @@ module.exports = {
           }],
         },
         'reference-guide/tensorflow',
+        'reference-guide/transaction-levels',
         'reference-guide/audit-log',
         'reference-guide/auth-module',
         'reference-guide/ldap-security',
