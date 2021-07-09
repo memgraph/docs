@@ -59,7 +59,6 @@ Each configuration setting is in the form: `--setting-name=value`.
 | -------------- | -------------- | -------------- |
 | --allow-load-csv | Controls whether LOAD CSV clause is allowed in queries | `[bool]` |
 | --also-log-to-stderr=false | log messages go to stderr in addition to logfiles | `[bool]` |
-| --also-log-to-stderr=false | log messages go to stderr in addition to logfiles | `[bool]` |
 | --data-directory=/var/lib/memgraph | Path to directory in which to save all permanent data. | `[string]` |
 | --isolation-level | Default isolation level used for the transactions. Allowed values: SNAPSHOT_ISOLATION, READ_COMMITTED, READ_UNCOMMITTED | `[string]` |
 | --log-file=/var/log/memgraph/memgraph.log | Path to where the log should be stored. | `[string]` |
@@ -68,7 +67,7 @@ Each configuration setting is in the form: `--setting-name=value`.
 | --kafka-bootstrap-servers= | List of Kafka brokers as a comma separated list of broker `host` or `host:port`. | `[string]` |
 | --memory-limit=0 | Total memory limit in MiB. Set to 0 to use the default values which are 100% of the physical memory if the swap is enabled and 90% of the physical memory otherwise. |  `[uint64]` |
 | --memory-warning-threshold=1024 | Memory warning threshold, in MB. If Memgraph detects there is less available RAM it will log a warning. <br/>Set to 0 to disable. | `[uint64]` |
-| --telemetry-enabled=true | Set to true to enable telemetry. We collect information about the running system (CPU and memory information), information about the database runtime (vertex and edge counts and resource usage) and aggregated statistics about some features of the database (how many times a feature is used) to allow for easier improvement of the product. | `[bool]` |
+| --telemetry-enabled=true | Set to true to enable telemetry. We collect information about the running system (CPU and memory information), information about the database runtime (vertex and edge counts and resource usage), and aggregated statistics about some features of the database (e.g. how many times a feature is used) to allow for an easier improvement of the product. | `[bool]` |
 
 
 ## Additional configuration inclusion

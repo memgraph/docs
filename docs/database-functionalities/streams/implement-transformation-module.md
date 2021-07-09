@@ -41,7 +41,7 @@ If you wish to write your own transformation using the Python API, you need to
 have Python version 3.5.0 or above installed.
 
 Let's create a file called `transformation.py` in the
-`/usr/lib/memgraph/query_modules` directory. First,the foremost, import the
+`/usr/lib/memgraph/query_modules` directory. First and foremost, import the
 `mgp` module, which contains definitions of the public Python API provided
 by Memgraph.
 
@@ -78,7 +78,7 @@ As this simple transformation won't access the vertices and edges in the
 database, the `context` parameter is not necessary, so we are going to use the
 simpler version.
 
-And the most important part is the actual implementation of the transformation
+The most important part is the actual implementation of the transformation
 function. Before showing how it can be done, let's clarify what is it
 supposed to do: it receives a list of messages and returns some queries and
 their parameters that will be executed in Memgraph as any regular query. Right,
