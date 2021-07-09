@@ -112,7 +112,7 @@ START STREAM myStream;
 ```
 
 After sending a few messages to the topic, the created vertices can be checked
-by executing `MATCH (n: MESSAGE) RETURN n;`:
+by executing `MATCH (n: MESSAGE) RETURN n`:
 
 ```plaintext
 +-----------------------------------------------------------------------------------------------+
