@@ -81,12 +81,12 @@ processing is started. This means if the processing fails, then the same
 messages won't be processed again.
 
 Missing a message can result in missing an edge that would connect two
-independent components of the graph. Therefore in our understanding missing
+independent components of the graph. Therefore, we think that missing
 some information is a bigger problem for graphs than having some information
 duplicated, so we implemented our streams using the **at least once**
-semantics: for every batch of messages the queries returned by the
+semantics, i.e. for every batch of messages the queries returned by the
 transformations are executed and committed to the database before committing
-the message offset to the Kafka cluster. However we cannot guarantee **exactly
+the message offset to the Kafka cluster. However, even though we cannot guarantee **exactly
 once** semantics, we tried to minimize the possibility of processing messages
 multiple times. This means committing the message offsets to Kafka cluster
 happens right after the transaction is committed to the database.
