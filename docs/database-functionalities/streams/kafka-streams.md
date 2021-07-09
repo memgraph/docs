@@ -5,10 +5,10 @@ sidebar_label: Managing Kafka streams
 ---
 
 To connect Memgraph to a Kafka stream, we obviously need an existing stream.
-As Kafka itself is a quite complex system, we don't aim to teach you about
+As Kafka itself is quite a complex system, we don't aim to teach you about
 it. If you are not familiar with Kafka, then please check out their [quickstart
-guide](https://kafka.apache.org/quickstart) to get familiar with it. In the
-followings, we assume that a Kafka server is available on the 9092 port of
+guide](https://kafka.apache.org/quickstart) to get familiar. In the
+following, we assume that a Kafka server is available on the 9092 port of
 the local machine ('localhost:9092`) as the default configuration of the Kafka
 quick start guide.
 
@@ -54,16 +54,16 @@ The result should be like this:
 ```
 
 The result contains the most important information about the existing streams,
-e.g.: its name, topics it is subscribed to, etc.
+e.g., its name, topics it is subscribed to, etc.
 
 ## Check if the stream is working
 
-Maybe at first, you don't want to run the stream in the background, but see the
+Maybe at first, you don't want to run the stream in the background but see the
 actual result of the transformation. This can be handy when implementing a
-transformation. To achieve that we can use the `CHECK STREAM` query. This query
-will consume the message from the last committed offset, but won't commit the
-offsets. That means you are free to play around with it, it won't have any
-permanent effect. For a freshly created stream. there is probably no committed
+transformation. To achieve that, we can use the `CHECK STREAM` query. This query
+will consume the message from the last committed offset but won't commit the
+offsets. That means you are free to play around with it, and there won't be any
+permanent effects. For a freshly created stream. There is probably no committed
 offset, so the `CHECK STREAM` query will wait for new messages. By default, the
 query will wait `30000` milliseconds (`30` seconds) and after that, it will
 throw a timeout exception. To give us some more time, use a larger timeout,
@@ -140,10 +140,10 @@ stopped. You can mitigate this by using different consumer group names or
 resetting the committed offset via Kafka admin client.
 :::
 
-Previously we mentioned that the `CHECK STREAM` query doesn't modify the
+Previously, we mentioned that the `CHECK STREAM` query doesn't modify the
 committed offsets, which means using `CHECK STREAM` on a stream that already
-has some offsets committed, can result in executing the transformation on the
-same message multiple times. To demonstrate that first let's stop the stream:
+has some offsets committed can result in executing the transformation on the
+same message multiple times. To demonstrate that, first, let's stop the stream:
 
 ```cypher
 STOP STREAM myStream;

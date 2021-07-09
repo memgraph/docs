@@ -30,7 +30,7 @@ docker run -it --rm -v modules:/usr/lib/memgraph/query_modules -p 7687:7687 memg
 Everything from the directory `/usr/lib/memgraph/query_modules` will be
 visible/editable in your mounted `modules` volume and vice versa.
 
-In the rest of this page `/usr/lib/memgraph/query_modules` will be used to
+Through the rest of this page, `/usr/lib/memgraph/query_modules` will be used to
 refer to this directory. If you are using Docker, then please do the same but
 with the recently created `modules` directory.
 
@@ -50,7 +50,7 @@ import mgp
 ```
 
 Next, we have to implement the function that does the transformation. For
-transformations the return type is fixed, while the parameters of the
+transformations, the return type is fixed, while the parameters of the
 transformation can vary. The whole signature of a transformation is the
 following:
 
@@ -191,7 +191,7 @@ Ubuntu machine where the necessary header file can be found under
 `/usr/include/memgraph`. For other installations, the header file can be found
 under the `include/memgraph` folder in the Memgraph installation directory.
 
-As we already discussed how transformations work in the Python example, we
+As we already discussed how transformations work in the Python example we
 won't go over the transformation itself in detail. Also, to keep the
 complexity of this example low, this transformation doesn't use the query
 parameters. Apart from that this transformation does the same as the Python
@@ -294,5 +294,5 @@ You should see something like this:
 +----------------------------------------+
 ```
 
-For more detailed overview check out the [Reference
+For a more detailed overview check out the [Reference
 guide](/reference-guide/streams/transformation-modules/overview.md).
