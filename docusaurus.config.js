@@ -43,15 +43,15 @@ module.exports = {
             },
             {
               label: 'Installation',
-              to: '/memgraph/getting-started/installation',
+              to: '/memgraph/installation',
             },
             {
               label: 'Database functionalities',
               to: '/memgraph/database-functionalities',
             },
             {
-              label: 'Building applications',
-              to: '/memgraph/getting-started/connecting-applications',
+              label: 'Connect to Memgraph',
+              to: '/memgraph/connect-to-memgraph',
             },
             {
               label: 'Reference guide',
@@ -316,7 +316,7 @@ module.exports = {
           },
           //Tutorial redirects
           {
-            to: '/memgraph/tutorials/tutorials',
+            to: '/memgraph/tutorials',
             from: ['/memgraph/tutorials-overview',],
           },
           {
@@ -365,11 +365,11 @@ module.exports = {
             from: ['/memgraph/how-to-guides-overview/explain-profile',],
           },
           {
-            to: '/memgraph/database-functionalities/import-data',
+            to: '/memgraph/import-data',
             from: ['/memgraph/how-to-guides-overview/import-data',],
           },
           {
-            to: '/memgraph/getting-started/connecting-applications',
+            to: '/memgraph/connect-to-memgraph/methods/drivers',
             from: ['/memgraph/how-to-guides-overview/query-memgraph-programmatically',],
           },
           {
@@ -377,11 +377,11 @@ module.exports = {
             from: ['/memgraph/how-to-guides-overview/enforce-constraints',],
           },
           {
-            to: '/memgraph/database-functionalities/query-modules/load-call-query-modules',
+            to: '/memgraph/reference-guide/query-modules/load-call-query-modules',
             from: ['/memgraph/how-to-guides-overview/load-query-modules',],
           },
           {
-            to: '/memgraph/database-functionalities/query-modules/load-call-query-modules',
+            to: '/memgraph/reference-guide/query-modules/load-call-query-modules',
             from: ['/memgraph/how-to-guides-overview/call-query-module-procedures',],
           },
           {
@@ -389,7 +389,7 @@ module.exports = {
             from: ['/memgraph/how-to-guides-overview/implement-query-modules',],
           },
           {
-            to: '/memgraph/database-functionalities/query-modules/built-in-query-modules',
+            to: '/memgraph/reference-guide/query-modules/available-query-modules',
             from: ['/memgraph/how-to-guides-overview/use-query-modules-provided-by-memgraph',],
           },
           {
@@ -442,27 +442,27 @@ module.exports = {
             from: ['/memgraph/reference-overview/query-modules',],
           },
           {
-            to: '/memgraph/reference-guide/query-modules/c-api',
+            to: '/memgraph/reference-guide/query-modules/api/c-api',
             from: ['/memgraph/reference-overview/query-modules/c-api',],
           },
           {
-            to: '/memgraph/reference-guide/query-modules/python-api',
+            to: '/memgraph/reference-guide/query-modules/api/python-api',
             from: ['/memgraph/reference-overview/query-modules/python-api',],
           },
           {
-            to: '/memgraph/reference-guide/networkx',
+            to: '/memgraph/database-functionalities/networkx',
             from: ['/memgraph/reference-overview/networkx',],
           },
           {
-            to: '/memgraph/reference-guide/networkx/graph-analyzer',
+            to: '/memgraph/database-functionalities/networkx',
             from: ['/memgraph/reference-overview/networkx/graph-analyzer',],
           },
           {
-            to: '/memgraph/reference-guide/networkx/wcc',
+            to: '/memgraph/database-functionalities/networkx',
             from: ['/memgraph/reference-overview/networkx/wcc',],
           },
           {
-            to: '/memgraph/reference-guide/networkx/nxalg',
+            to: '/memgraph/database-functionalities/networkx',
             from: ['/memgraph/reference-overview/networkx/nxalg',],
           },
           {
@@ -578,7 +578,7 @@ module.exports = {
           },
           //FAQ redirects
           {
-            to: '/memgraph/getting-help/faq',
+            to: '/help-center/faq',
             from: ['/memgraph/faq',],
           },
           //Memgraph Lab redirects
@@ -592,7 +592,7 @@ module.exports = {
           },
           //Memgraph installation redirects
           {
-            to: '/memgraph/getting-started/installation',
+            to: '/memgraph/installation',
             from: ['/memgraph/getting-started/installation/docker-installation',],
           },
           {
@@ -613,8 +613,93 @@ module.exports = {
           },
           //Memgraph getting started redirects
           {
-            to: '/memgraph/getting-started/querying',
+            to: '/memgraph/connect-to-memgraph',
             from: ['/memgraph/getting-started/querying/querying',],
+          },
+          //New structure update
+          {
+            to: '/memgraph/installation',
+            from: ['/memgraph/getting-started/installation',],
+          },
+          {
+            to: '/memgraph/connect-to-memgraph',
+            from: ['/memgraph/getting-started/querying',],
+          },
+          {
+            to: '/memgraph/connect-to-memgraph/methods/drivers',
+            from: ['/memgraph/getting-started/connecting-applications',],
+          },
+          {
+            to: '/memgraph/connect-to-memgraph/methods/building-applications/python',
+            from: ['/memgraph/getting-started/connecting-applications/python',],
+          },
+          {
+            to: '/memgraph/connect-to-memgraph/methods/building-applications/rust',
+            from: ['/memgraph/getting-started/connecting-applications/rust',],
+          },
+          {
+            to: '/memgraph/connect-to-memgraph/methods/building-applications/c-sharp',
+            from: ['/memgraph/getting-started/connecting-applications/c-sharp',],
+          },
+          {
+            to: '/memgraph/connect-to-memgraph/methods/building-applications/java',
+            from: ['/memgraph/getting-started/connecting-applications/java',],
+          },
+          {
+            to: '/memgraph/connect-to-memgraph/methods/building-applications/go',
+            from: ['/memgraph/getting-started/connecting-applications/go',],
+          },
+          {
+            to: '/memgraph/connect-to-memgraph/methods/building-applications/javascript',
+            from: ['/memgraph/getting-started/connecting-applications/javascript',],
+          },
+          {
+            to: '/memgraph/connect-to-memgraph/methods/building-applications/php',
+            from: ['/memgraph/getting-started/connecting-applications/php',],
+          },
+          {
+            to: '/memgraph/tutorials',
+            from: ['/memgraph/tutorials/tutorials',],
+          },
+          {
+            to: '/memgraph/import-data',
+            from: ['/memgraph/database-functionalities/import-data',],
+          },
+          {
+            to: '/memgraph/reference-guide/query-modules/available-query-modules',
+            from: ['/memgraph/database-functionalities/query-modules/built-in-query-modules',],
+          },
+          {
+            to: '/memgraph/reference-guide/query-modules/load-call-query-modules',
+            from: ['/memgraph/database-functionalities/query-modules/load-call-query-modules',],
+          },
+          {
+            to: '/memgraph/reference-guide/query-modules/api/c-api',
+            from: ['/memgraph/reference-guide/query-modules/c-api',],
+          },
+          {
+            to: '/memgraph/reference-guide/query-modules/api/python-api',
+            from: ['/memgraph/reference-guide/query-modules/python-api',],
+          },
+          {
+            to: '/memgraph/database-functionalities/networkx',
+            from: ['/memgraph/reference-guide/networkx',],
+          },
+          {
+            to: '/memgraph/database-functionalities/networkx',
+            from: ['/memgraph/reference-guide/networkx/graph-analyzer',],
+          },
+          {
+            to: '/memgraph/database-functionalities/networkx',
+            from: ['/memgraph/reference-guide/networkx/nxalg',],
+          },
+          {
+            to: '/help-center/',
+            from: ['/memgraph/getting-help/getting-help',],
+          },
+          {
+            to: '/help-center/faq',
+            from: ['/memgraph/getting-help/faq',],
           },
         ],
       },

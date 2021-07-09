@@ -10,7 +10,7 @@ This article outlines the basic steps necessary to query a running Memgraph data
 ## Prerequisites
 Before you proceed with the guide, make sure that you have:
 * Installed the latest version of **Memgraph Lab** which you can get from the official [download page](https://memgraph.com/download#Lab-download).
-* A running Memgraph database instance. Instructions on how to do setup Memgraph can be [found here](../memgraph/getting-started/installation).
+* A running Memgraph database instance. Instructions on how to do setup Memgraph can be [found here](/memgraph/installation).
 
 ## Connecting to the database
 
@@ -22,7 +22,7 @@ If you are starting with a fresh database instance, you don't have to change any
 3. The `Port` field should be **`7687`**. Every Memgraph instance is listening on this port by default.
 4. The `Encrypted` option should be **disabled** by default.
 
-If you fail to connect, make sure that your database instance is up and running. 
+If you fail to connect, make sure that your database instance is up and running.
 If the `Host` address is wrong, take a look at the [Docker note](/memgraph/how-to-work-with-docker#docker-container-ip-address) in the installation guide.
 
 ![Memgraph Lab](./data/memgraph_lab_login.png)
@@ -48,10 +48,10 @@ MATCH (u:User)-[r]->(x) RETURN u, r, x;
 
 ## Where to next?
 
-To learn more about the **Cypher** language, visit the **[Cypher manual](../cypher-manual)** or **[Memgraph Playground](https://playground.memgraph.com/)** for interactive guides.
-For real-world examples of how to use Memgraph, we strongly suggest going through one of the available **[Tutorials](../memgraph/tutorials/tutorials)**. 
-Details on what can be stored in Memgraph can be found in the article about **[Data storage](../memgraph/concepts/storage)**.
+To learn more about the **Cypher** language, visit the **[Cypher manual](/cypher-manual)** or **[Memgraph Playground](https://playground.memgraph.com/)** for interactive guides.
+For real-world examples of how to use Memgraph, we strongly suggest going through one of the available **[Tutorials](/memgraph/tutorials)**.
+Details on what can be stored in Memgraph can be found in the article about **[Data storage](/memgraph/concepts/storage)**.
 
 ## Getting help
 
-Visit the **[Getting help](../memgraph/getting-help/getting-help)** page in case you run into any kind of problem or you have additional questions.
+Visit the **[Getting help](/help-center)** page in case you run into any kind of problem or you have additional questions.
