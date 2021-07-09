@@ -7,22 +7,31 @@ slug: /reference-guide
 
 The **Memgraph** reference guide contains the details of implemented features.
 
-## [Cypher query language](/cypher-manual)
+## [Backup](./backup.md)
 
-**Cypher** is a declarative graph query language that allows for expressive and efficient data querying in a property graph. It aims to be intuitive and easy to learn while
-providing a powerful interface for working with graph-based data.
+Memgraph comes with a couple of queries that allow you to safely make a backup of the files containing its data.
+
+## [Built-in graph algorithms](./graph-algorithms.md)
+
+Memgraph comes with custom-built algorithms that are implemented using C++: **Filtering variable-length paths**, **Breadth-first search**, and **Weighted shortest path**.
 
 ## [Configuration settings](./configuration.md)
 
 Memgraph can be configured by editing the Memgraph configuration file or by including another configuration file.
 
+## [Cypher query language](/cypher-manual)
+
+**Cypher** is a declarative graph query language that allows for expressive and efficient data querying in a property graph. It aims to be intuitive and easy to learn while
+providing a powerful interface for working with graph-based data.
+
 ## [Indexing](./indexing.md)
 
 An index stores additional information on certain types of data, so that retrieving said data becomes more efficient.
 
-## [Built-in graph algorithms](./graph-algorithms.md)
+## [Machine learning](./tensorflow.md)
 
-Memgraph comes with custom-built algorithms that are implemented using C++: **Filtering variable-length paths**, **Breadth-first search**, and **Weighted shortest path**.
+Memgraph TensorFlow op wraps the high-performance Memgraph client for use with TensorFlow,
+allowing natural data transfer between Memgraph and TensorFlow at any point of the model.
 
 ## [Query modules](/reference-guide/query-modules/overview.md)
 
@@ -33,19 +42,17 @@ To learn more about query modules take a look at the following guides:
 * [Load and call query modules](/reference-guide/query-modules/load-call-query-modules.md)
 * [Implement custom query modules](/database-functionalities/query-modules/implement-query-modules.md)
 
-## [Machine learning](./tensorflow.md)
-
-Memgraph TensorFlow op wraps the high-performance Memgraph client for use with TensorFlow,
-allowing natural data transfer between Memgraph and TensorFlow at any point of the model.
-
 ## [Replication](./replication.md)
 
 Memgraph comes with a couple of queries that allow you to safely make a backup of the files containing its data.
 Memgraph supports replication and allows you to create a cluster of nodes running Memgraph instances.
 
-## [Backup](./backup.md)
+## [Streams](/reference-guide/streams/overview.md)
 
-Memgraph comes with a couple of queries that allow you to safely make a backup of the files containing its data.
+Memgraph can connect to existing Kafka streams. The streams are using user-defined transformations to produce Cypher queries based on the received messages.
+To learn more about streams and transformations take a look at the following pages:
+* [Streams overview](/reference-guide/streams/overview.md)
+* [Transformation modules](/reference-guide/streams/transformation-modules/overview.md)
 
 ## [User privileges](./security.md)
 

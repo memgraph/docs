@@ -26,10 +26,10 @@ of these files will be mapped to module names.  For example, `hello.so`
 will be mapped to the `hello` module and a `py_hello.py` script
 will be mapped to the `py_hello.py` module.
 
-If you want to change the directory in which Memgraph searches for query
-modules, just change the `--query-modules-directory` flag in the main
-configuration file (`/etc/memgraph/memgraph.conf`) or supply it as
-a command-line parameter (e.g. when using Docker).
+If you want to change the directory in which Memgraph searches for
+transformation modules, just change or extend the `--query-modules-directory`
+flag in the main configuration file (`/etc/memgraph/memgraph.conf`) or supply
+it as a command-line parameter (e.g. when using Docker).
 
 ## Utility procedures for transformations
 
@@ -38,7 +38,7 @@ transformations are written under our utility `mg` query module.
 For transformations this module offers:
 
 * `mg.transformations() :: (name :: STRING)`: Lists all transformations
-  procedures and their signatures.
+  procedures.
 * `mg.load(module_name :: STRING) :: ()`: Loads or reloads the given module.
 * `mg.load_all() :: ()`: Loads or reloads all modules.
 
@@ -51,13 +51,13 @@ CALL mg.transformations() YIELD *;
 might yield the following result:
 
 ```plaintext
-+---------------------+-------------------------------------------------------------------+
-| name                | signature                                                         |
-+---------------------+-------------------------------------------------------------------+
-| ...                 | ...                                                               |
-| batch.transform     | module.transform :: (query :: STRING, parameters :: MAP)          |
-| ...                 | ...                                                               |
-+---------------------+-------------------------------------------------------------------+
++---------------------+
+| name                |
++---------------------+
+| ...                 |
+| batch.transform     |
+| ...                 |
++---------------------+
 ```
 
 In this case, we can see that Memgraph has already loaded the user-defined transformation

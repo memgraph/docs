@@ -1,19 +1,19 @@
 ---
-id: transaction-levels
-title: Transaction levels
-sidebar_label: Transaction levels
+id: isolation-levels
+title: Isolation levels
+sidebar_label: Isolation levels
 ---
 
-## Supported transaction levels
+## Supported isolation levels
 
-Memgraph currently supports three transaction levels:
+Memgraph currently supports three isolation levels:
  - SNAPSHOT ISOLATION (default)
  - READ COMMITTED
  - READ UNCOMMITTED
 
-## Setting the transaction level
+## Setting the isolation level
 
-The default transaction level, `SNAPSHOT ISOLATION`, can be changed using the config
+The default isolation level, `SNAPSHOT ISOLATION`, can be changed using the config
 or running a query.
 
 ### Configuration

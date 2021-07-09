@@ -90,6 +90,12 @@ module.exports = {
         'reference-guide/backup',
         {
           type: 'category',
+          label: 'Connecting to Kafka streams',
+          items: ['database-functionalities/streams/kafka-streams',
+            'database-functionalities/streams/implement-transformation-module'],
+        },
+        {
+          type: 'category',
           label: 'Enforcing constraints',
           items: ['database-functionalities/constraints/existence-constraint',
             'database-functionalities/constraints/uniqueness-constraint'],
@@ -118,6 +124,7 @@ module.exports = {
         'reference-guide/configuration',
         'reference-guide/graph-algorithms',
         'reference-guide/indexing',
+        'reference-guide/isolation-levels',
         {
           type: 'category',
           label: 'Query modules',
@@ -149,7 +156,6 @@ module.exports = {
           }],
         },
         'reference-guide/tensorflow',
-        'reference-guide/transaction-levels',
         'reference-guide/audit-log',
         'reference-guide/auth-module',
         'reference-guide/ldap-security',
