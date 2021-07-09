@@ -68,15 +68,15 @@ will be used, therefore only the new messages will be consumed.
 
 ### At least once semantics
 
-In stream processing it is important to have some guarantees about how failures
+In stream processing, it is important to have some guarantees about how failures
 are handled. When connecting an external application such as Memgraph to a
 Kafka stream, there are two possible ways to handle failures during message
 processing:
 1. Every message is processed **at least once**: the message offsets are
 committed to the Kafka cluster after the processing is done. This means if the
 committing fails, then the messages can get processed multiple times.
-2. Every message is precessed **at most once**: the message offsets are
-commited to the Kafka cluster right after they are recieved, before the
+2. Every message is processed **at most once**: the message offsets are
+committed to the Kafka cluster right after they are received before the
 processing is started. This means if the processing fails, then the same
 messages won't be processed again.
 
@@ -88,7 +88,7 @@ semantics, i.e. for every batch of messages the queries returned by the
 transformations are executed and committed to the database before committing
 the message offset to the Kafka cluster. However, even though we cannot guarantee **exactly
 once** semantics, we tried to minimize the possibility of processing messages
-multiple times. This means committing the message offsets to Kafka cluster
+multiple times. This means committing the message offsets to the Kafka cluster
 happens right after the transaction is committed to the database.
 
 ## Stop a stream
