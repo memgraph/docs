@@ -91,8 +91,8 @@ module.exports = {
         {
           type: 'category',
           label: 'Connecting to Kafka streams',
-          items: ['database-functionalities/streams/implement-transformation-module',
-            'database-functionalities/streams/kafka-streams'],
+          items: ['database-functionalities/streams/kafka-streams',
+            'database-functionalities/streams/implement-transformation-module'],
         },
         {
           type: 'category',
