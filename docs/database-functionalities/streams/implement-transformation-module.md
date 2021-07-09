@@ -50,8 +50,8 @@ import mgp
 ```
 
 Next, we have to implement the function that does the transformation. For
-transformations the signature of the return type is fixed, while the signature
-of the transformation can vary. The whole signature of a transformation is the
+transformations the return type is fixed, while the parameters of the
+transformation can vary. The whole signature of a transformation is the
 following:
 
 ```python
