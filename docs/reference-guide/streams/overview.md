@@ -66,6 +66,31 @@ When a stream is started, it should resume from the last committed offset. If
 there is no committed offset for the consumer group, then the largest offset
 will be used, therefore only the new messages will be consumed.
 
+### At least once semantics
+
+In stream processing it is important to have some guarantees about how failures
+are handled. In case connecting external application such as Memgraph to Kafka
+streams, there are two possible ways to handle failures during message
+processing:
+1. Every message is processed **at least once**: the message offsets are
+committed to the Kafka cluster after the processing is done. This means if the
+committing failes, then the messages can get processed multiple times.
+2. Every message is precessed **at most once**: the message offsets are
+commited to the Kafka cluster right after they are recieved, before the
+processing is started. This means if the processing fails, then the same
+messages won't be processed again.
+
+Missing a message can result in missing an edge that would connect two
+independent components of the graph. Therefore in our understanding missing
+some information is a bigger problem for graphs than having some information
+duplicated, so we implemented our streams using the **at least once**
+semantics: for every batch of messages the queries returned by the
+transformations are executed and committed to the database before committing
+the message offset to the Kafka cluster. However we cannot guarantee **exactly
+once** semantics, we tried to minimize the possibility of processing messages
+multiple times. This means committing the message offsets to Kafka cluster
+happens right after the transaction is committed to the database.
+
 ## Stop a stream
 
 ```cypher
