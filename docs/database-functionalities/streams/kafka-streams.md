@@ -9,7 +9,7 @@ As Kafka itself is quite a complex system, we don't aim to teach you about
 it. If you are not familiar with Kafka, then please check out their [quickstart
 guide](https://kafka.apache.org/quickstart) to get familiar. In the
 following, we assume that a Kafka server is available on the 9092 port of
-the local machine ('localhost:9092`) as the default configuration of the Kafka
+the local machine (`localhost:9092`) as the default configuration of the Kafka
 quick start guide.
 
 ## Configuring Memgraph
