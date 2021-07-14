@@ -70,20 +70,18 @@ SET n:Country:Kingdom;
 You can now remove multiple labels from a node at the same time. 
 
 ```cypher
+MATCH (n:Country { name: 'United Kingdom' })
+REMOVE n:Country:Kingdom
+RETURN n;
+```
+
+Output:
+```
 +--------------------------------------------------------------------------------------------+
 | n                                                                                          |
 +--------------------------------------------------------------------------------------------+
 | ({continent: "Europe", language: "English", name: "United Kingdom", population: 66000000}) |
 +--------------------------------------------------------------------------------------------+
-```
-
-Output:
-```
-+------+
-| c2   |
-+------+
-| Null |
-+------+
 ```
 
 ## Data set Queries
