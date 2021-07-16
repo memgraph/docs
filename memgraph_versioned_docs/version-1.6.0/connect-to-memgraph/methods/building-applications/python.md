@@ -52,14 +52,17 @@ row = cursor.fetchone()
 print(row[0])
 ```
 
-**3.** Don't forget to change the host address in your code. If you are using Docker to run Memgraph, you
-can find the **`CONTAINER ID`** with `docker ps` and use it in the following command to retrieve the address:
+:::note Note for Docker users
+If the program fails to connect to a Memgraph instance that was started with Docker, you may need to use a different IP address (not the default `localhost`/`127.0.0.1`) to connect to the instance.
+
+You can find the **`CONTAINER ID`** with `docker ps` and use it in the following command to retrieve the address:
 
 ```
 docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' CONTAINER ID
 ```
+:::
 
-**4.** Now, you can run the application with the following command:
+**3.** Now, you can run the application with the following command:
 
 ```
 python ./program.py
