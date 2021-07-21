@@ -53,3 +53,9 @@ To learn more visit:
 Memgraph supports authentication and (optional) authorization using a custom-built external auth module.
 To learn more visit:
 * [Authentication and authorization (Enterprise)](./manage-users-using-ldap.md)
+
+## Triggers
+
+Memgraph supports running openCypher statements after a certain event happens
+during transaction execution, i.e. triggers:
+* [Triggers](./triggers.md)
