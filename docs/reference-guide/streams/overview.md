@@ -47,6 +47,13 @@ The `BATCH_INTERVAL` starts when the:
 - the processing of the previous batch is completed
 - the previous batch interval ended without receiving any messages
 
+The user who executes the create query are going to be owner of the stream. The
+privileges of the owner is used when executing the queries returned from a
+transformation, in other words the execution of the queries will fail if the
+owner doesn't have the required privileges. More information about how the
+owner affects the stream can be found in the
+[reference guide](reference-guide/security.md#owners).
+
 ## Deleting a stream
 
 ```cypher
@@ -111,6 +118,7 @@ Shows a list of existing streams with the following information:
 - batch interval
 - batch size
 - transformation procedure name
+- the owner of the streams
 - whether the stream is running
 
 ## Check stream

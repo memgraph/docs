@@ -274,7 +274,14 @@ If the element contains information about a removed vertex label, it's in the fo
   "label": label
 }
 ```
+### Owner
 
+The user who executes the create query are going to be owner of the trigger.
+The privileges of the owner is used when executing `openCypherStatements`,
+in other words the execution of the statements will fail if the
+owner doesn't have the required privileges. More information about how the
+owner affects the trigger can be found in the
+[reference guide](reference-guide/security.md#owners).
 
 ## Dropping a trigger
 A trigger can be removed by running the following query:
@@ -291,6 +298,6 @@ SHOW TRIGGERS;
 ```
 which returns results in the following format:
 
-|trigger name| statement | event type | phase |
-|----------- |---------- | -----------| ------|
-| name of the trigger| statement which the trigger executes | event which triggers the statement | phase at which the trigger executes its statement |
+|trigger name| statement | event type | phase | owner |
+|----------- |---------- | -----------| ------|-------|
+| name of the trigger| statement which the trigger executes | event which triggers the statement | phase at which the trigger executes its statement | owner of the trigger or `Null` |
