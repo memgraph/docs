@@ -4,6 +4,19 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v1.6.1 - Jul 23, 2021
+
+### Major Feature and Improvements
+
+* Added proper privilege checks for queries executed by triggers and stream transformations.
+
+
+### Bug Fixes
+
+* Fixed error handling in streams to make restarting streams possible after failing.
+  The issue is caused by not rolling back the transaction in which the query failed, so when the stream was restarted and tried to process the next batch of messages it was still in a transaction, but it tried to start a new one.
+  Now the transaction is rolled back in case of any errors during query execution, so a new transaction can be started during processing of the next batch of messages.
+
 ## v1.6.0 - Jul 7, 2021
 
 :::warning
@@ -13,8 +26,8 @@ sidebar_label: Changelog
 
 ### Major Feature and Improvements
 
-* Added support for consuming Kafka streams. You can connect Memgraph to a Kafka cluster and run queries based on the messages received. 
-  The transformation from Kafka to Cypher queries is done using **Transformation Modules**, a concept similar to Query Modules. 
+* Added support for consuming Kafka streams. You can connect Memgraph to a Kafka cluster and run queries based on the messages received.
+  The transformation from Kafka to Cypher queries is done using **Transformation Modules**, a concept similar to Query Modules.
   Using our Python and C API, you can easily define functions that analyze Kafka messages and generate different queries based on them.
   The stream connection can be configured, tested, stopped, started, checked, and dropped.
 * Introduced global allocators for Query Modules using C API, so the data can be preserved between multiple runs of the same procedure.
