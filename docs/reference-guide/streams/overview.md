@@ -47,11 +47,11 @@ The `BATCH_INTERVAL` starts when the:
 - the processing of the previous batch is completed
 - the previous batch interval ended without receiving any messages
 
-The user who executes the `CREATE` query are going to be owner of the stream.
-Authentication and authorization is not supported in Memgraph Community, thus
+The user who executes the `CREATE` query is going to be the owner of the stream.
+Authentication and authorization are not supported in Memgraph Community, thus
 the owner will always be `Null`, and the privileges are not checked in Memgraph
-Community. In Memgraph Enterprise the privileges of the owner is used when
-executing the queries returned from a transformation, in other words the
+Community. In Memgraph Enterprise the privileges of the owner are used when
+executing the queries returned from a transformation, in other words, the
 execution of the queries will fail if  the owner doesn't have the required
 privileges. More information about how the owner affects the stream can be
 found in the

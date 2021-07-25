@@ -134,7 +134,7 @@ done by issuing the following command:
 The privileges of the owners of
 [streams](/reference-guide/streams/overview.md#creating-a-stream) and
 [triggers](/database-functionalities/triggers.md#owner) are propagated to the
-corressponding query executions:
+corresponding query executions:
 - in case of streams for the queries returned by the transformations
 - in case of triggers for trigger statements
 
@@ -142,9 +142,9 @@ This means the execution of the queries will fail if the owner doesn't have the
 required privileges. There are a few important details:
 - If there are no existing users, no privilege check is performed similarly to
 regular queries.
-- If a stream or trigger is created without using a logged in user
+- If a stream or trigger is created without using a logged-in user
 session, the owner will be `Null`. From the point when the first user is created
-such streams and triggers will fail, because the lack of owner is treated as a
+such streams and triggers will fail because the lack of owner is treated as a
 user without any privileges, so no queries are allowed to be executed.
-- Currently there is no way of changing the owner. The only workaround for this
+- Currently, there is no way of changing the owner. The only workaround for this
 is to delete the stream or trigger and then create it again with another user.
