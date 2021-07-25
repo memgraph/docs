@@ -1,0 +1,489 @@
+{
+  "version-1.6.1/memgraph": [
+    {
+      "type": "doc",
+      "id": "version-1.6.1/overview"
+    },
+    {
+      "type": "doc",
+      "id": "version-1.6.1/getting-started"
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Installation",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-1.6.1/installation/overview"
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Linux",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-1.6.1/installation/linux/docker-installation"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.6.1/installation/linux/ubuntu-installation"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.6.1/installation/linux/debian-installation"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.6.1/installation/linux/rpm-installation"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.6.1/installation/linux/linux-installation-troubleshooting"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "macOS",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-1.6.1/installation/macos/docker-installation"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.6.1/installation/macos/macos-installation-troubleshooting"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Windows",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-1.6.1/installation/windows/docker-installation"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.6.1/installation/windows/wsl-installation"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.6.1/installation/windows/windows-installation-troubleshooting"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Connect to Memgraph",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-1.6.1/connect-to-memgraph/overview"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/connect-to-memgraph/connect-to-memgraph"
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Methods",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-1.6.1/connect-to-memgraph/methods/mgconsole"
+            },
+            {
+              "type": "link",
+              "label": "Memgraph Lab",
+              "href": "https://docs.memgraph.com/memgraph-lab"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.6.1/connect-to-memgraph/methods/drivers"
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "Building applications",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "version-1.6.1/connect-to-memgraph/methods/building-applications/python"
+                },
+                {
+                  "type": "doc",
+                  "id": "version-1.6.1/connect-to-memgraph/methods/building-applications/rust"
+                },
+                {
+                  "type": "doc",
+                  "id": "version-1.6.1/connect-to-memgraph/methods/building-applications/c-sharp"
+                },
+                {
+                  "type": "doc",
+                  "id": "version-1.6.1/connect-to-memgraph/methods/building-applications/java"
+                },
+                {
+                  "type": "doc",
+                  "id": "version-1.6.1/connect-to-memgraph/methods/building-applications/go"
+                },
+                {
+                  "type": "doc",
+                  "id": "version-1.6.1/connect-to-memgraph/methods/building-applications/javascript"
+                },
+                {
+                  "type": "doc",
+                  "id": "version-1.6.1/connect-to-memgraph/methods/building-applications/php"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Import data",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-1.6.1/import-data/overview"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/import-data/csv-import-tool"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/import-data/load-csv-clause"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/import-data/cypherl"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Tutorials",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-1.6.1/tutorials/overview"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/tutorials/analyzing-ted-talks"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/tutorials/backpacking-through-europe"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/tutorials/exploring-the-european-road-network"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/tutorials/football-transfers"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/tutorials/got-deaths"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/tutorials/graphing-the-premier-league"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/tutorials/marvel-universe"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/tutorials/movie-recommendation"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/tutorials/social-network-analysis"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/tutorials/understanding-music-with-modules"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Database functionalities",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-1.6.1/database-functionalities/overview"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/reference-guide/backup"
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Connecting to Kafka streams",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-1.6.1/database-functionalities/streams/kafka-streams"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.6.1/database-functionalities/streams/implement-transformation-module"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Enforcing constraints",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-1.6.1/database-functionalities/constraints/existence-constraint"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.6.1/database-functionalities/constraints/uniqueness-constraint"
+            }
+          ]
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/database-functionalities/inspecting-queries"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/database-functionalities/memory-control"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/database-functionalities/networkx"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/database-functionalities/profiling-queries"
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Query modules",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-1.6.1/database-functionalities/query-modules/overview"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.6.1/database-functionalities/query-modules/implement-query-modules"
+            }
+          ]
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/database-functionalities/replication"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/database-functionalities/tensorflow-setup"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/database-functionalities/triggers"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/database-functionalities/manage-users-using-ldap"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/database-functionalities/manage-user-privileges"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Reference guide",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-1.6.1/reference-guide/overview"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/reference-guide/backup"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/reference-guide/configuration"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/reference-guide/graph-algorithms"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/reference-guide/indexing"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/reference-guide/isolation-levels"
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Query modules",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-1.6.1/reference-guide/query-modules/overview"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.6.1/reference-guide/query-modules/available-query-modules"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.6.1/reference-guide/query-modules/load-call-query-modules"
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "API",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "version-1.6.1/reference-guide/query-modules/api/c-api"
+                },
+                {
+                  "type": "doc",
+                  "id": "version-1.6.1/reference-guide/query-modules/api/python-api"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/reference-guide/replication"
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Streams",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-1.6.1/reference-guide/streams/overview"
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "Transformation Modules",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "version-1.6.1/reference-guide/streams/transformation-modules/overview"
+                },
+                {
+                  "collapsed": true,
+                  "type": "category",
+                  "label": "API",
+                  "items": [
+                    {
+                      "type": "doc",
+                      "id": "version-1.6.1/reference-guide/streams/transformation-modules/api/c-api"
+                    },
+                    {
+                      "type": "doc",
+                      "id": "version-1.6.1/reference-guide/streams/transformation-modules/api/python-api"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/reference-guide/tensorflow"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/reference-guide/audit-log"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/reference-guide/auth-module"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/reference-guide/ldap-security"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/reference-guide/security"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Concepts",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-1.6.1/concepts/concepts"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/concepts/storage"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/concepts/graph-algorithms"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/concepts/indexing"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/concepts/replication"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/concepts/telemetry"
+        }
+      ]
+    },
+    {
+      "type": "doc",
+      "id": "version-1.6.1/upcoming-features"
+    },
+    {
+      "type": "doc",
+      "id": "version-1.6.1/changelog"
+    }
+  ]
+}
