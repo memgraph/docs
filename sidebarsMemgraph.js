@@ -123,6 +123,7 @@ module.exports = {
         'reference-guide/backup',
         'reference-guide/configuration',
         'reference-guide/graph-algorithms',
+        'reference-guide/csv-import-tool',
         'reference-guide/indexing',
         'reference-guide/isolation-levels',
         {
