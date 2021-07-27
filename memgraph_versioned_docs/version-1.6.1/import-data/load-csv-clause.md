@@ -6,43 +6,24 @@ sidebar_label: LOAD CSV Cypher clause
 
 The `LOAD CSV` clause enables you to load and use data from a CSV file of your
 choosing in a row-based manner, within a query. We support the Excel CSV dialect,
-as it's the most commonly used one.
-
-The syntax of the clause is:
-
-```plaintext
-LOAD CSV FROM <csv-file-path> ( WITH | NO ) HEADER [IGNORE BAD] [DELIMITER <delimiter-string>] [QUOTE <quote-string>] AS <variable-name>
-```
-
-* `<csv-file-path` is a string holding the path to the CSV file. There are no
-restrictions on where in your filesystem the file can be located, as long as
-the path is valid (i.e. the file exists).
-
-* `( WITH | NO ) HEADER ` flag specifies whether the CSV file is to be
-parsed as though it has or hasn't got a header.
-
-* `IGNORE BAD` flag specifies whether rows containing errors should be ignored or
-not. If it's set, the parser attempts to return the first valid row from the CSV
-file. If it isn't set, an exception will be thrown on first invalid row
-encountered.
-
-* `DELIMITER <delimiter-string>` option enables you to specify the CSV delimiter
-character. If it isn't set, the default delimiter character `,` is assumed.
-
-* `QUOTE <quote-string>` option enables you to specify the CSV quote character.
-If it isn't set, the default quote character `"` is assumed.
-
-* `<variable-name>` is a symbolic name representing the variable to which the
-contents of the parsed row will be bound to, enabling access to the row contents
-later in the query.
+as it's the most commonly used one. For the syntax of the clause, please check [Cypher Manual](cypher-manual/clauses/load-csv)
 
 The clause reads row by row from a CSV file, and binds the contents of the
 parsed row to the variable you specified.
+
+:::info
 
 It's important to note that the parser parses the values as strings. It's up to
 the user to convert the parsed row values to the appropriate type. This can be
 done using the built-in conversion functions such as `ToInteger`, `ToFloat`,
 `ToBoolean` etc. Consult the documentation on the available conversion functions.
+
+:::
+
+
+### Examples
+
+#### Header included
 
 Depending on how you set the `HEADER` option (`WITH` or `NO`), a row will
 be parsed as either a map or a list.
@@ -58,19 +39,24 @@ The value bound to the row variable will be a map of the form:
 To access a given field, you can use the property lookup syntax. Let's assume
 that the CSV file contents are as follows:
 
-```plaintext
-x|y|z
-1|2|3
-4|5|6
+```csv
+id|name|age
+1|Dan|41
+2|Susan|26
+3|Una|29
+4|Peter|19
+5|Karen|36
 ```
 
 The following query will load row by row from the file, and create a new node
 for each row with properties based on the parsed row values:
 
 ```cypher
-LOAD CSV FROM "xyz.csv" WITH HEADER DELIMITER "|" AS row
-CREATE (n:A {x: ToInteger(row.x), y: ToInteger(row.y), z: ToInteger(row.z)}) ;
+LOAD CSV FROM "names.csv" WITH HEADER DELIMITER "|" AS row
+CREATE (n:Person {id: ToInteger(row.id), name: row.name, age: ToInteger(row.age)}) ;
 ```
+
+#### Without header
 
 If the `NO HEADER` option is set, then each row is parsed as a list of values.
 The contents of the row can be accessed using the list index syntax. Note that
@@ -80,18 +66,44 @@ values in a row.
 
 Let's assume that the CSV file contents are as follows:
 
-```plaintext
-1|2|3
-4|5|6
+```csv
+1|Olly|46
+2|Alice|29
+3|Josh|34
+4|Fiona|28
+5|Lucy|20
 ```
 
 The following query will load row by row from the file, and create a new node
 for each row with properties based on the parsed row values:
 
 ```cypher
-LOAD CSV FROM "xyz.csv" NO HEADER DELIMITER "|" AS row
-CREATE (n:A {x: ToInteger(row[0]), y: ToInteger(row[1]), z: ToInteger(row[2])}) ;
-  ```
+LOAD CSV FROM "names.csv" NO HEADER DELIMITER "|" AS row
+CREATE (n:Person {id: ToInteger(row[0]), name: row[1], age: ToInteger(row[2])}) ;
+```
+
+#### Creating relationships
+
+With the initial nodes in place, you can now create relationships between them: 
+
+```cypher
+LOAD CSV FROM 'relationships.csv'  WITH HEADERS AS row
+MATCH (p1:Person {id: row.first_person})
+MATCH (p2:Person {id: row.second_person})
+MERGE (p1)-[f:IS_FRIENDS_WITH]->(p2)
+```
+
+If we want to use a field from file as a property on relationship, use the following query:
+
+```cypher
+LOAD CSV FROM 'relationships.csv'  WITH HEADERS AS row
+MATCH (p1:Person {id: row.first_person})
+MATCH (p2:Person {id: row.second_person})
+MERGE (p1)-[f:IS_FRIENDS_WITH]->(p2)
+  ON CREATE SET f.date = row.date;
+```
+
+### Notes about the clause
 
 The clause can't stand on its own, meaning there has to be at least one more
 clause in the query, in addition to it. In other words, the following query will
