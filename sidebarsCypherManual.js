@@ -3,7 +3,7 @@ module.exports = {
     'overview',
     {
       type: 'category',
-      label: 'Clauses',
+      label: 'Getting started',
       items: ['getting-started/reading-existing-data',
         'getting-started/writing-new-data',
         'getting-started/reading-and-writing',

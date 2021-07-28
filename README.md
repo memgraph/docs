@@ -38,10 +38,16 @@ To find out more about versioning in Docusaurus, visit their [official website](
 
 To preview your changes as you edit the files, you can run a local development server 
 that will serve your website and it will reflect the latest changes.
+First, install all the dependencies with:
 
 ```bash
-cd docs
-npm run start
+npm install
+```
+
+Start the server with:
+
+```bash
+npm run-script start
 ```
 
 By default, a browser window will open at http://localhost:3000.
@@ -50,15 +56,21 @@ By default, a browser window will open at http://localhost:3000.
 
 Docusaurus is a modern static website generator so we need to build the website into a 
 directory of static contents and put it on a web server so that it can be viewed. 
+First, install all the dependencies with:
+
+```bash
+npm install
+```
+
 To build the website:
 
 ```bash
-npm run build
+npm run-script build
 ```
 
 and contents will be generated within the `/build` directory. 
 To test your build locally, run:
 
 ```bash
-npm run serve
+npm run-script serve
 ```
