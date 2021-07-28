@@ -218,6 +218,7 @@ module.exports = {
     algolia: {
       apiKey: '05acf33bff73974c131732d34307085e',
       indexName: 'g-despot',
+      contextualSearch: true,
     },
     prism: {
       additionalLanguages: ['cypher', 'php'],
