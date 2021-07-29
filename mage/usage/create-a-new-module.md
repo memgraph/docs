@@ -1,16 +1,22 @@
-# Developing a Memgraph module in Python
+---
+id: create-a-new-module
+title: Developing a query module in Python
+sidebar_label: Create a Python module
+---
 
 ### Prerequisites
-- [MemgraphDB]()
-- [MAGE]()
+- Download and install [Memgraph](https://memgraph.com/download).
+- Clone the [MAGE](https://github.com/memgraph/mage) repository.
 
-# Developing a module
+## Developing a module
 
 In this guide, we'll create a [random walk](https://en.wikipedia.org/wiki/Random_walk#On_graphs) algorithm.
 Position yourself in the MAGE repository you cloned earlier. Specifically, go in the `python` sub-directory and create a new file called `random_walk.py`.
 Next, import `mgp`, Memgraph's internal data structure module. Among others, it contains definitions for Vertex and Node data structures.
 
-> If you are using code completion, you might be interested in having `mgp` in your python path. This will allow your code editor to access `mgp.py` and make use of code declarations and documentation. `mgp.py` is a script that comes with Memgraph. Usually, it will be installed in `/usr/lib/memgraph/python_support/mgp.py`. Now, all you have to do is add it to your `PYTHONPATH` environment variable: `export PYTHONPATH=/usr/lib/memgraph/python_support`.
+:::note
+If you are using code completion, you might be interested in having `mgp` in your python path. This will allow your code editor to access `mgp.py` and make use of code declarations and documentation. `mgp.py` is a script that comes with Memgraph. Usually, it will be installed in `/usr/lib/memgraph/python_support/mgp.py`. Now, all you have to do is add it to your `PYTHONPATH` environment variable: `export PYTHONPATH=/usr/lib/memgraph/python_support`.
+:::
 
 Here's the code for the random walk algorithm:
 
@@ -62,7 +68,7 @@ Instructions for a docker Memgraph instance:
 docker run --rm -d --name memgraph -p 7687:7687 memgraph/mage
 docker cp python/random_walk.py memgraph:/usr/lib/memgraph/query_modules/
 ```
-A more advanced approach is to use [docker volumes](https://docs.docker.com/storage/volumes/). That will allow you to have query-modules synchronised between your mage repository and your docker container.https://docs.docker.com/storage/volumes/
+A more advanced approach is to use [docker volumes](https://docs.docker.com/storage/volumes/). That will allow you to have query modules synchronized between your mage repository and your docker container.
 
 Then, use a Memgraph client like MemgraphLab or mgconsole to load the newly added function.
 ```
@@ -93,15 +99,17 @@ mage
             └── test.yml
 ```
 
-`input.cyp` represents a cypher script for entering the data into the database.
+`input.cyp` represents a Cypher script for entering the data into the database.
 To simplify this tutorial, we'll leave the database empty. `test.yml` specifies which test query should be run by the database, and what should be the result or exception. Create the files following the aforementioned directory structure.
 
-input.cyp
+### input.cyp
+
 ```cypher
 MATCH (n) DETACH DELETE n;
 ```
 
-test.yml
+### test.yml
+
 ```
 query: >
   MATCH (start:Node {id: 0})

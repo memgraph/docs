@@ -5,8 +5,9 @@ module.exports = {
     {
       type: 'category',
       label: 'Usage',
-      items: ['usage/loading-modules',
-        'usage/calling-procedures',],
+      items: ['usage/calling-procedures',
+        'usage/create-a-new-module',
+        'usage/loading-modules'],
     },
     {
       type: 'category',
