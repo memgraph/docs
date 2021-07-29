@@ -51,7 +51,7 @@ The `get_path` is decorated with the `@mgp.read_proc` decorator, which tells Mem
 
 Start Memgraph and MAGE, and copy the module you developed into the `/usr/lib/memgraph/query_modules`.
 
-Instructions for a local Memgraph installation:
+Instructions for a local Memgraph installation (Debian/Ubuntu):
 ```
 sudo systemctl start memgraph
 cp python/random_walk.py /usr/lib/memgraph/query_modules/
@@ -62,6 +62,7 @@ Instructions for a docker Memgraph instance:
 docker run --rm -d --name memgraph -p 7687:7687 memgraph/mage
 docker cp python/random_walk.py memgraph:/usr/lib/memgraph/query_modules/
 ```
+A more advanced approach is to use [docker volumes](https://docs.docker.com/storage/volumes/). That will allow you to have query-modules synchronised between your mage repository and your docker container.https://docs.docker.com/storage/volumes/
 
 Then, use a Memgraph client like MemgraphLab or mgconsole to load the newly added function.
 ```
@@ -70,7 +71,7 @@ CALL mg.load('random_walk')
 
 Lastly, run a query and test your module:
 ```
-MERGE (start:Node {id: 0})-[:RELATION]->(mid:Node)-[:RELATION]->(end:Node)
+MERGE (start:Node {id: 0})-[:RELATION]->(mid:Node {id: 1})-[:RELATION]->(end:Node {id: 2})
 CALL random_walk.get(start, 2) YIELD path
 RETURN path
 ```
