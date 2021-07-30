@@ -123,7 +123,13 @@ module.exports = {
         'reference-guide/backup',
         'reference-guide/configuration',
         'reference-guide/graph-algorithms',
-        'reference-guide/csv-import-tool',
+        {
+          type: 'category',
+          label: 'Import Data',
+          items: ['reference-guide/import-data/csv-import-tool',
+                  'reference-guide/import-data/load-csv-clause',],
+        },
+        
         'reference-guide/indexing',
         'reference-guide/isolation-levels',
         {

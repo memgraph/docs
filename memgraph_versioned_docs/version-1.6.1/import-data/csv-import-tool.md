@@ -16,8 +16,7 @@ state on its next startup.
 
 If you are already familiar with the Neo4j bulk import tool, then using the
 `mg_import_csv` tool should be easy.  The CSV import tool is fully compatible
-with the [Neo4j CSV
-format](https://neo4j.com/docs/operations-manual/current/tools/import/).  If
+with the [Neo4j CSV format](https://neo4j.com/docs/operations-manual/current/tools/import/).  If
 you already have a pipeline set-up for Neo4j, you should only replace
 `neo4j-admin import` with `mg_import_csv`.
 
@@ -25,7 +24,7 @@ you already have a pipeline set-up for Neo4j, you should only replace
 ### How to Use the CSV Import Tool?
 
 If you want to learn more about CSV Import Tool or how should you format your 
-files to fit the requirments of this tool, please visit out [Reference Guide](/reference-guide/CSV-import-tool.md)
+files to fit the requirments of this tool, please visit out [Reference Guide](../reference-guide/import-data/CSV-import-tool.md)
 
 <Tabs
   groupId="platform"
