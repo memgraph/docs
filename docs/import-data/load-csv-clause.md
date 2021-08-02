@@ -20,7 +20,7 @@ For more detailed information about LOAD CSV Cypher clause, check our [Reference
 
 :::
 
-To work with LOAD CSV clause, we need to have access to our files. If working with Docker, check our [Docker guide](/database-functionalities/work-with-docker.md) on how to manage accessing files from your local filesystem:
+To work with LOAD CSV clause, we need to have access to our files. If working with Docker, check our [Docker guide](/database-functionalities/work-with-docker.md) on how to access files from your local filesystem:
 
 
 ### Examples
@@ -58,7 +58,7 @@ To work with LOAD CSV clause, we need to have access to our files. If working wi
 
   ```cypher
   LOAD CSV FROM "people_nodes.csv" WITH HEADER AS row
-  CREATE (n:Person {id: ToInteger(row.id), name: row.name) };
+  CREATE (n:Person {id: ToInteger(row.id), name: row.name});
   ```
 
 </TabItem>
@@ -103,6 +103,17 @@ CREATE (p1)-[:IS_FRIENDS_WITH]->(p2)
 In case of a more complex graph, we have to deal with multiple node and relationship types.
 Let's assume we have a following example:
 
+<Tabs
+  groupId="csv"
+  defaultValue="pn"
+  values={[
+    {label: 'people_nodes.csv', value: 'pn'},
+    {label: 'people_relationships.csv', value: 'pr'},
+    {label: 'restaraunt_nodes.csv', value: 'rn'},
+    {label: 'restaraunt_relationships.csv', value: 'rr'}
+  ]}>
+<TabItem value="pn">
+
 ```csv
 id,name,age,city
 100,Daniel,30,London
@@ -111,6 +122,7 @@ id,name,age,city
 103,Mia,25,Zagreb
 104,Lucy,21,Paris
 ```
+
 The following query will load row by row from the file, and create a new node
 for each row with properties based on the parsed row values:
 
@@ -118,6 +130,9 @@ for each row with properties based on the parsed row values:
   LOAD CSV FROM "/data/people_nodes.csv" WITH HEADER AS row  
   CREATE (n:Person {id: ToInteger(row.id), name: row.name, age: ToInteger(row.age), city: row.city } ) ;
   ```
+
+</TabItem>
+<TabItem value="pr">
 
 Each person from `people_nodes.csv` has a friend which they've made during their lives which is represented with following example:
 
@@ -135,12 +150,15 @@ first_person,second_person,met_in
 The following query will create relationships between the people nodes:
 
 ```cypher
-	LOAD CSV FROM "/data/people_relationships.csv"  WITH HEADER AS row
+LOAD CSV FROM "people_relationships.csv"  WITH HEADER AS row
 MATCH (p1:Person {id: ToInteger(row.id_from)})
 MATCH (p2:Person {id: ToInteger(row.id_to)})
 CREATE (p1)-[f:IS_FRIENDS_WITH]->(p2)
 SET f.met_in = row.met_in;
 ```
+
+</TabItem>
+<TabItem value="rn">
 
 We have a list of restaraunts people ate at:
 
@@ -153,10 +171,13 @@ id,name,menu
 ```
 The following query will create new nodes for resotraunts:
 
-```csv
-LOAD CSV FROM "people_nodes.csv" WITH HEADER AS row
-  CREATE (n:Restraunt {id: ToInteger(row.id), name: row.name, age: ToInteger(row.age), city: row.city) ;
+```cypher
+LOAD CSV FROM "restaraunts_nodes.csv" WITH HEADER AS row
+CREATE (n:Restraunt {id: ToInteger(row.id), name: row.name, age: ToInteger(row.age), city: row.city});
 ```
+
+</TabItem>
+<TabItem value="rr">
 
 And a list where people ate:
 
@@ -181,3 +202,5 @@ CREATE (p1)-[ate:ATE_AT]->(re)
 SET ate.liked = ToBoolean(row.liked);
 ```
 
+</TabItem>
+</Tabs>

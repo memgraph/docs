@@ -42,7 +42,7 @@ files to fit the requirments of this tool, please visit out [Reference Guide](..
   <TabItem value="docker">
 
   :::note
-    If you are using image pulled from Docker Hub, all image names (`memgraph`) should be switched with `memgraph/memgraph` 
+    If you are using image pulled from Docker Hub, all image names (`memgraph`) should be switched with `memgraph/memgraph`. 
   :::
 
     If you installed Memgraph using Docker, you will need to run the importer

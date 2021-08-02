@@ -9,7 +9,7 @@ import TabItem from "@theme/TabItem";
 
 The `LOAD CSV` clause enables you to load and use data from a CSV file of your
 choosing in a row-based manner, within a query. We support the Excel CSV dialect,
-as it's the most commonly used one. For the syntax of the clause, please check [Cypher Manual](../../cypher-manual/clauses/load-csv)
+as it's the most commonly used one. For the syntax of the clause, please check [Cypher Manual]../../cypher-manual/clauses/load-csv)
 
 The clause reads row by row from a CSV file, and binds the contents of the
 parsed row to the variable you specified.
@@ -19,6 +19,8 @@ parsed row to the variable you specified.
 For more detailed information about LOAD CSV Cypher clause, check our [Reference Guide](../reference-guide/import-data/load-csv-clause)
 
 :::
+
+To work with LOAD CSV clause, we need to have access to our files. If working with Docker, check our [Docker guide](/database-functionalities/work-with-docker.md) on how to access files from your local filesystem:
 
 
 ### Examples
@@ -56,8 +58,9 @@ For more detailed information about LOAD CSV Cypher clause, check our [Reference
 
   ```cypher
   LOAD CSV FROM "people_nodes.csv" WITH HEADER AS row
-  CREATE (n:Person {id: ToInteger(row.id), name: row.name) ;
+  CREATE (n:Person {id: ToInteger(row.id), name: row.name});
   ```
+
 </TabItem>
 <TabItem value='heatherout'>
 
@@ -80,33 +83,124 @@ For more detailed information about LOAD CSV Cypher clause, check our [Reference
   LOAD CSV FROM "people_nodes.csv" NO HEADER  AS row
   CREATE (n:Person {id: ToInteger(row[0]), name: row[1]}) ;
   ```
+  
 </TabItem>
 </Tabs>
+
+___
 
 #### Creating relationships
 
 With the initial nodes in place, you can now create relationships between them: 
 
 ```cypher
-LOAD CSV FROM 'people_relationships.csv'  WITH HEADERS AS row
-MATCH (p1:Person {id: row.first_person})
-MATCH (p2:Person {id: row.second_person})
-MERGE (p1)-[f:IS_FRIENDS_WITH]->(p2)
+LOAD CSV FROM "people_relationships.csv"  WITH HEADER AS row
+MATCH (p1:Person {id: ToInteger(row.id_from)}), (p2:Person {id: ToInteger(row.id_to)})
+CREATE (p1)-[:IS_FRIENDS_WITH]->(p2)
 ```
 ### Multiple node types and relationships
 
 In case of a more complex graph, we have to deal with multiple node and relationship types.
 Let's assume we have a following example:
 
-| people_nodes.csv     | restaraunts_nodes.csv                                               | restaraunt_relationships.csv | people_relationships.csv   |
-|----------------------|---------------------------------------------------------------------|------------------------------|----------------------------|
-| id,name,age,city     | id,name,menu,                                                       | PERSON_ID,REST_ID,liked      | first_person,second_person |
-| 100,Daniel,30,London | 200, Mc Donalds, Fries;BigMac;McChicken;Apple Pie                   | 100,200,true                 | 100,102                    |
-| 101,Alex,15,Paris    | 201, KFC, Fried Chicken;Fries;Chicken Bucket                        | 103,201,false                | 103,105                    |
-| 102,Sarah,17,London  | 202, Subway, Ham Sandwich;Turkey Sandwich;Foot-long                 | 104,200,true                 | 102,103                    |
-| 103,Mia,25,Zagreb    | 203, Dominos, Pepperoni Pizza;Double Dish Pizza;Cheese filled Crust | 105,202,false                | 101,104                    |
-| 104,Lucy,21,Paris    |                                                                     | 105,203,false                | 104,100                    |
-|                      |                                                                     | 105,200,true                 | 105,102                    |
-|                      |                                                                     | 102,201,true                 | 100,103                    |
+<Tabs
+  groupId="csv"
+  defaultValue="pn"
+  values={[
+    {label: 'people_nodes.csv', value: 'pn'},
+    {label: 'people_relationships.csv', value: 'pr'},
+    {label: 'restaraunt_nodes.csv', value: 'rn'},
+    {label: 'restaraunt_relationships.csv', value: 'rr'}
+  ]}>
+<TabItem value="pn">
 
+```csv
+id,name,age,city
+100,Daniel,30,London
+101,Alex,15,Paris
+102,Sarah,17,London
+103,Mia,25,Zagreb
+104,Lucy,21,Paris
+```
 
+The following query will load row by row from the file, and create a new node
+for each row with properties based on the parsed row values:
+
+  ```cypher
+  LOAD CSV FROM "/data/people_nodes.csv" WITH HEADER AS row  
+  CREATE (n:Person {id: ToInteger(row.id), name: row.name, age: ToInteger(row.age), city: row.city } ) ;
+  ```
+
+</TabItem>
+<TabItem value="pr">
+
+Each person from `people_nodes.csv` has a friend which they've made during their lives which is represented with following example:
+
+```csv
+first_person,second_person,met_in
+100,102,2014
+103,101,2021
+102,103,2005
+101,104,2005
+104,100,2018
+101,102,2017
+100,103,2001
+```
+
+The following query will create relationships between the people nodes:
+
+```cypher
+LOAD CSV FROM "people_relationships.csv"  WITH HEADER AS row
+MATCH (p1:Person {id: ToInteger(row.id_from)})
+MATCH (p2:Person {id: ToInteger(row.id_to)})
+CREATE (p1)-[f:IS_FRIENDS_WITH]->(p2)
+SET f.met_in = row.met_in;
+```
+
+</TabItem>
+<TabItem value="rn">
+
+We have a list of restaraunts people ate at:
+
+```csv
+id,name,menu
+200, Mc Donalds, Fries;BigMac;McChicken;Apple Pie
+201, KFC, Fried Chicken;Fries;Chicken Bucket
+202, Subway, Ham Sandwich;Turkey Sandwich;Foot-long
+203, Dominos, Pepperoni Pizza;Double Dish Pizza;Cheese filled Crust
+```
+The following query will create new nodes for resotraunts:
+
+```cypher
+LOAD CSV FROM "restaraunts_nodes.csv" WITH HEADER AS row
+CREATE (n:Restraunt {id: ToInteger(row.id), name: row.name, age: ToInteger(row.age), city: row.city});
+```
+
+</TabItem>
+<TabItem value="rr">
+
+And a list where people ate:
+
+```csv
+PERSON_ID,REST_ID,liked
+100,200,true
+103,201,false
+104,200,true
+101,202,false
+101,203,false
+101,200,true
+102,201,true
+```
+
+The following query will create relationships between people and restaraunts where they ate:
+
+```cypher
+LOAD CSV FROM "restraunt_relationships.csv"  WITH HEADERS AS row
+MATCH (p1:Person {id: row.PERSON_ID})
+MATCH (re:Restraunt {id: row.REST_ID})
+CREATE (p1)-[ate:ATE_AT]->(re)
+SET ate.liked = ToBoolean(row.liked);
+```
+
+</TabItem>
+</Tabs>
