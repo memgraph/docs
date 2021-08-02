@@ -20,6 +20,8 @@ For more detailed information about LOAD CSV Cypher clause, check our [Reference
 
 :::
 
+To work with LOAD CSV clause, we need to have access to our files. If working with Docker, check our [Docker guide](/database-functionalities/work-with-docker.md) on how to manage accessing files from your local filesystem:
+
 
 ### Examples
 
@@ -56,8 +58,9 @@ For more detailed information about LOAD CSV Cypher clause, check our [Reference
 
   ```cypher
   LOAD CSV FROM "people_nodes.csv" WITH HEADER AS row
-  CREATE (n:Person {id: ToInteger(row.id), name: row.name) ;
+  CREATE (n:Person {id: ToInteger(row.id), name: row.name) };
   ```
+
 </TabItem>
 <TabItem value='heatherout'>
 
@@ -80,18 +83,20 @@ For more detailed information about LOAD CSV Cypher clause, check our [Reference
   LOAD CSV FROM "people_nodes.csv" NO HEADER  AS row
   CREATE (n:Person {id: ToInteger(row[0]), name: row[1]}) ;
   ```
+  
 </TabItem>
 </Tabs>
+
+___
 
 #### Creating relationships
 
 With the initial nodes in place, you can now create relationships between them: 
 
 ```cypher
-LOAD CSV FROM 'people_relationships.csv'  WITH HEADERS AS row
-MATCH (p1:Person {id: row.first_person})
-MATCH (p2:Person {id: row.second_person})
-MERGE (p1)-[f:IS_FRIENDS_WITH]->(p2)
+LOAD CSV FROM "people_relationships.csv"  WITH HEADER AS row
+MATCH (p1:Person {id: ToInteger(row.id_from)}), (p2:Person {id: ToInteger(row.id_to)})
+CREATE (p1)-[:IS_FRIENDS_WITH]->(p2)
 ```
 ### Multiple node types and relationships
 
@@ -110,8 +115,8 @@ The following query will load row by row from the file, and create a new node
 for each row with properties based on the parsed row values:
 
   ```cypher
-  LOAD CSV FROM "people_nodes.csv" WITH HEADER AS row
-  CREATE (n:Person {id: ToInteger(row.id), name: row.name, age: ToInteger(row.age), city: row.city) ;
+  LOAD CSV FROM "/data/people_nodes.csv" WITH HEADER AS row  
+  CREATE (n:Person {id: ToInteger(row.id), name: row.name, age: ToInteger(row.age), city: row.city } ) ;
   ```
 
 Each person from `people_nodes.csv` has a friend which they've made during their lives which is represented with following example:
@@ -119,22 +124,22 @@ Each person from `people_nodes.csv` has a friend which they've made during their
 ```csv
 first_person,second_person,met_in
 100,102,2014
-103,105,2021
+103,101,2021
 102,103,2005
 101,104,2005
 104,100,2018
-105,102,2017
+101,102,2017
 100,103,2001
 ```
 
 The following query will create relationships between the people nodes:
 
 ```cypher
-LOAD CSV FROM 'people_relationships.csv'  WITH HEADERS AS row
-MATCH (p1:Person {id: row.first_person})
-MATCH (p2:Person {id: row.second_person})
-MERGE (p1)-[f:IS_FRIENDS_WITH]->(p2)
- ON CREATE SET f.met_in = row.met_in;
+	LOAD CSV FROM "/data/people_relationships.csv"  WITH HEADER AS row
+MATCH (p1:Person {id: ToInteger(row.id_from)})
+MATCH (p2:Person {id: ToInteger(row.id_to)})
+CREATE (p1)-[f:IS_FRIENDS_WITH]->(p2)
+SET f.met_in = row.met_in;
 ```
 
 We have a list of restaraunts people ate at:
@@ -160,19 +165,19 @@ PERSON_ID,REST_ID,liked
 100,200,true
 103,201,false
 104,200,true
-105,202,false
-105,203,false
-105,200,true
+101,202,false
+101,203,false
+101,200,true
 102,201,true
 ```
 
 The following query will create relationships between people and restaraunts where they ate:
 
 ```cypher
-LOAD CSV FROM 'restraunt_relationships.csv'  WITH HEADERS AS row
+LOAD CSV FROM "restraunt_relationships.csv"  WITH HEADERS AS row
 MATCH (p1:Person {id: row.PERSON_ID})
 MATCH (re:Restraunt {id: row.REST_ID})
-MERGE (p1)-[ate:ATE_AT]->(re)
- ON CREATE SET ate.liked = ToBoolean(row.liked);
+CREATE (p1)-[ate:ATE_AT]->(re)
+SET ate.liked = ToBoolean(row.liked);
 ```
 

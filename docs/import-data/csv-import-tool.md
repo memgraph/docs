@@ -172,6 +172,18 @@ Next time you run Memgraph, the dataset will be loaded.
 Previous example is showcasing the simple graph with one node type and one relationship type. If we have more complex graphs,
 the procedure is similar. Let's define the following dataset:
 
+<Tabs
+  groupId="files"
+  defaultValue="pn"
+  values={[
+    {label: 'people_nodes.csv', value: 'pn'},
+    {label: 'people_relationships.csv', value: 'pr'},
+    {label: 'restaraunts_nodes.csv', value: 'rn'},
+    {label: 'restaraunts_relationships.csv', value: 'rr'}
+  ]}>
+  
+  <TabItem value='pn'>
+
 Add the following to `people_nodes.csv`: 
 
 ```csv
@@ -182,6 +194,9 @@ id:ID(PERSON_ID),name:string,age:int,city:string,:LABEL
 103,Mia,25,Zagreb,Person
 104,Lucy,21,Paris,Person
 ```
+
+</TabItem>
+<TabItem value='pr'>
 
 Let's define the relationships between people in `people_relationships.csv` :
 
@@ -196,6 +211,9 @@ Let's define the relationships between people in `people_relationships.csv` :
 100,103,IS_FRIENDS_WITH,2001
 ```
 
+</TabItem>
+<TabItem value='rn'>
+
 Let's introduce another node type, Restaraunts, in `restaraunts_nodes.csv` :
 
 ```csv
@@ -205,6 +223,9 @@ id:ID(REST_ID),name:string,menu:string[],:LABEL
 202, Subway, Ham Sandwich;Turkey Sandwich;Foot-long, Restaurant
 203, Dominos, Pepperoni Pizza;Double Dish Pizza;Cheese filled Crust, Restaurant
 ```
+
+</TabItem>
+<TabItem value='rr'>
 
 Let's define the relationships between people and restaraunts in `restaraunts_relationships.csv`:
 
@@ -219,7 +240,10 @@ Let's define the relationships between people and restaraunts in `restaraunts_re
 102,201,ATE_AT,true
 ```
 
-Now, you can import the dataset using the CSV importer tool.
+</TabItem>
+</Tabs>
+
+After preparing the files above, you can import the dataset using the CSV importer tool.
 
 <Tabs
   groupId="platform"
@@ -254,11 +278,13 @@ Now, you can import the dataset using the CSV importer tool.
     --relationships /import-data/restaraunts_relationships.csv
   ```
 
+  Next time you run Memgraph, the dataset will be loaded.
+
   </TabItem>
   <TabItem value= 'linux'>
 
   ```bash
-  sudo -u memgraph mg_import_csv --nodes people_nodes.csv --relationships people_relationships.csv
+  sudo -u memgraph mg_import_csv --nodes people_nodes.csv --nodes restaraunts_nodes.csv --relationships people_relationships.csv --relationships restaraunts_relationships.csv
   ```
 
   </TabItem>
