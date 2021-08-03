@@ -110,7 +110,7 @@ Let's assume we have a following example:
     {label: 'people_nodes.csv', value: 'pn'},
     {label: 'people_relationships.csv', value: 'pr'},
     {label: 'restaraunt_nodes.csv', value: 'rn'},
-    {label: 'restaraunt_relationships.csv', value: 'rr'}
+    {label: 'restaraunts_relationships.csv', value: 'rr'}
   ]}>
 <TabItem value="pn">
 
@@ -173,13 +173,13 @@ The following query will create new nodes for resotraunts:
 
 ```cypher
 LOAD CSV FROM "restaraunts_nodes.csv" WITH HEADER AS row
-CREATE (n:Restraunt {id: ToInteger(row.id), name: row.name, age: ToInteger(row.age), city: row.city});
+CREATE (n:Restraunt {id: ToInteger(row.id), name: row.name, menu: row.menu});
 ```
 
 </TabItem>
 <TabItem value="rr">
 
-And a list where people ate:
+And a list where people ate in `restaraunts_relationships.csv`:
 
 ```csv
 PERSON_ID,REST_ID,liked
@@ -195,7 +195,7 @@ PERSON_ID,REST_ID,liked
 The following query will create relationships between people and restaraunts where they ate:
 
 ```cypher
-LOAD CSV FROM "restraunt_relationships.csv"  WITH HEADERS AS row
+LOAD CSV FROM "restaraunts_relationships.csv"  WITH HEADER AS row
 MATCH (p1:Person {id: row.PERSON_ID})
 MATCH (re:Restraunt {id: row.REST_ID})
 CREATE (p1)-[ate:ATE_AT]->(re)
