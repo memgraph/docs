@@ -1,1 +1,0 @@
-(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[74472],{87722:function(e){"use strict";e.exports=JSON.parse('{"pluginId":"cloud","version":"current","label":"Next","banner":"none","isLast":true,"docsSidebars":{"cloud":[{"type":"link","label":"Getting started","href":"/memgraph-cloud/"}]},"permalinkToSidebar":{"/memgraph-cloud/":"cloud"}}')}}]);
