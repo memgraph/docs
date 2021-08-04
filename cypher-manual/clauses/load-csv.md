@@ -44,7 +44,7 @@ parsed row to the variable you specified.
 It's important to note that the parser parses the values as strings. It's up to
 the user to convert the parsed row values to the appropriate type. This can be
 done using the built-in conversion functions such as `ToInteger`, `ToFloat`,
-`ToBoolean` etc. Consult the documentation on the available conversion functions.
+`ToBoolean` etc. Consult the [documentation](/functions.md) on the available conversion functions.
 
 :::
 

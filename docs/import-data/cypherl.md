@@ -1,7 +1,7 @@
 ---
 id: cypherl
-title: Importing Cypher queries
-sidebar_label: Importing Cypher queries
+title: Importing Cypher queries (.cypherl format)
+sidebar_label: Cypher queries (.cypherl format)
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
@@ -21,24 +21,24 @@ by issuing the following shell command:
   <TabItem value="docker">
 
 :::note
-If you are using image pulled from Docker Hub, all image names (`memgraph`) should be switched with `memgraph/memgraph`.
+If you installed Memgraph through Docker Hub, the name of the Docker image `memgraph` should be replaced with `memgraph/memgraph`.
 :::
 
 If you installed Memgraph using Docker, you will need to run the client using
 the following command:
 
 ```plaintext
-docker run -i --entrypoint=mgconsole memgraph --host HOST --use-ssl=False < <PATH-TO>/queries.cypherl
+docker run -i --entrypoint=mgconsole memgraph --host HOST --use-ssl=False < /path-to/queries.cypherl
 ```
 
-Remember to replace `HOST` with valid IP of the container (see
+Remember to replace `HOST` with valid IP of the container (see the
 [Note for Docker users](/database-functionalities/work-with-docker.md#docker-container-ip-address)).
 
   </TabItem>
   <TabItem value= 'linux'>
 
 ```plaintext
-mgconsole --use-ssl=False < <PATH-TO>/queries.cypherl
+mgconsole --use-ssl=False < /path-to/queries.cypherl
 ```
 
 </TabItem>
@@ -50,13 +50,13 @@ For more information about `mgconsole` options run:
 mgconsole --help
 ```
 
-### Examples
+## Examples
 
-The advatange of using this system to import data is you need only one file to cover both nodes and relationships. 
+The advatange of using this system to import data is you need only one file to cover both nodes and relationships.
 The disadvatage of this method is that you need to write the queries for creating nodes and relationships yourself.
-If you haven't written any queries yet, we highly suggest you check our [Cypher Manual].
+If you haven't written any queries yet, we highly suggest you check our [Cypher Manual](/cypher-manual).
 
-#### Simple graph example
+### One type of nodes and relationships
 
 Copy the following into `queries.cypherl` file:
 
@@ -75,10 +75,10 @@ MATCH (u:Person), (v:Person) WHERE u.id = 103 AND v.id = 101 CREATE (u)-[:IS_FRI
 MATCH (u:Person), (v:Person) WHERE u.id = 104 AND v.id = 100 CREATE (u)-[:IS_FRIENDS_WITH]->(v);
 ```
 
-The first five queries create nodes for people and the rest of queries create relationships between nodes. 
-After you have prepared your queries, you can import them through earlier metioned methods or drag and drop them into Dataset tab in Memgraph Lab.
+The first five queries create nodes for people and the rest of queries create relationships between nodes.
+After you have prepared your queries, you can import them through earlier metioned methods or drag and drop them into **Dataset** tab in Memgraph Lab.
 
-#### Complex graph example
+### Multiple types of nodes and relationships
 
 Copy the following into `queries.cypherl` file:
 
@@ -108,6 +108,6 @@ MATCH (u:Person), (v:Restraunt) WHERE u.id = 104 AND v.id = 201 CREATE (u)-[:ATE
 MATCH (u:Person), (v:Restraunt) WHERE u.id = 101 AND v.id = 200 CREATE (u)-[:ATE_AT {liked: true}]->(v);
 ```
 
-The first five queries create nodes for people, the following four queries create nodes for restaraunts. 
+The first five queries create nodes for people, the following four queries create nodes for restaraunts.
 After those come the queries that define relationships between nodes. As said before, you can define all of the
-different types of nodes and relationships in one file. After preparing your queries, you can import them through earlier metioned methods or drag and drop them into Dataset tab in Memgraph Lab.
+different types of nodes and relationships in one file. After preparing your queries, you can import them through earlier metioned methods or drag and drop them into **Dataset** tab in Memgraph Lab.

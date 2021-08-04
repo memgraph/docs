@@ -22,15 +22,12 @@ you already have a pipeline set-up for Neo4j, you should only replace
 
 :::info
 
-For more detailed information about CSV Import Tool, check our [Reference Guide](../reference-guide/import-data/CSV-import-tool)
+For more detailed information about the CSV Import Tool, check our [Reference guide](/reference-guide/import-data/CSV-import-tool).
 
 :::
 
 
-### How to Use the CSV Import Tool?
-
-If you want to learn more about CSV Import Tool or how should you format your 
-files to fit the requirments of this tool, please visit out [Reference Guide](../reference-guide/import-data/CSV-import-tool.md)
+### How to use the CSV Import Tool?
 
 <Tabs
   groupId="platform"
@@ -41,19 +38,21 @@ files to fit the requirments of this tool, please visit out [Reference Guide](..
   ]}>
   <TabItem value="docker">
 
-  :::note
-    If you are using image pulled from Docker Hub, all image names (`memgraph`) should be switched with `memgraph/memgraph` 
-  :::
+:::note
 
-    If you installed Memgraph using Docker, you will need to run the importer
-    using the following command:
+If you installed Memgraph through Docker Hub, the name of the Docker image `memgraph` should be replaced with `memgraph/memgraph`.
+
+:::
+
+If you installed Memgraph using Docker, you will need to run the importer
+using the following command:
 
   ```bash
   docker run -v mg_lib:/var/lib/memgraph -v mg_etc:/etc/memgraph -v mg_import:/import-data \
     --entrypoint=mg_import_csv memgraph
   ```
 
-  When using Docker, this translates to:
+  For information on other options, run:
 
   ```bash
   docker run --entrypoint=mg_import_csv memgraph --help
@@ -86,11 +85,13 @@ Memgraph instance.
 
 ___
 
-### Example
+## Example
+
+### One type of nodes and relationships
 
 Let's import a simple dataset.
 
-Store the following in `people_nodes.csv`.
+Store the following in `people_nodes.csv`:
 
 ```csv
 id:ID(PERSON_ID),name:string,:LABEL
@@ -102,7 +103,7 @@ id:ID(PERSON_ID),name:string,:LABEL
 ```
 
 Let's add relationships between people in
-`people_relationships.csv`.
+`people_relationships.csv`:
 
 ```csv
 :START_ID(PERSON_ID),:END_ID(PERSON_ID),:TYPE
@@ -115,7 +116,7 @@ Let's add relationships between people in
 100,103,IS_FRIENDS_WITH
 ```
 
-Now, you can import the dataset using the CSV importer tool.
+Now, you can import the dataset using the CSV Import Tool.
 
 :::caution
 
@@ -167,9 +168,9 @@ Use the following command:
 
 Next time you run Memgraph, the dataset will be loaded.
 
-### More Complex Example
+### Multiple types of nodes and relationships
 
-Previous example is showcasing the simple graph with one node type and one relationship type. If we have more complex graphs,
+The previous example is showcasing a simple graph with one node type and one relationship type. If we have more complex graphs,
 the procedure is similar. Let's define the following dataset:
 
 <Tabs
@@ -178,13 +179,13 @@ the procedure is similar. Let's define the following dataset:
   values={[
     {label: 'people_nodes.csv', value: 'pn'},
     {label: 'people_relationships.csv', value: 'pr'},
-    {label: 'restaraunts_nodes.csv', value: 'rn'},
-    {label: 'restaraunts_relationships.csv', value: 'rr'}
+    {label: 'restaurants_nodes.csv', value: 'rn'},
+    {label: 'restaurants_relationships.csv', value: 'rr'}
   ]}>
-  
+
   <TabItem value='pn'>
 
-Add the following to `people_nodes.csv`: 
+Add the following to `people_nodes.csv`:
 
 ```csv
 id:ID(PERSON_ID),name:string,age:int,city:string,:LABEL
@@ -214,7 +215,7 @@ Let's define the relationships between people in `people_relationships.csv` :
 </TabItem>
 <TabItem value='rn'>
 
-Let's introduce another node type, Restaraunts, in `restaraunts_nodes.csv` :
+Let's introduce another node type, restaurants, in `restaurants_nodes.csv` :
 
 ```csv
 id:ID(REST_ID),name:string,menu:string[],:LABEL
@@ -227,7 +228,7 @@ id:ID(REST_ID),name:string,menu:string[],:LABEL
 </TabItem>
 <TabItem value='rr'>
 
-Let's define the relationships between people and restaraunts in `restaraunts_relationships.csv`:
+Let's define the relationships between people and restaurants in `restaurants_relationships.csv`:
 
 ```csv
 :START_ID(PERSON_ID),:END_ID(REST_ID),:TYPE, liked:boolean
@@ -243,7 +244,7 @@ Let's define the relationships between people and restaraunts in `restaraunts_re
 </TabItem>
 </Tabs>
 
-After preparing the files above, you can import the dataset using the CSV importer tool.
+After preparing the files above, you can import the dataset using the CSV Import tool.
 
 <Tabs
   groupId="platform"
@@ -255,8 +256,8 @@ After preparing the files above, you can import the dataset using the CSV import
   <TabItem value="docker">
 
 
-  If using Docker, things are a bit more complicated. First you need to copy the
-  CSV files where the Docker image can see them:
+  If using Docker, things are a bit more complicated. First, you need to copy the
+  CSV files where the Docker container can see them:
 
   ```bash
   docker container create --name mg_import_helper -v mg_import:/import-data busybox
@@ -267,7 +268,7 @@ After preparing the files above, you can import the dataset using the CSV import
   docker rm mg_import_helper
   ```
 
-  Then, run the importer with the following:
+  Then, run the importer with the following command:
 
   ```bash
   docker run -v mg_lib:/var/lib/memgraph -v mg_etc:/etc/memgraph -v mg_import:/import-data \
@@ -278,7 +279,7 @@ After preparing the files above, you can import the dataset using the CSV import
     --relationships /import-data/restaraunts_relationships.csv
   ```
 
-  Next time you run Memgraph, the dataset will be loaded.
+  The next time you run Memgraph, the dataset will be loaded.
 
   </TabItem>
   <TabItem value= 'linux'>
@@ -286,6 +287,8 @@ After preparing the files above, you can import the dataset using the CSV import
   ```bash
   sudo -u memgraph mg_import_csv --nodes people_nodes.csv --nodes restaraunts_nodes.csv --relationships people_relationships.csv --relationships restaraunts_relationships.csv
   ```
+
+  The next time you run Memgraph, the dataset will be loaded.
 
   </TabItem>
 </Tabs>

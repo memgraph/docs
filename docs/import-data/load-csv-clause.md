@@ -9,34 +9,32 @@ import TabItem from "@theme/TabItem";
 
 The `LOAD CSV` clause enables you to load and use data from a CSV file of your
 choosing in a row-based manner, within a query. We support the Excel CSV dialect,
-as it's the most commonly used one. For the syntax of the clause, please check [Cypher Manual]../../cypher-manual/clauses/load-csv)
+as it's the most commonly used one. For the syntax of the clause, please check the [Cypher manual](/cypher-manual/clauses/load-csv).
 
-The clause reads row by row from a CSV file, and binds the contents of the
+The clause reads row by row from a CSV file and binds the contents of the
 parsed row to the variable you specified.
 
 :::info
 
-For more detailed information about LOAD CSV Cypher clause, check our [Reference Guide](../reference-guide/import-data/load-csv-clause)
+For more detailed information about the LOAD CSV Cypher clause, check our **[Reference guide](/reference-guide/import-data/load-csv-clause)**.
 
 :::
 
-To work with LOAD CSV clause, we need to have access to our files. If working with Docker, check our [Docker guide](/database-functionalities/work-with-docker.md) on how to access files from your local filesystem:
+To work with the LOAD CSV clause, we need to have access to our files. If working with Docker, check our [Docker guide](/database-functionalities/work-with-docker.md) on how to access files from your local filesystem:
 
 
-### Examples
+## Examples
 
-#### Basic Usage
+### One type of nodes and relationships
 
 <Tabs
   groupId="platform"
   defaultValue="headerin"
   values={[
-    {label: 'Header included', value: 'headerin'},
-    {label: 'Without header', value: 'heatherout'}
+    {label: 'With CSV header', value: 'headerin'},
+    {label: 'Without CSV header', value: 'heatherout'}
   ]}>
   <TabItem value="headerin">
-
-  ##### Header included
 
   Depending on how you set the `HEADER` option (`WITH` or `NO`), a row will
   be parsed as either a map or a list.
@@ -64,8 +62,6 @@ To work with LOAD CSV clause, we need to have access to our files. If working wi
 </TabItem>
 <TabItem value='heatherout'>
 
-  ##### Without header
-
   Let's assume that the CSV file contents are as follows:
 
   ```csv
@@ -83,7 +79,7 @@ To work with LOAD CSV clause, we need to have access to our files. If working wi
   LOAD CSV FROM "people_nodes.csv" NO HEADER  AS row
   CREATE (n:Person {id: ToInteger(row[0]), name: row[1]}) ;
   ```
-  
+
 </TabItem>
 </Tabs>
 
@@ -91,17 +87,17 @@ ___
 
 #### Creating relationships
 
-With the initial nodes in place, you can now create relationships between them: 
+With the initial nodes in place, you can now create relationships between them:
 
 ```cypher
 LOAD CSV FROM "people_relationships.csv"  WITH HEADER AS row
 MATCH (p1:Person {id: ToInteger(row.id_from)}), (p2:Person {id: ToInteger(row.id_to)})
 CREATE (p1)-[:IS_FRIENDS_WITH]->(p2)
 ```
-### Multiple node types and relationships
+### Multiple types of nodes and relationships
 
-In case of a more complex graph, we have to deal with multiple node and relationship types.
-Let's assume we have a following example:
+In the case of a more complex graph, we have to deal with multiple node and relationship types.
+Let's assume we have the following example:
 
 <Tabs
   groupId="csv"
@@ -109,8 +105,8 @@ Let's assume we have a following example:
   values={[
     {label: 'people_nodes.csv', value: 'pn'},
     {label: 'people_relationships.csv', value: 'pr'},
-    {label: 'restaraunt_nodes.csv', value: 'rn'},
-    {label: 'restaraunts_relationships.csv', value: 'rr'}
+    {label: 'restaurants_nodes.csv', value: 'rn'},
+    {label: 'restaurants_relationships.csv', value: 'rr'}
   ]}>
 <TabItem value="pn">
 
@@ -127,14 +123,14 @@ The following query will load row by row from the file, and create a new node
 for each row with properties based on the parsed row values:
 
   ```cypher
-  LOAD CSV FROM "/data/people_nodes.csv" WITH HEADER AS row  
+  LOAD CSV FROM "/data/people_nodes.csv" WITH HEADER AS row
   CREATE (n:Person {id: ToInteger(row.id), name: row.name, age: ToInteger(row.age), city: row.city } ) ;
   ```
 
 </TabItem>
 <TabItem value="pr">
 
-Each person from `people_nodes.csv` has a friend which they've made during their lives which is represented with following example:
+Each person from `people_nodes.csv` is connected to another person they are friends with. This is represented with the following example:
 
 ```csv
 first_person,second_person,met_in
@@ -160,7 +156,7 @@ SET f.met_in = row.met_in;
 </TabItem>
 <TabItem value="rn">
 
-We have a list of restaraunts people ate at:
+We have a list of restaurants people ate at:
 
 ```csv
 id,name,menu
@@ -169,17 +165,18 @@ id,name,menu
 202, Subway, Ham Sandwich;Turkey Sandwich;Foot-long
 203, Dominos, Pepperoni Pizza;Double Dish Pizza;Cheese filled Crust
 ```
-The following query will create new nodes for resotraunts:
+
+The following query will create new nodes for each restaurant:
 
 ```cypher
-LOAD CSV FROM "restaraunts_nodes.csv" WITH HEADER AS row
-CREATE (n:Restraunt {id: ToInteger(row.id), name: row.name, menu: row.menu});
+LOAD CSV FROM "restaurants_nodes.csv" WITH HEADER AS row
+CREATE (n:Restaurant {id: ToInteger(row.id), name: row.name, menu: row.menu});
 ```
 
 </TabItem>
 <TabItem value="rr">
 
-And a list where people ate in `restaraunts_relationships.csv`:
+We file `restaurants_relationships.csv` contains a list of people and the restaurants they visited:
 
 ```csv
 PERSON_ID,REST_ID,liked
@@ -192,12 +189,12 @@ PERSON_ID,REST_ID,liked
 102,201,true
 ```
 
-The following query will create relationships between people and restaraunts where they ate:
+The following query will create relationships between people and restaurants where they ate:
 
 ```cypher
-LOAD CSV FROM "restaraunts_relationships.csv"  WITH HEADER AS row
+LOAD CSV FROM "restaurants_relationships.csv"  WITH HEADER AS row
 MATCH (p1:Person {id: row.PERSON_ID})
-MATCH (re:Restraunt {id: row.REST_ID})
+MATCH (re:Restaurant {id: row.REST_ID})
 CREATE (p1)-[ate:ATE_AT]->(re)
 SET ate.liked = ToBoolean(row.liked);
 ```

@@ -32,7 +32,7 @@ defaults to `string` (see the following chapter).
 
 Each CSV field must be divided using the delimiter and
 each CSV field can either be quoted or unquoted. When the field is quoted, the
-first and last character in the field *must* be the quote character.  
+first and last character in the field *must* be the quote character.
 If the field isn't quoted, and a quote character appears in it, it is
 treated as a regular character. If a quote character appears inside a quoted
 string then the quote character must be doubled in order to escape it. Line
@@ -132,7 +132,7 @@ The importer has many command line options that allow you to customize the way
 the importer loads your data.
 
 The two main flags that are used to specify the input CSV files are `--nodes`
-and `--relationships`. Basic description of these flags is provided in the table 
+and `--relationships`. Basic description of these flags is provided in the table
 and more detailed explainion can be found further down bellow.
 
 
@@ -150,7 +150,7 @@ and more detailed explainion can be found further down bellow.
 |`--skip-duplicate-nodes`  | Instructs the importer to ignore all duplicate nodes (instead of raising an error).  <br /> Duplicate nodes are nodes that have an ID that is the same as another node that was already imported. (default `false`) |
 | `--trim-strings`| Instructs the importer to trim all of the loaded CSV field values before processing them further. <br /> Trimming the fields removes all leading and trailing whitespace from them. (default `false`) |
 
-The `--nodes` and  `--relationships` flags are used to specify CSV files that contain the nodes and relationships 
+The `--nodes` and  `--relationships` flags are used to specify CSV files that contain the nodes and relationships
 to the importer.  Multiple files can be specified in each supplied `--nodes` or `--relationships` flag.
 Files that are supplied in one `--nodes` or `--relationships` flag are treated by the CSV parser as
 one big CSV file.  Only the first line of the first file is parsed for the CSV
@@ -159,7 +159,7 @@ you have a very large CSV file and don't want to edit its first line just to
 add a CSV header.  Instead, you can specify the header in a separate file (e.g.
 `users_header.csv` or `friendships_header.csv` ) and have the data intact in the large file (e.g.
 `users.csv` or `friendships.csv`).  Also, you can supply additional labels for each set of node
-files.  
+files.
 
 The format of `--nodes` flag is:
 `[<label>[:<label>]...=]<file>[,<file>][,<file>]...`.  Take note that only the first
