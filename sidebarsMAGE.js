@@ -21,6 +21,7 @@ module.exports = {
         'query-modules/python/distance-calculator',
         'query-modules/python/graph-analyzer',
         'query-modules/python/graph-coloring',
+        'query-modules/python/node-similarity',
         'query-modules/python/nxalg',
         'query-modules/python/pagerank',
         'query-modules/python/set-cover',

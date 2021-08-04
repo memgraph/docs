@@ -1,0 +1,210 @@
+---
+id: node_similarity
+title: node_similarity
+sidebar_label: node_similarity
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+export const Highlight = ({children, color}) => (
+  <span
+    style={{
+      backgroundColor: color,
+      borderRadius: '2px',
+      color: '#fff',
+      padding: '0.2rem',
+    }}>
+    {children}
+  </span>
+);
+
+[![docs-source](https://img.shields.io/badge/source-node_similarity-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/node_similarity.py)
+
+
+## Abstract
+
+If we're interested in how similar two nodes in a graph are, we'll want to get a numerical value that represents the <em>node similarity</em> between those two nodes. There are many node similarity measures and currently this module contains the following: 
+* cosine similarity
+* Jaccard similarity 
+* overlap similarity
+
+**The cosine similarity** is computed using the following formula:
+
+<a href="https://www.codecogs.com/eqnedit.php?latex=Cosine(A,B)&space;=&space;\frac{|A&space;\cap&space;B|}&space;{\sqrt{|A|&space;\cdot&space;|B|}}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?Cosine(A,B)&space;=&space;\frac{|A&space;\cap&space;B|}&space;{\sqrt{|A|&space;\cdot&space;|B|}}" title="Cosine(A,B) = \frac{|A \cap B|} {\sqrt{|A| \cdot |B|}}" /></a>
+
+**The Jaccard similarity** is computed using the following formula:
+<a href="https://www.codecogs.com/eqnedit.php?latex=Jaccard(A,B)&space;=&space;\frac{|A&space;\cap&space;B|}&space;{|A|&space;&plus;&space;|B|&space;-&space;|A&space;\cap&space;B|}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?Jaccard(A,B)&space;=&space;\frac{|A&space;\cap&space;B|}&space;{|A|&space;&plus;&space;|B|&space;-&space;|A&space;\cap&space;B|}" title="Jaccard(A,B) = \frac{|A \cap B|} {|A| + |B| - |A \cap B|}" /></a>
+
+**The overalap similarity** is computed using the following formula:
+<a href="https://www.codecogs.com/eqnedit.php?latex=Overlap(A,B)&space;=&space;\frac{|A&space;\cap&space;B|}&space;{min(|A|,&space;|B|)}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?Overlap(A,B)&space;=&space;\frac{|A&space;\cap&space;B|}&space;{min(|A|,&space;|B|)}" title="Overlap(A,B) = \frac{|A \cap B|} {min(|A|, |B|)}" /></a>
+
+Set A represents all neighbors of one node, set B represents all neighbors of the other node. In all the given formulas, the numerator is the cardinality of the intersection of set A and set B. The denominator differs but requires the cardinality of sets A and B in some way.
+
+The algorithm is implemented so that it ignores whether the graph is directed or undirected and treats the edges as if they were undirected. It also ignores multiple edges between two nodes and treats them as if there were only one edge.
+
+
+| Trait               | Value                                                 |
+| ------------------- | ----------------------------------------------------- |
+| **Module type**     | <Highlight color="#FB6E00">**algorithm**</Highlight>  |
+| **Implementation**  | <Highlight color="#FB6E00">**Python**</Highlight>     |
+| **Graph direction** | <Highlight color="#FB6E00">**undirected**</Highlight> |
+| **Edge weights**    | <Highlight color="#FB6E00">**unweighted**</Highlight> |
+| **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight> |
+
+## Procedures
+
+### `cosine(node1, node2, mode)`
+
+#### Input:
+
+* `node1: Union[Vertex, Tuple[Vertex]` ➡ The first node or a tuple of nodes.
+* `node2: Union[Vertex, Tuple[Vertex]]` ➡ The second node or a tuple of nodes.
+* `mode: str("cartesian")` ➡ If the given arguments are tuples, this argument determines whether to calculate the similarity between nodes pairwise ("pairwise" or "p") or calculate the similarity between one and each node ("cartesian" or "c"). The default value is "cartesian".
+
+#### Output:
+
+* `node1` ➡ The first node
+* `node2` ➡ The second node
+* `similarity` ➡  The cosine similarity between the first and the second node
+
+### `jaccard(node1, node2, mode)`
+
+#### Input:
+
+* `node1: Union[Vertex, Tuple[Vertex]` ➡ The first node or a tuple of nodes.
+* `node2: Union[Vertex, Tuple[Vertex]]` ➡ The second node or a tuple of nodes.
+* `mode: str("cartesian")` ➡ If the given arguments are tuples, this argument determines whether to calculate the similarity between nodes pairwise ("pairwise" or "p") or calculate the similarity between one and each node ("cartesian" or "c"). The default value is "cartesian".
+
+#### Output:
+
+* `node1` ➡ The first node
+* `node2` ➡ The second node
+* `similarity` ➡  The Jaccard similarity between the first and the second node
+
+### `overlap(node1, node2, mode)`
+
+#### Input:
+
+* `node1: Union[Vertex, Tuple[Vertex]` ➡ The first node or a tuple of nodes.
+* `node2: Union[Vertex, Tuple[Vertex]]` ➡ The second node or a tuple of nodes.
+* `mode: str("cartesian")` ➡ If the given arguments are tuples, this argument determines whether to calculate the similarity between nodes pairwise ("pairwise" or "p") or calculate the similarity between one and each node ("cartesian" or "c"). The default value is "cartesian".
+
+#### Output:
+
+* `node1` ➡ The first node
+* `node2` ➡ The second node
+* `similarity` ➡  The overlap similarity between the first and the second node
+
+#### Usage:
+```cypher
+MATCH (m)
+WITH COLLECT(m) AS nodes1
+MATCH (n)
+WITH COLLECT(n) AS nodes2, nodes1
+CALL node_similarity.jaccard(nodes1, nodes2, "c") YIELD node1, node2, similarity
+RETURN node1, node2, similarity
+```
+
+## Example
+
+<Tabs
+  groupId="example"
+  defaultValue="visualization"
+  values={[
+    {label: 'Step 1: Input graph', value: 'visualization'},
+    {label: 'Step 2: Cypher load commands', value: 'cypher'},
+    {label: 'Step 3: Running command', value: 'run'},
+    {label: 'Step 4: Results', value: 'result'},
+  ]
+}>
+  <TabItem value="visualization">
+
+  <img src={require('../../data/query-modules/python/node-similarity/node-similarity-1.png').default}/>
+
+  </TabItem>
+
+
+  <TabItem value="cypher">
+
+```cypher
+MERGE (a:Node {id: 0}) MERGE (b:Node {id: 2}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 0}) MERGE (b:Node {id: 3}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 0}) MERGE (b:Node {id: 4}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 0}) MERGE (b:Node {id: 5}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 1}) MERGE (b:Node {id: 0}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 1}) MERGE (b:Node {id: 1}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 1}) MERGE (b:Node {id: 2}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 2}) MERGE (b:Node {id: 1}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 2}) MERGE (b:Node {id: 4}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 2}) MERGE (b:Node {id: 5}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 4}) MERGE (b:Node {id: 0}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 4}) MERGE (b:Node {id: 1}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 5}) MERGE (b:Node {id: 2}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 5}) MERGE (b:Node {id: 3}) CREATE (a)-[:RELATION]->(b);
+```
+
+  </TabItem>
+
+  <TabItem value="run">
+
+```cypher
+MATCH (m)
+WITH COLLECT(m) AS nodes1
+MATCH (n)
+WITH COLLECT(n) AS nodes2, nodes1
+CALL node_similarity.jaccard(nodes1, nodes2, "c") YIELD node1, node2, similarity
+RETURN node1, node2, similarity;
+```
+
+  </TabItem>
+
+
+  <TabItem value="result">
+
+```plaintext
++-----------------+-----------------+-----------------+
+| node1           | node2           | similarity      |
++-----------------+-----------------+-----------------+
+| (:Node {id: 0}) | (:Node {id: 0}) | 1               |
+| (:Node {id: 0}) | (:Node {id: 2}) | 0.5             |
+| (:Node {id: 0}) | (:Node {id: 3}) | 0.166667        |
+| (:Node {id: 0}) | (:Node {id: 4}) | 0.333333        |
+| (:Node {id: 0}) | (:Node {id: 5}) | 0.333333        |
+| (:Node {id: 0}) | (:Node {id: 1}) | 0.5             |
+| (:Node {id: 2}) | (:Node {id: 0}) | 0.5             |
+| (:Node {id: 2}) | (:Node {id: 2}) | 1               |
+| (:Node {id: 2}) | (:Node {id: 3}) | 0.5             |
+| (:Node {id: 2}) | (:Node {id: 4}) | 0.4             |
+| (:Node {id: 2}) | (:Node {id: 5}) | 0.166667        |
+| (:Node {id: 2}) | (:Node {id: 1}) | 0.6             |
+| (:Node {id: 3}) | (:Node {id: 0}) | 0.166667        |
+| (:Node {id: 3}) | (:Node {id: 2}) | 0.5             |
+| (:Node {id: 3}) | (:Node {id: 3}) | 1               |
+| (:Node {id: 3}) | (:Node {id: 4}) | 0.25            |
+| (:Node {id: 3}) | (:Node {id: 5}) | 0.25            |
+| (:Node {id: 3}) | (:Node {id: 1}) | 0.2             |
+| (:Node {id: 4}) | (:Node {id: 0}) | 0.333333        |
+| (:Node {id: 4}) | (:Node {id: 2}) | 0.4             |
+| (:Node {id: 4}) | (:Node {id: 3}) | 0.25            |
+| (:Node {id: 4}) | (:Node {id: 4}) | 1               |
+| (:Node {id: 4}) | (:Node {id: 5}) | 0.5             |
+| (:Node {id: 4}) | (:Node {id: 1}) | 0.75            |
+| (:Node {id: 5}) | (:Node {id: 0}) | 0.333333        |
+| (:Node {id: 5}) | (:Node {id: 2}) | 0.166667        |
+| (:Node {id: 5}) | (:Node {id: 3}) | 0.25            |
+| (:Node {id: 5}) | (:Node {id: 4}) | 0.5             |
+| (:Node {id: 5}) | (:Node {id: 5}) | 1               |
+| (:Node {id: 5}) | (:Node {id: 1}) | 0.4             |
+| (:Node {id: 1}) | (:Node {id: 0}) | 0.5             |
+| (:Node {id: 1}) | (:Node {id: 2}) | 0.6             |
+| (:Node {id: 1}) | (:Node {id: 3}) | 0.2             |
+| (:Node {id: 1}) | (:Node {id: 4}) | 0.75            |
+| (:Node {id: 1}) | (:Node {id: 5}) | 0.4             |
+| (:Node {id: 1}) | (:Node {id: 1}) | 1               |
++-----------------+-----------------+-----------------+
+```
+
+  </TabItem>
+
+</Tabs>
