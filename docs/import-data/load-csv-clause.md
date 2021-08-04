@@ -16,7 +16,7 @@ parsed row to the variable you specified.
 
 :::info
 
-For more detailed information about the LOAD CSV Cypher clause, check our **[Reference guide](/reference-guide/import-data/load-csv-clause)**.
+For more detailed information about the LOAD CSV Cypher clause, check our **[Reference guide](/reference-guide/import-data/load-csv-clause.md)**.
 
 :::
 

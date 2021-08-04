@@ -22,7 +22,7 @@ you already have a pipeline set-up for Neo4j, you should only replace
 
 :::info
 
-For more detailed information about the CSV Import Tool, check our [Reference guide](/reference-guide/import-data/CSV-import-tool).
+For more detailed information about the CSV Import Tool, check our [Reference guide](/reference-guide/import-data/csv-import-tool.md).
 
 :::
 
