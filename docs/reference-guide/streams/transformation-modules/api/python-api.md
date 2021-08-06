@@ -12,6 +12,10 @@ under `python_support`. On the standard Debian installation, this will be under 
 **NOTE:** This part of the documentation is still under development. An updated version will soon be available.
 :::
 
+:::tip
+For an example of how to implement transformation modules in Python, check out [this guide](/database-functionalities/streams/implement-transformation-module.md#python-api).
+:::
+
 ## `mgp.transformation(func)`
 Register `func` as a transformation of the current module.
 

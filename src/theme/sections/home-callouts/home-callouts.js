@@ -19,6 +19,12 @@ export default function HomeCallouts() {
             url: 'https://memgraph.com/product/cloud',
         },
         {
+            title: 'Import your data',
+            subtitle: 'Import data into Memgraph using streaming data sources, CSV files, or Cypher commands.',
+            urlText: 'Gather all your data in one place',
+            url: 'https://docs.memgraph.com/memgraph/import-data/',
+        },
+        {
             title: 'Connect to Memgraph',
             subtitle: 'Connect to Memgraph with your preferred programming language, via CLI console or the Memgraph Lab GUI.',
             urlText: 'Start exploring your data',

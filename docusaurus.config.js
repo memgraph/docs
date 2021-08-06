@@ -46,8 +46,8 @@ module.exports = {
               to: '/memgraph/installation',
             },
             {
-              label: 'Database functionalities',
-              to: '/memgraph/database-functionalities',
+              label: 'Import data',
+              to: '/memgraph/import-data',
             },
             {
               label: 'Connect to Memgraph',

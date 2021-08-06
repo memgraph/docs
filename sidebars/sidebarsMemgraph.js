@@ -171,7 +171,6 @@ module.exports = {
         'concepts/replication',
         'concepts/telemetry',],
     },
-    'upcoming-features',
     'changelog',
   ],
 };

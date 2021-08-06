@@ -9,6 +9,10 @@ transformation module that can produce Cypher queries based on the received
 messages. We are going to implement a simple transformation that stores the
 properties of each message in a vertex.
 
+:::note
+For detailed technical information on transformation modules, check out the [reference guide](\reference-guide\streams\transformation-modules\overview.md).
+:::
+
 ## Using Docker with transformation modules
 
 If you are using Docker to run Memgraph you will have to create a volume

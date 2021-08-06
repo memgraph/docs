@@ -12,6 +12,14 @@ following, we assume that a Kafka server is available on the 9092 port of
 the local machine (`localhost:9092`) as the default configuration of the Kafka
 quick start guide.
 
+:::tip
+Check out the **example-streaming-app** on [GitHub](https://github.com/memgraph/example-streaming-app) to see how Memgraph can be connected to a Kafka stream.
+:::
+
+:::note
+For detailed technical information on streaming support, check out the [reference guide](/reference-guide/streams/overview.md).
+:::
+
 ## Configuring Memgraph
 
 As Memgraph can connect to only one Kafka cluster at once, the list of
