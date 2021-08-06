@@ -23,7 +23,7 @@ export const Highlight = ({children, color}) => (
 
 ## Abstract
 
-Analysis of connected components is a common task in graph analytics. 
+Analysis of connected components is a common task in graph analytics.
 
 By using a disjoint-set data structure that keeps track of them, the algorithm implemented in this module enables the user to quickly check whether a pair of given nodes is in the same or different connected component.
 A check on a pair of nodes is effectively executed in O(1) time.
@@ -50,7 +50,7 @@ The implementation of the disjoint-set data structure and its operations uses th
 * `nodes1: Union[Vertex, List[Vertex]]` ➡ First value (or list thereof) in connectedness calculation.
 * `nodes2: Union[Vertex, List[Vertex]]` ➡ Second value (or list thereof) in connectedness calculation.
 * `mode: str("pairwise")` ➡ Mode of combining `nodes1` and `nodes2`. Can be ***p*** or ***pairwise*** for a pairwise product, or ***c*** or ***cartesian*** for a Cartesian product of the arguments. Pairwise by default.
-* `update: bool(True)` ➡ Specifies whether the disjoint-set data structure should be reinitialized. Enabled by default. If the graph has been modified since the previous call of this procedure, turning `update` off ensues that the changes are not visible in the output. 
+* `update: bool(True)` ➡ Specifies whether the disjoint-set data structure should be reinitialized. Enabled by default. If the graph has been modified since the previous call of this procedure, turning `update` off ensures that the changes are not visible in the output.
 
 #### Output:
 
