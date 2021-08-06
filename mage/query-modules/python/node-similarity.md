@@ -60,7 +60,7 @@ The algorithm is implemented so that it ignores whether the graph is directed or
 
 * `node1: Union[Vertex, Tuple[Vertex]` ➡ The first node or a tuple of nodes.
 * `node2: Union[Vertex, Tuple[Vertex]]` ➡ The second node or a tuple of nodes.
-* `mode: str("cartesian")` ➡ If the given arguments are tuples, this argument determines whether to calculate the similarity between nodes pairwise ("pairwise" or "p") or calculate the similarity between one and each node ("cartesian" or "c"). The default value is "cartesian".
+* `mode: str("cartesian")` ➡ If the given arguments are tuples, this argument determines whether to calculate the similarity between nodes pairwise ("pairwise") or calculate the similarity between one and each node ("cartesian"). The default value is "cartesian".
 
 #### Output:
 
@@ -84,7 +84,7 @@ RETURN node1, node2, similarity
 
 * `node1: Union[Vertex, Tuple[Vertex]` ➡ The first node or a tuple of nodes.
 * `node2: Union[Vertex, Tuple[Vertex]]` ➡ The second node or a tuple of nodes.
-* `mode: str("cartesian")` ➡ If the given arguments are tuples, this argument determines whether to calculate the similarity between nodes pairwise ("pairwise" or "p") or calculate the similarity between one and each node ("cartesian" or "c"). The default value is "cartesian".
+* `mode: str("cartesian")` ➡ If the given arguments are tuples, this argument determines whether to calculate the similarity between nodes pairwise ("pairwise") or calculate the similarity between one and each node ("cartesian"). The default value is "cartesian".
 
 #### Output:
 
@@ -98,7 +98,7 @@ MATCH (m)
 WITH COLLECT(m) AS nodes1
 MATCH (n)
 WITH COLLECT(n) AS nodes2, nodes1
-CALL node_similarity.jaccard(nodes1, nodes2, "c") YIELD node1, node2, similarity
+CALL node_similarity.jaccard(nodes1, nodes2, "cartesian") YIELD node1, node2, similarity
 RETURN node1, node2, similarity
 ```
 
@@ -108,7 +108,7 @@ RETURN node1, node2, similarity
 
 * `node1: Union[Vertex, Tuple[Vertex]` ➡ The first node or a tuple of nodes.
 * `node2: Union[Vertex, Tuple[Vertex]]` ➡ The second node or a tuple of nodes.
-* `mode: str("cartesian")` ➡ If the given arguments are tuples, this argument determines whether to calculate the similarity between nodes pairwise ("pairwise" or "p") or calculate the similarity between one and each node ("cartesian" or "c"). The default value is "cartesian".
+* `mode: str("cartesian")` ➡ If the given arguments are tuples, this argument determines whether to calculate the similarity between nodes pairwise ("pairwise") or calculate the similarity between one and each node ("cartesian"). The default value is "cartesian".
 
 #### Output:
 
@@ -122,7 +122,7 @@ MATCH (m)
 WITH COLLECT(m) AS nodes1
 MATCH (n)
 WITH COLLECT(n) AS nodes2, nodes1
-CALL node_similarity.overlap(nodes1, nodes2, "p") YIELD node1, node2, similarity
+CALL node_similarity.overlap(nodes1, nodes2, "pairwise") YIELD node1, node2, similarity
 RETURN node1, node2, similarity
 ```
 
