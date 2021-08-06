@@ -5,18 +5,18 @@ sidebar_label: Cypher queries (.cypherl format)
 ---
 
 When Memgraph is running, cypher queries are imported by running [mgconsole](/connect-to-memgraph/methods/mgconsole.md) in
-non-interactive mode. The user can import queries saved in e.g. `queries.txt`
+non-interactive mode. The user can import queries saved in e.g. `queries.cypherl`
 by issuing the following shell command:
 
 ```plaintext
-mgconsole --use-ssl=False < queries.txt
+mgconsole --use-ssl=False < queries.cypherl
 ```
 
 If you installed Memgraph using Docker, you will need to run the client using
 the following command:
 
 ```plaintext
-docker run -i --entrypoint=mgconsole memgraph --host HOST --use-ssl=False < queries.txt
+docker run -i --entrypoint=mgconsole memgraph --host HOST --use-ssl=False < queries.cypherl
 ```
 
 Remember to replace `HOST` with valid IP of the container (see
