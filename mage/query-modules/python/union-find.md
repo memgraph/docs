@@ -54,9 +54,9 @@ The implementation of the disjoint-set data structure and its operations uses th
 
 #### Output:
 
-* `node1` ➡ Node in `nodes1`.
-* `node2` ➡ Node in `nodes2`.
-* `connected` ➡ `True` if the above nodes are in the same connected component of the graph.
+* `node1: Vertex` ➡ Node in `nodes1`.
+* `node2: Vertex` ➡ Node in `nodes2`.
+* `connected: bool` ➡ `True` if the above nodes are in the same connected component of the graph.
 
 #### Usage:
 ```cypher
