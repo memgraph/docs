@@ -5,29 +5,29 @@ sidebar_label: Getting started
 slug: /getting-started
 ---
 
-* download and install
-* import data
-* learn concepts step by step
-* practical tutorial
-* stay updated
+* [download and install](/installation)
+* [import data](/import-data)
+* [learn concepts step by step](/database-functionalities)
+* [practical tutorial](/tutorials)
+* [stay updated](/changelog)
 
 ### Online playground (sandbox)
-If you're interested in trying out Memgraph from the comfort of your browser you can do so on [Memgraph Playground](https://playground.memgraph.com/) or visit our [Cypher manual](/cypher-manual).
+If you're interested in trying out Memgraph from the comfort of your browser, you can do so on [Memgraph Playground](https://playground.memgraph.com/), or by visiting the [Cypher manual](/cypher-manual).
 
 ### Step by step guide
-If you enjoy learning concepts in small chunks before applying them in practice, our [step by step guide]() is the best place to start.
+If you enjoy learning concepts in small chunks before applying them in practice, our [step by step guide](/tutorials) is the best place to start.
 
 ### Practical tutorial
-Learning by doing is our mantra. In this [tutorial]() you'll build a simple fraud detection application from scratch. The tips you'll learn in the tutorial will help you build any graph application.
+Learning by doing is our mantra. In this [tutorial](/tutorials/analyzing-ted-talks) you'll explore a simple TED-talks dataset from scratch. The tips you'll learn in the tutorial will help you build any graph application.
 
 ### Connect to Memgraph Cloud
-Learn how to [connect your application]() to the Memgraph Cloud. Let us manage the configuration and guarantee it's set up correctly.
+Learn how to [connect your application](/connect-to-memgraph) to the Memgraph Cloud. Let us manage the configuration and guarantee it's set up correctly.
 
 ### Run an example streaming application
-We've built an example streaming application to get you started quickly. Pull the code from our [github repository]() and get started.
+We've built an example streaming application to get you started quickly. Pull the code from our [GitHub repository](https://github.com/memgraph/example-streaming-app) and get started.
 
 ### Video courses
-Some people enjoy learning by watching audio-visual content. You can find the best materials related to graphs and graphs analytics in our [list of recommended content](), most of which is free.
+Some people enjoy learning by watching audio-visual content. You can find the best materials related to graphs and graphs analytics in our [list of recommended content](https://www.youtube.com/channel/UCZ3HOJvHGxtQ_JHxOselBYg/playlists), most of which is free.
 
 ### Tutorial for your programming language
 Build an application with Memgraph from our list of supported languages and frameworks:
