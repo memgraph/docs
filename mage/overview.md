@@ -1,7 +1,7 @@
 ---
 id: overview
 title: MAGE - Memgraph Advanced Graph Extensions 🔮
-sidebar_label: Overview
+sidebar_label: MAGE overview
 slug: /
 ---
 
