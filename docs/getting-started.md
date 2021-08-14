@@ -5,11 +5,11 @@ sidebar_label: Getting started
 slug: /getting-started
 ---
 
-* [download and install](/installation)
-* [import data](/import-data)
-* [learn concepts step by step](/database-functionalities)
-* [practical tutorial](/tutorials)
-* [stay updated](/changelog)
+* [download and install](/memgraph/installation)
+* [import data](/memgraph/import-data)
+* [learn concepts step by step](/memgraph/database-functionalities)
+* [practical tutorial](/memgraph/tutorials)
+* [stay updated](/memgraph/changelog)
 
 ### Online playground (sandbox)
 If you're interested in trying out Memgraph from the comfort of your browser, you can do so on [Memgraph Playground](https://playground.memgraph.com/), or by visiting the [Cypher manual](/cypher-manual).
