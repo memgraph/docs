@@ -15,10 +15,10 @@ slug: /getting-started
 If you're interested in trying out Memgraph from the comfort of your browser, you can do so on [Memgraph Playground](https://playground.memgraph.com/), or by visiting the [Cypher manual](/cypher-manual).
 
 ### Step by step guide
-If you enjoy learning concepts in small chunks before applying them in practice, our [step by step guide](/tutorials) is the best place to start.
+If you enjoy learning concepts in small chunks before applying them in practice, our [step by step guide](/memgraph/tutorials) is the best place to start.
 
 ### Practical tutorial
-Learning by doing is our mantra. In this [tutorial](/tutorials/analyzing-ted-talks) you'll explore a simple TED-talks dataset from scratch. The tips you'll learn in the tutorial will help you build any graph application.
+Learning by doing is our mantra. In this [tutorial](/memgraph/tutorials/analyzing-ted-talks) you'll explore a simple TED-talks dataset from scratch. The tips you'll learn in the tutorial will help you build any graph application.
 
 ### Connect to Memgraph Cloud
 Learn how to [connect your application](/connect-to-memgraph) to the Memgraph Cloud. Let us manage the configuration and guarantee it's set up correctly.
