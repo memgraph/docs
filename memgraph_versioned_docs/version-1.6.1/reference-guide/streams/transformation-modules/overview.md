@@ -1,7 +1,7 @@
 ---
 id: overview
 title: Transformation modules
-sidebar_label: Overview
+sidebar_label: Transformation modules overview
 slug: /reference-guide/streams/transformation-modules
 ---
 

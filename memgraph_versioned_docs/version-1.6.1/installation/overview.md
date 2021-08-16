@@ -1,7 +1,7 @@
 ---
 id: overview
 title: Install Memgraph
-sidebar_label: Overview
+sidebar_label: Install Memgraph overview
 slug: /installation
 ---
 

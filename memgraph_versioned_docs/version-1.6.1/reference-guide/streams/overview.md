@@ -1,7 +1,7 @@
 ---
 id: overview
 title: Streams
-sidebar_label: Overview
+sidebar_label: Streams overview
 slug: /reference-guide/streams
 ---
 
