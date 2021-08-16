@@ -1,7 +1,7 @@
 ---
 id: overview
-title: Query modules overview
-sidebar_label: Overview
+title: Query modules
+sidebar_label: Query modules overview
 slug: /reference-guide/query-modules
 ---
 
