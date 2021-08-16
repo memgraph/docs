@@ -66,5 +66,5 @@ This section contains the list of supported functions.
  `extract`       | A list of values obtained by evaluating an expression for each element in list. The syntax is: `extract(variable IN list \| expression)`.
  `assert`        | Raises an exception reported to the client if the given argument is not `true`.
  `counter`       | Generates integers that are guaranteed to be unique within a single query for a given counter name. The syntax is `counter("counter_name", initial_value, [increment] = 1)`. The increment parameter can be any integer besides zero.
- `timestamp`     | Returns the difference, measured in milliseconds, between the current time and midnight, January 1, 1970 UTC.
+ `timestamp`     | Returns the difference, measured in microseconds, between the current time and midnight, January 1, 1970 UTC.
  `id`            | Returns identifier for a given node or edge. The identifier is generated during the initialization of node or edge and will be persisted through the durability mechanism.
