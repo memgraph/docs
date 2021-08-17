@@ -4,6 +4,13 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v2.0.0 - TBA
+
+:::warning
+### Breaking Changes
+* Changed the `Timestamp()` function to return `microseconds` instead of `milliseconds`.
+:::
+
 ## v1.6.1 - Jul 24, 2021
 
 ### Major Features and Improvements
