@@ -14,6 +14,8 @@ Before you proceed with the installation guide make sure that you have:
 
 - Installed **Docker**. Instructions on how to do this can be found on the
   [official Docker website](https://docs.docker.com/get-docker/).
+- Installed Linux subsystem. Instructions on [Microsoft Windows Docs](https://docs.microsoft.com/en-gb/windows/wsl/install-win10#step-4---download-the-linux-kernel-update-package)
+- Enable the experimental flag in Docker under "Settings -> Docker Engine"
 - Downloaded the latest **Memgraph Docker Image** which can be [found
   here](https://memgraph.com/download/).
 
@@ -25,7 +27,7 @@ should be compatible with all newer versions.
 ## Installation guide {#installation-guide}
 
 If you installed Docker and downloaded the latest Memgraph Docker image, import
-the image using the following command:
+the image by entering the following command in `CMD` or `Windows PowerShell`:
 
 ```console
 docker load -i /path/to/memgraph-<version>-docker.tar.gz
@@ -34,11 +36,7 @@ docker load -i /path/to/memgraph-<version>-docker.tar.gz
 To start Memgraph, use the following command:
 
 ```console
-docker run -p 7687:7687 \
-  -v mg_lib:/var/lib/memgraph \
-  -v mg_log:/var/log/memgraph \
-  -v mg_etc:/etc/memgraph \
-  memgraph
+docker run -p 7687:7687 memgraph
 ```
 
 :::info Docker Volumes
@@ -52,11 +50,11 @@ information on Docker Volumes can be found
 If successful, you should see a message similar to the following:
 
 ```console
-You are running Memgraph v1.4.0-community
+You are running Memgraph vX.X.X-community
 ```
 
 If you want to start Memgraph with different configuration settings, check out
-the [section below](#configuration). At this point, Memgraph is ready for you to [submit
+the [section below](#configuration). At this point, Memgraph is ready for you to [submit cypher
 queries](/connect-to-memgraph/overview.md).
 
 :::info
@@ -65,7 +63,7 @@ The username and password for connecting to the database are empty by default.
 
 ### Stopping Memgraph
 
-To stop a Memgraph database instance, run the following command:
+To stop a Memgraph database instance, run the following command in `CMD` or `Windows Powershell`:
 
 ```console
 docker stop CONTAINER_NAME
