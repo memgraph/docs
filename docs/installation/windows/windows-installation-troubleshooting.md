@@ -17,6 +17,21 @@ import TabItem from "@theme/TabItem";
   ]}>
   <TabItem value="docker">
 
+## Issues with loading Memgraph
+```console
+docker load -i memgraph.tar.gz
+```
+
+### error during connect: This error may indicate that the docker daemon is not running.
+Run the docker desktop application and wait for it to load fully.
+
+### Error response from daemon: open \\.\pipe\docker_engine_linux: The system cannot find the file specified.
+Reload the docker desktop application and wait for it to load fully.
+
+### unsupported os linux
+
+You need to download the [Windows Subsystem for Linux](https://docs.microsoft.com/en-gb/windows/wsl/install-win10#step-4---download-the-linux-kernel-update-package), and enable experimental features in Docker Desktop, under "Settings -> Docker Engine", put "experimental" to *true*.
+
 ## Issues when connecting to Memgraph
 
 ```console
