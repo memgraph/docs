@@ -34,11 +34,7 @@ docker load -i /path/to/memgraph-<version>-docker.tar.gz
 To start Memgraph, use the following command:
 
 ```console
-docker run -p 7687:7687 \
-  -v mg_lib:/var/lib/memgraph \
-  -v mg_log:/var/log/memgraph \
-  -v mg_etc:/etc/memgraph \
-  memgraph
+docker run -p 7687:7687 memgraph
 ```
 
 :::info Docker Volumes
@@ -52,7 +48,7 @@ information on Docker Volumes can be found
 If successful, you should see a message similar to the following:
 
 ```console
-You are running Memgraph v1.4.0-community
+You are running Memgraph vX.X.X-community
 ```
 
 If you want to start Memgraph with different configuration settings, check out

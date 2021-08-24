@@ -16,31 +16,17 @@ Before you proceed with the installation guide make sure that you have:
   here](https://memgraph.com/download/).
 - **Windows Subsystem for Linux** installed. You can find instructions on how to
   install it [here](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
-- The **Debian app** from the [Microsoft
+- The **Ubuntu app** or **Debian app** from the [Microsoft
   Store](https://www.microsoft.com/en-us/p/debian/9msvkqc78pk6?activetab=pivot:overviewtab).
 
 ## Installation guide {#installation-guide}
 
-After downloading Memgraph as a Debian package and starting your Debian app,
-install Memgraph by running the following:
+After downloading Memgraph as a Debian package and starting your Debian/Ubuntu application,
+install Memgraph by running the following command in the Debian terminal:
 
+```console
+sudo dpkg -i /mnt/<drive>/Users/<windows username>/Downloads/memgraph_<version>.deb
 ```
-sudo dpkg -i /path/to/memgraph_<version>.deb
-```
-
-:::note Where is the download directory?
-Usually, you can find the download directory in this location
-`/mnt/<drive>/Users/<username>`.
-:::
-
-:::note Why use sudo?
-In order to perform some actions on your operating system like installing new
-software, you may need **superuser** privileges (commonly called **root**). 
-:::
-
-Normally, you would start Memgraph using `systemd`, but unfortunately, this is
-not an option in WSL. We can bypass this inconvenience by using the command
-`runuser` which allows us to run commands with a substitute user and group ID.
 
 Start the Memgraph server by issuing the following command:
 
@@ -51,7 +37,7 @@ sudo runuser -l memgraph -c '/usr/lib/memgraph/memgraph'
 If Memgraph has been installed correctly, you will see something like this:
 
 ```
-You are running Memgraph v1.4.0-community
+You are running Memgraph vX.X.X-community
 ```
 
 If you want to start Memgraph with different configuration settings, check out
