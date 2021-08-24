@@ -10,6 +10,10 @@ This is the additional API documentation for `mg_procedure.h` that contains decl
 **NOTE:** This part of the documentation is still under development. An updated version will soon be available.
 :::
 
+:::tip
+For an example of how to implement transformation modules in C, check out [this guide](/database-functionalities/streams/implement-transformation-module.md#c-api).
+:::
+
 ## Types
 
 |                | Name           |

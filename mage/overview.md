@@ -1,7 +1,7 @@
 ---
 id: overview
 title: MAGE - Memgraph Advanced Graph Extensions 🔮
-sidebar_label: Overview
+sidebar_label: MAGE overview
 slug: /
 ---
 
@@ -37,6 +37,7 @@ documentation](https://docs.memgraph.com/memgraph/database-functionalities/query
 | [pagerank](/mage/query-modules/python/pagerank)                                    | Python | An algorithm for measuring the importance of each node within the graph, based on the number incoming relationships and the importance of the corresponding source nodes.                                                                |
 | [set_cover](/mage/query-modules/python/set-cover)                                  | Python | The algorithm for finding minimum cost subcollection of sets that covers all elements of a universe.    |
 | [tsp](/mage/query-modules/python/tsp)                                              | Python | An algorithm for finding the shortest possible route that visits each vertex exactly once.         |
+| [union_find](/mage/query-modules/python/union-find)                                              | Python | An algorithm for checking whether a pair of given nodes is in the same or different connected component.         |
 | [vrp](/mage/query-modules/python/vrp)                                              | Python | Algorithm for finding the shortest route possible between the central depot and places to be visited. The algorithm can be solved with multiple vehicles that represent a visiting fleet.                                           |
 | [betweenness centrality](/mage/query-modules/cpp/betweenness-centrality)           | C++    | The betweenness centrality of a node is defined as the sum of the of all-pairs shortest paths that pass through the node divided by the number of all-pairs shortest paths in the graph. The algorithm has O(nm) time complexity. |
 | [biconnected_components](/mage/query-modules/cpp/biconnected-components)           | C++    | Algorithm for calculating maximal biconnected subgraph. A biconnected subgraph is a subgraph with a property that if any vertex were to be removed, the graph will remain connected.                                                     |

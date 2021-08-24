@@ -1,12 +1,16 @@
 ---
 id: overview
 title: Query modules
-sidebar_label: Overview
+sidebar_label: Query modules overview
 slug: /database-functionalities/query-modules
 ---
 
 Memgraph supports extending the query language with user-written procedures.
 These procedures are grouped into modules, which can then be loaded on startup.
+
+:::note
+For detailed technical information on query modules, check out the [reference guide](/reference-guide/query-modules/overview.md).
+:::
 
 ## Loading query modules
 

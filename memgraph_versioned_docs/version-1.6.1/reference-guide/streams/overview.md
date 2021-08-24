@@ -1,7 +1,7 @@
 ---
 id: overview
 title: Streams
-sidebar_label: Overview
+sidebar_label: Streams overview
 slug: /reference-guide/streams
 ---
 
@@ -13,6 +13,10 @@ must
 More information about transformation modules can be found
 **[here](/reference-guide/streams/transformation-modules/overview.md)**.
 The rest of this section describes how to manage streams with Memgraph.
+
+:::tip
+Check out the **example-streaming-app** on [GitHub](https://github.com/memgraph/example-streaming-app) to see how Memgraph can be connected to a Kafka stream.
+:::
 
 ## Creating a stream
 

@@ -46,8 +46,8 @@ module.exports = {
               to: '/memgraph/installation',
             },
             {
-              label: 'Database functionalities',
-              to: '/memgraph/database-functionalities',
+              label: 'Import data',
+              to: '/memgraph/import-data',
             },
             {
               label: 'Connect to Memgraph',
@@ -232,7 +232,7 @@ module.exports = {
           id: 'memgraph',
           path: 'docs',
           routeBasePath: 'memgraph',
-          sidebarPath: require.resolve('./sidebarsMemgraph.js'),
+          sidebarPath: require.resolve('./sidebars/sidebarsMemgraph.js'),
           editUrl:
             'https://github.com/memgraph/docs/tree/master/',
           versions: {
@@ -254,7 +254,7 @@ module.exports = {
         id: 'lab',
         path: 'lab',
         routeBasePath: 'memgraph-lab',
-        sidebarPath: require.resolve('./sidebarsLab.js'),
+        sidebarPath: require.resolve('./sidebars/sidebarsLab.js'),
         editUrl:
           'https://github.com/memgraph/docs/tree/master/',
       },
@@ -265,7 +265,7 @@ module.exports = {
         id: 'cloud',
         path: 'cloud',
         routeBasePath: 'memgraph-cloud',
-        sidebarPath: require.resolve('./sidebarsCloud.js'),
+        sidebarPath: require.resolve('./sidebars/sidebarsCloud.js'),
         editUrl:
           'https://github.com/memgraph/docs/tree/master/',
       },
@@ -276,7 +276,7 @@ module.exports = {
         id: 'cypher-manual',
         path: 'cypher-manual',
         routeBasePath: 'cypher-manual',
-        sidebarPath: require.resolve('./sidebarsCypherManual.js'),
+        sidebarPath: require.resolve('./sidebars/sidebarsCypherManual.js'),
         editUrl:
           'https://github.com/memgraph/docs/tree/master/',
       },
@@ -287,7 +287,7 @@ module.exports = {
         id: 'mage',
         path: 'mage',
         routeBasePath: 'mage',
-        sidebarPath: require.resolve('./sidebarsMAGE.js'),
+        sidebarPath: require.resolve('./sidebars/sidebarsMAGE.js'),
         editUrl:
           'https://github.com/memgraph/docs/tree/master/',
       },
@@ -298,7 +298,7 @@ module.exports = {
         id: 'help-center',
         path: 'help-center',
         routeBasePath: 'help-center',
-        sidebarPath: require.resolve('./sidebarsHelpCenter.js'),
+        sidebarPath: require.resolve('./sidebars/sidebarsHelpCenter.js'),
         editUrl:
           'https://github.com/memgraph/docs/tree/master/',
       },

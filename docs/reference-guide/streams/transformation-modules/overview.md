@@ -1,7 +1,7 @@
 ---
 id: overview
 title: Transformation modules
-sidebar_label: Overview
+sidebar_label: Transformation modules overview
 slug: /reference-guide/streams/transformation-modules
 ---
 
@@ -15,6 +15,14 @@ This section introduces transformation modules and their similarities
 with query modules. Currently, we only support transformations for
 Kafka streams but we are aiming to add support for other
 streaming engines as well.
+
+The available API references are:
+* **[C API](./api/c-api.md)**
+* **[Python API](./api/python-api.md)**
+
+:::tip
+You can check out [this guide](/database-functionalities/streams/implement-transformation-module.md) to learn how a typical transformation module can be implemented.
+:::
 
 ## Loading modules on startup
 
@@ -84,8 +92,3 @@ we can use:
 ```cypher
 CALL mg.load_all();
 ```
-
-For API references, you can also check:
-
-* **[C API](./api/c-api.md)**
-* **[Python API](./api/python-api.md)**
