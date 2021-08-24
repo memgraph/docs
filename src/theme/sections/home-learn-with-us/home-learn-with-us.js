@@ -14,7 +14,7 @@ export default function HomeLearnWithUs() {
         {
             title: 'Tutorials',
             description: 'Select one of the many available tutorials and give it a go locally.',
-            url: 'https://docs.memgraph.com/memgraph/tutorials/tutorials',
+            url: useBaseUrl('/memgraph/tutorials'),
             img: useBaseUrl('img/tutorials-tut-img.svg'),
         },
         {

@@ -30,7 +30,7 @@ export default function HomeEcosystem() {
         },
         'MAGE': {
             description: 'MAGE (Memgraph Advanced Graph Extensions) is an open-source repository that contains all available query modules written by the team behind Memgraph and its users. You can find and contribute implementations of various algorithms in multiple programming languages, all runnable inside Memgraph.',
-            url: 'https://docs.memgraph.com/mage',
+            url: useBaseUrl('/mage'),
             urlText: 'Get Started'
         }
     };
