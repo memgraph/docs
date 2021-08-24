@@ -54,7 +54,7 @@ You are running Memgraph vX.X.X-community
 ```
 
 If you want to start Memgraph with different configuration settings, check out
-the [section below](#configuration). At this point, Memgraph is ready for you to [submit cypher
+the [section below](#configuration). At this point, Memgraph is ready for you to [submit Cypher
 queries](/connect-to-memgraph/overview.md).
 
 :::info
@@ -63,7 +63,7 @@ The username and password for connecting to the database are empty by default.
 
 ### Stopping Memgraph
 
-To stop a Memgraph database instance, run the following command in `CMD` or `Windows Powershell`:
+To stop a Memgraph database instance, run the following command in `CMD` or `Windows PowerShell`:
 
 ```console
 docker stop CONTAINER_NAME

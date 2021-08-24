@@ -28,11 +28,6 @@ install Memgraph by running the following command in the Debian terminal:
 sudo dpkg -i /mnt/<drive>/Users/<windows username>/Downloads/memgraph_<version>.deb
 ```
 
-:::note Where is the download directory?
-Usually, you can find the download directory, e.g.
-`sudo dpkg -i /mnt/c/Users/zaggy/Downloads/memgraph_1.6.1-community-1_amd64.deb`
-:::
-
 Start the Memgraph server by issuing the following command:
 
 ```

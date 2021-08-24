@@ -22,13 +22,13 @@ import TabItem from "@theme/TabItem";
 docker load -i memgraph.tar.gz
 ```
 
-### error during connect: This error may indicate that the docker daemon is not running.
-Run the docker desktop application and wait for it to load fully.
+### Error during connect: `This error may indicate that the docker daemon is not running.`
+Run the Docker Desktop application and wait for it to load fully.
 
-### Error response from daemon: open \\.\pipe\docker_engine_linux: The system cannot find the file specified.
-Reload the docker desktop application and wait for it to load fully.
+### Error response from daemon: `open \\.\pipe\docker_engine_linux: The system cannot find the file specified.`
+Reload the Docker Desktop application and wait for it to load fully.
 
-### unsupported os linux
+### Unsupported os linux
 
 You need to download the [Windows Subsystem for Linux](https://docs.microsoft.com/en-gb/windows/wsl/install-win10#step-4---download-the-linux-kernel-update-package), and enable experimental features in Docker Desktop, under "Settings -> Docker Engine", put "experimental" to *true*.
 
@@ -115,7 +115,7 @@ Usually, you can find the Windows users directories in this location:
 While running the following `dpkg` command:
 
 ```bash
-dpkg -i /path/to/memgraph_<version>.deb
+sudo dpkg -i /mnt/<drive>/Users/<windows username>/Downloads/memgraph_<version>.deb
 ```
 
 you may encounter errors that resemble the following:
