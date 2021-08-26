@@ -4,7 +4,7 @@ title: Implement transformation modules
 sidebar_label: Implement transformation modules
 ---
 
-The prerequisite of connecting Memgraph to a Kafka stream is  to have a
+The prerequisite of connecting Memgraph to a Kafka stream is to have a
 transformation module that can produce Cypher queries based on the received
 messages. We are going to implement a simple transformation that stores the
 properties of each message in a vertex.
@@ -22,7 +22,7 @@ directory, even from the same module. Mounting a volume can be done by
 creating an empty directory `modules` and executing the following command:
 
 ```shell
-docker volume create --driver local --opt type=none  --opt device=modules --opt o=bind modules
+docker volume create --driver local --opt type=none --opt device=modules --opt o=bind modules
 ```
 
 Now, you can start Memgraph and mount the created volume:
@@ -61,6 +61,7 @@ following:
 ```python
 import mgp
 
+@mgp.transformation
 def my_transformation(context: mgp.TransCtx,
                       messages: mgp.Messages
                       ) -> mgp.Record(query=str, parameters=mgp.Nullable[mgp.Map]):
@@ -73,6 +74,7 @@ The transformations can slightly deviate from this by not receiving the
 ```python
 import mgp
 
+@mgp.transformation
 def my_transformation(messages: mgp.Messages
                       ) -> mgp.Record(query=str, parameters=mgp.Nullable[mgp.Map]):
     ...
@@ -93,6 +95,7 @@ We have to iterate over the messages and construct a query for each of them:
 ```python
 import mgp
 
+@mgp.transformation
 def my_transformation(messages: mgp.Messages
                       ) -> mgp.Record(query=str, parameters=mgp.Nullable[mgp.Map]):
     result_queries = []
@@ -116,6 +119,7 @@ with the properties, we can pass the properties as query parameters:
 ```python
 import mgp
 
+@mgp.transformation
 def my_transformation(messages: mgp.Messages
                       ) -> mgp.Record(query=str, parameters=mgp.Nullable[mgp.Map]):
     result_queries = []
