@@ -5,6 +5,11 @@ sidebar_label: Transformation modules overview
 slug: /reference-guide/streams/transformation-modules
 ---
 
+In order to create a transformation module, you need to:
+1. Create a [python](./api/python-api.md) or a [c](./api/c-api.md) file (module)
+2. Save it into the Memgraph's `query-modules` directory, default: `/usr/lib/memgraph/query_modules`
+3. Load it into Memgraph either on start up (automatically), or by running a `CALL mg.load` query
+
 Memgraph supports user-defined transformations in **C** and **Python**
 that act on data received from a streaming engine. These transformations
 are grouped into modules called **Transformation modules** which can then
@@ -32,7 +37,7 @@ The `*.so` modules are written using the C API and the `*.py` modules are
 written using the Python API. Each file corresponds to one module. Names
 of these files will be mapped to module names.  For example, `hello.so`
 will be mapped to the `hello` module and a `py_hello.py` script
-will be mapped to the `py_hello.py` module.
+will be mapped to the `py_hello` module.
 
 If you want to change the directory in which Memgraph searches for
 transformation modules, just change or extend the `--query-modules-directory`
@@ -45,18 +50,20 @@ Query procedures that allow the users to gain more insight into other modules an
 transformations are written under our utility `mg` query module.
 For transformations this module offers:
 
-* `mg.transformations() :: (name :: STRING)`: Lists all transformations
+procedure|description
+:-:|:-:
+`mg.transformations() :: (name :: STRING)`|Lists all transformations
   procedures.
-* `mg.load(module_name :: STRING) :: ()`: Loads or reloads the given module.
-* `mg.load_all() :: ()`: Loads or reloads all modules.
+`mg.load(module_name :: STRING) :: ()`|Loads or reloads the given module.
+`mg.load_all() :: ()`|Loads or reloads all modules.
 
-For example, invoking `mg.transformations()` from openCypher like so:
+For example, you can invoke `mg.transformations()` from mgconsole/MemgraphLab with the following command:
 
 ```cypher
 CALL mg.transformations() YIELD *;
 ```
 
-might yield the following result:
+This will yield the following result:
 
 ```plaintext
 +---------------------+
