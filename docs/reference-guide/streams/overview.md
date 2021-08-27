@@ -34,7 +34,7 @@ stream name|Name of the stream in Memgraph|string|my_stream|/
 topic|Name of the topic in Kafka|string|my_topic|/
 transform procedure|Name of the transformation file followed by a function name|function|my_transformation.my_transform|/
 consumer group|Name of the consumer group in Memgraph|string|my_group|mg_consumer
-batch interval duration|Maximum wait time for consuming messages before calling the transform procedure|int|9999|100
+batch interval duration|Maximum wait time in milliseconds for consuming messages before calling the transform procedure|int|9999|100
 batch size|Maximum number of messages to wait for before calling the transform procedure|int|99|1000
 
 The transformation procedure is called if either the `BATCH_INTERVAL` or the
