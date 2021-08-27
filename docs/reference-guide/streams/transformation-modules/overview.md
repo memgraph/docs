@@ -6,7 +6,7 @@ slug: /reference-guide/streams/transformation-modules
 ---
 
 In order to create a transformation module, you need to:
-1. Create a [python](./api/python-api.md) or a [c](./api/c-api.md) file (module)
+1. Create a [python](./api/python-api.md) or a [shared library](./api/c-api.md) file (module)
 2. Save it into the Memgraph's `query-modules` directory, default: `/usr/lib/memgraph/query_modules`
 3. Load it into Memgraph either on start up (automatically), or by running a `CALL mg.load` query
 
