@@ -8,7 +8,7 @@ sidebar_label: Changelog
 
 :::warning
 ### Breaking Changes
-* Changed the `Timestamp()` function to return `microseconds` instead of `milliseconds`.
+* Changed the `timestamp()` function to return `microseconds` instead of `milliseconds`.
 :::
 
 ## v1.6.1 - Jul 24, 2021
