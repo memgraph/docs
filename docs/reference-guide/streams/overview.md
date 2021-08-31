@@ -7,9 +7,9 @@ slug: /reference-guide/streams
 
 Memgraph can connect to existing Kafka streams. To use streams, a user
 must:
-1. [**create a transformation module**](/reference-guide/streams/transformation-modules/overview.md)
-2. create the stream with a `CREATE STREAM` query
-3. start the stream with a `START STREAM` query
+1. [**Create a transformation module**](/reference-guide/streams/transformation-modules/overview.md)
+2. Create the stream with a `CREATE STREAM` query
+3. Start the stream with a `START STREAM` query
 
 :::tip
 Check out the **example-streaming-app** on [GitHub](https://github.com/memgraph/example-streaming-app) to see a sample Memgraph-Kafka application.
@@ -38,12 +38,21 @@ batch interval duration|Maximum wait time in milliseconds for consuming messages
 batch size|Maximum number of messages to wait for before calling the transform procedure|int|99|1000
 
 The transformation procedure is called if either the `BATCH_INTERVAL` or the
-`BATCH_SIZE` is reached and there is at least one received message.
+`BATCH_SIZE` is reached, and there is at least one received message.
 
 The `BATCH_INTERVAL` starts when the:
 - the stream is started
 - the processing of the previous batch is completed
 - the previous batch interval ended without receiving any messages
+
+The user who executes the `CREATE` query is going to be the owner of the stream.
+Authentication and authorization are not supported in Memgraph Community, thus
+the owner will always be `Null`, and the privileges are not checked in Memgraph
+Community. In Memgraph Enterprise, the privileges of the owner are used when
+executing the queries returned from a transformation. In other words, the
+execution of the queries will fail if  the owner doesn't have the required
+privileges. More information about how the owner affects the stream can be found
+in the [reference guide](reference-guide/security.md#owners).
 
 ## Deleting a stream
 
@@ -62,7 +71,7 @@ Starts a stream (or all streams) with name `<stream name>`.
 
 When a stream is started, it should resume from the last committed offset. If
 there is no committed offset for the consumer group, then the largest offset
-will be used, therefore only the new messages will be consumed.
+will be used. Therefore only the new messages will be consumed.
 
 ## Stop a stream
 

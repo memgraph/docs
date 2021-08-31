@@ -6,9 +6,9 @@ slug: /reference-guide/streams/transformation-modules
 ---
 
 In order to create a transformation module, you need to:
-1. Create a [python](./api/python-api.md) or a [shared library](./api/c-api.md) file (module)
-2. Save it into the Memgraph's `query-modules` directory, default: `/usr/lib/memgraph/query_modules`
-3. Load it into Memgraph either on start up (automatically), or by running a `CALL mg.load` query
+1. Create a [Python](./api/python-api.md) or a [shared library](./api/c-api.md) file (module)
+2. Save it into the Memgraph's `query-modules` directory (default: `/usr/lib/memgraph/query_modules`)
+3. Load it into Memgraph either on startup (automatically) or by running a `CALL mg.load` query
 
 Memgraph supports user-defined transformations in **C** and **Python**
 that act on data received from a streaming engine. These transformations
@@ -18,7 +18,7 @@ query procedure, or both.
 
 This section introduces transformation modules and their similarities
 with query modules. Currently, we only support transformations for
-Kafka streams but we are aiming to add support for other
+Kafka streams, but we are aiming to add support for other
 streaming engines as well.
 
 The available API references are:
@@ -42,22 +42,21 @@ will be mapped to the `py_hello` module.
 If you want to change the directory in which Memgraph searches for
 transformation modules, just change or extend the `--query-modules-directory`
 flag in the main configuration file (`/etc/memgraph/memgraph.conf`) or supply
-it as a command-line parameter (e.g. when using Docker).
+it as a command-line parameter (e.g., when using Docker).
 
 ## Utility procedures for transformations
 
 Query procedures that allow the users to gain more insight into other modules and
 transformations are written under our utility `mg` query module.
-For transformations this module offers:
+For transformations, this module offers:
 
-procedure|description
-:-:|:-:
-`mg.transformations() :: (name :: STRING)`|Lists all transformations
-  procedures.
-`mg.load(module_name :: STRING) :: ()`|Loads or reloads the given module.
-`mg.load_all() :: ()`|Loads or reloads all modules.
+|procedure|description|
+|---------|-----------|
+|`mg.transformations() :: (name :: STRING)`|Lists all transformations procedures.|
+|`mg.load(module_name :: STRING) :: ()`|Loads or reloads the given module.|
+|`mg.load_all() :: ()`|Loads or reloads all modules.|
 
-For example, you can invoke `mg.transformations()` from mgconsole/MemgraphLab with the following command:
+For example, you can invoke `mg.transformations()` from mgconsole or Memgraph Lab with the following command:
 
 ```cypher
 CALL mg.transformations() YIELD *;

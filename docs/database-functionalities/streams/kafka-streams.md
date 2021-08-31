@@ -47,7 +47,7 @@ SHOW STREAMS;
 ```
 
 :::warning
-If you're running this in MemgraphLab an arbitrary error might happen. Please ignore it until we resolve the issue.
+If you're running this in Memgraph Lab, an arbitrary error might happen. Please ignore it until we resolve the issue.
 :::
 
 The result should be similar to:
