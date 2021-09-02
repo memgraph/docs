@@ -30,10 +30,10 @@ CREATE STREAM <stream name>
 
 option|description|type|example|default
 :-:|:-:|:-:|:-:|:-:
-stream name|Name of the stream in Memgraph|string|my_stream|/
-topic|Name of the topic in Kafka|string|my_topic|/
+stream name|Name of the stream in Memgraph|plain text|my_stream|/
+topic|Name of the topic in Kafka|plain text|my_topic|/
 transform procedure|Name of the transformation file followed by a function name|function|my_transformation.my_transform|/
-consumer group|Name of the consumer group in Memgraph|string|my_group|mg_consumer
+consumer group|Name of the consumer group in Memgraph|plain text|my_group|mg_consumer
 batch interval duration|Maximum wait time in milliseconds for consuming messages before calling the transform procedure|int|9999|100
 batch size|Maximum number of messages to wait for before calling the transform procedure|int|99|1000
 
