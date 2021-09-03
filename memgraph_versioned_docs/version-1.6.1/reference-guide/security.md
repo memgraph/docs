@@ -148,3 +148,13 @@ such streams and triggers will fail because the lack of owner is treated as a
 user without any privileges, so no queries are allowed to be executed.
 - Currently, there is no way of changing the owner. The only workaround for this
 is to delete the stream or trigger and then create it again with another user.
+
+### Streams
+The user who executes the `CREATE STREAM` query is going to be the owner of the stream.
+Authentication and authorization are not supported in Memgraph Community, thus
+the owner will always be `Null`, and the privileges are not checked in Memgraph
+Community. In Memgraph Enterprise the privileges of the owner are used when
+executing the queries returned from a transformation, in other words, the
+execution of the queries will fail if  the owner doesn't have the required
+privileges. More information about how the owner affects the stream can be
+found in the

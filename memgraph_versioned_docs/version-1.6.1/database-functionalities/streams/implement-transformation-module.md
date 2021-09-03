@@ -4,7 +4,7 @@ title: Implement transformation modules
 sidebar_label: Implement transformation modules
 ---
 
-The prerequisite of connecting Memgraph to a Kafka stream is  to have a
+The prerequisite of connecting Memgraph to a Kafka stream is to have a
 transformation module that can produce Cypher queries based on the received
 messages. We are going to implement a simple transformation that stores the
 properties of each message in a vertex.
@@ -15,14 +15,14 @@ For detailed technical information on transformation modules, check out the [ref
 
 ## Using Docker with transformation modules
 
-If you are using Docker to run Memgraph you will have to create a volume
-and mount it to access the `query_modules` directory. Yes, `query_modules`,
+If you are using Docker to run Memgraph, you will have to create a volume
+and mount it to access the `query_modules` directory. Yes, `query_modules` ,
 because Memgraph can load transformations and query procedures from the same
 directory, even from the same module. Mounting a volume can be done by
 creating an empty directory `modules` and executing the following command:
 
 ```shell
-docker volume create --driver local --opt type=none  --opt device=modules --opt o=bind modules
+docker volume create --driver local --opt type=none --opt device=modules --opt o=bind modules
 ```
 
 Now, you can start Memgraph and mount the created volume:
@@ -61,18 +61,24 @@ following:
 ```python
 import mgp
 
+@mgp.transformation
 def my_transformation(context: mgp.TransCtx,
                       messages: mgp.Messages
                       ) -> mgp.Record(query=str, parameters=mgp.Nullable[mgp.Map]):
     ...
 ```
 
+We also marked our function as a transformation so it will be recognized by
+Memgraph when the module is loaded. This was done by adding the
+`@mgp.transformation` decorator.
+
 The transformations can slightly deviate from this by not receiving the
-`context`, just the `messages`:
+`context` , just the `messages` :
 
 ```python
 import mgp
 
+@mgp.transformation
 def my_transformation(messages: mgp.Messages
                       ) -> mgp.Record(query=str, parameters=mgp.Nullable[mgp.Map]):
     ...
@@ -83,7 +89,7 @@ database, the `context` parameter is not necessary, so we are going to use the
 simpler version.
 
 The most important part is the actual implementation of the transformation
-function. Before showing how it can be done, let's clarify what is it
+function. Before showing how it can be done, let's clarify what it is
 supposed to do: it receives a list of messages and returns some queries and
 their parameters that will be executed in Memgraph as any regular query. Right,
 let's see how we can do that!
@@ -93,6 +99,7 @@ We have to iterate over the messages and construct a query for each of them:
 ```python
 import mgp
 
+@mgp.transformation
 def my_transformation(messages: mgp.Messages
                       ) -> mgp.Record(query=str, parameters=mgp.Nullable[mgp.Map]):
     result_queries = []
@@ -116,32 +123,6 @@ with the properties, we can pass the properties as query parameters:
 ```python
 import mgp
 
-def my_transformation(messages: mgp.Messages
-                      ) -> mgp.Record(query=str, parameters=mgp.Nullable[mgp.Map]):
-    result_queries = []
-
-    for i in range(messages.total_messages()):
-        message = messages.message_at(i)
-        payload_as_str = message.payload().decode("utf-8")
-        result_queries.append(mgp.Record(
-            query="CREATE (n:MESSAGE {timestamp: $timestamp, payload: $payload, topic: $topic})",
-            parameters={"timestamp": message.timestamp(),
-                        "payload": payload_as_str,
-                        "topic": message.topic_name()}))
-
-    return result_queries
-```
-
-The `$timestamp`, `$payload` and `$topic` are the placeholders for parameters
-with the same name.
-
-Last, but not least we have to mark our function as a transformation so it will
-be recognized by Memgraph when the module is loaded. It can be done by adding
-the `@mgp.transformation` decorator to the function:
-
-```python
-import mgp
-
 @mgp.transformation
 def my_transformation(messages: mgp.Messages
                       ) -> mgp.Record(query=str, parameters=mgp.Nullable[mgp.Map]):
@@ -158,6 +139,9 @@ def my_transformation(messages: mgp.Messages
 
     return result_queries
 ```
+
+The `$timestamp` , `$payload` and `$topic` are the placeholders for parameters
+with the same name.
 
 Congratulations, you just created your first transformation procedure! To
 ensure that Memgraph can find the transformation, let's reload the modules:
@@ -192,13 +176,13 @@ compiled to the ELF shared library format.
 
 In this chapter, we assume that Memgraph is installed on a standard Debian or
 Ubuntu machine where the necessary header file can be found under
-`/usr/include/memgraph`. For other installations, the header file can be found
+`/usr/include/memgraph` . For other installations, the header file can be found
 under the `include/memgraph` folder in the Memgraph installation directory.
 
-As we already discussed how transformations work in the Python example we
+As we already discussed how transformations work in the Python example, we
 won't go over the transformation itself in detail. Also, to keep the
 complexity of this example low, this transformation doesn't use the query
-parameters. Apart from that this transformation does the same as the Python
+parameters. Apart from that, this transformation does the same as the Python
 example, but written in C++17.
 
 So let's create `c_transformation.cpp` and start to populate it!
@@ -274,7 +258,7 @@ clang++ --std=c++17 -Wall -shared -fPIC -I /home/kovi/data/memgraph/include c_tr
 ```
 
 After copying the resulting `c_transformation.so` to the
-`/usr/lib/memgraph/query_modules` directory we can reload the modules and check
+`/usr/lib/memgraph/query_modules` directory, we can reload the modules and check
 if Memgraph found our newly created transformation:
 
 ```cypher
@@ -298,5 +282,5 @@ You should see something like this:
 +----------------------------------------+
 ```
 
-For a more detailed overview check out the [Reference
+For a more detailed overview, check out the [Reference
 guide](/reference-guide/streams/transformation-modules/overview.md).
