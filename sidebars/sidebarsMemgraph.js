@@ -1,6 +1,5 @@
 module.exports = {
   memgraph: [
-    'overview',
     'getting-started',
     {
       type: 'category',

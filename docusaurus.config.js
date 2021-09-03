@@ -32,7 +32,7 @@ module.exports = {
       },
       items: [
         {
-          to: '/memgraph/overview',
+          to: '/memgraph/getting-started',
           label: 'Memgraph DB',
           position: 'left',
           activeBaseRegex: `/memgraph/`,
@@ -155,7 +155,7 @@ module.exports = {
           items: [
             {
               label: 'Memgraph DB',
-              to: '/memgraph/overview',
+              to: '/memgraph/getting-started',
             },
             {
               label: 'Memgraph Lab',
@@ -308,8 +308,12 @@ module.exports = {
       {
         redirects: [
           {
-            to: '/memgraph/overview',
+            to: '/memgraph/getting-started',
             from: ['/memgraph/introduction',],
+          },
+          {
+            to: '/memgraph/getting-started',
+            from: ['/memgraph/overview',],
           },
           {
             to: '/memgraph/getting-started',

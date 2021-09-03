@@ -2,7 +2,7 @@
 id: overview
 title: Memgraph
 sidebar_label: Overview
-slug: /overview
+slug: /overview-page
 ---
 
 Memgraph is a graph analytics platform based on an ACID-compliant high-performance
