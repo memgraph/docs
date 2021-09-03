@@ -101,7 +101,7 @@ Bases: `object`
 Label of a Vertex.
 
 
-### `name()`
+### `name`
 
 ## `class mgp.EdgeType(name)`
 Bases: `object`
@@ -109,7 +109,7 @@ Bases: `object`
 Type of an Edge.
 
 
-### `name()`
+### `name`
 
 ## `class mgp.Edge(edge)`
 Bases: `object`
@@ -121,11 +121,11 @@ a query. You should not globally store an instance of an Edge. Using an
 invalid Edge instance will raise InvalidContextError.
 
 
-### `from_vertex()`
+### `from_vertex`
 Raise InvalidContextError.
 
 
-### `id()`
+### `id`
 Raise InvalidContextError.
 
 
@@ -133,15 +133,15 @@ Raise InvalidContextError.
 Return True if self is in valid context and may be used.
 
 
-### `properties()`
+### `properties`
 Raise InvalidContextError.
 
 
-### `to_vertex()`
+### `to_vertex`
 Raise InvalidContextError.
 
 
-### `type()`
+### `type`
 Raise InvalidContextError.
 
 
@@ -155,11 +155,11 @@ in a query. You should not globally store an instance of a Vertex. Using an
 invalid Vertex instance will raise InvalidContextError.
 
 
-### `id()`
+### `id`
 Raise InvalidContextError.
 
 
-### `in_edges()`
+### `in_edges`
 Raise InvalidContextError.
 
 
@@ -167,25 +167,25 @@ Raise InvalidContextError.
 Return True if self is in valid context and may be used
 
 
-### `labels()`
+### `labels`
 Raise InvalidContextError.
 
 
-### `out_edges()`
+### `out_edges`
 Raise InvalidContextError.
 
 
-### `properties()`
+### `properties`
 Raise InvalidContextError.
 
 
-## `class mgp.Path(starting_vertex_or_path: Union[<sphinx.ext.autodoc.importer._MockObject object at 0x7f7fbd8d6700>, mgp.Vertex])`
+## `class mgp.Path(starting_vertex_or_path: Union[mgp.Edge, mgp.Vertex])`
 Bases: `object`
 
 Path containing Vertex and Edge instances.
 
 
-### `edges()`
+### `edges`
 Edges ordered from the start to the end of the path.
 
 Raise InvalidContextError if using an invalid Path instance.
@@ -205,7 +205,7 @@ passed in edge is invalid.
 
 ### `is_valid()`
 
-### `vertices()`
+### `vertices`
 Vertices ordered from the start to the end of the path.
 
 Raise InvalidContextError if using an invalid Path instance.
@@ -217,7 +217,7 @@ Bases: `object`
 Represents a record of resulting field values.
 
 
-### `fields()`
+### `fields`
 
 ## `class mgp.Vertices(graph)`
 Bases: `object`
@@ -250,7 +250,7 @@ Raise InvalidContextError if context is invalid.
 Return True if self is in valid context and may be used.
 
 
-### `vertices()`
+### `vertices`
 All vertices in the graph.
 
 Access to a Vertex is only valid during a single execution of a
@@ -271,7 +271,7 @@ in a query. You should not globally store a ProcCtx instance.
 
 ### `check_must_abort()`
 
-### `graph()`
+### `graph`
 Raise InvalidContextError if context is invalid.
 
 
