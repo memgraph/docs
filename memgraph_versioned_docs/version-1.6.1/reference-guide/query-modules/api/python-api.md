@@ -180,7 +180,7 @@ Raise InvalidContextError.
 
 
 ## `class mgp.Path(starting_vertex_or_path: Union[mgp.Edge, mgp.Vertex])`
-Bases: `object`
+
 
 Path containing Vertex and Edge instances.
 
