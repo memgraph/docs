@@ -17,15 +17,15 @@ For an example of how to implement transformation modules in Python, check out 
 :::
 
 ## `mgp.transformation(func)`
-Register `func` as a transformation of the current module.
-
-`transformation` is meant to be used as a decorator function to register a transformation
-within the current module. The registered `func` needs to be a callable which either accepts
-a single argument of type `Messages` or two arguments of type `TransCtx` and `Messages` respectively.
-The return type is fixed, and it should be of the form:
-`Record(query=str, parameters=mgp.Nullable[mgp.Map])`. Multiple records can be
-produced by returning an iterable of them. Registering generator functions
-is currently not supported.
+Transformation modules in python have to follow certain rules in order to work:
+1. The transformation module is a python function
+2. The function has to be *decorated* with a **@mgp.transformation** decorator
+3. The function can have 1 or 2 arguments
+  - one of type `mgp.Messages` (required)
+  - one of type `mgp.TransCtx` (optional)
+4. The function has to return an `mgp.Record` in the following form:
+  - `mgp.Record(query=str, parameters=mgp.Nullable[mgp.Map])`
+  - the return type can also be an **iterable** of `mgp.Record`s, but not a generator
 
 ### Examples
 ```python
