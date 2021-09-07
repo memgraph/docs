@@ -19,6 +19,10 @@ An updated version will soon be available.
 guide](/database-functionalities/query-modules/implement-query-modules.md#python-api).
 :::
 
+:::tip If you install any Python modules after running Memgraph, you'll have to
+restart Memgraph in order to use them in query modules.
+:::
+
 ## `mgp.read_proc(func)`
 Register the function as a read-only procedure of the current module.
 
@@ -61,6 +65,11 @@ CALL example.procedure(1) YIELD args, result;
 ```
 
 Naturally, you may pass in different arguments or yield fewer fields.
+
+:::tip Install the `mgp` Python module so your editor can use typing annotations
+properly and suggest methods and classes it contains. You can install the module
+by running `pip install mgp`.
+:::
 
 
 ## `mgp._typing_to_cypher_type()`
