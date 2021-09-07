@@ -3,6 +3,11 @@ id: changelog
 title: Changelog
 sidebar_label: Changelog
 ---
+## v2.0.0 - Sep 17, 2021
+
+### Major Features and Improvements
+* Added support for parameters with `CREATE` clause.
+:::
 
 ## v1.6.1 - Jul 24, 2021
 
