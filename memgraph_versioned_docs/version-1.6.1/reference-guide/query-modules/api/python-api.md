@@ -179,7 +179,7 @@ Raise InvalidContextError.
 Raise InvalidContextError.
 
 
-## `class mgp.Path(starting_vertex_or_path: Union[<sphinx.ext.autodoc.importer._MockObject object at 0x7f7fbd8d6700>, mgp.Vertex])`
+## `class mgp.Path(starting_vertex_or_path)`
 Bases: `object`
 
 Path containing Vertex and Edge instances.
