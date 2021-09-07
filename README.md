@@ -1,4 +1,4 @@
-# [docs.memgraph.com](docs.memgraph.com)
+# [docs.memgraph.com](http://docs.memgraph.com/)
 [![PRs
 Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/memgraph/docs/blob/master/CONTRIBUTING.md)
 ![Build
