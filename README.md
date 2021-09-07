@@ -1,8 +1,6 @@
 # [docs.memgraph.com](docs.memgraph.com)
 [![PRs
 Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/memgraph/docs/blob/master/CONTRIBUTING.md)
-[![Code Style:
-prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 ![Build
 passing](https://img.shields.io/github/workflow/status/memgraph/docs/master/master)
 <a href="https://twitter.com/intent/follow?screen_name=memgraphdb"><img
@@ -67,43 +65,21 @@ locally, run:
 npm run-script serve
 ```
 
-## Understanding the documentation structure
-
-If you need to add changes to the **Memgraph** documentation, make sure to
-understand the structure of the repository:
-* `docs/`: This directory contains the **unreleased** documentation for the next
-  version of Memgraph.
-* `memgraph_versioned_docs/`: This directory contains the **latest** and
-  **previous versions** of the documentation.
-* `sidebars/`: This directory contains the sidebar specifications used by the
-  **unreleased** documentation to specify the order of documents in the sidebar.
-* `memgraph_versioned_sidebars/`: This directory contains the sidebars files for
-  the **latest** and **previous versions** of the documentation.
-+ `memgraph_versions.json`: This file contains a list of all the released
-  version tags.
-
-If you need to update the current documentation, make sure to update the
-appropriate version in the `memgraph_versioned_docs/` directory as well as the
-`docs/` directory. This needs to be done because the contents of the `docs/`
-directory will at some point be frozen as the next version and saved to the
-`memgraph_versioned_docs/` directory.
-
-To find out more about versioning in Docusaurus, visit their [official
-website](https://docusaurus.io/docs/versioning).
-
 ## Contributing
 
-The main purpose of the documentation site is to enable developers to use
-Memgraph and other tools. We are grateful for any community contributions as
-they are the best way of improving the overall user experience. If at any point
-you believe that something is misleading, could be worded better, or is missing
+We are grateful for any community contributions to the documentation as they are
+the best way of improving the overall user experience. If at any point you
+believe that something is misleading, could be worded better, or is missing
 additional information, then please feel free to make a pull request or report
-an issue.
+an [issue](https://github.com/memgraph/docs/issues).
 
 ### Contributing guide
 
 If you want to contribute to the documentation, please take a look at
-[CONTRIBUTING](CONTRIBUTING.md) guide for details about the writing style and
-main ideas behind the documentation. In case you notice any problems or need
-additional information, feel free to [create an
-issue](https://github.com/memgraph/docs/issues).
+[CONTRIBUTING](./CONTRIBUTING.md) guide. It contains a detailed overview of the
+documentation structure and instructions on how to specifically make changes to
+the content.
+
+For more information about the writing style and the main ideas behind the
+documentation structure, take a look at the [WRITING STYLE](./WRITING_STYLE.md)
+guide.
