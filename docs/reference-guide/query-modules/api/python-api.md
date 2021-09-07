@@ -16,8 +16,8 @@ under `python_support`. On the standard Debian installation, this will be under 
 For an example of how to implement query modules in Python, check out [this guide](/database-functionalities/query-modules/implement-query-modules.md#python-api).
 :::
 
-:::tip
-If you install any python modules after running Memgraph, you'll have to restart Memgraph in order to use them in query-modules.
+:::tip If you install any Python modules after running Memgraph, you'll have to
+restart Memgraph in order to use them in query modules.
 :::
 
 ## `mgp.read_proc(func)`
@@ -66,8 +66,9 @@ The procedure can be invoked in openCypher using the following calls:
 
 Naturally, you may pass in different arguments or yield less fields.
 
-:::tip
-Install `mgp` python module so your editor can use typing annotations properly and suggest methods and classes it contains!
+:::tip Install the `mgp` Python module so your editor can use typing annotations
+properly and suggest methods and classes it contains. You can install the module
+by running `pip install mgp`.
 :::
 
 
