@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[67570],{19994:function(e){e.exports=JSON.parse('{"pluginId":"help-center","version":"current","label":"Next","banner":"none","isLast":true,"docsSidebars":{"hel_center":[{"type":"link","label":"Help Center","href":"/help-center/"},{"type":"link","label":"FAQ","href":"/help-center/faq"}]}}')}}]);
