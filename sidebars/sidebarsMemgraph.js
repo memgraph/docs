@@ -1,6 +1,5 @@
 module.exports = {
   memgraph: [
-    "overview",
     "getting-started",
     {
       type: "category",
@@ -228,7 +227,6 @@ module.exports = {
         "concepts/telemetry",
       ],
     },
-    "upcoming-features",
     "changelog",
   ],
 };

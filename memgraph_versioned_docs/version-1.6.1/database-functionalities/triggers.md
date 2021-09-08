@@ -22,7 +22,7 @@ All the triggers are persisted on the disk, so no information is lost between th
 To create a new trigger, a query of the following format should be used:
 
 ```plaintext
-CREATE TRIGGER trigger_name ( ON ( () | --> ) CREATE | UPDATE | DELETE )
+CREATE TRIGGER trigger_name [ ON ( () | --> ) CREATE | UPDATE | DELETE ]
 ( BEFORE | AFTER ) COMMIT
 EXECUTE openCypherStatements
 ```

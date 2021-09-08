@@ -1,7 +1,7 @@
 ---
 id: overview
 title: Database functionalities overview
-sidebar_label: Overview
+sidebar_label: Database functionalities overview
 slug: /database-functionalities
 ---
 

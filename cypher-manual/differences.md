@@ -23,11 +23,10 @@ here (especially subtle semantic ones).
 
 ### Unsupported constructs
 
-* Data importing. Memgraph doesn't support Cypher's CSV importing capabilities.
 * The `FOREACH` language construct for performing an operation on every list element.
 * Stored procedures.
 * `shortestPath` and `allShortestPaths` functions. `shortestPath` can be expressed using
-  Memgraph's breadth-first expansion syntax already described in this document.
+  Memgraph's breadth-first expansion syntax.
 * Patterns in expressions. For example, Memgraph doesn't support `size((n)-->())`. Most of the time
   the same functionalities can be expressed differently in Memgraph using `OPTIONAL` expansions,
   function calls etc.
@@ -54,5 +53,4 @@ Mathematical functions:
 
 List functions:
 
-* `any()`
 * `none()`

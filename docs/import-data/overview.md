@@ -1,7 +1,7 @@
 ---
 id: overview
 title: Import data
-sidebar_label: Overview
+sidebar_label: Import data overview
 slug: /import-data
 ---
 

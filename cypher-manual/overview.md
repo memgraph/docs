@@ -1,7 +1,7 @@
 ---
 id: overview
 title: Cypher manual
-sidebar_label: Overview
+sidebar_label: Cypher manual overview
 slug: /
 ---
 

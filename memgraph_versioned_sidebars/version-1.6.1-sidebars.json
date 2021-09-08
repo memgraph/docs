@@ -2,10 +2,6 @@
   "version-1.6.1/memgraph": [
     {
       "type": "doc",
-      "id": "version-1.6.1/overview"
-    },
-    {
-      "type": "doc",
       "id": "version-1.6.1/getting-started"
     },
     {

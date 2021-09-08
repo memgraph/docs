@@ -1,7 +1,7 @@
 ---
 id: overview
 title: Tutorials
-sidebar_label: Overview
+sidebar_label: Tutorials overview
 slug: /tutorials
 ---
 

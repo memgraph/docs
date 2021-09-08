@@ -32,7 +32,7 @@ module.exports = {
       },
       items: [
         {
-          to: '/memgraph/overview',
+          to: '/memgraph/getting-started',
           label: 'Memgraph DB',
           position: 'left',
           activeBaseRegex: `/memgraph/`,
@@ -46,8 +46,8 @@ module.exports = {
               to: '/memgraph/installation',
             },
             {
-              label: 'Database functionalities',
-              to: '/memgraph/database-functionalities',
+              label: 'Import data',
+              to: '/memgraph/import-data',
             },
             {
               label: 'Connect to Memgraph',
@@ -155,7 +155,7 @@ module.exports = {
           items: [
             {
               label: 'Memgraph DB',
-              to: '/memgraph/overview',
+              to: '/memgraph/getting-started',
             },
             {
               label: 'Memgraph Lab',
@@ -308,8 +308,12 @@ module.exports = {
       {
         redirects: [
           {
-            to: '/memgraph/overview',
+            to: '/memgraph/getting-started',
             from: ['/memgraph/introduction',],
+          },
+          {
+            to: '/memgraph/getting-started',
+            from: ['/memgraph/overview',],
           },
           {
             to: '/memgraph/getting-started',

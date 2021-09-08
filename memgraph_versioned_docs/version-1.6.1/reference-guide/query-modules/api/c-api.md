@@ -10,6 +10,10 @@ This is the API documentation for `mg_procedure.h` which contains declarations o
 **NOTE:** This part of the documentation is still under development. An updated version will soon be available.
 :::
 
+:::tip
+For an example of how to implement query modules in C, check out [this guide](/database-functionalities/query-modules/implement-query-modules.md#c-api).
+:::
+
 ## Classes
 
 |                | Name           |

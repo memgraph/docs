@@ -4,29 +4,33 @@ title: Managing Kafka streams
 sidebar_label: Managing Kafka streams
 ---
 
-To connect Memgraph to a Kafka stream, we obviously need an existing stream.
-As Kafka itself is quite a complex system, we don't aim to teach you about
-it. If you are not familiar with Kafka, then please check out their [quickstart
+If you are not familiar with Kafka, then please check out their [quickstart
 guide](https://kafka.apache.org/quickstart) to get familiar. In the
-following, we assume that a Kafka server is available on the 9092 port of
+documentation, we assume that a Kafka server is available on the 9092 port of
 the local machine (`localhost:9092`) as the default configuration of the Kafka
-quick start guide.
+quick start guide. Please adjust your setup accordingly.
+
+:::tip
+Check out the **example-streaming-app** on [GitHub](https://github.com/memgraph/example-streaming-app) to see how Memgraph can be connected to a Kafka stream.
+:::
+
+:::note
+For detailed technical information on streaming support, check out the [reference guide](/reference-guide/streams/overview.md).
+:::
 
 ## Configuring Memgraph
 
 As Memgraph can connect to only one Kafka cluster at once, the list of
 bootstrap servers can be set by the `--kafka-bootstrap-servers`
-configuration option. It has to be set to `localhost:9092` (or to an
-arbitrary address where a Kafka cluster is available).
+configuration option. It has to be set explicitly.
 
 ## Creating the stream
 
-The very first step is to make sure at least one transformation is loaded into
-Memgraph. If you are not sure how to define them, you can find an example
-module
-[here](/database-functionalities/streams/implement-transformation-module.md).
+The very first step is to make sure at least one transformation module is loaded into
+Memgraph. If you are not sure how to define them, check out the
+[transformation module guide](/database-functionalities/streams/implement-transformation-module.md).
 We are going to use `transformation.my_transformation` from that example, but
-with the shorter `my.transform` name to make the size of result tables slimmer.
+we are going to alias it as `my.transform` to make the size of result tables slimmer.
 For the topic name, we are going to use the topic from the Kafka quick start,
 `quickstart-events`.
 
@@ -42,7 +46,11 @@ Check the created stream:
 SHOW STREAMS;
 ```
 
-The result should be like this:
+:::warning
+If you're running this in Memgraph Lab, an arbitrary error might happen. Please ignore it until we resolve the issue.
+:::
+
+The result should be similar to:
 
 ```plaintext
 +-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+
