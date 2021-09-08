@@ -156,12 +156,19 @@
           "id": "version-1.6.1/import-data/overview"
         },
         {
-          "type": "doc",
-          "id": "version-1.6.1/import-data/csv-import-tool"
-        },
-        {
-          "type": "doc",
-          "id": "version-1.6.1/import-data/load-csv-clause"
+          "collapsed": true,
+          "type": "category",
+          "label": "CSV",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-1.6.1/import-data/csv-import-tool"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.6.1/import-data/load-csv-clause"
+            }
+          ]
         },
         {
           "type": "doc",
@@ -336,6 +343,36 @@
         {
           "type": "doc",
           "id": "version-1.6.1/reference-guide/graph-algorithms"
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Import data",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-1.6.1/reference-guide/import-data/overview"
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "CSV",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "version-1.6.1/reference-guide/import-data/csv-import-tool"
+                },
+                {
+                  "type": "doc",
+                  "id": "version-1.6.1/reference-guide/import-data/load-csv-clause"
+                }
+              ]
+            },
+            {
+              "type": "doc",
+              "id": "version-1.6.1/reference-guide/import-data/cypherl"
+            }
+          ]
         },
         {
           "type": "doc",

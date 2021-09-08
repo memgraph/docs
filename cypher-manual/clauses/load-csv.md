@@ -40,12 +40,9 @@ The clause reads row by row from a CSV file and binds the contents of the parsed
 row to the variable you specified.
 
 :::info
-
-It's important to note that the parser parses the values as strings. It's up to
-the user to convert the parsed row values to the appropriate type. This can be
-done using the built-in conversion functions such as `ToInteger`, `ToFloat`,
-`ToBoolean` etc. Consult the [documentation](/functions.md) on the available
-conversion functions.
-
+It's important to note that the parser parses the values as strings.
+It's up to the user to convert the parsed row values to the appropriate type.
+This can be done using the built-in conversion functions such as `ToInteger`,
+`ToFloat`, `ToBoolean` etc. Consult the [documentation](/functions.md) on the
+available conversion functions.
 :::
-

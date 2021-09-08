@@ -5,8 +5,9 @@ sidebar_label: LOAD CSV Cypher clause
 ---
 
 The `LOAD CSV` clause enables you to load and use data from a CSV file of your
-choosing in a row-based manner, within a query. We support the Excel CSV dialect,
-as it's the most commonly used one. For the syntax of the clause, please check [Cypher Manual](../../../cypher-manual/clauses/load-csv)
+choosing in a row-based manner, within a query. We support the Excel CSV
+dialect, as it's the most commonly used one. For the syntax of the clause,
+please check the [Cypher manual](/cypher-manual/clauses/load-csv)
 
 The clause reads row by row from a CSV file, and binds the contents of the
 parsed row to the variable you specified.
@@ -16,19 +17,20 @@ parsed row to the variable you specified.
 It's important to note that the parser parses the values as strings. It's up to
 the user to convert the parsed row values to the appropriate type. This can be
 done using the built-in conversion functions such as `ToInteger`, `ToFloat`,
-`ToBoolean` etc. Consult the documentation on the available conversion functions.
+`ToBoolean` etc. Consult the documentation on the available conversion
+functions.
 
 :::
 
 
 ### Header options
 
-Depending on how you set the `HEADER` option (`WITH` or `NO`), a row will
-be parsed as either a map or a list.
+Depending on how you set the `HEADER` option (`WITH` or `NO`), a row will be
+parsed as either a map or a list.
 
 If the `WITH HEADER` option is set, the very first line in the file will be
-parsed as the header, and any remaining rows will be parsed as regular rows.
-The value bound to the row variable will be a map of the form:
+parsed as the header, and any remaining rows will be parsed as regular rows. The
+value bound to the row variable will be a map of the form:
 
 ```plaintext
 { ( "header_field" : "row_value" )? ( , "header_field" : "row_value" )* }
@@ -70,16 +72,15 @@ SET n.p = row ;
 
 Let's say the `MATCH (n)` clause finds five nodes, whereas the "file.csv" has
 only 2 rows. Then only the first two nodes returned by the `MATCH (n)` will have
-their properties set, using the two rows from the file.
-Similarly, if the `MATCH (n)` clause finds two nodes, whereas the "file.csv" has
-five rows, the two nodes returned by `MATCH (n)` will have their properties
-set with values from the first two rows of the file.
-In general, the clause that exhausts its results sooner will dictate how many
-times the "loop" will be executed.
+their properties set, using the two rows from the file. Similarly, if the `MATCH
+(n)` clause finds two nodes, whereas the "file.csv" has five rows, the two nodes
+returned by `MATCH (n)` will have their properties set with values from the
+first two rows of the file. In general, the clause that exhausts its results
+sooner will dictate how many times the "loop" will be executed.
 
 Finally, note that the `LOAD CSV` clause can be used at most once per query.
-Trying to use multiple `LOAD CSV` clauses within a single query will throw an exception.
-In other words, queries such as
+Trying to use multiple `LOAD CSV` clauses within a single query will throw an
+exception. In other words, queries such as
 
 ```cypher
 LOAD CSV FROM "x.csv" WITH HEADER as x
