@@ -19,7 +19,7 @@ export const Highlight = ({children, color}) => (
   </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-uuid-generator-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/cpp/uuid_module/uuid_module.cpp)
+[![docs-source](https://img.shields.io/badge/source-uuid-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/cpp/uuid_module/uuid_module.cpp)
 
 
 ## Abstract
