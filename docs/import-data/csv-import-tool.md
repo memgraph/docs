@@ -76,6 +76,10 @@ using the following command:
   </TabItem>
 </Tabs>
 
+Below, you can find two examples of how to use the CSV Import Tool depending on the complexity of your data:
+- [One type of nodes and relationships](#one-type-of-nodes-and-relationships)
+- [Multiple types of nodes and relationships](#multiple-types-of-nodes-and-relationships)
+
 :::caution
 It is also important to note that importing CSV data using the `mg_import_csv`
 command should be a one-time operation before running Memgraph. In other
@@ -85,7 +89,7 @@ Memgraph instance.
 
 ___
 
-## Example
+## Examples
 
 ### One type of nodes and relationships
 

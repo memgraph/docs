@@ -3,25 +3,21 @@ id: cypherl
 title: Importing Cypher queries (.cypherl format)
 sidebar_label: Cypher queries (.cypherl format)
 ---
-import Tabs from "@theme/Tabs";
-import TabItem from "@theme/TabItem";
+import Tabs from "@theme/Tabs"; import TabItem from "@theme/TabItem";
 
-When Memgraph is running, cypher queries are imported by running [mgconsole](/connect-to-memgraph/methods/mgconsole.md) in
-non-interactive mode. The user can import queries saved in e.g. `queries.cypherl`
-by issuing the following shell command:
+When Memgraph is running, Cypher queries are imported by running
+[mgconsole](/connect-to-memgraph/methods/mgconsole.md) in non-interactive mode.
+The user can import queries saved in e.g. `queries.cypherl` by issuing the
+following shell command:
 
 
-<Tabs
-  groupId="platform"
-  defaultValue="docker"
-  values={[
-    {label: 'Docker 🐳', value: 'docker'},
-    {label: 'Linux', value: 'linux'}
+<Tabs groupId="platform" defaultValue="docker" values={[{label: 'Docker 🐳',
+  value: 'docker'}, {label: 'Linux', value: 'linux'}
   ]}>
   <TabItem value="docker">
 
-:::note
-If you installed Memgraph through Docker Hub, the name of the Docker image `memgraph` should be replaced with `memgraph/memgraph`.
+:::note If you installed Memgraph through Docker Hub, the name of the Docker
+image `memgraph` should be replaced with `memgraph/memgraph`.
 :::
 
 If you installed Memgraph using Docker, you will need to run the client using
@@ -31,18 +27,17 @@ the following command:
 docker run -i --entrypoint=mgconsole memgraph --host HOST --use-ssl=False < /path-to/queries.cypherl
 ```
 
-Remember to replace `HOST` with valid IP of the container (see the
-[Note for Docker users](/database-functionalities/work-with-docker.md#docker-container-ip-address)).
+Remember to replace `HOST` with valid IP of the container (see the [Note for
+Docker
+users](/database-functionalities/work-with-docker.md#docker-container-ip-address)).
 
-  </TabItem>
-  <TabItem value= 'linux'>
+  </TabItem> <TabItem value= 'linux'>
 
 ```plaintext
 mgconsole --use-ssl=False < /path-to/queries.cypherl
 ```
 
-</TabItem>
-</Tabs>
+</TabItem> </Tabs>
 
 For more information about `mgconsole` options run:
 
@@ -52,9 +47,11 @@ mgconsole --help
 
 ## Examples
 
-The advatange of using this system to import data is you need only one file to cover both nodes and relationships.
-The disadvatage of this method is that you need to write the queries for creating nodes and relationships yourself.
-If you haven't written any queries yet, we highly suggest you check our [Cypher Manual](/cypher-manual).
+The advantage of using this system to import data is you need only one file to
+cover both nodes and relationships. The disadvantage of this method is that you
+need to write the queries for creating nodes and relationships yourself. If you
+haven't written any queries yet, we highly suggest you check our [Cypher
+manual](/cypher-manual).
 
 ### One type of nodes and relationships
 
@@ -75,8 +72,10 @@ MATCH (u:Person), (v:Person) WHERE u.id = 103 AND v.id = 101 CREATE (u)-[:IS_FRI
 MATCH (u:Person), (v:Person) WHERE u.id = 104 AND v.id = 100 CREATE (u)-[:IS_FRIENDS_WITH]->(v);
 ```
 
-The first five queries create nodes for people and the rest of queries create relationships between nodes.
-After you have prepared your queries, you can import them through earlier metioned methods or drag and drop them into **Dataset** tab in Memgraph Lab.
+The first five queries create nodes for people and the rest of the queries create
+relationships between nodes. After you have prepared your queries, you can
+import them through earlier mentioned methods or drag and drop them using the
+**Dataset** tab in Memgraph Lab.
 
 ### Multiple types of nodes and relationships
 
@@ -108,6 +107,9 @@ MATCH (u:Person), (v:Restraunt) WHERE u.id = 104 AND v.id = 201 CREATE (u)-[:ATE
 MATCH (u:Person), (v:Restraunt) WHERE u.id = 101 AND v.id = 200 CREATE (u)-[:ATE_AT {liked: true}]->(v);
 ```
 
-The first five queries create nodes for people, the following four queries create nodes for restaraunts.
-After those come the queries that define relationships between nodes. As said before, you can define all of the
-different types of nodes and relationships in one file. After preparing your queries, you can import them through earlier metioned methods or drag and drop them into **Dataset** tab in Memgraph Lab.
+The first five queries create nodes for people, the following four queries
+create nodes for restaurants. The last CRREATE queries are used to define
+relationships between nodes. As said before, you can define all of the different
+types of nodes and relationships in one file. After preparing your queries, you
+can import them through earlier mentioned methods or drag and drop them using the
+**Dataset** tab in Memgraph Lab.
