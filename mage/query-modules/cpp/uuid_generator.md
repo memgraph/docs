@@ -1,7 +1,7 @@
 ---
-id: uuid
-title: uuid
-sidebar_label: uuid
+id: uuid-generator
+title: uuid_generator
+sidebar_label: uuid_generator
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,7 +19,7 @@ export const Highlight = ({children, color}) => (
   </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-uuid-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/cpp/uuid_module/uuid_module.cpp)
+[![docs-source](https://img.shields.io/badge/source-uuid-generator-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/cpp/uuid_generator_module/uuid_generator_module.cpp)
 
 
 ## Abstract
@@ -36,7 +36,7 @@ the library can be installed by running `sudo apt-get install uuid-dev`.
 
 ## Procedures
 
-### `generate()`
+### `get()`
 
 #### Output:
 
@@ -46,7 +46,7 @@ the library can be installed by running `sudo apt-get install uuid-dev`.
 #### Usage:
 ```cypher
 MATCH (n)
-CALL uuid.generate() YIELD uuid
+CALL uuid_generator.get() YIELD uuid
 SET n.uuid = uuid
 RETURN n.uuid AS node_uuid;
 ```
@@ -65,7 +65,7 @@ RETURN n.uuid AS node_uuid;
 }>
   <TabItem value="visualization">
 
-  <img src={require('../../data/query-modules/cpp/uuid/uuid-1.png').default} height="300px"/>
+  <img src={require('../../data/query-modules/cpp/uuid-generator/uuid-generator-1.png').default} height="300px"/>
 
   </TabItem>
 
@@ -84,7 +84,7 @@ MERGE (a:Node {id: 2}) MERGE (b:Node {id: 0}) CREATE (a)-[:RELATION]->(b);
 
 ```cypher
 MATCH (n)
-CALL uuid.generate() YIELD uuid
+CALL uuid_generator.get() YIELD uuid
 SET n.uuid = uuid
 RETURN n.uuid AS node_uuid;
 ```
