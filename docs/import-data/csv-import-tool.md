@@ -47,16 +47,18 @@ If you installed Memgraph through Docker Hub, the name of the Docker image `memg
 If you installed Memgraph using Docker, you will need to run the importer
 using the following command:
 
-  ```bash
-  docker run -v mg_lib:/var/lib/memgraph -v mg_etc:/etc/memgraph -v mg_import:/import-data \
-    --entrypoint=mg_import_csv memgraph
-  ```
+```console
+docker run \
+  -v mg_lib:/var/lib/memgraph \
+  -v mg_import:/import-data \
+  --entrypoint=mg_import_csv memgraph
+```
 
-  For information on other options, run:
+For information on other options, run:
 
-  ```bash
-  docker run --entrypoint=mg_import_csv memgraph --help
-  ```
+```bash
+docker run --entrypoint=mg_import_csv memgraph --help
+```
 
   </TabItem>
   <TabItem value= 'linux'>
