@@ -20,18 +20,19 @@ After downloading Memgraph as a Debian package, install it by running the
 following:
 
 ```console
-sudo dpkg -i /path/to/memgraph_<version>.deb
+sudo dpkg -i /path-to/memgraph_<version>.deb
 ```
 
 :::note Why use sudo?
-In order to perform some actions on your operating system like installing new
-software, you may need **superuser** privileges (commonly called **root**). 
+In order to perform some actions on your operating system
+like installing new software, you may need **superuser** privileges (commonly
+called **root**). 
 :::
 
 :::caution Potential installation error
-You could get errors while installing the package with the above command if you
-don't have all of Memgraph's dependencies installed. The issues mostly look like
-the following:
+You could get errors while installing
+the package with the above command if you don't have all of Memgraph's
+dependencies installed. The issues mostly look like the following:
 
 ```console
 dpkg: error processing package memgraph (--install):
@@ -51,8 +52,8 @@ The above command will install all missing dependencies and will finish
 configuring the Memgraph package.
 :::
 
-On successful installation, Memgraph should already be running. To confirm it, you can start it explicitly as
-follows:
+On successful installation, Memgraph should already be running. To confirm it,
+you can start it explicitly as follows:
 
 ```console
 sudo systemctl start memgraph
@@ -67,13 +68,12 @@ sudo journalctl --unit memgraph
 If successful, you should receive an output similar to the following:
 
 ```console
-Apr 08 06:16:23 Going-Merry systemd[1]: Started Memgraph: High performance, in-memory, transactional graph>
-Apr 08 06:16:23 Going-Merry memgraph[459969]: You are running Memgraph v1.4.0-community
+You are running Memgraph vX.X.X-community
 ```
 
 If you want to start Memgraph with different configuration settings, check out
-the [section below](#configuration). At this point, Memgraph is ready for you
-to [submit queries](/connect-to-memgraph/overview.md).
+the [section below](#configuration). At this point, Memgraph is ready for you to
+[submit queries](/connect-to-memgraph/overview.md).
 
 ### Stopping Memgraph
 
@@ -95,15 +95,13 @@ guide](/reference-guide/configuration.md).
 To learn how to query the database, take a look at the
 **[Querying](/connect-to-memgraph/overview.md)** guide or **[Memgraph
 Playground](https://playground.memgraph.com/)** for interactive tutorials.<br/>
-Visit the **[Building
-applications](/connect-to-memgraph/methods/drivers.md)**
+Visit the **[Building applications](/connect-to-memgraph/methods/drivers.md)**
 page if you need to connect to the database programmatically.
 
 ## Getting help
 
 If you run into problems during the installation process, check out our
 **[installation troubleshooting
-guide](/installation/linux/linux-installation-troubleshooting.md)** to see if
+guide](/installation/linux/linux-installation-troubleshooting.md)** to see if we
 have already covered the topic. For more information on the installation process
-and for additional questions, visit the **[Getting
-help](/help-center)** page.
+and for additional questions, visit the **[Getting help](/help-center)** page.

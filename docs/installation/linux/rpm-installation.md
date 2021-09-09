@@ -19,13 +19,13 @@ After downloading the Memgraph RPM package, you can install it by issuing the
 following command:
 
 ```console
-yum --nogpgcheck localinstall /path/to/memgraph-<version>.rpm
+yum --nogpgcheck localinstall /path-to/memgraph-<version>.rpm
 ```
 
 :::info
-**NOTE:** Please take care of the SELinux config. The easiest way of running
-Memgraph is to disable SELinux by executing `setenforce 0`. If that's not an
-option, please configure system properly.
+**NOTE:** Please take care of the SELinux config. The easiest way of
+running Memgraph is to disable SELinux by executing `setenforce 0`. If that's
+not an option, please configure system properly.
 :::
 
 After successful installation, Memgraph can be started as a service using the
@@ -44,8 +44,7 @@ journalctl --unit memgraph
 If successful, you should receive an output similar to the following:
 
 ```console
-Nov 23 13:40:13 hostname memgraph[14654]: BoltS server is fully armed and operational
-Nov 23 13:40:13 hostname memgraph[14654]: BoltS listening on 0.0.0.0 at 7687
+You are running Memgraph vX.X.X-community
 ```
 
 If you want the Memgraph service to start automatically on each startup, run the
@@ -56,8 +55,8 @@ systemctl enable memgraph
 ```
 
 If you want to start Memgraph with different configuration settings, check out
-the [section below](#configuration). At this point, Memgraph is ready for you
-to [submit queries](/connect-to-memgraph/overview.md).
+the [section below](#configuration). At this point, Memgraph is ready for you to
+[submit queries](/connect-to-memgraph/overview.md).
 
 ### Stopping Memgraph
 
@@ -79,15 +78,13 @@ guide](/reference-guide/configuration.md).
 To learn how to query the database, take a look at the
 **[Querying](/connect-to-memgraph/overview.md)** guide or **[Memgraph
 Playground](https://playground.memgraph.com/)** for interactive tutorials.<br/>
-Visit the **[Building
-applications](/connect-to-memgraph/methods/drivers.md)**
+Visit the **[Building applications](/connect-to-memgraph/methods/drivers.md)**
 page if you need to connect to the database programmatically.
 
 ## Getting help
 
 If you run into problems during the installation process, check out our
 **[installation troubleshooting
-guide](/installation/linux/linux-installation-troubleshooting.md)** to see if
+guide](/installation/linux/linux-installation-troubleshooting.md)** to see if we
 have already covered the topic. For more information on the installation process
-and for additional questions, visit the **[Getting
-help](/help-center)** page.
+and for additional questions, visit the **[Getting help](/help-center)** page.

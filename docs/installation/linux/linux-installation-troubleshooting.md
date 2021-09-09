@@ -73,7 +73,7 @@ docker run -it --entrypoint=mgconsole memgraph --host HOST --use-ssl=False
 While running the following `dpkg` command:
 
 ```bash
-dpkg -i /path/to/memgraph_<version>.deb
+dpkg -i /path-to/memgraph_<version>.deb
 ```
 
 you may encounter errors that resemble the following:
