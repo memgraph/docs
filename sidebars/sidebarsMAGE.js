@@ -21,7 +21,6 @@ module.exports = {
         'query-modules/python/distance-calculator',
         'query-modules/python/graph-analyzer',
         'query-modules/python/graph-coloring',
-        'query-modules/python/node-similarity',
         'query-modules/python/nxalg',
         'query-modules/python/pagerank',
         'query-modules/python/set-cover',
@@ -29,7 +28,8 @@ module.exports = {
         'query-modules/python/union-find',
         'query-modules/python/vrp',
         'query-modules/cpp/weakly-connected-components',
-        'query-modules/python/node2vec-online'],
+        'query-modules/python/node2vec-online',
+        'query-modules/python/node-similarity'],
     },
     'contributing',
     {
