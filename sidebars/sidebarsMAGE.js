@@ -28,7 +28,8 @@ module.exports = {
         'query-modules/python/tsp',
         'query-modules/python/union-find',
         'query-modules/python/vrp',
-        'query-modules/cpp/weakly-connected-components'],
+        'query-modules/cpp/weakly-connected-components',
+        'query-modules/python/node2vec-online'],
     },
     'contributing',
     {
