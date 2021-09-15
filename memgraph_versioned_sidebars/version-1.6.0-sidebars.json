@@ -105,7 +105,7 @@
             {
               "type": "link",
               "label": "Memgraph Lab",
-              "href": "https://docs.memgraph.com/memgraph-lab"
+              "href": "https://memgraph.com/docs/memgraph-lab"
             },
             {
               "type": "doc",

@@ -11,7 +11,7 @@ complete list available features consult
 ## Graph example
 
 In this guide, we will use an example graph with European countries and cities. 
-The data can be found [here](https://docs.memgraph.com/memgraph/tutorials-overview/backpacking-through-europe).
+The data can be found [here](https://memgraph.com/docs/memgraph/tutorials-overview/backpacking-through-europe).
 Countries have the label `Country`, while cities have the label `City`. All 
 nodes have the property `name`. Cities have many additional properties, 
 including `country` (containing country) and `drinks_USD` (average drink price).
