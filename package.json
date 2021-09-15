@@ -1,6 +1,6 @@
 {
   "name": "docs",
-  "homepage": "/docs",
+  "homepage": "https://docusaurus.memgraph.com/docs",
   "version": "0.0.0",
   "private": true,
   "scripts": {
