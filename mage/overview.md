@@ -23,7 +23,7 @@ Memgraph introduces the concept of **query modules**, user-defined procedures
 that extend the **Cypher query language**. These procedures are grouped into
 modules that can be loaded into Memgraph. You can find more information on query
 modules in the official [Memgraph
-documentation](https://docs.memgraph.com/memgraph/database-functionalities/query-modules/built-in-query-modules).
+documentation](https://memgraph.com/docs/memgraph/database-functionalities/query-modules/built-in-query-modules).
 
 ## Spellbook 📖 - Currently available modules
 

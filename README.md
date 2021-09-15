@@ -1,4 +1,4 @@
-# [docs.memgraph.com](http://docs.memgraph.com/)
+# [memgraph.com/docs](http://memgraph.com/docs/)
 [![PRs
 Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/memgraph/docs/blob/master/CONTRIBUTING.md)
 ![Build
@@ -9,7 +9,7 @@ alt="Follow @memgraphdb" /></a>
 
 This repository contains the source files and various generators for the
 Memgraph documentation available at
-[docs.memgraph.com](https://docs.memgraph.com). Since we are writing our
+[memgraph.com/docs](https://memgraph.com/docs). Since we are writing our
 technical documentation using markdown, it is also nicely rendered by GitHub, as
 you can see by following [this
 link](https://github.com/memgraph/docs/blob/master/docs/overview.md).

@@ -50,7 +50,7 @@ module.exports = {
             {
               type: "link",
               label: "Memgraph Lab",
-              href: "https://docs.memgraph.com/memgraph-lab",
+              href: "https://memgraph.com/docs/memgraph-lab",
             },
             "connect-to-memgraph/methods/drivers",
             {
