@@ -4,8 +4,8 @@
   <ShortName>Memgraph Docs</ShortName>
   <Description>Search Memgraph Docs</Description>
   <InputEncoding>UTF-8</InputEncoding>
-  <Image width="16" height="16" type="image/x-icon">https://docusaurus.memgraph.com/docs/img/social-logo-round-corners.png</Image>
-  <Url type="text/html" method="get" template="https://docusaurus.memgraph.com/docs/search?q={searchTerms}"/>
-  <Url type="application/opensearchdescription+xml" rel="self" template="https://docusaurus.memgraph.com/docs/opensearch.xml" />
-  <moz:SearchForm>https://docusaurus.memgraph.com/docs/</moz:SearchForm>
+  <Image width="16" height="16" type="image/x-icon">https://memgraph.github.com/docs/docs/img/social-logo-round-corners.png</Image>
+  <Url type="text/html" method="get" template="https://memgraph.github.com/docs/docs/search?q={searchTerms}"/>
+  <Url type="application/opensearchdescription+xml" rel="self" template="https://memgraph.github.com/docs/docs/opensearch.xml" />
+  <moz:SearchForm>https://memgraph.github.com/docs/docs/</moz:SearchForm>
 </OpenSearchDescription>
