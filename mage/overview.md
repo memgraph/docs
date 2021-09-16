@@ -6,7 +6,7 @@ slug: /
 ---
 
 **MAGE**, also known as **Memgraph Advanced Graph Extensions**, is an
-open-source repository that contains **graph algorithms** and **modules** in a form of query modules
+open-source repository that contains **graph algorithms** and **modules** in the form of query modules
 written by the team behind Memgraph and its users. You can find and contribute implementations
 of various algorithms in multiple programming languages, all runnable inside
 Memgraph. This project aims to give everyone the tools they need to tackle the
