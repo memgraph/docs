@@ -223,6 +223,7 @@ module.exports = {
     prism: {
       additionalLanguages: ['cypher', 'php'],
     },
+    hideableSidebar: true,
   },
   presets: [
     [
@@ -299,6 +300,17 @@ module.exports = {
         path: 'help-center',
         routeBasePath: 'help-center',
         sidebarPath: require.resolve('./sidebars/sidebarsHelpCenter.js'),
+        editUrl:
+          'https://github.com/memgraph/docs/tree/master/',
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'errors',
+        path: 'errors',
+        routeBasePath: 'errors',
+        sidebarPath: require.resolve('./sidebars/sidebarsErrors.js'),
         editUrl:
           'https://github.com/memgraph/docs/tree/master/',
       },
