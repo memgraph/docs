@@ -15,11 +15,8 @@ messages in one `.proto` file.
 
 ## Example
 
-Let's assume we have the following graph:
-
- (Graph Schema)
-
-The graph translates into the following `.proto` file:
+Let's assume we have the following schemas coming out of their respective topics
+`pbStreamProfile`, `pbStreamCompany`, `pbStreamWorksAt`:
 
 ```protobuf
 syntax = "proto3";
@@ -42,10 +39,14 @@ message WorksAt {
 }
 
 ```
-
+These schemas translate into the `.proto` file.
 Before making your transformation script, it is necessary to [generate
 code](https://developers.google.com/protocol-buffers/docs/pythontutorial#compiling-your-protocol-buffers)
 from `.proto` file.
+
+We can use the schemas to build the following graph: 
+
+ (Graph Schema)
 
 ### Deserialization
 
@@ -100,7 +101,7 @@ def profile_transformation(messages: mgp.Messages) -> mgp.Record(query = str, pa
     return result_queries
 ```
 
-## Creating the streams
+### Creating the streams
 
 To import data into Memgraph, we need to create a stream for each topic and
 apply our transformation module on incoming data:

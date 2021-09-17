@@ -13,11 +13,8 @@ applications with servers.
 
 ## Example
 
-Let's assume we have the following graph:
-
-(Graph schema)
-
-The graph translates into the following JSON formats:
+Let's assume we have the following schemas coming out of their respective topics
+`JsonStreamProfile`, `JsonStreamCompany`, `JsonStreamWork` :
 
 ```json
 profile = {
@@ -37,6 +34,10 @@ works_at = {
             "company" : str,
         }
 ```
+
+We can use the schemas to build the following graph: 
+
+ (Graph Schema)
 
 ### Transformation modules
 
@@ -70,13 +71,15 @@ def profile_transformation(messages: mgp.Messages) -> mgp.Record(query = str, pa
     return result_queries
 ```
 
-In this data model, there are two node types and one relationship type. This
-means that three streams should be created:
+### Creating the streams
+
+To import data into Memgraph, we need to create a stream for each topic and
+apply our transformation module on incoming data:
 
 ```cypher
-CREATE STREAM myJson_profiles TOPICS profiles  TRANSFORM transformation.profile_transformation;
-CREATE STREAM myJson_companies TOPICS companies  TRANSFORM transformation.company_transformation;
-CREATE STREAM myJson_work TOPICS work TRANSFORM transformation.works_rel_transformation;
+CREATE STREAM JsonStreamProfile TOPICS json-stream-profiles  TRANSFORM transformation.profile_transformation;
+CREATE STREAM JsonStreamCompany TOPICS json-stream-companies  TRANSFORM transformation.company_transformation;
+CREATE STREAM JsonStreamWork TOPICS json-stream-work TRANSFORM transformation.works_at_transformation;
 ```
 
 To start the streams, execute the following query:

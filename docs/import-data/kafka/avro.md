@@ -27,11 +27,8 @@ mappings:
 
 ## Example
 
-Let's assume we have the following graph:
-
-(Graph schema)
-
-The graph translates into the following Avro Schema file:
+Let's assume we have the following schemas coming out of their respective topics
+`avroStreamProfile`, `avroStreamCompany`, `avroStreamWorksAt`:
 
 ```json
 profile_schema = """ {
@@ -66,6 +63,10 @@ works_at_schema = """ {
 }
 """
 ```
+
+We can use the schemas to build the following graph: 
+
+(Graph schema)
 
 ### Deserialization
 
