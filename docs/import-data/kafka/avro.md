@@ -52,6 +52,7 @@ company_schema = """{
         {"name": "address", "type": "string"}
     ]
 } """
+
 works_at_schema = """ {
     "namespace": "example.avro",
     "name": "Works_At",
@@ -64,9 +65,9 @@ works_at_schema = """ {
 """
 ```
 
-We can use the schemas to build the following graph: 
+We can use the schemas to build the following graph:
 
-(Graph schema)
+<img src={require('../../data/import-data/kafka-graph.png').default} height="300px"/>
 
 ### Deserialization
 

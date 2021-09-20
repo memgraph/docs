@@ -1,17 +1,22 @@
 ---
-id: kafka_avro
+id: avro
 title: Import Avro data
 sidebar_label: Avro
 ---
 
-If you want to import your data in Memgraph using Apache Avro serliaziation, you need to know the [Avro schema](https://avro.apache.org/docs/current/gettingstartedpython.html#Defining+a+schema) 
-of your data. This is necessary for deserializing the data. Each schema contains a single schema definition, so there should be a separate schema for
-each data representation you want to import in Memgraph.
+If you want to import your data in Memgraph using Apache Avro serialization, you
+need to know the [Avro
+schema](https://avro.apache.org/docs/current/gettingstartedpython.html#Defining+a+schema)
+of your data. This is necessary for deserializing the data. Each schema contains
+a single schema definition, so there should be a separate schema for each data
+representation you want to import into Memgraph.
 
 
 ## Datatype mapping
-Avro data types will be flexibly mapped to the target schema; that is, Avro and openCypher types do not need to match exactly.
-Use the table below for data type mappings:
+
+Avro data types will be flexibly mapped to the target schema; that is, Avro and
+openCypher types do not need to match exactly. Use the table below for data type
+mappings:
 
 | Avro Data Type | Cypher Casting Function|
 |----------------|------------------------|
@@ -22,11 +27,8 @@ Use the table below for data type mappings:
 
 ## Example
 
-Let's assume we have following graph:
-
-(Graph schema)
-
-The graph translates into following Avro Schemas file:
+Let's assume we have the following schemas coming out of their respective topics
+`avroStreamProfile`, `avroStreamCompany`, `avroStreamWorksAt`:
 
 ```json
 profile_schema = """ {
@@ -50,6 +52,7 @@ company_schema = """{
         {"name": "address", "type": "string"}
     ]
 } """
+
 works_at_schema = """ {
     "namespace": "example.avro",
     "name": "Works_At",
@@ -62,10 +65,15 @@ works_at_schema = """ {
 """
 ```
 
+We can use the schemas to build the following graph:
+
+<img src={require('../../data/import-data/kafka-graph.png').default} height="300px"/>
+
 ### Deserialization
 
-Data recieved on Memgraph consumer is a byte array and needs to be deserialized. 
-Following method will help you deserialize your data with the help of Confluent Kafka:
+Data received by the Memgraph consumer is a byte array and needs to be
+deserialized. The following method will help you deserialize your data with the
+help of Confluent Kafka:
 
 ```python
 from confluent_kafka.schema_registry import SchemaRegistryClient
@@ -77,14 +85,17 @@ def process_record_confluent(record: bytes, src: SchemaRegistryClient, schema: s
 
 ```
 
-### Transformation module
+### Transformation modules
 
-Before consuming data from stream, we need to write transformation modules which will produce queries.
-In order to create a transformation module, you need to:
+Before consuming data from a stream, we need to implement transformation modules
+that will produce queries. In order to create a transformation module, you need
+to:
 
 1. Create a Python module
-2. Save it into the Memgraph's query-modules directory (default: `/usr/lib/memgraph/query_modules`)
-3. Load it into Memgraph either on startup (automatically) or by running a `CALL mg.load` query
+2. Save it into the Memgraph's query-modules directory (default:
+   `/usr/lib/memgraph/query_modules`)
+3. Load it into Memgraph either on startup (automatically) or by running the
+   `CALL mg.load_all` query
 
 Example for the `profile_transformation` module:
 
@@ -101,14 +112,15 @@ def profile_transformation(messages: mgp.Messages) -> mgp.Record(query = str, pa
                 query=f'CREATE (p: Person {{ name: "{message["name"]}", age: ToInteger({message["age"]}), address: "{message["address"]}", email:"{message["email"]}" }});' ,
                 parameters=None
             ))
-            
+
     return result_queries
 
 ```
 
 ### Creating streams
 
-To import data into Memgraph, we need to create a stream for each topic and apply our transformation module on incoming data:
+To import data into Memgraph, we need to create a stream for each topic and
+apply our transformation module on incoming data:
 
 ```cypher
 CREATE STREAM avroStreamProfile TOPICS avro-stream-profile TRANSFORM avro_transform.profile_transformation;
@@ -116,18 +128,23 @@ CREATE STREAM avroStreamCompany TOPICS avro-stream-company TRANSFORM avro_transf
 CREATE STREAM avroStreamWorksAt TOPICS avro-stream-worksat TRANSFORM avro_transform.works_at_transformation;
 ```
 
-To start the streams, type the following query:
+To start the streams, execute the following query:
 
 ```
 START ALL STREAMS;
 ```
 
-If everything started correctly, streams should show up when checking
+Run the following query to check if all the streams were started correctly:
+
 ```
 SHOW STREAMS;
-``` 
-query or if node counter in Memgraph Lab Overview tab starts going up.
+```
+
+You can also check the node counter in **Memgraph Lab** (**Overview tab**) to
+see if new nodes and relationships are arriving.
 
 ## Next steps
 
-Check out the example-streaming-app on [GitHub](https://github.com/memgraph/example-streaming-app) to see how Memgraph can be connected to a Kafka stream.
+Check out the example-streaming-app on
+[GitHub](https://github.com/memgraph/example-streaming-app) to see how Memgraph
+can be connected to a Kafka stream.
