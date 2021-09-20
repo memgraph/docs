@@ -173,6 +173,29 @@
         {
           "type": "doc",
           "id": "version-1.6.1/import-data/cypherl"
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Kafka",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-1.6.1/import-data/kafka/overview"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.6.1/import-data/kafka/avro"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.6.1/import-data/kafka/json"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.6.1/import-data/kafka/protobuf"
+            }
+          ]
         }
       ]
     },

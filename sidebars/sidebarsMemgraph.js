@@ -81,6 +81,16 @@ module.exports = {
           items: ["import-data/csv-import-tool", "import-data/load-csv-clause"],
         },
         "import-data/cypherl",
+        {
+          type: "category",
+          label: "Kafka",
+          items: [
+            "import-data/kafka/overview",
+            "import-data/kafka/avro",
+            "import-data/kafka/json",
+            "import-data/kafka/protobuf",
+          ],
+        },
       ],
     },
     {
