@@ -4,7 +4,7 @@ title: Snapshot errors
 sidebar_label: Snapshots
 ---
 
-import Help from './templates/_help.mdx';
+import Help from '../templates/_help.mdx';
 
 <Help/>
 
@@ -66,6 +66,6 @@ guide](/reference-guide/configuration.md).
   </TabItem>
 </Tabs>
 
-import SubmitError from './templates/_submit-error.mdx';
+import SubmitError from '../templates/_submit-error.mdx';
 
 <SubmitError/>

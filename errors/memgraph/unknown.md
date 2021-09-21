@@ -4,7 +4,7 @@ title: Unknown errors
 sidebar_label: Unknown
 ---
 
-import Help from './templates/_help.mdx';
+import Help from '../templates/_help.mdx';
 
 <Help/>
 
@@ -20,6 +20,6 @@ Forum](discourse.memgraph.com) or through a [Support
 ticket](support.memgraph.com). We will contact you about the error as soon as
 possible.
 
-import SubmitError from './templates/_submit-error.mdx';
+import SubmitError from '../templates/_submit-error.mdx';
 
 <SubmitError/>

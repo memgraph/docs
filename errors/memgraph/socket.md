@@ -4,7 +4,7 @@ title: Socket errors
 sidebar_label: Socket
 ---
 
-import Help from './templates/_help.mdx';
+import Help from '../templates/_help.mdx';
 
 <Help/>
 
@@ -21,6 +21,6 @@ Make sure that the specified port (the default port Memgraph runs on is 7687)
 isn't being used by another process or that you haven't already started another
 Memgraph instance on the same port.
 
-import SubmitError from './templates/_submit-error.mdx';
+import SubmitError from '../templates/_submit-error.mdx';
 
 <SubmitError/>

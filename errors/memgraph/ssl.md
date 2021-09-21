@@ -4,7 +4,7 @@ title: SSL errors
 sidebar_label: SSL
 ---
 
-import Help from './templates/_help.mdx';
+import Help from '../templates/_help.mdx';
 
 <Help/>
 
@@ -33,6 +33,6 @@ editing the following parameters in `/etc/memgraph/memgraph.conf`:
 To disable SSL support and use insecure connections to the database you should
 set both parameters (`--bolt-cert-file` and `--bolt-key-file`) to empty values.
 
-import SubmitError from './templates/_submit-error.mdx';
+import SubmitError from '../templates/_submit-error.mdx';
 
 <SubmitError/>

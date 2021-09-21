@@ -4,7 +4,7 @@ title: Replication errors
 sidebar_label: Replication
 ---
 
-import Help from './templates/_help.mdx';
+import Help from '../templates/_help.mdx';
 
 <Help/>
 
@@ -22,6 +22,6 @@ import Help from './templates/_help.mdx';
    requested by Memgraph.
 3. Verify that there are no network problems.
 
-import SubmitError from './templates/_submit-error.mdx';
+import SubmitError from '../templates/_submit-error.mdx';
 
 <SubmitError/>

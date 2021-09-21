@@ -5,7 +5,7 @@ sidebar_label: Errors overview
 slug: /
 ---
 
-import Help from './templates/_help.mdx';
+import Help from '../templates/_help.mdx';
 
 <Help/>
 

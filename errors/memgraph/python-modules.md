@@ -4,7 +4,7 @@ title: Python module errors
 sidebar_label: Python modules
 ---
 
-import Help from './templates/_help.mdx';
+import Help from '../templates/_help.mdx';
 
 <Help/>
 
@@ -30,6 +30,6 @@ sudo pip3 install <PACKAGE_NAME>
 If this aproach doesn't work, try to install a pre-compiled package using
 `apt-get` if available.
 
-import SubmitError from './templates/_submit-error.mdx';
+import SubmitError from '../templates/_submit-error.mdx';
 
 <SubmitError/>

@@ -4,7 +4,7 @@ title: Module errors
 sidebar_label: Modules
 ---
 
-import Help from './templates/_help.mdx';
+import Help from '../templates/_help.mdx';
 
 <Help/>
 
@@ -41,6 +41,6 @@ directory is `/usr/lib/memgraph/query-modules`. If the configuration file is
 altered, Memgraph needs to be restarted.  To learn about all the configuration
 options, check out the [Reference guide](/reference-guide/configuration.md).
 
-import SubmitError from './templates/_submit-error.mdx';
+import SubmitError from '../templates/_submit-error.mdx';
 
 <SubmitError/>

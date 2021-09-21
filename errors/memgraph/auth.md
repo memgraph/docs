@@ -4,7 +4,7 @@ title: Auth module errors
 sidebar_label: Auth module
 ---
 
-import Help from './templates/_help.mdx';
+import Help from '../templates/_help.mdx';
 
 <Help/>
 
@@ -46,6 +46,6 @@ should be created.
 
 The password for the user was wrong.
 
-import SubmitError from './templates/_submit-error.mdx';
+import SubmitError from '../templates/_submit-error.mdx';
 
 <SubmitError/>

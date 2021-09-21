@@ -1,10 +1,10 @@
 ---
-id: ram
-title: RAM errors
-sidebar_label: RAM
+id: memory
+title: Memory (RAM) errors
+sidebar_label: Memory (RAM)
 ---
 
-import Help from './templates/_help.mdx';
+import Help from '../templates/_help.mdx';
 
 <Help/>
 
@@ -22,6 +22,6 @@ value is `true`. If the configuration file is altered, Memgraph needs to be
 restarted.  To learn about all the configuration options, check out the
 [Reference guide](/reference-guide/configuration.md).
 
-import SubmitError from './templates/_submit-error.mdx';
+import SubmitError from '../templates/_submit-error.mdx';
 
 <SubmitError/>

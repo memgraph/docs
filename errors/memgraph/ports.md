@@ -4,7 +4,7 @@ title: Port errors
 sidebar_label: Ports
 ---
 
-import Help from './templates/_help.mdx';
+import Help from '../templates/_help.mdx';
 
 <Help/>
 
@@ -69,6 +69,6 @@ A port number is a 16-bit unsigned integer, thus ranging from 0 to 65535. Ports
 to 49151. The remainder of the ports from 49152 to 65535 can be used dynamically
 by applications.
 
-import SubmitError from './templates/_submit-error.mdx';
+import SubmitError from '../templates/_submit-error.mdx';
 
 <SubmitError/>
