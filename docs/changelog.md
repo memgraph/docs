@@ -4,6 +4,13 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v2.0.0 - TBA
+
+:::warning
+### Bug Fixes
+* Fixed recovery from durability files. Because of a wrong check, Memgraph could crash and leave the durability files in an invalid state making recovery not possible.
+:::
+
 ## v1.6.1 - Jul 24, 2021
 
 ### Major Features and Improvements
