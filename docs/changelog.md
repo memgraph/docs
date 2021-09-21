@@ -3,6 +3,12 @@ id: changelog
 title: Changelog
 sidebar_label: Changelog
 ---
+## v2.0.0 - TBA
+
+:::warning
+### Bug Fixes
+* Unused memory is correctly returned to OS when `FREE MEMORY` query is used. Before, Memgraph would free up the memory internally and not return it to the OS. Because of that Memgraph could allocate more memory from the OS than it's allowed.
+:::
 
 ## v1.6.1 - Jul 24, 2021
 
