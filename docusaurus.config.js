@@ -631,6 +631,10 @@ module.exports = {
             from: ['/memgraph/getting-started/querying',],
           },
           {
+            to: '/memgraph/connect-to-memgraph',
+            from: ['/memgraph/connection-methods',],
+          },
+          {
             to: '/memgraph/connect-to-memgraph/methods/drivers',
             from: ['/memgraph/getting-started/connecting-applications',],
           },
