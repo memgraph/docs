@@ -27,7 +27,7 @@ choose the dataset `Karate club friendship network` and continue with the tutori
 ## Using existing NetworkX algorithms
 
 There are three ways to execute queries and procedures in Memgraph:
-* using the command-line tool `mgconsole`, which comes with Memgraph: **[Querying the database](/connect-to-memgraph/overview.md)**
+* using the command-line tool `mgconsole`, which comes with Memgraph: **[Querying the database](/connect-to-memgraph/overview.mdx)**
 * programmatically, by using the Bolt protocol: **[Building applications](/connect-to-memgraph/methods/drivers.md)**
 * from **Memgraph Lab**, a visual user interface which you can download **[here](https://memgraph.com/download)**.
 
