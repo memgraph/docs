@@ -55,7 +55,7 @@ docker run -p 7687:7687 \
 ```
 
 At this point, Memgraph is ready for you to [submit
-queries](/connect-to-memgraph/overview.md).
+queries](/connect-to-memgraph/overview.mdx).
 
 For an explanation of how to write custom query modules, follow our [how-to
 guide](/database-functionalities/query-modules/implement-query-modules.md).
@@ -113,7 +113,7 @@ docker inspect -f "{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}" 9397
 
 The command above will yield the IP address that should be used when connecting
 to Memgraph via **Memgraph Lab** or **mgconsole** as described in
-the [querying](/connect-to-memgraph/overview.md) section. Just replace
+the [querying](/connect-to-memgraph/overview.mdx) section. Just replace
 `HOST` from the following command with the appropriate IP address:
 
 ```console
@@ -220,7 +220,7 @@ Now that we have access to our query modules, we can go on and run them.
 There are three ways to execute queries and procedures in Memgraph:
 
 * using the command-line tool, `mgconsole`, which comes with Memgraph,
-  ([Querying](/connect-to-memgraph/overview.md))
+  ([Querying](/connect-to-memgraph/overview.mdx))
 * [programmatically](/connect-to-memgraph/methods/drivers.md)
   by using the Bolt protocol,
 * from **Memgraph Lab**, a visual user interface that can be downloaded
