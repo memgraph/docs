@@ -3,7 +3,7 @@ const baseUrl = '/docs/';
 module.exports = {
   title: 'Memgraph Docs',
   tagline: 'Welcome to the Memgraph Docs site!',
-  url: 'https://memgraph.github.com/docs',
+  url: 'https://memgraph.com',
   baseUrl,
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
