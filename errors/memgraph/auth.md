@@ -26,25 +26,30 @@ import Help from '../templates/_help.mdx';
 
 ## The user already exists as a role {#error-1}
 
-Change the name of the user or the role as there can't be duplicates.
+A user and a role can't share the same name. Please change the name of the user
+or the role.
 
 ## The user doesn't exist {#error-2}
 
 By using the `--auth-module-create-user` flag, you can specify if a missing user
-should be created.
+should be created. Otherwise, the user can't be created and this error will be
+thrown.
 
 ## The role already exists as a user {#error-3}
 
-Change the name of the user or the role as there can't be duplicates.
+A user and a role can't share the same name. Please change the name of the user
+or the role.
 
 ## The role doesn't exist {#error-4}
 
-By using the `--auth-module-create-user` flag, you can specify if a missing user
-should be created.
+By using the `--auth-module-create-user` flag, you can specify if a missing role
+should be created. Otherwise, the role can't be created and this error will be
+thrown.
 
 ## Couldn't authenticate user {#error-5}
 
-The password for the user was wrong.
+The specified password was most probably wrong. Please check the credentials
+again.
 
 import SubmitError from '../templates/_submit-error.mdx';
 

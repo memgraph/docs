@@ -19,6 +19,11 @@ import Help from '../templates/_help.mdx';
 4. [Module directory {} doesn't exist. For more details, visit
    memgr.ph/modules.](#error-3)
 
+## Warnings
+
+1. [Unknown query module file {}. For more details, visit:
+   memgr.ph/load-query-modules.](#warning-1)
+
 ## Errors when loading or closing modules {#error-1}
 
 When Memgraph is loading/closing modules, an error can occur if:
@@ -39,7 +44,15 @@ Memgraph configuration is available in `/etc/memgraph/memgraph.conf` and you can
 specify the directory with the `--query-modules-directory` flag. The default
 directory is `/usr/lib/memgraph/query-modules`. If the configuration file is
 altered, Memgraph needs to be restarted.  To learn about all the configuration
-options, check out the [Reference guide](/reference-guide/configuration.md).
+options, check out the [Reference guide](/memgraph/reference-guide/configuration).
+
+## Unknown query module file {#warning-1}
+
+Query modules can be implemented using the Python or C API provided by Memgraph.
+Modules written in languages other than Python need to be compiled to a shared
+library so that they can be loaded when Memgraph starts. This means that you can
+write the procedures in any programming language which can work with C and can
+be compiled to the ELF shared library format.
 
 import SubmitError from '../templates/_submit-error.mdx';
 

@@ -20,7 +20,7 @@ Memgraph configuration is available in `/etc/memgraph/memgraph.conf` and you can
 disable the warning with the `--memory-warning-threshold` flag. The default
 value is `true`. If the configuration file is altered, Memgraph needs to be
 restarted.  To learn about all the configuration options, check out the
-[Reference guide](/reference-guide/configuration.md).
+[Reference guide](/memgraph/reference-guide/configuration).
 
 import SubmitError from '../templates/_submit-error.mdx';
 

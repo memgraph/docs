@@ -9,9 +9,9 @@ import Help from '../templates/_help.mdx';
 
 <Help/>
 
-This site contains descriptions of various errors, warnings, and other logged
-messages.
-
-:::note
-The Memgraph log files can be found in `/var/log/memgraph`.
-:::
+Welcome to the Memgraph Error troubleshooting guide. This site contains
+descriptions of various errors, warnings, and other logged messages that can be
+observed in Memgraph. Be aware that only a fraction of the errors and warnings
+are covered here. If you encounter an error that isn't covered here, please
+contact us through the [Community Forum](https://discourse.memgraph.com) or
+submit a [Support ticket](https://support.memgraph.com).

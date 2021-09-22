@@ -60,7 +60,7 @@ configuration file is altered, Memgraph needs to be restarted.
 
 To learn about all the configuration options, check out the [Reference To learn
 about all the configuration options, check out the [Reference
-guide](/reference-guide/configuration.md).
+guide](/memgraph/reference-guide/configuration).
 
 ## What is the valid range for choosing a port? {#error-2}
 

@@ -61,7 +61,7 @@ directory. The Memgraph configuration is available in
 `--data-directory` flag. If the configuration file is altered, Memgraph needs to
 be restarted. The default directory is `/var/lib/memgraph`. To learn about all the
 configuration options, check out the [Reference
-guide](/reference-guide/configuration.md).
+guide](/memgraph/reference-guide/configuration).
 
   </TabItem>
 </Tabs>
