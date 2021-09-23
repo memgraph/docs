@@ -157,6 +157,7 @@ module.exports = {
         "reference-guide/overview",
         "reference-guide/backup",
         "reference-guide/configuration",
+        "reference-guide/runtime-settings",
         "reference-guide/graph-algorithms",
         {
           type: "category",
