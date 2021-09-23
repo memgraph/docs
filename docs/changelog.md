@@ -8,7 +8,7 @@ sidebar_label: Changelog
 
 :::warning
 ### Bug Fixes
-* Fixed recovery from durability files. Because of a wrong check, Memgraph could crash and leave the durability files in an invalid state making recovery not possible.
+* Fixed usage of `execute` keyword in queries. Because of the special way we handle the `EXECUTE` keyword from the `CREATE TRIGGER` query using that same keyword in other contexts caused Memgraph to crash.
 :::
 
 ## v1.6.1 - Jul 24, 2021
