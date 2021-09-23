@@ -4,6 +4,13 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v2.0.0 - TBA
+
+### Major feature and Improvements
+
+* Introduced settings to Memgraph that can be modified during runtime. You can check out more details [here](reference-guide/runtime-settings).
+
+
 ## v1.6.1 - Jul 24, 2021
 
 ### Major Features and Improvements
