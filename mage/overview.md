@@ -6,7 +6,7 @@ slug: /
 ---
 
 **MAGE**, also known as **Memgraph Advanced Graph Extensions**, is an
-open-source repository that contains **graph algorithms** and **modules** in a form of query modules
+open-source repository that contains **graph algorithms** and **modules** in the form of query modules
 written by the team behind Memgraph and its users. You can find and contribute implementations
 of various algorithms in multiple programming languages, all runnable inside
 Memgraph. This project aims to give everyone the tools they need to tackle the
@@ -23,7 +23,7 @@ Memgraph introduces the concept of **query modules**, user-defined procedures
 that extend the **Cypher query language**. These procedures are grouped into
 modules that can be loaded into Memgraph. You can find more information on query
 modules in the official [Memgraph
-documentation](https://docs.memgraph.com/memgraph/database-functionalities/query-modules/built-in-query-modules).
+documentation](https://memgraph.com/docs/memgraph/database-functionalities/query-modules/built-in-query-modules).
 
 ## Spellbook 📖 - Currently available modules
 

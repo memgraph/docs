@@ -50,7 +50,7 @@ module.exports = {
             {
               type: "link",
               label: "Memgraph Lab",
-              href: "https://docs.memgraph.com/memgraph-lab",
+              href: "https://memgraph.com/docs/memgraph-lab",
             },
             "connect-to-memgraph/methods/drivers",
             {
@@ -81,6 +81,16 @@ module.exports = {
           items: ["import-data/csv-import-tool", "import-data/load-csv-clause"],
         },
         "import-data/cypherl",
+        {
+          type: "category",
+          label: "Kafka",
+          items: [
+            "import-data/kafka/overview",
+            "import-data/kafka/avro",
+            "import-data/kafka/json",
+            "import-data/kafka/protobuf",
+          ],
+        },
       ],
     },
     {

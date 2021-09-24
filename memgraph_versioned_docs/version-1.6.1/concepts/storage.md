@@ -24,8 +24,10 @@ file. Since the snapshot may be older than the most recent update logged in
 the WAL file, the recovery process will apply the remaining state changes
 found in the said WAL file.
 
-NOTE: Snapshot and WAL files are not (currently) compatible between *Memgraph*
+:::caution
+Snapshot and WAL files are not (currently) compatible between Memgraph
 versions.
+:::
 
 Behaviour of the above mechanisms can be tweaked in the configuration file,
 usually found in `/etc/memgraph/memgraph.conf`.

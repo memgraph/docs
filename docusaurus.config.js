@@ -1,9 +1,9 @@
-const baseUrl = '/';
+const baseUrl = '/docs/';
 
 module.exports = {
   title: 'Memgraph Docs',
   tagline: 'Welcome to the Memgraph Docs site!',
-  url: 'https://docs.memgraph.com',
+  url: 'https://memgraph.github.com/docs',
   baseUrl,
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -16,8 +16,8 @@ module.exports = {
   ],
   scripts: [
     {
-      src: `https://docs.memgraph.com/js/load-analytics.js`,
-      //src: `http://localhost:3000/js/load-analytics.js`,
+      src: `https://memgraph.com/docs/js/load-analytics.js`,
+      // src: `http://localhost:3000/docs/js/load-analytics.js`,
     },
     {
       src: 'https://kit.fontawesome.com/3a9f2eb5b9.js'
