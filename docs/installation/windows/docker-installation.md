@@ -135,7 +135,7 @@ guide](/reference-guide/configuration.md).
 ### Accessing configuration files and logs
 
 If you need to access the Memgraph configuration file or logs, you will need to
-specify the following volumes when starting Memgraph through **PowerShell**`:
+specify the following volumes when starting Memgraph through **PowerShell**:
 
 ```console
 docker run -p 7687:7687 `
