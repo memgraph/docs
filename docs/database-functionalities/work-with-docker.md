@@ -138,7 +138,7 @@ You can pass CSV files containing nodes and relationships with `--nodes` and
 repeating either of the flags. At least one node needs to be specified, but
 relationships are not required. For more information on how to structure your
 CSV file, please refer to our [Import tool
-guide](/import-data/overview.md).
+guide](/import-data/overview.mdx).
 
 To import the snapshot, you will need to copy your files where Docker can see
 them by creating another container and filling it with your data:

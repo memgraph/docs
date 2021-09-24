@@ -675,6 +675,10 @@ module.exports = {
             from: ['/memgraph/database-functionalities/import-data',],
           },
           {
+            to: '/memgraph/import-data/kafka',
+            from: ['/memgraph/import-data/kafka/overview',],
+          },
+          {
             to: '/memgraph/reference-guide/query-modules/available-query-modules',
             from: ['/memgraph/database-functionalities/query-modules/built-in-query-modules',],
           },
