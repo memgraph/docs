@@ -111,6 +111,28 @@ module.exports = {
     },
     {
       type: "category",
+      label: "Graph data modeling",
+      items: [
+        "graph-modeling/overview",
+        "graph-modeling/graph-modeling-basics",
+        "graph-modeling/graph-schema",
+        //"graph-modeling/graph-terminology",
+        //"graph-modeling/graph-vs-relational",
+        "graph-modeling/property-graph-model",
+        "graph-modeling/relational-to-graph",
+        {
+          type: "category",
+          label: "Advanced topics",
+          items: [
+            "graph-modeling/advanced/data-normalization",
+            "graph-modeling/advanced/relationship-modeling",
+            "graph-modeling/advanced/super-nodes",
+          ],
+        },
+      ],
+    },
+    {
+      type: "category",
       label: "Database functionalities",
       items: [
         "database-functionalities/overview",
