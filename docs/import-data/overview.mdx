@@ -12,38 +12,20 @@ import ConnectButton from "../../src/components/connect-button/connect-button";
 
 export default function ConnectToMemgraph() {
   const imgFolder = "img/import-data/";
-  const viaDriver = [
-    {
-      title: "CSVImportTool",
-      img: useBaseUrl(imgFolder + "csvimporttool-unselected.svg"),
-      imgActive: useBaseUrl(imgFolder + "csvimporttool-selected.svg"),
-      imgDark: useBaseUrl(imgFolder + "dark/csvimporttool-unselected.svg"),
-      imgDarkActive: useBaseUrl(imgFolder + "dark/csvimporttool-selected.svg"),
-      url: useBaseUrl("memgraph/import-data/csv-import-tool"),
-    },
-    {
-      title: "LOADCSVClause#",
-      img: useBaseUrl(imgFolder + "LOADcsvclause-unselected.svg"),
-      imgActive: useBaseUrl(imgFolder + "LOADcsvclause-selected.svg"),
-      imgDark: useBaseUrl(imgFolder + "dark/LOADcsvclause-unselected.svg"),
-      imgDarkActive: useBaseUrl(imgFolder + "dark/LOADcsvclause-selected.svg"),
-      url: useBaseUrl("memgraph/import-data/load-csv-clause"),
-    },
-  ];
-  const viaKafka = {
-    title: "Kafka",
-    img: useBaseUrl(imgFolder + "kafka-unselected.svg"),
-    imgActive: useBaseUrl(imgFolder + "kafka-selected.svg"),
-    imgDark: useBaseUrl(imgFolder + "dark/kafka-unselected-dm.svg"),
-    imgDarkActive: useBaseUrl(imgFolder + "dark/kafka-selected-dm.svg"),
-    url: useBaseUrl("memgraph/import-data/kafka"),
+  const viaLoadCsv = {
+    title: "LOADCSVClause#",
+    img: useBaseUrl(imgFolder + "LOADcsvclause-unselected.svg"),
+    imgActive: useBaseUrl(imgFolder + "LOADcsvclause-selected.svg"),
+    imgDark: useBaseUrl(imgFolder + "dark/LOADcsvclause-unselected-dm.svg"),
+    imgDarkActive: useBaseUrl(imgFolder + "dark/LOADcsvclause-selected-dm.svg"),
+    url: useBaseUrl("memgraph/import-data/load-csv-clause"),
   };
   const viaCypherl = {
     title: "cypherl",
     img: useBaseUrl(imgFolder + "cypherqueries-unselected.svg"),
     imgActive: useBaseUrl(imgFolder + "cypherqueries-selected.svg"),
-    imgDark: useBaseUrl(imgFolder + "dark/cypherqueries-unselected.svg"),
-    imgDarkActive: useBaseUrl(imgFolder + "dark/cypherqueries-selected.svg"),
+    imgDark: useBaseUrl(imgFolder + "dark/cypherqueries-unselected-dm.svg"),
+    imgDarkActive: useBaseUrl(imgFolder + "dark/cypherqueries-selected-dm.svg"),
     url: useBaseUrl("memgraph/import-data/cypherl"),
   };
   return (
@@ -53,128 +35,63 @@ export default function ConnectToMemgraph() {
           <p>
             There are a few methods for importing data into Memgraph and they
             cover:
-            <ul>
-              <li>
-                <b>
-                  <a href="#csv">How to import CSV files into Memgraph?</a>
-                </b>
-              </li>
-              <li>
-                <b>
-                  <a href="#kafka">
-                    How to import streaming data from Kafka into Memgraph?
-                  </a>
-                </b>
-              </li>
-              <li>
-                <b>
-                  <a href="#queries">
-                    How to import data in the form of Cypher queries?
-                  </a>
-                </b>
-              </li>
-              <li>
-                <b>
-                  <a href="#application">
-                    How to import data directly from an application/program?
-                  </a>
-                </b>
-              </li>
-            </ul>
           </p>
-        </section>
-        <section>
-          <h2>Import from CSV files</h2>
-          <p>
-            Memgraph includes the CSV Import Tool, which allows you to import
-            nodes and relationships from multiple CSV files. You can also use
-            the Cypher clause <code>LOAD CSV</code> to load data from CSV files.
-            If your data is saved in the form of Cypher queries (we call this{" "}
-            <code>.cypherl</code>
-            format) then this is the right approach for you.
-          </p>
-          <div className={styles.connectToMemgraph__grid}>
-            {viaDriver.map((item, i) => {
-              return (
-                <ConnectButton
-                  key={i}
-                  url={item.url}
-                  title={item.title}
-                  img={item.img}
-                  imgActive={item.imgActive}
-                  imgDark={item.imgDark}
-                  imgDarkActive={item.imgDarkActive}
-                />
-              );
-            })}
-          </div>
-        </section>
-        <section>
-          <h2>Connect to Kafka</h2>
-          <p>
-            You can connect Memgraph to a Kafka stream and ingest data in
-            real-time.
-          </p>
-          <ConnectButton
-            title={viaKafka.title}
-            url={viaKafka.url}
-            img={viaKafka.img}
-            imgActive={viaKafka.imgActive}
-            imgDark={viaKafka.imgDark}
-            imgDarkActive={viaKafka.imgDarkActive}
-          />
-        </section>
-        <section>
-          <h2>Import from Cypher queries</h2>
-          <p>
-            If your data is saved in the form of Cypher queries (we call this
-            <code>.cypherl</code> format) then this is the right approach for you.
-          </p>
-          <ConnectButton
-            title={viaCypherl.title}
-            url={viaCypherl.url}
-            img={viaCypherl.img}
-            imgActive={viaCypherl.imgActive}
-            imgDark={viaCypherl.imgDark}
-            imgDarkActive={viaCypherl.imgDarkActive}
-          />
+          <ul>
+            <li>
+              <b>
+                <a href="#csv">How to import CSV files into Memgraph?</a>
+              </b>
+            </li>
+            <li>
+              <b>
+                <a href="#kafka">
+                  How to import streaming data from Kafka into Memgraph?
+                </a>
+              </b>
+            </li>
+            <li>
+              <b>
+                <a href="#queries">
+                  How to import data in the form of Cypher queries?
+                </a>
+              </b>
+            </li>
+            <li>
+              <b>
+                <a href="#application">
+                  How to import data directly from an application/program?
+                </a>
+              </b>
+            </li>
+            <li>
+              <b>
+                <a href="#csv-tool">
+                  How to create a snapshot from CSV files?
+                </a>
+              </b>
+            </li>
+          </ul>
         </section>
         <section>
           <h2 id="csv">How to import CSV files into Memgraph?</h2>
-          <p>There are two options for importing CSV files into Memgraph:</p>
-          <ul>
-            <li>
-              The{" "}
-              <b>
-                <a href={useBaseUrl("/memgraph/import-data/csv-import-tool")}>
-                  CSV Import Tool
-                </a>
-              </b>{" "}
-              allows you to import nodes and relationships from multiple CSV
-              files at once. The import is done while Memgraph is not running,
-              so it can load the data the next time it starts. The tool is fully
-              compatible with the{" "}
-              <b>
-                <a href="https://neo4j.com/docs/operations-manual/current/tools/import/">
-                  Neo4j CSV format
-                </a>
-              </b>
-              . If you already have a pipeline set-up for Neo4j, you should only
-              replace <code>neo4j-admin import</code> with <code>
-                mg_import_csv
-              </code>.
-            </li>
-            <li>
-              The second option is the{" "}
-              <b>
-                <a href={useBaseUrl("/memgraph/import-data/load-csv-clause")}>
-                  LOAD CSV Clause
-                </a>
-              </b>{" "}
-              which can be invoked straight from a running Memgraph instance and
-              is used as a standard Cypher clause.
-            </li>
-          </ul>
+          <p>
+            The easiest option for importing data into Memgraph is the{" "}
+            <b>
+              <a href={useBaseUrl("/memgraph/import-data/load-csv-clause")}>
+                LOAD CSV Clause
+              </a>
+            </b>{" "}
+            which can be invoked straight from a running Memgraph instance and
+            is used as a standard Cypher clause.
+          </p>
+          <ConnectButton
+            title={viaLoadCsv.title}
+            url={viaLoadCsv.url}
+            img={viaLoadCsv.img}
+            imgActive={viaLoadCsv.imgActive}
+            imgDark={viaLoadCsv.imgDark}
+            imgDarkActive={viaLoadCsv.imgDarkActive}
+          />
         </section>
         <section>
           <h2 id="kafka">
@@ -187,6 +104,14 @@ export default function ConnectToMemgraph() {
             on how to connect to a Kafka stream and take a look at the examples
             with different serialization mechanisms:
           </p>
+          {/*<ConnectButton
+            title={viaKafka.title}
+            url={viaKafka.url}
+            img={viaKafka.img}
+            imgActive={viaKafka.imgActive}
+            imgDark={viaKafka.imgDark}
+            imgDarkActive={viaKafka.imgDarkActive}
+          />*/}
           <ul>
             <li>
               <b>
@@ -212,9 +137,7 @@ export default function ConnectToMemgraph() {
           </ul>
         </section>
         <section>
-          <h2 id="queries">
-            How to import data in the form of Cypher queries?
-          </h2>
+          <h2 id="queries">How to import data from Cypher queries?</h2>
           <p>
             If you have data in the form of Cypher queries (<code>CREATE</code>{" "}
             and <code>MERGE</code> clauses) you can import it by using the{" "}
@@ -222,6 +145,14 @@ export default function ConnectToMemgraph() {
             <code>.cypherl</code> and you can find an example of how to import such
             data <a href={useBaseUrl("/memgraph/import-data/cypherl")}>here</a>.
           </p>
+          <ConnectButton
+            title={viaCypherl.title}
+            url={viaCypherl.url}
+            img={viaCypherl.img}
+            imgActive={viaCypherl.imgActive}
+            imgDark={viaCypherl.imgDark}
+            imgDarkActive={viaCypherl.imgDarkActive}
+          />
         </section>
         <section>
           <h2 id="application">
@@ -232,6 +163,34 @@ export default function ConnectToMemgraph() {
             directly to the platform. You can find a list of all the supported
             connection methods{" "}
             <a href={useBaseUrl("/memgraph/connect-to-memgraph")}>here</a>.
+          </p>
+        </section>
+        <section>
+          <h2 id="csv-tool">How to create a snapshot from CSV files?</h2>
+          <p>
+            The{" "}
+            <b>
+              <a href={useBaseUrl("/memgraph/import-data/csv-import-tool")}>
+                CSV Import Tool
+              </a>
+            </b>{" "}
+            allows you to import nodes and relationships from multiple CSV files
+            at once. The import is done while Memgraph is not running, so it can
+            load the data the next time it starts. The tool is fully compatible
+            with the{" "}
+            <b>
+              <a href="https://neo4j.com/docs/operations-manual/current/tools/import/">
+                Neo4j CSV format
+              </a>
+            </b>
+            . If you already have a pipeline set-up for Neo4j, you should only replace{" "}
+            <code>neo4j-admin import</code> with <code>mg_import_csv</code>. Keep
+            in mind that the CSV Import Tool creates one snapshot from the supplied
+            CSV files. Memgraph will overwrite any present data with the newly created
+            snapshot. This means that additional imports need to be done with the{" "}
+            <a href={useBaseUrl("/memgraph/import-data/load-csv-clause")}>
+              LOAD CSV Clause
+            </a> if you want to preserve already imported data.
           </p>
         </section>
         <section>
@@ -256,7 +215,6 @@ export default function ConnectToMemgraph() {
             </b>.
           </p>
         </section>
-        <overveiw />
       </div>
     </Container>
   );

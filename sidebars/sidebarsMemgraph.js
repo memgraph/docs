@@ -77,7 +77,7 @@ module.exports = {
         {
           type: "category",
           label: "CSV",
-          items: ["import-data/csv-import-tool", "import-data/load-csv-clause"],
+          items: ["import-data/load-csv-clause", "import-data/csv-import-tool"],
         },
         "import-data/cypherl",
         {

@@ -158,11 +158,11 @@
           "items": [
             {
               "type": "doc",
-              "id": "version-1.6.1/import-data/csv-import-tool"
+              "id": "version-1.6.1/import-data/load-csv-clause"
             },
             {
               "type": "doc",
-              "id": "version-1.6.1/import-data/load-csv-clause"
+              "id": "version-1.6.1/import-data/csv-import-tool"
             }
           ]
         },
