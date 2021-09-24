@@ -88,8 +88,8 @@ You are running Memgraph vX.X.X-community
 ```
 
 If you want to start Memgraph with different configuration settings, check out
-the [section below](#configuration). At this point, Memgraph is ready for you to
-[submit queries](/connect-to-memgraph/overview.md).
+the [section below](#configuration). At this point, Memgraph is ready for you
+to [submit queries](/connect-to-memgraph/overview.mdx).
 
 :::info
 The username and password for connecting to the database are empty by default.
@@ -166,7 +166,7 @@ docker volume rm <volume_name>
 If you need more information on working with Docker, check out **[this
 guide](/database-functionalities/work-with-docker.md)**.<br/>
 To learn how to query the database, take a look at the
-**[Querying](/connect-to-memgraph/overview.md)** guide or **[Memgraph
+**[Querying](/connect-to-memgraph/overview.mdx)** guide or **[Memgraph
 Playground](https://playground.memgraph.com/)** for interactive tutorials.<br/>
 Visit the **[Building applications](/connect-to-memgraph/methods/drivers.md)**
 page if you need to connect to the database programmatically.

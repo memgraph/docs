@@ -2,6 +2,7 @@
 id: overview
 title: Importing data from Kafka streams
 sidebar_label: Kafka streams overview
+slug: /import-data/kafka
 ---
 
 Memgraph can natively ingest streaming data from upstream sources using [Apache
