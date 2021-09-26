@@ -79,7 +79,6 @@ module.exports = {
           label: "CSV",
           items: ["import-data/load-csv-clause", "import-data/csv-import-tool"],
         },
-        "import-data/cypherl",
         {
           type: "category",
           label: "Kafka",
@@ -90,6 +89,15 @@ module.exports = {
             "import-data/kafka/protobuf",
           ],
         },
+        {
+          type: "category",
+          label: "Migrate SQL",
+          items: [
+            "import-data/migrate/mysql",
+            "import-data/migrate/postgresql"
+          ],
+        },
+        "import-data/cypherl",
       ],
     },
     {
