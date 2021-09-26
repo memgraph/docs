@@ -10,7 +10,7 @@ module.exports = {
     {
       type: "category",
       label: "Tutorials",
-      items: ["tutorials/create-a-new-module"],
+      items: ["tutorials/create-python-module", "tutorials/create-cpp-module"],
     },
     {
       type: "category",

@@ -1,5 +1,5 @@
 ---
-id: create-a-new-module
+id: create-python-module
 title: Developing a query module in Python
 sidebar_label: Create a Python module
 ---
