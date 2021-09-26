@@ -3,7 +3,7 @@ const baseUrl = '/docs/';
 module.exports = {
   title: 'Memgraph Docs',
   tagline: 'Welcome to the Memgraph Docs site!',
-  url: 'https://memgraph.github.com/docs',
+  url: 'https://memgraph.com',
   baseUrl,
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -644,6 +644,10 @@ module.exports = {
             from: ['/memgraph/getting-started/querying',],
           },
           {
+            to: '/memgraph/connect-to-memgraph',
+            from: ['/memgraph/connection-methods',],
+          },
+          {
             to: '/memgraph/connect-to-memgraph/methods/drivers',
             from: ['/memgraph/getting-started/connecting-applications',],
           },
@@ -682,6 +686,10 @@ module.exports = {
           {
             to: '/memgraph/import-data',
             from: ['/memgraph/database-functionalities/import-data',],
+          },
+          {
+            to: '/memgraph/import-data/kafka',
+            from: ['/memgraph/import-data/kafka/overview',],
           },
           {
             to: '/memgraph/reference-guide/query-modules/available-query-modules',

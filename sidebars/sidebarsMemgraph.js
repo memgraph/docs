@@ -8,13 +8,11 @@ module.exports = {
         "installation/overview",
         {
           type: "category",
-          label: "Linux",
+          label: "Windows",
           items: [
-            "installation/linux/docker-installation",
-            "installation/linux/ubuntu-installation",
-            "installation/linux/debian-installation",
-            "installation/linux/rpm-installation",
-            "installation/linux/linux-installation-troubleshooting",
+            "installation/windows/docker-installation",
+            "installation/windows/wsl-installation",
+            "installation/windows/windows-installation-troubleshooting",
           ],
         },
         {
@@ -27,11 +25,13 @@ module.exports = {
         },
         {
           type: "category",
-          label: "Windows",
+          label: "Linux",
           items: [
-            "installation/windows/docker-installation",
-            "installation/windows/wsl-installation",
-            "installation/windows/windows-installation-troubleshooting",
+            "installation/linux/docker-installation",
+            "installation/linux/ubuntu-installation",
+            "installation/linux/debian-installation",
+            "installation/linux/rpm-installation",
+            "installation/linux/linux-installation-troubleshooting",
           ],
         },
       ],
@@ -41,7 +41,6 @@ module.exports = {
       label: "Connect to Memgraph",
       items: [
         "connect-to-memgraph/overview",
-        "connect-to-memgraph/connect-to-memgraph",
         {
           type: "category",
           label: "Methods",
@@ -78,9 +77,19 @@ module.exports = {
         {
           type: "category",
           label: "CSV",
-          items: ["import-data/csv-import-tool", "import-data/load-csv-clause"],
+          items: ["import-data/load-csv-clause", "import-data/csv-import-tool"],
         },
         "import-data/cypherl",
+        {
+          type: "category",
+          label: "Kafka",
+          items: [
+            "import-data/kafka/overview",
+            "import-data/kafka/avro",
+            "import-data/kafka/json",
+            "import-data/kafka/protobuf",
+          ],
+        },
       ],
     },
     {

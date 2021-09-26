@@ -21,7 +21,7 @@ function ConnectToMemgraph() {
             imgActive: useBaseUrl(imgFolder + 'python-selected.png'),
             imgDark: useBaseUrl(imgFolder + 'python-unselected.png'),
             imgDarkActive: useBaseUrl(imgFolder + 'python-selected.png'),
-            url: useBaseUrl('memgraph/getting-started/connecting-applications/python'),
+            url: useBaseUrl('memgraph/connect-to-memgraph/methods/building-applications/python'),
         },
         {
             title: 'C#',
@@ -29,7 +29,7 @@ function ConnectToMemgraph() {
             imgActive: useBaseUrl(imgFolder + 'csharp-selected.png'),
             imgDark: useBaseUrl(imgFolder + 'csharp-unselected.png'),
             imgDarkActive: useBaseUrl(imgFolder + 'csharp-selected.png'),
-            url: useBaseUrl('memgraph/getting-started/connecting-applications/c-sharp'),
+            url: useBaseUrl('memgraph/connect-to-memgraph/methods/building-applications/c-sharp'),
         },
         {
             title: 'Rust',
@@ -37,7 +37,7 @@ function ConnectToMemgraph() {
             imgActive: useBaseUrl(imgFolder + 'rust-selected.png'),
             imgDark: useBaseUrl(imgFolder + 'dark/rust-unselected-dm.svg'),
             imgDarkActive: useBaseUrl(imgFolder + 'dark/rust-selected-dm.png'),
-            url: useBaseUrl('memgraph/getting-started/connecting-applications/rust'),
+            url: useBaseUrl('memgraph/connect-to-memgraph/methods/building-applications/rust'),
         },
         {
             title: 'Java',
@@ -45,7 +45,7 @@ function ConnectToMemgraph() {
             imgActive: useBaseUrl(imgFolder + 'java-selected.png'),
             imgDark: useBaseUrl(imgFolder + 'dark/java-unselected-dm.svg'),
             imgDarkActive: useBaseUrl(imgFolder + 'dark/java-selected-dm.svg'),
-            url: useBaseUrl('memgraph/getting-started/connecting-applications/java'),
+            url: useBaseUrl('memgraph/connect-to-memgraph/methods/building-applications/java'),
         },
         {
             title: 'GoLang',
@@ -53,7 +53,7 @@ function ConnectToMemgraph() {
             imgActive: useBaseUrl(imgFolder + 'golang-selected.png'),
             imgDark: useBaseUrl(imgFolder + 'dark/golang-unselected-dm.png'),
             imgDarkActive: useBaseUrl(imgFolder + 'dark/golang-selected-dm.png'),
-            url: useBaseUrl('memgraph/getting-started/connecting-applications/go'),
+            url: useBaseUrl('memgraph/connect-to-memgraph/methods/building-applications/go'),
         },
         {
             title: 'PHP',
@@ -61,7 +61,7 @@ function ConnectToMemgraph() {
             imgActive: useBaseUrl(imgFolder + 'php-selected.png'),
             imgDark: useBaseUrl(imgFolder + 'dark/php-unselected-dm.png'),
             imgDarkActive: useBaseUrl(imgFolder + 'dark/php-selected-dm.png'),
-            url: useBaseUrl('memgraph/getting-started/connecting-applications/php'),
+            url: useBaseUrl('memgraph/connect-to-memgraph/methods/building-applications/php'),
         },
         {
             title: 'Ruby',
@@ -77,7 +77,7 @@ function ConnectToMemgraph() {
             imgActive: useBaseUrl(imgFolder + 'JS-selected.svg'),
             imgDark: useBaseUrl(imgFolder + 'JS-unselected.png'),
             imgDarkActive: useBaseUrl(imgFolder + 'dark/JS-selected-dm.svg'),
-            url: useBaseUrl('memgraph/getting-started/connecting-applications/javascript'),
+            url: useBaseUrl('memgraph/connect-to-memgraph/methods/building-applications/javascript'),
         },
         {
             title: 'Haskell',
@@ -104,7 +104,7 @@ function ConnectToMemgraph() {
         imgActive: useBaseUrl(imgFolder + 'mgconsole-selected.svg'),
         imgDark: useBaseUrl(imgFolder + 'dark/mgconsole-unselected-dm.svg'),
         imgDarkActive: useBaseUrl(imgFolder + 'dark/mgconsole-selected-dm.svg'),
-        url: useBaseUrl('memgraph/getting-started/querying#querying-using-console'),
+        url: useBaseUrl('memgraph/connect-to-memgraph/methods/mgconsole'),
     };
 
     return (
