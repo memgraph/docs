@@ -11,11 +11,11 @@ import Help from '../templates/_help.mdx';
 ## Errors
 
 1. [Unable to load support for embedded Python: {}. For more details, visit:
-   memgr.ph/python-modules.](#error-1)
+   memgr.ph/python.](#error-1)
 2. [Unable to load support for embedded Python: missing directory {}. For more
-   details, visit: memgr.ph/python-modules.](#error-1)
+   details, visit: memgr.ph/python.](#error-1)
 3. [Unable to load support for embedded Python: {}. For more details, visit:
-   memgr.ph/python-modules.](#error-1)
+   memgr.ph/python.](#error-1)
 
 ## How to install Python packages globally? {#error-1}
 
@@ -27,7 +27,7 @@ command:
 sudo pip3 install <PACKAGE_NAME>
 ```
 
-If this aproach doesn't work, try to install a pre-compiled package using
+If this approach doesn't work, try to install a pre-compiled package using
 `apt-get` if available.
 
 import SubmitError from '../templates/_submit-error.mdx';

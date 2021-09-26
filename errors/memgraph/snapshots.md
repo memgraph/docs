@@ -19,11 +19,11 @@ import Help from '../templates/_help.mdx';
 
 Database snapshots are like a view of a database as it was at a certain point in
 time. It is a read-only copy of the data that can be used for backup or data
-persistance. Memgraph will try to load the newest snapshot file on startup.
+persistence. Memgraph will try to load the newest snapshot file on startup.
 
 ## What to do with corrupt snapshots?
 
-Because snapshots are read-only, any modifications will result with corrupt
+Because snapshots are read-only, any modifications will result in corrupt
 files that won't be loaded. The solution is to delete the snapshot files and to
 start Memgraph again.
 
