@@ -8,8 +8,9 @@ slug: /reference-guide/streams
 Memgraph can connect to existing Kafka streams. To use streams, a user
 must:
 1. [**Create a transformation module**](/reference-guide/streams/transformation-modules/overview.md)
-2. Create the stream with a `CREATE STREAM` query
-3. Start the stream with a `START STREAM` query
+2. Configure Memgraph to connect to, e.g. Kafka by providing the appropriate flag `--kafka-bootstrap-servers=localhost:9092`
+3. Create the stream with a `CREATE STREAM` query
+4. Start the stream with a `START STREAM` query
 
 :::tip
 Check out the **example-streaming-app** on [GitHub](https://github.com/memgraph/example-streaming-app) to see a sample Memgraph-Kafka application.
