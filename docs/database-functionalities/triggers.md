@@ -27,6 +27,19 @@ CREATE TRIGGER trigger_name ( ON ( () | --> ) CREATE | UPDATE | DELETE )
 EXECUTE openCypherStatements
 ```
 
+An example would be:
+
+```plaintext
+CREATE TRIGGER exampleTrigger
+ON UPDATE AFTER COMMIT EXECUTE
+UNWIND updatedObjects AS updatedObject
+WITH CASE
+        WHEN updatedObject.vertex IS NOT Null THEN updatedObject.vertex
+        WHEN updatedObject.edge IS NOT Null THEN updatedObject.edge
+    END AS object
+SET object.updated_at = timestamp();
+```
+
 The query may seem complex, so let's break it down.
 
 ### Trigger name
