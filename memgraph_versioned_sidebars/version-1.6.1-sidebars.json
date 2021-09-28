@@ -482,6 +482,10 @@
         },
         {
           "type": "doc",
+          "id": "version-1.6.1/database-functionalities/triggers"
+        },
+        {
+          "type": "doc",
           "id": "version-1.6.1/reference-guide/audit-log"
         },
         {
