@@ -218,6 +218,7 @@ module.exports = {
           ],
         },
         "reference-guide/tensorflow",
+        "database-functionalities/triggers",
         "reference-guide/audit-log",
         "reference-guide/auth-module",
         "reference-guide/ldap-security",
