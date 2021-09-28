@@ -20,6 +20,24 @@ export default function ConnectToMemgraph() {
     imgDarkActive: useBaseUrl(imgFolder + "dark/LOADcsvclause-selected-dm.svg"),
     url: useBaseUrl("memgraph/import-data/load-csv-clause"),
   };
+  const viaMigrate = [
+    {
+      title: "MySQL",
+      img: useBaseUrl(imgFolder + "mysql-unselected.svg"),
+      imgActive: useBaseUrl(imgFolder + "mysql-selected.svg"),
+      imgDark: useBaseUrl(imgFolder + "dark/mysql-unselected-dm.svg"),
+      imgDarkActive: useBaseUrl(imgFolder + "dark/mysql-selected-dm.svg"),
+      url: useBaseUrl("memgraph/import-data/migrate/mysql"),
+    },
+    {
+      title: "PostgreSQL",
+      img: useBaseUrl(imgFolder + "postgresql-unselected.svg"),
+      imgActive: useBaseUrl(imgFolder + "postgresql-selected.svg"),
+      imgDark: useBaseUrl(imgFolder + "dark/postgresql-unselected-dm.svg"),
+      imgDarkActive: useBaseUrl(imgFolder + "dark/postgresql-selected-dm.svg"),
+      url: useBaseUrl("memgraph/import-data/migrate/postgresql"),
+    },
+  ];
   const viaCypherl = {
     title: "cypherl",
     img: useBaseUrl(imgFolder + "cypherqueries-unselected.svg"),
@@ -51,6 +69,13 @@ export default function ConnectToMemgraph() {
             </li>
             <li>
               <b>
+                <a href="#migrate">
+                  How to migrate data from a relational database?
+                </a>
+              </b>
+            </li>
+            <li>
+              <b>
                 <a href="#queries">
                   How to import data in the form of Cypher queries?
                 </a>
@@ -65,9 +90,7 @@ export default function ConnectToMemgraph() {
             </li>
             <li>
               <b>
-                <a href="#csv-tool">
-                  How to create a snapshot from CSV files?
-                </a>
+                <a href="#csv-tool">How to create a snapshot from CSV files?</a>
               </b>
             </li>
           </ul>
@@ -135,6 +158,36 @@ export default function ConnectToMemgraph() {
               </b>
             </li>
           </ul>
+        </section>
+        <section>
+          <h2 id="migrate">How to migrate data from a relational database?</h2>
+          <p>
+            You can migrate data from a{" "}
+            <a href={useBaseUrl("/memgraph/import-data/migrate/mysql")}>
+              MySQL
+            </a>{" "}
+            or{" "}
+            <a href={useBaseUrl("/memgraph/import-data/migrate/postgresql")}>
+              PostgreSQL
+            </a>{" "}
+            database using the{" "}
+            <a href="https://github.com/memgraph/mgmigrate">mgmigrate</a> tool.
+          </p>
+          <div className={styles.connectToMemgraph__grid}>
+            {viaMigrate.map((item, i) => {
+              return (
+                <ConnectButton
+                  key={i}
+                  url={item.url}
+                  title={item.title}
+                  img={item.img}
+                  imgActive={item.imgActive}
+                  imgDark={item.imgDark}
+                  imgDarkActive={item.imgDarkActive}
+                />
+              );
+            })}
+          </div>
         </section>
         <section>
           <h2 id="queries">How to import data from Cypher queries?</h2>
