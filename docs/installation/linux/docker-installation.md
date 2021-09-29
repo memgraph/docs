@@ -22,7 +22,7 @@ should be compatible with all newer versions.
 ## Installation guide {#installation-guide}
 
 You can either manually download the Memgraph Docker image or use the convenient
-`docker pull memgraph/memgraph` command, which we recommend.
+`docker pull memgraph/memgraph-platform` command, which we recommend.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -39,14 +39,14 @@ import TabItem from '@theme/TabItem';
 1. Download and load the **Memgraph Docker image** with the following command:
 
 ```console
- docker pull memgraph/memgraph
+ docker pull memgraph/memgraph-platform
 ```
 
 2. Create a new tag for the image so it can be called as `memgraph` instead of
-   `memgraph/memgraph`:
+   `memgraph/memgraph-platform`:
 
 ```console
-docker image tag memgraph/memgraph memgraph
+docker image tag memgraph/memgraph-platform memgraph
 ```
 
   </TabItem>
