@@ -5,14 +5,18 @@ sidebar_label: Streams overview
 slug: /reference-guide/streams
 ---
 
-Memgraph can connect to existing Kafka streams. To use streams, a user
-must:
-1. [**Create a transformation module**](/reference-guide/streams/transformation-modules/overview.md)
-2. Create the stream with a `CREATE STREAM` query
-3. Start the stream with a `START STREAM` query
+Memgraph can connect to existing Kafka streams. To use streams, a user must:
+1. [**Create a transformation
+   module**](/reference-guide/streams/transformation-modules/overview.md)
+2. [Configure Memgraph](/reference-guide/configuration.md) to connect to, e.g.
+   Kafka, by providing the appropriate flag
+   `--kafka-bootstrap-servers=localhost:9092`
+3. [Create the stream](#creating-a-stream) with a `CREATE STREAM` query
+4. [Start the stream](#start-a-stream) with a `START STREAM` query
 
-:::tip
-Check out the **example-streaming-app** on [GitHub](https://github.com/memgraph/example-streaming-app) to see a sample Memgraph-Kafka application.
+:::tip Check out the **example-streaming-app** on
+[GitHub](https://github.com/memgraph/example-streaming-app) to see a sample
+Memgraph-Kafka application.
 :::
 
 ## Creating a stream
@@ -103,37 +107,36 @@ CHECK STREAM <stream name> [BATCH_LIMIT <count>] [TIMEOUT <milliseconds>] ;
 ```
 Does a dry-run on stream with name `<stream name>` with `<count>` number of
 batches and returns the result of the transformation: the queries and their
-parameters that would be executed in a normal run.
-If `<count>` is unspecified, its default value is 1.
-After `<count>` batches are processed, the transformation result is returned.
-If `<count>` number of batches are not processed within the specified timeout,
-then an exception is thrown. This might be caused by not receiving enough
-messages.
-`TIMEOUT` is measured in milliseconds, and it's defaulted to 30000.
+parameters that would be executed in a normal run. If `<count>` is unspecified,
+its default value is 1. After `<count>` batches are processed, the
+transformation result is returned. If `<count>` number of batches are not
+processed within the specified timeout, then an exception is thrown. This might
+be caused by not receiving enough messages. `TIMEOUT` is measured in
+milliseconds, and it's defaulted to 30000.
 
 Checking a stream won't commit any offsets.
 
 ## At least once semantics
 
 In stream processing, it is important to have some guarantees about how failures
-are handled. When connecting an external application such as Memgraph to a
-Kafka stream, there are two possible ways to handle failures during message
+are handled. When connecting an external application such as Memgraph to a Kafka
+stream, there are two possible ways to handle failures during message
 processing:
 1. Every message is processed **at least once**: the message offsets are
-committed to the Kafka cluster after the processing is done. This means if the
-committing fails, then the messages can get processed multiple times.
+   committed to the Kafka cluster after the processing is done. This means if
+   the committing fails, then the messages can get processed multiple times.
 2. Every message is processed **at most once**: the message offsets are
-committed to the Kafka cluster right after they are received before the
-processing is started. This means if the processing fails, then the same
-messages won't be processed again.
+   committed to the Kafka cluster right after they are received before the
+   processing is started. This means if the processing fails, then the same
+   messages won't be processed again.
 
 Missing a message can result in missing an edge that would connect two
-independent components of the graph. Therefore, we think that missing
-some information is a bigger problem for graphs than having some information
-duplicated, so we implemented our streams using the **at least once**
-semantics, i.e. for every batch of messages the queries returned by the
-transformations are executed and committed to the database before committing
-the message offset to the Kafka cluster. However, even though we cannot guarantee **exactly
-once** semantics, we tried to minimize the possibility of processing messages
-multiple times. This means committing the message offsets to the Kafka cluster
-happens right after the transaction is committed to the database.
+independent components of the graph. Therefore, we think that missing some
+information is a bigger problem for graphs than having some information
+duplicated, so we implemented our streams using the **at least once** semantics,
+i.e. for every batch of messages the queries returned by the transformations are
+executed and committed to the database before committing the message offset to
+the Kafka cluster. However, even though we cannot guarantee **exactly once**
+semantics, we tried to minimize the possibility of processing messages multiple
+times. This means committing the message offsets to the Kafka cluster happens
+right after the transaction is committed to the database.
