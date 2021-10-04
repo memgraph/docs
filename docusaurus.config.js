@@ -223,6 +223,7 @@ module.exports = {
     prism: {
       additionalLanguages: ['cypher', 'php'],
     },
+    hideableSidebar: true,
   },
   presets: [
     [
@@ -242,12 +243,13 @@ module.exports = {
           },
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: require.resolve('./src/css/custom.scss'),
         },
       },
     ],
   ],
   plugins: [
+    'docusaurus-plugin-sass',
     [
       '@docusaurus/plugin-content-docs',
       {
@@ -299,6 +301,17 @@ module.exports = {
         path: 'help-center',
         routeBasePath: 'help-center',
         sidebarPath: require.resolve('./sidebars/sidebarsHelpCenter.js'),
+        editUrl:
+          'https://github.com/memgraph/docs/tree/master/',
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'errors',
+        path: 'errors',
+        routeBasePath: 'errors',
+        sidebarPath: require.resolve('./sidebars/sidebarsErrors.js'),
         editUrl:
           'https://github.com/memgraph/docs/tree/master/',
       },
@@ -673,6 +686,10 @@ module.exports = {
           {
             to: '/memgraph/import-data',
             from: ['/memgraph/database-functionalities/import-data',],
+          },
+          {
+            to: '/memgraph/import-data/kafka',
+            from: ['/memgraph/import-data/kafka/overview',],
           },
           {
             to: '/memgraph/reference-guide/query-modules/available-query-modules',
