@@ -83,9 +83,9 @@ website](https://docusaurus.io/docs/versioning).
   headings** with random uppercase letters.
 - The first file in each subdirectory should be the **overview.md** file, and it
   should indicate what the directory contains (for example, the [Query
-  modules](https://docs.memgraph.com/memgraph/reference-guide/query-modules)
+  modules](https://memgraph.com/docs/memgraph/reference-guide/query-modules)
   section). This is not always the best solution (the [OS
-  installation](https://docs.memgraph.com/memgraph/install-memgraph-on-linux-docker)
+  installation](https://memgraph.com/docs/memgraph/install-memgraph-on-linux-docker)
   sections), but it makes it easier for users to explore unknown
   functionalities. If you think that in your case, it's not needed and would do
   more harm than good, ask the DevRel team for help.
@@ -111,7 +111,7 @@ At the beginning of each markdown file, you can add the following fields:
   to define them explicitly for **overview.md** files. For example, the default
   URL for the file `/memgraph/reference-guide/query-modules/overview.md`  would
   be
-  [docs.memgraph.com/memgraph/reference-guide/query-modules/overview](http://docs.memgraph.com/memgraph/reference-guide/query-modules/overview),
+  [memgraph.com/docs/memgraph/reference-guide/query-modules/overview](http://memgraph.com/docs/memgraph/reference-guide/query-modules/overview),
   but it would make more sense to omit the *overview* part at the end.
 
 ## Changing and redirecting URLs

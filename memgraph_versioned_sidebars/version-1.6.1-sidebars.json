@@ -16,6 +16,40 @@
         {
           "collapsed": true,
           "type": "category",
+          "label": "Windows",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-1.6.1/installation/windows/docker-installation"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.6.1/installation/windows/wsl-installation"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.6.1/installation/windows/windows-installation-troubleshooting"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "macOS",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-1.6.1/installation/macos/docker-installation"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.6.1/installation/macos/macos-installation-troubleshooting"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
           "label": "Linux",
           "items": [
             {
@@ -39,40 +73,6 @@
               "id": "version-1.6.1/installation/linux/linux-installation-troubleshooting"
             }
           ]
-        },
-        {
-          "collapsed": true,
-          "type": "category",
-          "label": "macOS",
-          "items": [
-            {
-              "type": "doc",
-              "id": "version-1.6.1/installation/macos/docker-installation"
-            },
-            {
-              "type": "doc",
-              "id": "version-1.6.1/installation/macos/macos-installation-troubleshooting"
-            }
-          ]
-        },
-        {
-          "collapsed": true,
-          "type": "category",
-          "label": "Windows",
-          "items": [
-            {
-              "type": "doc",
-              "id": "version-1.6.1/installation/windows/docker-installation"
-            },
-            {
-              "type": "doc",
-              "id": "version-1.6.1/installation/windows/wsl-installation"
-            },
-            {
-              "type": "doc",
-              "id": "version-1.6.1/installation/windows/windows-installation-troubleshooting"
-            }
-          ]
         }
       ]
     },
@@ -86,10 +86,6 @@
           "id": "version-1.6.1/connect-to-memgraph/overview"
         },
         {
-          "type": "doc",
-          "id": "version-1.6.1/connect-to-memgraph/connect-to-memgraph"
-        },
-        {
           "collapsed": true,
           "type": "category",
           "label": "Methods",
@@ -101,7 +97,7 @@
             {
               "type": "link",
               "label": "Memgraph Lab",
-              "href": "https://docs.memgraph.com/memgraph-lab"
+              "href": "https://memgraph.com/docs/memgraph-lab"
             },
             {
               "type": "doc",
@@ -156,12 +152,57 @@
           "id": "version-1.6.1/import-data/overview"
         },
         {
-          "type": "doc",
-          "id": "version-1.6.1/import-data/csv-import-tool"
+          "collapsed": true,
+          "type": "category",
+          "label": "CSV",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-1.6.1/import-data/load-csv-clause"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.6.1/import-data/csv-import-tool"
+            }
+          ]
         },
         {
-          "type": "doc",
-          "id": "version-1.6.1/import-data/load-csv-clause"
+          "collapsed": true,
+          "type": "category",
+          "label": "Kafka",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-1.6.1/import-data/kafka/overview"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.6.1/import-data/kafka/avro"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.6.1/import-data/kafka/json"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.6.1/import-data/kafka/protobuf"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Migrate SQL",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-1.6.1/import-data/migrate/mysql"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.6.1/import-data/migrate/postgresql"
+            }
+          ]
         },
         {
           "type": "doc",
@@ -338,6 +379,36 @@
           "id": "version-1.6.1/reference-guide/graph-algorithms"
         },
         {
+          "collapsed": true,
+          "type": "category",
+          "label": "Import data",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-1.6.1/reference-guide/import-data/overview"
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "CSV",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "version-1.6.1/reference-guide/import-data/csv-import-tool"
+                },
+                {
+                  "type": "doc",
+                  "id": "version-1.6.1/reference-guide/import-data/load-csv-clause"
+                }
+              ]
+            },
+            {
+              "type": "doc",
+              "id": "version-1.6.1/reference-guide/import-data/cypherl"
+            }
+          ]
+        },
+        {
           "type": "doc",
           "id": "version-1.6.1/reference-guide/indexing"
         },
@@ -423,6 +494,10 @@
         {
           "type": "doc",
           "id": "version-1.6.1/reference-guide/tensorflow"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/database-functionalities/triggers"
         },
         {
           "type": "doc",

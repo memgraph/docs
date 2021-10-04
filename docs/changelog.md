@@ -4,18 +4,20 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
-## Future
+## v2.0.0 - Oct 5, 2021
 
 :::warning
 ### Breaking Changes
-* Most of query modules C API functions are changed to return an `mgp_error` as a more fine grained way or error reporting. The only exceptions are the functions that free allocated memory (`mgp_free` and `mgp_global_free`) and destroy objects (`mgp_value_destroy`, `mgp_list_destory`, etc.), these functions kept their signature without return value.
+* Changed the `timestamp()` function to return `microseconds` instead of `milliseconds`.
+* Most of query modules C API functions are changed to return an `mgp_error` as a more fine grained way or error reporting. The only exceptions are the functions that free allocated memory (`mgp_free` and `mgp_global_free`) and destroy objects (`mgp_value_destroy`, `mgp_list_destory`, etc.). These functions kept their signature without return value.
 :::
 
 ### Major Features and Improvements
-
+* Added support for parameters with `CREATE` clause in the following form: `CREATE (n $param)`.
 
 ### Bug Fixes
 
+* Fixed planning of queries with `MERGE` clause. If a previously defined symbol is used as property value inside the `MERGE` clause, the planner will correctly use the label-property index if present.
 
 ## v1.6.1 - Jul 24, 2021
 
