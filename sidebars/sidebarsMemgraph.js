@@ -225,6 +225,13 @@ module.exports = {
             },
           ],
         },
+        {
+          type: "category",
+          label: "Temporal types",
+          items: [ 
+            "reference-guide/temporal_types/overview",
+          ],
+        },
         "reference-guide/tensorflow",
         "database-functionalities/triggers",
         "reference-guide/audit-log",
