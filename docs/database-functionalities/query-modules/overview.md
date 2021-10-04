@@ -56,11 +56,19 @@ query is producing. For example:
 MATCH (node) CALL module.procedure(node) YIELD result RETURN *;
 ```
 
+For **writeable procedures** we have some other limitations also:
+* the rest of the query has to be read-only
+* the writeable procedure call has to be the last cause in the query apart
+from the `RETURN` clause.
+The last example also works with writeable procedures because it satisfies all
+of these requirements.
+
 When we use `CALL` in a larger query, we have to explicitly
 `RETURN` from the query to get the results. Naturally, the `RETURN` is not
-needed if we perform updates after `CALL`. This follows the openCypher
-convention that read-only queries need to end with a `RETURN`, while queries
-which update something don't need to `RETURN` anything.
+needed if we perform updates after `CALL` or the called procedure is a
+writeable procedure. This follows the openCypher convention that read-only
+queries need to end with a `RETURN`, while queries which update something
+don't need to `RETURN` anything.
 
 If a procedure returns a record with a field name that may clash with some
 variable we already have in a query, that field name can be aliased into some

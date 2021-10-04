@@ -145,6 +145,44 @@ return mgp.Record(args=args_copy, vertex_count=vertex_count,
                   avg_degree=avg_degree, props=props)
 ```
 
+### Writeable procedure
+
+Writeable procedures can be implemented in very similar way as read-only
+procedures. The only difference is writeable procedures receive mutable objects,
+therefore they can create or delete vertices or edges, modify the properties of
+vertices and edges and they can add or remove labels of vertices.
+
+We can implement a very simple writeable query modules similarly to read-only
+procedures:
+
+```python
+@mgp.write_proc
+def write_procedure(context: mgp.ProcCtx,
+                    property_name: str,
+                    property_value: mgp.Nullable[mgp.Any]
+                    ) -> mgp.Record(created_vertex=mgp.Vertex):
+    # Collect all the vertices that has the required property with the same
+    # value
+    vertices_to_connect = []
+    for v in context.graph.vertices:
+        if v.properties[property_name] == property_value:
+            vertices_to_connect.append(v)
+    # Create the new vertex and set its property
+    vertex = context.graph.create_vertex()
+    vertex.properties.set(property_name, property_value)
+    # Connect the new vertex to the other vertices
+    for v in vertices_to_connect:
+        context.graph.create_edge(vertex, v, mgp.EdgeType("HAS_SAME_VALUE"))
+
+    return mgp.Record(created_vertex=vertex)
+
+```
+
+This example procedure creates a new vertex with the specified property and
+connects it to all existing vertex which has the same property with the same
+name. It returns one field called `created_vertex` which contains the newly
+created vertex.
+
 In conclusion, Python API provided by Memgraph can be a very powerful, yet
 simple tool when implementing query modules. Therefore, we strongly suggest
 that all users thoroughly inspect the `mgp.py` source file.
@@ -214,14 +252,15 @@ void procedure(const mgp_list *args, const mgp_graph *graph,
 }
 ```
 
-
 The `procedure` function will receive the list of arguments (`args`) which are
 passed in the query. The parameter `result` is used to fill in the resulting
-records of the procedure. Parameters `graph` and `memory` are context
-parameters of the procedure, and they are used in some parts of the provided C
-API. For more information on what exactly is possible via C API, take a look
-at the `mg_procedure.h` file  or at the C API [reference guide](/reference-guide/query-modules/api/c-api.md),
-as well as the `example.c` found in `/usr/lib/memgraph/query_modules/src`
+records of the procedure. Parameters `graph` and `memory` are context parameters
+of the procedure, and they are used in some parts of the provided C API. For
+more information on what exactly is possible via C API, take a look at the
+`mg_procedure.h` file  or at the C API [reference
+guide](/reference-guide/query-modules/api/c-api.md), as well as the `example.c`
+found in `/usr/lib/memgraph/query_modules/src` which contains an example
+writeable procedure also.
 
 Then comes the required `mgp_init_module` function. Its primary purpose is to
 register procedures which can then be invoked through openCypher. Although the
