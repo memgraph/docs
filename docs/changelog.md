@@ -22,6 +22,7 @@ sidebar_label: Changelog
 * Fixed planning of queries with `MERGE` clause. If a previously defined symbol is used as property value inside the `MERGE` clause, the planner will correctly use the label-property index if present.
 * Unused memory is correctly returned to OS when `FREE MEMORY` query is used. Before, Memgraph would free up the memory internally and not return it to the OS. Because of that Memgraph could allocate more memory from the OS than it's allowed.
 * Fixed recovery from durability files. Because of a wrong check, Memgraph could crash and leave the durability files in an invalid state making recovery not possible.
+* Fixed usage of `execute` keyword in queries. Because of the special way we handle the `EXECUTE` keyword from the `CREATE TRIGGER` query using that same keyword in other contexts caused Memgraph to crash.
 
 ## v1.6.1 - Jul 24, 2021
 
