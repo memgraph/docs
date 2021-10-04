@@ -45,8 +45,8 @@ CALL module.procedure(arg1, arg2, ...) YIELD res1, res2, ...;
 ```
 
 Each procedure returns zero or more records, where each record contains named
-fields. The `YIELD` part is used to select fields we are interested in. If we
-are not interested in any fields, the `YIELD` part can be omitted.
+fields. The `YIELD` part is used to select fields we are interested in. If
+the procedure doesn't return any fields, then the `YIELD` part can be omitted.
 
 Procedures may be called standalone as the above, or as a part of a
 larger query. This is useful if we want the procedure to work on data the
