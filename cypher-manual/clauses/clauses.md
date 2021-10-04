@@ -16,3 +16,4 @@ The **Cypher** language enables users to perform standard database operations by
   * [`REMOVE`](remove.md), for removing labels and properties;
   * [`MERGE`](merge.md), for creating patterns if they do not exist;
   * [`WITH`](with.md), for combining multiple reads and writes.
+  * [`LOAD CSV`](load-csv.md), for loading CSV data
