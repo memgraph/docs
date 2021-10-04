@@ -21,8 +21,9 @@ Before you proceed with the installation guide make sure that you have:
 
 ## Installation guide {#installation-guide}
 
-After downloading Memgraph as a Debian package and starting your Debian/Ubuntu application,
-install Memgraph by running the following command in the Debian terminal:
+After downloading Memgraph as a Debian package and starting your Debian/Ubuntu
+application, install Memgraph by running the following command in the Debian
+terminal:
 
 ```console
 sudo dpkg -i /mnt/<drive>/Users/<windows username>/Downloads/memgraph_<version>.deb
@@ -77,15 +78,14 @@ Memgraph configuration is altered, Memgraph needs to be restarted.
 To learn how to query the database, take a look at the
 **[Querying](/connect-to-memgraph/overview.mdx)** guide or **[Memgraph
 Playground](https://playground.memgraph.com/)** for interactive tutorials.<br/>
-Visit the **[Building
-applications](/connect-to-memgraph/methods/drivers.md)**
+Visit the **[Building applications](/connect-to-memgraph/methods/drivers.md)**
 page if you need to connect to the database programmatically.
 
 ## Getting help
 
 If you run into problems during the installation process, check out our
 **[installation troubleshooting
-guide](/installation/windows/windows-installation-troubleshooting.md)** to see if
-have already covered the topic. For more information on the installation process
-and for additional questions, visit the **[Getting
-help](/help-center)** page.
+guide](/installation/windows/windows-installation-troubleshooting.md)** to see
+if we have already covered the topic. For more information on the installation
+process and for additional questions, visit the **[Getting help](/help-center)**
+page.

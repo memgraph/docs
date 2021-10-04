@@ -158,17 +158,13 @@
           "items": [
             {
               "type": "doc",
-              "id": "version-1.6.1/import-data/csv-import-tool"
+              "id": "version-1.6.1/import-data/load-csv-clause"
             },
             {
               "type": "doc",
-              "id": "version-1.6.1/import-data/load-csv-clause"
+              "id": "version-1.6.1/import-data/csv-import-tool"
             }
           ]
-        },
-        {
-          "type": "doc",
-          "id": "version-1.6.1/import-data/cypherl"
         },
         {
           "collapsed": true,
@@ -192,6 +188,25 @@
               "id": "version-1.6.1/import-data/kafka/protobuf"
             }
           ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Migrate SQL",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-1.6.1/import-data/migrate/mysql"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.6.1/import-data/migrate/postgresql"
+            }
+          ]
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/import-data/cypherl"
         }
       ]
     },
@@ -479,6 +494,10 @@
         {
           "type": "doc",
           "id": "version-1.6.1/reference-guide/tensorflow"
+        },
+        {
+          "type": "doc",
+          "id": "version-1.6.1/database-functionalities/triggers"
         },
         {
           "type": "doc",
