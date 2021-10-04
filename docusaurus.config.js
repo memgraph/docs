@@ -1,9 +1,9 @@
-const baseUrl = '/';
+const baseUrl = '/docs/';
 
 module.exports = {
   title: 'Memgraph Docs',
   tagline: 'Welcome to the Memgraph Docs site!',
-  url: 'https://docs.memgraph.com',
+  url: 'https://memgraph.com',
   baseUrl,
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -16,8 +16,8 @@ module.exports = {
   ],
   scripts: [
     {
-      src: `https://docs.memgraph.com/js/load-analytics.js`,
-      //src: `http://localhost:3000/js/load-analytics.js`,
+      src: `https://memgraph.com/docs/js/load-analytics.js`,
+      // src: `http://localhost:3000/docs/js/load-analytics.js`,
     },
     {
       src: 'https://kit.fontawesome.com/3a9f2eb5b9.js'
@@ -223,6 +223,7 @@ module.exports = {
     prism: {
       additionalLanguages: ['cypher', 'php'],
     },
+    hideableSidebar: true,
   },
   presets: [
     [
@@ -242,12 +243,13 @@ module.exports = {
           },
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: require.resolve('./src/css/custom.scss'),
         },
       },
     ],
   ],
   plugins: [
+    'docusaurus-plugin-sass',
     [
       '@docusaurus/plugin-content-docs',
       {
@@ -299,6 +301,17 @@ module.exports = {
         path: 'help-center',
         routeBasePath: 'help-center',
         sidebarPath: require.resolve('./sidebars/sidebarsHelpCenter.js'),
+        editUrl:
+          'https://github.com/memgraph/docs/tree/master/',
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'errors',
+        path: 'errors',
+        routeBasePath: 'errors',
+        sidebarPath: require.resolve('./sidebars/sidebarsErrors.js'),
         editUrl:
           'https://github.com/memgraph/docs/tree/master/',
       },
@@ -631,6 +644,10 @@ module.exports = {
             from: ['/memgraph/getting-started/querying',],
           },
           {
+            to: '/memgraph/connect-to-memgraph',
+            from: ['/memgraph/connection-methods',],
+          },
+          {
             to: '/memgraph/connect-to-memgraph/methods/drivers',
             from: ['/memgraph/getting-started/connecting-applications',],
           },
@@ -669,6 +686,10 @@ module.exports = {
           {
             to: '/memgraph/import-data',
             from: ['/memgraph/database-functionalities/import-data',],
+          },
+          {
+            to: '/memgraph/import-data/kafka',
+            from: ['/memgraph/import-data/kafka/overview',],
           },
           {
             to: '/memgraph/reference-guide/query-modules/available-query-modules',

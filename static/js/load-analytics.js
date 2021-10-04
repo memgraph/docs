@@ -20,7 +20,7 @@
       n.parentNode.insertBefore(t, n);
       analytics._loadOptions = e
     }; analytics.SNIPPET_VERSION = "4.13.1";
-    analytics.load("pY2fDe2NM9X7Bg8GUKLItCwaiHi0Xhm9");
+    analytics.load("CqNYSAW7IN6mk3psB5M7tb4FS6BD9fJx");
     analytics.page();
   }
 }();

@@ -9,6 +9,17 @@ sidebar_label: Changelog
 * Added support for parameters with `CREATE` clause.
 :::
 
+## v2.0.0 - TBA
+
+:::warning
+### Breaking Changes
+* Changed the `timestamp()` function to return `microseconds` instead of `milliseconds`.
+:::
+
+### Bug Fixes
+
+* Fixed planning of queries with `MERGE` clause. If a previously defined symbol is used as property value inside the `MERGE` clause, the planner will correctly use the label-property index if present.
+
 ## v1.6.1 - Jul 24, 2021
 
 ### Major Features and Improvements
