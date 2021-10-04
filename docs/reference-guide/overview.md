@@ -54,6 +54,12 @@ To learn more about streams and transformations take a look at the following pag
 * [Streams overview](/reference-guide/streams/overview.md)
 * [Transformation modules](/reference-guide/streams/transformation-modules/overview.md)
 
+## [Temporal types](/reference-guide/temporal_types/overview.md)
+
+Temporal data types store and manipulate time. To learn more, take a look at the overview page:
+
+* [Temporal types overview](/reference-guide/temporal_types/overview.md)
+
 ## [User privileges](./security.md)
 
 Memgraph comes with the option of granting, denying, or revoking a certain set of privileges to users or groups of users.
