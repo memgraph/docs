@@ -9,9 +9,9 @@ Temporal types can be stored as properties of a vertex or edge. The user can use
 
 name|description|
 :-:|:-:
-Duration|Data type that represents a duration.|/
-Date|Data type that represents a date.|/
-LocalTime|Data type that represents local time.|/
+Duration|Data type that represents a period of time.|/
+Date|Data type that represents a date with year, month and day.|/
+LocalTime|Data type that represents time within a day without timezone.|/
 LocalDateTime|Data type that represents a date and local time.|/
 
 Note, that all the types excluding Durations are ISO 8601 compliant
