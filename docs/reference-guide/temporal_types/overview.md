@@ -63,7 +63,7 @@ millisecond|This subtracts the days and returns the leftover as milliseconds.|/
 microsecond|This subtracts the days and returns the leftover as microseconds.|/
 nanosecond|This subtracts the days and returns the leftover as nanoseconds.|/
 
-Example
+Example:
 ```cypher
 MATCH (f:F1Laps) RETURN f.AIR123.minute 
 ```
