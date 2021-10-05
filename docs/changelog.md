@@ -4,6 +4,26 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v2.0.0 - Oct 5, 2021
+
+:::warning
+### Breaking Changes
+
+* Changed the `timestamp()` function to return `microseconds` instead of `milliseconds`.
+* Most of query modules C API functions are changed to return an `mgp_error` as a more fine grained way or error reporting. The only exceptions are the functions that free allocated memory (`mgp_free` and `mgp_global_free`) and destroy objects (`mgp_value_destroy`, `mgp_list_destory`, etc.). These functions kept their signature without return value.
+:::
+
+### Major Features and Improvements
+
+* Added support for parameters with `CREATE` clause in the following form: `CREATE (n $param)`.
+
+### Bug Fixes
+
+* Fixed planning of queries with `MERGE` clause. If a previously defined symbol is used as property value inside the `MERGE` clause, the planner will correctly use the label-property index if present.
+* Unused memory is correctly returned to OS when `FREE MEMORY` query is used. Before, Memgraph would free up the memory internally and not return it to the OS. Because of that Memgraph could allocate more memory from the OS than it's allowed.
+* Fixed recovery from durability files. Because of a wrong check, Memgraph could crash and leave the durability files in an invalid state making recovery not possible.
+* Fixed usage of `execute` keyword in queries. Because of the special way we handle the `EXECUTE` keyword from the `CREATE TRIGGER` query using that same keyword in other contexts caused Memgraph to crash.
+
 ## v1.6.1 - Jul 24, 2021
 
 ### Major Features and Improvements
