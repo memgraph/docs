@@ -202,7 +202,7 @@ op|result
 :-:|:-:
 duration + duration|duration|/
 duration - duration|duration|/
--duration|negation|/
+-duration|duration|/
 
 Date operations: 
 
