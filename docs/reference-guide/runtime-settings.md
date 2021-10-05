@@ -11,7 +11,7 @@ All the settings are persisted between multiple runs.
 
 | Setting name   | Description    |
 | -------------- | -------------- |
-| organization.name | Name of the organization using the instance of Memgraph. |
+| organization.name | Name of the organization using the instance of Memgraph (used for verifying the license key). |
 | enterprise.license | License key for Memgraph Enterprise |
 
 

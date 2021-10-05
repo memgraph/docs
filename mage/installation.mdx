@@ -11,8 +11,8 @@ import TabItem from '@theme/TabItem';
 
 To install MAGE through **Docker** or **Docker Hub**, you will only need
 [Docker](https://docs.docker.com/get-started/#download-and-install-docker). <br/>
-To install MAGE from **source**, you will need: **Python3**, **pytest**, **Make**,
-**CMake**, **Clang** and **Rust**.
+To install MAGE from **source**, you will need: **Python3**, **Make**,
+**CMake**, **Clang**, **UUID**, and **Rust**.
 
 <Tabs
   groupId="installation-method"
@@ -33,55 +33,52 @@ Memgraph has prepared a docker image on [**Docker Hub**](https://hub.docker.com/
 **1.** This is the only command you will need to make it run in your environment:
 
 ```shell
-docker run -p 7687:7687 memgraph/memgraph-mage
+docker run -p 7687:7687 memgraph/memgraph-mage:latest
+
 ```
 
 :::info
-Note that query modules are loaded into Memgraph on startup so if your instance
-was already running you will need to execute the following query to load them:
+You can download specific version of MAGE. For example if you want to download version `0.1`,
+you should run following command:
 
 ```shell
-CALL mg.load_all();
+docker run -p 7687:7687 memgraph/memgraph-mage:0.1
 ```
-
-If you want to find out more about loading query modules, visit [this
-guide](/usage/loading-modules.md).
 :::
+
+
 
   </TabItem>
 
   <TabItem value="docker">
 
-## Installing with Docker
+## Build of MAGE image from Github repository
 
-**1.** Make sure to have the `memgraph:latest` Docker Image either from [Memgraph](https://memgraph.com/download)
- or [Docker Hub](https://hub.docker.com/r/memgraph/memgraph).
+From github you can download specific version, or you can download what is currently on `main` branch.
 
-**2.** Download the MAGE source code from
-**[GitHub](https://github.com/memgraph/mage)** and build the **MAGE** tagged
+**0.** Download the MAGE source code from
+**[GitHub](https://github.com/memgraph/mage)**
+
+```shell
+git clone https://github.com/memgraph/mage.git && cd mage
+```
+
+**1.** Build the **MAGE** tagged
 Docker image with the following command:
 
 ```shell
-docker build . -t memgraph-mage
+docker build -t memgraph-mage .
 ```
 
-**3.** Start Memgraph with the following command and enjoy **MAGE**:
+**2.** Start Memgraph with the following command and enjoy **MAGE**:
 
 ```shell
-docker run -p 7687:7687 memgraph-mage
+docker run --rm -p 7687:7687 --name mage memgraph-mage
 ```
-
 :::info
-Note that query modules are loaded into Memgraph on startup, so if your instance
-was already running, you will need to execute the following query to load them:
-
-```shell
-CALL mg.load_all();
-```
-
-If you want to find out more about loading query modules, visit [this
-guide](/usage/loading-modules.md).
+If you made any new changes while **MAGE** Docker container is running, you need to stop it and rebuild whole image.
 :::
+
 
   </TabItem>
 
@@ -90,15 +87,23 @@ guide](/usage/loading-modules.md).
 ## Installing from source
 
 **1.** Download the MAGE source code from
-**[GitHub](https://github.com/memgraph/mage)** and run the `build` script. It
+**[GitHub](https://github.com/memgraph/mage)** and run the `setup` script. It
 will generate a `dist` directory with all the needed files.
 
 ```shell
-python3 build
+python3 setup build
 ```
 
 **2.** Copy the contents of the newly created `dist` directory to
 `/usr/lib/memgraph/query_modules`.
+
+:::info
+If you want to be quicker, you can specify a path for setup script to copy the built executables:
+
+```shell
+python3 setup build -p /usr/lib/memgraph/query_modules
+```
+:::
 
 **3.** Start Memgraph and enjoy **MAGE**!
 
@@ -106,13 +111,29 @@ python3 build
 Note that query modules are loaded into Memgraph on startup, so if your instance
 was already running, you will need to execute the following query to load them:
 
-```shell
+```cypher
 CALL mg.load_all();
 ```
+
+If your changes are not loaded, make sure to restart the instance by instancy by running
+`systemctl stop memgraph` and `systemctl start memgraph`.
 
 If you want to find out more about loading query modules, visit [this
 guide](/usage/loading-modules.md).
 :::
+
+## Advanced configuration
+
+#### Set different query_modules directory
+`setup` script offers you to set your local `mage/dist` folder as  default one for Memgraph configuration file
+(flag `--query-modules-directory` defined in `/etc/memgraph/memgraph.conf` file with following step:
+
+```
+python3 setup modules_storage
+```
+
+This way Memgraph will be looking for query modules inside `mage/dist` folder. Now you don't need to copy `mage/dist` folder to
+`/usr/lib/memgraph/query_modules` every time when you do `build`.
 
   </TabItem>
 </Tabs>

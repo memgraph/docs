@@ -226,6 +226,7 @@ module.exports = {
             },
           ],
         },
+        "reference-guide/temporal-types",
         "reference-guide/tensorflow",
         "database-functionalities/triggers",
         "reference-guide/enabling-enterprise",
