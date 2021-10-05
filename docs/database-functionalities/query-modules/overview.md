@@ -45,8 +45,8 @@ CALL module.procedure(arg1, arg2, ...) YIELD res1, res2, ...;
 ```
 
 Each procedure returns zero or more records, where each record contains named
-fields. The `YIELD` part is used to select fields we are interested in. If we
-are not interested in any fields, the `YIELD` part can be omitted.
+fields. The `YIELD` part is used to select fields we are interested in. If
+the procedure doesn't return any fields, then the `YIELD` part can be omitted.
 
 Procedures may be called standalone as the above, or as a part of a
 larger query. This is useful if we want the procedure to work on data the
@@ -56,11 +56,19 @@ query is producing. For example:
 MATCH (node) CALL module.procedure(node) YIELD result RETURN *;
 ```
 
+For **writeable procedures** we have some other limitations also:
+* the rest of the query has to be read-only
+* the writeable procedure call has to be the last cause in the query apart
+from the `RETURN` clause.
+The last example also works with writeable procedures because it satisfies all
+of these requirements.
+
 When we use `CALL` in a larger query, we have to explicitly
 `RETURN` from the query to get the results. Naturally, the `RETURN` is not
-needed if we perform updates after `CALL`. This follows the openCypher
-convention that read-only queries need to end with a `RETURN`, while queries
-which update something don't need to `RETURN` anything.
+needed if we perform updates after `CALL` or the called procedure is a
+writeable procedure. This follows the openCypher convention that read-only
+queries need to end with a `RETURN`, while queries which update something
+don't need to `RETURN` anything.
 
 If a procedure returns a record with a field name that may clash with some
 variable we already have in a query, that field name can be aliased into some
