@@ -38,7 +38,7 @@ docker run -p 7687:7687 memgraph/memgraph-mage:latest
 ```
 
 :::info
-Note that you can download specific version of MAGE. For example if you want to download version `0.1`,
+You can download specific version of MAGE. For example if you want to download version `0.1`,
 you should run following command:
 
 ```shell
@@ -52,10 +52,18 @@ docker run -p 7687:7687 memgraph/memgraph-mage:0.1
 
   <TabItem value="docker">
 
-## Installing with Docker
+## Build of MAGE image from Github repository
 
-**1.** Download the MAGE source code from
-**[GitHub](https://github.com/memgraph/mage)** and build the **MAGE** tagged
+From github you can download specific version, or you can download what is currently on `main` branch.
+
+**0.** Download the MAGE source code from
+**[GitHub](https://github.com/memgraph/mage)**
+
+```shell
+git clone https://github.com/memgraph/mage.git && cd mage
+```
+
+**1.** Build the **MAGE** tagged
 Docker image with the following command:
 
 ```shell
@@ -65,8 +73,12 @@ docker build -t memgraph-mage .
 **2.** Start Memgraph with the following command and enjoy **MAGE**:
 
 ```shell
-docker run --rm -p 7687:7687 memgraph-mage
+docker run --rm -p 7687:7687 --name mage memgraph-mage
 ```
+:::info
+If you made any new changes while **MAGE** Docker container is running, you need to stop it and rebuild whole image.
+:::
+
 
   </TabItem>
 
