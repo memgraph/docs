@@ -25,6 +25,14 @@ modules that can be loaded into Memgraph. You can find more information on query
 modules in the official [Memgraph
 documentation](https://memgraph.com/docs/memgraph/database-functionalities/query-modules/built-in-query-modules).
 
+## Memgraph compatibility
+With changes in Memgraph API, MAGE started to track version numbers. Check out the table below which will reveal MAGE compatibility with Memgraph versions.
+
+| MAGE version | Memgraph version  |
+| ------------ | ----------------- |
+| >= 1.0       | >= 2.0.0          |
+| ^0           | >= 1.4.0 <= 1.6.1 |
+
 ## Spellbook 📖 - Currently available modules
 
 | Algorithms                                                                         | Lang   | Description                                                                                                                                                                                                                       |
@@ -39,10 +47,10 @@ documentation](https://memgraph.com/docs/memgraph/database-functionalities/query
 | [union_find](/mage/query-modules/python/union-find)                                | Python | A module with an algorithm that enables the user to check whether the given nodes belong to the same connected component.                                                                                                         |
 | [node_similartiy](/mage/query-modules/python/node-similarity)                      | Python | A module that contains similarity measures for calculating the similarity between two nodes.                                                                                                                                      |
 | [node2vec_online](/mage/query-modules/python/node2vec-online)                      | Python | An algorithm for calculating node embeddings as new edges arrive                                                                                                                                                                  |
-| [weakly_connected_components](/mage/query-modules/cpp/weakly_connected_components) | C++    | A module that finds weakly connected components in a graph.                                                                                                                                                                       |
-| [biconnected_components](/mage/query-modules/cpp/biconnected_components)           | C++    | Algorithm for calculating maximal biconnected subgraph. A biconnected subgraph is a subgraph with a property that if any vertex were to be removed, the graph will remain connected.                                              |
-| [bipartite_matching](/mage/query-modules/cpp/bipartite_matching)                   | C++    | Algorithm for calculating maximum bipartite matching, where matching is a set of nodes chosen in such a way that no two edges share an endpoint.                                                                                  |
+| [weakly_connected_components](/mage/query-modules/cpp/weakly-connected-components) | C++    | A module that finds weakly connected components in a graph.                                                                                                                                                                       |
+| [biconnected_components](/mage/query-modules/cpp/biconnected-components)           | C++    | Algorithm for calculating maximal biconnected subgraph. A biconnected subgraph is a subgraph with a property that if any vertex were to be removed, the graph will remain connected.                                              |
+| [bipartite_matching](/mage/query-modules/cpp/bipartite-matching)                   | C++    | Algorithm for calculating maximum bipartite matching, where matching is a set of nodes chosen in such a way that no two edges share an endpoint.                                                                                  |
 | [cycles](/mage/query-modules/cpp/cycles)                                           | C++    | Algorithm for detecting cycles on graphs                                                                                                                                                                                          |
 | [bridges](/mage/query-modules/cpp/bridges)                                         | C++    | A bridge is an edge, which when deleted, increases the number of connected components. The goal of this algorithm is to detect edges that are bridges in a graph.                                                                 |
-| [betweenness centrality](/mage/query-modules/cpp/betweenness_centrality)           | C++    | The betweenness centrality of a node is defined as the sum of the of all-pairs shortest paths that pass through the node divided by the number of all-pairs shortest paths in the graph. The algorithm has O(nm) time complexity. |
-| [uuid_generator](/mage/query-modules/cpp/uuid_generator)                           | C++    | A module that generates a new universally unique identifier (UUID).                                                                                                                                                               |
+| [betweenness centrality](/mage/query-modules/cpp/betweenness-centrality)           | C++    | The betweenness centrality of a node is defined as the sum of the of all-pairs shortest paths that pass through the node divided by the number of all-pairs shortest paths in the graph. The algorithm has O(nm) time complexity. |
+| [uuid_generator](/mage/query-modules/cpp/uuid-generator)                           | C++    | A module that generates a new universally unique identifier (UUID).                                                                                                                                                               |
