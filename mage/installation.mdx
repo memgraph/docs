@@ -33,20 +33,8 @@ Memgraph has prepared a docker image on [**Docker Hub**](https://hub.docker.com/
 **1.** This is the only command you will need to make it run in your environment:
 
 ```shell
-docker run -p 7687:7687 memgraph/memgraph-mage
+docker run -p 7687:7687 memgraph/memgraph-mage:latest
 ```
-
-:::info
-Note that query modules are loaded into Memgraph on startup so if your instance
-was already running you will need to execute the following query to load them:
-
-```shell
-CALL mg.load_all();
-```
-
-If you want to find out more about loading query modules, visit [this
-guide](/usage/loading-modules.md).
-:::
 
   </TabItem>
 
