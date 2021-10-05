@@ -10,7 +10,7 @@ Some of Memgraph's features are only available in Enterprise Edition. They are
 present in the same binary but protected by a license key.
 
 If you're interested in Memgraph Enterprise, you need to fill out the following
-[form](https://memgraph.slack.com/archives/C02E537KGNA/p1633431478042100) where one of the fields is the organization name.
+[form](https://docs.google.com/forms/d/e/1FAIpQLSddH_XV000h58MhwJwwrUu2L3uTkejEDPqvstl6eMou_AW-yw/viewform) where one of the fields is the organization name.
 
 After getting your license key, using the [runtime setting](runtime-settings)
 you set the `organization.name` to the same organization name you used for the
