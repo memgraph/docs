@@ -149,7 +149,7 @@ return mgp.Record(args=args_copy, vertex_count=vertex_count,
 
 Writeable procedures can be implemented in a very similar way as read-only
 procedures. The only difference is writeable procedures receive mutable objects,
-therefore they can create or delete vertices or edges, modify the properties of
+therefore they can create and delete vertices or edges, modify the properties of
 vertices and edges and they can add or remove labels of vertices.
 
 We can implement a very simple writeable query module similarly to read-only
