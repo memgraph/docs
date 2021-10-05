@@ -85,7 +85,7 @@ The smallest year is `0` and the highest is `9999`.
 
 Example:
 ```cypher
-CREATE (:Birthdays {Arnold : date("1947-07-30")})
+CREATE (:Person {birthday : date("1947-07-30")})
 ```
 
 For maps, three fields are available: `year`, `month`, `day`.
