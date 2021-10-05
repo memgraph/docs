@@ -34,7 +34,19 @@ Memgraph has prepared a docker image on [**Docker Hub**](https://hub.docker.com/
 
 ```shell
 docker run -p 7687:7687 memgraph/memgraph-mage:latest
+
 ```
+
+:::info
+Note that you can download specific version of MAGE. For example if you want to download version `0.1`,
+you should run following command:
+
+```shell
+docker run -p 7687:7687 memgraph/memgraph-mage:0.1
+```
+:::
+
+
 
   </TabItem>
 
@@ -42,34 +54,19 @@ docker run -p 7687:7687 memgraph/memgraph-mage:latest
 
 ## Installing with Docker
 
-**1.** Make sure to have the `memgraph:latest` Docker Image either from [Memgraph](https://memgraph.com/download)
- or [Docker Hub](https://hub.docker.com/r/memgraph/memgraph).
-
-**2.** Download the MAGE source code from
+**1.** Download the MAGE source code from
 **[GitHub](https://github.com/memgraph/mage)** and build the **MAGE** tagged
 Docker image with the following command:
 
 ```shell
-docker build . -t memgraph-mage
+docker build -t memgraph-mage .
 ```
 
-**3.** Start Memgraph with the following command and enjoy **MAGE**:
+**2.** Start Memgraph with the following command and enjoy **MAGE**:
 
 ```shell
-docker run -p 7687:7687 memgraph-mage
+docker run --rm -p 7687:7687 memgraph-mage
 ```
-
-:::info
-Note that query modules are loaded into Memgraph on startup, so if your instance
-was already running, you will need to execute the following query to load them:
-
-```shell
-CALL mg.load_all();
-```
-
-If you want to find out more about loading query modules, visit [this
-guide](/usage/loading-modules.md).
-:::
 
   </TabItem>
 
