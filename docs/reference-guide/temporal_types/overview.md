@@ -5,7 +5,7 @@ sidebar_label: Temporal types overview
 slug: /reference-guide/temporal_types/
 ---
 
-Temporal types can be stored as properties of a graph. The user can use cypher queries or write/read procedures to write/read these properties. The following table summarizes the temporal types that memgraph currently supports:
+Temporal types can be stored as properties of a vertex or edge. The user can use cypher queries or procedures to read or write these properties. The following table summarizes the temporal types that Memgraph currently supports:
 
 name|description|
 :-:|:-:
