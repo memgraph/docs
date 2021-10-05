@@ -179,7 +179,7 @@ def write_procedure(context: mgp.ProcCtx,
 ```
 
 This example procedure creates a new vertex with the specified property and
-connects it to all existing vertex which has the same property with the same
+connects it to all existing vertices which have the same property with the same
 name. It returns one field called `created_vertex` which contains the newly
 created vertex.
 
