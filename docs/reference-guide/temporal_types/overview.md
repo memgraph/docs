@@ -14,7 +14,7 @@ Date|Data type that represents a date with year, month and day.|/
 LocalTime|Data type that represents time within a day without timezone.|/
 LocalDateTime|Data type that represents a date and local time.|/
 
-Note, that all the types excluding Durations are ISO 8601 compliant
+Note, that all the types excluding Durations are ISO 8601 compliant.
 
 ## Duration
 You can create `Duration` from a string or a map by calling the function `Duration`.
