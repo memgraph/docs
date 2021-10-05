@@ -5,11 +5,12 @@ module.exports = {
     {
       type: "category",
       label: "Usage",
-      items: [
-        "usage/calling-procedures",
-        "usage/create-a-new-module",
-        "usage/loading-modules",
-      ],
+      items: ["usage/calling-procedures", "usage/loading-modules"],
+    },
+    {
+      type: "category",
+      label: "Tutorials",
+      items: ["tutorials/create-a-new-module"],
     },
     {
       type: "category",
@@ -30,6 +31,7 @@ module.exports = {
         "query-modules/python/set-cover",
         "query-modules/python/tsp",
         "query-modules/python/union-find",
+        "query-modules/cpp/uuid-generator",
         "query-modules/python/vrp",
         "query-modules/cpp/weakly-connected-components",
       ],

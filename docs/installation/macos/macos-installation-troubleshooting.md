@@ -65,7 +65,7 @@ docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' 9397
 
 The command above will yield the IP address that should be used when connecting
 to Memgraph via **Memgraph Lab** or **mgconsole** as described in
-the [querying](/connect-to-memgraph/overview.md) section. Just replace
+the [querying](/connect-to-memgraph/overview.mdx) section. Just replace
 `HOST` from the following command with the appropriate IP address:
 
 ```console

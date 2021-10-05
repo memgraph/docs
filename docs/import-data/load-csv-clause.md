@@ -4,137 +4,235 @@ title: LOAD CSV Cypher clause
 sidebar_label: LOAD CSV Cypher clause
 ---
 
+import Tabs from "@theme/Tabs"; import TabItem from "@theme/TabItem";
+
 The `LOAD CSV` clause enables you to load and use data from a CSV file of your
-choosing in a row-based manner, within a query. We support the Excel CSV dialect,
-as it's the most commonly used one.
+choosing in a row-based manner, within a query. We support the Excel CSV
+dialect, as it's the most commonly used one. For the syntax of the clause,
+please check the [Cypher manual](/cypher-manual/clauses/load-csv).
 
-The syntax of the clause is:
+The clause reads row by row from a CSV file and binds the contents of the parsed
+row to the variable you specified.
 
-```plaintext
-LOAD CSV FROM <csv-file-path> ( WITH | NO ) HEADER [IGNORE BAD] [DELIMITER <delimiter-string>] [QUOTE <quote-string>] AS <variable-name>
-```
+:::info For more detailed information about the LOAD CSV Cypher clause, check
+our **[Reference guide](/reference-guide/import-data/load-csv-clause.md)**.
+:::
 
-* `<csv-file-path` is a string holding the path to the CSV file. There are no
-restrictions on where in your filesystem the file can be located, as long as
-the path is valid (i.e. the file exists).
+To work with the LOAD CSV clause, we need to have access to our files. If
+working with Docker, check our [Docker
+guide](/database-functionalities/work-with-docker.md) on how to access files
+from your local filesystem:
 
-* `( WITH | NO ) HEADER ` flag specifies whether the CSV file is to be
-parsed as though it has or hasn't got a header.
+Below, you can find two examples of how to use the CSV Import Tool depending on
+the complexity of your data:
+- [One type of nodes and relationships](#one-type-of-nodes-and-relationships)
+- [Multiple types of nodes and
+  relationships](#multiple-types-of-nodes-and-relationships)
 
-* `IGNORE BAD` flag specifies whether rows containing errors should be ignored or
-not. If it's set, the parser attempts to return the first valid row from the CSV
-file. If it isn't set, an exception will be thrown on first invalid row
-encountered.
+## Examples
 
-* `DELIMITER <delimiter-string>` option enables you to specify the CSV delimiter
-character. If it isn't set, the default delimiter character `,` is assumed.
+### One type of nodes and relationships
 
-* `QUOTE <quote-string>` option enables you to specify the CSV quote character.
-If it isn't set, the default quote character `"` is assumed.
+<Tabs
+  groupId="platform"
+  defaultValue="headerin"
+  values={[
+    {label: 'With CSV header', value: 'headerin'},
+    {label: 'Without CSV header', value: 'headerout'}
+  ]}>
+  <TabItem value="headerin">
 
-* `<variable-name>` is a symbolic name representing the variable to which the
-contents of the parsed row will be bound to, enabling access to the row contents
-later in the query.
-
-The clause reads row by row from a CSV file, and binds the contents of the
-parsed row to the variable you specified.
-
-It's important to note that the parser parses the values as strings. It's up to
-the user to convert the parsed row values to the appropriate type. This can be
-done using the built-in conversion functions such as `ToInteger`, `ToFloat`,
-`ToBoolean` etc. Consult the documentation on the available conversion functions.
-
-Depending on how you set the `HEADER` option (`WITH` or `NO`), a row will
-be parsed as either a map or a list.
-
-If the `WITH HEADER` option is set, the very first line in the file will be
-parsed as the header, and any remaining rows will be parsed as regular rows.
-The value bound to the row variable will be a map of the form:
-
-```plaintext
-{ ( "header_field" : "row_value" )? ( , "header_field" : "row_value" )* }
-```
+Depending on how you set the `HEADER` option (`WITH` or `NO`), a row will be
+parsed as either a map or a list.
 
 To access a given field, you can use the property lookup syntax. Let's assume
-that the CSV file contents are as follows:
+that the contents of `people_nodes.csv` are as follows:
 
 ```plaintext
-x|y|z
-1|2|3
-4|5|6
+id,name
+100,Daniel
+101,Alex
+102,Sarah
+103,Mia
+104,Lucy
+```
+
+The contents of `people_relationships.csv` are the following:
+
+```plaintext
+id_from,id_to
+100,101
+100,102
+100,103
+101,103
+102,104
+```
+The following query will load row by row from the file, and create a new node
+for each row with properties based on the parsed row values:
+
+```cypher
+LOAD CSV FROM "/path-to/people_nodes.csv" WITH HEADER AS row
+CREATE (n:Person {id: row.id, name: row.name});
+```
+
+With the initial nodes in place, you can now create relationships between them:
+
+```cypher
+LOAD CSV FROM "/path-to/people_relationships.csv"  WITH HEADER AS row
+MATCH (p1:Person {id: row.id_from}), (p2:Person {id: row.id_to})
+CREATE (p1)-[:IS_FRIENDS_WITH]->(p2)
+```
+
+</TabItem>
+<TabItem value='headerout'>
+
+Let's assume that the contents of `people_nodes.csv` are as follows:
+
+```plaintext
+100,Daniel
+101,Alex
+102,Sarah
+103,Mia
+104,Lucy
+```
+
+The contents of `people_relationships.csv` are the following:
+
+```plaintext
+100,101
+100,102
+100,103
+101,103
+102,104
 ```
 
 The following query will load row by row from the file, and create a new node
 for each row with properties based on the parsed row values:
 
 ```cypher
-LOAD CSV FROM "xyz.csv" WITH HEADER DELIMITER "|" AS row
-CREATE (n:A {x: ToInteger(row.x), y: ToInteger(row.y), z: ToInteger(row.z)}) ;
+LOAD CSV FROM "/path-to/people_nodes.csv" NO HEADER AS row
+CREATE (n:Person {id: row[0], name: row[1]}) ;
 ```
 
-If the `NO HEADER` option is set, then each row is parsed as a list of values.
-The contents of the row can be accessed using the list index syntax. Note that
-in this mode, there are no restrictions on the number of values a row contains.
-This isn't recommended, as the user must manually handle the varying number of
-values in a row.
+With the initial nodes in place, you can now create relationships between them:
 
-Let's assume that the CSV file contents are as follows:
+```cypher
+LOAD CSV FROM "/path-to/people_relationships.csv" NO HEADER AS row
+MATCH (p1:Person {id: row[0]}), (p2:Person {id: row[1]})
+CREATE (p1)-[:IS_FRIENDS_WITH]->(p2)
+```
 
-```plaintext
-1|2|3
-4|5|6
+</TabItem>
+</Tabs>
+
+### Multiple types of nodes and relationships
+
+In the case of a more complex graph, we have to deal with multiple node and
+relationship types. Let's assume we have the following example:
+
+<Tabs
+  groupId="csv"
+  defaultValue="pn"
+  values={[
+    {label: '1. people_nodes.csv', value: 'pn'},
+    {label: '2. people_relationships.csv', value: 'pr'},
+    {label: '3. restaurants_nodes.csv', value: 'rn'},
+    {label: '4. restaurants_relationships.csv', value: 'rr'}
+  ]}>
+<TabItem value="pn">
+
+Add the following to the file `people_nodes.csv`:
+```csv
+id,name,age,city
+100,Daniel,30,London
+101,Alex,15,Paris
+102,Sarah,17,London
+103,Mia,25,Zagreb
+104,Lucy,21,Paris
 ```
 
 The following query will load row by row from the file, and create a new node
 for each row with properties based on the parsed row values:
 
-```cypher
-LOAD CSV FROM "xyz.csv" NO HEADER DELIMITER "|" AS row
-CREATE (n:A {x: ToInteger(row[0]), y: ToInteger(row[1]), z: ToInteger(row[2])}) ;
+  ```cypher
+  LOAD CSV FROM "/path-to/people_nodes.csv" WITH HEADER AS row
+  CREATE (n:Person {id: row.id, name: row.name, age: ToInteger(row.age), city: row.city});
   ```
 
-The clause can't stand on its own, meaning there has to be at least one more
-clause in the query, in addition to it. In other words, the following query will
-throw an exception:
+</TabItem>
+<TabItem value="pr">
 
-```cypher
-LOAD CSV FROM "file.csv" WITH HEADER AS row ;
+Each person from `people_relationships.csv` is connected to another person they are
+friends with. This is represented with the following example:
+
+```csv
+first_person,second_person,met_in
+100,102,2014
+103,101,2021
+102,103,2005
+101,104,2005
+104,100,2018
+101,102,2017
+100,103,2001
 ```
 
-On the other hand, the following query is valid:
+The following query will create relationships between the people nodes:
 
 ```cypher
-MERGE (n:A) LOAD CSV FROM "file.csv" WITH HEADER AS row ;
+LOAD CSV FROM "/path-to/people_relationships.csv" WITH HEADER AS row
+MATCH (p1:Person {id: row.first_person})
+MATCH (p2:Person {id: row.second_person})
+CREATE (p1)-[f:IS_FRIENDS_WITH]->(p2)
+SET f.met_in = row.met_in;
 ```
 
-Note that the row variable doesn't have to be used in any subsequent clause.
+</TabItem>
+<TabItem value="rn">
 
-Also, it's important to note how the `LOAD CSV` result exhaustion works. Let's
-assume the following query:
+We have a list of restaurants people ate at in the file `restaurants_nodes.csv`:
+
+```csv
+id,name,menu
+200, Mc Donalds, Fries;BigMac;McChicken;Apple Pie
+201, KFC, Fried Chicken;Fries;Chicken Bucket
+202, Subway, Ham Sandwich;Turkey Sandwich;Foot-long
+203, Dominos, Pepperoni Pizza;Double Dish Pizza;Cheese filled Crust
+```
+
+The following query will create new nodes for each restaurant:
 
 ```cypher
-MATCH (n)
-LOAD CSV FROM "file.csv" WITH HEADER as row
-SET n.p = row ;
+LOAD CSV FROM "/path-to/restaurants_nodes.csv" WITH HEADER AS row
+CREATE (n:Restaurant {id: row.id, name: row.name, menu: row.menu});
 ```
 
-Let's say the `MATCH (n)` clause finds five nodes, whereas the "file.csv" has
-only 2 rows. Then only the first two nodes returned by the `MATCH (n)` will have
-their properties set, using the two rows from the file.
-Similarly, if the `MATCH (n)` clause finds two nodes, whereas the "file.csv" has
-five rows, the two nodes returned by `MATCH (n)` will have their properties
-set with values from the first two rows of the file.
-In general, the clause that exhausts its results sooner will dictate how many
-times the "loop" will be executed.
+</TabItem>
+<TabItem value="rr">
 
-Finally, note that the `LOAD CSV` clause can be used at most once per query.
-Trying to use multiple `LOAD CSV` clauses within a single query will throw an exception.
-In other words, queries such as
+We file `restaurants_relationships.csv` contains a list of people and the
+restaurants they visited:
+
+```csv
+PERSON_ID,REST_ID,liked
+100,200,true
+103,201,false
+104,200,true
+101,202,false
+101,203,false
+101,200,true
+102,201,true
+```
+
+The following query will create relationships between people and restaurants
+where they ate:
 
 ```cypher
-LOAD CSV FROM "x.csv" WITH HEADER as x
-LOAD CSV FROM "y.csv" WITH HEADER as y
-CREATE (n:A { p1 : x, p2 : y });
+LOAD CSV FROM "/path-to/restaurants_relationships.csv" WITH HEADER AS row
+MATCH (p1:Person {id: row.PERSON_ID})
+MATCH (re:Restaurant {id: row.REST_ID})
+CREATE (p1)-[ate:ATE_AT]->(re)
+SET ate.liked = ToBoolean(row.liked);
 ```
 
-are invalid.
+</TabItem>
+</Tabs>

@@ -6,7 +6,7 @@ slug: /
 ---
 
 **MAGE**, also known as **Memgraph Advanced Graph Extensions**, is an
-open-source repository that contains **graph algorithms** and **modules** in a form of query modules
+open-source repository that contains **graph algorithms** and **modules** in the form of query modules
 written by the team behind Memgraph and its users. You can find and contribute implementations
 of various algorithms in multiple programming languages, all runnable inside
 Memgraph. This project aims to give everyone the tools they need to tackle the
@@ -23,7 +23,7 @@ Memgraph introduces the concept of **query modules**, user-defined procedures
 that extend the **Cypher query language**. These procedures are grouped into
 modules that can be loaded into Memgraph. You can find more information on query
 modules in the official [Memgraph
-documentation](https://docs.memgraph.com/memgraph/database-functionalities/query-modules/built-in-query-modules).
+documentation](https://memgraph.com/docs/memgraph/database-functionalities/query-modules/built-in-query-modules).
 
 ## Spellbook 📖 - Currently available modules
 
@@ -45,4 +45,5 @@ documentation](https://docs.memgraph.com/memgraph/database-functionalities/query
 | [bipartite_matching](/mage/query-modules/cpp/bipartite-matching)                   | C++    | Algorithm for calculating maximum bipartite matching, where matching is a set of nodes chosen in such a way that no two edges share an endpoint.                                                             |
 | [bridges](/mage/query-modules/cpp/bridges)                                         | C++    | A bridge is an edge, which when deleted, increases the number of connected components. Goal of this algorithm is to detect edges which are bridges in graph.                                                                |
 | [cycles](/mage/query-modules/cpp/cycles)                                           | C++    | Algorithm for detecting cycles on graphs                                                                |
+| [uuid_generator](/mage/query-modules/cpp/uuid-generator) | C++    | A module that generates string UUIDs which can be stored as properties on nodes or edges.                                      |
 | [weakly_connected_components](/mage/query-modules/cpp/weakly-connected-components) | C++    | A module that finds weakly connected components in a graph.                                      |
