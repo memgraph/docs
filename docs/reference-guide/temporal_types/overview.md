@@ -21,7 +21,7 @@ You can create `Duration` from a string or a map by calling the function `Durati
 
 For strings, the duration format is:
 
-`P[nD]T[nH][nM][nS]` n stands for number which can be a fraction  and the capital letters are used as separator with each field in `[]` being optional. For strings, Memgraph only allows one field to be of type double. However, for maps, every field can be a double, an int or a mixture of both. Note, we support negative durations.
+`P[nD]T[nH][nM][nS]` n stands for number which can be a fraction and the capital letters are used as separator with each field in `[]` being optional. For strings, Memgraph only allows one field to be a fraction. However, for maps, every field can be a double, an int or a mixture of both. Note, we support negative durations.
 
 Symbol table
 
@@ -37,7 +37,7 @@ Example:
 CREATE (:F1Laps {AIR123 : duration("PT2M2.33S")})
 ```
 
-Maps can contain the following six fields: `day`, `hour`, `minute`, `second`, `millisecond` and `microsecond`
+Maps can contain the following six fields: `day`, `hour`, `minute`, `second`, `millisecond` and `microsecond`.
 
 Example:
 ```cypher
@@ -49,10 +49,9 @@ At this point, it must be pointed out that durations internally hold microsecond
 ```cypher
 CREATE (:F1Laps {AIR123 : duration({minute:2, seconds:-2, microseconds:-33})})
 ```
-This converts minutes, seconds to microseconds and effectively produces the following equation: `minutes - seconds - microseconds`. 
+This converts `minutes`, `seconds` to `microseconds` and effectively produces the following equation: `minutes - seconds - microseconds`. 
 
-Duration properties:
-You can access the individual fields of durations through their properties as follows:
+Each of the individual fields of a duration can be accessed through its properties as follows:
 
 name|description
 :-:|:-:
@@ -82,7 +81,7 @@ Y|Year|/
 M|Month|/
 S|Second|/
 
-The lowest year is `0` and the highest is `9999`.
+The smallest year is `0` and the highest is `9999`.
 
 Example:
 ```cypher
@@ -95,8 +94,8 @@ Example:
 ```cypher
 CREATE (:Birthdays {Arnold : date({year:1947, month:7, day:30})})
 ```
-Date properties:
-You can access individual fields of dates through their properties:
+
+You can access the individual fields of a date through its properties:
 
 name|description
 :-:|:-:
@@ -134,8 +133,8 @@ Example:
 ```cypher
 CREATE (:School {Calculus : LocalTime({hour:9, minute:15})})
 ```
-LocalTime properties:
-You can access the individual fields of LocalTime through their properties:
+
+You can access the individual fields of a LocalTime through its properties:
 
 name|description
 :-:|:-:
@@ -175,7 +174,7 @@ Example:
 ```cypher
 CREATE (:Flights {AIR123 : LocalDateTime(year:2021, month:10, day:5, hour:14, minute:15)})
 ```
-LocalDateTime properties:
+
 You can access the individual fields of LocalDateTime through its properties:
 
 name|description
