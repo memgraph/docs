@@ -10,7 +10,12 @@ sidebar_label: Changelog
 ### Breaking Changes
 
 * Changed the `timestamp()` function to return `microseconds` instead of `milliseconds`.
-* Most of query modules C API functions are changed to return an `mgp_error` as a more fine grained way or error reporting. The only exceptions are the functions that free allocated memory (`mgp_free` and `mgp_global_free`) and destroy objects (`mgp_value_destroy`, `mgp_list_destory`, etc.). These functions kept their signature without return value.
+* Most of the query modules C API functions are changed to return a `mgp_error`
+  as a more fine-grained way of error reporting. The only exceptions are the
+  functions that free allocated memory (`mgp_free` and `mgp_global_free`) and
+  destroy objects (`mgp_value_destroy`, `mgp_list_destory`, etc.) which remain
+  the same.
+* The first user created using the `CREATE USER` query will have all the privileges granted to him. Previously, you could've locked yourself out of Memgraph by creating a user and immediately disconnecting.
 :::
 
 ### Major Features and Improvements

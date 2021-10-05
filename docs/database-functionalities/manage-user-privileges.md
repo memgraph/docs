@@ -4,6 +4,13 @@ title: User privileges (Enterprise)
 sidebar_label: User privileges (Enterprise)
 ---
 
+:::warning
+This is an Enterprise feature.
+If the Memgraph Enterprise is not activated all the created users will be granted
+all of the privileges.
+Regardless, all of the previously defined privileges will still be applied.
+:::
+
 Most databases have multiple users accessing and modifying
 data within the database. This might pose a serious security concern for the
 system administrators that wish to grant only certain privileges to certain
@@ -79,30 +86,13 @@ user management within an internal database of a fictitious company.
 
 ## Creating an administrator
 
-As it was stated in the introduction, after the first user is created, Memgraph
-will execute a query for a given user if the effective status of a corresponding
-privilege evaluates to `GRANT`. As a corollary, the person that created the
-first user might not be able to perform any meaningful action after their
-session had ended. To prevent that from happening, we strongly recommend
-the first created user to be an administrator which is granted all privileges.
-
+After the first user is created, Memgraph will grant all the privileges to him.
 Therefore, let's create a user named `admin` and set its' password to `0000`.
 This can be done by executing:
 
 ```cypher
   CREATE USER admin IDENTIFIED BY '0000';
 ```
-
-Granting all privileges to our `admin` user can be done as follows:
-
-```cypher
-  GRANT ALL PRIVILEGES to admin;
-```
-
-At this point, the current user can close their session and log into a new
-one as an `admin` user they have just created. The remainder of the article
-is written from the viewpoint of an administrator which is granted
-all privileges.
 
 ## Creating other users
 
