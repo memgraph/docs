@@ -6,7 +6,7 @@ sidebar_label: User privileges (Enterprise)
 
 :::warning
 This is an Enterprise feature.
-If the Memgraph Enterprise is not activated all the created users will be granted
+If the Memgraph Enterprise is not activated, all the created users will be granted
 all of the privileges.
 Regardless, all of the previously defined privileges will still be applied.
 :::
@@ -86,7 +86,7 @@ user management within an internal database of a fictitious company.
 
 ## Creating an administrator
 
-After the first user is created, Memgraph will grant all the privileges to him.
+After the first user is created, Memgraph will grant all the privileges to them.
 Therefore, let's create a user named `admin` and set its' password to `0000`.
 This can be done by executing:
 
