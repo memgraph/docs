@@ -21,9 +21,7 @@ You can create `Duration` from a string or a map by calling the function `durati
 
 For strings, the duration format is:
 
-`P[nD]T[nH][nM][nS]` n stands for number which can be a fraction and the capital letters are used as separator with each field in `[]` being optional. For strings, Memgraph only allows one field to be a fraction. However, for maps, every field can be a double, an int or a mixture of both. Note, we support negative durations.
-
-Symbol table
+`P[nD]T[nH][nM][nS]` n stands for number and the capital letters are used as a separator with each field in `[]` marked optional. For strings Memgraph only allows the last field to be a double, e.g, `P2DT2.5H`. However, for maps, every field can be a double, an int or a mixture of both. Note, we support negative durations.
 
 name|description
 :-:|:-:
@@ -34,20 +32,20 @@ S|Seconds|/
 
 Example:
 ```cypher
-CREATE (:F1Laps {AIR123 : duration("PT2M2.33S")})
+CREATE (:F1Laps {lap : duration("PT2M2.33S")})
 ```
 
 Maps can contain the following six fields: `day`, `hour`, `minute`, `second`, `millisecond` and `microsecond`.
 
 Example:
 ```cypher
-CREATE (:F1Laps {AIR123 : duration({minute:2, seconds:2, microseconds:33})})
+CREATE (:F1Laps {lap : duration({minute:2, seconds:2, microseconds:33})})
 ```
 
 At this point, it must be pointed out that durations internally hold microseconds. Each of the fields specified above are first converted to microseconds and then reduced by addition to a single value. This has an interesting use case:
 
 ```cypher
-CREATE (:F1Laps {AIR123 : duration({minute:2, seconds:-2, microseconds:-33})})
+CREATE (:F1Laps {lap : duration({minute:2, seconds:-2, microseconds:-33})})
 ```
 This converts `minutes`, `seconds` to `microseconds` and effectively produces the following equation: `minutes - seconds - microseconds`. 
 
@@ -65,7 +63,7 @@ nanosecond|This subtracts the days and returns the leftover as nanoseconds.|/
 
 Example:
 ```cypher
-MATCH (f:F1Laps) RETURN f.AIR123.minute 
+MATCH (f:F1Laps) RETURN f.lap.minute 
 ```
 
 ## Date
@@ -73,13 +71,11 @@ You can create `Date` from a string or map by calling the function `Date`. For s
 
 `YYYY-MM-DD` or `YYYYMMDD` or `YYYY-MM`
 
-Symbol table:
-
 name|description
 :-:|:-:
 Y|Year|/
 M|Month|/
-S|Second|/
+D|Day|/
 
 The smallest year is `0` and the highest is `9999`.
 
@@ -92,7 +88,7 @@ For maps, three fields are available: `year`, `month`, `day`.
 
 Example:
 ```cypher
-CREATE (:Birthdays {Arnold : date({year:1947, month:7, day:30})})
+CREATE (:Person {birthday: date({year:1947, month:7, day:30})})
 ```
 
 You can access the individual fields of a date through its properties:
@@ -105,14 +101,12 @@ day|Returns the day field|/
 
 Example:
 ```cypher
-MATCH (a:Birthdays) RETURN f.Arnold.year
+MATCH (b:Person) RETURN b.birthday.year
 ```
 ## LocalTime
 You can create `LocalTime` from a string or map by calling the function `localtime`. For strings, the local time format is specified by the ISO 8601:
 
 `[T]hh:mm:ss` or `[T]hh:mm` or `[T]hhmmss` or `[T]hhmm` or `[T]hh`
-
-Symbol table:
 
 name|description
 :-:|:-:
@@ -146,14 +140,12 @@ microsecond|Returns the microsecond field|/
 
 Example:
 ```cypher
-MATCH (s:School) RETURN f.Calculus.hour
+MATCH (s:School) RETURN s.Calculus.hour
 ```
 ## LocalDateTime
 You can create `LocalDateTime` from a string or map by calling the function `localdatetime`. For strings, the local time format is specified by the ISO 8601:
 
 `YYYY-MM-DDThh:mm:ss` or `YYYY-MM-DDThh:mm` or `YYYYMMDDThhmmss` or `YYYYMMDDThhmm` or `YYYYMMDDThh`
-
-Symbol table:
 
 name|description
 :-:|:-:
@@ -218,6 +210,7 @@ LocalTime operations:
 op|result
 :-:|:-:
 localtime + duration|localtime|/
+duration + localtime|localtime|/
 localtime - duration|localtime|/
 localtime - localtime|duration|/
 
@@ -226,6 +219,7 @@ LocalDateTime operations:
 operation|result
 :-:|:-:
 localdatetime + duration|localdatetime|/
+duration + localdatetime| + localdatetime/
 localdatetime - duration|localdatetime|/
 localdatetime - localdatetime|duration|/
 
