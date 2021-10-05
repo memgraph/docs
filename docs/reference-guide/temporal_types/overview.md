@@ -230,8 +230,4 @@ localdatetime - duration|localdatetime|/
 localdatetime - localdatetime|duration|/
 
 ## Procedures API
-Temporal types can be used with query procedures. You can find the documentation in the following pages:
-
-[C API](/reference-guide/query-modules/api/c-api.md)
-
-[Pyhon API](/reference-guide/query-modules/api/python-api.md)
+Temporal types can also be used within query modules, you can find the regarding documentation on the [Pyhon API](/reference-guide/query-modules/api/python-api.md) and [C API](/reference-guide/query-modules/api/c-api.md) pages.
