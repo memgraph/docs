@@ -20,7 +20,7 @@ You can create `Duration` from a string or a map by calling the function `durati
 
 For strings, the duration format is:
 
-`P[nD]T[nH][nM][nS]` n stands for number and the capital letters are used as a separator with each field in `[]` marked optional. For strings Memgraph only allows the last field to be a double, e.g, `P2DT2.5H`. However, for maps, every field can be a double, an int or a mixture of both. Note, we support negative durations.
+`P[nD]T[nH][nM][nS]` where `n` stands for number and the capital letters are used as a separator with each field in `[]` marked optional. For strings Memgraph only allows the last field to be a double, e.g, `P2DT2.5H`. However, for maps, every field can be a double, an int or a mixture of both. Note, we support negative durations.
 
 name|description
 :-:|:-:
