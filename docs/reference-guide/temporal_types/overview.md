@@ -17,7 +17,7 @@ LocalDateTime|Data type that represents a date and local time.|/
 Note, that all the types excluding Durations are ISO 8601 compliant.
 
 ## Duration
-You can create `Duration` from a string or a map by calling the function `Duration`.
+You can create `Duration` from a string or a map by calling the function `duration`.
 
 For strings, the duration format is:
 
