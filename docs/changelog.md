@@ -15,14 +15,17 @@ sidebar_label: Changelog
   functions that free allocated memory (`mgp_free` and `mgp_global_free`) and
   destroy objects (`mgp_value_destroy`, `mgp_list_destory`, etc.) which remain
   the same.
-* The first user created using the `CREATE USER` query will have all the privileges granted to him. Previously, you could've locked yourself out of Memgraph by creating a user and immediately disconnecting.
+* The first user created using the `CREATE USER` query will have all the privileges 
+  granted to him. Previously, you could've locked yourself out of Memgraph by creating 
+  a user and immediately disconnecting.
 :::
 
 ### Major Features and Improvements
 
+* Added support for temporal types, a feature that allows the user to manipulate and store time related data in the graph. For more information take a look at the [reference guide](/reference-guide/temporal-types.md)
 * Added support for parameters with `CREATE` clause in the following form: `CREATE (n $param)`.
 * Added writeable procedure support, so
-  [procedures](database-functionalities/query-modules/implement-query-modules#writeable-procedures)
+  [procedures](database-functionalities/query-modules/implement-query-modules)
   can modify the graph by creating and deleting vertices and edges, modifying
   the labels of vertices or setting the properties of vertices and edges.
 
