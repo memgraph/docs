@@ -15,8 +15,8 @@ sidebar_label: Changelog
   functions that free allocated memory (`mgp_free` and `mgp_global_free`) and
   destroy objects (`mgp_value_destroy`, `mgp_list_destory`, etc.) which remain
   the same.
-* The first user created using the `CREATE USER` query will have all the privileges 
-  granted to him. Previously, you could've locked yourself out of Memgraph by creating 
+* The first user created using the `CREATE USER` query will have all the privileges
+  granted to him. Previously, you could've locked yourself out of Memgraph by creating
   a user and immediately disconnecting.
 :::
 
