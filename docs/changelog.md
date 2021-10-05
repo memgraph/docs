@@ -15,7 +15,7 @@ sidebar_label: Changelog
 
 ### Major Features and Improvements
 
-* Added support for temporal types, a feature that allows the user to manipulate and store time related data in the graph. For more information take a look at the [reference guide](/reference-guide/temporal_types/overview.md)
+* Added support for temporal types, a feature that allows the user to manipulate and store time related data in the graph. For more information take a look at the [reference guide](/reference-guide/temporal-types.md)
 * Added support for parameters with `CREATE` clause in the following form: `CREATE (n $param)`.
 
 ### Bug Fixes

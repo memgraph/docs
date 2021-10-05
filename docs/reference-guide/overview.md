@@ -58,7 +58,7 @@ To learn more about streams and transformations take a look at the following pag
 
 Temporal data types store and manipulate time. To learn more, take a look at the overview page:
 
-* [Temporal types overview](/reference-guide/temporal_types/overview.md)
+* [Temporal types](/reference-guide/temporal-types.md)
 
 ## [User privileges](./security.md)
 
