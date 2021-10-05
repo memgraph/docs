@@ -1,11 +1,10 @@
 ---
-id: overview
+id: temporal-types
 title: Temporal types
-sidebar_label: Temporal types overview
-slug: /reference-guide/temporal_types/
+sidebar_label: Temporal types
 ---
 
-Temporal types can be stored as properties of a vertex or edge. The user can use cypher queries or procedures to read or write these properties. The following table summarizes the temporal types that Memgraph currently supports:
+Temporal types can be stored as properties of a vertex or edge. The user can use Cypher queries or procedures to read or write these properties. The following table summarizes the temporal types that Memgraph currently supports:
 
 name|description|
 :-:|:-:
@@ -42,12 +41,12 @@ Example:
 CREATE (:F1Laps {lap : duration({minute:2, seconds:2, microseconds:33})})
 ```
 
-At this point, it must be pointed out that durations internally hold microseconds. Each of the fields specified above are first converted to microseconds and then reduced by addition to a single value. This has an interesting use case:
+At this point, it must be pointed out that durations internally hold microseconds. Each of the fields specified above is first converted to microseconds and then reduced by addition to a single value. This has an interesting use case:
 
 ```cypher
 CREATE (:F1Laps {lap : duration({minute:2, seconds:-2, microseconds:-33})})
 ```
-This converts `minutes`, `seconds` to `microseconds` and effectively produces the following equation: `minutes - seconds - microseconds`. 
+This converts `minutes`, `seconds` to `microseconds` and effectively produces the following equation: `minutes - seconds - microseconds`.
 
 Each of the individual fields of a duration can be accessed through its properties as follows:
 
@@ -63,7 +62,7 @@ nanosecond|This subtracts the days and returns the leftover as nanoseconds.|/
 
 Example:
 ```cypher
-MATCH (f:F1Laps) RETURN f.lap.minute 
+MATCH (f:F1Laps) RETURN f.lap.minute
 ```
 
 ## Date
@@ -188,7 +187,7 @@ MATCH (f:Flights) RETURN f.AIR123.year
 
 Temporal types support native arithmetic and the operations are summarized in the following table:
 
-Duration operations: 
+Duration operations:
 
 op|result
 :-:|:-:
@@ -196,7 +195,7 @@ duration + duration|duration|/
 duration - duration|duration|/
 -duration|duration|/
 
-Date operations: 
+Date operations:
 
 op|result
 :-:|:-:
@@ -205,7 +204,7 @@ duration + date|date|/
 date - duration|date|/
 date - date|duration|/
 
-LocalTime operations: 
+LocalTime operations:
 
 op|result
 :-:|:-:
@@ -214,7 +213,7 @@ duration + localtime|localtime|/
 localtime - duration|localtime|/
 localtime - localtime|duration|/
 
-LocalDateTime operations: 
+LocalDateTime operations:
 
 operation|result
 :-:|:-:
@@ -224,4 +223,4 @@ localdatetime - duration|localdatetime|/
 localdatetime - localdatetime|duration|/
 
 ## Procedures API
-Temporal types can also be used within query modules, you can find the regarding documentation on the [Pyhon API](/reference-guide/query-modules/api/python-api.md) and [C API](/reference-guide/query-modules/api/c-api.md) pages.
+Temporal types can also be used within query modules, you can find the documentation on the [Pyhon API](/reference-guide/query-modules/api/python-api.md) and [C API](/reference-guide/query-modules/api/c-api.md) pages.
