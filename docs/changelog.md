@@ -21,7 +21,7 @@ sidebar_label: Changelog
 
 * Added support for parameters with `CREATE` clause in the following form: `CREATE (n $param)`.
 * Added writeable procedure support, so
-  [procedures](database-functionalities/query-modules/implement-query-modules#writeable-procedures)
+  [procedures](database-functionalities/query-modules/implement-query-modules)
   can modify the graph by creating and deleting vertices and edges, modifying
   the labels of vertices or setting the properties of vertices and edges.
 

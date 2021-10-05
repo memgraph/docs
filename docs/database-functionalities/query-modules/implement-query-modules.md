@@ -148,7 +148,7 @@ return mgp.Record(args=args_copy, vertex_count=vertex_count,
                   avg_degree=avg_degree, props=props)
 ```
 
-### Writeable procedure
+### Writeable procedures
 
 Writeable procedures can be implemented in a very similar way as read-only
 procedures. The only difference is writeable procedures receive mutable objects,
