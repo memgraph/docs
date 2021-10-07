@@ -89,7 +89,11 @@ More information on Docker Volumes can be found
 If successful, you should see a message similar to the following :
 
 ```console
-You are running Memgraph vX.X.X-community
+mgconsole X.X
+Connected to 'memgraph://127.0.0.1:7687'
+Type :help for shell usage
+Quit the shell by typing Ctrl-D(eof) or :quit
+memgraph>
 ```
 
 If you want to start Memgraph with different configuration settings, check out
