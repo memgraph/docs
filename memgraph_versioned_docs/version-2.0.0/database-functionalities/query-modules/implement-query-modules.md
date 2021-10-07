@@ -191,7 +191,7 @@ simple tool when implementing query modules. Therefore, we strongly suggest that
 all users thoroughly inspect the `mgp.py` source file.
 
 :::warning
-You should not globally store any graph elements when writing your
+You should not store any graph elements globally when writing your
 own query modules with the intent to use them in a different procedure
 invocation.
 :::
@@ -262,9 +262,9 @@ records of the procedure. Parameters `graph` and `memory` are context parameters
 of the procedure, and they are used in some parts of the provided C API. For
 more information on what exactly is possible via C API, take a look at the
 `mg_procedure.h` file  or at the C API [reference
-guide](/reference-guide/query-modules/api/c-api.md), as well as the `example.c`
-found in `/usr/lib/memgraph/query_modules/src` which contains an example
-writeable procedure also.
+guide](/reference-guide/query-modules/api/c-api/overview.md), as well as the
+`example.c` found in `/usr/lib/memgraph/query_modules/src` which contains an
+example writeable procedure also.
 
 Then comes the required `mgp_init_module` function. Its primary purpose is to
 register procedures which can then be invoked through Cypher. Although the
