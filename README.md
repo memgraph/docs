@@ -7,6 +7,15 @@ passing](https://img.shields.io/github/workflow/status/memgraph/docs/master/mast
 src="https://img.shields.io/twitter/follow/memgraphdb.svg?label=Follow%20@memgraphdb"
 alt="Follow @memgraphdb" /></a>
 
+<p align="left">
+  <a href="https://memgraph.com/docs">
+    <img src="https://public-assets.memgraph.com/github-readme-images/docs.memgraph-browser.png" 
+         alt="memgraph-docs" 
+         title="memgraph-docs"
+         style="width: 75%"/>
+  </a>
+</p>
+
 This repository contains the source files and various generators for the
 Memgraph documentation available at
 [memgraph.com/docs](https://memgraph.com/docs). Since we are writing our

@@ -1,6 +1,6 @@
 ---
 id: contributing
-title: How to contribute to MAGE? 
+title: How to contribute to MAGE?
 sidebar_label: Contributing
 ---
 
@@ -10,6 +10,12 @@ We encourage everyone to contribute with their own algorithm implementations and
 ideas. If you want to contribute or report a bug, please take a look at the
 [contributions
 guide](https://github.com/memgraph/mage/blob/main/CONTRIBUTING.md).
+
+Here are links to Memgraph and MAGE, which are both opened and ready to recieve feedback
+and your contribution:
+
+- :file_folder: [**Memgraph**](https://github.com/memgraph/memgraph)
+- :file_folder: [**MAGE**](https://github.com/memgraph/mage)
 
 ## Code of Conduct
 

@@ -11,8 +11,8 @@ module.exports = {
   organizationName: 'memgraph',
   projectName: 'docs',
   stylesheets: [
-      'https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:500,600',
-      'https://fonts.googleapis.com/css?family=Roboto:400, 500,600',
+    'https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:500,600',
+    'https://fonts.googleapis.com/css?family=Roboto:400, 500,600',
   ],
   scripts: [
     {
@@ -141,7 +141,7 @@ module.exports = {
           position: 'right',
         },
         {
-          href: 'https://github.com/memgraph',
+          href: 'https://github.com/memgraph/memgraph',
           label: 'GitHub',
           position: 'right',
         },
@@ -181,6 +181,10 @@ module.exports = {
           title: 'Community',
           items: [
             {
+              label: 'Discord',
+              href: 'https://discord.gg/memgraph'
+            },
+            {
               label: 'Stack Overflow',
               href: 'https://stackoverflow.com/questions/tagged/memgraphdb',
             },
@@ -199,7 +203,7 @@ module.exports = {
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/memgraph',
+              href: 'https://github.com/memgraph/memgraph',
             },
             {
               label: 'Youtube',
