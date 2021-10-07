@@ -77,11 +77,15 @@ docker run -it -p 7687:7687 -p 3000:3000 memgraph
 ```
 
 :::info Docker Volumes
-`docker run -p 7687:7687 -v mg_lib:/var/lib/memgraph memgraph`
 Docker containers don’t persist data by default (all changes are lost when the
 container is stopped). You need to use local volumes to store the data
-permanently, which is why Memgraph is started with the `-v` flag. More
-information on Docker Volumes can be found
+permanently, which is why Memgraph is started with the `-v` flag.
+
+```console
+docker run -it -p 7687:7687 -p 3000:3000 -v mg_lib:/var/lib/memgraph memgraph`
+```
+
+More information on Docker Volumes can be found
 [here](https://docs.docker.com/storage/volumes/).
 :::
 
@@ -125,7 +129,7 @@ When using Docker, you can also specify the configuration options in the `docker
 run` command:
 
 ```console
-docker run -p 7687:7687 memgraph --bolt-port=7687
+docker run -it -p 7687:7687 -p 3000:3000 -e MEMGRAPH="--bolt-port=7687" memgraph
 ```
 
 To learn about all the configuration options, check out the [Reference
@@ -139,7 +143,7 @@ If you need to access the Memgraph configuration file or logs, you will need to
 specify the following volumes when starting Memgraph through **PowerShell**:
 
 ```console
-docker run -p 7687:7687 `
+docker run -it -p 7687:7687 -p 3000:3000 -e MEMGRAPH="--bolt-port=7687" `
   -v mg_lib:/var/lib/memgraph `
   -v mg_log:/var/log/memgraph `
   -v mg_etc:/etc/memgraph `

@@ -28,7 +28,7 @@ docker volume create --driver local --opt type=none --opt device=modules --opt o
 Now, you can start Memgraph and mount the created volume:
 
 ```shell
-docker run -it --rm -v modules:/usr/lib/memgraph/query_modules -p 7687:7687 memgraph
+docker run -it --rm -p 7687:7687 -p 3000:3000 -v modules:/usr/lib/memgraph/query_modules memgraph
 ```
 
 Everything from the directory `/usr/lib/memgraph/query_modules` will be
