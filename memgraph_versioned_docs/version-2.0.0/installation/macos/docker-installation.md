@@ -22,7 +22,7 @@ should be compatible with all newer versions.
 ## Installation guide {#installation-guide}
 
 You can either manually download the Memgraph Docker image or use the convenient
-`docker pull memgraph/memgraph` command, which we recommend.
+`docker pull memgraph/memgraph-platform` command, which we recommend.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -39,14 +39,14 @@ import TabItem from '@theme/TabItem';
 1. Download and load the **Memgraph Docker image** with the following command:
 
 ```console
- docker pull memgraph/memgraph
+ docker pull memgraph/memgraph-platform
 ```
 
 2. Create a new tag for the image so it can be called as `memgraph` instead of
-   `memgraph/memgraph`:
+   `memgraph/memgraph-platform`:
 
 ```console
-docker image tag memgraph/memgraph memgraph
+docker image tag memgraph/memgraph-platform memgraph
 ```
 
   </TabItem>
@@ -70,21 +70,30 @@ docker load -i /path-to/memgraph-<version>-docker.tar.gz
 To start Memgraph, use the following command:
 
 ```console
-docker run -p 7687:7687 -v mg_lib:/var/lib/memgraph memgraph
+docker run -it -p 7687:7687 -p 3000:3000 memgraph
 ```
 
 :::info Docker Volumes
 Docker containers don’t persist data by default (all changes are lost when the
 container is stopped). You need to use local volumes to store the data
-permanently, which is why Memgraph is started with the `-v` flag. More
-information on Docker Volumes can be found
+permanently, which is why Memgraph is started with the `-v` flag.
+
+```console
+docker run -it -p 7687:7687 -p 3000:3000 -v mg_lib:/var/lib/memgraph memgraph`
+```
+
+More information on Docker Volumes can be found
 [here](https://docs.docker.com/storage/volumes/).
 :::
 
 If successful, you should see a message similar to the following :
 
 ```console
-You are running Memgraph vX.X.X-community
+mgconsole X.X
+Connected to 'memgraph://127.0.0.1:7687'
+Type :help for shell usage
+Quit the shell by typing Ctrl-D(eof) or :quit
+memgraph>
 ```
 
 If you want to start Memgraph with different configuration settings, check out
@@ -121,7 +130,7 @@ When using Docker, you can also specify the configuration options in the `docker
 run` command:
 
 ```console
-docker run -p 7687:7687 memgraph --bolt-port=7687
+docker run -it -p 7687:7687 -p 3000:3000 -e MEMGRAPH="--bolt-port=7687" memgraph
 ```
 
 To learn about all the configuration options, check out the [Reference
@@ -135,7 +144,7 @@ If you need to access the Memgraph configuration file or logs, you will need to
 specify the following volumes when starting Memgraph:
 
 ```console
-docker run -p 7687:7687 \
+docker run -it -p 7687:7687 -p 3000:3000 -e MEMGRAPH="--bolt-port=7687" \
   -v mg_lib:/var/lib/memgraph \
   -v mg_log:/var/log/memgraph \
   -v mg_etc:/etc/memgraph \

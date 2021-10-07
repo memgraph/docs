@@ -37,7 +37,8 @@ guide](/memgraph/reference-guide/import-data/csv-import-tool).
 
 :::note
 If you installed Memgraph through Docker Hub, the name of the Docker image
-`memgraph` should be replaced with `memgraph/memgraph`.
+`memgraph` should be replaced with `memgraph/memgraph-platform` if you didn't
+change the image tag.
 :::
 
 If you installed Memgraph using Docker, you will need to run the importer using

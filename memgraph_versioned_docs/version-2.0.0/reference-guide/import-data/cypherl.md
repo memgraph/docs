@@ -13,8 +13,8 @@ following shell command:
 mgconsole < queries.cypherl
 ```
 
-If you installed Memgraph using Docker, you will need to run the client using
-the following command:
+If you installed the Memgraph image using Docker, you will need to run the
+client using the following command:
 
 ```plaintext
 docker run -i --entrypoint=mgconsole memgraph --host HOST < queries.cypherl

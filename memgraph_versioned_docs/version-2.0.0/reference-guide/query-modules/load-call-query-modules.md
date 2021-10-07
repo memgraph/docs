@@ -21,7 +21,7 @@ systemctl start memgraph
 When using Docker, the equivalent would be the following:
 
 ```plaintext
-docker run -p 7687:7687 \
+docker run -it -p 7687:7687 \
   -v mg_lib:/var/lib/memgraph -v mg_log:/var/log/memgraph -v mg_etc:/etc/memgraph \
   memgraph
 ```
@@ -74,7 +74,7 @@ might yield the following result:
 +---------------------+-------------------------------------------------------------------+
 ```
 
-In this case, we can see that Memgraph has successfully loaded all the procedures implemented 
+In this case, we can see that Memgraph has successfully loaded all the procedures implemented
 in query modules including the utility query procedures.
 
 To load a module (named e.g. `hello`) that wasn't loaded on startup (perhaps

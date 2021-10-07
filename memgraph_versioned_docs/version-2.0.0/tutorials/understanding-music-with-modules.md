@@ -76,9 +76,10 @@ systemctl stop memgraph
 When using Docker, the query module directory can be mounted with the following command:
 
 ```plaintext
-docker run -p 7687:7687 \
+docker run -it -p 7687:7687 \
   -v $(pwd)/modules:/modules \
-  memgraph --query-modules-directory=/modules
+  -e MEMGRAPH="--query-modules-directory=/modules" \
+  memgraph
 ```
 
 ## Example queries and procedures

@@ -21,8 +21,9 @@ following shell command:
   <TabItem value="docker">
 
 :::note
-If you installed Memgraph through Docker Hub, the name of the Docker
-image `memgraph` should be replaced with `memgraph/memgraph`.
+If you installed Memgraph through Docker Hub, the name of the Docker image
+`memgraph` should be replaced with `memgraph/memgraph-platform` if you didn't
+change the image tag.
 :::
 
 If you installed Memgraph using Docker, you will need to run the client using

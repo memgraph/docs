@@ -35,7 +35,7 @@ You need to download the [Windows Subsystem for Linux](https://docs.microsoft.co
 ## Issues when connecting to Memgraph
 
 ```console
-docker run memgraph
+docker run -it memgraph
 ```
 
 While this command will start a Memgraph instance, not publishing the port will
@@ -44,13 +44,13 @@ cause problems when trying to connect to the database via **Memgraph Lab** or
 container's port to the host using the `-p` flag and by specifying the port:
 
 ```console
-docker run -p 7687:7687 memgraph
+docker run -it -p 7687:7687 -p 3000:3000 memgraph
 ```
 
 ## Issues with connecting **mgconsole** to the database
 
 ```console
-docker run -it --entrypoint=mgconsole memgraph --host HOST --use-ssl=False
+docker run -it --entrypoint=mgconsole memgraph --host HOST
 ```
 
 Although unlikely, sometimes there are issues with connecting **mgconsole** to
@@ -96,7 +96,7 @@ the [querying](/connect-to-memgraph/overview.mdx) section. Just replace
 `HOST` from the following command with the appropriate IP address:
 
 ```console
-docker run -it --entrypoint=mgconsole memgraph --host HOST --use-ssl=False
+docker run -it --entrypoint=mgconsole memgraph --host HOST
 ```
 
   </TabItem>

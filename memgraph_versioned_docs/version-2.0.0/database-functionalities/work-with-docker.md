@@ -117,7 +117,7 @@ the [querying](/connect-to-memgraph/overview.mdx) section. Just replace
 `HOST` from the following command with the appropriate IP address:
 
 ```console
-docker run -it --entrypoint=mgconsole memgraph --host HOST --use-ssl=False
+docker run -it --entrypoint=mgconsole memgraph --host HOST
 ```
 
 ## Importing data
@@ -202,10 +202,11 @@ The following command should be used to successfully mount a volume containing
 your custom query module:
 
 ```console
-docker run -p 7687:7687 \
+docker run -it -p 7687:7687 -p 3000:3000 \
   -v mg_lib:/var/lib/memgraph -v mg_log:/var/log/memgraph -v mg_etc:/etc/memgraph \
   -v $(pwd)/modules:/modules \
-  --query-modules-directory=/modules
+  -e MEMGRAPH="--query-modules-directory=/modules" \
+  memgraph
 ```
 
 We've added two flags to the original command:
@@ -229,7 +230,7 @@ There are three ways to execute queries and procedures in Memgraph:
 If you've decided to use the command-line tool, you will need to run the
 following command:
 
-``docker run -it --entrypoint=mgconsole memgraph --host HOST --use-ssl=False``
+`docker run -it --entrypoint=mgconsole memgraph --host HOST`
 
 `HOST` part of the command should be replaced with valid IP - most likely it
 being `localhost`.   If you are a macOS or Linux user and are having issues with
