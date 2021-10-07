@@ -197,7 +197,28 @@ module.exports = {
               type: "category",
               label: "API",
               items: [
-                "reference-guide/query-modules/api/c-api",
+                {
+                  type: "category",
+                  label: "C API",
+                  items: [
+                    "reference-guide/query-modules/api/c-api/overview",
+                    {
+                      type: "category",
+                      label: "Classes",
+                      items: [
+                        "reference-guide/query-modules/api/c-api/classes/mgp_date_parameters",
+                        "reference-guide/query-modules/api/c-api/classes/mgp_duration_parameters",
+                        "reference-guide/query-modules/api/c-api/classes/mgp_edge_id",
+                        "reference-guide/query-modules/api/c-api/classes/mgp_edge_type",
+                        "reference-guide/query-modules/api/c-api/classes/mgp_label",
+                        "reference-guide/query-modules/api/c-api/classes/mgp_local_date_time_parameters",
+                        "reference-guide/query-modules/api/c-api/classes/mgp_local_time_parameters",
+                        "reference-guide/query-modules/api/c-api/classes/mgp_property",
+                        "reference-guide/query-modules/api/c-api/classes/mgp_vertex_id",
+                      ],
+                    },
+                  ],
+                },
                 "reference-guide/query-modules/api/python-api",
               ],
             },

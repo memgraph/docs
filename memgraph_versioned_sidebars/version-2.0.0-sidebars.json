@@ -458,8 +458,60 @@
               "label": "API",
               "items": [
                 {
-                  "type": "doc",
-                  "id": "version-2.0.0/reference-guide/query-modules/api/c-api"
+                  "type": "category",
+                  "label": "C API",
+                  "items": [
+                    {
+                      "type": "doc",
+                      "id": "version-2.0.0/reference-guide/query-modules/api/c-api/overview"
+                    },
+                    {
+                      "type": "category",
+                      "label": "Classes",
+                      "items": [
+                        {
+                          "type": "doc",
+                          "id": "version-2.0.0/reference-guide/query-modules/api/c-api/classes/mgp_date_parameters"
+                        },
+                        {
+                          "type": "doc",
+                          "id": "version-2.0.0/reference-guide/query-modules/api/c-api/classes/mgp_duration_parameters"
+                        },
+                        {
+                          "type": "doc",
+                          "id": "version-2.0.0/reference-guide/query-modules/api/c-api/classes/mgp_edge_id"
+                        },
+                        {
+                          "type": "doc",
+                          "id": "version-2.0.0/reference-guide/query-modules/api/c-api/classes/mgp_edge_type"
+                        },
+                        {
+                          "type": "doc",
+                          "id": "version-2.0.0/reference-guide/query-modules/api/c-api/classes/mgp_label"
+                        },
+                        {
+                          "type": "doc",
+                          "id": "version-2.0.0/reference-guide/query-modules/api/c-api/classes/mgp_local_date_time_parameters"
+                        },
+                        {
+                          "type": "doc",
+                          "id": "version-2.0.0/reference-guide/query-modules/api/c-api/classes/mgp_local_time_parameters"
+                        },
+                        {
+                          "type": "doc",
+                          "id": "version-2.0.0/reference-guide/query-modules/api/c-api/classes/mgp_property"
+                        },
+                        {
+                          "type": "doc",
+                          "id": "version-2.0.0/reference-guide/query-modules/api/c-api/classes/mgp_vertex_id"
+                        }
+                      ],
+                      "collapsible": true,
+                      "collapsed": true
+                    }
+                  ],
+                  "collapsible": true,
+                  "collapsed": true
                 },
                 {
                   "type": "doc",
