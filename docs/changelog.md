@@ -4,6 +4,19 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v2.0.1 - Oct 12, 2021
+
+### Major Features and Improvements
+
+* Updated a startup message with a link to the [getting started page](getting-started.md). [#259](https://github.com/memgraph/memgraph/pull/259)
+* Updated certain error and warning messages in the logs with links to the documentation explaining the problem in more detail. [#243](https://github.com/memgraph/memgraph/pull/243)
+* Updated mgconsole to [v1.1.0](https://github.com/memgraph/mgconsole/releases/tag/v1.1.0). [#260](https://github.com/memgraph/memgraph/pull/260)
+
+### Bug Fixes
+
+* Graph updates made in the write procedures are now correctly registered in the triggers. [#262](https://github.com/memgraph/memgraph/pull/262)
+* Fixed `DETACH DELETE` interaction with the triggers. Previously, vertices deleted by the `DETACH DELETE` would not be registered by triggers if only `ON () DELETE` trigger existed. [#266](https://github.com/memgraph/memgraph/pull/266)
+
 ## v2.0.0 - Oct 5, 2021
 
 :::warning
