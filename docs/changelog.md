@@ -4,6 +4,7 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+<<<<<<< HEAD
 ## v2.1 - TBD
 
 ### Major Features and Improvements
@@ -17,6 +18,7 @@ sidebar_label: Changelog
   query. [#278](https://github.com/memgraph/memgraph/pull/278)
 * Fix linkage error when `mgp_local_time_get_minute` is used. [#273](https://github.com/memgraph/memgraph/pull/273)
 * Fix crash when temporal types are used with `ORDER BY` clause. [#299](https://github.com/memgraph/memgraph/pull/299)
+* Added `BOOTSTRAP_SERVERS` option to `CREATE STREAM` which you can check [#282](reference-guide/streams/overview.md)
 
 ## v2.0.1 - Oct 12, 2021
 
