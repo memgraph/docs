@@ -61,6 +61,7 @@ module.exports = {
                 "connect-to-memgraph/methods/building-applications/c-sharp",
                 "connect-to-memgraph/methods/building-applications/java",
                 "connect-to-memgraph/methods/building-applications/go",
+                "connect-to-memgraph/methods/building-applications/nodejs",
                 "connect-to-memgraph/methods/building-applications/javascript",
                 "connect-to-memgraph/methods/building-applications/php",
               ],

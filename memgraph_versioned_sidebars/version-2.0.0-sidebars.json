@@ -131,6 +131,10 @@
                 },
                 {
                   "type": "doc",
+                  "id": "version-2.0.0/connect-to-memgraph/methods/building-applications/nodejs"
+                },
+                {
+                  "type": "doc",
                   "id": "version-2.0.0/connect-to-memgraph/methods/building-applications/javascript"
                 },
                 {
