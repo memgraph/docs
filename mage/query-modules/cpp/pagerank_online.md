@@ -21,26 +21,46 @@ export const Highlight = ({children, color}) => (
 
 [![docs-source](https://img.shields.io/badge/source-pagerank_online-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/cpp/pagerank_module/pagerank_online_module.cpp)
 
-
 ## Abstract
 
-**Online PageRank** is a streaming algorithm made for calculating [PageRank](pagerank.md) in a graph streaming scenario. To prevent user for recalculating pagerank values each time a change occurrs in the graph (something is added or deleted), incremental - local changes are introduced in the algorithm.
+**Online PageRank** is a streaming algorithm made for calculating
+[PageRank](pagerank.md) in a graph streaming scenario. Incremental- local
+changes are introduced in the algorithm to prevent users from recalculating
+PageRank values each time a change occurs in the graph (something is added or
+deleted).
 
-To make it as fast as possible, online algorithm is only the approximation of PageRank, but carying the same information - the likelihood of random walk ending in particular vertex. The work is based on "[Fast Incremental and Personalized PageRank](http://snap.stanford.edu/class/cs224w-readings/bahmani10pagerank.pdf)" [^1] where authors are deeply focused on providing the streaming experience of highly popular graph algorithm.
+To make it as fast as possible, the online algorithm is only the approximation
+of PageRank but carrying the same information - the likelihood of random walk
+ending in a particular vertex.  The work is based on "[Fast Incremental and
+Personalized
+PageRank](http://snap.stanford.edu/class/cs224w-readings/bahmani10pagerank.pdf)"
+[^1], where authors are deeply focused on providing the streaming experience of
+a highly popular graph algorithm.
 
-Approximating PageRank is done simply by exploring random walks, and calculating the frequency of some node within all walks. `R` walks are sampled by using a random walk with a stopping probability of `eps`.Therefore, on average, walks would have a length of `1/eps`. Approximative PageRank is based on the formula below:
+Approximating PageRank is done simply by exploring random walks and calculating
+the frequency of a node within all walks. `R` walks are sampled by using a
+random walk with a stopping probability of `eps`.Therefore, on average, walks
+would have a length of `1/eps`. Approximative PageRank is based on the formula
+below:
 
 ```
 RankApprox(v) = X_v / (n * R / eps)
 ```
 
-Where `X_v` is number of walks where node `v` appears.  The theorem written in the paper explaines that RankApprox(v) is sharply concentrated around its expectation, which is Rank(v).
+Where `X_v` is the number of walks where the node `v` appears.  The theorem
+written in the paper explains that RankApprox(v) is sharply concentrated around
+its expectation, which is Rank(v).
 
 ### Usage
 
-Online PageRank should be used in a specific way. To set the parameters, user should call a `set()` procedure. This function also sets the context of a streaming algorithm. `get()` function only returns the resulting values stored in a cache. Therefore, if you try to get values before first calling set, the run will fail with a proper message.
+Online PageRank should be used in a specific way. To set the parameters, the
+user should call a `set()` procedure. This function also sets the context of a
+streaming algorithm. `get()` function only returns the resulting values stored
+in a cache. Therefore, if you try to get values before first calling `set()`,
+the run will fail with a proper message.
 
-To make the incremental flow, you should set the propper trigger. For that, we'll use the `update()` function:
+To make the incremental flow, you should set the proper trigger. For that, we'll
+use the `update()` function:
 
 ```cypher
 CREATE TRIGGER pagerank_trigger
@@ -49,9 +69,12 @@ EXECUTE CALL pagerank_online.update(createdVertices, createdEdges, deletedVertic
 SET node.rank = rank;
 ```
 
-Finally, the `reset()` function resets the context and enables user to start new runs.
+Finally, the `reset()` function resets the context and enables the user to start
+new runs.
 
-[^1] [Fast Incremental and Personalized PageRank](http://snap.stanford.edu/class/cs224w-readings/bahmani10pagerank.pdf), Bahman Bahmani et al.
+[^1] [Fast Incremental and Personalized
+PageRank](http://snap.stanford.edu/class/cs224w-readings/bahmani10pagerank.pdf),
+Bahman Bahmani et al.
 
 
 | Trait               | Value                                                 |
@@ -69,12 +92,14 @@ Finally, the `reset()` function resets the context and enables user to start new
 #### Input:
 
 * `walks_per_node: int(10)` ➡ Number of sampled walks per node.
-* `walk_stop_epsilon: double(0.1)` ➡ The probability of stopping when deriving the random walk. On average it will create
+* `walk_stop_epsilon: double(0.1)` ➡ The probability of stopping when deriving
+  the random walk. On average it will create
 
 #### Output:
 
-* `node` ➡ Node in graph, for which PageRank is calculated.
-* `rank` ➡ Normalized ranking of a node. Expresses the probability that random surfer will finish in a certain node by a random walk.
+* `node` ➡ Node in the graph, for which PageRank is calculated.
+* `rank` ➡ Normalized ranking of a node. Expresses the probability that a random
+  surfer will finish in a certain node by a random walk.
 
 #### Usage:
 ```cypher
@@ -84,12 +109,14 @@ YIELD node, rank;
 
 ### `get(max_iterations, damping_factor, stop_epsilon)`
 
-&ast; This should be used if the trigger has been set or a `set` function has been called before adding changes on graph.
+&ast; This should be used if the trigger has been set or a `set` function has
+been called before adding changes to the graph.
 
 #### Output:
 
-* `node` ➡ Node in graph, for which PageRank is calculated.
-* `rank` ➡ Normalized ranking of a node. Expresses the probability that random surfer will finish in a certain node by a random walk.
+* `node` ➡ Node in the graph, for which PageRank is calculated.
+* `rank` ➡ Normalized ranking of a node. Expresses the probability that a random
+  surfer will finish in a certain node by a random walk.
 
 #### Usage:
 ```cypher
@@ -102,14 +129,15 @@ YIELD node, rank;
 #### Input:
 
 * `created_vertices` ➡ Vertices that were created in the last transaction.
-* `created_edges` ➡ Edges created in a period from last transaction.
+* `created_edges` ➡ Edges created in a period from the last transaction.
 * `deleted_vertices` ➡ Vertices deleted from the last transaction.
 * `deleted_edges` ➡ Edges deleted from the last transaction.
 
 #### Output:
 
-* `node` ➡ Node in graph, for which PageRank is calculated.
-* `rank` ➡ Normalized ranking of a node. Expresses the probability that random surfer will finish in a certain node by a random walk.
+* `node` ➡ Node in the graph, for which PageRank is calculated.
+* `rank` ➡ Normalized ranking of a node. Expresses the probability that a random
+  surfer will finish in a certain node by a random walk.
 
 #### Usage:
 
@@ -135,7 +163,7 @@ SET node.rank = rank;
 }>
   <TabItem value="visualization">
 
-  <img src={require('../../data/query-modules/cpp/pagerank-online/pagerank-online-1.png').default}/>
+  <img src={require('../../data/query-modules/cpp/pagerank-online/memgraph-pagerank-online.png').default}/>
 
   </TabItem>
 

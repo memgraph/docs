@@ -1,20 +1,21 @@
 ---
-id: overview
-title: MAGE - Memgraph Advanced Graph Extensions 🔮
-sidebar_label: MAGE overview
+id: overview 
+title: MAGE - Memgraph Advanced Graph Extensions 🔮 
+sidebar_label: MAGE overview 
 slug: /
 ---
 
 **MAGE**, also known as **Memgraph Advanced Graph Extensions**, is an
-open-source repository that contains **graph algorithms** and **modules** in the form of query modules
-written by the team behind Memgraph and its users. You can find and contribute implementations
-of various algorithms in multiple programming languages, all runnable inside
-Memgraph. This project aims to give everyone the tools they need to tackle the
-most interesting and challenging **graph analytics** problems.
+open-source repository that contains **graph algorithms** and **modules** in the
+form of query modules written by the team behind Memgraph and its users. You can
+find and contribute implementations of various algorithms in multiple
+programming languages, all runnable inside Memgraph. This project aims to give
+everyone the tools they need to tackle the most interesting and challenging
+**graph analytics** problems.
 
-:::info GitHub repository
-You can find the official GitHub repository here: **[MAGE on GitHub
-](https://github.com/memgraph/mage)**.
+:::info GitHub repository 
+You can find the official GitHub repository here:
+**[MAGE on GitHub](https://github.com/memgraph/mage)**.
 :::
 
 ## MAGE query modules
@@ -26,7 +27,9 @@ modules in the official [Memgraph
 documentation](https://memgraph.com/docs/memgraph/database-functionalities/query-modules/built-in-query-modules).
 
 ## Memgraph compatibility
-With changes in Memgraph API, MAGE started to track version numbers. Check out the table below which will reveal MAGE compatibility with Memgraph versions.
+
+With changes in Memgraph API, MAGE started to track version numbers. Check out
+the table below which will reveal MAGE compatibility with Memgraph versions.
 
 | MAGE version | Memgraph version  |
 | ------------ | ----------------- |
@@ -53,4 +56,6 @@ With changes in Memgraph API, MAGE started to track version numbers. Check out t
 | [cycles](/mage/query-modules/cpp/cycles)                                           | C++    | Algorithm for detecting cycles on graphs                                                                                                                                                                                          |
 | [bridges](/mage/query-modules/cpp/bridges)                                         | C++    | A bridge is an edge, which when deleted, increases the number of connected components. The goal of this algorithm is to detect edges that are bridges in a graph.                                                                 |
 | [betweenness centrality](/mage/query-modules/cpp/betweenness-centrality)           | C++    | The betweenness centrality of a node is defined as the sum of the of all-pairs shortest paths that pass through the node divided by the number of all-pairs shortest paths in the graph. The algorithm has O(nm) time complexity. |
+| [pagerank](/mage/query-modules/cpp/pagerank)                                       | C++    | Algorithm for measuring the importance of each node within the graph, based on the number of incoming relationships and the importance of the corresponding source nodes.                                                            |
+| [pagerank_online](/mage/query-modules/cpp/pagerank-online)                         | C++    | A streaming algorithm made for calculating PageRank in a graph streaming scenario.                                                                                                                                                |
 | [uuid_generator](/mage/query-modules/cpp/uuid-generator)                           | C++    | A module that generates a new universally unique identifier (UUID).                                                                                                                                                               |
