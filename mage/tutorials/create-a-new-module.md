@@ -5,6 +5,7 @@ sidebar_label: Create a Python module
 ---
 
 ### Prerequisites
+
 - Download and install [Memgraph](https://memgraph.com/download).
 - Clone the [MAGE](https://github.com/memgraph/mage) repository.
 
@@ -17,13 +18,10 @@ yourself in the MAGE repository you cloned earlier. Specifically, go in the
 import `mgp`, Memgraph's internal data structure module. Among others, it
 contains definitions for Vertex and Node data structures.
 
-:::note If you are using code completion, you might be interested in having
-`mgp` in your python path. This will allow your code editor to access `mgp.py`
-and make use of code declarations and documentation. `mgp.py` is a script that
-comes with Memgraph. Usually, it will be installed in
-`/usr/lib/memgraph/python_support/mgp.py`. Now, all you have to do is add it to
-your `PYTHONPATH` environment variable: `export
-PYTHONPATH=/usr/lib/memgraph/python_support`.
+:::tip 
+Install the `mgp` Python module so your editor can use typing annotations
+properly and suggest methods and classes it contains. You can install the module
+by running `pip install mgp`.
 :::
 
 Here's the code for the random walk algorithm:
@@ -69,16 +67,19 @@ Start Memgraph and MAGE, and copy the module you developed into the
 `/usr/lib/memgraph/query_modules`.
 
 Instructions for a local Memgraph installation (Debian/Ubuntu):
+
 ```
 sudo systemctl start memgraph
 cp python/random_walk.py /usr/lib/memgraph/query_modules/
 ```
 
 Instructions for a docker Memgraph instance:
+
 ```
 docker run --rm -d --name memgraph -p 7687:7687 memgraph/mage
 docker cp python/random_walk.py memgraph:/usr/lib/memgraph/query_modules/
 ```
+
 A more advanced approach is to use [docker
 volumes](https://docs.docker.com/storage/volumes/). That will allow you to have
 query modules synchronized between your mage repository and your docker
@@ -86,11 +87,13 @@ container.
 
 Then, use a Memgraph client like MemgraphLab or mgconsole to load the newly
 added function.
+
 ```
 CALL mg.load('random_walk')
 ```
 
 Lastly, run a query and test your module:
+
 ```
 MERGE (start:Node {id: 0})-[:RELATION]->(mid:Node {id: 1})-[:RELATION]->(end:Node {id: 2})
 CALL random_walk.get(start, 2) YIELD path
@@ -138,6 +141,7 @@ output: []
 ```
 
 Lastly, run the e2e tests with python:
+
 ```
 python test_e2e
 ```
