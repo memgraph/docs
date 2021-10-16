@@ -33,7 +33,7 @@ module.exports = {
       items: [
         {
           to: '/memgraph/getting-started',
-          label: 'Memgraph DB',
+          label: 'Memgraph',
           position: 'left',
           activeBaseRegex: `/memgraph/`,
           items: [
@@ -154,7 +154,7 @@ module.exports = {
           title: 'Documentation',
           items: [
             {
-              label: 'Memgraph DB',
+              label: 'Memgraph',
               to: '/memgraph/getting-started',
             },
             {

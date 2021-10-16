@@ -6,10 +6,13 @@ sidebar_label: FAQ
 
 ### What is Memgraph?
 
-Memgraph is a native fully distributed in-memory graph database built to handle
-real-time use-cases at enterprise scale. Memgraph supports strongly-consistent
-ACID transactions; and uses the standardized openCypher query language for
-structuring, manipulating, and exploring data.
+Memgraph is a **streaming graph application platform** that helps you wrangle
+your streaming data, build sophisticated models that you can query in real-time,
+and develop applications you never thought possible in days, not months.
+Memgraph is powered by a fully distributed in-memory graph database built to
+handle real-time use-cases at enterprise scale. Memgraph supports
+strongly-consistent ACID transactions; and uses the standardized Cypher query
+language for structuring, manipulating, and exploring data.
 
 ### Does being in-memory mean that Memgraph will lose all data upon system failure or restart?
 
@@ -26,8 +29,7 @@ running applications. Docker enables us to run Memgraph virtually on any system
 without having to worry about compatibility issues. You don't have to be
 familiar with Docker to try out Memgraph. Just [install
 Docker](https://docs.docker.com/get-docker/) and head over to our [installation
-instructions for
-macOS](/memgraph/install-memgraph-on-macos-docker).
+instructions for macOS](/memgraph/install-memgraph-on-macos-docker).
 
 ### How to install Memgraph on Windows?
 
@@ -132,7 +134,7 @@ guide](/memgraph/reference-guide/configuration).
 ### Can you change the memory limit for Memgraph?
 
 You can change the memory limit by using the `--memory-limit` flag. If you want
-to allocate 2GB for Memgraph then you would use  --memory-limit=2000. For more
+to allocate 2GB for Memgraph then you would use --memory-limit=2000. For more
 information about using configuration flags, check out the [reference
 guide](/memgraph/reference-guide/configuration).
 
