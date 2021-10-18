@@ -4,6 +4,14 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## Future
+
+### Major Features and Improvements
+
+### Bug Fixes
+
+* Fix linkage error when `mgp_local_time_get_minute` is used. [#273](https://github.com/memgraph/memgraph/pull/273)
+
 ## v2.0.1 - Oct 12, 2021
 
 ### Major Features and Improvements
