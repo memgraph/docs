@@ -147,9 +147,9 @@ memory to be able to yield its results, you can increase the memory limit using
 the following syntax:
 
 ```cypher
-CALL example.procedure(arg1, arg2, ...) MEMORY LIMIT 100 KB YIELD result;
-CALL example.procedure(arg1, arg2, ...) MEMORY LIMIT 100 MB YIELD result;
-CALL example.procedure(arg1, arg2, ...) MEMORY UNLIMITED YIELD result;
+CALL example.procedure(arg1, arg2, ...) PROCEDURE MEMORY LIMIT 100 KB YIELD result;
+CALL example.procedure(arg1, arg2, ...) PROCEDURE MEMORY LIMIT 100 MB YIELD result;
+CALL example.procedure(arg1, arg2, ...) PROCEDURE MEMORY UNLIMITED YIELD result;
 ```
 
 The limit can either be specified to a specific value (either in `KB` or in
