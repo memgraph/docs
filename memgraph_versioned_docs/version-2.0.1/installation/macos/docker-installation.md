@@ -49,6 +49,12 @@ import TabItem from '@theme/TabItem';
 docker image tag memgraph/memgraph-platform memgraph
 ```
 
+:::tip Memgraph Platform
+The **memgraph/memgraph-platform** Docker image contains **Memgraph**,
+**Memgraph Lab** and **mgconsole**. After running the image, mgconsole will open
+in the terminal while Memgraph Lab is available on `http://localhost:3000`.
+:::
+
   </TabItem>
   <TabItem value="download">
 

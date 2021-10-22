@@ -155,3 +155,25 @@ out the [reference guide](/memgraph/reference-guide/configuration).
 You can change the directory where query modules are stored by using the
 `--query-modules-directory` flag. For more information about using configuration
 flags, check out the [reference guide](/memgraph/reference-guide/configuration).
+
+### What is the difference between Memgraph and Memgraph Platform?
+
+There are three official Docker images for Memgraph:
+
+- `memgraph/memgraph`: This is the most basic Memgraph instance.
+- `memgraph/memgraph-mage`: This image contains a Memgraph instance together
+  with all the newest [MAGE](/mage) modules and graph algorithms.
+- `memgraph/memgraph-platform`: This image contains Memgraph, Memgraph Lab, and
+  mgconsole. Once started, mgconsole will be opened in the terminal, while
+  Memgraph Lab is available at `http://localhost:3000`.
+
+### How does Memgraph ensure durability? How does Memgraph persist data?
+
+Memgraph uses two mechanisms to ensure data durability:
+
+- **write-ahead logs** (WAL) and
+- periodic **snapshots**.
+
+**Snapshots** are taken periodically during the entire runtime of Memgraph. When
+a snapshot is triggered, the whole data storage is written to the disk.
+**Write-ahead logs** save all database modifications that happened to a file.
