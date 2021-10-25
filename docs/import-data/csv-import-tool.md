@@ -48,6 +48,12 @@ the following command:
 docker run -v mg_lib:/var/lib/memgraph -v mg_import:/import-data --entrypoint=mg_import_csv memgraph
 ```
 
+:::caution
+This is an incomplete command as it's missing the files that need to be
+imported. It will result with a 'The --nodes flag is required!' error. You can
+find a complete example [below](#Examples).
+:::
+
 For information on other options, run:
 
 ```bash
