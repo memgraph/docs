@@ -85,7 +85,7 @@ container is stopped). You need to use local volumes to store the data
 permanently, which is why Memgraph is started with the `-v` flag.
 
 ```console
-docker run -it -p 7687:7687 -p 3000:3000 -v mg_lib:/var/lib/memgraph memgraph`
+docker run -it -p 7687:7687 -p 3000:3000 -v mg_lib:/var/lib/memgraph memgraph
 ```
 
 More information on Docker Volumes can be found
