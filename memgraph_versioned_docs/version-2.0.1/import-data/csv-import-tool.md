@@ -178,6 +178,12 @@ docker run -v mg_lib:/var/lib/memgraph -v mg_import:/import-data \
   --relationships /import-data/people_relationships.csv
 ```
 
+Next time you run Memgraph, the dataset will be loaded:
+
+```bash
+ docker run -p 7687:7687 -v mg_lib:/var/lib/memgraph memgraph
+```
+
   </TabItem>
   <TabItem value= 'linux'>
 
@@ -185,10 +191,10 @@ docker run -v mg_lib:/var/lib/memgraph -v mg_import:/import-data \
 sudo -u memgraph mg_import_csv --nodes people_nodes.csv --relationships people_relationships.csv
 ```
 
+Next time you run Memgraph, the dataset will be loaded.
+
   </TabItem>
 </Tabs>
-
-Next time you run Memgraph, the dataset will be loaded.
 
 ### Multiple types of nodes and relationships
 
@@ -305,7 +311,11 @@ docker run -v mg_lib:/var/lib/memgraph -v mg_etc:/etc/memgraph -v mg_import:/imp
   --relationships /import-data/restaurants_relationships.csv
 ```
 
-The next time you run Memgraph, the dataset will be loaded.
+Next time you run Memgraph, the dataset will be loaded:
+
+```bash
+ docker run -p 7687:7687 -v mg_lib:/var/lib/memgraph memgraph
+```
 
   </TabItem>
   <TabItem value= 'linux'>

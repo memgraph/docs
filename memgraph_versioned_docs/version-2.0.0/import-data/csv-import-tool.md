@@ -48,6 +48,12 @@ the following command:
 docker run -v mg_lib:/var/lib/memgraph -v mg_import:/import-data --entrypoint=mg_import_csv memgraph
 ```
 
+:::caution
+This is an incomplete command as it's missing the files that need to be
+imported. It will result with a `The --nodes flag is required!` error. You can
+find a complete example [below](#examples).
+:::
+
 For information on other options, run:
 
 ```bash
@@ -157,7 +163,7 @@ If using Docker, things are a bit more complicated. First you need to copy the
 CSV files where the Docker image can see them:
 
 ```bash
-docker container create --name mg_import_helper -v mg_import:/import-data busybox
+docker container create --user memgraph --name mg_import_helper -v mg_import:/import-data busybox
 docker cp people_nodes.csv mg_import_helper:/import-data
 docker cp people_relationships.csv mg_import_helper:/import-data
 docker rm mg_import_helper
@@ -172,6 +178,12 @@ docker run -v mg_lib:/var/lib/memgraph -v mg_import:/import-data \
   --relationships /import-data/people_relationships.csv
 ```
 
+Next time you run Memgraph, the dataset will be loaded:
+
+```bash
+ docker run -p 7687:7687 -v mg_lib:/var/lib/memgraph memgraph
+```
+
   </TabItem>
   <TabItem value= 'linux'>
 
@@ -179,10 +191,10 @@ docker run -v mg_lib:/var/lib/memgraph -v mg_import:/import-data \
 sudo -u memgraph mg_import_csv --nodes people_nodes.csv --relationships people_relationships.csv
 ```
 
+Next time you run Memgraph, the dataset will be loaded.
+
   </TabItem>
 </Tabs>
-
-Next time you run Memgraph, the dataset will be loaded.
 
 ### Multiple types of nodes and relationships
 
@@ -280,7 +292,7 @@ If using Docker, things are a bit more complicated. First, you need to copy the
 CSV files where the Docker container can see them:
 
 ```bash
-docker container create --name mg_import_helper -v mg_import:/import-data busybox
+docker container create --user memgraph --name mg_import_helper -v mg_import:/import-data busybox
 docker cp people_nodes.csv mg_import_helper:/import-data
 docker cp people_relationships.csv mg_import_helper:/import-data
 docker cp restaurants_nodes.csv mg_import_helper:/import-data
@@ -299,7 +311,11 @@ docker run -v mg_lib:/var/lib/memgraph -v mg_etc:/etc/memgraph -v mg_import:/imp
   --relationships /import-data/restaurants_relationships.csv
 ```
 
-The next time you run Memgraph, the dataset will be loaded.
+Next time you run Memgraph, the dataset will be loaded:
+
+```bash
+ docker run -p 7687:7687 -v mg_lib:/var/lib/memgraph memgraph
+```
 
   </TabItem>
   <TabItem value= 'linux'>
