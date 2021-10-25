@@ -157,7 +157,7 @@ If using Docker, things are a bit more complicated. First you need to copy the
 CSV files where the Docker image can see them:
 
 ```bash
-docker container create --name mg_import_helper -v mg_import:/import-data busybox
+docker container create --user memgraph --name mg_import_helper -v mg_import:/import-data busybox
 docker cp people_nodes.csv mg_import_helper:/import-data
 docker cp people_relationships.csv mg_import_helper:/import-data
 docker rm mg_import_helper
@@ -280,7 +280,7 @@ If using Docker, things are a bit more complicated. First, you need to copy the
 CSV files where the Docker container can see them:
 
 ```bash
-docker container create --name mg_import_helper -v mg_import:/import-data busybox
+docker container create --user memgraph --name mg_import_helper -v mg_import:/import-data busybox
 docker cp people_nodes.csv mg_import_helper:/import-data
 docker cp people_relationships.csv mg_import_helper:/import-data
 docker cp restaurants_nodes.csv mg_import_helper:/import-data
