@@ -19,6 +19,7 @@ module.exports = {
         'query-modules/cpp/bridges',
         'query-modules/cpp/cycles',
         'query-modules/python/distance-calculator',
+        'query-modules/cpp/dynamic-community-detection',
         'query-modules/python/graph-analyzer',
         'query-modules/python/graph-coloring',
         'query-modules/python/nxalg',
