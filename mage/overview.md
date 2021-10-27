@@ -6,15 +6,16 @@ slug: /
 ---
 
 **MAGE**, also known as **Memgraph Advanced Graph Extensions**, is an
-open-source repository that contains **graph algorithms** and **modules** in the form of query modules
-written by the team behind Memgraph and its users. You can find and contribute implementations
-of various algorithms in multiple programming languages, all runnable inside
-Memgraph. This project aims to give everyone the tools they need to tackle the
-most interesting and challenging **graph analytics** problems.
+open-source repository that contains **graph algorithms** and **modules** in the
+form of query modules written by the team behind Memgraph and its users. You can
+find and contribute implementations of various algorithms in multiple
+programming languages, all runnable inside Memgraph. This project aims to give
+everyone the tools they need to tackle the most interesting and challenging
+**graph analytics** problems.
 
 :::info GitHub repository
-You can find the official GitHub repository here: **[MAGE on GitHub
-](https://github.com/memgraph/mage)**.
+You can find the official GitHub repository here: **[MAGE on
+GitHub](https://github.com/memgraph/mage)**.
 :::
 
 ## MAGE query modules
@@ -26,7 +27,9 @@ modules in the official [Memgraph
 documentation](https://memgraph.com/docs/memgraph/database-functionalities/query-modules/built-in-query-modules).
 
 ## Memgraph compatibility
-With changes in Memgraph API, MAGE started to track version numbers. Check out the table below which will reveal MAGE compatibility with Memgraph versions.
+
+With changes in Memgraph API, MAGE started to track version numbers. Check out
+the table below which will reveal MAGE compatibility with Memgraph versions.
 
 | MAGE version | Memgraph version  |
 | ------------ | ----------------- |
@@ -47,7 +50,7 @@ With changes in Memgraph API, MAGE started to track version numbers. Check out t
 | [union_find](/mage/query-modules/python/union-find)                                | Python | A module with an algorithm that enables the user to check whether the given nodes belong to the same connected component.                                                                                                         |
 | [node_similartiy](/mage/query-modules/python/node-similarity)                      | Python | A module that contains similarity measures for calculating the similarity between two nodes.                                                                                                                                      |
 | [node2vec](/mage/query-modules/python/node2vec)                                    | Python | An algorithm for calculating node embeddings from static graph using second order walk sampling.                                                                                                                                  |
-| [node2vec_online](/mage/query-modules/python/node2vec-online)                      | Python | An algorithm for calculating node embeddings as new edges arrive                                                                                                                                                                  |
+| [node2vec_online](/mage/query-modules/python/node2vec-online)                      | Python | An algorithm for calculating node embeddings from a static graph using second-order walk sampling.                                                                                                                                |
 | [weakly_connected_components](/mage/query-modules/cpp/weakly-connected-components) | C++    | A module that finds weakly connected components in a graph.                                                                                                                                                                       |
 | [biconnected_components](/mage/query-modules/cpp/biconnected-components)           | C++    | Algorithm for calculating maximal biconnected subgraph. A biconnected subgraph is a subgraph with a property that if any vertex were to be removed, the graph will remain connected.                                              |
 | [bipartite_matching](/mage/query-modules/cpp/bipartite-matching)                   | C++    | Algorithm for calculating maximum bipartite matching, where matching is a set of nodes chosen in such a way that no two edges share an endpoint.                                                                                  |

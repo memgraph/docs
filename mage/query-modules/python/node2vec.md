@@ -8,30 +8,35 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 export const Highlight = ({children, color}) => (
-  <span
-    style={{
+<span
+style={{
       backgroundColor: color,
       borderRadius: '2px',
       color: '#fff',
       padding: '0.2rem',
     }}>
-    {children}
-  </span>
+{children}
+</span>
 );
 
 [![docs-source](https://img.shields.io/badge/source-node2vec-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/node2vec.py)
 
 ## Abstract
 
-The **node2vec** is a semi-supervised algorithmic framework for learning continuous feature representations for nodes in networks.
-Algorithms learns a mapping of nodes to a low-dimensional space of features that maximizes the likelihood of preserving
-network neighborhoods of nodes. By using a biased random walk procedure it enables exploring diverse neighborhoods.
-In tasks such as multi-label classification and link prediction, node2vec shows great results.
+The **node2vec** is a semi-supervised algorithmic framework for learning
+continuous feature representations for nodes in networks. The algorithm
+generates a mapping of nodes to a low-dimensional space of features that
+maximizes the likelihood of preserving network neighborhoods of nodes. By using
+a biased random walk procedure, it enables exploring diverse neighborhoods. In
+tasks such as multi-label classification and link prediction, node2vec shows
+great results.
 
-Basic idea from **node2vec** has found inspiration in **NLP**. The same way as a document is an ordered sequence of words, 
-by sampling sequences of nodes from the underlying network and turning a network into a ordered sequence of
-nodes. But, although idea of sampling is easy, how to sample is different problem due to different tasks one could have in 
-network.
+The **node2vec** algorithm was inspired by a similar **NLP** technique. The same
+way as a document is an ordered sequence of words, by sampling sequences of
+nodes from the underlying network and turning a network into an ordered sequence
+of nodes. Although the idea of sampling is easy, choosing the actual strategy
+can be challenging and dependant on the techniques that will be applied
+afterward.
 
 Capturing information in networks often shuttles between two kinds of
 similarities: **homophily** and **structural equivalence**. Under the
@@ -41,79 +46,76 @@ contrast, under the **structural equivalence** hypothesis, nodes that have
 similar structural roles in networks should be embedded closely together (e.g.,
 nodes that act as hubs of their corresponding communities).
 
-Current implementation easily captures **homophily** or **structural equivalence** by changing hyperparameters.
+The current implementation easily captures **homophily** or **structural
+equivalence** by changing hyperparameters.
 
-`BFS` and `DFS` strategies play a key role in producing representations that reflect either of the above equivalences.
-The neighborhoods sampled by `BFS` lead to embeddings that correspond closely to structural equivalence. 
-The opposite is true for `DFS`. It can explore larger parts of  the network as it can move further away from the source node.
-Threfore, `DFS` sampled walks accurately reflect a macro-view of the neighborhood which is essential in inferring communities based on homophily.
-
+`BFS` and `DFS` strategies play a key role in producing representations that
+reflect either of the above equivalences. The neighborhoods sampled by `BFS`
+lead to embeddings that correspond closely to structural equivalence. The
+opposite is true for `DFS`. It can explore larger parts of the network as it
+can move further away from the source node. Therefore, `DFS` sampled walks
+accurately reflect a macro-view of the neighborhood, which is essential in
+inferring communities based on homophily.
 
 By having different parameters:
-* **return parameter `p`**
-* and **in-out parameter`q`**
 
-one decides whether to sample in more `BFS` or `DFS`. If `p` is smaller then 1, then we create more `BFS` like walk and we capture more **structural equivalence**.
-Different is true if `q` is smaller then 1. Then we capture `DFS` like walk and  **homophily**.
+- **return parameter `p`**
+- and **in-out parameter`q`**
 
+one decides whether to prioritize the `BFS` or `DFS` strategy when sampling. If
+`p` is smaller than 1, then we create more `BFS` like walks and we capture more
+**structural equivalence**. The opposite is true if `q` is smaller than 1. Then we
+capture `DFS` like walks and **homophily**.
 
 [^1] [Scalable Feature Learning for Networks](https://arxiv.org/abs/1607.00653),
 A. Grover, J. Leskovec
 
-| Trait               | Value                                                 |
-| ------------------- | ----------------------------------------------------- |
-| **Module type**     | <Highlight color="#FB6E00">**module**</Highlight>     |
-| **Implementation**  | <Highlight color="#FB6E00">**Python**</Highlight>     |
+| Trait               | Value                                                          |
+| ------------------- | -------------------------------------------------------------- |
+| **Module type**     | <Highlight color="#FB6E00">**module**</Highlight>              |
+| **Implementation**  | <Highlight color="#FB6E00">**Python**</Highlight>              |
 | **Graph direction** | <Highlight color="#FB6E00">**directed/undirected**</Highlight> |
 | **Edge weights**    | <Highlight color="#FB6E00">**weighted/unweighted**</Highlight> |
-| **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight> |
+| **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight>          |
 
 ## Procedures
 
 ### `get_embeddings( is_directed, p, q, num_walks, walk_length, vector_size, alpha, window, min_count, seed, workers, min_alpha, sg, hs, negative, epochs,)`
 
 #### Input:
-* `is_directed : bool` ➡ 
-        If bool=True, graph is treated as directed, else not directed
-* `p : float` ➡
-        Return hyperparameter for calculating transition probabilities.
-* `q : float` ➡
-        Inout hyperparameter for calculating transition probabilities.
-* `num_walks : int` ➡
-        Number of walks per node in walk sampling.
-* `walk_length : int` ➡
-        Length of one walk in walk sampling.
-* `vector_size : int` ➡
-       Dimensionality of the word vectors.
-* `window : int` ➡
-       Maximum distance between the current and predicted word within a sentence.
-* `min_count : int` ➡
-        Ignores all words with total frequency lower than this.
-* `workers : int` ➡
-       Use these many worker threads to train the model (=faster training with multicore machines).
-* `sg : {0, 1}` ➡
-       Training algorithm: 1 for skip-gram; otherwise CBOW.
-* `hs : {0, 1}` ➡
-        If 1, hierarchical softmax will be used for model training.
-        If 0, and `negative` is non-zero, negative sampling will be used.
-* `negative : int` ➡
-        If > 0, negative sampling will be used, the int for negative specifies how many "noise words"
-        should be drawn (usually between 5-20).
-        If set to 0, no negative sampling is used.
-* `cbow_mean : {0, 1}` ➡
-       If 0, use the sum of the context word vectors. If 1, use the mean, only applies when cbow is used.
-* `alpha : float` ➡
-       The initial learning rate.
-* `min_alpha : float` ➡
-       Learning rate will linearly drop to `min_alpha` as training progresses.
-* `seed : int` ➡
-       Seed for the random number generator. Initial vectors for each word are seeded with a hash of
-       the concatenation of word + `str(seed)`.
+
+- `is_directed : bool` ➡ If bool=True, graph is treated as directed, else not
+  directed
+- `p : float` ➡ Return hyperparameter for calculating transition probabilities.
+- `q : float` ➡ In-out hyperparameter for calculating transition probabilities.
+- `num_walks : int` ➡ Number of walks per node in walk sampling.
+- `walk_length : int` ➡ Length of one walk in walk sampling.
+- `vector_size : int` ➡ Dimensionality of the word vectors.
+- `window : int` ➡ Maximum distance between the current and predicted word
+  within a sentence.
+- `min_count : int` ➡ Ignores all words with total frequency lower than this.
+- `workers : int` ➡ Use these many worker threads to train the model (=faster
+  training with multicore machines).
+- `sg : {0, 1}` ➡ Training algorithm: 1 for skip-gram; otherwise CBOW.
+- `hs : {0, 1}` ➡ If 1, hierarchical softmax will be used for model training. If
+  0, and `negative` is non-zero, negative sampling will be used.
+- `negative : int` ➡ If > 0, negative sampling will be used, the int for
+  negative specifies how many "noise words" should be drawn (usually
+  between 5-20). If set to 0, no negative sampling is used.
+- `cbow_mean : {0, 1}` ➡ If 0, use the sum of the context word vectors. If 1,
+  use the mean, only applies when cbow is used.
+- `alpha : float` ➡ The initial learning rate.
+- `min_alpha : float` ➡ Learning rate will linearly drop to `min_alpha` as
+  training progresses.
+- `seed : int` ➡ Seed for the random number generator. Initial vectors for each
+  word are seeded with a hash of the concatenation of word + `str(seed)`.
 
 #### Output:
 
-* `nodes: mgp.List[mgp.Vertex]` ➡ List of nodes for which embeddings were calculated
-* `embeddings: mgp.List[mgp.List[mgp.Number]])` ➡ Corresponding list of embeddings
+- `nodes: mgp.List[mgp.Vertex]` ➡ List of nodes for which embeddings were
+  calculated
+- `embeddings: mgp.List[mgp.List[mgp.Number]])` ➡ Corresponding list of
+  embeddings
 
 #### Usage:
 
@@ -123,49 +125,40 @@ CALL node2vec_online.get_embeddings(False, 2.0, 0.5, 4, 5, 100, 0.025, 5, 1, 1, 
 
 ### `set_embeddings( is_directed, p, q, num_walks, walk_length, vector_size, alpha, window, min_count, seed, workers, min_alpha, sg, hs, negative, epochs,)`
 
-
 #### Input:
-* `is_directed : bool` ➡ 
-        If bool=True, graph is treated as directed, else not directed
-* `p : float` ➡
-        Return hyperparameter for calculating transition probabilities.
-* `q : float` ➡
-        Inout hyperparameter for calculating transition probabilities.
-* `num_walks : int` ➡
-        Number of walks per node in walk sampling.
-* `walk_length : int` ➡
-        Length of one walk in walk sampling.
-* `vector_size : int` ➡
-       Dimensionality of the word vectors.
-* `window : int` ➡
-       Maximum distance between the current and predicted word within a sentence.
-* `min_count : int` ➡
-        Ignores all words with total frequency lower than this.
-* `workers : int` ➡
-       Use these many worker threads to train the model (=faster training with multicore machines).
-* `sg : {0, 1}` ➡
-       Training algorithm: 1 for skip-gram; otherwise CBOW.
-* `hs : {0, 1}` ➡
-        If 1, hierarchical softmax will be used for model training.
-        If 0, and `negative` is non-zero, negative sampling will be used.
-* `negative : int` ➡
-        If > 0, negative sampling will be used, the int for negative specifies how many "noise words"
-        should be drawn (usually between 5-20).
-        If set to 0, no negative sampling is used.
-* `cbow_mean : {0, 1}` ➡
-       If 0, use the sum of the context word vectors. If 1, use the mean, only applies when cbow is used.
-* `alpha : float` ➡
-       The initial learning rate.
-* `min_alpha : float` ➡
-       Learning rate will linearly drop to `min_alpha` as training progresses.
-* `seed : int` ➡
-       Seed for the random number generator. Initial vectors for each word are seeded with a hash of
-       the concatenation of word + `str(seed)`.
+
+- `is_directed : bool` ➡ If bool=True, graph is treated as directed, else not
+  directed
+- `p : float` ➡ Return hyperparameter for calculating transition probabilities.
+- `q : float` ➡ In-out hyperparameter for calculating transition probabilities.
+- `num_walks : int` ➡ Number of walks per node in walk sampling.
+- `walk_length : int` ➡ Length of one walk in walk sampling.
+- `vector_size : int` ➡ Dimensionality of the word vectors.
+- `window : int` ➡ Maximum distance between the current and predicted word
+  within a sentence.
+- `min_count : int` ➡ Ignores all words with total frequency lower than this.
+- `workers : int` ➡ Use these many worker threads to train the model (=faster
+  training with multicore machines).
+- `sg : {0, 1}` ➡ Training algorithm: 1 for skip-gram; otherwise CBOW.
+- `hs : {0, 1}` ➡ If 1, hierarchical softmax will be used for model training. If
+  0, and `negative` is non-zero, negative sampling will be used.
+- `negative : int` ➡ If > 0, negative sampling will be used, the int for
+  negative specifies how many "noise words" should be drawn (usually
+  between 5-20). If set to 0, no negative sampling is used.
+- `cbow_mean : {0, 1}` ➡ If 0, use the sum of the context word vectors. If 1,
+  use the mean, only applies when cbow is used.
+- `alpha : float` ➡ The initial learning rate.
+- `min_alpha : float` ➡ Learning rate will linearly drop to `min_alpha` as
+  training progresses.
+- `seed : int` ➡ Seed for the random number generator. Initial vectors for each
+  word are seeded with a hash of the concatenation of word + `str(seed)`.
 
 #### Output:
 
-* `nodes: mgp.List[mgp.Vertex]` ➡ List of nodes for which embeddings were calculated
-* `embeddings: mgp.List[mgp.List[mgp.Number]])` ➡ Corresponding list of embeddings
+- `nodes: mgp.List[mgp.Vertex]` ➡ List of nodes for which embeddings were
+  calculated
+- `embeddings: mgp.List[mgp.List[mgp.Number]])` ➡ Corresponding list of
+  embeddings
 
 #### Usage:
 
@@ -177,8 +170,8 @@ CALL node2vec_online.get_embeddings(False, 2.0, 0.5, 4, 5, 100, 0.025, 5, 1, 1, 
 
 #### Output:
 
-* `name: str` ➡ Name of available functions
-* `value: str` ➡ Documentation for every function
+- `name: str` ➡ Name of available functions
+- `value: str` ➡ Documentation for every function
 
 #### Usage:
 
@@ -189,22 +182,21 @@ CALL node2vec_online.help();
 ## Example
 
 <Tabs
-  groupId="example"
-  defaultValue="visualization"
-  values={[
-    {label: 'Step 1: Input graph', value: 'visualization'},
-    {label: 'Step 2: Load commands', value: 'cypher-load'},
-    {label: 'Step 3: Set embeddings', value: 'set-embeddings'},
-    {label: 'Step 4: Running command', value: 'run'},
-    {label: 'Step 5: Results', value: 'result'},
-  ]
+groupId="example"
+defaultValue="visualization"
+values={[
+{label: 'Step 1: Input graph', value: 'visualization'},
+{label: 'Step 2: Load commands', value: 'cypher-load'},
+{label: 'Step 3: Set embeddings', value: 'set-embeddings'},
+{label: 'Step 4: Running command', value: 'run'},
+{label: 'Step 5: Results', value: 'result'},
+]
 }>
   <TabItem value="visualization">
 
-  <img src={require('../../data/query-modules/python/node2vec/node2vec.png').default}/>
+<img src={require('../../data/query-modules/python/node2vec/node2vec.png').default}/>
 
   </TabItem>
-
   <TabItem value="cypher-load">
 
 ```cypher
@@ -223,7 +215,6 @@ MERGE (n:Node {id: 4}) MERGE (m:Node {id: 6}) CREATE (n)-[:RELATION]->(m);
 ```
 
   </TabItem>
-
   <TabItem value="set-embeddings">
 
 ```cypher
@@ -231,7 +222,6 @@ CALL node2vec.set_embeddings(False, 2.0, 0.5, 4, 5, 2) YIELD *;
 ```
 
   </TabItem>
-
   <TabItem value="run">
 
 ```cypher
