@@ -1,34 +1,37 @@
 ---
-id: create-a-new-module
+id: create-a-new-module-python
 title: Developing a query module in Python
 sidebar_label: Create a Python module
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 
 ### Prerequisites
 
-- Clone Github repository of Memgraph MAGE.
-- Check which process you will use for [MAGE installation](https://memgraph.com/docs/mage/installation). **You still don't need to do it**. If you can install MAGE from source, it will be easier to develop module.
-    - If you decided to install MAGE from source, download [Memgraph instance](https://memgraph.com/product). **Memgraph instance only exists
-        for Linux based OS**.
-    - By installing MAGE as Docker, Memgraph will come packed inside, so you **don't need to download anything for now**, just clone MAGE Github repo.
-    - **For this step we don't recommend installing Memgraph from DockerHub.**
+- [Clone Github repository of Memgraph MAGE](https://github.com/memgraph/mage).
+- Check which process you will use for [MAGE installation](https://memgraph.com/docs/mage/installation). **You still don't need to do it**. If you can install **MAGE** from source, it will be easier to develop module. Consider following as options:
+    - You can download **MAGE** image from [DockerHub](https://hub.docker.com/r/memgraph/memgraph-mage/tags), but make sure it has **dev** tag.
+    - By choosing to install **MAGE** yourself with **Docker**, Memgraph will come packed inside, so you **don't need to download Memgraph**, just clone **MAGE** Github repo.
+    - If you decided to install **MAGE** from source, download **[Memgraph package](https://memgraph.com/product)**. **Memgraph package only exists
+      for Linux based distro**. If you have Docker image of Memgraph, download rather **MAGE from DockerHub** which is
+      equipped for development.
+
 
 
 ## Developing a module
 In this guide, we'll create a [random walk](https://en.wikipedia.org/wiki/Random_walk#On_graphs) algorithm.
 
-**This step is same for both part, installing MAGE from source and installing MAGE with Docker.**
+**This part is same for all steps (DockerHub installation, Docker build, and build from source on Linux distro)**
 
-Position yourself in the MAGE repository you cloned earlier. Specifically, go in the `python` sub-directory and 
+Position yourself in the **MAGE repository** you cloned earlier. Specifically, go in the `python` sub-directory and
 create a new file called `random_walk.py`. 
 
 ```
-mage
-└── e2e
-    └── random_walk_test
-        └── test_base
-            ├── input.cyp
-            └── test.yml
+python
+└── mage
+    └── random_walk.py
+
 ```
 
 For this part we will import `mgp`, Memgraph's internal data structure module. Among others, it
@@ -77,53 +80,69 @@ The `get_path` is decorated with the `@mgp.read_proc` decorator, which tells
 Memgraph it's a `read` procedure, meaning it won't change the graph. The path is
 created from the `start` node, and edges are appended to it iteratively.
 
+
+**Now we need to import this module in Memgraph :star:**
 ## Running
 
-### Instructions for installing MAGE from source
+<Tabs
+  groupId="running-method"
+  defaultValue="docker-hub"
+  values={[
+    {label: 'Docker Hub', value: 'docker-hub'},
+    {label: 'Docker build', value: 'docker'},
+    {label: 'Install from source on Linux', value: 'source'},
+  ]
+}>
+  <TabItem value="docker-hub">
 
-
-**0.** Make sure your Memgraph instance is running.
-
-```
-
-```
-
-**1.** Now, we need to copy our developed query module `random_walk` to `/usr/lib/memgraph/query_modules`. 
-
-```
-python3 setup build -p /usr/lib/memgraph/query_modules
-```
-
-And that is it.
-
-### Instructions for a Docker MAGE instance:
-When you developed your own query module, you need to load it inside Memgraph running inside Docker container.
-
-There are two options here.
-
-#### 1. Rebuild whole MAGE image
-This process is better if you just want to develop this module and test it out.
-
-This command will trigger rebuild of whole Docker image. Make sure that you have added Python requirements inside `python/requirements.txt`
-file. 
-
-**1.** Firstly, do the build of **MAGE** image:
+**1.** First download memgraph/memgraph-mage:1.0-dev image:
 
 ```
-docker build -t memgraph-mage .
+docker pull memgraph/memgraph-mage:1.0-dev
 ```
 
-**2.** Now, start `memgraph-mage` image with the following command and enjoy **your** own **MAGE**:
+**2.** Start it:
 ```
-docker run --rm -p 7687:7687 --name mage memgraph-mage
+docker run --rm -p 7687:7687 --name mage memgraph-mage:dev
 ```
 
-#### 2. Build inside Docker container
-This process is better if you plan to change and test module frequently.
+**3.** And now we need to copy files inside container in order for Memgraph to import developed
+query module.
 
-You can build **MAGE** Docker image equipped for development. `Rust`, `Clang`, `Python3-pip`, and everything else necessary
-for development will still be inside the running container. This means that you can copy **MAGE** repository inside the container
-and do build inside `mage` container. And there is no need to do the whole Docker image build again.
+**a)** First you need to copy files to container with name `mage`
+
+```
+docker cp . mage:/mage/
+```
+
+**b)** Then you need to position yourself inside container as root:
+
+```
+docker exec -u root -it mage /bin/bash
+```
+
+> Note: if you have done build locally, make sure to delete folder `cpp/build` because
+> you might be dealing with different `architectures` or problems with `CMakeCache.txt`.
+> To delete it, run:
+>
+> `rm -rf cpp/build`
+
+**c)** After that run build with option to copy executables from `mage/dist` to `/usr/lib/memgraph/query_modules`:
+
+```
+python3 setup build -p /usr/lib/memgraph/query_modules/
+```
+**d)** Everything is done now. Just run following command:
+
+```
+exit
+```
+** And that is it.**
+
+  </TabItem>
+
+
+  <TabItem value="docker">
 
 **1.** To create `dev` **MAGE** image, run the following command:
 
@@ -136,7 +155,13 @@ docker build --target dev -t memgraph-mage:dev .
 docker run --rm -p 7687:7687 --name mage memgraph-mage:dev
 ```
 
-**3.** Now copying files inside  container and doing build.
+**And that is it.**
+
+:::info
+Now if you make any additional changes, you can stop container and do the rebuild.
+Additionally if you don't want to rebuild everything again, you can have running container and copy stuff inside
+container, do build inside container, and copy executables to  /usr/lib/memgraph/query_modules/ folder,
+where Memgraph is looking for query modules. You can follow these steps for any additional changes:
 
 **a)** First you need to copy files to container with name `mage`
 
@@ -166,6 +191,27 @@ python3 setup build -p /usr/lib/memgraph/query_modules/
 ```
 exit
 ```
+:::
+
+  </TabItem>
+
+  <TabItem value="source">
+**0.** Make sure your Memgraph instance is running.
+
+```
+sudo systemctl status memgraph.service
+```
+
+**1.** Now, we need to copy our developed query module `random_walk` to `/usr/lib/memgraph/query_modules`.
+
+```
+python3 setup build -p /usr/lib/memgraph/query_modules
+```
+
+And that is it.
+  </TabItem>
+</Tabs>
+
 
 ## Querying
 
