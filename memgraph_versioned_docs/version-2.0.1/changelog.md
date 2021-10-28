@@ -11,7 +11,7 @@ sidebar_label: Changelog
 * Updated a startup message with a link to the [getting started page](getting-started.md). [#259](https://github.com/memgraph/memgraph/pull/259)
 * Updated certain error and warning messages in the logs with links to the documentation explaining the problem in more detail. [#243](https://github.com/memgraph/memgraph/pull/243)
 * Updated mgconsole to [v1.1.0](https://github.com/memgraph/mgconsole/releases/tag/v1.1.0). [#260](https://github.com/memgraph/memgraph/pull/260)
-* Now supporting bolt protocol v4.3. [#228](https://github.com/memgraph/memgraph/pull/226)
+* Now supporting Bolt protocol version 4.3. [#228](https://github.com/memgraph/memgraph/pull/226)
 
 ### Bug Fixes
 
