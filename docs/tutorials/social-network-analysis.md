@@ -6,59 +6,82 @@ sidebar_label: Social network analysis with NetworkX
 
 ## Introduction
 
-In this tutorial, we will show you how to perform simple network analysis with the NetworkX library and data stored in Memgraph. You will also acquire a basic understanding of **Query Modules**, an easy method for extending the query language with user-written procedures.
+In this tutorial, we will show you how to perform simple network analysis with
+the NetworkX library and data stored in Memgraph. You will also acquire a basic
+understanding of **Query Modules**, an easy method for extending the query
+language with user-written procedures.
 
 ## Data model
-We are going to use the Karate Club graph, a network of friendships between 34 members of a karate club at a US university, as described by Wayne Zachary in 1977. It is a very popular data set in social network analysis and is very often referenced in such tutorials.
-The nodes in the graph represent the members while the relationships between them are of type `FRIENDS_WITH`. You can differentiate the nodes by using their unique `id` property.
+
+We are going to use the Karate Club graph, a network of friendships between 34
+members of a karate club at a US university, as described by Wayne Zachary in
+1977. It is a very popular data set in social network analysis and is very often
+referenced in such tutorials. The nodes in the graph represent the members while
+the relationships between them are of type `FRIENDS_WITH`. You can differentiate
+the nodes by using their unique `id` property.
 
 <img
-  src="https://raw.githubusercontent.com/g-despot/images/master/karate_club.png"
-  alt="Karate club"
-  style={{height: 400}}
+src="https://raw.githubusercontent.com/g-despot/images/master/karate_club.png"
+alt="Karate club" style={{height: 400}}
 />
 
 ## Importing the dataset
 
-To import the dataset, download the [Memgraph Lab](https://memgraph.com/product/lab)
-desktop application and navigate to the `Datasets` tab in the sidebar. From there,
-choose the dataset `Karate club friendship network` and continue with the tutorial.
+To import the dataset, download the [Memgraph
+Lab](https://memgraph.com/product/lab) desktop application and navigate to the
+`Datasets` tab in the sidebar. From there, choose the dataset `Karate club
+friendship network` and continue with the tutorial.
 
 ## Using existing NetworkX algorithms
 
 There are three ways to execute queries and procedures in Memgraph:
-* using the command-line tool `mgconsole`, which comes with Memgraph: **[Querying the database](/connect-to-memgraph/overview.mdx)**
-* programmatically, by using the Bolt protocol: **[Building applications](/connect-to-memgraph/methods/drivers.md)**
-* from **Memgraph Lab**, a visual user interface which you can download **[here](https://memgraph.com/download)**.
 
-In this tutorial, we are using results from the command-line tool because of their text format but, it's alright to use Memgraph Lab instead. You can open Memgraph Lab and in the tab **Query** execute the following command:
+- using the command-line tool `mgconsole`, which comes with Memgraph:
+  **[Querying the database](/connect-to-memgraph/overview.mdx)**
+- programmatically, by using the Bolt protocol: **[Building
+  applications](/connect-to-memgraph/methods/drivers.md)**
+- from **Memgraph Lab**, a visual user interface which you can download
+  **[here](https://memgraph.com/download)**.
+
+In this tutorial, we are using results from the command-line tool because of
+their text format but, it's alright to use Memgraph Lab instead. You can open
+Memgraph Lab and in the tab **Query** execute the following command:
 
 ```cypher
 MATCH (s)-[r]-(t)
 RETURN s, r, t;
 ```
 
-This is going to return all the relationships inside our network. Now we have a better overview of what we are dealing with, so it’s time to get some useful information about the network.
+This is going to return all the relationships inside our network. Now we have a
+better overview of what we are dealing with, so it’s time to get some useful
+information about the network.
 
-To analyze the network we will use the built-in procedure ```analyze()``` from the ```graph_analyzer``` query module. This module utilizes the NetworkX library to retrieve graph information. Run the following query:
+To analyze the network we will use the built-in procedure `analyze()` from the
+`graph_analyzer` query module. This module utilizes the NetworkX library to
+retrieve graph information. Run the following query:
 
 ```cypher
 CALL graph_analyzer.analyze() YIELD *;
 ```
 
-You will get details about the graph like the number of nodes, edges, bridges... and many more.
+You will get details about the graph like the number of nodes, edges, bridges...
+and many more.
 
 ### Betweenness centrality
 
-Now let's try to find the betweenness centrality of a node, i.e. the number of times a node acts as a bridge along the shortest path between two other nodes. Run the following query:
-
+Now let's try to find the betweenness centrality of a node, i.e. the number of
+times a node acts as a bridge along the shortest path between two other nodes.
+Run the following query:
 
 ```
 CALL nxalg.betweenness_centrality() YIELD *;
 ```
-The procedure `betweenness_centrality()` is one of over 70 algorithms available in the `nxalg` module.
+
+The procedure `betweenness_centrality()` is one of over 70 algorithms available
+in the `nxalg` module.
 
 The result should be:
+
 ```
 +--------------+--------------+
 | betweenness  | node         |
@@ -74,8 +97,12 @@ The result should be:
 
 ### Link prediction
 
-A very common problem in network analysis is link prediction. The algorithm predicts which new interactions among the network members are likely to occur in the near future. One way of predicting these links is by measuring the “proximity” of nodes in a network. This can be done by using the Jaccard coefficient.
-Let's try running the algorithm on a node with the `id` 13 and ordering the results descending by the value of the coefficient:
+A very common problem in network analysis is link prediction. The algorithm
+predicts which new interactions among the network members are likely to occur in
+the near future. One way of predicting these links is by measuring the
+“proximity” of nodes in a network. This can be done by using the Jaccard
+coefficient. Let's try running the algorithm on a node with the `id` 13 and
+ordering the results descending by the value of the coefficient:
 
 ```cypher
 CALL nxalg.jaccard_coefficient()
@@ -87,6 +114,7 @@ ORDER BY coef DESC;
 ```
 
 The results are:
+
 ```
 +--------------+--------------+--------------+
 | u            | v            | coef         |
@@ -115,9 +143,13 @@ The results are:
 
 ## Adding new NetworkX algorithms as query modules
 
-Memgraph comes with over 70 NetworkX algorithms, but if the algorithm you require is missing, you can add it yourself as a Query Module.
+Memgraph comes with over 70 NetworkX algorithms, but if the algorithm you
+require is missing, you can add it yourself as a Query Module.
 
-If you are using Docker to run Memgraph you need to create a volume and mount it to access the directory `/usr/lib/memgraph/query_modules`. This can be done by creating an empty directory `~modules` on your host machine and executing the following command:
+If you are using Docker to run Memgraph you need to create a volume and mount it
+to access the directory `/usr/lib/memgraph/query_modules`. This can be done by
+creating an empty directory `~modules` on your host machine and executing the
+following command:
 
 ```
 docker volume create --driver local --opt type=none  --opt device=~modules --opt o=bind modules
@@ -129,12 +161,16 @@ Now, you can start Memgraph and mount the created volume:
 docker run -it --rm -v modules:/usr/lib/memgraph/query_modules -p 7687:7687 memgraph
 ```
 
-Everything from the directory `/usr/lib/memgraph/query_modules` will be visible/editable in your mounted volume and vice versa.
+Everything from the directory `/usr/lib/memgraph/query_modules` will be
+visible/editable in your mounted volume and vice versa.
 
 ### Community detection
 
-Detecting communities in a network is a very common problem. Therefore, we need community detection algorithms that can partition the network into multiple communities. Let's create our own module that accomplishes this task.
-Create a file called `communities.py` in the `~modules` directory and copy the following code into it:
+Detecting communities in a network is a very common problem. Therefore, we need
+community detection algorithms that can partition the network into multiple
+communities. Let's create our own module that accomplishes this task. Create a
+file called `communities.py` in the `~modules` directory and copy the following
+code into it:
 
 ```python=
 import mgp
@@ -155,8 +191,9 @@ def detect(
         list(s) for s in next(communities_generator)])
 ```
 
-We just created a query module with the procedure `detect()` that utilizes the Girvan–Newman method to find communities in a graph.
-Before we can call it, the newly created query module has to be loaded:
+We just created a query module with the procedure `detect()` that utilizes the
+Girvan–Newman method to find communities in a graph. Before we can call it, the
+newly created query module has to be loaded:
 
 ```cypher
 CALL mg.load_all();
@@ -184,6 +221,10 @@ The resulting communities are:
 
 ## Further reading
 
-If you want to find out more about query modules, take a look at our guide on how to create your own: [Implement custom query modules](/database-functionalities/query-modules/implement-query-modules.md).
+If you want to find out more about query modules, take a look at our guide on
+how to create your own: [Implement custom query
+modules](/database-functionalities/query-modules/implement-query-modules.md).
 
-You can also visit our [NetworkX Reference guide](/database-functionalities/networkx.md) to find out which NetworkX algorithms are already available in Memgraph.
+You can also visit our [NetworkX Reference
+guide](/database-functionalities/networkx.md) to find out which NetworkX
+algorithms are already available in Memgraph.

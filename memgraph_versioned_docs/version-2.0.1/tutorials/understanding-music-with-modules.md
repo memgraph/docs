@@ -8,72 +8,75 @@ This article is part of a series intended to show users how to use Memgraph on
 real-world data and, by doing so, retrieve some interesting and useful
 information.
 
-We highly recommend checking out the other articles from this series which
-are listed in our [tutorial overview section](/tutorials/overview.md).
+We highly recommend checking out the other articles from this series which are
+listed in our [tutorial overview section](/tutorials/overview.md).
 
 ## Introduction
 
 Getting useful information from your data is always challenging. With Memgraph,
 you can manipulate and extract a huge amount of information by writing queries.
-Memgraph even offers a set of built-in graph algorithms. You can use those algorithms
-in your queries, extending your power over the data. But what if you wanted to do more?
+Memgraph even offers a set of built-in graph algorithms. You can use those
+algorithms in your queries, extending your power over the data. But what if you
+wanted to do more?
 
 At its core, Memgraph "simply" builds a graph from your data. Graphs were always
 interesting to scientists and engineers because of their interesting properties
 allowing you to represent a specific kind of data in an intuitive way which
-makes extracting useful information much easier. A field called
-graph theory emerged in mathematics, producing a great number of algorithms,
-metrics, and other functions that are applied to the graphs.
+makes extracting useful information much easier. A field called graph theory
+emerged in mathematics, producing a great number of algorithms, metrics, and
+other functions that are applied to the graphs.
 
 Memgraph allows you to use the underlying graph in your functions by using
 `Query modules`, and those functions are called procedures. In this tutorial,
-we'll see how easy it is to extend the capabilities of Memgraph using Python.
-It will also show you how to use one of the most popular Python libraries for graphs,
-called [NetworkX](https://networkx.github.io/), which contains an insane amount
-of functions and algorithms for the graphs.
+we'll see how easy it is to extend the capabilities of Memgraph using Python. It
+will also show you how to use one of the most popular Python libraries for
+graphs, called [NetworkX](https://networkx.github.io/), which contains an insane
+amount of functions and algorithms for the graphs.
 
 ## Data model
 
 Social graphs is a relatively recent term. Simply said, it's a representation of
-a social network. Social networks appear in various sites, e.g., Youtube,
-which is primarily a site for watching videos, can be classified as a social
-network. For this tutorial, we'll use data consisting of users of the music
-streaming platform called [Deezer](https://www.deezer.com/).
+a social network. Social networks appear in various sites, e.g., Youtube, which
+is primarily a site for watching videos, can be classified as a social network.
+For this tutorial, we'll use data consisting of users of the music streaming
+platform called [Deezer](https://www.deezer.com/).
 
 The data consists of around 50k Deezer users from Croatia, but we prepared a
-subset of the dataset only composed of 2k users. Each user is defined by id
-and a list of genres he loved. The edges represent the mutual friendship between
-the users. You can find a more detailed explanation of the dataset on the
+subset of the dataset only composed of 2k users. Each user is defined by id and
+a list of genres he loved. The edges represent the mutual friendship between the
+users. You can find a more detailed explanation of the dataset on the
 [GitHub](https://github.com/benedekrozemberczki/datasets#deezer-social-networks)
 alongside many more similar datasets kindly provided by the same authors.
 
 ## Importing the dataset
 
-To import the dataset, download the [Memgraph Lab](https://memgraph.com/product/lab)
-desktop application and navigate to the `Datasets` tab in the sidebar. From there,
-choose the dataset `Music genres social network` and continue with the tutorial.
+To import the dataset, download the [Memgraph
+Lab](https://memgraph.com/product/lab) desktop application and navigate to the
+`Datasets` tab in the sidebar. From there, choose the dataset `Music genres social network` and continue with the tutorial.
 
 ## Defining a directory with query modules
 
-We need to set up the directory from which Memgraph will search for
-custom query modules by changing the `--query-modules-directory` flag in the main
+We need to set up the directory from which Memgraph will search for custom query
+modules by changing the `--query-modules-directory` flag in the main
 configuration file(`/etc/memgraph/memgraph.conf`) or by supplying it as a
 command-line parameter using the directory containing our modules as the value.
-For a more detailed explanation take a look at
-[Load and call query modules](/reference-guide/query-modules/load-call-query-modules.md).
+For a more detailed explanation take a look at [Load and call query
+modules](/reference-guide/query-modules/load-call-query-modules.md).
 
 ```
 sudo -u memgraph /usr/lib/memgraph/memgraph --query-modules-directory=/modules
 ```
 
 When using Memgraph installed from a DEB or RPM package, the currently running
-Memgraph server may need to be stopped. The user can do so using the following command:
+Memgraph server may need to be stopped. The user can do so using the following
+command:
 
 ```
 systemctl stop memgraph
 ```
 
-When using Docker, the query module directory can be mounted with the following command:
+When using Docker, the query module directory can be mounted with the following
+command:
 
 ```plaintext
 docker run -it -p 7687:7687 \
@@ -123,8 +126,8 @@ We can notice multiple things:
   defining custom procedures
 - `@mgp.read_proc` decorator which marks the function as a procedure
 - every argument is annotated with a type
-- result is defined as an object of `mgp.Record` which also has annotated types of
-  its members
+- result is defined as an object of `mgp.Record` which also has annotated types
+  of its members
 
 This example is probably not that interesting to you because we can get the same
 result using the following query:
@@ -214,10 +217,9 @@ def _create_undirected_graph(context: mgp.ProcCtx) -> nx.Graph:
 ```
 
 Now let's get some information about the graph. As our data represents social
-network we would like to know if it has
-[bridges](https://tinyurl.com/y3angsdb) and we would
-like to calculate the
-[average clustering](https://en.wikipedia.org/wiki/Clustering_coefficient).
+network we would like to know if it has [bridges](https://tinyurl.com/y3angsdb)
+and we would like to calculate the [average
+clustering](https://en.wikipedia.org/wiki/Clustering_coefficient).
 
 ```python
 @mgp.read_proc
@@ -267,28 +269,28 @@ LIMIT 10;
 ```
 
 ---
+
 **NOTE**
 
-Calculating betweenness centrality for each node can take some time to
-finish. The issue of slower `NetworkX` implementations is something we at
-Memgraph would like to address in the future. An example of this can be seen
-in the next section of this tutorial.
+Calculating betweenness centrality for each node can take some time to finish.
+The issue of slower `NetworkX` implementations is something we at Memgraph would
+like to address in the future. An example of this can be seen in the next
+section of this tutorial.
 
 ---
 
 For our last trick, let's try to locate communities inside our network.
-Communities are a set of nodes that are densely connected.
-The goal of the community detection algorithms can be nicely described
-with the next visualization:
-![](../data/community_detection_visualization.png)
+Communities are a set of nodes that are densely connected. The goal of the
+community detection algorithms can be nicely described with the next
+visualization: ![](../data/community_detection_visualization.png)
 
-As for centrality, there are multiple algorithms for finding communities in a graph.
-We will write a function that takes a method for calculating communities, uses it
-to find the communities, and, optionally, calculates some metrics specific to
-the graph partitioning so we can compare algorithms. To make things more
-interesting, let's find out which genre is the most popular in the community and
-return the percentage which tells us how many of the users have that genre on
-their list. In the end, music is something that connects us!
+As for centrality, there are multiple algorithms for finding communities in a
+graph. We will write a function that takes a method for calculating communities,
+uses it to find the communities, and, optionally, calculates some metrics
+specific to the graph partitioning so we can compare algorithms. To make things
+more interesting, let's find out which genre is the most popular in the
+community and return the percentage which tells us how many of the users have
+that genre on their list. In the end, music is something that connects us!
 
 ```python
 def _get_communities(
@@ -335,10 +337,10 @@ def _get_communities(
 ```
 
 Now that we have our function in place let's test some algorithms. We will be
-checking out community detection using
-[greedy modularity maximization by Clauset-Newman-Moore](https://networkx.github.io/documentation/latest/reference/algorithms/generated/networkx.algorithms.community.modularity_max.greedy_modularity_communities.html#networkx.algorithms.community.modularity_max.greedy_modularity_communities)
-and
-[label propagation](https://networkx.github.io/documentation/latest/reference/algorithms/generated/networkx.algorithms.community.label_propagation.label_propagation_communities.html#networkx.algorithms.community.label_propagation.label_propagation_communities).
+checking out community detection using [greedy modularity maximization by
+Clauset-Newman-Moore](https://networkx.github.io/documentation/latest/reference/algorithms/generated/networkx.algorithms.community.modularity_max.greedy_modularity_communities.html#networkx.algorithms.community.modularity_max.greedy_modularity_communities)
+and [label
+propagation](https://networkx.github.io/documentation/latest/reference/algorithms/generated/networkx.algorithms.community.label_propagation.label_propagation_communities.html#networkx.algorithms.community.label_propagation.label_propagation_communities).
 
 ```python
 @mgp.read_proc
@@ -429,16 +431,17 @@ I think it should come as no surprise that an algorithm that maximizes
 modularity has higher modularity...
 
 ## Optimized NetworkX integration
+
 As noted before, we at Memgraph are aware of NetworkX's potential but the
 performance for some functions isn't that good. We decided to tackle this
 problem by writing a wrapper object for Memgraph's graph and with smarter usage
 of NetworkX algorithms. To make things even more convenient, we decided to
 implement procedures that call NetworkX functions with our graphs, so you have
-out-of-the-box access to the graph algorithms. NetworkX contains a huge
-amount of functions, and writing procedures for all of them require insane
-effort, so don't blame us if some of the algorithms aren't available. We are
-always open to any feedback, so if you think that an implementation for
-an algorithm is needed, we will surely take that into account.
+out-of-the-box access to the graph algorithms. NetworkX contains a huge amount
+of functions, and writing procedures for all of them require insane effort, so
+don't blame us if some of the algorithms aren't available. We are always open to
+any feedback, so if you think that an implementation for an algorithm is needed,
+we will surely take that into account.
 
 To demonstrate performance improvement, we will calculate the betweenness
 centrality again, this time by using Memgraph's procedure.
@@ -448,6 +451,7 @@ modifying the query modules directory path. That way, the path will be set to
 the default path, which contains `nxalg` module.
 
 Now let's call the procedure:
+
 ```cypher
 CALL nxalg.betweenness_centrality()
 YIELD *
@@ -456,13 +460,14 @@ ORDER BY betweenness DESC
 LIMIT 10;
 ```
 
-You should get the same results as with our previous procedure for
-the betweenness centrality but in a much lower time.
+You should get the same results as with our previous procedure for the
+betweenness centrality but in a much lower time.
 
 ## Further reading
 
-We encourage you to take a look at our `How to` for the modules at the
-[How to Implement Query Modules?](/database-functionalities/query-modules/implement-query-modules.md).
+We encourage you to take a look at our `How to` for the modules at the [How to
+Implement Query
+Modules?](/database-functionalities/query-modules/implement-query-modules.md).
 
 This tutorial showed you how with a little effort you can extend your control
 over the data. Using packages like `NetworkX` you get a huge amount of already
