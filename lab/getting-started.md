@@ -14,8 +14,20 @@ Before you proceed with the guide, make sure that you have:
 
 - Installed the latest version of **Memgraph Lab**, which you can get from the
   official [download page](https://memgraph.com/download#Lab-download).
-- A running Memgraph database instance. Instructions on how to do setup Memgraph
-  can be [found here](/memgraph/installation).
+- A running **Memgraph** database instance. Instructions on how to do setup
+  Memgraph can be [found here](/memgraph/installation).
+
+:::tip Memgraph Platform
+
+The **memgraph/memgraph-platform** Docker image contains **Memgraph**,
+**Memgraph Lab** and **mgconsole**. After running the image, mgconsole will open
+in the terminal while Memgraph Lab is available on `http://localhost:3000`. You
+can install Memgraph Platform on:
+[Windows](/memgraph/install-memgraph-on-windows-docker),
+[macOS](/memgraph/install-memgraph-on-macos-docker) and
+[Linux](/memgraph/install-memgraph-on-linux-docker).
+
+:::
 
 ## Connecting to the database
 
