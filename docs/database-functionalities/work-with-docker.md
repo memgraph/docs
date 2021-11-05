@@ -273,6 +273,20 @@ implement and run your own query modules. Check out our [Reference
 Guide](/reference-guide/query-modules/overview.md) to see which Query
 Modules are included in Memgraph.
 
+### Reusing volumes between Memgraph versions
+
+If it happens that the named volumes are reused between different Memgraph
+versions, Docker will overwrite a folder within the container with existing data
+from the host machine. If a new file is introduced, or two versions of Memgraph
+are not compatible, some features might not work, or Memgraph might not be able
+to work correctly. We strongly advise you to use different named volumes for
+different Memgraph versions or to remove the existing volume from the host with
+the following command:
+
+```console
+docker volume rm <volume_name>
+```
+
 ## Where to next?
 
 To learn more about Memgraph's functionalities, visit the **[Reference

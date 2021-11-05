@@ -12,30 +12,34 @@ Memgraph on Windows with the Windows Subsystem for Linux.
 
 Before you proceed with the installation guide make sure that you have:
 
-- Downloaded the latest **Memgraph Debian Package** which can be [found
+- Downloaded the latest **Memgraph Ubuntu package** which can be [found
   here](https://memgraph.com/download/).
-- **Windows Subsystem for Linux** installed. You can find instructions on how to
-  install it [here](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
-- The **Ubuntu app** or **Debian app** from the [Microsoft
-  Store](https://www.microsoft.com/en-us/p/debian/9msvkqc78pk6?activetab=pivot:overviewtab).
+- Installed **Windows Subsystem for Linux (WSL)**. For detailed instructions,
+  refer to the [Microsoft
+  documentation](https://docs.microsoft.com/en-us/windows/wsl/install).
 
 ## Installation guide {#installation-guide}
 
-After downloading Memgraph as a Debian package and starting your Debian/Ubuntu
-application, install Memgraph by running the following command in the Debian
-terminal:
+**1.** Start WSL by running the following command from **PowerShell**:
+
+```console
+wsl
+```
+
+**2.** After downloading the Memgraph Ubuntu package, install Memgraph by running the
+following command in the terminal:
 
 ```console
 sudo dpkg -i /mnt/<drive>/Users/<windows username>/Downloads/memgraph_<version>.deb
 ```
 
-Start the Memgraph server by issuing the following command:
+**3.** Start the Memgraph server by issuing the following command:
 
 ```
 sudo runuser -l memgraph -c '/usr/lib/memgraph/memgraph'
 ```
 
-If Memgraph has been installed correctly, you will see something like this:
+If successful, you should receive an output similar to the following:
 
 ```
 You are running Memgraph vX.X.X-community
@@ -68,10 +72,12 @@ The above command will install all missing dependencies and will finish
 configuring the Memgraph package.
 :::
 
-### Configuration
+## Configuration
 
 The Memgraph configuration is available in `/etc/memgraph/memgraph.conf`. If the
-Memgraph configuration is altered, Memgraph needs to be restarted.
+configuration file is altered, Memgraph needs to be restarted. To learn about
+all the configuration options, check out the [Reference
+guide](/reference-guide/configuration.md).
 
 ## Where to next?
 
