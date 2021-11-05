@@ -45,11 +45,7 @@ To install Memgraph on macOS, you will need to have Docker installed.
 Memgraph is available for multiple Linux distributions and in the form of Docker
 images.<br/> You can chose one of the following installation methods:
 
-- **Docker 🐳**
-  - **[Memgraph
-    Platform](/installation/linux/docker/docker-memgraph-platform.md)** -
-    _includes Memgraph, Memgraph Lab and mgconsole._
-  - **[Memgraph](/installation/linux/docker/docker-memgraph.md)**
+- **[Docker 🐳](/installation/linux/docker/docker-installation.md)**
 - **[Ubuntu](/installation/linux/debian-installation.md)**
 - **[Debian](/installation/linux/debian-installation.md)**
 - **[RPM package](/installation/linux/rpm-installation.md)**

@@ -41,14 +41,7 @@ module.exports = {
           type: "category",
           label: "Linux",
           items: [
-            {
-              type: "category",
-              label: "Docker 🐳",
-              items: [
-                "installation/linux/docker/docker-memgraph-platform",
-                "installation/linux/docker/docker-memgraph",
-              ],
-            },
+            "installation/linux/docker/docker-installation",
             "installation/linux/ubuntu-installation",
             "installation/linux/debian-installation",
             "installation/linux/rpm-installation",
