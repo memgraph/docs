@@ -165,7 +165,7 @@ setup but can usually be found in `/var/lib/docker/volumes/`.
 Hub](https://memgraph.com/download/).
 
 **2.** If you installed Docker correctly, you can import the image using the
-following command in the **Comand Prompt (CMD)** or **PowerShell**:
+following command:
 
 ```console
 docker load -i /path-to/memgraph-<version>-docker.tar.gz
