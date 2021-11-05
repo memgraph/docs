@@ -58,7 +58,7 @@ If you want to start Memgraph with different configuration settings, check out
 the [section below](#configuration). At this point, Memgraph is ready for you
 to [submit queries](/connect-to-memgraph/overview.mdx).
 
-### Stopping Memgraph
+## Stopping Memgraph
 
 To shut down the Memgraph server, issue the following command:
 
@@ -66,7 +66,7 @@ To shut down the Memgraph server, issue the following command:
 systemctl stop memgraph
 ```
 
-### Configuration
+## Configuration
 
 The Memgraph configuration is available in `/etc/memgraph/memgraph.conf`. If the
 configuration file is altered, Memgraph needs to be restarted. To learn about

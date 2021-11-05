@@ -5,61 +5,50 @@ sidebar_label: Install Memgraph overview
 slug: /installation
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+<p align="left">
+  <a href="#windows" style={{'padding-right':'100px'}}>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Windows_logo_-_2012.svg/2048px-Windows_logo_-_2012.svg.png" alt="license" title="license" width="100"/>
+  </a>
+  <a href="#macos" style={{'padding-right':'100px'}}>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/MacOS_logo.svg/1024px-MacOS_logo.svg.png" alt="license" title="license" width="100"/>
+  </a>
+  <a href="#linux">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/d/dd/Linux_logo.jpg" alt="license" title="license" width="100"/>
+  </a>
+</p>
 
-<Tabs
-  groupId="operating-systems"
-  defaultValue="linux"
-  values={[
-    {label: 'Windows', value: 'windows'},
-    {label: 'macOS', value: 'macos'},
-    {label: 'Linux', value: 'linux'},
-  ]}>
-  <TabItem value="windows">
+## Windows
 
-Memgraph is available for [download in multiple
-formats](https://memgraph.com/download/).<br/> You can chose one of the
-following installation methods:
-* **[Docker](/installation/windows/docker-installation.md)**
-* **[Windows Subsystem for Linux (WSL)](/installation/windows/wsl-installation.md)**
+You can choose to install Memgraph with Docker or through the Windows Subsystem
+for Linux (WSL):
 
-:::info
-Newer versions of Memgraph are currently not backward compatible with
-older versions. This is mainly noticeable by being unable to load storage
-snapshots between different versions.
-:::
+- **Docker 🐳**
+  - **[Memgraph Platform](/installation/windows/docker/docker-memgraph-platform.md)** (includes Memgraph, Memgraph Lab and mgconsole)
+  - **[Memgraph](/installation/windows/docker/docker-memgraph.md)**
+- **[Windows Subsystem for Linux (WSL)](/installation/windows/wsl-installation.md)**
 
-  </TabItem>
-  <TabItem value="macos">
+## macOS
 
-Memgraph is available for [download in multiple
-formats](https://memgraph.com/download/).<br/> You can chose one of the
-following installation methods:
-* **[Docker](/installation/macos/docker-installation.md)**
+To install Memgraph on macOS, you will need to have Docker installed.
 
-:::info
-Newer versions of Memgraph are currently not backward compatible with
-older versions. This is mainly noticeable by being unable to load storage
-snapshots between different versions.
-:::
+- **Docker 🐳**
+  - **[Memgraph Platform](/installation/macos/docker/docker-memgraph-platform.md)** (includes Memgraph, Memgraph Lab and mgconsole)
+  - **[Memgraph](/installation/macos/docker/docker-memgraph.md)**
 
-  </TabItem>
-  <TabItem value="linux">
+## Linux
 
-Memgraph is available for [download in multiple
-formats](https://memgraph.com/download/).<br/> You can chose one of the
-following installation methods:
-* **[Docker](/installation/linux/docker-installation.md)**
-* **[Ubuntu](/installation/linux/debian-installation.md)**
-* **[Debian](/installation/linux/debian-installation.md)**
-* **[RPM package](/installation/linux/rpm-installation.md)**
+Memgraph is available for multiple Linux distributions and in the form of Docker
+images.<br/> You can chose one of the following installation methods:
+
+- **Docker 🐳**
+  - **[Memgraph Platform](/installation/linux/docker/docker-memgraph-platform.md)** (includes Memgraph, Memgraph Lab and mgconsole)
+  - **[Memgraph](/installation/linux/docker/docker-memgraph.md)**
+- **[Ubuntu](/installation/linux/debian-installation.md)**
+- **[Debian](/installation/linux/debian-installation.md)**
+- **[RPM package](/installation/linux/rpm-installation.md)**
 
 :::info
 Newer versions of Memgraph are currently not backward compatible with
 older versions. This is mainly noticeable by being unable to load storage
 snapshots between different versions.
 :::
-
-  </TabItem>
-</Tabs>

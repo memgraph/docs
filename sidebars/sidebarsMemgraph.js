@@ -10,7 +10,14 @@ module.exports = {
           type: "category",
           label: "Windows",
           items: [
-            "installation/windows/docker-installation",
+            {
+              type: "category",
+              label: "Docker 🐳",
+              items: [
+                "installation/windows/docker/docker-memgraph-platform",
+                "installation/windows/docker/docker-memgraph",
+              ],
+            },
             "installation/windows/wsl-installation",
             "installation/windows/windows-installation-troubleshooting",
           ],
@@ -19,7 +26,14 @@ module.exports = {
           type: "category",
           label: "macOS",
           items: [
-            "installation/macos/docker-installation",
+            {
+              type: "category",
+              label: "Docker 🐳",
+              items: [
+                "installation/macos/docker/docker-memgraph-platform",
+                "installation/macos/docker/docker-memgraph",
+              ],
+            },
             "installation/macos/macos-installation-troubleshooting",
           ],
         },
@@ -27,7 +41,14 @@ module.exports = {
           type: "category",
           label: "Linux",
           items: [
-            "installation/linux/docker-installation",
+            {
+              type: "category",
+              label: "Docker 🐳",
+              items: [
+                "installation/linux/docker/docker-memgraph-platform",
+                "installation/linux/docker/docker-memgraph",
+              ],
+            },
             "installation/linux/ubuntu-installation",
             "installation/linux/debian-installation",
             "installation/linux/rpm-installation",
@@ -95,7 +116,7 @@ module.exports = {
           label: "Migrate SQL",
           items: [
             "import-data/migrate/mysql",
-            "import-data/migrate/postgresql"
+            "import-data/migrate/postgresql",
           ],
         },
         "import-data/cypherl",
