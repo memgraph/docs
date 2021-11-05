@@ -12,9 +12,11 @@ database instance from **Memgraph Lab**.
 
 Before you proceed with the guide, make sure that you have:
 
-- Installed the latest version of **Memgraph Lab**, which you can get from the
-  official [download page](https://memgraph.com/download#Lab-download).
-- A running **Memgraph** database instance. Instructions on how to do setup
+- Installed the latest version of **Memgraph Lab**. Follow the installation
+  instructions for
+  [Windows](/memgraph-lab/installation/windows), [macOS](/memgraph-lab/installation/macos),
+  or [Linux](/memgraph-lab/installation/linux).
+- A running **Memgraph** database instance. Instructions on how to do set up
   Memgraph can be [found here](/memgraph/installation).
 
 :::tip Memgraph Platform
