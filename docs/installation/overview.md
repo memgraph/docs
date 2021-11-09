@@ -30,14 +30,14 @@ for Linux (WSL):
 
 To install Memgraph on macOS, you will need to have Docker installed.
 
-- **[Docker 🐳](/installation/windows/docker-installation.md)**
+- **[Docker 🐳](/installation/macos/docker-installation.md)**
 
 ## Linux
 
 Memgraph is available for multiple Linux distributions and in the form of Docker
 images.<br/> You can choose one of the following installation methods:
 
-- **[Docker 🐳](/installation/linux/docker/docker-installation.md)**
+- **[Docker 🐳](/installation/linux/docker-installation.md)**
 - **[Ubuntu](/installation/linux/debian-installation.md)**
 - **[Debian](/installation/linux/debian-installation.md)**
 - **[RPM package](/installation/linux/rpm-installation.md)**
