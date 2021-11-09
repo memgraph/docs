@@ -25,7 +25,7 @@ them. We provide code snippets for working with both types of images below.
 
 :::
 
-## Prerequisites
+## Prerequisites {#prerequisites}
 
 Before you proceed with the installation guide make sure that you have:
 
@@ -39,7 +39,7 @@ compatible with all newer versions.
 
 :::
 
-## Memgraph Platform
+## Memgraph Platform {#memgraph-platform}
 
 ### Installation guide {#installation-guide}
 
@@ -65,7 +65,7 @@ in the terminal while Memgraph Lab is available on `http://localhost:3000`.
 
 :::
 
-### Starting Memgraph Platform
+### Starting Memgraph Platform {#starting-memgraph-platform}
 
 To start Memgraph, use the following command:
 
@@ -108,7 +108,7 @@ The username and password for connecting to the database are empty by default.
 
 :::
 
-### Stopping Memgraph Platform
+### Stopping Memgraph Platform {#stopping-memgraph-platform}
 
 To stop a Memgraph database instance, run the following command:
 
@@ -122,7 +122,7 @@ You can find the name of the container (`CONTAINER_NAME`) by running:
 docker ps
 ```
 
-### Configuration
+### Configuration {#configuration}
 
 The Memgraph configuration is available in Docker's named volume `mg_etc`. On
 Linux systems, it should be in
@@ -140,7 +140,7 @@ docker run -it -p 7687:7687 -p 3000:3000 -e MEMGRAPH="--bolt-port=7687" memgraph
 To learn about all the configuration options, check out the [Reference
 guide](/reference-guide/configuration.md).
 
-### Accessing configuration files and logs
+### Accessing configuration files and logs {#named-volumes}
 
 If you need to access the Memgraph configuration file or logs, you will need to
 specify the following volumes when starting Memgraph:
@@ -157,9 +157,9 @@ The volume `mg_etc` contains the configuration file while the logs will be saved
 to `mg_log`. The location of the volume directories depends on your specific
 setup but can usually be found in `/var/lib/docker/volumes/`.
 
-## Memgraph base image
+## Memgraph base image {#memgraph-base-image}
 
-### Installation guide
+### Installation guide {#base-installation-guide}
 
 **1.** Download the latest **Memgraph Docker image** from the [Download
 Hub](https://memgraph.com/download/).
@@ -171,7 +171,7 @@ following command:
 docker load -i /path-to/memgraph-<version>-docker.tar.gz
 ```
 
-### Starting Memgraph
+### Starting Memgraph {#starting-memgraph}
 
 To start Memgraph, use the following command:
 
@@ -211,7 +211,7 @@ The username and password for connecting to the database are empty by default.
 
 :::
 
-### Stopping Memgraph
+### Stopping Memgraph {#stopping-memgraph}
 
 To stop a Memgraph database instance, run the following command:
 
@@ -225,13 +225,13 @@ You can find the name of the container (`CONTAINER_NAME`) by running:
 docker ps
 ```
 
-### Configuration
+### Configuration {#base-configuration}
 
 The Memgraph configuration is available in Docker's named volume `mg_etc`. On
 Linux systems, it should be in
 `/var/lib/docker/volumes/mg_etc/_data/memgraph.conf`. Keep in mind that this way
 of specifying configuration options is only valid if Memgraph was started [using
-volumes](#named-volumes).
+volumes](#base-named-volumes).
 
 When using Docker, you can also specify the configuration options in the `docker
 run` command:
@@ -243,7 +243,7 @@ docker run -p 7687:7687 memgraph --bolt-port=7687
 To learn about all the configuration options, check out the [Reference
 guide](/reference-guide/configuration.md).
 
-### Accessing configuration files and logs
+### Accessing configuration files and logs {#base-named-volumes}
 
 If you need to access the Memgraph configuration file or logs, you will need to
 specify the following volumes when starting Memgraph:
@@ -260,7 +260,7 @@ The volume `mg_etc` contains the configuration file while the logs will be saved
 to `mg_log`. The location of the volume directories depends on your specific
 setup but can usually be found in `/var/lib/docker/volumes/`.
 
-## Differences between Memgraph Docker images
+## Differences between Memgraph Docker images {#differences-between-images}
 
 - Configuration flags need to be passed inside of environmental variables when
   working with Memgraph Platform. For example, you can start the Memgraph base
@@ -276,7 +276,7 @@ setup but can usually be found in `/var/lib/docker/volumes/`.
   you need to include `-p 3000:3000` in the run command so that Lab becomes
   accessible on `https://localhost:3000`.
 
-## Where to next?
+## Where to next? {#where-to-next}
 
 If you need more information on working with Docker, check out **[this
 guide](/database-functionalities/work-with-docker.md)**.<br/>
@@ -286,7 +286,7 @@ Playground](https://playground.memgraph.com/)** for interactive tutorials.<br/>
 Visit the **[Building applications](/connect-to-memgraph/methods/drivers.md)**
 page if you need to connect to the database programmatically.
 
-## Getting help
+## Getting help {#getting-help}
 
 If you run into problems during the installation process, check out our
 **[installation troubleshooting
