@@ -27,7 +27,7 @@ them. We provide code snippets for working with both types of images below.
 
 ## Prerequisites {#prerequisites}
 
-Before you proceed with the installation guide make sure that you have:
+Before you proceed with the installation guide, make sure that you have:
 
 - Installed **Docker Desktop**. Instructions on how to install Docker can be
   found on the [official Docker website](https://docs.docker.com/get-docker/).
