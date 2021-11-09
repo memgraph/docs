@@ -1,18 +1,18 @@
 ---
 id: docker-installation
-title: Install Memgraph Platform on Linux with Docker
+title: Install Memgraph on macOS with Docker
 sidebar_label: Docker 🐳
-slug: /install-memgraph-platform-on-linux-docker
+slug: /install-memgraph-on-macos-docker
 ---
 
 This article briefly outlines the basic steps necessary to install and run
-**Memgraph** on Linux with Docker. <br/>
+**Memgraph** on macOS with Docker. <br/>
 There are two main Docker images that you can install:
 
 - [**Memgraph Platform**](#memgraph-platform) which contains:
   - **Memgraph**
   - the visual user interface **Memgraph Lab**
-  - the command-line interface **mgconsole** 
+  - the command-line interface **mgconsole**
   - the graph library **MAGE**
 - [**Memgraph base image**](#memgraph-base-image): contains only Memgraph.
 
@@ -75,10 +75,9 @@ docker run -it -p 7687:7687 -p 3000:3000 memgraph
 
 :::info Docker Volumes
 
-Docker containers don’t persist data by default (all
-changes are lost when the container is stopped). You need to use local volumes
-to store the data permanently, which is why Memgraph is started with the `-v`
-flag.
+Docker containers don’t persist data by default (all changes are lost when the
+container is stopped). You need to use local volumes to store the data
+permanently, which is why Memgraph is started with the `-v` flag.
 
 ```console
 docker run -it -p 7687:7687 -p 3000:3000 -v mg_lib:/var/lib/memgraph memgraph
@@ -131,7 +130,8 @@ Linux systems, it should be in
 of specifying configuration options is only valid if Memgraph was started [using
 volumes](#named-volumes).
 
-When using Docker, you can also specify the configuration options in the `docker run` command:
+When using Docker, you can also specify the configuration options in the `docker
+run` command:
 
 ```console
 docker run -it -p 7687:7687 -p 3000:3000 -e MEMGRAPH="--bolt-port=7687" memgraph
@@ -155,7 +155,7 @@ docker run -it -p 7687:7687 -p 3000:3000 -e MEMGRAPH="--bolt-port=7687" \
 
 The volume `mg_etc` contains the configuration file while the logs will be saved
 to `mg_log`. The location of the volume directories depends on your specific
-setup but can usually be found in `/var/lib/docker/volumes/`.
+setup.
 
 ## Memgraph base image
 
@@ -233,7 +233,8 @@ Linux systems, it should be in
 of specifying configuration options is only valid if Memgraph was started [using
 volumes](#named-volumes).
 
-When using Docker, you can also specify the configuration options in the `docker run` command:
+When using Docker, you can also specify the configuration options in the `docker
+run` command:
 
 ```console
 docker run -p 7687:7687 memgraph --bolt-port=7687
@@ -257,20 +258,23 @@ docker run -p 7687:7687 \
 
 The volume `mg_etc` contains the configuration file while the logs will be saved
 to `mg_log`. The location of the volume directories depends on your specific
-setup but can usually be found in `/var/lib/docker/volumes/`.
+setup.
 
 ## Differences between Memgraph Docker images
 
 - Configuration flags need to be passed inside of environmental variables when
-working with Memgraph Platform. For example, you can start the Memgraph base
-image with `docker run memgraph --bolt-port=7687`,  while `docker run -e
-MEMGRAPH="--bolt-port=7687" memgraph` is the same command for Memgraph Platform.
+  working with Memgraph Platform. For example, you can start the Memgraph base
+  image with `docker run memgraph --bolt-port=7687`, while `docker run -e
+  MEMGRAPH="--bolt-port=7687" memgraph` is the same command for Memgraph
+  Platform.
 
 - When starting Memgraph Platform, you need to include the `-it` flag that tells
-Docker to open an interactive container instance. Otherwise, you won't have
-access to mgconsole.
+  Docker to open an interactive container instance. Otherwise, you won't have
+  access to mgconsole.
 
-- Because Memgraph Platform includes Memgraph Lab, which is a web application, you need to include `-p 3000:3000` in the run command so that Lab becomes accessible on `https://localhost:3000`.
+- Because Memgraph Platform includes Memgraph Lab, which is a web application,
+  you need to include `-p 3000:3000` in the run command so that Lab becomes
+  accessible on `https://localhost:3000`.
 
 ## Where to next?
 
@@ -286,7 +290,6 @@ page if you need to connect to the database programmatically.
 
 If you run into problems during the installation process, check out our
 **[installation troubleshooting
-guide](/installation/linux/linux-installation-troubleshooting.md)** to see
-if we have already covered the topic. For more information on the installation
-process and for additional questions, visit the **[Getting help](/help-center)**
-page.
+guide](/installation/macos/macos-installation-troubleshooting.md)** to see if we
+have already covered the topic. For more information on the installation process
+and for additional questions, visit the **[Getting help](/help-center)** page.

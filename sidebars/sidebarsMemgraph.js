@@ -10,14 +10,7 @@ module.exports = {
           type: "category",
           label: "Windows",
           items: [
-            {
-              type: "category",
-              label: "Docker 🐳",
-              items: [
-                "installation/windows/docker/docker-memgraph-platform",
-                "installation/windows/docker/docker-memgraph",
-              ],
-            },
+            "installation/windows/docker-installation",
             "installation/windows/wsl-installation",
             "installation/windows/windows-installation-troubleshooting",
           ],
@@ -26,14 +19,7 @@ module.exports = {
           type: "category",
           label: "macOS",
           items: [
-            {
-              type: "category",
-              label: "Docker 🐳",
-              items: [
-                "installation/macos/docker/docker-memgraph-platform",
-                "installation/macos/docker/docker-memgraph",
-              ],
-            },
+            "installation/macos/docker-installation",
             "installation/macos/macos-installation-troubleshooting",
           ],
         },
@@ -41,7 +27,7 @@ module.exports = {
           type: "category",
           label: "Linux",
           items: [
-            "installation/linux/docker/docker-installation",
+            "installation/linux/docker-installation",
             "installation/linux/ubuntu-installation",
             "installation/linux/debian-installation",
             "installation/linux/rpm-installation",

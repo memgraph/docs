@@ -22,11 +22,7 @@ slug: /installation
 You can choose to install Memgraph with Docker or through the Windows Subsystem
 for Linux (WSL):
 
-- **Docker 🐳**
-  - **[Memgraph
-    Platform](/installation/windows/docker/docker-memgraph-platform.md)** -
-    _includes Memgraph, Memgraph Lab and mgconsole._
-  - **[Memgraph](/installation/windows/docker/docker-memgraph.md)**
+- **[Docker 🐳](/installation/windows/docker-installation.md)**
 - **[Windows Subsystem for Linux
   (WSL)](/installation/windows/wsl-installation.md)**
 
@@ -34,11 +30,7 @@ for Linux (WSL):
 
 To install Memgraph on macOS, you will need to have Docker installed.
 
-- **Docker 🐳**
-  - **[Memgraph
-    Platform](/installation/macos/docker/docker-memgraph-platform.md)** -
-    _includes Memgraph, Memgraph Lab and mgconsole._
-  - **[Memgraph](/installation/macos/docker/docker-memgraph.md)**
+- **[Docker 🐳](/installation/windows/docker-installation.md)**
 
 ## Linux
 
