@@ -214,7 +214,7 @@ CALL mg.load_all();
 Lastly, run a query and test your module:
 
 ```cypher
-MERGE (start:Node {id: 0})-[:RELATION]->(mid:Node {id: 1})-[:RELATION]->(end:Node {id: 2})
+MERGE (start:Node {id: 0})-[:RELATION]->(:Node {id: 1})-[:RELATION]->(:Node {id: 2})
 CALL random_walk.get(start, 2) YIELD path
 RETURN path
 ```
