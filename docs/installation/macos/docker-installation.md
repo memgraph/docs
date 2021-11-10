@@ -20,7 +20,7 @@ There are two main Docker images that you can install:
 
 **Memgraph Platform** is the **recommended** Docker image. If you insist on
 using the Memgraph base image, be aware of the
-[differences](#differences-between-memgraph-docker-images) when interacting with
+[differences](#differences-between-images) when interacting with
 them. We provide code snippets for working with both types of images below.
 
 :::
