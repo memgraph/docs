@@ -14,6 +14,10 @@ sidebar_label: Changelog
   Path](https://memgraph.com/docs/memgraph/reference-guide/graph-algorithms#weighted-shortest-path)
   query. [#278](https://github.com/memgraph/memgraph/pull/278)
 * Fix linkage error when `mgp_local_time_get_minute` is used. [#273](https://github.com/memgraph/memgraph/pull/273)
+* Added bolt notifications to inform user about results ot to give useful tips. [#285](https://github.com/memgraph/memgraph/pull/285)
+* Added execution statistics to inform user on how much object were affected. [#285](https://github.com/memgraph/memgraph/pull/285)
+
+### Bug Fixes
 
 ## v2.0.1 - Oct 12, 2021
 
