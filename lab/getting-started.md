@@ -5,6 +5,8 @@ sidebar_label: Getting started
 slug: /
 ---
 
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 This article outlines the basic steps necessary to query a running Memgraph
 database instance from **Memgraph Lab**.
 
@@ -12,11 +14,7 @@ database instance from **Memgraph Lab**.
 
 Before you proceed with the guide, make sure that you have:
 
-- Installed the latest version of **Memgraph Lab**. Follow the installation
-  instructions for
-  [Windows](/memgraph-lab/installation/windows), [macOS](/memgraph-lab/installation/macos),
-  or [Linux](/memgraph-lab/installation/linux).
-- A running **Memgraph** database instance. Instructions on how to do set up
+- A running **Memgraph** instance. Instructions on how to do set up
   Memgraph can be [found here](/memgraph/installation).
 
 :::tip Memgraph Platform
@@ -30,6 +28,22 @@ can install Memgraph Platform on:
 [Linux](/memgraph/install-memgraph-on-linux-docker).
 
 :::
+
+## Installation
+
+Check out the installation instructions for:
+
+<p align="left">
+  <a href="/memgraph-lab/installation/windows" style={{'paddingRight':'70px'}}>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Windows_logo_-_2012.svg/2048px-Windows_logo_-_2012.svg.png" alt="windows" title="windows" width="80"/>
+  </a>
+  <a href="/memgraph-lab/installation/macos" style={{'paddingRight':'70px'}}>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/MacOS_logo.svg/1024px-MacOS_logo.svg.png" alt="macos" title="macos" width="80"/>
+  </a>
+  <a href="/memgraph-lab/installation/linux">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/d/dd/Linux_logo.jpg" alt="linux" title="linux" width="80"/>
+  </a>
+</p>
 
 ## Connecting to the database
 
