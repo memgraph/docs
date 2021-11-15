@@ -53,6 +53,8 @@ and it extends LabelRankT’s compatibility to a wider set of graphs.
 
 ## Procedures
 
+### `set(directed, weighted, similarity_threshold, exponent, min_value, weight_property, w_selfloop, max_iterations, max_updates)`
+
 Performs dynamic community detection using the LabelRankT algorithm.
 
 The default values of the `similarity_threshold`, `exponent` and `min_value` parameters are not universally applicable,
@@ -60,8 +62,6 @@ and the actual values should be determined experimentally.
 This is especially pertinent to setting the `min_value` parameter. For example, with the default ***1/10*** value, 
 vertices of degree greater than 10 are at risk of not being assigned to any community and the user should check if that
 is indeed the case.
-
-### `set(directed, weighted, similarity_threshold, exponent, min_value, weight_property, w_selfloop, max_iterations, max_updates)`
 
 #### Input:
 
@@ -112,7 +112,7 @@ YIELD node, community_id;
 ### `update(createdVertices, createdEdges, updatedVertices, updatedEdges, deletedVertices, deletedEdges)`
 
 Dynamically updates previously calculated community detection results based on changes applied in the latest graph 
-update.
+update and returns the results.
 
 #### Input:
 
@@ -123,8 +123,14 @@ update.
 * `deletedVertices: mgp.List[mgp.Vertex]` ➡ Vertices deleted in the latest graph update.
 * `deletedEdges: mgp.List[mgp.Edge]` ➡ Edges deleted in the latest graph update.
 
+#### Output:
+
+* `node: Vertex` ➡ Graph node.
+* `community_id: int` ➡ Community ID. If the node is not associated with any community, defaults to ***-1***.
+
 #### Usage:
 
+As there are a total of six complex obligatory parameters, setting the parameters by hand might be cumbersome.
 The recommended use of this method is to call it within a 
 [trigger](https://memgraph.com/docs/memgraph/database-functionalities/triggers), making sure beforehand that all 
 [predefined variables](https://memgraph.com/docs/memgraph/database-functionalities/triggers/#predefined-variables) are 
@@ -132,16 +138,14 @@ available:
 
 ```cypher
 CREATE TRIGGER sample_trigger BEFORE COMMIT
-EXECUTE CALL dynamic_community_detection.update(createdVertices, createdEdges, updatedVertices, updatedEdges, deletedVertices, deletedEdges);
+EXECUTE CALL dynamic_community_detection.update(createdVertices, createdEdges, updatedVertices, updatedEdges, deletedVertices, deletedEdges) YIELD node, community_id;
 ```
 
-As there are a total of six complex obligatory parameters, setting the parameters by hand should be avoided.
-
-Communities calculated by `update()` are accessible by subsequently calling `get()`:
+Communities calculated by `update()` are also accessible by subsequently calling `get()`:
 
 ```cypher
 CREATE TRIGGER sample_trigger BEFORE COMMIT
-EXECUTE CALL dynamic_community_detection.update(createdVertices, createdEdges, updatedVertices, updatedEdges, deletedVertices, deletedEdges);
+EXECUTE CALL dynamic_community_detection.update(createdVertices, createdEdges, updatedVertices, updatedEdges, deletedVertices, deletedEdges) YIELD *;
 
 CALL dynamic_community_detection.get()
 YIELD node, community_id
@@ -199,7 +203,7 @@ MERGE (a: Node {id: 4}) MERGE (b: Node {id: 5}) CREATE (a)-[r: Relation]->(b);
   <TabItem value="run">
 
 ```cypher
-CALL dynamic_label_propagation.set()
+CALL dynamic_community_detection.set()
 YIELD node, community_id
 RETURN node.id AS node_id, community_id
 ORDER BY node_id;
