@@ -96,7 +96,10 @@ Y|Year|/
 M|Month|/
 D|Day|/
 
-The smallest year is `0` and the highest is `9999`.
+The smallest year is `0` and the highest is `9999`. 
+
+Note, that you can call `date` without arguments. This effectively 
+sets the date field to the current date of the calendar(UTC clock).
 
 Example:
 
@@ -143,6 +146,9 @@ name|description
 digits represent milliseconds and the last 3 digits microseconds. For example
 the string `T22:10:32.300600` specifies `300` milliseconds and `600`
 microseconds.
+
+Note, that you can call `localtime` without arguments. This effectively 
+sets the time field to the current time of the calendar(UTC clock).
 
 Example:
 
@@ -193,6 +199,8 @@ name|description
 |m|Minutes|/
 |s|Seconds|/
 
+Note, that you can call `localdatetime` without arguments. This effectively 
+sets the date and time fields to the current date and time of the calendar(UTC clock).
 Example:
 
 ```cypher
@@ -262,7 +270,7 @@ LocalDateTime operations:
 operation|result
 :-:|:-:
 localdatetime + duration|localdatetime|/
-duration + localdatetime| + localdatetime/
+duration + localdatetime|localdatetime|/
 localdatetime - duration|localdatetime|/
 localdatetime - localdatetime|duration|/
 
