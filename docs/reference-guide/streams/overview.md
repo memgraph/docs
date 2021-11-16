@@ -140,3 +140,23 @@ the Kafka cluster. However, even though we cannot guarantee **exactly once**
 semantics, we tried to minimize the possibility of processing messages multiple
 times. This means committing the message offsets to the Kafka cluster happens
 right after the transaction is committed to the database.
+
+## Configuring stream transactions
+
+A stream fails when a transformation fails to commit a transaction. This is a side effect
+of [isolation levels](/reference-guide/isolation-levels.md) and its behaviour can be
+configured by setting the appropriate memgraph flag:
+
+```
+--stream-transaction-conflict-retries TIMES_TO_RETRY
+```
+
+By default, memgraph retries a transaction 31 times. If `TIMES_TO_RETRY` is set
+to 0 then memgraph tries a transaction only once. However, for any other value,
+memgraph retries with a total number of: one + `TIMES_TO_RETRY`. 
+
+Morever, the interval of retries is also important and can be configured by 
+```
+--stream-transaction-retry_interval INTERVAL_TIME
+```
+The `INTERVAL_TIME` is meassured in `milliseconds` and its default value is `500ms`.
