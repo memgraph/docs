@@ -34,6 +34,11 @@ that is being tracked:
 This data will refer only to the changes done by query, not triggers changes will
 not affect these values.
 
+If the query changes and deletes nodes like this `CREATE (n) DELETE n;` and
+leaves memgraph in the same state as before. The results will be 1 for both
+`nodes-created` and `nodes-deleted` but the triggers will not be triggered since
+there were no changes across the transaction.
+
 ## Notifications
 
 Notifications will be sent whether we want to confirm the results of query or
