@@ -225,7 +225,7 @@ module.exports = {
       contextualSearch: true,
     },
     prism: {
-      additionalLanguages: ["cypher", "php"],
+      additionalLanguages: ["cypher", "php", "rust", "csharp", "java", "docker"],
     },
     hideableSidebar: true,
   },
