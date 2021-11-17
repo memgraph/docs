@@ -4,9 +4,12 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
-## Future
+## v2.1 - TBD
 
 ### Major Features and Improvements
+
+* Now supporting Bolt protocol version 4.3. [#228](https://github.com/memgraph/memgraph/pull/226)
+* Streams support for retrying conflicting transactions [#294](https://github.com/memgraph/memgraph/pull/294)
 
 ### Bug Fixes
 
@@ -21,6 +24,9 @@ sidebar_label: Changelog
   [#285](https://github.com/memgraph/memgraph/pull/285)
 
 ### Bug Fixes
+* Fix linkage error when `mgp_local_time_get_minute` is used. [#273](https://github.com/memgraph/memgraph/pull/273)
+* Fix crash when temporal types are used with `ORDER BY` clause. [#299](https://github.com/memgraph/memgraph/pull/299)
+* Added `BOOTSTRAP_SERVERS` option to `CREATE KAFKA STREAM` which you can check [here](reference-guide/streams/overview.md). [#282](https://github.com/memgraph/memgraph/pull/282)
 
 ## v2.0.1 - Oct 12, 2021
 
