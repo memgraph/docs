@@ -71,7 +71,7 @@ SHOW REPLICAS;
 To delete a replica, issue the following query:
 
 ```plaintext
-DROP REPLICA name;
+DROP REPLICA <name>;
 ```
 
 ### How to promote a new main?
