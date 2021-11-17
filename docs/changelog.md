@@ -17,7 +17,7 @@ sidebar_label: Changelog
   [#273](https://github.com/memgraph/memgraph/pull/273)
 * Added Bolt notifications to inform the user about results or to give useful
   tips. [#285](https://github.com/memgraph/memgraph/pull/285)
-* Added execution statistics to inform user on how much object were affected.
+* Added execution statistics to inform user on how many objects were affected.
   [#285](https://github.com/memgraph/memgraph/pull/285)
 
 ### Bug Fixes
@@ -56,7 +56,7 @@ sidebar_label: Changelog
 * Most of the query modules C API functions are changed to return a `mgp_error`
   as a more fine-grained way of error reporting. The only exceptions are the
   functions that free allocated memory ( `mgp_free` and `mgp_global_free` ) and
-  destroy objects ( `mgp_value_destroy` , `mgp_list_destory` , etc.) which
+  destroy objects ( `mgp_value_destroy` , `mgp_list_destroy` , etc.) which
   remain the same.
 * The first user created using the `CREATE USER` query will have all the
   privileges granted to him. Previously, you could've locked yourself out of
@@ -250,10 +250,10 @@ sidebar_label: Changelog
   `w` (write), `rw` (read-write). The query type is returned as a part of the
   summary.
 * Improved logging capabilities by introducing granular logging levels. Added
-  new flag, `--log-level` , which specifies the minimum log level that will be
+  new flag, `--log-level`, which specifies the minimum log level that will be
   printed. E.g., it's possible to print incoming queries or Bolt server states.
 * Added ability to lock the storage data directory by executing the `LOCK DATA
-  DIRECTORY; ` query which delays the deletion of the files contained in the
+  DIRECTORY` query which delays the deletion of the files contained in the
   data directory. The data directory can be unlocked again by executing the
   `UNLOCK DATA DIRECTORY;` query.
 
@@ -287,7 +287,7 @@ sidebar_label: Changelog
 ### Bug Fixes and Other Changes
 
 * Fixed Cypher `ID` function `Null` handling. When the `ID` function receives
-  `Null` , it will also return `Null` .
+  `Null`, it will also return `Null` .
 * Fixed bug that caused random crashes in SSL communication on platforms that
   use older versions of OpenSSL (< 1.1) by adding proper multi-threading
   handling.
