@@ -42,11 +42,11 @@ triggers are only  triggered when there is a difference between the starting
 and ending state, while the counters are also counting the not permanent
 changes.
 
-For example if the query changes and deletes nodes like
+For example if the query creates and deletes nodes like
 `CREATE (n) DELETE n;`, then it leaves Memgraph in the same state as before.
 The value will be 1 for both `nodes-created` and `nodes-deleted`, but the
-triggers will not be triggered since there were no changes across the
-transaction.
+triggers will not be triggered since there is no difference between in
+states before and after the query is executed.
 
 :::
 
