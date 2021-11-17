@@ -159,4 +159,4 @@ Morever, the interval of retries is also important and can be configured by
 ```
 --stream-transaction-retry_interval INTERVAL_TIME
 ```
-The `INTERVAL_TIME` is meassured in `milliseconds` and its default value is `500ms`.
+The `INTERVAL_TIME` is measured in `milliseconds` and its default value is `500ms`.
