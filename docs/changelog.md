@@ -4,7 +4,6 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
-<<<<<<< HEAD
 ## v2.1 - TBD
 
 ### Major Features and Improvements
