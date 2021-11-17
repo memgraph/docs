@@ -603,11 +603,6 @@ module.exports = {
             to: "/memgraph/database-functionalities/tensorflow-setup",
             from: ["/machine-learning/tensorflow-op/tensorflow"],
           },
-          //FAQ redirects
-          {
-            to: "/help-center/faq",
-            from: ["/memgraph/faq"],
-          },
           //Memgraph Lab redirects
           {
             to: "/memgraph-lab/style-script/quick-start",
@@ -737,6 +732,11 @@ module.exports = {
           {
             to: "/memgraph/database-functionalities/networkx",
             from: ["/memgraph/reference-guide/networkx/nxalg"],
+          },
+          //Help Center redirects
+          {
+            to: "/help-center/faq",
+            from: ["/memgraph/faq"],
           },
           {
             to: "/help-center/",
