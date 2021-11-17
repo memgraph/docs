@@ -21,8 +21,9 @@ For detailed technical information on streaming support, check out the [referenc
 ## Configuring Memgraph
 
 As Memgraph can connect to only one Kafka cluster at once, the list of
-bootstrap servers can be set by the `--kafka-bootstrap-servers`
-configuration option. It has to be set explicitly.
+bootstrap servers can be set by the `--kafka-bootstrap-servers` configuration option.
+It has to be set explicitly. Morever, the user can overwrite the default list of brokers passed to `--kafka-bootstrap-servers`
+by setting the `BOOTSTRAP_SERVERS <brokers>` option on a `CREATE STREAM` clause.
 
 ## Creating the stream
 
@@ -53,12 +54,11 @@ If you're running this in Memgraph Lab, an arbitrary error might happen. Please 
 The result should be similar to:
 
 ```plaintext
-+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+
-| name                  | topics                | consumer_group        | batch_interval        | batch_size            | transformation_name   | owner                 | is running            |
-+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+
-| "myStream"            | ["quickstart-events"] | "mg_consumer"         | Null                  | Null                  | "my.transform"        | Null                  | false                 |
-+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+
-
++-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+
+| name                  | topics                | consumer_group        | batch_interval        | batch_size            | transformation_name   | owner                 | is running            | bootstrap_servers     |
++-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+
+| "myStream"            | ["quickstart-events"] | "mg_consumer"         | Null                  | Null                  | "my.transform"        | Null                  | false                 | "localhost:9092"      |
++-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+
 ```
 
 The result contains the most important information about the existing streams,
