@@ -31,13 +31,24 @@ that is being tracked:
  - `labels-removed`
  - `properties-set`
 
-This data will refer only to the changes done by query, not triggers changes will
+This data will refer only to the changes done by query, thus changes made in triggers will
 not affect these values.
 
-If the query changes and deletes nodes like this `CREATE (n) DELETE n;` and
-leaves memgraph in the same state as before. The results will be 1 for both
-`nodes-created` and `nodes-deleted` but the triggers will not be triggered since
-there were no changes across the transaction.
+:::caution Differences compared to triggers
+
+It is possible that after executing a query some of these counters are not
+zero, however the regarding triggers are not triggered. The reason for that is
+triggers are only  triggered when there is a difference between the starting
+and ending state, while the counters are also counting the not permanent
+changes.
+
+For example if the query changes and deletes nodes like
+`CREATE (n) DELETE n;`, then it leaves Memgraph in the same state as before.
+The value will be 1 for both `nodes-created` and `nodes-deleted`, but the
+triggers will not be triggered since there were no changes across the
+transaction.
+
+:::
 
 ## Notifications
 
