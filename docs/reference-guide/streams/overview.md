@@ -5,28 +5,33 @@ sidebar_label: Streams overview
 slug: /reference-guide/streams
 ---
 
-Memgraph can connect to existing streams sources. To use streams, a user must:
+Memgraph can connect to existing stream sources. To use streams, a user must:
 1. [**Create a transformation
    module**](/reference-guide/streams/transformation-modules/overview.md)
 2. [Configure Memgraph](/reference-guide/configuration.md) to connect to, e.g.
    Kafka, by providing the appropriate flag
    `--kafka-bootstrap-servers=localhost:9092`
-3. [Create the stream](#creating-a-stream) with a `CREATE <source type> STREAM` query
+3. [Create the stream](#creating-a-stream) with a `CREATE <source type> STREAM`
+   query
 4. [Start the stream](#start-a-stream) with a `START STREAM` query
 
-:::tip Check out the **example-streaming-app** on
+:::tip
+
+Check out the **example-streaming-app** on
 [GitHub](https://github.com/memgraph/example-streaming-app) to see a sample
 Memgraph-Kafka application.
+
 :::
 
 ## Creating a stream
 
-The syntax for creating a stream depends on the type of the source because
-each specific types supports different set of configurations.
+The syntax for creating a stream depends on the type of the source because each
+specific type supports a different set of configuration options.
 
 :::note
-Order of the configurations is not strict so you can define configuration for each 
-stream source however you want.
+
+There is no strict order for specifying the configuration options.
+
 :::
 
 ### Kafka
@@ -38,7 +43,7 @@ CREATE KAFKA STREAM <stream name>
   [CONSUMER_GROUP <consumer group>]
   [BATCH_INTERVAL <batch interval length>]
   [BATCH_SIZE <batch size>]
-  [BOOTSTRAP_SERVERS <bootstrap servers>;
+  [BOOTSTRAP_SERVERS <bootstrap servers>];
 ```
 
 option|description|type|example|default
@@ -78,13 +83,13 @@ The transformation procedure is called if either the `BATCH_INTERVAL` or the
 `BATCH_SIZE` is reached, and there is at least one received message.
 
 The `BATCH_INTERVAL` starts when the:
-- the stream is started
-- the processing of the previous batch is completed
-- the previous batch interval ended without receiving any messages
+* the stream is started
+* the processing of the previous batch is completed
+* the previous batch interval ended without receiving any messages
 
 The user who executes the `CREATE` query is going to be the owner of the stream.
 Authentication and authorization are not supported in Memgraph Community, thus
-the owner will always be `Null`, and the privileges are not checked in Memgraph
+the owner will always be `Null` , and the privileges are not checked in Memgraph
 Community. In Memgraph Enterprise, the privileges of the owner are used when
 executing the queries returned from a transformation. In other words, the
 execution of the queries will fail if  the owner doesn't have the required
@@ -96,7 +101,8 @@ in the [reference guide](reference-guide/security.md#owners).
 ```cypher
 DROP STREAM <stream name>;
 ```
-Drops a stream with name `<stream name>`.
+
+Drops a stream with name `<stream name>` .
 
 ## Start a stream
 
@@ -104,7 +110,8 @@ Drops a stream with name `<stream name>`.
 START STREAM <stream name>;
 START ALL STREAMS;
 ```
-Starts a stream (or all streams) with name `<stream name>`.
+
+Starts a stream (or all streams) with name `<stream name>` .
 
 When a stream is started, it should resume from the last committed offset. If
 there is no committed offset for the consumer group, then the largest offset
@@ -116,28 +123,31 @@ will be used. Therefore only the new messages will be consumed.
 STOP STREAM <stream name>;
 STOP ALL STREAMS;
 ```
-Stops a stream (or all streams) with name `<stream name>`.
+
+Stops a stream (or all streams) with name `<stream name>` .
 
 ## Show
 
 ```cypher
 SHOW STREAMS;
 ```
+
 Shows a list of existing streams with the following information:
-- stream name
-- list of topics
-- consumer group id
-- batch interval
-- batch size
-- transformation procedure name
-- the owner of the streams
-- whether the stream is running
+* stream name
+* list of topics
+* consumer group id
+* batch interval
+* batch size
+* transformation procedure name
+* the owner of the streams
+* whether the stream is running
 
 ## Check stream
 
 ```cypher
 CHECK STREAM <stream name> [BATCH_LIMIT <count>] [TIMEOUT <milliseconds>] ;
 ```
+
 Does a dry-run on stream with name `<stream name>` with `<count>` number of
 batches and returns the result of the transformation: the queries and their
 parameters that would be executed in a normal run. If `<count>` is unspecified,
@@ -150,6 +160,7 @@ milliseconds, and it's defaulted to 30000.
 Checking a stream won't commit any offsets.
 
 ## Additional details
+
 ### Kafka and at least once semantics
 
 In stream processing, it is important to have some guarantees about how failures

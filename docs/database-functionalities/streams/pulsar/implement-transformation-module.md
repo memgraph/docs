@@ -116,7 +116,7 @@ def my_pulsar_transformation(messages: mgp.Messages
 ```
 
 As you can see, the query is almost the same for every message, except the
-three properties of the messages. This is exactly the case when the
+three properties of the messages. This is precisely the case when the
 `parameters` field of the result is handy. Instead of formatting the string
 with the properties, we can pass the properties as query parameters:
 
@@ -179,7 +179,7 @@ As we already discussed how transformations work in the Python example, we
 won't go over the transformation itself in detail. Also, to keep the
 complexity of this example low, this transformation doesn't use the query
 parameters. Apart from that, this transformation does the same as the Python
-example, but written in C++17.
+example but is implemented in C++17.
 
 So let's create `c_transformation.cpp` and start to populate it!
 

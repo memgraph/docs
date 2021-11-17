@@ -7,22 +7,32 @@ sidebar_label: Changelog
 ## v2.1.0 - TBD
 
 :::warning
+
 ### Breaking Changes
-* Query for creating a Kafka stream now requires `KAFKA` keyword. Previous form of `CREATE STREAM ...` was changed to `CREATE KAFKA STREAM ...`.
+* The query for creating a Kafka stream now requires the `KAFKA` keyword. The
+  previous form `CREATE STREAM ...` was changed to `CREATE KAFKA STREAM ...`.
+
 :::
 
 ### Major Features and Improvements
 
-* Now supporting Bolt protocol version 4.3. [#228](https://github.com/memgraph/memgraph/pull/226)
-* Added support for connecting to Pulsar as a new stream source. For more details, check out our [example](database-functionalities/streams/pulsar/pulsar-streams) and [reference pages](reference-guide/streams). [#293](https://github.com/memgraph/memgraph/pull/293)
+* Now supporting Bolt protocol version 4.3.
+  [#228](https://github.com/memgraph/memgraph/pull/226)
+* Added support for connecting to Pulsar as a new stream source. For more
+  details, check out our
+  [example](database-functionalities/streams/pulsar/pulsar-streams) and
+  [reference pages](reference-guide/streams).
+  [#293](https://github.com/memgraph/memgraph/pull/293)
 
 ### Bug Fixes
 
 * Allow duration values to be used as weights in the [Weighted Shortest
-  Path](https://memgraph.com/docs/memgraph/reference-guide/graph-algorithms#weighted-shortest-path)
+  Path](/memgraph/reference-guide/graph-algorithms#weighted-shortest-path)
   query. [#278](https://github.com/memgraph/memgraph/pull/278)
-* Fix linkage error when `mgp_local_time_get_minute` is used. [#273](https://github.com/memgraph/memgraph/pull/273)
-* Fix crash when temporal types are used with `ORDER BY` clause. [#299](https://github.com/memgraph/memgraph/pull/299)
+* Fix linkage error when `mgp_local_time_get_minute` is used.
+  [#273](https://github.com/memgraph/memgraph/pull/273)
+* Fix crash when temporal types are used with `ORDER BY` clause.
+  [#299](https://github.com/memgraph/memgraph/pull/299)
 
 ## v2.0.1 - Oct 12, 2021
 

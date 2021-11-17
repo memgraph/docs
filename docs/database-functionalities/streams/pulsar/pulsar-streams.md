@@ -4,27 +4,32 @@ title: Managing Pulsar streams
 sidebar_label: Managing Pulsar streams
 ---
 
-If you are not familiar with Pulsar, then please check out their [site](https://pulsar.apache.org) to get familiar. In the
+If you are not familiar with Pulsar, then please check out their
+[site](https://pulsar.apache.org) to get a better understanding. In the
 documentation, we assume that a Pulsar cluster is available on the 6650 port of
-the local machine (`127.0.0.1:6650`). Please adjust your setup accordingly.
+the local machine ( `127.0.0.1:6650` ). Please adjust your setup accordingly.
 
 :::note
-For detailed technical information on streaming support, check out the [reference guide](/reference-guide/streams/overview.md).
+
+For detailed technical information on streaming support, check out the
+[reference guide](/reference-guide/streams/overview.md).
+
 :::
 
 ## Configuring Memgraph
 
-For Memgraph to be able to locate Pulsar cluster, you need to provide the service URL.
-The service URL can be set using the config `--pulsar-service-url`.
+You need to provide a service URL so Memgraph can locate the Pulsar cluster. The
+service URL can be set using the configuration flag `--pulsar-service-url` .
 
 ## Creating the stream
 
-The very first step is to make sure at least one transformation module is loaded into
-Memgraph. If you are not sure how to define them, check out the
-[transformation module guide](/database-functionalities/streams/pulsar/implement-transformation-module.md).
-We are going to use `transformation.my_pulsar_transformation` from that example, but
-we are going to alias it as `my.pulsar_transform` to make the size of result tables slimmer.
-For the topic name, we are going to use the topic `topic1`.
+The very first step is to make sure at least one transformation module is loaded
+into Memgraph. If you are not sure how to define them, check out the
+[transformation module
+guide](/database-functionalities/streams/pulsar/implement-transformation-module.md).
+We will use `transformation.my_pulsar_transformation` from that example, but we
+are going to alias it as `my.pulsar_transform` to make the size of result tables
+slimmer. For the topic name, we are going to use `topic1` .
 
 ```cypher
 CREATE PULSAR STREAM myStream
@@ -37,10 +42,6 @@ Check the created stream:
 ```cypher
 SHOW STREAMS;
 ```
-
-:::warning
-If you're running this in Memgraph Lab, an arbitrary error might happen. Please ignore it until we resolve the issue.
-:::
 
 The result should be similar to:
 
@@ -59,27 +60,30 @@ e.g., its name, topics it is subscribed to, etc.
 ## Check if the stream is working
 
 :::warning
-`CHECK STREAM` only works for single non-partitioned topic consumers.
-If your Pulsar stream source consumes multiple topics, or from a partitioned topic,
-the next examples will fail.
+
+`CHECK STREAM` only works for single non-partitioned topic consumers. The next
+examples will fail if your Pulsar stream source consumes multiple topics or from
+a partitioned topic.
+
 :::
 
 Maybe at first, you don't want to run the stream in the background but see the
 actual result of the transformation. This can be handy when implementing a
 transformation. To achieve that, we can use the `CHECK STREAM` query. This query
-will consume the message from the last acknowledged message but won't acknowledge the next messages.
-That means you are free to play around with it, and there won't be any
-permanent effects. For a freshly created stream, there is probably no acknowledged message,
-so the `CHECK STREAM` query will wait for new messages. By default, the
-query will wait `30000` milliseconds (`30` seconds) and after that, it will
-throw a timeout exception. To give us some more time, use a larger timeout,
-e.g.: `60000` milliseconds (`60` seconds):
+will consume the message from the last acknowledged message but won't
+acknowledge the next message. That means you are free to play around with it,
+and there won't be any permanent effects. For a freshly created stream, there is
+probably no acknowledged message, so the `CHECK STREAM` query will wait for new
+messages. By default, the query will wait `30000` milliseconds ( `30` seconds)
+and after that, it will throw a timeout exception. To give us some more time,
+use a larger timeout, e.g.: `60000` milliseconds ( `60` seconds):
 
 ```cypher
 CHECK STREAM myStream TIMEOUT 60000;
 ```
 
-If you started the query, let's send some messages to the topic. You should see a similar output:
+If you started the query, let's send some messages to the topic. You should see
+a similar output:
 
 ```plaintext
 +--------------------------------------------------------------------------------------+---------------------------
@@ -117,7 +121,7 @@ START STREAM myStream;
 ```
 
 After sending a few messages to the topic, the created vertices can be checked
-by executing `MATCH (n: MESSAGE) RETURN n`:
+by executing `MATCH (n: MESSAGE) RETURN n` :
 
 ```plaintext
 +----------------------------------------------------------+
@@ -132,6 +136,6 @@ by executing `MATCH (n: MESSAGE) RETURN n`:
 ## Acknowledging messages
 
 After each message is processed, the stream will acknowledge them. If the stream
-is stopped using the `STOP STREAM myStream` query (or by shutting Memgraph down),
-next time the stream is started, it will continue processing the message from the
-last acknowledged message.
+is stopped using the `STOP STREAM myStream` query (or by shutting Memgraph
+down), next time the stream is started, it will continue processing the message
+from the last acknowledged message.
