@@ -31,19 +31,21 @@ that is being tracked:
  - `labels-removed`
  - `properties-set`
 
+This data will refer only to the changes done by query, not triggers changes will
+not affect these values.
+
 ## Notifications
 
 Notifications will be sent whether we want to confirm the results of query or
-want to want the user of possible wrong usage. To understand what kind of
-message notification can send let's look at the structure of notification:
-```
-{
-    "severity": "...",
-    "code: "...",
-    "title": "...",
-    "description": "..."
-}
-```
+want to notify the user about possible wrong usage. Every notification is
+represented as a dictionary with these possible values:
+
+Key|Value Type
+:-:|:-:
+severity|String|/
+code|String|/
+title|String|/
+description|String|/
 
 In order to enable users to handle these notifications however they see fit, we
 will introduce possible values for severity and code notifications attributes.
