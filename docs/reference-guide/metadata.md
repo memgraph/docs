@@ -31,8 +31,8 @@ that is being tracked:
  - `labels-removed`
  - `properties-set`
 
-This data will refer only to the changes done by query, thus changes made in triggers will
-not affect these values.
+This data will refer only to the changes done by query, thus changes made in
+triggers will not affect these values.
 
 :::caution Differences compared to triggers
 
