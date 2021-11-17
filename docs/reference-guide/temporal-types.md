@@ -99,7 +99,7 @@ D|Day|/
 The smallest year is `0` and the highest is `9999`. 
 
 Note, that you can call `date` without arguments. This effectively 
-sets the date field to the current date of the calendar(UTC clock).
+sets the date field to the current date of the calendar (UTC clock).
 
 Example:
 
