@@ -14,7 +14,7 @@ sidebar_label: Changelog
 ### Major Features and Improvements
 
 * Now supporting Bolt protocol version 4.3. [#228](https://github.com/memgraph/memgraph/pull/226)
-* Added support for connecting to Pulsar as a new stream source. For more details, check out our [example](LINK TO DATRABASE FUNCTIONALITIES) and reference pages. [#293](https://github.com/memgraph/memgraph/pull/293)
+* Added support for connecting to Pulsar as a new stream source. For more details, check out our [example](database-functionalities/streams/pulsar/pulsar-streams) and [reference pages](reference-guide/streams). [#293](https://github.com/memgraph/memgraph/pull/293)
 
 ### Bug Fixes
 
