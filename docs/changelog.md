@@ -4,9 +4,11 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
-## Future
+## v2.1 - TBD
 
 ### Major Features and Improvements
+
+* Now supporting Bolt protocol version 4.3. [#228](https://github.com/memgraph/memgraph/pull/226)
 
 ### Bug Fixes
 
