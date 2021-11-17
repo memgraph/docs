@@ -148,7 +148,7 @@ the string `T22:10:32.300600` specifies `300` milliseconds and `600`
 microseconds.
 
 Note, that you can call `localtime` without arguments. This effectively 
-sets the time field to the current time of the calendar(UTC clock).
+sets the time field to the current time of the calendar (UTC clock).
 
 Example:
 
