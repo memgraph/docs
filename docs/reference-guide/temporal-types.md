@@ -26,13 +26,11 @@ All types excluding `Duration` are ISO 8601 compliant.
 You can create `Duration` from a string or a map by calling the function
 `duration` .
 
-For strings, the duration format is:
-
-`P[nD]T[nH][nM][nS]` where `n` stands for number, and the capital letters are
-used as a separator with each field in `[]` marked optional. For strings
-Memgraph only allows the last field to be a double, e.g., `P2DT2.5H` . However,
-for maps, every field can be a double, an int or a mixture of both. We also
-support negative durations.
+For strings, the duration format is: `P[nD]T[nH][nM][nS]` where `n` stands for
+number, and the capital letters are used as a separator with each field in `[]`
+marked optional. For strings, Memgraph only allows the last field to be a double,
+e.g., `P2DT2.5H` . However, for maps, every field can be a double, an int or a
+mixture of both. We also support negative durations.
 
 name|description
 :-:|:-:
@@ -48,7 +46,6 @@ CREATE (:F1Laps {lap : duration("PT2M2.33S")})
 ```
 
 Maps can contain the following six fields: `day` , `hour` , `minute` , `second`
-
 , `millisecond` and `microsecond` .
 
 Example:
@@ -91,9 +88,8 @@ MATCH (f:F1Laps) RETURN f.lap.minute
 ## Date
 
 You can create `Date` from a string or map by calling the function `Date` . For
-strings, the date format is specified by the ISO 8601:
-
-`YYYY-MM-DD` or `YYYYMMDD` or `YYYY-MM`
+strings, the date format is specified by the ISO 8601: `YYYY-MM-DD` or
+`YYYYMMDD` or `YYYY-MM`.
 
 name|description
 :-:|:-:
@@ -138,8 +134,7 @@ MATCH (b:Person) RETURN b.birthday.year
 
 You can create `LocalTime` from a string or map by calling the function
 `localtime` . For strings, the local time format is specified by the ISO 8601:
-
-`[T]hh:mm:ss` or `[T]hh:mm` or `[T]hhmmss` or `[T]hhmm` or `[T]hh`
+`[T]hh:mm:ss` or `[T]hh:mm` or `[T]hhmmss` or `[T]hhmm` or `[T]hh`.
 
 name|description
 :-:|:-:
@@ -150,7 +145,6 @@ name|description
 `seconds` can be defined as decimal fractions with up to 6 digits. The first 3
 digits represent milliseconds, and the last 3 digits microseconds. For example,
 the string `T22:10:32.300600` specifies `300` milliseconds and `600`
-
 microseconds.
 
 You can call `localtime` without arguments. This effectively sets the time field
@@ -163,9 +157,7 @@ CREATE (:School {Calculus : LocalTime("09:15:00")})
 ```
 
 For maps, there are 5 fields available: `hour` , `minute` , `second` ,
- `millisecond`
-
-and `microsecond` .
+ `millisecond` and `microsecond`.
 
 Example:
 
@@ -193,10 +185,8 @@ MATCH (s:School) RETURN s.Calculus.hour
 
 You can create `LocalDateTime` from a string or map by calling the function
 `localdatetime` . For strings, the local time format is specified by the ISO
-8601:
-
-`YYYY-MM-DDThh:mm:ss` or `YYYY-MM-DDThh:mm` or `YYYYMMDDThhmmss` or
-`YYYYMMDDThhmm` or `YYYYMMDDThh`
+8601: `YYYY-MM-DDThh:mm:ss` or `YYYY-MM-DDThh:mm` or `YYYYMMDDThhmmss` or
+`YYYYMMDDThhmm` or `YYYYMMDDThh`.
 
 name|description
 :-:|:-:
