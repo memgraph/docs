@@ -2,6 +2,12 @@ module.exports = {
   mage: [
     "overview",
     "installation",
+     {
+      type: "category",
+      label: "Algorithms",
+      items: ["algorithms/traditional_graph_analytics/cycle_detection",
+      "usage/loading-modules"],
+    },
     {
       type: "category",
       label: "Usage",
