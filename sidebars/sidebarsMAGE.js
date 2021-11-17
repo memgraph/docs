@@ -5,8 +5,11 @@ module.exports = {
      {
       type: "category",
       label: "Algorithms",
-      items: ["algorithms/traditional_graph_analytics/cycle_detection",
-      "usage/loading-modules"],
+      items: [
+          "algorithms/traditional-graph-analytics/cycle-detection-algorithm",
+          "algorithms/dynamic-graph-analytics/node2vec-online-algorithm",
+          "algorithms/machine-learning-graph-analytics/gcn-algorithm"
+      ],
     },
     {
       type: "category",
