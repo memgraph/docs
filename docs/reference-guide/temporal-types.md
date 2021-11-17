@@ -200,7 +200,7 @@ name|description
 |s|Seconds|/
 
 Note, that you can call `localdatetime` without arguments. This effectively 
-sets the date and time fields to the current date and time of the calendar(UTC clock).
+sets the date and time fields to the current date and time of the calendar (UTC clock).
 Example:
 
 ```cypher
