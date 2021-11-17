@@ -153,7 +153,7 @@ configured by setting the appropriate memgraph flag:
 
 By default, memgraph retries a transaction 31 times. If `TIMES_TO_RETRY` is set
 to 0 then memgraph tries a transaction only once. However, for any other value,
-memgraph retries with a total number of: one + `TIMES_TO_RETRY`. 
+memgraph retries with a total number of: 1 + `TIMES_TO_RETRY`. 
 
 Moreover, the interval of retries is also important and can be configured by 
 ```
