@@ -181,7 +181,7 @@ option|description|type|example|default
 stream name|Name of the stream to set the offset|string|"my_stream"|/
 offset|Offset number to set|int|0|/
 
-An offset of `-1` denotes the start of the stream i.e, offset 0.
+An offset of `-1` denotes the start of the stream i.e, the beginning offset available for the given topic/partition
 An offset of `-2` denotes the end of the stream i.e, for each topic/partition, its logical end such that
 only the next produced message will be consumed.
 
