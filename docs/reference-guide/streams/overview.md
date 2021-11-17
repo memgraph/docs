@@ -5,13 +5,13 @@ sidebar_label: Streams overview
 slug: /reference-guide/streams
 ---
 
-Memgraph can connect to existing Kafka streams. To use streams, a user must:
+Memgraph can connect to existing streams sources. To use streams, a user must:
 1. [**Create a transformation
    module**](/reference-guide/streams/transformation-modules/overview.md)
 2. [Configure Memgraph](/reference-guide/configuration.md) to connect to, e.g.
    Kafka, by providing the appropriate flag
    `--kafka-bootstrap-servers=localhost:9092`
-3. [Create the stream](#creating-a-stream) with a `CREATE STREAM` query
+3. [Create the stream](#creating-a-stream) with a `CREATE <source type> STREAM` query
 4. [Start the stream](#start-a-stream) with a `START STREAM` query
 
 :::tip Check out the **example-streaming-app** on
@@ -21,15 +21,24 @@ Memgraph-Kafka application.
 
 ## Creating a stream
 
-The general syntax for creating a stream is:
+The syntax for creating a stream depends on the type of the source because
+each specific types supports different set of configurations.
+
+:::note
+Order of the configurations is not strict so you can define configuration for each 
+stream source however you want.
+:::
+
+### Kafka
 
 ```cypher
-CREATE STREAM <stream name>
+CREATE KAFKA STREAM <stream name>
   TOPICS <topic1> [, <topic2>, ...]
   TRANSFORM <transform procedure>
   [CONSUMER_GROUP <consumer group>]
   [BATCH_INTERVAL <batch interval length>]
-  [BATCH_SIZE <batch size>];
+  [BATCH_SIZE <batch size>]
+  [BOOTSTRAP_SERVERS <bootstrap servers>;
 ```
 
 option|description|type|example|default
@@ -40,6 +49,30 @@ transform procedure|Name of the transformation file followed by a function name|
 consumer group|Name of the consumer group in Memgraph|plain text|my_group|mg_consumer
 batch interval duration|Maximum wait time in milliseconds for consuming messages before calling the transform procedure|int|9999|100
 batch size|Maximum number of messages to wait for before calling the transform procedure|int|99|1000
+bootstrap servers|Comma-separated list of bootstrap servers|string|"localhost:9092"|/
+
+### Pulsar
+
+```cypher
+CREATE PULSAR STREAM <stream name>
+  TOPICS <topic1> [, <topic2>, ...]
+  TRANSFORM <transform procedure>
+  [CONSUMER_GROUP <consumer group>]
+  [BATCH_INTERVAL <batch interval length>]
+  [BATCH_SIZE <batch size>]
+  [SERVICE_URL <service url>];
+
+```
+
+option|description|type|example|default
+:-:|:-:|:-:|:-:|:-:
+stream name|Name of the stream in Memgraph|plain text|my_stream|/
+topic|Name of the topic in Kafka|plain text|my_topic|/
+transform procedure|Name of the transformation file followed by a function name|function|my_transformation.my_transform|/
+consumer group|Name of the consumer group in Memgraph|plain text|my_group|mg_consumer
+batch interval duration|Maximum wait time in milliseconds for consuming messages before calling the transform procedure|int|9999|100
+batch size|Maximum number of messages to wait for before calling the transform procedure|int|99|1000
+service url|URL to the running Pulsar cluster|string|"127.0.0.1:6650"|/
 
 The transformation procedure is called if either the `BATCH_INTERVAL` or the
 `BATCH_SIZE` is reached, and there is at least one received message.
@@ -116,7 +149,8 @@ milliseconds, and it's defaulted to 30000.
 
 Checking a stream won't commit any offsets.
 
-## At least once semantics
+## Additional details
+### Kafka and at least once semantics
 
 In stream processing, it is important to have some guarantees about how failures
 are handled. When connecting an external application such as Memgraph to a Kafka
