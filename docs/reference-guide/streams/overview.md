@@ -155,7 +155,7 @@ By default, memgraph retries a transaction 31 times. If `TIMES_TO_RETRY` is set
 to 0 then memgraph tries a transaction only once. However, for any other value,
 memgraph retries with a total number of: one + `TIMES_TO_RETRY`. 
 
-Morever, the interval of retries is also important and can be configured by 
+Moreover, the interval of retries is also important and can be configured by 
 ```
 --stream-transaction-retry_interval INTERVAL_TIME
 ```
