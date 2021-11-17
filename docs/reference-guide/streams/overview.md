@@ -143,12 +143,13 @@ right after the transaction is committed to the database.
 
 ## Configuring stream transactions
 
-A stream fails when a transformation fails to commit a transaction. This is a side effect
-of [isolation levels](/reference-guide/isolation-levels.md) and its behaviour can be
-configured by setting the appropriate memgraph flag:
+A stream can fail for various reasons. One of the failures of interest is when a transaction
+(in which the returned queries of the transformation are executed) fails to commit because of another conflicting 
+transaction. This is a side effect of [isolation levels](/reference-guide/isolation-levels.md) 
+and its behaviour can be configured by setting the appropriate memgraph flag:
 
 ```
---stream-transaction-conflict-retries TIMES_TO_RETRY
+--stream-transaction-conflict-retries=TIMES_TO_RETRY
 ```
 
 By default, memgraph retries a transaction 31 times. If `TIMES_TO_RETRY` is set
@@ -157,6 +158,6 @@ memgraph retries with a total number of: 1 + `TIMES_TO_RETRY`.
 
 Moreover, the interval of retries is also important and can be configured by 
 ```
---stream-transaction-retry_interval INTERVAL_TIME
+--stream-transaction-retry-interval=INTERVAL_TIME
 ```
 The `INTERVAL_TIME` is measured in `milliseconds` and its default value is `500ms`.

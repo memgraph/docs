@@ -52,6 +52,12 @@ Each configuration setting is in the form: `--setting-name=value`.
 | --storage-wal-file-flush-every-n-tx=100000 | Issue a 'fsync' call after this amount of transactions are written to the WAL file. Set to 1 for fully synchronous operation. | `[uint64]` |
 | --storage-wal-file-size-kib=20480 | Minimum file size of each WAL file. | `[uint64]` |
 
+## Streams
+| Flag           | Description    | Type           |
+| -------------- | -------------- | -------------- |
+| --kafka-bootstrap-servers= | List of Kafka brokers as a comma separated list of broker `host` or `host:port`. | `[string]` |
+| --stream-transaction-conflict-retries=30 | Number of times to retry a conflicting transaction of a stream | `[uint32]` |
+| --stream-transaction-retry-interval=500 | The interval to wait (measured in milliseconds) before retrying to commit a conflicting transaction | `[uint32]` |
 
 ## Other
 
@@ -61,7 +67,6 @@ Each configuration setting is in the form: `--setting-name=value`.
 | --also-log-to-stderr=false | log messages go to stderr in addition to logfiles | `[bool]` |
 | --data-directory=/var/lib/memgraph | Path to directory in which to save all permanent data. | `[string]` |
 | --isolation-level | Default isolation level used for the transactions. Allowed values: SNAPSHOT_ISOLATION, READ_COMMITTED, READ_UNCOMMITTED | `[string]` |
-| --kafka-bootstrap-servers= | List of Kafka brokers as a comma separated list of broker `host` or `host:port`. | `[string]` |
 | --log-file=/var/log/memgraph/memgraph.log | Path to where the log should be stored. | `[string]` |
 | --log-level | Minimum log level. Allowed values: TRACE, DEBUG, INFO, WARNING, ERROR, CRITICAL | `[string]` |
 | --memory-limit=0 | Total memory limit in MiB. Set to 0 to use the default values which are 100% of the physical memory if the swap is enabled and 90% of the physical memory otherwise. |  `[uint64]` |
