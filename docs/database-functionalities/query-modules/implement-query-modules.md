@@ -28,7 +28,7 @@ want to mount the volume. Now, you can start Memgraph and mount the created
 volume:
 
 ```shell
-docker run -it --rm -p 7687:7687 -p 3000:3000 -v module:/usr/lib/memgraph/query_modules memgraph
+docker run -it --rm -p 7687:7687 -p 3000:3000 -v module:/usr/lib/memgraph/query_modules memgraph/memgraph-platform
 ```
 
 Everything from the directory `/usr/lib/memgraph/query_modules` will be

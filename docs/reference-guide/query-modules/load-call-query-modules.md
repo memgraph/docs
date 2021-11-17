@@ -23,7 +23,7 @@ When using Docker, the equivalent would be the following:
 ```plaintext
 docker run -it -p 7687:7687 \
   -v mg_lib:/var/lib/memgraph -v mg_log:/var/log/memgraph -v mg_etc:/etc/memgraph \
-  memgraph
+  memgraph/memgraph-platform
 ```
 
 Memgraph will now attempt to load the query modules from all `*.so` and `*.py`

@@ -20,7 +20,7 @@ import TabItem from '@theme/TabItem';
 ## Issues when connecting to Memgraph
 
 ```console
-docker run -it memgraph
+docker run -it memgraph/memgraph-platform
 ```
 
 While this command will start a Memgraph instance, not publishing the port will
@@ -29,7 +29,7 @@ cause problems when trying to connect to the database via **Memgraph Lab** or
 container's port to the host using the `-p` flag and by specifying the port:
 
 ```console
-docker run -it -p 7687:7687 -p 3000:3000 memgraph
+docker run -it -p 7687:7687 -p 3000:3000 memgraph/memgraph-platform
 ```
 
 ## Find the IP address of a Docker Container
@@ -62,7 +62,7 @@ the [querying](/connect-to-memgraph/overview.mdx) section. Just replace
 `HOST` from the following command with the appropriate IP address:
 
 ```console
-docker run -it --entrypoint=mgconsole memgraph --host HOST
+docker run -it --entrypoint=mgconsole memgraph/memgraph-platform --host HOST
 ```
 
   </TabItem>
