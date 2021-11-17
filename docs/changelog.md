@@ -4,11 +4,17 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
-## v2.1 - TBD
+## v2.1.0 - TBD
+
+:::warning
+### Breaking Changes
+* Query for creating a Kafka stream now requires `KAFKA` keyword. Previous form of `CREATE STREAM ...` was changed to `CREATE KAFKA STREAM ...`.
+:::
 
 ### Major Features and Improvements
 
 * Now supporting Bolt protocol version 4.3. [#228](https://github.com/memgraph/memgraph/pull/226)
+* Added support for connecting to Pulsar as a new stream source. For more details, check out our [example](LINK TO DATRABASE FUNCTIONALITIES) and reference pages. [#293](https://github.com/memgraph/memgraph/pull/293)
 
 ### Bug Fixes
 
