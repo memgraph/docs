@@ -145,16 +145,16 @@ right after the transaction is committed to the database.
 
 A stream can fail for various reasons. One of the failures of interest is when a transaction
 (in which the returned queries of the transformation are executed) fails to commit because of another conflicting 
-transaction. This is a side effect of [isolation levels](/reference-guide/isolation-levels.md) 
-and its behaviour can be configured by setting the appropriate memgraph flag:
+transaction. This is a side effect of [isolation levels](/reference-guide/isolation-levels.md) and can 
+be configured by the following Memgraph flag:
 
 ```
 --stream-transaction-conflict-retries=TIMES_TO_RETRY
 ```
 
-By default, memgraph retries a transaction 31 times. If `TIMES_TO_RETRY` is set
-to 0 then memgraph tries a transaction only once. However, for any other value,
-memgraph retries with a total number of: 1 + `TIMES_TO_RETRY`. 
+By default, Memgraph will always try to execute a transaction once. However, for streams, if Memgraph
+fails because of transaction conflicts it will retry to execute the transaction again for up to `TIMES_TO_RETRY` times
+and its default value is 30. 
 
 Moreover, the interval of retries is also important and can be configured by 
 ```

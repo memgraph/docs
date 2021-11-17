@@ -57,7 +57,7 @@ Each configuration setting is in the form: `--setting-name=value`.
 | -------------- | -------------- | -------------- |
 | --kafka-bootstrap-servers= | List of Kafka brokers as a comma separated list of broker `host` or `host:port`. | `[string]` |
 | --stream-transaction-conflict-retries=30 | Number of times to retry a conflicting transaction of a stream | `[uint32]` |
-| --stream-transaction-retry-interval=500 | The interval to wait (measured in milliseconds) before retrying to commit a conflicting transaction | `[uint32]` |
+| --stream-transaction-retry-interval=500 | The interval to wait (measured in milliseconds) before retrying to execute again a conflicting transaction | `[uint32]` |
 
 ## Other
 
