@@ -15,7 +15,6 @@ sidebar_label: Changelog
   query. [#278](https://github.com/memgraph/memgraph/pull/278)
 * Fix linkage error when `mgp_local_time_get_minute` is used. [#273](https://github.com/memgraph/memgraph/pull/273)
 * Added Bolt notifications to inform user about results or to give useful tips. [#285](https://github.com/memgraph/memgraph/pull/285)
-* Added Bolt notifications to inform user about results or to give useful tips. [#285](https://github.com/memgraph/memgraph/pull/285)
 * Added execution statistics to inform user on how much object were affected. [#285](https://github.com/memgraph/memgraph/pull/285)
 
 ### Bug Fixes
