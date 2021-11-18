@@ -8,10 +8,16 @@ sidebar_label: Changelog
 
 ### Major Features and Improvements
 
-* Now supporting Bolt protocol version 4.3. [#228](https://github.com/memgraph/memgraph/pull/226)
-* Streams support for retrying conflicting transactions [#294](https://github.com/memgraph/memgraph/pull/294)
-* Added procedure to configure the starting offset (to consume messages from) of a topic (and its partitions). [#282](https://github.com/memgraph/memgraph/pull/282)
-* Added `BOOTSTRAP_SERVERS` option to `CREATE KAFKA STREAM` which you can check [here](reference-guide/streams/overview.md). [#282](https://github.com/memgraph/memgraph/pull/282)
+* Now supporting Bolt protocol version 4.3.
+  [#228](https://github.com/memgraph/memgraph/pull/226)
+* Streams support for retrying conflicting transactions
+  [#294](https://github.com/memgraph/memgraph/pull/294)
+* Added procedure to configure the starting offset (to consume messages from) of
+  a topic (and its partitions).
+  [#282](https://github.com/memgraph/memgraph/pull/282)
+* Added `BOOTSTRAP_SERVERS` option to `CREATE KAFKA STREAM` which you can check
+  [here](reference-guide/streams/overview.md).
+  [#282](https://github.com/memgraph/memgraph/pull/282)
 * Added Bolt notifications to inform the user about results or to give useful
   tips. [#285](https://github.com/memgraph/memgraph/pull/285)
 * Added execution statistics to inform user on how many objects were affected.
@@ -24,7 +30,8 @@ sidebar_label: Changelog
   query. [#278](https://github.com/memgraph/memgraph/pull/278)
 * Fix linkage error when `mgp_local_time_get_minute` is used.
   [#273](https://github.com/memgraph/memgraph/pull/273)
-* Fix crash when temporal types are used with `ORDER BY` clause. [#299](https://github.com/memgraph/memgraph/pull/299)
+* Fix crash when temporal types are used with `ORDER BY` clause.
+  [#299](https://github.com/memgraph/memgraph/pull/299)
 
 ## v2.0.1 - Oct 12, 2021
 
