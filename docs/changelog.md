@@ -8,53 +8,82 @@ sidebar_label: Changelog
 
 ### Major Features and Improvements
 
-* Now supporting Bolt protocol version 4.3. [#228](https://github.com/memgraph/memgraph/pull/226)
-* Streams support for retrying conflicting transactions [#294](https://github.com/memgraph/memgraph/pull/294)
-* Added procedure to configure the starting offset (to consume messages from) of a topic (and its partitions). [#282](https://github.com/memgraph/memgraph/pull/282)
+* Now supporting Bolt protocol version 4.3.
+  [#226](https://github.com/memgraph/memgraph/pull/226)
+* Streams support for retrying conflicting transactions
+  [#294](https://github.com/memgraph/memgraph/pull/294)
+* Added procedure to configure the starting offset (to consume messages from) of
+  a topic (and its partitions).
+  [#282](https://github.com/memgraph/memgraph/pull/282)
+* Added `BOOTSTRAP_SERVERS` option to `CREATE KAFKA STREAM` which you can check
+  [here](reference-guide/streams/overview.md).
+  [#282](https://github.com/memgraph/memgraph/pull/282)
+* Added Bolt notifications to inform the user about results or to give useful
+  tips. [#285](https://github.com/memgraph/memgraph/pull/285)
+* Added execution statistics to inform user on how many objects were affected.
+  [#285](https://github.com/memgraph/memgraph/pull/285)
 
 ### Bug Fixes
 
 * Allow duration values to be used as weights in the [Weighted Shortest
   Path](https://memgraph.com/docs/memgraph/reference-guide/graph-algorithms#weighted-shortest-path)
   query. [#278](https://github.com/memgraph/memgraph/pull/278)
-* Fix linkage error when `mgp_local_time_get_minute` is used. [#273](https://github.com/memgraph/memgraph/pull/273)
-* Fix crash when temporal types are used with `ORDER BY` clause. [#299](https://github.com/memgraph/memgraph/pull/299)
-* Added `BOOTSTRAP_SERVERS` option to `CREATE KAFKA STREAM` which you can check [here](reference-guide/streams/overview.md). [#282](https://github.com/memgraph/memgraph/pull/282)
+* Fix linkage error when `mgp_local_time_get_minute` is used.
+  [#273](https://github.com/memgraph/memgraph/pull/273)
+* Fix crash when temporal types are used with `ORDER BY` clause.
+  [#299](https://github.com/memgraph/memgraph/pull/299)
 
 ## v2.0.1 - Oct 12, 2021
 
 ### Major Features and Improvements
 
-* Updated a startup message with a link to the [getting started page](getting-started.md). [#259](https://github.com/memgraph/memgraph/pull/259)
-* Updated certain error and warning messages in the logs with links to the documentation explaining the problem in more detail. [#243](https://github.com/memgraph/memgraph/pull/243)
-* Updated mgconsole to [v1.1.0](https://github.com/memgraph/mgconsole/releases/tag/v1.1.0). [#260](https://github.com/memgraph/memgraph/pull/260)
+* Updated a startup message with a link to the [getting started
+  page](getting-started.md).
+  [#259](https://github.com/memgraph/memgraph/pull/259)
+* Updated certain error and warning messages in the logs with links to the
+  documentation explaining the problem in more detail.
+  [#243](https://github.com/memgraph/memgraph/pull/243)
+* Updated mgconsole to
+  [v1.1.0](https://github.com/memgraph/mgconsole/releases/tag/v1.1.0).
+  [#260](https://github.com/memgraph/memgraph/pull/260)
 
 ### Bug Fixes
 
-* Graph updates made in the write procedures are now correctly registered in the triggers. [#262](https://github.com/memgraph/memgraph/pull/262)
-* Fixed `DETACH DELETE` interaction with the triggers. Previously, vertices deleted by the `DETACH DELETE` would not be registered by triggers if only `ON () DELETE` trigger existed. [#266](https://github.com/memgraph/memgraph/pull/266)
+* Graph updates made in the write procedures are now correctly registered in the
+  triggers. [#262](https://github.com/memgraph/memgraph/pull/262)
+* Fixed `DETACH DELETE` interaction with the triggers. Previously, vertices
+  deleted by the `DETACH DELETE` would not be registered by triggers if only `ON
+  () DELETE` trigger existed.
+  [#266](https://github.com/memgraph/memgraph/pull/266)
 
 ## v2.0.0 - Oct 5, 2021
 
 :::warning
+
 ### Breaking Changes
 
-* Changed the `timestamp()` function to return `microseconds` instead of `milliseconds`.
+* Changed the `timestamp()` function to return `microseconds` instead of
+  `milliseconds`.
 * Most of the query modules C API functions are changed to return a `mgp_error`
   as a more fine-grained way of error reporting. The only exceptions are the
   functions that free allocated memory (`mgp_free` and `mgp_global_free`) and
-  destroy objects (`mgp_value_destroy`, `mgp_list_destory`, etc.) which remain
-  the same.
-* The first user created using the `CREATE USER` query will have all the privileges
-  granted to him. Previously, you could've locked yourself out of Memgraph by creating
-  a user and immediately disconnecting.
+  destroy objects (`mgp_value_destroy`, `mgp_list_destroy`, etc.) which
+  remain the same.
+* The first user created using the `CREATE USER` query will have all the
+  privileges granted to him. Previously, you could've locked yourself out of
+  Memgraph by creating a user and immediately disconnecting.
+
 :::
 
 ### Major Features and Improvements
 
-* Added support for temporal types, a feature that allows the user to manipulate and store time related data in the graph. For more information take a look at the [reference guide](/reference-guide/temporal-types.md)
-* Added support for parameters with `CREATE` clause in the following form: `CREATE (n $param)`.
-* Introduced settings to Memgraph that can be modified during runtime. You can check out more details [here](reference-guide/runtime-settings).
+* Added support for temporal types, a feature that allows the user to manipulate
+  and store time related data in the graph. For more information take a look at
+  the [reference guide](/reference-guide/temporal-types.md)
+* Added support for parameters with `CREATE` clause in the following form:
+  `CREATE (n $param)`.
+* Introduced settings to Memgraph that can be modified during runtime. You can
+  check out more details [here](reference-guide/runtime-settings).
 * Added writeable procedure support, so
   [procedures](database-functionalities/query-modules/implement-query-modules)
   can modify the graph by creating and deleting vertices and edges, modifying
@@ -62,71 +91,103 @@ sidebar_label: Changelog
 
 ### Bug Fixes
 
-* Fixed planning of queries with `MERGE` clause. If a previously defined symbol is used as property value inside the `MERGE` clause, the planner will correctly use the label-property index if present.
-* Unused memory is correctly returned to OS when `FREE MEMORY` query is used. Before, Memgraph would free up the memory internally and not return it to the OS. Because of that Memgraph could allocate more memory from the OS than it's allowed.
-* Fixed recovery from durability files. Because of a wrong check, Memgraph could crash and leave the durability files in an invalid state making recovery not possible.
-* Fixed usage of `execute` keyword in queries. Because of the special way we handle the `EXECUTE` keyword from the `CREATE TRIGGER` query using that same keyword in other contexts caused Memgraph to crash.
+* Fixed planning of queries with `MERGE` clause. If a previously defined symbol
+  is used as property value inside the `MERGE` clause, the planner will
+  correctly use the label-property index if present.
+* Unused memory is correctly returned to OS when `FREE MEMORY` query is used.
+  Before, Memgraph would free up the memory internally and not return it to the
+  OS. Because of that Memgraph could allocate more memory from the OS than it's
+  allowed.
+* Fixed recovery from durability files. Because of a wrong check, Memgraph could
+  crash and leave the durability files in an invalid state making recovery not
+  possible.
+* Fixed usage of `execute` keyword in queries. Because of the special way we
+  handle the `EXECUTE` keyword from the `CREATE TRIGGER` query using that same
+  keyword in other contexts caused Memgraph to crash.
 
 ## v1.6.1 - Jul 24, 2021
 
 ### Major Features and Improvements
 
-* Added proper privilege checks for queries executed by triggers and stream transformations.
-
+* Added proper privilege checks for queries executed by triggers and stream
+  transformations.
 
 ### Bug Fixes
 
-* Fixed error handling in streams to make restarting streams possible after failing.
-  The issue is caused by not rolling back the transaction in which the query failed, so when the stream was restarted and tried to process the next batch of messages it was still in a transaction, but it tried to start a new one.
-  Now the transaction is rolled back in case of any errors during query execution, so a new transaction can be started during the processing of the next batch of messages.
+* Fixed error handling in streams to make restarting streams possible after
+  failing. The issue is caused by not rolling back the transaction in which the
+  query failed, so when the stream was restarted and tried to process the next
+  batch of messages it was still in a transaction, but it tried to start a new
+  one. Now the transaction is rolled back in case of any errors during query
+  execution, so a new transaction can be started during the processing of the
+  next batch of messages.
 
 ## v1.6.0 - Jul 7, 2021
 
 :::warning
+
 ### Breaking Changes
+
 * Changed the `LOCK_PATH` permission to `DURABILITY`.
+
 :::
 
 ### Major Features and Improvements
 
-* Added support for consuming Kafka streams. You can connect Memgraph to a Kafka cluster and run queries based on the messages received.
-  The transformation from Kafka to Cypher queries is done using **Transformation Modules**, a concept similar to Query Modules.
-  Using our Python and C API, you can easily define functions that analyze Kafka messages and generate different queries based on them.
-  The stream connection can be configured, tested, stopped, started, checked, and dropped.
-* Introduced global allocators for Query Modules using C API, so the data can be preserved between multiple runs of the same procedure.
-* Introduced new isolation levels, `READ COMMITTED` and `READ_UNCOMMITTED`. The isolation level can be set with a config.
-  Also, you can set the isolation level for a certain session or the next transaction. The names of the isolation levels should be self-explanatory,
-  unlike the `SNAPSHOT ISOLATION` which is still the default isolation level.
-* The query timeouts are now triggered using a different method. Before, we used the TSC to measure the execution time. Unfortunately, this proved
-  unreliable for certain CPUs (AMD Ryzen 7 and M1), which caused queries to timeout almost instantly. We switched to POSIX timer which
-  **should** work on every hardware, while not affecting the performance.
-* Added a config, `allow-load-csv`, with which you can disable `LOAD CSV` clause. `LOAD CSV` can read and display data from any file on the system which could be insecure
-  for some systems. Because of that, we added a config that allows you to disable that clause in every case.
-* Added `CREATE SNAPSHOT` query. Snapshots are created every few minutes, using this query you can trigger snapshot creation instantly.
-* Increased the default query timeout to 10 minutes. The previous default amount of 3 minutes proved too small, especially for queries that use `LOAD CSV` with
+* Added support for consuming Kafka streams. You can connect Memgraph to a Kafka
+  cluster and run queries based on the messages received. The transformation
+  from Kafka to Cypher queries is done using **Transformation Modules**, a
+  concept similar to Query Modules. Using our Python and C API, you can easily
+  define functions that analyze Kafka messages and generate different queries
+  based on them. The stream connection can be configured, tested, stopped,
+  started, checked, and dropped.
+* Introduced global allocators for Query Modules using C API, so the data can be
+  preserved between multiple runs of the same procedure.
+* Introduced new isolation levels, `READ COMMITTED` and `READ_UNCOMMITTED`. The
+  isolation level can be set with a config. Also, you can set the isolation
+  level for a certain session or the next transaction. The names of the
+  isolation levels should be self-explanatory, unlike the `SNAPSHOT ISOLATION`
+  which is still the default isolation level.
+* The query timeouts are now triggered using a different method. Before, we used
+  the TSC to measure the execution time. Unfortunately, this proved unreliable
+  for certain CPUs (AMD Ryzen 7 and M1), which caused queries to timeout almost
+  instantly. We switched to POSIX timer which **should** work on every hardware,
+  while not affecting the performance.
+* Added a config, `allow-load-csv`, with which you can disable `LOAD CSV`
+  clause. `LOAD CSV` can read and display data from any file on the system which
+  could be insecure for some systems. Because of that, we added a config that
+  allows you to disable that clause in every case.
+* Added `CREATE SNAPSHOT` query. Snapshots are created every few minutes, using
+  this query you can trigger snapshot creation instantly.
+* Increased the default query timeout to 10 minutes. The previous default amount
+  of 3 minutes proved too small, especially for queries that use `LOAD CSV` with
   a large dataset.
-
 
 ### Bug Fixes
 
 * Fixed parsing of certain types in Query Modules using Python API.
-* Fixed a concurrency bug for Query Modules using Python API. Running the same procedure from multiple clients caused the Memgraph instance to crash.
-* Fixed restoring triggers that call procedures. Because the triggers were restored before the procedures, the query trigger executes couldn't find
-  the called procedure, which caused the restore to fail. Switching up the order was enough to fix the problem.
-
+* Fixed a concurrency bug for Query Modules using Python API. Running the same
+  procedure from multiple clients caused the Memgraph instance to crash.
+* Fixed restoring triggers that call procedures. Because the triggers were
+  restored before the procedures, the query trigger executes couldn't find the
+  called procedure, which caused the restore to fail. Switching up the order was
+  enough to fix the problem.
 
 ## v1.5.0 - May 28, 2021
 
 ### Major Features and Improvements
 
-* Added database triggers. You can now create, delete, and print out triggers that execute Cypher statements. You can create custom
-  actions whenever a node or an edge is created, updated, or deleted. All the triggers are persisted on the disk, so no information is lost between runs.
-* Replaced mg_client with the mgconsole command-line interface, which ships directly with Memgraph. You can now install mgconsole
-  directly on Windows and macOS.
+* Added database triggers. You can now create, delete, and print out triggers
+  that execute Cypher statements. You can create custom actions whenever a node
+  or an edge is created, updated, or deleted. All the triggers are persisted on
+  the disk, so no information is lost between runs.
+* Replaced mg_client with the mgconsole command-line interface, which ships
+  directly with Memgraph. You can now install mgconsole directly on Windows and
+  macOS.
 
 ### Bug Fixes
 
-* Fixed parsing of types for Python procedures for types nested in `mgp.List`.
+* Fixed parsing of types for Python procedures for types nested in `mgp. List`.
   For example, parsing of `mgp.List[mgp.Map]` works now.
 * Fixed memory tracking issues. Some of the allocation and deallocation wasn't
   tracked during the query execution.
@@ -137,29 +198,35 @@ sidebar_label: Changelog
 ## v1.4.0 - Apr 2, 2021
 
 :::warning
+
 ### Breaking Changes
 
-* Changed `MEMORY LIMIT num (KB|MB)` clause in the procedure calls to `PROCEDURE MEMORY LIMIT num (KB|MB)`.
-  The functionality is still the same.
+* Changed `MEMORY LIMIT num (KB|MB)` clause in the procedure calls to `PROCEDURE
+  MEMORY LIMIT num (KB|MB)`. The functionality is still the same.
+
 :::
 
 ### Major Features and Improvements
 
 * Added replication to community version.
-* Added support for multiple query modules directories at the same time.
-  You can now define multiple, comma-separated paths to directories from
-  which the modules will be loaded using the `--query-modules-directory` flag.
+* Added support for multiple query modules directories at the same time. You can
+  now define multiple, comma-separated paths to directories from which the
+  modules will be loaded using the `--query-modules-directory` flag.
 * Added support for programatically reading in data from CSV files through the
   `LOAD CSV` clause. We support CSV files with and without a header, the
   supported dialect being Excel.
-* Added a new flag `--memory-limit` which enables the user to set the maximum total amount of memory
-  memgraph can allocate during its runtime.
-* Added `FREE MEMORY` query which tries to free unusued memory chunks in different parts of storage.
-* Added the memory limit and amount of currently allocated bytes in the result of `SHOW STORAGE INFO` query.
-* Added `QUERY MEMORY LIMIT num (KB|MB)` to Cypher queries which allows you to limit memory allocation for
-  the entire query. It can be added only at the end of the entire Cypher query.
-* Added logs for the different parts of the recovery process. `INFO`, `DEBUG` and `TRACE` level all contain
-  additional information that is printed out while the recovery is in progress.
+* Added a new flag `--memory-limit` which enables the user to set the maximum
+  total amount of memory memgraph can allocate during its runtime.
+* Added `FREE MEMORY` query which tries to free unusued memory chunks in
+  different parts of storage.
+* Added the memory limit and amount of currently allocated bytes in the result
+  of `SHOW STORAGE INFO` query.
+* Added `QUERY MEMORY LIMIT num (KB|MB)` to Cypher queries which allows you to
+  limit memory allocation for the entire query. It can be added only at the end
+  of the entire Cypher query.
+* Added logs for the different parts of the recovery process. `INFO`, `DEBUG`
+  and `TRACE` level all contain additional information that is printed out while
+  the recovery is in progress.
 
 ### Bug Fixes
 
@@ -171,20 +238,22 @@ sidebar_label: Changelog
 ## v1.3.0 - Jan 26, 2021
 
 :::warning
+
 ### Breaking Changes
 
 * Added extra information in durability files to support replication, making it
   incompatible with the durability files generated by older versions of
   Memgraph. Even though the replication is an Enterprise feature, the files are
   compatible with the Community version.
+
 :::
 
 ### Major Features and Improvements
 
 * Added support for data replication across a cluster of Memgraph instances.
-  Supported instance types are MAIN and REPLICA. Supported replication modes
-  are SYNC (all SYNC REPLICAS have to receive data before the MAIN can commit
-  the transaction), ASYNC (MAIN doesn't care if data is replicated), SYNC WITH
+  Supported instance types are MAIN and REPLICA. Supported replication modes are
+  SYNC (all SYNC REPLICAS have to receive data before the MAIN can commit the
+  transaction), ASYNC (MAIN doesn't care if data is replicated), SYNC WITH
   TIMEOUT (MAIN will wait for REPLICAS within the given timeout period, after
   timout, replication isn't aborted but the replication demotes the REPLICA to
   the ASYNC mode).
@@ -195,9 +264,9 @@ sidebar_label: Changelog
   new flag, `--log-level`, which specifies the minimum log level that will be
   printed. E.g., it's possible to print incoming queries or Bolt server states.
 * Added ability to lock the storage data directory by executing the `LOCK DATA
-  DIRECTORY;` query which delays the deletion of the files contained in the
+  DIRECTORY` query which delays the deletion of the files contained in the
   data directory. The data directory can be unlocked again by executing the
-  `UNLOCK DATA DIRECTORY;` query.
+  `UNLOCK DATA DIRECTORY` query.
 
 ### Bug Fixes and Other Changes
 
@@ -207,10 +276,12 @@ sidebar_label: Changelog
 ## v1.2.0 - Oct 20, 2020
 
 :::warning
+
 ### Breaking Changes
 
 * SSL is disabled by default (`--bolt-cert-file` and `--bolt-key-file` are
   empty). This change might only affect the client connection configuration.
+
 :::
 
 ### Major Features and Improvements
@@ -228,8 +299,8 @@ sidebar_label: Changelog
 
 * Fixed Cypher `ID` function `Null` handling. When the `ID` function receives
   `Null`, it will also return `Null`.
-* Fixed bug that caused random crashes in SSL communication on platforms
-  that use older versions of OpenSSL (< 1.1) by adding proper multi-threading
+* Fixed bug that caused random crashes in SSL communication on platforms that
+  use older versions of OpenSSL (< 1.1) by adding proper multi-threading
   handling.
 * Fix `DISCARD` message handling. The query is now executed before discarding
   the results.
@@ -246,29 +317,30 @@ sidebar_label: Changelog
   requests to load a query module. The functions used to load the query modules
   were renamed to `mg.load()` and `mg.load_all()` (from `mg.reload()` and
   `mg.reload_all()`).
-* Improved execution performance of queries that have an IN list filter by
-  using label+property indices.
-  Example: `MATCH (n:Label) WHERE n.property IN [] ...`
+* Improved execution performance of queries that have an IN list filter by using
+  label+property indices. Example: `MATCH (n: Label) WHERE n.property IN [] ...`
+
 * Added support for `ANY` and `NONE` openCypher functions. Previously, only
   `ALL` and `SINGLE` functions were implemented.
 
 ### Bug Fixes and Other Changes
 
 * Fixed invalid paths returned by variable expansion when the starting node and
-  destination node used the same symbol.
-  Example: `MATCH path = (n:Person {name: "John"})-[:KNOWS*]->(n) RETURN path`
+  destination node used the same symbol. Example: `MATCH path = (n: Person
+  {name: "John"})-[: KNOWS*]->(n) RETURN path`
+
 * Improved semantics of `ALL` and `SINGLE` functions to be consistent with
-  openCypher when handling lists with `Null`s.
+  openCypher when handling lists with `Null` s.
 * `SHOW CONSTRAINT INFO` now returns property names as a list for unique
   constraints.
-* Escaped label/property/edgetype names in `DUMP DATABASE` to support names
-  with spaces in them.
-* Fixed handling of `DUMP DATABASE` queries in multi-command transactions
-  (`BEGIN`, ..., `COMMIT`).
+* Escaped label/property/edgetype names in `DUMP DATABASE` to support names with
+  spaces in them.
+* Fixed handling of `DUMP DATABASE` queries in multi-command transactions (
+  `BEGIN`, ..., `COMMIT`).
 * Fixed handling of various query types in explicit transactions. For example,
-  constraints were allowed to be created in multi-command transactions
-  (`BEGIN`, ..., `COMMIT`) but that isn't a transactional operation and as such
-  can't be allowed in multi-command transactions.
+  constraints were allowed to be created in multi-command transactions (`BEGIN`
+  , ..., `COMMIT`) but that isn't a transactional operation and as such can't
+  be allowed in multi-command transactions.
 * Fixed integer overflow bugs in `COUNT`, `LIMIT` and `SKIP`.
 * Fixed integer overflow bugs in weighted shortest path expansions.
 * Fixed various other integer overflow bugs in query execution.
@@ -279,25 +351,24 @@ sidebar_label: Changelog
 
 ### Major Features and Improvements
 
-* [Enterprise Ed.] Exposed authentication username/rolename regex as a flag
-  (`--auth-user-or-role-name-regex`).
+* [Enterprise Ed.] Exposed authentication username/rolename regex as a flag (
+  `--auth-user-or-role-name-regex`).
 * [Enterprise Ed.] Improved auth module error handling and added support for
   relative paths.
 * Added support for Python query modules. This release of Memgraph supports
-  query modules written using the already existing C API and the new Python
-  API.
+  query modules written using the already existing C API and the new Python API.
 * Added support for unique constraints. The unique constraint is created with a
   label and one or more properties.
-* Implemented support for importing CSV files (`mg_import_csv`). The importer
-  is compatible with the Neo4j batch CSV importer.
+* Implemented support for importing CSV files (`mg_import_csv`). The importer is
+  compatible with the Neo4j batch CSV importer.
 * Snapshot and write-ahead log format changed (backward compatible with v0.50).
-* Vertices looked up by their openCypher ID (`MATCH (n) WHERE ID(n) = ...`)
-  will now find the node in O(logn) instead of O(n).
-* Improved planning of BFS expansion, a faster, specific approach is now
-  favored instead of a ScanAll+Filter operation.
+* Vertices looked up by their openCypher ID (`MATCH (n) WHERE ID(n) = ...`) will
+  now find the node in O(logn) instead of O(n).
+* Improved planning of BFS expansion, a faster, specific approach is now favored
+  instead of a ScanAll+Filter operation.
 * Added syntax for limiting memory of `CALL`.
-* Exposed server name that should be used for Bolt handshake as flag
-  (`--bolt-server-name-for-init`).
+* Exposed server name that should be used for Bolt handshake as flag (
+  `--bolt-server-name-for-init`).
 * Added several more functions to the query module C API.
 * Implemented a storage locking mechanism that prevents the user from
   concurrently starting two Memgraph instances with the same data directory.
@@ -324,13 +395,16 @@ sidebar_label: Changelog
 ## v0.50.0 - Dec 11, 2019
 
 :::warning
+
 ### Breaking Changes
 
 * [Enterprise Ed.] Remove support for Kafka streams.
 * Snapshot and write-ahead log format changed (not backward compatible).
 * Removed support for unique constraints.
 * Label indices aren't created automatically, create them explicitly instead.
-* Renamed several database flags. Please see the configuration file for a list of current flags.
+* Renamed several database flags. Please see the configuration file for a list
+  of current flags.
+
 :::
 
 ### Major Features and Improvements
@@ -357,13 +431,16 @@ sidebar_label: Changelog
 ## v0.15.0 - Jul 17, 2019
 
 :::warning
+
 ### Breaking Changes
 
 * Snapshot and write-ahead log format changed (not backward compatible).
 * `indexInfo()` function replaced with `SHOW INDEX INFO` syntax.
 * Removed support for unique index. Use unique constraints instead.
-* `CREATE UNIQUE INDEX ON :label (property)` replaced with `CREATE CONSTRAINT ON (n:label) ASSERT n.property IS UNIQUE`.
+* `CREATE UNIQUE INDEX ON :label (property)` replaced with `CREATE CONSTRAINT ON
+  (n:label) ASSERT n.property IS UNIQUE`.
 * Changed semantics for `COUNTER` openCypher function.
+
 :::
 
 ### Major Features and Improvements
@@ -400,9 +477,11 @@ sidebar_label: Changelog
 ## v0.14.0 - Oct 30, 2018
 
 :::warning
+
 ### Breaking Changes
 
 * Write-ahead log format changed (not backward compatible).
+
 :::
 
 ### Major Features and Improvements
@@ -421,10 +500,12 @@ sidebar_label: Changelog
 ## v0.13.0 - Oct 18, 2018
 
 :::warning
+
 ### Breaking Changes
 
 * Write-ahead log format changed (not backward compatible).
 * Snapshot format changed (not backward compatible).
+
 :::
 
 ### Major Features and Improvements
@@ -454,16 +535,19 @@ sidebar_label: Changelog
 ## v0.12.0 - Jul 4, 2018
 
 :::warning
+
 ### Breaking Changes
 
 * Snapshot format changed (not backward compatible).
+
 :::
 
 ### Major Features and Improvements
 
 * Improved Id Cypher function.
 * Added string functions to openCypher (`lTrim`, `left`, `rTrim`, `replace`,
- `reverse`, `right`, `split`, `substring`, `toLower`, `toUpper`, `trim`).
+  `reverse`, `right`, `split`, `substring`, `toLower`, `toUpper`, `trim`
+  ).
 * Added `timestamp` function to openCypher.
 * Added support for dynamic property access with `[]` operator.
 
@@ -488,9 +572,11 @@ sidebar_label: Changelog
 ## v0.10.0 - Apr 24, 2018
 
 :::warning
+
 ### Breaking Changes
 
 * Snapshot format changed (not backward compatible).
+
 :::
 
 ### Major Features and Improvements
@@ -506,8 +592,8 @@ sidebar_label: Changelog
 * Log an error if reading info on available memory fails.
 * Fix a bug when `MATCH` would stop matching if a result was empty, but later
   results still contain data to be matched. The simplest case of this was the
-  query: `UNWIND [1,2,3] AS x MATCH (n :Label {prop: x}) RETURN n`. If there
-  was no node `(:Label {prop: 1})`, then the `MATCH` wouldn't even try to find
+  query: `UNWIND [1, 2, 3] AS x MATCH (n : Label {prop: x}) RETURN n`. If there
+  was no node `(: Label {prop: 1})`, then the `MATCH` wouldn't even try to find
   for `x` being 2 or 3.
 * Report an error if trying to compare a property value with something that
   cannot be stored in a property.
@@ -518,10 +604,12 @@ sidebar_label: Changelog
 ## v0.9.0 - Dec 18, 2017
 
 :::warning
+
 ### Breaking Changes
 
 * Snapshot format changed (not backward compatible).
 * Snapshot configuration flags changed, general durability flags added.
+
 :::
 
 ### Major Features and Improvements
@@ -532,7 +620,6 @@ sidebar_label: Changelog
 * Concurrent index creation is now enabled.
 
 ### Bug Fixes and Other Changes
-
 
 ## v0.8.0
 
@@ -553,8 +640,10 @@ sidebar_label: Changelog
 
 * Use \u to specify 4 digit codepoint and \U for 8 digit
 * Keywords appearing in header (named expressions) keep original case.
-* Our Bolt protocol implementation is now completely compatible with the protocol version 1 specification. (https://boltprotocol.org/v1/)
-* Added a log warning when running out of memory and the `memory_warning_threshold` flag
+* Our Bolt protocol implementation is now completely compatible with the
+  protocol version 1 specification. (https://boltprotocol.org/v1/)
+* Added a log warning when running out of memory and the
+  `memory_warning_threshold` flag
 * Edges are no longer additionally filtered after expansion.
 
 ## v0.7.0
@@ -606,13 +695,16 @@ sidebar_label: Changelog
 
 ### Bug Fixes and Other Changes
 
-* List indexing supported with preceeding IN (for example in query `RETURN 1 IN [[1,2]][0]`).
+* List indexing supported with preceeding IN (for example in query `RETURN 1 IN
+  [[1, 2]][0]`).
 
 ## Build 825
 
 ### Major Features and Improvements
 
-* RETURN *, count(*), OPTIONAL MATCH, UNWIND, DISTINCT (except DISTINCT in aggregate functions), list indexing and slicing, escaped labels, IN LIST operator, range function.
+* RETURN *, count(*), OPTIONAL MATCH, UNWIND, DISTINCT (except DISTINCT in
+  aggregate functions), list indexing and slicing, escaped labels, IN LIST
+  operator, range function.
 
 ### Bug Fixes and Other Changes
 
