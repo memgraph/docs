@@ -261,7 +261,7 @@ sidebar_label: Changelog
 * Added ability to lock the storage data directory by executing the `LOCK DATA
   DIRECTORY` query which delays the deletion of the files contained in the
   data directory. The data directory can be unlocked again by executing the
-  `UNLOCK DATA DIRECTORY;` query.
+  `UNLOCK DATA DIRECTORY` query.
 
 ### Bug Fixes and Other Changes
 
