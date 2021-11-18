@@ -7,8 +7,8 @@ sidebar_label: Metadata
 Bolt protocol specifies additional data that can be sent along with the
 requested results. Such data is called metadata and can be divided into two
 groups:
- - Query Statistics,
- - Notifications.
+ - Query Statistics
+ - Notifications
 
 Both of these metadata can be accessed through `summary` map that is being sent
 along with the results of the query. Query statistics will be under `stats` key,
@@ -16,7 +16,7 @@ and notifications under `notifications` key.
 
 ## Query Statistics
 
-Query statistics will be sent whenever a user performs a query that will effect
+Query statistics will be sent whenever a user executes a query that will affect
 data in any way. In other words we will track the quantity of these changes
 throughout the query execution and report it back to the user.
 
@@ -31,7 +31,7 @@ that is being tracked:
  - `labels-removed`
  - `properties-set`
 
-This data will refer only to the changes done by query, thus changes made in
+This data will refer only to the changes done by the query, thus changes made in
 triggers will not affect these values.
 
 :::caution Differences compared to triggers
