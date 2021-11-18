@@ -11,7 +11,8 @@ Memgraph can connect to existing Kafka streams. To use streams, a user must:
 2. [Configure Memgraph](/reference-guide/configuration.md) to connect to, e.g.
    Kafka, by providing the appropriate flag
    `--kafka-bootstrap-servers=localhost:9092`
-3. [Create the stream](#creating-a-stream) with a `CREATE STREAM` query
+3. [Create the stream](#creating-a-stream) with a `CREATE STREAM` query and optionally
+   [set its offset](#setting-a-stream-offset) with `CALL mg.kafka_set_stream_offset(stream_name, offset)`
 4. [Start the stream](#start-a-stream) with a `START STREAM` query
 
 :::tip Check out the **example-streaming-app** on
@@ -29,7 +30,8 @@ CREATE STREAM <stream name>
   TRANSFORM <transform procedure>
   [CONSUMER_GROUP <consumer group>]
   [BATCH_INTERVAL <batch interval length>]
-  [BATCH_SIZE <batch size>];
+  [BATCH_SIZE <batch size>]
+  [BOOTSTRAP_SERVERS <brokers>];
 ```
 
 option|description|type|example|default
@@ -40,6 +42,7 @@ transform procedure|Name of the transformation file followed by a function name|
 consumer group|Name of the consumer group in Memgraph|plain text|my_group|mg_consumer
 batch interval duration|Maximum wait time in milliseconds for consuming messages before calling the transform procedure|int|9999|100
 batch size|Maximum number of messages to wait for before calling the transform procedure|int|99|1000
+bootstrap servers|Overwrites the default list of brokers passed to `--kafka-bootstrap-servers`. The string is a comma separated list of broker host or host:port |string|"localhost:9092"|none, falls back to `--kafka-bootstrap-servers`
 
 The transformation procedure is called if either the `BATCH_INTERVAL` or the
 `BATCH_SIZE` is reached, and there is at least one received message.
@@ -48,6 +51,7 @@ The `BATCH_INTERVAL` starts when the:
 - the stream is started
 - the processing of the previous batch is completed
 - the previous batch interval ended without receiving any messages
+
 
 The user who executes the `CREATE` query is going to be the owner of the stream.
 Authentication and authorization are not supported in Memgraph Community, thus
@@ -98,6 +102,7 @@ Shows a list of existing streams with the following information:
 - batch size
 - transformation procedure name
 - the owner of the streams
+- the bootstrap servers
 - whether the stream is running
 
 ## Check stream
@@ -140,3 +145,49 @@ the Kafka cluster. However, even though we cannot guarantee **exactly once**
 semantics, we tried to minimize the possibility of processing messages multiple
 times. This means committing the message offsets to the Kafka cluster happens
 right after the transaction is committed to the database.
+
+## Configuring stream transactions
+
+A stream can fail for various reasons. One of the failures of interest is when a transaction
+(in which the returned queries of the transformation are executed) fails to commit because of another conflicting 
+transaction. This is a side effect of [isolation levels](/reference-guide/isolation-levels.md) and can 
+be configured by the following Memgraph flag:
+
+```
+--stream-transaction-conflict-retries=TIMES_TO_RETRY
+```
+
+By default, Memgraph will always try to execute a transaction once. However, for streams, if Memgraph
+fails because of transaction conflicts it will retry to execute the transaction again for up to `TIMES_TO_RETRY` times
+and its default value is 30. 
+
+Moreover, the interval of retries is also important and can be configured by 
+```
+--stream-transaction-retry-interval=INTERVAL_TIME
+```
+
+The `INTERVAL_TIME` is measured in `milliseconds` and its default value is `500ms`.
+## Setting a stream offset
+
+For Kafka streams, users can manually set the offset of the next consumed
+message with a call to the query procedure `mg.kafka_set_stream_offset` :
+
+```cypher
+CALL mg.kafka_set_stream_offset(stream_name, offset)
+```
+
+option|description|type|example|default
+:-:|:-:|:-:|:-:|:-:
+stream name|Name of the stream to set the offset|string|"my_stream"|/
+offset|Offset number to set|int|0|/
+
+* An offset of `-1` denotes the start of the stream, i.e., the beginning offset
+  available for the given topic/partition.
+* An offset of `-2` denotes the end of the stream, i.e., for each
+  topic/partition, its logical end such that only the next produced message will
+  be consumed.
+
+Note, that a stream can consume from multiple topics each of them having
+multiple partitions. Therefore, when setting the offsets to an arbitrary number
+the user must be cautious that setting the offset of a stream internally sets
+all of the associated offsets of that stream (topics/partitions) to that value.
