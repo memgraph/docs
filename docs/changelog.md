@@ -66,8 +66,8 @@ sidebar_label: Changelog
   `milliseconds`.
 * Most of the query modules C API functions are changed to return a `mgp_error`
   as a more fine-grained way of error reporting. The only exceptions are the
-  functions that free allocated memory ( `mgp_free` and `mgp_global_free` ) and
-  destroy objects ( `mgp_value_destroy`, `mgp_list_destroy`, etc.) which
+  functions that free allocated memory (`mgp_free` and `mgp_global_free`) and
+  destroy objects (`mgp_value_destroy`, `mgp_list_destroy`, etc.) which
   remain the same.
 * The first user created using the `CREATE USER` query will have all the
   privileges granted to him. Previously, you could've locked yourself out of
@@ -143,7 +143,7 @@ sidebar_label: Changelog
   started, checked, and dropped.
 * Introduced global allocators for Query Modules using C API, so the data can be
   preserved between multiple runs of the same procedure.
-* Introduced new isolation levels,  `READ COMMITTED` and `READ_UNCOMMITTED`. The
+* Introduced new isolation levels, `READ COMMITTED` and `READ_UNCOMMITTED`. The
   isolation level can be set with a config. Also, you can set the isolation
   level for a certain session or the next transaction. The names of the
   isolation levels should be self-explanatory, unlike the `SNAPSHOT ISOLATION`
@@ -224,7 +224,7 @@ sidebar_label: Changelog
 * Added `QUERY MEMORY LIMIT num (KB|MB)` to Cypher queries which allows you to
   limit memory allocation for the entire query. It can be added only at the end
   of the entire Cypher query.
-* Added logs for the different parts of the recovery process. `INFO`,  `DEBUG`
+* Added logs for the different parts of the recovery process. `INFO`, `DEBUG`
   and `TRACE` level all contain additional information that is printed out while
   the recovery is in progress.
 
@@ -316,7 +316,7 @@ sidebar_label: Changelog
   directory was scanned only upon startup. Now it is scanned each time the user
   requests to load a query module. The functions used to load the query modules
   were renamed to `mg.load()` and `mg.load_all()` (from `mg.reload()` and
-  `mg.reload_all()` ).
+  `mg.reload_all()`).
 * Improved execution performance of queries that have an IN list filter by using
   label+property indices. Example: `MATCH (n: Label) WHERE n.property IN [] ...`
 
@@ -336,12 +336,12 @@ sidebar_label: Changelog
 * Escaped label/property/edgetype names in `DUMP DATABASE` to support names with
   spaces in them.
 * Fixed handling of `DUMP DATABASE` queries in multi-command transactions (
-  `BEGIN`, ..., `COMMIT` ).
+  `BEGIN`, ..., `COMMIT`).
 * Fixed handling of various query types in explicit transactions. For example,
-  constraints were allowed to be created in multi-command transactions ( `BEGIN`
-  , ..., `COMMIT` ) but that isn't a transactional operation and as such can't
+  constraints were allowed to be created in multi-command transactions (`BEGIN`
+  , ..., `COMMIT`) but that isn't a transactional operation and as such can't
   be allowed in multi-command transactions.
-* Fixed integer overflow bugs in `COUNT`,  `LIMIT` and `SKIP`.
+* Fixed integer overflow bugs in `COUNT`, `LIMIT` and `SKIP`.
 * Fixed integer overflow bugs in weighted shortest path expansions.
 * Fixed various other integer overflow bugs in query execution.
 * Added Marvel Comic Universe tutorial.
@@ -352,7 +352,7 @@ sidebar_label: Changelog
 ### Major Features and Improvements
 
 * [Enterprise Ed.] Exposed authentication username/rolename regex as a flag (
-  `--auth-user-or-role-name-regex` ).
+  `--auth-user-or-role-name-regex`).
 * [Enterprise Ed.] Improved auth module error handling and added support for
   relative paths.
 * Added support for Python query modules. This release of Memgraph supports
@@ -368,7 +368,7 @@ sidebar_label: Changelog
   instead of a ScanAll+Filter operation.
 * Added syntax for limiting memory of `CALL`.
 * Exposed server name that should be used for Bolt handshake as flag (
-  `--bolt-server-name-for-init` ).
+  `--bolt-server-name-for-init`).
 * Added several more functions to the query module C API.
 * Implemented a storage locking mechanism that prevents the user from
   concurrently starting two Memgraph instances with the same data directory.
@@ -445,7 +445,7 @@ sidebar_label: Changelog
 
 ### Major Features and Improvements
 
-* [Enterprise Ed.] Add new privilege,  `STATS` for accessing storage info.
+* [Enterprise Ed.] Add new privilege, `STATS` for accessing storage info.
 * [Enterprise Ed.] LDAP authentication and authorization support.
 * [Enterprise Ed.] Add audit logging feature.
 * Add multiple properties unique constraint which replace unique indices.
@@ -518,7 +518,7 @@ sidebar_label: Changelog
 * Add `EXPLAIN` clause to openCypher.
 * Add `inDegree` and `outDegree` functions to openCypher.
 * Improve BFS performance when both endpoints are known.
-* Add new `node-label`,  `relationship-type` and `quote` options to
+* Add new `node-label`, `relationship-type` and `quote` options to
   `mg_import_csv` tool.
 * Reduce memory usage of `mg_import_csv`.
 

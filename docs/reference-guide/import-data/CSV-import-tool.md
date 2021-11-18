@@ -155,7 +155,7 @@ parser as one big CSV file.  Only the first line of the first file is parsed for
 the CSV header, all other files (and rows) are treated as data.  This is useful
 when you have a very large CSV file and don't want to edit its first line just
 to add a CSV header.  Instead, you can specify the header in a separate file
-(e.g. `users_header.csv` or `friendships_header.csv` ) and have the data intact
+(e.g. `users_header.csv` or `friendships_header.csv`) and have the data intact
 in the large file (e.g. `users.csv` or `friendships.csv`).  Also, you can supply
 additional labels for each set of node files.
 
