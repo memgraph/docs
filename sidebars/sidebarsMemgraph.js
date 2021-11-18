@@ -256,6 +256,7 @@ module.exports = {
         "reference-guide/auth-module",
         "reference-guide/ldap-security",
         "reference-guide/security",
+        "reference-guide/metadata",
       ],
     },
     {
