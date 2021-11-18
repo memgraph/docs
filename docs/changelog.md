@@ -10,6 +10,7 @@ sidebar_label: Changelog
 
 * Now supporting Bolt protocol version 4.3. [#228](https://github.com/memgraph/memgraph/pull/226)
 * Streams support for retrying conflicting transactions [#294](https://github.com/memgraph/memgraph/pull/294)
+* Added procedure to configure the starting offset (to consume messages from) of a topic (and its partitions). [#282](https://github.com/memgraph/memgraph/pull/282)
 
 ### Bug Fixes
 

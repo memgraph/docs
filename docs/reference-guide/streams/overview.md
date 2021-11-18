@@ -11,7 +11,8 @@ Memgraph can connect to existing Kafka streams. To use streams, a user must:
 2. [Configure Memgraph](/reference-guide/configuration.md) to connect to, e.g.
    Kafka, by providing the appropriate flag
    `--kafka-bootstrap-servers=localhost:9092`
-3. [Create the stream](#creating-a-stream) with a `CREATE STREAM` query
+3. [Create the stream](#creating-a-stream) with a `CREATE STREAM` query and optionally
+   [set its offset](#setting-a-stream-offset) with `CALL mg.kafka_set_stream_offset(stream_name, offset)`
 4. [Start the stream](#start-a-stream) with a `START STREAM` query
 
 :::tip Check out the **example-streaming-app** on
@@ -164,4 +165,29 @@ Moreover, the interval of retries is also important and can be configured by
 ```
 --stream-transaction-retry-interval=INTERVAL_TIME
 ```
+
 The `INTERVAL_TIME` is measured in `milliseconds` and its default value is `500ms`.
+## Setting a stream offset
+
+For Kafka streams, users can manually set the offset of the next consumed
+message with a call to the query procedure `mg.kafka_set_stream_offset` :
+
+```cypher
+CALL mg.kafka_set_stream_offset(stream_name, offset)
+```
+
+option|description|type|example|default
+:-:|:-:|:-:|:-:|:-:
+stream name|Name of the stream to set the offset|string|"my_stream"|/
+offset|Offset number to set|int|0|/
+
+* An offset of `-1` denotes the start of the stream, i.e., the beginning offset
+  available for the given topic/partition.
+* An offset of `-2` denotes the end of the stream, i.e., for each
+  topic/partition, its logical end such that only the next produced message will
+  be consumed.
+
+Note, that a stream can consume from multiple topics each of them having
+multiple partitions. Therefore, when setting the offsets to an arbitrary number
+the user must be cautious that setting the offset of a stream internally sets
+all of the associated offsets of that stream (topics/partitions) to that value.
