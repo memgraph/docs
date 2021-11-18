@@ -62,7 +62,7 @@ sidebar_label: Changelog
 * Most of the query modules C API functions are changed to return a `mgp_error`
   as a more fine-grained way of error reporting. The only exceptions are the
   functions that free allocated memory ( `mgp_free` and `mgp_global_free` ) and
-  destroy objects ( `mgp_value_destroy` , `mgp_list_destroy` , etc.) which
+  destroy objects ( `mgp_value_destroy`, `mgp_list_destroy`, etc.) which
   remain the same.
 * The first user created using the `CREATE USER` query will have all the
   privileges granted to him. Previously, you could've locked yourself out of
@@ -293,7 +293,7 @@ sidebar_label: Changelog
 ### Bug Fixes and Other Changes
 
 * Fixed Cypher `ID` function `Null` handling. When the `ID` function receives
-  `Null`, it will also return `Null` .
+  `Null`, it will also return `Null`.
 * Fixed bug that caused random crashes in SSL communication on platforms that
   use older versions of OpenSSL (< 1.1) by adding proper multi-threading
   handling.
@@ -331,7 +331,7 @@ sidebar_label: Changelog
 * Escaped label/property/edgetype names in `DUMP DATABASE` to support names with
   spaces in them.
 * Fixed handling of `DUMP DATABASE` queries in multi-command transactions (
-  `BEGIN` , ..., `COMMIT` ).
+  `BEGIN`, ..., `COMMIT` ).
 * Fixed handling of various query types in explicit transactions. For example,
   constraints were allowed to be created in multi-command transactions ( `BEGIN`
   , ..., `COMMIT` ) but that isn't a transactional operation and as such can't
@@ -541,7 +541,7 @@ sidebar_label: Changelog
 
 * Improved Id Cypher function.
 * Added string functions to openCypher (`lTrim`, `left`, `rTrim`, `replace`,
-  `reverse` , `right` , `split` , `substring` , `toLower` , `toUpper` , `trim`
+  `reverse`, `right`, `split`, `substring`, `toLower`, `toUpper`, `trim`
   ).
 * Added `timestamp` function to openCypher.
 * Added support for dynamic property access with `[]` operator.
@@ -587,8 +587,8 @@ sidebar_label: Changelog
 * Log an error if reading info on available memory fails.
 * Fix a bug when `MATCH` would stop matching if a result was empty, but later
   results still contain data to be matched. The simplest case of this was the
-  query: `UNWIND [1, 2, 3] AS x MATCH (n : Label {prop: x}) RETURN n` . If there
-  was no node `(: Label {prop: 1})` , then the `MATCH` wouldn't even try to find
+  query: `UNWIND [1, 2, 3] AS x MATCH (n : Label {prop: x}) RETURN n`. If there
+  was no node `(: Label {prop: 1})`, then the `MATCH` wouldn't even try to find
   for `x` being 2 or 3.
 * Report an error if trying to compare a property value with something that
   cannot be stored in a property.

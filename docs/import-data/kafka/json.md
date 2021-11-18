@@ -14,7 +14,7 @@ applications with servers.
 ## Example
 
 Let's assume we have the following schemas coming out of their respective topics
-`JsonStreamProfile`, `JsonStreamCompany`, `JsonStreamWork` :
+`JsonStreamProfile`, `JsonStreamCompany`, `JsonStreamWork`:
 
 ```json
 profile = {
