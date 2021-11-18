@@ -9,7 +9,7 @@ sidebar_label: Changelog
 ### Major Features and Improvements
 
 * Now supporting Bolt protocol version 4.3.
-  [#228](https://github.com/memgraph/memgraph/pull/226)
+  [#226](https://github.com/memgraph/memgraph/pull/226)
 * Streams support for retrying conflicting transactions
   [#294](https://github.com/memgraph/memgraph/pull/294)
 * Added procedure to configure the starting offset (to consume messages from) of
