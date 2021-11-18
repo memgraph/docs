@@ -6,9 +6,28 @@ module.exports = {
       type: "category",
       label: "Algorithms",
       items: [
-          "algorithms/traditional-graph-analytics/cycle-detection-algorithm",
-          "algorithms/dynamic-graph-analytics/node2vec-online-algorithm",
-          "algorithms/machine-learning-graph-analytics/gcn-algorithm"
+        {
+          type: "category",
+          label: "Traditional Graph Analytics",
+          items: [
+            "algorithms/traditional-graph-analytics/cycle-detection-algorithm",
+            "algorithms/traditional-graph-analytics/node-similarity-algorithm",
+          ],
+        },
+        {
+          type: "category",
+          label: "Streaming Graph Analytics",
+          items: [
+            "algorithms/dynamic-graph-analytics/node2vec-online-algorithm",
+          ],
+        },
+        {
+          type: "category",
+          label: "Machine Learning Graph Algorithms",
+          items: [
+            "algorithms/machine-learning-graph-analytics/gcn-algorithm"
+          ],
+        }
       ],
     },
     {
