@@ -19,6 +19,7 @@ module.exports = {
           label: "Streaming Graph Analytics",
           items: [
             "algorithms/dynamic-graph-analytics/node2vec-online-algorithm",
+            "algorithms/dynamic-graph-analytics/pagerank-online-algorithm",
           ],
         },
         {
