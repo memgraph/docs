@@ -16,7 +16,7 @@ For detailed technical information on transformation modules, check out the [ref
 ## Using Docker with transformation modules
 
 If you are using Docker to run Memgraph, you will have to create a volume
-and mount it to access the `query_modules` directory. Yes, `query_modules` ,
+and mount it to access the `query_modules` directory. Yes, `query_modules`,
 because Memgraph can load transformations and query procedures from the same
 directory, even from the same module. Mounting a volume can be done by
 creating an empty directory `modules` and executing the following command:
@@ -73,7 +73,7 @@ Memgraph when the module is loaded. This was done by adding the
 `@mgp.transformation` decorator.
 
 The transformations can slightly deviate from this by not receiving the
-`context` , just the `messages` :
+`context`, just the `messages` :
 
 ```python
 import mgp
