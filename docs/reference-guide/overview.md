@@ -61,10 +61,11 @@ to create a cluster of nodes running Memgraph instances.
 
 ## [Streams](/reference-guide/streams/overview.md)
 
-Memgraph can connect to existing Kafka and Pulsar streams. The streams are using
-user-defined transformations to produce Cypher queries based on the received
-messages. To learn more about streams and transformations take a look at the
-following pages:
+
+Memgraph can connect to existing **Kafka**, **Pulsar** and **Redpanda** streams.
+The streams are using user-defined transformations to produce Cypher queries
+based on the received messages. To learn more about streams and transformations
+take a look at the following pages:
 * [Streams overview](/reference-guide/streams/overview.md)
 * [Transformation
   modules](/reference-guide/streams/transformation-modules/overview.md)
