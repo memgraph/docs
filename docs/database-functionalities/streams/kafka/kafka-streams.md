@@ -21,8 +21,9 @@ For detailed technical information on streaming support, check out the [referenc
 ## Configuring Memgraph
 
 As Memgraph can connect to only one Kafka cluster at once, the list of
-bootstrap servers can be set by the `--kafka-bootstrap-servers`
-configuration option. It has to be set explicitly.
+bootstrap servers can be set by the `--kafka-bootstrap-servers` configuration option.
+It has to be set explicitly. Morever, the user can overwrite the default list of brokers passed to `--kafka-bootstrap-servers`
+by setting the `BOOTSTRAP_SERVERS <brokers>` option on a `CREATE STREAM` clause.
 
 ## Creating the stream
 
