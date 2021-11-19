@@ -6,13 +6,13 @@ slug: /database-functionalities
 ---
 
 Articles within this section serve as a cookbook for getting things done as fast
-as possible. These articles tend to provide a step-by-step guide on how to use
-certain Memgraph features or solve a particular problem.
+as possible. These articles tend to provide a step-by-step guide on using
+certain Memgraph features or solving a particular problem.
 
 ## Streams
 
 Memgraph can connect to existing **Kafka**, **Pulsar** and **Redpanda** streams.
-The streams are using user-defined transformations to produce Cypher queries
+The streams use user-defined transformations to produce Cypher queries
 based on the received messages. To learn more about streams and transformations
 take a look at the following pages:
 * **Kafka**
