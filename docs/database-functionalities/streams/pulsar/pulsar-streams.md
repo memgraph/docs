@@ -7,7 +7,7 @@ sidebar_label: Managing Pulsar streams
 If you are not familiar with Pulsar, then please check out their
 [site](https://pulsar.apache.org) to get a better understanding. In the
 documentation, we assume that a Pulsar cluster is available on the 6650 port of
-the local machine ( `127.0.0.1:6650` ). Please adjust your setup accordingly.
+the local machine (`127.0.0.1:6650`). Please adjust your setup accordingly.
 
 :::note
 
@@ -19,7 +19,7 @@ For detailed technical information on streaming support, check out the
 ## Configuring Memgraph
 
 You need to provide a service URL so Memgraph can locate the Pulsar cluster. The
-service URL can be set using the configuration flag `--pulsar-service-url` .
+service URL can be set using the configuration flag `--pulsar-service-url`.
 
 ## Creating the stream
 
@@ -29,7 +29,7 @@ into Memgraph. If you are not sure how to define them, check out the
 guide](/database-functionalities/streams/pulsar/implement-transformation-module.md).
 We will use `transformation.my_pulsar_transformation` from that example, but we
 are going to alias it as `my.pulsar_transform` to make the size of result tables
-slimmer. For the topic name, we are going to use `topic1` .
+slimmer. For the topic name, we are going to use `topic1`.
 
 ```cypher
 CREATE PULSAR STREAM myStream
@@ -120,7 +120,7 @@ START STREAM myStream;
 ```
 
 After sending a few messages to the topic, the created vertices can be checked
-by executing `MATCH (n: MESSAGE) RETURN n` :
+by executing `MATCH (n: MESSAGE) RETURN n`:
 
 ```plaintext
 +----------------------------------------------------------+

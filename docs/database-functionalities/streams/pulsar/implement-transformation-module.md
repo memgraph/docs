@@ -73,7 +73,7 @@ Memgraph when the module is loaded. This was done by adding the
 `@mgp.transformation` decorator.
 
 The transformations can slightly deviate from this by not receiving the
-`context`, just the `messages` :
+`context`, just the `messages`:
 
 ```python
 import mgp
