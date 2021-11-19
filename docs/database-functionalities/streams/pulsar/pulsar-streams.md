@@ -85,9 +85,9 @@ If you started the query, let's send some messages to the topic. You should see
 a similar output:
 
 ```plaintext
-+--------------------------------------------------------------------------------------+---------------------------
++-----------------------------------------------------------------------------------------------------------------+
 | query                                                         | parameters                                      |
-+--------------------------------------------------------------------------------------+---------------------------
++-----------------------------------------------------------------------------------------------------------------+
 | "CREATE (n:MESSAGE {payload: $payload, topic: $topic})"       | {payload: "Example message 1", topic: "topic1"} |
 +--------------------------------------------------------------------------------------+---------------------------
 ```
@@ -101,13 +101,13 @@ CHECK STREAM myStream BATCH_LIMIT 3 TIMEOUT 60000;
 As a result, you should see multiple messages (probably 3) in the output:
 
 ```plaintext
-+---------------------------------------------------------------+--------------------------------------------------
-| query                                                         | parameters                                      |
-+---------------------------------------------------------------+--------------------------------------------------
-| "CREATE (n:MESSAGE {payload: $payload, topic: $topic})"       | {payload: "Memgraph <3 Kafka", topic: "topic1"} |
-| "CREATE (n:MESSAGE {payload: $payload, topic: $topic})"       | {payload: "Example message 2", topic: "topic1"} |
-| "CREATE (n:MESSAGE {payload: $payload, topic: $topic})"       | {payload: "Example message 3", topic: "topic1"} |
-+---------------------------------------------------------------+--------------------------------------------------
++---------------------------------------------------------------+--------------------------------------------------+
+| query                                                         | parameters                                       |
++---------------------------------------------------------------+--------------------------------------------------+
+| "CREATE (n:MESSAGE {payload: $payload, topic: $topic})"       | {payload: "Memgraph <3 Pulsar", topic: "topic1"} |
+| "CREATE (n:MESSAGE {payload: $payload, topic: $topic})"       | {payload: "Example message 2", topic: "topic1"}  |
+| "CREATE (n:MESSAGE {payload: $payload, topic: $topic})"       | {payload: "Example message 3", topic: "topic1"}  |
++---------------------------------------------------------------+--------------------------------------------------+
 ```
 
 ## Start the stream
