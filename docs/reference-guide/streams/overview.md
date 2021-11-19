@@ -87,7 +87,7 @@ The `BATCH_INTERVAL` starts when the:
 
 The user who executes the `CREATE` query is going to be the owner of the stream.
 Authentication and authorization are not supported in Memgraph Community, thus
-the owner will always be `Null` , and the privileges are not checked in Memgraph
+the owner will always be `Null`, and the privileges are not checked in Memgraph
 Community. In Memgraph Enterprise, the privileges of the owner are used when
 executing the queries returned from a transformation. In other words, the
 execution of the queries will fail if  the owner doesn't have the required
@@ -100,7 +100,7 @@ in the [reference guide](reference-guide/security.md#owners).
 DROP STREAM <stream name>;
 ```
 
-Drops a stream with name `<stream name>` .
+Drops a stream with name `<stream name>`.
 
 ## Start a stream
 
@@ -109,7 +109,7 @@ START STREAM <stream name>;
 START ALL STREAMS;
 ```
 
-Starts a stream (or all streams) with name `<stream name>` .
+Starts a stream (or all streams) with name `<stream name>`.
 
 When a stream is started, it should resume from the last committed offset. If
 there is no committed offset for the consumer group, then the largest offset
@@ -122,7 +122,7 @@ STOP STREAM <stream name>;
 STOP ALL STREAMS;
 ```
 
-Stops a stream (or all streams) with name `<stream name>` .
+Stops a stream (or all streams) with name `<stream name>`.
 
 ## Show
 
