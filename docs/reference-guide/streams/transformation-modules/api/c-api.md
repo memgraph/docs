@@ -11,7 +11,7 @@ This is the additional API documentation for `mg_procedure.h` that contains decl
 :::
 
 :::tip
-For an example of how to implement transformation modules in C, check out [this guide](/database-functionalities/streams/implement-transformation-module.md#c-api).
+For an example of how to implement transformation modules in C, check out [this guide](/database-functionalities/streams/kafka/implement-transformation-module.md#c-api).
 :::
 
 ## Types

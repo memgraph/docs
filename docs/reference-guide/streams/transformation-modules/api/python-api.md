@@ -17,7 +17,7 @@ An updated version will soon be available.
 
 :::tip For an example of how to implement transformation modules in Python,
 check out [this
-guide](/database-functionalities/streams/implement-transformation-module.md#python-api).
+guide](/database-functionalities/streams/pulsar/implement-transformation-module.md#python-api).
 :::
 
 ## `mgp.transformation(func)`
