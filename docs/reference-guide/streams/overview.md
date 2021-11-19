@@ -133,8 +133,7 @@ SHOW STREAMS;
 
 Shows a list of existing streams with the following information:
 * stream name
-* list of topics
-* consumer group id
+* stream type
 * batch interval
 * batch size
 * transformation procedure name
