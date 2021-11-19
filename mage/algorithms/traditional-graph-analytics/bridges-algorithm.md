@@ -20,11 +20,11 @@ This algorithm is frequent as part of the initial graph analysis. It talks a lot
 
 [![Bridges](https://img.shields.io/badge/Bridges-Documentation-FCC624?style=for-the-badge&logo=cplusplus&logoColor=white)](/mage/query-modules/cpp/bridges)
 
-Dynamic PageRank is implemented within project [**MAGE**](https://github.com/memgraph/mage). Be sure to check it out in the link above. :point_up:
+**Bridges Detection** is implemented within project [**MAGE**](https://github.com/memgraph/mage). Be sure to check it out in the link above. :point_up:
 
 ## Use cases
 
-[![Transport industry](https://img.shields.io/badge/Social_networks-Application-8A477F?style=for-the-badge)](/mage/query-modules/python/node-similarity)
+[![Transport industry](https://img.shields.io/badge/Transport_industry-Application-8A477F?style=for-the-badge)](/mage/query-modules/python/node-similarity)
 
 In the transport industry, the application of the bridge recognition algorithm is intuitive. By analogy with the real world, bridges are key points of traffic and their functioning is essential to the functioning of any city.
 

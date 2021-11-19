@@ -10,9 +10,10 @@ module.exports = {
           type: "category",
           label: "Traditional Graph Analytics",
           items: [
+            "algorithms/traditional-graph-analytics/betweenness-centrality-algorithm",
+            "algorithms/traditional-graph-analytics/bridge-algorithm",
             "algorithms/traditional-graph-analytics/cycle-detection-algorithm",
             "algorithms/traditional-graph-analytics/node-similarity-algorithm",
-            "algorithms/traditional-graph-analytics/bridge-algorithm",
           ],
         },
         {
