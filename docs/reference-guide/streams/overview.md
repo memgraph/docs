@@ -62,7 +62,6 @@ bootstrap servers|Comma-separated list of bootstrap servers|string|"localhost:90
 CREATE PULSAR STREAM <stream name>
   TOPICS <topic1> [, <topic2>, ...]
   TRANSFORM <transform procedure>
-  [CONSUMER_GROUP <consumer group>]
   [BATCH_INTERVAL <batch interval length>]
   [BATCH_SIZE <batch size>]
   [SERVICE_URL <service url>];
@@ -74,7 +73,6 @@ option|description|type|example|default
 stream name|Name of the stream in Memgraph|plain text|my_stream|/
 topic|Name of the topic in Kafka|plain text|my_topic|/
 transform procedure|Name of the transformation file followed by a function name|function|my_transformation.my_transform|/
-consumer group|Name of the consumer group in Memgraph|plain text|my_group|mg_consumer
 batch interval duration|Maximum wait time in milliseconds for consuming messages before calling the transform procedure|int|9999|100
 batch size|Maximum number of messages to wait for before calling the transform procedure|int|99|1000
 service url|URL to the running Pulsar cluster|string|"127.0.0.1:6650"|/
