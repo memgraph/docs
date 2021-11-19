@@ -249,7 +249,7 @@ extern "C" int mgp_init_module(mgp_module *module, mgp_memory *memory) {
 Now let's compile it:
 
 ```shell
-clang++ --std=c++17 -Wall -shared -fPIC -I /home/kovi/data/memgraph/include c_transformation.cpp -o c_transformation.so
+clang++ --std=c++17 -Wall -shared -fPIC -I /usr/include/memgraph c_transformation.cpp -o c_transformation.so
 ```
 
 After copying the resulting `c_transformation.so` to the
