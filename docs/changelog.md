@@ -16,8 +16,8 @@ sidebar_label: Changelog
    recreated easily, then our advice is not to upgrade to this version. The
    streams can be deleted by the `DROP STREAM` query in the old versions of
    Memgraph. After upgrading to this version, the `streams` directory has to be
-   deleted manually from Memgraph's data directory (on Debian-based system it is
-   `/var/lib/memgraph` by default).
+   deleted manually from Memgraph's data directory (on Debian-based systems, it 
+   is `/var/lib/memgraph` by default).
 
 ### Breaking Changes
 
