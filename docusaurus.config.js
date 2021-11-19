@@ -228,6 +228,14 @@ module.exports = {
       additionalLanguages: ["cypher", "php", "rust", "csharp", "java", "docker"],
     },
     hideableSidebar: true,
+    announcementBar: {
+      id: "app-challenge",
+      content:
+        '🏆 Keep Rockin’ & Start Coding! Register and win $2,000! <a target="_blank" rel="noopener noreferrer" href="https://memgraph.com/memgraph-app-challenge"><b>Join the challenge</b></a> 🏆',
+      backgroundColor: "#fafbfc",
+      textColor: "#091E42",
+      isCloseable: true,
+    },
   },
   presets: [
     [
