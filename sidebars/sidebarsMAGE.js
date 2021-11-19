@@ -12,6 +12,7 @@ module.exports = {
           items: [
             "algorithms/traditional-graph-analytics/cycle-detection-algorithm",
             "algorithms/traditional-graph-analytics/node-similarity-algorithm",
+            "algorithms/traditional-graph-analytics/bridge-algorithm",
           ],
         },
         {
