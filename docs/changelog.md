@@ -38,9 +38,12 @@ sidebar_label: Changelog
 * Added `BOOTSTRAP_SERVERS` option to `CREATE KAFKA STREAM` which you can check
   [here](reference-guide/streams/overview.md).
   [#282](https://github.com/memgraph/memgraph/pull/282)
-* Added Bolt notifications to inform the user about results or to give useful
-  tips. [#285](https://github.com/memgraph/memgraph/pull/285)
-* Added execution statistics to inform user on how many objects were affected.
+* Added Bolt notifications in the query summary to inform the user about results or to give useful
+  tips. When a query executes successfuly, sometimes is necessary to give users tips
+  or extra information about the execution. [#285](https://github.com/memgraph/memgraph/pull/285)
+* Added execution statistics in the query summary to inform user on how many objects were affected.
+  E.g., when you run a query with a `CREATE` clause, you'll know how many
+  nodes/edges were created by it.
   [#285](https://github.com/memgraph/memgraph/pull/285)
 * Added support for connecting to Pulsar as a new stream source. For more
   details, check out our
