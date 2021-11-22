@@ -4,7 +4,27 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
-## v2.1 - TBD
+## v2.1.0 - TBD
+
+:::warning
+
+### Known Bugs
+
+ * Loading streams created by older versions cause Memgraph to crash. This is
+   going to be fixed in the next version. For now, the only possible workaround
+   involves **deleting the existing streams**. If the streams cannot be
+   recreated easily, then our advice is not to upgrade to this version. The
+   streams can be deleted by the `DROP STREAM` query in the old versions of
+   Memgraph. After upgrading to this version, the `streams` directory has to be
+   deleted manually from Memgraph's data directory (on Debian-based systems, it 
+   is `/var/lib/memgraph` by default).
+
+### Breaking Changes
+
+* The query for creating a Kafka stream now requires the `KAFKA` keyword. The
+  previous form `CREATE STREAM ...` was changed to `CREATE KAFKA STREAM ...`.
+
+:::
 
 ### Major Features and Improvements
 
@@ -22,11 +42,16 @@ sidebar_label: Changelog
   tips. [#285](https://github.com/memgraph/memgraph/pull/285)
 * Added execution statistics to inform user on how many objects were affected.
   [#285](https://github.com/memgraph/memgraph/pull/285)
+* Added support for connecting to Pulsar as a new stream source. For more
+  details, check out our
+  [example](database-functionalities/streams/pulsar/pulsar-streams) and
+  [reference pages](reference-guide/streams).
+  [#293](https://github.com/memgraph/memgraph/pull/293)
 
 ### Bug Fixes
 
 * Allow duration values to be used as weights in the [Weighted Shortest
-  Path](https://memgraph.com/docs/memgraph/reference-guide/graph-algorithms#weighted-shortest-path)
+  Path](/memgraph/reference-guide/graph-algorithms#weighted-shortest-path)
   query. [#278](https://github.com/memgraph/memgraph/pull/278)
 * Fix linkage error when `mgp_local_time_get_minute` is used.
   [#273](https://github.com/memgraph/memgraph/pull/273)

@@ -5,7 +5,7 @@ sidebar_label: Streams overview
 slug: /reference-guide/streams
 ---
 
-Memgraph can connect to existing Kafka streams. To use streams, a user must:
+Memgraph can connect to existing stream sources. To use streams, a user must:
 1. [**Create a transformation
    module**](/reference-guide/streams/transformation-modules/overview.md)
 2. [Configure Memgraph](/reference-guide/configuration.md) to connect to, e.g.
@@ -15,23 +15,35 @@ Memgraph can connect to existing Kafka streams. To use streams, a user must:
    [set its offset](#setting-a-stream-offset) with `CALL mg.kafka_set_stream_offset(stream_name, offset)`
 4. [Start the stream](#start-a-stream) with a `START STREAM` query
 
-:::tip Check out the **example-streaming-app** on
+:::tip
+
+Check out the **example-streaming-app** on
 [GitHub](https://github.com/memgraph/example-streaming-app) to see a sample
 Memgraph-Kafka application.
+
 :::
 
 ## Creating a stream
 
-The general syntax for creating a stream is:
+The syntax for creating a stream depends on the type of the source because each
+specific type supports a different set of configuration options.
+
+:::note
+
+There is no strict order for specifying the configuration options.
+
+:::
+
+### Kafka
 
 ```cypher
-CREATE STREAM <stream name>
+CREATE KAFKA STREAM <stream name>
   TOPICS <topic1> [, <topic2>, ...]
   TRANSFORM <transform procedure>
   [CONSUMER_GROUP <consumer group>]
   [BATCH_INTERVAL <batch interval length>]
   [BATCH_SIZE <batch size>]
-  [BOOTSTRAP_SERVERS <brokers>];
+  [BOOTSTRAP_SERVERS <bootstrap servers>];
 ```
 
 option|description|type|example|default
@@ -42,15 +54,36 @@ transform procedure|Name of the transformation file followed by a function name|
 consumer group|Name of the consumer group in Memgraph|plain text|my_group|mg_consumer
 batch interval duration|Maximum wait time in milliseconds for consuming messages before calling the transform procedure|int|9999|100
 batch size|Maximum number of messages to wait for before calling the transform procedure|int|99|1000
-bootstrap servers|Overwrites the default list of brokers passed to `--kafka-bootstrap-servers`. The string is a comma separated list of broker host or host:port |string|"localhost:9092"|none, falls back to `--kafka-bootstrap-servers`
+bootstrap servers|Comma-separated list of bootstrap servers|string|"localhost:9092"|/
+
+### Pulsar
+
+```cypher
+CREATE PULSAR STREAM <stream name>
+  TOPICS <topic1> [, <topic2>, ...]
+  TRANSFORM <transform procedure>
+  [BATCH_INTERVAL <batch interval length>]
+  [BATCH_SIZE <batch size>]
+  [SERVICE_URL <service url>];
+
+```
+
+option|description|type|example|default
+:-:|:-:|:-:|:-:|:-:
+stream name|Name of the stream in Memgraph|plain text|my_stream|/
+topic|Name of the topic in Pulsar|plain text|my_topic|/
+transform procedure|Name of the transformation file followed by a function name|function|my_transformation.my_transform|/
+batch interval duration|Maximum wait time in milliseconds for consuming messages before calling the transform procedure|int|9999|100
+batch size|Maximum number of messages to wait for before calling the transform procedure|int|99|1000
+service url|URL to the running Pulsar cluster|string|"127.0.0.1:6650"|/
 
 The transformation procedure is called if either the `BATCH_INTERVAL` or the
 `BATCH_SIZE` is reached, and there is at least one received message.
 
 The `BATCH_INTERVAL` starts when the:
-- the stream is started
-- the processing of the previous batch is completed
-- the previous batch interval ended without receiving any messages
+* the stream is started
+* the processing of the previous batch is completed
+* the previous batch interval ended without receiving any messages
 
 
 The user who executes the `CREATE` query is going to be the owner of the stream.
@@ -67,6 +100,7 @@ in the [reference guide](reference-guide/security.md#owners).
 ```cypher
 DROP STREAM <stream name>;
 ```
+
 Drops a stream with name `<stream name>`.
 
 ## Start a stream
@@ -75,6 +109,7 @@ Drops a stream with name `<stream name>`.
 START STREAM <stream name>;
 START ALL STREAMS;
 ```
+
 Starts a stream (or all streams) with name `<stream name>`.
 
 When a stream is started, it should resume from the last committed offset. If
@@ -87,6 +122,7 @@ will be used. Therefore only the new messages will be consumed.
 STOP STREAM <stream name>;
 STOP ALL STREAMS;
 ```
+
 Stops a stream (or all streams) with name `<stream name>`.
 
 ## Show
@@ -94,22 +130,22 @@ Stops a stream (or all streams) with name `<stream name>`.
 ```cypher
 SHOW STREAMS;
 ```
+
 Shows a list of existing streams with the following information:
-- stream name
-- list of topics
-- consumer group id
-- batch interval
-- batch size
-- transformation procedure name
-- the owner of the streams
-- the bootstrap servers
-- whether the stream is running
+* stream name
+* stream type
+* batch interval
+* batch size
+* transformation procedure name
+* the owner of the streams
+* whether the stream is running
 
 ## Check stream
 
 ```cypher
 CHECK STREAM <stream name> [BATCH_LIMIT <count>] [TIMEOUT <milliseconds>] ;
 ```
+
 Does a dry-run on stream with name `<stream name>` with `<count>` number of
 batches and returns the result of the transformation: the queries and their
 parameters that would be executed in a normal run. If `<count>` is unspecified,
@@ -121,7 +157,9 @@ milliseconds, and it's defaulted to 30000.
 
 Checking a stream won't commit any offsets.
 
-## At least once semantics
+## Additional details
+
+### Kafka and at least once semantics
 
 In stream processing, it is important to have some guarantees about how failures
 are handled. When connecting an external application such as Memgraph to a Kafka
@@ -149,8 +187,8 @@ right after the transaction is committed to the database.
 ## Configuring stream transactions
 
 A stream can fail for various reasons. One of the failures of interest is when a transaction
-(in which the returned queries of the transformation are executed) fails to commit because of another conflicting 
-transaction. This is a side effect of [isolation levels](/reference-guide/isolation-levels.md) and can 
+(in which the returned queries of the transformation are executed) fails to commit because of another conflicting
+transaction. This is a side effect of [isolation levels](/reference-guide/isolation-levels.md) and can
 be configured by the following Memgraph flag:
 
 ```
@@ -159,9 +197,9 @@ be configured by the following Memgraph flag:
 
 By default, Memgraph will always try to execute a transaction once. However, for streams, if Memgraph
 fails because of transaction conflicts it will retry to execute the transaction again for up to `TIMES_TO_RETRY` times
-and its default value is 30. 
+and its default value is 30.
 
-Moreover, the interval of retries is also important and can be configured by 
+Moreover, the interval of retries is also important and can be configured by
 ```
 --stream-transaction-retry-interval=INTERVAL_TIME
 ```
