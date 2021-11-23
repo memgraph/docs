@@ -20,15 +20,17 @@ For detailed technical information on streaming support, check out the [referenc
 
 ## Configuring Memgraph
 
-As Memgraph can connect to only one Kafka cluster at once, the list of
-bootstrap servers can be set by the `--kafka-bootstrap-servers`
-configuration option. It has to be set explicitly.
+The list of default bootstrap servers can be set by the
+`--kafka-bootstrap-servers` configuration option. It has to be set explicitly.
+Morever, the user can overwrite the default list of brokers passed to
+`--kafka-bootstrap-servers` by setting the `BOOTSTRAP_SERVERS <brokers>` option
+on a `CREATE STREAM` clause.
 
 ## Creating the stream
 
 The very first step is to make sure at least one transformation module is loaded into
 Memgraph. If you are not sure how to define them, check out the
-[transformation module guide](/database-functionalities/streams/implement-transformation-module.md).
+[transformation module guide](/database-functionalities/streams/kafka/implement-transformation-module.md).
 We are going to use `transformation.my_transformation` from that example, but
 we are going to alias it as `my.transform` to make the size of result tables slimmer.
 For the topic name, we are going to use the topic from the Kafka quick start,
@@ -46,19 +48,14 @@ Check the created stream:
 SHOW STREAMS;
 ```
 
-:::warning
-If you're running this in Memgraph Lab, an arbitrary error might happen. Please ignore it until we resolve the issue.
-:::
-
 The result should be similar to:
 
 ```plaintext
-+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+
-| name                  | topics                | consumer_group        | batch_interval        | batch_size            | transformation_name   | owner                 | is running            |
-+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+
-| "myStream"            | ["quickstart-events"] | "mg_consumer"         | Null                  | Null                  | "my.transform"        | Null                  | false                 |
-+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+
-
++----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+
+| name                 | type                 | batch_interval       | batch_size           | transformation_name  | owner                | is running           |
++----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+
+| "myStream"           | "kafka"              | Null                 | Null                 | "my.kafka_transform" | Null                 | false                |
++----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+----------------------+
 ```
 
 The result contains the most important information about the existing streams,

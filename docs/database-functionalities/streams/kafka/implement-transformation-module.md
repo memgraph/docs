@@ -16,7 +16,7 @@ For detailed technical information on transformation modules, check out the [ref
 ## Using Docker with transformation modules
 
 If you are using Docker to run Memgraph, you will have to create a volume
-and mount it to access the `query_modules` directory. Yes, `query_modules` ,
+and mount it to access the `query_modules` directory. Yes, `query_modules`,
 because Memgraph can load transformations and query procedures from the same
 directory, even from the same module. Mounting a volume can be done by
 creating an empty directory `modules` and executing the following command:
@@ -73,7 +73,7 @@ Memgraph when the module is loaded. This was done by adding the
 `@mgp.transformation` decorator.
 
 The transformations can slightly deviate from this by not receiving the
-`context` , just the `messages` :
+`context`, just the `messages`:
 
 ```python
 import mgp
@@ -140,7 +140,7 @@ def my_transformation(messages: mgp.Messages
     return result_queries
 ```
 
-The `$timestamp` , `$payload` and `$topic` are the placeholders for parameters
+The `$timestamp`, `$payload` and `$topic` are the placeholders for parameters
 with the same name.
 
 Congratulations, you just created your first transformation procedure! To
@@ -176,7 +176,7 @@ compiled to the ELF shared library format.
 
 In this chapter, we assume that Memgraph is installed on a standard Debian or
 Ubuntu machine where the necessary header file can be found under
-`/usr/include/memgraph` . For other installations, the header file can be found
+`/usr/include/memgraph`. For other installations, the header file can be found
 under the `include/memgraph` folder in the Memgraph installation directory.
 
 As we already discussed how transformations work in the Python example, we
@@ -254,7 +254,7 @@ extern "C" int mgp_init_module(mgp_module *module, mgp_memory *memory) {
 Now let's compile it:
 
 ```shell
-clang++ --std=c++17 -Wall -shared -fPIC -I /home/kovi/data/memgraph/include c_transformation.cpp -o c_transformation.so
+clang++ --std=c++17 -Wall -shared -fPIC -I /usr/include/memgraph c_transformation.cpp -o c_transformation.so
 ```
 
 After copying the resulting `c_transformation.so` to the
