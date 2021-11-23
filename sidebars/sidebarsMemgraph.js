@@ -180,7 +180,6 @@ module.exports = {
         "reference-guide/overview",
         "reference-guide/backup",
         "reference-guide/configuration",
-        "reference-guide/runtime-settings",
         "reference-guide/graph-algorithms",
         {
           type: "category",
@@ -201,6 +200,7 @@ module.exports = {
 
         "reference-guide/indexing",
         "reference-guide/isolation-levels",
+        "reference-guide/metadata",
         {
           type: "category",
           label: "Query modules",
@@ -240,6 +240,7 @@ module.exports = {
           ],
         },
         "reference-guide/replication",
+        "reference-guide/runtime-settings",
         {
           type: "category",
           label: "Streams",
@@ -270,7 +271,6 @@ module.exports = {
         "reference-guide/auth-module",
         "reference-guide/ldap-security",
         "reference-guide/security",
-        "reference-guide/metadata",
       ],
     },
     {
