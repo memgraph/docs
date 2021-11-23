@@ -29,7 +29,11 @@ sidebar_label: Changelog
 
 * Now supporting Bolt protocol version 4.3.
   [#226](https://github.com/memgraph/memgraph/pull/226)
-* Streams support for retrying conflicting transactions
+* Streams support for retrying conflicting transactions. When a message is processed from
+  a certain stream source, a query is executed as a part of the transaction. If that transaction
+  fails because of other conflicting transaction, the transaction is retried set number of times.
+  Number of retries and interval between each retry can be controled with configs
+  `--stream-transaction-conflict-retries` and `--stream-transaction-retry-interval`.
   [#294](https://github.com/memgraph/memgraph/pull/294)
 * Added procedure to configure the starting offset (to consume messages from) of
   a topic (and its partitions).
