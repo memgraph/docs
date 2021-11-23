@@ -8,10 +8,6 @@ sidebar_label: Changelog
 
 :::warning
 
-### Known Bugs
-
-
-
 ### Breaking Changes
 
 * Loading streams created by older versions cause Memgraph to crash. The only
