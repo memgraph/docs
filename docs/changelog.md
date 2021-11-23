@@ -10,16 +10,16 @@ sidebar_label: Changelog
 
 ### Known Bugs
 
+
+
+### Breaking Changes
+
 * Loading streams created by older versions cause Memgraph to crash. The only
-  possible workaround involves **deleting the existing streams**. If the streams
-  cannot be recreated easily, then our advice is not to upgrade to this version.
+  possible workaround involves **deleting the existing streams**. 
   The streams can be deleted by the `DROP STREAM` query in the old versions of
   Memgraph. After upgrading to this version, the `streams` directory has to be
   deleted manually from Memgraph's data directory (on Debian-based systems, it
   is `/var/lib/memgraph` by default).
-
-### Breaking Changes
-
 * The query for creating a Kafka stream now requires the `KAFKA` keyword. The
   previous form `CREATE STREAM ...` was changed to `CREATE KAFKA STREAM ...`.
 
