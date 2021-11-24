@@ -12,8 +12,10 @@ The result of this type of algorithm is always a pair of nodes and assigned valu
 
 - **Cosine similarity** - the cosine of the angle by which the product is defined as the cardinality of the common neighbors of the two nodes, and the denominator is the root of the product of the node degrees
 - **Jaccard similarity** - a frequently used measure in different models of computer science includes the ratio of the number of common neighbors through the total
--
-// Photo of node similarity
+- **Overlap similarity** - defined as the ratio of the cross section of a neighborhood to the less than the number of neighbors of two nodes. Overlap similarity works best in the case of a small number of adjacent nodes
+
+
+// TODO: Photo of node similarity
 
 ## Implementation
 

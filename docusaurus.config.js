@@ -116,8 +116,16 @@ module.exports = {
               to: "/mage/installation",
             },
             {
+              label: "Algorithms",
+              to: "/mage/algorithms/traditional-graph-analytics/betweenness-centrality-algorithm",
+            },
+            {
               label: "Usage",
               to: "/mage/usage/calling-procedures",
+            },
+            {
+              label: "Tutorials",
+              to: "/mage/tutorials/create-a-new-module",
             },
             {
               label: "Contributing",
