@@ -10,14 +10,13 @@ sidebar_label: Changelog
 
 ### Known Bugs
 
- * Loading streams created by older versions cause Memgraph to crash. This is
-   going to be fixed in the next version. For now, the only possible workaround
-   involves **deleting the existing streams**. If the streams cannot be
-   recreated easily, then our advice is not to upgrade to this version. The
-   streams can be deleted by the `DROP STREAM` query in the old versions of
-   Memgraph. After upgrading to this version, the `streams` directory has to be
-   deleted manually from Memgraph's data directory (on Debian-based systems, it
-   is `/var/lib/memgraph` by default).
+* Loading streams created by older versions cause Memgraph to crash. The only
+  possible workaround involves **deleting the existing streams**. If the streams
+  cannot be recreated easily, then our advice is not to upgrade to this version.
+  The streams can be deleted by the `DROP STREAM` query in the old versions of
+  Memgraph. After upgrading to this version, the `streams` directory has to be
+  deleted manually from Memgraph's data directory (on Debian-based systems, it
+  is `/var/lib/memgraph` by default).
 
 ### Breaking Changes
 
@@ -30,7 +29,13 @@ sidebar_label: Changelog
 
 * Now supporting Bolt protocol version 4.3.
   [#226](https://github.com/memgraph/memgraph/pull/226)
-* Streams support for retrying conflicting transactions
+* Streams support for retrying conflicting transactions. When a message is
+  processed from a certain stream source, a query is executed as a part of the
+  transaction. If that transaction fails because of other conflicting
+  transactions, the transaction is retried a set number of times. The number of
+  retries and interval between each retry can be controlled with configs
+  `--stream-transaction-conflict-retries` and
+  `--stream-transaction-retry-interval`.
   [#294](https://github.com/memgraph/memgraph/pull/294)
 * Added procedure to configure the starting offset (to consume messages from) of
   a topic (and its partitions).
@@ -38,12 +43,13 @@ sidebar_label: Changelog
 * Added `BOOTSTRAP_SERVERS` option to `CREATE KAFKA STREAM` which you can check
   [here](reference-guide/streams/overview.md).
   [#282](https://github.com/memgraph/memgraph/pull/282)
-* Added Bolt notifications in the query summary to inform the user about results or to give useful
-  tips. When a query executes successfuly, sometimes is necessary to give users tips
-  or extra information about the execution. [#285](https://github.com/memgraph/memgraph/pull/285)
-* Added execution statistics in the query summary to inform user on how many objects were affected.
-  E.g., when you run a query with a `CREATE` clause, you'll know how many
-  nodes/edges were created by it.
+* Added Bolt notifications in the query summary to inform the user about results
+  or to give useful tips. When a query executes successfully, sometimes is
+  necessary to give users tips or extra information about the execution.
+  [#285](https://github.com/memgraph/memgraph/pull/285)
+* Added execution statistics in the query summary to inform user on how many
+  objects were affected. E.g., when you run a query with a `CREATE` clause,
+  you'll know how many nodes/edges were created by it.
   [#285](https://github.com/memgraph/memgraph/pull/285)
 * Added support for connecting to Pulsar as a new stream source. For more
   details, check out our
