@@ -6,6 +6,10 @@ sidebar_label: Union Find
 
 ## Description
 
+This is yet another important graph analytics algorithm. By using a [**disjoint-set**](https://en.wikipedia.org/wiki/Disjoint-set_data_structure) - data structure that keeps track of non-overlapping sets, the algorithm enables the user to quickly check whether a pair of given nodes is in the same or different **connected component**. Benefit of having this structure is that a check on a pair of nodes is effectively executed in O(1) time.
+
+The implementation of the disjoint-set data structure and its operations uses the union by rank and path splitting optimizations described in "Worst-case Analysis of Set Union Algorithms", developed by [Robert Tarjan](https://en.wikipedia.org/wiki/Robert_Tarjan) and [Jan van Leeuwen](https://en.wikipedia.org/wiki/Jan_van_Leeuwen).
+
 ## Materials
 
 ### Implementation
