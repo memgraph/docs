@@ -1,5 +1,5 @@
 ---
-id: bridge-algorithm
+id: bridges-algorithm
 title: Bridge Detection
 sidebar_label: Bridge Detection
 ---
