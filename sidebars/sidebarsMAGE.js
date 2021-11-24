@@ -12,6 +12,7 @@ module.exports = {
           items: [
             "algorithms/traditional-graph-analytics/betweenness-centrality-algorithm",
             "algorithms/traditional-graph-analytics/biconnected-components",
+            "algorithms/traditional-graph-analytics/bipartite-matching",
             "algorithms/traditional-graph-analytics/bridge-algorithm",
             "algorithms/traditional-graph-analytics/cycle-detection-algorithm",
             "algorithms/traditional-graph-analytics/node-similarity-algorithm",
