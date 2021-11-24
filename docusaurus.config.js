@@ -24,6 +24,13 @@ module.exports = {
     },
   ],
   themeConfig: {
+    metadata: [
+      {
+        property: "og:image",
+        content:
+          "https://public-assets.memgraph.com/github-readme-images/docs.memgraph-browser.png",
+      },
+    ],
     navbar: {
       title: "Docs",
       logo: {
