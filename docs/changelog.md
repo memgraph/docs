@@ -8,7 +8,7 @@ sidebar_label: Changelog
 
 ### Bug Fixes
 
-* Query stats returned after a Cypher query was executed are now currently
+* Query execution stats returned after a Cypher query was executed are now currently
   updated with the changes made in write procedures. [#304](https://github.com/memgraph/memgraph/pull/304)
 
 
