@@ -4,6 +4,14 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v2.1.1 - This year I hope
+
+### Bug Fixes
+
+* Query stats returned after a Cypher query was executed are now currently
+  updated with the changes made in write procedures. [#304](https://github.com/memgraph/memgraph/pull/304)
+
+
 ## v2.1.0 - Nov 22, 2021
 
 :::warning
@@ -11,7 +19,7 @@ sidebar_label: Changelog
 ### Breaking Changes
 
 * Loading streams created by older versions cause Memgraph to crash. The only
-  possible workaround involves **deleting the existing streams**. 
+  possible workaround involves **deleting the existing streams**.
   The streams can be deleted by the `DROP STREAM` query in the old versions of
   Memgraph. After upgrading to this version, the `streams` directory has to be
   deleted manually from Memgraph's data directory (on Debian-based systems, it
