@@ -761,6 +761,15 @@ module.exports = {
             to: "/help-center/faq",
             from: ["/memgraph/getting-help/faq"],
           },
+          //Kafka redirects because of introducing other stream sources
+          {
+            to: "/memgraph/database-functionalities/streams/kafka/kafka-streams",
+            from: ["/memgraph/database-functionalities/streams/kafka-streams"],
+          },
+          {
+            to: "/memgraph/database-functionalities/streams/kafka/implement-transformation-module",
+            from: ["/memgraph/database-functionalities/streams/implement-transformation-module"],
+          },
         ],
       },
     ],
