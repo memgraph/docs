@@ -1,5 +1,5 @@
 ---
-id: graph-coloring
+id: graph-coloring-algorithm
 title: Graph Coloring
 sidebar_label: Graph Coloring
 ---

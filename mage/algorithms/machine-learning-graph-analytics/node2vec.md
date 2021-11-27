@@ -1,5 +1,5 @@
 ---
-id: node2vec
+id: node2vec-algorithm
 title: Node2Vec
 sidebar_label: Node2Vec
 ---

@@ -11,16 +11,15 @@ module.exports = {
           label: "Traditional Graph Analytics",
           items: [
             "algorithms/traditional-graph-analytics/betweenness-centrality-algorithm",
-            "algorithms/traditional-graph-analytics/biconnected-components",
-            "algorithms/traditional-graph-analytics/bipartite-matching",
+            "algorithms/traditional-graph-analytics/biconnected-components-algorithm",
+            "algorithms/traditional-graph-analytics/bipartite-matching-algorithm",
             "algorithms/traditional-graph-analytics/bridges-algorithm",
-            "algorithms/traditional-graph-analytics/community-detection",
+            "algorithms/traditional-graph-analytics/community-detection-algorithm",
             "algorithms/traditional-graph-analytics/cycle-detection-algorithm",
-            "algorithms/traditional-graph-analytics/graph-coloring",
+            "algorithms/traditional-graph-analytics/graph-coloring-algorithm",
             "algorithms/traditional-graph-analytics/node-similarity-algorithm",
-            "algorithms/traditional-graph-analytics/node2vec",
-            "algorithms/traditional-graph-analytics/pagerank",
-            "algorithms/traditional-graph-analytics/union-find",
+            "algorithms/traditional-graph-analytics/pagerank-algorithm",
+            "algorithms/traditional-graph-analytics/union-find-algorithm",
           ],
         },
         {
@@ -29,13 +28,15 @@ module.exports = {
           items: [
             "algorithms/dynamic-graph-analytics/node2vec-online-algorithm",
             "algorithms/dynamic-graph-analytics/pagerank-online-algorithm",
+            "algorithms/dynamic-graph-analytics/community-detection-online-algorithm",
           ],
         },
         {
           type: "category",
           label: "Machine Learning Graph Algorithms",
           items: [
-            "algorithms/machine-learning-graph-analytics/gcn-algorithm"
+            "algorithms/machine-learning-graph-analytics/node2vec-algorithm",
+            "algorithms/machine-learning-graph-analytics/gnn-algorithm"
           ],
         }
       ],

@@ -1,5 +1,5 @@
 ---
-id: community-detection
+id: community-detection-algorithm
 title: Community Detection
 sidebar_label: Community Detection
 ---

@@ -11,6 +11,7 @@ As in the real world, the definition of a bridge in graph theory denotes somethi
 // TODO: Photo
 
 This algorithm is frequent as part of the initial graph analysis. It talks a lot about the connection itself and reveals, depending on the domain, the points of the graph that connect the different components. The first [linear algorithm](https://www.thealgorists.com/Algo/GraphTheory/Tarjan/Bridges) for finding bridges within a graph was written in 1974 by [Robert Tarjan](https://en.wikipedia.org/wiki/Robert_Tarjan). You can find more about him at the following link.
+This algorithm is frequent as part of the initial graph analysis. It talks a lot about the connection itself and reveals, depending on the domain, the points of the graph that connect the different components. The first [linear algorithm](https://www.thealgorists.com/Algo/GraphTheory/Tarjan/Bridges) for finding bridges within a graph was written in 1974 by [Robert Tarjan](https://en.wikipedia.org/wiki/Robert_Tarjan). You can find more about him at the following link.
 
 ## Materials
 

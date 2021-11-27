@@ -1,5 +1,5 @@
 ---
-id: biconnected-components
+id: biconnected-components-algorithm
 title: Biconnected Components
 sidebar_label: Biconnected Components
 ---

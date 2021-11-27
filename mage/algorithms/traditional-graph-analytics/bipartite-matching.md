@@ -1,5 +1,5 @@
 ---
-id: bipartite-matching
+id: bipartite-matching-algorithm
 title: Bipartite Matching
 sidebar_label: Bipartite Matching
 ---
@@ -8,6 +8,7 @@ sidebar_label: Bipartite Matching
 
 A bipartite graph is a graph in which we can divide vertices into **two independent sets**, such that every edge connects vertices between these sets. No connection can be established within the set.
 
+Matching in bipartite graphs (**bipartite matching**) is described as a set of edges that are picked in a way to not share an endpoint. Furthermore, maximum matching is such matching of maximum cardinality of the chosen edge set. The algorithm runs in O(|V|*|E|) time where V represents a set of nodes and E represents a set of edges.
 Matching in bipartite graphs (**bipartite matching**) is described as a set of edges that are picked in a way to not share an endpoint. Furthermore, maximum matching is such matching of maximum cardinality of the chosen edge set. The algorithm runs in O(|V|*|E|) time where V represents a set of nodes and E represents a set of edges.
 
 This little tool can become extremely handful when calculating assignment between entities. Assigning stuff between two set of entities is done in large amount of industries, and therefore having a method to find it can make developing process easier.

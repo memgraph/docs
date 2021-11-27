@@ -1,5 +1,5 @@
 ---
-id: pagerank
+id: pagerank-algorithm
 title: PageRank
 sidebar_label: PageRank
 ---
