@@ -35,8 +35,11 @@ module.exports = {
           type: "category",
           label: "Machine Learning Graph Algorithms",
           items: [
+            "algorithms/machine-learning-graph-analytics/gnn-algorithm",
+            "algorithms/machine-learning-graph-analytics/graph-classification-algorithm",
+            "algorithms/machine-learning-graph-analytics/link-prediction-algorithm",
+            "algorithms/machine-learning-graph-analytics/node-classification-algorithm",
             "algorithms/machine-learning-graph-analytics/node2vec-algorithm",
-            "algorithms/machine-learning-graph-analytics/gnn-algorithm"
           ],
         }
       ],

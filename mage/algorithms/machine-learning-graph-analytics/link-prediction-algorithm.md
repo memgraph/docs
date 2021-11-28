@@ -20,3 +20,14 @@ Traditional methods are mostly based either on a neighborhood cross-section, and
 On the other hand, such a prediction can be learned from the nodes by looking at similarity metrics. The more similar the nodes, the greater the likelihood of connectivity. Cosine similarity and Euclidian distance are one example of such.
 
 Then, there are the most advanced models so far and they are based on graph embeddings, which serve as features for further classification tasks. Likewise, it is possible to drive Graph neural network methods for the same task.
+
+## Materials
+
+### Implementation
+
+[![Link Prediction](https://img.shields.io/badge/Not_implemented-EB3434?style=for-the-badge&logo=github&logoColor=white)](/mage/query-modules/cpp/community-detection)
+
+Unfortunately, **Link Prediction** are yet not implemented within project [**MAGE**](https://github.com/memgraph/mage). Be sure to raise the issue on GitHub repo and notice us to speed up the development. :point_up:
+## Use cases
+
+[![UNKNOWN](https://img.shields.io/badge/UNKNOWN-Application-8A477F?style=for-the-badge)](/mage/query-modules/python/node-similarity)
