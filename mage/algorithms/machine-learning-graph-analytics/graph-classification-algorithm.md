@@ -4,6 +4,8 @@ title: Graph Classification
 sidebar_label: Graph Classification
 ---
 
+## Description
+
 Let’s look at one useful tool that allows you to analyze a graph as a whole. That is the prediction of the graph. The structure and arrangement of nodes can reveal some hidden features in a graph.
 
 So, for example, fraudsters who have a common pattern of behavior can be detected by searching that pattern in the neighborhood graph of the fraudster himself.
