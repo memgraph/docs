@@ -68,7 +68,7 @@ actual result of the transformation. This can be handy when implementing a
 transformation. To achieve that, we can use the `CHECK STREAM` query. This query
 will consume the message from the last committed offset but won't commit the
 offsets. That means you are free to play around with it, and there won't be any
-permanent effects. For a freshly created stream. There is probably no committed
+permanent effects. For a freshly created stream there is probably no committed
 offset, so the `CHECK STREAM` query will wait for new messages. By default, the
 query will wait `30000` milliseconds (`30` seconds) and after that, it will
 throw a timeout exception. To give us some more time, use a larger timeout,
