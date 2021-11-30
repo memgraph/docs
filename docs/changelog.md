@@ -6,11 +6,16 @@ sidebar_label: Changelog
 
 ## v2.1.1 - This year I hope
 
-### Bug Fixes
+### Major Features and Improvements
+
+* Added procedures for retrieving configuration information specific for each stream type.
+  `mg.pulsar_stream_info` will return information about a specific Pulsar stream, and `mg.kafka_stream_info`
+  will return information about a specific Kafka stream. [#301](https://github.com/memgraph/memgraph/pull/301)
+  
+  ### Bug Fixes
 
 * Query execution stats returned after a Cypher query was executed are now currently
   updated with the changes made in write procedures. [#304](https://github.com/memgraph/memgraph/pull/304)
-
 
 ## v2.1.0 - Nov 22, 2021
 
