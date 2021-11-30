@@ -4,6 +4,14 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v2.1.1 - This year I hope
+
+### Major Features and Improvements
+
+* Added procedures for retrieving configuration information specific for each stream type.
+  `mg.pulsar_stream_info` will return information about a specific Pulsar stream, and `mg.kafka_stream_info`
+  will return information about a specific Kafka stream. [#301](https://github.com/memgraph/memgraph/pull/301)
+
 ## v2.1.0 - Nov 22, 2021
 
 :::warning
