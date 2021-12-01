@@ -11,7 +11,9 @@ sidebar_label: Changelog
 * Added procedures for retrieving configuration information specific for each stream type.
   `mg.pulsar_stream_info` will return information about a specific Pulsar stream, and `mg.kafka_stream_info`
   will return information about a specific Kafka stream. [#301](https://github.com/memgraph/memgraph/pull/301)
-  
+* `SHOW STREAMS` now returns default values for batch interval and batch size if they weren't specified.
+  [#306](https://github.com/memgraph/memgraph/pull/306)
+
   ### Bug Fixes
 
 * Query execution stats returned after a Cypher query was executed are now currently
