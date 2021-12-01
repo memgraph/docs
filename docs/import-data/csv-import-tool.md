@@ -229,7 +229,7 @@ id:ID(PERSON_ID),name:string,age:int,city:string,:LABEL
 </TabItem>
 <TabItem value='pr'>
 
-Let's define the relationships between people in `people_relationships.csv` :
+Let's define the relationships between people in `people_relationships.csv`:
 
 ```csv
 :START_ID(PERSON_ID),:END_ID(PERSON_ID),:TYPE, met_in:int
@@ -245,7 +245,7 @@ Let's define the relationships between people in `people_relationships.csv` :
 </TabItem>
 <TabItem value='rn'>
 
-Let's introduce another node type, restaurants, in `restaurants_nodes.csv` :
+Let's introduce another node type, restaurants, in `restaurants_nodes.csv`:
 
 ```csv
 id:ID(REST_ID),name:string,menu:string[],:LABEL
