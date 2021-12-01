@@ -128,6 +128,10 @@ module.exports = {
               to: "/mage/tutorials/create-a-new-module",
             },
             {
+              label: "Applications",
+              to: "/mage/applications/bioinformatics-application",
+            },
+            {
               label: "Contributing",
               to: "/mage/contributing",
             },

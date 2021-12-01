@@ -79,6 +79,23 @@ module.exports = {
         "query-modules/cpp/weakly-connected-components",
       ],
     },
+    {
+      type: "category",
+      label: "Applications",
+      items: [
+            "applications/bioinformatics-application",
+            "applications/computer-security-application",
+            "applications/drug-discovery-application",
+            "applications/finance-application",
+            "applications/knowledge-graph-application",
+            "applications/power-grids-application",
+            "applications/process-engineering-application",
+            "applications/retail-application",
+            "applications/social-media-application",
+            "applications/telecommunication-application",
+            "applications/transportation-application",
+      ]
+    },
     "contributing",
     {
       type: "category",
