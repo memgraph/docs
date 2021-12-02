@@ -19,7 +19,7 @@ It is defined as the **number of shortest paths** in the graph that passes throu
 
 ### Implementation
 
-[![Betweenness Centrality](https://img.shields.io/badge/Betweenness_Centrality-Implementation-FB6E00?style=for-the-badge&logo=github&logoColor=white)](/mage/query-modules/cpp/betweenness-centrality)
+[![Betweenness Centrality](https://img.shields.io/badge/Betweenness_Centrality-Implementation-FB6E00?style=for-the-badge&logo=github&logoColor=white)](https://github.com/memgraph/mage/blob/main/cpp/betweenness_centrality_module/betweenness_centrality_module.cpp)
 
 [![Betweenness Centrality](https://img.shields.io/badge/Betweenness_Centrality-Documentation-FCC624?style=for-the-badge&logo=cplusplus&logoColor=white)](/mage/query-modules/cpp/betweenness-centrality)
 

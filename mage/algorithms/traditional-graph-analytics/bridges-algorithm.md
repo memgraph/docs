@@ -12,13 +12,13 @@ As in the real world, the definition of a bridge in graph theory denotes somethi
 
 > Example of bridges on the graph. Bold edges represent bridges.
 
-This algorithm is frequent as part of the initial graph analysis. It talks a lot about the connection itself and reveals, depending on the domain, the points of the graph that connect the different components. The first [linear algorithm](https://www.thealgorists.com/Algo/GraphTheory/Tarjan/Bridges) for finding bridges within a graph was written in 1974 by [Robert Tarjan](https://en.wikipedia.org/wiki/Robert_Tarjan). You can find more about him at the following link.
+This algorithm is frequent as part of the initial graph analysis. It talks a lot about the connection itself and reveals, depending on the domain, the points of the graph that connect the different components. The first [linear algorithm](https://www.thealgorists.com/Algo/GraphTheory/Tarjan/Bridges) for finding bridges within a graph was written in 1974 by [Robert Tarjan](https://en.wikipedia.org/wiki/Robert_Tarjan).
 
 ## Materials
 
 ### Implementation
 
-[![Bridges](https://img.shields.io/badge/Bridges-Implementation-FB6E00?style=for-the-badge&logo=github&logoColor=white)](/mage/query-modules/cpp/bridges)
+[![Bridges](https://img.shields.io/badge/Bridges-Implementation-FB6E00?style=for-the-badge&logo=github&logoColor=white)](https://github.com/memgraph/mage/blob/main/cpp/bridges_module/bridges_module.cpp)
 
 [![Bridges](https://img.shields.io/badge/Bridges-Documentation-FCC624?style=for-the-badge&logo=cplusplus&logoColor=white)](/mage/query-modules/cpp/bridges)
 

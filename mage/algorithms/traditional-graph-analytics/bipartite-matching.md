@@ -20,7 +20,7 @@ This little tool can become extremely handful when calculating assignments betwe
 
 ### Implementation
 
-[![Bipartite Matching](https://img.shields.io/badge/Bipartite_Matching-Implementation-FB6E00?style=for-the-badge&logo=github&logoColor=white)](/mage/query-modules/cpp/bipartite-matching)
+[![Bipartite Matching](https://img.shields.io/badge/Bipartite_Matching-Implementation-FB6E00?style=for-the-badge&logo=github&logoColor=white)](https://github.com/memgraph/mage/blob/main/cpp/bipartite_matching_module/bipartite_matching_module.cpp)
 
 [![Bipartite Matching](https://img.shields.io/badge/Bipartite_Matching-Documentation-FCC624?style=for-the-badge&logo=cplusplus&logoColor=white)](/mage/query-modules/cpp/bipartite-matching)
 

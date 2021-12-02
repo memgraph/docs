@@ -21,7 +21,7 @@ The problem was solved by [John Hopcroft](https://en.wikipedia.org/wiki/John_Hop
 
 ### Implementation
 
-[![Biconnected Components](https://img.shields.io/badge/Biconnected_components-Implementation-FB6E00?style=for-the-badge&logo=github&logoColor=white)](/mage/query-modules/cpp/biconnected-components)
+[![Biconnected Components](https://img.shields.io/badge/Biconnected_components-Implementation-FB6E00?style=for-the-badge&logo=github&logoColor=white)](https://github.com/memgraph/mage/blob/main/cpp/biconnected_components_module/biconnected_components_module.cpp)
 
 [![Biconnected Components](https://img.shields.io/badge/Biconnected_components-Documentation-FCC624?style=for-the-badge&logo=cplusplus&logoColor=white)](/mage/query-modules/cpp/biconnected-components)
 
