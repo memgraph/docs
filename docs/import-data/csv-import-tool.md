@@ -45,7 +45,7 @@ If you installed Memgraph using Docker, you will need to run the importer using
 the following command:
 
 ```console
-docker run -v mg_lib:/var/lib/memgraph -v mg_import:/import-data --entrypoint=mg_import_csv memgraph
+docker run -v mg_lib:/var/lib/memgraph -v mg_import:/import-data --entrypoint=mg_import_csv memgraph/memgraph-platform
 ```
 
 :::caution
@@ -57,7 +57,7 @@ find a complete example [below](#examples).
 For information on other options, run:
 
 ```bash
-docker run --entrypoint=mg_import_csv memgraph --help
+docker run --entrypoint=mg_import_csv memgraph/memgraph-platform --help
 ```
 
   </TabItem>
@@ -173,7 +173,7 @@ Then, run the importer with the following:
 
 ```bash
 docker run -v mg_lib:/var/lib/memgraph -v mg_import:/import-data \
-  --entrypoint=mg_import_csv memgraph \
+  --entrypoint=mg_import_csv memgraph/memgraph-platform \
   --nodes /import-data/people_nodes.csv \
   --relationships /import-data/people_relationships.csv
 ```
@@ -181,7 +181,7 @@ docker run -v mg_lib:/var/lib/memgraph -v mg_import:/import-data \
 Next time you run Memgraph, the dataset will be loaded:
 
 ```bash
- docker run -p 7687:7687 -v mg_lib:/var/lib/memgraph memgraph
+ docker run -p 7687:7687 -v mg_lib:/var/lib/memgraph memgraph/memgraph-platform
 ```
 
   </TabItem>
@@ -304,7 +304,7 @@ Then, run the importer with the following command:
 
 ```bash
 docker run -v mg_lib:/var/lib/memgraph -v mg_etc:/etc/memgraph -v mg_import:/import-data \
-  --entrypoint=mg_import_csv memgraph \
+  --entrypoint=mg_import_csv memgraph/memgraph-platform \
   --nodes /import-data/people_nodes.csv \
   --nodes /import-data/restaurants_nodes.csv \
   --relationships /import-data/people_relationships.csv \
@@ -314,7 +314,7 @@ docker run -v mg_lib:/var/lib/memgraph -v mg_etc:/etc/memgraph -v mg_import:/imp
 Next time you run Memgraph, the dataset will be loaded:
 
 ```bash
- docker run -p 7687:7687 -v mg_lib:/var/lib/memgraph memgraph
+ docker run -p 7687:7687 -v mg_lib:/var/lib/memgraph memgraph/memgraph-platform
 ```
 
   </TabItem>

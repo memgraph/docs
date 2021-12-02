@@ -15,7 +15,7 @@ To follow this guide, you will need:
   at the [Installation guide](/installation/overview.md).
 * A basic understanding of graph databases and the property graph model.
 * The newest version of **Node.js** installed. Instructions on how to setup
-  Node.JS can be found on the [official
+  Node. JS can be found on the [official
   website](https://nodejs.org/en/download/).
 
 ## Basic Setup
@@ -54,31 +54,32 @@ const port = 3000
 var neo4j = require('neo4j-driver')
 
 app.get('/', async (req, res) => {
-  const driver = neo4j.driver("bolt://localhost:7687")
-  const session = driver.session()
+    const driver = neo4j.driver("bolt://localhost:7687")
+    const session = driver.session()
 
-  try {
-    const result = await session.writeTransaction(tx =>
-      tx.run(
-        'CREATE (a:Greeting) SET a.message = $message RETURN "Node " + id(a) + ": " + a.message',
-        { message: 'Hello, World!' }
-      )
-    )
+    try {
+        const result = await session.writeTransaction(tx =>
+            tx.run(
+                'CREATE (a:Greeting) SET a.message = $message RETURN "Node " + id(a) + ": " + a.message', {
+                    message: 'Hello, World!'
+                }
+            )
+        )
 
-    const singleRecord = result.records[0]
-    const greeting = singleRecord.get(0)
+        const singleRecord = result.records[0]
+        const greeting = singleRecord.get(0)
 
-    console.log(greeting)
-  } finally {
-    await session.close()
-  }
+        console.log(greeting)
+    } finally {
+        await session.close()
+    }
 
-  // on application exit:
-  await driver.close()
+    // on application exit:
+    await driver.close()
 })
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+    console.log(`Example app listening at http://localhost:${port}`)
 })
 ```
 

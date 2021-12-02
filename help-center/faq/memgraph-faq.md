@@ -1,7 +1,8 @@
 ---
-id: faq
-title: Frequently asked questions
+id: memgraph-faq
+title: Memgraph - Frequently asked questions
 sidebar_label: FAQ
+slug: /faq
 ---
 
 ### What is Memgraph?
@@ -127,8 +128,8 @@ manual](/cypher-manual/differences).
 ### Can you change the log level in Memgraph?
 
 You can change the log level easily by using the `--log-level` flag. The allowed
-values are `TRACE`, `DEBUG`, `INFO`, `WARNING`, `ERROR`, and `CRITICAL`. For
-more information about using configuration flags, check out the [reference
+values are `TRACE` , `DEBUG` , `INFO` , `WARNING` , `ERROR` , and `CRITICAL` .
+For more information about using configuration flags, check out the [reference
 guide](/memgraph/reference-guide/configuration).
 
 ### Can you change the memory limit for Memgraph?
@@ -160,19 +161,19 @@ flags, check out the [reference guide](/memgraph/reference-guide/configuration).
 
 There are three official Docker images for Memgraph:
 
-- `memgraph/memgraph`: This is the most basic Memgraph instance.
-- `memgraph/memgraph-mage`: This image contains a Memgraph instance together
+* `memgraph/memgraph`: This is the most basic Memgraph instance.
+* `memgraph/memgraph-mage`: This image contains a Memgraph instance together
   with all the newest [MAGE](/mage) modules and graph algorithms.
-- `memgraph/memgraph-platform`: This image contains Memgraph, Memgraph Lab, and
+* `memgraph/memgraph-platform`: This image contains Memgraph, Memgraph Lab, and
   mgconsole. Once started, mgconsole will be opened in the terminal, while
-  Memgraph Lab is available at `http://localhost:3000`.
+  Memgraph Lab is available at `http://localhost:3000` .
 
 ### How does Memgraph ensure durability? How does Memgraph persist data?
 
 Memgraph uses two mechanisms to ensure data durability:
 
-- **write-ahead logs** (WAL) and
-- periodic **snapshots**.
+* **write-ahead logs** (WAL) and
+* periodic **snapshots**.
 
 **Snapshots** are taken periodically during the entire runtime of Memgraph. When
 a snapshot is triggered, the whole data storage is written to the disk.

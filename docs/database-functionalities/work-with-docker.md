@@ -5,9 +5,6 @@ sidebar_label: Work with Docker
 slug: /how-to-work-with-docker
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 This guide serves as an explanation of how to use Docker with Memgraph and
 setting up your development environment.
 
@@ -51,7 +48,7 @@ docker run -p 7687:7687 \
   -v mg_lib:/var/lib/memgraph \
   -v mg_log:/var/log/memgraph \
   -v mg_etc:/etc/memgraph \
-  memgraph
+  memgraph/memgraph-platform
 ```
 
 At this point, Memgraph is ready for you to [submit
@@ -63,7 +60,7 @@ guide](/database-functionalities/query-modules/implement-query-modules.md).
 ## Find the IP address of a Docker Container {#docker-container-ip-address}
 
 Although unlikely, some users might experience minor difficulties after the
-Docker installation. Instead of running on `localhost`, a Docker container for
+Docker installation. Instead of running on `localhost` , a Docker container for
 Memgraph may be running on a custom IP address. Fortunately, that IP address can
 be found as follows:
 
@@ -76,48 +73,21 @@ CONTAINER ID    IMAGE       COMMAND                  CREATED
 ```
 
 At this point, it is important to remember the container ID of the Memgraph
-Image. In our case, that is `9397623cd87e`.
+Image. In our case, that is `9397623cd87e` .
 
 **2.** Use the this ID to retrieve the IP address of the Container:
 
-<Tabs
-  groupId="operating-systems"
-  defaultValue="linux"
-  values={[
-    {label: 'Linux', value: 'linux'},
-    {label: 'macOS', value: 'macos'},
-    {label: 'Windows', value: 'windows'},
-  ]}>
-  <TabItem value="linux">
-
 ```console
 docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' 9397623cd87e
 ```
-
-  </TabItem>
-  <TabItem value="macos">
-
-```console
-docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' 9397623cd87e
-```
-
-  </TabItem>
-  <TabItem value="windows">
-
-```console
-docker inspect -f "{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}" 9397623cd87e
-```
-
-  </TabItem>
-</Tabs>
 
 The command above will yield the IP address that should be used when connecting
-to Memgraph via **Memgraph Lab** or **mgconsole** as described in
-the [querying](/connect-to-memgraph/overview.mdx) section. Just replace
-`HOST` from the following command with the appropriate IP address:
+to Memgraph via **Memgraph Lab** or **mgconsole** as described in the
+[querying](/connect-to-memgraph/overview.mdx) section. Just replace `HOST` from
+the following command with the appropriate IP address:
 
 ```console
-docker run -it --entrypoint=mgconsole memgraph --host HOST
+docker run -it --entrypoint=mgconsole memgraph/memgraph-platform --host HOST
 ```
 
 ## Importing data
@@ -130,15 +100,14 @@ using the following command:
 
 ```console
 docker run -v mg_lib:/var/lib/memgraph -v mg_etc:/etc/memgraph -v mg_import:/import-data \
-  --entrypoint=mg_import_csv memgraph
+  --entrypoint=mg_import_csv memgraph/memgraph-platform
 ```
 
 You can pass CSV files containing nodes and relationships with `--nodes` and
 `--relationships` flags respectively. Multiple files can be specified by
 repeating either of the flags. At least one node needs to be specified, but
 relationships are not required. For more information on how to structure your
-CSV file, please refer to our [Import tool
-guide](/import-data/overview.mdx).
+CSV file, please refer to our [Import tool guide](/import-data/overview.mdx).
 
 To import the snapshot, you will need to copy your files where Docker can see
 them by creating another container and filling it with your data:
@@ -155,7 +124,7 @@ flags for nodes and relationships:
 
 ```console
 docker run -v mg_lib:/var/lib/memgraph -v mg_etc:/etc/memgraph -v mg_import:/import-data \
-  --entrypoint=mg_import_csv memgraph \
+  --entrypoint=mg_import_csv memgraph/memgraph-platform \
   --nodes /import-data/nodes.csv \
   --relationships /import-data/relationships.csv
 ```
@@ -184,10 +153,8 @@ are two types of mounts in Docker:
 mounting](https://docs.docker.com/storage/bind-mounts/). The graphic below shows
 the differences between the two mounting techniques:
 
-<img
-  src="https://raw.githubusercontent.com/g-despot/images/master/docker.png"
-  alt="Docker"
-  style={{height: 360}}
+<img src="https://raw.githubusercontent.com/g-despot/images/master/docker.png"
+  alt="Docker" style={{height: 360}}
 />
 
 In context of Memgraph, we will use volume mounting meaning we are going to put
@@ -197,7 +164,6 @@ the file elsewhere, we need to re-mount. With volume binding, we have placed the
 files inside the Docker area and Memgraph will always have access to it no
 matter where they exist in our file system.
 
-
 The following command should be used to successfully mount a volume containing
 your custom query module:
 
@@ -206,7 +172,7 @@ docker run -it -p 7687:7687 -p 3000:3000 \
   -v mg_lib:/var/lib/memgraph -v mg_log:/var/log/memgraph -v mg_etc:/etc/memgraph \
   -v $(pwd)/modules:/modules \
   -e MEMGRAPH="--query-modules-directory=/modules" \
-  memgraph
+  memgraph/memgraph-platform
 ```
 
 We've added two flags to the original command:
@@ -222,23 +188,28 @@ There are three ways to execute queries and procedures in Memgraph:
 
 * using the command-line tool, `mgconsole`, which comes with Memgraph,
   ([Querying](/connect-to-memgraph/overview.mdx))
-* [programmatically](/connect-to-memgraph/methods/drivers.md)
-  by using the Bolt protocol,
+* [programmatically](/connect-to-memgraph/methods/drivers.md) by using the Bolt
+  protocol,
 * from **Memgraph Lab**, a visual user interface that can be downloaded
   [here](https://memgraph.com/download).
 
 If you've decided to use the command-line tool, you will need to run the
 following command:
 
-`docker run -it --entrypoint=mgconsole memgraph --host HOST`
+```console
+ docker run -it --entrypoint=mgconsole memgraph/memgraph-platform --host HOST
+```
 
-`HOST` part of the command should be replaced with valid IP - most likely it
-being `localhost`.   If you are a macOS or Linux user and are having issues with
-connecting, please refer to the [Note for Docker
-users](#docker-container-ip-address).
+`HOST` part of the command should be replaced with valid IP - most likely
+ `localhost` .   If you are a macOS or Linux user and are having issues with
+ connecting, please refer to the [Note for Docker
+ users](#docker-container-ip-address).
 
-NOTE: If `localhost` refuses to connect, try putting `host.docker.internal`
-instead.
+:::note
+
+If `localhost` refuses to connect, try using `host.docker.internal` instead.
+
+:::
 
 After running the command, you should get a command prompt similar to this one:
 
@@ -270,8 +241,8 @@ useful if we want the procedure to work on data the query is producing.
 
 With this, your developing environment is ready and you are able to easily
 implement and run your own query modules. Check out our [Reference
-Guide](/reference-guide/query-modules/overview.md) to see which Query
-Modules are included in Memgraph.
+Guide](/reference-guide/query-modules/overview.md) to see which Query Modules
+are included in Memgraph.
 
 ### Reusing volumes between Memgraph versions
 
@@ -290,6 +261,6 @@ docker volume rm <volume_name>
 ## Where to next?
 
 To learn more about Memgraph's functionalities, visit the **[Reference
-guide](/reference-guide/overview.md)**. For real-world examples of how to
-use Memgraph, we strongly suggest going through one of the available
+guide](/reference-guide/overview.md)**. For real-world examples of how to use
+Memgraph, we strongly suggest going through one of the available
 **[Tutorials](/tutorials/overview.md)**.

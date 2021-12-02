@@ -4,31 +4,137 @@ title: Querying with mgconsole
 sidebar_label: mgconsole
 ---
 
-The easiest way to execute openCypher queries against Memgraph is by using
-Memgraph's command-line tool, [mgconsole](https://github.com/memgraph/mgconsole), which is installed
-together with Memgraph.
+import Tabs from "@theme/Tabs"; import TabItem from "@theme/TabItem";
 
-If you installed Memgraph using Docker, you will need to run the client
-using the following command (remember to replace `HOST` with valid IP of
-the container - see [Docker Note](/database-functionalities/work-with-docker.md#docker-container-ip-address)):
+The easiest way to execute Cypher queries against Memgraph is by using
+Memgraph's command-line tool, **mgconsole**.
+
+## 1. Install mgconsole
+
+<Tabs
+  groupId="platform"
+  defaultValue="docker"
+  values={[
+    {label: 'Docker 🐳', value: 'docker'},
+    {label: 'Windows', value: 'windows'},
+    {label: 'macOS', value: 'macos'},
+    {label: 'Linux', value: 'linux'}
+  ]}>
+  <TabItem value="docker">
+
+:::tip
+
+If you are using the **Memgraph Platform** Docker image
+(`memgraph/memgraph-platform`), mgconsole will start automatically when you run
+the container. You can skip the installation step and continue with [executing
+Cypher queries](#execute-cypher-queries).
+
+:::
+
+**1.** If you installed Memgraph using Docker, you can run the client from your
+Docker image. First, you need to find the `CONTAINER_ID` of your Memgraph
+container:
+
+```terminal
+docker ps
+```
+
+**2.** Once you know the `CONTAINER_ID`, find the IP address of the container by
+executing:
+
+```terminal
+docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' CONTAINER_ID
+```
+
+**3.** Now, you can start mgconsole by running the following command:
+
+```terminal
+docker run -it --entrypoint=mgconsole memgraph --host CONTAINER_IP
+```
+
+  </TabItem>
+  <TabItem value= 'windows'>
+
+**1.** Download mgconsole from the [Download
+Hub](https://memgraph.com/download#mgconsole).
+
+**2.** From PowerShell, start mgconsole with the command:
+
+```terminal
+./mgconsole --host HOST --port PORT
+```
+
+If Memgraph is running locally using the default configuration, start
+mgconsole with:
+
+```terminal
+./mgconsole --host 127.0.0.1 --port 7687
+```
+
+  </TabItem>
+  <TabItem value= 'macos'>
+
+**1.** Download mgconsole from the [Download
+Hub](https://memgraph.com/download#mgconsole).
+
+**2.** From the terminal, provide execution permission to the current user:
+
+```terminal
+chmod u+x ./mgconsole
+```
+
+**3.** Start mgconsole with the command:
+
+```terminal
+./mgconsole --host HOST --port PORT
+```
+
+If Memgraph is running locally using the default configuration, start
+mgconsole with:
+
+```terminal
+./mgconsole --host 127.0.0.1 --port 7687
+```
+
+  </TabItem>
+  <TabItem value= 'linux'>
+
+:::note
+
+We will soon release a downloadable Debian package, so you don't have to install
+mgconsole from source.
+
+:::
+
+**1.** Follow the instructions on how to [build and
+install](https://github.com/memgraph/mgconsole#building-and-installing)
+mgconsole from source.
+
+**2.** Start mgconsole with the command:
+
+```terminal
+./mgconsole --host HOST --port PORT
+```
+
+If Memgraph is running locally using the default configuration, start
+mgconsole with:
+
+```terminal
+./mgconsole --host 127.0.0.1 --port 7687
+```
+
+  </TabItem>
+</Tabs>
+
+## 2. Execute a Cypher query {#execute-cypher-queries}
+
+After the client has started, it should present a command prompt similar to:
 
 ```
-docker run -it --entrypoint=mgconsole memgraph --host HOST --use-ssl=False
-```
-
-Otherwise, you can connect to the running Memgraph instance by
-issuing the following shell command:
-
-```
-mgconsole --use-ssl=False
-```
-
-After the client has started it should present a command prompt similar to:
-
-```
+mgconsole X.X
+Connected to 'memgraph://127.0.0.1:7687'
 Type :help for shell usage
 Quit the shell by typing Ctrl-D(eof) or :quit
-Connected to 'memgraph://127.0.0.1:7687'
 memgraph>
 ```
 

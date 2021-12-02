@@ -30,7 +30,7 @@ If you installed Memgraph using Docker, you will need to run the client using
 the following command:
 
 ```console
-docker run -i --entrypoint=mgconsole memgraph --host HOST < /path-to/queries.cypherl
+docker run -i --entrypoint=mgconsole memgraph/memgraph-platform --host HOST < /path-to/queries.cypherl
 ```
 
 Remember to replace `HOST` with a valid IP of the container (see the [Note for
@@ -40,7 +40,7 @@ users](/database-functionalities/work-with-docker.md#docker-container-ip-address
 For more information about `mgconsole` options run:
 
 ```console
-docker run -i --entrypoint=mgconsole memgraph --help
+docker run -i --entrypoint=mgconsole memgraph/memgraph-platform --help
 ```
 
   </TabItem>
@@ -107,13 +107,13 @@ import them with the command below or drag and drop them using the
   <TabItem value="docker">
 
 ```console
-docker run -i --entrypoint=mgconsole memgraph --host HOST < queries.cypherl
+docker run -i --entrypoint=mgconsole memgraph/memgraph-platform --host HOST < queries.cypherl
 ```
 
 Because the operator `<` isn't available in Windows PowerShell, you may need to change the command to:
 
 ```console
-cmd.exe /c "docker run -i --entrypoint=mgconsole memgraph --host HOST < queries.cypherl"
+cmd.exe /c "docker run -i --entrypoint=mgconsole memgraph/memgraph-platform --host HOST < queries.cypherl"
 ```
 
 :::note
@@ -180,13 +180,13 @@ import them with the command below or drag and drop them using the
   <TabItem value="docker">
 
 ```console
-docker run -i --entrypoint=mgconsole memgraph --host HOST < queries.cypherl
+docker run -i --entrypoint=mgconsole memgraph/memgraph-platform --host HOST < queries.cypherl
 ```
 
 Because the operator `<` isn't available in Windows PowerShell, you may need to change the command to:
 
 ```console
-cmd.exe /c "docker run -i --entrypoint=mgconsole memgraph --host HOST < queries.cypherl"
+cmd.exe /c "docker run -i --entrypoint=mgconsole memgraph/memgraph-platform --host HOST < queries.cypherl"
 ```
 
 :::note
