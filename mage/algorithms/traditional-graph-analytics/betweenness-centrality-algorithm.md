@@ -42,11 +42,11 @@ Betweenness Centrality is implemented within project [**MAGE**](https://github.c
 
 The metric of **betweenness centrality** can be used on a **macro** and **micro** scale in social networks. On a macro scale, a high measure will indicate the position of power (due to the large flow of information). On the other hand, on a micro-scale, a high measure represents the strength of a relationship with a narrow circle of friends.
 
-[![Bioinformatics](https://img.shields.io/badge/Bioinformatics-Application-8A477F?style=for-the-badge)](/mage/applications/bioinformatics)
+[![Bioinformatics](https://img.shields.io/badge/Bioinformatics-Application-8A477F?style=for-the-badge)](/mage/applications/bioinformatics-application)
 
 To get a better insight into how proteins interact with each other, [**protein-protein interaction network**](https://www.ebi.ac.uk/training/online/courses/network-analysis-of-protein-interaction-data-an-introduction/protein-protein-interaction-networks/) was created. Betweenness centrality (and other centrality measurements) can determine the strength of the fact that particular proteins are essential.
 
 
-[![Transportation](https://img.shields.io/badge/Transportation-Application-8A477F?style=for-the-badge)](/mage/applications/transportation)
+[![Transportation](https://img.shields.io/badge/Transportation-Application-8A477F?style=for-the-badge)](/mage/applications/transportation-application)
 
 Maybe the most important usage of this algorithm is **transportation**. In an [complex and urban transportation network](https://www.hindawi.com/journals/jat/2019/9024745/), centrality measurement can reveal the main bottlenecks and congestions within the system. Such can help to organize the infrastructure of a big city, as well as the amount spent in optimizing such routes.

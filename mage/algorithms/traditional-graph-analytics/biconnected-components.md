@@ -11,7 +11,11 @@ sidebar_label: Biconnected Components
 - It is possible to go from each node to another within a biconnected subgraph
 - First scenario remains true even after removing any vertex in the subgraph
 
-Problem was solved by [John Hopcroft](https://en.wikipedia.org/wiki/John_Hopcroft) and [Robert Tarjan](https://en.wikipedia.org/wiki/Robert_Tarjan) with linear time complexity. Depending on the use case, biconnected components may help to discover hidden structures within graph.
+The problem was solved by [John Hopcroft](https://en.wikipedia.org/wiki/John_Hopcroft) and [Robert Tarjan](https://en.wikipedia.org/wiki/Robert_Tarjan) with linear time complexity. Depending on the use case, biconnected components may help to discover hidden structures within the graph.
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Graph-Biconnected-Components.svg/1280px-Graph-Biconnected-Components.svg.png" alt="drawing" width="500"/>
+
+> Different colors are different components. Multi-colored vertices are articulation points. Photo from [Wikipedia](https://en.wikipedia.org/wiki/Betweenness_centrality)
 
 ## Materials
 
@@ -25,4 +29,8 @@ Problem was solved by [John Hopcroft](https://en.wikipedia.org/wiki/John_Hopcrof
 
 ## Use cases
 
-[![UNKNOWN](https://img.shields.io/badge/UNKNOWN-Application-8A477F?style=for-the-badge)](/mage/query-modules/python/node-similarity)
+Biconnected components detection is a base for many graph analytics algorithms. Therefore, it is rarely used alone. However, there are particular niche use cases where finding biconnected components might come in handy mostly because of the articulation points revealing.
+
+[![Transportation](https://img.shields.io/badge/Transportation-Application-8A477F?style=for-the-badge)](/mage/applications/transportation-application)
+
+Organizing the road infrastructure can be a painful task for any engineer. Finding biconnected components in the transportation network can help to reveal different zones in an urban area. Furthermore, the goal would be enlarging such zones and having as few articulation points as possible, since these are the places where there is the highest possibility of traffic congestion.
