@@ -196,16 +196,20 @@ There are three ways to execute queries and procedures in Memgraph:
 If you've decided to use the command-line tool, you will need to run the
 following command:
 
- `docker run -it --entrypoint=mgconsole memgraph/memgraph-platform --host HOST`
+```console
+ docker run -it --entrypoint=mgconsole memgraph/memgraph-platform --host HOST
+```
 
-`HOST` part of the command should be replaced with valid IP - most likely it
-being `localhost` .   If you are a macOS or Linux user and are having issues
-with connecting, please refer to the [Note for Docker
-users](#docker-container-ip-address).
+`HOST` part of the command should be replaced with valid IP - most likely
+ `localhost` .   If you are a macOS or Linux user and are having issues with
+ connecting, please refer to the [Note for Docker
+ users](#docker-container-ip-address).
 
-NOTE: If `localhost` refuses to connect, try putting `host.docker.internal`
+:::note
 
-instead.
+If `localhost` refuses to connect, try using `host.docker.internal` instead.
+
+:::
 
 After running the command, you should get a command prompt similar to this one:
 
