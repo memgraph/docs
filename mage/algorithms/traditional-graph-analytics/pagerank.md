@@ -19,7 +19,7 @@ PageRank can be used as a measure of influence that can be used on a variety of 
 
 ### Implementation
 
-[![PageRank](https://img.shields.io/badge/PageRank-Implementation-FB6E00?style=for-the-badge&logo=github&logoColor=white)](/mage/query-modules/cpp/pagerank)
+[![PageRank](https://img.shields.io/badge/PageRank-Implementation-FB6E00?style=for-the-badge&logo=github&logoColor=white)](https://github.com/memgraph/mage/blob/main/cpp/pagerank_module/pagerank_module.cpp)
 
 [![PageRank](https://img.shields.io/badge/PageRank-Documentation-FCC624?style=for-the-badge&logo=cplusplus&logoColor=white)](/mage/query-modules/cpp/pagerank)
 
