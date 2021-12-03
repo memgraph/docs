@@ -11,6 +11,10 @@ In the domain of centrality measurements, [**PageRank**](https://en.wikipedia.or
 If we present nodes as pages and directed edges between them as links the **PageRank** algorithm outputs a probability distribution used to represent the likelihood that a person randomly clicking on links will arrive at any particular page.
 
 PageRank can be used as a measure of influence that can be used on a variety of applications, not just on website rankings. A popular type of PageRank is [Personalized PageRank](https://dl.acm.org/doi/10.1145/2488388.2488433), which is extremely useful in recommendation systems.
+
+<img src="https://i.imgur.com/VnqqFAy.png" alt="drawing" width="600"/>
+
+> PageRank on a simple network. The biggest vertex points to adjacent vertex and therefore making it more important.
 ## Materials
 
 ### Implementation

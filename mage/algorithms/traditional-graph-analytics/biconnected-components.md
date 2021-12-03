@@ -13,9 +13,9 @@ sidebar_label: Biconnected Components
 
 The problem was solved by [John Hopcroft](https://en.wikipedia.org/wiki/John_Hopcroft) and [Robert Tarjan](https://en.wikipedia.org/wiki/Robert_Tarjan) with linear time complexity. Depending on the use case, biconnected components may help to discover hidden structures within the graph.
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Graph-Biconnected-Components.svg/1280px-Graph-Biconnected-Components.svg.png" alt="drawing" width="500"/>
+<img src="https://i.imgur.com/61QH06Y.png" alt="drawing" width="600"/>
 
-> Different colors are different components. Multi-colored vertices are articulation points. Photo from [Wikipedia](https://en.wikipedia.org/wiki/Betweenness_centrality)
+> Different colors are different components. Multi-colored vertices are articulation points.
 
 ## Materials
 

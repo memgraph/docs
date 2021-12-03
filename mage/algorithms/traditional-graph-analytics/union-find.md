@@ -10,6 +10,10 @@ This is yet another important graph analytics algorithm. By using a [**disjoint-
 
 The implementation of the disjoint-set data structure and its operations uses the union by rank and path splitting optimizations described in "Worst-case Analysis of Set Union Algorithms", developed by [Robert Tarjan](https://en.wikipedia.org/wiki/Robert_Tarjan) and [Jan van Leeuwen](https://en.wikipedia.org/wiki/Jan_van_Leeuwen).
 
+<img src="https://i.imgur.com/R6BuXzs.png" alt="drawing"/>
+
+> Structure of the disjoint set on the right side, and graph example on the left. When checking the components, algorithm only checks the shallow tree on left
+
 ## Materials
 
 ### Implementation

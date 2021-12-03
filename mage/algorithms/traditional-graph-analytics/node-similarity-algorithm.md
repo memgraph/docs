@@ -15,7 +15,9 @@ The result of this type of algorithm is always a pair of nodes and assigned valu
 - **Overlap similarity** - defined as the ratio of the cross section of a neighborhood to the less than the number of neighbors of two nodes. Overlap similarity works best in the case of a small number of adjacent nodes
 
 
-// TODO: Photo of node similarity
+<img src="https://i.imgur.com/DKggKtB.png" alt="drawing" width="600"/>
+
+> Example of graph where nodes share a neighborhood. This information is used to calculate similarity.
 
 ## Implementation
 

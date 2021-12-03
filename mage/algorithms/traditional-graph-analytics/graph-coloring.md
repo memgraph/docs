@@ -5,9 +5,13 @@ sidebar_label: Graph Coloring
 ---
 ## Description
 
-Certain applications require special labeling of a graph called **graph coloring**(https://en.wikipedia.org/wiki/Graph_coloring). This “special” labeling refers to the assignment of labels (which we call colors) in such a way that connected neighbors must not be painted the same color. Obviously, such a thing requires color assignment optimization, therefore various computer science techniques are used. Such a problem is NP-hard, so heuristics are used to solve it.
+Certain applications require the special labeling of a graph called **graph coloring**(https://en.wikipedia.org/wiki/Graph_coloring). This “special” labeling refers to the assignment of labels (which we call colors) in such a way that connected neighbors must not be painted the same color. Obviously, such a thing requires color assignment optimization, therefore various computer science techniques are used. Such a problem is NP-hard, so heuristics are used to solve it.
 
 Of course, the main part of the problem is in assigning a minimum number of labels. There are greedy algorithms that solve the problem, however not optimal. Using dynamic programming, the fastest algorithm guarantees O (2.44 ^ n) complexity. While on the other hand, there are heuristic applications like the one with [genetic algorithms](https://en.wikipedia.org/wiki/Genetic_algorithm).
+
+<img src="https://i.imgur.com/aZfNygb.png" alt="drawing" width="600"/>
+
+> Example of graph coloring on a simple graph. Labels are denoted with different colors.
 
 ## Materials
 

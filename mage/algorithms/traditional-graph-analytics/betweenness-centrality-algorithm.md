@@ -11,9 +11,9 @@ Centrality analysis provides information about the node’s importance for an in
 It is defined as the **number of shortest paths** in the graph that passes through the node divided by the total number of shortest paths. The implemented algorithm is described in the paper "[A Faster Algorithm for Betweenness Centrality](http://snap.stanford.edu/class/cs224w-readings/brandes01centrality.pdf)" by Ulrik Brandes of [University of Konstanz](https://www.uni-konstanz.de/en/).
 It is defined as the **number of shortest paths** in the graph that passes through the node divided by the total number of shortest paths. The implemented algorithm is described in the paper "[A Faster Algorithm for Betweenness Centrality](http://snap.stanford.edu/class/cs224w-readings/brandes01centrality.pdf)" by Ulrik Brandes of [University of Konstanz](https://www.uni-konstanz.de/en/).
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Graph_betweenness.svg/1200px-Graph_betweenness.svg.png" alt="drawing" width="500"/>
+<img src="https://i.imgur.com/6R2xdb8.png" alt="drawing" width="600"/>
 
-> Colder colors denote the higher betweenness centrality measure. Photo from [Wikipedia](https://en.wikipedia.org/wiki/Betweenness_centrality)
+> Larger circle means larger betweenness centrality. The middle one has the largest amount of shortest paths flowing through it.
 
 ## Materials
 
