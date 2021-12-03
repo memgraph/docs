@@ -10,28 +10,33 @@ In the domain of estimating the importance of graph nodes, [**PageRank**](https:
 
 If we present nodes as pages and directed edges between them as links the **PageRank** algorithm outputs a probability distribution used to represent the likelihood that a person randomly clicking on links will arrive at any particular page.
 
-The need for its **dynamic implementation** arose at the moment when nodes and edges arrive in a short period of time. A large number of changes would result in either inconsistent information upon arrival, or restarting the algorithm over the entire graph each time the graph changes. Since such changes occur frequently, dynamic implementation allows the previously processed state to be preserved, and new changes are updated in such a way that only the neighborhood of the arriving entity is processed at a constant time. This saves time and allows us to have updated and accurate information about the new values of the **PageRank**.
+The need for its **dynamic implementation** arose at the moment when nodes and edges arrive in a short period of time. A large number of changes would result in either inconsistent information upon arrival or restarting the algorithm over the entire graph each time the graph changes. Since such changes occur frequently, the dynamic implementation allows the previously processed state to be preserved, and new changes are updated in such a way that only the neighborhood of the arriving entity is processed at a constant time. This saves time and allows us to have updated and accurate information about the new values of the **PageRank**.
 
-// Photo of local changes
-
-There are also some disadvantages of this approach, and that is that such an approach does not guarantee an explicitly correct solution but its **approximation**. Such a trade-off is common in computer science, but allows fast execution and guarantees that at a **large scale** such an approximation approaches the correct result.
+<img src="https://i.imgur.com/mTBJCul.png" alt="drawing"/>
 
 
-Valuable work explaining how to quickly calculate these values was developed by [**Bahmani et. al.**](https://scholar.google.com/citations?user=v-hyE4MAAAAJ&hl=en), engineers from [Stanford](http://snap.stanford.edu/) and [Twitter](https://twitter.com/home?lang=en). The paper is worth reading at: [Fast Incremental and Personalized PageRank](http://snap.stanford.edu/class/cs224w-readings/bahmani10pagerank.pdf) :book:
+There are also some disadvantages of this approach, and that is that such an approach does not guarantee an explicitly correct solution but its **approximation**. Such a trade-off is common in computer science but allows fast execution and guarantees that at a **large scale** such an approximation approaches the correct result.
+
+
+Valuable work explaining how to quickly calculate these values was developed by [**Bahmani et. al.**](https://scholar.google.com/citations?user=v-hyE4MAAAAJ&hl=en), engineers from [Stanford](http://snap.stanford.edu/) and [Twitter](https://twitter.com/home?lang=en). The paper is worth reading at [Fast Incremental and Personalized PageRank](http://snap.stanford.edu/class/cs224w-readings/bahmani10pagerank.pdf) :book:.
 
 ## Materials
 
 ### Implementation
 
-[![Dynamic Pagerank](https://img.shields.io/badge/Dynamic_Pagerank-Implementation-FB6E00?style=for-the-badge&logo=github&logoColor=white)](/mage/query-modules/python/node-similarity)
+[![Dynamic Pagerank](https://img.shields.io/badge/Dynamic_Pagerank-Implementation-FB6E00?style=for-the-badge&logo=github&logoColor=white)](https://github.com/memgraph/mage/blob/main/cpp/pagerank_module/pagerank_online_module.cpp)
 
 [![Dynamic Pagerank](https://img.shields.io/badge/Dynamic_Pagerank-Documentation-FCC624?style=for-the-badge&logo=cplusplus&logoColor=white)](/mage/query-modules/python/node-similarity)
 
 Dynamic PageRank is implemented within project [**MAGE**](https://github.com/memgraph/mage). Be sure to check it out in the link above. :point_up:
 
+### Blog posts
+
+// TODO
+
 ## Use cases
 
-Although pagerank can be used in a variety of ways, the need for its dynamic implementation lies in systems that use **temporal graphs**.
+Although PageRank can be used in a variety of ways, the need for its dynamic implementation lies in systems that use **temporal graphs**.
 
 [![Social networks](https://img.shields.io/badge/Social_networks-Application-8A477F?style=for-the-badge)](/mage/query-modules/python/node-similarity)
 
