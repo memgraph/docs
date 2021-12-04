@@ -33,7 +33,9 @@ The optimization of the mapped vectors themselves is done by a well-known machin
 Node2Vec is such a versatile method that it is easily integrated into various solutions. The biggest bonus of having such a method is the ability to use it in downstream prediction/classification tasks.
 
 [![Retail](https://img.shields.io/badge/Retail-Application-8A477F?style=for-the-badge)](/mage/applications/retail-application)
+
 In the network of users and products, node2vec can be used to extract the deeply hidden insight about customers' shopping behavior. This way it can enable targeted advertisements and other recommendations to the user.
 
 [![Knowledge graph](https://img.shields.io/badge/Knowledge_graphs-Application-8A477F?style=for-the-badge)](/mage/applications/knowledge-graph-application)
+
 Knowledge graphs can be both complex and extremely large. Exploring and splitting the graph into logical units is a difficult task. Therefore, using node2vec and mapping the vectors, this way it would enable easier domain exploration since each knowledge node would be mapped to the same place in vector-space.

@@ -30,4 +30,5 @@ Unfortunately, **Graph Classification** is yet not implemented within the projec
 ## Use cases
 
 [![Bioinformatics](https://img.shields.io/badge/Bioinformatics-Application-8A477F?style=for-the-badge)](/mage/applications/bioinformatics-application)
+
 Having only a structure model of one element in research can prevent researchers to spent many hours investigating and observing the properties of these structures. Based on a graph structure, properties such as whether is something is toxic or not can be determined just from the model.
