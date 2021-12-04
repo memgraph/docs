@@ -21,6 +21,6 @@ sidebar_label: Dynamic Community Detection
 
 [![Dynamic Community Detection](https://img.shields.io/badge/Dynamic_Community_Detection-Documentation-FCC624?style=for-the-badge&logo=cplusplus&logoColor=white)](/mage/query-modules/python/node-similarity)
 
-Dynamic Community Detection is implemented within project [**MAGE**](https://github.com/memgraph/mage). Be sure to check it out in the link above. :point_up:
+Dynamic Community Detection is implemented within the project [**MAGE**](https://github.com/memgraph/mage). Be sure to check it out in the link above. :point_up:
 
 ## Use cases

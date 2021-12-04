@@ -38,7 +38,7 @@ Dynamic Node2Vec is implemented by [F.Beres](https://ferencberes.github.io/) in 
 > _Our little magician Memgraph MAGE has recently received one more spell - the Online Node2Vec algorithm. Since he is still too scared to use it, you, as a brave spirit, will step up and use it on a real challenge to show MAGE how it’s done. This challenge includes building an Online Recommendation System using k-means clustering and the newborn spell - Online Node2Vec algorithm._
 
 
-// todo
+// TODO
 
 ## Use cases
 
