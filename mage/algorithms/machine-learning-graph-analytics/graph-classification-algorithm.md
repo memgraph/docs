@@ -15,6 +15,11 @@ To make this possible, the main technique is to design features over the structu
 2. [Weisfeiler-Lehman kernel](https://www.jmlr.org/papers/volume12/shervashidze11a/shervashidze11a.pdf) - color refinement, teaching colors to the neighborhood until convergence is achieved
 3. Graph Deep Learning - designing a network that can extract a deeper feature depending on the structure of the graph
 
+<img src="https://i.imgur.com/u85VSOM.png" alt="drawing"/>
+
+> Probability of different labels on graph classification for molecular structures
+
+
 ## Materials
 
 ### Implementation

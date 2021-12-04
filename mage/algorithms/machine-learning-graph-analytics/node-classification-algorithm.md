@@ -22,6 +22,10 @@ However, these methods are only a few. Today's graph machine learning is being d
 
 and many, many more. This task has become quite popular and is used in many industries where knowledge is stored in the form of a graph structure.
 
+<img src="https://i.imgur.com/hbWDz7q.png" alt="drawing"/>
+
+> Previously labeled nodes can be used to determine the class of unclassified ones
+
 ## Materials
 
 ### Implementation

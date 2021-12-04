@@ -6,6 +6,13 @@ sidebar_label: Dynamic Community Detection
 
 ## Description
 
+// TODO Text
+
+<img src="https://i.imgur.com/NiQi7NW.png" alt="drawing"/>
+
+> The above network shows the computation graph of message propagation in GNNs.
+
+
 ## Materials
 
 ### Implementation

@@ -12,6 +12,10 @@ Node2Vec stands out as the most popular such method. It is based on random walks
 
 The optimization of the mapped vectors themselves is done by well-known machine learning methods such as gradient descent. In the end, the result obtained can be used for the purpose of node classification or link prediction, both truly popular.
 
+<img src="https://i.imgur.com/HXHXLwZ.png" alt="drawing"/>
+
+> Illustration of how a graph embeddings can be mapped to 2D space and clearly separate the entities of graph
+
 ## Materials
 
 ### Implementation

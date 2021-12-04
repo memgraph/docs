@@ -19,6 +19,11 @@ On the other hand, such a prediction can be learned from the nodes by looking at
 
 Then, there are the most advanced models so far and they are based on **graph embeddings**, which serve as features for further classification tasks. Likewise, it is possible to drive **graph neural network (GNN)** methods for the same task.
 
+<img src="https://i.imgur.com/bAKxgkB.png" alt="drawing"/>
+
+> Predicted relationships within the certain community
+
+
 ## Materials
 
 ### Implementation
