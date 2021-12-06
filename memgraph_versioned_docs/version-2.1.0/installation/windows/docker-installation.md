@@ -5,7 +5,7 @@ sidebar_label: Docker 🐳
 slug: /install-memgraph-on-windows-docker
 ---
 
-This article briefly outlines the basic steps necessary to install and run
+TEST TEST TEST TEST TEST TEST TEST
 **Memgraph** on Windows with Docker. <br/>
 There are two main Docker images that you can install:
 
