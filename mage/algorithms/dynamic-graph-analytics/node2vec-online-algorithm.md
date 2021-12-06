@@ -5,7 +5,7 @@ sidebar_label: Dynamic node2vec
 ---
 
 ## Description
-**Dynamic node2vec** is **random walk based** method which creates embeddings for every new node added to the graph. For every new edge, there is a recalculation of probabilities (weights) that are used in walk sampling. A goal of the method is to enforce that the embedding of node `v` is similar to the embedding of nodes with the ability to reach node `v` across edges that appeared one before the other.
+**Dynamic Node2Vec** is **random walk based** method which creates embeddings for every new node added to the graph. For every new edge, there is a recalculation of probabilities (weights) that are used in walk sampling. A goal of the method is to enforce that the embedding of node `v` is similar to the embedding of nodes with the ability to reach node `v` across edges that appeared one before the other.
 
 <img src="https://i.imgur.com/J6womJf.png" alt="drawing"/>
 
@@ -21,7 +21,7 @@ Moreover, new nodes can be introduced into the graph (e.g., users can join the s
 * **Growing Graphs**: All existing approaches assume a fixed number of nodes in learning graph embeddings and thus cannot handle growing graphs.
 * **Scalability**: Learning embeddings independently for each snapshot leads to running time linear in the number of snapshots. As learning a single embedding is computationally expensive, the naive approach does not scale to dynamic networks with many snapshots
 
-Dynamic Node2Vec is implemented by [F.Beres](https://ferencberes.github.io/) in the "[Node embeddings in dynamic graphs](https://appliednetsci.springeropen.com/articles/10.1007/s41109-019-0169-5)".
+Dynamic Node2Vec is created by [F.Beres et al](https://ferencberes.github.io/) in the "[Node embeddings in dynamic graphs](https://appliednetsci.springeropen.com/articles/10.1007/s41109-019-0169-5)".
 
 ## Materials
 
@@ -37,11 +37,26 @@ Dynamic Node2Vec is implemented by [F.Beres](https://ferencberes.github.io/) in 
 
 > _Our little magician Memgraph MAGE has recently received one more spell - the Online Node2Vec algorithm. Since he is still too scared to use it, you, as a brave spirit, will step up and use it on a real challenge to show MAGE how it’s done. This challenge includes building an Online Recommendation System using k-means clustering and the newborn spell - Online Node2Vec algorithm._
 
-
-// TODO
+In this blog post you can learn more on how to use dynamic node2vec for node clustering.
 
 ## Use cases
 
-[![UNKNOWN](https://img.shields.io/badge/UNKNOWN-Application-8A477F?style=for-the-badge)](/mage/query-modules/python/node-similarity)
+[![Social networks](https://img.shields.io/badge/Social_networks-Application-8A477F?style=for-the-badge)](/mage/applications/social-media-application)
 
-// TODO
+Dynamic Node2Vec can be used to find communities in social networks like [Twitter](https://twitter.com), [Facebook](https://www.facebook.com/), and so on. In order to find communities we first need to apply dynamic node2vec and then use unsupervised machine learning algorithm, i.e.
+[k-means](https://en.wikipedia.org/wiki/K-means_clustering) which will find us clusters among node embeddings.
+
+
+[![Link prediction](https://img.shields.io/badge/Link_prediction-Aplication-8A477F?style=for-the-badge)](/mage/algorithms/machine-learning-graph-analytics/link-prediction)
+
+We can use dynamic node2vec in case of link prediction. To do so, after obtaining node embeddings we can predict new links depending on similarity of the node embeddings.
+
+[![Node classification](https://img.shields.io/badge/Node_classification-Aplication-8A477F?style=for-the-badge)](/mage/algorithms/machine-learning-graph-analytics/node-clasification)
+
+Furthermore we can use dynamic node2vec for node classification task. Node features (embeddings) are input to a one-vs-rest logistic regression. We train our model only on subset of labels, and test it on the rest of them. Our model here
+is a one-vs-rest logistic regression. You can check out following [paper](https://arxiv.org/pdf/1705.02801.pdf) for more references.
+
+[![Graph classification](https://img.shields.io/badge/Graph_classification-Aplication-8A477F?style=for-the-badge)](/mage/algorithms/machine-learning-graph-analytics/graph-clasification)
+
+For graph classification we can create a virtual node that is connected to all the nodes in graph. After running dynamic node2vec, embedding of virtual node will represent embedding of entire graph and we can then compare embedding of virtual node
+with embedding of virtual nodes of other graphs.

@@ -9,7 +9,6 @@ sidebar_label: Betweenness Centrality
 Centrality analysis provides information about the node’s importance for an information flow or connectivity of the network. [Betweenness centrality](https://en.wikipedia.org/wiki/Betweenness_centrality) is one of the most used centrality metrics. Betweenness centrality measures the extent to which a node lies on paths between other nodes in the graph. Thus, nodes with high **betweenness** may have considerable influence within a network under their control over information passing between others. The calculation of betweenness centrality is not standardized, and there are many ways to solve it.
 
 It is defined as the **number of shortest paths** in the graph that passes through the node divided by the total number of shortest paths. The implemented algorithm is described in the paper "[A Faster Algorithm for Betweenness Centrality](http://snap.stanford.edu/class/cs224w-readings/brandes01centrality.pdf)" by Ulrik Brandes of [University of Konstanz](https://www.uni-konstanz.de/en/).
-It is defined as the **number of shortest paths** in the graph that passes through the node divided by the total number of shortest paths. The implemented algorithm is described in the paper "[A Faster Algorithm for Betweenness Centrality](http://snap.stanford.edu/class/cs224w-readings/brandes01centrality.pdf)" by Ulrik Brandes of [University of Konstanz](https://www.uni-konstanz.de/en/).
 
 <img src="https://i.imgur.com/6R2xdb8.png" alt="drawing" width="600"/>
 
