@@ -11,11 +11,18 @@ the local machine (`localhost:9092`) as the default configuration of the Kafka
 quick start guide. Please adjust your setup accordingly.
 
 :::tip
-Check out the **example-streaming-app** on [GitHub](https://github.com/memgraph/example-streaming-app) to see how Memgraph can be connected to a Kafka stream.
+
+Check out the **example-streaming-app** on
+[GitHub](https://github.com/memgraph/example-streaming-app) to see how Memgraph
+can be connected to a Kafka stream.
+
 :::
 
 :::note
-For detailed technical information on streaming support, check out the [reference guide](/reference-guide/streams/overview.md).
+
+For detailed technical information on streaming support, check out the
+[reference guide](/reference-guide/streams/overview.md).
+
 :::
 
 ## Configuring Memgraph
@@ -28,13 +35,14 @@ on a `CREATE STREAM` clause.
 
 ## Creating the stream
 
-The very first step is to make sure at least one transformation module is loaded into
-Memgraph. If you are not sure how to define them, check out the
-[transformation module guide](/database-functionalities/streams/kafka/implement-transformation-module.md).
-We are going to use `transformation.my_transformation` from that example, but
-we are going to alias it as `my.transform` to make the size of result tables slimmer.
-For the topic name, we are going to use the topic from the Kafka quick start,
-`quickstart-events`.
+The very first step is to make sure at least one transformation module is loaded
+into Memgraph. If you are not sure how to define them, check out the
+[transformation module
+guide](/database-functionalities/streams/kafka/implement-transformation-module.md).
+We are going to use `transformation.my_transformation` from that example, but we
+are going to alias it as `my.transform` to make the size of result tables
+slimmer. For the topic name, we are going to use the topic from the Kafka quick
+start, `quickstart-events`.
 
 ```cypher
 CREATE STREAM myStream

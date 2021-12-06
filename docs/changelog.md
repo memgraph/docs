@@ -10,8 +10,8 @@ sidebar_label: Changelog
 
 ### Breaking Changes
 
-* Loading streams created by older than 2.1 versions of Memgraph is not
-  possible. We suggest you to extract the necessary information using the older
+* Loading streams created by versions of Memgraph older than 2.1 is not
+  possible. We suggest you extract the necessary information using the older
   version of Memgraph and recreate the streams in a newer version (Memgraph 2.1
   and newer).
 
@@ -19,16 +19,18 @@ sidebar_label: Changelog
 
 ### Major Features and Improvements
 
-* Added procedures for retrieving configuration information specific for each stream type.
-  `mg.pulsar_stream_info` will return information about a specific Pulsar stream, and `mg.kafka_stream_info`
-  will return information about a specific Kafka stream. [#301](https://github.com/memgraph/memgraph/pull/301)
-* `SHOW STREAMS` now returns default values for batch interval and batch size if they weren't specified.
-  [#306](https://github.com/memgraph/memgraph/pull/306)
+* Added procedures for retrieving configuration information specific for each
+  stream type. `mg.pulsar_stream_info` will return information about a specific
+  Pulsar stream and `mg.kafka_stream_info` will return information about a
+  specific Kafka stream. [#301](https://github.com/memgraph/memgraph/pull/301)
+* `SHOW STREAMS` now returns default values for batch interval and batch size if
+  they weren't specified. [#306](https://github.com/memgraph/memgraph/pull/306)
 
 ### Bug Fixes
 
-* Query execution stats returned after a Cypher query was executed are now currently
-  updated with the changes made in write procedures. [#304](https://github.com/memgraph/memgraph/pull/304)
+* Query execution stats, returned after a Cypher query was executed, are now
+  updated with the changes made in write procedures.
+  [#304](https://github.com/memgraph/memgraph/pull/304)
 * Loading streams created by older versions won't cause Memgraph to crash.
   [#302](https://github.com/memgraph/memgraph/pull/302)
 
