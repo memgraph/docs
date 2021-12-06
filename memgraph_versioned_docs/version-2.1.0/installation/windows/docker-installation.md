@@ -7,7 +7,7 @@ slug: /install-memgraph-on-windows-docker
 
 This article briefly outlines the basic steps necessary to install and run
 **Memgraph** on Windows with Docker. This works on Win 10 and 11.<br/>
-There are two main Docker images that you can install:
+There are two main Mamgraph Docker images that you can install:
 
 - [**Memgraph Platform**](#memgraph-platform) which contains:
   - **Memgraph**
