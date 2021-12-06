@@ -12,10 +12,9 @@ However, some of these changes are becoming ubiquitous nowadays. Thus, for examp
 
 By analyzing the connections between users and resources, we can get an insight that we would not have the opportunity to see using standard technologies such as **relational data containers**. In addition, the advantage of graph data is the ability to faster analyze and use the tools available particularly for graphs.
 
+<img src="https://images.unsplash.com/photo-1583574928052-9a2563277468?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&h=300&q=80" alt="drawing" />
+
 ## Applying graphs
-
-<img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&h=300&q=10" alt="drawing" width="600"/>
-
 ### Data Management
 
 Within the financial industry, special emphasis is placed on **data security**. Thus, it is necessary to monitor when and under what conditions the data were moved from one system to another. [**Data lineage**](https://en.wikipedia.org/wiki/Data_lineage) is taken quite seriously.
@@ -40,7 +39,7 @@ By using features such as **closeness** to previous scams, **centrality**, **com
 ### Money Laundering
 
 Money launderers are becoming more sophisticated every year, therefore making them difficult to track. Manual investigation on such cases can take up years. Money laundering is detected via **suspicious payment chains**. These structures are easy to investigate and operate with graphs, and therefore making them the most efficient technology to tackle this kind of fraud.
-## Where to from here
+## Where next
 
 This text is a **summary** of one area that fits perfectly with the application of graphs. Therefore, we would like to have you with us when **implementing** some of these applications. Share your **opinions**, **experiences** and **problems** you encounter when working with **Memgraph**.
 
