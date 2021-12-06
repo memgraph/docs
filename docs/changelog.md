@@ -25,6 +25,8 @@ sidebar_label: Changelog
 
 ### Bug Fixes
 
+* `SHOW STREAMS` now returns default values for batch interval and batch size if they weren't specified.
+  [#306](https://github.com/memgraph/memgraph/pull/306)
 * Query execution stats returned after a Cypher query was executed are now currently
   updated with the changes made in write procedures. [#304](https://github.com/memgraph/memgraph/pull/304)
 * Loading streams created by older versions won't cause Memgraph to crash.
