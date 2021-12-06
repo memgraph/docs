@@ -6,7 +6,7 @@ slug: /install-memgraph-on-windows-docker
 ---
 
 This is a new sentence you do not wish to merge! <br/>
-There are two main Docker images that you can install:
+Ovo je druga recenica:
 
 - [**Memgraph Platform**](#memgraph-platform) which contains:
   - **Memgraph**
