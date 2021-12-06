@@ -5,7 +5,9 @@ sidebar_label: Graph Coloring
 ---
 ## Description
 
-Certain applications require the special labeling of a graph called [**graph coloring**](https://en.wikipedia.org/wiki/Graph_coloring). This “special” labeling refers to the assignment of labels (which we call colors) in such a way that connected neighbors must not be painted the same color. Obviously, such a thing requires color assignment optimization, therefore various computer science techniques are used. Such a problem is NP-hard, so heuristics are used to solve it.
+Certain applications require the special labeling of a graph called [**graph coloring**](https://en.wikipedia.org/wiki/Graph_coloring). 
+This “special” labeling refers to the assignment of labels (which we call colors) in such a way that connected neighbors must not be given the same color. Since this problem is [NP-hard](https://en.wikipedia.org/wiki/NP-hardness) there
+doesn't exist algorithm that can solve problem in a polynomial time. Therefore, various computer science techniques called [heuristics](https://en.wikipedia.org/wiki/Heuristic_(computer_science)) are used to solve **graph coloring**.
 
 Of course, the main part of the problem is in assigning a minimum number of labels. There are greedy algorithms that solve the problem, however not optimal. Using dynamic programming, the fastest algorithm guarantees O(2.44 ^ n) complexity. While on the other hand, there are heuristic applications like the one with [genetic algorithms](https://en.wikipedia.org/wiki/Genetic_algorithm).
 

@@ -34,7 +34,7 @@ One obvious usage of community detection is within the finance industry. Fraudst
 
 [![Social networks](https://img.shields.io/badge/Social_networks-Application-8A477F?style=for-the-badge)](/mage/applications/social-media-application)
 
-The major threat to freedom is terrorist groups. Such acts together on social media organize future crimes. Once one of the users is exposed as a potential threat, others can be revealed by analyzing their community on social networks.
+The major threat to freedom are terrorist groups. Such acts together on social media organize future crimes. Once one of the users is exposed as a potential threat, others can be revealed by analyzing their community on social networks.
 
 Interests are usually shared within the community. To target a specific audience, community detection can be used to recommend certain products among users that are sharing interests.
 
