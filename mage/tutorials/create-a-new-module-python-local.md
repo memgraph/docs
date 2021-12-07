@@ -90,15 +90,6 @@ The path is created from the `start` node, and edges are appended to it
 iteratively.
 
 
-:::warning
-
-The following steps depend on the how you installed Memgraph and MAGE as we need
-to import the modules.
-
-:::
-
-
-
 ## Importing, querying and testing a module
 
 Now in order to import, query and test a module, hop to [following page](/mage/tutorials/run-a-query-module).
