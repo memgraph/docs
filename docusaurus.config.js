@@ -232,7 +232,7 @@ module.exports = {
       contextualSearch: true,
     },
     prism: {
-      additionalLanguages: ["cypher", "php"],
+      additionalLanguages: ["cypher", "php", "rust", "csharp", "java", "docker"],
     },
     hideableSidebar: true,
     announcementBar: {
@@ -618,11 +618,6 @@ module.exports = {
             to: "/memgraph/database-functionalities/tensorflow-setup",
             from: ["/machine-learning/tensorflow-op/tensorflow"],
           },
-          //FAQ redirects
-          {
-            to: "/help-center/faq",
-            from: ["/memgraph/faq"],
-          },
           //Memgraph Lab redirects
           {
             to: "/memgraph-lab/style-script/quick-start",
@@ -753,6 +748,11 @@ module.exports = {
             to: "/memgraph/database-functionalities/networkx",
             from: ["/memgraph/reference-guide/networkx/nxalg"],
           },
+          //Help Center redirects
+          {
+            to: "/help-center/faq",
+            from: ["/memgraph/faq"],
+          },
           {
             to: "/help-center/",
             from: ["/memgraph/getting-help/getting-help"],
@@ -760,6 +760,15 @@ module.exports = {
           {
             to: "/help-center/faq",
             from: ["/memgraph/getting-help/faq"],
+          },
+          //Kafka redirects because of introducing other stream sources
+          {
+            to: "/memgraph/database-functionalities/streams/kafka/kafka-streams",
+            from: ["/memgraph/database-functionalities/streams/kafka-streams"],
+          },
+          {
+            to: "/memgraph/database-functionalities/streams/kafka/implement-transformation-module",
+            from: ["/memgraph/database-functionalities/streams/implement-transformation-module"],
           },
         ],
       },

@@ -70,7 +70,7 @@ in the terminal while Memgraph Lab is available on `http://localhost:3000`.
 To start Memgraph, use the following command:
 
 ```console
-docker run -it -p 7687:7687 -p 3000:3000 memgraph
+docker run -it -p 7687:7687 -p 3000:3000 memgraph/memgraph-platform
 ```
 
 :::info Docker Volumes
@@ -80,7 +80,7 @@ container is stopped). You need to use local volumes to store the data
 permanently, which is why Memgraph is started with the `-v` flag.
 
 ```console
-docker run -it -p 7687:7687 -p 3000:3000 -v mg_lib:/var/lib/memgraph memgraph
+docker run -it -p 7687:7687 -p 3000:3000 -v mg_lib:/var/lib/memgraph memgraph/memgraph-platform
 ```
 
 More information on Docker Volumes can be found
@@ -134,7 +134,7 @@ When using Docker, you can also specify the configuration options in the `docker
 run` command:
 
 ```console
-docker run -it -p 7687:7687 -p 3000:3000 -e MEMGRAPH="--bolt-port=7687" memgraph
+docker run -it -p 7687:7687 -p 3000:3000 -e MEMGRAPH="--bolt-port=7687" memgraph/memgraph-platform
 ```
 
 To learn about all the configuration options, check out the [Reference
@@ -150,7 +150,7 @@ docker run -it -p 7687:7687 -p 3000:3000 -e MEMGRAPH="--bolt-port=7687" \
   -v mg_lib:/var/lib/memgraph \
   -v mg_log:/var/log/memgraph \
   -v mg_etc:/etc/memgraph \
-  memgraph
+  memgraph/memgraph-platform
 ```
 
 The volume `mg_etc` contains the configuration file while the logs will be saved
@@ -265,8 +265,8 @@ setup but can usually be found in `/var/lib/docker/volumes/`.
 - Configuration flags need to be passed inside of environmental variables when
   working with Memgraph Platform. For example, you can start the Memgraph base
   image with `docker run memgraph --bolt-port=7687`, while `docker run -e
-  MEMGRAPH="--bolt-port=7687" memgraph` is the same command for Memgraph
-  Platform.
+  MEMGRAPH="--bolt-port=7687" memgraph/memgraph-platform` is the same command
+  for Memgraph Platform.
 
 - When starting Memgraph Platform, you need to include the `-it` flag that tells
   Docker to open an interactive container instance. Otherwise, you won't have

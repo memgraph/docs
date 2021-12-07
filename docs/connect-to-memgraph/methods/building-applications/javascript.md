@@ -9,10 +9,12 @@ World!`** program that connects to the Memgraph database and executes simple
 queries.
 
 :::note
+
 Running queries directly from a web browser is **not a recommended usage**
 because of additional requirements and possible performance issues. In other
 words, we encourage users to use server-side libraries and clients for top
 performance whenever possible.
+
 :::
 
 ## Prerequisites
@@ -51,8 +53,7 @@ Let's jump in and connect a simple program to Memgraph.
 **1.** Create a new directory for your application, for example `/MyApp` and
 position yourself in it.
 
-**2.** Create a `websockify.sh` script with the
-following code:
+**2.** Create a `websockify.sh` script with the following code:
 
 ```bash
 #!/bin/bash

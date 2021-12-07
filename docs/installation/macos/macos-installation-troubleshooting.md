@@ -8,7 +8,7 @@ slug: /macos-installation-troubleshooting
 ## Issues when connecting to Memgraph
 
 ```console
-docker run -it memgraph
+docker run -it memgraph/memgraph-platform
 ```
 
 While this command will start a Memgraph instance, not publishing the port will
@@ -17,13 +17,13 @@ cause problems when trying to connect to the database via **Memgraph Lab** or
 container's port to the host using the `-p` flag and by specifying the port:
 
 ```console
-docker run -it -p 7687:7687 -p 3000:3000 memgraph
+docker run -it -p 7687:7687 -p 3000:3000 memgraph/memgraph-platform
 ```
 
 ## Issues with connecting **mgconsole** to the database
 
 ```console
-docker run -it --entrypoint=mgconsole memgraph --host HOST
+docker run -it --entrypoint=mgconsole memgraph/memgraph-platform --host HOST
 ```
 
 Although unlikely, sometimes there are issues with connecting **mgconsole** to
@@ -69,5 +69,5 @@ the [querying](/connect-to-memgraph/overview.mdx) section. Just replace
 `HOST` from the following command with the appropriate IP address:
 
 ```console
-docker run -it --entrypoint=mgconsole memgraph --host HOST
+docker run -it --entrypoint=mgconsole memgraph/memgraph-platform --host HOST
 ```

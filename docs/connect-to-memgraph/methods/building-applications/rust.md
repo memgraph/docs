@@ -4,44 +4,58 @@ title: Rust quick start
 sidebar_label: Rust
 ---
 
-At the end of this guide, you will have created a simple Rust **`Hello, World!`** program that connects to the Memgraph database and executes simple queries.
+At the end of this guide, you will have created a simple Rust **`Hello,
+World!`** program that connects to the Memgraph database and executes simple
+queries.
 
 ## Prerequisites
 
 To follow this guide, you will need:
-* A **running Memgraph instance**. If you need to set up Memgraph, take a look at the [Installation guide](/installation/overview.md).
+* A **running Memgraph instance**. If you need to set up Memgraph, take a look
+  at the [Installation guide](/installation/overview.md).
 * A basic understanding of graph databases and the property graph model.
-* **Docker** installed and running. Instructions on how to setup Docker can be found on the [official Docker website](https://docs.docker.com/get-docker/).
-* The [**rsmgclient driver**](https://github.com/memgraph/rsmgclient). A Memgraph database adapter for the Rust programming language. **(if you are not using Docker)**
+* **Docker** installed and running. Instructions on how to setup Docker can be
+  found on the [official Docker website](https://docs.docker.com/get-docker/).
+* The [**rsmgclient driver**](https://github.com/memgraph/rsmgclient). A
+  Memgraph database adapter for the Rust programming language. **(if you are not
+  using Docker)**
 
 :::info
-**NOTE:** We recommend using Docker because it simplifies installing the driver dependencies. If you don't wish to use Docker, you will need to install the **rsmgclient driver** locally.
+
+**NOTE:** We recommend using Docker because it simplifies installing the driver
+dependencies. If you don't wish to use Docker, you will need to install the
+**rsmgclient driver** locally.
+
 :::
 
 ## Basic setup
 
-We'll be using a **Dockerized Rust program** to demonstrate how to connect to a running Memgraph database instance.
-If you don't wish to use Docker, the steps might be slightly different, but the code is most likley the same or very similar.<br />
+We'll be using a **Dockerized Rust program** to demonstrate how to connect to a
+running Memgraph database instance. If you don't wish to use Docker, the steps
+might be slightly different, but the code is most likley the same or very
+similar.<br />
 
 Let's jump in and connect a simple program to Memgraph.
 
-**1.** Create a new Rust project with the name **memgraph_rust** by running the following command:
+**1.** Create a new Rust project with the name **memgraph_rust** by running the
+following command:
 
 ```
 cargo new memgraph_rust --bin
 ```
 
-**2.** Add the following line to the `Cargo.toml` file under the line `[dependencies]`:
+**2.** Add the following line to the `Cargo.toml` file under the line
+`[dependencies]` :
 
 ```
 rsmgclient = "0.1.1"
 ```
 
-**3.** To create the actual program, add the following code to the `src/main.rs` file:
+**3.** To create the actual program, add the following code to the `src/main.rs`
+file:
 
-```Rust
+```rust
 use rsmgclient::{ConnectParams, Connection, SSLMode};
-
 
 fn main(){
     // Parameters for connecting to database.
@@ -74,7 +88,6 @@ fn main(){
         Err(err) => panic!("{}", err)
     };
 
-
     // Commit any pending transaction to the database.
     match connection.commit() {
         Ok(()) => {},
@@ -83,9 +96,10 @@ fn main(){
 }
 ```
 
-**4.** Create a new file in the project root directory `/memgraph_rust` and name it  `Dockerfile`. Add the following code to it:
+**4.** Create a new file in the project root directory `/memgraph_rust` and name
+it `Dockerfile` . Add the following code to it:
 
-```Dockerfile
+```dockerfile
 # Set base image (host OS)
 FROM rust:1.42
 
@@ -121,8 +135,9 @@ RUN cargo build
 CMD [ "cargo", "run" ]
 ```
 
-**5.** Don't forget to change the host address in your code.<br />
-Find the **`CONTAINER ID`** with `docker ps` and use it in the following command to retrieve the address:
+**5.** Don't forget to change the host address in your code.<br /> Find the
+**`CONTAINER ID`** with `docker ps` and use it in the following command to
+retrieve the address:
 
 ```
 docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' CONTAINER ID
@@ -150,5 +165,7 @@ Columns: u, m
 
 ## Where to next?
 
-For real-world examples of how to use Memgraph, we suggest you take a look at the **[Tutorials](/tutorials/overview.md)** page.
-You can also browse through the **[Database functionalities](/database-functionalities/overview.md)** section to get an overview of all the functionalities Memgraph offers.
+For real-world examples of how to use Memgraph, we suggest you take a look at
+the **[Tutorials](/tutorials/overview.md)** page. You can also browse through
+the **[Database functionalities](/database-functionalities/overview.md)**
+section to get an overview of all the functionalities Memgraph offers.

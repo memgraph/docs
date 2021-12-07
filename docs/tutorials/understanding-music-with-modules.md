@@ -82,7 +82,7 @@ command:
 docker run -it -p 7687:7687 \
   -v $(pwd)/modules:/modules \
   -e MEMGRAPH="--query-modules-directory=/modules" \
-  memgraph
+  memgraph/memgraph-platform
 ```
 
 ## Example queries and procedures
