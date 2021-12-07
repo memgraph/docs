@@ -126,10 +126,24 @@ module.exports = {
         "reference-guide/backup",
         {
           type: "category",
-          label: "Connecting to Kafka streams",
+          label: "Connecting to stream sources",
           items: [
-            "database-functionalities/streams/kafka-streams",
-            "database-functionalities/streams/implement-transformation-module",
+            {
+              type: "category",
+              label: "Kafka",
+              items: [
+                "database-functionalities/streams/kafka/kafka-streams",
+                "database-functionalities/streams/kafka/implement-transformation-module",
+              ],
+            },
+            {
+              type: "category",
+              label: "Pulsar",
+              items: [
+                "database-functionalities/streams/pulsar/pulsar-streams",
+                "database-functionalities/streams/pulsar/implement-transformation-module",
+              ],
+            }
           ],
         },
         {
@@ -166,7 +180,6 @@ module.exports = {
         "reference-guide/overview",
         "reference-guide/backup",
         "reference-guide/configuration",
-        "reference-guide/runtime-settings",
         "reference-guide/graph-algorithms",
         {
           type: "category",
@@ -187,6 +200,7 @@ module.exports = {
 
         "reference-guide/indexing",
         "reference-guide/isolation-levels",
+        "reference-guide/metadata",
         {
           type: "category",
           label: "Query modules",
@@ -226,6 +240,7 @@ module.exports = {
           ],
         },
         "reference-guide/replication",
+        "reference-guide/runtime-settings",
         {
           type: "category",
           label: "Streams",

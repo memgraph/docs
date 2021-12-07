@@ -1,0 +1,677 @@
+{
+  "version-2.1.1/memgraph": [
+    {
+      "type": "doc",
+      "id": "version-2.1.1/getting-started"
+    },
+    {
+      "type": "category",
+      "label": "Installation",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-2.1.1/installation/overview"
+        },
+        {
+          "type": "category",
+          "label": "Windows",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-2.1.1/installation/windows/docker-installation"
+            },
+            {
+              "type": "doc",
+              "id": "version-2.1.1/installation/windows/wsl-installation"
+            },
+            {
+              "type": "doc",
+              "id": "version-2.1.1/installation/windows/windows-installation-troubleshooting"
+            }
+          ],
+          "collapsible": true,
+          "collapsed": true
+        },
+        {
+          "type": "category",
+          "label": "macOS",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-2.1.1/installation/macos/docker-installation"
+            },
+            {
+              "type": "doc",
+              "id": "version-2.1.1/installation/macos/macos-installation-troubleshooting"
+            }
+          ],
+          "collapsible": true,
+          "collapsed": true
+        },
+        {
+          "type": "category",
+          "label": "Linux",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-2.1.1/installation/linux/docker-installation"
+            },
+            {
+              "type": "doc",
+              "id": "version-2.1.1/installation/linux/ubuntu-installation"
+            },
+            {
+              "type": "doc",
+              "id": "version-2.1.1/installation/linux/debian-installation"
+            },
+            {
+              "type": "doc",
+              "id": "version-2.1.1/installation/linux/rpm-installation"
+            },
+            {
+              "type": "doc",
+              "id": "version-2.1.1/installation/linux/linux-installation-troubleshooting"
+            }
+          ],
+          "collapsible": true,
+          "collapsed": true
+        }
+      ],
+      "collapsible": true,
+      "collapsed": true
+    },
+    {
+      "type": "category",
+      "label": "Connect to Memgraph",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-2.1.1/connect-to-memgraph/overview"
+        },
+        {
+          "type": "category",
+          "label": "Methods",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-2.1.1/connect-to-memgraph/methods/mgconsole"
+            },
+            {
+              "type": "link",
+              "label": "Memgraph Lab",
+              "href": "https://memgraph.com/docs/memgraph-lab"
+            },
+            {
+              "type": "doc",
+              "id": "version-2.1.1/connect-to-memgraph/methods/drivers"
+            },
+            {
+              "type": "category",
+              "label": "Building applications",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "version-2.1.1/connect-to-memgraph/methods/building-applications/python"
+                },
+                {
+                  "type": "doc",
+                  "id": "version-2.1.1/connect-to-memgraph/methods/building-applications/rust"
+                },
+                {
+                  "type": "doc",
+                  "id": "version-2.1.1/connect-to-memgraph/methods/building-applications/c-sharp"
+                },
+                {
+                  "type": "doc",
+                  "id": "version-2.1.1/connect-to-memgraph/methods/building-applications/java"
+                },
+                {
+                  "type": "doc",
+                  "id": "version-2.1.1/connect-to-memgraph/methods/building-applications/go"
+                },
+                {
+                  "type": "doc",
+                  "id": "version-2.1.1/connect-to-memgraph/methods/building-applications/nodejs"
+                },
+                {
+                  "type": "doc",
+                  "id": "version-2.1.1/connect-to-memgraph/methods/building-applications/javascript"
+                },
+                {
+                  "type": "doc",
+                  "id": "version-2.1.1/connect-to-memgraph/methods/building-applications/php"
+                }
+              ],
+              "collapsible": true,
+              "collapsed": true
+            }
+          ],
+          "collapsible": true,
+          "collapsed": true
+        }
+      ],
+      "collapsible": true,
+      "collapsed": true
+    },
+    {
+      "type": "category",
+      "label": "Import data",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-2.1.1/import-data/overview"
+        },
+        {
+          "type": "category",
+          "label": "CSV",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-2.1.1/import-data/load-csv-clause"
+            },
+            {
+              "type": "doc",
+              "id": "version-2.1.1/import-data/csv-import-tool"
+            }
+          ],
+          "collapsible": true,
+          "collapsed": true
+        },
+        {
+          "type": "category",
+          "label": "Kafka",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-2.1.1/import-data/kafka/overview"
+            },
+            {
+              "type": "doc",
+              "id": "version-2.1.1/import-data/kafka/avro"
+            },
+            {
+              "type": "doc",
+              "id": "version-2.1.1/import-data/kafka/json"
+            },
+            {
+              "type": "doc",
+              "id": "version-2.1.1/import-data/kafka/protobuf"
+            }
+          ],
+          "collapsible": true,
+          "collapsed": true
+        },
+        {
+          "type": "category",
+          "label": "Migrate SQL",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-2.1.1/import-data/migrate/mysql"
+            },
+            {
+              "type": "doc",
+              "id": "version-2.1.1/import-data/migrate/postgresql"
+            }
+          ],
+          "collapsible": true,
+          "collapsed": true
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/import-data/cypherl"
+        }
+      ],
+      "collapsible": true,
+      "collapsed": true
+    },
+    {
+      "type": "category",
+      "label": "Tutorials",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-2.1.1/tutorials/overview"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/tutorials/analyzing-ted-talks"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/tutorials/backpacking-through-europe"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/tutorials/exploring-the-european-road-network"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/tutorials/football-transfers"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/tutorials/got-deaths"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/tutorials/graphing-the-premier-league"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/tutorials/marvel-universe"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/tutorials/movie-recommendation"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/tutorials/social-network-analysis"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/tutorials/understanding-music-with-modules"
+        }
+      ],
+      "collapsible": true,
+      "collapsed": true
+    },
+    {
+      "type": "category",
+      "label": "Database functionalities",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-2.1.1/database-functionalities/overview"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/reference-guide/backup"
+        },
+        {
+          "type": "category",
+          "label": "Connecting to stream sources",
+          "items": [
+            {
+              "type": "category",
+              "label": "Kafka",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "version-2.1.1/database-functionalities/streams/kafka/kafka-streams"
+                },
+                {
+                  "type": "doc",
+                  "id": "version-2.1.1/database-functionalities/streams/kafka/implement-transformation-module"
+                }
+              ],
+              "collapsible": true,
+              "collapsed": true
+            },
+            {
+              "type": "category",
+              "label": "Pulsar",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "version-2.1.1/database-functionalities/streams/pulsar/pulsar-streams"
+                },
+                {
+                  "type": "doc",
+                  "id": "version-2.1.1/database-functionalities/streams/pulsar/implement-transformation-module"
+                }
+              ],
+              "collapsible": true,
+              "collapsed": true
+            }
+          ],
+          "collapsible": true,
+          "collapsed": true
+        },
+        {
+          "type": "category",
+          "label": "Enforcing constraints",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-2.1.1/database-functionalities/constraints/existence-constraint"
+            },
+            {
+              "type": "doc",
+              "id": "version-2.1.1/database-functionalities/constraints/uniqueness-constraint"
+            }
+          ],
+          "collapsible": true,
+          "collapsed": true
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/database-functionalities/inspecting-queries"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/database-functionalities/memory-control"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/database-functionalities/networkx"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/database-functionalities/profiling-queries"
+        },
+        {
+          "type": "category",
+          "label": "Query modules",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-2.1.1/database-functionalities/query-modules/overview"
+            },
+            {
+              "type": "doc",
+              "id": "version-2.1.1/database-functionalities/query-modules/implement-query-modules"
+            }
+          ],
+          "collapsible": true,
+          "collapsed": true
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/database-functionalities/replication"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/database-functionalities/tensorflow-setup"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/database-functionalities/triggers"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/database-functionalities/manage-users-using-ldap"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/database-functionalities/manage-user-privileges"
+        }
+      ],
+      "collapsible": true,
+      "collapsed": true
+    },
+    {
+      "type": "category",
+      "label": "Reference guide",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-2.1.1/reference-guide/overview"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/reference-guide/backup"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/reference-guide/configuration"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/reference-guide/graph-algorithms"
+        },
+        {
+          "type": "category",
+          "label": "Import Data",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-2.1.1/reference-guide/import-data/overview"
+            },
+            {
+              "type": "category",
+              "label": "CSV",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "version-2.1.1/reference-guide/import-data/csv-import-tool"
+                },
+                {
+                  "type": "doc",
+                  "id": "version-2.1.1/reference-guide/import-data/load-csv-clause"
+                }
+              ],
+              "collapsible": true,
+              "collapsed": true
+            },
+            {
+              "type": "doc",
+              "id": "version-2.1.1/reference-guide/import-data/cypherl"
+            }
+          ],
+          "collapsible": true,
+          "collapsed": true
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/reference-guide/indexing"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/reference-guide/isolation-levels"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/reference-guide/metadata"
+        },
+        {
+          "type": "category",
+          "label": "Query modules",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-2.1.1/reference-guide/query-modules/overview"
+            },
+            {
+              "type": "doc",
+              "id": "version-2.1.1/reference-guide/query-modules/available-query-modules"
+            },
+            {
+              "type": "doc",
+              "id": "version-2.1.1/reference-guide/query-modules/load-call-query-modules"
+            },
+            {
+              "type": "category",
+              "label": "API",
+              "items": [
+                {
+                  "type": "category",
+                  "label": "C API",
+                  "items": [
+                    {
+                      "type": "doc",
+                      "id": "version-2.1.1/reference-guide/query-modules/api/c-api/overview"
+                    },
+                    {
+                      "type": "category",
+                      "label": "Classes",
+                      "items": [
+                        {
+                          "type": "doc",
+                          "id": "version-2.1.1/reference-guide/query-modules/api/c-api/classes/mgp_date_parameters"
+                        },
+                        {
+                          "type": "doc",
+                          "id": "version-2.1.1/reference-guide/query-modules/api/c-api/classes/mgp_duration_parameters"
+                        },
+                        {
+                          "type": "doc",
+                          "id": "version-2.1.1/reference-guide/query-modules/api/c-api/classes/mgp_edge_id"
+                        },
+                        {
+                          "type": "doc",
+                          "id": "version-2.1.1/reference-guide/query-modules/api/c-api/classes/mgp_edge_type"
+                        },
+                        {
+                          "type": "doc",
+                          "id": "version-2.1.1/reference-guide/query-modules/api/c-api/classes/mgp_label"
+                        },
+                        {
+                          "type": "doc",
+                          "id": "version-2.1.1/reference-guide/query-modules/api/c-api/classes/mgp_local_date_time_parameters"
+                        },
+                        {
+                          "type": "doc",
+                          "id": "version-2.1.1/reference-guide/query-modules/api/c-api/classes/mgp_local_time_parameters"
+                        },
+                        {
+                          "type": "doc",
+                          "id": "version-2.1.1/reference-guide/query-modules/api/c-api/classes/mgp_property"
+                        },
+                        {
+                          "type": "doc",
+                          "id": "version-2.1.1/reference-guide/query-modules/api/c-api/classes/mgp_vertex_id"
+                        }
+                      ],
+                      "collapsible": true,
+                      "collapsed": true
+                    }
+                  ],
+                  "collapsible": true,
+                  "collapsed": true
+                },
+                {
+                  "type": "doc",
+                  "id": "version-2.1.1/reference-guide/query-modules/api/python-api"
+                }
+              ],
+              "collapsible": true,
+              "collapsed": true
+            }
+          ],
+          "collapsible": true,
+          "collapsed": true
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/reference-guide/replication"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/reference-guide/runtime-settings"
+        },
+        {
+          "type": "category",
+          "label": "Streams",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-2.1.1/reference-guide/streams/overview"
+            },
+            {
+              "type": "category",
+              "label": "Transformation Modules",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "version-2.1.1/reference-guide/streams/transformation-modules/overview"
+                },
+                {
+                  "type": "category",
+                  "label": "API",
+                  "items": [
+                    {
+                      "type": "doc",
+                      "id": "version-2.1.1/reference-guide/streams/transformation-modules/api/c-api"
+                    },
+                    {
+                      "type": "doc",
+                      "id": "version-2.1.1/reference-guide/streams/transformation-modules/api/python-api"
+                    }
+                  ],
+                  "collapsible": true,
+                  "collapsed": true
+                }
+              ],
+              "collapsible": true,
+              "collapsed": true
+            }
+          ],
+          "collapsible": true,
+          "collapsed": true
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/reference-guide/temporal-types"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/reference-guide/tensorflow"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/database-functionalities/triggers"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/reference-guide/enabling-enterprise"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/reference-guide/audit-log"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/reference-guide/auth-module"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/reference-guide/ldap-security"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/reference-guide/security"
+        }
+      ],
+      "collapsible": true,
+      "collapsed": true
+    },
+    {
+      "type": "category",
+      "label": "Concepts",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-2.1.1/concepts/concepts"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/concepts/storage"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/concepts/graph-algorithms"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/concepts/indexing"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/concepts/replication"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.1.1/concepts/telemetry"
+        }
+      ],
+      "collapsible": true,
+      "collapsed": true
+    },
+    {
+      "type": "doc",
+      "id": "version-2.1.1/changelog"
+    }
+  ]
+}
