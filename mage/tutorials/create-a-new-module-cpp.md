@@ -1,4 +1,4 @@
---
+---
 id: create-a-new-module-cpp
 title: Developing a query module in C++
 sidebar_label: Create a C++ query module
@@ -18,18 +18,17 @@ to the ELF shared library format. The latter requirement is there so that they c
 be loaded together when Memgraph starts.
 :::
 
-[structure]
+
 
 ## Prerequisites
 
 There are three options for installing and working with Memgraph MAGE:
-
-1. **Pulling the `memgraph/memgraph-mage` image**:  check the `Docker Hub` tab in the
-    [installation guide](/mage/installation.md).
-2. **Building a Docker image from the MAGE repository**: check the `Docker build` tab 
-    inside the [installation guide](/mage/installation.md).
-3. **Building MAGE from source**: check the `Build from source on Linux` tab in the
-    [installation guide](/mage/installation.md).
+1.  **Pulling the `memgraph/memgraph-mage` image**:  check the tab `Docker Hub`
+    inside the [installation guide](/installation.md).
+2.  **Building a Docker image from the MAGE repository**: check the tab `Docker
+    build` inside the [installation guide](/installation.md).
+3.  **Building MAGE from source**: check the tab `Build from source on Linux` inside the
+    [installation guide](/installation.md).
 
 ## Developing a module
 
@@ -201,17 +200,10 @@ As mentioned before, no exceptions should leave your module. As done in this exa
 exception handlers are there in `mgp_init_module` and the callback function.
 Depending on your module’s needs, you might want one in `mgp_shutdown_module` as well.
 
-## Running
+## Importing, querying and testing a module
 
-To compile, build and run the module, refer to the corresponding section of the Python
-tutorial (minus steps 2a-2d).
+Now in order to import, query and test a module, hop to [following page](/mage/tutorials/run-a-query-module).
 
-## Querying
 
-As querying is independent of the query module’s implementation language, all relevant
-information is again available in the Python tutorial.
-
-## Testing
-
-The same remark holds for testing – relevant information is provided inside the Python
-tutorial.
+And that is it. Feel free to create an issue or open pull request on our [Github repo](https://github.com/memgraph/mage) 
+to speed up the development. Also, don't forget to give us a :star:
