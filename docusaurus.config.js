@@ -24,6 +24,13 @@ module.exports = {
     },
   ],
   themeConfig: {
+    metadata: [
+      {
+        property: "og:image",
+        content:
+          "https://public-assets.memgraph.com/github-readme-images/docs.memgraph-browser.png",
+      },
+    ],
     navbar: {
       title: "Docs",
       logo: {
@@ -225,9 +232,17 @@ module.exports = {
       contextualSearch: true,
     },
     prism: {
-      additionalLanguages: ["cypher", "php"],
+      additionalLanguages: ["cypher", "php", "rust", "csharp", "java", "docker"],
     },
     hideableSidebar: true,
+    announcementBar: {
+      id: "app-challenge",
+      content:
+        '🏆 Keep Rockin’ & Start Coding! Register and win $2,000! <a target="_blank" rel="noopener noreferrer" href="https://memgraph.com/memgraph-app-challenge"><b>Join the challenge</b></a> 🏆',
+      backgroundColor: "#fafbfc",
+      textColor: "#091E42",
+      isCloseable: true,
+    },
   },
   presets: [
     [
@@ -603,11 +618,6 @@ module.exports = {
             to: "/memgraph/database-functionalities/tensorflow-setup",
             from: ["/machine-learning/tensorflow-op/tensorflow"],
           },
-          //FAQ redirects
-          {
-            to: "/help-center/faq",
-            from: ["/memgraph/faq"],
-          },
           //Memgraph Lab redirects
           {
             to: "/memgraph-lab/style-script/quick-start",
@@ -738,6 +748,11 @@ module.exports = {
             to: "/memgraph/database-functionalities/networkx",
             from: ["/memgraph/reference-guide/networkx/nxalg"],
           },
+          //Help Center redirects
+          {
+            to: "/help-center/faq",
+            from: ["/memgraph/faq"],
+          },
           {
             to: "/help-center/",
             from: ["/memgraph/getting-help/getting-help"],
@@ -745,6 +760,15 @@ module.exports = {
           {
             to: "/help-center/faq",
             from: ["/memgraph/getting-help/faq"],
+          },
+          //Kafka redirects because of introducing other stream sources
+          {
+            to: "/memgraph/database-functionalities/streams/kafka/kafka-streams",
+            from: ["/memgraph/database-functionalities/streams/kafka-streams"],
+          },
+          {
+            to: "/memgraph/database-functionalities/streams/kafka/implement-transformation-module",
+            from: ["/memgraph/database-functionalities/streams/implement-transformation-module"],
           },
         ],
       },

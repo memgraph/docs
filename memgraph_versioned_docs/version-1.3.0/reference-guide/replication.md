@@ -71,7 +71,7 @@ SHOW REPLICAS;
 To delete a replica, issue the following query:
 
 ```plaintext
-DROP REPLICA 'name';
+DROP REPLICA <name>;
 ```
 
 ### How to promote a new main?
@@ -91,7 +91,7 @@ two mains in the cluster.
 ## Limitations and potential features
 
 Currently, we do not support chained replicas, i.e. a replica can't have its
-own replica. When this feature becomes available, the user will be able to 
+own replica. When this feature becomes available, the user will be able to
 configure scenarios such as the following one:
 
 ```plaintext

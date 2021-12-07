@@ -5,9 +5,9 @@ module.exports = {
       type: "category",
       label: "Installation",
       items: [
-        "installation/linux",
-        "installation/macos",
         "installation/windows",
+        "installation/macos",
+        "installation/linux",
       ],
     },
     {
