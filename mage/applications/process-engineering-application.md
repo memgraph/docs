@@ -20,13 +20,14 @@ For example, measures of centrality can detect which **units are most likely to 
 ### Knowledge graphs
 
 Modeling knowledge with graphs within companies with large factory plants can lead to a variety of indirect benefits. With the structure of the graph, it is possible to show how the domain areas relate to each other. Also, it can enable workers to more easily understand the **working structures** of their colleagues. It can also give **field researchers** a concise description of the area, after which they could make a more focused decision to continue their research.
+
 ### Process automation
 
 **Monitoring experiments** and **processes** can give a headache to one who analyzes such data. Therefore, by organizing such experiments into graphs, it is possible to make a detailed analysis that would not be possible in relational systems due to the **high structure** of the data and the numerous table joins.
 
 ## Where next
 
-This text is a **summary** of one area that fits perfectly with the application of graphs. Therefore, we would like to have you with us when **implementing** some of these applications. Share your **opinions**, **experiences** and **problems** you encounter when working with **Memgraph**.
+This text is a **summary** of one area that fits perfectly with the application of graphs. Therefore, we would like to have you with us when **implementing** some of these applications. Share **opinions**, **experiences** and **problems** you encounter when working with **Memgraph**.
 
 **We are here for you and we will help you along the way**!
 

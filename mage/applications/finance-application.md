@@ -15,6 +15,7 @@ By analyzing the connections between users and resources, we can get an insight 
 <img src="https://images.unsplash.com/photo-1583574928052-9a2563277468?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&h=300&q=80" alt="drawing" />
 
 ## Applying graphs
+
 ### Data Management
 
 Within the financial industry, special emphasis is placed on **data security**. Thus, it is necessary to monitor when and under what conditions the data were moved from one system to another. [**Data lineage**](https://en.wikipedia.org/wiki/Data_lineage) is taken quite seriously.
@@ -22,6 +23,7 @@ Within the financial industry, special emphasis is placed on **data security**. 
 Therefore, implementation via graphs makes it easier to monitor data, not only within the storage structure but also visually. Using the **shortest path**, it is possible to track how a resource has behaved over time and see which channels it passed through before reaching the current one.
 
 ### Fraud Detection
+
 Fraud is an unwanted side effect in financial systems and needs to be prevented. Due to the high number of processed data per day, it is difficult to catch which of them are suspicious and which are not. Fraudsters use methods that are based on certain patterns of behavior. Such patterns can be identified using graphs.
 
 #### Transaction data
@@ -39,6 +41,7 @@ By using features such as **closeness** to previous scams, **centrality**, **com
 ### Money Laundering
 
 Money launderers are becoming more sophisticated every year, therefore making them difficult to track. Manual investigation on such cases can take up years. Money laundering is detected via **suspicious payment chains**. These structures are easy to investigate and operate with graphs, and therefore making them the most efficient technology to tackle this kind of fraud.
+
 ## Where next
 
 This text is a **summary** of one area that fits perfectly with the application of graphs. Therefore, we would like to have you with us when **implementing** some of these applications. Share your **opinions**, **experiences** and **problems** you encounter when working with **Memgraph**.
