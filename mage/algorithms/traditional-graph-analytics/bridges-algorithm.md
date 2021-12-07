@@ -32,6 +32,6 @@ In the transport industry, the application of the bridge recognition algorithm i
 
 Traffic planning will always involve looking for bottleneck points that will connect more components and thus help build better infrastructure.
 
-[![Internet Networks](https://img.shields.io/badge/Internet_Network-Application-8A477F?style=for-the-badge)](/mage/applications/telecommunication)
+[![Internet Networks](https://img.shields.io/badge/Internet_Network-Application-8A477F?style=for-the-badge)](/mage/applications/telecommunication-application)
 
 Just like the previous example, Internet networks are organized similarly to a transport network, and as such contain bottlenecks that are bridges to that big graph. Such points need to be strengthened with excellent infrastructure, which will prevent the possibility of unexpected system crashes.

@@ -70,7 +70,7 @@ module.exports = {
         "query-modules/python/node2vec-online",
         "query-modules/python/node-similarity",
         "query-modules/python/nxalg",
-        "query-modules/python/pagerank",
+        "query-modules/cpp/pagerank",
         "query-modules/python/set-cover",
         "query-modules/python/tsp",
         "query-modules/python/union-find",
