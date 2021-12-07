@@ -12,6 +12,7 @@ module.exports = {
       label: "Tutorials",
       items: [
         "tutorials/create-a-new-module-python",
+        "tutorials/run-a-query-module",
       ],
     },
     {
