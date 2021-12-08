@@ -4,9 +4,10 @@ title: Developing a query module in C++
 sidebar_label: Create a C++ query module
 ---
 
-Query modules can be implemented using the C API provided by Memgraph. In this
-tutorial, we will learn how to develop a query module in C++ on the example of
-the random walk algorithm.
+Query modules can be implemented using the [C
+API](/memgraph/reference-guide/query-modules/api/c-api)
+provided by Memgraph. In this tutorial, we will learn how to develop a query
+module in C++ on the example of the **random walk algorithm**.
 
 :::info
 

@@ -4,6 +4,11 @@ title: Developing a query module in Python
 sidebar_label: Create a Python module
 ---
 
+Query modules can be implemented using the [Python
+API](/memgraph/reference-guide/query-modules/api/python-api) provided by
+Memgraph. In this tutorial, we will learn how to develop a query module in
+Python on the example of the **random walk algorithm**.
+
 ## Prerequisites
 
 There are three options for installing and working with Memgraph MAGE:
@@ -16,9 +21,6 @@ There are three options for installing and working with Memgraph MAGE:
     inside the [installation guide](/installation.md).
 
 ## Developing a module
-
-In this guide, we'll create a [random
-walk](https://en.wikipedia.org/wiki/Random_walk#On_graphs) algorithm.
 
 :::note
 
