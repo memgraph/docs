@@ -7,13 +7,13 @@ sidebar_label: Create a C++ query module
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Query modules can be implemented using the C API provided by Memgraph. 
+Query modules can be implemented using the C API provided by Memgraph.
 In this tutorial, we will learn how to develop a query module in C++ on the example
 of the random walk algorithm.
 
 :::info
 If you wish to write your own query modules using the C API, you can write the
-procedures in any programming language which can work with C and can be compiled 
+procedures in any programming language which can work with C and can be compiled
 to the ELF shared library format. The latter requirement is there so that they can
 be loaded together when Memgraph starts.
 :::
@@ -48,7 +48,7 @@ cpp
 ```
 
 Our module contains a single procedure `random_walk` which implements the algorithm.
-The procedure takes two input parameters: the starting node and the number of steps 
+The procedure takes two input parameters: the starting node and the number of steps
 (10 by default), and it returns the generated random path. All in all, we can define
 its signature as `get_path(start: Node, steps: int = 10) -> random_walk: Path`.
 
@@ -77,10 +77,10 @@ be arbitrarily named (e.g. in query modules containing multiple callback functio
 
 Query modules using the C API must have the `mgp_init_module` & `mgp_shutdown_module`
 functions. The `mgp_init_module` function’s main purpose is to register procedures so
-that they can be called from openCypher, and with `mgp_shutdown_module` you may reset 
+that they can be called from openCypher, and with `mgp_shutdown_module` you may reset
 any global states or release global resources.
 
-:::info
+:::warning
 WARNING: Exceptions, if thrown, must never leave the scope of your module! You should
 have a top-level exception handler which returns with an error value, and potentially
 logs the error message as well. Exceptions crossing the module boundary may cause all
@@ -118,7 +118,7 @@ void RandomWalk(mgp_list *args, mgp_graph *memgraph_graph, mgp_result *result,
   }
 }
 ```
-Upon being called, `RandomWalk` receives the list of arguments (`args`) passed in the 
+Upon being called, `RandomWalk` receives the list of arguments (`args`) passed in the
 query. The parameter `result` is used for recording the results of the procedure, and
 its context is provided by `graph` and `memory`.
 
@@ -167,9 +167,9 @@ extern "C" int mgp_init_module(struct mgp_module *module,
 }
 ```
 Although this example registers a single `procedure`, you can have multiple different
-procedures in a single module, each of which can be invoked using the 
+procedures in a single module, each of which can be invoked using the
 `CALL <module>.<procedure> ...` syntax (`<module>` being the name of the shared library).
-As we compile our example to `random_walk.so`, the module name is thus `random_walk`. 
+As we compile our example to `random_walk.so`, the module name is thus `random_walk`.
 
 :::tip
 Note that, as the procedure name is defined upon registration, it can differ from its
@@ -187,7 +187,7 @@ do not allocate any global resources with it. If you still do need to set up a g
 state, you may do so in the `mgp_init_module` using the standard global allocators.
 :::
 
-Finally, you may want to reset any global state or release global resources, which is 
+Finally, you may want to reset any global state or release global resources, which is
 done in the following function:
 
 ```cpp
@@ -205,5 +205,5 @@ Depending on your module’s needs, you might want one in `mgp_shutdown_module` 
 Now in order to import, query and test a module, hop to [following page](/mage/tutorials/run-a-query-module).
 
 
-And that is it. Feel free to create an issue or open pull request on our [Github repo](https://github.com/memgraph/mage) 
+And that is it. Feel free to create an issue or open pull request on our [Github repo](https://github.com/memgraph/mage)
 to speed up the development. Also, don't forget to give us a :star:

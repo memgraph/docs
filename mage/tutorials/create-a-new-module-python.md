@@ -30,20 +30,19 @@ _Docker build_, and _Build from source on Linux_.
 :::
 
 Position yourself in the **MAGE repository** you cloned earlier. Specifically,
-go in the `python` sub-directory and create a new file called `random_walk.py`. 
+go in the `python` sub-directory and create a new file called `random_walk.py`.
 
 ```plaintext
 python
 └── mage
-    └── random_walk.py
+    random_walk.py
 
 ```
 
-For this part, we will import `mgp`, Memgraph's internal data structure module.
-Among others, it contains definitions for **Vertex** and **Edge** data
-structures.
+For this part, we will import [`mgp`](https://github.com/memgraph/mgp), Memgraph's internal data structure module.
+Among others, it contains definitions for [**Vertex**](https://github.com/memgraph/mgp/blob/main/mgp.py#L260) and [**Edge** ](https://github.com/memgraph/mgp/blob/main/mgp.py#L182)data structures.
 
-:::tip 
+:::tip
 
 Install the `mgp` Python module so your editor can use typing annotations
 properly and suggest methods and classes it contains. You can install the module
@@ -95,5 +94,5 @@ iteratively.
 Now in order to import, query and test a module, hop to [following page](/mage/tutorials/run-a-query-module).
 
 
-And that is it. Feel free to create an issue or open pull request on our [Github repo](https://github.com/memgraph/mage) 
+And that is it. Feel free to create an issue or open pull request on our [Github repo](https://github.com/memgraph/mage)
 to speed up the development. Also, don't forget to give us a :star:
