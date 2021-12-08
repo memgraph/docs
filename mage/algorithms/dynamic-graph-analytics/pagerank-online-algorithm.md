@@ -26,7 +26,7 @@ Valuable work explaining how to quickly calculate these values was developed by 
 
 [![Dynamic Pagerank](https://img.shields.io/badge/Dynamic_Pagerank-Implementation-FB6E00?style=for-the-badge&logo=github&logoColor=white)](https://github.com/memgraph/mage/blob/main/cpp/pagerank_module/pagerank_online_module.cpp)
 
-[![Dynamic Pagerank](https://img.shields.io/badge/Dynamic_Pagerank-Documentation-FCC624?style=for-the-badge&logo=cplusplus&logoColor=white)](/mage/query-modules/python/node-similarity)
+[![Dynamic Pagerank](https://img.shields.io/badge/Dynamic_Pagerank-Documentation-FCC624?style=for-the-badge&logo=cplusplus&logoColor=white)](/mage/query-modules/cpp/pagerank-online)
 
 Dynamic PageRank is implemented within project [**MAGE**](https://github.com/memgraph/mage). Be sure to check it out in the link above. :point_up:
 
@@ -38,10 +38,10 @@ Dynamic PageRank is implemented within project [**MAGE**](https://github.com/mem
 
 Although PageRank can be used in a variety of ways, the need for its dynamic implementation lies in systems that use **temporal graphs**.
 
-[![Social networks](https://img.shields.io/badge/Social_networks-Application-8A477F?style=for-the-badge)](/mage/query-modules/python/node-similarity)
+[![Social networks](https://img.shields.io/badge/Social_networks-Application-8A477F?style=for-the-badge)](mage/applications/social-media-application)
 
 One of the most dynamic environments is definitely social networks. Every moment, events arrive that contain the creation of new users, posts, messages, and the graph itself grows at an enormous rate. Therefore, the need for an incremental measure of influence is high in companies such as: [Meta](https://about.facebook.com/meta/), [Twitter](https://twitter.com/home) or [Pinterest](https://www.pinterest.com/).
 
-[![Internet Network](https://img.shields.io/badge/Internet_Network-Application-8A477F?style=for-the-badge)](/mage/query-modules/python/node-similarity)
+[![Internet Network](https://img.shields.io/badge/Internet_Network-Application-8A477F?style=for-the-badge)](/mage/applications/telecommunication-application)
 
 Importance analysis can be highlighted as crucial at the moment when internet traffic is analyzed. If we have some kind of internal, supervised system, PageRank can find out in which nodes the most information flows, and where to place the most important elements of the system resistant to large amounts of traffic.
