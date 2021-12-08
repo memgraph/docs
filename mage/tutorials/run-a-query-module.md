@@ -3,18 +3,24 @@ id: run-a-query-module
 title: Run a query module
 sidebar_label: Run a query module
 ---
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
 ## Prerequisites
-- **You have developed query module by yourself, or followed our tutorial for [Python](/mage/tutorials/create-a-new-module-python) or [C++](/mage/tutorials/create-a-new-module-cpp)**
+
+- You have developed a query module by yourself and/or followed our tutorial for
+  [Python](/mage/tutorials/create-a-new-module-python) or
+  [C++](/mage/tutorials/create-a-new-module-cpp)
 
 :::warning
-The following steps depend on the how you installed Memgraph and MAGE as we need
+
+The following steps depend on how you installed Memgraph and MAGE as we need
 to import the modules.
+
 :::
-## Importing in Memgraph
+
+## Importing query modules into Memgraph
 
 <Tabs
   groupId="running-method"
@@ -182,5 +188,8 @@ Lastly, run the e2e tests with python:
 python test_e2e
 ```
 
-And that is it. Feel free to create an issue or open pull request on our [Github repo](https://github.com/memgraph/mage)
-to speed up the development. Also, don't forget to give us a :star:
+## Next steps
+
+Feel free to create an issue or open a pull request on our [Github
+repo](https://github.com/memgraph/mage) to speed up the development.<br/>
+Also, don't forget to throw us a star on GitHub. :star:

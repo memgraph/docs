@@ -4,18 +4,16 @@ title: Developing a query module in Python
 sidebar_label: Create a Python module
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 ## Prerequisites
 
 There are three options for installing and working with Memgraph MAGE:
-1.  **Pulling the `memgraph/memgraph-mage` image**:  check the tab `Docker Hub`
+
+1.  **Pulling the `memgraph/memgraph-mage` image**: check the tab `Docker Hub`
     inside the [installation guide](/installation.md).
 2.  **Building a Docker image from the MAGE repository**: check the tab `Docker
     build` inside the [installation guide](/installation.md).
-3.  **Building MAGE from source**: check the tab `Build from source on Linux` inside the
-    [installation guide](/installation.md).
+3.  **Building MAGE from source**: check the tab `Build from source on Linux`
+    inside the [installation guide](/installation.md).
 
 ## Developing a module
 
@@ -39,8 +37,11 @@ python
 
 ```
 
-For this part, we will import [`mgp`](https://github.com/memgraph/mgp), Memgraph's internal data structure module.
-Among others, it contains definitions for [**Vertex**](https://github.com/memgraph/mgp/blob/main/mgp.py#L260) and [**Edge** ](https://github.com/memgraph/mgp/blob/main/mgp.py#L182)data structures.
+For this part, we will import [`mgp`](https://github.com/memgraph/mgp),
+Memgraph's internal data structure module. Among others, it contains definitions
+for [**Vertex**](https://github.com/memgraph/mgp/blob/main/mgp.py#L260) and
+[**Edge** ](https://github.com/memgraph/mgp/blob/main/mgp.py#L182)data
+structures.
 
 :::tip
 
@@ -88,11 +89,11 @@ Memgraph it's a `read` procedure, meaning it won't make changes to the graph.
 The path is created from the `start` node, and edges are appended to it
 iteratively.
 
-
 ## Importing, querying and testing a module
 
-Now in order to import, query and test a module, hop to [following page](/mage/tutorials/run-a-query-module).
+Now in order to import, query and test a module, check out the [following
+page](/mage/tutorials/run-a-query-module).
 
-
-And that is it. Feel free to create an issue or open pull request on our [Github repo](https://github.com/memgraph/mage)
-to speed up the development. Also, don't forget to give us a :star:
+Feel free to create an issue or open a pull request on our [Github
+repo](https://github.com/memgraph/mage) to speed up the development.<br/>
+Also, don't forget to throw us a star on GitHub. :star:
