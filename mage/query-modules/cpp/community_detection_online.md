@@ -1,7 +1,7 @@
 ---
-id: dynamic-community-detection
-title: dynamic_community_detection
-sidebar_label: dynamic_community_detection
+id: community-detection-online
+title: community_detection_online
+sidebar_label: community_detection_online
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,24 +19,24 @@ export const Highlight = ({children, color}) => (
   </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-dynamic_community_detection-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/cpp/community_detection_module/dynamic_community_detection.cpp)
+[![docs-source](https://img.shields.io/badge/source-community_detection_online-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/cpp/community_detection_module/community_detection_online.cpp)
 
 ## Abstract
 
 This query module implements the [LabelRankT](https://arxiv.org/abs/1305.2006) dynamic community detection algorithm.
 
 LabelRankT belongs to the *label propagation* family of community detection algorithms and thus rests upon the idea that
-individual nodes learn from their neighbors what community they belong to. 
+individual nodes learn from their neighbors what community they belong to.
 
-Being *dynamic* and *efficient*, the algorithm is suitable for large-scale graphs. 
-It runs in *O(m)* time and guarantees *O(mn)* space complexity, where *m* and *n* are the counts of vertices and edges 
+Being *dynamic* and *efficient*, the algorithm is suitable for large-scale graphs.
+It runs in *O(m)* time and guarantees *O(mn)* space complexity, where *m* and *n* are the counts of vertices and edges
 in the graph, respectively.
 
 Dynamic algorithms such as LabelRankT are especially suited for graph streaming solutions such as Memgraph.
-As updates arrive in a stream, it avoids redundant work by only processing the portion of the graph modified by the 
+As updates arrive in a stream, it avoids redundant work by only processing the portion of the graph modified by the
 update.
 
-Furthermore, the algorithm improves upon earlier label propagation methods by being deterministic; its results are 
+Furthermore, the algorithm improves upon earlier label propagation methods by being deterministic; its results are
 replicable.
 Taking into account edge weight and directedness generally yields better community quality than similar methods,
 and it extends LabelRankT’s compatibility to a wider set of graphs.
@@ -59,7 +59,7 @@ Performs dynamic community detection using the LabelRankT algorithm.
 
 The default values of the `similarity_threshold`, `exponent` and `min_value` parameters are not universally applicable,
 and the actual values should be determined experimentally.
-This is especially pertinent to setting the `min_value` parameter. For example, with the default ***1/10*** value, 
+This is especially pertinent to setting the `min_value` parameter. For example, with the default ***1/10*** value,
 vertices of degree greater than 10 are at risk of not being assigned to any community and the user should check if that
 is indeed the case.
 
@@ -67,13 +67,13 @@ is indeed the case.
 
 * `directed: bool(False)` ➡ Specifies whether the graph is directed. If not set, the graph is treated as undirected.
 * `weighted: bool(False)` ➡ Specifies whether the graph is weighted. If not set, the graph is considered unweighted.
-* `similarity_threshold: double(0.7)` ➡ Maximum similarity between node’s and its neighbors’ communities for the node 
+* `similarity_threshold: double(0.7)` ➡ Maximum similarity between node’s and its neighbors’ communities for the node
    to be updated in the ongoing iteration.
 * `exponent: double(4)` ➡ Power which community probability vectors are raised elementwise to.
 * `min_value: double(0.1)` ➡ Smallest community probability that is not pruned between iterations.
 * `weight_property: str("weight")` For directed graphs, the values at the given edge property are used as weights in the
    community detection algorithm.
-* `w_selfloop: double(1)` ➡ Each vertex has a self-loop added to smooth the label propagation. This parameter specifies 
+* `w_selfloop: double(1)` ➡ Each vertex has a self-loop added to smooth the label propagation. This parameter specifies
    the weight assigned to the self-loops. If the graph is unweighted, this value is ignored.
 
 
@@ -88,13 +88,13 @@ is indeed the case.
 #### Usage:
 
 ```cypher
-CALL dynamic_community_detection.set(False, False, 0.7, 4.0, 0.1, "weight", 1, 100, 5)
+CALL community_detection_online.set(False, False, 0.7, 4.0, 0.1, "weight", 1, 100, 5)
 YIELD node, community_id;
 ```
 
 ### `get()`
 
-Returns the latest previously calculated community detection results. If there are none, defaults to calling `set()` 
+Returns the latest previously calculated community detection results. If there are none, defaults to calling `set()`
 with default parameters.
 
 #### Output:
@@ -105,13 +105,13 @@ with default parameters.
 #### Usage:
 
 ```cypher
-CALL dynamic_community_detection.get()
+CALL community_detection_online.get()
 YIELD node, community_id;
 ```
 
 ### `update(createdVertices, createdEdges, updatedVertices, updatedEdges, deletedVertices, deletedEdges)`
 
-Dynamically updates previously calculated community detection results based on changes applied in the latest graph 
+Dynamically updates previously calculated community detection results based on changes applied in the latest graph
 update and returns the results.
 
 #### Input:
@@ -131,23 +131,23 @@ update and returns the results.
 #### Usage:
 
 As there are a total of six complex obligatory parameters, setting the parameters by hand might be cumbersome.
-The recommended use of this method is to call it within a 
-[trigger](https://memgraph.com/docs/memgraph/database-functionalities/triggers), making sure beforehand that all 
-[predefined variables](https://memgraph.com/docs/memgraph/database-functionalities/triggers/#predefined-variables) are 
+The recommended use of this method is to call it within a
+[trigger](https://memgraph.com/docs/memgraph/database-functionalities/triggers), making sure beforehand that all
+[predefined variables](https://memgraph.com/docs/memgraph/database-functionalities/triggers/#predefined-variables) are
 available:
 
 ```cypher
 CREATE TRIGGER sample_trigger BEFORE COMMIT
-EXECUTE CALL dynamic_community_detection.update(createdVertices, createdEdges, updatedVertices, updatedEdges, deletedVertices, deletedEdges) YIELD node, community_id;
+EXECUTE CALL community_detection_online.update(createdVertices, createdEdges, updatedVertices, updatedEdges, deletedVertices, deletedEdges) YIELD node, community_id;
 ```
 
 Communities calculated by `update()` are also accessible by subsequently calling `get()`:
 
 ```cypher
 CREATE TRIGGER sample_trigger BEFORE COMMIT
-EXECUTE CALL dynamic_community_detection.update(createdVertices, createdEdges, updatedVertices, updatedEdges, deletedVertices, deletedEdges) YIELD *;
+EXECUTE CALL community_detection_online.update(createdVertices, createdEdges, updatedVertices, updatedEdges, deletedVertices, deletedEdges) YIELD *;
 
-CALL dynamic_community_detection.get()
+CALL community_detection_online.get()
 YIELD node, community_id
 RETURN node.id AS node_id, community_id
 ORDER BY node_id;
@@ -164,7 +164,7 @@ Resets the algorithm to its initial state.
 #### Usage:
 
 ```cypher
-CALL dynamic_community_detection.reset() YIELD message;
+CALL community_detection_online.reset() YIELD message;
 ```
 
 ## Example
@@ -181,7 +181,7 @@ CALL dynamic_community_detection.reset() YIELD message;
 }>
   <TabItem value="visualization">
 
-  <img src={require('../../data/query-modules/cpp/dynamic-community-detection/dynamic-community-detection-1.png').default}/>
+  <img src={require('../../data/query-modules/cpp/community-detection-online/community-detection-online-1.png').default}/>
 
   </TabItem>
 
@@ -203,7 +203,7 @@ MERGE (a: Node {id: 4}) MERGE (b: Node {id: 5}) CREATE (a)-[r: Relation]->(b);
   <TabItem value="run">
 
 ```cypher
-CALL dynamic_community_detection.set()
+CALL community_detection_online.set()
 YIELD node, community_id
 RETURN node.id AS node_id, community_id
 ORDER BY node_id;
