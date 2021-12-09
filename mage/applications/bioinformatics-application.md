@@ -7,7 +7,7 @@ sidebar_label: Bioinformatics
 ## Introduction
 
 Bioinformatics is a subdiscipline of biology and computer science that focuses
-on the discovwry, storage, analysis and dissemination of biological data such as
+on the discovery, storage, analysis and dissemination of biological data such as
 DNA and amino acid sequences. This kind of data often comes in the form highly
 complex and initerconnected networks. While most of the data is currently stored
 in relational databases, the problem of complicated domain models and

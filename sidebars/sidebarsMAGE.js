@@ -40,6 +40,7 @@ module.exports = {
             "algorithms/machine-learning-graph-analytics/link-prediction-algorithm",
             "algorithms/machine-learning-graph-analytics/node-classification-algorithm",
             "algorithms/machine-learning-graph-analytics/node2vec-algorithm",
+            "algorithms/machine-learning-graph-analytics/graph-clustering-algorithm",
           ],
         }
       ],
