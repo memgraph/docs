@@ -174,9 +174,10 @@ CALL community_detection_online.reset() YIELD message;
   defaultValue="visualization"
   values={[
     {label: 'Step 1: Input graph', value: 'visualization'},
-    {label: 'Step 2: Cypher load commands', value: 'cypher'},
-    {label: 'Step 3: Running command', value: 'run'},
-    {label: 'Step 4: Results', value: 'result'},
+    {label: 'Step 2: Set trigger', value: 'cypher-preset'},
+    {label: 'Step 3: Load commands', value: 'cypher-load'},
+    {label: 'Step 4: Running command', value: 'run'},
+    {label: 'Step 5: Results', value: 'result'},
   ]
 }>
   <TabItem value="visualization">
@@ -185,8 +186,16 @@ CALL community_detection_online.reset() YIELD message;
 
   </TabItem>
 
+  <TabItem value="cypher-preset">
 
-  <TabItem value="cypher">
+```cypher
+CREATE TRIGGER community_detection_online_trigger BEFORE COMMIT
+EXECUTE CALL community_detection_online.update(createdVertices, createdEdges, updatedVertices, updatedEdges, deletedVertices, deletedEdges) YIELD node, community_id
+SET node.community_id = community_id;
+```
+  </TabItem>
+
+  <TabItem value="cypher-load">
 
 ```cypher
 MERGE (a: Node {id: 0}) MERGE (b: Node {id: 1}) CREATE (a)-[r: Relation]->(b);
@@ -203,7 +212,7 @@ MERGE (a: Node {id: 4}) MERGE (b: Node {id: 5}) CREATE (a)-[r: Relation]->(b);
   <TabItem value="run">
 
 ```cypher
-CALL community_detection_online.set()
+CALL community_detection_online.get()
 YIELD node, community_id
 RETURN node.id AS node_id, community_id
 ORDER BY node_id;
