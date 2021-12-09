@@ -7,10 +7,11 @@ slug: /faq
 
 ### What is Memgraph?
 
-**Memgraph** is a native in-memory graph database built to handle real-time
+**Memgraph** is a native in-memory graph streaming platform built to handle real-time
 use-cases at enterprise scale. Memgraph supports strongly-consistent ACID
 transactions and uses the standardized **Cypher** query language for
-structuring, manipulating, and exploring data.
+structuring, manipulating, and exploring data. You can connect to Kafka and use Memgraph
+to wrangle your graph data source.
 
 ### What is MAGE?
 
@@ -24,7 +25,7 @@ benefit from them.
 **Query modules** are essentially collections of custom Cypher procedures that
 extend the basic functionalities of the Cypher query language. Each query module
 consists of procedures that are connected by a common theme (community detection
-for example). You can implement them using a Python or a C API. 
+for example). You can implement them using a Python or a C API.
 
 ### What is Cypher?
 

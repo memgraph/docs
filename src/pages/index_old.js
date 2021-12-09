@@ -116,7 +116,7 @@ function Home() {
                 </h2>
                 </a>
                 <p className="padding-horiz--md">
-                Take a look at all the functionalities that Memgraph DB has to offer.
+                Take a look at all the functionalities that Memgraph has to offer.
                 </p>
               </div>
               </div>

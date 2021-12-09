@@ -17,6 +17,21 @@ import TabItem from "@theme/TabItem";
   ]}>
   <TabItem value="docker">
 
+## Issues with loading Memgraph
+```console
+docker load -i memgraph.tar.gz
+```
+
+### Error during connect: `This error may indicate that the docker daemon is not running.`
+Run the Docker Desktop application and wait for it to load fully.
+
+### Error response from daemon: `open \\.\pipe\docker_engine_linux: The system cannot find the file specified.`
+Reload the Docker Desktop application and wait for it to load fully.
+
+### Unsupported os linux
+
+You need to download the [Windows Subsystem for Linux](https://docs.microsoft.com/en-gb/windows/wsl/install-win10#step-4---download-the-linux-kernel-update-package), and enable experimental features in Docker Desktop, under "Settings -> Docker Engine", put "experimental" to *true*.
+
 ## Issues when connecting to Memgraph
 
 ```console
@@ -77,7 +92,7 @@ docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' 9397
 
 The command above will yield the IP address that should be used when connecting
 to Memgraph via **Memgraph Lab** or **mgconsole** as described in
-the [querying](/connect-to-memgraph/overview.md) section. Just replace
+the [querying](/connect-to-memgraph/overview.mdx) section. Just replace
 `HOST` from the following command with the appropriate IP address:
 
 ```console
@@ -100,7 +115,7 @@ Usually, you can find the Windows users directories in this location:
 While running the following `dpkg` command:
 
 ```bash
-dpkg -i /path/to/memgraph_<version>.deb
+sudo dpkg -i /mnt/<drive>/Users/<windows username>/Downloads/memgraph_<version>.deb
 ```
 
 you may encounter errors that resemble the following:

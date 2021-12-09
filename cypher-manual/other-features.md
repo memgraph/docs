@@ -32,12 +32,18 @@ filtering a node property:
 MATCH (node1 {property: $propertyValue}) RETURN node1;
 ```
 
-You can use parameters instead of any literal in the query, but not instead of
-property maps even though that is allowed in standard openCypher. Following
-example is illegal in Memgraph:
+You can use parameters instead of any literal in the query. Using parameters as
+property maps is partially supported in `CREATE`, but not in `MATCH` nor
+`MERGE` clause.
+For example, the following query is illegal:
 
 ```cypher
-MATCH (node1 $propertyValue) RETURN node1;
+MATCH (n $propertyMap) RETURN n;
+```
+
+but this is supported:
+```cypher
+CREATE (n $propertyMap) RETURN n;
 ```
 
 To use parameters with Python driver use following syntax:

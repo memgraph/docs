@@ -6,7 +6,7 @@ sidebar_label: Social network analysis with NetworkX
 
 ## Introduction 
 
-In this tutorial, we will show you how to perform simple network analysis with the NetworkX library and data stored in Memgraph DB. You will also acquire a basic understanding of **Query Modules**, an easy method for extending the query language with user-written procedures.
+In this tutorial, we will show you how to perform simple network analysis with the NetworkX library and data stored in Memgraph. You will also acquire a basic understanding of **Query Modules**, an easy method for extending the query language with user-written procedures.
 
 ## Data model
 We are going to use the Karate Club graph, a network of friendships between 34 members of a karate club at a US university, as described by Wayne Zachary in 1977. It is a very popular data set in social network analysis and is very often referenced in such tutorials. 

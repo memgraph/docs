@@ -10,13 +10,19 @@ export default function HomeCallouts() {
             title: 'Run a real-time graph streaming platform',
             subtitle: 'Download and install Memgraph locally and start exploring your data.',
             urlText: 'Get Started with Memgraph',
-            url: 'https://docs.memgraph.com/memgraph/getting-started/',
+            url: useBaseUrl('/memgraph/getting-started'),
         },
         {
             title: 'Run Memgraph in the cloud',
             subtitle: 'Explore your data in the cloud through our fully-managed service.',
             urlText: 'Get Started with Cloud',
             url: 'https://memgraph.com/product/cloud',
+        },
+        {
+            title: 'Import your data',
+            subtitle: 'Import data into Memgraph using streaming data sources, CSV files, or Cypher commands.',
+            urlText: 'Gather all your data in one place',
+            url: useBaseUrl('/memgraph/import-data'),
         },
         {
             title: 'Connect to Memgraph',
@@ -28,13 +34,13 @@ export default function HomeCallouts() {
             title: 'Query, analyze & visualize the data',
             subtitle: 'Use Memgraph Lab to visualize, query, and interact with your data.',
             urlText: 'Get Started with Memgraph Lab',
-            url: 'https://docs.memgraph.com/memgraph-lab/',
+            url: useBaseUrl('/memgraph-lab'),
         },
         {
             title: 'Cypher Manual',
             subtitle: 'Start learning the Cypher query language and analyze your data.',
             urlText: 'Start learning Cypher',
-            url: 'https://docs.memgraph.com/cypher-manual/',
+            url: useBaseUrl('/cypher-manual'),
         }
     ]
     return (

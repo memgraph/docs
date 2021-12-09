@@ -17,14 +17,7 @@ export default function Hero() {
                     <div>
                         <div className={styles.heroImg}>
                             <div className={styles.heroCodeSnippet}>
-                                <pre>{`
- docker pull memgraph/memgraph
- docker run -p 7687:7687 \\
-  -v mg_lib:/var/lib/memgraph \\
-  -v mg_log:/var/log/memgraph \\
-  -v mg_etc:/etc/memgraph \\
-  memgraph/memgraph 
-                                `}</pre>
+                                <pre>docker run -it -p 7687:7687 -p 3000:3000 <wbr/>memgraph/memgraph-platform</pre>
                             </div>
                             <img src={useBaseUrl('img/hero-img-desktop.svg')} />
                         </div>

@@ -1,12 +1,16 @@
 ---
 id: overview
 title: Query modules
-sidebar_label: Overview
+sidebar_label: Query modules overview
 slug: /database-functionalities/query-modules
 ---
 
 Memgraph supports extending the query language with user-written procedures.
 These procedures are grouped into modules, which can then be loaded on startup.
+
+:::note
+For detailed technical information on query modules, check out the [reference guide](/reference-guide/query-modules/overview.md).
+:::
 
 ## Loading query modules
 
@@ -75,9 +79,9 @@ memory to be able to yield its results, you can increase the memory limit using
 the following syntax:
 
 ```cypher
-CALL module.procedure(arg1, arg2, ...) MEMORY LIMIT 100 KB YIELD res1, res2, ...;
-CALL module.procedure(arg1, arg2, ...) MEMORY LIMIT 100 MB YIELD res1, res2, ...;
-CALL module.procedure(arg1, arg2, ...) MEMORY UNLIMITED YIELD res1, res2, ...;
+CALL module.procedure(arg1, arg2, ...) PROCEDURE MEMORY LIMIT 100 KB YIELD res1, res2, ...;
+CALL module.procedure(arg1, arg2, ...) PROCEDURE MEMORY LIMIT 100 MB YIELD res1, res2, ...;
+CALL module.procedure(arg1, arg2, ...) PROCEDURE MEMORY UNLIMITED YIELD res1, res2, ...;
 ```
 
 The limit can either be specified to a specific value (either in `KB` or in

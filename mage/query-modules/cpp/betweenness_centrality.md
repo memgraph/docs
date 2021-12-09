@@ -49,14 +49,14 @@ Centrality analysis provides information about the node’s importance for an in
 
 #### Output:
 
-* `betweeenness_centrality: float` ➡ Value of betweenness for a given node
+* `betweenness_centrality: float` ➡ Value of betweenness for a given node
 
 * `node: Vertex` ➡ Graph vertex for betweenness calculation
 
 #### Usage:
 ```cypher
 CALL betweenness_centrality.get()
-YIELD node, betweeenness_centrality;
+YIELD node, betweenness_centrality;
 ```
 
 ## Example
@@ -103,7 +103,7 @@ MERGE (a:Node {id: 3}) MERGE (b:Node {id: 8}) CREATE (a)-[:RELATION]->(b);
 
 ```cypher
 CALL betweenness_centrality.get(TRUE,TRUE)
-YIELD node, betweeenness_centrality;
+YIELD node, betweenness_centrality;
 ```
 
   </TabItem>
@@ -113,7 +113,7 @@ YIELD node, betweeenness_centrality;
 
 ```plaintext
 +-------------------------+-------------------------+
-| node                    | betweeenness_centrality |
+| node                    | betweenness_centrality |
 +-------------------------+-------------------------+
 | (:Node {id: 0})         | 0                       |
 | (:Node {id: 1})         | 0.109091                |
