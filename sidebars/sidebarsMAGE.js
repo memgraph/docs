@@ -12,6 +12,7 @@ module.exports = {
       label: "Tutorials",
       items: [
         "tutorials/create-a-new-module-python",
+        "tutorials/create-a-new-module-cpp",
         "tutorials/run-a-query-module",
       ],
     },
@@ -23,6 +24,7 @@ module.exports = {
         "query-modules/cpp/biconnected-components",
         "query-modules/cpp/bipartite-matching",
         "query-modules/cpp/bridges",
+        "query-modules/cpp/community-detection-online",
         "query-modules/cpp/cycles",
         "query-modules/cpp/pagerank",
         "query-modules/cpp/pagerank-online",

@@ -11,8 +11,16 @@ Memgraph on Ubuntu.
 ## Prerequisites
 
 Before you proceed with the installation guide make sure that you have:
-* Downloaded the latest **Memgraph Debian Package** which can be [found
+* Downloaded the latest **Memgraph Ubuntu Package** which can be [found
   here](https://memgraph.com/download/).
+
+:::note
+
+Memgraph packages are available for:
+- **Ubuntu 18.04**
+- **Ubuntu 20.04**
+
+:::
 
 ## Installation guide {#installation-guide}
 

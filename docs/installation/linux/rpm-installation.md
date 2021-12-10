@@ -14,7 +14,16 @@ Before you proceed with the installation guide make sure that you have:
 * Downloaded the latest **Memgraph RPM Package** which can be [found
   here](https://memgraph.com/download/).
 
+:::note
+
+Memgraph packages are available for:
+- **CentOS 7**
+- **CentOS 8 Stream**
+
+:::
+
 ## Installation guide
+
 After downloading the Memgraph RPM package, you can install it by issuing the
 following command:
 

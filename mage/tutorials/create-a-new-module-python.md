@@ -4,23 +4,23 @@ title: Developing a query module in Python
 sidebar_label: Create a Python module
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+Query modules can be implemented using the [Python
+API](/memgraph/reference-guide/query-modules/api/python-api) provided by
+Memgraph. In this tutorial, we will learn how to develop a query module in
+Python on the example of the **random walk algorithm**.
 
 ## Prerequisites
 
 There are three options for installing and working with Memgraph MAGE:
-1.  **Pulling the `memgraph/memgraph-mage` image**:  check the tab `Docker Hub`
+
+1.  **Pulling the `memgraph/memgraph-mage` image**: check the tab `Docker Hub`
     inside the [installation guide](/installation.md).
 2.  **Building a Docker image from the MAGE repository**: check the tab `Docker
     build` inside the [installation guide](/installation.md).
-3.  **Building MAGE from source**: check the tab `Build from source on Linux` inside the
-    [installation guide](/installation.md).
+3.  **Building MAGE from source**: check the tab `Build from source on Linux`
+    inside the [installation guide](/installation.md).
 
 ## Developing a module
-
-In this guide, we'll create a [random
-walk](https://en.wikipedia.org/wiki/Random_walk#On_graphs) algorithm.
 
 :::note
 
@@ -30,20 +30,22 @@ _Docker build_, and _Build from source on Linux_.
 :::
 
 Position yourself in the **MAGE repository** you cloned earlier. Specifically,
-go in the `python` sub-directory and create a new file called `random_walk.py`. 
+go in the `python` sub-directory and create a new file called `random_walk.py`.
 
 ```plaintext
 python
 └── mage
-    └── random_walk.py
+    random_walk.py
 
 ```
 
-For this part, we will import `mgp`, Memgraph's internal data structure module.
-Among others, it contains definitions for **Vertex** and **Edge** data
+For this part, we will import [`mgp`](https://github.com/memgraph/mgp),
+Memgraph's internal data structure module. Among others, it contains definitions
+for [**Vertex**](https://github.com/memgraph/mgp/blob/main/mgp.py#L260) and
+[**Edge** ](https://github.com/memgraph/mgp/blob/main/mgp.py#L182)data
 structures.
 
-:::tip 
+:::tip
 
 Install the `mgp` Python module so your editor can use typing annotations
 properly and suggest methods and classes it contains. You can install the module
@@ -89,20 +91,11 @@ Memgraph it's a `read` procedure, meaning it won't make changes to the graph.
 The path is created from the `start` node, and edges are appended to it
 iteratively.
 
-
-:::warning
-
-The following steps depend on the how you installed Memgraph and MAGE as we need
-to import the modules.
-
-:::
-
-
-
 ## Importing, querying and testing a module
 
-Now in order to import, query and test a module, hop to [following page](/mage/tutorials/run-a-query-module).
+Now in order to import, query and test a module, check out the [following
+page](/mage/tutorials/run-a-query-module).
 
-
-And that is it. Feel free to create an issue or open pull request on our [Github repo](https://github.com/memgraph/mage) 
-to speed up the development. Also, don't forget to give us a :star:
+Feel free to create an issue or open a pull request on our [Github
+repo](https://github.com/memgraph/mage) to speed up the development.<br/>
+Also, don't forget to throw us a star on GitHub. :star:

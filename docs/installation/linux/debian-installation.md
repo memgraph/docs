@@ -14,6 +14,14 @@ Before you proceed with the installation guide make sure that you have:
 * Downloaded the latest **Memgraph Debian Package** which can be [found
   here](https://memgraph.com/download/).
 
+:::note
+
+Memgraph packages are available for:
+- **Debian 10**
+- **Debian 11**
+
+:::
+
 ## Installation guide {#installation-guide}
 
 After downloading Memgraph as a Debian package, install it by running the
