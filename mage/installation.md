@@ -234,15 +234,13 @@ python3 setup build -p /usr/lib/memgraph/query_modules
 
 **3.** Start Memgraph and enjoy **MAGE**!
 
-:::info
 
-Note that query modules are loaded into Memgraph on startup, so if your instance
-was already running, you would need to execute the following query to load them:
-
-```cypher
+:::warning
+Query modules are loaded into Memgraph on startup so if your instance was already running you will need to
+execute the following query inside one of [querying platforms](https://memgraph.com/docs/memgraph/connect-to-memgraph) to load them:
+```
 CALL mg.load_all();
 ```
-
 If your changes are not loaded, make sure to restart the instance by running
 `systemctl stop memgraph` and `systemctl start memgraph`.
 
@@ -262,37 +260,37 @@ python3 setup all
 ```
 > Note: If your changes are not loaded, make sure to restart the instance by running `systemctl stop memgraph` and `systemctl start memgraph`.
 
-Next time you change something, just run the following command, since it is we have already set up a new directory for
+Next time you change something, just run the following command, since we have already set up a `/mage/dist` for
 query modules directory:
 
 ```
 python3 setup build
 ```
-> Note that query modules are loaded into Memgraph on startup so if your instance was already running you will need to
-> execute the following query inside one of [querying platforms](https://docs.memgraph.com/memgraph/connect-to-memgraph) to load them:
-
 
 ### 2. Set different query_modules directory
-`setup` script offers you to set your local `mage/dist` folder as the default one for the Memgraph configuration file
-(flag `--query-modules-directory` defined in `/etc/memgraph/memgraph.conf` file with following step:
+`setup` script offers you to set your local `mage/dist` folder or **any** other folder as the **default** one for the Memgraph configuration file
+(flag `--query-modules-directory` defined in `/etc/memgraph/memgraph.conf` file). There are few options:
+
+**1.** Set `<your_folder>` as **default** one:
+```
+python3 setup modules_storage -p <your_folder>
+```
+
+This way Memgraph will be looking for query modules inside `<your_folder>`. 
+> Don't forget to copy aforementioned files from `mage/dist` folder to `<your_folder>`.
+
+
+**2.** Set `/mage/dist` as **default** one:
 
 ```
 python3 setup modules_storage
 ```
 
-This way Memgraph will be looking for query modules inside `mage/dist` folder. Now you don't need to copy `mage/dist` folder to
-`/usr/lib/memgraph/query_modules` every time when you do `build`.
+If **default** folder is **mage/dist** then you don't need to copy `*.so` and `*.py` files from `mage/dist` folder to`/usr/lib/memgraph/query_modules` every time when you run `build`.
 
-Now you can run only the following command to build MAGE modules:
-```
-python3 setup build
-```
 
-> Again the note that query modules are loaded into Memgraph on startup so if your instance was already running you will need to
-> execute the following query inside one of [querying platforms](https://memgraph.com/docs/memgraph/connect-to-memgraph) to load them:
-```
-CALL mg.load_all();
-```
 
   </TabItem>
 </Tabs>
+
+
