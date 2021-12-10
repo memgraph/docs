@@ -10,7 +10,10 @@ module.exports = {
     {
       type: "category",
       label: "Tutorials",
-      items: ["tutorials/create-a-new-module"],
+      items: [
+        "tutorials/create-a-new-module-python",
+        "tutorials/run-a-query-module",
+      ],
     },
     {
       type: "category",
@@ -26,6 +29,7 @@ module.exports = {
         "query-modules/python/distance-calculator",
         "query-modules/python/graph-analyzer",
         "query-modules/python/graph-coloring",
+        "query-modules/python/node2vec",
         "query-modules/python/node2vec-online",
         "query-modules/python/node-similarity",
         "query-modules/python/nxalg",

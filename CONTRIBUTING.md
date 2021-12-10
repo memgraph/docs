@@ -35,7 +35,7 @@ directory. Now, you can create a pull request to merge these changes into the
 
 ## Documentation structure
 
-If you need to add changes to the **Memgraph DB** documentation, make sure to
+If you need to add changes to the **Memgraph** documentation, make sure to
 understand the structure of the [repository](https://github.com/memgraph/docs):
 
 - `cloud/`: The documentation for Memgraph Cloud (*unreleased currently*).

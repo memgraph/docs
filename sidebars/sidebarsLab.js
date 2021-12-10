@@ -1,17 +1,20 @@
 module.exports = {
   lab: [
-    'getting-started',
+    "getting-started",
     {
-      type: 'category',
-      label: 'Installation',
-      items: ['installation/osx-installation',],
+      type: "category",
+      label: "Installation",
+      items: [
+        "installation/windows",
+        "installation/macos",
+        "installation/linux",
+      ],
     },
     {
-      type: 'category',
-      label: 'Style script',
-      items: ['style-script/quick-start',
-        'style-script/reference-guide',],
+      type: "category",
+      label: "Style script",
+      items: ["style-script/quick-start", "style-script/reference-guide"],
     },
-    'changelog',
+    "changelog",
   ],
 };
