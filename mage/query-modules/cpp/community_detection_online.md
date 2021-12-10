@@ -23,25 +23,28 @@ export const Highlight = ({children, color}) => (
 
 ## Abstract
 
-This query module implements the [LabelRankT](https://arxiv.org/abs/1305.2006) dynamic community detection algorithm.
+This query module implements the [LabelRankT](https://arxiv.org/abs/1305.2006)
+dynamic community detection algorithm.
 
-LabelRankT belongs to the *label propagation* family of community detection algorithms and thus rests upon the idea that
-individual nodes learn from their neighbors what community they belong to.
+LabelRankT belongs to the *label propagation* family of community detection
+algorithms and thus rests upon the idea that individual nodes learn from their
+neighbors what community they belong to.
 
-Being *dynamic* and *efficient*, the algorithm is suitable for large-scale graphs.
-It runs in *O(m)* time and guarantees *O(mn)* space complexity, where *m* and *n* are the counts of vertices and edges
-in the graph, respectively.
+Being *dynamic* and *efficient*, the algorithm is suitable for large-scale
+graphs. It runs in *O(m)* time and guarantees *O(mn)* space complexity, where
+*m* and *n* are the counts of vertices and edges in the graph, respectively.
 
-Dynamic algorithms such as LabelRankT are especially suited for graph streaming solutions such as Memgraph.
-As updates arrive in a stream, it avoids redundant work by only processing the portion of the graph modified by the
-update.
+Dynamic algorithms such as LabelRankT are especially suited for graph streaming
+solutions such as Memgraph. As updates arrive in a stream, it avoids redundant
+work by only processing the portion of the graph modified by the update.
 
-Furthermore, the algorithm improves upon earlier label propagation methods by being deterministic; its results are
-replicable.
-Taking into account edge weight and directedness generally yields better community quality than similar methods,
+Furthermore, the algorithm improves upon earlier label propagation methods by
+being deterministic; its results are replicable. Taking into account edge weight
+and directedness generally yields better community quality than similar methods,
 and it extends LabelRankT’s compatibility to a wider set of graphs.
 
-[^1] [LabelRankT: Incremental Community Detection in Dynamic Networks via Label Propagation](https://arxiv.org/abs/1305.2006), Xie, Jierui et al.
+[^1] [LabelRankT: Incremental Community Detection in Dynamic Networks via Label
+Propagation](https://arxiv.org/abs/1305.2006), Xie, Jierui et al.
 
 | Trait               | Value                                                                                                       |
 | ------------------- | ----------------------------------------------------------------------------------------------------------- |
@@ -57,33 +60,42 @@ and it extends LabelRankT’s compatibility to a wider set of graphs.
 
 Performs dynamic community detection using the LabelRankT algorithm.
 
-The default values of the `similarity_threshold`, `exponent` and `min_value` parameters are not universally applicable,
-and the actual values should be determined experimentally.
-This is especially pertinent to setting the `min_value` parameter. For example, with the default ***1/10*** value,
-vertices of degree greater than 10 are at risk of not being assigned to any community and the user should check if that
-is indeed the case.
+The default values of the `similarity_threshold`, `exponent` and `min_value`
+parameters are not universally applicable, and the actual values should be
+determined experimentally. This is especially pertinent to setting the
+`min_value` parameter. For example, with the default ***1/10*** value, vertices
+of degree greater than 10 are at risk of not being assigned to any community and
+the user should check if that is indeed the case.
 
 #### Input:
 
-* `directed: bool(False)` ➡ Specifies whether the graph is directed. If not set, the graph is treated as undirected.
-* `weighted: bool(False)` ➡ Specifies whether the graph is weighted. If not set, the graph is considered unweighted.
-* `similarity_threshold: double(0.7)` ➡ Maximum similarity between node’s and its neighbors’ communities for the node
-   to be updated in the ongoing iteration.
-* `exponent: double(4)` ➡ Power which community probability vectors are raised elementwise to.
-* `min_value: double(0.1)` ➡ Smallest community probability that is not pruned between iterations.
-* `weight_property: str("weight")` For directed graphs, the values at the given edge property are used as weights in the
-   community detection algorithm.
-* `w_selfloop: double(1)` ➡ Each vertex has a self-loop added to smooth the label propagation. This parameter specifies
-   the weight assigned to the self-loops. If the graph is unweighted, this value is ignored.
+* `directed: bool(False)` ➡ Specifies whether the graph is directed. If not set,
+  the graph is treated as undirected.
+* `weighted: bool(False)` ➡ Specifies whether the graph is weighted. If not set,
+  the graph is considered unweighted.
+* `similarity_threshold: double(0.7)` ➡ Maximum similarity between node’s and
+   its neighbors’ communities for the node to be updated in the ongoing
+   iteration.
+* `exponent: double(4)` ➡ Power which community probability vectors are raised
+  elementwise to.
+* `min_value: double(0.1)` ➡ Smallest community probability that is not pruned
+  between iterations.
+* `weight_property: str("weight")` For directed graphs, the values at the given
+   edge property are used as weights in the community detection algorithm.
+* `w_selfloop: double(1)` ➡ Each vertex has a self-loop added to smooth the
+   label propagation. This parameter specifies the weight assigned to the
+   self-loops. If the graph is unweighted, this value is ignored.
 
 
 * `max_iterations: int(100)` ➡ Maximum number of iterations to run.
-* `max_updates: int(5)` ➡ Maximum number of updates to any node’s community probabilities.
+* `max_updates: int(5)` ➡ Maximum number of updates to any node’s community
+  probabilities.
 
 #### Output:
 
 * `node: Vertex` ➡ Graph node.
-* `community_id: int` ➡ Community ID. If the node is not associated with any community, defaults to ***-1***.
+* `community_id: int` ➡ Community ID. If the node is not associated with any
+  community, defaults to ***-1***.
 
 #### Usage:
 
@@ -94,13 +106,14 @@ YIELD node, community_id;
 
 ### `get()`
 
-Returns the latest previously calculated community detection results. If there are none, defaults to calling `set()`
-with default parameters.
+Returns the latest previously calculated community detection results. If there
+are none, defaults to calling `set()` with default parameters.
 
 #### Output:
 
 * `node: Vertex` ➡ Graph node.
-* `community_id: int` ➡ Community ID. Defaults to ***-1*** if the node is not associated with any community.
+* `community_id: int` ➡ Community ID. Defaults to ***-1*** if the node is not
+  associated with any community.
 
 #### Usage:
 
@@ -111,37 +124,44 @@ YIELD node, community_id;
 
 ### `update(createdVertices, createdEdges, updatedVertices, updatedEdges, deletedVertices, deletedEdges)`
 
-Dynamically updates previously calculated community detection results based on changes applied in the latest graph
-update and returns the results.
+Dynamically updates previously calculated community detection results based on
+changes applied in the latest graph update and returns the results.
 
 #### Input:
 
-* `createdVertices: mgp.List[mgp.Vertex]` ➡ Vertices created in the latest graph update.
+* `createdVertices: mgp.List[mgp.Vertex]` ➡ Vertices created in the latest graph
+  update.
 * `createdEdges: mgp.List[mgp.Edge]` ➡ Edges created in the latest graph update.
-* `updatedVertices: mgp.List[mgp.Vertex]` ➡ Vertices updated in the latest graph update.
+* `updatedVertices: mgp.List[mgp.Vertex]` ➡ Vertices updated in the latest graph
+  update.
 * `updatedEdges: mgp.List[mgp.Edge]` ➡ Edges updated in the latest graph update.
-* `deletedVertices: mgp.List[mgp.Vertex]` ➡ Vertices deleted in the latest graph update.
+* `deletedVertices: mgp.List[mgp.Vertex]` ➡ Vertices deleted in the latest graph
+  update.
 * `deletedEdges: mgp.List[mgp.Edge]` ➡ Edges deleted in the latest graph update.
 
 #### Output:
 
 * `node: Vertex` ➡ Graph node.
-* `community_id: int` ➡ Community ID. If the node is not associated with any community, defaults to ***-1***.
+* `community_id: int` ➡ Community ID. If the node is not associated with any
+  community, defaults to ***-1***.
 
 #### Usage:
 
-As there are a total of six complex obligatory parameters, setting the parameters by hand might be cumbersome.
-The recommended use of this method is to call it within a
-[trigger](https://memgraph.com/docs/memgraph/database-functionalities/triggers), making sure beforehand that all
-[predefined variables](https://memgraph.com/docs/memgraph/database-functionalities/triggers/#predefined-variables) are
-available:
+As there are a total of six complex obligatory parameters, setting the
+parameters by hand might be cumbersome. The recommended use of this method is to
+call it within a
+[trigger](https://memgraph.com/docs/memgraph/database-functionalities/triggers),
+making sure beforehand that all [predefined
+variables](https://memgraph.com/docs/memgraph/database-functionalities/triggers/#predefined-variables)
+are available:
 
 ```cypher
 CREATE TRIGGER sample_trigger BEFORE COMMIT
 EXECUTE CALL community_detection_online.update(createdVertices, createdEdges, updatedVertices, updatedEdges, deletedVertices, deletedEdges) YIELD node, community_id;
 ```
 
-Communities calculated by `update()` are also accessible by subsequently calling `get()`:
+Communities calculated by `update()` are also accessible by subsequently calling
+`get()`:
 
 ```cypher
 CREATE TRIGGER sample_trigger BEFORE COMMIT
@@ -185,7 +205,6 @@ CALL community_detection_online.reset() YIELD message;
   <img src={require('../../data/query-modules/cpp/community-detection-online/community-detection-online-1.png').default}/>
 
   </TabItem>
-
   <TabItem value="cypher-preset">
 
 ```cypher
@@ -194,7 +213,6 @@ EXECUTE CALL community_detection_online.update(createdVertices, createdEdges, up
 SET node.community_id = community_id;
 ```
   </TabItem>
-
   <TabItem value="cypher-load">
 
 ```cypher
@@ -208,7 +226,6 @@ MERGE (a: Node {id: 4}) MERGE (b: Node {id: 5}) CREATE (a)-[r: Relation]->(b);
 ```
 
   </TabItem>
-
   <TabItem value="run">
 
 ```cypher
@@ -219,8 +236,6 @@ ORDER BY node_id;
 ```
 
   </TabItem>
-
-
   <TabItem value="result">
 
 ```plaintext
@@ -237,5 +252,4 @@ ORDER BY node_id;
 ```
 
   </TabItem>
-
 </Tabs>
