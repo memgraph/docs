@@ -8,15 +8,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 export const Highlight = ({children, color}) => (
-  <span
-    style={{
+<span
+style={{
       backgroundColor: color,
       borderRadius: '2px',
       color: '#fff',
       padding: '0.2rem',
     }}>
-    {children}
-  </span>
+{children}
+</span>
 );
 
 [![docs-source](https://img.shields.io/badge/source-pagerank_online-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/cpp/pagerank_module/pagerank_online_module.cpp)
@@ -31,7 +31,7 @@ deleted).
 
 To make it as fast as possible, the online algorithm is only the approximation
 of PageRank but carrying the same information - the likelihood of random walk
-ending in a particular vertex.  The work is based on "[Fast Incremental and
+ending in a particular vertex. The work is based on "[Fast Incremental and
 Personalized
 PageRank](http://snap.stanford.edu/class/cs224w-readings/bahmani10pagerank.pdf)"
 [^1], where authors are deeply focused on providing the streaming experience of
@@ -47,7 +47,7 @@ below:
 RankApprox(v) = X_v / (n * R / eps)
 ```
 
-Where `X_v` is the number of walks where the node `v` appears.  The theorem
+Where `X_v` is the number of walks where the node `v` appears. The theorem
 written in the paper explains that RankApprox(v) is sharply concentrated around
 its expectation, which is Rank(v).
 
@@ -90,14 +90,15 @@ Bahman Bahmani et al.
 
 #### Input:
 
-* `walks_per_node: int(10)` ➡ Number of sampled walks per node.
-* `walk_stop_epsilon: double(0.1)` ➡ The probability of stopping when deriving
-  the random walk.
+- `walks_per_node: int(10)` ➡ Number of sampled walks per node.
+- `walk_stop_epsilon: double(0.1)` ➡ The probability of stopping when deriving
+  the random walk. On average, it will create walks of length `1 /
+  walk_stop_epsilon`.
 
 #### Output:
 
-* `node` ➡ Node in the graph, for which PageRank is calculated.
-* `rank` ➡ Normalized ranking of a node. Expresses the probability that a random
+- `node` ➡ Node in the graph, for which PageRank is calculated.
+- `rank` ➡ Normalized ranking of a node. Expresses the probability that a random
   surfer will finish in a certain node by a random walk.
 
 #### Usage:
@@ -109,13 +110,13 @@ YIELD node, rank;
 
 ### `get(max_iterations, damping_factor, stop_epsilon)`
 
-&ast; This should be used if the trigger has been set or a `set` function has
+\* This should be used if the trigger has been set or a `set` function has
 been called before adding changes to the graph.
 
 #### Output:
 
-* `node` ➡ Node in the graph, for which PageRank is calculated.
-* `rank` ➡ Normalized ranking of a node. Expresses the probability that a random
+- `node` ➡ Node in the graph, for which PageRank is calculated.
+- `rank` ➡ Normalized ranking of a node. Expresses the probability that a random
   surfer will finish in a certain node by a random walk.
 
 #### Usage:
@@ -129,15 +130,15 @@ YIELD node, rank;
 
 #### Input:
 
-* `created_vertices` ➡ Vertices that were created in the last transaction.
-* `created_edges` ➡ Edges created in a period from the last transaction.
-* `deleted_vertices` ➡ Vertices deleted from the last transaction.
-* `deleted_edges` ➡ Edges deleted from the last transaction.
+- `created_vertices` ➡ Vertices that were created in the last transaction.
+- `created_edges` ➡ Edges created in a period from the last transaction.
+- `deleted_vertices` ➡ Vertices deleted from the last transaction.
+- `deleted_edges` ➡ Edges deleted from the last transaction.
 
 #### Output:
 
-* `node` ➡ Node in the graph, for which PageRank is calculated.
-* `rank` ➡ Normalized ranking of a node. Expresses the probability that a random
+- `node` ➡ Node in the graph, for which PageRank is calculated.
+- `rank` ➡ Normalized ranking of a node. Expresses the probability that a random
   surfer will finish in a certain node by a random walk.
 
 #### Usage:
@@ -152,19 +153,19 @@ SET node.rank = rank;
 ## Example
 
 <Tabs
-  groupId="example"
-  defaultValue="visualization"
-  values={[
-    {label: 'Step 1: Input graph', value: 'visualization'},
-    {label: 'Step 2: Set parameters and trigger', value: 'cypher-preset'},
-    {label: 'Step 3: Load commands', value: 'cypher-load'},
-    {label: 'Step 4: Running command', value: 'run'},
-    {label: 'Step 5: Results', value: 'result'},
-  ]
+groupId="example"
+defaultValue="visualization"
+values={[
+{label: 'Step 1: Input graph', value: 'visualization'},
+{label: 'Step 2: Set parameters and trigger', value: 'cypher-preset'},
+{label: 'Step 3: Load commands', value: 'cypher-load'},
+{label: 'Step 4: Running command', value: 'run'},
+{label: 'Step 5: Results', value: 'result'},
+]
 }>
-  <TabItem value="visualization">
+<TabItem value="visualization">
 
-  <img src={require('../../data/query-modules/cpp/pagerank-online/memgraph-pagerank-online.png').default}/>
+<img src={require('../../data/query-modules/cpp/pagerank-online/memgraph-pagerank-online.png').default}/>
 
   </TabItem>
   <TabItem value="cypher-preset">
