@@ -25,6 +25,7 @@ module.exports = {
         "query-modules/cpp/bipartite-matching",
         "query-modules/cpp/bridges",
         "query-modules/cpp/cycles",
+        "query-modules/cpp/community-detection-online",
         "query-modules/python/distance-calculator",
         "query-modules/python/graph-analyzer",
         "query-modules/python/graph-coloring",
