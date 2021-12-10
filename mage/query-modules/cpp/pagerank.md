@@ -80,6 +80,7 @@ PageRank implementation.
   surfer will finish in a certain node by a random walk.
 
 #### Usage:
+
 ```cypher
 CALL pagerank.get()
 YIELD node, rank;
@@ -102,12 +103,9 @@ YIELD node, rank;
   <img src={require('../../data/query-modules/cpp/pagerank/memgraph-pagerank.png').default}/>
 
   </TabItem>
-
-
   <TabItem value="cypher">
 
 ```cypher
-
 MERGE (a:Node {id: 1}) MERGE (b:Node {id: 0}) CREATE (a)-[:RELATION]->(b);
 MERGE (a:Node {id: 2}) MERGE (b:Node {id: 0}) CREATE (a)-[:RELATION]->(b);
 MERGE (a:Node {id: 3}) MERGE (b:Node {id: 0}) CREATE (a)-[:RELATION]->(b);
@@ -118,7 +116,6 @@ MERGE (a:Node {id: 0}) MERGE (b:Node {id: 7}) CREATE (a)-[:RELATION]->(b);
 ```
 
   </TabItem>
-
   <TabItem value="run">
 
 ```cypher
@@ -127,8 +124,6 @@ YIELD node, rank;
 ```
 
   </TabItem>
-
-
   <TabItem value="result">
 
 ```plaintext
@@ -147,5 +142,4 @@ YIELD node, rank;
 ```
 
   </TabItem>
-
 </Tabs>

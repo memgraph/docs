@@ -76,7 +76,6 @@ new runs.
 PageRank](http://snap.stanford.edu/class/cs224w-readings/bahmani10pagerank.pdf),
 Bahman Bahmani et al.
 
-
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |
 | **Module type**     | <Highlight color="#FB6E00">**algorithm**</Highlight>  |
@@ -93,7 +92,7 @@ Bahman Bahmani et al.
 
 * `walks_per_node: int(10)` ➡ Number of sampled walks per node.
 * `walk_stop_epsilon: double(0.1)` ➡ The probability of stopping when deriving
-  the random walk. On average it will create
+  the random walk.
 
 #### Output:
 
@@ -102,6 +101,7 @@ Bahman Bahmani et al.
   surfer will finish in a certain node by a random walk.
 
 #### Usage:
+
 ```cypher
 CALL pagerank.set(100, 0.2)
 YIELD node, rank;
@@ -119,6 +119,7 @@ been called before adding changes to the graph.
   surfer will finish in a certain node by a random walk.
 
 #### Usage:
+
 ```cypher
 CALL pagerank.get()
 YIELD node, rank;
@@ -166,8 +167,6 @@ SET node.rank = rank;
   <img src={require('../../data/query-modules/cpp/pagerank-online/memgraph-pagerank-online.png').default}/>
 
   </TabItem>
-
-
   <TabItem value="cypher-preset">
 
 ```cypher
@@ -178,8 +177,8 @@ BEFORE COMMIT
 EXECUTE CALL pagerank_online.update(createdVertices, createdEdges, deletedVertices, deletedEdges) YIELD *
 SET node.rank = rank;
 ```
- </TabItem>
 
+ </TabItem>
   <TabItem value="cypher-load">
 
 ```cypher
@@ -193,7 +192,6 @@ MERGE (a:Node {id: 4}) MERGE (b:Node {id: 6}) CREATE (a)-[:RELATION]->(b);
 ```
 
   </TabItem>
-
   <TabItem value="run">
 
 ```cypher
@@ -202,8 +200,6 @@ RETURN node.id AS node_id, node.rank AS rank;
 ```
 
   </TabItem>
-
-
   <TabItem value="result">
 
 ```plaintext
@@ -221,5 +217,4 @@ RETURN node.id AS node_id, node.rank AS rank;
 ```
 
   </TabItem>
-
 </Tabs>
