@@ -1,6 +1,6 @@
 ---
 id: getting-started
-title: Getting started
+title: Getting started with Memgraph
 sidebar_label: Getting started
 slug: /getting-started
 ---
@@ -18,7 +18,7 @@ If you're interested in trying out Memgraph from the comfort of your browser, yo
 If you enjoy learning concepts in small chunks before applying them in practice, our [step by step guide](/memgraph/tutorials) is the best place to start.
 
 ### Practical tutorial
-Learning by doing is our mantra. In this [tutorial](/memgraph/tutorials/analyzing-ted-talks), you'll explore a simple TED-talks dataset from scratch. The tips you'll learn in the tutorial will help you build any graph application.
+Learning by doing is our mantra. Check out our [tutorial that uses real-world data](/memgraph/tutorials/analyzing-ted-talks). In this tutorial, you'll explore a simple TED-talks dataset from scratch. The tips you'll learn in the tutorial will help you build any graph application.
 
 ### Connect to Memgraph Cloud
 Learn how to [connect your application](/connect-to-memgraph) to the Memgraph Cloud. Let us manage the configuration and guarantee it's set up correctly.
