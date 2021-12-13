@@ -16,7 +16,7 @@ There are two main Docker images that you can install:
   - the graph library **MAGE**
 - [**Memgraph base image**](#memgraph-base-image): contains only Memgraph.
 
-:::caution
+:::danger
 
 **Memgraph Platform** is the **recommended** Docker image. If you insist on
 using the Memgraph base image, be aware of the
@@ -100,7 +100,7 @@ memgraph>
 
 If you want to start Memgraph with different configuration settings, check out
 the [section below](#configuration). At this point, Memgraph is ready for you to
-[submit Cypher queries](/connect-to-memgraph/overview.mdx).
+[submit Cypher queries](/memgraph/install-memgraph-on-ubuntu).
 
 :::info
 

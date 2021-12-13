@@ -19,7 +19,7 @@ slug: /installation
 
 ## Windows
 
-You can choose to install Memgraph with Docker or through the Windows Subsystem
+You can choosechoosechoose to install Memgraph with Docker or through the Windows Subsystem
 for Linux (WSL):
 
 - **[Docker 🐳](/installation/windows/docker-installation.md)**
