@@ -18,7 +18,7 @@ otherwise, techniques that are used for social network analysis can be applied
 to various other network structures such as transportation networks, shipping
 networks, financial networks, etc.
 
-<img src="https://images.unsplash.com/photo-1562577309-4932fdd64cd1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&h=400&q=80" alt="drawing" />
+![memgraph-graph-algorithm-applications-social-media](../data/applications/memgraph-graph-algorithm-applications-social-media.png)
 
 ## Applying graphs
 
@@ -41,10 +41,6 @@ needed to perform these tasks programmatically. Community detection algorithms
 are used to find such groups of densely connected components in various
 networks.
 
-### Find similar interests
-
-TODO
-
 ### Get custom recommendation
 
 A very common problem in network analysis is link prediction. The algorithm
@@ -53,10 +49,11 @@ the near future. One way of predicting these links is by measuring the
 “proximity” of nodes in a network. This can be done by using similarity
 algorithms such as cosine similarity, Jaccard similarity and overlap similarity.
 
-### Find important users
+## Where to next?
 
-TODO
-
-### 1,2,3 degree connections
-
-TODO
+This text is a **summary** of one area that fits perfectly with the application
+of graphs. Therefore, we would like to have you with us when **implementing**
+some of these solutions. Share **opinions**, **experiences** and **problems**
+you encounter when working with **Memgraph** on our [Discord
+server](https://discord.gg/memgraph). We are here for you and we will help you
+along the way.

@@ -22,14 +22,45 @@ combination and utilization of this electrical data with external data sources
 enhancing observability of system-wide conditions, the behavior of end-users,
 and energy availability.
 
+![memgraph-graph-algorithm-applications-power-grids](../data/applications/memgraph-graph-algorithm-applications-power-grids.png)
+
 ## Applying graphs
 
 ### Minimum spanning tree designed for power grids
 
-
+In the case of a network failure, a smart grid should be able to automatically
+recofigure itself and continue energy distribution without additional
+disruptions. The generation of minimum spanning trees could overcome potential
+points of failure by enabling smart grids to heal themselvs and propose new
+configurations within the network. While such an algorithm would require
+significant resources, Memgraph with its in-memory implementation ensures
+real-time computation. 
 
 ### Finding shortest paths
 
+This type of network analysis is crucial to infrastructure managers. It helps
+uncover vulnerabilities and bottlenecks, model the impact incidents and outages
+may have on the network, and carry out critical contingency planning. By
+examining the power grid as a graph, this task is transformed to a simple graph
+problem which can be tackled in a myriad of ways. 
 
+### Handling failures in power grids
 
-### Solving what happens when an element in graph dies
+Because of their size and locations, power grids are prone to multiple faileures
+throughout the year. Individual elements can experience technical problems due
+to their age or weather effects which means that the grid needs to have certain
+redundancies in place. 
+
+By examining the grid through a graph, we can simulate the behavior in case of a
+critical failure. The graph should provide enough information to predict
+potential shortcomings. We can also simulate new elements such as transformers
+or high voltage transmission lines to find the most apropriate locations.
+
+## Where to next?
+
+This text is a **summary** of one area that fits perfectly with the application
+of graphs. Therefore, we would like to have you with us when **implementing**
+some of these solutions. Share **opinions**, **experiences** and **problems**
+you encounter when working with **Memgraph** on our [Discord
+server](https://discord.gg/memgraph). We are here for you and we will help you
+along the way.
