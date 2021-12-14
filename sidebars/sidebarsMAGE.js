@@ -53,7 +53,11 @@ module.exports = {
     {
       type: "category",
       label: "Tutorials",
-      items: ["tutorials/create-a-new-module"],
+      items: [
+        "tutorials/create-a-new-module-python",
+        "tutorials/create-a-new-module-cpp",
+        "tutorials/run-a-query-module",
+      ],
     },
     {
       type: "category",
@@ -63,7 +67,10 @@ module.exports = {
         "query-modules/cpp/biconnected-components",
         "query-modules/cpp/bipartite-matching",
         "query-modules/cpp/bridges",
+        "query-modules/cpp/community-detection-online",
         "query-modules/cpp/cycles",
+        "query-modules/cpp/pagerank",
+        "query-modules/cpp/pagerank-online",
         "query-modules/python/distance-calculator",
         "query-modules/python/graph-analyzer",
         "query-modules/python/graph-coloring",
@@ -71,7 +78,6 @@ module.exports = {
         "query-modules/python/node2vec-online",
         "query-modules/python/node-similarity",
         "query-modules/python/nxalg",
-        "query-modules/cpp/pagerank",
         "query-modules/python/set-cover",
         "query-modules/python/tsp",
         "query-modules/python/union-find",
