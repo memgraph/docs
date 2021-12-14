@@ -132,7 +132,7 @@ module.exports = {
             },
             {
               label: "Tutorials",
-              to: "/mage/tutorials/create-a-new-module",
+              to: "/mage/tutorials/create-a-new-module-python",
             },
             {
               label: "Applications",
