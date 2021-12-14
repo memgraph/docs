@@ -206,7 +206,7 @@ To get started with Memgraph, visit https://memgr.ph/start
 ```
 
 If you want to start Memgraph with different configuration settings, check out
-the [section below](#configuration). At this point, Memgraph is ready for you to
+the [Configuration section](#configuration). At this point, Memgraph is ready for you to
 [submit Cypher queries](/connect-to-memgraph/overview.mdx).
 
 :::info

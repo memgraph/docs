@@ -16,7 +16,7 @@ An updated version will soon be available.
 :::
 
 :::tip For an example of how to implement transformation modules in Python,
-check out [this
+check out [Python API
 guide](/database-functionalities/streams/pulsar/implement-transformation-module.md#python-api).
 :::
 

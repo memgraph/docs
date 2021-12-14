@@ -13,7 +13,7 @@ file can be found in the Memgraph installation directory, under
 
 :::tip
 For an example of how to implement query modules in Python, check out
-[this
+[Python API
 guide](/database-functionalities/query-modules/implement-query-modules.md#python-api).
 :::
 

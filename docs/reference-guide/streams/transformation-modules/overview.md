@@ -26,11 +26,12 @@ The available API references are:
 * **[Python API](./api/python-api.md)**
 
 :::tip
-You can check out
-[this](/database-functionalities/streams/kafka/implement-transformation-module.md)
+
+Check out how a typical transformation module can be implemented if you are using 
+[Kafka](/database-functionalities/streams/kafka/implement-transformation-module.md)
 or
-[this](/database-functionalities/streams/pulsar/implement-transformation-module.md)
-to learn how a typical transformation module can be implemented.
+[Pulsar](/database-functionalities/streams/pulsar/implement-transformation-module.md).
+
 :::
 
 ## Loading modules on startup
