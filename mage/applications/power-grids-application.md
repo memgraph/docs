@@ -29,11 +29,11 @@ and energy availability.
 ### Minimum spanning tree designed for power grids
 
 In the case of a network failure, a smart grid should be able to automatically
-recofigure itself and continue energy distribution without additional
+reconfigure itself and continue energy distribution without additional
 disruptions. The generation of minimum spanning trees could overcome potential
-points of failure by enabling smart grids to heal themselvs and propose new
+points of failure by enabling smart grids to heal themselves and propose new
 configurations within the network. While such an algorithm would require
-significant resources, Memgraph with its in-memory implementation ensures
+significant resources, Memgraph, with its in-memory implementation, ensures
 real-time computation. 
 
 ### Finding shortest paths
@@ -41,12 +41,12 @@ real-time computation.
 This type of network analysis is crucial to infrastructure managers. It helps
 uncover vulnerabilities and bottlenecks, model the impact incidents and outages
 may have on the network, and carry out critical contingency planning. By
-examining the power grid as a graph, this task is transformed to a simple graph
+examining the power grid as a graph, this task is transformed into a simple graph
 problem which can be tackled in a myriad of ways. 
 
 ### Handling failures in power grids
 
-Because of their size and locations, power grids are prone to multiple faileures
+Because of their size and locations, power grids are prone to multiple failures
 throughout the year. Individual elements can experience technical problems due
 to their age or weather effects which means that the grid needs to have certain
 redundancies in place. 
@@ -54,7 +54,7 @@ redundancies in place.
 By examining the grid through a graph, we can simulate the behavior in case of a
 critical failure. The graph should provide enough information to predict
 potential shortcomings. We can also simulate new elements such as transformers
-or high voltage transmission lines to find the most apropriate locations.
+or high voltage transmission lines to find the most appropriate locations.
 
 ## Where to next?
 

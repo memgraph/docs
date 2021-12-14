@@ -70,12 +70,12 @@ By using features such as **closeness** to previous scams, **centrality**,
 **community detection**, and many others, it is possible to make inferences over
 newly arrived data and thus discover whether a new data point is a fraud. Such
 models are sensitive to change and often miss in their judgment. That is why it
-is important to have a team of people trained on such cases who can make an
-educational assessment.
+is important to have a team of trained people who can make an
+educational assessment on such cases.
 
 ### Money Laundering
 
-Money launderers are becoming more sophisticated every year, therefore making
+Money launderers are becoming more sophisticated every year, making
 them difficult to track. Manual investigation on such cases can take up years.
 Money laundering is detected via **suspicious payment chains**. These structures
 are easy to investigate and operate with graphs, and therefore making them the

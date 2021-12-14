@@ -19,14 +19,14 @@ chain.
 
 ### Suply chain optimization
 
-Supply-chain optimization ensures the optimal operation of a manufacturing and
+**Supply chain optimization** ensures the optimal operation of a manufacturing and
 distribution supply chain. That includes the optimal inventory placement within
 the supply chain, minimizing operating costs, including manufacturing,
 transportation, and distribution costs. The goal is to maximize the profitable
 operation of the manufacturing and distribution supply chain. 
 
-If we observe a product's life cycle, it starts from the raw materials from
-which it was made and ends as a full product at the retailer. Naturally, that
+If we observe a **product's life cycle**, it starts from the raw materials from
+which it was made and ends as a complete product at the retailer. Naturally, that
 life cycle can be represented using nodes and relationships in a graph database.
 Next, using graph algorithms, the supply chain can be optimized.
 
@@ -38,19 +38,19 @@ recommendation systems increase their revenue and create stronger relationships
 with their buyers. Sellers want to recommend each buyer something according to
 their taste. That can be done by finding similar buyers, recommending some
 trendy products from the same category that the user has bought, or finding
-similar products to the one the buyer has purchased. All that data is somehow
-connected and is best shown in a graph database. Using graph algorithms and
-machine learning, you can quickly implement a recommendation system that suits
+similar products to the one the buyer has purchased. All that data is connected
+and is best shown in a graph database. Using **graph algorithms** and **machine
+learning**, you can quickly implement a **recommendation system** that suits
 your needs.
 
 ### Discovering communities
 
 By choosing the right audience, some brands can offer genuine value to the buyer
 and increase their revenue. The buyer sees that brand as a perfect fit for its
-needs and frequently buys its products. Therefore, communities discovery plays a
-vital role in purchase decisions. With graph databases and graph algorithms, the
-discovery of different communities of buyers has proven to be valuable and
-straightforward.
+needs and frequently buys its products. Therefore, **communities discovery**
+plays a vital role in purchase decisions. With graph databases and graph
+algorithms, the discovery of different communities of buyers has proven to be
+valuable and straightforward.
 
 ## Where to next?
 

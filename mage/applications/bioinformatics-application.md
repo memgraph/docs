@@ -46,7 +46,7 @@ A [sequence similarity
 network](http://sfld.rbvi.ucsf.edu/archive/django/web/networks/index.html) (SNN)
 enables the visualization of relationships among protein sequences. The proteins
 which are related in some way are most often grouped in clusters. The graph is
-made up of nodes that represent proteins while the edges indicate similarity in
+made up of nodes that represent proteins, while the edges indicate similarity in
 amino acid sequence.
 
 SNNs are used to explore relationships in large and diverse sets of sequences
@@ -57,7 +57,7 @@ generating accurate multiple alignments.
 ### Disease networks
 
 Systems biology experiments create an enormous amount of data of multiple
-modalities. This kind of data because of its complexity and rich semantics
+modalities. Because of its complexity and rich semantics, this kind of data
 presents a hurdle for standard storage and analysis solutions.
 
 Graph databases provide a flexible solution for the integration of multiple

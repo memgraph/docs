@@ -19,7 +19,7 @@ significantly resembles a graph.
 
 ### Factory modelling
 
-Every factory strives to **optimize** its plant. Thus, through graphs, it is
+Every factory strives to **optimize** its plant. Through graphs, it is
 possible to create a **state network** that simulates a particular plant. By
 analyzing such plants and eliminating potential risks before construction
 itself, it is possible to save millions of dollars.

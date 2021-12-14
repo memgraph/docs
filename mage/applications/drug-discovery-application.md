@@ -30,8 +30,8 @@ health risk and limit accurate judgment. Machine learning has the potential to
 predict unknown adverse reactions from current knowledge without having to rely
 on new resources intensive studies and experiments. Representing relationships in
 the form of a graph and performing feature extraction can result in much clearer
-and more accurate predictions. Traditioanl AI and machine learning techniques
-are not mean't to detect and traverse complex relationships on such scale which
+and more accurate predictions. Traditional AI and machine learning techniques
+are not meant to detect and traverse complex relationships on such scale which
 is where graph algorithms come in.
 
 ## Where to next?

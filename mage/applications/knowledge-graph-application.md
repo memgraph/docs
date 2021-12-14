@@ -5,7 +5,7 @@ sidebar_label: Knowledge Graphs
 ---
 
 Knowledge graphs represent collections of interconnected descriptions of
-entities. Such entities can describe objects, events, concepts or any other
+entities. Such entities can describe objects, events, concepts, or any other
 phenomenon. The purpose of a knowledge graph is to link entities with semantic
 metadata and to provide context. This way, enriched data can be used for further
 analysis and advanced analytics.
