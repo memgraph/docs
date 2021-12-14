@@ -7,13 +7,13 @@ slug: /installation
 
 :::note
 
-The **Docker Hub** and **Docker build** installation methods only requery you to
+The **Docker Hub** and **Docker build** installation methods only require you to
 [install Docker](https://docs.docker.com/get-docker/) while the **Build from
-source on Linux** method requires the installation of additional dependancies.
+source on Linux** method requires the installation of additional dependencies.
 
 :::
 
-There are three methods to install and use MAGE locally:
+There are three methods to install and use **MAGE** locally:
 
 1. **[Docker Hub](/installation/docker-hub.md)** (recommended method ✔️)
 2. **[Docker build](/installation/docker-build.md)**

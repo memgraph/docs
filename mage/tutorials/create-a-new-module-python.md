@@ -13,12 +13,12 @@ Python on the example of the **random walk algorithm**.
 
 There are three options for installing and working with Memgraph MAGE:
 
-1.  **Pulling the `memgraph/memgraph-mage` image**: check the tab `Docker Hub`
-    inside the [installation guide](/installation.md).
-2.  **Building a Docker image from the MAGE repository**: check the tab `Docker
-    build` inside the [installation guide](/installation.md).
-3.  **Building MAGE from source**: check the tab `Build from source on Linux`
-    inside the [installation guide](/installation.md).
+1.  **Pulling the `memgraph/memgraph-mage` image**: check the `Docker Hub`
+    [installation guide](/installation/docker-hub.md).
+2.  **Building a Docker image from the MAGE repository**: check the `Docker
+    build` [installation guide](/installation/docker-build.md).
+3.  **Building MAGE from source**: check the `Build from source on Linux`
+    [installation guide](/installation/source.md).
 
 ## Developing a module
 
