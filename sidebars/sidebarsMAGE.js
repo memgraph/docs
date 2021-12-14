@@ -1,8 +1,17 @@
 module.exports = {
   mage: [
     "overview",
-    "installation",
-     {
+    {
+      type: "category",
+      label: "Installation",
+      items: [
+        "installation/overview",
+        "installation/docker-hub",
+        "installation/docker-build",
+        "installation/source",
+      ],
+    },
+    {
       type: "category",
       label: "Algorithms",
       items: [
@@ -42,7 +51,7 @@ module.exports = {
             "algorithms/machine-learning-graph-analytics/node2vec-algorithm",
             "algorithms/machine-learning-graph-analytics/graph-clustering-algorithm",
           ],
-        }
+        },
       ],
     },
     {
@@ -101,7 +110,7 @@ module.exports = {
         "applications/social-media-application",
         "applications/telecommunication-application",
         "applications/transportation-application",
-      ]
+      ],
     },
     "contributing",
     {
