@@ -278,8 +278,8 @@ setup but can usually be found in `/var/lib/docker/volumes/`.
 
 ## Where to next? {#where-to-next}
 
-If you need more information on working with Docker, check out **[this
-guide](/database-functionalities/work-with-docker.md)**.<br/>
+If you need more information on working with Docker, check out our **[guide on how
+to work with Docker](/database-functionalities/work-with-docker.md)**.<br/>
 To learn how to query the database, take a look at the
 **[Querying](/connect-to-memgraph/overview.mdx)** guide or **[Memgraph
 Playground](https://playground.memgraph.com/)** for interactive tutorials.<br/>
