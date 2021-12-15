@@ -12,11 +12,19 @@ export default function HomeCallouts() {
             urlText: 'Get Started with Memgraph',
             url: useBaseUrl('/memgraph/getting-started'),
         },
+        /*
         {
             title: 'Run Memgraph in the cloud',
             subtitle: 'Explore your data in the cloud through our fully-managed service.',
             urlText: 'Get Started with Cloud',
             url: 'https://memgraph.com/product/cloud',
+        },
+        */
+        {
+            title: 'MAGE graph library',
+            subtitle: 'Run graph algorithms on real-time data - Stream processing with the power of graph analytics.',
+            urlText: 'Get Started with MAGE',
+            url: useBaseUrl('/mage'),
         },
         {
             title: 'Import your data',
