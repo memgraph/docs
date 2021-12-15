@@ -33,6 +33,9 @@ the complexity of your data:
 
 ### One type of nodes and relationships
 
+Depending on how you set the `HEADER` option (`WITH` or `NO`), a row will be
+parsed as either a map or a list.
+
 <Tabs
   groupId="platform"
   defaultValue="headerin"
@@ -42,8 +45,6 @@ the complexity of your data:
   ]}>
   <TabItem value="headerin">
 
-Depending on how you set the `HEADER` option (`WITH` or `NO`), a row will be
-parsed as either a map or a list.
 
 To access a given field, you can use the property lookup syntax. Let's assume
 that the contents of `people_nodes.csv` are as follows:
@@ -128,7 +129,7 @@ CREATE (p1)-[:IS_FRIENDS_WITH]->(p2)
 ### Multiple types of nodes and relationships
 
 In the case of a more complex graph, we have to deal with multiple node and
-relationship types. Let's assume we have the following example:
+relationship types. Let's assume we have the following four CSV files:
 
 <Tabs
   groupId="csv"
