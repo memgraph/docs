@@ -6,7 +6,7 @@ sidebar_label: Storage
 
 ## Durability and Data Recovery
 
-*Memgraph* uses two mechanisms to ensure the durability of the stored data:
+Memgraph uses two mechanisms to ensure the durability of the stored data:
 
   * write-ahead logging (WAL) and
   * taking periodic snapshots.
@@ -15,7 +15,7 @@ Write-ahead logging works by logging all database modifications to a file.
 This ensures that all operations are done atomically and provides a trace of
 steps needed to reconstruct the database state.
 
-Snapshots are taken periodically during the entire runtime of *Memgraph*. When
+Snapshots are taken periodically during the entire runtime of Memgraph. When
 a snapshot is triggered, the whole data storage is written to disk. The
 snapshot file provides a quicker way to restore the database state.
 
@@ -33,24 +33,24 @@ Behaviour of the above mechanisms can be tweaked in the configuration file,
 usually found in `/etc/memgraph/memgraph.conf`.
 
 In addition to the above mentioned data durability and recovery, a snapshot
-file may be generated using *Memgraph's* import tools. For more information,
+file may be generated using Memgraph's import tools. For more information,
 take a look at the [Import data](/import-data/overview.mdx)
 guide.
 
 ## Storable Data Types
 
-Since *Memgraph* is a *graph* database management system, data is stored in
+Since Memgraph is a graph database management system, data is stored in
 the form of graph elements: nodes and edges. Each graph element can also
 contain various types of data. This chapter describes which data types are
-supported in *Memgraph*.
+supported in Memgraph.
 
 ### Node Labels & Edge Types
 
 Each node can have any number of labels. A label is a text value, which can be
-used to *label* or group nodes according to users' desires. A user can change
+used to label or group nodes according to users' desires. A user can change
 labels at any time. Similarly to labels, each edge can have a type,
 represented as text. Unlike nodes, which can have multiple labels or none at
-all, edges *must* have exactly one edge type. Another difference to labels, is
+all, edges must have exactly one edge type. Another difference to labels, is
 that the edge types are set upon creation and never modified again.
 
 ### Properties

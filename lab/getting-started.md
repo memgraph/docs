@@ -1,6 +1,6 @@
 ---
 id: getting-started
-title: Getting started
+title: Getting started with Memgraph Lab
 sidebar_label: Getting started
 slug: /
 ---
