@@ -43,7 +43,7 @@ compatible with all newer versions.
 
 ### Installation guide {#installation-guide}
 
-**1.** Open the Command Prompt or PowerShell
+**1.** Open the Command Prompt or PowerShell.
 
 **2.** Download and load the **Memgraph Platform Docker image** with the
 following command:

@@ -11,7 +11,7 @@ Memgraph from a RPM package.
 ## Prerequisites
 
 Before you proceed with the installation guide make sure that you have:
-* Downloaded the latest **Memgraph RPM Package** which can found be on the
+* Downloaded the latest **Memgraph RPM Package** which can be found on the
   [Memgraph download hub](https://memgraph.com/download/).
 
 :::note

@@ -11,13 +11,19 @@ be found in the Memgraph installation directory, under `python_support`. On the
 standard Debian installation, this will be under
 `/usr/lib/memgraph/python_support`.
 
-:::caution **NOTE:** This part of the documentation is still under development.
-An updated version will soon be available.
+:::caution 
+
+**NOTE:** This part of the documentation is still under development. An updated
+version will soon be available.
+
 :::
 
-:::tip For an example of how to implement transformation modules in Python,
-check out [Python API
+:::tip 
+
+For an example of how to implement transformation modules in Python, check out
+the [Python API
 guide](/database-functionalities/streams/pulsar/implement-transformation-module.md#python-api).
+
 :::
 
 ## `mgp.transformation(func)`
