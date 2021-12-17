@@ -31,6 +31,7 @@ module.exports = {
         "clauses/with",
       ],
     },
+    "query-modules",
     "other-features",
     {
       type: "category",
