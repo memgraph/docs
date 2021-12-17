@@ -13,7 +13,7 @@ and running on your machine, you can continue with the next step.
 ## Step 2 - Installing and setting up Memgraph Lab
 
 **1.** Download Memgraph Lab by visiting the [Download
-Hub](https://memgraph.com/download/#lab).
+Hub](https://memgraph.com/download/#memgraph-lab).
 
 **2.** Once you have Memgraph Lab installed, run the app, and you should be
 presented with a login screen. The username and password fields are empty by

@@ -20,8 +20,8 @@ There are two main Docker images that you can install:
 
 **Memgraph Platform** is the **recommended** Docker image. If you insist on
 using the Memgraph base image, be aware of the
-[differences](#differences-between-images) when interacting with
-them. We provide code snippets for working with both types of images below.
+[differences](#differences-between-images) when interacting with them. We
+provide code snippets for working with both types of images below.
 
 :::
 
@@ -43,18 +43,29 @@ compatible with all newer versions.
 
 ### Installation guide {#installation-guide}
 
-**1.** Download and load the **Memgraph Platform Docker image** with the
+**1.** Open the Command Prompt or PowerShell.
+
+**2.** Download and load the **Memgraph Platform Docker image** with the
 following command:
 
 ```console
  docker pull memgraph/memgraph-platform
 ```
 
-**2.** Create a new tag for the image so it can be called as `memgraph` instead
+**3.** Create a new tag for the image so it can be called as `memgraph` instead
 of `memgraph/memgraph-platform`:
 
 ```console
 docker image tag memgraph/memgraph-platform memgraph
+```
+
+
+### Starting Memgraph Platform {#starting-memgraph-platform}
+
+To start Memgraph, use the following command:
+
+```console
+docker run -it -p 7687:7687 -p 3000:3000 memgraph/memgraph-platform
 ```
 
 :::tip Memgraph Platform
@@ -64,14 +75,6 @@ The **memgraph/memgraph-platform** Docker image contains **Memgraph**,
 in the terminal while Memgraph Lab is available on `http://localhost:3000`.
 
 :::
-
-### Starting Memgraph Platform {#starting-memgraph-platform}
-
-To start Memgraph, use the following command:
-
-```console
-docker run -it -p 7687:7687 -p 3000:3000 memgraph/memgraph-platform
-```
 
 :::info Docker Volumes
 
@@ -99,8 +102,8 @@ memgraph>
 ```
 
 If you want to start Memgraph with different configuration settings, check out
-the [section below](#configuration). At this point, Memgraph is ready for you to
-[submit Cypher queries](/connect-to-memgraph/overview.mdx).
+the [Configuration section](#configuration). At this point, Memgraph is ready
+for you to [submit Cypher queries](/connect-to-memgraph/overview.mdx).
 
 :::info
 
@@ -113,10 +116,10 @@ The username and password for connecting to the database are empty by default.
 To stop a Memgraph database instance, run the following command:
 
 ```console
-docker stop CONTAINER_NAME
+docker stop CONTAINER_ID
 ```
 
-You can find the name of the container (`CONTAINER_NAME`) by running:
+You can find the name of the container (`CONTAINER_ID`) by running:
 
 ```console
 docker ps
@@ -203,7 +206,7 @@ To get started with Memgraph, visit https://memgr.ph/start
 ```
 
 If you want to start Memgraph with different configuration settings, check out
-the [section below](#configuration). At this point, Memgraph is ready for you to
+the [Configuration section](#configuration). At this point, Memgraph is ready for you to
 [submit Cypher queries](/connect-to-memgraph/overview.mdx).
 
 :::info
@@ -217,10 +220,10 @@ The username and password for connecting to the database are empty by default.
 To stop a Memgraph database instance, run the following command:
 
 ```console
-docker stop CONTAINER_NAME
+docker stop CONTAINER_ID
 ```
 
-You can find the name of the container (`CONTAINER_NAME`) by running:
+You can find the name of the container (`CONTAINER_ID`) by running:
 
 ```console
 docker ps
@@ -267,8 +270,8 @@ setup but can usually be found in
 - Configuration flags need to be passed inside of environmental variables when
   working with Memgraph Platform. For example, you can start the Memgraph base
   image with `docker run memgraph --bolt-port=7687`, while `docker run -e
-  MEMGRAPH="--bolt-port=7687" memgraph/memgraph-platform` is the same command for Memgraph
-  Platform.
+  MEMGRAPH="--bolt-port=7687" memgraph/memgraph-platform` is the same command
+  for Memgraph Platform.
 
 - When starting Memgraph Platform, you need to include the `-it` flag that tells
   Docker to open an interactive container instance. Otherwise, you won't have
@@ -280,8 +283,8 @@ setup but can usually be found in
 
 ## Where to next? {#where-to-next}
 
-If you need more information on working with Docker, check out **[this
-guide](/database-functionalities/work-with-docker.md)**.<br/>
+If you need more information on working with Docker, check out our **[guide on how
+to work with Docker](/database-functionalities/work-with-docker.md)**.<br/>
 To learn how to query the database, take a look at the
 **[Querying](/connect-to-memgraph/overview.mdx)** guide or **[Memgraph
 Playground](https://playground.memgraph.com/)** for interactive tutorials.<br/>
