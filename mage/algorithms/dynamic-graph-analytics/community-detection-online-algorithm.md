@@ -33,7 +33,7 @@ Propagation](https://arxiv.org/abs/1305.2006) (Xie et al.).
 ### Implementation
 
 [![Dynamic Community
-Detection](https://img.shields.io/badge/Dynamic_Community_Detection-Implementation-FB6E00?style=for-the-badge&logo=github&logoColor=white)](https://github.com/memgraph/mage/blob/cpp/dynamic_community_detection_module/dynamic_community_detection_module.cpp)
+Detection](https://img.shields.io/badge/Dynamic_Community_Detection-Implementation-FB6E00?style=for-the-badge&logo=github&logoColor=white)](https://github.com/memgraph/mage/blob/main/cpp/community_detection_module/community_detection_online_module.cpp)
 
 [![Dynamic Community
 Detection](https://img.shields.io/badge/Dynamic_Community_Detection-Documentation-FCC624?style=for-the-badge&logo=cplusplus&logoColor=white)](/mage/query-modules/cpp/community-detection-online)
