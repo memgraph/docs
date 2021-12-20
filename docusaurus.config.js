@@ -53,12 +53,12 @@ module.exports = {
               to: "/memgraph/installation",
             },
             {
-              label: "Import data",
-              to: "/memgraph/import-data",
-            },
-            {
               label: "Connect to Memgraph",
               to: "/memgraph/connect-to-memgraph",
+            },
+            {
+              label: "Import data",
+              to: "/memgraph/import-data",
             },
             {
               label: "Reference guide",
