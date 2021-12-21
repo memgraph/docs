@@ -109,7 +109,7 @@ After making sure the transformation module is loaded, connect Memgraph to the
 stream with the following query:
 
 ```cypher
-CREATE STREAM <name_of_the_stream>
+CREATE KAFKA STREAM <name_of_the_stream>
 TOPICS <name_of_the_topics_created>
 TRANSFORM <transformation_module_name.transformation>;
 ```

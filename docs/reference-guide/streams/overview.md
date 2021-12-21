@@ -11,7 +11,7 @@ Memgraph can connect to existing stream sources. To use streams, a user must:
 2. [Configure Memgraph](/reference-guide/configuration.md) to connect to, e.g.
    Kafka, by providing the appropriate flag
    `--kafka-bootstrap-servers=localhost:9092`
-3. [Create the stream](#creating-a-stream) with a `CREATE STREAM` query and optionally
+3. [Create the stream](#creating-a-stream) with a `CREATE <streaming platform> STREAM` query and optionally
    [set its offset](#setting-a-stream-offset) with `CALL mg.kafka_set_stream_offset(stream_name, offset)`
 4. [Start the stream](#start-a-stream) with a `START STREAM` query
 

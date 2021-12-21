@@ -123,9 +123,9 @@ To import data into Memgraph, we need to create a stream for each topic and
 apply our transformation module on incoming data:
 
 ```cypher
-CREATE STREAM avroStreamProfile TOPICS avro-stream-profile TRANSFORM avro_transform.profile_transformation;
-CREATE STREAM avroStreamCompany TOPICS avro-stream-company TRANSFORM avro_transform.company_transformation;
-CREATE STREAM avroStreamWorksAt TOPICS avro-stream-worksat TRANSFORM avro_transform.works_at_transformation;
+CREATE KAFKA STREAM avroStreamProfile TOPICS avro-stream-profile TRANSFORM avro_transform.profile_transformation;
+CREATE KAFKA STREAM avroStreamCompany TOPICS avro-stream-company TRANSFORM avro_transform.company_transformation;
+CREATE KAFKA STREAM avroStreamWorksAt TOPICS avro-stream-worksat TRANSFORM avro_transform.works_at_transformation;
 ```
 
 To start the streams, execute the following query:
