@@ -17,18 +17,21 @@ graphs. Some natural examples would contain railway networks between cities,
 computer networks, piping systems and Memgraph itself.
 
 This article outlines some of the most important graph algorithms that are
-internally used by Memgraph. We believe that advanced users could significantly
-benefit from obtaining basic knowledge about these algorithms. Please keep in
+internally used by Memgraph you could significantly benefit from. Please keep in
 mind that this article does not contain an in-depth analysis of algorithms and
 their implementation details since those are well documented in the appropriate
 literature and, in our opinion, go well out of scope of user documentation. What
 this article does contain is the relevant information for using Memgraph
 effectively and efficiently.
 
-Contents of this article include:
+This article outlines:
 
   * [Breadth-first search (BFS)](#breadth-first-search)
   * [Weighted shortest path (WSP)](#weighted-shortest-path)
+
+Memgraph has a lot more graph algorithms to offer besides these two and they are
+all a part of [MAGE](/mage/overview.md).
+
 
 
 ## Breadth-first search

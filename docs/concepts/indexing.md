@@ -78,10 +78,12 @@ Information about available indexes can be retrieved using the following syntax:
 ```cypher
 SHOW INDEX INFO;
 ```
+
 This query will return all the labels and label-property pairs that Memgraph
 currently indexes.
 
 You can delete created indexes by using the following syntax:
+
 ```cypher
 DROP INDEX ON :Label(property);
 ```

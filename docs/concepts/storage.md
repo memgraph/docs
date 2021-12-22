@@ -19,9 +19,6 @@ Snapshots are taken periodically during the entire runtime of Memgraph. When
 a snapshot is triggered, the whole data storage is written to disk. The
 snapshot file provides a quicker way to restore the database state.
 
-You can also generate a snapshot file by using Memgraph's import tools. For more
-information, take a look at the [Import data](/import-data/overview.mdx) guide.
-
 Database recovery is done on startup from the most recent snapshot file. Since
 the snapshot may be older than the most recent update logged in the WAL file,
 the recovery process will apply the remaining state changes found in the WAL
@@ -99,6 +96,7 @@ MATCH (n:Node) SET n.property.key = "other value";
 If you have a use-case that doesn't use properties on relationships, you can
 specify a flag in the Memgraph configuration file to disable them and reduce
 memory usage.
+
 ```
 --storage-properties-on-edges=false
 ```
