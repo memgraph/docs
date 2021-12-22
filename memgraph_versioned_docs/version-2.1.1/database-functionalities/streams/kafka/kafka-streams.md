@@ -31,7 +31,7 @@ The list of default bootstrap servers can be set by the
 `--kafka-bootstrap-servers` configuration option. It has to be set explicitly.
 Morever, the user can overwrite the default list of brokers passed to
 `--kafka-bootstrap-servers` by setting the `BOOTSTRAP_SERVERS <brokers>` option
-on a `CREATE STREAM` clause.
+on a `CREATE KAFKA STREAM` clause.
 
 ## Creating the stream
 
@@ -45,7 +45,7 @@ slimmer. For the topic name, we are going to use the topic from the Kafka quick
 start, `quickstart-events`.
 
 ```cypher
-CREATE STREAM myStream
+CREATE KAFKA STREAM myStream
 TOPICS quickstart-events
 TRANSFORM my.transform;
 ```

@@ -4,14 +4,14 @@ title: Replication
 sidebar_label: Replication
 ---
 
-## High-level context
+## Introduction
 
 Replication is a method that ensures that multiple database instances are
 storing the same data. To enable replication, there must be at least two
 instances of Memgraph in a cluster. Each instance has one of either two roles:
 main or replica. The main instance is the instance that accepts writes to the
 database and replicates its state to the replicas. In a cluster, there can only
-be one main. There can be one or more replicas. None of the replicas will accept
+be one main instance, but one or more replicas. None of the replicas will accept
 write queries, but they will always accept read queries (there is an exception
 to this rule and is described below). Each instance will always be reachable
 using the standard supported communication protocols. The replication will
@@ -45,8 +45,8 @@ When the data is replicated to a replica asynchronously, all pending
 transactions are immediately committed and their data is replicated to the
 asynchronous replica in the background.
 
-This mode has a positive performance implication in which it won't slow down
-query execution. It also has a negative implication that the data between the
+This mode has a positive performance implication because it won't slow down
+query execution. It also has a negative implication because the data between the
 main and the replica is almost never in a consistent state (when the data is
 being changed).
 
@@ -57,7 +57,7 @@ eventually consistent cluster, but you care about performance.
 
 When the data is replicated to a replica semi-synchronously, the data is
 replicated using both the synchronous and asynchronous methodology. The data is
-always replicated synchronously, but, if the replica for any reason doesn't
+always replicated synchronously, but, if for any reason, the replica doesn't
 respond within a preset timeout, the pending transaction is committed and the
 data is replicated to the replica asynchronously.
 

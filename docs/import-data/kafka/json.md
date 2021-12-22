@@ -77,9 +77,9 @@ To import data into Memgraph, we need to create a stream for each topic and
 apply our transformation module on incoming data:
 
 ```cypher
-CREATE STREAM JsonStreamProfile TOPICS json-stream-profiles  TRANSFORM transformation.profile_transformation;
-CREATE STREAM JsonStreamCompany TOPICS json-stream-companies  TRANSFORM transformation.company_transformation;
-CREATE STREAM JsonStreamWork TOPICS json-stream-work TRANSFORM transformation.works_at_transformation;
+CREATE KAFKA STREAM JsonStreamProfile TOPICS json-stream-profiles  TRANSFORM transformation.profile_transformation;
+CREATE KAFKA STREAM JsonStreamCompany TOPICS json-stream-companies  TRANSFORM transformation.company_transformation;
+CREATE KAFKA STREAM JsonStreamWork TOPICS json-stream-work TRANSFORM transformation.works_at_transformation;
 ```
 
 To start the streams, execute the following query:
