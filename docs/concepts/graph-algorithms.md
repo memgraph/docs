@@ -30,7 +30,7 @@ This article outlines:
   * [Weighted shortest path (WSP)](#weighted-shortest-path)
 
 Memgraph has a lot more graph algorithms to offer besides these two and they are
-all a part of [MAGE](/mage/overview.md).
+all a part of [MAGE](/mage).
 
 
 
