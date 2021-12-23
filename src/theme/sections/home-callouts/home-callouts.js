@@ -36,7 +36,7 @@ export default function HomeCallouts() {
             title: 'Connect to Memgraph',
             subtitle: 'Connect to Memgraph with your preferred programming language, via CLI console or the Memgraph Lab GUI.',
             urlText: 'Start exploring your data',
-            url: useBaseUrl('connect-to-memgraph'),
+            url: useBaseUrl('/memgraph/connect-to-memgraph'),
         },
         {
             title: 'Query, analyze & visualize the data',
