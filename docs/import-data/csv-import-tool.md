@@ -20,8 +20,10 @@ already have a pipeline set-up for Neo4j, you should only replace `neo4j-admin
 import` with `mg_import_csv`.
 
 :::info
+
 For more detailed information about the CSV Import Tool, check our [Reference
 guide](/memgraph/reference-guide/import-data/csv-import-tool).
+
 :::
 
 ### How to use the CSV Import Tool?
@@ -36,9 +38,11 @@ guide](/memgraph/reference-guide/import-data/csv-import-tool).
   <TabItem value="docker">
 
 :::note
+
 If you installed Memgraph through Docker Hub, the name of the Docker image
 `memgraph` should be replaced with `memgraph/memgraph-platform` if you didn't
 change the image tag.
+
 :::
 
 If you installed Memgraph using Docker, you will need to run the importer using
@@ -49,9 +53,11 @@ docker run -v mg_lib:/var/lib/memgraph -v mg_import:/import-data --entrypoint=mg
 ```
 
 :::caution
+
 This is an incomplete command as it's missing the files that need to be
 imported. It will result with a `The --nodes flag is required!` error. You can
 find a complete example [below](#examples).
+
 :::
 
 For information on other options, run:
@@ -86,10 +92,12 @@ the complexity of your data:
   relationships](#multiple-types-of-nodes-and-relationships)
 
 :::caution
+
 It is also important to note that importing CSV data using the
 `mg_import_csv` command should be a one-time operation before running Memgraph.
 In other words, this tool should not be used to import data into an already
 running Memgraph instance.
+
 :::
 
 ___
@@ -142,10 +150,14 @@ Let's add relationships between people in `people_relationships.csv`:
 
 Now, you can import the dataset using the CSV Import Tool.
 
-:::caution
-Your existing snapshot and WAL data will be considered
-obsolete, and Memgraph will load the new dataset.
+:::danger
+
+Your existing snapshot and WAL data will be considered obsolete, and Memgraph
+will load the new dataset. This means that all of your existing data will be
+lost and replaced with the newly imported data.
+
 :::
+
 
 Use the following command:
 
