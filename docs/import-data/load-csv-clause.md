@@ -14,14 +14,16 @@ please check the [Cypher manual](/cypher-manual/clauses/load-csv).
 The clause reads row by row from a CSV file and binds the contents of the parsed
 row to the variable you specified.
 
-:::info For more detailed information about the LOAD CSV Cypher clause, check
+:::info 
+
+For more detailed information about the LOAD CSV Cypher clause, check
 our **[Reference guide](/reference-guide/import-data/load-csv-clause.md)**.
+
 :::
 
 To work with the LOAD CSV clause, we need to have access to our files. If
-working with Docker, check our [Docker
-guide](/database-functionalities/work-with-docker.md) on how to access files
-from your local filesystem:
+working with Docker, check out the section on **[transferring data to a Docker
+container](#transferring-data-to-a-docker-container)**.
 
 Below, you can find two examples of how to use the CSV Import Tool depending on
 the complexity of your data:
@@ -237,3 +239,25 @@ SET ate.liked = ToBoolean(row.liked);
 
 </TabItem>
 </Tabs>
+
+## Transferring data to a Docker container {#transferring-data-to-a-docker-container}
+
+If you are using Docker to run Memgraph, you will need to copy the files from
+your local directory into the Docker container where Memgraph can access them. 
+
+**1.** Start your Memgraph instance using Docker.
+
+**2.** Find the `CONTAINER ID` of the Memgraph Docker container by running:
+
+```
+docker ps
+```
+
+**3.** Copy a file from your current directory to the container with the command:
+
+```
+docker cp ./file_to_copy.csv <CONTAINER ID>:/file_to_copy.csv
+```
+
+The file is now inside your Docker container, and you can load it using the `LOAD
+CSV` clause.
