@@ -81,6 +81,7 @@ module.exports = {
         "query-modules/python/distance-calculator",
         "query-modules/python/graph-analyzer",
         "query-modules/python/graph-coloring",
+        "query-modules/python/json-util",
         "query-modules/python/node2vec",
         "query-modules/python/node2vec-online",
         "query-modules/python/node-similarity",

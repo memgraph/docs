@@ -31,7 +31,7 @@ installed by running `sudo apt-get install uuid-dev`.
 
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |
-| **Module type**     | <Highlight color="#FB6E00">**module**</Highlight>  |
+| **Module type**     | <Highlight color="#FB6E00">**util**</Highlight>  |
 | **Implementation**  | <Highlight color="#FB6E00">**C++**</Highlight>        |
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight> |
 
