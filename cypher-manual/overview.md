@@ -1,62 +1,69 @@
 ---
 id: overview
 title: Cypher manual
-sidebar_label: Cypher manual overview
+sidebar_label: Cypher manual
 slug: /
 ---
+
+:::info
+
+This page will serve as an introduction to Cypher manual.
+On it we will list a short overview of everything that Cypher manual will contain.
+Also all of the parts will be linked. This means that we will list and link all of the chapters. Each chapter will be introduced with one or two sentences.
+
+The content on this page is just a place holder so that you can see the proposed structure.
+
+
+:::
+
 
 **Cypher** is the most widely adopted, fully-specified, and open query language
 for property graph databases. It provides an intuitive way to work with property
 graphs.
 
-## Getting started
+## Quick start guide
 
-Take a look at the following guides if you are new to the **Cypher** query
-language:
+If you are new to the **Cypher** query language take a look at our [Cypher quick start guide](/quick-start-guide.md). 
 
-- **[Reading existing data](/getting-started/reading-existing-data.md)**
-- **[Writing new data](/getting-started/writing-new-data.md)**
-- **[Reading and writing](/getting-started/reading-and-writing.md)**
+## What are graph databases?
+Is this the first time that encounter graph database? Get familiar with [graph database terminology](graph-databases.md) before you dip dive into them.
 
-## Clauses
+## What is Cypher?
 
-The **Cypher** language enables users to perform standard database operations by
-using the following clauses:
+This page will serve as an [introduction to Cypher](/what-is-cypher.md).
 
-- **[MATCH](/clauses/match.md)**, which searches for patterns;
-- **[WHERE](/clauses/where.md)**, for filtering the matched data;
-- **[RETURN](/clauses/return.md)**, for defining what will be presented to the
-  user in the result set;
-- **[UNION](/clauses/union.md)** and **[UNION ALL](/clauses/union.md)** for
-  combining results from multiple queries;
-- **[CREATE](/clauses/create.md)**, for creating new nodes and edges;
-- **[SET](/clauses/set.md)**, for adding new or updating existing labels and
-  properties;
-- **[DELETE](/clauses/delete.md)**, for deleting nodes and edges;
-- **[REMOVE](/clauses/remove.md)**, for removing labels and properties;
-- **[MERGE](/clauses/merge.md)**, for creating patterns if they do not exist;
-- **[WITH](/clauses/with.md)**, for combining multiple reads and writes.
+## Working with Memgraph
 
-## Functions
+This page will serve as an [introduction to Memgraph](/what-is-memgraph.md).
 
-**Cypher** supports a large number of functions. The list can be found here:
+## Getting data into your graph database
 
-- **[Cypher functions](/functions.md)**
+This page will talk about ways to get your data [into graph database](/import-data.md).
 
-## Other features
+## Connecting nodes
 
-The following sections describe some of the other supported features in
-Memgraph:
+This page will talk about [creating relationships](/connecting-nodes.md).
 
-- **[String operators](/other-features.md#string-operators)**
-- **[Parameters](/other-features.md#parameters)**
-- **[CASE expression](/other-features.md#case)**
-- **[Inspecting and profiling
-  queries](/other-features.md#inspecting-and-profiling-queries)**
+## Reading existing data
 
-## Differences in Cypher implementations
+This page will talk about ways to [read data from graph database](/read-data.md).
 
-Although we try to implement openCypher query language as closely to the
-language reference as possible, we had to make some changes to enhance the user
-experience. You can find the differences in **[this
-article](/differences/overview.md)**.
+## Updating nodes and relationships
+
+This page will talk about ways to [update data in graph database](/update-data.md).
+
+## Deleting nodes and relationships
+
+This page will talk about ways to [delete data from graph database](/delete-data.md).
+
+## Using functions
+
+This page will talk about ways to [use functions](/functions.md).
+
+## Reference
+
+This page will [list all clauses](/cypher-reference.md) with examples.
+
+
+...
+
