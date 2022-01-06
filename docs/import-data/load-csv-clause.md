@@ -22,8 +22,8 @@ our **[Reference guide](/reference-guide/import-data/load-csv-clause.md)**.
 :::
 
 To work with the LOAD CSV clause, we need to have access to our files. If
-working with Docker, check out the section on **[transferring data to a Docker
-container](#transferring-data-to-a-docker-container)**.
+working with Docker, check out the section on **[transferring data into a Docker
+container](#transferring-data-into-a-docker-container)**.
 
 Below, you can find two examples of how to use the CSV Import Tool depending on
 the complexity of your data:
@@ -240,7 +240,7 @@ SET ate.liked = ToBoolean(row.liked);
 </TabItem>
 </Tabs>
 
-## Transferring data to a Docker container {#transferring-data-to-a-docker-container}
+## Transferring data into a Docker container {#transferring-data-into-a-docker-container}
 
 If you are using Docker to run Memgraph, you will need to copy the files from
 your local directory into the Docker container where Memgraph can access them. 
@@ -259,5 +259,5 @@ docker ps
 docker cp ./file_to_copy.csv <CONTAINER ID>:/file_to_copy.csv
 ```
 
-The file is now inside your Docker container, and you can load it using the `LOAD
-CSV` clause.
+The file is now inside your Docker container, and you can import it using the
+`LOAD CSV` clause.
