@@ -4,6 +4,16 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## Future
+
+### Major Features and Improvements
+
+### Bug Fixes
+
+* Incread the reference count when `Py_None` is returned from the `_mgp` module.
+  This fixes a nondeterministic fatal Python error.
+  [#320](https://github.com/memgraph/memgraph/pull/320)
+
 ## v2.1.1 - Dec 07, 2021
 
 :::warning
