@@ -81,6 +81,42 @@ module.exports = {
         },
         */
         {
+          to: "/mage",
+          label: "MAGE",
+          position: "left",
+          activeBaseRegex: `/mage/`,
+          items: [
+            {
+              label: "Overview",
+              to: "/mage",
+            },
+            {
+              label: "Installation",
+              to: "/mage/installation",
+            },
+            {
+              label: "Using query modules",
+              to: "/mage/usage/calling-procedures",
+            },
+            {
+              label: "How-to guides",
+              to: "/mage/how-to-guides/create-a-new-module-python",
+            },
+            {
+              label: "Algorithms",
+              to: "/mage/algorithms/traditional-graph-analytics/betweenness-centrality-algorithm",
+            },
+            {
+              label: "Use cases",
+              to: "/mage/use-cases/bioinformatics",
+            },
+            {
+              label: "Contributing",
+              to: "/mage/contributing",
+            },
+          ],
+        },
+        {
           to: "/cypher-manual/",
           label: "Cypher manual",
           position: "left",
@@ -105,46 +141,6 @@ module.exports = {
             {
               label: "Differences",
               to: "/cypher-manual/differences",
-            },
-          ],
-        },
-        {
-          to: "/mage",
-          label: "MAGE",
-          position: "left",
-          activeBaseRegex: `/mage/`,
-          items: [
-            {
-              label: "Overview",
-              to: "/mage",
-            },
-            {
-              label: "Installation",
-              to: "/mage/installation",
-            },
-            {
-              label: "Algorithms",
-              to: "/mage/algorithms/traditional-graph-analytics/betweenness-centrality-algorithm",
-            },
-            {
-              label: "Usage",
-              to: "/mage/usage/calling-procedures",
-            },
-            {
-              label: "Tutorials",
-              to: "/mage/tutorials/create-a-new-module-python",
-            },
-            {
-              label: "Applications",
-              to: "/mage/applications/bioinformatics-application",
-            },
-            {
-              label: "Contributing",
-              to: "/mage/contributing",
-            },
-            {
-              label: "Getting help",
-              to: "/mage/getting-help",
             },
           ],
         },
@@ -762,7 +758,7 @@ module.exports = {
           },
           //Help Center redirects
           {
-            to: "/help-center/faq",
+            to: "/help-center/faq/memgraph",
             from: ["/memgraph/faq"],
           },
           {
@@ -770,7 +766,7 @@ module.exports = {
             from: ["/memgraph/getting-help/getting-help"],
           },
           {
-            to: "/help-center/faq",
+            to: "/help-center/faq/memgraph",
             from: ["/memgraph/getting-help/faq"],
           },
           //Kafka redirects because of introducing other stream sources
@@ -781,6 +777,63 @@ module.exports = {
           {
             to: "/memgraph/database-functionalities/streams/kafka/implement-transformation-module",
             from: ["/memgraph/database-functionalities/streams/implement-transformation-module"],
+          },
+          //MAGE redirects
+          {
+            to: "/help-center/",
+            from: ["/mage/getting-help"],
+          },
+          {
+            to: "/help-center/faq/mage",
+            from: ["/mage/faq"],
+          },
+          {
+            to: "/help-center/faq/memgraph",
+            from: ["/help-center/faq"],
+          },
+          {
+            to: "/mage/use-cases/bioinformatics",
+            from: ["/mage/applications/bioinformatics-application"],
+          },
+          {
+            to: "/mage/use-cases/computer-security",
+            from: ["/mage/applications/computer-security-application"],
+          },
+          {
+            to: "/mage/use-cases/drug-discovery",
+            from: ["/mage/applications/drug-discovery-application"],
+          },
+          {
+            to: "/mage/use-cases/finance",
+            from: ["/mage/applications/finance-application"],
+          },
+          {
+            to: "/mage/use-cases/knowledge-graph",
+            from: ["/mage/applications/knowledge-graph-application"],
+          },
+          {
+            to: "/mage/use-cases/power-grids",
+            from: ["/mage/applications/power-grids-application"],
+          },
+          {
+            to: "/mage/use-cases/process-engineering",
+            from: ["/mage/applications/process-engineering-application"],
+          },
+          {
+            to: "/mage/use-cases/retail",
+            from: ["/mage/applications/retail-application"],
+          },
+          {
+            to: "/mage/use-cases/social-media",
+            from: ["/mage/applications/social-media-application"],
+          },
+          {
+            to: "/mage/use-cases/telecommunication",
+            from: ["/mage/applications/telecommunication-application"],
+          },
+          {
+            to: "/mage/use-cases/transportation",
+            from: ["/mage/applications/transportation-application"],
           },
         ],
       },

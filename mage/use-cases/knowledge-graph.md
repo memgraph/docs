@@ -1,5 +1,5 @@
 ---
-id: knowledge-graph-application
+id: knowledge-graph
 title: Knowledge Graphs
 sidebar_label: Knowledge Graphs
 ---

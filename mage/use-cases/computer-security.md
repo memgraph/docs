@@ -1,5 +1,5 @@
 ---
-id: computer-security-application
+id: computer-security
 title: Computer Security
 sidebar_label: Computer Security
 ---

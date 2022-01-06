@@ -1,17 +1,17 @@
 ---
-id: faq
-title: Frequently asked questions
-sidebar_label: FAQ
-slug: /faq
+id: mage-faq
+title: MAGE - Frequently asked questions
+sidebar_label: MAGE
+slug: /faq/mage
 ---
 
 ### What is Memgraph?
 
-**Memgraph** is a native in-memory graph streaming platform built to handle real-time
-use-cases at enterprise scale. Memgraph supports strongly-consistent ACID
-transactions and uses the standardized **Cypher** query language for
-structuring, manipulating, and exploring data. You can connect to Kafka and use Memgraph
-to wrangle your graph data source.
+**Memgraph** is a native in-memory graph streaming platform built to handle
+real-time use-cases at enterprise scale. Memgraph supports strongly-consistent
+ACID transactions and uses the standardized **Cypher** query language for
+structuring, manipulating, and exploring data. You can connect to Kafka and use
+Memgraph to wrangle your graph data source.
 
 ### What is MAGE?
 

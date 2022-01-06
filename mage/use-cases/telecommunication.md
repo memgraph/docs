@@ -1,5 +1,5 @@
 ---
-id: telecommunication-application
+id: telecommunication
 title: Telecommunication
 sidebar_label: Telecommunication
 ---

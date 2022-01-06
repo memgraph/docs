@@ -1,5 +1,5 @@
 ---
-id: retail-application
+id: retail
 title: Retail
 sidebar_label: Retail
 ---

@@ -1,5 +1,5 @@
 ---
-id: transportation-application
+id: transportation
 title: Transportation
 sidebar_label: Transportation
 ---
@@ -17,11 +17,11 @@ network**.
 ### Navigation
 
 Pathfinding algorithms are one of the classical graph problems and have been
-researched since the 19th century. The **shortest path** algorithm calculates a path
-between two nodes in a graph such that the total sum of the edge weights is
-minimized. A navigation system that always navigates you down the shortest routes
-and makes your trip as fast as possible can be created using the shortest path
-algorithm.
+researched since the 19th century. The **shortest path** algorithm calculates a
+path between two nodes in a graph such that the total sum of the edge weights is
+minimized. A navigation system that always navigates you down the shortest
+routes and makes your trip as fast as possible can be created using the shortest
+path algorithm.
 
 ### Airline
 
@@ -31,7 +31,7 @@ their coordinates. Modern airplanes track these waypoints using radio navigation
 systems such as GPS or VOR. Like many other aviation elements, both airports and
 waypoints have unique ICAO code names, and as such, can be represented by nodes
 of a graph. Airports and waypoints can be different nodes, and the airways
-between them can be the relationships. 
+between them can be the relationships.
 
 ### Detecting congestion
 
