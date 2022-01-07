@@ -1,8 +1,8 @@
 ---
 id: memgraph-faq
 title: Memgraph - Frequently asked questions
-sidebar_label: FAQ
-slug: /faq
+sidebar_label: Memgraph
+slug: /faq/memgraph
 ---
 
 ### What is Memgraph?

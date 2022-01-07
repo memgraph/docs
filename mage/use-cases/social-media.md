@@ -1,5 +1,5 @@
 ---
-id: social-media-application
+id: social-media
 title: Social Media
 sidebar_label: Social Media
 ---

@@ -143,7 +143,7 @@ module.exports = {
                 "database-functionalities/streams/pulsar/pulsar-streams",
                 "database-functionalities/streams/pulsar/implement-transformation-module",
               ],
-            }
+            },
           ],
         },
         {
@@ -154,10 +154,16 @@ module.exports = {
             "database-functionalities/constraints/uniqueness-constraint",
           ],
         },
-        "database-functionalities/inspecting-queries",
+        {
+          type: "category",
+          label: "Inspect and optimize queries",
+          items: [
+            "database-functionalities/inspecting-queries",
+            "database-functionalities/profiling-queries",
+          ],
+        },
         "database-functionalities/memory-control",
         "database-functionalities/networkx",
-        "database-functionalities/profiling-queries",
         {
           type: "category",
           label: "Query modules",
@@ -167,10 +173,17 @@ module.exports = {
           ],
         },
         "database-functionalities/replication",
-        "database-functionalities/tensorflow-setup",
+        //"database-functionalities/tensorflow-setup",
         "database-functionalities/triggers",
-        "database-functionalities/manage-users-using-ldap",
-        "database-functionalities/manage-user-privileges",
+
+        {
+          type: "category",
+          label: "Enterprise features",
+          items: [
+            "database-functionalities/manage-users-using-ldap",
+            "database-functionalities/manage-user-privileges",
+          ],
+        },
       ],
     },
     {
@@ -264,13 +277,19 @@ module.exports = {
           ],
         },
         "reference-guide/temporal-types",
-        "reference-guide/tensorflow",
+        //"reference-guide/tensorflow",
         "database-functionalities/triggers",
-        "reference-guide/enabling-enterprise",
-        "reference-guide/audit-log",
-        "reference-guide/auth-module",
-        "reference-guide/ldap-security",
-        "reference-guide/security",
+        {
+          type: "category",
+          label: "Enterprise features",
+          items: [
+            "reference-guide/enabling-enterprise",
+            "reference-guide/audit-log",
+            "reference-guide/auth-module",
+            "reference-guide/ldap-security",
+            "reference-guide/security",
+          ],
+        },
       ],
     },
     {

@@ -1,5 +1,5 @@
 ---
-id: finance-application
+id: finance
 title: Finance
 sidebar_label: Finance
 ---

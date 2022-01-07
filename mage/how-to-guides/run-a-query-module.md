@@ -10,8 +10,8 @@ import TabItem from '@theme/TabItem';
 ## Prerequisites
 
 - You have developed a query module by yourself and/or followed our tutorial for
-  [Python](/mage/tutorials/create-a-new-module-python) or
-  [C++](/mage/tutorials/create-a-new-module-cpp)
+  [Python](/mage/how-to-guides/create-a-new-module-python) or
+  [C++](/mage/how-to-guides/create-a-new-module-cpp)
 
 :::warning
 

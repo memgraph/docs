@@ -34,23 +34,18 @@ learn while providing a powerful interface for working with graph-based data.
 An index stores additional information on certain types of data, so that
 retrieving said data becomes more efficient.
 
-## [Machine learning](./tensorflow.md)
-
-Memgraph TensorFlow op wraps the high-performance Memgraph client for use with
-TensorFlow, allowing natural data transfer between Memgraph and TensorFlow at
-any point of the model.
-
 ## [Query modules](/reference-guide/query-modules/overview.md)
 
 Memgraph supports extending the query language with user-written procedures.
 These procedures are grouped into modules, which can then be loaded either on
 startup or later on. To learn more about query modules take a look at the
 following guides:
-* [Available query
+
+- [Available query
   modules](/reference-guide/query-modules/available-query-modules.md)
-* [Load and call query
+- [Load and call query
   modules](/reference-guide/query-modules/load-call-query-modules.md)
-* [Implement custom query
+- [Implement custom query
   modules](/database-functionalities/query-modules/implement-query-modules.md)
 
 ## [Replication](./replication.md)
@@ -61,13 +56,13 @@ to create a cluster of nodes running Memgraph instances.
 
 ## [Streams](/reference-guide/streams/overview.md)
 
-
 Memgraph can connect to existing **Kafka**, **Pulsar** and **Redpanda** streams.
 The streams are using user-defined transformations to produce Cypher queries
 based on the received messages. To learn more about streams and transformations
 take a look at the following pages:
-* [Streams overview](/reference-guide/streams/overview.md)
-* [Transformation
+
+- [Streams overview](/reference-guide/streams/overview.md)
+- [Transformation
   modules](/reference-guide/streams/transformation-modules/overview.md)
 
 ## [Temporal types](/reference-guide/temporal-types.md)
@@ -75,7 +70,7 @@ take a look at the following pages:
 Temporal data types store and manipulate time. To learn more, take a look at the
 overview page:
 
-* [Temporal types](/reference-guide/temporal-types.md)
+- [Temporal types](/reference-guide/temporal-types.md)
 
 ## [User privileges](./security.md)
 
@@ -86,8 +81,9 @@ of privileges to users or groups of users.
 
 Memgraph supports authentication and (optional) authorization using a
 custom-built external auth module. To learn more visit:
-* **[Auth module](./auth-module.md)**
-* **[LDAP security](./ldap-security.md)**
+
+- **[Auth module](./auth-module.md)**
+- **[LDAP security](./ldap-security.md)**
 
 ## [Audit log](./audit-log.md)
 

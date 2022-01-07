@@ -1,5 +1,5 @@
 ---
-id: drug-discovery-application
+id: drug-discovery
 title: Drug Discovery
 sidebar_label: Drug Discovery
 ---

@@ -225,7 +225,7 @@ well.
 ## Importing, querying and testing a module
 
 Now in order to import, query and test a module, check out the [following
-page](/mage/tutorials/run-a-query-module).
+page](/mage/how-to-guides/run-a-query-module).
 
 Feel free to create an issue or open a pull request on our [Github
 repo](https://github.com/memgraph/mage) to speed up the development.<br/>

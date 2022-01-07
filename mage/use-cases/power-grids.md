@@ -1,5 +1,5 @@
 ---
-id: power-grids-application
+id: power-grids
 title: Power Grids
 sidebar_label: Power Grids
 ---
