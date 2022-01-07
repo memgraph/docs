@@ -13,7 +13,7 @@ connections can be discovered from all that data and used to build a product
 recommendation system, detect communities of buyers or optimize the supply
 chain. 
 
-![memgraph-graph-algorithm-applications-retail](../data/applications/memgraph-graph-algorithm-applications-retail.png)
+![memgraph-graph-algorithm-applications-retail](../data/use-cases/memgraph-graph-algorithm-applications-retail.png)
 
 ## Applying graphs
 

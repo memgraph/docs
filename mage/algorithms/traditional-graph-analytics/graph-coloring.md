@@ -60,14 +60,14 @@ Centrality](https://img.shields.io/badge/Optimizing_Telco_Networks_with_graph_co
 Many problems can be modeled as the problem of coloring graphs. Basically, such
 problems are of an optimization and planning nature.
 
-[![Transportation](https://img.shields.io/badge/Transportation-Application-8A477F?style=for-the-badge)](/mage/applications/transportation-application)
+[![Transportation](https://img.shields.io/badge/Transportation-Application-8A477F?style=for-the-badge)](/use-cases/transportation.md)
 
 Problems such as assigning aircraft to flights or designing a taxi schedule,
 when shaped as graphs, are possible to solve using graph coloring. The coloring
 graph can help with conflicting systems, where there must not be any particular
 assignment, and such nodes are colored with other colors.
 
-[![Telecommunications](https://img.shields.io/badge/Telecommunications-Application-8A477F?style=for-the-badge)](/mage/applications/telecommunication-application)
+[![Telecommunications](https://img.shields.io/badge/Telecommunications-Application-8A477F?style=for-the-badge)](/use-cases/telecommunication.md)
 
 The phone needs to distinguish base stations to ensure a smooth transition
 between them. Various coding systems are used to identify base stations in the

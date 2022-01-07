@@ -14,8 +14,8 @@ module.exports = {
     {
       type: "category",
       label: "Using query modules",
-      items: ["usage/calling-procedures", "usage/loading-modules"],
-    },
+      items: ["usage/loading-modules", "usage/calling-procedures"],
+    }, 
     {
       type: "category",
       label: "Available query modules",

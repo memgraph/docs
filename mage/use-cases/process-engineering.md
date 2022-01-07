@@ -13,7 +13,7 @@ when choosing the structure of the model itself. By choosing a **graph** as such
 a structure, we encompass an enormous number of different plants whose structure
 significantly resembles a graph.
 
-![memgraph-graph-algorithm-applications-process-engineering](../data/applications/memgraph-graph-algorithm-applications-process-engineering.jpg)
+![memgraph-graph-algorithm-applications-process-engineering](../data/use-cases/memgraph-graph-algorithm-applications-process-engineering.jpg)
 
 ## Applying graphs
 

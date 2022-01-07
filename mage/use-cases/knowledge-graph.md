@@ -10,7 +10,7 @@ phenomenon. The purpose of a knowledge graph is to link entities with semantic
 metadata and to provide context. This way, enriched data can be used for further
 analysis and advanced analytics.
 
-![memgraph-graph-algorithm-applications-knowledge-graphs](../data/applications/memgraph-graph-algorithm-applications-knowledge-graphs.png)
+![memgraph-graph-algorithm-applications-knowledge-graphs](../data/use-cases/memgraph-graph-algorithm-applications-knowledge-graphs.png)
 
 ## Applying graphs
 

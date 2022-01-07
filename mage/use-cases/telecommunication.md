@@ -11,7 +11,7 @@ network. Naturally, nodes represent base stations, and edges connect those whose
 signals could interfere. These connections can contain additional information, a
 weight of an interference.
 
-![memgraph-graph-algorithm-applications-telecommunications](../data/applications/memgraph-graph-algorithm-applications-telecommunications.png)
+![memgraph-graph-algorithm-applications-telecommunications](../data/use-cases/memgraph-graph-algorithm-applications-telecommunications.png)
 
 ## Network design using graph analytics
 

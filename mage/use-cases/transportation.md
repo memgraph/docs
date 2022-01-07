@@ -12,7 +12,7 @@ We use those systems for personal navigation every day too. Graphs are used for
 modeling and navigating complex network problems, such as **transportation
 network**.
 
-![memgraph-graph-algorithm-applications-transportation](../data/applications/memgraph-graph-algorithm-applications-transportation.png)
+![memgraph-graph-algorithm-applications-transportation](../data/use-cases/memgraph-graph-algorithm-applications-transportation.png)
 
 ### Navigation
 

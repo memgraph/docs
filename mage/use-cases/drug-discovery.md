@@ -18,7 +18,7 @@ discovery. Relational databases are not equipped to handle such vast amounts of
 unstrutured biological data, which is why graph databases and graph algorithms
 have found a permanent foothold in the industry.
 
-![memgraph-graph-algorithm-applications-bioinformatics](../data/applications/memgraph-graph-algorithm-applications-drug-discovery.jpg)
+![memgraph-graph-algorithm-applications-bioinformatics](../data/use-cases/memgraph-graph-algorithm-applications-drug-discovery.jpg)
 
 ## Applying graphs
 

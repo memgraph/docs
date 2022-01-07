@@ -57,7 +57,7 @@ reason for this is easy adaptability but also the natural pattern recognition
 application. Nodes with a high degree of similarity to those targeted or labeled
 are more likely to have attributes equal to them.
 
-[![Finance](https://img.shields.io/badge/Finance-Application-8A477F?style=for-the-badge)](/mage/applications/finance-application)
+[![Finance](https://img.shields.io/badge/Finance-Application-8A477F?style=for-the-badge)](/use-cases/finance.md)
 
 One such example is the financial industry where scams happen on a daily basis.
 The pattern of behavior is often a common item of various fraudsters. Also,
@@ -65,7 +65,7 @@ fraudsters are mostly tied to other fraudsters, so a **node similarity** measure
 can help detect suspects similar to previously detected ones.
 
 [![Knowledge
-graph](https://img.shields.io/badge/Finance-Application-8A477F?style=for-the-badge)](/mage/applications/knowledge-graph-application)
+graph](https://img.shields.io/badge/Finance-Application-8A477F?style=for-the-badge)](/use-cases/knowledge-graph.md)
 
 Knowledge graph entities are most often structured in a way that similar domain
 entities are strongly connected together. This way we can estimate the strength

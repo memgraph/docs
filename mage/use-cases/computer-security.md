@@ -12,7 +12,7 @@ kinds of data can tell us more than the data itself, and those relationships
 help detect any anomalies in network systems. If we want to make our network
 safe, we must be aware of all changes and how they affect our system as a whole.
 
-![memgraph-graph-algorithm-applications-computer-security](../data/applications/memgraph-graph-algorithm-applications-computer-security.png)
+![memgraph-graph-algorithm-applications-computer-security](../data/use-cases/memgraph-graph-algorithm-applications-computer-security.png)
 
 ## Applying graphs
 

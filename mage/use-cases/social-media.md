@@ -18,7 +18,7 @@ otherwise, techniques that are used for social network analysis can be applied
 to various other network structures such as transportation networks, shipping
 networks, financial networks, etc.
 
-![memgraph-graph-algorithm-applications-social-media](../data/applications/memgraph-graph-algorithm-applications-social-media.png)
+![memgraph-graph-algorithm-applications-social-media](../data/use-cases/memgraph-graph-algorithm-applications-social-media.png)
 
 ## Applying graphs
 

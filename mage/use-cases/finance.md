@@ -23,7 +23,7 @@ as **relational data containers**. In addition, the advantage of graph data is
 the ability to faster analyze and use the tools available particularly for
 graphs.
 
-![memgraph-graph-algorithm-applications-finance](../data/applications/memgraph-graph-algorithm-applications-finance.jpg)
+![memgraph-graph-algorithm-applications-finance](../data/use-cases/memgraph-graph-algorithm-applications-finance.jpg)
 
 ## Applying graphs
 

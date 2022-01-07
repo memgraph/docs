@@ -18,7 +18,7 @@ highly interconnected networks in the field of biology. From molecule to protein
 interactions, almost everything can be modeled using graphs and explored with
 graph algorithms.
 
-![memgraph-graph-algorithm-applications-bioinformatics](../data/applications/memgraph-graph-algorithm-applications-bioinformatics.png)
+![memgraph-graph-algorithm-applications-bioinformatics](../data/use-cases/memgraph-graph-algorithm-applications-bioinformatics.png)
 
 ## Applying graphs
 

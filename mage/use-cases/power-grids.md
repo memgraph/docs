@@ -22,7 +22,7 @@ combination and utilization of this electrical data with external data sources
 enhancing observability of system-wide conditions, the behavior of end-users,
 and energy availability.
 
-![memgraph-graph-algorithm-applications-power-grids](../data/applications/memgraph-graph-algorithm-applications-power-grids.png)
+![memgraph-graph-algorithm-applications-power-grids](../data/use-cases/memgraph-graph-algorithm-applications-power-grids.png)
 
 ## Applying graphs
 

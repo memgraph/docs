@@ -80,7 +80,7 @@ Data](https://img.shields.io/badge/Understanding_how_Dynamic_Node2Vec_Works_on_S
 ## Use cases
 
 [![Social
-networks](https://img.shields.io/badge/Social_networks-Application-8A477F?style=for-the-badge)](/mage/applications/social-media-application)
+networks](https://img.shields.io/badge/Social_networks-Application-8A477F?style=for-the-badge)](/use-cases/social-media.md)
 
 Dynamic Node2Vec can be used to find communities in social networks like
 [Twitter](https://twitter.com), [Facebook](https://www.facebook.com/), and so
