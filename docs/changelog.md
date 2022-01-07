@@ -13,6 +13,8 @@ sidebar_label: Changelog
 * The reference count is increased when `Py_None` is returned from the `_mgp` module.
   This fixes a nondeterministic fatal Python error.
   [#320](https://github.com/memgraph/memgraph/pull/320)
+* Use correct error when printing warning in rebalance callback of Kafka
+  consumer. [#321](https://github.com/memgraph/memgraph/pull/321)
 
 ## v2.1.1 - Dec 07, 2021
 
