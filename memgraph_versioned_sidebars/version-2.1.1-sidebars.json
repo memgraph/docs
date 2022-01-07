@@ -346,8 +346,20 @@
           "collapsed": true
         },
         {
-          "type": "doc",
-          "id": "version-2.1.1/database-functionalities/inspecting-queries"
+          "type": "category",
+          "label": "Inspect and optimize queries",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-2.1.1/database-functionalities/inspecting-queries"
+            },
+            {
+              "type": "doc",
+              "id": "version-2.1.1/database-functionalities/profiling-queries"
+            }
+          ],
+          "collapsible": true,
+          "collapsed": true
         },
         {
           "type": "doc",
@@ -356,10 +368,6 @@
         {
           "type": "doc",
           "id": "version-2.1.1/database-functionalities/networkx"
-        },
-        {
-          "type": "doc",
-          "id": "version-2.1.1/database-functionalities/profiling-queries"
         },
         {
           "type": "category",
@@ -383,19 +391,23 @@
         },
         {
           "type": "doc",
-          "id": "version-2.1.1/database-functionalities/tensorflow-setup"
-        },
-        {
-          "type": "doc",
           "id": "version-2.1.1/database-functionalities/triggers"
         },
         {
-          "type": "doc",
-          "id": "version-2.1.1/database-functionalities/manage-users-using-ldap"
-        },
-        {
-          "type": "doc",
-          "id": "version-2.1.1/database-functionalities/manage-user-privileges"
+          "type": "category",
+          "label": "Enterprise features",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-2.1.1/database-functionalities/manage-users-using-ldap"
+            },
+            {
+              "type": "doc",
+              "id": "version-2.1.1/database-functionalities/manage-user-privileges"
+            }
+          ],
+          "collapsible": true,
+          "collapsed": true
         }
       ],
       "collapsible": true,
@@ -607,31 +619,35 @@
         },
         {
           "type": "doc",
-          "id": "version-2.1.1/reference-guide/tensorflow"
-        },
-        {
-          "type": "doc",
           "id": "version-2.1.1/database-functionalities/triggers"
         },
         {
-          "type": "doc",
-          "id": "version-2.1.1/reference-guide/enabling-enterprise"
-        },
-        {
-          "type": "doc",
-          "id": "version-2.1.1/reference-guide/audit-log"
-        },
-        {
-          "type": "doc",
-          "id": "version-2.1.1/reference-guide/auth-module"
-        },
-        {
-          "type": "doc",
-          "id": "version-2.1.1/reference-guide/ldap-security"
-        },
-        {
-          "type": "doc",
-          "id": "version-2.1.1/reference-guide/security"
+          "type": "category",
+          "label": "Enterprise features",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-2.1.1/reference-guide/enabling-enterprise"
+            },
+            {
+              "type": "doc",
+              "id": "version-2.1.1/reference-guide/audit-log"
+            },
+            {
+              "type": "doc",
+              "id": "version-2.1.1/reference-guide/auth-module"
+            },
+            {
+              "type": "doc",
+              "id": "version-2.1.1/reference-guide/ldap-security"
+            },
+            {
+              "type": "doc",
+              "id": "version-2.1.1/reference-guide/security"
+            }
+          ],
+          "collapsible": true,
+          "collapsed": true
         }
       ],
       "collapsible": true,
