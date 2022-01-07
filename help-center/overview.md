@@ -8,8 +8,8 @@ slug: /
 ## Community
 
 If you need help, or you want to be a part of a fast growing community, join us
-on our path by asking questions and following us. We are available in next
-platforms:
+on our path by asking questions and following us. We are available at the
+following platforms:
 
 - :purple_heart: [**Discord**](https://discord.gg/memgraph)
 - :busts_in_silhouette: [**Discourse forum**](https://discourse.memgraph.com/)
@@ -27,7 +27,7 @@ if we already provided an answer to your inquiry:
 - **[MAGE FAQ](/faq/mage-faq.md)**
 
 **[Memgraph Forum](https://discourse.memgraph.com/)** - The Memgraph community
-forum is the best place to get fast and accurate answers from both our team and
+forum is the best place to get fast and accurate answers from both our teams and
 other Memgraph developers.
 
 **[StackOverflow](https://stackoverflow.com/questions/tagged/memgraphdb)** - You

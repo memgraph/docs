@@ -46,7 +46,7 @@ module.exports = {
     },
     {
       type: "category",
-      label: "How-to guidess",
+      label: "How-to guides",
       items: [
         "how-to-guides/create-a-new-module-python",
         "how-to-guides/create-a-new-module-cpp",
