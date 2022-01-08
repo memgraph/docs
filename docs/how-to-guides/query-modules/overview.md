@@ -2,7 +2,7 @@
 id: overview
 title: Query modules
 sidebar_label: Query modules overview
-slug: /database-functionalities/query-modules
+slug: /how-to-guides/query-modules
 ---
 
 Memgraph supports extending the query language with user-written procedures.
@@ -126,5 +126,5 @@ will cause all sorts of unexpected issues.
 
 For a more detailed example on how to implement your own query modules, we
 suggest you take a look at the [Implement custom query
-modules](/database-functionalities/query-modules/implement-query-modules.md)
+modules](/how-to-guides/query-modules/implement-query-modules.md)
 guide.

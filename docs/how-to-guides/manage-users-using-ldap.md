@@ -1,7 +1,7 @@
 ---
 id: manage-users-using-ldap
 title: Authentication and authorization (Enterprise)
-sidebar_label: Authentication and authorization (Enterprise)
+sidebar_label: Manage authentication and authorization
 ---
 
 In large organizations it is often difficult to manage permissions that staff

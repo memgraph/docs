@@ -1,14 +1,14 @@
 ---
 id: replication
 title: How to set up replication on a small cluster
-sidebar_label: Replication
+sidebar_label: Set up replication
 ---
 
 This article is a part of a series intended to showcase Memgraph's features
 and bring the user up to speed on developing with Memgraph.
 
 We highly recommend checking out the other articles from this series which
-are listed in our [database functionalities section](/database-functionalities/overview.md).
+are listed in our [how-to guides section](/how-to-guides/overview.md).
 
 ## Introduction
 

@@ -1,7 +1,7 @@
 ---
 id: memory-control 
 title: Memory control
-sidebar_label: Memory control 
+sidebar_label: Control memory usage 
 ---
 
 Memgraph provides some useful tools which allow you to limit, inspect, and free allocated memory.

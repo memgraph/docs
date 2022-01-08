@@ -1,7 +1,7 @@
 ---
 id: networkx
 title: NetworkX
-sidebar_label: NetworkX
+sidebar_label: Utilize the NetworkX library
 ---
 
 NetworkX is a Python package for the creation, manipulation, and study of the structure,

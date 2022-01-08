@@ -1,15 +1,15 @@
 ---
 id: triggers
 title: Triggers
-sidebar_label: Triggers
+sidebar_label: Set up triggers
 ---
 
 This article is a part of a series intended to showcase Memgraph's features and
 bring the user up to speed on developing with Memgraph.
 
 We highly recommend checking out the other articles from this series which are
-listed in our [database functionalities
-section](/database-functionalities/overview.md).
+listed in our [how-to guides
+section](/how-to-guides/overview.md).
 
 ## Introduction
 

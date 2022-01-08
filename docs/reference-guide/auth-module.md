@@ -1,7 +1,7 @@
 ---
 id: auth-module
 title: Auth module (Enterprise)
-sidebar_label: Auth module (Enterprise)
+sidebar_label: Auth module
 ---
 
 Memgraph supports authentication and (optional) authorization using a custom

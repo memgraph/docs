@@ -835,6 +835,114 @@ module.exports = {
             to: "/mage/use-cases/transportation",
             from: ["/mage/applications/transportation-application"],
           },
+          /*
+          //How-to guides redirects
+          {
+            to: "/memgraph/how-to-guides/streams/kafka/kafka-streams",
+            from: ["/memgraph/database-functionalities/streams/kafka/kafka-streams"],
+          },
+          {
+            to: "/memgraph/how-to-guides/streams/kafka/implement-transformation-module",
+            from: ["/memgraph/database-functionalities/streams/kafka/implement-transformation-module"],
+          },
+          {
+            to: "/memgraph/how-to-guides/streams/pulsar/pulsar-streams",
+            from: ["/memgraph/database-functionalities/streams/pulsar/pulsar-streams"],
+          },
+          {
+            to: "/memgraph/how-to-guides/streams/pulsar/implement-transformation-module",
+            from: ["/memgraph/database-functionalities/streams/pulsar/implement-transformation-module"],
+          },
+          {
+            to: "/memgraph/how-to-guides/constraints/existence-constraint",
+            from: ["/memgraph/database-functionalities/constraints/existence-constraint"],
+          },
+          {
+            to: "/memgraph/how-to-guides/constraints/uniqueness-constraint",
+            from: ["/memgraph/database-functionalities/constraints/uniqueness-constraint"],
+          },
+          {
+            to: "/memgraph/how-to-guides/inspecting-queries",
+            from: ["/memgraph/database-functionalities/inspecting-queries"],
+          },
+          {
+            to: "/memgraph/how-to-guides/profiling-queries",
+            from: ["/memgraph/database-functionalities/profiling-queries"],
+          },
+          {
+            to: "/memgraph/how-to-guides/memory-control",
+            from: ["/memgraph/database-functionalities/memory-control"],
+          },
+          {
+            to: "/memgraph/how-to-guides/networkx",
+            from: ["/memgraph/database-functionalities/networkx"],
+          },
+          {
+            to: "/memgraph/how-to-guides/query-modules",
+            from: ["/memgraph/database-functionalities/query-modules"],
+          },
+          {
+            to: "/memgraph/how-to-guides/query-modules/implement-query-modules",
+            from: ["/memgraph/database-functionalities/query-modules/implement-query-modules"],
+          },
+          {
+            to: "/memgraph/how-to-guides/replication",
+            from: ["/memgraph/database-functionalities/replication"],
+          },
+          {
+            to: "/memgraph/how-to-guides/triggers",
+            from: ["/memgraph/database-functionalities/triggers"],
+          },
+          {
+            to: "/memgraph/how-to-guides/manage-users-using-ldap",
+            from: ["/memgraph/database-functionalities/manage-users-using-ldap"],
+          },
+          {
+            to: "/memgraph/how-to-guides/manage-user-privileges",
+            from: ["/memgraph/database-functionalities/manage-user-privileges"],
+          },
+          //Connect to Memgraph redirects
+          {
+            to: "/memgraph/connect-to-memgraph/mgconsole",
+            from: ["/memgraph/connect-to-memgraph/methods/mgconsole"],
+          },
+          {
+            to: "/memgraph/connect-to-memgraph/drivers",
+            from: ["/memgraph/connect-to-memgraph/methods/drivers"],
+          },
+          {
+            to: "/memgraph/connect-to-memgraph/drivers/python",
+            from: ["/memgraph/connect-to-memgraph/methods/building-applications/python"],
+          },
+          {
+            to: "/memgraph/connect-to-memgraph/drivers/rust",
+            from: ["/memgraph/connect-to-memgraph/methods/building-applications/rust"],
+          },
+          {
+            to: "/memgraph/connect-to-memgraph/drivers/c-sharp",
+            from: ["/memgraph/connect-to-memgraph/methods/building-applications/c-sharp"],
+          },
+          {
+            to: "/memgraph/connect-to-memgraph/drivers/java",
+            from: ["/memgraph/connect-to-memgraph/methods/building-applications/java"],
+          },
+          {
+            to: "/memgraph/connect-to-memgraph/drivers/go",
+            from: ["/memgraph/connect-to-memgraph/methods/building-applications/go"],
+          },
+          {
+            to: "/memgraph/connect-to-memgraph/drivers/nodejs",
+            from: ["/memgraph/connect-to-memgraph/methods/building-applications/nodejs"],
+          },
+          {
+            to: "/memgraph/connect-to-memgraph/drivers/javascript",
+            from: ["/memgraph/connect-to-memgraph/methods/building-applications/javascript"],
+          },
+          {
+            to: "/memgraph/connect-to-memgraph/drivers/php",
+            from: ["/memgraph/connect-to-memgraph/methods/building-applications/php"],
+          },
+          */
         ],
       },
     ],

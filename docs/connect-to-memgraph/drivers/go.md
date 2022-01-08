@@ -125,5 +125,5 @@ Node 1: Hello, World!
 
 For real-world examples of how to use Memgraph, we suggest you take a look at
 the **[Tutorials](/tutorials/overview.md)** page. You can also browse through
-the **[Database functionalities](/database-functionalities/overview.md)**
+the **[How-to guides](/how-to-guides/overview.md)**
 section to get an overview of all the functionalities Memgraph offers.

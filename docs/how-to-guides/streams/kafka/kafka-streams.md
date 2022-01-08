@@ -38,7 +38,7 @@ on a `CREATE KAFKA STREAM` clause.
 The very first step is to make sure at least one transformation module is loaded
 into Memgraph. If you are not sure how to define them, check out the
 [transformation module
-guide](/database-functionalities/streams/kafka/implement-transformation-module.md).
+guide](/how-to-guides/streams/kafka/implement-transformation-module.md).
 We are going to use `transformation.my_transformation` from that example, but we
 are going to alias it as `my.transform` to make the size of result tables
 slimmer. For the topic name, we are going to use the topic from the Kafka quick

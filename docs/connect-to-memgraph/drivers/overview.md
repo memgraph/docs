@@ -1,7 +1,8 @@
 ---
-id: drivers
-title: Drivers
-sidebar_label: Drivers
+id: overview
+title: Drivers overview
+sidebar_label: Drivers overview
+slug: /connect-to-memgraph/drivers
 ---
 
 ## Quick start guides
@@ -9,14 +10,14 @@ sidebar_label: Drivers
 The following guides describe how to create a simple **`Hello, World!`** program
 that connects to Memgraph and executes simple queries:
 
-- **[Python](/connect-to-memgraph/methods/building-applications/python.md)**
-- **[Rust](/connect-to-memgraph/methods/building-applications/rust.md)**
-- **[C#](/connect-to-memgraph/methods/building-applications/c-sharp.md)**
-- **[Java](/connect-to-memgraph/methods/building-applications/java.md)**
-- **[Go](/connect-to-memgraph/methods/building-applications/go.md)**
-- **[Node.js](/connect-to-memgraph/methods/building-applications/nodejs.md)**
-- **[JavaScript](/connect-to-memgraph/methods/building-applications/javascript.md)**
-- **[PHP](/connect-to-memgraph/methods/building-applications/php.md)**
+- **[Python](/connect-to-memgraph/drivers/python.md)**
+- **[Rust](/connect-to-memgraph/drivers/rust.md)**
+- **[C#](/connect-to-memgraph/drivers/c-sharp.md)**
+- **[Java](/connect-to-memgraph/drivers/java.md)**
+- **[Go](/connect-to-memgraph/drivers/go.md)**
+- **[Node.js](/connect-to-memgraph/drivers/nodejs.md)**
+- **[JavaScript](/connect-to-memgraph/drivers/javascript.md)**
+- **[PHP](/connect-to-memgraph/drivers/php.md)**
 
 ## Supported Languages
 

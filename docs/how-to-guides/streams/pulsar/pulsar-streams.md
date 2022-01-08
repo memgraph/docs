@@ -26,7 +26,7 @@ service URL can be set using the configuration flag `--pulsar-service-url`.
 The very first step is to make sure at least one transformation module is loaded
 into Memgraph. If you are not sure how to define them, check out the
 [transformation module
-guide](/database-functionalities/streams/pulsar/implement-transformation-module.md).
+guide](/how-to-guides/streams/pulsar/implement-transformation-module.md).
 We will use `transformation.my_pulsar_transformation` from that example, but we
 are going to alias it as `my.pulsar_transform` to make the size of result tables
 slimmer. For the topic name, we are going to use `topic1`.

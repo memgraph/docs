@@ -1,7 +1,7 @@
 ---
 id: manage-user-privileges
 title: User privileges (Enterprise)
-sidebar_label: User privileges (Enterprise)
+sidebar_label: Manage user privileges
 ---
 
 :::warning

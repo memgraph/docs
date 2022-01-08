@@ -28,9 +28,9 @@ The available API references are:
 :::tip
 
 Check out how a typical transformation module can be implemented if you are using 
-[Kafka](/database-functionalities/streams/kafka/implement-transformation-module.md)
+[Kafka](/how-to-guides/streams/kafka/implement-transformation-module.md)
 or
-[Pulsar](/database-functionalities/streams/pulsar/implement-transformation-module.md).
+[Pulsar](/how-to-guides/streams/pulsar/implement-transformation-module.md).
 
 :::
 

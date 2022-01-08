@@ -1,10 +1,12 @@
 module.exports = {
   lab: [
     "getting-started",
+    "connect-to-memgraph",
     {
       type: "category",
       label: "Installation",
       items: [
+        "installation/overview",
         "installation/windows",
         "installation/macos",
         "installation/linux",

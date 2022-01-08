@@ -1,8 +1,8 @@
 ---
 id: overview
-title: Database functionalities overview
-sidebar_label: Database functionalities overview
-slug: /database-functionalities
+title: How-to guides overview
+sidebar_label: How-to guides overview
+slug: /how-to-guides
 ---
 
 Articles within this section serve as a cookbook for getting things done as fast
@@ -18,14 +18,14 @@ look at the following pages:
 
 - **Kafka**
   - [Managing Kafka
-    streams](/database-functionalities/streams/kafka/kafka-streams.md)
+    streams](/how-to-guides/streams/kafka/kafka-streams.md)
   - [Implement transformation
-    modules](/database-functionalities/streams/kafka/implement-transformation-module.md)
+    modules](/how-to-guides/streams/kafka/implement-transformation-module.md)
 - **Pulsar**
   - [Managing Pulsar
-    streams](/database-functionalities/streams/pulsar/pulsar-streams.md)
+    streams](/how-to-guides/streams/pulsar/pulsar-streams.md)
   - [Implement transformation
-    modules](/database-functionalities/streams/pulsar/implement-transformation-module.md)
+    modules](/how-to-guides/streams/pulsar/implement-transformation-module.md)
 
 ## Inspect and profile Cypher queries
 
@@ -43,9 +43,9 @@ These procedures are grouped into modules, which can then be loaded either on
 startup or later on. To learn more about query modules take a look at the
 following guides:
 
-- [Query modules basics](/database-functionalities/query-modules/overview.md)
+- [Query modules basics](/how-to-guides/query-modules/overview.md)
 - [Implement custom query
-  modules](/database-functionalities/query-modules/implement-query-modules.md)
+  modules](/how-to-guides/query-modules/implement-query-modules.md)
 
 ## Replication
 

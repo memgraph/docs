@@ -1,11 +1,11 @@
 ---
 id: security
 title: Security (Enterprise)
-sidebar_label: Security (Enterprise)
+sidebar_label: Security
 ---
 
 Before reading this article we highly recommend going through a how-to guide
-on [managing user privileges](../database-functionalities/manage-user-privileges.md)
+on [managing user privileges](../how-to-guides/manage-user-privileges.md)
 which contains more thorough explanations of the concepts behind `openCypher`
 commands listed in this article.
 
@@ -133,7 +133,7 @@ done by issuing the following command:
 
 The privileges of the owners of
 [streams](/reference-guide/streams/overview.md#creating-a-stream) and
-[triggers](/database-functionalities/triggers.md#owner) are propagated to the
+[triggers](/how-to-guides/triggers.md#owner) are propagated to the
 corresponding query executions:
 - in case of streams for the queries returned by the transformations
 - in case of triggers for trigger statements
