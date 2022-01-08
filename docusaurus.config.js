@@ -270,7 +270,7 @@ module.exports = {
           editUrl: "https://github.com/memgraph/docs/tree/master/",
           versions: {
             current: {
-              label: `Unreleased 🚧`,
+              label: `Next version 🚧`,
             },
           },
         },
