@@ -154,6 +154,12 @@ module.exports = {
           type: "docsVersionDropdown",
           docsPluginId: "memgraph",
           position: "right",
+          dropdownItemsAfter: [
+            {
+              to: "https://memgraph-docs-archive.netlify.app/",
+              label: "Older versions ⌛",
+            },
+          ]
         },
         {
           href: "https://github.com/memgraph/memgraph",
