@@ -1,6 +1,6 @@
 ---
 id: implement-transformation-module
-title: Implement transformation modules
+title: How to implement transformation modules
 sidebar_label: Implement transformation modules
 ---
 

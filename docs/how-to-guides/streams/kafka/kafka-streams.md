@@ -1,7 +1,7 @@
 ---
 id: kafka-streams
-title: Managing Kafka streams
-sidebar_label: Managing Kafka streams
+title: How to manage Kafka streams
+sidebar_label: Manage Kafka streams
 ---
 
 If you are not familiar with Kafka, then please check out their [quickstart

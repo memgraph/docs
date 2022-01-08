@@ -1,6 +1,6 @@
 ---
 id: networkx
-title: NetworkX
+title: How to use the NetworkX library with Memgraph
 sidebar_label: Utilize the NetworkX library
 ---
 

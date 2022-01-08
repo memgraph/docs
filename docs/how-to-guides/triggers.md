@@ -1,6 +1,6 @@
 ---
 id: triggers
-title: Triggers
+title: How to set up triggers
 sidebar_label: Set up triggers
 ---
 

@@ -1,6 +1,6 @@
 ---
 id: memory-control 
-title: Memory control
+title: How to control memory usage
 sidebar_label: Control memory usage 
 ---
 

@@ -1,7 +1,7 @@
 ---
 id: pulsar-streams
-title: Managing Pulsar streams
-sidebar_label: Managing Pulsar streams
+title: How to manage Pulsar streams
+sidebar_label: Manage Pulsar streams
 ---
 
 If you are not familiar with Pulsar, then please check out their

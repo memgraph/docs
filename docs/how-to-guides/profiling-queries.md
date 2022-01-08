@@ -1,7 +1,7 @@
 ---
 id: profiling-queries
-title: Profiling queries
-sidebar_label: Profiling queries
+title: How to profile queries
+sidebar_label: Profile queries
 ---
 
 Along with inspecting a query's plan as described in the [Inspecting queries](./inspecting-queries.md),

@@ -1,6 +1,6 @@
 ---
 id: manage-users-using-ldap
-title: Authentication and authorization (Enterprise)
+title: How to manage authentication and authorization (Enterprise)
 sidebar_label: Manage authentication and authorization
 ---
 

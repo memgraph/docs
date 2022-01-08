@@ -1,6 +1,6 @@
 ---
 id: overview
-title: Query modules
+title: How to use query modules
 sidebar_label: Query modules overview
 slug: /how-to-guides/query-modules
 ---

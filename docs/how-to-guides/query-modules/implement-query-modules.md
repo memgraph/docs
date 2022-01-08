@@ -1,6 +1,6 @@
 ---
 id: implement-query-modules
-title: Implement custom query modules
+title: How to implement custom query modules
 sidebar_label: Implement custom query modules
 ---
 

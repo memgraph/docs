@@ -1,6 +1,6 @@
 ---
 id: manage-user-privileges
-title: User privileges (Enterprise)
+title: How to manage user privileges (Enterprise)
 sidebar_label: Manage user privileges
 ---
 

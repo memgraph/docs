@@ -1,7 +1,7 @@
 ---
 id: create-a-new-module-python
-title: Developing a query module in Python
-sidebar_label: Create a Python module
+title: How to create a query module in Python
+sidebar_label: Create a Python query module
 ---
 
 Query modules can be implemented using the [Python
