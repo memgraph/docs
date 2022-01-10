@@ -1,7 +1,6 @@
 module.exports = {
   lab: [
     "getting-started",
-    "connect-to-memgraph",
     {
       type: "category",
       label: "Installation",
@@ -12,6 +11,7 @@ module.exports = {
         "installation/linux",
       ],
     },
+    "connect-to-memgraph",
     {
       type: "category",
       label: "Style script",

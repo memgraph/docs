@@ -6,9 +6,14 @@ sidebar_label: Installation overview
 
 :::tip Memgraph Platform
 
-The **memgraph/memgraph-platform** Docker image contains **Memgraph**,
-**Memgraph Lab** and **mgconsole**. After running the image, mgconsole will open
-in the terminal while Memgraph Lab is available on `http://localhost:3000`. You
+We recommend you install the Memgraph Platform and use the
+**memgraph/memgraph-platform** Docker image that contains **Memgraph**,
+**Memgraph Lab**, **mgconsole** and **MAGE**. 
+
+After running the image, mgconsole will open
+in the terminal while Memgraph Lab is available on `http://localhost:3000`. 
+
+You
 can install Memgraph Platform on:
 [Windows](/memgraph/install-memgraph-on-windows-docker),
 [macOS](/memgraph/install-memgraph-on-macos-docker) and
