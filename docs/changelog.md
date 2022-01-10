@@ -10,7 +10,7 @@ sidebar_label: Changelog
 
 ### Bug Fixes
 
-* Incread the reference count when `Py_None` is returned from the `_mgp` module.
+* The reference count is increased when `Py_None` is returned from the `_mgp` module.
   This fixes a nondeterministic fatal Python error.
   [#320](https://github.com/memgraph/memgraph/pull/320)
 
