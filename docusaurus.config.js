@@ -157,7 +157,7 @@ module.exports = {
           dropdownItemsAfter: [
             {
               to: "https://memgraph-docs-archive.netlify.app/",
-              label: "Older versions ⌛",
+              label: "Older versions 🗄️",
             },
           ]
         },
