@@ -13,11 +13,11 @@ Python on the example of the **random walk algorithm**.
 
 There are three options for installing and working with Memgraph MAGE:
 
-1.  **Pulling the `memgraph/memgraph-mage` image**: check the `Docker Hub`
+1.  **Pulling the `memgraph/memgraph-mage` image**: check the `Docker Hub` 
     [installation guide](/installation/docker-hub.md).
 2.  **Building a Docker image from the MAGE repository**: check the `Docker
     build` [installation guide](/installation/docker-build.md).
-3.  **Building MAGE from source**: check the `Build from source on Linux`
+3.  **Building MAGE from source**: check the `Build from source on Linux` 
     [installation guide](/installation/source.md).
 
 ## Developing a module
@@ -30,7 +30,7 @@ _Docker build_, and _Build from source on Linux_.
 :::
 
 Position yourself in the **MAGE repository** you cloned earlier. Specifically,
-go in the `python` sub-directory and create a new file called `random_walk.py`.
+go in the `python` subdirectory and create a new file called `random_walk.py`.
 
 ```plaintext
 python
@@ -96,6 +96,6 @@ iteratively.
 Now in order to import, query and test a module, check out the [following
 page](/mage/how-to-guides/run-a-query-module).
 
-Feel free to create an issue or open a pull request on our [Github
+Feel free to create an issue or open a pull request on our [GitHub
 repo](https://github.com/memgraph/mage) to speed up the development.<br/>
 Also, don't forget to throw us a star on GitHub. :star:
