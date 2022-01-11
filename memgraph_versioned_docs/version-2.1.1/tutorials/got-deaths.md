@@ -34,8 +34,8 @@ traitor in the show, you came to the right place!
 Although the Game of Thrones TV show is based on a series of books, our graph
 database contains only characters from the previously mentioned TV shows as the
 books are still not finished. This tutorial would not be possible without data
-analyst David Murphy who shared his collection of on-screen deaths on [this
-link](https://data.world/datasaurusrex/game-of-thones-deaths). For more
+analyst David Murphy who shared his [collection of on-screen
+deaths](https://data.world/datasaurusrex/game-of-thones-deaths). For more
 information, you can visit his
 [blogpost](https://datasaurus-rex.com/gallery/gotviz-mkiii) with interactive
 analysis on the show deaths. We won't be working with kills and deaths that

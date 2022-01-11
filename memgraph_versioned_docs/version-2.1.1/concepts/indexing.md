@@ -10,92 +10,88 @@ A database index is a data structure used to improve the speed of data retrieval
 within a database at the cost of additional writes and storage space for
 maintaining the index data structure.
 
-Armed with deep understanding of their data model and use-case, users can decide
-which data to index and, by doing so, significantly improve their data retrieval
-efficiency
+If you have a deep understanding of your data model and use-case, you can decide
+which data to index and significantly improve the efficiency of data retrieval.
 
-## Index Types
+## Index types
 
 At Memgraph, we support two types of indexes:
 
   * label index
   * label-property index
 
-Label indexing is NOT enabled by default in Memgraph, i.e., Memgraph will not
-automatically index labeled data. Therefore, it is up to the user to perform
-the indexing explicitly. By doing so, one can optimize queries that fetch
-nodes by label:
+
+Memgraph will NOT automatically index labeled data. If you want to optimize
+queries that fetch nodes by label you need to perform the indexing. 
 
 ```cypher
-MATCH (n: Label) ... RETURN n;
+CREATE INDEX ON :Person;
+```
+Retrieving nodes using this query is now much more efficient:
+
+```cypher
+MATCH (n :Person) RETURN n;
 ```
 
-Indexes can also be created on data with a specific combination of label and
-property, hence the name label-property index. This operation needs to be
-specified by the user and should be used with a specific data model and
-use-case in mind.
+You can also create indexes on data with a specific combination of label and
+property, hence the name label-property index. 
 
-For example, suppose we are storing information about certain people in our
-database and we are often interested in retrieving their age. In that case,
-it might be beneficial to create an index on nodes labeled as `:Person` which
-have a property named `age`. We can do so by using the following language
-construct:
+For example, if you are storing information about people and you often retrieve
+their age, it might be beneficial to create an index on nodes labeled as
+`:Person` with a property named `age` by using the following language construct:
 
 ```cypher
 CREATE INDEX ON :Person(age);
 ```
 
-After the creation of that index, those queries will be more efficient due to
-the fact that Memgraph's query engine will not have to fetch each `:Person` node
-and check whether the property exists. Moreover, even if all nodes labeled as
-`:Person` had an `age` property, creating such index might still prove to be
-beneficial. The main reason is that entries within that index are kept sorted
-by property value. Queries such as the following are therefore more efficient:
+After creating that index, queries will be more efficient because Memgraph's
+query engine will not have to fetch each `:Person` node and check whether the
+property exists. Even if all nodes labeled as `:Person` have an `age` property,
+creating an index can still be beneficial because entries within the index are
+sorted by property value. By creating a label-property index, queries similar to
+this one will be more efficient:
 
 ```cypher
 MATCH (n :Person {age: 42}) RETURN n;
 ```
 
-Index based retrieval can also be invoked on queries with `WHERE` statements.
-For instance, the following query will have the same effect as the previous
-one:
+Indexing is also beneficial for simple queries that filter data with a `WHERE`
+clause:
 
 ```cypher
 MATCH (n) WHERE n:Person AND n.age = 42 RETURN n;
 ```
 
-Naturally, indexes will also be used when filtering based on less than or
-greater than comparisons. For example, filtering all minors (persons
-under 18 years of age under Croatian law) using the following query will use
-index based retrieval:
+Bear in mind that `WHERE` filters could contain arbitrarily complex
+expressions and index based retrieval might not be used. Nevertheless, we are
+continually improving our index usage recognition algorithms.
+
+Filtering based on less than or greater than comparisons will also use index
+based retrieval:
 
 ```cypher
 MATCH (n) WHERE n:PERSON and n.age < 18 RETURN n;
 ```
 
-Bear in mind that `WHERE` filters could contain arbitrarily complex expressions
-and index based retrieval might not be used. Nevertheless, we are continually
-improving our index usage recognition algorithms.
-
-Information about available indexes can be retrieved by using the following
-syntax:
+Information about available indexes can be retrieved using the following syntax:
 
 ```cypher
 SHOW INDEX INFO;
 ```
-The results of this query will be all of the labels and label-property pairs
-that Memgraph currently indexes.
 
-Created indexes can also be deleted by using the following syntax:
+This query will return all the labels and label-property pairs that Memgraph
+currently indexes.
+
+You can delete created indexes by using the following syntax:
+
 ```cypher
 DROP INDEX ON :Label(property);
 ```
 
-Dropping an index will instruct all active transactions to abort as soon as
-possible, and it will wait for them to finish. Once all transaction have
-finished, it will drop the index.
+This query instructs all active transactions to abort as soon as possible. Once
+all transaction have finished, it will drop the index.
 
-## Underlying Implementation
+## Underlying implementation
 
 The central part of our index data structure is a highly-concurrent skip list.
 Skip lists are probabilistic data structures that allow fast search within an

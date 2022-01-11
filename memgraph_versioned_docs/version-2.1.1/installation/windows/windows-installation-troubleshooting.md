@@ -64,7 +64,7 @@ Connection failure: Couldn't connect to 127.0.0.1:7687!
 
 To fix this issue, just replace `HOST` from the first command with
 `host.docker.internal`. To find out more about networking in Docker, take a
-look at [this guide](https://docs.docker.com/docker-for-windows/networking/).
+look at [Networking features in Docker Desktop for Windows](https://docs.docker.com/docker-for-windows/networking/) guide.
 
 ## Find the IP address of a Docker Container
 
@@ -166,7 +166,8 @@ install the following Python libraries:
 * [SciPy](https://www.scipy.org/)
 * [NetworkX](https://networkx.org/)
 
-For more information on how to install Python libraries in WSL, follow [this
+For more information on how to install Python libraries in WSL, follow the [Python
+installation
 guide](https://docs.microsoft.com/en-us/windows/python/web-frameworks#install-python-pip-and-venv).
 If you are not interested in working with query modules that depend on these
 libraries, you can ignore the warnings.

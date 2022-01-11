@@ -133,7 +133,7 @@ done by issuing the following command:
 
 The privileges of the owners of
 [streams](/reference-guide/streams/overview.md#creating-a-stream) and
-[triggers](/how-to-guides/triggers.md#owner) are propagated to the
+[triggers](/reference-guide/triggers.md#owner) are propagated to the
 corresponding query executions:
 - in case of streams for the queries returned by the transformations
 - in case of triggers for trigger statements

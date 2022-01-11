@@ -1,7 +1,7 @@
 ---
 id: ldap-security
 title: LDAP Security (Enterprise)
-sidebar_label: LDAP Security (Enterprise)
+sidebar_label: LDAP Security
 ---
 
 For the purpose of supporting LDAP authentication and (optional)

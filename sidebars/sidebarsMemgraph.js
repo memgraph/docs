@@ -168,7 +168,7 @@ module.exports = {
         },
         "how-to-guides/replication",
         //"how-to-guides/tensorflow-setup",
-        "how-to-guides/triggers",
+        "reference-guide/triggers",
 
         {
           type: "category",
@@ -272,7 +272,7 @@ module.exports = {
         },
         "reference-guide/temporal-types",
         //"reference-guide/tensorflow",
-        "how-to-guides/triggers",
+        "reference-guide/triggers",
         {
           type: "category",
           label: "Enterprise features",

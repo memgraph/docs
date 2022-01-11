@@ -11,8 +11,8 @@ Memgraph on Ubuntu.
 ## Prerequisites
 
 Before you proceed with the installation guide make sure that you have:
-* Downloaded the latest **Memgraph Ubuntu Package** which can be [found
-  here](https://memgraph.com/download/).
+* Downloaded the latest **Memgraph Ubuntu Package** which can be found on the
+  [Memgraph download hub](https://memgraph.com/download/).
 
 :::note
 
@@ -80,7 +80,7 @@ You are running Memgraph vX.X.X-community
 ```
 
 If you want to start Memgraph with different configuration settings, check out
-the [section below](#configuration). At this point, Memgraph is ready for you
+the [Configuration section](#configuration). At this point, Memgraph is ready for you
 to [submit queries](/connect-to-memgraph/overview.mdx).
 
 ## Stopping Memgraph
@@ -103,7 +103,7 @@ guide](/reference-guide/configuration.md).
 To learn how to query the database, take a look at the
 **[Querying](/connect-to-memgraph/overview.mdx)** guide or **[Memgraph
 Playground](https://playground.memgraph.com/)** for interactive tutorials.<br/>
-Visit the **[Building applications](/connect-to-memgraph/methods/drivers.md)**
+Visit the **[Building applications](/connect-to-memgraph/drivers/overview.md)**
 page if you need to connect to the database programmatically.
 
 ## Getting help
