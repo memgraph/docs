@@ -1,6 +1,6 @@
 ---
 id: uniqueness-constraint
-title: Uniqueness constraint
+title: How to enforce uniqueness constraint
 sidebar_label: Uniqueness constraint
 ---
 
