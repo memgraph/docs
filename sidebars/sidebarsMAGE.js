@@ -3,7 +3,7 @@ module.exports = {
     "overview",
     {
       type: "category",
-      label: "Installation",
+      label: "Install MAGE",
       items: [
         "installation/overview",
         "installation/docker-hub",

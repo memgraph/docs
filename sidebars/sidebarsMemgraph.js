@@ -3,7 +3,7 @@ module.exports = {
     "getting-started",
     {
       type: "category",
-      label: "Installation",
+      label: "Install Memgraph",
       items: [
         "installation/overview",
         {

@@ -3,7 +3,7 @@ module.exports = {
     "getting-started",
     {
       type: "category",
-      label: "Installation",
+      label: "Install Memgraph Lab",
       items: [
         "installation/overview",
         "installation/windows",
