@@ -14,7 +14,7 @@ module.exports = {
     "connect-to-memgraph",
     {
       type: "category",
-      label: "Style script",
+      label: "Style script language",
       items: ["style-script/quick-start", "style-script/reference-guide"],
     },
     "changelog",

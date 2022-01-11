@@ -4,9 +4,9 @@ title: Quick start guide to Style script
 sidebar_label: Quick start
 ---
 
-This guide will show you how to easily get started with style script. For 
-complete list available features consult 
-[style script reference](./reference-guide.md).
+This guide will show you how to easily get started with Style script. Style
+script is a language for customizing the visual display of graphs. For complete
+list available features consult [Style script reference](./reference-guide.md).
 
 ## Graph example
 
