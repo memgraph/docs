@@ -1,8 +1,10 @@
 ---
 id: functions
-title: Functions
-sidebar_label: Functions
+title: Using functions
+sidebar_label: Using functions
 ---
+
+## Supported functions
 
 This section contains the list of supported functions.
 

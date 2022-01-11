@@ -1,5 +1,5 @@
 ---
-id: graph-databases
+id: what-are-graph-databases
 title: What are graph databases
 sidebar_label: What are graph databases
 ---

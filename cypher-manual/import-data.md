@@ -1,7 +1,7 @@
 ---
 id: import-data
-title: Getting data into your graph database
-sidebar_label: Getting data into database
+title: Import data
+sidebar_label: Import data
 ---
 
 :::info

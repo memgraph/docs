@@ -1,5 +1,5 @@
 ---
-id: update-data
+id: updating-nodes-and-relationships
 title: Updating nodes and relationships
 sidebar_label: Updating nodes and relationships
 ---

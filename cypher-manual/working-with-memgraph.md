@@ -1,7 +1,7 @@
 ---
-id: what-is-memgraph
-title: What is Memgraph
-sidebar_label: What is Memgraph
+id: working-with-memgraph
+title: Working with Memgraph
+sidebar_label: Working with Memgraph
 ---
 
 :::info

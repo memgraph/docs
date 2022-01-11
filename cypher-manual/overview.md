@@ -1,21 +1,11 @@
 ---
 id: overview
-title: Cypher manual
-sidebar_label: Cypher manual
+title: Getting started with Cypher
+sidebar_label: Getting started with Cypher
 slug: /
 ---
 
-:::info
-
-This page will serve as an introduction to Cypher manual.
-On it we will list a short overview of everything that Cypher manual will contain.
-Also all of the parts will be linked. This means that we will list and link all of the chapters. Each chapter will be introduced with one or two sentences.
-
-The content on this page is just a place holder so that you can see the proposed structure.
-
-
-:::
-
+## Cypher query language
 
 **Cypher** is the most widely adopted, fully-specified, and open query language
 for property graph databases. It provides an intuitive way to work with property
@@ -23,7 +13,7 @@ graphs.
 
 ## Quick start guide
 
-If you are new to the **Cypher** query language take a look at our [Cypher quick start guide](/quick-start-guide.md). 
+If you are new to the **Cypher** query language take a look at our [Cypher quick start guide]. 
 
 ## What are graph databases?
 Is this the first time that encounter graph database? Get familiar with [graph database terminology](graph-databases.md) before you dip dive into them.

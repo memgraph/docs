@@ -1,5 +1,5 @@
 ---
-id: delete-data
+id: deleting-nodes-and-relationships
 title: Deleting nodes and relationships
 sidebar_label: Deleting nodes and relationships
 ---
