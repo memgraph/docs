@@ -124,10 +124,11 @@ install the following Python libraries:
 * [SciPy](https://www.scipy.org/)
 * [NetworkX](https://networkx.org/)
 
-For more information on how to install Python libraries in Linux, follow [this
-guide](https://packaging.python.org/tutorials/installing-packages/).
-If you are not interested in working with query modules that depend on these
-libraries, you can ignore the warnings.
+For more information on how to install Python libraries in Linux, follow the
+[Installing Packages
+guide](https://packaging.python.org/tutorials/installing-packages/). If you are
+not interested in working with query modules that depend on these libraries, you
+can ignore the warnings.
 
   </TabItem>
 </Tabs>

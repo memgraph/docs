@@ -27,9 +27,9 @@ natively on Linux and WSL or through Docker on Windows and macOS.
 
 Once your Memgraph instance is up and running, you are ready to [connect to
 Memgraph](/connect-to-memgraph/overview.mdx). You can connect to Memgraph using
-[drivers](/connect-to-memgraph/methods/drivers.md) for your favorite programming
+[drivers](/connect-to-memgraph/drivers/overview.md) for your favorite programming
 language. If you are a command line fan, you can use
-[mgconsole](/connect-to-memgraph/methods/mgconsole.md) for querying. If you
+[mgconsole](/connect-to-memgraph/mgconsole.md) for querying. If you
 prefer to do things in a visual way, go ahead and use [Memgraph
 Lab](/memgraph-lab). The choice is up to you!
 
@@ -62,7 +62,7 @@ learning concepts in small chunks before applying them in practice.
 
 We have also prepared a cookbook for getting things done as fast as possible.
 These articles provide a step-by-step guide on using certain [Memgraph features
-or solving a particular problem](/database-functionalities/overview.md).
+or solving a particular problem](/how-to-guides/overview.md).
 
 ### Practical tutorial
 
@@ -96,13 +96,13 @@ most of which is free.
 Build an application with Memgraph from our list of supported languages and
 frameworks:
 
-- [Python](/connect-to-memgraph/methods/building-applications/python.md)
-- [Rust](/connect-to-memgraph/methods/building-applications/rust.md)
-- [C#](/connect-to-memgraph/methods/building-applications/c-sharp.md)
-- [Java](/connect-to-memgraph/methods/building-applications/java.md)
-- [Go](/connect-to-memgraph/methods/building-applications/go.md)
-- [JavaScript](/connect-to-memgraph/methods/building-applications/javascript.md)
-- [PHP](/connect-to-memgraph/methods/building-applications/php.md)
+- [Python](/connect-to-memgraph/drivers/python.md)
+- [Rust](/connect-to-memgraph/drivers/rust.md)
+- [C#](/connect-to-memgraph/drivers/c-sharp.md)
+- [Java](/connect-to-memgraph/drivers/java.md)
+- [Go](/connect-to-memgraph/drivers/go.md)
+- [JavaScript](/connect-to-memgraph/drivers/javascript.md)
+- [PHP](/connect-to-memgraph/drivers/php.md)
 
 ## Reference guide
 

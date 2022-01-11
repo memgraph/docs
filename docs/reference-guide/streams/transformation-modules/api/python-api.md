@@ -22,7 +22,7 @@ version will soon be available.
 
 For an example of how to implement transformation modules in Python, check out
 the [Python API
-guide](/database-functionalities/streams/pulsar/implement-transformation-module.md#python-api).
+guide](/how-to-guides/streams/pulsar/implement-transformation-module.md#python-api).
 
 :::
 

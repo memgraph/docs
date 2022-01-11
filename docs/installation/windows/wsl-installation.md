@@ -84,7 +84,7 @@ guide](/reference-guide/configuration.md).
 To learn how to query the database, take a look at the
 **[Querying](/connect-to-memgraph/overview.mdx)** guide or **[Memgraph
 Playground](https://playground.memgraph.com/)** for interactive tutorials.<br/>
-Visit the **[Building applications](/connect-to-memgraph/methods/drivers.md)**
+Visit the **[Building applications](/connect-to-memgraph/drivers/overview.md)**
 page if you need to connect to the database programmatically.
 
 ## Getting help

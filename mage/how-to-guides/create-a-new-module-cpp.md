@@ -1,6 +1,6 @@
 ---
 id: create-a-new-module-cpp
-title: Developing a query module in C++
+title: How to create a query module in C++
 sidebar_label: Create a C++ query module
 ---
 

@@ -46,7 +46,7 @@ following guides:
 - [Load and call query
   modules](/reference-guide/query-modules/load-call-query-modules.md)
 - [Implement custom query
-  modules](/database-functionalities/query-modules/implement-query-modules.md)
+  modules](/how-to-guides/query-modules/implement-query-modules.md)
 
 ## [Replication](./replication.md)
 
