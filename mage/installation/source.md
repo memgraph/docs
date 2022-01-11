@@ -5,11 +5,13 @@ sidebar_label: Build from source on Linux
 ---
 
 This step is only suitable for Linux users as you need to [download and install
-a Linux based Memgraph package](https://memgraph.com/download).
+a Linux based Memgraph package](https://memgraph.com/download). To build from
+source, you will need **Python3**, **Make**, **CMake**, **Clang**, **UUID**
+and **Rust**.
 
 :::info
 
-You should not build MAGE from the source and import the modules into Memgraph
+You should not build MAGE from source and import the modules into Memgraph
 running in a Docker container. You would need to build MAGE inside the same
 container where Memgraph is running due to the possibility of different
 architectures on your local machine and the Docker container. If you need to

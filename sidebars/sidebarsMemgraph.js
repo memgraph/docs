@@ -4,8 +4,8 @@ module.exports = {
     {
       type: "category",
       label: "Install Memgraph",
+      link: {type: 'doc', id: 'installation/overview'},
       items: [
-        "installation/overview",
         {
           type: "category",
           label: "Windows",
@@ -39,8 +39,8 @@ module.exports = {
     {
       type: "category",
       label: "Connect to Memgraph",
+      link: {type: 'doc', id: 'connect-to-memgraph/overview'},
       items: [
-        "connect-to-memgraph/overview",
         "connect-to-memgraph/mgconsole",
         {
           type: "link",
@@ -67,8 +67,8 @@ module.exports = {
     {
       type: "category",
       label: "Import data",
+      link: {type: 'doc', id: 'import-data/overview'},
       items: [
-        "import-data/overview",
         {
           type: "category",
           label: "CSV",
@@ -98,8 +98,8 @@ module.exports = {
     {
       type: "category",
       label: "Tutorials",
+      link: {type: 'doc', id: 'tutorials/overview'},
       items: [
-        "tutorials/overview",
         "tutorials/analyzing-ted-talks",
         "tutorials/backpacking-through-europe",
         "tutorials/exploring-the-european-road-network",
@@ -115,8 +115,8 @@ module.exports = {
     {
       type: "category",
       label: "How-to guides",
+      link: {type: 'doc', id: 'how-to-guides/overview'},
       items: [
-        "how-to-guides/overview",
         "reference-guide/backup",
         {
           type: "category",
@@ -183,8 +183,8 @@ module.exports = {
     {
       type: "category",
       label: "Reference guide",
+      link: {type: 'doc', id: 'reference-guide/overview'},
       items: [
-        "reference-guide/overview",
         "reference-guide/backup",
         "reference-guide/configuration",
         "reference-guide/graph-algorithms",
@@ -289,8 +289,8 @@ module.exports = {
     {
       type: "category",
       label: "Concepts",
+      link: {type: 'doc', id: 'concepts/concepts'},
       items: [
-        "concepts/concepts",
         "concepts/storage",
         "concepts/graph-algorithms",
         "concepts/indexing",

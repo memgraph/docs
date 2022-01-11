@@ -8,6 +8,14 @@ slug: /install-memgraph-from-rpm
 This article briefly outlines the basic steps necessary to install and run
 Memgraph from a RPM package.
 
+:::info
+
+Newer versions of Memgraph are currently not backward compatible with older
+versions. This is mainly noticeable by being unable to load storage snapshots
+between different versions.
+
+:::
+
 ## Prerequisites
 
 Before you proceed with the installation guide make sure that you have:

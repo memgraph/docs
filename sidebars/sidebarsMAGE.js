@@ -4,8 +4,8 @@ module.exports = {
     {
       type: "category",
       label: "Install MAGE",
+      link: {type: 'doc', id: 'installation/overview'},
       items: [
-        "installation/overview",
         "installation/docker-hub",
         "installation/docker-build",
         "installation/source",

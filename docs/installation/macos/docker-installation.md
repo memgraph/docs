@@ -25,6 +25,14 @@ them. We provide code snippets for working with both types of images below.
 
 :::
 
+:::info
+
+Newer versions of Memgraph are currently not backward compatible with older
+versions. This is mainly noticeable by being unable to load storage snapshots
+between different versions.
+
+:::
+
 ## Prerequisites {#prerequisites}
 
 Before you proceed with the installation guide, make sure that you have:
