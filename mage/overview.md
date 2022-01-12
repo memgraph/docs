@@ -27,7 +27,7 @@ Start utilizing the power of MAGE with these simple steps.
 Install MAGE using a prepared image from the [Docker Hub](/installation/docker-hub.md) or by [building a Docker
 image](/installation/docker-build.md) from the [official MAGE GitHub
 repository](https://github.com/memgraph/mage). On Linux, you can also [install
-MAGE from source]((/installation/source.md)) but be aware you will also need to install additional
+MAGE from source](/installation/source.md) but be aware you will also need to install additional
 dependencies.
 
 ### 2. Load query modules
@@ -45,7 +45,7 @@ problem that's been keeping you awake.
 ### Browse the spellbook of query modules
 
 Spellbook has been written by high MAGEs to help you utilize all the [currently
-available query modules](/query-modules/available-queries.md).
+available query modules](/mage/query-modules/available-queries).
 
 ### Create query modules
 
@@ -57,7 +57,7 @@ query modules [How-to guides](/how-to-guides/create-a-new-module-cpp.md) are her
 There are so many
 [algorithms](/algorithms/traditional-graph-analytics/betweenness-centrality-algorithm.md)
 to benefit from. Browse through them and see how they can be applied in [use
-cases](/use-cases/bioinformatics) from various fields, such as bioinformatics or
+cases](/use-cases/bioinformatics.md) from various fields, such as bioinformatics or
 transportation. 
 
 ### Contribute
