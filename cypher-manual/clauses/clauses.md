@@ -12,7 +12,7 @@ The **Cypher** language enables users to perform standard database operations by
   * [`LOAD CSV`](load-csv.md) - loads data from CSV file;
   * [`MATCH`](match.md) - searches for patterns;
   * [`MERGE`](merge.md) - creates patterns if they don't exist;
-  * [`OPTIONAL MATCH`] - behaves the same as [`MATCH`], but when it fails to find the pattern it fills missing parts of the pattern with null values;
+  * [`OPTIONAL MATCH`](optional-match.md) - behaves the same as [`MATCH`](match.md), but when it fails to find the pattern it fills missing parts of the pattern with null values;
   * [`REMOVE`](remove.md) - removes labels and properties;
   * [`RETURN`](return.md), for defining what will be presented to the user in the result set;
   * [`SET`](set.md), for adding new or updating existing labels and properties;

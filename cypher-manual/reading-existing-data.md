@@ -314,3 +314,8 @@ UNWIND [1,2,3] AS listElement RETURN listElement;
 ```
 
 More examples can be found [here](./clauses/unwind.md).
+
+## Traversing relationships
+
+
+

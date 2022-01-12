@@ -2,11 +2,18 @@ module.exports = {
   cypher_manual: [
     "overview",
     "what-are-graph-databases",
-    "what-is-cypher-query-language",
+    {
+      type: "category",
+      label: "Cypher query language",
+      link: {type: 'doc', id: 'cypher-query-language'},
+      items: [
+        "differences",
+      ],
+    }, 
     "working-with-memgraph",
     "import-data",
     "connecting-nodes",
-    "finding-and-returning-nodes",
+    "reading-existing-data",
     "updating-nodes-and-relationships",
     "deleting-nodes-and-relationships",
     {

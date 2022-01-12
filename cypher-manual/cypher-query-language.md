@@ -1,7 +1,7 @@
 ---
-id: what-is-cypher-query-language
-title: What is Cypher query language
-sidebar_label: What is Cypher query language
+id: cypher-query-language
+title: Cypher query language
+sidebar_label: Cypher query language
 ---
 
 :::info
