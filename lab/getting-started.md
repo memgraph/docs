@@ -43,9 +43,10 @@ command-line tool
 [mgconsole](https://memgraph.com/docs/memgraph/connect-to-memgraph/mgconsole). 
 
 Those who are new to querying can head out to our
-[Tutorials](https://memgraph.com/docs/memgraph/tutorials) and get a feeling of
-what is possible to find out from data using graphs, or to the [Cypher
-manual](https://memgraph.com/docs/cypher-manual/) where we give an overview of
+[Tutorials](https://memgraph.com/docs/memgraph/tutorials) or play around on
+[Playground](https://playground.memgraph.com/) to get a feeling of what is
+possible to find out from data using graphs. [Cypher
+manual](https://memgraph.com/docs/cypher-manual/) will give you an overview of
 clauses and functions to help you write awesome queries. 
 
 If you need more magic to enhance your graph power, look into [MAGE - Memgraph

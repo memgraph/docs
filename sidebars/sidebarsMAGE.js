@@ -19,6 +19,7 @@ module.exports = {
     {
       type: "category",
       label: "Available query modules",
+      link: {type: 'doc', id: 'query-modules/available-queries'},
       items: [
         "query-modules/cpp/betweenness-centrality",
         "query-modules/cpp/biconnected-components",
