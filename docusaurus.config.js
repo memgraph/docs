@@ -476,11 +476,11 @@ module.exports = {
             from: ["/memgraph/reference-overview/reading-existing-data"],
           },
           {
-            to: "/cypher-manual/writing-new-data",
+            to: "/docs/cypher-manual/import-data",
             from: ["/memgraph/reference-overview/writing-new-data"],
           },
           {
-            to: "/cypher-manual/reading-and-writing",
+            to: "/docs/cypher-manual/import-data",
             from: ["/memgraph/reference-overview/reading-and-writing"],
           },
           {
@@ -781,6 +781,24 @@ module.exports = {
           {
             to: "/memgraph/database-functionalities/streams/kafka/implement-transformation-module",
             from: ["/memgraph/database-functionalities/streams/implement-transformation-module"],
+          },
+          {
+            "to": "/docs/cypher-manual/import-data",
+            "from": [
+              "/docs/cypher-manual/writing-new-data"
+            ]
+          },
+          {
+            "to": "/docs/cypher-manual/import-data",
+            "from": [
+              "/docs/cypher-manual/reading-and-writing"
+            ]
+          },
+          {
+            "to": "/docs/cypher-manual/differences/patterns-in-expressions",
+            "from": [
+              "/docs/cypher-manual/differences"
+            ]
           },
         ],
       },
