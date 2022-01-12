@@ -782,6 +782,7 @@ module.exports = {
             to: "/memgraph/database-functionalities/streams/kafka/implement-transformation-module",
             from: ["/memgraph/database-functionalities/streams/implement-transformation-module"],
           },
+          //Cypher manual redirects because of new structure
           {
             "to": "/docs/cypher-manual/import-data",
             "from": [
