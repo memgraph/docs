@@ -10,7 +10,7 @@ slug: /faq/memgraph-lab
 Memgraph Lab is a visual interface for exploring and interacting with data
 stored in Memgraph.
 
-If you prefere to query using command-line tool use
+If you prefer to query Memgraph using a command-line tool, use
 [mgconsole](https://memgraph.com/docs/memgraph/connect-to-memgraph/mgconsole). 
 
 ### Can I only use Memgraph Lab?
@@ -26,10 +26,10 @@ Memgraph Lab cannot be installed natively on Windows devices but can be installe
 using **Docker** or through the **Windows Subsystem for Linux (WSL)**. Docker
 enables us to run Memgraph virtually on any system without having to worry about
 compatibility issues. You don't have to be familiar with Docker to try out
-Memgraph so [install Docker](https://docs.docker.com/get-docker/) without fear.
+Memgraph, so [install Docker](https://docs.docker.com/get-docker/) without fear.
 
 You can either [install Memgraph
-Platform](https://memgraph.com/docs/memgraph/install-memgraph-on-windows-docker)
+Platform](https://memgraph.com/docs/memgraph/install-memgraph-on-windows-docker), 
 which includes both Memgraph and Memgraph Lab, or [Memgraph
 Lab](https://memgraph.com/docs/memgraph-lab/installation/windows) by itself, but
 please remember you need a running Memgraph instance to connect to. 
@@ -39,11 +39,11 @@ please remember you need a running Memgraph instance to connect to.
 Memgraph Lab cannot be installed natively on macOS devices but can be installed
 using **Docker**. Docker enables us to run Memgraph virtually on any system
 without having to worry about compatibility issues. You don't have to be
-familiar with Docker to try out Memgraph so [install
+familiar with Docker to try out Memgraph, so [install
 Docker](https://docs.docker.com/get-docker/) without fear.
 
 You can either [install Memgraph
-Platform](https://memgraph.com/docs/memgraph/install-memgraph-on-windows-docker)
+Platform](https://memgraph.com/docs/memgraph/install-memgraph-on-windows-docker), 
 which includes both Memgraph and Memgraph Lab, or [Memgraph
 Lab](https://memgraph.com/docs/memgraph-lab/installation/windows) by itself, but
 please remember you need a running Memgraph instance to connect to. 

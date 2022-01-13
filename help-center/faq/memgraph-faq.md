@@ -51,7 +51,7 @@ familiar with Docker to try out Memgraph. Just [install
 Docker](https://docs.docker.com/get-docker/) and head over to our [installation
 instructions for macOS](/memgraph/install-memgraph-on-macos-docker).
 
-### Can I only use Memgraph Lab?
+### Can I only use Memgraph Lab without Memgraph?
 
 Memgraph Lab is a visual interface for exploring and interacting with data
 stored in Memgraph. This means that Memgraph Lab needs a running Memgraph
@@ -61,7 +61,7 @@ Memgraph Lab and start querying your graph.
 
 ### How do you upgrade?
 
-To do software upgrades the whole cluster has to go down. Before that data has
+To do software upgrades, the whole cluster has to go down. Before that data has
 to be migrated to a cluster with the newer version of Memgraph. At the moment,
 we offer no downtime upgrades, but that’s a feature which is high on our
 priority list. What we do offer is support when the upgrade is needed.

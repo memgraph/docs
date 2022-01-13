@@ -7,16 +7,17 @@ slug: /
 
 Memgraph is a streaming graph application platform that helps you wrangle your
 streaming data, build sophisticated models you can query in real-time, and
-develop applications you never thought possible within couple of days, not months.
+develop applications you never thought possible within a couple of days, not
+months.
 
-If you're interested in trying out Memgraph from the comfort of your browser you
-can do so on [Memgraph Playground](https://playground.memgraph.com/). 
+If you're interested in trying out Memgraph from the comfort of your browser,
+you can do so on [Memgraph Playground](https://playground.memgraph.com/).
 
 Are you eager to start working with the real thing? Read on!
 
 ## Quick start
 
- Follow these three steps, and you will have Memgraph as a full-running graph
+Follow these three steps, and you will have Memgraph as a full-running graph
 application platform in no time at all. Here is what you need to do:
 
 ### 1. Download and install Memgraph
@@ -63,11 +64,11 @@ the possibilities Memgraph offers.
 
 You can start your learning on [Memgraph
 Playground](https://playground.memgraph.com/) where guided lessons will help you
-become familiar with graph databases and Cypher query. Lessons vary in
-difficulty and datasets so feel free to choose the topic that will keep you
+become familiar with graph databases and Cypher queries. Lessons vary in
+difficulty and datasets, so feel free to choose the topic that will keep you
 extra motivated. For example, you can start with [TED-talks
 lessons](https://playground.memgraph.com/dataset/ted-talks) that use real-world
-data related to TED talks providing you with tips and trick that will help you
+data related to TED talks providing you with tips and tricks that will help you
 explore your own datasets.
 
 #### Tutorials and How-to guides
@@ -75,7 +76,7 @@ explore your own datasets.
 All the datasets and most of the queries used in the guided lessons can be also
 explored here, in the [Tutorials](/tutorials/overview.md) section. If you are
 interested in using a particular Memgraph feature or you are stuck solving a
-tricky problem try to find the solution in the [How-to
+tricky problem, try to find the solution in the [How-to
 guides](/how-to-guides/overview.md). Even more tutorials dealing with specific
 issues are available on our [Blog](https://memgraph.com/category/tutorials).
 
