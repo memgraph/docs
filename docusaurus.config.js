@@ -485,11 +485,11 @@ module.exports = {
             from: ["/memgraph/reference-overview/reading-existing-data"],
           },
           {
-            to: "/docs/cypher-manual/import-data",
+            to: "/cypher-manual/import-data",
             from: ["/memgraph/reference-overview/writing-new-data"],
           },
           {
-            to: "/docs/cypher-manual/import-data",
+            to: "/cypher-manual/import-data",
             from: ["/memgraph/reference-overview/reading-and-writing"],
           },
           {
@@ -794,8 +794,8 @@ module.exports = {
             from: ["/cypher-manual/reading-and-writing"],
           },
           {
-            to: "/cypher-manual/differences/patterns-in-expressions",
-            from: ["/cypher-manual/differences"],
+            to: "/cypher-manual/differences",
+            from: ["/cypher-manual/differences/patterns-in-expressions"],
           },
           //MAGE redirects
           {
