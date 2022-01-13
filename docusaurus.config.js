@@ -125,7 +125,7 @@ module.exports = {
           activeBaseRegex: `/mage/`,
           items: [
             {
-              label: "Overview",
+              label: "Getting started",
               to: "/mage",
             },
             {
