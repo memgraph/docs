@@ -793,6 +793,7 @@ module.exports = {
             "from": [
               "/docs/cypher-manual/differences"
             ]
+          },
           //MAGE redirects
           {
             to: "/help-center/",
