@@ -123,24 +123,48 @@ module.exports = {
           activeBaseRegex: `/cypher-manual/`,
           items: [
             {
-              label: "Overview",
+              label: "Getting started",
               to: "/cypher-manual/",
             },
             {
-              label: "Functions",
-              to: "/cypher-manual/functions",
+              label: "What are graph databases",
+              to: "/cypher-manual/what-are-graph-databases",
+            },
+            {
+              label: "Cypher query language",
+              to: "/cypher-manual/cypher-query-language",
+            },
+            {
+              label: "Working with Memgraph",
+              to: "/cypher-manual/working-with-memgraph",
+            },
+            {
+              label: "Import data",
+              to: "/cypher-manual/import-data",
+            },
+            {
+              label: "Connecting nodes",
+              to: "/cypher-manual/connecting-nodes",
+            },
+            {
+              label: "Reading existing data",
+              to: "/cypher-manual/reading-existing-data",
+            },
+            {
+              label: "Updating nodes and relationships",
+              to: "/cypher-manual/updating-nodes-and-relationships",
+            },
+            {
+              label: "Deleting nodes and relationships",
+              to: "/cypher-manual/deleting-nodes-and-relationships",
             },
             {
               label: "Clauses",
               to: "/cypher-manual/clauses",
             },
             {
-              label: "Other features",
-              to: "/cypher-manual/other-features",
-            },
-            {
-              label: "Differences",
-              to: "/cypher-manual/differences",
+              label: "Using functions",
+              to: "/cypher-manual/functions",
             },
           ],
         },
