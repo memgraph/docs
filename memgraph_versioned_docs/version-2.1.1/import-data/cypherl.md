@@ -6,7 +6,7 @@ sidebar_label: Cypher queries (.cypherl format)
 import Tabs from "@theme/Tabs"; import TabItem from "@theme/TabItem";
 
 When Memgraph is running, Cypher queries are imported by running
-[mgconsole](/connect-to-memgraph/methods/mgconsole.md) in non-interactive mode.
+[mgconsole](/connect-to-memgraph/mgconsole.md) in non-interactive mode.
 The user can import queries saved in e.g. `queries.cypherl` by issuing the
 following shell command:
 
@@ -35,7 +35,7 @@ docker run -i --entrypoint=mgconsole memgraph/memgraph-platform --host HOST < /p
 
 Remember to replace `HOST` with a valid IP of the container (see the [Note for
 Docker
-users](/database-functionalities/work-with-docker.md#docker-container-ip-address)).
+users](/how-to-guides/work-with-docker.md#docker-container-ip-address)).
 
 For more information about `mgconsole` options run:
 
@@ -118,7 +118,7 @@ cmd.exe /c "docker run -i --entrypoint=mgconsole memgraph/memgraph-platform --ho
 
 :::note
 Remember to replace `HOST` with a valid IP of the container (see the [Note for Docker
-users](/database-functionalities/work-with-docker.md#docker-container-ip-address)).
+users](/how-to-guides/work-with-docker.md#docker-container-ip-address)).
 :::
 
   </TabItem>
@@ -191,7 +191,7 @@ cmd.exe /c "docker run -i --entrypoint=mgconsole memgraph/memgraph-platform --ho
 
 :::note
 Remember to replace `HOST` with a valid IP of the container (see the [Note for Docker
-users](/database-functionalities/work-with-docker.md#docker-container-ip-address)).
+users](/how-to-guides/work-with-docker.md#docker-container-ip-address)).
 :::
 
   </TabItem>

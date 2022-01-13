@@ -75,7 +75,7 @@ build/src/mgmigrate --source-kind=postgresql /
   --destination-use-ssl=false
 ```
 
-**2.** Run the following query in **[Memgraph Lab](https://memgraph.com/product/lab)** or **[mgconsole](/connect-to-memgraph/methods/mgconsole.md)** to see the results:
+**2.** Run the following query in **[Memgraph Lab](https://memgraph.com/product/lab)** or **[mgconsole](/connect-to-memgraph/mgconsole.md)** to see the results:
 
 ```cypher
 MATCH (n)-[r]-(m) RETURN n,r,m;

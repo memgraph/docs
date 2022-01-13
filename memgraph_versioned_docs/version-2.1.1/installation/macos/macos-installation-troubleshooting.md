@@ -37,7 +37,7 @@ Connection failure: Couldn't connect to 127.0.0.1:7687!
 
 To fix this issue, just replace `HOST` from the first command with
 `host.docker.internal`. To find out more about networking in Docker, take a
-look at [this guide](https://docs.docker.com/docker-for-mac/networking/).
+look at [Networking features in Docker Desktop for Mac](https://docs.docker.com/docker-for-mac/networking/) guide.
 
 ## Find the IP address of a Docker Container
 

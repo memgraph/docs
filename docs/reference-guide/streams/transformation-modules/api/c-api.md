@@ -21,7 +21,7 @@ version will soon be available.
 
 For an example of how to implement transformation modules in C, check out the [C
 API
-guide](/database-functionalities/streams/kafka/implement-transformation-module.md#c-api).
+guide](/how-to-guides/streams/kafka/implement-transformation-module.md#c-api).
 
 :::
 

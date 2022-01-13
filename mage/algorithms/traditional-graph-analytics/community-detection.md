@@ -47,7 +47,7 @@ on the GitHub repo and ping us to speed up the development. :point_up:
 
 ## Use cases
 
-[![Finance](https://img.shields.io/badge/Finance-Application-8A477F?style=for-the-badge)](/mage/applications/finance-application)
+[![Finance](https://img.shields.io/badge/Finance-Application-8A477F?style=for-the-badge)](/use-cases/finance.md)
 
 One obvious usage of community detection is within the finance industry.
 Fraudsters often think alike and act in criminal rings. That enables them to be
@@ -55,7 +55,7 @@ more efficient. However, such rings can easily be discovered with community
 methods from their interactions/shared resources.
 
 [![Social
-networks](https://img.shields.io/badge/Social_networks-Application-8A477F?style=for-the-badge)](/mage/applications/social-media-application)
+networks](https://img.shields.io/badge/Social_networks-Application-8A477F?style=for-the-badge)](/use-cases/social-media.md)
 
 One major threat to freedom are terrorist groups. Such groups can organize their
 activities through social media  channels. Once one of the users is exposed as a
@@ -66,7 +66,7 @@ Interests are usually shared within the community. To target a specific
 audience, community detection can be used to recommend certain products among
 users that are sharing interests.
 
-[![Retail](https://img.shields.io/badge/Retail-Application-8A477F?style=for-the-badge)](/mage/applications/social-media-application)
+[![Retail](https://img.shields.io/badge/Retail-Application-8A477F?style=for-the-badge)](/use-cases/social-media.md)
 
 As stated above in the social networks application. Similar can be applied to
 the retail industry. Targetting like-minded people to access the same products

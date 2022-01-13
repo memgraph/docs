@@ -74,7 +74,7 @@ link above.
 ## Use cases
 
 [![Social
-networks](https://img.shields.io/badge/Social_networks-Application-8A477F?style=for-the-badge)](/mage/applications/social-media-application)
+networks](https://img.shields.io/badge/Social_networks-Application-8A477F?style=for-the-badge)](/use-cases/social-media.md)
 
 Biggest use case for graph clustering is in social networks. There communities
 can be explored, hubs found and many more.

@@ -80,7 +80,7 @@ Data](https://img.shields.io/badge/Understanding_how_Dynamic_Node2Vec_Works_on_S
 ## Use cases
 
 [![Social
-networks](https://img.shields.io/badge/Social_networks-Application-8A477F?style=for-the-badge)](/mage/applications/social-media-application)
+networks](https://img.shields.io/badge/Social_networks-Application-8A477F?style=for-the-badge)](/use-cases/social-media.md)
 
 Dynamic Node2Vec can be used to find communities in social networks like
 [Twitter](https://twitter.com), [Facebook](https://www.facebook.com/), and so
@@ -90,14 +90,14 @@ then use an unsupervised machine learning algorithm, i.e.
 clusters among node embeddings.
 
 [![Link
-prediction](https://img.shields.io/badge/Link_prediction-Aplication-8A477F?style=for-the-badge)](/mage/algorithms/machine-learning-graph-analytics/link-prediction-algorithm)
+prediction](https://img.shields.io/badge/Link_prediction-Application-8A477F?style=for-the-badge)](/mage/algorithms/machine-learning-graph-analytics/link-prediction-algorithm)
 
 We can use dynamic node2vec in the case of link prediction. To do so, after
 obtaining node embeddings we can predict new links depending on the similarity
 of the node embeddings.
 
 [![Node
-classification](https://img.shields.io/badge/Node_classification-Aplication-8A477F?style=for-the-badge)](/mage/algorithms/machine-learning-graph-analytics/node-classification-algorithm)
+classification](https://img.shields.io/badge/Node_classification-Application-8A477F?style=for-the-badge)](/mage/algorithms/machine-learning-graph-analytics/node-classification-algorithm)
 
 Furthermore, we can use dynamic node2vec for the node classification task. Node
 features (embeddings) are input to a one-vs-rest logistic regression. We train
@@ -106,7 +106,7 @@ model here is a one-vs-rest logistic regression. You can check out the following
 [paper](https://arxiv.org/pdf/1705.02801.pdf) for more references.
 
 [![Graph
-classification](https://img.shields.io/badge/Graph_classification-Aplication-8A477F?style=for-the-badge)](/mage/algorithms/machine-learning-graph-analytics/graph-classification-algorithm)
+classification](https://img.shields.io/badge/Graph_classification-Application-8A477F?style=for-the-badge)](/mage/algorithms/machine-learning-graph-analytics/graph-classification-algorithm)
 
 For graph classification, we can create a virtual node that is connected to all
 the nodes in the graph. After running dynamic node2vec, the embedding of the

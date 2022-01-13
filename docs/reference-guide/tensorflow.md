@@ -41,7 +41,7 @@ MATCH (p :User) WHERE p.id IN $input_list RETURN p.id;
 ```
 
 The query execution replaces `$input_list` with the provided op input
-([see python example for more](../database-functionalities/tensorflow-setup.md#example)).
+([see python example for more](../how-to-guides/tensorflow-setup.md#example)).
 `$input_list` is the only query parameter used by Memgraph TensorFlow op.
 
 #### Attributes

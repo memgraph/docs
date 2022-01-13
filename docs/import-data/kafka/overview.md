@@ -69,7 +69,7 @@ extend the `--query-modules-directory` flag in the main configuration file
 when using Docker).
 
 Take a look at [Python API
-guide](/memgraph/database-functionalities/streams/kafka/implement-transformation-module/#python-api)
+guide](/how-to-guides/streams/kafka/implement-transformation-module.md#python-api)
 for an example of how to implement transformation modules in Python.
 
 Load the transformation module from `/usr/lib/memgraph/query_modules` by using

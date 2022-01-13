@@ -54,21 +54,21 @@ the link above. :point_up:
 
 ## Use cases
 
-[![Internet](https://img.shields.io/badge/Internet-Application-8A477F?style=for-the-badge)](/mage/applications/telecommunication-application)
+[![Internet](https://img.shields.io/badge/Internet-Application-8A477F?style=for-the-badge)](/use-cases/telecommunication.md)
 
 The most interesting and famous application of PageRank is certainly the one on
 Google, where it enables the ranking of search results. Such a graph is based on
 whether there exist links between pages.
 
 [![Social
-Network](https://img.shields.io/badge/Social_Network-Application-8A477F?style=for-the-badge)](/mage/applications/social-media-application)
+Network](https://img.shields.io/badge/Social_Network-Application-8A477F?style=for-the-badge)](/use-cases/social-media.md)
 
 As mentioned, Twitter uses PageRank to recommend who to follow online. Such an
 application is based on a derivative of PageRank called Personalized PageRank.
 The starting point is the node for which a recommendation needs to be found,
 while then slightly different calculation techniques are used.
 
-[![Pharmaceutical](https://img.shields.io/badge/Pharmaceutical-Application-8A477F?style=for-the-badge)](/mage/applications/drug-discovery-application)
+[![Pharmaceutical](https://img.shields.io/badge/Pharmaceutical-Application-8A477F?style=for-the-badge)](/use-cases/drug-discovery.md)
 
 By developing knowledge graphs, it is possible to display all acquired knowledge
 in an application such as drug discovery. The application of PageRank on such
