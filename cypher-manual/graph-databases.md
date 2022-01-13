@@ -4,19 +4,58 @@ title: What are graph databases
 sidebar_label: What are graph databases
 ---
 
-:::info
-
-This page will serve as an introduction to graph databases.
-
-The content on this page is just a place holder so that you can see what is proposed structure.
-
-:::
-
 ## What are graph databases
 
-## Terminology 
+**Graph database** is a type of database that stores data in from of nodes that can be connected with relationships. **Graphs** are essentially very simple structures that map relations between objects. These objects are referred to as nodes and the connections between them as relationships.
 
-* Explain basic terminology that we will use , eg. nodes, relationships
+## Graph terminology 
+Every graph consists out of four components: 
+
+* **Nodes** - the main entities in a graph. They are also sometimes refereed to as vertices or points. 
+* **Relationships** - the connections between those entities. Sometimes they are refereed to as edges or links.
+* **Labels** - attributes that group similar nodes together.
+* **Properties** - key/value pairs stored within nodes or relationships.
+
+While only nodes and relationships are fundamental components that need to be utilized, labels and properties are often included as well because of the added functionalities they offer. 
+
+
+### Nodes
+
+Just like a circle on a whiteboard, a pair of parentheses is used to represent nodes. Here is the simplified syntax for representing a node:
+
+```cypher
+()
+(node)
+```
+
+The variable `(node)` is used to store node values by the query engine so they can be processed or returned in a query later on.  If you do not need to do anything with the node, you can skip the use of the variable. By doing so, you are creating an **anonymous node**.
+
+### Relationships
+
+Relationships are the lines that connect nodes to each other and represent a defined connection between them. Every relationship has a source node and a target node that represent in which direction the relationship works. If this direction is important, the relationship is considered directed while otherwise, it’s undirected.
+
+Relationships can also store data in the form of properties, just as nodes. In most cases, relationships store quantitative properties such as weights, costs, distances, ratings, etc.
+
+### Labels
+
+Labels are used to shape the domain by **grouping nodes into sets or categories**. Nodes with the same label belong to the same set. This way of grouping nodes together simplifies database operations significantly. We no longer need to select the whole graph but only the set of nodes we are interested in.
+
+![](https://i.imgur.com/qBR7FNG.png)
+
+As you can see in the example above, nodes can also have multiple labels. These nodes can be represented in Cypher the following way:
+
+```cypher
+(:Person)
+(:City:Location)
+```
+
+### Properties
+
+Properties are key-value pairs of data stored on nodes or on relationships. They allow you to store relevant data about the node or relationship with the entity it describes. 
+Properties support most standard data types like integers, strings, booleans... and you can find a complete table in our [storage guide](https://docs.memgraph.com/memgraph/concepts/storage/#properties).
+
+The flexibility and simplicity of properties allow users to easily review the data structure and update it according to their needs. Properties are also very easy to spot. One common way would be asking yourself questions about the nodes and relationships in your model. What information will you need in the future when working with the graph?
+
 
 ## Graph database models
 
