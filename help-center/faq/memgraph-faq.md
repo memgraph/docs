@@ -22,16 +22,6 @@ continuously backs up data to disk with transaction logs and periodic snapshots.
 On restart, Memgraph uses the snapshot and log files to recover its state to
 what it was before shutting down.
 
-### How to install Memgraph on macOS?
-
-Memgraph cannot be installed natively on macOS devices but can be installed
-using **Docker**. Docker is an open platform for developing, shipping, and
-running applications. Docker enables us to run Memgraph virtually on any system
-without having to worry about compatibility issues. You don't have to be
-familiar with Docker to try out Memgraph. Just [install
-Docker](https://docs.docker.com/get-docker/) and head over to our [installation
-instructions for macOS](/memgraph/install-memgraph-on-macos-docker).
-
 ### How to install Memgraph on Windows?
 
 Memgraph cannot be installed natively on Windows devices but can be installed
@@ -42,6 +32,16 @@ compatibility issues. You don't have to be familiar with Docker to try out
 Memgraph. Just [install Docker](https://docs.docker.com/get-docker/) and head
 over to our [installation instructions for
 Windows](/memgraph/install-memgraph-on-windows-docker).
+
+### How to install Memgraph on macOS?
+
+Memgraph cannot be installed natively on macOS devices but can be installed
+using **Docker**. Docker is an open platform for developing, shipping, and
+running applications. Docker enables us to run Memgraph virtually on any system
+without having to worry about compatibility issues. You don't have to be
+familiar with Docker to try out Memgraph. Just [install
+Docker](https://docs.docker.com/get-docker/) and head over to our [installation
+instructions for macOS](/memgraph/install-memgraph-on-macos-docker).
 
 ### Can I only use Memgraph Lab?
 
