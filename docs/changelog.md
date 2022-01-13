@@ -4,9 +4,14 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
-## Future
+## v2.2.0 - TBD
 
 ### Major Features and Improvements
+
+* Bult-in procedures `mg.procedures` and `mg.transformations` return additional information
+  about the procedures and transformations scripts. `path` returns an absolute path to the
+  module file containing the procedure, while `is_editable` returns `true` if the file 
+  can be edited using Memgraph or `false` otherwise. [#310](https://github.com/memgraph/memgraph/pull/310)
 
 ### Bug Fixes
 

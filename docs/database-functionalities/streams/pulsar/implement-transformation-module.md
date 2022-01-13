@@ -159,11 +159,11 @@ CALL mg.transformations() YIELD *;
 You should see something like the following:
 
 ```plaintext
-+-------------------------------------------+
-| name                                      |
-+-------------------------------------------+
-| "transformation.my_pulsar_transformation" |
-+-------------------------------------------+
++-------------------------------------------+-----------------------------------------------------+-------------+
+| name                                      | path                                                | is_editable |
++-------------------------------------------+-----------------------------------------------------+-------------+
+| "transformation.my_pulsar_transformation" | "/usr/lib/memgraph/query_modules/transformation.py" | true        |
++-------------------------------------------+-----------------------------------------------------+-------------+
 ```
 
 ## C API
@@ -273,12 +273,12 @@ CALL mg.transformations() YIELD *;
 You should see something like this:
 
 ```plaintext
-+-------------------------------------------+
-| name                                      |
-+-------------------------------------------+
-| "c_transformation.my_c_transformation"    |
-| "transformation.my_pulsar_transformation" |
-+-------------------------------------------+
++-------------------------------------------+-------------------------------------------------------+-------------+
+| name                                      | path                                                  | is_editable |
++-------------------------------------------+-------------------------------------------------------+-------------+
+| "c_transformation.my_c_transformation"    | "/usr/lib/memgraph/query_modules/c_transformation.so" | false       |
+| "transformation.my_pulsar_transformation" | "/usr/lib/memgraph/query_modules/transformation.py"   | true        |
++-------------------------------------------+-------------------------------------------------------+-------------+
 ```
 
 For a more detailed overview, check out the [Reference
