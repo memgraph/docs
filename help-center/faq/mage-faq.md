@@ -7,7 +7,7 @@ slug: /faq/mage
 
 ### What is Memgraph?
 
-**[Memgraph](/memgraph/getting-started)** is a native in-memory graph streaming
+**[Memgraph](/memgraph)** is a native in-memory graph streaming
 platform built to handle real-time use-cases at enterprise scale. Memgraph
 supports strongly-consistent ACID transactions and uses the standardized
 **Cypher** query language for structuring, manipulating, and exploring data. You

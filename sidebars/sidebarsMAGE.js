@@ -115,5 +115,6 @@ module.exports = {
       ],
     },
     "contributing",
+    "changelog"
   ],
 };

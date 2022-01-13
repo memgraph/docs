@@ -64,3 +64,8 @@ transportation.
 
 Make MAGE even better by [contributing](/contributing.md) your own algorithm implementations and ideas or reporting pesky bugs. 
 
+### Browse through the Changelog
+
+Want to know what's new in MAGE? Take a look at [Changelog](/changelog.md)
+to see a list of new features.
+

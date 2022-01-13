@@ -156,6 +156,10 @@ module.exports = {
               label: "Contributing",
               to: "/mage/contributing",
             },
+            {
+              label: "Changelog",
+              to: "/mage/changelog",
+            },
           ],
         },
         {
@@ -984,6 +988,15 @@ module.exports = {
             to: "/memgraph/connect-to-memgraph/drivers/php",
             from: ["/memgraph/connect-to-memgraph/methods/building-applications/php"],
           },
+          //create redirect for Memgraph Getting started page
+          /*{
+            to: "/memgraph/",
+            from: ["/memgraph/getting-started"],
+          },
+          {
+            to: "/memgraph-lab/installation",
+            from: ["/memgraph-lab/installation/overview"],
+          },*/
         ],
       },
     ],

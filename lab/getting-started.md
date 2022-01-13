@@ -36,6 +36,11 @@ To give your graphs a bit more pizzazz, dive into the [Style script
 language](/style-script/quick-start.md) and learn how to customize the visual
 appearance of your graphs to make them truly remarkable.
 
+### 4. Browse through the Changelog
+
+Want to know what's new in Memgraph Lab? Take a look at [Changelog](/changelog.md)
+to see a list of new features.
+
 ## What to do next?
 
 If you prefere to go back to black you can also execute queries using Memgraph's

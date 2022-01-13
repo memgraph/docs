@@ -2,7 +2,7 @@
 id: getting-started
 title: Getting started with Memgraph
 sidebar_label: Getting started
-slug: /getting-started
+slug: /
 ---
 
 Memgraph is a streaming graph application platform that helps you wrangle your
@@ -106,7 +106,7 @@ contains graph algorithms and modules in the form of query modules written by
 the team behind Memgraph and its users. It aims to help you tackle the most
 interesting and challenging graph analytics problems.
 
-### Changelog
+### Browse through the Changelog
 
 Want to know what's new in Memgraph? Take a look at [Changelog](/changelog.md)
 to see a list of new features.
