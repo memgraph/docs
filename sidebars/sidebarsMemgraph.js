@@ -50,8 +50,8 @@ module.exports = {
         {
           type: "category",
           label: "Drivers",
+          link: {type: 'doc', id: 'connect-to-memgraph/drivers/overview'},
           items: [
-            "connect-to-memgraph/drivers/overview",
             "connect-to-memgraph/drivers/python",
             "connect-to-memgraph/drivers/rust",
             "connect-to-memgraph/drivers/c-sharp",

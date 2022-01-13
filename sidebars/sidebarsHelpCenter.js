@@ -6,8 +6,8 @@ module.exports = {
       label: "FAQ",
       items: [
         "faq/memgraph-faq",
+        "faq/memgraph-lab-faq",
         "faq/mage-faq",
-        "faq/memgraph-lab-faq"
       ],
     },
   ],
