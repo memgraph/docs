@@ -22,31 +22,31 @@ Lab and start querying your graph.
 
 ### How to install Memgraph Lab on Windows?
 
-Memgraph Lab cannot be installed natively on Windows devices but can be installed
-using **Docker** or through the **Windows Subsystem for Linux (WSL)**. Docker
-enables us to run Memgraph virtually on any system without having to worry about
-compatibility issues. You don't have to be familiar with Docker to try out
-Memgraph, so [install Docker](https://docs.docker.com/get-docker/) without fear.
-
 You can either [install Memgraph
-Platform](https://memgraph.com/docs/memgraph/install-memgraph-on-windows-docker), 
-which includes both Memgraph and Memgraph Lab, or [Memgraph
+Platform](https://memgraph.com/docs/memgraph/install-memgraph-on-windows-docker),
+which includes both Memgraph Lab and Memgraph DB (as well as a command-line tool
+mgconsole and MAGE library) or [Memgraph
 Lab](https://memgraph.com/docs/memgraph-lab/installation/windows) by itself, but
-please remember you need a running Memgraph instance to connect to. 
+please remember you need a running Memgraph DB instance to connect to. 
 
+Memgraph Platform is installed using **Docker** that enables us to
+run Memgraph virtually on any system without having to worry about compatibility
+issues. You don't have to be familiar with Docker to try out Memgraph Platform, so
+[install Docker](https://docs.docker.com/get-docker/) without fear.
+ 
 ### How to install Memgraph Lab on macOS?
 
-Memgraph Lab cannot be installed natively on macOS devices but can be installed
-using **Docker**. Docker enables us to run Memgraph virtually on any system
-without having to worry about compatibility issues. You don't have to be
-familiar with Docker to try out Memgraph, so [install
-Docker](https://docs.docker.com/get-docker/) without fear.
-
 You can either [install Memgraph
-Platform](https://memgraph.com/docs/memgraph/install-memgraph-on-windows-docker), 
-which includes both Memgraph and Memgraph Lab, or [Memgraph
-Lab](https://memgraph.com/docs/memgraph-lab/installation/windows) by itself, but
-please remember you need a running Memgraph instance to connect to. 
+Platform](https://memgraph.com/docs/memgraph/install-memgraph-on-macos-docker),
+which includes both Memgraph Lab and Memgraph DB (as well as a command-line tool
+mgconsole and MAGE library) or [Memgraph
+Lab](https://memgraph.com/docs/memgraph-lab/installation/macos) by itself, but
+please remember you need a running Memgraph DB instance to connect to. 
+
+Memgraph Platform is installed using **Docker** that enables us to
+run Memgraph virtually on any system without having to worry about compatibility
+issues. You don't have to be familiar with Docker to try out Memgraph Platform, so
+[install Docker](https://docs.docker.com/get-docker/) without fear.
 
 ### What is Style script language?
 
