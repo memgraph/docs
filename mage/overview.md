@@ -15,8 +15,8 @@ challenging **graph analytics** problems.
 
 [**Query
 module**](https://memgraph.com/docs/memgraph/database-functionalities/query-modules/built-in-query-modules)
-is a concept introduced by Memgraph and it referes to user-defined procedures,
-grouped into modules, that extend the **Cypher query language**. Procedures are
+is a concept introduced by Memgraph and it refers to user-defined procedures,
+grouped into modules that extend the **Cypher query language**. Procedures are
 implementations of various algorithms in multiple programming languages and they
 are all runnable inside Memgraph.
 
@@ -34,7 +34,7 @@ dependencies.
 
 ### 2. Load query modules
 
-To use certain procedures, first you need to [load the query modules](/usage/loading-modules.md) to the
+To use certain procedures, first, you need to [load the query modules](/usage/loading-modules.md) to the
 appropriate directory. 
 
 ### 3. Call procedures
@@ -46,7 +46,7 @@ problem that's been keeping you awake.
 
 ### Browse the spellbook of query modules
 
-Spellbook has been written by high MAGEs to help you utilize all the [currently
+The spellbook has been written to help you utilize all the [currently
 available query modules](/mage/query-modules/available-queries).
 
 <details>
