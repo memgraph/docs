@@ -25,7 +25,7 @@ There are three options for installing and working with Memgraph MAGE:
 :::note
 
 These steps are the same for every type of MAGE installation: _Docker Hub_,
-_Docker build_, and _Build from source on Linux_.
+_Docker build_ and _Build from source on Linux_.
 
 :::
 

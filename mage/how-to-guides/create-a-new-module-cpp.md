@@ -12,7 +12,7 @@ module in C++ on the example of the **random walk algorithm**.
 :::info
 
 If you wish to write your own query modules using the C API, you can write their
-procedures in any programming language which can work with C and can be compiled
+procedures in any programming language that can work with C and can be compiled
 to the ELF shared library format. The latter requirement is there so that they
 can be loaded together when Memgraph starts.
 
@@ -34,7 +34,7 @@ There are three options for installing and working with Memgraph MAGE:
 :::note
 
 These instructions are the same for every MAGE installation option: _Docker
-Hub_, _Docker build_, and _Build from source on Linux_.
+Hub_, _Docker build_ and _Build from source on Linux_.
 
 :::
 
@@ -164,7 +164,7 @@ reference.
 :::
 
 The `mgp_init_module` function has as its main duty the registration of
-procedure(s) which can then be invoked in openCypher. With the C API, we add our
+procedure(s), which can then be invoked in openCypher. With the C API, we add our
 procedure and its inputs and outputs.
 
 ```cpp
