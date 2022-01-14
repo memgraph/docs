@@ -50,7 +50,7 @@ The spellbook has been written to help you utilize all the [currently
 available query modules](/mage/query-modules/available-queries).
 
 <details>
-  <summary>Spellbook 📖</summary>
+  <summary><b>Spellbook</b> 📖</summary>
   
   <MageSpells/>
 </details>
