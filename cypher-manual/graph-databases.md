@@ -4,12 +4,12 @@ title: What are graph databases
 sidebar_label: What are graph databases
 ---
 
-## What are graph databases
-
 **Graph database** is a type of database that stores data in from of nodes that can be connected with relationships. **Graphs** are essentially very simple structures that map relations between objects. These objects are referred to as nodes and the connections between them as relationships.
 
+![](data/graph-databases/graph-database-example.png)
+
 ## Graph terminology 
-Every graph consists out of four components: 
+Every graph can consist out of four components: 
 
 * **Nodes** - the main entities in a graph. They are also sometimes refereed to as vertices or points. 
 * **Relationships** - the connections between those entities. Sometimes they are refereed to as edges or links.
@@ -40,7 +40,7 @@ Relationships can also store data in the form of properties, just as nodes. In m
 
 Labels are used to shape the domain by **grouping nodes into sets or categories**. Nodes with the same label belong to the same set. This way of grouping nodes together simplifies database operations significantly. We no longer need to select the whole graph but only the set of nodes we are interested in.
 
-![](https://i.imgur.com/qBR7FNG.png)
+![](data/graph-databases/labels-example.png)
 
 As you can see in the example above, nodes can also have multiple labels. These nodes can be represented in Cypher the following way:
 
@@ -48,15 +48,19 @@ As you can see in the example above, nodes can also have multiple labels. These 
 (:Person)
 (:City:Location)
 ```
-
 ### Properties
 
 Properties are key-value pairs of data stored on nodes or on relationships. They allow you to store relevant data about the node or relationship with the entity it describes. 
-Properties support most standard data types like integers, strings, booleans... and you can find a complete table in our [storage guide](https://docs.memgraph.com/memgraph/concepts/storage/#properties).
+Properties support most standard data types like integers, strings, booleans... and you can find a complete table in our [storage guide](../memgraph/concepts/storage/#properties).
 
 The flexibility and simplicity of properties allow users to easily review the data structure and update it according to their needs. Properties are also very easy to spot. One common way would be asking yourself questions about the nodes and relationships in your model. What information will you need in the future when working with the graph?
 
+Here is one simple example that shows properties for several nodes:
 
-## Graph database models
+* What are the names of the people? - `name`
+* How old are the people? - `dateOfBirth`
+* What is the name of the city? - `name`
+* What country is the city located in? - `country`
+* What is the population of the city? - `population`
 
-* Property graph model
+![](data/graph-databases/properties-example.png)

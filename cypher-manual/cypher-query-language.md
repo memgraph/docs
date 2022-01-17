@@ -21,8 +21,21 @@ how to retrieve it. This allows you to focus on the problem domain instead of
 having to worry about the syntax.
 
 Cypher was designed to be easy to learn but very powerful when it comes to graph
-analytics. Otherwise, complex queries can relatively easily be written with
-Cypher. 
+analytics. This mean that complex queries can relatively easily be written with
+Cypher. Being a declarative language, Cypher expresses what to retrieve and not
+how to retrieve it.
 
+You can think of Cypher as mapping English language sentence structure to
+patterns in a graph. For example, the nouns are nodes of the graph, the verbs
+are the relationships in the graph, and the adjectives and adverbs are the
+properties.
 
-* Syntax and rules
+On the following image you can see one such example. We have a graph that
+consists of two nodes and one relationship
+
+![](data/cypher-query-language/graph-example.png)
+
+We can interpret this graph by using the said method of mapping patterns to language
+structures: 
+
+> *A person named Harry is married to a person named Anna.*
