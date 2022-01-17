@@ -166,7 +166,7 @@ setup but can usually be found in
 ### Installation guide {#base-installation-guide}
 
 **1.** Download the latest **Memgraph Docker image** from the [Download
-Hub](https://memgraph.com/download/).
+Hub](https://memgraph.com/download/#memgraph).
 
 **2.** If you installed Docker correctly, you can import the image using the
 following command:
