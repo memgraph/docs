@@ -203,13 +203,7 @@ Next time you run Memgraph, the dataset will be loaded:
 sudo -u memgraph mg_import_csv --nodes people_nodes.csv --relationships people_relationships.csv
 ```
 
-Next time you run Memgraph, the dataset will be loaded. You can check that by running:
-
-```cypher
-MATCH (n:Person)-[r:IS_FRIENDS_WITH]-(m:Person)
-RETURN n,r,m;
-```
-Now you can see that your graph database looks like this:
+Next time you run Memgraph, the dataset will be loaded. Your database will look like this:
 
 <img src={require('../data/import-data/import_tool_one_type_graph.png').default}/>
 
@@ -336,6 +330,10 @@ Next time you run Memgraph, the dataset will be loaded:
 ```bash
  docker run -p 7687:7687 -v mg_lib:/var/lib/memgraph memgraph/memgraph-platform
 ```
+
+Your graph database should look like this:
+
+<img src={require('../data/import-data/import_tool_one_type_graph.png').default}/>
 
   </TabItem>
   <TabItem value= 'linux'>
