@@ -128,10 +128,18 @@ CREATE (p1)-[:IS_FRIENDS_WITH]->(p2)
 </TabItem>
 </Tabs>
 
+Both ways, we have created a graph database with people as nodes and their friendships as the relationships between them:
+
+<img src={require('../data/import-data/one_type_of_nodes_and_relationships_graph.png').default}/>
+
 ### Multiple types of nodes and relationships
 
 In the case of a more complex graph, we have to deal with multiple node and
-relationship types. Let's assume we have the following four CSV files:
+relationship types. Let's say we want to create this kind of graph:
+
+<img src={require('../data/import-data/multiple_nodes_and_relationships_graph.png').default}/>
+
+We will create that graph by using `LOAD CSV` clauses to import four CSV files.
 
 <Tabs
   groupId="csv"
@@ -162,6 +170,10 @@ for each row with properties based on the parsed row values:
   CREATE (n:Person {id: row.id, name: row.name, age: ToInteger(row.age), city: row.city});
   ```
 
+We have created nodes with label `:Person` and the graph looks like this:
+
+<img src={require('../data/import-data/people_nodes_graph.png').default}/>
+
 </TabItem>
 <TabItem value="pr">
 
@@ -189,6 +201,10 @@ CREATE (p1)-[f:IS_FRIENDS_WITH]->(p2)
 SET f.met_in = row.met_in;
 ```
 
+We have added relationships between existing nodes and the graph looks like this:
+
+<img src={require('../data/import-data/people_relationships_graph.png').default}/>
+
 </TabItem>
 <TabItem value="rn">
 
@@ -208,6 +224,10 @@ The following query will create new nodes for each restaurant:
 LOAD CSV FROM "/path-to/restaurants_nodes.csv" WITH HEADER AS row
 CREATE (n:Restaurant {id: row.id, name: row.name, menu: row.menu});
 ```
+
+We have created nodes with label `:Restaurant` and those nodes are now in the database:
+
+<img src={require('../data/import-data/restaurant_nodes_graph.png').default}/>
 
 </TabItem>
 <TabItem value="rr">
@@ -236,6 +256,10 @@ MATCH (re:Restaurant {id: row.REST_ID})
 CREATE (p1)-[ate:ATE_AT]->(re)
 SET ate.liked = ToBoolean(row.liked);
 ```
+
+We have created relationships between people and restaurants, and that looks like this:
+
+<img src={require('../data/import-data/restaurant_relationships_graph.png').default}/>
 
 </TabItem>
 </Tabs>
