@@ -203,7 +203,15 @@ Next time you run Memgraph, the dataset will be loaded:
 sudo -u memgraph mg_import_csv --nodes people_nodes.csv --relationships people_relationships.csv
 ```
 
-Next time you run Memgraph, the dataset will be loaded.
+Next time you run Memgraph, the dataset will be loaded. You can check that by running:
+
+```cypher
+MATCH (n:Person)-[r:IS_FRIENDS_WITH]-(m:Person)
+RETURN n,r,m;
+```
+Now you can see that your graph database looks like this:
+
+<img src={require('../data/import-data/import_tool_one_type_graph.png').default}/>
 
   </TabItem>
 </Tabs>
@@ -336,7 +344,15 @@ Next time you run Memgraph, the dataset will be loaded:
 sudo -u memgraph mg_import_csv --nodes people_nodes.csv --nodes restaurants_nodes.csv --relationships people_relationships.csv --relationships restaurants_relationships.csv
 ```
 
-The next time you run Memgraph, the dataset will be loaded.
+The next time you run Memgraph, the dataset will be loaded. You can check that by running:
+
+```cypher
+MATCH (k:Person)<-[i:IS_FRIENDS_WITH]-(n:Person)-[a:ATE_AT]->(r:Restaurant)
+RETURN k,i,n,a,r;
+```
+Now you can see that your graph database looks like this:
+
+<img src={require('../data/import-data/import_tool_multiple_types_graph.png').default}/>
 
   </TabItem>
 </Tabs>
