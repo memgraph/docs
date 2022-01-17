@@ -190,7 +190,7 @@ docker run -v mg_lib:/var/lib/memgraph -v mg_import:/import-data \
   --relationships /import-data/people_relationships.csv
 ```
 
-Next time you run Memgraph, the dataset will be loaded:
+Next time you run Memgraph, the dataset will be loaded.
 
 ```bash
  docker run -p 7687:7687 -v mg_lib:/var/lib/memgraph memgraph/memgraph-platform
@@ -203,12 +203,14 @@ Next time you run Memgraph, the dataset will be loaded:
 sudo -u memgraph mg_import_csv --nodes people_nodes.csv --relationships people_relationships.csv
 ```
 
-Next time you run Memgraph, the dataset will be loaded. Your database will look like this:
-
-<img src={require('../data/import-data/import_tool_one_type_graph.png').default}/>
+Next time you run Memgraph, the dataset will be loaded.
 
   </TabItem>
 </Tabs>
+
+After the import, your graph database should look like this:
+
+<img src={require('../data/import-data/import_tool_one_type_graph.png').default}/>
 
 ### Multiple types of nodes and relationships
 
@@ -331,10 +333,6 @@ Next time you run Memgraph, the dataset will be loaded:
  docker run -p 7687:7687 -v mg_lib:/var/lib/memgraph memgraph/memgraph-platform
 ```
 
-Your graph database should look like this:
-
-<img src={require('../data/import-data/import_tool_one_type_graph.png').default}/>
-
   </TabItem>
   <TabItem value= 'linux'>
 
@@ -342,15 +340,11 @@ Your graph database should look like this:
 sudo -u memgraph mg_import_csv --nodes people_nodes.csv --nodes restaurants_nodes.csv --relationships people_relationships.csv --relationships restaurants_relationships.csv
 ```
 
-The next time you run Memgraph, the dataset will be loaded. You can check that by running:
-
-```cypher
-MATCH (k:Person)<-[i:IS_FRIENDS_WITH]-(n:Person)-[a:ATE_AT]->(r:Restaurant)
-RETURN k,i,n,a,r;
-```
-Now you can see that your graph database looks like this:
-
-<img src={require('../data/import-data/import_tool_multiple_types_graph.png').default}/>
+The next time you run Memgraph, the dataset will be loaded. 
 
   </TabItem>
 </Tabs>
+
+After the import, your graph database should look like this:
+
+<img src={require('../data/import-data/import_tool_multiple_types_graph.png').default}/>
