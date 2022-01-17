@@ -73,7 +73,7 @@ The import tool is run from the console, using the `mg_import_csv` command.
 The tool should be run as user `memgraph`, using the following command:
 
 ```
-sudo -u memgraph mg_import_csv
+sudo -u memgraph mg_import_csv --nodes <nodes-file>.csv --relationships <relationships-file>.csv
 ```
 
 For information on other options, run:
