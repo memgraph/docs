@@ -118,7 +118,7 @@ Let's import a simple dataset.
 
   <TabItem value='pn'>
 
-Store the following in `people_nodes.csv`:
+Store the following in [`people_nodes.csv`](#):
 
 ```csv
 id:ID(PERSON_ID),name:string,:LABEL
@@ -132,7 +132,7 @@ id:ID(PERSON_ID),name:string,:LABEL
 </TabItem>
 <TabItem value='pr'>
 
-Let's add relationships between people in `people_relationships.csv`:
+Let's add relationships between people in [`people_relationships.csv`](#):
 
 ```csv
 :START_ID(PERSON_ID),:END_ID(PERSON_ID),:TYPE
@@ -226,7 +226,7 @@ Let's define the following dataset:
 
   <TabItem value='pn'>
 
-Add the following to `people_nodes.csv`:
+Add the following to [`people_nodes.csv`](#):
 
 ```csv
 id:ID(PERSON_ID),name:string,age:int,city:string,:LABEL
@@ -241,7 +241,7 @@ id:ID(PERSON_ID),name:string,age:int,city:string,:LABEL
 </TabItem>
 <TabItem value='pr'>
 
-Let's define the relationships between people in `people_relationships.csv`:
+Let's define the relationships between people in [`people_relationships.csv`](#):
 
 ```csv
 :START_ID(PERSON_ID),:END_ID(PERSON_ID),:TYPE, met_in:int
@@ -257,7 +257,7 @@ Let's define the relationships between people in `people_relationships.csv`:
 </TabItem>
 <TabItem value='rn'>
 
-Let's introduce another node type, restaurants, in `restaurants_nodes.csv`:
+Let's introduce another node type, restaurants, in [`restaurants_nodes.csv`](#):
 
 ```csv
 id:ID(REST_ID),name:string,menu:string[],:LABEL
@@ -271,7 +271,7 @@ id:ID(REST_ID),name:string,menu:string[],:LABEL
 <TabItem value='rr'>
 
 Let's define the relationships between people and restaurants in
-`restaurants_relationships.csv`:
+[`restaurants_relationships.csv`](#):
 
 ```csv
 :START_ID(PERSON_ID),:END_ID(REST_ID),:TYPE, liked:boolean
