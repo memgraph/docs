@@ -3,6 +3,8 @@ id: debian-installation
 title: Install Memgraph on Debian
 sidebar_label: Debian
 slug: /install-memgraph-on-debian
+pagination_prev: installation/overview
+pagination_next: connect-to-memgraph/overview
 ---
 
 This article briefly outlines the basic steps necessary to install and run
@@ -10,16 +12,16 @@ Memgraph on Debian.
 
 :::info
 
-Newer versions of Memgraph are currently not backward compatible with older
-versions. This is mainly noticeable by being unable to load storage snapshots
-between different versions.
+Newer versions of Memgraph are currently **not backward compatible** with older
+versions. That is why you won't be able to load storage snapshots between
+different versions.
 
 :::
 
 ## Prerequisites
 
 Before you proceed with the installation guide make sure that you have:
-* Downloaded the latest **Memgraph Debian Package** which can be found on the
+* The latest **Memgraph Debian Package** which can be downloaded from the
   [Memgraph download hub](https://memgraph.com/download/).
 
 :::note
@@ -68,13 +70,6 @@ The above command will install all missing dependencies and will finish
 configuring the Memgraph package.
 :::
 
-On successful installation, Memgraph should already be running. To confirm it,
-you can start it explicitly as follows:
-
-```console
-sudo systemctl start memgraph
-```
-
 To verify that Memgraph is running, run the following:
 
 ```console
@@ -84,7 +79,13 @@ sudo journalctl --unit memgraph
 If successful, you should receive an output similar to the following:
 
 ```console
-You are running Memgraph vX.X.X-community
+You are running Memgraph vX.X.X
+```
+
+If the Memgraph database instance is not running you can start it explicitly:
+
+```console
+sudo systemctl start memgraph
 ```
 
 If you want to start Memgraph with different configuration settings, check out
@@ -109,7 +110,7 @@ guide](/reference-guide/configuration.md).
 ## Where to next?
 
 To learn how to query the database, take a look at the
-**[Querying](/connect-to-memgraph/overview.mdx)** guide or **[Memgraph
+**[querying](/connect-to-memgraph/overview.mdx)** guide or **[Memgraph
 Playground](https://playground.memgraph.com/)** for interactive tutorials.<br/>
 Visit the **[Building applications](/connect-to-memgraph/drivers/overview.md)**
 page if you need to connect to the database programmatically.

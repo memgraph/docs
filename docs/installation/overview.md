@@ -5,47 +5,107 @@ sidebar_label: Install Memgraph overview
 slug: /installation
 ---
 
-<p align="left">
-  <a href="#windows" style={{'paddingRight':'70px'}}>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Windows_logo_-_2012.svg/2048px-Windows_logo_-_2012.svg.png" alt="windows" title="windows" width="80"/>
-  </a>
-  <a href="#macos" style={{'paddingRight':'70px'}}>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/MacOS_logo.svg/1024px-MacOS_logo.svg.png" alt="macos" title="macos" width="80"/>
-  </a>
-  <a href="#linux">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/d/dd/Linux_logo.jpg" alt="linux" title="linux" width="80"/>
-  </a>
-</p>
+import useBaseUrl from "@docusaurus/useBaseUrl";
+
+Install **Memgraph Platform** and get the full streaming graph application platform that
+includes:
+  - **Memgraph DB** - database that holds your data
+  - **Memgraph Lab** - visual user interface for running queries, visualizing
+    graph data and exploring the world of graphs
+  - **mgconsole** - command-line interface for running queries
+  - **MAGE** - graph algorithms and modules library to help you tackle even the
+    most challenging issues
+
+Scroll down to the operating system of your choosing and install **Memgraph Platform** with Docker.
+
+If you only need to install a database instance, install Memgraph DB with Docker or some other available installation option.
 
 ## Windows
 
-You can choose to install Memgraph with Docker or through the Windows Subsystem
-for Linux (WSL):
-
-- **[Docker 🐳](/installation/windows/docker-installation.md)**
-- **[Windows Subsystem for Linux
-  (WSL)](/installation/windows/wsl-installation.md)**
+<div class="row">
+  <div class="column">
+    <a style={{'paddingRight':'60px', 'paddingLeft':'20px'}}>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Windows_logo_-_2012.svg/2048px-Windows_logo_-_2012.svg.png" alt="windows" title="windows" width="80"/>
+    </a>
+  </div>
+  <div class="column" style={{'paddingRight':'60px'}}>
+    <p><b>Install Memgraph Platform (recommended)</b></p>
+    <ul>
+      <li><a href={useBaseUrl('memgraph/install-memgraph-on-windows-docker')}><b>Docker</b></a></li>
+    </ul>
+  </div>
+  <div class="column">
+    <p><b>Install Memgraph DB</b></p>
+    <ul>
+      <li><a href={useBaseUrl('memgraph/install-memgraph-on-windows-docker')}><b>Docker</b></a></li>
+      <li><a href={useBaseUrl('memgraph/install-memgraph-on-windows-wsl')}><b>Windows Subsystem for Linux (WSL)</b></a></li>
+    </ul>
+  </div>
+</div>
 
 ## macOS
 
-To install Memgraph on macOS, you will need to have Docker installed.
-
-- **[Docker 🐳](/installation/macos/docker-installation.md)**
+<div class="row">
+  <div class="column">
+    <a style={{'paddingRight':'60px', 'paddingLeft':'20px'}}>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/MacOS_logo.svg/1024px-MacOS_logo.svg.png" alt="macos" title="macos" width="80"/>
+    </a>
+  </div>
+  <div class="column" style={{'paddingRight':'60px'}}>
+    <p><b>Install Memgraph Platform (recommended)</b></p>
+    <ul>
+      <li><a href={useBaseUrl('memgraph/install-memgraph-on-windows-docker')}><b>Docker</b></a></li>
+    </ul>
+  </div>
+  <div class="column">
+    <p><b>Install Memgraph DB</b></p>
+    <ul>
+      <li><a href={useBaseUrl('memgraph/install-memgraph-on-windows-docker')}><b>Docker</b></a></li>
+    </ul>
+  </div>
+</div>
 
 ## Linux
 
-Memgraph is available for multiple Linux distributions and in the form of Docker
-images.<br/> You can choose one of the following installation methods:
+<div class="row">
+  <div class="column">
+    <a style={{'paddingRight':'60px', 'paddingLeft':'20px'}}>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/d/dd/Linux_logo.jpg" alt="linux" title="linux" width="80"/>
+    </a>
+  </div>
+  <div class="column">
+    <p><b>Install Memgraph Platform (recommended)</b>
+    </p>
+    <ul>
+      <li><a href={useBaseUrl('memgraph/install-memgraph-on-windows-docker')}><b>Docker</b></a></li>
+    </ul>
+  </div>
+  <div class="column" style={{'paddingLeft':'60px'}}>
+    <p><b>Install Memgraph DB</b></p>
+    <ul>
+      <li><a href={useBaseUrl('memgraph/install-memgraph-on-windows-docker')}><b>Docker</b></a></li>
+      <li><a href={useBaseUrl('memgraph/install-memgraph-on-windows-docker')}><b>Ubuntu</b></a></li>
+      <li><a href={useBaseUrl('memgraph/install-memgraph-on-windows-docker')}><b>Debian</b></a></li>
+      <li><a href={useBaseUrl('memgraph/install-memgraph-on-windows-docker')}><b>RPM package</b></a></li>
+    </ul>
+  </div>
+</div>
 
-- **[Docker 🐳](/installation/linux/docker-installation.md)**
-- **[Ubuntu](/installation/linux/debian-installation.md)**
-- **[Debian](/installation/linux/debian-installation.md)**
-- **[RPM package](/installation/linux/rpm-installation.md)**
 
-:::info
+:::caution
 
-Newer versions of Memgraph are currently not backward compatible with older
-versions. This is mainly noticeable by being unable to load storage snapshots
-between different versions.
+Newer versions of Memgraph are currently **not backward compatible** with older
+versions. That is why you won't be able to load storage snapshots between
+different versions.
 
 :::
+
+<!---
+  ## Differences between Memgraph Docker images {#differences-between-images}
+
+- Configuration flags need to be passed inside of environmental variables when
+  working with Memgraph Platform. For example, you can start the Memgraph base
+  image with `docker run memgraph --bolt-port=7687`, while `docker run -e
+  MEMGRAPH="--bolt-port=7687" memgraph/memgraph-platform` is the same command
+  for Memgraph Platform.
+  -->

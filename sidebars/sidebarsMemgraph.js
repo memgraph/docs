@@ -11,7 +11,14 @@ module.exports = {
           label: "Windows",
           items: [
             "installation/windows/docker-installation",
-            "installation/windows/wsl-installation",
+            {
+              type: "category",
+              label: "Install Memgraph DB",
+              items: [
+                "installation/windows/docker-db-installation",
+                "installation/windows/wsl-installation",
+              ],
+            }, 
             "installation/windows/windows-installation-troubleshooting",
           ],
         },
@@ -20,6 +27,7 @@ module.exports = {
           label: "macOS",
           items: [
             "installation/macos/docker-installation",
+            "installation/macos/docker-db-installation",
             "installation/macos/macos-installation-troubleshooting",
           ],
         },
@@ -28,9 +36,16 @@ module.exports = {
           label: "Linux",
           items: [
             "installation/linux/docker-installation",
-            "installation/linux/ubuntu-installation",
-            "installation/linux/debian-installation",
-            "installation/linux/rpm-installation",
+            {
+              type: "category",
+              label: "Install Memgraph DB",
+              items: [
+                "installation/linux/docker-db-installation",
+                "installation/linux/ubuntu-installation",
+                "installation/linux/debian-installation",
+                "installation/linux/rpm-installation",
+              ],
+            }, 
             "installation/linux/linux-installation-troubleshooting",
           ],
         },
