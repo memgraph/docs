@@ -73,7 +73,7 @@ The import tool is run from the console, using the `mg_import_csv` command.
 The tool should be run as user `memgraph`, using the following command:
 
 ```
-sudo -u memgraph mg_import_csv
+sudo -u memgraph mg_import_csv --nodes <nodes-file>.csv --relationships <relationships-file>.csv
 ```
 
 For information on other options, run:
@@ -190,7 +190,7 @@ docker run -v mg_lib:/var/lib/memgraph -v mg_import:/import-data \
   --relationships /import-data/people_relationships.csv
 ```
 
-Next time you run Memgraph, the dataset will be loaded:
+Next time you run Memgraph, the dataset will be loaded.
 
 ```bash
  docker run -p 7687:7687 -v mg_lib:/var/lib/memgraph memgraph/memgraph-platform
@@ -207,6 +207,10 @@ Next time you run Memgraph, the dataset will be loaded.
 
   </TabItem>
 </Tabs>
+
+After the import, your graph database should look like this:
+
+<img src={require('../data/import-data/import_tool_one_type_graph.png').default}/>
 
 ### Multiple types of nodes and relationships
 
@@ -336,7 +340,11 @@ Next time you run Memgraph, the dataset will be loaded:
 sudo -u memgraph mg_import_csv --nodes people_nodes.csv --nodes restaurants_nodes.csv --relationships people_relationships.csv --relationships restaurants_relationships.csv
 ```
 
-The next time you run Memgraph, the dataset will be loaded.
+The next time you run Memgraph, the dataset will be loaded. 
 
   </TabItem>
 </Tabs>
+
+After the import, your graph database should look like this:
+
+<img src={require('../data/import-data/import_tool_multiple_types_graph.png').default}/>
