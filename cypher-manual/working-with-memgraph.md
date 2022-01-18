@@ -6,7 +6,7 @@ sidebar_label: Working with Memgraph
 
 ## What is Memgraph
 
-[**Memgraph**](https://memgraph.com/) is the platform for graph computation on
+[Memgraph](https://memgraph.com/) is the platform for graph computation on
 streaming data. It's an end-to-end platform designed to solve complex graph
 problems in real-time and accelerate graph application development.
 
@@ -21,9 +21,9 @@ DB, Memgraph Lab and mgconsole.
 
 Memgraph uses [Cypher query language](cypher-query-language.md) to work with
 data. If you like command line tools you can use
-[**mgconsole**](/docs/memgraph/connect-to-memgraph/mgconsole) to execute Cypher
-queries. If you are a fan of graphical interfaces you can use [**Memgraph
-Lab**](/docs/memgraph-lab). On top of execution of queries, with Memgraph Lab
+[mgconsole](/docs/memgraph/connect-to-memgraph/mgconsole) to execute Cypher
+queries. If you are a fan of graphical interfaces you can use [Memgraph
+Lab](/docs/memgraph-lab). On top of execution of queries, with Memgraph Lab
 you can import, explore and visualize your data.
 
 

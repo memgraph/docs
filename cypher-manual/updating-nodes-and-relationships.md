@@ -4,8 +4,6 @@ title: Updating nodes and relationships
 sidebar_label: Updating nodes and relationships
 ---
 
-## Updating nodes and relationships
-
 ## SET
 
 The `SET` clause is used to update labels and properties of already existing

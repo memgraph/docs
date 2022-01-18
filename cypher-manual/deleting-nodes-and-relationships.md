@@ -4,8 +4,6 @@ title: Deleting nodes and relationships
 sidebar_label: Deleting nodes and relationships
 ---
 
-## Deleting nodes and relationships
-
 ## DELETE
 
 This clause is used to delete nodes and edges from the database.
