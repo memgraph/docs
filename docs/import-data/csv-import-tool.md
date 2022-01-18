@@ -118,7 +118,7 @@ Let's import a simple dataset.
 
   <TabItem value='pn'>
 
-Store the following in [`people_nodes.csv`](#):
+Store the following in [`people_nodes.csv`](https://public-assets.memgraph.com/import-data/csv-import-tool/one-type-nodes/people_nodes.csv):
 
 ```csv
 id:ID(PERSON_ID),name:string,:LABEL
@@ -132,7 +132,7 @@ id:ID(PERSON_ID),name:string,:LABEL
 </TabItem>
 <TabItem value='pr'>
 
-Let's add relationships between people in [`people_relationships.csv`](#):
+Let's add relationships between people in [`people_relationships.csv`](https://public-assets.memgraph.com/import-data/csv-import-tool/one-type-nodes/people_relationships.csv):
 
 ```csv
 :START_ID(PERSON_ID),:END_ID(PERSON_ID),:TYPE
@@ -230,7 +230,7 @@ Let's define the following dataset:
 
   <TabItem value='pn'>
 
-Add the following to [`people_nodes.csv`](#):
+Add the following to [`people_nodes.csv`](https://public-assets.memgraph.com/import-data/csv-import-tool/multiple-types-nodes/people_nodes.csv):
 
 ```csv
 id:ID(PERSON_ID),name:string,age:int,city:string,:LABEL
@@ -245,10 +245,10 @@ id:ID(PERSON_ID),name:string,age:int,city:string,:LABEL
 </TabItem>
 <TabItem value='pr'>
 
-Let's define the relationships between people in [`people_relationships.csv`](#):
+Let's define the relationships between people in [`people_relationships.csv`](https://public-assets.memgraph.com/import-data/csv-import-tool/multiple-types-nodes/people_relationships.csv):
 
 ```csv
-:START_ID(PERSON_ID),:END_ID(PERSON_ID),:TYPE, met_in:int
+:START_ID(PERSON_ID),:END_ID(PERSON_ID),:TYPE,met_in:int
 100,102,IS_FRIENDS_WITH,2014
 103,105,IS_FRIENDS_WITH,2021
 102,103,IS_FRIENDS_WITH,2005
@@ -261,7 +261,7 @@ Let's define the relationships between people in [`people_relationships.csv`](#)
 </TabItem>
 <TabItem value='rn'>
 
-Let's introduce another node type, restaurants, in [`restaurants_nodes.csv`](#):
+Let's introduce another node type, restaurants, in [`restaurants_nodes.csv`](https://public-assets.memgraph.com/import-data/csv-import-tool/multiple-types-nodes/restaurants_nodes.csv):
 
 ```csv
 id:ID(REST_ID),name:string,menu:string[],:LABEL
@@ -275,10 +275,10 @@ id:ID(REST_ID),name:string,menu:string[],:LABEL
 <TabItem value='rr'>
 
 Let's define the relationships between people and restaurants in
-[`restaurants_relationships.csv`](#):
+[`restaurants_relationships.csv`](https://public-assets.memgraph.com/import-data/csv-import-tool/multiple-types-nodes/restaurants_relationships.csv):
 
 ```csv
-:START_ID(PERSON_ID),:END_ID(REST_ID),:TYPE, liked:boolean
+:START_ID(PERSON_ID),:END_ID(REST_ID),:TYPE,liked:boolean
 100,200,ATE_AT,true
 103,201,ATE_AT,false
 104,200,ATE_AT,true

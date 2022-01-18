@@ -49,7 +49,7 @@ parsed as either a map or a list.
 
 
 To access a given field, you can use the property lookup syntax. Let's assume
-that the contents of [`people_nodes.csv`](#) are as follows:
+that the contents of [`people_nodes.csv`](https://public-assets.memgraph.com/import-data/load-csv-cypher/one-type-nodes/with-header/people_nodes.csv) are as follows:
 
 ```plaintext
 id,name
@@ -60,7 +60,7 @@ id,name
 104,Lucy
 ```
 
-The contents of [`people_relationships.csv`](#) are the following:
+The contents of [`people_relationships.csv`](https://public-assets.memgraph.com/import-data/load-csv-cypher/one-type-nodes/with-header/people_relationships.csv) are the following:
 
 ```plaintext
 id_from,id_to
@@ -89,7 +89,7 @@ CREATE (p1)-[:IS_FRIENDS_WITH]->(p2)
 </TabItem>
 <TabItem value='headerout'>
 
-Let's assume that the contents of [`people_nodes.csv`](#) are as follows:
+Let's assume that the contents of [`people_nodes.csv`](https://public-assets.memgraph.com/import-data/load-csv-cypher/one-type-nodes/no-header/people_nodes.csv) are as follows:
 
 ```plaintext
 100,Daniel
@@ -99,7 +99,7 @@ Let's assume that the contents of [`people_nodes.csv`](#) are as follows:
 104,Lucy
 ```
 
-The contents of [`people_relationships.csv`](#) are the following:
+The contents of [`people_relationships.csv`](https://public-assets.memgraph.com/import-data/load-csv-cypher/one-type-nodes/no-header/people_relationships.csv) are the following:
 
 ```plaintext
 100,101
@@ -152,7 +152,7 @@ We will create that graph by using `LOAD CSV` clauses to import four CSV files.
   ]}>
 <TabItem value="pn">
 
-Add the following to the file [`people_nodes.csv`](#):
+Add the following to the file [`people_nodes.csv`](https://public-assets.memgraph.com/import-data/load-csv-cypher/multiple-types-nodes/people_nodes.csv):
 ```csv
 id,name,age,city
 100,Daniel,30,London
@@ -177,7 +177,7 @@ We have created nodes with label `:Person` and the graph looks like this:
 </TabItem>
 <TabItem value="pr">
 
-Each person from [`people_relationships.csv`](#) is connected to another person they are
+Each person from [`people_relationships.csv`](https://public-assets.memgraph.com/import-data/load-csv-cypher/multiple-types-nodes/people_relationships.csv) is connected to another person they are
 friends with. This is represented with the following example:
 
 ```csv
@@ -208,14 +208,14 @@ We have added relationships between existing nodes and the graph looks like this
 </TabItem>
 <TabItem value="rn">
 
-We have a list of restaurants people ate at in the file [`restaurants_nodes.csv`](#):
+We have a list of restaurants people ate at in the file [`restaurants_nodes.csv`](https://public-assets.memgraph.com/import-data/load-csv-cypher/multiple-types-nodes/restaurants_nodes.csv):
 
 ```csv
 id,name,menu
-200, Mc Donalds, Fries;BigMac;McChicken;Apple Pie
-201, KFC, Fried Chicken;Fries;Chicken Bucket
-202, Subway, Ham Sandwich;Turkey Sandwich;Foot-long
-203, Dominos, Pepperoni Pizza;Double Dish Pizza;Cheese filled Crust
+200,Mc Donalds,Fries;BigMac;McChicken;Apple Pie
+201,KFC,Fried Chicken;Fries;Chicken Bucket
+202,Subway,Ham Sandwich;Turkey Sandwich;Foot-long
+203,Dominos,Pepperoni Pizza;Double Dish Pizza;Cheese filled Crust
 ```
 
 The following query will create new nodes for each restaurant:
@@ -232,7 +232,7 @@ We have created nodes with label `:Restaurant` and those nodes are now in the da
 </TabItem>
 <TabItem value="rr">
 
-We file [`restaurants_relationships.csv`](#) contains a list of people and the
+We file [`restaurants_relationships.csv`](https://public-assets.memgraph.com/import-data/load-csv-cypher/multiple-types-nodes/restaurants_relationships.csv) contains a list of people and the
 restaurants they visited:
 
 ```csv
