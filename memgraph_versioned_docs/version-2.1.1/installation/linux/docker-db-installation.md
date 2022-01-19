@@ -1,21 +1,14 @@
 ---
-id: docker-installation
-title: Install Memgraph Platform on Linux with Docker
-sidebar_label: Install Memgraph Platform (recommended)
-slug: /install-memgraph-on-linux-docker
+id: docker-db-installation
+title: Install Memgraph DB on Linux with Docker
+sidebar_label: Docker
+slug: /install-memgraph-db-on-linux-docker
 pagination_prev: installation/overview
 pagination_next: connect-to-memgraph/overview
 ---
 
 This article briefly outlines the basic steps necessary to install and run
-**Memgraph** on Linux with Docker.
-
-**Memgraph Platform** contains:
-- **Memgraph DB** - the database that holds your data
-- **Memgraph Lab** - visual user interface for running queries and visualizing
-  graph data
-- **mgconsole** - command-line interface for running queries
-- **MAGE** - graph algorithms and modules library
+**Memgraph DB** on Linux with Docker. 
 
 :::caution
 
@@ -27,9 +20,10 @@ different versions.
 
 ## Prerequisites {#prerequisites}
 
-- **Docker Desktop** - Memgraph Platform can be installed only with Docker.<br/>
-  Instructions on how to install Docker can be found on the [official Docker
-  website](https://docs.docker.com/get-docker/).
+Before you proceed with the installation guide, make sure that you have:
+
+- **Docker Desktop** - [Install Docker](https://docs.docker.com/get-docker/) in
+order to install Memgraph DB.
 
 :::info
 
@@ -38,48 +32,43 @@ compatible with all newer versions.
 
 :::
 
-## Install Memgraph Platform {#installation-guide}
+## Install Memgraph DB {#base-installation-guide}
 
-**1.** Open a terminal.
+**1.** Download the latest **Memgraph Docker image** from the [Download
+Hub](https://memgraph.com/download/).
 
-**2.** Download and load the **Memgraph Platform Docker image** with the
-following command:
-
-```console
- docker pull memgraph/memgraph-platform
-```
-
-**3.** Create a new tag for the image:
+**2.** Import the image using the following command:
 
 ```console
-docker image tag memgraph/memgraph-platform memgraph
+docker load -i /path-to/memgraph-<version>-docker.tar.gz
 ```
 
-## Start Memgraph Platform {#starting-memgraph-platform}
+## Start Memgraph DB {#starting-memgraph}
 
 To start Memgraph, use the following command:
 
 ```console
-docker run -it -p 7687:7687 -p 3000:3000 -v mg_lib:/var/lib/memgraph memgraph/memgraph-platform
+docker run -p 7687:7687 -v mg_lib:/var/lib/memgraph memgraph
 ```
 
 If successful, you should see a message similar to the following:
 
 ```console
-mgconsole X.X
-Connected to 'memgraph://127.0.0.1:7687'
-Type :help for shell usage
-Quit the shell by typing Ctrl-D(eof) or :quit
-memgraph>
+You are running Memgraph vX.X.X
+To get started with Memgraph, visit https://memgr.ph/start
 ```
 
-Command-line tool **mgconsole** is open in the terminal, and the visual user
-interface **Memgraph Lab** is available at `http://localhost:3000`.
+At this point, the Memgraph database is ready for you to [submit Cypher
+queries](/connect-to-memgraph/overview.mdx) via a command-line tool **mgconsole**,
+visual user interface **Memgraph Lab** or various **drivers**.
 
-User either **mgconsole**, **Memgraph Lab** or various **drivers** to [**connect to
-Memgraph DB**](/connect-to-memgraph/overview.mdx).
+:::info
 
-## Stop Memgraph Platform {#stopping-memgraph-platform}
+The username and password for connecting to the database are empty by default.
+
+:::
+
+## Stop Memgraph DB {#stopping-memgraph}
 
 To stop a Memgraph database instance, run the following command:
 
@@ -87,45 +76,44 @@ To stop a Memgraph database instance, run the following command:
 docker stop CONTAINER_NAME
 ```
 
-You can find the name of the container (`CONTAINER_NAME`) by running the following command in a new terminal:
+You can find the name of the container (`CONTAINER_NAME`) by running:
 
 ```console
 docker ps
 ```
 
-## Configuration file and logs {#named-volumes}
+## Configuration file and logs {#base-configuration}
 
 If you need to access the Memgraph configuration file or logs, you will need to
 specify the following volumes when starting Memgraph:
 
 ```console
-docker run -it -p 7687:7687 -p 3000:3000 -e MEMGRAPH="--bolt-port=7687" \
+docker run -p 7687:7687 \
   -v mg_lib:/var/lib/memgraph \
   -v mg_log:/var/log/memgraph \
   -v mg_etc:/etc/memgraph \
-  memgraph/memgraph-platform
+  memgraph --bolt-port=7687
 ```
 
 The configuration file is located in the `mg_etc` volume. The exact location of
 the file depends on your specific setup, but usually it is
 `/var/lib/docker/volumes/mg_etc/_data/memgraph.conf`. 
 
-The logs will be saved to the `mg_log` volume, and the directories can usually be found in `/var/lib/docker/volumes/`. 
+The logs will be saved to the `mg_log` volume, and directories can usually be found in `/var/lib/docker/volumes/`.
 
 When using Docker, you can also specify the configuration options in the `docker
 run` command:
 
 ```console
-docker run -it -p 7687:7687 -p 3000:3000 -e MEMGRAPH="--bolt-port=7687" memgraph/memgraph-platform
+docker run -p 7687:7687 memgraph --bolt-port=7687
 ```
 
 :::caution
 
-When working with Memgraph Platform, you should pass configuration flags inside
-of environmental variables.
+When working with Memgraph DB, you should pass configuration flags as arguments.
 
-For example, you can start the Memgraph DB image with `docker run memgraph
---bolt-port=7687`, but you should start Memgraph Platform with `docker run -e MEMGRAPH="--bolt-port=7687"
+For example, you should start the Memgraph DB image with `docker run memgraph
+--bolt-port=7687`, and Memgraph Platform with `docker run -e MEMGRAPH="--bolt-port=7687"
 memgraph/memgraph-platform`.
 
 :::

@@ -3,6 +3,8 @@ id: windows-installation-troubleshooting
 title: Troubleshooting installation on Windows
 sidebar_label: Installation troubleshooting
 slug: /windows-installation-troubleshooting
+pagination_prev: installation/overview
+pagination_next: connect-to-memgraph/overview
 ---
 
 import Tabs from "@theme/Tabs";
@@ -22,15 +24,18 @@ import TabItem from "@theme/TabItem";
 docker load -i memgraph.tar.gz
 ```
 
-### Error during connect: `This error may indicate that the docker daemon is not running.`
+### Error during connect:<br/> `This error may indicate that the docker daemon is not running.`
 Run the Docker Desktop application and wait for it to load fully.
 
-### Error response from daemon: `open \\.\pipe\docker_engine_linux: The system cannot find the file specified.`
+### Error response from daemon:<br/> `open \\.\pipe\docker_engine_linux: The system cannot find the file specified.`
 Reload the Docker Desktop application and wait for it to load fully.
 
 ### Unsupported os linux
 
-You need to download the [Windows Subsystem for Linux](https://docs.microsoft.com/en-gb/windows/wsl/install-win10#step-4---download-the-linux-kernel-update-package), and enable experimental features in Docker Desktop, under "Settings -> Docker Engine", put "experimental" to *true*.
+You need to download the [Windows Subsystem for
+Linux](https://docs.microsoft.com/en-gb/windows/wsl/install-win10#step-4---download-the-linux-kernel-update-package),
+and enable experimental features in Docker Desktop, under *Settings* -> *Docker
+Engine*, change *experimental* to *true*.
 
 ## Issues when connecting to Memgraph
 

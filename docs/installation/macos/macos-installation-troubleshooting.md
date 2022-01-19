@@ -3,6 +3,8 @@ id: macos-installation-troubleshooting
 title: Troubleshooting installation on macOS
 sidebar_label: Installation troubleshooting
 slug: /macos-installation-troubleshooting
+pagination_prev: installation/overview
+pagination_next: connect-to-memgraph/overview
 ---
 
 ## Issues when connecting to Memgraph
