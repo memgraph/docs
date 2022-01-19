@@ -61,6 +61,8 @@ speaks_rel = Speaks(
 memgraph.save_relationship(speaks_rel)
 ```
 
-> Property `_id` is internal Memgraph id - an id given to each node upon saving to the database.
+:::info
+Property `_id` is internal Memgraph id - an id given to each node upon saving to the database.
+:::
 
 Hopefully this guide has taught you how to create and save nodes and relationships. For more detailed information check out our docs - TODO link. If you have any more questions, join our community and ping us on [Discord](https://discord.gg/memgraph).

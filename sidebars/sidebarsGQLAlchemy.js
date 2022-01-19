@@ -5,8 +5,8 @@ module.exports = {
     {
       type: "category",
       label: "How-to guides",
+      link: { type: 'doc', id: 'how-to-guides/overview' },
       items: [
-        "how-to-guides/overview",
         {
           type: "category",
           label: "Use object graph mapper",

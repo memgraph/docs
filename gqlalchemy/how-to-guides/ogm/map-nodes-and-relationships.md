@@ -32,7 +32,9 @@ class Streamer(User):
 
 Class `User` is a parent class of `Streamer`, that is, every `Streamer` is also an user. This means that class `Streamer` has two labels - `Streamer` and `User`. By setting up the `label` argument to `User`, you give your database information that `name` property should be indexed on nodes labeled `User`. If there is no argument given to the `Field()`, then it is `memgraph` by default. 
 
-> You can also [manually define labels]-TODO, or add another label to the current node labels.
+:::info
+You can also [manually define labels]-TODO ADD LINK, or add another label to the current node labels.
+:::
 
 In a similar way, you can create a relationship:
 
