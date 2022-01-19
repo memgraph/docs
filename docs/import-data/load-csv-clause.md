@@ -128,16 +128,24 @@ CREATE (p1)-[:IS_FRIENDS_WITH]->(p2)
 </TabItem>
 </Tabs>
 
-Both ways, we have created a graph database with people as nodes and their friendships as the relationships between them:
-
-<img src={require('../data/import-data/one_type_of_nodes_and_relationships_graph.png').default}/>
+<details>
+  <summary>After the import, the graph in Memgraph should look like this:</summary>
+  <div>
+    <img src={require('../data/import-data/one_type_of_nodes_and_relationships_graph.png').default}/>
+  </div>
+</details>
 
 ### Multiple types of nodes and relationships
 
 In the case of a more complex graph, we have to deal with multiple node and
-relationship types. Let's say we want to create this kind of graph:
+relationship types. 
 
-<img src={require('../data/import-data/multiple_nodes_and_relationships_graph.png').default}/>
+<details>
+  <summary>Let's say we want to create a graph like this:</summary>
+  <div>
+    <img src={require('../data/import-data/multiple_nodes_and_relationships_graph.png').default}/>
+  </div>
+</details>
 
 We will create that graph by using `LOAD CSV` clauses to import four CSV files.
 
@@ -170,9 +178,12 @@ for each row with properties based on the parsed row values:
   CREATE (n:Person {id: row.id, name: row.name, age: ToInteger(row.age), city: row.city});
   ```
 
-We have created nodes with label `:Person` and the graph looks like this:
-
-<img src={require('../data/import-data/people_nodes_graph.png').default}/>
+<details>
+  <summary>After the import, the graph in Memgraph should look like this:</summary>
+  <div>
+    <img src={require('../data/import-data/people_nodes_graph.png').default}/>
+  </div>
+</details>
 
 </TabItem>
 <TabItem value="pr">
@@ -201,9 +212,12 @@ CREATE (p1)-[f:IS_FRIENDS_WITH]->(p2)
 SET f.met_in = row.met_in;
 ```
 
-We have added relationships between existing nodes and the graph looks like this:
-
-<img src={require('../data/import-data/people_relationships_graph.png').default}/>
+<details>
+  <summary>After the import, the graph in Memgraph should look like this:</summary>
+  <div>
+    <img src={require('../data/import-data/people_relationships_graph.png').default}/>
+  </div>
+</details>
 
 </TabItem>
 <TabItem value="rn">
@@ -225,9 +239,12 @@ LOAD CSV FROM "/path-to/restaurants_nodes.csv" WITH HEADER AS row
 CREATE (n:Restaurant {id: row.id, name: row.name, menu: row.menu});
 ```
 
-We have created nodes with label `:Restaurant` and those nodes are now in the database:
-
-<img src={require('../data/import-data/restaurant_nodes_graph.png').default}/>
+<details>
+  <summary>After the import, the graph in Memgraph should look like this:</summary>
+  <div>
+    <img src={require('../data/import-data/restaurant_nodes_graph.png').default}/>
+  </div>
+</details>
 
 </TabItem>
 <TabItem value="rr">
@@ -257,9 +274,12 @@ CREATE (p1)-[ate:ATE_AT]->(re)
 SET ate.liked = ToBoolean(row.liked);
 ```
 
-We have created relationships between people and restaurants, and that looks like this:
-
-<img src={require('../data/import-data/restaurant_relationships_graph.png').default}/>
+<details>
+  <summary>After the import, the graph in Memgraph should look like this:</summary>
+  <div>
+    <img src={require('../data/import-data/restaurant_relationships_graph.png').default}/>
+  </div>
+</details>
 
 </TabItem>
 </Tabs>

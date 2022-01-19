@@ -208,9 +208,12 @@ Next time you run Memgraph, the dataset will be loaded.
   </TabItem>
 </Tabs>
 
-After the import, your graph database should look like this:
-
-<img src={require('../data/import-data/import_tool_one_type_graph.png').default}/>
+<details>
+  <summary>After the import, the graph in Memgraph should look like this:</summary>
+  <div>
+    <img src={require('../data/import-data/import_tool_one_type_graph.png').default}/>
+  </div>
+</details>
 
 ### Multiple types of nodes and relationships
 
@@ -347,4 +350,9 @@ The next time you run Memgraph, the dataset will be loaded.
 
 After the import, your graph database should look like this:
 
-<img src={require('../data/import-data/import_tool_multiple_types_graph.png').default}/>
+<details>
+  <summary>After the import, the graph in Memgraph should look like this:</summary>
+  <div>
+    <img src={require('../data/import-data/import_tool_multiple_types_graph.png').default}/>
+  </div>
+</details>
