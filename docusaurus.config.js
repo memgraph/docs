@@ -39,14 +39,14 @@ module.exports = {
       },
       items: [
         {
-          to: "/memgraph/getting-started",
+          to: "/memgraph/",
           label: "Memgraph",
           position: "left",
           activeBaseRegex: `/memgraph/`,
           items: [
             {
               label: "Getting started",
-              to: "/memgraph/getting-started",
+              to: "/memgraph",
             },
             {
               label: "Install Memgraph",
