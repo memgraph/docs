@@ -226,6 +226,10 @@ module.exports = {
               label: "MAGE",
               to: "/mage",
             },
+            {
+              label: "GQLAlchemy",
+              to: "/gqlalchemy",
+            },
           ],
         },
         {
