@@ -39,17 +39,17 @@ module.exports = {
       },
       items: [
         {
-          to: "/memgraph/getting-started",
+          to: "/memgraph/",
           label: "Memgraph",
           position: "left",
           activeBaseRegex: `/memgraph/`,
           items: [
             {
               label: "Getting started",
-              to: "/memgraph/getting-started",
+              to: "/memgraph",
             },
             {
-              label: "Installation",
+              label: "Install Memgraph",
               to: "/memgraph/installation",
             },
             {
@@ -61,8 +61,24 @@ module.exports = {
               to: "/memgraph/import-data",
             },
             {
+              label: "Tutorials",
+              to: "/memgraph/tutorials",
+            },
+            {
+              label: "How-to guides",
+              to: "memgraph/how-to-guides",
+            },
+            {
               label: "Reference guide",
               to: "/memgraph/reference-guide",
+            },
+            {
+              label: "Concepts",
+              to: "/memgraph/concepts",
+            },
+            {
+              label: "Changelog",
+              to: "/memgraph/changelog",
             },
           ],
         },
@@ -71,6 +87,28 @@ module.exports = {
           label: "Memgraph Lab",
           position: "left",
           activeBaseRegex: `/lab/`,
+          items: [
+            {
+              label: "Getting started",
+              to: "memgraph-lab",
+            },
+            {
+              label: "Install Memgraph Lab",
+              to: "/memgraph-lab/installation",
+            },
+            {
+              label: "Connect to Memgraph",
+              to: "/memgraph-lab/connect-to-memgraph",
+            },
+            {
+              label: "Style script language",
+              to: "/memgraph-lab/style-script/quick-start",
+            },
+            {
+              label: "Changelog",
+              to: "/memgraph-lab/changelog",
+            },
+          ],
         },
         /*
         {
@@ -87,16 +125,20 @@ module.exports = {
           activeBaseRegex: `/mage/`,
           items: [
             {
-              label: "Overview",
+              label: "Getting started",
               to: "/mage",
             },
             {
-              label: "Installation",
+              label: "Install MAGE",
               to: "/mage/installation",
             },
             {
               label: "Using query modules",
               to: "/mage/usage/calling-procedures",
+            },
+            {
+              label: "Available query modules",
+              to: "/mage/query-modules/available-queries",
             },
             {
               label: "How-to guides",
@@ -113,6 +155,10 @@ module.exports = {
             {
               label: "Contributing",
               to: "/mage/contributing",
+            },
+            {
+              label: "Changelog",
+              to: "/mage/changelog",
             },
           ],
         },
@@ -347,15 +393,15 @@ module.exports = {
       {
         redirects: [
           {
-            to: "/memgraph/getting-started",
+            to: "/memgraph/",
             from: ["/memgraph/introduction"],
           },
           {
-            to: "/memgraph/getting-started",
+            to: "/memgraph/",
             from: ["/memgraph/overview"],
           },
           {
-            to: "/memgraph/getting-started",
+            to: "/memgraph/",
             from: ["/memgraph/quick-start"],
           },
           //Tutorial redirects
@@ -966,6 +1012,15 @@ module.exports = {
           {
             to: "/memgraph/under-the-hood/telemetry",
             from: ["/memgraph/concepts/telemetry"],
+          },
+          //create redirect for Memgraph Getting started page
+          {
+            to: "/memgraph/",
+            from: ["/memgraph/getting-started"],
+          },
+          {
+            to: "/memgraph-lab/installation",
+            from: ["/memgraph-lab/installation/overview"],
           },
         ],
       },
