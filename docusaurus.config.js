@@ -222,7 +222,7 @@ module.exports = {
           items: [
             {
               label: "Memgraph",
-              to: "/memgraph/getting-started",
+              to: "/memgraph",
             },
             {
               label: "Memgraph Lab",
