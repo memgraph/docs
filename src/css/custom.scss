@@ -105,3 +105,8 @@ html[data-theme="dark"] .docsRating {
     border-radius: var(--ifm-global-radius);
   }
 }
+/* Hide copy button from output blocks */
+
+.nocopy button {
+  display: none;
+  }

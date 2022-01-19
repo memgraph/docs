@@ -29,17 +29,30 @@ consists of two nodes and one relationship
 We can interpret this graph by using the said method of mapping patterns to language
 structures: 
 
-> *A person named Harry is married to a person named Anna.*
+```nocopy
+A person named Harry is married to a person named Anna
+```
 
 ## Cypher styling and syntax
 
-Same as other languages, Cypher has it's own set of syntax rules and styling recommendations. And as always, it is sensible to document the code with comments.
+Same as other languages, Cypher has it's own set of syntax rules and styling recommendations. And as always, it is sensible to add comments to code as you write it.
+
+### Comments
+
+To specify a comment in Cypher, just place the characters `//` before the line you want to be a comment:
+
+```cypher
+// This is a Cypher comment
+CREATE (p1:Person { name: 'Harry' }), (p2:Person { name: 'Anna' })
+CREATE (p1)-[r:MARRIED_TO]->(p2)
+RETURN r;
+```
 
 ### Naming convention
 
 **Node labels** should be written using CamelCase and start with an upper-case letter. Node labels are case-sensitive. 
 
-```cypher
+```nocopy
 (:Country)
 (:City)
 (:CapitalCity)
@@ -67,17 +80,6 @@ Aside from clauses, there is a number of **keywords** that should be styled with
 MATCH (c:Country)
 WHERE c.name CONTAINS 'United' AND c.population > 9000000
 RETURN c AS Country;
-```
-
-### Comments
-
-To specify a comment in Cypher, just place the characters `//` before the line you want to be a comment:
-
-```cypher
-// This is a Cypher comment
-CREATE (p1:Person { name: 'Harry' }), (p2:Person { name: 'Anna' })
-CREATE (p1)-[r:MARRIED_TO]->(p2)
-RETURN r;
 ```
 
 ### Indentations and line breaks
