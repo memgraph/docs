@@ -56,12 +56,12 @@ module.exports = {
       label: "Connect to Memgraph",
       link: {type: 'doc', id: 'connect-to-memgraph/overview'},
       items: [
-        "connect-to-memgraph/mgconsole",
         {
           type: "link",
           label: "Memgraph Lab",
           href: "https://memgraph.com/docs/memgraph-lab",
         },
+        "connect-to-memgraph/mgconsole",
         {
           type: "category",
           label: "Drivers",

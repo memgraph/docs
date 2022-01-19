@@ -9,7 +9,19 @@ import Tabs from "@theme/Tabs"; import TabItem from "@theme/TabItem";
 The easiest way to execute Cypher queries against Memgraph is by using
 Memgraph's command-line tool, **mgconsole**.
 
-## 1. Install mgconsole
+## 1. Install mgconsole 
+
+:::tip
+
+If you installed **Memgraph Platform** with Docker image
+(`memgraph/memgraph-platform`), mgconsole will start automatically when you run
+the container. Skip the installation steps and continue with [executing
+Cypher queries](#execute-cypher-queries).
+
+:::
+
+If you want to install the mgconsole to query a running Memgraph database
+instance follow the installation steps.
 
 <Tabs
   groupId="platform"
@@ -22,16 +34,7 @@ Memgraph's command-line tool, **mgconsole**.
   ]}>
   <TabItem value="docker">
 
-:::tip
-
-If you are using the **Memgraph Platform** Docker image
-(`memgraph/memgraph-platform`), mgconsole will start automatically when you run
-the container. You can skip the installation step and continue with [executing
-Cypher queries](#execute-cypher-queries).
-
-:::
-
-**1.** If you installed Memgraph using Docker, you can run the client from your
+**1.** If you installed Memgraph DB using Docker, you can run the client from your
 Docker image. First, you need to find the `CONTAINER_ID` of your Memgraph
 container:
 
@@ -138,14 +141,15 @@ Quit the shell by typing Ctrl-D(eof) or :quit
 memgraph>
 ```
 
-At this point, it is possible to execute openCypher queries on Memgraph. Each
-query needs to end with the `;` (*semicolon*) character. For example:
+At this point, it is possible to execute openCypher queries against a running
+Memgraph database instance. Each query needs to end with the `;` (*semicolon*)
+character. For example:
 
 ```cypher
 CREATE (u:User {name: "Alice"})-[:Likes]->(m:Software {name: "Memgraph"});
 ```
 
-The above will create 2 nodes in the database, one labeled "User" with name
+The above query will create 2 nodes in the database, one labeled "User" with name
 "Alice" and the other labeled "Software" with name "Memgraph". It will also
 create a relationship that "Alice" *likes* "Memgraph".
 
@@ -154,3 +158,13 @@ To find created nodes and relationships, execute the following query:
 ```cypher
 MATCH (u:User)-[r]->(x) RETURN u, r, x;
 ```
+
+## Where to next? {#where-to-next}
+
+If you want to learn more familiar about graph databases and Cypher queries
+visit [Memgraph Playground](https://playground.memgraph.com/) and go through
+guided lessons. All the datasets and most of the queries used in the guided
+lessons can also be explored here in documentation, in the [Tutorials](/tutorials/overview.md)
+section, and knowledge about Cypher we've gathered in the [Cypher guide](/cypher-manual).
+
+If you are all good to go on your own - [import your data](/import-data/overview.mdx)!
