@@ -942,6 +942,31 @@ module.exports = {
             to: "/memgraph/connect-to-memgraph/drivers/php",
             from: ["/memgraph/connect-to-memgraph/methods/building-applications/php"],
           },
+          //Renaming Concepts to Under the hood
+          {
+            to: "/memgraph/under-the-hood/",
+            from: ["/memgraph/concepts"],
+          },
+          {
+            to: "/memgraph/under-the-hood/storage",
+            from: ["/memgraph/concepts/storage"],
+          },
+          {
+            to: "/memgraph/under-the-hood/graph-algorithms",
+            from: ["/memgraph/concepts/graph-algorithms"],
+          },
+          {
+            to: "/memgraph/under-the-hood/indexing",
+            from: ["/memgraph/concepts/indexing"],
+          },
+          {
+            to: "/memgraph/under-the-hood/replication",
+            from: ["/memgraph/concepts/replication"],
+          },
+          {
+            to: "/memgraph/under-the-hood/telemetry",
+            from: ["/memgraph/concepts/telemetry"],
+          },
         ],
       },
     ],
