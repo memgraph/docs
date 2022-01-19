@@ -86,4 +86,11 @@ link](./clauses/merge.md).
 
 ## Import existing data from CSV
 
-* Link to existing documentation about [import data](/docs/memgraph/import-data) process.
+Using CSV files is just one of the ways to [import your
+data](/docs/memgraph/import-data) into Memgraph. When it comes to Cypher, the
+`LOAD CSV` clause enables you to [load and use
+data](/docs/memgraph/import-data/load-csv-clause) from a CSV file. We support
+the Excel CSV dialect, as it's the most commonly used one. For the syntax of the
+clause, please check the [Load CSV](/cypher-manual/clauses/load-csv) page in
+Cypher manual.
+

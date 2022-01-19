@@ -317,5 +317,63 @@ More examples can be found [here](./clauses/unwind.md).
 
 ## Traversing relationships
 
+Patterns are used to indicate specific graph traversals given directional relationships. How a graph is traversed for a query depends on what directions are defined for relationships and how the pattern is specified in the MATCH clause.
+
+### Patterns in a query
+
+Here is an example of a patterns that utilizes the FRIENDS_WITH relationships from our graph:
+
+```cypher
+MATCH  (p1:Person)-[r:FRIENDS_WITH]->(p2:Person {name:'Alison'})
+RETURN p1, r, p2;
+```
+
+The output is:
+
+![](data/read-existing-data/patterns-in-a-query.png)
+
+Because the FRIENDS_WITH relationship is directional, only these two nodes are returned.
+
+### Reversing traversals
+
+When the relationships from the previous query is reversed, with the person named Alison being the anchor node, the returned results are:
+
+```cypher
+MATCH  (p1:Person)-[r:FRIENDS_WITH]->(p2:Person {name:'Alison'})
+RETURN p1, r, p2;
+```
+
+The output is:
+
+![](data/read-existing-data/reversing-traversals.png)
+
+### Bidirectional traversals
+
+We can also find out what Person nodes are connected by the FRIENDS_WITH relationship in either direction by removing the directional arrow from the pattern:
+
+```cypher
+MATCH  (p1:Person)-[r:FRIENDS_WITH]-(p2:Person {name:'Alison'})
+RETURN p1, r, p2;
+```
+
+The output is:
+
+![](data/read-existing-data/bidirectional-traversals.png)
+
+### Traversing multiple relationships
+
+Since we have a graph, we can traverse through nodes to obtain relationships further into the traversal.
+
+For example, we can write a Cypher query to return all friends of friends of the person named Alison:
+
+```cypher
+MATCH  (p1:Person {name:'Alison'})-[r1:FRIENDS_WITH]->
+       (p2:Person)-[r2:FRIENDS_WITH]-(p3:Person)
+RETURN p1, r1, p2, r2, p3;
+```
+
+Keep in mind that the first relationship is directional while the second one isn't. The output is:
+
+![](data/read-existing-data/traversing-multiple-relationships.png)
 
 

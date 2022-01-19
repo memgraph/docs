@@ -8,9 +8,7 @@ Relationships (or edges) are the **lines that connect nodes** to each other and 
 
 Relationships can also store data in the form of **properties**, just as nodes. In most cases, relationships store quantitative properties such as weights, costs, distances, ratings, etc. 
 
-### Example
-
-![](https://i.imgur.com/RuCvRBr.png)
+![](data/connecting-nodes/connecting-nodes.png)
 
 In our example, the relationship between two nodes labeled `Person` could be of the type `MARRIED_TO`, while the relationship between `Person` and `City` is represented by the type `LIVES_IN`.
 
@@ -73,58 +71,4 @@ MATCH (p1)-[:MARRIED_TO { weddingDate: '27-06-2019' }]-(p2)
 RETURN p1, p2
 ```
 
-## SET clause
-
-The SET clause is used to update labels on nodes and properties on nodes and relationships.
-
-### Creating and updating properties
-
-The SET clause can be used to create/update the value of a property on a node or relationship.
-
-```cypher
-MATCH (c:City)
-WHERE c.name = 'London'
-SET c.population = 8900000
-RETURN c
-```
-
-The SET clause can be used to create/update the value of multiple properties nodes or relationships by separating them with a comma.
-
-```cypher
-MATCH (c:City)
-WHERE c.name = 'London'
-SET c.population = 8900000, c.country = 'United Kingdom'
-RETURN c
-```
-
-### Creating and updating node labels
-
-The SET clause can be used to create/update the label on a node. If the node has a label, a new one will be added while the old one is left as is.
-
-```cypher
-MATCH (c:City:Location)
-SET c:City
-RETURN labels(c)
-```
-
-### Removing a property
-
-The SET clause can be used to remove the value of a property on a node or relationship by setting it to NULL:
-
-```cypher
-MATCH (c:City)
-WHERE c.name = 'London'
-SET c.country = NULL
-RETURN c
-```
-
-### Copy all properties
-
-If SET is used to copy the properties of one node/relationship to another, all the properties of the latter will be removed and replaced with the new ones.
-
-```cypher
-CREATE (p1:Person { name: 'Harry' }), (p2:Person { name: 'Anna' })
-SET p1 = p2
-RETURN p1, p2
-```
 
