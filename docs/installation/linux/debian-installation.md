@@ -82,7 +82,7 @@ If successful, you should receive an output similar to the following:
 You are running Memgraph vX.X.X
 ```
 
-If the Memgraph database instance is not running you can start it explicitly:
+If the Memgraph database instance is not running, you can start it explicitly:
 
 ```console
 sudo systemctl start memgraph

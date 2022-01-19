@@ -8,13 +8,14 @@ pagination_next: connect-to-memgraph/overview
 ---
 
 The following article outlines the basic steps necessary to install and run
-**Memgraph Platform** on MacOS with Docker.
+**Memgraph Platform** on macOS with Docker.
 
 **Memgraph Platform** contains:
-  - **Memgraph DB** - database that holds your data
-  - **Memgraph Lab** - visual user interface for running queries, visualizing graph data and exploring the world of graphs
-  - **mgconsole** - command-line interface for running queries
-  - **MAGE** - graph algorithms and modules library to help you tackle even the most challenging issues
+- **Memgraph DB** - the database that holds your data
+- **Memgraph Lab** - visual user interface for running queries and visualizing
+  graph data
+- **mgconsole** - command-line interface for running queries
+- **MAGE** - graph algorithms and modules library
 
 :::caution
 
@@ -39,7 +40,7 @@ compatible with all newer versions.
 
 ## Install Memgraph Platform {#installation-guide}
 
-**1.** Open the iTerm or Terminal.
+**1.** Open iTerm or Terminal.
 
 **2.** Download and load the **Memgraph Platform Docker image** with the
 following command:
@@ -119,7 +120,7 @@ docker run -it -p 7687:7687 -p 3000:3000 -e MEMGRAPH="--bolt-port=7687" memgraph
 
 :::caution
 
-When working with Memgraph Platform you should pass configuration flags inside
+When working with Memgraph Platform, you should pass configuration flags inside
 of environmental variables.
 
 For example, you can start the Memgraph DB image with `docker run memgraph

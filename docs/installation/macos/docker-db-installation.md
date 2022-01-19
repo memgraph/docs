@@ -58,7 +58,7 @@ You are running Memgraph vX.X.X
 To get started with Memgraph, visit https://memgr.ph/start
 ```
 
-At this point, Memgraph database is ready for you to [submit Cypher
+At this point, the Memgraph database is ready for you to [submit Cypher
 queries](/connect-to-memgraph/overview.mdx) via a command-line tool **mgconsole**,
 visual user interface **Memgraph Lab** or various **drivers**.
 
@@ -111,7 +111,7 @@ docker run -p 7687:7687 memgraph --bolt-port=7687
 
 :::caution
 
-When working with Memgraph DB you should pass configuration flags as arguments.
+When working with Memgraph DB, you should pass configuration flags as arguments.
 
 For example, you should start the Memgraph DB image with `docker run memgraph
 --bolt-port=7687`, and Memgraph Platform with `docker run -e MEMGRAPH="--bolt-port=7687"

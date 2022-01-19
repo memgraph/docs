@@ -94,7 +94,7 @@ module.exports = {
             },
             {
               label: "Install Memgraph Lab",
-              to: "/memgraph-lab/installation/overview",
+              to: "/memgraph-lab/installation",
             },
             {
               label: "Connect to Memgraph",
@@ -393,15 +393,15 @@ module.exports = {
       {
         redirects: [
           {
-            to: "/memgraph/getting-started",
+            to: "/memgraph/",
             from: ["/memgraph/introduction"],
           },
           {
-            to: "/memgraph/getting-started",
+            to: "/memgraph/",
             from: ["/memgraph/overview"],
           },
           {
-            to: "/memgraph/getting-started",
+            to: "/memgraph/",
             from: ["/memgraph/quick-start"],
           },
           //Tutorial redirects
@@ -989,14 +989,14 @@ module.exports = {
             from: ["/memgraph/connect-to-memgraph/methods/building-applications/php"],
           },
           //create redirect for Memgraph Getting started page
-          /*{
+          {
             to: "/memgraph/",
             from: ["/memgraph/getting-started"],
           },
           {
             to: "/memgraph-lab/installation",
             from: ["/memgraph-lab/installation/overview"],
-          },*/
+          },
         ],
       },
     ],

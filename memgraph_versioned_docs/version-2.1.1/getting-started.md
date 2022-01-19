@@ -2,7 +2,7 @@
 id: getting-started
 title: Getting started with Memgraph
 sidebar_label: Getting started
-slug: /getting-started
+slug: /
 ---
 
 ## What is Memgraph?

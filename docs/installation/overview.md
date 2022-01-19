@@ -7,18 +7,18 @@ slug: /installation
 
 import useBaseUrl from "@docusaurus/useBaseUrl";
 
-Install **Memgraph Platform** and get the full streaming graph application platform that
-includes:
-  - **Memgraph DB** - database that holds your data
-  - **Memgraph Lab** - visual user interface for running queries, visualizing
-    graph data and exploring the world of graphs
-  - **mgconsole** - command-line interface for running queries
-  - **MAGE** - graph algorithms and modules library to help you tackle even the
-    most challenging issues
+Install **Memgraph Platform** and get the complete streaming graph application
+platform that includes:
 
-Scroll down to the operating system of your choosing and install **Memgraph Platform** with Docker.
+- **Memgraph DB** - the database that holds your data
+- **Memgraph Lab** - visual user interface for running queries and visualizing
+  graph data
+- **mgconsole** - command-line interface for running queries
+- **MAGE** - graph algorithms and modules library
 
-If you only need to install a database instance, install Memgraph DB with Docker or some other available installation option.
+Scroll down to the operating system of your choosing and install **Memgraph
+Platform** with Docker. If you only need to install a database instance, install
+Memgraph DB with Docker or some other available installation option.
 
 ## Windows
 
@@ -31,14 +31,14 @@ If you only need to install a database instance, install Memgraph DB with Docker
   <div class="column" style={{'paddingRight':'60px'}}>
     <p><b>Install Memgraph Platform (recommended)</b></p>
     <ul>
-      <li><a href={useBaseUrl('memgraph/install-memgraph-on-windows-docker')}><b>Docker</b></a></li>
+      <li><a href='install-memgraph-on-windows-docker'><b>Docker</b></a></li>
     </ul>
   </div>
   <div class="column">
     <p><b>Install Memgraph DB</b></p>
     <ul>
-      <li><a href={useBaseUrl('memgraph/install-memgraph-on-windows-docker')}><b>Docker</b></a></li>
-      <li><a href={useBaseUrl('memgraph/install-memgraph-on-windows-wsl')}><b>Windows Subsystem for Linux (WSL)</b></a></li>
+      <li><a href='install-memgraph-db-on-windows-docker'><b>Docker</b></a></li>
+      <li><a href='install-memgraph-on-windows-wsl'><b>Windows Subsystem for Linux (WSL)</b></a></li>
     </ul>
   </div>
 </div>
@@ -54,13 +54,13 @@ If you only need to install a database instance, install Memgraph DB with Docker
   <div class="column" style={{'paddingRight':'60px'}}>
     <p><b>Install Memgraph Platform (recommended)</b></p>
     <ul>
-      <li><a href={useBaseUrl('memgraph/install-memgraph-on-windows-docker')}><b>Docker</b></a></li>
+      <li><a href='install-memgraph-on-macos-docker'><b>Docker</b></a></li>
     </ul>
   </div>
   <div class="column">
     <p><b>Install Memgraph DB</b></p>
     <ul>
-      <li><a href={useBaseUrl('memgraph/install-memgraph-on-windows-docker')}><b>Docker</b></a></li>
+      <li><a href='install-memgraph-db-on-macos-docker'><b>Docker</b></a></li>
     </ul>
   </div>
 </div>
@@ -77,20 +77,19 @@ If you only need to install a database instance, install Memgraph DB with Docker
     <p><b>Install Memgraph Platform (recommended)</b>
     </p>
     <ul>
-      <li><a href={useBaseUrl('memgraph/install-memgraph-on-windows-docker')}><b>Docker</b></a></li>
+      <li><a href='install-memgraph-on-linux-docker'><b>Docker</b></a></li>
     </ul>
   </div>
   <div class="column" style={{'paddingLeft':'60px'}}>
     <p><b>Install Memgraph DB</b></p>
     <ul>
-      <li><a href={useBaseUrl('memgraph/install-memgraph-on-windows-docker')}><b>Docker</b></a></li>
-      <li><a href={useBaseUrl('memgraph/install-memgraph-on-windows-docker')}><b>Ubuntu</b></a></li>
-      <li><a href={useBaseUrl('memgraph/install-memgraph-on-windows-docker')}><b>Debian</b></a></li>
-      <li><a href={useBaseUrl('memgraph/install-memgraph-on-windows-docker')}><b>RPM package</b></a></li>
+      <li><a href='install-memgraph-db-on-linux-docker'><b>Docker</b></a></li>
+      <li><a href='install-memgraph-on-ubuntu'><b>Ubuntu</b></a></li>
+      <li><a href='install-memgraph-on-debian'><b>Debian</b></a></li>
+      <li><a href='install-memgraph-from-rpm'><b>RPM package</b></a></li>
     </ul>
   </div>
 </div>
-
 
 :::caution
 
