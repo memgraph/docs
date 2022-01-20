@@ -2,6 +2,7 @@
 id: overview
 title: Installation overview
 sidebar_label: Installation overview
+slug: /installation
 ---
 
 :::tip Memgraph Platform

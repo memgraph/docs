@@ -3,9 +3,9 @@ module.exports = {
     "getting-started",
     {
       type: "category",
-      label: "Installation",
+      label: "Install Memgraph Lab",
+      link: {type: 'doc', id: 'installation/overview'},
       items: [
-        "installation/overview",
         "installation/windows",
         "installation/macos",
         "installation/linux",
