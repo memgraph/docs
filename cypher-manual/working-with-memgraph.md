@@ -14,16 +14,16 @@ You can [install and run
 Memgraph](https://memgraph.com/docs/memgraph/installation) using Docker on
 Windows and macOS, or natively on Linux and WSL. If you use Docker, Memgraph
 Platform is the recommended Docker image. Memgraph Platform Docker image
-contains everything that you need get started as quickly as possible:
-MemgraphDB, Memgraph Lab and mgconsole. 
+contains everything you need to start as quickly as possible: MemgraphDB,
+Memgraph Lab, and mgconsole.
 
-## How to run query
+## How to run a query
 
 Memgraph uses [Cypher query language](cypher-query-language.md) to work with
 data. If you like command line tools you can use
 [mgconsole](/docs/memgraph/connect-to-memgraph/mgconsole) to execute Cypher
-queries. If you are a fan of graphical interfaces you can use [Memgraph
-Lab](/docs/memgraph-lab). On top of execution of queries, with Memgraph Lab
+queries. If you are a fan of graphical interfaces, you can use [Memgraph
+Lab](/docs/memgraph-lab). On top of the execution of queries, with Memgraph Lab,
 you can import, explore and visualize your data.
 
 

@@ -18,9 +18,8 @@ Use `\u` followed by 4 hex digits in string literals for UTF-16 codepoint and
 
 The openCypher initiative stems from Neo4j's Cypher query language. Following is
 a list of the most important differences between Neo's Cypher and Memgraph's
-openCypher implementation for users that are already familiar with Neo4j. There
-might be other differences not documented here (especially subtle semantic
-ones).
+openCypher implementation for users already familiar with Neo4j. Other
+differences might not be documented here (especially subtle semantic ones).
 
 ### Unsupported constructs
 
@@ -63,8 +62,8 @@ List functions:
 
 Patterns in expressions are not yet supported in Memgraph. For example, Memgraph
 doesn't support `size((n)-->())`. Most of the time, the same functionalities can
-be expressed differently in Memgraph using `OPTIONAL` expansions, function calls, 
-etc.
+be expressed differently in Memgraph using `OPTIONAL` expansions, function
+calls, etc.
 
 ### What is a Cypher alternative for patterns in expressions?
 

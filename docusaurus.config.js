@@ -166,6 +166,14 @@ module.exports = {
               label: "Using functions",
               to: "/cypher-manual/functions",
             },
+            {
+              label: "Query modules",
+              to: "/cypher-manual/query-modules",
+            },
+            {
+              label: "Other features",
+              to: "/cypher-manual/other-features",
+            },
           ],
         },
         {

@@ -37,6 +37,7 @@ module.exports = {
       ],
     },
     "functions",
-
+    "query-modules",
+    "other-features",
   ],
 };

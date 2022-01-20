@@ -14,7 +14,7 @@ Example. Removing all edges of a single type.
 MATCH ()-[edge :type]-() DELETE edge;
 ```
 
-When testing the database, you want to often have a clean start by deleting
+When testing the database, you often want to have a clean start by deleting
 every node and edge in the database. It is reasonable that deleting each node
 should delete all edges coming into or out of that node.
 
@@ -23,16 +23,15 @@ MATCH (node) DELETE node;
 ```
 
 But, openCypher prevents accidental deletion of edges. Therefore, the above
-query will report an error. Instead, you need to use the `DETACH` keyword,
-which will remove edges from a node you are deleting. The following should
-work and *delete everything* in the database.
+query will report an error. Instead, you need to use the `DETACH` keyword, which
+will remove edges from a node you are deleting. The following should work and
+*delete everything* in the database.
 
 ```cypher
 MATCH (node) DETACH DELETE node;
 ```
 
-More examples are
-[here](./clauses/delete.md).
+More examples are [here](./clauses/delete.md).
 
 ## REMOVE
 
