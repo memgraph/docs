@@ -7,9 +7,9 @@ sidebar_label: LOAD CSV Cypher clause
 import Tabs from "@theme/Tabs"; import TabItem from "@theme/TabItem";
 
 The `LOAD CSV` clause enables you to load and use data from a CSV file of your
-choosing in a row-based manner, within a query. We support the Excel CSV
-dialect, as it's the most commonly used one. For the syntax of the clause,
-please check the [Cypher manual](/cypher-manual/clauses/load-csv).
+choosing in a row-based manner, within a query. Memgraph supports the Excel CSV
+dialect, as it's the most common one. For the clause syntax please check the
+[Cypher manual](/cypher-manual/clauses/load-csv).
 
 The clause reads row by row from a CSV file and binds the contents of the parsed
 row to the variable you specified.
@@ -21,12 +21,13 @@ our **[Reference guide](/reference-guide/import-data/load-csv-clause.md)**.
 
 :::
 
-To work with the LOAD CSV clause, we need to have access to our files. If
-working with Docker, check out the section on **[transferring data into a Docker
+When working with the LOAD CSV clause, Memgraph needs to have an access to the
+CSV files you are using.  If you are working with Docker, check out the section on
+**[transferring data into a Docker
 container](#transferring-data-into-a-docker-container)**.
 
-Below, you can find two examples of how to use the CSV Import Tool depending on
-the complexity of your data:
+Below, you can find two examples of how to use the LOAD CSV Cypher clause
+depending on the complexity of your data:
 - [One type of nodes and relationships](#one-type-of-nodes-and-relationships)
 - [Multiple types of nodes and
   relationships](#multiple-types-of-nodes-and-relationships)

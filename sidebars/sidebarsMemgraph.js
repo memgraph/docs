@@ -77,10 +77,10 @@ module.exports = {
         {
           type: "category",
           label: "Kafka",
+          link: {type: 'doc', id: 'import-data/kafka/overview'},
           items: [
-            "import-data/kafka/overview",
-            "import-data/kafka/avro",
             "import-data/kafka/json",
+            "import-data/kafka/avro",
             "import-data/kafka/protobuf",
           ],
         },
