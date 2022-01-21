@@ -28,7 +28,7 @@ Driver](https://github.com/neo4j/neo4j-dotnet-driver).
 
 We'll be using Visual Studio 2019 on Windows 10 to connect a simple . NET
 console application to a running Memgraph instance. If you're using a different
-IDE, the steps might be slightly different, but the code is probably the same or
+IDE, the steps might be slightly different, but the code is either the same or
 very similar.<br />
 
 Let's jump in and connect a simple program to Memgraph.
