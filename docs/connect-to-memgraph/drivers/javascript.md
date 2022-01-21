@@ -10,7 +10,7 @@ queries.
 
 :::note
 
-Running queries directly from a web browser is **not a recommended**
+Running queries directly from a web browser is **not recommended**
 because of additional requirements and possible performance issues. In other
 words, we encourage you to use server-side libraries and clients for top
 performance whenever possible.

@@ -22,9 +22,10 @@ Memgraph and executes simple queries:
 ## Supported Languages
 
 If you want to query Memgraph programmatically, you can do so using the [Bolt
-protocol](https://7687.org/). Bolt protocol was designed for efficient communication with
-graph databases and **Memgraph supports versions 1 and 4** of the protocol. 
-Check out the Bolt protocol drivers for the following programming languages: 
+protocol](https://7687.org/). The Bolt protocol was designed for efficient
+communication with graph databases and **Memgraph supports versions 1 and 4** of
+the protocol. Check out the Bolt protocol drivers for the following programming
+languages: 
 
 - **[Python](https://github.com/memgraph/pymgclient)**
 - **[C/C++](https://github.com/memgraph/mgclient)**

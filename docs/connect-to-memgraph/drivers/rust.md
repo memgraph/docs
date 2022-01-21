@@ -16,8 +16,9 @@ To follow this guide, you will need:
 * A basic understanding of graph databases and the property graph model.
 * **Docker** installed and running. Instructions on how to setup Docker can be
   found on the [official Docker website](https://docs.docker.com/get-docker/).
-* If you are not using Docker, locally installed [**rsmgclient driver**](https://github.com/memgraph/rsmgclient). A
-  Memgraph database adapter for the Rust programming language.
+* A locally installed [**rsmgclient
+  driver**](https://github.com/memgraph/rsmgclient) if you are not using Docker
+  to build the program.
 
 :::info
 
@@ -31,7 +32,7 @@ dependencies. If you don't wish to use Docker, you will need to install the
 
 We'll use a **Dockerized Rust program** to demonstrate how to connect to a
 running Memgraph database instance. If you won't use Docker, the steps
-might be slightly different, but the code either the same or very
+might be slightly different, but the code is either the same or very
 similar.<br />
 
 Let's jump in and connect a simple program to Memgraph.

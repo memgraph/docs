@@ -13,15 +13,15 @@ Memgraph's command-line tool, **mgconsole**.
 
 :::tip
 
-If you installed **Memgraph Platform** with Docker image
+If you installed **Memgraph Platform** with the Docker image
 (`memgraph/memgraph-platform`), mgconsole will start automatically when you run
 the container. Skip the installation steps and continue with [executing
 Cypher queries](#execute-cypher-queries).
 
 :::
 
-If you want to install the mgconsole to query a running Memgraph database
-instance follow the installation steps.
+If you want to install mgconsole to query a running Memgraph database
+instance, follow the installation steps.
 
 <Tabs
   groupId="platform"
@@ -141,7 +141,7 @@ Quit the shell by typing Ctrl-D(eof) or :quit
 memgraph>
 ```
 
-At this point, it is possible to execute openCypher queries against a running
+At this point, it is possible to execute Cypher queries against a running
 Memgraph database instance. Each query needs to end with the `;` (*semicolon*)
 character. For example:
 
@@ -161,10 +161,11 @@ MATCH (u:User)-[r]->(x) RETURN u, r, x;
 
 ## Where to next? {#where-to-next}
 
-If you want to learn more familiar about graph databases and Cypher queries
-visit [Memgraph Playground](https://playground.memgraph.com/) and go through
+If you want to learn more about graph databases and Cypher queries, visit
+[Memgraph Playground](https://playground.memgraph.com/) and go through the
 guided lessons. All the datasets and most of the queries used in the guided
-lessons can also be explored here in documentation, in the [Tutorials](/tutorials/overview.md)
-section, and knowledge about Cypher we've gathered in the [Cypher guide](/cypher-manual).
+lessons can also be explored in the [Tutorials](/tutorials/overview.md) section,
+and knowledge about Cypher is gathered in the [Cypher manual](/cypher-manual).
 
-If you are all good to go on your own - [import your data](/import-data/overview.mdx)!
+If you are all good to go on your own - [import your
+data](/import-data/overview.mdx)!
