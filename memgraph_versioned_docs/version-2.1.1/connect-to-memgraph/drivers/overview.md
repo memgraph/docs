@@ -7,8 +7,8 @@ slug: /connect-to-memgraph/drivers
 
 ## Quick start guides
 
-The following guides describe how to create a simple **`Hello, World!`** program
-that connects to Memgraph and executes simple queries:
+Find out how to create a simple **`Hello, World!`** program that connects to
+Memgraph and executes simple queries:
 
 - **[Python](/connect-to-memgraph/drivers/python.md)**
 - **[Rust](/connect-to-memgraph/drivers/rust.md)**
@@ -21,10 +21,11 @@ that connects to Memgraph and executes simple queries:
 
 ## Supported Languages
 
-If users wish to query Memgraph programmatically, they can do so using the [Bolt
-protocol](https://7687.org/). Bolt was designed for efficient communication with
-graph databases and **Memgraph supports versions 1 and 4** of the protocol. Bolt
-protocol drivers for some popular programming languages are listed below:
+If you want to query Memgraph programmatically, you can do so using the [Bolt
+protocol](https://7687.org/). The Bolt protocol was designed for efficient
+communication with graph databases and **Memgraph supports versions 1 and 4** of
+the protocol. Check out the Bolt protocol drivers for the following programming
+languages: 
 
 - **[Python](https://github.com/memgraph/pymgclient)**
 - **[C/C++](https://github.com/memgraph/mgclient)**
