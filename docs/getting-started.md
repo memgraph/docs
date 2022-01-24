@@ -98,7 +98,7 @@ repository](https://github.com/memgraph/example-streaming-app) and get started.
 
 If you want to know more about Memgraph and learn details of implemented
 features, take a deep dive into our [Reference
-guide](/reference-guide/overview.md) and [Concepts](/concepts/concepts.md).
+guide](/reference-guide/overview.md) and [Concepts](/under-the-hood/overview.md).
 
 ### Power up with MAGE
 

@@ -2,6 +2,7 @@
 id: postgresql
 title: Migrate PostgreSQL database to Memgraph
 sidebar_label: PostgreSQL
+pagination_prev: import-data/overview
 ---
 
 ## Prerequisites
@@ -58,6 +59,8 @@ users_db=# SELECT * FROM user_relationships;
 
   </TabItem>
 </Tabs>
+
+____
 
 ### Migrating
 
