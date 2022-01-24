@@ -171,7 +171,7 @@ CREATE (p1)-[:IS_FRIENDS_WITH]->(p2);
 <details>
   <summary>This is how the graph should look like in Memgraph after the import:</summary>
   <div>
-    <img src={require('../data/import-data/one_type_of_nodes_and_relationships_graph.png').default}/>
+    <img src={require('../data/import-data/load_csv_one_type_of_nodes_and_relationships.png').default}/>
   </div>
 </details>
 
@@ -185,7 +185,7 @@ relationship types.
 <details>
   <summary>Let's say we want to create a graph like this:</summary>
   <div>
-    <img src={require('../data/import-data/multiple_nodes_and_relationships_graph.png').default}/>
+    <img src={require('../data/import-data/load_csv_multiple_nodes_and_relationships.png').default}/>
   </div>
 </details>
 
@@ -227,7 +227,7 @@ for each row with properties based on the parsed row values:
 <details>
   <summary>This is how the graph should look like in Memgraph after the import:</summary>
   <div>
-    <img src={require('../data/import-data/people_nodes_graph.png').default}/>
+    <img src={require('../data/import-data/load_csv_people_nodes.png').default}/>
   </div>
 </details>
 
@@ -267,7 +267,7 @@ SET f.met_in = row.met_in;
 <details>
   <summary>This is how the graph should look like in Memgraph after the import:</summary>
   <div>
-    <img src={require('../data/import-data/people_relationships_graph.png').default}/>
+    <img src={require('../data/import-data/load_csv_people_relationships.png').default}/>
   </div>
 </details>
 
@@ -300,7 +300,7 @@ CREATE (n:Restaurant {id: row.id, name: row.name, menu: row.menu});
 <details>
   <summary>This is how the graph should look like in Memgraph after the import:</summary>
   <div>
-    <img src={require('../data/import-data/restaurant_nodes_graph.png').default}/>
+    <img src={require('../data/import-data/load_csv_restaurant_nodes.png').default}/>
   </div>
 </details>
 
@@ -339,7 +339,7 @@ SET ate.liked = ToBoolean(row.liked);
 <details>
   <summary>This is how the graph should look like in Memgraph after the import:</summary>
   <div>
-    <img src={require('../data/import-data/restaurant_relationships_graph.png').default}/>
+    <img src={require('../data/import-data/load_csv_restaurants_relationships.png').default}/>
   </div>
 </details>
 
@@ -347,27 +347,3 @@ Congratulations! You've imported all the CSV files!
 
 </TabItem>
 </Tabs>
-
-<!-- 
-## Transferring data into a Docker container {#transferring-data-into-a-docker-container}
-
-If you are using Docker to run Memgraph, you will need to copy the files from
-your local directory into the Docker container where Memgraph can access them. 
-
-**1.** Start your Memgraph instance using Docker.
-
-**2.** Find the `CONTAINER ID` of the Memgraph Docker container by running:
-
-```
-docker ps
-```
-
-**3.** Copy a file from your current directory to the container with the command:
-
-```
-docker cp ./file_to_copy.csv <CONTAINER ID>:/file_to_copy.csv
-```
-
-The file is now inside your Docker container, and you can import it using the
-`LOAD CSV` clause.
--->

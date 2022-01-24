@@ -155,7 +155,7 @@ Next time you run Memgraph, the dataset will be loaded.
 <details>
   <summary>After the import, the graph in Memgraph should look like this:</summary>
   <div>
-    <img src={require('../data/import-data/import_tool_one_type_graph.png').default}/>
+    <img src={require('../data/import-data/import_tool_one_type_nodes_and_relationships.png').default}/>
   </div>
 </details>
 
@@ -321,6 +321,6 @@ The next time you run Memgraph, the dataset will be loaded.
 <details>
   <summary>After the import, the graph in Memgraph should look like this:</summary>
   <div>
-    <img src={require('../data/import-data/import_tool_multiple_types_graph.png').default}/>
+    <img src={require('../data/import-data/import_tool_multiple_type_nodes_and_relationships.png').default}/>
   </div>
 </details>

@@ -110,6 +110,13 @@ mgconsole --help
   </TabItem>
 </Tabs>
 
+<details>
+  <summary>This is how the graph should look like in Memgraph after the import:</summary>
+  <div>
+    <img src={require('../data/import-data/cypherl_one_type_nodes_and_relationships.png').default}/>
+  </div>
+</details>
+
 ### Multiple types of nodes and relationships
 
 Copy the following into `queries.cypherl` file:
@@ -120,10 +127,10 @@ CREATE (p:Person {id: "101", name: "Alex", age: 15, city: "Paris"});
 CREATE (p:Person {id: "102", name: "Sarah", age: 17, city: "London"});
 CREATE (p:Person {id: "103", name: "Mia", age: 25, city: "Zagreb"});
 CREATE (p:Person {id: "104", name: "Lucy", age: 21, city: "Paris"});
-CREATE (r:Restaurant {id: "200", name: " Mc Donalds", menu: " Fries BigMac McChicken Apple Pie"});
-CREATE (r:Restaurant {id: "201", name: " KFC", menu: " Fried Chicken Fries Chicken Bucket"});
-CREATE (r:Restaurant {id: "202", name: " Subway", menu: " Ham Sandwich Turkey Sandwich Foot-long"});
-CREATE (r:Restaurant {id: "203", name: " Dominos", menu: " Pepperoni Pizza Double Dish Pizza Cheese filled Crust"});
+CREATE (r:Restaurant {id: "200", name: "Mc Donalds", menu: "Fries BigMac McChicken Apple Pie"});
+CREATE (r:Restaurant {id: "201", name: "KFC", menu: "Fried Chicken Fries Chicken Bucket"});
+CREATE (r:Restaurant {id: "202", name: "Subway", menu: "Ham Sandwich Turkey Sandwich Foot-long"});
+CREATE (r:Restaurant {id: "203", name: "Dominos", menu: "Pepperoni Pizza Double Dish Pizza Cheese filled Crust"});
 MATCH (u:Person), (v:Person) WHERE u.id = "100" AND v.id = "103" CREATE (u)-[:IS_FRIENDS_WITH {met_in: "2014"}]->(v);
 MATCH (u:Person), (v:Person) WHERE u.id = "101" AND v.id = "104" CREATE (u)-[:IS_FRIENDS_WITH {met_in: "2001"}]->(v);
 MATCH (u:Person), (v:Person) WHERE u.id = "102" AND v.id = "100" CREATE (u)-[:IS_FRIENDS_WITH {met_in: "2005"}]->(v);
@@ -208,3 +215,10 @@ mgconsole --help
 
   </TabItem>
 </Tabs>
+
+<details>
+  <summary>This is how the graph should look like in Memgraph after the import:</summary>
+  <div>
+    <img src={require('../data/import-data/cypherl_multiple_type_nodes_and_relationships.png').default}/>
+  </div>
+</details>
