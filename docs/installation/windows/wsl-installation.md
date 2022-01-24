@@ -1,18 +1,28 @@
 ---
 id: wsl-installation
-title: Install Memgraph on Windows with WSL
+title: Install Memgraph DB on Windows with WSL
 sidebar_label: Windows Subsystem for Linux
 slug: /install-memgraph-on-windows-wsl
+pagination_prev: installation/overview
+pagination_next: connect-to-memgraph/overview
 ---
 
 This article briefly outlines the basic steps necessary to install and run
 Memgraph on Windows with the Windows Subsystem for Linux.
 
+:::info
+
+Newer versions of Memgraph are currently **not backward compatible** with older
+versions. That is why you won't be able to load storage snapshots between
+different versions.
+
+:::
+
 ## Prerequisites
 
 Before you proceed with the installation guide make sure that you have:
 
-- Downloaded the latest **Memgraph Ubuntu package** which can be found on the
+- The latest **Memgraph Ubuntu package** which can be downloaded from the
   [Memgraph download hub](https://memgraph.com/download/).
 - Installed **Windows Subsystem for Linux (WSL)**. For detailed instructions,
   refer to the [Microsoft
@@ -26,8 +36,8 @@ Before you proceed with the installation guide make sure that you have:
 wsl
 ```
 
-**2.** After downloading the Memgraph Ubuntu package, install Memgraph by running the
-following command in the terminal:
+**2.** Install Memgraph DB using the latest Memgraph Ubuntu package and by running the
+following command in the Ubuntu terminal:
 
 ```console
 sudo dpkg -i /mnt/<drive>/Users/<windows username>/Downloads/memgraph_<version>.deb
@@ -42,11 +52,12 @@ sudo runuser -l memgraph -c '/usr/lib/memgraph/memgraph'
 If successful, you should receive an output similar to the following:
 
 ```
-You are running Memgraph vX.X.X-community
+You are running Memgraph vX.X.X
 ```
 
 If you want to start Memgraph with different configuration settings, check out
-the [Configuration section](#configuration). At this point, Memgraph is ready for you
+the [Configuration section](#configuration).<br/>
+At this point, Memgraph is ready for you
 to [submit queries](/connect-to-memgraph/overview.mdx).
 
 :::caution
@@ -74,17 +85,19 @@ configuring the Memgraph package.
 
 ## Configuration
 
-The Memgraph configuration is available in `/etc/memgraph/memgraph.conf`. If the
-configuration file is altered, Memgraph needs to be restarted. To learn about
+The Memgraph configuration file is available at `/etc/memgraph/memgraph.conf`. If the
+configuration file is altered, Memgraph needs to be restarted. 
+
+To learn about
 all the configuration options, check out the [Reference
 guide](/reference-guide/configuration.md).
 
 ## Where to next?
 
 To learn how to query the database, take a look at the
-**[Querying](/connect-to-memgraph/overview.mdx)** guide or **[Memgraph
+**[querying](/connect-to-memgraph/overview.mdx)** guide or **[Memgraph
 Playground](https://playground.memgraph.com/)** for interactive tutorials.<br/>
-Visit the **[Building applications](/connect-to-memgraph/methods/drivers.md)**
+Visit the **[Building applications](/connect-to-memgraph/drivers/overview.md)**
 page if you need to connect to the database programmatically.
 
 ## Getting help

@@ -3,16 +3,26 @@ id: rpm-installation
 title: Install Memgraph from RPM package
 sidebar_label: RPM package
 slug: /install-memgraph-from-rpm
+pagination_prev: installation/overview
+pagination_next: connect-to-memgraph/overview
 ---
 
 This article briefly outlines the basic steps necessary to install and run
 Memgraph from a RPM package.
 
+:::info
+
+Newer versions of Memgraph are currently **not backward compatible** with older
+versions. That is why you won't be able to load storage snapshots between
+different versions.
+
+:::
+
 ## Prerequisites
 
 Before you proceed with the installation guide make sure that you have:
-* Downloaded the latest **Memgraph RPM Package** which can be [found
-  here](https://memgraph.com/download/).
+* The latest **Memgraph RPM Package** which can be downloaded from the
+  [Memgraph download hub](https://memgraph.com/download/).
 
 :::note
 
@@ -28,7 +38,7 @@ After downloading the Memgraph RPM package, you can install it by issuing the
 following command:
 
 ```console
-yum --nogpgcheck localinstall /path-to/memgraph-<version>.rpm
+sudo yum --nogpgcheck localinstall /path-to/memgraph-<version>.rpm
 ```
 
 :::info
@@ -53,7 +63,7 @@ journalctl --unit memgraph
 If successful, you should receive an output similar to the following:
 
 ```console
-You are running Memgraph vX.X.X-community
+You are running Memgraph vX.X.X
 ```
 
 If you want the Memgraph service to start automatically on each startup, run the
@@ -64,7 +74,7 @@ systemctl enable memgraph
 ```
 
 If you want to start Memgraph with different configuration settings, check out
-the [section below](#configuration). At this point, Memgraph is ready for you
+the [Configuration section](#configuration). At this point, Memgraph is ready for you
 to [submit queries](/connect-to-memgraph/overview.mdx).
 
 ## Stopping Memgraph
@@ -85,9 +95,9 @@ guide](/reference-guide/configuration.md).
 ## Where to next?
 
 To learn how to query the database, take a look at the
-**[Querying](/connect-to-memgraph/overview.mdx)** guide or **[Memgraph
+**[querying](/connect-to-memgraph/overview.mdx)** guide or **[Memgraph
 Playground](https://playground.memgraph.com/)** for interactive tutorials.<br/>
-Visit the **[Building applications](/connect-to-memgraph/methods/drivers.md)**
+Visit the **[Building applications](/connect-to-memgraph/drivers/overview.md)**
 page if you need to connect to the database programmatically.
 
 ## Getting help

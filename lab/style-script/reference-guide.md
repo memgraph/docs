@@ -4,9 +4,8 @@ title: Style script reference guide
 sidebar_label: Reference guide
 ---
 
-Style script is a language for customizing the visual display of graphs. The main
-building blocks of style script are expressions and directives. Style script
-files are a sequence of expressions and directives.
+The main building blocks of Style script are expressions and directives. Style
+script files are a sequence of expressions and directives.
 
 ## Expressions
 
@@ -16,11 +15,11 @@ example expression
 Add(2, 5)
   -> 7
 ```
-creates a new value 7 from values 2 and 5. There are a lot of functions built into style script so there are even more ways to combine values. There is even a
+creates a new value 7 from values 2 and 5. There are a lot of functions built into Style script so there are even more ways to combine values. There is even a
 function to create new functions.
 
 When expressions are evaluated, values are created. There are several types of
-style script values: `Boolean`, `Color`, `Number`, `String`, `Array`,
+Style script values: `Boolean`, `Color`, `Number`, `String`, `Array`,
 `Dictionary`, `Function`and `Null`.
 
 An expression can be either literal expressions, name expressions or function

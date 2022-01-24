@@ -3,15 +3,22 @@ module.exports = {
     "getting-started",
     {
       type: "category",
-      label: "Installation",
+      label: "Install Memgraph",
+      link: {type: 'doc', id: 'installation/overview'},
       items: [
-        "installation/overview",
         {
           type: "category",
           label: "Windows",
           items: [
             "installation/windows/docker-installation",
-            "installation/windows/wsl-installation",
+            {
+              type: "category",
+              label: "Install Memgraph DB",
+              items: [
+                "installation/windows/docker-db-installation",
+                "installation/windows/wsl-installation",
+              ],
+            }, 
             "installation/windows/windows-installation-troubleshooting",
           ],
         },
@@ -20,6 +27,7 @@ module.exports = {
           label: "macOS",
           items: [
             "installation/macos/docker-installation",
+            "installation/macos/docker-db-installation",
             "installation/macos/macos-installation-troubleshooting",
           ],
         },
@@ -28,9 +36,16 @@ module.exports = {
           label: "Linux",
           items: [
             "installation/linux/docker-installation",
-            "installation/linux/ubuntu-installation",
-            "installation/linux/debian-installation",
-            "installation/linux/rpm-installation",
+            {
+              type: "category",
+              label: "Install Memgraph DB",
+              items: [
+                "installation/linux/docker-db-installation",
+                "installation/linux/ubuntu-installation",
+                "installation/linux/debian-installation",
+                "installation/linux/rpm-installation",
+              ],
+            }, 
             "installation/linux/linux-installation-troubleshooting",
           ],
         },
@@ -39,33 +54,27 @@ module.exports = {
     {
       type: "category",
       label: "Connect to Memgraph",
+      link: {type: 'doc', id: 'connect-to-memgraph/overview'},
       items: [
-        "connect-to-memgraph/overview",
+        {
+          type: "link",
+          label: "Memgraph Lab",
+          href: "https://memgraph.com/docs/memgraph-lab",
+        },
+        "connect-to-memgraph/mgconsole",
         {
           type: "category",
-          label: "Methods",
+          label: "Drivers",
+          link: {type: 'doc', id: 'connect-to-memgraph/drivers/overview'},
           items: [
-            "connect-to-memgraph/methods/mgconsole",
-            {
-              type: "link",
-              label: "Memgraph Lab",
-              href: "https://memgraph.com/docs/memgraph-lab",
-            },
-            "connect-to-memgraph/methods/drivers",
-            {
-              type: "category",
-              label: "Building applications",
-              items: [
-                "connect-to-memgraph/methods/building-applications/python",
-                "connect-to-memgraph/methods/building-applications/rust",
-                "connect-to-memgraph/methods/building-applications/c-sharp",
-                "connect-to-memgraph/methods/building-applications/java",
-                "connect-to-memgraph/methods/building-applications/go",
-                "connect-to-memgraph/methods/building-applications/nodejs",
-                "connect-to-memgraph/methods/building-applications/javascript",
-                "connect-to-memgraph/methods/building-applications/php",
-              ],
-            },
+            "connect-to-memgraph/drivers/python",
+            "connect-to-memgraph/drivers/rust",
+            "connect-to-memgraph/drivers/c-sharp",
+            "connect-to-memgraph/drivers/java",
+            "connect-to-memgraph/drivers/go",
+            "connect-to-memgraph/drivers/nodejs",
+            "connect-to-memgraph/drivers/javascript",
+            "connect-to-memgraph/drivers/php",
           ],
         },
       ],
@@ -73,8 +82,8 @@ module.exports = {
     {
       type: "category",
       label: "Import data",
+      link: {type: 'doc', id: 'import-data/overview'},
       items: [
-        "import-data/overview",
         {
           type: "category",
           label: "CSV",
@@ -104,8 +113,8 @@ module.exports = {
     {
       type: "category",
       label: "Tutorials",
+      link: {type: 'doc', id: 'tutorials/overview'},
       items: [
-        "tutorials/overview",
         "tutorials/analyzing-ted-talks",
         "tutorials/backpacking-through-europe",
         "tutorials/exploring-the-european-road-network",
@@ -120,68 +129,68 @@ module.exports = {
     },
     {
       type: "category",
-      label: "Database functionalities",
+      label: "How-to guides",
+      link: {type: 'doc', id: 'how-to-guides/overview'},
       items: [
-        "database-functionalities/overview",
         "reference-guide/backup",
         {
           type: "category",
-          label: "Connecting to stream sources",
+          label: "Connect to stream sources",
           items: [
             {
               type: "category",
               label: "Kafka",
               items: [
-                "database-functionalities/streams/kafka/kafka-streams",
-                "database-functionalities/streams/kafka/implement-transformation-module",
+                "how-to-guides/streams/kafka/kafka-streams",
+                "how-to-guides/streams/kafka/implement-transformation-module",
               ],
             },
             {
               type: "category",
               label: "Pulsar",
               items: [
-                "database-functionalities/streams/pulsar/pulsar-streams",
-                "database-functionalities/streams/pulsar/implement-transformation-module",
+                "how-to-guides/streams/pulsar/pulsar-streams",
+                "how-to-guides/streams/pulsar/implement-transformation-module",
               ],
             },
           ],
         },
         {
           type: "category",
-          label: "Enforcing constraints",
+          label: "Enforce constraints",
           items: [
-            "database-functionalities/constraints/existence-constraint",
-            "database-functionalities/constraints/uniqueness-constraint",
+            "how-to-guides/constraints/existence-constraint",
+            "how-to-guides/constraints/uniqueness-constraint",
           ],
         },
         {
           type: "category",
           label: "Inspect and optimize queries",
           items: [
-            "database-functionalities/inspecting-queries",
-            "database-functionalities/profiling-queries",
+            "how-to-guides/inspecting-queries",
+            "how-to-guides/profiling-queries",
           ],
         },
-        "database-functionalities/memory-control",
-        "database-functionalities/networkx",
+        "how-to-guides/memory-control",
+        "how-to-guides/networkx",
         {
           type: "category",
-          label: "Query modules",
+          label: "Use query modules",
           items: [
-            "database-functionalities/query-modules/overview",
-            "database-functionalities/query-modules/implement-query-modules",
+            "how-to-guides/query-modules/overview",
+            "how-to-guides/query-modules/implement-query-modules",
           ],
         },
-        "database-functionalities/replication",
-        //"database-functionalities/tensorflow-setup",
-        "database-functionalities/triggers",
+        "how-to-guides/replication",
+        //"how-to-guides/tensorflow-setup",
+        "reference-guide/triggers",
 
         {
           type: "category",
           label: "Enterprise features",
           items: [
-            "database-functionalities/manage-users-using-ldap",
-            "database-functionalities/manage-user-privileges",
+            "how-to-guides/manage-users-using-ldap",
+            "how-to-guides/manage-user-privileges",
           ],
         },
       ],
@@ -189,8 +198,8 @@ module.exports = {
     {
       type: "category",
       label: "Reference guide",
+      link: {type: 'doc', id: 'reference-guide/overview'},
       items: [
-        "reference-guide/overview",
         "reference-guide/backup",
         "reference-guide/configuration",
         "reference-guide/graph-algorithms",
@@ -278,7 +287,7 @@ module.exports = {
         },
         "reference-guide/temporal-types",
         //"reference-guide/tensorflow",
-        "database-functionalities/triggers",
+        "reference-guide/triggers",
         {
           type: "category",
           label: "Enterprise features",
@@ -295,8 +304,8 @@ module.exports = {
     {
       type: "category",
       label: "Concepts",
+      link: {type: 'doc', id: 'concepts/concepts'},
       items: [
-        "concepts/concepts",
         "concepts/storage",
         "concepts/graph-algorithms",
         "concepts/indexing",

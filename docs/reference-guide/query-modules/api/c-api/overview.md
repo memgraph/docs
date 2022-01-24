@@ -15,7 +15,7 @@ source file can be found in the Memgraph installation directory, under
 
 For an example of how to implement query modules in C, take a look at a guide
 about [query modules implementation using the C
-API](/database-functionalities/query-modules/implement-query-modules.md#c-api).
+API](/how-to-guides/query-modules/implement-query-modules.md#c-api).
 
 :::
 

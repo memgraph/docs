@@ -4,14 +4,25 @@ title: Transformation modules C API
 sidebar_label: C API
 ---
 
-This is the additional API documentation for `mg_procedure.h` that contains declarations of all functions that can be used to implement a transformation. The source file can be found in the Memgraph installation directory, under `include/memgraph`. On the standard Debian installation, this will be under `/usr/include/memgraph`.
+This is the additional API documentation for `mg_procedure.h` that contains
+declarations of all functions that can be used to implement a transformation.
+The source file can be found in the Memgraph installation directory, under
+`include/memgraph`. On the standard Debian installation, this will be under
+`/usr/include/memgraph`.
 
 :::caution
-**NOTE:** This part of the documentation is still under development. An updated version will soon be available.
+
+**NOTE:** This part of the documentation is still under development. An updated
+version will soon be available.
+
 :::
 
 :::tip
-For an example of how to implement transformation modules in C, check out [this guide](/database-functionalities/streams/kafka/implement-transformation-module.md#c-api).
+
+For an example of how to implement transformation modules in C, check out the [C
+API
+guide](/how-to-guides/streams/kafka/implement-transformation-module.md#c-api).
+
 :::
 
 ## Types

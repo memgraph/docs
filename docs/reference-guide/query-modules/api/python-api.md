@@ -15,7 +15,7 @@ file can be found in the Memgraph installation directory, under
 
 For an example of how to implement query modules in Python, check out the
 [Python API
-guide](/database-functionalities/query-modules/implement-query-modules.md#python-api).
+guide](/how-to-guides/query-modules/implement-query-modules.md#python-api).
 
 :::
 
