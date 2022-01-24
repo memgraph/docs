@@ -23,18 +23,36 @@ module.exports = {
             "how-to-guides/query-builder/create-query",
           ],
         },
+        {
+          type: "category",
+          label: "Manage streams",
+          items: [
+            "how-to-guides/streams/kafka-streams",
+            "how-to-guides/streams/pulsar-streams",
+          ],
+        },
+        "how-to-guides/triggers/triggers",
       ],
     },
+    /*
     {
       type: "category",
       label: "Tutorials",
       items: ["tutorials/overview"],
     },
+    */
     "networkx",
+    /*
     {
       type: "category",
       label: "Reference",
       items: ["reference/overview"],
+    },
+    */
+    {
+      type: "link",
+      label: "Reference",
+      href: "https://somewhere",
     },
     "changelog",
   ],
