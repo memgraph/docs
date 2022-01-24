@@ -109,9 +109,9 @@ Then, run the import tool with the following command, but be careful of three th
 <ol>
   <li>Check the image name you are using is correct:</li>
   <ul>
-     <li>If you downloaded <b>Memgraph</b> Platform leave the current image name <code>memgraph/memgraph-platform</code>.</li>
+     <li>If you downloaded <b>Memgraph Platform</b> leave the current image name <code>memgraph/memgraph-platform</code>.</li>
      <li>If you downloaded <b>MemgraphDB</b> replace the current image name with <code>memgraph</code>.</li>
-     <li>If you downloaded <b>MAGE</b> use replace the current image name with <code>memgraph/memgraph-MAGE</code>.</li>
+     <li>If you downloaded <b>MAGE</b> replace the current image name with <code>memgraph/memgraph-mage</code>.</li>
    </ul>
    <p> </p>
  <li>If you are using Docker on <b>Windows</b> and execute commands in PowerShell change the line breaks from \ to `.</li>
@@ -186,7 +186,7 @@ You can check the contents of the files and its description in the tabs below.
 
   <TabItem value='pn'>
 
-The [`people_nodes.csv`](https://public-assets.memgraph.com/import-data/csv-import-tool/multiple-types-nodes/people_nodes.csv) file contains the peope nodes with `name`, `age`, `city` and `label` properties.
+The [`people_nodes.csv`](https://public-assets.memgraph.com/import-data/csv-import-tool/multiple-types-nodes/people_nodes.csv) file contains the people nodes with `name`, `age`, `city` and `label` properties.
 
 ```csv
 id:ID(PERSON_ID),name:string,age:int,city:string,:LABEL
@@ -247,7 +247,7 @@ The [`restaurants_relationships.csv`](https://public-assets.memgraph.com/import-
 
 ____
 
-Lets import 4 files using the CSV import tool. 
+Let's import 4 files using the CSV import tool. 
 
 <Tabs
   groupId="platform"
@@ -275,9 +275,9 @@ Then, run the import tool with the following command, but be careful of three th
 <ol>
   <li>Check the image name you are using is correct:</li>
   <ul>
-     <li>If you downloaded <b>Memgraph</b> Platform leave the current image name <code>memgraph/memgraph-platform</code>.</li>
+     <li>If you downloaded <b>Memgraph Platform</b> leave the current image name <code>memgraph/memgraph-platform</code>.</li>
      <li>If you downloaded <b>MemgraphDB</b> replace the current image name with <code>memgraph</code>.</li>
-     <li>If you downloaded <b>MAGE</b> use replace the current image name with <code>memgraph/memgraph-MAGE</code>.</li>
+     <li>If you downloaded <b>MAGE</b> replace the current image name with <code>memgraph/memgraph-mage</code>.</li>
    </ul>
   <p> </p  >
   <li>If you are using Docker on <b>Windows</b> and execute commands in PowerShell change the line breaks from \ to `.</li>

@@ -10,7 +10,7 @@ When Memgraph is running, Cypher queries are imported by running
 [mgconsole](/connect-to-memgraph/mgconsole.md) in non-interactive mode and
 importing data saved in a `.cypherl` file. 
 
-The great thing about importing data with the .cypherl file is that you need
+The great thing about importing data with the `.cypherl` file is that you need
 only one file to cover both nodes and relationships. But it can be tricky to
 actually write the queries for creating nodes and relationships yourself. If you
 haven't written any queries yet, we highly suggest you check our [Cypher
@@ -67,14 +67,13 @@ command, but be careful of four things:
   <p> </p>
   <li>Check the image name you are using is correct:</li>
   <ul>
-     <li>If you downloaded <b>Memgraph</b> Platform leave the current image name <code>memgraph/memgraph-platform</code>.</li>
+     <li>If you downloaded <b>Memgraph Platform</b> leave the current image name <code>memgraph/memgraph-platform</code>.</li>
      <li>If you downloaded <b>MemgraphDB</b> replace the current image name with <code>memgraph</code>.</li>
-     <li>If you downloaded <b>MAGE use</b> replace the current image name with <code>memgraph/memgraph-MAGE</code>.</li>
+     <li>If you downloaded <b>MAGE</b> replace the current image name with <code>memgraph/memgraph-mage</code>.</li>
    </ul>
    <p> </p>
-   <li>Remember to replace `HOST` with a valid IP of the container (see the [Note for
-Docker
-users](/how-to-guides/work-with-docker.md#docker-container-ip-address)).</li>
+   <li>Remember to replace <code>HOST</code> with a valid IP of the container (see the 
+   <a href="/memgraph/how-to-work-with-docker#docker-container-ip-address"> Note for Docker users</a>).</li>
    <p> </p>
  <li>Check that the paths of the files you want to import are correct.</li>
 </ol>
@@ -121,23 +120,23 @@ CREATE (p:Person {id: "101", name: "Alex", age: 15, city: "Paris"});
 CREATE (p:Person {id: "102", name: "Sarah", age: 17, city: "London"});
 CREATE (p:Person {id: "103", name: "Mia", age: 25, city: "Zagreb"});
 CREATE (p:Person {id: "104", name: "Lucy", age: 21, city: "Paris"});
-CREATE (r:Restraunt {id: "200", name: " Mc Donalds", menu: " Fries BigMac McChicken Apple Pie"});
-CREATE (r:Restraunt {id: "201", name: " KFC", menu: " Fried Chicken Fries Chicken Bucket"});
-CREATE (r:Restraunt {id: "202", name: " Subway", menu: " Ham Sandwich Turkey Sandwich Foot-long"});
-CREATE (r:Restraunt {id: "203", name: " Dominos", menu: " Pepperoni Pizza Double Dish Pizza Cheese filled Crust"});
+CREATE (r:Restaurant {id: "200", name: " Mc Donalds", menu: " Fries BigMac McChicken Apple Pie"});
+CREATE (r:Restaurant {id: "201", name: " KFC", menu: " Fried Chicken Fries Chicken Bucket"});
+CREATE (r:Restaurant {id: "202", name: " Subway", menu: " Ham Sandwich Turkey Sandwich Foot-long"});
+CREATE (r:Restaurant {id: "203", name: " Dominos", menu: " Pepperoni Pizza Double Dish Pizza Cheese filled Crust"});
 MATCH (u:Person), (v:Person) WHERE u.id = "100" AND v.id = "103" CREATE (u)-[:IS_FRIENDS_WITH {met_in: "2014"}]->(v);
 MATCH (u:Person), (v:Person) WHERE u.id = "101" AND v.id = "104" CREATE (u)-[:IS_FRIENDS_WITH {met_in: "2001"}]->(v);
 MATCH (u:Person), (v:Person) WHERE u.id = "102" AND v.id = "100" CREATE (u)-[:IS_FRIENDS_WITH {met_in: "2005"}]->(v);
 MATCH (u:Person), (v:Person) WHERE u.id = "102" AND v.id = "103" CREATE (u)-[:IS_FRIENDS_WITH {met_in: "2017"}]->(v);
 MATCH (u:Person), (v:Person) WHERE u.id = "103" AND v.id = "104" CREATE (u)-[:IS_FRIENDS_WITH {met_in: "2005"}]->(v);
 MATCH (u:Person), (v:Person) WHERE u.id = "104" AND v.id = "102" CREATE (u)-[:IS_FRIENDS_WITH {met_in: "2021"}]->(v);
-MATCH (u:Person), (v:Restraunt) WHERE u.id = "100" AND v.id = "200" CREATE (u)-[:ATE_AT {liked: true}]->(v);
-MATCH (u:Person), (v:Restraunt) WHERE u.id = "102" AND v.id = "202" CREATE (u)-[:ATE_AT {liked: false}]->(v);
-MATCH (u:Person), (v:Restraunt) WHERE u.id = "102" AND v.id = "203" CREATE (u)-[:ATE_AT {liked: false}]->(v);
-MATCH (u:Person), (v:Restraunt) WHERE u.id = "102" AND v.id = "200" CREATE (u)-[:ATE_AT {liked: true}]->(v);
+MATCH (u:Person), (v:Restaurant) WHERE u.id = "100" AND v.id = "200" CREATE (u)-[:ATE_AT {liked: true}]->(v);
+MATCH (u:Person), (v:Restaurant) WHERE u.id = "102" AND v.id = "202" CREATE (u)-[:ATE_AT {liked: false}]->(v);
+MATCH (u:Person), (v:Restaurant) WHERE u.id = "102" AND v.id = "203" CREATE (u)-[:ATE_AT {liked: false}]->(v);
+MATCH (u:Person), (v:Restaurant) WHERE u.id = "102" AND v.id = "200" CREATE (u)-[:ATE_AT {liked: true}]->(v);
 MATCH (u:Person), (v:Restraunt) WHERE u.id = "103" AND v.id = "201" CREATE (u)-[:ATE_AT {liked: true}]->(v);
-MATCH (u:Person), (v:Restraunt) WHERE u.id = "104" AND v.id = "201" CREATE (u)-[:ATE_AT {liked: false}]->(v);
-MATCH (u:Person), (v:Restraunt) WHERE u.id = "101" AND v.id = "200" CREATE (u)-[:ATE_AT {liked: true}]->(v);
+MATCH (u:Person), (v:Restaurant) WHERE u.id = "104" AND v.id = "201" CREATE (u)-[:ATE_AT {liked: false}]->(v);
+MATCH (u:Person), (v:Restaurant) WHERE u.id = "101" AND v.id = "200" CREATE (u)-[:ATE_AT {liked: true}]->(v);
 ```
 
 The first five queries create nodes for people, the following four queries
@@ -165,14 +164,13 @@ command, but be careful of four things:
   <p> </p>
   <li>Check the image name you are using is correct:</li>
   <ul>
-     <li>If you downloaded <b>Memgraph</b> Platform leave the current image name <code>memgraph/memgraph-platform</code>.</li>
+     <li>If you downloaded <b>Memgraph Platform</b> leave the current image name <code>memgraph/memgraph-platform</code>.</li>
      <li>If you downloaded <b>MemgraphDB</b> replace the current image name with <code>memgraph</code>.</li>
-     <li>If you downloaded <b>MAGE use</b> replace the current image name with <code>memgraph/memgraph-MAGE</code>.</li>
+     <li>If you downloaded <b>MAGE</b> replace the current image name with <code>memgraph/memgraph-mage</code>.</li>
    </ul>
    <p> </p>
-   <li>Remember to replace `HOST` with a valid IP of the container (see the [Note for
-Docker
-users](/how-to-guides/work-with-docker.md#docker-container-ip-address)).</li>
+   <li>Remember to replace <code>HOST</code> with a valid IP of the container (see the 
+   <a href="/memgraph/how-to-work-with-docker#docker-container-ip-address"> Note for Docker users</a>).</li>
    <p> </p>
  <li>Check that the paths of the files you want to import are correct.</li>
 </ol>

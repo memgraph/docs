@@ -22,7 +22,7 @@ our **[Reference guide](/reference-guide/import-data/load-csv-clause.md)**.
 
 :::
 
-## Transferring CSV files into a Docker container (#transfer)
+## Transferring CSV files into a Docker container {#transfer}
 
 When working with the LOAD CSV clause, Memgraph needs to have an access to the
 CSV files you are using.  If you are working with Docker, you need to transfer
