@@ -990,7 +990,7 @@ module.exports = {
           },
           //Renaming Concepts to Under the hood
           {
-            to: "/memgraph/under-the-hood/",
+            to: "/memgraph/under-the-hood",
             from: ["/memgraph/concepts"],
           },
           {
