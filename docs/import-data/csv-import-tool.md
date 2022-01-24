@@ -1,13 +1,14 @@
 ---
 id: csv-import-tool
-title: CSV Import Tool
-sidebar_label: CSV Import Tool
+title: CSV import tool
+sidebar_label: CSV import tool
+pagination_prev: import-data/overview
 ---
 
 import Tabs from "@theme/Tabs"; import TabItem from "@theme/TabItem";
 
-CSV is a universal and very versatile data format used to store large quantities
-of data.  Each Memgraph database instance has a CSV import tool installed called
+CSV is a universal and a very versatile data format used to store large quantities
+of data. Each Memgraph database instance includes a CSV import tool called
 `mg_import_csv`.  The CSV import tool should be used for initial bulk ingestion
 of data into the database.  Upon ingestion, the CSV importer creates a snapshot
 that will be used by the database to recover its state on its next startup.
@@ -15,110 +16,40 @@ that will be used by the database to recover its state on its next startup.
 If you are already familiar with the Neo4j bulk import tool, then using the
 `mg_import_csv` tool should be easy.  The CSV import tool is fully compatible
 with the [Neo4j CSV
-format](https://neo4j.com/docs/operations-manual/current/tools/import/).  If you
-already have a pipeline set-up for Neo4j, you should only replace `neo4j-admin
+format](https://neo4j.com/docs/operations-manual/current/tools/import/). If you
+already have a pipeline set-up for Neo4j, you should only replace<br/>`neo4j-admin
 import` with `mg_import_csv`.
 
 :::info
 
-For more detailed information about the CSV Import Tool, check our [Reference
+For more detailed information about the CSV import tool, check our [Reference
 guide](/memgraph/reference-guide/import-data/csv-import-tool).
 
 :::
 
-### How to use the CSV Import Tool?
+Importing CSV data using the `mg_import_csv` should be a one-time operation done
+before running Memgraph. In other words, this tool should not be used to import
+data into an already running Memgraph instance.
 
-<Tabs
-  groupId="platform"
-  defaultValue="docker"
-  values={[
-    {label: 'Docker 🐳', value: 'docker'},
-    {label: 'Linux', value: 'linux'}
-  ]}>
-  <TabItem value="docker">
+If you are using Docker, before the import you need to transfer CSV files where
+the Docker container can see them. 
 
-:::note
+Please check the examples below to find out how to use the import tool based on
+the complexity of your data.
 
-If you installed Memgraph through Docker Hub, the name of the Docker image
-`memgraph` should be replaced with `memgraph/memgraph-platform` if you didn't
-change the image tag.
+## Examples
 
-:::
-
-If you installed Memgraph using Docker, you will need to run the importer using
-the following command:
-
-```console
-docker run -v mg_lib:/var/lib/memgraph -v mg_import:/import-data --entrypoint=mg_import_csv memgraph/memgraph-platform
-```
-
-:::caution
-
-This is an incomplete command as it's missing the files that need to be
-imported. It will result with a `The --nodes flag is required!` error. You can
-find a complete example [below](#examples).
-
-:::
-
-For information on other options, run:
-
-```bash
-docker run --entrypoint=mg_import_csv memgraph/memgraph-platform --help
-```
-
-  </TabItem>
-  <TabItem value= 'linux'>
-
-The import tool is run from the console, using the `mg_import_csv` command.
-The tool should be run as user `memgraph`, using the following command:
-
-```
-sudo -u memgraph mg_import_csv --nodes <nodes-file>.csv --relationships <relationships-file>.csv
-```
-
-For information on other options, run:
-
-```bash
-sudo -u memgraph mg_import_csv --help
-```
-
-  </TabItem>
-</Tabs>
-
-Below, you can find two examples of how to use the CSV Import Tool depending on
+Here are two examples of how to use the CSV import tool depending on
 the complexity of your data:
 - [One type of nodes and relationships](#one-type-of-nodes-and-relationships)
 - [Multiple types of nodes and
   relationships](#multiple-types-of-nodes-and-relationships)
 
-:::caution
-
-It is also important to note that importing CSV data using the
-`mg_import_csv` command should be a one-time operation before running Memgraph.
-In other words, this tool should not be used to import data into an already
-running Memgraph instance.
-
-:::
-
-___
-
-## Examples
-
 ### One type of nodes and relationships
 
 Let's import a simple dataset.
 
-<Tabs
-  groupId="files"
-  defaultValue="pn"
-  values={[
-    {label: '1. people_nodes.csv', value: 'pn'},
-    {label: '2. people_relationships.csv', value: 'pr'},
-  ]}>
-
-  <TabItem value='pn'>
-
-Store the following in [`people_nodes.csv`](https://public-assets.memgraph.com/import-data/csv-import-tool/one-type-nodes/people_nodes.csv):
+Download the [`people_nodes.csv`](https://public-assets.memgraph.com/import-data/csv-import-tool/one-type-nodes/people_nodes.csv) file, content of which is:
 
 ```csv
 id:ID(PERSON_ID),name:string,:LABEL
@@ -129,10 +60,9 @@ id:ID(PERSON_ID),name:string,:LABEL
 104,Lucy,Person
 ```
 
-</TabItem>
-<TabItem value='pr'>
-
-Let's add relationships between people in [`people_relationships.csv`](https://public-assets.memgraph.com/import-data/csv-import-tool/one-type-nodes/people_relationships.csv):
+Download the
+[`people_relationships.csv`](https://public-assets.memgraph.com/import-data/csv-import-tool/one-type-nodes/people_relationships.csv),
+content of which is:
 
 ```csv
 :START_ID(PERSON_ID),:END_ID(PERSON_ID),:TYPE
@@ -145,10 +75,7 @@ Let's add relationships between people in [`people_relationships.csv`](https://p
 100,103,IS_FRIENDS_WITH
 ```
 
-</TabItem>
-</Tabs>
-
-Now, you can import the dataset using the CSV Import Tool.
+Let's import the dataset using the CSV import tool. We will be importing 2 CSV files. 
 
 :::danger
 
@@ -157,9 +84,6 @@ will load the new dataset. This means that all of your existing data will be
 lost and replaced with the newly imported data.
 
 :::
-
-
-Use the following command:
 
 <Tabs
   groupId="platform"
@@ -171,8 +95,8 @@ Use the following command:
   <TabItem value="docker">
 
 
-If using Docker, things are a bit more complicated. First you need to copy the
-CSV files where the Docker image can see them:
+If you are using Docker, first copy the CSV files where the Docker container can see
+them:
 
 ```bash
 docker container create --user memgraph --name mg_import_helper -v mg_import:/import-data busybox
@@ -181,19 +105,39 @@ docker cp people_relationships.csv mg_import_helper:/import-data
 docker rm mg_import_helper
 ```
 
-Then, run the importer with the following:
+Then, run the import tool with the following command, but be careful of three things:
+<ol>
+  <li>Check the image name you are using is correct:</li>
+  <ul>
+     <li>If you downloaded <b>Memgraph Platform</b> leave the current image name <code>memgraph/memgraph-platform</code>.</li>
+     <li>If you downloaded <b>MemgraphDB</b> replace the current image name with <code>memgraph</code>.</li>
+     <li>If you downloaded <b>MAGE</b> replace the current image name with <code>memgraph/memgraph-mage</code>.</li>
+   </ul>
+   <p> </p>
+ <li>If you are using Docker on <b>Windows</b> and execute commands in PowerShell change the line breaks from \ to `.</li>
+    <p> </p>
+ <li>Check that the paths of the files you want to import are correct.</li>
+</ol>
 
 ```bash
-docker run -v mg_lib:/var/lib/memgraph -v mg_import:/import-data \
+docker run --user="memgraph" -v mg_lib:/var/lib/memgraph -v mg_import:/import-data \
   --entrypoint=mg_import_csv memgraph/memgraph-platform \
   --nodes /import-data/people_nodes.csv \
   --relationships /import-data/people_relationships.csv
 ```
 
+If you get a `--nodes flag is required!` error, the paths to the files are incomplete or you are missing them completely.
+
 Next time you run Memgraph, the dataset will be loaded.
 
 ```bash
  docker run -p 7687:7687 -v mg_lib:/var/lib/memgraph memgraph/memgraph-platform
+```
+
+For information on other options, run:
+
+```bash
+docker run --entrypoint=mg_import_csv memgraph/memgraph-platform --help
 ```
 
   </TabItem>
@@ -215,25 +159,34 @@ Next time you run Memgraph, the dataset will be loaded.
   </div>
 </details>
 
+_____
+
 ### Multiple types of nodes and relationships
 
 The previous example is showcasing a simple graph with one node type and one
 relationship type. If we have more complex graphs, the procedure is similar.
-Let's define the following dataset:
+Download the four CSV files to define a dataset:
+
+- [`people_nodes.csv`](https://public-assets.memgraph.com/import-data/csv-import-tool/multiple-types-nodes/people_nodes.csv)
+- [`people_relationships.csv`](https://public-assets.memgraph.com/import-data/load-csv-cypher/multiple-types-nodes/people_relationships.csv)
+- [`restaurants_nodes.csv`](https://public-assets.memgraph.com/import-data/csv-import-tool/multiple-types-nodes/restaurants_nodes.csv)
+- [`restaurants_relationships.csv`](https://public-assets.memgraph.com/import-data/csv-import-tool/multiple-types-nodes/restaurants_relationships.csv)
+
+You can check the contents of the files and its description in the tabs below.
 
 <Tabs
   groupId="files"
   defaultValue="pn"
   values={[
-    {label: '1. people_nodes.csv', value: 'pn'},
-    {label: '2. people_relationships.csv', value: 'pr'},
-    {label: '3. restaurants_nodes.csv', value: 'rn'},
-    {label: '4. restaurants_relationships.csv', value: 'rr'}
+    {label: 'people_nodes.csv', value: 'pn'},
+    {label: 'people_relationships.csv', value: 'pr'},
+    {label: 'restaurants_nodes.csv', value: 'rn'},
+    {label: 'restaurants_relationships.csv', value: 'rr'}
   ]}>
 
   <TabItem value='pn'>
 
-Add the following to [`people_nodes.csv`](https://public-assets.memgraph.com/import-data/csv-import-tool/multiple-types-nodes/people_nodes.csv):
+The [`people_nodes.csv`](https://public-assets.memgraph.com/import-data/csv-import-tool/multiple-types-nodes/people_nodes.csv) file contains the people nodes with `name`, `age`, `city` and `label` properties.
 
 ```csv
 id:ID(PERSON_ID),name:string,age:int,city:string,:LABEL
@@ -244,11 +197,13 @@ id:ID(PERSON_ID),name:string,age:int,city:string,:LABEL
 104,Lucy,21,Paris,Person
 105,Adam,23,New York,Person
 ```
-
 </TabItem>
 <TabItem value='pr'>
 
-Let's define the relationships between people in [`people_relationships.csv`](https://public-assets.memgraph.com/import-data/csv-import-tool/multiple-types-nodes/people_relationships.csv):
+Each person from the `people_nodes.csv` file is connected to at least one other person by
+being friends. <br/> In the
+[`people_relationships.csv`](https://public-assets.memgraph.com/import-data/load-csv-cypher/multiple-types-nodes/people_relationships.csv)
+file each row represents one friendship and the year it started.
 
 ```csv
 :START_ID(PERSON_ID),:END_ID(PERSON_ID),:TYPE,met_in:int
@@ -260,11 +215,10 @@ Let's define the relationships between people in [`people_relationships.csv`](ht
 105,102,IS_FRIENDS_WITH,2017
 100,103,IS_FRIENDS_WITH,2001
 ```
-
 </TabItem>
 <TabItem value='rn'>
 
-Let's introduce another node type, restaurants, in [`restaurants_nodes.csv`](https://public-assets.memgraph.com/import-data/csv-import-tool/multiple-types-nodes/restaurants_nodes.csv):
+The [`restaurants_nodes.csv`](https://public-assets.memgraph.com/import-data/csv-import-tool/multiple-types-nodes/restaurants_nodes.csv) file introduces another node type - restaurants:
 
 ```csv
 id:ID(REST_ID),name:string,menu:string[],:LABEL
@@ -273,12 +227,10 @@ id:ID(REST_ID),name:string,menu:string[],:LABEL
 202,Subway,Ham Sandwich;Turkey Sandwich;Foot-long,Restaurant
 203,Dominos,Pepperoni Pizza;Double Dish Pizza;Cheese filled Crust,Restaurant
 ```
-
 </TabItem>
 <TabItem value='rr'>
 
-Let's define the relationships between people and restaurants in
-[`restaurants_relationships.csv`](https://public-assets.memgraph.com/import-data/csv-import-tool/multiple-types-nodes/restaurants_relationships.csv):
+The [`restaurants_relationships.csv`](https://public-assets.memgraph.com/import-data/csv-import-tool/multiple-types-nodes/restaurants_relationships.csv) file defines what people ate at which restaurants:
 
 ```csv
 :START_ID(PERSON_ID),:END_ID(REST_ID),:TYPE,liked:boolean
@@ -290,12 +242,12 @@ Let's define the relationships between people and restaurants in
 101,200,ATE_AT,true
 102,201,ATE_AT,true
 ```
-
 </TabItem>
 </Tabs>
 
-After preparing the files above, you can import the dataset using the CSV Import
-tool.
+____
+
+Let's import 4 files using the CSV import tool. 
 
 <Tabs
   groupId="platform"
@@ -307,8 +259,8 @@ tool.
   <TabItem value="docker">
 
 
-If using Docker, things are a bit more complicated. First, you need to copy the
-CSV files where the Docker container can see them:
+If you are using Docker, first copy the CSV files where the Docker container can
+see them:
 
 ```bash
 docker container create --user memgraph --name mg_import_helper -v mg_import:/import-data busybox
@@ -319,10 +271,22 @@ docker cp restaurants_relationships.csv mg_import_helper:/import-data
 docker rm mg_import_helper
 ```
 
-Then, run the importer with the following command:
+Then, run the import tool with the following command, but be careful of three things:
+<ol>
+  <li>Check the image name you are using is correct:</li>
+  <ul>
+     <li>If you downloaded <b>Memgraph Platform</b> leave the current image name <code>memgraph/memgraph-platform</code>.</li>
+     <li>If you downloaded <b>MemgraphDB</b> replace the current image name with <code>memgraph</code>.</li>
+     <li>If you downloaded <b>MAGE</b> replace the current image name with <code>memgraph/memgraph-mage</code>.</li>
+   </ul>
+  <p> </p  >
+  <li>If you are using Docker on <b>Windows</b> and execute commands in PowerShell change the line breaks from \ to `.</li>
+   <p> </p  >
+  <li>Check that the paths of the files you want to import are correct.</li>
+</ol>
 
 ```bash
-docker run -v mg_lib:/var/lib/memgraph -v mg_etc:/etc/memgraph -v mg_import:/import-data \
+docker run --user="memgraph" -v mg_lib:/var/lib/memgraph -v mg_etc:/etc/memgraph -v mg_import:/import-data \
   --entrypoint=mg_import_csv memgraph/memgraph-platform \
   --nodes /import-data/people_nodes.csv \
   --nodes /import-data/restaurants_nodes.csv \
@@ -330,10 +294,16 @@ docker run -v mg_lib:/var/lib/memgraph -v mg_etc:/etc/memgraph -v mg_import:/imp
   --relationships /import-data/restaurants_relationships.csv
 ```
 
-Next time you run Memgraph, the dataset will be loaded:
+The next time you run Memgraph, the dataset will be loaded:
 
 ```bash
  docker run -p 7687:7687 -v mg_lib:/var/lib/memgraph memgraph/memgraph-platform
+```
+
+For information on other options, run:
+
+```bash
+docker run --entrypoint=mg_import_csv memgraph/memgraph-platform --help
 ```
 
   </TabItem>
@@ -347,8 +317,6 @@ The next time you run Memgraph, the dataset will be loaded.
 
   </TabItem>
 </Tabs>
-
-After the import, your graph database should look like this:
 
 <details>
   <summary>After the import, the graph in Memgraph should look like this:</summary>
