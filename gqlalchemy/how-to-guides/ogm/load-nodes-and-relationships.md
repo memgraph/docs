@@ -30,7 +30,7 @@ class Team(Node):
     name: str = Field(unique=True, db=db)
 
 class IsPartOf(Relationship, type="IS_PART_OF"):
-    date: datetime.datetime = Field()
+    date: Optional[datetime.datetime] = Field()
 ```
 
 There are two nodes already saved in the database:
@@ -86,13 +86,19 @@ is_part_of = IsPartOf(
 
 ## Load relationships
 
-You can load a certain relationship based on its label or properties. Let's say you want to find out how many streamers have joined a team on a certain day. If that day is `2021-04-25`, then you want to load all relationships `IsPartOf` that have property `date` set to `2021-04-25`.
+You can load a certain relationship based on its label or properties. Let's say
+you want to find out how many streamers have joined a team on a certain day. If
+that day is `2021-04-25`, then you want to load all relationships `IsPartOf`
+that have property `date` set to `2021-04-25`.
 
 ```python
 is_part_of = IsPartOf(date=datetime.date(2021, 4, 25)).load(db)
 ```
 
-Since we have created only one relationship on that date, `is_part_of` is object representing that relationship. Therefore, `is_part_of._start_node_id` is the internal `id` of the streamer we created and `is_part_of._end_node_id` is the internal `id` of the team we created.
+Since we have created only one relationship on that date, `is_part_of` is object
+representing that relationship. Therefore, `is_part_of._start_node_id` is the
+internal `id` of the streamer we created and `is_part_of._end_node_id` is the
+internal `id` of the team we created.
 
 
 Hopefully this guide has taught you how to load nodes and relationships. For

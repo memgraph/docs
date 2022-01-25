@@ -5,12 +5,16 @@ sidebar_label: Map nodes and relationships
 ---
 
 This guide will teach you how to map Python classes to nodes and relationships
-in a graph database. The prerequisite is the running Memgraph instance. First,
-you have to import `Memgraph`, `Node`, `Relationship` and `Field` from the
-`gqlalchemy`:
+in a graph database. 
+
+> Make sure you have a running Memgraph instance. If you're not sure how to run
+> Memgraph, check out the Memgraph [Quick start](/memgraph/#quick-start).
+
+First, do all necessary imports and create an instance of the database:
 
 ```python
 from gqlalchemy import Memgraph, Node, Relationship, Field
+from datetime import datetime
 ```
 
 After that, you instantiate Memgraph and create a class representing your nodes
@@ -18,51 +22,46 @@ and relationships. You are creating `User` and `Streamer` node, where every
 `Streamer` is also a `User`, but not every `User` is a `Streamer`.
 
 ```python
-memgraph = Memgraph()
+db = Memgraph()
 
 class User(Node):
-    name: str = Field(index=True, unique=True, db=memgraph)
+    id: str = Field(index=True, exist=True, unique=True, db=db)
 
 class Streamer(User):
-    name: str = Field(index=True, unique=True, db=memgraph, label="User")
-    id: str = Field(index=True, unique=True, db=memgraph)
-    url: str = Field()
-    followers: int = Field()
-    createdAt: str = Field()
-    totalViewCount: int = Field()
-    description: str = Field()
+    id: str = Field(index=True, exist=True, unique=True, db=db)
+    username: Optional[str] = Field(index=True, exist=True, unique=True, db=db)
+    url: Optional[str] = Field()
+    followers: Optional[int] = Field()
+    createdAt: Optional[str] = Field()
+    totalViewCount: Optional[int] = Field()
+    description: Optional[str]
 ```
 
-`Node` in `class User(Node)` tells you that `User` is a node label in a graph
-database. If you create a node with the label `User`, that node has a property
-`name`, which is indexed and a unique string. With the help of the `Field()` we
-are defining those constraints on the properties and defining to which database
-that property will be saved. If there is no `Field()`, that variable won't be
-saved to the database.
-
-Class `User` is a parent class of `Streamer`, that is, every `Streamer` is also
-an user. This means that class `Streamer` has two labels - `Streamer` and
-`User`. By setting up the `label` argument to `User`, you give your database
-information that `name` property should be indexed on nodes labeled `User`. If
-there is no argument given to the `Field()`, then it is `memgraph` by default.
-
-:::info 
-
-You can also [manually define labels]-TODO ADD LINK, or add another
-label to the current node labels. 
-
-:::
+`Node` is a Python class that maps to a graph object in Memgraph. `User` and
+`Streamer` are classes which inherit from the `Node` and they map to a label in
+graph database. Class `User` maps to a singe `:User` label, while class
+`Streamer` maps to multiple label `:Streamer:User`, since it also inherits the
+`User` class. If you create a node with the label `User`, that node has a
+property `id`, which is indexed and a unique string. With the help of the
+`Field()` we are defining those constraints on the properties and defining to
+which database that property will be saved. Notice that the `description`
+property has no `Field()` function. That means that `description` won't be saved
+to the database.
 
 In a similar way, you can create a relationship:
 
 ```python
-class Speaks(Relationship, type="SPEAKS"):
+class ChatsWith(Relationship, type="CHATS_WITH"):
+    lastChatted: Optional[datetime.datetime] = Field() 
+```
+
+Now you have created a relationship of type `CHATS_WITH`. This relationship has property `lastChatted`, which is optional. If you want to create a relationship without any properties, you can do that with:
+
+```python
+class ChatsWith(Relationship, type="CHATS_WITH"):
     pass
 ```
 
-Now you have created a relationship of type `SPEAKS`. This relationship does not
-have any properties, but if you want a relationship with them, then you can
-define them as you did in the node classes.
 
 Hopefully this guide has taught you how to map nodes and relationships. For more
 detailed information check out our docs - TODO link. If you have any more
