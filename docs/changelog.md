@@ -6,6 +6,9 @@ sidebar_label: Changelog
 
 ## Future
 
+* Added `CONFIGS` and `CREDENTIALS` options to Kafka streams.
+ [#328](https://github.com/memgraph/memgraph/pull/328)
+
 ### Major Features and Improvements
 
 ### Bug Fixes
