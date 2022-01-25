@@ -101,7 +101,6 @@ internal `id` of the streamer we created and `is_part_of._end_node_id` is the
 internal `id` of the team we created.
 
 
-Hopefully this guide has taught you how to load nodes and relationships. For
-more detailed information check out our docs - TODO link. If you have any more
-questions, join our community and ping us on
+Hopefully this guide has taught you how to load nodes and relationships. If you
+have any more questions, join our community and ping us on
 [Discord](https://discord.gg/memgraph).

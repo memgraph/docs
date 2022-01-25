@@ -55,7 +55,9 @@ class ChatsWith(Relationship, type="CHATS_WITH"):
     lastChatted: Optional[datetime.datetime] = Field() 
 ```
 
-Now you have created a relationship of type `CHATS_WITH`. This relationship has property `lastChatted`, which is optional. If you want to create a relationship without any properties, you can do that with:
+Now you have created a relationship of type `CHATS_WITH`. This relationship has
+property `lastChatted`, which is optional. If you want to create a relationship
+without any properties, you can do that with:
 
 ```python
 class ChatsWith(Relationship, type="CHATS_WITH"):
@@ -63,7 +65,6 @@ class ChatsWith(Relationship, type="CHATS_WITH"):
 ```
 
 
-Hopefully this guide has taught you how to map nodes and relationships. For more
-detailed information check out our docs - TODO link. If you have any more
-questions, join our community and ping us on
+Hopefully this guide has taught you how to map nodes and relationships. If you
+have any more questions, join our community and ping us on
 [Discord](https://discord.gg/memgraph).
