@@ -5,7 +5,7 @@ module.exports = {
     {
       type: "category",
       label: "How-to guides",
-      link: { type: 'doc', id: 'how-to-guides/overview' },
+      link: { type: "doc", id: "how-to-guides/overview" },
       items: [
         {
           type: "category",
@@ -19,9 +19,7 @@ module.exports = {
         {
           type: "category",
           label: "Use query builder",
-          items: [
-            "how-to-guides/query-builder/create-query",
-          ],
+          items: ["how-to-guides/query-builder/create-query"],
         },
         {
           type: "category",
@@ -40,19 +38,26 @@ module.exports = {
       label: "Tutorials",
       items: ["tutorials/overview"],
     },
-    */
     "networkx",
-    /*
+    */
     {
       type: "category",
       label: "Reference",
-      items: ["reference/overview"],
-    },
-    */
-    {
-      type: "link",
-      label: "Reference",
-      href: "https://somewhere",
+      link: {
+        type: 'generated-index',
+        title: 'Reference',
+        description: 'The reference documentation for GQLAlchemy.',
+        slug: '/reference',
+      },
+      items: [
+        "reference/connection",
+        "reference/disk_storage",
+        "reference/memgraph",
+        "reference/models",
+        "reference/query_builder",
+        "reference/transformations",
+        "reference/utilities",
+      ],
     },
     "changelog",
   ],
