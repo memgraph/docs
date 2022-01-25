@@ -149,4 +149,4 @@ If you run into problems during the installation process, check out our
 **[installation troubleshooting
 guide](/installation/linux/linux-installation-troubleshooting.md)** to see if we
 have already covered the topic. For more information on the installation process
-and for additional questions, visit the **[Getting help](/help-center)** page.
+and for additional questions, visit the **[Help Center](/help-center)** page.
