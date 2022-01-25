@@ -64,6 +64,12 @@ credentials|String key-value pairs of configuration options for the Kafka consum
 The credentials are stored on the disk without any encryption, that means everybody who has access to the data folder of Memgraph is able to get the credentials.
 :::
 
+To check the list of possible configuration options and their values, please
+check the documentation of
+[librdkafka](https://github.com/edenhill/librdkafka/blob/v1.7.0/CONFIGURATION.md)
+library which is used in Memgraph. At the time of writing this documentation
+Memgraph uses version 1.7.0 of librdkafka.
+
 ### Pulsar
 
 ```cypher
