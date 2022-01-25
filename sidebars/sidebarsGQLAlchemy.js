@@ -19,7 +19,12 @@ module.exports = {
         {
           type: "category",
           label: "Use query builder",
-          items: ["how-to-guides/query-builder/create-query"],
+          items: [
+            "how-to-guides/query-builder/create-nodes-relationships",
+            "how-to-guides/query-builder/return-results",
+            "how-to-guides/query-builder/filter-data",
+            "how-to-guides/query-builder/call-procedures",
+          ],
         },
         {
           type: "category",
@@ -44,10 +49,10 @@ module.exports = {
       type: "category",
       label: "Reference",
       link: {
-        type: 'generated-index',
-        title: 'Reference',
-        description: 'The reference documentation for GQLAlchemy.',
-        slug: '/reference',
+        type: "generated-index",
+        title: "Reference",
+        description: "The reference documentation for GQLAlchemy.",
+        slug: "/reference",
       },
       items: [
         "reference/connection",

@@ -15,7 +15,7 @@ the required arguments:
 
 - `name: str` ➡ The name of the stream.
 - `topics: List[str]` ➡ List of topic names.
-- `transform: str` ➡ The transformation procedure for mapping incoming memssages
+- `transform: str` ➡ The transformation procedure for mapping incoming messages
   to Cypher queries.
 - `batch_interval: str = None` ➡ Maximum wait time in milliseconds for consuming
   messages before calling the transform procedure.

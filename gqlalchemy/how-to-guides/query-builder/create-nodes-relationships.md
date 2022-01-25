@@ -1,7 +1,7 @@
 ---
-id: create-query
-title: Creating nodes and relationships
-sidebar_label: Creating nodes and relationships
+id: create-nodes-relationships
+title: Create nodes and relationships
+sidebar_label: Create nodes and relationships
 ---
 
 import Tabs from '@theme/Tabs';
@@ -28,7 +28,7 @@ To create nodes, you can just use the method `node()` after `create()`:
 ```python
 from gqlalchemy import create
 
-query = create().node(labels="Person")
+query = create().node(labels="Person").execute()
 ```
 
   </TabItem>
@@ -57,7 +57,7 @@ if it already exists, it will only be updated if the properties don't match:
 ```python
 from gqlalchemy import merge
 
-query = merge().node(labels="Person", name="John")
+query = merge().node(labels="Person", name="John").execute()
 ```
 
   </TabItem>
@@ -88,6 +88,7 @@ from gqlalchemy import create
 query = create().node(labels="Person", name="Leslie")
                 .to(edge_label="FRIENDS_WITH")
                 .node(labels="Person", name="Ron")
+                .execute()
 ```
 
   </TabItem>

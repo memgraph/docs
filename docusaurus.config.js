@@ -181,14 +181,6 @@ module.exports = {
               to: "/gqlalchemy/how-to-guides",
             },
             {
-              label: "Tutorials",
-              to: "/gqlalchemy/tutorials",
-            },
-            {
-              label: "NetworkX",
-              to: "/gqlalchemy/networkx",
-            },
-            {
               label: "Reference",
               to: "/gqlalchemy/reference",
             },
