@@ -42,6 +42,9 @@ db.save_node(user)
 language = Language(name="en")
 db.save_node(language)
 ```
+These methods will check if there is that node in Memgraph already and if not,
+create a new one. If it existed before in Memgraph, then internal id of that
+node in Memgraph remains the same.
 
 Next, let's say that John speaks English. You need to create and save
 relationship `SPEAKS`. First, we have a class which maps to the relationship in
