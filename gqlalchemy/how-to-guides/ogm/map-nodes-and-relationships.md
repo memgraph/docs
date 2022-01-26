@@ -15,10 +15,11 @@ First, do all necessary imports and create an instance of the database:
 ```python
 from gqlalchemy import Memgraph, Node, Relationship, Field
 from datetime import datetime
+from typing import Optional
 ```
 
-After that, you instantiate Memgraph and create a class representing your nodes
-and relationships. You are creating `User` and `Streamer` node, where every
+After that, you instantiate Memgraph and create classes representing the nodes
+and relationships. You are creating `User` and `Streamer` nodes, where every
 `Streamer` is also a `User`, but not every `User` is a `Streamer`.
 
 ```python
@@ -28,7 +29,7 @@ class User(Node):
     id: str = Field(index=True, exist=True, unique=True, db=db)
 
 class Streamer(User):
-    id: str = Field(index=True, exist=True, unique=True, db=db)
+    id: str = Field(index=True, exist=True, unique=True, db=db, label="User")
     username: Optional[str] = Field(index=True, exist=True, unique=True, db=db)
     url: Optional[str] = Field()
     followers: Optional[int] = Field()
@@ -39,20 +40,18 @@ class Streamer(User):
 
 `Node` is a Python class that maps to a graph object in Memgraph. `User` and
 `Streamer` are classes which inherit from the `Node` and they map to a label in
-graph database. Class `User` maps to a singe `:User` label, while class
-`Streamer` maps to multiple label `:Streamer:User`, since it also inherits the
+graph database. Class `User` maps to a single `:User` label, while class
+`Streamer` maps to multiple labels `:Streamer:User`, since it inherits from the
 `User` class. If you create a node with the label `User`, that node has a
 property `id`, which is indexed and a unique string. With the help of the
-`Field()` we are defining those constraints on the properties and defining to
-which database that property will be saved. Notice that the `description`
-property has no `Field()` function. That means that `description` won't be saved
-to the database.
+`Field()` you are defining those constraints on the properties and defining to
+which database that property will be saved. Argument `index=True` is added on `id` property, which is both in `User` and `Stream` class. Because of that, you have to pass an argument to the `Field` called `label`, to determine on which label index will be created. Notice that the `description` property has no `Field()` function. That means that `description` won't be saved into the database.
 
 In a similar way, you can create a relationship:
 
 ```python
 class ChatsWith(Relationship, type="CHATS_WITH"):
-    lastChatted: Optional[datetime.datetime] = Field() 
+    lastChatted: Optional[datetime] = Field() 
 ```
 
 Now you have created a relationship of type `CHATS_WITH`. This relationship has
