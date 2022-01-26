@@ -21,11 +21,16 @@ development.
 If you would like to query a running Memgraph database instance using **Memgraph
 Lab**, be sure to:
 
-### 1. Install Memgraph Lab
+### 1. Install Memgraph Platform or Memgraph Lab
 
-Install Memgraph Lab on the operating system of your choice -
-[Windows](/installation/windows.md), [macOS](/installation/macos.md) or
-[Linux](/installation/linux.md).
+We recommend you [install **Memgraph Platform**](/memgraph/installation) and get
+the complete streaming graph application platform that includes **Memgraph DB**,
+command-line tool **mgconsole**, visual user interface **Memgraph Lab** running
+within the browser and **MAGE** - graph algorithms and modules library.
+
+If you already have a running Memgraph database instance, you can install
+Memgraph Lab as a desktop application on [Windows](/installation/windows.md),
+[macOS](/installation/macos.md) or [Linux](/installation/linux.md).
 
 ### 2. Connect to Memgraph
 

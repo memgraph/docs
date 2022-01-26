@@ -51,4 +51,4 @@ editing the following parameters in `/etc/memgraph/memgraph.conf`:
 ```
 
 To disable SSL support and use insecure connections to the database you should
-set both parameters (`--bolt-cert-file` and `--bolt-key-file`) to empty values.
+set both parameters (`--bolt-cert-file` and <br/>`--bolt-key-file`) to empty values.

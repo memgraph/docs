@@ -6,12 +6,14 @@ sidebar_label: Connect to Memgraph
 
 ## Prerequisites
 
-Before you proceed with the guide, make sure that you have:
+Before you proceed with the guide, make sure that you have either:
 
-- A running **Memgraph** instance. Instructions on how to do set up Memgraph can
-  be [found here](/memgraph/installation).
-- Downloaded and installed **Memgraph Lab**. Instruction on how to install Memgraph
-  Lab can [be found here](/installation/overview.md).
+- Installed [**Memgraph Platform**](/memgraph/installation) and now have a
+  running database instance and Memgraph Lab is running within the browser on
+  `http://localhost:3000`, or
+- Installed [**Memgraph DB**](/memgraph/installation) and [**Memgraph
+  Lab**](/memgraph-lab/installation) and now have a running database instance
+  and the Memgraph Lab desktop application
 
 ## Connecting to Memgraph
 
@@ -65,5 +67,5 @@ storage](/memgraph/concepts/storage)**.
 
 ## Getting help
 
-Visit the **[Getting help](/help-center)** page in case you run into any kind of
+Visit the **[Help Center](/help-center)** page in case you run into any kind of
 problem, or you have additional questions.
