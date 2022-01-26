@@ -28,7 +28,7 @@ the complete streaming graph application platform that includes **Memgraph DB**,
 command-line tool **mgconsole**, visual user interface **Memgraph Lab** running
 within the browser and **MAGE** - graph algorithms and modules library.
 
-If you already have a running Memgraph database instance you can install
+If you already have a running Memgraph database instance, you can install
 Memgraph Lab as a desktop application on [Windows](/installation/windows.md),
 [macOS](/installation/macos.md) or [Linux](/installation/linux.md).
 

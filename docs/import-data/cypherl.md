@@ -63,13 +63,13 @@ import them with the command below or drag and drop them using the
 If you installed Memgraph with Docker, run the client using the following
 command, but be careful of four things:
 <ol>
-  <li>Use the first command in Docker installed on Linux and MacOS, but use the second command in Windows because PowerShell doesn't support the &lt; character.</li>
+  <li>Use the first command in Docker installed on Linux and macOS, but use the second command in Windows because PowerShell doesn't support the &lt; character.</li>
   <p> </p>
   <li>Check the image name you are using is correct:</li>
   <ul>
-     <li>If you downloaded <b>Memgraph Platform</b> leave the current image name <code>memgraph/memgraph-platform</code>.</li>
-     <li>If you downloaded <b>MemgraphDB</b> replace the current image name with <code>memgraph</code>.</li>
-     <li>If you downloaded <b>MAGE</b> replace the current image name with <code>memgraph/memgraph-mage</code>.</li>
+     <li>If you downloaded <b>Memgraph Platform</b>, leave the current image name <code>memgraph/memgraph-platform</code>.</li>
+     <li>If you downloaded <b>MemgraphDB</b>, replace the current image name with <code>memgraph</code>.</li>
+     <li>If you downloaded <b>MAGE</b>, replace the current image name with <code>memgraph/memgraph-mage</code>.</li>
    </ul>
    <p> </p>
    <li>Remember to replace <code>HOST</code> with a valid IP of the container (see the 
@@ -78,7 +78,7 @@ command, but be careful of four things:
  <li>Check that the paths of the files you want to import are correct.</li>
 </ol>
 
-**Linux** and **MacOS**
+**Linux** and **macOS**
 ```console
 docker run -i --entrypoint=mgconsole memgraph/memgraph-platform --host HOST < queries.cypherl
 ```
@@ -167,7 +167,7 @@ import them with the command below or drag and drop them using the
 If you installed Memgraph using Docker, run the client using the following
 command, but be careful of four things:
 <ol>
-  <li>Use the first command in Docker installed on Linux and MacOS, but use the second command in Windows because PowerShell doesn't support the &lt; character.</li>
+  <li>Use the first command in Docker installed on Linux and macOS, but use the second command in Windows because PowerShell doesn't support the &lt; character.</li>
   <p> </p>
   <li>Check the image name you are using is correct:</li>
   <ul>
@@ -182,7 +182,7 @@ command, but be careful of four things:
  <li>Check that the paths of the files you want to import are correct.</li>
 </ol>
 
-**Linux** and **MacOS**
+**Linux** and **macOS**
 
 ```console
 docker run -i --entrypoint=mgconsole memgraph/memgraph-platform --host HOST < queries.cypherl

@@ -8,9 +8,9 @@ sidebar_label: Connect to Memgraph
 
 Before you proceed with the guide, make sure that you have either:
 
-- Installed [**Memgraph Platform**](/memgraph/installation) and now have a running database instance and
-  Memgraph Lab is running within browser on `http://localhost:3000`, or
-
+- Installed [**Memgraph Platform**](/memgraph/installation) and now have a
+  running database instance and Memgraph Lab is running within the browser on
+  `http://localhost:3000`, or
 - Installed [**Memgraph DB**](/memgraph/installation) and [**Memgraph
   Lab**](/memgraph-lab/installation) and now have a running database instance
   and the Memgraph Lab desktop application

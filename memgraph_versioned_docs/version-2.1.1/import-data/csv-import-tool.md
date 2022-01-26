@@ -7,7 +7,7 @@ pagination_prev: import-data/overview
 
 import Tabs from "@theme/Tabs"; import TabItem from "@theme/TabItem";
 
-CSV is a universal and a very versatile data format used to store large quantities
+CSV is a universal and very versatile data format used to store large quantities
 of data. Each Memgraph database instance includes a CSV import tool called
 `mg_import_csv`.  The CSV import tool should be used for initial bulk ingestion
 of data into the database.  Upon ingestion, the CSV importer creates a snapshot
@@ -31,7 +31,7 @@ Importing CSV data using the `mg_import_csv` should be a one-time operation done
 before running Memgraph. In other words, this tool should not be used to import
 data into an already running Memgraph instance.
 
-If you are using Docker, before the import you need to transfer CSV files where
+If you are using Docker, before the import, you need to transfer CSV files where
 the Docker container can see them. 
 
 Please check the examples below to find out how to use the import tool based on
@@ -49,7 +49,7 @@ the complexity of your data:
 
 Let's import a simple dataset.
 
-Download the [`people_nodes.csv`](https://public-assets.memgraph.com/import-data/csv-import-tool/one-type-nodes/people_nodes.csv) file, content of which is:
+Download the [`people_nodes.csv`](https://public-assets.memgraph.com/import-data/csv-import-tool/one-type-nodes/people_nodes.csv) file with the following content:
 
 ```csv
 id:ID(PERSON_ID),name:string,:LABEL
@@ -61,8 +61,7 @@ id:ID(PERSON_ID),name:string,:LABEL
 ```
 
 Download the
-[`people_relationships.csv`](https://public-assets.memgraph.com/import-data/csv-import-tool/one-type-nodes/people_relationships.csv),
-content of which is:
+[`people_relationships.csv`](https://public-assets.memgraph.com/import-data/csv-import-tool/one-type-nodes/people_relationships.csv) file with the following content:
 
 ```csv
 :START_ID(PERSON_ID),:END_ID(PERSON_ID),:TYPE
@@ -109,9 +108,9 @@ Then, run the import tool with the following command, but be careful of three th
 <ol>
   <li>Check the image name you are using is correct:</li>
   <ul>
-     <li>If you downloaded <b>Memgraph Platform</b> leave the current image name <code>memgraph/memgraph-platform</code>.</li>
-     <li>If you downloaded <b>MemgraphDB</b> replace the current image name with <code>memgraph</code>.</li>
-     <li>If you downloaded <b>MAGE</b> replace the current image name with <code>memgraph/memgraph-mage</code>.</li>
+     <li>If you downloaded <b>Memgraph Platform</b>, leave the current image name <code>memgraph/memgraph-platform</code>.</li>
+     <li>If you downloaded <b>MemgraphDB</b>, replace the current image name with <code>memgraph</code>.</li>
+     <li>If you downloaded <b>MAGE</b>, replace the current image name with <code>memgraph/memgraph-mage</code>.</li>
    </ul>
    <p> </p>
  <li>If you are using Docker on <b>Windows</b> and execute commands in PowerShell change the line breaks from \ to `.</li>

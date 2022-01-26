@@ -7,26 +7,26 @@ pagination_prev: import-data/overview
 
 import Tabs from "@theme/Tabs"; import TabItem from "@theme/TabItem";
 
-The `LOAD CSV` Cypher clause enables you to load and use data from a CSV file of your
-choosing in a row-based manner, within a query. Memgraph supports the Excel CSV
-dialect, as it's the most common one. For the clause syntax please check the
-[Cypher manual](/cypher-manual/clauses/load-csv).
+The `LOAD CSV` Cypher clause enables you to load and use data from a CSV file of
+your choosing in a row-based manner within a query. Memgraph supports the Excel
+CSV dialect, as it's the most common one. For the clause syntax, please check
+the [Cypher manual](/cypher-manual/clauses/load-csv).
 
 The clause reads row by row from a CSV file and binds the contents of the parsed
 row to the variable you specified.
 
 :::info 
 
-For more detailed information about the LOAD CSV Cypher clause, check
-our **[Reference guide](/reference-guide/import-data/load-csv-clause.md)**.
+For more detailed information about the LOAD CSV Cypher clause, check our
+**[Reference guide](/reference-guide/import-data/load-csv-clause.md)**.
 
 :::
 
 ## Transferring CSV files into a Docker container {#transfer}
 
-When working with the LOAD CSV clause, Memgraph needs to have an access to the
-CSV files you are using.  If you are working with Docker, you need to transfer
-those file into the container.
+When working with the LOAD CSV clause, Memgraph needs to have access to the CSV
+files you are using.  If you are working with Docker, you need to transfer those
+files into the container.
 
 <details>
   <summary>Transfer CSV files into a Docker container</summary>
@@ -38,13 +38,15 @@ those file into the container.
 
   **1.** Start your Memgraph instance using Docker.
 
-  **2.** Open a new terminal and find the `CONTAINER ID` of the Memgraph Docker container:
+  **2.** Open a new terminal and find the `CONTAINER ID` of the Memgraph Docker
+  container:
 
   ```
   docker ps
   ```
 
-  **3.** Copy a file from your current directory to the container with the command:
+  **3.** Copy a file from your current directory to the container with the
+  command:
 
   ```
   docker cp ./file_to_copy.csv <CONTAINER ID>:/file_to_copy.csv
@@ -66,12 +68,12 @@ the complexity of your data:
 
 Let's import a simple dataset.
 
-If the CSV file has a header set the `HEADER` option to `WITH`. Each row will
-be parsed as a map and you can use the property lookup syntax (e.g. `id:
+If the CSV file has a header, set the `HEADER` option to `WITH`. Each row will
+be parsed as a map, and you can use the property lookup syntax (e.g. `id:
 row.id`) to access a certain field.
 
-If the CSV file doesn't have a header set the `HEADER` option to `NO`. Each row
-will be parsed as a list and you can access elements by defining the position of
+If the CSV file doesn't have a header, set the `HEADER` option to `NO`. Each row
+will be parsed as a list, and you can access elements by defining the position of
 the element in the list.
 
 <Tabs
@@ -83,7 +85,9 @@ the element in the list.
   ]}>
   <TabItem value="headerin">
 
-Download the [`people_nodes.csv`](https://public-assets.memgraph.com/import-data/load-csv-cypher/one-type-nodes/with-header/people_nodes.csv) file, content of which is:
+Download the
+[`people_nodes.csv`](https://public-assets.memgraph.com/import-data/load-csv-cypher/one-type-nodes/with-header/people_nodes.csv)
+file with the following content:
 
 ```plaintext
 id,name
@@ -94,7 +98,9 @@ id,name
 104,Lucy
 ```
 
-Download the [`people_relationships.csv`](https://public-assets.memgraph.com/import-data/load-csv-cypher/one-type-nodes/with-header/people_relationships.csv) file, content of which is:
+Download the
+[`people_relationships.csv`](https://public-assets.memgraph.com/import-data/load-csv-cypher/one-type-nodes/with-header/people_relationships.csv)
+file with the following content:
 
 ```plaintext
 id_from,id_to
@@ -104,7 +110,8 @@ id_from,id_to
 101,103
 102,104
 ```
-If you are using Docker, [transfer the CSV files into a Docker container](#transfer).
+If you are using Docker, [transfer the CSV files into a Docker
+container](#transfer).
 
 The following query will load row by row from the CSV file, and create a new
 node for each row with properties based on the parsed row values:
@@ -127,7 +134,9 @@ CREATE (p1)-[:IS_FRIENDS_WITH]->(p2);
 </TabItem>
 <TabItem value='headerout'>
 
-Download the [`people_nodes.csv`](https://public-assets.memgraph.com/import-data/load-csv-cypher/one-type-nodes/no-header/people_nodes.csv) file, content of which is:
+Download the
+[`people_nodes.csv`](https://public-assets.memgraph.com/import-data/load-csv-cypher/one-type-nodes/no-header/people_nodes.csv)
+file with the following content:
 
 ```plaintext
 100,Daniel
@@ -137,7 +146,9 @@ Download the [`people_nodes.csv`](https://public-assets.memgraph.com/import-data
 104,Lucy
 ```
 
-Download the [`people_relationships.csv`](https://public-assets.memgraph.com/import-data/load-csv-cypher/one-type-nodes/no-header/people_relationships.csv) file, content of which is:
+Download the
+[`people_relationships.csv`](https://public-assets.memgraph.com/import-data/load-csv-cypher/one-type-nodes/no-header/people_relationships.csv)
+file with the following content:
 
 ```plaintext
 100,101
@@ -147,10 +158,11 @@ Download the [`people_relationships.csv`](https://public-assets.memgraph.com/imp
 102,104
 ```
 
-If you are using Docker, [transfer the CSV files into a Docker container](#transfer).
+If you are using Docker, [transfer the CSV files into a Docker
+container](#transfer).
 
-The following query will load row by row from the CSV file, and create a new node
-for each row with properties based on the parsed row values:
+The following query will load row by row from the CSV file, and create a new
+node for each row with properties based on the parsed row values:
 
 ```cypher
 LOAD CSV FROM "/path-to/people_nodes.csv" NO HEADER AS row
@@ -214,15 +226,16 @@ id,name,age,city
 104,Lucy,21,Paris
 ```
 
-If you are using Docker, [transfer the CSV files into a Docker container](#transfer).
+If you are using Docker, [transfer the CSV files into a Docker
+container](#transfer).
 
 The following query will load row by row from the file, and create a new node
 for each row with properties based on the parsed row values:
 
-  ```cypher
-  LOAD CSV FROM "/path-to/people_nodes.csv" WITH HEADER AS row
-  CREATE (n:Person {id: row.id, name: row.name, age: ToInteger(row.age), city: row.city});
-  ```
+```cypher
+LOAD CSV FROM "/path-to/people_nodes.csv" WITH HEADER AS row
+CREATE (n:Person {id: row.id, name: row.name, age: ToInteger(row.age), city: row.city});
+```
 
 <details>
   <summary>This is how the graph should look like in Memgraph after the import:</summary>
@@ -236,8 +249,8 @@ Now move on to the `people_relationships.csv` file.
 </TabItem>
 <TabItem value="pr">
 
-Each person from the `people_nodes.csv` file is connected to at least one other person by
-being friends. <br/> Download the
+Each person from the `people_nodes.csv` file is connected to at least one other
+person by being friends. <br/> Download the
 [`people_relationships.csv`](https://public-assets.memgraph.com/import-data/load-csv-cypher/multiple-types-nodes/people_relationships.csv)
 file, where each row represents one friendship and the year it started:
 
@@ -252,7 +265,8 @@ first_person,second_person,met_in
 100,103,2001
 ```
 
-If you are using Docker, [transfer the CSV files into a Docker container](#transfer).
+If you are using Docker, [transfer the CSV files into a Docker
+container](#transfer).
 
 The following query will create relationships between the people nodes:
 
@@ -276,7 +290,7 @@ Now move on to the `restaurants_nodes.csv` file.
 </TabItem>
 <TabItem value="rn">
 
-Download the 
+Download the
 [`restaurants_nodes.csv`](https://public-assets.memgraph.com/import-data/load-csv-cypher/multiple-types-nodes/restaurants_nodes.csv)
 file that holds a list of restaurants people ate at:
 
@@ -288,7 +302,8 @@ id,name,menu
 203,Dominos,Pepperoni Pizza;Double Dish Pizza;Cheese filled Crust
 ```
 
-If you are using Docker, [transfer the CSV files into a Docker container](#transfer).
+If you are using Docker, [transfer the CSV files into a Docker
+container](#transfer).
 
 The following query will create new nodes for each restaurant:
 
@@ -309,8 +324,9 @@ Now move on to the `restaurants_relationships.csv` file.
 </TabItem>
 <TabItem value="rr">
 
-Download the [`restaurants_relationships.csv`](https://public-assets.memgraph.com/import-data/load-csv-cypher/multiple-types-nodes/restaurants_relationships.csv) file that contains a list of people and the
-restaurants they visited:
+Download the
+[`restaurants_relationships.csv`](https://public-assets.memgraph.com/import-data/load-csv-cypher/multiple-types-nodes/restaurants_relationships.csv)
+file that contains a list of people and the restaurants they visited:
 
 ```csv
 PERSON_ID,REST_ID,liked
@@ -323,7 +339,8 @@ PERSON_ID,REST_ID,liked
 102,201,true
 ```
 
-If you are using Docker, [transfer the CSV files into a Docker container](#transfer).
+If you are using Docker, [transfer the CSV files into a Docker
+container](#transfer).
 
 The following query will create relationships between people and restaurants
 where they ate:
