@@ -50,7 +50,8 @@ MATCH (p:Person) RETURN *;
 
 ## Return specific variables from a query
 
-To return only a subset of variables from a query, specify them in the `return()` method:
+To return only a subset of variables from a query, specify them in the
+`return()` method:
 
 <Tabs
   defaultValue="gqlalchemy"
@@ -63,18 +64,19 @@ To return only a subset of variables from a query, specify them in the `return()
 ```python
 from gqlalchemy import match
 
-query = match().node(labels="Person", variable="p1")
-               .to()
-               .node(labels="Person", variable="p2")
-               .return_({"p1":"p1"})
-               .execute()
+query = match()
+        .node(labels="Person", variable="p1")
+        .to()
+        .node(labels="Person", variable="p2")
+        .return_({"p1":"p1"})
+        .execute()
 ```
 
   </TabItem>
   <TabItem value="cypher">
 
 ```cypher
-MATCH (p1:Person})-[]->(p2:Person) RETURN p1;
+MATCH (p1:Person)-[]->(p2:Person) RETURN p1;
 ```
 
 </TabItem>
@@ -82,7 +84,8 @@ MATCH (p1:Person})-[]->(p2:Person) RETURN p1;
 
 ## Limit the number of returned results
 
-To limit the number of returned results, use the `limit()` method after the `return_()` method:
+To limit the number of returned results, use the `limit()` method after the
+`return_()` method:
 
 <Tabs
   defaultValue="gqlalchemy"
@@ -95,7 +98,7 @@ To limit the number of returned results, use the `limit()` method after the `ret
 ```python
 from gqlalchemy import match
 
-query = match().node(labels="Person", variable="p").return_().limit(10)
+query = match().node(labels="Person", variable="p").return_().limit(10).execute()
 ```
 
   </TabItem>
@@ -110,7 +113,8 @@ MATCH (p:Person) RETURN * LIMIT 10;
 
 ## Order the returned results
 
-To order the returned results, use the `order_by()` method after the `return_()` method:
+To order the returned results, use the `order_by()` method after the `return_()`
+method:
 
 <Tabs
   defaultValue="gqlalchemy"
@@ -123,7 +127,7 @@ To order the returned results, use the `order_by()` method after the `return_()`
 ```python
 from gqlalchemy import match
 
-query = match().node(labels="Person", variable="p").return_({"p":"p"}).order_by("p.name DESC")
+query = match().node(labels="Person", variable="p").return_({"p":"p"}).order_by("p.name DESC").execute()
 ```
 
   </TabItem>

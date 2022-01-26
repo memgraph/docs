@@ -6,7 +6,7 @@ slug: /how-to-guides/streams/manage-kafka-streams
 ---
 
 The stream functionality enables Memgraph to connect to a Kafka, Pulsar or
-Redpanda cluster and run graph analytics on the data stream. 
+Redpanda cluster and run graph analytics on the data stream.
 
 ## 1. Create a Kafka stream in Memgraph
 
@@ -46,7 +46,7 @@ db.start_stream(stream)
 
 To check the status of the stream in Memgraph, just run the following command:
 
-```python 
+```python
 check = db.get_streams()
 ```
 
@@ -54,6 +54,6 @@ check = db.get_streams()
 
 You can use the `drop_stream()` method to delete a stream:
 
-```python 
+```python
 check = db.drop_stream(stream)
 ```

@@ -11,7 +11,8 @@ You can use the methods `create()` and `merge()` to construct queries that will
 generate new nodes and relationships in the database.
 
 - `create()` - Creates the specified node or relationship.
-- `merge()` - Updates existing nodes and relationships or creates them if they don't exist.
+- `merge()` - Updates existing nodes and relationships or creates them if they
+  don't exist.
 
 ## How to create a node
 
@@ -28,14 +29,14 @@ To create nodes, you can just use the method `node()` after `create()`:
 ```python
 from gqlalchemy import create
 
-query = create().node(labels="Person").execute()
+query = create().node(labels="Person", name="Ron").execute()
 ```
 
   </TabItem>
   <TabItem value="cypher">
 
 ```cypher
-CREATE (:Person {name: "Ron"});
+CREATE (:Person {name: 'Ron'});
 ```
 
 </TabItem>
@@ -57,14 +58,14 @@ if it already exists, it will only be updated if the properties don't match:
 ```python
 from gqlalchemy import merge
 
-query = merge().node(labels="Person", name="John").execute()
+query = merge().node(labels="Person", name="Leslie").execute()
 ```
 
   </TabItem>
   <TabItem value="cypher">
 
 ```cypher
-MERGE (:Person {name: "Leslie"});
+MERGE (:Person {name: 'Leslie'});
 ```
 
 </TabItem>
@@ -72,7 +73,8 @@ MERGE (:Person {name: "Leslie"});
 
 ## How to create a relationship
 
-To create relationships, you can just use the methods `to()` and `from()` after `create()`:
+To create relationships, you can just use the methods `to()` and `from()` after
+`create()`:
 
 <Tabs
   defaultValue="gqlalchemy"
@@ -85,17 +87,18 @@ To create relationships, you can just use the methods `to()` and `from()` after 
 ```python
 from gqlalchemy import create
 
-query = create().node(labels="Person", name="Leslie")
-                .to(edge_label="FRIENDS_WITH")
-                .node(labels="Person", name="Ron")
-                .execute()
+query = create()
+        .node(labels="Person", name="Leslie")
+        .to(edge_label="FRIENDS_WITH")
+        .node(labels="Person", name="Ron")
+        .execute()
 ```
 
   </TabItem>
   <TabItem value="cypher">
 
 ```cypher
-CREATE (:Person {name: "Leslie"})-[:FRIENDS_WITH]-(:Person {name: "Ron"})
+CREATE (:Person {name: 'Leslie'})-[:FRIENDS_WITH]->(:Person {name: 'Ron'});
 ```
   
 </TabItem>

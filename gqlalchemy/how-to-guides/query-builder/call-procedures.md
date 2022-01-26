@@ -17,7 +17,8 @@ call procedure and return results from them.
 
 ## Call procedure with no arguments
 
-To call a procedure with no arguments, don't specify the arguments in the `call()` method:
+To call a procedure with no arguments, don't specify the arguments in the
+`call()` method:
 
 <Tabs
   defaultValue="gqlalchemy"
@@ -30,9 +31,7 @@ To call a procedure with no arguments, don't specify the arguments in the `call(
 ```python
 from gqlalchemy import call
 
-query = call("pagerank.get")
-        .yield_()
-        .return_()
+query = call("pagerank.get").yield_().return_().execute()
 ```
 
   </TabItem>
@@ -47,7 +46,8 @@ CALL pagerank.get() YIELD * RETURN *;
 
 ## Call procedure with arguments
 
-To call a procedure with arguments, specify the arguments as a string in the `call()` method:
+To call a procedure with arguments, specify the arguments as a string in the
+`call()` method:
 
 <Tabs
   defaultValue="gqlalchemy"
@@ -63,13 +63,14 @@ from gqlalchemy import call
 query = call("json_util.load_from_url", "https://some-url.com")
         .yield_({"objects":"objects"})
         .return_({"objects":"objects"})
+        .execute()
 ```
 
   </TabItem>
   <TabItem value="cypher">
 
 ```cypher
-CALL json_util.load_from_url(url) YIELD objects RETURN objects;
+CALL json_util.load_from_url(https://some-url.com) YIELD objects RETURN objects;
 ```
 
 </TabItem>

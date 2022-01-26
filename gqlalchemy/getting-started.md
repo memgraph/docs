@@ -5,6 +5,8 @@ sidebar_label: Getting started
 slug: /
 ---
 
+[![GQLAlchemy](https://img.shields.io/badge/GQLAlchemy-FB6E00?style=for-the-badge&logo=github&logoColor=white)](https://github.com/memgraph/gqlalchemy)
+
 **GQLAlchemy** is a fully open-source Python library that aims to be the go-to
 **Object Graph Mapper** (OGM) -- a link between Graph Database objects and Python
 objects.
@@ -25,10 +27,10 @@ source](/installation.md#source).
 
 With the help of the [OGM
 guide](/how-to-guides/ogm/save-nodes-and-relationships.md) you can learn how to
-save nodes and relationships you have created. 
+save nodes and relationships you have created.
 
 ### 3. Learn how to use the query builder
 
 There is no need to learn the Cypher query language when you can use the [query
-builder](/how-to-guides/query-builder/create-query.md) in GQLAlchemy to perform
-the same tasks. 
+builder](/how-to-guides/query-builder/create-nodes-relationships.md) in GQLAlchemy to perform
+the same tasks.
