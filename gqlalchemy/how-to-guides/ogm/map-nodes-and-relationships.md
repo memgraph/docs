@@ -14,7 +14,6 @@ First, do all necessary imports and create an instance of the database:
 
 ```python
 from gqlalchemy import Memgraph, Node, Relationship, Field
-from datetime import datetime
 from typing import Optional
 ```
 
@@ -29,13 +28,13 @@ class User(Node):
     id: str = Field(index=True, exist=True, unique=True, db=db)
 
 class Streamer(User):
-    id: str = Field(index=True, exist=True, unique=True, db=db, label="User")
+    id: str = Field(index=True, exist=True, unique=True, db=db)
     username: Optional[str] = Field(index=True, exist=True, unique=True, db=db)
     url: Optional[str] = Field()
     followers: Optional[int] = Field()
     createdAt: Optional[str] = Field()
     totalViewCount: Optional[int] = Field()
-    description: Optional[str]
+    description: Optional[str] = Field()
 ```
 
 `Node` is a Python class that maps to a graph object in Memgraph. `User` and
@@ -45,13 +44,13 @@ graph database. Class `User` maps to a single `:User` label, while class
 `User` class. If you create a node with the label `User`, that node has a
 property `id`, which is indexed and a unique string. With the help of the
 `Field()` you are defining those constraints on the properties and defining to
-which database that property will be saved. Argument `index=True` is added on `id` property, which is both in `User` and `Stream` class. Because of that, you have to pass an argument to the `Field` called `label`, to determine on which label index will be created. Notice that the `description` property has no `Field()` function. That means that `description` won't be saved into the database.
+which database that property will be saved. Argument `index=True` is added on `id` property, which is both in `User` and `Stream` class. Because `Streamer` inherits from the `User`, property `id` will be indexed on nodes labeled with `User`. In Cypher query language, that means query `CREATE INDEX ON :User(id);` will be executed.
 
 In a similar way, you can create a relationship:
 
 ```python
 class ChatsWith(Relationship, type="CHATS_WITH"):
-    lastChatted: Optional[datetime] = Field() 
+    lastChatted: Optional[str] = Field()
 ```
 
 Now you have created a relationship of type `CHATS_WITH`. This relationship has
