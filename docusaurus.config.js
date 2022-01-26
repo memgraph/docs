@@ -163,6 +163,34 @@ module.exports = {
           ],
         },
         {
+          to: "/gqlalchemy/",
+          label: "GQLAlchemy",
+          position: "left",
+          activeBaseRegex: `/gqlalchemy/`,
+          items: [
+            {
+              label: "Getting started",
+              to: "/gqlalchemy/",
+            },
+            {
+              label: "Installation",
+              to: "/gqlalchemy/installation",
+            },
+            {
+              label: "How-to guides",
+              to: "/gqlalchemy/how-to-guides",
+            },
+            {
+              label: "Reference",
+              to: "/gqlalchemy/reference",
+            },
+            {
+              label: "Changelog",
+              to: "/gqlalchemy/changelog",
+            },
+          ],
+        },
+        {
           to: "/cypher-manual/",
           label: "Cypher manual",
           position: "left",
@@ -241,6 +269,10 @@ module.exports = {
             {
               label: "MAGE",
               to: "/mage",
+            },
+            {
+              label: "GQLAlchemy",
+              to: "/gqlalchemy",
             },
           ],
         },
@@ -385,6 +417,16 @@ module.exports = {
         path: "errors",
         routeBasePath: "errors",
         sidebarPath: require.resolve("./sidebars/sidebarsErrors.js"),
+        editUrl: "https://github.com/memgraph/docs/tree/master/",
+      },
+    ],
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "gqlalchemy",
+        path: "gqlalchemy",
+        routeBasePath: "gqlalchemy",
+        sidebarPath: require.resolve("./sidebars/sidebarsGQLAlchemy.js"),
         editUrl: "https://github.com/memgraph/docs/tree/master/",
       },
     ],
