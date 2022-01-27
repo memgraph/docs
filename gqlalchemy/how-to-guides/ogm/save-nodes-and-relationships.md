@@ -4,8 +4,8 @@ title: How to save nodes and relationships
 sidebar_label: Save nodes and relationships
 ---
 
-With the help of this guide you can learn how to save nodes and relationships
-you have created. 
+With the help of this guide you can learn how to save nodes and relationships to
+a graph database.
 
 > Make sure you have a running Memgraph instance. If you're not sure how to run
 > Memgraph, check out the Memgraph [Quick start](/memgraph/#quick-start).
@@ -26,7 +26,7 @@ class Language(Node):
     name: str = Field(unique=True, db=db)
 ```
 
-Then you create and save object with:
+Then you create and save objects with:
 
 ```python
 user = User(id="3", username="John").save(db)
@@ -42,13 +42,14 @@ db.save_node(user)
 language = Language(name="en")
 db.save_node(language)
 ```
-These methods will check if there is that node in Memgraph already and if not,
-create a new one. If it existed before in Memgraph, then internal id of that
-node in Memgraph remains the same.
 
-Next, let's say that John speaks English. You need to create and save
-relationship `SPEAKS`. First, we have a class which maps to the relationship in
-the database:
+These methods will check if the node is already in Memgraph and if not, create a
+new one. If it existed before in Memgraph, then the internal id of that node in
+Memgraph remains the same.
+
+Next, let's say that John speaks English. You need to create and save a
+relationship of type `SPEAKS`. First, we define a class which maps to the
+relationship in the database:
 
 ```python
 class Speaks(Relationship, type="SPEAKS"):
@@ -56,7 +57,7 @@ class Speaks(Relationship, type="SPEAKS"):
 ```
 
 This relationship doesn't have any properties. To save it, you need to first
-create it with appropriate start and end nodes.
+create it with appropriate start and end nodes:
 
 ```python
 speaks_rel = Speaks(
@@ -65,7 +66,7 @@ speaks_rel = Speaks(
 ).save(db)
 ```
 
-Another way is again by first creating the relationship and then saving it using
+Another way is by first creating the relationship and then saving it using the
 method `save_relationship()`:
 
 ```python
@@ -76,9 +77,8 @@ speaks_rel = Speaks(
 db.save_relationship(speaks_rel)
 ```
 
-> Property `_id` is internal Memgraph id - an id given to each node upon saving
-to the database. 
-
+> The property `_id` is an internal Memgraph id - an id given to each node upon
+> saving to the database. 
 
 Hopefully this guide has taught you how to create and save nodes and
 relationships. If you have any more questions, join our community and ping us on

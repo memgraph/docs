@@ -48,9 +48,9 @@ handy, but let's cover the two most common.
 
 ### Finding node properties
 
-Suppose you just have the `id` of the streamer and you want to know streamer's
-name. Then you have to load that node from the database and check its `name`
-property.
+Suppose you just have the `id` of the streamer and you want to know the
+streamer's name. You have to load that node from the database and check its
+`name` property.
 
 ```python
 loaded_streamer = Streamer(id="7").load(db=db)
@@ -70,12 +70,12 @@ loaded_streamer = Stream(id="7").load(db=db)
 loaded_team = Team(name="Warriors").load(db=db)
 ```
 
-Since the `id` property is unique, the `load()` method will return unique
-streamer found in the database. Similarly, since `name` property is unique for
-each team, `load()` method will return unique team found in the database. When
-the given property is not unique, `load()` method will return a list of matching
-results. Finally, you create relationship between `loaded_streamer` and
-`loaded_team` nodes:
+Since the `id` property is unique, the `load()` method will return a unique
+streamer found in the database. Similarly, since the `name` property is unique
+for each team, the `load()` method will return a unique team found in the
+database. When the given property is not unique, the `load()` method will return
+a list of matching results. Finally, you can create a relationship between
+`loaded_streamer` and `loaded_team` nodes:
 
 ```python
 is_part_of = IsPartOf(
