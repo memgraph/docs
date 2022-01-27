@@ -47,3 +47,12 @@ the following guides:
 - [**Kafka streams**](/how-to-guides/streams/kafka-streams.md)
 - [**Pulsar streams**](/how-to-guides/streams/pulsar-streams.md)
 - [**Triggers**](/how-to-guides/triggers/triggers.md)
+
+## On-disk storage
+
+Since Memgraph is an in-memory graph database, the GQLAlchemy library provides
+an on-disk storage solution for large properties that don’t need to be used in
+any of the graph algorithms. Learn how to use on-disk storage in the following
+guide:
+
+- [**On-disk storage**](/how-to-guides/on-disk-storage/on-disk-storage.md)
