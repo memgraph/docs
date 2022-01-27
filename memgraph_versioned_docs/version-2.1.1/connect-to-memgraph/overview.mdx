@@ -114,19 +114,8 @@ export default function ConnectToMemgraph() {
                             </p>
                         </section>
                         <section>
-                            <h2>Connect via Driver</h2>
-                            <p>Connect to Memgraph from your favorite programming language. We support a wide range of drivers.</p>
-                            <div className={styles.connectToMemgraph__grid}>
-                                {viaDriver.map((item, i) => {
-                                    return (
-                                        <ConnectButton key={i} url={item.url} title={item.title} img={item.img} imgActive={item.imgActive} imgDark={item.imgDark} imgDarkActive={item.imgDarkActive} />
-                                    );
-                                })}
-                            </div>
-                        </section>
-                        <section>
                             <h2>Connect via Memgraph Lab</h2>
-                            <p>Memgraph Lab is an interactive application for querying and visualizing your graphs.</p>
+                            <p>Memgraph Lab is a lightweight and intuitive <b>visual user interface</b> that enables you to execute Cypher queries and visualize graph data.</p>
                             <ConnectButton title={viaLab.title} url={viaLab.url} img={viaLab.img} imgActive={viaLab.imgActive} imgDark={viaLab.imgDark} imgDarkActive={viaLab.imgDarkActive} />
                         </section>
                         {/*
@@ -147,8 +136,19 @@ export default function ConnectToMemgraph() {
                         }
                         <section>
                             <h2>Connect via mgconsole</h2>
-                            <p>A command-line interface for querying Memgraph.</p>
+                            <p>A <b>command-line interface</b> for querying Memgraph.</p>
                             <ConnectButton title={viaConsole.title} url={viaConsole.url} img={viaConsole.img} imgActive={viaConsole.imgActive} imgDark={viaConsole.imgDark} imgDarkActive={viaConsole.imgDarkActive} />
+                        </section>
+                        <section>
+                            <h2>Connect via Driver</h2>
+                            <p>Connect to Memgraph from your favorite programming language. We support a wide range of drivers.</p>
+                            <div className={styles.connectToMemgraph__grid}>
+                                {viaDriver.map((item, i) => {
+                                    return (
+                                        <ConnectButton key={i} url={item.url} title={item.title} img={item.img} imgActive={item.imgActive} imgDark={item.imgDark} imgDarkActive={item.imgDarkActive} />
+                                    );
+                                })}
+                            </div>
                         </section>
                         <section>
                             <h2>Where to next?</h2>

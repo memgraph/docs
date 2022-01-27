@@ -22,8 +22,8 @@ To follow this guide, you will need:
 
 We'll be using **Express.js** to demonstrate how to connect to a running
 Memgraph instance. Express.js is a web application framework that enables us to
-create complete Node.js applications. If you don't wish to use it, the steps
-might be slightly different, but the code is most likely the same or very
+create complete Node.js applications. If you don't won't to use it, the steps
+might be slightly different, but the code is either the same or very
 similar.
 
 Let's jump in and connect a simple program to Memgraph.

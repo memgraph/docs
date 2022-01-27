@@ -3,15 +3,22 @@ module.exports = {
     "getting-started",
     {
       type: "category",
-      label: "Installation",
+      label: "Install Memgraph",
+      link: {type: 'doc', id: 'installation/overview'},
       items: [
-        "installation/overview",
         {
           type: "category",
           label: "Windows",
           items: [
             "installation/windows/docker-installation",
-            "installation/windows/wsl-installation",
+            {
+              type: "category",
+              label: "Install Memgraph DB",
+              items: [
+                "installation/windows/docker-db-installation",
+                "installation/windows/wsl-installation",
+              ],
+            }, 
             "installation/windows/windows-installation-troubleshooting",
           ],
         },
@@ -20,6 +27,7 @@ module.exports = {
           label: "macOS",
           items: [
             "installation/macos/docker-installation",
+            "installation/macos/docker-db-installation",
             "installation/macos/macos-installation-troubleshooting",
           ],
         },
@@ -28,9 +36,16 @@ module.exports = {
           label: "Linux",
           items: [
             "installation/linux/docker-installation",
-            "installation/linux/ubuntu-installation",
-            "installation/linux/debian-installation",
-            "installation/linux/rpm-installation",
+            {
+              type: "category",
+              label: "Install Memgraph DB",
+              items: [
+                "installation/linux/docker-db-installation",
+                "installation/linux/ubuntu-installation",
+                "installation/linux/debian-installation",
+                "installation/linux/rpm-installation",
+              ],
+            }, 
             "installation/linux/linux-installation-troubleshooting",
           ],
         },
@@ -39,19 +54,19 @@ module.exports = {
     {
       type: "category",
       label: "Connect to Memgraph",
+      link: {type: 'doc', id: 'connect-to-memgraph/overview'},
       items: [
-        "connect-to-memgraph/overview",
-        "connect-to-memgraph/mgconsole",
         {
           type: "link",
           label: "Memgraph Lab",
           href: "https://memgraph.com/docs/memgraph-lab",
         },
+        "connect-to-memgraph/mgconsole",
         {
           type: "category",
           label: "Drivers",
+          link: {type: 'doc', id: 'connect-to-memgraph/drivers/overview'},
           items: [
-            "connect-to-memgraph/drivers/overview",
             "connect-to-memgraph/drivers/python",
             "connect-to-memgraph/drivers/rust",
             "connect-to-memgraph/drivers/c-sharp",
@@ -67,8 +82,8 @@ module.exports = {
     {
       type: "category",
       label: "Import data",
+      link: {type: 'doc', id: 'import-data/overview'},
       items: [
-        "import-data/overview",
         {
           type: "category",
           label: "CSV",
@@ -77,10 +92,10 @@ module.exports = {
         {
           type: "category",
           label: "Kafka",
+          link: {type: 'doc', id: 'import-data/kafka/overview'},
           items: [
-            "import-data/kafka/overview",
-            "import-data/kafka/avro",
             "import-data/kafka/json",
+            "import-data/kafka/avro",
             "import-data/kafka/protobuf",
           ],
         },
@@ -98,8 +113,8 @@ module.exports = {
     {
       type: "category",
       label: "Tutorials",
+      link: {type: 'doc', id: 'tutorials/overview'},
       items: [
-        "tutorials/overview",
         "tutorials/analyzing-ted-talks",
         "tutorials/backpacking-through-europe",
         "tutorials/exploring-the-european-road-network",
@@ -115,8 +130,8 @@ module.exports = {
     {
       type: "category",
       label: "How-to guides",
+      link: {type: 'doc', id: 'how-to-guides/overview'},
       items: [
-        "how-to-guides/overview",
         "reference-guide/backup",
         {
           type: "category",
@@ -183,8 +198,8 @@ module.exports = {
     {
       type: "category",
       label: "Reference guide",
+      link: {type: 'doc', id: 'reference-guide/overview'},
       items: [
-        "reference-guide/overview",
         "reference-guide/backup",
         "reference-guide/configuration",
         "reference-guide/graph-algorithms",
@@ -288,14 +303,14 @@ module.exports = {
     },
     {
       type: "category",
-      label: "Concepts",
+      label: "Under the hood",
+      link: {type: 'doc', id: 'under-the-hood/overview'},
       items: [
-        "concepts/concepts",
-        "concepts/storage",
-        "concepts/graph-algorithms",
-        "concepts/indexing",
-        "concepts/replication",
-        "concepts/telemetry",
+        "under-the-hood/storage",
+        "under-the-hood/graph-algorithms",
+        "under-the-hood/indexing",
+        "under-the-hood/replication",
+        "under-the-hood/telemetry",
       ],
     },
     "changelog",
