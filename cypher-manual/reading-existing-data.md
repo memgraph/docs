@@ -6,7 +6,7 @@ slug: /reading-existing-data
 ---
 
 The simplest usage of the language is to find data stored in the database. For
-that you can use one fo the the following clauses:
+that, you can use one of the following clauses:
 
   * `MATCH` which searches for patterns;
   * `WHERE` for filtering the matched data and
@@ -18,7 +18,7 @@ that you can use one fo the the following clauses:
 
 This clause is used to obtain data from Memgraph by matching it to a given
 pattern. For example, you can use the following query to find each node in the
-database.
+database:
 
 ```cypher
 MATCH (node) RETURN node;
@@ -33,13 +33,13 @@ MATCH (node1)-[connection]-(node2) RETURN node1, connection, node2;
 In addition to general pattern matching, you can narrow the search down by
 specifying node labels and properties. Similarly, edge types and properties can
 also be specified. For example, finding each node labeled as `Person` and with
-property `age` being 42, is done with the following query.
+property `age` being 42, is done with the following query:
 
 ```cypher
 MATCH (n :Person {age: 42}) RETURN n;
 ```
 
-You can use the following query to find their friends.
+You can use the following query to find their friends:
 
 ```cypher
 MATCH (n :Person {age: 42})-[:FriendOf]-(friend) RETURN friend;
@@ -84,7 +84,7 @@ values. Examples can be found [here](./clauses/optional-match.md).
 You have already seen how to achieve simple filtering by using labels and
 properties in `MATCH` patterns. When more complex filtering is desired, you can
 use `WHERE` paired with `MATCH` or `OPTIONAL MATCH`. For example, finding each
-person older than 20 is done with this query.
+person older than 20 is done with this query:
 
 ```cypher
 MATCH (n :Person) WHERE n.age > 20 RETURN n;
@@ -97,7 +97,7 @@ Additional examples can be found [here](./clauses/where.md).
 Inside `WHERE` clause, you can use regular expressions for text filtering. To
 use a regular expression, you need to use the `=~` operator.
 
-For example, finding all `Person` nodes which have a name ending with `son`.
+For example, finding all `Person` nodes which have a name ending with `son`:
 
 ```cypher
 MATCH (n :Person) WHERE n.name =~ ".*son$" RETURN n;
@@ -115,7 +115,7 @@ The `RETURN` clause defines which data should be included in the resulting set.
 Basic usage was already shown in the examples for `MATCH` and `WHERE` clauses.
 Another feature of `RETURN` is renaming the results using the `AS` keyword.
 
-Example.
+For example:
 
 ```cypher
 MATCH (n :Person) RETURN n AS people;
@@ -159,13 +159,13 @@ More details on `RETURN` can be found [here](./clauses/return.md).
 ### SKIP & LIMIT
 
 These sub-clauses take a number of how many results to skip or limit. For
-example, to get the first three results you can use this query.
+example, to get the first three results you can use this query:
 
 ```cypher
 MATCH (n :Person) RETURN n LIMIT 3;
 ```
 
-If you want to get all the results after the first 3, you can use the following.
+If you want to get all the results after the first 3, you can use the following:
 
 ```cypher
 MATCH (n :Person) RETURN n SKIP 3;
@@ -185,16 +185,16 @@ be able to enforce some ordering among the results. In such cases, you can use
 the `ORDER BY` sub-clause.
 
 For example, the following query will get all `:Person` nodes and order them by
-their names.
+their names:
 
 ```cypher
 MATCH (n :Person) RETURN n ORDER BY n.name;
 ```
 
-By default, ordering will be in the ascending order. To change the order to be
-descending, you should append `DESC`.
+By default, ordering will be ascending. To change the order to be descending,
+you should append `DESC`.
 
-For example, you can use this query to order people by their name descending
+For example, you can use this query to order people by their name descending:
 
 ```cypher
 MATCH (n :Person) RETURN n ORDER BY n.name DESC;
@@ -204,7 +204,7 @@ You can also order by multiple variables. The results will be sorted by the
 first variable listed. If the values are equal, the results are sorted by the
 second variable, and so on.
 
-Example. Ordering by first name descending and last name ascending.
+For example, ordering by first name descending and last name ascending:
 
 ```cypher
 MATCH (n :Person) RETURN n ORDER BY n.name DESC, n.lastName;
@@ -224,7 +224,7 @@ MATCH (n: Person) RETURN old AS new ORDER BY new.name;
 ```
 
 The `ORDER BY` sub-clause may come in handy with `SKIP` and/or `LIMIT`
-sub-clauses. For example, to get the oldest person you can use the following.
+sub-clauses. For example, to get the oldest person you can use the following:
 
 ```cypher
 MATCH (n :Person) RETURN n ORDER BY n.age DESC LIMIT 1;
@@ -301,7 +301,7 @@ MATCH(n: Person) RETURN n.name AS name UNION ALL MATCH(n: Movie) RETURN n.name A
 
 The `UNWIND` clause is used to unwind a list of values as individual rows.
 
-To produce rows out of a single list use the following query:
+To produce rows out of a single list, use the following query:
 
 ```cypher
 UNWIND [1,2,3] AS listElement RETURN listElement;
@@ -318,7 +318,7 @@ clause.
 
 ### Patterns in a query
 
-Here is an example of a patterns that utilizes the FRIENDS_WITH relationships
+Here is an example of a pattern that utilizes the FRIENDS_WITH relationships
 from our graph:
 
 ```cypher
@@ -328,14 +328,14 @@ RETURN p1, r, p2;
 
 The output is:
 
-![](data/read-existing-data/patterns-in-a-query.png)
+![patterns-in-a-query](data/read-existing-data/patterns-in-a-query.png)
 
 Because the FRIENDS_WITH relationship is directional, only these two nodes are
 returned.
 
 ### Reversing traversals
 
-When the relationships from the previous query is reversed, with the person
+When the relationship from the previous query is reversed, with the person
 named Alison being the anchor node, the returned results are:
 
 ```cypher
@@ -345,7 +345,7 @@ RETURN p1, r, p2;
 
 The output is:
 
-![](data/read-existing-data/reversing-traversals.png)
+![reversing-traversals](data/read-existing-data/reversing-traversals.png)
 
 ### Bidirectional traversals
 
@@ -360,7 +360,7 @@ RETURN p1, r, p2;
 
 The output is:
 
-![](data/read-existing-data/bidirectional-traversals.png)
+![bidirectional-traversals](data/read-existing-data/bidirectional-traversals.png)
 
 ### Traversing multiple relationships
 
@@ -379,6 +379,4 @@ RETURN p1, r1, p2, r2, p3;
 Keep in mind that the first relationship is directional while the second one
 isn't. The output is:
 
-![](data/read-existing-data/traversing-multiple-relationships.png)
-
-
+![traversing-multiple-relationships](data/read-existing-data/traversing-multiple-relationships.png)

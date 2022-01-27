@@ -1,7 +1,7 @@
 ---
 id: overview
 title: Getting started with Cypher
-sidebar_label: Getting started with Cypher
+sidebar_label: Getting started
 slug: /
 ---
 
@@ -9,7 +9,7 @@ slug: /
 for property graph databases. It provides an intuitive way to work with property
 graphs.
 
-### Quick start
+## Quick start
 
 If you are new to the **Cypher** query language, take a look at what you can do
 with a few simple commands. You will use our sandbox that we have already filled
@@ -17,7 +17,7 @@ with sample data. There is no need for you to install anything at this point.
 Simply open Game of Thrones Deaths dataset on [**Memgraph
 playground**](https://playground.memgraph.com/sandbox/game-of-thrones-deaths).
 You will find some predefine queries there that will help you to get a glimpse
-what you can do with Cypher. 
+of what you can accomplish with Cypher. 
 
 :::info
 
@@ -40,8 +40,7 @@ query language](cypher-query-language.md) to get the job done.
 with your data and streams.
 
 ## Import data
-You can easily [Import data](import-data.md) or add new data to Memgraph. Take a
-look how to do it.
+You can easily [Import data](import-data.md) or add new data to Memgraph.
 
 ## Connecting nodes
 Memgraph is all about connections. Learn how to [connect
@@ -66,7 +65,7 @@ of your data, but be careful with this if you don't have a backup!
 Maybe [clauses](clauses/clauses.md) are the reason why you are here. We have
 created a list of all Cypher clauses that Memgraph supports.
 
-## Using functions
+## Functions
 Sometimes clauses are now enough to get the data you are looking for. Don't
 worry, Memgraph has a lot o built-in [functions](functions.md) that will help
 you to get the right data.

@@ -8,7 +8,7 @@ sidebar_label: Deleting nodes and relationships
 
 This clause is used to delete nodes and edges from the database.
 
-Example. Removing all edges of a single type.
+For example, removing all edges of a single type:
 
 ```cypher
 MATCH ()-[edge :type]-() DELETE edge;
@@ -22,7 +22,7 @@ should delete all edges coming into or out of that node.
 MATCH (node) DELETE node;
 ```
 
-But, openCypher prevents accidental deletion of edges. Therefore, the above
+But, Cypher prevents accidental deletion of edges. Therefore, the above
 query will report an error. Instead, you need to use the `DETACH` keyword, which
 will remove edges from a node you are deleting. The following should work and
 *delete everything* in the database.
@@ -31,17 +31,13 @@ will remove edges from a node you are deleting. The following should work and
 MATCH (node) DETACH DELETE node;
 ```
 
-More examples are [here](./clauses/delete.md).
+More examples are available [here](./clauses/delete.md).
 
 ## REMOVE
 
 The `REMOVE` clause is used to remove labels and properties from nodes and
-edges.
-
-Example.
+edges:
 
 ```cypher
 MATCH (n :WrongLabel) REMOVE n :WrongLabel, n.property;
 ```
-
-

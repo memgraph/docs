@@ -50,7 +50,7 @@ using the WHERE clause and accessing them using variables `p1` and `p2`.
 
 ### Retrieving relationship types
 
-The built-in function `type()` can be used to return the type of a relationship.
+The built-in function `type()` can be used to return the type of a relationship:
 
 ```cypher
 CREATE (p1:Person { name: 'Harry' }), (p2:Person { name: 'Anna' })

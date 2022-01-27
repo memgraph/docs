@@ -45,15 +45,15 @@ but this is supported:
 CREATE (n $propertyMap) RETURN n;
 ```
 
-To use parameters with Python driver use following syntax:
+To use parameters with a Python driver use the following syntax:
 
 ```python
 session.run('CREATE (alice:Person {name: $name, age: $ageValue}',
             name='Alice', ageValue=22)).consume()
 ```
 
-To use parameters which names are integers you will need to wrap parameters in a
-dictionary and convert them to strings before running a query:
+To use parameters whose names are integers, you will need to wrap parameters in
+a dictionary and convert them to strings before running a query:
 
 ```python
 session.run('CREATE (alice:Person {name: $0, age: $1}',
@@ -65,12 +65,11 @@ documentation.
 
 ## CASE
 
-Conditional expressions can be expressed in openCypher language by simple and
-generic form of `CASE` expression. A simple form is used to compare an
-expression against multiple predicates. For the first matched predicate result
-of the expression provided after the `THEN` keyword is returned.  If no
-expression is matched value following `ELSE` is returned is provided, or `null`
-if `ELSE` is not used:
+Conditional expressions can be expressed in the Cypher language with the `CASE`
+expression. A simple form is used to compare an expression against multiple
+predicates. For the first matched predicate result of the expression provided
+after the `THEN` keyword is returned. If no expression is matched value
+following `ELSE` is returned is provided, or `null` if `ELSE` is not used:
 
 ```cypher
 MATCH (n)

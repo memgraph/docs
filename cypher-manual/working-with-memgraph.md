@@ -13,9 +13,9 @@ problems in real-time and accelerate graph application development.
 You can [install and run
 Memgraph](https://memgraph.com/docs/memgraph/installation) using Docker on
 Windows and macOS, or natively on Linux and WSL. If you use Docker, Memgraph
-Platform is the recommended Docker image. Memgraph Platform Docker image
+Platform is the recommended Docker image. The Memgraph Platform Docker image
 contains everything you need to start as quickly as possible: MemgraphDB,
-Memgraph Lab, and mgconsole.
+Memgraph Lab, mgconsole and MAGE.
 
 ## How to run a query
 
@@ -25,6 +25,3 @@ data. If you like command line tools you can use
 queries. If you are a fan of graphical interfaces, you can use [Memgraph
 Lab](/docs/memgraph-lab). On top of the execution of queries, with Memgraph Lab,
 you can import, explore and visualize your data.
-
-
-

@@ -12,7 +12,7 @@ For adding new data, you can use the following clauses.
 You can still use the `RETURN` clause to produce results after writing, but it
 is not mandatory.
 
-Details on which kind of data can be stored in *Memgraph* can be found in
+Details on which kind of data can be stored in *Memgraph* can be found in the
 [Storage](/memgraph/concepts/storage) chapter.
 
 ## CREATE
@@ -33,14 +33,14 @@ Labels and properties can be set during creation using the same syntax as in
 CREATE (node :Label {property: "my property value"});
 ```
 
-Additional information on `CREATE` is [here](./clauses/create.md).
+Additional information on `CREATE` is available [here](./clauses/create.md).
 
 
 ## WITH
 
 The write part of the query cannot be simply followed by another read part. To
-combine them, `WITH` clause must be used. The names this clause establishes are
-transferred from one part to another.
+combine them, the `WITH` clause must be used. The names this clause establishes
+are transferred from one part to another.
 
 For example, creating a node and finding all nodes with the same property.
 
@@ -62,7 +62,7 @@ in the database. This means that it will be created if the pattern is not found.
 In a way, this clause is like a combination of `MATCH` and `CREATE`.
 
 
-Example. Ensure that a person has at least one friend.
+For example, ensure that a person has at least one friend:
 
 ```cypher
 MATCH (n :Person) MERGE (n)-[:FriendOf]->(m);
@@ -72,14 +72,14 @@ The clause also provides additional features for updating the values depending
 on whether the pattern was created or matched. This is achieved with `ON CREATE`
 and `ON MATCH` sub clauses.
 
-Example. Set a different properties depending on what `MERGE` did.
+For example, set different properties depending on what `MERGE` did:
 
 ```cypher
 MATCH (n :Person) MERGE (n)-[:FriendOf]->(m)
 ON CREATE SET m.prop = "created" ON MATCH SET m.prop = "existed";
 ```
 
-For more details, click [this link](./clauses/merge.md).
+For more details, check out [this guide](./clauses/merge.md).
 
 ## Import existing data from CSV
 
@@ -89,4 +89,3 @@ you to [load and use data](/docs/memgraph/import-data/load-csv-clause) from a
 CSV file. Memgraph supports the Excel CSV dialect, as it's the most commonly
 used one. For the syntax of the clause, please check the [Load
 CSV](/cypher-manual/clauses/load-csv) page in the Cypher manual.
-

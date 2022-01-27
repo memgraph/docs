@@ -9,7 +9,7 @@ sidebar_label: Updating nodes and relationships
 Use the `SET` clause to update labels on nodes and properties on nodes and
 relationships.
 
-Click [here](./clauses/set.md) for a more detailed explanation on what can be
+Click [here](./clauses/set.md) for a more detailed explanation of what can be
 done with `SET`.
 
 OpenCypher supports combining multiple reads and writes using the `WITH` clause.
@@ -19,7 +19,7 @@ patterns if they do not exist.
 ### Creating and updating properties
 
 The SET clause can be used to create/update the value of a property on a node or
-relationship.
+relationship:
 
 ```cypher
 MATCH (c:City)
@@ -29,7 +29,7 @@ RETURN c
 ```
 
 The SET clause can be used to create/update the value of multiple properties
-nodes or relationships by separating them with a comma.
+nodes or relationships by separating them with a comma:
 
 ```cypher
 MATCH (c:City)
@@ -41,7 +41,7 @@ RETURN c
 ### Creating and updating node labels
 
 The SET clause can be used to create/update the label on a node. If the node has
-a label, a new one will be added while the old one is left as is.
+a label, a new one will be added while the old one is left as is:
 
 ```cypher
 MATCH (c:City:Location)
@@ -64,7 +64,7 @@ RETURN c
 ### Copy all properties
 
 If SET is used to copy the properties of one node/relationship to another, all
-the properties of the latter will be removed and replaced with the new ones.
+the properties of the latter will be removed and replaced with the new ones:
 
 ```cypher
 CREATE (p1:Person { name: 'Harry' }), (p2:Person { name: 'Anna' })
@@ -73,8 +73,9 @@ RETURN p1, p2
 ```
 
 ### Bulk update
-You can use SET clause to do a bulk update. Here is an example how to increment
-everyone's age by 1.
+
+You can use SET clause to do a bulk update. Here is an example of how to
+increment everyone's age by 1:
 
 ```cypher
 MATCH (n :Person) SET n.age = n.age + 1;

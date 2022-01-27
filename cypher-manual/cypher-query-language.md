@@ -22,7 +22,7 @@ are the relationships in the graph, and the adjectives and adverbs are the
 properties.
 
 In the following image, you can see one such example. We have a graph that
-consists of two nodes and one relationship
+consists of two nodes and one relationship:
 
 ![](data/cypher-query-language/graph-example.png)
 

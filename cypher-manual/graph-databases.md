@@ -7,9 +7,9 @@ sidebar_label: What are graph databases
 A **graph database** is a type of database that stores data in the form of nodes
 that can be connected with relationships. **Graphs** are essentially very simple
 structures that map relations between objects. We call these objects **nodes**
-and the connections between them **relationships**.
+and the connections between them are **relationships**.
 
-![](data/graph-databases/graph-database-example.png)
+![graph-database-example](data/graph-databases/graph-database-example.png)
 
 ## Graph terminology 
 Every graph can consist of four components: 
@@ -23,7 +23,6 @@ Every graph can consist of four components:
 
 Nodes and relationships are fundamental components that are used. Labels and
 properties are often included because of the added functionalities they offer. 
-
 
 ### Nodes
 
@@ -59,7 +58,7 @@ grouping nodes together simplifies database operations significantly. We no
 longer need to select the whole graph but only the set of nodes we are
 interested in.
 
-![](data/graph-databases/labels-example.png)
+![labels-example](data/graph-databases/labels-example.png)
 
 As you can see in the example above, nodes can also have multiple labels. These
 nodes can be represented in Cypher the following way:
@@ -73,7 +72,7 @@ nodes can be represented in Cypher the following way:
 Properties are key-value pairs of data stored on nodes or on relationships. They
 allow you to store relevant data about the node or relationship with the entity
 it describes. Properties support most standard data types like integers,
-strings, booleans, etc.You can find a complete table of property types in our
+strings, booleans, etc. You can find a complete table of property types in our
 [storage guide](../memgraph/concepts/storage/#properties).
 
 The flexibility and simplicity of properties allow users to easily review the
@@ -90,4 +89,4 @@ Here is one simple example that shows properties for several nodes:
 * What country is the city located in? - `country`
 * What is the population of the city? - `population`
 
-![](data/graph-databases/properties-example.png)
+![properties-example](data/graph-databases/properties-example.png)

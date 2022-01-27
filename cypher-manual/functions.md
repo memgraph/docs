@@ -1,7 +1,7 @@
 ---
 id: functions
-title: Using functions
-sidebar_label: Using functions
+title: Functions
+sidebar_label: Functions
 ---
 
 ## Supported functions
