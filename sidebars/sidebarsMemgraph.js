@@ -115,6 +115,7 @@ module.exports = {
       label: "Tutorials",
       link: {type: 'doc', id: 'tutorials/overview'},
       items: [
+        "tutorials/install-memgraph-windows-10",
         "tutorials/analyzing-ted-talks",
         "tutorials/backpacking-through-europe",
         "tutorials/exploring-the-european-road-network",
