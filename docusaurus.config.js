@@ -197,24 +197,56 @@ module.exports = {
           activeBaseRegex: `/cypher-manual/`,
           items: [
             {
-              label: "Overview",
+              label: "Getting started",
               to: "/cypher-manual/",
             },
             {
-              label: "Functions",
-              to: "/cypher-manual/functions",
+              label: "What are graph databases",
+              to: "/cypher-manual/what-are-graph-databases",
+            },
+            {
+              label: "Cypher query language",
+              to: "/cypher-manual/cypher-query-language",
+            },
+            {
+              label: "Working with Memgraph",
+              to: "/cypher-manual/working-with-memgraph",
+            },
+            {
+              label: "Import data",
+              to: "/cypher-manual/import-data",
+            },
+            {
+              label: "Connecting nodes",
+              to: "/cypher-manual/connecting-nodes",
+            },
+            {
+              label: "Reading existing data",
+              to: "/cypher-manual/reading-existing-data",
+            },
+            {
+              label: "Updating nodes and relationships",
+              to: "/cypher-manual/updating-nodes-and-relationships",
+            },
+            {
+              label: "Deleting nodes and relationships",
+              to: "/cypher-manual/deleting-nodes-and-relationships",
             },
             {
               label: "Clauses",
               to: "/cypher-manual/clauses",
             },
             {
-              label: "Other features",
-              to: "/cypher-manual/other-features",
+              label: "Using functions",
+              to: "/cypher-manual/functions",
             },
             {
-              label: "Differences",
-              to: "/cypher-manual/differences",
+              label: "Query modules",
+              to: "/cypher-manual/query-modules",
+            },
+            {
+              label: "Other features",
+              to: "/cypher-manual/other-features",
             },
           ],
         },
@@ -233,7 +265,7 @@ module.exports = {
               to: "https://memgraph-docs-archive.netlify.app/",
               label: "Older versions 🗄️",
             },
-          ]
+          ],
         },
         {
           href: "https://github.com/memgraph/memgraph",
@@ -324,7 +356,14 @@ module.exports = {
       contextualSearch: true,
     },
     prism: {
-      additionalLanguages: ["cypher", "php", "rust", "csharp", "java", "docker"],
+      additionalLanguages: [
+        "cypher",
+        "php",
+        "rust",
+        "csharp",
+        "java",
+        "docker",
+      ],
     },
     hideableSidebar: true,
     announcementBar: {
@@ -566,11 +605,11 @@ module.exports = {
             from: ["/memgraph/reference-overview/reading-existing-data"],
           },
           {
-            to: "/cypher-manual/writing-new-data",
+            to: "/cypher-manual/import-data",
             from: ["/memgraph/reference-overview/writing-new-data"],
           },
           {
-            to: "/cypher-manual/reading-and-writing",
+            to: "/cypher-manual/import-data",
             from: ["/memgraph/reference-overview/reading-and-writing"],
           },
           {
@@ -861,7 +900,22 @@ module.exports = {
           },
           {
             to: "/memgraph/how-to-guides/streams/kafka/implement-transformation-module",
-            from: ["/memgraph/database-functionalities/streams/implement-transformation-module"],
+            from: [
+              "/memgraph/database-functionalities/streams/implement-transformation-module",
+            ],
+          },
+          //Cypher manual redirects because of new structure
+          {
+            to: "/cypher-manual/import-data",
+            from: ["/cypher-manual/writing-new-data"],
+          },
+          {
+            to: "/cypher-manual/import-data",
+            from: ["/cypher-manual/reading-and-writing"],
+          },
+          {
+            to: "/cypher-manual/differences",
+            from: ["/cypher-manual/differences/patterns-in-expressions"],
           },
           //MAGE redirects
           {
@@ -923,27 +977,39 @@ module.exports = {
           //How-to guides redirects
           {
             to: "/memgraph/how-to-guides/streams/kafka/kafka-streams",
-            from: ["/memgraph/database-functionalities/streams/kafka/kafka-streams"],
+            from: [
+              "/memgraph/database-functionalities/streams/kafka/kafka-streams",
+            ],
           },
           {
             to: "/memgraph/how-to-guides/streams/kafka/implement-transformation-module",
-            from: ["/memgraph/database-functionalities/streams/kafka/implement-transformation-module"],
+            from: [
+              "/memgraph/database-functionalities/streams/kafka/implement-transformation-module",
+            ],
           },
           {
             to: "/memgraph/how-to-guides/streams/pulsar/pulsar-streams",
-            from: ["/memgraph/database-functionalities/streams/pulsar/pulsar-streams"],
+            from: [
+              "/memgraph/database-functionalities/streams/pulsar/pulsar-streams",
+            ],
           },
           {
             to: "/memgraph/how-to-guides/streams/pulsar/implement-transformation-module",
-            from: ["/memgraph/database-functionalities/streams/pulsar/implement-transformation-module"],
+            from: [
+              "/memgraph/database-functionalities/streams/pulsar/implement-transformation-module",
+            ],
           },
           {
             to: "/memgraph/how-to-guides/constraints/existence-constraint",
-            from: ["/memgraph/database-functionalities/constraints/existence-constraint"],
+            from: [
+              "/memgraph/database-functionalities/constraints/existence-constraint",
+            ],
           },
           {
             to: "/memgraph/how-to-guides/constraints/uniqueness-constraint",
-            from: ["/memgraph/database-functionalities/constraints/uniqueness-constraint"],
+            from: [
+              "/memgraph/database-functionalities/constraints/uniqueness-constraint",
+            ],
           },
           {
             to: "/memgraph/how-to-guides/inspecting-queries",
@@ -967,7 +1033,9 @@ module.exports = {
           },
           {
             to: "/memgraph/how-to-guides/query-modules/implement-query-modules",
-            from: ["/memgraph/database-functionalities/query-modules/implement-query-modules"],
+            from: [
+              "/memgraph/database-functionalities/query-modules/implement-query-modules",
+            ],
           },
           {
             to: "/memgraph/how-to-guides/replication",
@@ -979,7 +1047,9 @@ module.exports = {
           },
           {
             to: "/memgraph/how-to-guides/manage-users-using-ldap",
-            from: ["/memgraph/database-functionalities/manage-users-using-ldap"],
+            from: [
+              "/memgraph/database-functionalities/manage-users-using-ldap",
+            ],
           },
           {
             to: "/memgraph/how-to-guides/manage-user-privileges",
@@ -1000,35 +1070,51 @@ module.exports = {
           },
           {
             to: "/memgraph/connect-to-memgraph/drivers/python",
-            from: ["/memgraph/connect-to-memgraph/methods/building-applications/python"],
+            from: [
+              "/memgraph/connect-to-memgraph/methods/building-applications/python",
+            ],
           },
           {
             to: "/memgraph/connect-to-memgraph/drivers/rust",
-            from: ["/memgraph/connect-to-memgraph/methods/building-applications/rust"],
+            from: [
+              "/memgraph/connect-to-memgraph/methods/building-applications/rust",
+            ],
           },
           {
             to: "/memgraph/connect-to-memgraph/drivers/c-sharp",
-            from: ["/memgraph/connect-to-memgraph/methods/building-applications/c-sharp"],
+            from: [
+              "/memgraph/connect-to-memgraph/methods/building-applications/c-sharp",
+            ],
           },
           {
             to: "/memgraph/connect-to-memgraph/drivers/java",
-            from: ["/memgraph/connect-to-memgraph/methods/building-applications/java"],
+            from: [
+              "/memgraph/connect-to-memgraph/methods/building-applications/java",
+            ],
           },
           {
             to: "/memgraph/connect-to-memgraph/drivers/go",
-            from: ["/memgraph/connect-to-memgraph/methods/building-applications/go"],
+            from: [
+              "/memgraph/connect-to-memgraph/methods/building-applications/go",
+            ],
           },
           {
             to: "/memgraph/connect-to-memgraph/drivers/nodejs",
-            from: ["/memgraph/connect-to-memgraph/methods/building-applications/nodejs"],
+            from: [
+              "/memgraph/connect-to-memgraph/methods/building-applications/nodejs",
+            ],
           },
           {
             to: "/memgraph/connect-to-memgraph/drivers/javascript",
-            from: ["/memgraph/connect-to-memgraph/methods/building-applications/javascript"],
+            from: [
+              "/memgraph/connect-to-memgraph/methods/building-applications/javascript",
+            ],
           },
           {
             to: "/memgraph/connect-to-memgraph/drivers/php",
-            from: ["/memgraph/connect-to-memgraph/methods/building-applications/php"],
+            from: [
+              "/memgraph/connect-to-memgraph/methods/building-applications/php",
+            ],
           },
           //Renaming Concepts to Under the hood
           {

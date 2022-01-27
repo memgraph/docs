@@ -34,7 +34,7 @@ RETURN person.name;
 ```
 
 Output:
-```
+```nocopy
 +-------------+
 | person.name |
 +-------------+
@@ -55,7 +55,7 @@ RETURN collect(n.name);
 ```
 
 Output:
-```
+```nocopy
 +-------------------------------+
 | collect(n.name)               |
 +-------------------------------+
@@ -77,7 +77,7 @@ RETURN p3.name;
 ```
 
 Output:
-```
+```nocopy
 +----------------+
 | p3.name        |
 +----------------+
