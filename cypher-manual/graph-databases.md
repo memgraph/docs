@@ -1,7 +1,7 @@
 ---
 id: what-are-graph-databases
 title: What are graph databases?
-sidebar_label: What are graph databases
+sidebar_label: What are graph databases?
 ---
 
 A **graph database** is a type of database that stores data in the form of nodes
@@ -73,7 +73,7 @@ Properties are key-value pairs of data stored on nodes or on relationships. They
 allow you to store relevant data about the node or relationship with the entity
 it describes. Properties support most standard data types like integers,
 strings, booleans, etc. You can find a complete table of property types in our
-[storage guide](../memgraph/concepts/storage/#properties).
+[storage guide](/memgraph/under-the-hood/storage#properties).
 
 The flexibility and simplicity of properties allow users to easily review the
 data structure and update it according to their needs. Properties are also very

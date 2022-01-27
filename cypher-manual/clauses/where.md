@@ -153,7 +153,7 @@ Output:
 
 ## 2. String matching
 
-Apart from comparison and concatenation operators openCypher provides special
+Apart from comparison and concatenation operators Cypher provides special
 string operators for easier matching of substrings:
 
 Operator           | Description

@@ -47,7 +47,7 @@ MATCH (n :Person {age: 42})-[:FriendOf]-(friend) RETURN friend;
 
 There are cases when a user needs to find data that is connected by traversing a
 path of connections, but the user doesn't know how many connections need to be
-traversed. openCypher allows for designating patterns with *variable path
+traversed. Cypher allows for designating patterns with *variable path
 lengths*. Matching such a path is achieved by using the `*` (*asterisk*) symbol
 inside the edge element of a pattern. For example, traversing from `node1` to
 `node2` by following any number of connections in a single direction can be
@@ -232,7 +232,7 @@ MATCH (n :Person) RETURN n ORDER BY n.age DESC LIMIT 1;
 
 ### Aggregating
 
-openCypher has functions for aggregating data. Memgraph currently supports the
+Cypher has functions for aggregating data. Memgraph currently supports the
 following aggregating functions.
 
   * `avg`, for calculating the average.
@@ -270,7 +270,7 @@ for additional details on how aggregations work.
 
 ## UNION and UNION ALL
 
-openCypher supports combining results from multiple queries into a single result
+Cypher supports combining results from multiple queries into a single result
 set. That result will contain rows that belong to queries in the union
 respecting the union type.
 

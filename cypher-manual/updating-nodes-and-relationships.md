@@ -12,7 +12,7 @@ relationships.
 Click [here](./clauses/set.md) for a more detailed explanation of what can be
 done with `SET`.
 
-OpenCypher supports combining multiple reads and writes using the `WITH` clause.
+Cypher supports combining multiple reads and writes using the `WITH` clause.
 In addition to combining, the `MERGE` clause is provided which may create
 patterns if they do not exist.
 
