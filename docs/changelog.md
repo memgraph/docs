@@ -15,6 +15,11 @@ sidebar_label: Changelog
   [#320](https://github.com/memgraph/memgraph/pull/320)
 * Use correct error when printing warning in rebalance callback of Kafka
   consumer. [#321](https://github.com/memgraph/memgraph/pull/321)
+* Fix transaction handling in streams in case of serialization error. Previously
+  a serialization error caused an exception to be thrown about nested
+  transactions are not supported. After this fix the transactions are handled
+  correctly in the transaction retry logic.
+  [#339](https://github.com/memgraph/memgraph/pull/339)
 
 ## v2.1.1 - Dec 07, 2021
 
