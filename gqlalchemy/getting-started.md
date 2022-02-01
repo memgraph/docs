@@ -5,7 +5,7 @@ sidebar_label: Getting started
 slug: /
 ---
 
-[![GQLAlchemy](https://img.shields.io/badge/GQLAlchemy-FB6E00?style=for-the-badge&logo=github&logoColor=white)](https://github.com/memgraph/gqlalchemy)
+[![GQLAlchemy](https://img.shields.io/badge/source-GQLAlchemy-FB6E00?style=for-the-badge&logo=github&logoColor=white)](https://github.com/memgraph/gqlalchemy)
 
 **GQLAlchemy** is a fully open-source Python library that aims to be the go-to
 **Object Graph Mapper** (OGM) -- a link between Graph Database objects and Python
