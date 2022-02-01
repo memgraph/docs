@@ -26,8 +26,7 @@ source](/installation.md#source).
 ### 2. Learn how to use the OGM
 
 With the help of the [OGM
-guide](/how-to-guides/ogm/save-nodes-and-relationships.md) you can learn how to
-save nodes and relationships you have created.
+guide](/how-to-guides/ogm/map-nodes-and-relationships.md) you can learn how to map Python classes to graph objects, save them into the database and load them from the database.
 
 ### 3. Learn how to use the query builder
 
