@@ -4,7 +4,7 @@ module.exports = {
     {
       type: "category",
       label: "Install Memgraph",
-      link: {type: 'doc', id: 'installation/overview'},
+      link: { type: "doc", id: "installation/overview" },
       items: [
         {
           type: "category",
@@ -18,7 +18,7 @@ module.exports = {
                 "installation/windows/docker-db-installation",
                 "installation/windows/wsl-installation",
               ],
-            }, 
+            },
             "installation/windows/windows-installation-troubleshooting",
           ],
         },
@@ -45,7 +45,7 @@ module.exports = {
                 "installation/linux/debian-installation",
                 "installation/linux/rpm-installation",
               ],
-            }, 
+            },
             "installation/linux/linux-installation-troubleshooting",
           ],
         },
@@ -54,7 +54,7 @@ module.exports = {
     {
       type: "category",
       label: "Connect to Memgraph",
-      link: {type: 'doc', id: 'connect-to-memgraph/overview'},
+      link: { type: "doc", id: "connect-to-memgraph/overview" },
       items: [
         {
           type: "link",
@@ -65,7 +65,7 @@ module.exports = {
         {
           type: "category",
           label: "Drivers",
-          link: {type: 'doc', id: 'connect-to-memgraph/drivers/overview'},
+          link: { type: "doc", id: "connect-to-memgraph/drivers/overview" },
           items: [
             "connect-to-memgraph/drivers/python",
             "connect-to-memgraph/drivers/rust",
@@ -82,17 +82,20 @@ module.exports = {
     {
       type: "category",
       label: "Import data",
-      link: {type: 'doc', id: 'import-data/overview'},
+      link: { type: "doc", id: "import-data/overview" },
       items: [
         {
           type: "category",
           label: "CSV",
-          items: ["import-data/load-csv-clause", "import-data/csv-import-tool"],
+          items: [
+            "import-data/csv/load-csv-clause",
+            "import-data/csv/csv-import-tool",
+          ],
         },
         {
           type: "category",
           label: "Kafka",
-          link: {type: 'doc', id: 'import-data/kafka/overview'},
+          link: { type: "doc", id: "import-data/kafka/overview" },
           items: [
             "import-data/kafka/json",
             "import-data/kafka/avro",
@@ -108,12 +111,13 @@ module.exports = {
           ],
         },
         "import-data/cypherl",
+        "import-data/json/load-json-file",
       ],
     },
     {
       type: "category",
       label: "Tutorials",
-      link: {type: 'doc', id: 'tutorials/overview'},
+      link: { type: "doc", id: "tutorials/overview" },
       items: [
         "tutorials/analyzing-ted-talks",
         "tutorials/backpacking-through-europe",
@@ -130,7 +134,7 @@ module.exports = {
     {
       type: "category",
       label: "How-to guides",
-      link: {type: 'doc', id: 'how-to-guides/overview'},
+      link: { type: "doc", id: "how-to-guides/overview" },
       items: [
         "reference-guide/backup",
         {
@@ -198,7 +202,7 @@ module.exports = {
     {
       type: "category",
       label: "Reference guide",
-      link: {type: 'doc', id: 'reference-guide/overview'},
+      link: { type: "doc", id: "reference-guide/overview" },
       items: [
         "reference-guide/backup",
         "reference-guide/configuration",
@@ -304,7 +308,7 @@ module.exports = {
     {
       type: "category",
       label: "Under the hood",
-      link: {type: 'doc', id: 'under-the-hood/overview'},
+      link: { type: "doc", id: "under-the-hood/overview" },
       items: [
         "under-the-hood/storage",
         "under-the-hood/graph-algorithms",

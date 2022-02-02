@@ -3,6 +3,7 @@ id: csv-import-tool
 title: CSV import tool
 sidebar_label: CSV import tool
 pagination_prev: import-data/overview
+slug: /import-data/csv-import-tool
 ---
 
 import Tabs from "@theme/Tabs"; import TabItem from "@theme/TabItem";
@@ -154,7 +155,7 @@ Next time you run Memgraph, the dataset will be loaded.
 <details>
   <summary>After the import, the graph in Memgraph should look like this:</summary>
   <div>
-    <img src={require('../data/import-data/import_tool_one_type_nodes_and_relationships.png').default}/>
+    <img src={require('../../data/import-data/import_tool_one_type_nodes_and_relationships.png').default}/>
   </div>
 </details>
 
@@ -320,6 +321,6 @@ The next time you run Memgraph, the dataset will be loaded.
 <details>
   <summary>After the import, the graph in Memgraph should look like this:</summary>
   <div>
-    <img src={require('../data/import-data/import_tool_multiple_type_nodes_and_relationships.png').default}/>
+    <img src={require('../../data/import-data/import_tool_multiple_type_nodes_and_relationships.png').default}/>
   </div>
 </details>
