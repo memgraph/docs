@@ -1,13 +1,13 @@
 ---
-id: load-json-file
-title: Loading JSON file
+id: load-json
+title: Loading from JSON format
 sidebar_label: JSON
 pagination_prev: import-data/overview
 ---
 
 A JSON file is a file that stores simple data structures and objects in
 JavaScript Object Notation format, which is a standard data interchange format.
-The data you want to import to the database is often saved into JSON file and
+The data you want to import to the database is often saved in JSON format, and
 you might want to import parts of that data as graph objects - nodes or
 relationships.
 
@@ -18,11 +18,11 @@ on the data source:
 - [Load JSON from a remote address](#load-json-from-a-remote-address)
 
 The above methods are implemented as query modules in MAGE (Memgraph Advanced
-Graph Extensions) and you can read more about them [MAGE
-docs](/mage/query-modules/python/json-util).
+Graph Extensions) and you can read more about them in the [MAGE
+documentation](/mage/query-modules/python/json-util).
 
 > To be able to call JSON load procedures, you need to install MAGE and load
-> query modules. For instructions on how to do that, check out MAGE [quick
+> query modules. For instructions on how to do that, check out the MAGE [quick
 > start](/mage#quick-start).
 
 ## Examples
@@ -31,7 +31,7 @@ docs](/mage/query-modules/python/json-util).
 
 Let's import a simple JSON file into Memgraph.
 
-Create file `data.json` with the following content:
+Create the file `data.json` with the following content:
 
 ```json
 {
@@ -41,9 +41,9 @@ Create file `data.json` with the following content:
 }
 ```
 
-Next, let's say you want to create node with `Person` label and `first_name`,
-`last_name` and `pets` as properties from the `data.json` file. Then you can run
-the following query:
+Next, let's say you want to create a node with the label `Person` and
+`first_name`, `last_name` and `pets` as properties. You can run the following
+query:
 
 ```cypher
 CALL json_util.load_from_path("path/to/data.json")
@@ -53,7 +53,7 @@ CREATE (:Person {first_name: o.first_name, last_name: o.last_name, pets: o.pets}
 ```
 
 <details>
-  <summary>After you ran the above query, the graph in Memgraph should look like this:</summary>
+  <summary>After you execute the above query, the graph in Memgraph should look like this:</summary>
   <div>
     <img src={require('../../data/import-data/load_json_file_from_path.png').default}/>
   </div>
@@ -61,7 +61,7 @@ CREATE (:Person {first_name: o.first_name, last_name: o.last_name, pets: o.pets}
 
 ### Load JSON from a remote address
 
-Similarly, you can import JSON file from a remote address.
+Similarly, you can import JSON files from a remote address.
 
 For example, at `"https://download.memgraph.com/asset/mage/data.json"`, you can
 find the following `data.json` file:
@@ -74,9 +74,9 @@ find the following `data.json` file:
 }
 ```
 
-Next, let's say you want to create node with `Person` label and `first_name`,
-`last_name` and `pets` as properties from the `data.json` file. Then you can run
-the following query:
+Next, let's say you want to create a node with the label `Person` and
+`first_name`, `last_name` and `pets` as properties from the `data.json` file.
+You can run the following query:
 
 ```cypher
 CALL json_util.load_from_url("https://download.memgraph.com/asset/mage/data.json")
@@ -86,13 +86,13 @@ CREATE (:Person {first_name: o.first_name, last_name: o.last_name, pets: o.pets}
 ```
 
 <details>
-  <summary>After you ran the above query, the graph in Memgraph should look like this:</summary>
+  <summary>After you run the above query, the graph in Memgraph should look like this:</summary>
   <div>
     <img src={require('../../data/import-data/load_json_file_from_url.png').default}/>
   </div>
 </details>
 
-> To load JSON file from another local or remote file, just replace the argument
-> of procedures with the appropriate path or URL. If you want to create a
-> different kind of graph, you need to change the query accordingly. To learn
-> more about querying, check out the [Cypher manual](/cypher-manual).
+> To load JSON files from another local or remote location, just replace the
+> argument of the procedure with the appropriate path or URL. If you want to
+> create a different kind of graph, you need to change the query accordingly. To
+> learn more about querying, check out the [Cypher manual](/cypher-manual).
