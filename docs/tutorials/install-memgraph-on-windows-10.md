@@ -32,8 +32,7 @@ ensure that you have:
 ## Step 1 — Enable Windows Subsystem for Linux
 
 First, you need to enable the Windows subsystem (WSL) for Linux by following the
-[Microsoft
-instructions](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
+[Microsoft instructions](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
 
 After you install WSL the next step is to install Ubuntu Linux distribution. To
 install it do the following:
@@ -99,8 +98,8 @@ sudo dpkg -i /mnt/c/Users/Arthur/Downloads/memgraph_2.1.1-1_amd64.deb
 
 :::note
 
-If you see any error related to missing dependency packages, you might
-have to run the following commands before installing Memgraph:
+If you see any error related to missing dependency packages, you might have to
+run the following commands before installing Memgraph:
 
 ```bash
 sudo apt-get update
@@ -171,7 +170,7 @@ You can test the Memgraph Lab's connection to Memgraph by running your first
 query. You will use the Cypher query to create a simple graph that has two nodes
 and one relationship.
 
-![Memgraph Lab displaying the graph visualization of a query result as Graph.](../data/tutorials/install-memgraph-on-windows-10/memgraph-lab-run-match-query-result.png)
+![memgraph-lab-run-match-query-result](../data/tutorials/install-memgraph-on-windows-10/memgraph-lab-run-match-query-result.png)
 
 1.  First, click the **Query** in the sidebar.
 2.  Next, enter this first query at the query editor which is located at the top
@@ -185,7 +184,7 @@ and one relationship.
 
 3.  Lastly, click "Run" or press `Ctrl + Enter` to execute the query.
 
-![Run query in Memgraph Lab](../data/tutorials/install-memgraph-on-windows-10/memgraph-lab-run-query.png)
+![memgraph-lab-run-query](../data/tutorials/install-memgraph-on-windows-10/memgraph-lab-run-query.png)
 
 If no error message appeared, that means your query executed successfully.
 
@@ -199,11 +198,11 @@ RETURN u, r, x;
 
 On the **Data** tab your result should look similar to this:
 
-![Query result in the Data tab](../data/tutorials/install-memgraph-on-windows-10/memgraph-lab-run-match-query-data.png)
+![memgraph-lab-run-match-query-data](../data/tutorials/install-memgraph-on-windows-10/memgraph-lab-run-match-query-data.png)
 
 If you switch to the **Graph** tab you will see something like this:
 
-![Query result in the Graph tab](../data/tutorials/install-memgraph-on-windows-10/memgraph-lab-run-match-query-graph.png)
+![memgraph-lab-run-match-query-graph](../data/tutorials/install-memgraph-on-windows-10/memgraph-lab-run-match-query-graph.png)
 
 Now you have the Memgraph Lab working correctly on your system. Memgraph Lab's
 visual presentation of query results is one of its best features.
@@ -211,5 +210,5 @@ visual presentation of query results is one of its best features.
 ## Conclusion
 
 In this tutorial, you installed Memgraph DB and Memgraph Lab on Windows 10 using
-Windows Subsystem for Linux. You tested the Memgraph installation by running a
-Memgraph DB and using the Memgraph Lab to execute Cypher queries.
+Windows Subsystem for Linux. You tested the Memgraph Lab's connection to
+Memgraph DB by executing Cypher queries.
