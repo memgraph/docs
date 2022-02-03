@@ -83,6 +83,8 @@ Your existing snapshot and WAL data will be considered obsolete, and Memgraph
 will load the new dataset. This means that all of your existing data will be
 lost and replaced with the newly imported data.
 
+If your Memgraph docker is running, you need to stop it before starting the import process.
+
 :::
 
 <Tabs
