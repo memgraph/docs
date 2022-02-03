@@ -1,6 +1,6 @@
 ---
-id: load-json
-title: Loading from JSON format
+id: load-json-file
+title: Loading JSON file
 sidebar_label: JSON
 pagination_prev: import-data/overview
 ---
@@ -17,13 +17,12 @@ on the data source:
 - [Load JSON from a local file](#load-json-from-a-local-file)
 - [Load JSON from a remote address](#load-json-from-a-remote-address)
 
-The above methods are implemented as query modules in MAGE (Memgraph Advanced
+The above methods are procedures of query module implemented in MAGE (Memgraph Advanced
 Graph Extensions) and you can read more about them in the [MAGE
 documentation](/mage/query-modules/python/json-util).
 
 > To be able to call JSON load procedures, you need to install MAGE and load
-> query modules. For instructions on how to do that, check out the MAGE [quick
-> start](/mage#quick-start).
+> query modules. To learn how to do that, check out the [Run a query module](/mage/how-to-guides/run-a-query-module) how-to guide.
 
 ## Examples
 
@@ -92,7 +91,11 @@ CREATE (:Person {first_name: o.first_name, last_name: o.last_name, pets: o.pets}
   </div>
 </details>
 
-> To load JSON files from another local or remote location, just replace the
-> argument of the procedure with the appropriate path or URL. If you want to
-> create a different kind of graph, you need to change the query accordingly. To
-> learn more about querying, check out the [Cypher manual](/cypher-manual).
+:::note
+
+To load JSON files from another local or remote location, just replace the
+argument of the procedure with the appropriate path or URL. If you want to
+create a different kind of graph, you need to change the query accordingly. To
+learn more about querying, check out the [Cypher manual](/cypher-manual).
+
+:::
