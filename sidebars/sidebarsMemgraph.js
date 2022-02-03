@@ -111,7 +111,7 @@ module.exports = {
           ],
         },
         "import-data/cypherl",
-        "import-data/json/load-json-file",
+        "import-data/json/load-json",
       ],
     },
     {

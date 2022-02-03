@@ -1,6 +1,6 @@
 ---
-id: load-json-file
-title: Loading JSON file
+id: load-json
+title: Loading from JSON format
 sidebar_label: JSON
 pagination_prev: import-data/overview
 ---
@@ -54,7 +54,7 @@ CREATE (:Person {first_name: o.first_name, last_name: o.last_name, pets: o.pets}
 <details>
   <summary>After you execute the above query, the graph in Memgraph should look like this:</summary>
   <div>
-    <img src={require('../../data/import-data/load_json_file_from_path.png').default}/>
+    <img src={require('../../data/import-data/load_json_from_path.png').default}/>
   </div>
 </details>
 
@@ -87,7 +87,7 @@ CREATE (:Person {first_name: o.first_name, last_name: o.last_name, pets: o.pets}
 <details>
   <summary>After you run the above query, the graph in Memgraph should look like this:</summary>
   <div>
-    <img src={require('../../data/import-data/load_json_file_from_url.png').default}/>
+    <img src={require('../../data/import-data/load_json_from_url.png').default}/>
   </div>
 </details>
 
