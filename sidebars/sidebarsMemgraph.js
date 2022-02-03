@@ -124,6 +124,7 @@ module.exports = {
         "tutorials/marvel-universe",
         "tutorials/movie-recommendation",
         "tutorials/social-network-analysis",
+        "tutorials/style-your-graphs-in-memgraph-lab",
         "tutorials/understanding-music-with-modules",
       ],
     },
