@@ -3,6 +3,11 @@ id: changelog
 title: Changelog
 sidebar_label: Changelog
 ---
+## v2.1.3 - TBA
+
+### Major Features and improvement
+* Temporal types LocalTime and LocalDatetTime now functions return subsecond precision.
+* Query modules mg_local_date_time_now() and mg_local_time_now() return subsecond precision.
 
 ## v2.1.1 - Dec 07, 2021
 
