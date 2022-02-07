@@ -62,16 +62,16 @@ CALL mg.procedures() YIELD *;
 might yield the following result:
 
 ```plaintext
-+---------------------+-----------------------------------------------------------------------------------------------------------------------+
-| name                | signature                                                                                                             |
-+---------------------+-----------------------------------------------------------------------------------------------------------------------+
-| ...                 | ...                                                                                                                   |
-| graph_analyzer.help | graph_analyzer.help() :: (name :: STRING, value :: STRING)                                                            |
-| mg.load             | mg.load(module_name :: STRING) :: ()                                                                                  |
-| mg.load_all         | mg.load_all() :: ()                                                                                                   |
-| mg.procedures       | mg.procedures() :: (name :: STRING, signature :: STRING, is_write :: BOOLEAN, path :: STRING, is_editable :: BOOLEAN) |
-| ...                 | ...                                                                                                                   |
-+---------------------+-----------------------------------------------------------------------------------------------------------------------+
++-------------+---------------------+-------------------+-----------------------------------------------------------------------------------------------------------------------+
+| is_editable | name                | path              | signature                                                                                                             |
++-------------+---------------------+-------------------+-----------------------------------------------------------------------------------------------------------------------+
+| ...         | ...                 | ...               | ...                                                                                                                   |
+| true        | graph_analyzer.help | "/path/to/module" | graph_analyzer.help() :: (name :: STRING, value :: STRING)                                                            |
+| false       | mg.load             | "builtin"         | mg.load(module_name :: STRING) :: ()                                                                                  |
+| false       | mg.load_all         | "builtin"         | mg.load_all() :: ()                                                                                                   |
+| false       | mg.procedures       | "builtin"         | mg.procedures() :: (name :: STRING, signature :: STRING, is_write :: BOOLEAN, path :: STRING, is_editable :: BOOLEAN) |
+| ...         | ...                 | ...               | ...                                                                                                                   |
++-------------+---------------------+-------------------+-----------------------------------------------------------------------------------------------------------------------+
 ```
 
 In this case, we can see that Memgraph has successfully loaded all the procedures implemented
