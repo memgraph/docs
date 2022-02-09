@@ -1,14 +1,16 @@
 ---
 id: migrate-relational-database
-title: Migrate relational database to Memgraph
+title: Migrate relational database to Memgraph 
 sidebar_label: Migrate relational database to Memgraph
 ---
 
 This tutorial will help you import your data from a MySQL relational database into
 Memgraph using CSV files on Windows 10. 
 
-In two of our blog posts we've explained the differences between relational and
-graph database, and listed the benefits of graph databases. 
+In two of our blog posts we've explained the [differences between relational and
+graph
+database](https://memgraph.com/blog/graph-database-vs-relational-database), and
+listed the [benefits of graph databases](https://memgraph.com/blog/the-benefits-of-using-a-graph-database-instead-of-sql). 
 
 In summary, instead of tables, graph databases uses nodes connected by
 relationships. Graph databases are an excellent choice if the data is highly
@@ -17,7 +19,7 @@ So if you need a quick and reliable database in which you can quickly and
 effortlessly change the data model and properties, graph database is the way to
 go. 
 
-# Prerequisites
+## Prerequisites
 
 To follow along, you will need:
 * An installation of **Memgraph Platform**, complete streaming graph application
@@ -27,11 +29,14 @@ To follow along, you will need:
   To install Memgraph Platform and set it up, please follow the Docker
   installation instructions on the Installation guide.
 
-  We've also prepared tutorials for installing Memgraph Platform on Windows 10 and MacOS.
+  We've also prepared tutorials for installing Memgraph Platform on [Windows
+  10](https://memgraph.com/blog/how-to-install-memgraph-and-memgraph-lab-on-windows-1-0)
+  and [MacOS](https://memgraph.com/blog/how-to-install-memgraph-and-memgraph-lab-with-docker-on-macos).
 
-* (optional) A running relational database 
+* (optional) A running relational database either with your own schema and data
+  or you can use the schema we used and populate the tables 
 
-# Data Model
+## Data Model
 
 We will learn how to import data from a relational database to Memgraph using
 the example of an online store. The data model of the relational database that
@@ -39,28 +44,36 @@ we will use for this tutorial includes 5 tables with the following properties.
 
 <img src={require('../data/tutorials/migrate_relational_database_data_model.png').default}/>
 
-# Migrate data using CSV files
+## Migrate data using CSV files
 
 ### 1. Export the data from a table to a CSV file
 
 To begin you need to export the existing data into CSV files table by table
-either using the an Export Wizard or running a query.
+either using the Export Wizard or running a query.
 
 **Exporting data using the Export Wizard**
 
-You can export data using the Export Wizard. In this example we are using
-MySQL Workbench. To export the **Customer** table, right-click on the
-table name and select the **Table Data Export Wizard**. 
+In this example we are using the Export Wizard in the MySQL Workbench. To export
+the **Customer** table, right-click on the table name and select the **Table
+Data Export Wizard**. 
 
-Click **Next** and on the second step of the Wizard define the **File Path.**
-You can choose any location but for this tutorial place the files in the root
-and name the file the same as the table. Then select the **csv** format if it
-isn't already selected, select comma as a **Field Separator**, leave the **Line
-Separator** as **LF**, delete the quotations from the **Enclose Strings** option and leave
-it empty then click **Next** until **Finish**.
+<img src={require('../data/tutorials/migrate_relational_database_export_wizard.png').default}/>
 
-In your root folder you should find the **customer.csv** file.  When opened in a text editor or a
-spreadsheet program, the data from the **customer** table should look like this:
+Click **Next** and on the second step of the Wizard do the following: 
+ 1. Define the **File Path**. Usually you can choose any location, but for this tutorial place the files in the root
+and name the file the same as the table.
+ 2. Select the **csv** format if it isn't already selected.
+ 3. Select comma as a **Field Separator**.
+ 4. Leave the **Line Separator** as **LF**.
+ 5. Delete the quotations from the **Enclose Strings** option and leave it empty.
+ 
+Continue clicking **Next** until **Finish**.
+
+<img src={require('../data/tutorials/migrate_relational_database_export_wizard_step_2.png').default}/>
+
+In the root folder of your computer you should find the **customer.csv** file.
+When opened in a text editor or a spreadsheet program, the data from the
+**customer** table should look like this:
 
 ```csv
 id,name,email
@@ -76,8 +89,8 @@ id,name,email
 
 **Exporting data by running a query**
 
-You can also export data by writing a query, but it can only export data to a
-specific location you can find out by running:
+You can also export data by writing a query, but the data can be exported only
+to a specific location you can find out by running the following query:
 
 ```sql
 SHOW VARIABLES LIKE "secure_file_priv";
@@ -86,7 +99,10 @@ SHOW VARIABLES LIKE "secure_file_priv";
 I got this value as a response `'secure_file_priv', 'C:\ProgramData\MySQL\MySQL
 Server 8.0\Uploads\'` which I can now use as a destination for my CSV file. 
 
-Check that you've selected this database as your default one (the name should be bolded) by
+<img src={require('../data/tutorials/migrate_relational_database_file_location.png').default}/>
+
+Check that you've selected the database you want to export data from as your
+default one. If the database is selected the name is bolded. If it is not,
 double-clicking on it. 
 
 To export the **customerpurchase** table write the following query. Notice how
@@ -104,8 +120,11 @@ FROM customerpurchase INTO OUTFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Upload
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\r\n';
 ```
+
 In the first line we defined the headings, and then selected fields from a table
-that will be exported to a specified field. We also defined , as a fields terminator
+that will be exported to a specified field. We also defined the comma sign as a
+fields terminator and lines will be terminated by `\r\n`.
+
 **Exported CSV files**
 
 Export the rest of the tables using the preferred process and place all the CSV
@@ -117,11 +136,11 @@ this tutorial.
 
 To place the files in the root directory you need Admin rights on your computer. 
 
-[`customer.csv`]
-[`customerpurchase.csv`]
-[`product.csv`]
-[`productpurchase.csv`]
-[`purchase.csv`]
+- `customer.csv`
+- `customerpurchase.csv`
+- `product.csv`
+- `productpurchase.csv`
+- `purchase.csv`
 
 ### 2. Transfer CSV files into a Docker container
 
@@ -140,10 +159,12 @@ docker run -it -p 7687:7687 -p 3000:3000 -v mg_lib:/var/lib/memgraph memgraph/me
 docker ps
 ```
 
-3. Place yourself in the root directory and copy files into the container with the command:
+3. Place yourself in the root directory and copy files into the container with
+   the following command. You should replace CONTAINER ID and for each file
+   change the source and destination file.
 
 ```
-docker cp customer.csv <CONTAINER ID>:/file_to_copy.csv
+docker cp source.csv <CONTAINER ID>:/destination.csv
 ```
 
 On my computer, the CVS files we need are located in the root directory of
@@ -155,9 +176,9 @@ First I place myself in the root directory:
 cd C:\
 ```
 
-Then I ran 5 commands to copy the 5 CSV files to the container changing the file
-names in both the source and destination. This is an example of copying the
-`customer.csv` file:
+Then I ran 5 commands to copy the 5 CSV files to the container, changing the
+file names in both the source and destination with each new file. This is an
+example of copying the `customer.csv` file:
 
 ```terminal
 docker cp customer.csv bbbc43620e5c:/customer.csv
@@ -186,8 +207,10 @@ If you installed Memgraph Platform correctly, you should be able to access
 Memgraph Lab in your browser by visiting `http://localhost:3000/` and connect to
 the database. 
 
-Place yourself in the **Query** tab where we will write queries in the Query
-editor to import data into Memgraph. 
+Place yourself in the **Query** tab where we will write queries in the **Query
+editor** to import data into Memgraph. 
+
+<img src={require('../data/tutorials/migrate_relational_database_lab_query.png').default}/>
 
 ### 4. Import nodes into Memgraph
 
@@ -200,7 +223,7 @@ Nodes would be the customers, purchases and products while the relationships
 between them is that customers MAKE purchases (`customerpurchase` table) OF
 product (`productpurchase` table). 
 
-So lets start by importing the nodes into Memgraph using the `IMPORT CSV` Cypher clause. The syntax of the LOAD CSV clause is:
+So lets start by importing the nodes into Memgraph using the `LOAD CSV` Cypher clause. The syntax of the LOAD CSV clause is:
 
 ```cypher
 LOAD CSV from "/file.csv" 
@@ -211,7 +234,7 @@ CREATE (n:nodeName {property1_memgraph_name: row.property1_relational_name, prop
 So first we need to define the source file path, and set the `HEADER` option to
 `WITH` because our CSV file has headers. The clause will parse each `row` and
 create nodes with properties. This is the clause to create `customer` nodes.
-Copy it and paste it in the Query editor in Memgraph Lab, then click Run query.
+Copy it and paste it in the **Query editor** in **Memgraph Lab**, then click **Run query**.
 
 ```cypher
 LOAD CSV from "/customer.csv"
@@ -230,7 +253,7 @@ CREATE (p:Purchase {id: row.id, date: row.date});
 ```
 
 If we do not define the data type of a property, it will be string. Let's adjust
-the query for products so that the products' price is imported as a float.
+the query for products so that the products' price is imported as float.
 
 ```cypher
 LOAD CSV from "/product.csv"
@@ -245,6 +268,8 @@ nodes to check their properties by using this Cypher query
 MATCH (n)
 RETURN n;
 ```
+
+<img src={require('../data/tutorials/migrate_relational_database_nodes.png').default}/>
 
 If you click on each node, you can see its properties. The nodes are still not
 connected to each other, so lets focus on that by importing the rest of the CSV
@@ -262,9 +287,9 @@ file you can see it is actually connecting two different nodes, customer and
 purchase, via their IDs. That is why we'll use the LOAD CSV clause to match
 those IDs with existing nodes and create relationship between them. In this
 example, the relationship is that a customer MADE a purchase. The arrow of the
-relationship defines that a customer MAKES the purchase, and no the other way
+relationship defines that a customer makes the purchase, and not the other way
 around. And lastly, we are defining that the row with the `customerpurchase` ID
-is actually the ID of the :MADE relationship.
+is actually the ID of the `:MADE` relationship.
 
 ```cypher
 LOAD CSV FROM "/customerpurchase.csv" WITH HEADER AS row
@@ -288,9 +313,13 @@ SET o.id = row.id
 SET o.quantity = ToInteger(row.quantity);
 ```
 
+<img src={require('../data/tutorials/migrate_relational_database_lab_overview.png').default}/>
+
 ### 6. Data model and updating the schema
 
 The data model in a graph database now looks like this:
+
+<img src={require('../data/tutorials/migrate_relational_database_graph_data_model.png').default}/>
 
 If you decided you want to add a property to any of the nodes or relationships
 you can do so at any point without disrupting the schema. 
@@ -303,8 +332,8 @@ SET c.city = "Zagreb"
 RETURN c
 ```
 
-You can check if this property has been added by running this query and clicking
-on the node in the **Graph** view. 
+You can check if this property has been added by running the following query and
+clicking on the node in the **Graph** view. 
 
 ```cypher
 MATCH (c:Customer {id: "4"})
@@ -314,5 +343,19 @@ RETURN c
 As the last step of this tutorial let's check all the nodes and relationships
 we've imported into Memgraph by running the following query:
 
-match (c)-[m]-(p)-[o]-(pr)
+```cypher
+MATCH (c)-[m]-(p)-[o]-(pr)
 RETURN c,m,p,o,pr;
+```
+
+<img src={require('../data/tutorials/migrate_relational_database_graph_database.png').default}/>
+
+## Where to next?
+
+Congratulations! You now have a graph database. You can query it using the
+[**Cypher query language**](/cypher-manual), use various graph algorithms and
+modules from our open-source repository [**MAGE**](/mage) to solve graph
+analytics problems, create awesome customized visual displays of your nodes and
+relationships with [**Style script**](/memgraph-lab/style-script/quick-start), find out how to connect
+any [**streams of data**](/memgraph/import-data/kafka) you might have with Memgraph and
+above all - enjoy your graph database!

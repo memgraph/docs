@@ -123,6 +123,7 @@ module.exports = {
         "tutorials/graphing-the-premier-league",
         "tutorials/marvel-universe",
         "tutorials/movie-recommendation",
+        "tutorials/migrate-relational-database",
         "tutorials/social-network-analysis",
         "tutorials/understanding-music-with-modules",
       ],
