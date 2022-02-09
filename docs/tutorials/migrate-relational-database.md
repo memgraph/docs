@@ -246,14 +246,16 @@ Switch to the **Overview** tab to confirm we have created 8 new nodes of
 customers from our CSV file. Let's repeat the process to create nodes for
 purchases. 
 
+If we do not define the data type of a property, it will be string. That is why
+we defined that the date of purchase be imported as Date type.
+
 ```cypher
 LOAD CSV from "/purchase.csv"
 WITH HEADER AS row
-CREATE (p:Purchase {id: row.id, date: row.date});
+CREATE (p:Purchase {id: row.id, date: Date(row.date)});
 ```
 
-If we do not define the data type of a property, it will be string. Let's adjust
-the query for products so that the products' price is imported as float.
+For node 7product`, we'll import products' price as float.
 
 ```cypher
 LOAD CSV from "/product.csv"
