@@ -26,7 +26,50 @@ First, you will connect to [Memgraph sandbox Europe backpacking](https://playgro
 
 ## Step 2 — Adding a style to a graph
 
-With a Style editor in front of you, you are ready to style your graph!
+With a Style editor in front of you, you are ready to style your graph! You will use Style editor to modify exiting style and to add some new style rules.
+First you will modify the code that defines node style. Look for this section of the code:
+
+```nocopy
+@NodeStyle {
+  size: 50
+  border-width: 5
+  border-color: #ffffff
+  shadow-color: #bab8bb
+  shadow-size: 6
+}
+```
+You will now change it so that nodes will be a smaller, with larger and darker shadow. You need to update the values for `size`, `shadow-color` and `shadow-size`. Your code will look something like this:
+
+```
+@NodeStyle {
+  size: 35
+  border-width: 5
+  border-color: #ffffff
+  shadow-color: #333333
+  shadow-size: 20
+}
+```
+Click **Apply** to see what you graph look like now.
+
+You will now change the color of the nodes from red to gold and you will make them orange on hover.
+
+```nocopy
+@NodeStyle HasLabel?(node, "Country") {
+  color: #dd2222
+  color-hover: Darker(#dd2222)
+  color-selected: #dd2222
+}
+```
+
+```
+@NodeStyle HasLabel?(node, "Country") {
+  color: #ffd700
+  color-hover: #ffa500
+  color-selected: #dd2222
+}
+```
+
+
 
 ## Step 3 — Installing Memgraph Lab and connecting to Memgraph
 
