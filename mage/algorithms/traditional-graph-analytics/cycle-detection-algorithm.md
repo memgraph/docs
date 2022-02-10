@@ -43,7 +43,7 @@ the link above. :point_up:
 
 ## Use cases
 
-[![Retail](https://img.shields.io/badge/Retail-Application-8A477F?style=for-the-badge)](/mage/applications/computer-security-application)
+[![Retail](https://img.shields.io/badge/Retail-Application-8A477F?style=for-the-badge)](/use-cases/computer-security.md)
 
 A really interesting use case deployed in one of the vendors is used to actively
 monitor various online fraudulent activities based on cycle detection. To

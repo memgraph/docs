@@ -41,7 +41,7 @@ RETURN p.name AS columnName;
 ```
 
 Output:
-```
+```nocopy
 +----------------+
 | columnName     |
 +----------------+
@@ -69,7 +69,7 @@ RETURN p.name AS columnName;
 ```
 
 Output:
-```
+```nocopy
 +----------------+
 | columnName     |
 +----------------+

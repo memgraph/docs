@@ -3,6 +3,7 @@ id: overview
 title: Importing data from Kafka streams
 sidebar_label: Kafka streams overview
 slug: /import-data/kafka
+pagination_prev: import-data/overview
 ---
 
 Memgraph can natively ingest streaming data from upstream sources using [Apache
@@ -49,7 +50,7 @@ transformation module to handle the conversion.
 ### 1. Start Memgraph with Kafka configuration
 
 As Memgraph can only connect to one Kafka cluster at once, the list of bootstrap
-servers can be explicitly set by the `--kafka-bootstrap-servers` configuration
+servers can be explicitly set by the <br/>`--kafka-bootstrap-servers` configuration
 option. This can be edited in the `memgraph.conf` file or supplied as a
 command-line parameter (e.g., when using Docker).
 
@@ -68,8 +69,8 @@ extend the `--query-modules-directory` flag in the main configuration file
 (`/etc/memgraph/memgraph.conf`) or supply it as a command-line parameter (e.g.,
 when using Docker).
 
-Check [this
-guide](/memgraph/database-functionalities/streams/kafka/implement-transformation-module/#python-api)
+Take a look at [Python API
+guide](/how-to-guides/streams/kafka/implement-transformation-module.md#python-api)
 for an example of how to implement transformation modules in Python.
 
 Load the transformation module from `/usr/lib/memgraph/query_modules` by using
@@ -99,8 +100,7 @@ You should see an output similar to the following:
 ### 3. Create a stream in Memgraph
 
 Creating, starting, and deleting the streams can be done with Cypher queries.
-The list of available stream commands can be found
-[here](/memgraph/reference-guide/streams/).
+Check out the [list of available stream commands](/memgraph/reference-guide/streams/).
 
 To import data, first, make sure Kafka and Memgraph are running and there is a
 topic available.

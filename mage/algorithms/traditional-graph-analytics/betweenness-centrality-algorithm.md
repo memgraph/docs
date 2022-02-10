@@ -59,7 +59,7 @@ Centrality](https://img.shields.io/badge/MAGE_introduction-FCC624?style=for-the-
 ## Use cases
 
 [![Social
-networks](https://img.shields.io/badge/Social_networks-Application-8A477F?style=for-the-badge)](/mage/applications/social-media-application)
+networks](https://img.shields.io/badge/Social_networks-Application-8A477F?style=for-the-badge)](/use-cases/social-media.md)
 
 The metric of **betweenness centrality** can be used on a **macro** and
 **micro** scale in social networks. On a macro scale, a high measure will
@@ -67,13 +67,13 @@ indicate the position of power (due to the large flow of information). On the
 other hand, on a micro-scale, a high measure represents the strength of a
 relationship with a narrow circle of friends.
 
-[![Bioinformatics](https://img.shields.io/badge/Bioinformatics-Application-8A477F?style=for-the-badge)](/mage/applications/bioinformatics-application)
+[![Bioinformatics](https://img.shields.io/badge/Bioinformatics-Application-8A477F?style=for-the-badge)](/use-cases/bioinformatics.md)
 
 [**Protein-protein interaction
 networks**](https://www.ebi.ac.uk/training/online/courses/network-analysis-of-protein-interaction-data-an-introduction/protein-protein-interaction-networks/)
 were created to get a better insight into how proteins interact with each other.
 
-[![Transportation](https://img.shields.io/badge/Transportation-Application-8A477F?style=for-the-badge)](/mage/applications/transportation-application)
+[![Transportation](https://img.shields.io/badge/Transportation-Application-8A477F?style=for-the-badge)](/use-cases/transportation.md)
 
 Maybe the most important usage of this algorithm is **transportation**. In a
 [complex and urban transportation

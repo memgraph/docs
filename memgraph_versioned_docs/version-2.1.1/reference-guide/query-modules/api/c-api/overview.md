@@ -5,10 +5,18 @@ sidebar_label: C API Overview
 slug: /reference-guide/query-modules/api/c-api
 ---
 
-This is the API documentation for `mg_procedure.h` which contains declarations of all functions that can be used to implement a query module procedure. The source file can be found in the Memgraph installation directory, under `include/memgraph`. On the standard Debian installation, this will be under `/usr/include/memgraph`.
+This is the API documentation for `mg_procedure.h` which contains declarations
+of all functions that can be used to implement a query module procedure. The
+source file can be found in the Memgraph installation directory, under
+`include/memgraph`. On the standard Debian installation, this will be under
+`/usr/include/memgraph`.
 
 :::tip
-For an example of how to implement query modules in C, check out [this guide](/database-functionalities/query-modules/implement-query-modules.md#c-api).
+
+For an example of how to implement query modules in C, take a look at a guide
+about [query modules implementation using the C
+API](/how-to-guides/query-modules/implement-query-modules.md#c-api).
+
 :::
 
 ## Classes
