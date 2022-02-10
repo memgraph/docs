@@ -234,6 +234,7 @@ module.exports = {
             "reference-guide/query-modules/overview",
             "reference-guide/query-modules/available-query-modules",
             "reference-guide/query-modules/load-call-query-modules",
+            "reference-guide/query-modules/module-file-utilities",
             {
               type: "category",
               label: "API",

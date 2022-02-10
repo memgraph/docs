@@ -8,6 +8,12 @@ sidebar_label: Changelog
 
 ### Major Features and Improvements
 
+* Added builtin procedures used for handling Python module files. `mg.create_module_file`, 
+  `mg.update_module_file`, `mg.delete_module_file`, `mg.get_module_file`,
+  and `mg.get_module_files` allow you to do modifications on your Python module files,
+  get their content, and list all the files present in your query module directories
+  directly from Memgraph. [#330](https://github.com/memgraph/memgraph/pull/330)
+
 ### Bug Fixes
 
 * The reference count is increased when `Py_None` is returned from the `_mgp` module.
