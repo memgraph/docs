@@ -1,21 +1,26 @@
 module.exports = {
   cypher_manual: [
     "overview",
+    "what-are-graph-databases",
     {
       type: "category",
-      label: "Getting started",
+      label: "Cypher query language",
+      link: {type: 'doc', id: 'cypher-query-language'},
       items: [
-        "getting-started/reading-existing-data",
-        "getting-started/writing-new-data",
-        "getting-started/reading-and-writing",
+        "differences",
       ],
-    },
-    "functions",
+    }, 
+    "working-with-memgraph",
+    "import-data",
+    "connecting-nodes",
+    "reading-existing-data",
+    "updating-nodes-and-relationships",
+    "deleting-nodes-and-relationships",
     {
       type: "category",
       label: "Clauses",
+      link: {type: 'doc', id: 'clauses/clauses'},
       items: [
-        "clauses/clauses",
         "clauses/create",
         "clauses/delete",
         "clauses/load-csv",
@@ -31,12 +36,8 @@ module.exports = {
         "clauses/with",
       ],
     },
+    "functions",
     "query-modules",
     "other-features",
-    {
-      type: "category",
-      label: "Differences in Cypher implementations",
-      items: ["differences/overview", "differences/patterns-in-expressions"],
-    },
   ],
 };

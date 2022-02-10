@@ -72,7 +72,7 @@ insight applies to use cases such as customer segmentation, contact tracing,
 medical diagnostics, and quantification of environmental hazards in public
 health.
 
-[![Medical](https://img.shields.io/badge/Medical-Application-8A477F?style=for-the-badge)](/mage/applications/drug-discovery-application)
+[![Medical](https://img.shields.io/badge/Medical-Application-8A477F?style=for-the-badge)](/use-cases/drug-discovery.md)
 
 Tracking the evolution of communities across time provides a way to monitor
 entities such as viruses or rumors in real-time as they spread. With the
@@ -80,7 +80,7 @@ COVID-19 pandemic being a top global concern, this problem is in search of a
 solution. One way to tackle it would be to pinpoint the main transmission focal
 points by using dynamic community detection.
 
-[![Retail](https://img.shields.io/badge/Retail-Application-8A477F?style=for-the-badge)](/mage/applications/retail-application)
+[![Retail](https://img.shields.io/badge/Retail-Application-8A477F?style=for-the-badge)](/use-cases/retail.md)
 
 With new items being sold every day, using dynamic community detection one can
 quickly follow the trends that are being formed and submit recommendations based

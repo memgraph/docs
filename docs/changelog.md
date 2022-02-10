@@ -91,7 +91,7 @@ sidebar_label: Changelog
   [#285](https://github.com/memgraph/memgraph/pull/285)
 * Added support for connecting to Pulsar as a new stream source. For more
   details, check out our
-  [example](database-functionalities/streams/pulsar/pulsar-streams) and
+  [example](how-to-guides/streams/pulsar/pulsar-streams) and
   [reference pages](reference-guide/streams).
   [#293](https://github.com/memgraph/memgraph/pull/293)
 
@@ -157,7 +157,7 @@ sidebar_label: Changelog
 * Introduced settings to Memgraph that can be modified during runtime. You can
   check out more details [here](reference-guide/runtime-settings).
 * Added writeable procedure support, so
-  [procedures](database-functionalities/query-modules/implement-query-modules)
+  [procedures](how-to-guides/query-modules/implement-query-modules)
   can modify the graph by creating and deleting vertices and edges, modifying
   the labels of vertices or setting the properties of vertices and edges.
 

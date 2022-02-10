@@ -39,7 +39,7 @@ There are three ways to execute queries and procedures in Memgraph:
 - using the command-line tool `mgconsole`, which comes with Memgraph:
   **[Querying the database](/connect-to-memgraph/overview.mdx)**
 - programmatically, by using the Bolt protocol: **[Building
-  applications](/connect-to-memgraph/methods/drivers.md)**
+  applications](/connect-to-memgraph/drivers/overview.md)**
 - from **Memgraph Lab**, a visual user interface which you can download
   **[here](https://memgraph.com/download)**.
 
@@ -223,8 +223,8 @@ The resulting communities are:
 
 If you want to find out more about query modules, take a look at our guide on
 how to create your own: [Implement custom query
-modules](/database-functionalities/query-modules/implement-query-modules.md).
+modules](/how-to-guides/query-modules/implement-query-modules.md).
 
 You can also visit our [NetworkX Reference
-guide](/database-functionalities/networkx.md) to find out which NetworkX
+guide](/how-to-guides/networkx.md) to find out which NetworkX
 algorithms are already available in Memgraph.

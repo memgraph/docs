@@ -5,22 +5,36 @@ sidebar_label: Help Center
 slug: /
 ---
 
-**[Frequently Asked Questions](/faq/memgraph-faq.md)** - You can visit the FAQ
-page to see if we have already provided an answer to your inquiry.
+Are you stuck? Don't worry, here at Memgraph we are all eager to help - we'll
+not leave you stranded!
 
-**[Memgraph Forum](https://discourse.memgraph.com/)** - The Memgraph community
-forum is the best place to get fast and accurate answers from our team and other
-Memgraph developers.
+❓ Try to find an answer on one of our **FAQ** pages - maybe we already provided an
+answer to your inquiry:
 
-**[StackOverflow](https://stackoverflow.com/questions/tagged/memgraphdb)** - You
-can always post a question on StackOverflow with the tag **memgraphdb**.
+  - **[Memgraph FAQ](/faq/memgraph-faq.md)**
+  - **[Memgraph Lab](/faq/memgraph-lab-faq.md)**
+  - **[MAGE FAQ](/faq/mage-faq.md)**
 
-**[Support Page](https://airtable.com/shrcmWpvn74kudboV)** - You can create a
-support ticket if you:
-* need to report a bug or a technical issue
-* have a feature request or suggestion for us
-* need information that is not present in the documentation
-* have any other kind of technical question.
+🙋 Post a question on **[StackOverflow](https://stackoverflow.com/questions/tagged/memgraphdb)** with the tag **memgraphdb**.
 
-You can also always email us at
-**[tech@memgraph.com](mailto:tech@memgraph.com)**.
+🎫 Create a **[support ticket](https://airtable.com/shrcmWpvn74kudboV)** to:
+
+  - report a bug or a technical issue
+  - submit a feature request or an improvement suggestion
+  - request information not present in the documentation
+  - ask any other kind of technical question.
+
+📧 Email us at **[tech@memgraph.com](mailto:tech@memgraph.com)**.
+
+## Community
+
+If you want to be a part of Memgraph's fast growing community, join us on our
+path by following us, participating in discussions and asking questions. We are
+available at the following platforms:
+
+- :purple_heart: [**Discord**](https://discord.gg/memgraph)
+- :busts_in_silhouette: [**Discourse forum**](https://discourse.memgraph.com/)
+- :open_file_folder: [**Memgraph GitHub**](https://github.com/memgraph)
+- :bird: [**Twitter**](https://twitter.com/memgraphdb)
+- :movie_camera:
+  [**YouTube**](https://www.youtube.com/channel/UCZ3HOJvHGxtQ_JHxOselBYg)

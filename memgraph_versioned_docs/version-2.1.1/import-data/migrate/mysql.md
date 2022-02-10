@@ -2,6 +2,7 @@
 id: mysql
 title: Migrate MySQL database to Memgraph
 sidebar_label: MySQL
+pagination_prev: import-data/overview
 ---
 
 ## Prerequisites
@@ -16,8 +17,9 @@ sidebar_label: MySQL
 
 ### Dataset
 
-For this tutorial, we will be working with a MySQL database named `users_db`
-that contains two tables, `users` and `user_relationships`:
+To show you how to migrate data from MySQL to Memgraph we will be working with a
+MySQL database named `users_db` that contains two tables, `users` and
+`user_relationships`:
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -63,6 +65,8 @@ mysql> SELECT * FROM user_relationships;
   </TabItem>
 </Tabs>
 
+_____
+
 ### Migrating
 
 **1.** You can migrate this database into Memgraph by running:
@@ -79,7 +83,7 @@ build/src/mgmigrate --source-kind=mysql /
   --destination-use-ssl=false
 ```
 
-**2.** Run the following query in **[Memgraph Lab](https://memgraph.com/product/lab)** or **[mgconsole](/connect-to-memgraph/methods/mgconsole.md)** to see the results:
+**2.** Run the following query in **[Memgraph Lab](https://memgraph.com/product/lab)** or **[mgconsole](/connect-to-memgraph/mgconsole.md)** to see the results:
 
 ```cypher
 MATCH (n)-[r]-(m) RETURN n,r,m;

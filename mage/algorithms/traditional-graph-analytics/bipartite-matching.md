@@ -42,7 +42,7 @@ the link above. :point_up:
 
 ## Use cases
 
-[![Transportation](https://img.shields.io/badge/Transportation-Application-8A477F?style=for-the-badge)](/mage/applications/transportation-application)
+[![Transportation](https://img.shields.io/badge/Transportation-Application-8A477F?style=for-the-badge)](/use-cases/transportation.md)
 
 To optimize transportation in nowadays successful and widely used applications
 like [Uber](https://www.uber.com/), [Lyft](https://www.lyft.com/) or

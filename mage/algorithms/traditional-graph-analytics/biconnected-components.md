@@ -46,7 +46,7 @@ Therefore, it is rarely used alone. However, there are particular niche use
 cases where finding biconnected components might come in handy mostly because of
 the articulation points revealing.
 
-[![Transportation](https://img.shields.io/badge/Transportation-Application-8A477F?style=for-the-badge)](/mage/applications/transportation-application)
+[![Transportation](https://img.shields.io/badge/Transportation-Application-8A477F?style=for-the-badge)](/use-cases/transportation.md)
 
 Organizing the road infrastructure can be a painful task for any engineer.
 Finding biconnected components in the transportation network can help to reveal
