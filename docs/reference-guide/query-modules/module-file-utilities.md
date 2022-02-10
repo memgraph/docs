@@ -68,6 +68,7 @@ mg.update_module_file(path :: STRING, content :: STRING)
 ### Description
 
 Update a Python module file at `path` with `content`.  
+After a successful update, all the modules are reloaded.  
 The `path` needs to be in absolute form, contained inside one of the query module directories,  
 and the `is_editable` flag should be set to
 `true` (check [`mg.get_module_files`](#mgget_module_files) for more info).
@@ -85,6 +86,7 @@ mg.delete_module_file(path :: STRING)
 ### Description
 
 Delete a Python module file at `path`.  
+After a successful delete, all the modules are reloaded.  
 The `path` needs to be in absolute form, contained inside one of the query module directories,  
 and the `is_editable` flag should be set to
 `true` (check [`mg.get_module_files`](#mgget_module_files) for more info).
