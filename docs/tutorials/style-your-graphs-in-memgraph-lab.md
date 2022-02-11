@@ -24,7 +24,7 @@ First, you will connect to [Memgraph sandbox Europe backpacking](https://playgro
 
 ![style-graphs-open-style-editor](../data/tutorials/style-your-graphs-in-memgraph-lab/style-graphs-open-style-editor.png)
 
-## Step 2 — Adding a style to a graph
+## Step 2 — Using colors and borders to style graph nodes
 
 With a Style editor in front of you, you are ready to style your graph! You will use Style editor to modify exiting style and to add some new style rules.
 First you will modify the code that defines node style. Look for this section of the code:
@@ -51,7 +51,7 @@ You will now change it so that nodes will be a smaller, with larger and darker s
 ```
 Click **Apply** to see what you graph look like now.
 
-You will now change the color of the nodes from red to gold and you will make them orange on hover.
+You will now change the color of the nodes from red to gold and you will make them orange on hover. Fine the following code:
 
 ```nocopy
 @NodeStyle HasLabel?(node, "Country") {
@@ -60,6 +60,7 @@ You will now change the color of the nodes from red to gold and you will make th
   color-selected: #dd2222
 }
 ```
+Replace that code with:
 
 ```
 @NodeStyle HasLabel?(node, "Country") {
@@ -69,15 +70,88 @@ You will now change the color of the nodes from red to gold and you will make th
 }
 ```
 
+## Step 3 — Add images to the nodes
+
+Now that you have all of the colors and borders in place it is time to add images to the nodes. You will add images to the first and last node. As a source your will use two images from Wikipedia.
+
+Add the following code at the end of the style script:
+
+```
+@NodeStyle Equals?(Property(node, "name"), "Russia") {
+   image-url: "https://upload.wikimedia.org/wikipedia/en/thumb/f/f3/Flag_of_Russia.svg/320px-Flag_of_Russia.svg.png"
+}
+
+@NodeStyle Equals?(Property(node, "name"), "Spain") {
+  image-url: "https://upload.wikimedia.org/wikipedia/en/thumb/9/9a/Flag_of_Spain.svg/320px-Flag_of_Spain.svg.png"
+ }
+ ```
+
+## Step 4 — Using colors to style graph relationships
+
+With all of the nodes looking just the way that you have wanted now it is time to style the relationships between them. You will represent your relationships as straight, thin lines that have no arrows. To do tah locate the code:
+
+```nocopy
+@EdgeStyle {
+  width: 3
+  label: Type(edge)
+}
+```
+Now replace that code with:
+
+```
+@EdgeStyle {
+  width: 1
+  label: Type(edge)
+  arrow-size: 0
+  type: "straight"
+  color: #6AA84F
+}
+```
+### Step 5 - Checking the final result
 
 
-## Step 3 — Installing Memgraph Lab and connecting to Memgraph
-
-Start ...
-
-## Step 4 — Testing the Memgraph Lab's connection to Memgraph
 
 You ...
+
+```
+@NodeStyle {
+  size: 35
+  border-width: 5
+  border-color: #ffffff
+  shadow-color: #333333
+  shadow-size: 20
+}
+
+@NodeStyle Greater?(Size(Labels(node)), 0) {
+  label: Format(":{}", Join(Labels(node), " :"))
+}
+
+@NodeStyle HasLabel?(node, "Country") {
+  color: #ffd700
+  color-hover: #ffa500
+  color-selected: #dd2222
+}
+
+@NodeStyle HasProperty?(node, "name") {
+  label: AsText(Property(node, "name"))
+}
+
+@EdgeStyle {
+  width: 1
+  label: Type(edge)
+  arrow-size: 0
+  type: "straight"
+  color: #6AA84F
+}
+
+@NodeStyle Equals?(Property(node, "name"), "Russia") {
+   image-url: "https://upload.wikimedia.org/wikipedia/en/thumb/f/f3/Flag_of_Russia.svg/320px-Flag_of_Russia.svg.png"
+}
+
+@NodeStyle Equals?(Property(node, "name"), "Spain") {
+  image-url: "https://upload.wikimedia.org/wikipedia/en/thumb/9/9a/Flag_of_Spain.svg/320px-Flag_of_Spain.svg.png"
+ }
+```
 
 ## Conclusion
 
