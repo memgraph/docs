@@ -18,7 +18,7 @@
 }
 
 .connectButton__imgActive {
-    display: none;
+    display: none !important;
 }
 
 .connectButton__img {
@@ -26,7 +26,7 @@
 }
 
 .connectButton:hover .connectButton__imgActive {
-    display: block;
+    display: block !important;
 }
 
 .connectButton:hover .connectButton__img {
