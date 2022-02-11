@@ -125,7 +125,8 @@
             "import-data/migrate/postgresql"
           ]
         },
-        "import-data/cypherl"
+        "import-data/cypherl",
+        "import-data/json/load-json"
       ]
     },
     {
