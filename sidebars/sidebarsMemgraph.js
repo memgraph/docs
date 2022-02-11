@@ -124,7 +124,7 @@ module.exports = {
         "tutorials/marvel-universe",
         "tutorials/movie-recommendation",
         "tutorials/migrate-relational-database",
-        "tutorials/analyzing-data-streamed-from-Kafka",
+        "tutorials/analyzing-data-streamed-from-kafka",
         "tutorials/social-network-analysis",
         "tutorials/understanding-music-with-modules",
       ],

@@ -297,6 +297,8 @@ edges has already been created.
 
 <img src={require('../data/tutorials/analyzing-data-streamed-from-kafka-overview.png').default}/>
 
+<p></p>
+
 Just to be sure, open the tab **Graph Schema** and click on the **Generate graph
 schema** button to see if the graph follows the **Data model** we defined at the
 beginning of the article.
