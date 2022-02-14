@@ -61,7 +61,7 @@ configs|String key-value pairs of configuration options for the Kafka consumer|m
 credentials|String key-value pairs of configuration options for the Kafka consumer, but their value aren't shown in the Kafka specific stream information|map with string key-value pairs|{"sasl.password": "password"}|/
 
 :::warning
-The credentials are stored on the disk without any encryption, that means everybody who has access to the data folder of Memgraph is able to get the credentials.
+The credentials are stored on the disk without any encryption, which means everybody who has access to the data directory of Memgraph is able to get the credentials.
 :::
 
 To check the list of possible configuration options and their values, please
