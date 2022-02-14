@@ -125,6 +125,7 @@ module.exports = {
         "tutorials/football-transfers",
         "tutorials/got-deaths",
         "tutorials/graphing-the-premier-league",
+        "tutorials/install-memgraph-windows-10",
         "tutorials/marvel-universe",
         "tutorials/movie-recommendation",
         "tutorials/social-network-analysis",

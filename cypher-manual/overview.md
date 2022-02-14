@@ -67,5 +67,5 @@ created a list of all Cypher clauses that Memgraph supports.
 
 ## Functions
 Sometimes clauses are now enough to get the data you are looking for. Don't
-worry, Memgraph has a lot o built-in [functions](functions.md) that will help
+worry, Memgraph has a lot of built-in [functions](functions.md) that will help
 you to get the right data.
