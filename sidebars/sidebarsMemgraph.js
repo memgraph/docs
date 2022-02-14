@@ -306,6 +306,7 @@ module.exports = {
             "reference-guide/security",
           ],
         },
+        "reference-guide/websocket-connection"
       ],
     },
     {
