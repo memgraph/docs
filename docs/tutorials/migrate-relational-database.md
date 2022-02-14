@@ -37,7 +37,7 @@ To follow along, you will need:
 
 We will learn how to import data from a relational database to Memgraph using
 the example of an online store. The data model of the relational database that
-we will use for this tutorial includes 5 tables with the following properties.
+we will use for this tutorial includes 5 tables with the following properties:
 
 <img src={require('../data/tutorials/migrate_relational_database_data_model.png').default}/>
 
@@ -45,12 +45,12 @@ we will use for this tutorial includes 5 tables with the following properties.
 
 ### 1. Export the data from a table to a CSV file
 
-To begin you need to export the existing data into CSV files table by table
-either using the Export Wizard or running a query.
+To begin, you need to export the existing data into CSV files table by table
+either using the *Export Wizard* or by running a query.
 
 **Exporting data using the Export Wizard**
 
-In this example, we are using the Export Wizard in the MySQL Workbench. To
+In this example, we are using the *Export Wizard* in the *MySQL Workbench*. To
 export the **Customer** table, right-click on the table name and select the
 **Table Data Export Wizard**.
 
@@ -92,7 +92,7 @@ id,name,email
 **Exporting data by running a query**
 
 You can also export data by writing a query, but the data can be exported only
-to a specific location you can find out by running the following query:
+to a specific location you can learn by running the following query:
 
 ```sql
 SHOW VARIABLES LIKE "secure_file_priv";
@@ -105,11 +105,11 @@ Server 8.0\Uploads\'` which I can now use as a destination for my CSV file.
 
 Check that you've selected the database you want to export data from as your
 default one. If the database is selected the name is bolded. If it is not,
-double-clicking on it.
+double-click on it.
 
-To export the **customerpurchase** table write the following query. Notice how
+To export the **customerpurchase** table, execute the query below. Notice how
 we changed the backslashes into slashes to avoid getting an error. You can also
-write double backslashes.
+write double backslashes:
 
 ```sql
 SELECT 'id', 'idcustomer', 'idpurchase'
@@ -164,7 +164,7 @@ docker ps
 
 3. Place yourself in the root directory and copy files into the container with
    the following command. You should replace CONTAINER ID and for each file
-   change the source and destination file.
+   change the source and destination path:
 
 ```
 docker cp source.csv <CONTAINER ID>:/destination.csv
@@ -180,7 +180,7 @@ cd C:\
 ```
 
 Then I ran 5 commands to copy the 5 CSV files to the container, changing the
-file names in both the source and destination with each new file. This is an
+file paths in both the source and destination with each new file. This is an
 example of copying the `customer.csv` file:
 
 ```terminal
@@ -188,13 +188,13 @@ docker cp customer.csv bbbc43620e5c:/customer.csv
 ```
 
 To check if the files have indeed been copied run the following command but be
-sure to replace the CONTAINER ID.
+sure to replace the CONTAINER ID:
 
 ```terminal
 docker exec -it bbbc43620e5c bash
 ```
 
-And then use the `docker ls` command to list all the files and directories in
+And then use the `ls` command to list all the files and directories in
 the container's root. You should be able to see the CSV files we just copied to
 the container.
 
@@ -239,7 +239,7 @@ So first we need to define the source file path and set the `HEADER` option to
 `WITH` because our CSV file has headers. The clause will parse each `row` and
 create nodes with properties. This is the clause to create `customer` nodes.
 Copy it and paste it in the **Query editor** in **Memgraph Lab**, then click
-**Run query**.
+**Run query**:
 
 ```cypher
 LOAD CSV from "/customer.csv"
@@ -252,7 +252,7 @@ customers from our CSV file. Let's repeat the process to create nodes for
 purchases.
 
 If we do not define the data type of a property, it will be a string. That is
-why we defined the date of purchase as a Date type.
+why we defined the date of purchase as a `Date` type:
 
 ```cypher
 LOAD CSV from "/purchase.csv"
@@ -260,7 +260,7 @@ WITH HEADER AS row
 CREATE (p:Purchase {id: row.id, date: Date(row.date)});
 ```
 
-For node `product`, we'll import products' price as a float.
+For node `product`, we'll import products' price as a `float`:
 
 ```cypher
 LOAD CSV from "/product.csv"
@@ -269,7 +269,7 @@ CREATE (pr:Product {id: row.id, brand: row.brand, name: row.name, price: ToFloat
 ```
 
 You should have 24 nodes imported into your graph database. You can list all the
-nodes to check their properties by using this Cypher query
+nodes to check their properties by using this Cypher query:
 
 ```cypher
 MATCH (n)
@@ -308,7 +308,7 @@ SET m.id = row.id;
 
 Running this query made 12 new relationships between customers and purchases.
 Let's now create relationships between products and purchases. Notice how we
-defined the quantity data type as integer. Once this last query is run you
+defined the quantity data type as integer. Once this last query is run, you
 should have 24 nodes and 29 relationships (edges).
 
 ```cypher
@@ -331,7 +331,7 @@ The data model in a graph database now looks like this:
 If you decided you want to add a property to any of the nodes or relationships
 you can do so at any point without disrupting the schema.
 
-Let's add the city property to customer 4.
+Let's add the `city` property to customer 4:
 
 ```cypher
 MATCH (c:Customer {id: "4"})
@@ -340,7 +340,7 @@ RETURN c
 ```
 
 You can check if this property has been added by running the following query and
-clicking on the node in the **Graph** view.
+clicking on the node in the **Graph** view:
 
 ```cypher
 MATCH (c:Customer {id: "4"})
