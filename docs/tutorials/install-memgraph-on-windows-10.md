@@ -12,9 +12,12 @@ sure that everything is working correctly.
 
 :::info
 
-You can install MemgraphDB and Memgraph Lab as separate components or you can use **Memgraph Platform** Docker image. Memgraph Platform contains MemgraphDB, Memgraph Lab and mgconsole. It is the recommended installation option, and it isn't part of this tutorial. 
+You can install MemgraphDB and Memgraph Lab as separate components or you can
+use the **Memgraph Platform** Docker image. Memgraph Platform contains
+MemgraphDB, Memgraph Lab, mgconsole and MAGE. It is the recommended installation
+option, and it isn't part of this tutorial.
 
-If you want to install Memgraph Platform, please follow the [Memgraph Platform Docker documentation](https://memgraph.com/docs/memgraph/install-memgraph-on-windows-docker).
+If you want to install Memgraph Platform, please follow the [Memgraph Platform installation guide](https://memgraph.com/docs/memgraph/install-memgraph-on-windows-docker).
 
 :::
 
