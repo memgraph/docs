@@ -4,7 +4,7 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
-## Future
+## v2.2.0 - TBD
 
 ### Major Features and Improvements
 
@@ -13,6 +13,8 @@ sidebar_label: Changelog
   and `mg.get_module_files` allow you to do modifications on your Python module files,
   get their content, and list all the files present in your query module directories
   directly from Memgraph. [#330](https://github.com/memgraph/memgraph/pull/330)
+* Added `SHOW VERSION` query that returns version of the Memgraph server which is being
+  queried. [#265](https://github.com/memgraph/memgraph/pull/265)
 
 ### Bug Fixes
 
