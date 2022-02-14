@@ -10,6 +10,14 @@ In this tutorial, you will install both MemgraphDB and Memgraph Lab on Windows 1
 You will then test each installation by running a few basic queries to make
 sure that everything is working correctly.
 
+:::info
+
+You can install MemgraphDB and Memgraph Lab as separate components or you can use **Memgraph Platform** Docker image. Memgraph Platform contains MemgraphDB, Memgraph Lab and mgconsole. It is the recommended installation option, and it isn't part of this tutorial. 
+
+If you want to install Memgraph Platform, please follow the [Memgraph Platform Docker documentation](https://memgraph.com/docs/memgraph/install-memgraph-on-windows-docker).
+
+:::
+
 [MemgraphDB](https://memgraph.com/product/) is a native, in-memory graph
 database built for real-time business-critical applications. Memgraph supports
 strongly-consistent ACID transactions and uses the [Cypher query
