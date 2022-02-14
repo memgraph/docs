@@ -17,7 +17,7 @@ use the **Memgraph Platform** Docker image. Memgraph Platform contains
 MemgraphDB, Memgraph Lab, mgconsole and MAGE. It is the recommended installation
 option, and it isn't part of this tutorial.
 
-If you want to install Memgraph Platform, please follow the [Memgraph Platform installation guide](https://memgraph.com/docs/memgraph/install-memgraph-on-windows-docker).
+If you want to install Memgraph Platform, please follow the [Memgraph Platform installation guide](../install-memgraph-on-windows-docker).
 
 :::
 

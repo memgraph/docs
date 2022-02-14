@@ -1,7 +1,7 @@
 ---
 id: what-are-graph-databases
 title: What are graph databases?
-sidebar_label: What are graph databases?
+sidebar_label: What are graph databases
 ---
 
 A **graph database** is a type of database that stores data in the form of nodes
