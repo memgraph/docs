@@ -4,11 +4,21 @@ title: Installing Memgraph Lab on Linux
 sidebar_label: Linux
 ---
 
+We recommend you [install **Memgraph Platform**](/memgraph/installation) and get
+the complete streaming graph application platform that includes <br/> **Memgraph DB**,
+command-line tool **mgconsole**, visual user interface **Memgraph Lab** running
+within the browser and **MAGE** - graph algorithms and modules library.
+
+If you want to install Memgraph Lab as a desktop application, follow the
+instructions below.
+
 ## Step 1 - Download and install Memgraph
 
-Instructions on how to install Memgraph can be found
-[here](/memgraph/installation). After Memgraph is installed
-and running on your machine, you can continue with the next step.
+Memgraph Lab needs a running Memgraph DB instance
+
+If you installed Memgraph Platform you should already have one. <br/>If not,
+install [Memgraph DB](/memgraph/installation) and once the database instance is
+running  you can continue with the next step.
 
 ## Step 2 - Installing and setting up Memgraph Lab
 
@@ -88,5 +98,5 @@ one of the available **[Tutorials](/memgraph/tutorials)**.
 
 ## Getting help
 
-Visit the **[Getting help](/help-center)** page in case you run into any kind of
+Visit the **[Help Center](/help-center)** page in case you run into any kind of
 problem or you have additional questions.

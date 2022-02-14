@@ -3,6 +3,8 @@ id: linux-installation-troubleshooting
 title: Troubleshooting installation on Linux
 sidebar_label: Installation troubleshooting
 slug: /linux-installation-troubleshooting
+pagination_prev: installation/overview
+pagination_next: connect-to-memgraph/overview
 ---
 
 import Tabs from '@theme/Tabs';

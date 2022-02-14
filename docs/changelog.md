@@ -4,9 +4,24 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
-## Future
+## v2.2.0 - TBD
 
 ### Major Features and Improvements
+
+* Added builtin procedures used for handling Python module files. `mg.create_module_file`, 
+  `mg.update_module_file`, `mg.delete_module_file`, `mg.get_module_file`,
+  and `mg.get_module_files` allow you to do modifications on your Python module files,
+  get their content, and list all the files present in your query module directories
+  directly from Memgraph. [#330](https://github.com/memgraph/memgraph/pull/330)
+* Temporal types `LocalTime` and `LocalDateTime` instantiations return subsecond precision.
+  Additionally, query modules `mg_local_date_time_now()` and `mg_local_time_now()`
+  also return subsecond precision. [#333](https://github.com/memgraph/memgraph/pull/333)
+* Built-in procedures `mg.procedures` and `mg.transformations` return additional information
+  about the procedures and transformations scripts. `path` returns an absolute path to the
+  module file containing the procedure, while `is_editable` returns `true` if the file
+  can be edited using Memgraph or `false` otherwise. [#310](https://github.com/memgraph/memgraph/pull/310)
+* Added `SHOW VERSION` query that returns version of the Memgraph server which is being
+  queried. [#265](https://github.com/memgraph/memgraph/pull/265)
 
 ### Bug Fixes
 
@@ -96,7 +111,7 @@ sidebar_label: Changelog
   [#285](https://github.com/memgraph/memgraph/pull/285)
 * Added support for connecting to Pulsar as a new stream source. For more
   details, check out our
-  [example](database-functionalities/streams/pulsar/pulsar-streams) and
+  [example](how-to-guides/streams/pulsar/pulsar-streams) and
   [reference pages](reference-guide/streams).
   [#293](https://github.com/memgraph/memgraph/pull/293)
 
@@ -162,7 +177,7 @@ sidebar_label: Changelog
 * Introduced settings to Memgraph that can be modified during runtime. You can
   check out more details [here](reference-guide/runtime-settings).
 * Added writeable procedure support, so
-  [procedures](database-functionalities/query-modules/implement-query-modules)
+  [procedures](how-to-guides/query-modules/implement-query-modules)
   can modify the graph by creating and deleting vertices and edges, modifying
   the labels of vertices or setting the properties of vertices and edges.
 

@@ -87,7 +87,7 @@ Although PageRank can be used in a variety of ways, the need for its dynamic
 implementation lies in systems that use **temporal graphs**.
 
 [![Social
-networks](https://img.shields.io/badge/Social_networks-Application-8A477F?style=for-the-badge)](mage/applications/social-media-application)
+networks](https://img.shields.io/badge/Social_networks-Application-8A477F?style=for-the-badge)](/use-cases/social-media.md)
 
 One of the most dynamic environments is definitely social networks. Every
 moment, events arrive that contain the creation of new users, posts, messages,
@@ -97,7 +97,7 @@ incremental measure of influence is high in companies such as:
 [Pinterest](https://www.pinterest.com/).
 
 [![Internet
-Network](https://img.shields.io/badge/Internet_Network-Application-8A477F?style=for-the-badge)](/mage/applications/telecommunication-application)
+Network](https://img.shields.io/badge/Internet_Network-Application-8A477F?style=for-the-badge)](/use-cases/telecommunication.md)
 
 Importance analysis can be highlighted as crucial at the moment when internet
 traffic is analyzed. If we have some kind of internal, supervised system,

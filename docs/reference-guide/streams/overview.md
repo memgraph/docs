@@ -41,7 +41,7 @@ CREATE KAFKA STREAM <stream name>
   TOPICS <topic1> [, <topic2>, ...]
   TRANSFORM <transform procedure>
   [CONSUMER_GROUP <consumer group>]
-  [BATCH_INTERVAL <batch interval length>]
+  [BATCH_INTERVAL <batch interval duration>]
   [BATCH_SIZE <batch size>]
   [BOOTSTRAP_SERVERS <bootstrap servers>]
   [CONFIGS { <key1>: <value1> [, <key2>: <value2>, ...]}]
@@ -70,7 +70,7 @@ The credentials are stored on the disk without any encryption, which means every
 CREATE PULSAR STREAM <stream name>
   TOPICS <topic1> [, <topic2>, ...]
   TRANSFORM <transform procedure>
-  [BATCH_INTERVAL <batch interval length>]
+  [BATCH_INTERVAL <batch interval duration>]
   [BATCH_SIZE <batch size>]
   [SERVICE_URL <service url>];
 

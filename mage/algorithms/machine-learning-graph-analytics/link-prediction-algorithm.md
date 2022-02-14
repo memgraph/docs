@@ -41,10 +41,10 @@ Unfortunately, **Link Prediction** is yet not implemented within the project [**
 
 ## Use cases
 
-[![Drug Discovery](https://img.shields.io/badge/Drug_Discovery-Application-8A477F?style=for-the-badge)](/mage/applications/drug-discovery-application)
+[![Drug Discovery](https://img.shields.io/badge/Drug_Discovery-Application-8A477F?style=for-the-badge)](/use-cases/drug-discovery.md)
 
 When discovering new drugs, methods of link prediction can help to determine the behavior of the new drug. Since there exists a database of already known side effects and reactions with other drugs, this knowledge can be used to predict newly constructed ones.
 
-[![Social Networks](https://img.shields.io/badge/Social_Networks-Application-8A477F?style=for-the-badge)](/mage/applications/social-media-application)
+[![Social Networks](https://img.shields.io/badge/Social_Networks-Application-8A477F?style=for-the-badge)](/use-cases/social-media.md)
 
 One of the most obvious tasks of link prediction is predicting new friendships/followers on social networks. This concept is based on sharing the same entities on the graph, whether they are friends, interests, or things you follow.

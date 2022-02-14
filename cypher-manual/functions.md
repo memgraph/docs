@@ -4,6 +4,8 @@ title: Functions
 sidebar_label: Functions
 ---
 
+## Supported functions
+
 This section contains the list of supported functions.
 
  Name            | Description

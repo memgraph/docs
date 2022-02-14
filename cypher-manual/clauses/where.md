@@ -44,7 +44,7 @@ RETURN c.name;
 ```
 
 Output:
-```
+```nocopy
 +----------------+
 | c.name         |
 +----------------+
@@ -63,7 +63,7 @@ RETURN c.name;
 ```
 
 Output:
-```
+```nocopy
 +---------+
 | c.name  |
 +---------+
@@ -82,7 +82,7 @@ RETURN c.name;
 ```
 
 Output:
-```
+```nocopy
 +----------------+
 | c.name         |
 +----------------+
@@ -103,7 +103,7 @@ RETURN c.name;
 ```
 
 Output:
-```
+```nocopy
 +----------------+
 | c.name         |
 +----------------+
@@ -123,7 +123,7 @@ RETURN p;
 ```
 
 Output:
-```
+```nocopy
 +---------------------------+
 | p                         |
 +---------------------------+
@@ -143,7 +143,7 @@ RETURN c.name, c.population;
 ```
 
 Output:
-```
+```nocopy
 +----------------+----------------+
 | c.name         | c.population   |
 +----------------+----------------+
@@ -153,7 +153,7 @@ Output:
 
 ## 2. String matching
 
-Apart from comparison and concatenation operators openCypher provides special
+Apart from comparison and concatenation operators Cypher provides special
 string operators for easier matching of substrings:
 
 Operator           | Description
@@ -169,7 +169,7 @@ RETURN c.name;
 ```
 
 Output:
-```
+```nocopy
 +---------+
 | c.name  |
 +---------+
@@ -189,7 +189,7 @@ MATCH (n :Person) WHERE n.name =~ ".*a$" RETURN n;
 ```
 
 Output:
-```
+```nocopy
 +--------------------------+
 | n                        |
 +--------------------------+
