@@ -136,11 +136,11 @@ this tutorial.
 
 To place the files in the root directory you need Admin rights on your computer. 
 
-- `customer.csv`
-- `customerpurchase.csv`
-- `product.csv`
-- `productpurchase.csv`
-- `purchase.csv`
+- [`customer.csv`](https://public-assets.memgraph.com/tutorials/rdbms-migration-to-memgraph/customer.csv)
+- [`customerpurchase.csv`](https://public-assets.memgraph.com/tutorials/rdbms-migration-to-memgraph/customerpurchase.csv)
+- [`product.csv`](https://public-assets.memgraph.com/tutorials/rdbms-migration-to-memgraph/product.csv)
+- [`productpurchase.csv`](https://public-assets.memgraph.com/tutorials/rdbms-migration-to-memgraph/productpurchase.csv)
+- [`purchase.csv`](https://public-assets.memgraph.com/tutorials/rdbms-migration-to-memgraph/purchase.csv)
 
 ### 2. Transfer CSV files into a Docker container
 
