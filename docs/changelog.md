@@ -8,7 +8,7 @@ sidebar_label: Changelog
 
 ### Major Features and Improvements
 
-* Added builtin procedures used for handling Python module files. `mg.create_module_file`, 
+* Added builtin procedures used for handling Python module files. `mg.create_module_file`,
   `mg.update_module_file`, `mg.delete_module_file`, `mg.get_module_file`,
   and `mg.get_module_files` allow you to do modifications on your Python module files,
   get their content, and list all the files present in your query module directories
@@ -30,6 +30,11 @@ sidebar_label: Changelog
   [#320](https://github.com/memgraph/memgraph/pull/320)
 * Use correct error when printing warning in rebalance callback of Kafka
   consumer. [#321](https://github.com/memgraph/memgraph/pull/321)
+* Fix transaction handling in streams in case of serialization error.
+  Previously, a serialization error caused an exception to be thrown since nested
+  transactions are not supported. After this fix, the transactions are handled
+  correctly in the transaction retry logic.
+  [#339](https://github.com/memgraph/memgraph/pull/339)
 
 ## v2.1.1 - Dec 07, 2021
 
