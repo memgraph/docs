@@ -268,6 +268,7 @@ module.exports = {
         },
         "reference-guide/replication",
         "reference-guide/runtime-settings",
+        "reference-guide/server-stats",
         {
           type: "category",
           label: "Streams",

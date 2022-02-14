@@ -8,6 +8,9 @@ sidebar_label: Changelog
 
 ### Major Features and Improvements
 
+* Added `SHOW VERSION` query that returns version of the Memgraph server which is being
+  queried. [#265](https://github.com/memgraph/memgraph/pull/265)
+
 ### Bug Fixes
 
 * The reference count is increased when `Py_None` is returned from the `_mgp` module.
