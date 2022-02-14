@@ -27,8 +27,8 @@ The result will contain following fields:
 
 | Field            | Description                                                |
 |------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
-| vertex_count     | Amount of vertices stored                                                                                                                    |
-| edge_count       | Amount of edges stored                                                                                                                       |
+| vertex_count     | Number of vertices stored                                                                                                                    |
+| edge_count       | Number of edges stored                                                                                                                       |
 | average_degree   | Average degree of vertices stored                                                                                                            |
 | memory_usage     | Amount of RAM used reported by the OS (in bytes)                                                                                             |
 | disk_usage       | Amount of disk space used by the data directory (in bytes)                                                                                   |
