@@ -976,6 +976,12 @@ module.exports = {
           },
           //How-to guides redirects
           {
+            to: "/memgraph/how-to-guides",
+            from: [
+              "/memgraph/database-functionalities",
+            ],
+          },
+          {
             to: "/memgraph/how-to-guides/streams/kafka/kafka-streams",
             from: [
               "/memgraph/database-functionalities/streams/kafka/kafka-streams",

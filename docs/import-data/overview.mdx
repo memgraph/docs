@@ -14,11 +14,19 @@ export default function ConnectToMemgraph() {
   const imgFolder = "img/import-data/";
   const viaLoadCsv = {
     title: "LOADCSVClause#",
-    img: useBaseUrl(imgFolder + "LOADcsvclause-unselected.svg"),
-    imgActive: useBaseUrl(imgFolder + "LOADcsvclause-selected.svg"),
-    imgDark: useBaseUrl(imgFolder + "dark/LOADcsvclause-unselected-dm.svg"),
-    imgDarkActive: useBaseUrl(imgFolder + "dark/LOADcsvclause-selected-dm.svg"),
+    img: useBaseUrl(imgFolder + "loadcsvclause-unselected.svg"),
+    imgActive: useBaseUrl(imgFolder + "loadcsvclause-selected.svg"),
+    imgDark: useBaseUrl(imgFolder + "dark/loadcsvclause-unselected-dm.svg"),
+    imgDarkActive: useBaseUrl(imgFolder + "dark/loadcsvclause-selected-dm.svg"),
     url: useBaseUrl("memgraph/import-data/load-csv-clause"),
+  };
+  const viaLoadJSON = {
+    title: "LoadJSON",
+    img: useBaseUrl(imgFolder + "json-unselected.svg"),
+    imgActive: useBaseUrl(imgFolder + "json-selected.svg"),
+    imgDark: useBaseUrl(imgFolder + "dark/json-unselected-dm.svg"),
+    imgDarkActive: useBaseUrl(imgFolder + "dark/json-selected-dm.svg"),
+    url: useBaseUrl("memgraph/import-data/json/load-json"),
   };
   const viaMigrate = [
     {
@@ -133,6 +141,14 @@ export default function ConnectToMemgraph() {
             , which has procedures for loading JSON file from local file or
             remote address.
           </p>
+          <ConnectButton
+            title={viaLoadJSON.title}
+            url={viaLoadJSON.url}
+            img={viaLoadJSON.img}
+            imgActive={viaLoadJSON.imgActive}
+            imgDark={viaLoadJSON.imgDark}
+            imgDarkActive={viaLoadJSON.imgDarkActive}
+          />
         </section>
         <section>
           <h2 id="csv-tool">How to create a snapshot from CSV files?</h2>

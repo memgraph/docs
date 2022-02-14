@@ -48,7 +48,7 @@ Query procedures that allow the users to gain more insight into other query
 modules and their procedures are written under our utility `mg` query module.
 This module offers three procedures with the following signatures:
 
-* `mg.procedures() :: (name :: STRING, signature :: STRING)`: Lists loaded
+* `mg.procedures() :: (name :: STRING, signature :: STRING, is_write :: BOOLEAN, path :: STRING, is_editable :: BOOLEAN)`: Lists loaded
   procedures and their signatures.
 * `mg.load(module_name :: STRING) :: ()`: Loads or reloads the given module.
 * `mg.load_all() :: ()`: Loads or reloads all modules.
@@ -62,16 +62,16 @@ CALL mg.procedures() YIELD *;
 might yield the following result:
 
 ```plaintext
-+---------------------+-------------------------------------------------------------------+
-| name                | signature                                                         |
-+---------------------+-------------------------------------------------------------------+
-| ...                 | ...                                                               |
-| graph_analyzer.help | graph_analyzer.help() :: (name :: STRING, value :: STRING)        |
-| mg.load             | mg.load(module_name :: STRING) :: ()                              |
-| mg.load_all         | mg.load_all() :: ()                                               |
-| mg.procedures       | mg.procedures() :: (name :: STRING, signature :: STRING)          |
-| ...                 | ...                                                               |
-+---------------------+-------------------------------------------------------------------+
++-------------+---------------------+-------------------+-----------------------------------------------------------------------------------------------------------------------+
+| is_editable | name                | path              | signature                                                                                                             |
++-------------+---------------------+-------------------+-----------------------------------------------------------------------------------------------------------------------+
+| ...         | ...                 | ...               | ...                                                                                                                   |
+| true        | graph_analyzer.help | "/path/to/module" | graph_analyzer.help() :: (name :: STRING, value :: STRING)                                                            |
+| false       | mg.load             | "builtin"         | mg.load(module_name :: STRING) :: ()                                                                                  |
+| false       | mg.load_all         | "builtin"         | mg.load_all() :: ()                                                                                                   |
+| false       | mg.procedures       | "builtin"         | mg.procedures() :: (name :: STRING, signature :: STRING, is_write :: BOOLEAN, path :: STRING, is_editable :: BOOLEAN) |
+| ...         | ...                 | ...               | ...                                                                                                                   |
++-------------+---------------------+-------------------+-----------------------------------------------------------------------------------------------------------------------+
 ```
 
 In this case, we can see that Memgraph has successfully loaded all the procedures implemented

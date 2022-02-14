@@ -9,6 +9,25 @@ sidebar_label: Changelog
 * Temporal types `LocalTime` and `LocalDateTime` instantiations return subsecond precision.
 * Query modules `mg_local_date_time_now()` and `mg_local_time_now()` return subsecond precision.
 
+## v2.2.0 - TBD
+
+### Major Features and Improvements
+
+* Bult-in procedures `mg.procedures` and `mg.transformations` return additional information
+  about the procedures and transformations scripts. `path` returns an absolute path to the
+  module file containing the procedure, while `is_editable` returns `true` if the file 
+  can be edited using Memgraph or `false` otherwise. [#310](https://github.com/memgraph/memgraph/pull/310)
+* Added `SHOW VERSION` query that returns version of the Memgraph server which is being
+  queried. [#265](https://github.com/memgraph/memgraph/pull/265)
+
+### Bug Fixes
+
+* The reference count is increased when `Py_None` is returned from the `_mgp` module.
+  This fixes a nondeterministic fatal Python error.
+  [#320](https://github.com/memgraph/memgraph/pull/320)
+* Use correct error when printing warning in rebalance callback of Kafka
+  consumer. [#321](https://github.com/memgraph/memgraph/pull/321)
+
 ## v2.1.1 - Dec 07, 2021
 
 :::warning
