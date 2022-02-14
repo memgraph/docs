@@ -42,7 +42,7 @@ the link above. :point_up:
 ## Use cases
 
 [![Social
-networks](https://img.shields.io/badge/Social_networks-Application-8A477F?style=for-the-badge)](/mage/applications/social-media-application)
+networks](https://img.shields.io/badge/Social_networks-Application-8A477F?style=for-the-badge)](/use-cases/social-media.md)
 
 Social graphs are often enormous in size. Searching through them and determining
 whether something is in the same component might take a lot of time. By

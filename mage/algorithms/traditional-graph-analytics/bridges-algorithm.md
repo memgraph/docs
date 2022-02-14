@@ -38,7 +38,7 @@ the link above. :point_up:
 ## Use cases
 
 [![Transport
-industry](https://img.shields.io/badge/Transport_industry-Application-8A477F?style=for-the-badge)](/mage/applications/transportation-application)
+industry](https://img.shields.io/badge/Transport_industry-Application-8A477F?style=for-the-badge)](/use-cases/transportation.md)
 
 In the transport industry, the application of the bridge recognition algorithm
 is intuitive. By analogy with the real world, bridges are key points of traffic,
@@ -48,7 +48,7 @@ Traffic planning will always involve looking for bottleneck points that will
 connect more components and thus help build better infrastructure.
 
 [![Internet
-Networks](https://img.shields.io/badge/Internet_Network-Application-8A477F?style=for-the-badge)](/mage/applications/telecommunication-application)
+Networks](https://img.shields.io/badge/Internet_Network-Application-8A477F?style=for-the-badge)](/use-cases/telecommunication.md)
 
 Just like the previous example, Internet networks are organized similarly to a
 transport network, and as such, contain bottlenecks that are bridges to that big

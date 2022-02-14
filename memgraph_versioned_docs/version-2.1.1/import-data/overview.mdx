@@ -14,11 +14,19 @@ export default function ConnectToMemgraph() {
   const imgFolder = "img/import-data/";
   const viaLoadCsv = {
     title: "LOADCSVClause#",
-    img: useBaseUrl(imgFolder + "LOADcsvclause-unselected.svg"),
-    imgActive: useBaseUrl(imgFolder + "LOADcsvclause-selected.svg"),
-    imgDark: useBaseUrl(imgFolder + "dark/LOADcsvclause-unselected-dm.svg"),
-    imgDarkActive: useBaseUrl(imgFolder + "dark/LOADcsvclause-selected-dm.svg"),
+    img: useBaseUrl(imgFolder + "loadcsvclause-unselected.svg"),
+    imgActive: useBaseUrl(imgFolder + "loadcsvclause-selected.svg"),
+    imgDark: useBaseUrl(imgFolder + "dark/loadcsvclause-unselected-dm.svg"),
+    imgDarkActive: useBaseUrl(imgFolder + "dark/loadcsvclause-selected-dm.svg"),
     url: useBaseUrl("memgraph/import-data/load-csv-clause"),
+  };
+  const viaLoadJSON = {
+    title: "LoadJSON",
+    img: useBaseUrl(imgFolder + "json-unselected.svg"),
+    imgActive: useBaseUrl(imgFolder + "json-selected.svg"),
+    imgDark: useBaseUrl(imgFolder + "dark/json-unselected-dm.svg"),
+    imgDarkActive: useBaseUrl(imgFolder + "dark/json-selected-dm.svg"),
+    url: useBaseUrl("memgraph/import-data/json/load-json"),
   };
   const viaMigrate = [
     {
@@ -62,6 +70,16 @@ export default function ConnectToMemgraph() {
             </li>
             <li>
               <b>
+                <a href="#json">How to import JSON files into Memgraph?</a>
+              </b>
+            </li>
+            <li>
+              <b>
+                <a href="#csv-tool">How to create a snapshot from CSV files?</a>
+              </b>
+            </li>
+            <li>
+              <b>
                 <a href="#kafka">
                   How to import streaming data from Kafka into Memgraph?
                 </a>
@@ -88,24 +106,19 @@ export default function ConnectToMemgraph() {
                 </a>
               </b>
             </li>
-            <li>
-              <b>
-                <a href="#csv-tool">How to create a snapshot from CSV files?</a>
-              </b>
-            </li>
           </ul>
         </section>
         <section>
           <h2 id="csv">How to import CSV files into Memgraph?</h2>
           <p>
-            The easiest option for importing data into Memgraph is the{" "}
+            The easiest way to import data into Memgraph is to use the{" "}
             <b>
               <a href={useBaseUrl("/memgraph/import-data/load-csv-clause")}>
                 LOAD CSV Clause
               </a>
             </b>{" "}
-            which can be invoked straight from a running Memgraph instance and
-            is used as a standard Cypher clause.
+            , which is used as a standard Cypher clause, and can be invoked
+            straight from a running Memgraph instance.
           </p>
           <ConnectButton
             title={viaLoadCsv.title}
@@ -117,15 +130,65 @@ export default function ConnectToMemgraph() {
           />
         </section>
         <section>
+          <h2 id="json">How to import JSON files into Memgraph?</h2>
+          <p>
+            You can import the JSON file into Memgraph by using the{" "}
+            <b>
+              <a href={useBaseUrl("/memgraph/import-data/json/load-json")}>
+                JSON query module
+              </a>
+            </b>{" "}
+            , which has procedures for loading JSON file from local file or
+            remote address.
+          </p>
+          <ConnectButton
+            title={viaLoadJSON.title}
+            url={viaLoadJSON.url}
+            img={viaLoadJSON.img}
+            imgActive={viaLoadJSON.imgActive}
+            imgDark={viaLoadJSON.imgDark}
+            imgDarkActive={viaLoadJSON.imgDarkActive}
+          />
+        </section>
+        <section>
+          <h2 id="csv-tool">How to create a snapshot from CSV files?</h2>
+          <p>
+            The{" "}
+            <b>
+              <a href={useBaseUrl("/memgraph/import-data/csv-import-tool")}>
+                CSV import tool
+              </a>
+            </b>{" "}
+            allows you to import nodes and relationships from multiple CSV files
+            at once. The import is done while Memgraph is not running, and the
+            data is loaded the next time it starts. The tool is fully compatible
+            with the{" "}
+            <b>
+              <a href="https://neo4j.com/docs/operations-manual/current/tools/import/">
+                Neo4j CSV format
+              </a>
+            </b>
+            . If you already have a pipeline set-up for Neo4j, you should only replace
+            <br />
+            <code>neo4j-admin import</code> with <code>mg_import_csv</code>. Keep
+            in mind that the CSV Import Tool creates only one snapshot from the supplied
+            CSV files. Memgraph will overwrite any present data with the newly created
+            snapshot. This means that additional imports need to be done with the{" "}
+            <a href={useBaseUrl("/memgraph/import-data/load-csv-clause")}>
+              LOAD CSV clause
+            </a> if you want to preserve the already imported data.
+          </p>
+        </section>
+        <section>
           <h2 id="kafka">
             How to import streaming data from Kafka into Memgraph?
           </h2>
           <p>
             Memgraph comes with full streaming support, and you can connect
-            directly to a Kafka stream. Check out{" "}
+            Memgraph directly to a Kafka stream. Check out{" "}
             <a href={useBaseUrl("/memgraph/import-data/kafka")}>this guide</a>{" "}
-            on how to connect to a Kafka stream and take a look at the examples
-            with different serialization mechanisms:
+            to find out how to connect to a Kafka stream and take a look at the
+            examples with different serialization mechanisms:
           </p>
           {/*<ConnectButton
             title={viaKafka.title}
@@ -192,11 +255,12 @@ export default function ConnectToMemgraph() {
         <section>
           <h2 id="queries">How to import data from Cypher queries?</h2>
           <p>
-            If you have data in the form of Cypher queries (<code>CREATE</code>{" "}
+            If your data is in the form of Cypher queries (<code>CREATE</code>{" "}
             and <code>MERGE</code> clauses) you can import it by using the{" "}
-            <b>mgconsole</b> tool or <b>Memgraph Lab</b>. We call this format
-            <code>.cypherl</code> and you can find an example of how to import such
-            data <a href={useBaseUrl("/memgraph/import-data/cypherl")}>here</a>.
+            <b>mgconsole</b> tool or <b>Memgraph Lab</b>. We refer to this
+            format as <code>.cypherl</code> and you can find an example of how
+            to import such data{" "}
+            <a href={useBaseUrl("/memgraph/import-data/cypherl")}>here</a>.
           </p>
           <ConnectButton
             title={viaCypherl.title}
@@ -216,34 +280,6 @@ export default function ConnectToMemgraph() {
             directly to the platform. You can find a list of all the supported
             connection methods{" "}
             <a href={useBaseUrl("/memgraph/connect-to-memgraph")}>here</a>.
-          </p>
-        </section>
-        <section>
-          <h2 id="csv-tool">How to create a snapshot from CSV files?</h2>
-          <p>
-            The{" "}
-            <b>
-              <a href={useBaseUrl("/memgraph/import-data/csv-import-tool")}>
-                CSV Import Tool
-              </a>
-            </b>{" "}
-            allows you to import nodes and relationships from multiple CSV files
-            at once. The import is done while Memgraph is not running, so it can
-            load the data the next time it starts. The tool is fully compatible
-            with the{" "}
-            <b>
-              <a href="https://neo4j.com/docs/operations-manual/current/tools/import/">
-                Neo4j CSV format
-              </a>
-            </b>
-            . If you already have a pipeline set-up for Neo4j, you should only replace{" "}
-            <code>neo4j-admin import</code> with <code>mg_import_csv</code>. Keep
-            in mind that the CSV Import Tool creates one snapshot from the supplied
-            CSV files. Memgraph will overwrite any present data with the newly created
-            snapshot. This means that additional imports need to be done with the{" "}
-            <a href={useBaseUrl("/memgraph/import-data/load-csv-clause")}>
-              LOAD CSV Clause
-            </a> if you want to preserve already imported data.
           </p>
         </section>
         <section>

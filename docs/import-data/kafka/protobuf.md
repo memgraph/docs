@@ -2,12 +2,13 @@
 id: protobuf
 title: Import Protobuf data
 sidebar_label: Protobuf
+pagination_prev: import-data/kafka/overview
 ---
 
 Similar to Apache Avro,
 [Protobuf](https://developers.google.com/protocol-buffers) is a method of
 serializing structured data. A message format is defined in a `.proto` file, and
-you can generate code from it in many languages, including Java, Python, C++,
+from it you can generate code in many languages, including Java, Python, C++,
 C#, Go, and Ruby. Unlike Avro, Protobuf does not serialize schema with the
 message. In order to deserialize the message, you need the schema in the
 consumer. A benefit of working with Protobuf is the option to define multiple

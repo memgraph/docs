@@ -7,7 +7,7 @@ slug: /getting-started
 
 * [Download and install](/memgraph/installation)
 * [Import data](/memgraph/import-data)
-* [Learn concepts step by step](/memgraph/database-functionalities)
+* [Learn concepts step by step](/database-functionalities/overview.md)
 * [Practical tutorial](/memgraph/tutorials)
 * [Stay updated](/memgraph/changelog)
 

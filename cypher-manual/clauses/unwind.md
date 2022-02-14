@@ -21,7 +21,7 @@ RETURN listElement;
 ```
 
 Output:
-```
+```nocopy
 +-------------+
 | listElement |
 +-------------+
@@ -43,7 +43,7 @@ RETURN collect(listElement) AS distinctElements;
 ```
 
 Output:
-```
+```nocopy
 +------------------+
 | distinctElements |
 +------------------+
@@ -62,7 +62,7 @@ RETURN list;
 ```
 
 Output:
-```
+```nocopy
 +------+
 | list |
 +------+
@@ -87,7 +87,7 @@ RETURN element;
 ```
 
 Output:
-```
+```nocopy
 +---------+
 | element |
 +---------+

@@ -2,6 +2,7 @@
 id: avro
 title: Import Avro data
 sidebar_label: Avro
+pagination_prev: import-data/kafka/overview
 ---
 
 If you want to import your data in Memgraph using Apache Avro serialization, you
@@ -14,7 +15,7 @@ representation you want to import into Memgraph.
 
 ## Datatype mapping
 
-Avro data types will be flexibly mapped to the target schema; that is, Avro and
+Avro data types will be flexibly mapped to the target schema, that is, Avro and
 openCypher types do not need to match exactly. Use the table below for data type
 mappings:
 

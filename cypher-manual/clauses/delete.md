@@ -32,7 +32,7 @@ DELETE c;
 ```
 
 Output:
-```
+```nocopy
 Failed to remove node because of it's existing connections. Consider using DETACH DELETE.
 ```
 
@@ -48,7 +48,7 @@ DETACH DELETE n;
 ```
 
 Output:
-```
+```nocopy
 Empty set (0.001 sec)
 ```
 
@@ -62,7 +62,7 @@ DELETE r;
 ```
 
 Output:
-```
+```nocopy
 Empty set (0.003 sec)
 ```
 
@@ -76,7 +76,7 @@ DETACH DELETE n;
 ```
 
 Output:
-```
+```nocopy
 Empty set (0.001 sec)
 ```
 

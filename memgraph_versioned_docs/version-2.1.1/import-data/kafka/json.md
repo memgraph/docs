@@ -2,6 +2,7 @@
 id: json
 title: Import JSON data
 sidebar_label: JSON
+pagination_prev: import-data/kafka/overview
 ---
 
 [JSON](https://www.json.org/json-en.html) (JavaScript Object Notation) is an

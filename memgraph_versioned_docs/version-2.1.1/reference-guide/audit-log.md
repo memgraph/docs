@@ -1,7 +1,7 @@
 ---
 id: audit-log
 title: Audit log (Enterprise)
-sidebar_label: Audit log (Enterprise)
+sidebar_label: Audit log
 ---
 
 Memgraph supports all query audit logging. When enabled, the audit log contains
