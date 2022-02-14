@@ -39,10 +39,10 @@ data we are all set to analyse it.
 connection](https://memgraph.com/docs/memgraph/next/connect-to-memgraph) to the
 database. 
 
-If you are starting Memgraph using docker images and would like to access
+If you are starting Memgraph using a Docker image and would like to access
 configuration file or logs, be sure to run the image with the following volumes: 
 
-- ` `
+- `-v mg_log:/var/log/memgraph`
 - `-v mg_etc:/etc/memgraph`
 
 ### 2. Define the transformation module
