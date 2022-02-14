@@ -52,7 +52,7 @@ Create a Python module file `filename` with `content` inside Memgraph's internal
 query module directory.  
 Return the path to the newly created file.  
 After a successful creation, all the modules are reloaded.  
-The `filename` can consist of multiple nexted directories (e.g. `subdir1/subidr2/script.py`)
+The `filename` can consist of multiple nested directories (e.g. `subdir1/subidr2/script.py`)
 which will create all the necessary subdirectories.
 
 Required privilege: `MODULE_WRITE`
