@@ -82,6 +82,8 @@ Your existing snapshot and WAL data will be considered obsolete, and Memgraph
 will load the new dataset. This means that all of your existing data will be
 lost and replaced with the newly imported data.
 
+If your Memgraph docker is running, you need to stop it before starting the import process.
+
 :::
 
 <Tabs
@@ -130,7 +132,7 @@ If you get a `--nodes flag is required!` error, the paths to the files are incom
 Next time you run Memgraph, the dataset will be loaded.
 
 ```bash
- docker run -p 7687:7687 -v mg_lib:/var/lib/memgraph memgraph/memgraph-platform
+ docker run -it -p 7687:7687 -p 3000:3000 -v mg_lib:/var/lib/memgraph memgraph/memgraph-platform
 ```
 
 For information on other options, run:
@@ -296,7 +298,7 @@ docker run --user="memgraph" -v mg_lib:/var/lib/memgraph -v mg_etc:/etc/memgraph
 The next time you run Memgraph, the dataset will be loaded:
 
 ```bash
- docker run -p 7687:7687 -v mg_lib:/var/lib/memgraph memgraph/memgraph-platform
+ docker run -it -p 7687:7687 -p 3000:3000 -v mg_lib:/var/lib/memgraph memgraph/memgraph-platform
 ```
 
 For information on other options, run:
