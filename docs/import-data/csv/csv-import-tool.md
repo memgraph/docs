@@ -3,6 +3,7 @@ id: csv-import-tool
 title: CSV import tool
 sidebar_label: CSV import tool
 pagination_prev: import-data/overview
+slug: /import-data/csv-import-tool
 ---
 
 import Tabs from "@theme/Tabs"; import TabItem from "@theme/TabItem";
@@ -82,6 +83,8 @@ Your existing snapshot and WAL data will be considered obsolete, and Memgraph
 will load the new dataset. This means that all of your existing data will be
 lost and replaced with the newly imported data.
 
+If your Memgraph docker is running, you need to stop it before starting the import process.
+
 :::
 
 <Tabs
@@ -130,7 +133,7 @@ If you get a `--nodes flag is required!` error, the paths to the files are incom
 Next time you run Memgraph, the dataset will be loaded.
 
 ```bash
- docker run -p 7687:7687 -v mg_lib:/var/lib/memgraph memgraph/memgraph-platform
+ docker run -it -p 7687:7687 -p 3000:3000 -v mg_lib:/var/lib/memgraph memgraph/memgraph-platform
 ```
 
 For information on other options, run:
@@ -154,7 +157,7 @@ Next time you run Memgraph, the dataset will be loaded.
 <details>
   <summary>After the import, the graph in Memgraph should look like this:</summary>
   <div>
-    <img src={require('../data/import-data/import_tool_one_type_nodes_and_relationships.png').default}/>
+    <img src={require('../../data/import-data/import_tool_one_type_nodes_and_relationships.png').default}/>
   </div>
 </details>
 
@@ -296,7 +299,7 @@ docker run --user="memgraph" -v mg_lib:/var/lib/memgraph -v mg_etc:/etc/memgraph
 The next time you run Memgraph, the dataset will be loaded:
 
 ```bash
- docker run -p 7687:7687 -v mg_lib:/var/lib/memgraph memgraph/memgraph-platform
+ docker run -it -p 7687:7687 -p 3000:3000 -v mg_lib:/var/lib/memgraph memgraph/memgraph-platform
 ```
 
 For information on other options, run:
@@ -320,6 +323,6 @@ The next time you run Memgraph, the dataset will be loaded.
 <details>
   <summary>After the import, the graph in Memgraph should look like this:</summary>
   <div>
-    <img src={require('../data/import-data/import_tool_multiple_type_nodes_and_relationships.png').default}/>
+    <img src={require('../../data/import-data/import_tool_multiple_type_nodes_and_relationships.png').default}/>
   </div>
 </details>

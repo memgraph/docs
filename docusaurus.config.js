@@ -367,9 +367,9 @@ module.exports = {
     },
     hideableSidebar: true,
     announcementBar: {
-      id: "app-challenge",
+      id: "gqlalchemy",
       content:
-        '🏆 Keep Rockin’ & Start Coding! Register and win $2,000! <a target="_blank" rel="noopener noreferrer" href="https://memgraph.com/memgraph-app-challenge"><b>Join the challenge</b></a> 🏆',
+        'Check out the new Python Object Graph Mapper (OGM) library <a target="_blank" rel="noopener noreferrer" href="https://github.com/memgraph/gqlalchemy"><b>GQLAlchemy</b></a> ⭐',
       backgroundColor: "#fafbfc",
       textColor: "#091E42",
       isCloseable: true,
@@ -975,6 +975,12 @@ module.exports = {
             from: ["/mage/applications/transportation-application"],
           },
           //How-to guides redirects
+          {
+            to: "/memgraph/how-to-guides",
+            from: [
+              "/memgraph/database-functionalities",
+            ],
+          },
           {
             to: "/memgraph/how-to-guides/streams/kafka/kafka-streams",
             from: [

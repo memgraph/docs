@@ -21,8 +21,8 @@ export default function HomeCallouts() {
         },
         */
         {
-            title: 'MAGE graph library',
-            subtitle: 'Run graph algorithms on real-time data - Stream processing with the power of graph analytics.',
+            title: 'MAGE - graph library',
+            subtitle: 'Run graph algorithms on real-time data - stream processing with the power of graph analytics.',
             urlText: 'Get Started with MAGE',
             url: useBaseUrl('/mage'),
         },
@@ -38,11 +38,18 @@ export default function HomeCallouts() {
             urlText: 'Start exploring your data',
             url: useBaseUrl('/memgraph/connect-to-memgraph'),
         },
+        // {
+        //     title: 'Query, analyze & visualize the data',
+        //     subtitle: 'Use Memgraph Lab to visualize, query, and interact with your data.',
+        //     urlText: 'Get Started with Memgraph Lab',
+        //     url: useBaseUrl('/memgraph-lab'),
+        // },
         {
-            title: 'Query, analyze & visualize the data',
-            subtitle: 'Use Memgraph Lab to visualize, query, and interact with your data.',
-            urlText: 'Get Started with Memgraph Lab',
-            url: useBaseUrl('/memgraph-lab'),
+            title: 'GQLAlchemy - Python library',
+            subtitle: 'Instead of writing Cypher queries, write object-oriented Python code, which the Object Graph Mapper will automatically translate into Cypher queries.',
+            urlText: 'Get started with GQLAlchemy',
+            url: useBaseUrl('/gqlalchemy'),
+
         },
         {
             title: 'Cypher Manual',
