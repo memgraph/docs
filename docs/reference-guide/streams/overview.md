@@ -43,7 +43,9 @@ CREATE KAFKA STREAM <stream name>
   [CONSUMER_GROUP <consumer group>]
   [BATCH_INTERVAL <batch interval duration>]
   [BATCH_SIZE <batch size>]
-  [BOOTSTRAP_SERVERS <bootstrap servers>];
+  [BOOTSTRAP_SERVERS <bootstrap servers>]
+  [CONFIGS { <key1>: <value1> [, <key2>: <value2>, ...]}]
+  [CREDENTIALS { <key1>: <value1> [, <key2>: <value2>, ...]}];
 ```
 
 option|description|type|example|default
@@ -55,6 +57,12 @@ consumer group|Name of the consumer group in Memgraph|plain text|my_group|mg_con
 batch interval duration|Maximum wait time in milliseconds for consuming messages before calling the transform procedure|int|9999|100
 batch size|Maximum number of messages to wait for before calling the transform procedure|int|99|1000
 bootstrap servers|Comma-separated list of bootstrap servers|string|"localhost:9092"|/
+configs|String key-value pairs of configuration options for the Kafka consumer|map with string key-value pairs|{"sasl.username": "michael.scott"}|/
+credentials|String key-value pairs of configuration options for the Kafka consumer, but their value isn't shown in the Kafka specific stream information|map with string key-value pairs|{"sasl.password": "password"}|/
+
+:::warning
+The credentials are stored on the disk without any encryption, which means everybody who has access to the data folder of Memgraph is able to get the credentials.
+:::
 
 ### Pulsar
 
