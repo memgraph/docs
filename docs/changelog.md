@@ -8,6 +8,8 @@ sidebar_label: Changelog
 
 ### Major Features and Improvements
 
+* Added `CONFIGS` and `CREDENTIALS` options to Kafka streams.
+  [#328](https://github.com/memgraph/memgraph/pull/328)
 * Added builtin procedures used for handling Python module files. `mg.create_module_file`,
   `mg.update_module_file`, `mg.delete_module_file`, `mg.get_module_file`,
   and `mg.get_module_files` allow you to do modifications on your Python module files,
