@@ -58,11 +58,17 @@ batch interval duration|Maximum wait time in milliseconds for consuming messages
 batch size|Maximum number of messages to wait for before calling the transform procedure|int|99|1000
 bootstrap servers|Comma-separated list of bootstrap servers|string|"localhost:9092"|/
 configs|String key-value pairs of configuration options for the Kafka consumer|map with string key-value pairs|{"sasl.username": "michael.scott"}|/
-credentials|String key-value pairs of configuration options for the Kafka consumer, but their value isn't shown in the Kafka specific stream information|map with string key-value pairs|{"sasl.password": "password"}|/
+credentials|String key-value pairs of configuration options for the Kafka consumer, but their value aren't shown in the Kafka specific stream information|map with string key-value pairs|{"sasl.password": "password"}|/
 
 :::warning
-The credentials are stored on the disk without any encryption, which means everybody who has access to the data folder of Memgraph is able to get the credentials.
+The credentials are stored on the disk without any encryption, which means everybody who has access to the data directory of Memgraph is able to get the credentials.
 :::
+
+To check the list of possible configuration options and their values, please
+check the documentation of
+[librdkafka](https://github.com/edenhill/librdkafka/blob/v1.7.0/CONFIGURATION.md)
+library which is used in Memgraph. At the time of writing this documentation
+Memgraph uses version 1.7.0 of librdkafka.
 
 ### Pulsar
 
