@@ -16,6 +16,7 @@ learn more about query modules take a look at the following guides:
   modules](/reference-guide/query-modules/load-call-query-modules.md)**
 * **[Implement custom query
   modules](/how-to-guides/query-modules/implement-query-modules.md)**
+* **[Modify module files from Memgraph](/reference-guide/query-modules/module-file-utilities.md)**
 
 You can also check out detailed descriptions of the query modules API:
 
