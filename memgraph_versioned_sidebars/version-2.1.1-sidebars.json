@@ -100,8 +100,8 @@
           "type": "category",
           "label": "CSV",
           "items": [
-            "import-data/load-csv-clause",
-            "import-data/csv-import-tool"
+            "import-data/csv/load-csv-clause",
+            "import-data/csv/csv-import-tool"
           ]
         },
         {
@@ -145,6 +145,8 @@
         "tutorials/graphing-the-premier-league",
         "tutorials/marvel-universe",
         "tutorials/movie-recommendation",
+        "tutorials/migrate-relational-database",
+        "tutorials/graph-stream-processing-with-kafka",
         "tutorials/social-network-analysis",
         "tutorials/understanding-music-with-modules"
       ]

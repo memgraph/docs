@@ -252,9 +252,27 @@ module.exports = {
         },
         {
           to: "/help-center",
-          label: "Help Center",
+          label: "Help center",
           position: "left",
           activeBaseRegex: `/help-center/`,
+          items: [
+            {
+              label: "Contact us",
+              to: "/help-center/",
+            },
+            {
+              label: "Memgraph FAQ",
+              to: "/help-center/faq/memgraph",
+            },
+            {
+              label: "Memgraph Lab FAQ",
+              to: "/help-center/faq/memgraph-lab",
+            },
+            {
+              label: "MAGE FAQ",
+              to: "/help-center/faq/mage",
+            },
+          ],
         },
         {
           type: "docsVersionDropdown",

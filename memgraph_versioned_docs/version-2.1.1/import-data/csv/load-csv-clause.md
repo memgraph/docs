@@ -3,6 +3,7 @@ id: load-csv-clause
 title: LOAD CSV Cypher clause
 sidebar_label: LOAD CSV Cypher clause
 pagination_prev: import-data/overview
+slug: /import-data/load-csv-clause
 ---
 
 import Tabs from "@theme/Tabs"; import TabItem from "@theme/TabItem";
@@ -183,7 +184,7 @@ CREATE (p1)-[:IS_FRIENDS_WITH]->(p2);
 <details>
   <summary>This is how the graph should look like in Memgraph after the import:</summary>
   <div>
-    <img src={require('../data/import-data/load_csv_one_type_of_nodes_and_relationships.png').default}/>
+    <img src={require('../../data/import-data/load_csv_one_type_of_nodes_and_relationships.png').default}/>
   </div>
 </details>
 
@@ -197,7 +198,7 @@ relationship types.
 <details>
   <summary>Let's say we want to create a graph like this:</summary>
   <div>
-    <img src={require('../data/import-data/load_csv_multiple_nodes_and_relationships.png').default}/>
+    <img src={require('../../data/import-data/load_csv_multiple_nodes_and_relationships.png').default}/>
   </div>
 </details>
 
@@ -240,7 +241,7 @@ CREATE (n:Person {id: row.id, name: row.name, age: ToInteger(row.age), city: row
 <details>
   <summary>This is how the graph should look like in Memgraph after the import:</summary>
   <div>
-    <img src={require('../data/import-data/load_csv_people_nodes.png').default}/>
+    <img src={require('../../data/import-data/load_csv_people_nodes.png').default}/>
   </div>
 </details>
 
@@ -281,7 +282,7 @@ SET f.met_in = row.met_in;
 <details>
   <summary>This is how the graph should look like in Memgraph after the import:</summary>
   <div>
-    <img src={require('../data/import-data/load_csv_people_relationships.png').default}/>
+    <img src={require('../../data/import-data/load_csv_people_relationships.png').default}/>
   </div>
 </details>
 
@@ -315,7 +316,7 @@ CREATE (n:Restaurant {id: row.id, name: row.name, menu: row.menu});
 <details>
   <summary>This is how the graph should look like in Memgraph after the import:</summary>
   <div>
-    <img src={require('../data/import-data/load_csv_restaurant_nodes.png').default}/>
+    <img src={require('../../data/import-data/load_csv_restaurant_nodes.png').default}/>
   </div>
 </details>
 
@@ -356,7 +357,7 @@ SET ate.liked = ToBoolean(row.liked);
 <details>
   <summary>This is how the graph should look like in Memgraph after the import:</summary>
   <div>
-    <img src={require('../data/import-data/load_csv_restaurants_relationships.png').default}/>
+    <img src={require('../../data/import-data/load_csv_restaurants_relationships.png').default}/>
   </div>
 </details>
 
