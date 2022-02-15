@@ -205,7 +205,7 @@ particular, using Memgraph Lab. We hope that you had fun going through this
 tutorial. You can continue playing in Playground, or even better [download and
 install **Memgraph Platform**](/docs/memgraph/installation) on your computer.
 
-To get the taste of some more advanced styling features, head to our blog post
+To get a taste of some more advanced styling features, head to our blog post
 [How to style your graphs in Memgraph
 Lab](https://memgraph.com/blog/how-to-style-your-graphs-in-memgraph-lab). Also,
 be sure to check out [Quick start guide to Style
