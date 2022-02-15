@@ -131,6 +131,7 @@ module.exports = {
         "tutorials/migrate-relational-database",
         "tutorials/graph-stream-processing-with-kafka",
         "tutorials/social-network-analysis",
+        "tutorials/style-your-graphs-in-memgraph-lab",
         "tutorials/understanding-music-with-modules",
       ],
     },
