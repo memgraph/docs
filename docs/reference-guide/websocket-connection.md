@@ -49,7 +49,7 @@ If the credentials are valid, the connection will be made, and the client will r
 the messages. As a response, the client should recieve the following message:
 ```json
 {
-  success: true
+  success: true,
   message: "User has been successfully authenticated!"
 }
 ```
@@ -59,8 +59,8 @@ If they are invalid or the first message is in the invalid format, the connectio
 As a response, the following message is sent:
 ```json
 {
-  success: false
-  message: error-message
+  success: false,
+  message: "<error-message>"
 }
 ```
 
@@ -72,7 +72,7 @@ is expected, and no response will be returned.
 
 ### Authorization (Enterprise)
 
-Permission for making a WebSocket connection is controlled by the `WEBSOCKET` privilege.
+Permission for connecting through WebSocket is controlled by the `WEBSOCKET` privilege.
 
 ## Messages
 
@@ -85,6 +85,6 @@ format:
 {
   event: "log",
   level: "trace"|"debug"|"info"|"warning"|"error"|"critical",
-  message: log-message
+  message: "<log-message>"
 }
 ```
