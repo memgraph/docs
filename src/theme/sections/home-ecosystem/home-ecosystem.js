@@ -18,11 +18,11 @@ export default function HomeEcosystem() {
             url: 'https://memgraph.com/product/lab',
             urlText: 'Learn more',
         },
-        'Cloud': {
-            description: 'A fully-managed, cloud-hosted graph database-as-a-service supported by the engineering team behind Memgraph. We take the day-to-day hassle of management operations out of your hands so you can focus on building your business.',
-            url: 'https://memgraph.com/product/cloud',
-            urlText: 'Learn more',
-        },
+        // 'Cloud': {
+        //     description: 'A fully-managed, cloud-hosted graph database-as-a-service supported by the engineering team behind Memgraph. We take the day-to-day hassle of management operations out of your hands so you can focus on building your business.',
+        //     url: 'https://memgraph.com/product/cloud',
+        //     urlText: 'Learn more',
+        // },
         'Playground': {
             description: 'Memgraph Playground is a web platform that contains a lot of helpful tutorials and examples on how complex data can be explored using the Cypher query language. You don’t need to install Memgraph, just follow the tutorial and play around with the predefined queries.',
             url: 'https://playground.memgraph.com',
@@ -31,7 +31,12 @@ export default function HomeEcosystem() {
         'MAGE': {
             description: 'MAGE (Memgraph Advanced Graph Extensions) is an open-source repository that contains all available query modules written by the team behind Memgraph and its users. You can find and contribute implementations of various algorithms in multiple programming languages, all runnable inside Memgraph.',
             url: useBaseUrl('/mage'),
-            urlText: 'Get Started'
+            urlText: 'Get Started',
+        },
+        'GQLAlchemy': {
+            description: 'GQLAlchemy is a fully open-source Python library that aims to be the go-to Object Graph Mapper (OGM) - a link between Graph Database objects and Python objects.',
+            url: useBaseUrl('/gqlalchemy'),
+            urlText: 'Learn more',
         }
     };
 
@@ -47,8 +52,8 @@ export default function HomeEcosystem() {
                     {ecosystemMenu.map((item, i) => {
                         const itemClass = item === selectedItem ? styles.homeEcosystem__menu__selected : '';
                         return (
-                        <div key={i} className={itemClass}
-                             onClick={() => setSelectedItem(item)}>{item}</div>
+                            <div key={i} className={itemClass}
+                                onClick={() => setSelectedItem(item)}>{item}</div>
                         );
                     })}
                 </div>
@@ -63,7 +68,7 @@ export default function HomeEcosystem() {
                             </a>
                         </div>
                         <div>
-                            <img src={useBaseUrl('img/memgraph-image.svg')}/>
+                            <img src={useBaseUrl('img/memgraph-image.svg')} />
                         </div>
                     </div>
                 </Container>
