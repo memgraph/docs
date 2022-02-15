@@ -1,7 +1,7 @@
 ---
-id: websocket-connection
-title: WebSocket connection
-sidebar_label: WebSocket connection
+id: monitoring-server
+title: Monitoring server
+sidebar_label: Monitoring server
 ---
 
 Memgraph allows you to connect to its monitoring server via WebSocket and receive certain information
@@ -17,7 +17,9 @@ To connect to Memgraph's WebSocket Server use the following URL:
 ws://host:port
 ```
 
-Default port used is `7444` but that can be changed using the `--websocket-port` configuration
+Default host used is `localhost` but that can be changed using the `--monitoring-host` configuration
+flag.  
+Default port used is `7444` but that can be changed using the `--monitoring-port` configuration
 flag.
 
 ### Connecting with secure connection (WSS)
@@ -40,8 +42,8 @@ until it's authenticated.
 To authenticate, a JSON with the credentials in the following format is required:
 ```json
 {
-  username: username-string,
-  password: password-string
+  username: "<username>",
+  password: "<password>"
 }
 ```
 

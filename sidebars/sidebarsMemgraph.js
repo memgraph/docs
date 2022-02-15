@@ -228,6 +228,7 @@ module.exports = {
         "reference-guide/indexing",
         "reference-guide/isolation-levels",
         "reference-guide/metadata",
+        "reference-guide/monitoring-server",
         {
           type: "category",
           label: "Query modules",
@@ -305,8 +306,7 @@ module.exports = {
             "reference-guide/ldap-security",
             "reference-guide/security",
           ],
-        },
-        "reference-guide/websocket-connection"
+        }
       ],
     },
     {
