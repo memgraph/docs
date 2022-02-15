@@ -12,7 +12,7 @@ not leave you stranded!
 answer to your inquiry:
 
   - **[Memgraph FAQ](/faq/memgraph-faq.md)**
-  - **[Memgraph Lab](/faq/memgraph-lab-faq.md)**
+  - **[Memgraph Lab FAQ](/faq/memgraph-lab-faq.md)**
   - **[MAGE FAQ](/faq/mage-faq.md)**
 
 🙋 Post a question on **[StackOverflow](https://stackoverflow.com/questions/tagged/memgraphdb)** with the tag **memgraphdb**.
