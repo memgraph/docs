@@ -4,8 +4,6 @@ title: Install MemgraphDB and Memgraph Lab on Windows 10
 sidebar_label: Install MemgraphDB and Memgraph Lab on Windows 10
 ---
 
-## Introduction
-
 In this tutorial, you will install both MemgraphDB and Memgraph Lab on Windows 10. 
 You will then test each installation by running a few basic queries to make
 sure that everything is working correctly.
@@ -41,7 +39,7 @@ that you have:
 - Administrative rights to your Windows PC and an internet connection.
 - Basic knowledge of working with the command line.
 
-## Step 1 — Enable Windows Subsystem for Linux
+## Step 1 - Enable Windows Subsystem for Linux
 
 First, you need to enable the Windows subsystem (WSL) for Linux by following the
 [Microsoft
@@ -67,7 +65,7 @@ Installation successful!
 Congratulations! You have successfully installed the Debian distribution of
 Linux on your Windows machine. You are now ready to install Memgraph.
 
-## Step 2 — Installing Memgraph {#step-2-installing-memgraph}
+## Step 2 - Installing Memgraph {#step-2-installing-memgraph}
 
 You must know your exact Ubuntu version so that you can download the right
 Memgraph package. To find out the version, run the following command in the
@@ -138,7 +136,7 @@ You are running Memgraph v2.1.1
 
 Awesome! Now you have a running Memgraph instance on your Windows machine.
 
-## Step 3 — Installing Memgraph Lab and connecting to Memgraph
+## Step 3 - Installing Memgraph Lab and connecting to Memgraph
 
 Start by downloading [Memgraph Lab](https://memgraph.com/download/#memgraph-lab)
 for Windows.
@@ -177,7 +175,7 @@ Once connected, you'll be presented with Memgraph Lab's user interface.
 Now that you have Memgraph Lab installed and connected to Memgraph, you will run
 a few basic queries to make sure everything works properly.
 
-## Step 4 — Testing the Memgraph Lab's connection to Memgraph
+## Step 4 - Testing the Memgraph Lab's connection to Memgraph
 
 You can test the Memgraph Lab's connection to Memgraph by running your first
 query. You will use the Cypher query to create a simple graph that has two nodes
@@ -220,8 +218,14 @@ If you switch to the **Graph** tab you will see something like this:
 Now you have the Memgraph Lab working correctly on your system. Memgraph Lab's
 visual presentation of query results is one of its best features.
 
-## Conclusion
+## Where to next?
 
 In this tutorial, you installed MemgraphDB and Memgraph Lab on Windows 10 using
 Windows Subsystem for Linux. You tested the Memgraph Lab's connection to
 MemgraphDB by executing Cypher queries.
+
+To learn how to query the database, take a look at the
+**[querying](/connect-to-memgraph/overview.mdx)** guide or **[Memgraph
+Playground](https://playground.memgraph.com/)** for interactive tutorials.<br/>
+Visit the **[Building applications](/connect-to-memgraph/drivers/overview.md)**
+page if you need to connect to the database programmatically.
