@@ -47,7 +47,7 @@ programming language (as long as your favorite programming language is either
 
 Now it's time to [import your data](/import-data/overview.mdx) into Memgraph and
 you can use different sources. Memgraph supports importing [CSV
-files](/import-data/load-csv-clause.md), establishing [connections to data
+files](/import-data/csv/load-csv-clause.md), establishing [connections to data
 streams](/import-data/kafka/overview.md) with Kafka, Pulsar and Redpanda, as
 well as migrating data from SQL databases like
 [PostgreSQL](/import-data/migrate/postgresql.md) and
