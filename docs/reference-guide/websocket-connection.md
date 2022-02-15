@@ -4,7 +4,7 @@ title: WebSocket connection
 sidebar_label: WebSocket connection
 ---
 
-Memgraph allows you to connect to its WebSocket server and receive certain information
+Memgraph allows you to connect to its monitoring server via WebSocket and receive certain information
 from it.  
 For example, each log will be forwarded to all the connected clients.
 
@@ -34,7 +34,7 @@ wss://host:port
 
 ## Authentication
 
-If the authentication used, Memgraph won't send the message to a certain connection
+If the authentication is used, Memgraph won't send the message to a certain connection
 until it's authenticated.
 
 To authenticate, a JSON with the credentials in the following format is required:
@@ -46,7 +46,7 @@ To authenticate, a JSON with the credentials in the following format is required
 ```
 
 If the credentials are valid, the connection will be made, and the client will receive
-the messages. As a response, the client should recieve the following message:
+the messages. As a response, the client should receive the following message:
 ```json
 {
   success: true,
