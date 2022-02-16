@@ -147,7 +147,10 @@ TRANSFORM <transformation_module.transformation_procedure>
 [BOOTSTRAP_SERVERS <bootstrap servers>];
 ```
 
-You need to create one stream for each topic and procedure you have. 
+You need to create one stream for each topic and procedure you have.
+
+For more options and information about the `CREATE .. STREAM` query check out the
+[reference guide](/reference-guide/streams/overview.md).
 
 ### 4. Start ingesting data from the stream
 
@@ -180,7 +183,7 @@ SHOW STREAMS;
 You can also check the node counter in **Memgraph Lab** (**Overview tab**) to
 see if new nodes and relationships are arriving.
 
-For all the other stream commands check out [the reference guide](/memgraph/reference-guide/streams/).  
+For all the other stream commands check out [the reference guide](/reference-guide/streams/overview.md).  
 
 ## Logs
 
@@ -195,10 +198,12 @@ grep '<stream_name>' /var/log/memgraph/memgraph_<date>.log
 
 ## What next?
 
-Take a look at tutorials we made to help you connect Memgraph and Kafka. Learn
-more about the query power of Cypher language, or check out MAGE - an
-open-source repository that contains graph algorithms and modules that can help
-you tackle the most interesting and challenging graph analytics problems. If you
-are using **Memgraph Lab**, a visual user interface for running queries and
-visualizing graph data, you might be interested in Style script language that
+Take a look at tutorial we made to help you [connect Memgraph and
+Kafka](/tutorials/graph-stream-processing-with-kafka.md). Learn more about the
+query power of [Cypher language](/cypher-manual), or check out
+[MAGE](/mage) - an open-source repository that contains graph
+algorithms and modules that can help you tackle the most interesting and
+challenging graph analytics problems. If you are using **Memgraph Lab**, a
+visual user interface for running queries and visualizing graph data, you might
+be interested in [Style script language](/memgraph-lab/style-script/quick-start) that
 will help you bedazzle your graphs. Above all, enjoy your graph database!
