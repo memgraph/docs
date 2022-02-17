@@ -77,6 +77,10 @@ overview page:
 Memgraph comes with the option of granting, denying, or revoking a certain set
 of privileges to users or groups of users.
 
+## [Monitoring server](/reference-guide/monitoring-server.md)
+
+Receive logs and runtime information from Memgraph in real-time via WebSocket connection.
+
 ## Authentication and authorization
 
 Memgraph supports authentication and (optional) authorization using a

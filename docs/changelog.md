@@ -8,6 +8,9 @@ sidebar_label: Changelog
 
 ### Major Features and Improvements
 
+* Added monitoring server that forwards certain information from Memgraph
+  to the clients connected to it (e.g. logs) using WebSocket.
+  [#337](https://github.com/memgraph/memgraph/pull/337)
 * Added `CONFIGS` and `CREDENTIALS` options to Kafka streams.
   [#328](https://github.com/memgraph/memgraph/pull/328)
 * Added builtin procedures used for handling Python module files. `mg.create_module_file`,
