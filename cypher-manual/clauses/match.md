@@ -6,22 +6,22 @@ sidebar_label: MATCH
 
 The `MATCH` clause is used to obtain data from the database by matching it to a given pattern.
 
-1. [Matching nodes](#1-matching-nodes)
-    1. [Get all nodes](#11-get-all-nodes)
-    2. [Get all nodes with a label](#12-get-all-nodes-with-a-label)
-2. [Matching relationships](#2-matching-relationships)
-    1. [Get all related nodes](#21-get-all-related-nodes)
-    2. [Get related nodes with a label](#22-get-related-nodes-with-a-label)
-    3. [Get related nodes with a directed relationship](#23-get-related-nodes-with-a-directed-relationship)
-    4. [Get a relationship](#24-get-a-relationship)
-    5. [Matching on a relationship with a type](#25-matching-on-a-relationship-with-a-type)
-    6. [Matching on relationships with multiple types](#26-matching-on-relationships-with-multiple-types)
-    7. [Uncommon characters in relationship types](#27-uncommon-characters-in-relationship-types)
-    8. [Match with multiple relationships](#28-match-with-multiple-relationships)
-3. [Matching with variable length relationships](#3-matching-with-variable-length-relationships)
-    1. [Variable length relationships](#31-variable-length-relationships)
-    2. [Variable length relationships with multiple relationship types](#32-variable-length-relationships-with-multiple-relationship-types)
-    3. [Returning multiple relationships with variable length](#33-returning-multiple-relationships-with-variable-length)
+1. [Matching nodes](#1-matching-nodes) <br />
+    1.1. [Get all nodes](#11-get-all-nodes) <br />
+    1.2. [Get all nodes with a label](#12-get-all-nodes-with-a-label) <br />
+2. [Matching relationships](#2-matching-relationships) <br />
+    2.1. [Get all related nodes](#21-get-all-related-nodes) <br />
+    2.2. [Get related nodes with a label](#22-get-related-nodes-with-a-label) <br />
+    2.3. [Get related nodes with a directed relationship](#23-get-related-nodes-with-a-directed-relationship) <br />
+    2.4. [Get a relationship](#24-get-a-relationship) <br />
+    2.5. [Matching on a relationship with a type](#25-matching-on-a-relationship-with-a-type) <br />
+    2.6. [Matching on relationships with multiple types](#26-matching-on-relationships-with-multiple-types) <br />
+    2.7. [Uncommon characters in relationship types](#27-uncommon-characters-in-relationship-types) <br />
+    2.8. [Match with multiple relationships](#28-match-with-multiple-relationships) <br />
+3. [Matching with variable length relationships](#3-matching-with-variable-length-relationships) <br />
+    3.1. [Variable length relationships](#31-variable-length-relationships) <br />
+    3.2. [Variable length relationships with multiple relationship types](#32-variable-length-relationships-with-multiple-relationship-types) <br />
+    3.3. [Returning multiple relationships with variable length](#33-returning-multiple-relationships-with-variable-length) <br />
 
 ## Data Set
 
@@ -36,7 +36,7 @@ locally by executing the queries at the end of the page: [Data Set](#data-set-qu
 
 ## 1. Matching nodes
 
-### 1.1 Get all nodes
+### 1.1. Get all nodes
 
 Without specifying labels, the query will return all the nodes in a graph.
 
@@ -59,7 +59,7 @@ Output:
 +-----------------------------------------------------------------------------------------------------+
 ```
 
-### 1.2 Get all nodes with a label
+### 1.2. Get all nodes with a label
 
 By specifying the label of a node, all the nodes with that label are returned.
 
@@ -81,7 +81,7 @@ Output:
 
 ## 2. Matching relationships
 
-### 2.1 Get all related nodes
+### 2.1. Get all related nodes
 
 By using the *related to* symbol `--`, nodes that have a relationship with the specified node can be returned.
 The symbol represents an undirected relationship which means the direction of the relationship is not taken into account.
@@ -103,7 +103,7 @@ Output:
 +---------------------------------------------------------------------------------------------+
 ```
 
-### 2.2 Get related nodes with a label
+### 2.2. Get related nodes with a label
 
 To only return *related to* nodes with a specific label you need to add it using the label syntax.
 
@@ -122,7 +122,7 @@ Output:
 +---------------------------+
 ```
 
-### 2.3 Get related nodes with a directed relationship
+### 2.3. Get related nodes with a directed relationship
 
 The *related to* symbol `--` can be extended by using:
  * `-->` to specify outgoing relationships,
@@ -142,7 +142,7 @@ Output:
 +--------------------------+
 ```
 
-### 2.4 Get a relationship
+### 2.4. Get a relationship
 
 If you want to return the relationship between two nodes or a property of the relationship, a variable is required.
 A directed or undirected relationship can be used.
@@ -183,7 +183,7 @@ Output:
 +-----------------+-----------------+
 ```
 
-### 2.5 Matching on a relationship with a type
+### 2.5. Matching on a relationship with a type
 
 To return a relationship with a specified type you need to use the type syntax.
 A directed or undirected relationship can be used.
@@ -202,7 +202,7 @@ Output:
 +---------+
 ```
 
-### 2.6 Matching on relationships with multiple types
+### 2.6. Matching on relationships with multiple types
 
 To return relationships with any of the specified types, the types need to be chained together with the pipe symbol `|`.
 
@@ -221,7 +221,7 @@ Output:
 +---------+
 ```
 
-### 2.7 Uncommon characters in relationship types 
+### 2.7. Uncommon characters in relationship types 
 
 If a type has non-letter characters, like spaces, for example, the backtick symbol \` needs to be used to quote these.
 If the relationship type `LIVING_IN` had a space instead of an underscore, a possible query would look like this.
@@ -231,7 +231,7 @@ MATCH (:Country { name: 'France' })<-[r:`LIVING IN`]-()
 RETURN r.name;
 ```
 
-### 2.8 Match with multiple relationships
+### 2.8. Match with multiple relationships
 
 Multiple relationship statements can be specified in the query.
 
@@ -251,7 +251,7 @@ Output:
 
 ## 3. Matching with variable length relationships
 
-### 3.1 Variable length relationships
+### 3.1. Variable length relationships
 
 If a node needs to be specified by its distance in relationship→node hops, the following syntax is used: `-[:TYPE*minHops..maxHops]→`.
 minHops and maxHops are optional and default to 1 and infinity respectively. The dots can be omitted if both are not specified or if 
@@ -273,7 +273,7 @@ Output:
 +---------------------------------------------------------------------------------------------+
 ```
 
-### 3.2 Variable length relationships with multiple relationship types
+### 3.2. Variable length relationships with multiple relationship types
 
 If variable lengths are used with multiple stacked up relationship types, `*minHops..maxHops` applies to any combination of relationships.
 
@@ -293,7 +293,7 @@ Output:
 +---------------------------+
 ```
 
-### 3.3 Returning multiple relationships with variable length
+### 3.3. Returning multiple relationships with variable length
 
 If a variable length is used, the list of relationships can be returned by adding `variable=` at the beginning of the `MATCH` clause.
 

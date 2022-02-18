@@ -10,14 +10,14 @@ The difference when using `WHERE` with these clauses is that it only filter the 
 
 `WHERE` is part of the directly preceding `MATCH` or `OPTIONAL MATCH` clause and should always be used like that to avoid problems with performance or results.
 
-1. [Basic usage](#1-basic-usage)
-    1. [Boolean Operators](#11-boolean-operators)
-    2. [Inequality Operators Operators](#12-inequality-operators-operators)
-    3. [Filter with node labels](#13-filter-with-node-labels)
-    4. [Filter with node properties](#14-filter-with-node-properties)
-    5. [Filter with relationship properties](#15-filter-with-relationship-properties)
-    6. [Check if property is not null](#16-check-if-property-is-not-null)
-2. [String matching](#2-string-matching)
+1. [Basic usage](#1-basic-usage)<br />
+    1.1. [Boolean Operators](#11-boolean-operators)<br />
+    1.2. [Inequality Operators Operators](#12-inequality-operators-operators)<br />
+    1.3. [Filter with node labels](#13-filter-with-node-labels)<br />
+    1.4. [Filter with node properties](#14-filter-with-node-properties)<br />
+    1.5. [Filter with relationship properties](#15-filter-with-relationship-properties)<br />
+    1.6. [Check if property is not null](#16-check-if-property-is-not-null)<br />
+2. [String matching](#2-string-matching)<br />
 3. [Regular Expressions](#3-regular-expressions)
 
 ## Data Set
@@ -33,7 +33,7 @@ locally by executing the queries at the end of the page: [Data Set](#data-set-qu
 
 ## 1. Basic Usage
 
-### 1.1 Boolean Operators
+### 1.1. Boolean Operators
 
 Standard boolean operators like `NOT`, `AND`, `OR` and `XOR` can be used.
 
@@ -52,7 +52,7 @@ Output:
 +----------------+
 ```
 
-### 1.2 Inequality Operators Operators
+### 1.2. Inequality Operators Operators
 
 Standard inequality operators like `<`, `<=`, `>` and `>=` can be used.
 
@@ -71,7 +71,7 @@ Output:
 +---------+
 ```
 
-### 1.3 Filter with node labels
+### 1.3. Filter with node labels
 
 Nodes can be filtered by their label using the `WHERE` clause instead of specifying it directly in the `MATCH` clause.
 
@@ -92,7 +92,7 @@ Output:
 +----------------+
 ```
 
-### 1.4 Filter with node properties
+### 1.4. Filter with node properties
 
 Just as labels, node properties can be used in the WHERE clause to filter nodes.
 
@@ -112,7 +112,7 @@ Output:
 +----------------+
 ```
 
-### 1.5 Filter with relationship properties
+### 1.5. Filter with relationship properties
 
 Just as with node properties, relationship properties can be used as filters.
 
@@ -132,7 +132,7 @@ Output:
 +---------------------------+
 ```
 
-### 1.6 Check if property is not null
+### 1.6. Check if property is not null
 
 To check if a node or relationship property exists use the `IS NOT NULL` option.
 

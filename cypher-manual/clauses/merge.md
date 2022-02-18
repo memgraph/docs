@@ -6,18 +6,18 @@ sidebar_label: MERGE
 
 The `MERGE` clause is used to ensure that a pattern you are looking for exists in the database. This means that if the pattern is not found, it will be created. In a way, this clause is like a combination of `MATCH` and `CREATE`.
 
-1. [Merging nodes](#1-merging-nodes)
-    1. [Merging nodes with labels](#11-merging-nodes-with-labels)
-    2. [Merging nodes with properties](#12-merging-nodes-with-properties)
-    3. [Merging nodes with labels and properties](#13-merging-nodes-with-labels-and-properties)
-    4. [Merging nodes with existing node properties](#14-merging-nodes-with-existing-node-properties)
-2. [Merging relationships](#2-merging-relationships)
-    1. [Merging relationships](#21-merging-relationships)
-    2. [Merging on undirected relationships](#22-merging-on-undirected-relationships)
-3. [Merging with ON CREATE and ON MATCH](#3-merging-with-on-create-and-on-match)
-    1. [Merging with ON CREATE](#31-merging-with-on-create)
-    2. [Merging with ON MATCH](#32-merging-with-on-match)
-    3. [Merging with ON CREATE and ON MATCH](#33-merging-with-on-create-and-on-match)
+1. [Merging nodes](#1-merging-nodes) <br />
+    1.1. [Merging nodes with labels](#11-merging-nodes-with-labels)<br />
+    1.2. [Merging nodes with properties](#12-merging-nodes-with-properties)<br />
+    1.3. [Merging nodes with labels and properties](#13-merging-nodes-with-labels-and-properties)<br />
+    1.4. [Merging nodes with existing node properties](#14-merging-nodes-with-existing-node-properties)<br />
+2. [Merging relationships](#2-merging-relationships)<br />
+    2.1. [Merging relationships](#21-merging-relationships)<br />
+    2.2. [Merging on undirected relationships](#22-merging-on-undirected-relationships)<br />
+3. [Merging with ON CREATE and ON MATCH](#3-merging-with-on-create-and-on-match)<br />
+    3.1. [Merging with ON CREATE](#31-merging-with-on-create)<br />
+    3.2. [Merging with ON MATCH](#32-merging-with-on-match)<br />
+    3.3. [Merging with ON CREATE and ON MATCH](#33-merging-with-on-create-and-on-match)
 
 ## Data Set
 
@@ -32,7 +32,7 @@ locally by executing the queries at the end of the page: [Data Set](#data-set-qu
 
 ## 1. Merging nodes
 
-### 1.1 Merging nodes with labels
+### 1.1. Merging nodes with labels
 
 If `MERGE` is used on a node with a label that doesn't exist in the database, the node is created.
 
@@ -50,7 +50,7 @@ Output:
 +---------+
 ```
 
-### 1.2 Merging nodes with properties
+### 1.2. Merging nodes with properties
 
 If `MERGE` is used on a node with properties that don't match any existing node, that node is created.
 
@@ -68,7 +68,7 @@ Output:
 +--------------------+
 ```
 
-### 1.3 Merging nodes with labels and properties
+### 1.3. Merging nodes with labels and properties
 
 If `MERGE` is used on a node with labels and properties that don't match any existing node, that node is created.
 
@@ -86,7 +86,7 @@ Output:
 +--------------------------+
 ```
 
-### 1.4 Merging nodes with existing node properties
+### 1.4. Merging nodes with existing node properties
 
 If `MERGE` is used with properties on an existing node, a new node is created for each unique value of that property.
 
@@ -109,7 +109,7 @@ Output:
 
 ## 2. Merging relationships
 
-### 2.1 Merging relationships
+### 2.1. Merging relationships
 
 Just as with nodes, `MERGE` can be used to match or create relationships.
 
@@ -145,7 +145,7 @@ Output:
 +--------------+--------------+
 ```
 
-### 2.2 Merging on undirected relationships
+### 2.2. Merging on undirected relationships
 
 If `MERGE` is used on an undirected relationship, the direction will be chosen at random.
 
@@ -168,7 +168,7 @@ In this example, a path is returned to show the direction of the relationships.
 
 ## 3. Merging with `ON CREATE` and `ON MATCH`
 
-### 3.1 Merging with `ON CREATE`
+### 3.1. Merging with `ON CREATE`
 
 The `ON CREATE` part of a `MERGE` clause will only be executed if the node needs to be created.
 
@@ -187,7 +187,7 @@ Output:
 +--------------------+--------------------+
 ```
 
-### 3.2 Merging with `ON MATCH`
+### 3.2. Merging with `ON MATCH`
 
 The `ON MATCH` part of a `MERGE` clause will only be executed if the node is found.
 
@@ -206,7 +206,7 @@ Output:
 +---------+---------+
 ```
 
-### 3.3 Merging with `ON CREATE` and `ON MATCH`
+### 3.3. Merging with `ON CREATE` and `ON MATCH`
 
 The `MERGE` clause can be used with both the `ON CREATE` and `ON MATCH` options.
 
