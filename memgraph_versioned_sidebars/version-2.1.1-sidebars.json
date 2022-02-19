@@ -100,8 +100,8 @@
           "type": "category",
           "label": "CSV",
           "items": [
-            "import-data/load-csv-clause",
-            "import-data/csv-import-tool"
+            "import-data/csv/load-csv-clause",
+            "import-data/csv/csv-import-tool"
           ]
         },
         {
@@ -143,9 +143,13 @@
         "tutorials/football-transfers",
         "tutorials/got-deaths",
         "tutorials/graphing-the-premier-league",
+        "tutorials/install-memgraph-windows-10",
         "tutorials/marvel-universe",
         "tutorials/movie-recommendation",
+        "tutorials/migrate-relational-database",
+        "tutorials/graph-stream-processing-with-kafka",
         "tutorials/social-network-analysis",
+        "tutorials/style-your-graphs-in-memgraph-lab",
         "tutorials/understanding-music-with-modules"
       ]
     },
