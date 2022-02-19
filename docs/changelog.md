@@ -8,6 +8,8 @@ sidebar_label: Changelog
 
 ### Major Features and Improvements
 
+* Added support for compilation on ARM architectures (aarch64) and Docker support for running Memgraph on Apple
+  M1 machines. [#340](https://github.com/memgraph/memgraph/pull/340)
 * Added monitoring server that forwards certain information from Memgraph
   to the clients connected to it (e.g. logs) using WebSocket.
   [#337](https://github.com/memgraph/memgraph/pull/337)
@@ -18,9 +20,6 @@ sidebar_label: Changelog
   and `mg.get_module_files` allow you to do modifications on your Python module files,
   get their content, and list all the files present in your query module directories
   directly from Memgraph. [#330](https://github.com/memgraph/memgraph/pull/330)
-* Temporal types `LocalTime` and `LocalDateTime` instantiations return subsecond precision.
-  Additionally, query modules `mg_local_date_time_now()` and `mg_local_time_now()`
-  also return subsecond precision. [#333](https://github.com/memgraph/memgraph/pull/333)
 * Built-in procedures `mg.procedures` and `mg.transformations` return additional information
   about the procedures and transformations scripts. `path` returns an absolute path to the
   module file containing the procedure, while `is_editable` returns `true` if the file
@@ -40,6 +39,9 @@ sidebar_label: Changelog
   transactions are not supported. After this fix, the transactions are handled
   correctly in the transaction retry logic.
   [#339](https://github.com/memgraph/memgraph/pull/339)
+* Temporal types `LocalTime` and `LocalDateTime` instantiations return subsecond precision.
+  Additionally, query modules `mg_local_date_time_now()` and `mg_local_time_now()`
+  also return subsecond precision. [#333](https://github.com/memgraph/memgraph/pull/333)
 
 ## v2.1.1 - Dec 07, 2021
 
