@@ -159,11 +159,11 @@ CALL mg.transformations() YIELD *;
 You should see something like the following:
 
 ```plaintext
-+----------------------------------------+-------------------------------------------------------+-------------+
-| name                                   | path                                                  | is_editable |
-+----------------------------------------+-------------------------------------------------------+-------------+
-| "transformation.my_transformation"     | "/usr/lib/memgraph/query_modules/transformation.py"   | true        |
-+----------------------------------------+-------------------------------------------------------+-------------+
++------------------------------------+
+| name                               |
++------------------------------------+
+| "transformation.my_transformation" |
++------------------------------------+
 ```
 
 ## C API
@@ -274,12 +274,12 @@ CALL mg.transformations() YIELD *;
 You should see something like this:
 
 ```plaintext
-+----------------------------------------+-------------------------------------------------------+-------------+
-| name                                   | path                                                  | is_editable |
-+----------------------------------------+-------------------------------------------------------+-------------+
-| "c_transformation.my_c_transformation" | "/usr/lib/memgraph/query_modules/c_transformation.so" | false       |
-| "transformation.my_transformation"     | "/usr/lib/memgraph/query_modules/transformation.py"   | true        |
-+----------------------------------------+-------------------------------------------------------+-------------+
++----------------------------------------+
+| name                                   |
++----------------------------------------+
+| "c_transformation.my_c_transformation" |
+| "transformation.my_transformation"     |
++----------------------------------------+
 ```
 
 For a more detailed overview, check out the [Reference

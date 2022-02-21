@@ -4,29 +4,30 @@ title: Server stats
 sidebar_label: Server stats
 ---
 
-Memgraph supports multiple queries to get information about the instance that is being queried.
+Memgraph supports multiple queries to get information about the instance that is
+being queried.
 
 ## Instance version
 
 To get the version of the instance being queried, run the following query:
 
 ```cypher
-SHOW VERSION
+SHOW VERSION;
 ```
 
 ## Storage information
 
-Running the following query will return certain information about the storage of the current
-instance:
+Running the following query will return certain information about the storage of
+the current instance:
 
 ```cypher
-SHOW STORAGE INFO
+SHOW STORAGE INFO;
 ```
 
-The result will contain following fields:
+The result will contain the following fields:
 
-| Field            | Description                                                |
-|------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| Field            | Description                                                                                                                                  |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | vertex_count     | Number of vertices stored                                                                                                                    |
 | edge_count       | Number of edges stored                                                                                                                       |
 | average_degree   | Average degree of vertices stored                                                                                                            |
