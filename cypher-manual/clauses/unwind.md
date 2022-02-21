@@ -6,14 +6,14 @@ sidebar_label: UNWIND
 
 The `UNWIND` clause is used to unwind a list of values as individual rows.
 
-1. [Unwinding lists](#1-unwinding-lists)
-2. [Distinct list](#2-distinct-list)
-3. [Expression returning lists](#3-expression-returning-lists)
-4. [Unwinding lists of lists](#4-unwinding-lists-of-lists)
+- [1. Unwinding lists](#1-unwinding-lists)
+- [2. Distinct list](#2-distinct-list)
+- [3. Expression returning lists](#3-expression-returning-lists)
+- [4. Unwinding lists of lists](#4-unwinding-lists-of-lists)
 
 ## 1. Unwinding lists
 
-Use `UNWIND` to transform a literal list into rows.
+Use `UNWIND` to transform a literal list into rows:
 
 ```cypher
 UNWIND [1,2,3] AS listElement 
@@ -33,7 +33,7 @@ Output:
 
 ## 2. Distinct list
 
-The `UNWIND` clause can be used to remove duplicates from a list.
+The `UNWIND` clause can be used to remove duplicates from a list:
 
 ```cypher
 WITH [1,1,1,2,2,3] AS list 
@@ -53,7 +53,7 @@ Output:
 
 ## 3. Expression returning lists
 
-An expression that returns a list can be used with the `UNWIND` clause.
+An expression that returns a list can be used with the `UNWIND` clause:
 
 ```cypher
 WITH [1,2,3] AS listOne, [4,5,6] AS listTwo 
@@ -77,7 +77,7 @@ Output:
 
 ## 4. Unwinding lists of lists
 
-Multiple  `UNWIND` clauses can be combined to unwind nested lists.
+Multiple  `UNWIND` clauses can be combined to unwind nested lists:
 
 ```cypher
 WITH [[1,2,3],[4,5,6],[7,8,9]] AS listOne

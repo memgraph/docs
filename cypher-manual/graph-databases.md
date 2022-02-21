@@ -61,7 +61,7 @@ interested in.
 ![labels-example](data/graph-databases/labels-example.png)
 
 As you can see in the example above, nodes can also have multiple labels. These
-nodes can be represented in Cypher the following way:
+nodes can be represented in Cypher in the following way:
 
 ```cypher
 (:Person)

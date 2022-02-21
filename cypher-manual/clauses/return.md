@@ -6,16 +6,18 @@ sidebar_label: RETURN
 
 The `RETURN` clause defines which data should be included in the resulting set. 
 
-1. [Returning nodes](#1-returning-nodes)
-2. [Returning relationships](#2-returning-relationships)
-3. [Returning properties](#3-returning-properties)
-4. [Returning multiple elements](#4-returning-multiple-elements)
-5. [Returning all elements](#5-returning-all-elements)
-6. [Handling uncommon characters](#6-handling-uncommon-characters)
-7. [Returning elements with an alias](#7-returning-elements-with-an-alias)
-8. [Optional properties](#8-optional-properties)
-9. [Returning expressions](#9-returning-expressions)
-10. [Returning unique results](#10-returning-unique-results)
+- [Data Set](#data-set)
+- [1. Returning nodes](#1-returning-nodes)
+- [2. Returning relationships](#2-returning-relationships)
+- [3. Returning properties](#3-returning-properties)
+- [4. Returning multiple elements](#4-returning-multiple-elements)
+- [5. Returning all elements](#5-returning-all-elements)
+- [6. Handling uncommon characters](#6-handling-uncommon-characters)
+- [7. Returning elements with an alias](#7-returning-elements-with-an-alias)
+- [8. Optional properties](#8-optional-properties)
+- [9. Returning expressions](#9-returning-expressions)
+- [10. Returning unique results](#10-returning-unique-results)
+- [Data set Queries](#data-set-queries)
 
 ## Data Set
 
@@ -30,7 +32,7 @@ locally by executing the queries at the end of the page: [Data Set](#data-set-qu
 
 ## 1. Returning nodes
 
-The node variable needs to be added to the `RETURN` statement.
+The node variable needs to be added to the `RETURN` statement:
 
 ```cypher
 MATCH (c:Country { name: 'United Kingdom'})
@@ -48,7 +50,7 @@ Output:
 
 ## 2. Returning relationships
 
-The relationship variable needs to be added to the `RETURN` statement.
+The relationship variable needs to be added to the `RETURN` statement:
 
 ```cypher
 MATCH (c:Country { name: 'United Kingdom'})-[r]-(:Person { name: 'Harry'})
@@ -67,7 +69,7 @@ Output:
 
 ## 3. Returning properties
 
-The property of a node or a relationship can be returned by using the dot separator.
+The property of a node or a relationship can be returned by using the dot separator:
 
 ```cypher
 MATCH (c:Country { name: 'United Kingdom'})
@@ -85,7 +87,7 @@ Output:
 
 ## 4. Returning multiple elements
 
-To return multiple elements separate them with a comma character.
+To return multiple elements separate them with a comma character:
 
 ```cypher
 MATCH (c:Country { name: 'United Kingdom'})
@@ -103,7 +105,7 @@ Output:
 
 ## 5. Returning all elements
 
-To return all the elements from a query, use the `*` symbol.
+To return all the elements from a query, use the `*` symbol:
 
 ```cypher
 MATCH (:Country { name: 'United Kingdom'})-[]-(p:Person)
@@ -134,7 +136,7 @@ RETURN `An uncommon variable!`.value;
 
 ## 7. Returning elements with an alias
 
-You can specify an alias for an element in the `RETURN` statement using `AS`.
+You can specify an alias for an element in the `RETURN` statement using `AS`:
 
 ```cypher
 MATCH (c:Country { name: 'United Kingdom'})
@@ -152,7 +154,7 @@ Output:
 
 ## 8. Optional properties
 
-If the property being returned does not exist, `null` will be returned.
+If the property being returned does not exist, `null` will be returned:
 
 ```cypher
 MATCH (c:Country { name: 'United Kingdom'})
@@ -170,7 +172,7 @@ Output:
 
 ## 9. Returning expressions
 
- Expressions can be included in the `RETURN` statement.
+ Expressions can be included in the `RETURN` statement:
 
 ```cypher
 MATCH (c:Country { name: 'United Kingdom'})
@@ -188,7 +190,7 @@ Output:
 
 ## 10. Returning unique results
 
-The `RETURN` statement can be followed by the `DISTINCT` operator, which will remove duplicate results.
+The `RETURN` statement can be followed by the `DISTINCT` operator, which will remove duplicate results:
 
 ```cypher
 MATCH ()-[:LIVING_IN]->(c)

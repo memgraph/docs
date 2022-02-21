@@ -6,8 +6,10 @@ sidebar_label: UNION
 
 The `UNION` clause is used to combine the result of multiple queries.
 
-1. [Combine queries and retain duplicates](#1-combine-queries-and-retain-duplicates)
-2. [Combine queries and remove duplicates](#2-combine-queries-and-remove-duplicates)
+- [Data Set](#data-set)
+- [1. Combine queries and retain duplicates](#1-combine-queries-and-retain-duplicates)
+- [2. Combine queries and remove duplicates](#2-combine-queries-and-remove-duplicates)
+- [Data set Queries](#data-set-queries)
 
 ## Data Set
 
@@ -23,7 +25,7 @@ locally by executing the queries at the end of the page: [Data Set](#data-set-qu
 ## 1. Combine queries and retain duplicates
 
 To combine two or more queries and return their results without removing duplicates, use the `UNION ALL` clause.
-First, let's add a few existing nodes to the data set.
+First, let's add a few existing nodes to the data set:
 
 ```cypher
 CREATE (:Person { name: 'John' });

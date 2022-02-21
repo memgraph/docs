@@ -38,7 +38,7 @@ locally by executing the queries at the end of the page: [Data Set](#data-set-qu
 
 ### 1.1. Get all nodes
 
-Without specifying labels, the query will return all the nodes in a graph.
+Without specifying labels, the query will return all the nodes in a graph:
 
 ```cypher
 MATCH (n) 
@@ -61,7 +61,7 @@ Output:
 
 ### 1.2. Get all nodes with a label
 
-By specifying the label of a node, all the nodes with that label are returned.
+By specifying the label of a node, all the nodes with that label are returned:
 
 ```cypher
 MATCH (c:Country)
@@ -105,7 +105,7 @@ Output:
 
 ### 2.2. Get related nodes with a label
 
-To only return *related to* nodes with a specific label you need to add it using the label syntax.
+To only return *related to* nodes with a specific label you need to add it using the label syntax:
 
 ```cypher
 MATCH (:Person { name: 'John' })--(p:Person)
@@ -186,7 +186,7 @@ Output:
 ### 2.5. Matching on a relationship with a type
 
 To return a relationship with a specified type you need to use the type syntax.
-A directed or undirected relationship can be used.
+A directed or undirected relationship can be used:
 
 ```cypher
 MATCH (p:Person { name: 'John' })-[:LIVING_IN]-(c)
@@ -204,7 +204,7 @@ Output:
 
 ### 2.6. Matching on relationships with multiple types
 
-To return relationships with any of the specified types, the types need to be chained together with the pipe symbol `|`.
+To return relationships with any of the specified types, the types need to be chained together with the pipe symbol `|`:
 
 ```cypher
 MATCH (p:Person { name: 'John' })-[:LIVING_IN|:WORKING_IN]-(c)
@@ -233,7 +233,7 @@ RETURN r.name;
 
 ### 2.8. Match with multiple relationships
 
-Multiple relationship statements can be specified in the query.
+Multiple relationship statements can be specified in the query:
 
 ```cypher
 MATCH (:Country { name: 'France' })<-[l:WORKING_IN]-(p)-[w:LIVING_IN]->(:Country { name: 'Germany' })
@@ -254,8 +254,9 @@ Output:
 ### 3.1. Variable length relationships
 
 If a node needs to be specified by its distance in relationship→node hops, the following syntax is used: `-[:TYPE*minHops..maxHops]→`.
-minHops and maxHops are optional and default to 1 and infinity respectively. The dots can be omitted if both are not specified or if 
-only one is set which implies a fixed length pattern.
+`minHops` and `maxHops` are optional and default to 1 and infinity respectively.
+The dots can be omitted if both are not specified or if only one is set which
+implies a fixed length pattern.
 
 ```cypher
 MATCH ({ name: 'United Kingdom' })-[:LIVING_IN*1..2]-(n)
@@ -275,7 +276,7 @@ Output:
 
 ### 3.2. Variable length relationships with multiple relationship types
 
-If variable lengths are used with multiple stacked up relationship types, `*minHops..maxHops` applies to any combination of relationships.
+If variable lengths are used with multiple stacked up relationship types, `*minHops..maxHops` applies to any combination of relationships:
 
 ```cypher
 MATCH ({ name: 'United Kingdom' })<-[:WORKING_IN|FRIENDS_WITH*1..2]-(P:Person)
@@ -295,7 +296,7 @@ Output:
 
 ### 3.3. Returning multiple relationships with variable length
 
-If a variable length is used, the list of relationships can be returned by adding `variable=` at the beginning of the `MATCH` clause.
+If a variable length is used, the list of relationships can be returned by adding `variable=` at the beginning of the `MATCH` clause:
 
 ```cypher
 MATCH p=({ name: 'John' })<-[:FRIENDS_WITH*1..2]-()

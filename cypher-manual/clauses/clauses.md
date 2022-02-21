@@ -7,8 +7,8 @@ slug: /clauses
 
 The **Cypher** language enables users to perform standard database operations by using the following clauses:
 
-  * [`CREATE`](create.md) - creates new nodes and edges
-  * [`DELETE`](delete.md) - deletes nodes and edges
+  * [`CREATE`](create.md) - creates new nodes and relationships
+  * [`DELETE`](delete.md) - deletes nodes and relationships
   * [`LOAD CSV`](load-csv.md) - loads data from CSV file
   * [`MATCH`](match.md) - searches for patterns
   * [`MERGE`](merge.md) - creates patterns if they don't exist

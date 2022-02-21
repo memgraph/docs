@@ -4,11 +4,15 @@ title: WHERE clause
 sidebar_label: WHERE
 ---
 
-`WHERE` isn't usually considered a standalone clause but rather a part of the `MATCH`, `OPTIONAL MATCH` and `WITH` clauses.
+`WHERE` isn't usually considered a standalone clause but rather a part of the
+`MATCH`, `OPTIONAL MATCH` and `WITH` clauses.
 
-The difference when using `WHERE` with these clauses is that it only filter the results in the case of the `WITH` clause, while it adds constraints to the patterns described in the case of `MATCH` and `OPTIONAL MATCH`.
+When used next to the `WITH` clause, the `WHERE` clause only filters the
+results, while when used with `MATCH` and `OPTIONAL MATCH` it adds constraints
+to the described patterns.  
 
-`WHERE` is part of the directly preceding `MATCH` or `OPTIONAL MATCH` clause and should always be used like that to avoid problems with performance or results.
+`WHERE` should be used directly after `MATCH` or `OPTIONAL MATCH` clauses in
+order to avoid problems with performance or results.
 
 1. [Basic usage](#1-basic-usage)<br />
     1.1. [Boolean Operators](#11-boolean-operators)<br />
@@ -35,7 +39,7 @@ locally by executing the queries at the end of the page: [Data Set](#data-set-qu
 
 ### 1.1. Boolean Operators
 
-Standard boolean operators like `NOT`, `AND`, `OR` and `XOR` can be used.
+Standard boolean operators like `NOT`, `AND`, `OR` and `XOR` can be used:
 
 ```cypher
 MATCH (c:Country)
@@ -54,7 +58,7 @@ Output:
 
 ### 1.2. Inequality Operators Operators
 
-Standard inequality operators like `<`, `<=`, `>` and `>=` can be used.
+Standard inequality operators like `<`, `<=`, `>` and `>=` can be used:
 
 ```cypher
 MATCH (c:Country)
@@ -73,7 +77,7 @@ Output:
 
 ### 1.3. Filter with node labels
 
-Nodes can be filtered by their label using the `WHERE` clause instead of specifying it directly in the `MATCH` clause.
+Nodes can be filtered by their label using the `WHERE` clause instead of specifying it directly in the `MATCH` clause:
 
 ```cypher
 MATCH (c)
@@ -94,7 +98,7 @@ Output:
 
 ### 1.4. Filter with node properties
 
-Just as labels, node properties can be used in the WHERE clause to filter nodes.
+Just as labels, node properties can be used in the WHERE clause to filter nodes:
 
 ```cypher
 MATCH (c:Country)
@@ -114,7 +118,7 @@ Output:
 
 ### 1.5. Filter with relationship properties
 
-Just as with node properties, relationship properties can be used as filters.
+Just as with node properties, relationship properties can be used as filters:
 
 ```cypher
 MATCH (:Country {name: 'United Kingdom'})-[r]-(p)
@@ -134,7 +138,7 @@ Output:
 
 ### 1.6. Check if property is not null
 
-To check if a node or relationship property exists use the `IS NOT NULL` option.
+To check if a node or relationship property exists use the `IS NOT NULL` option:
 
 ```cypher
 MATCH (c:Country)
@@ -162,7 +166,7 @@ Operator           | Description
  `a ENDS WITH b`   | Returns true if the suffix of string a is equal to string b.
  `a CONTAINS b`    | Returns true if some substring of string a is equal to string b.
 
- ```cypher
+```cypher
 MATCH (c:Country)
 WHERE c.name STARTS WITH 'G' AND NOT c.name CONTAINS 't'
 RETURN c.name;
@@ -182,7 +186,7 @@ Output:
 Inside `WHERE` clause, you can use regular expressions for text filtering. To
 use a regular expression, you need to use the `=~` operator.
 
-For example, finding all `Person` nodes which have a name ending with `a`.
+For example, finding all `Person` nodes which have a name ending with `a`:
 
 ```cypher
 MATCH (n :Person) WHERE n.name =~ ".*a$" RETURN n;

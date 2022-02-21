@@ -34,7 +34,7 @@ locally by executing the queries at the end of the page: [Data Set](#data-set-qu
 
 ### 1.1. Merging nodes with labels
 
-If `MERGE` is used on a node with a label that doesn't exist in the database, the node is created.
+If `MERGE` is used on a node with a label that doesn't exist in the database, the node is created:
 
 ```cypher
 MERGE (city:City)
@@ -52,7 +52,7 @@ Output:
 
 ### 1.2. Merging nodes with properties
 
-If `MERGE` is used on a node with properties that don't match any existing node, that node is created.
+If `MERGE` is used on a node with properties that don't match any existing node, that node is created:
 
 ```cypher
 MERGE (city { name: 'London' })
@@ -70,7 +70,7 @@ Output:
 
 ### 1.3. Merging nodes with labels and properties
 
-If `MERGE` is used on a node with labels and properties that don't match any existing node, that node is created.
+If `MERGE` is used on a node with labels and properties that don't match any existing node, that node is created:
 
 ```cypher
 MERGE (city:City { name: 'London' })
@@ -88,7 +88,7 @@ Output:
 
 ### 1.4. Merging nodes with existing node properties
 
-If `MERGE` is used with properties on an existing node, a new node is created for each unique value of that property.
+If `MERGE` is used with properties on an existing node, a new node is created for each unique value of that property:
 
 ```cypher
 MATCH (p:Person)
@@ -111,7 +111,7 @@ Output:
 
 ### 2.1. Merging relationships
 
-Just as with nodes, `MERGE` can be used to match or create relationships.
+Just as with nodes, `MERGE` can be used to match or create relationships:
 
 ```cypher
 MATCH (p1:Person { name: 'John' }), (p2:Person { name: 'Anna' })
@@ -128,7 +128,7 @@ Output:
 +-----------+
 ```
 
-Multiple relationships can be matched or created with `MERGE` in the same query.
+Multiple relationships can be matched or created with `MERGE` in the same query:
 
 ```cypher
 MATCH (p1:Person { name: 'John' }), (p2:Person { name: 'Anna' })
@@ -147,7 +147,7 @@ Output:
 
 ### 2.2. Merging on undirected relationships
 
-If `MERGE` is used on an undirected relationship, the direction will be chosen at random.
+If `MERGE` is used on an undirected relationship, the direction will be chosen at random:
 
 ```cypher
 MATCH (p1:Person { name: 'John' }), (p2:Person { name: 'Anna' })
@@ -170,7 +170,7 @@ In this example, a path is returned to show the direction of the relationships.
 
 ### 3.1. Merging with `ON CREATE`
 
-The `ON CREATE` part of a `MERGE` clause will only be executed if the node needs to be created.
+The `ON CREATE` part of a `MERGE` clause will only be executed if the node needs to be created:
 
 ```cypher
 MERGE (p:Person { name: 'Lucille' })
@@ -189,7 +189,7 @@ Output:
 
 ### 3.2. Merging with `ON MATCH`
 
-The `ON MATCH` part of a `MERGE` clause will only be executed if the node is found.
+The `ON MATCH` part of a `MERGE` clause will only be executed if the node is found:
 
 ```cypher
 MERGE (p:Person { name: 'John' })
@@ -208,7 +208,7 @@ Output:
 
 ### 3.3. Merging with `ON CREATE` and `ON MATCH`
 
-The `MERGE` clause can be used with both the `ON CREATE` and `ON MATCH` options.
+The `MERGE` clause can be used with both the `ON CREATE` and `ON MATCH` options:
 
 ```cypher
 MERGE (p:Person { name: 'Angela' })

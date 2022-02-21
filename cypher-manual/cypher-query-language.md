@@ -13,11 +13,10 @@ about the syntax.
 
 Cypher was designed to be easy to learn but very powerful when it comes to graph
 analytics. This means that you can use Cypher to write complex queries
-relatively easily. Being a declarative language, Cypher expresses what to
-retrieve and not how to retrieve it.
+relatively easily. 
 
 You can think of Cypher as mapping English language sentence structure to
-patterns in a graph. For example, the nouns are nodes of the graph, the verbs
+patterns in a graph. In most cases, the nouns are nodes of the graph, the verbs
 are the relationships in the graph, and the adjectives and adverbs are the
 properties.
 

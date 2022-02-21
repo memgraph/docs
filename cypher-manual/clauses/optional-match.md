@@ -8,8 +8,10 @@ The `MATCH` clause can be modified by prepending the `OPTIONAL` keyword.
 `OPTIONAL MATCH` clause behaves the same as a regular `MATCH`, but when it fails to find the pattern, 
 missing parts of the pattern will be filled with null values.
 
-1. [Get optional relationships](#1-get-optional-relationships)
-2. [Optional typed and named relationship](#2-optional-typed-and-named-relationship)
+- [Data Set](#data-set)
+- [1. Get optional relationships](#1-get-optional-relationships)
+- [2. Optional typed and named relationship](#2-optional-typed-and-named-relationship)
+- [Data set Queries](#data-set-queries)
 
 ## Data Set
 
@@ -26,7 +28,7 @@ locally by executing the queries at the end of the page: [Data Set](#data-set-qu
 
 Using `OPTIONAL MATCH` when returning a relationship that doesn't exist will return the default value `NULL` instead.
 
-The returned property of an optional element that is `NULL` will also be `NULL`.
+The returned property of an optional element that is `NULL` will also be `NULL`:
 
 ```cypher
 MATCH (c1:Country { name: 'France' })
@@ -45,7 +47,7 @@ Output:
 
 ## 2. Optional typed and named relationship
 
-The `OPTIONAL MATCH` clause allows you to use the same conventions as `MATCH` when it comes to handling variables and relationship types.
+The `OPTIONAL MATCH` clause allows you to use the same conventions as `MATCH` when it comes to handling variables and relationship types:
 
 ```cypher
 MATCH (c:Country { name: 'United Kingdom' })

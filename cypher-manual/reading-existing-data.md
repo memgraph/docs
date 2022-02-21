@@ -8,8 +8,8 @@ slug: /reading-existing-data
 The simplest usage of the language is to find data stored in the database. For
 that, you can use one of the following clauses:
 
-  * `MATCH` which searches for patterns;
-  * `WHERE` for filtering the matched data and
+  * `MATCH` which searches for patterns.
+  * `WHERE` for filtering the matched data.
   * `RETURN` for defining what will be presented to the user in the result set.
   * `UNION` and `UNION ALL` for combining results from multiple queries.
   * `UNWIND` for unwinding a list of values as individual rows.
@@ -31,7 +31,7 @@ MATCH (node1)-[connection]-(node2) RETURN node1, connection, node2;
 ```
 
 In addition to general pattern matching, you can narrow the search down by
-specifying node labels and properties. Similarly, edge types and properties can
+specifying node labels and properties. Similarly, relationship types and properties can
 also be specified. For example, finding each node labeled as `Person` and with
 property `age` being 42, is done with the following query:
 
@@ -49,7 +49,7 @@ There are cases when a user needs to find data that is connected by traversing a
 path of connections, but the user doesn't know how many connections need to be
 traversed. Cypher allows for designating patterns with *variable path
 lengths*. Matching such a path is achieved by using the `*` (*asterisk*) symbol
-inside the edge element of a pattern. For example, traversing from `node1` to
+inside the relationship element of a pattern. For example, traversing from `node1` to
 `node2` by following any number of connections in a single direction can be
 achieved with:
 
@@ -59,7 +59,7 @@ MATCH (node1)-[r*]->(node2) RETURN node1, r, node2;
 
 If paths are very long, finding them could take a long time. To prevent that, a
 user can provide the minimum and maximum length of the path. For example, paths
-of length between two and four can be obtained with a query like:
+of length between two and four nodes can be obtained with a query like:
 
 ```cypher
 MATCH (node1)-[r*2..4]->(node2) RETURN node1, r, node2;
@@ -235,16 +235,17 @@ MATCH (n :Person) RETURN n ORDER BY n.age DESC LIMIT 1;
 Cypher has functions for aggregating data. Memgraph currently supports the
 following aggregating functions.
 
-  * `avg`, for calculating the average.
+  * `avg`, for calculating the average value.
+  * `sum`, for calculating the sum of numeric values.
   * `collect`, for collecting multiple values into a single list or map. If
      given a single expression values are collected into a list. If given two
      expressions, values are collected into a map where the first expression
      denotes map keys (must be string values) and the second expression denotes
      map values.
   * `count`, for counting the resulting values.
-  * `max`, for calculating the maximum result.
-  * `min`, for calculating the minimum result.
-  * `sum`, for getting the sum of numeric results.
+  * `max`, for returning the maximum value.
+  * `min`, for returning the minimum value.
+  
 
 Example, calculating the average age:
 
@@ -264,9 +265,8 @@ Collecting items into a map:
 MATCH (n :Person) RETURN collect(n.name, n.age) AS map_name_to_age;
 ```
 
-Click
-[here](https://neo4j.com/docs/developer-manual/current/cypher/functions/aggregating/)
-for additional details on how aggregations work.
+Check the detailed signatures of [aggregation
+functions](./functions.md#aggregation-functions).
 
 ## UNION and UNION ALL
 
@@ -313,12 +313,12 @@ More examples can be found [here](./clauses/unwind.md).
 
 Patterns are used to indicate specific graph traversals given directional
 relationships. How a graph is traversed for a query depends on what directions
-are defined for relationships and how the pattern is specified in the MATCH
+are defined for relationships and how the pattern is specified in the `MATCH`
 clause.
 
 ### Patterns in a query
 
-Here is an example of a pattern that utilizes the FRIENDS_WITH relationships
+Here is an example of a pattern that utilizes the `FRIENDS_WITH` relationships
 from our graph:
 
 ```cypher
@@ -330,7 +330,7 @@ The output is:
 
 ![patterns-in-a-query](data/read-existing-data/patterns-in-a-query.png)
 
-Because the FRIENDS_WITH relationship is directional, only these two nodes are
+Because the `FRIENDS_WITH` relationship is directional, only these two nodes are
 returned.
 
 ### Reversing traversals
@@ -349,7 +349,7 @@ The output is:
 
 ### Bidirectional traversals
 
-We can also find out what Person nodes are connected by the FRIENDS_WITH
+We can also find out what `Person` nodes are connected with the `FRIENDS_WITH`
 relationship in either direction by removing the directional arrow from the
 pattern:
 

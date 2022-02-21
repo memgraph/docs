@@ -6,14 +6,16 @@ sidebar_label: SET
 
 The `SET` clause is used to update labels on nodes and properties on nodes and relationships.
 
-1. [Setting a property](#1-setting-a-property)
-2. [Setting multiple properties](#2-setting-multiple-properties)
-3. [Setting node labels](#3-setting-node-labels)
-4. [Update a property](#4-update-a-property)
-5. [Remove a property](#5-remove-a-property)
-6. [Copy all properties](#6-copy-all-properties)
-7. [Replace all properties using map](#7-replace-all-properties-using-map)
-8. [Update all properties using map](#8-update-all-properties-using-map)
+- [Data Set](#data-set)
+- [1. Setting a property](#1-setting-a-property)
+- [2. Setting multiple properties](#2-setting-multiple-properties)
+- [3. Setting node labels](#3-setting-node-labels)
+- [4. Update a property](#4-update-a-property)
+- [5. Remove a property](#5-remove-a-property)
+- [6. Copy all properties](#6-copy-all-properties)
+- [7. Replace all properties using map](#7-replace-all-properties-using-map)
+- [8. Update all properties using map](#8-update-all-properties-using-map)
+- [Data set Queries](#data-set-queries)
 
 ## Data Set
 
@@ -28,7 +30,7 @@ locally by executing the queries at the end of the page: [Data Set](#data-set-qu
 
 ## 1. Setting a property
 
-The `SET` clause can be used to set the value of a property on a node or relationship.
+The `SET` clause can be used to set the value of a property on a node or relationship:
 
 ```cypher
 MATCH (c:Country { name: 'Germany' })
@@ -47,7 +49,7 @@ Output:
 
 ## 2. Setting multiple properties
 
-The `SET` clause can be used to set the value of multiple properties nodes or relationships by separating them with a comma.
+The `SET` clause can be used to set the value of multiple properties nodes or relationships by separating them with a comma:
 
 ```cypher
 MATCH (c:Country { name: 'Germany' })
@@ -66,7 +68,7 @@ Output:
 
 ## 3. Setting node labels
 
-The `SET` clause can be used to set the label on a node. If the node has a label, a new one will be added while the old one is left as is.
+The `SET` clause can be used to set the label on a node. If the node has a label, a new one will be added while the old one is left as is:
 
 ```cypher
 MATCH (c { name: 'Germany' })
@@ -83,7 +85,7 @@ Output:
 +---------------------+
 ```
 
-Multiple labels can be also set.
+Multiple labels can be also set:
 
 ```cypher
 MATCH (c { name: 'Germany' })
@@ -102,7 +104,7 @@ Output:
 
 ## 4. Update a property
 
-The `SET` clause can be used to update the value or type of a property on a node or relationship.
+The `SET` clause can be used to update the value or type of a property on a node or relationship:
 
 ```cypher
 MATCH (c:Country { name: 'Germany' })
@@ -121,7 +123,7 @@ Output:
 
 ## 5. Remove a property
 
-The `SET` clause can be used to remove the value of a property on a node or relationship by setting it to `NULL`. 
+The `SET` clause can be used to remove the value of a property on a node or relationship by setting it to `NULL`:
 
 ```cypher
 MATCH (c:Country { name: 'Germany' })
@@ -140,7 +142,7 @@ Output:
 
 ## 6. Copy all properties
 
-If `SET` is used to copy the properties of one node/relationship to another, all the properties of the latter will be removed and replaced with the new ones.
+If `SET` is used to copy the properties of one node/relationship to another, all the properties of the latter will be removed and replaced with the new ones:
 
 ```cypher
 MATCH (c1:Country { name: 'Germany' }), (c2:Country { name: 'France' })
@@ -177,7 +179,7 @@ Output:
 +------------------------------------------------------+
 ```
 
-If an empty map is used, all the properties of a node or relationship will be set to `NULL`.
+If an empty map is used, all the properties of a node or relationship will be set to `NULL`:
 
 ```cypher
 MATCH (c:Country { name: 'Germany' })

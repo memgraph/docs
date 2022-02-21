@@ -6,24 +6,24 @@ sidebar_label: Import data
 
 For adding new data, you can use the following clauses.
 
-  * `CREATE`, for creating new nodes and edges.
+  * `CREATE`, for creating new nodes and relationships.
   * `SET`, for adding new or updating existing labels and properties.
 
 You can still use the `RETURN` clause to produce results after writing, but it
 is not mandatory.
 
-Details on which kind of data can be stored in *Memgraph* can be found in the
+Details on which kind of data can be stored in Memgraph can be found in the
 [Storage](/memgraph/concepts/storage) chapter.
 
 ## CREATE
 
-This clause is used to add new nodes and edges to the database. The creation is
+This clause is used to add new nodes and relationships to the database. The creation is
 done by providing a pattern, similarly to `MATCH` clause.
 
-For example, use this query to create two new nodes connected with a new edge.
+For example, use this query to create two new nodes connected with a new relationship.
 
 ```cypher
-CREATE (node2)-[:edge_type]->(node2);
+CREATE (node2)-[:relationship_type]->(node2);
 ```
 
 Labels and properties can be set during creation using the same syntax as in
@@ -87,5 +87,5 @@ Using CSV files is just one of the ways to [import your
 data](/docs/memgraph/import-data) into Memgraph. The `LOAD CSV` clause enables
 you to [load and use data](/docs/memgraph/import-data/load-csv-clause) from a
 CSV file. Memgraph supports the Excel CSV dialect, as it's the most commonly
-used one. For the syntax of the clause, please check the [Load
+used one. For the syntax of the clause, please check the [LOAD
 CSV](/cypher-manual/clauses/load-csv) page in the Cypher manual.

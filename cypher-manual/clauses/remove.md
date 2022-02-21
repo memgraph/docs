@@ -4,10 +4,12 @@ title: REMOVE clause
 sidebar_label: REMOVE
 ---
 
-The `REMOVE` clause is used to remove labels and properties from nodes and edges.
+The `REMOVE` clause is used to remove labels and properties from nodes and relationships.
 
-1. [Removing a property](#1-removing-a-property)
-2. [Removing a label](#2-removing-a-label)
+- [Data Set](#data-set)
+- [1. Removing a property](#1-removing-a-property)
+- [2. Removing a label](#2-removing-a-label)
+- [Data set Queries](#data-set-queries)
 
 ## Data Set
 
@@ -22,7 +24,7 @@ locally by executing the queries at the end of the page: [Data Set](#data-set-qu
 
 ## 1. Removing a property
 
-The `REMOVE` clause can be used to remove a property from a node or relationship.
+The `REMOVE` clause can be used to remove a property from a node or relationship:
 
 ```cypher
 MATCH (n:Country { name: 'United Kingdom' })
@@ -43,7 +45,7 @@ The `REMOVE` clause can't be used to remove all properties from a node or relati
 
 ## 2. Removing a label
 
-The `REMOVE` clause can be used to remove a label from a node.
+The `REMOVE` clause can be used to remove a label from a node:
 
 ```cypher
 MATCH (n:Country { name: 'United Kingdom' })

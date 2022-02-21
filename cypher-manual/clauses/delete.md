@@ -4,12 +4,14 @@ title: DELETE clause
 sidebar_label: DELETE
 ---
 
-The `DELETE` clause is used to delete nodes and edges from the database.
+The `DELETE` clause is used to delete nodes and relationships from the database.
 
-1. [Deleting a node](#1-deleting-a-node)
-2. [Deleting a node and its relationships](#2-deleting-a-node-and-its-relationships)
-3. [Deleting a relationship](#3-deleting-a-relationship)
-4. [Deleting everything](#4-deleting-everything)
+- [Data Set](#data-set)
+- [1. Deleting a node](#1-deleting-a-node)
+- [2. Deleting a node and its relationships](#2-deleting-a-node-and-its-relationships)
+- [3. Deleting a relationship](#3-deleting-a-relationship)
+- [4. Deleting everything](#4-deleting-everything)
+- [Data set Queries](#data-set-queries)
 
 ## Data Set
 
@@ -24,7 +26,7 @@ locally by executing the queries at the end of the page: [Data Set](#data-set-qu
 
 ## 1. Deleting a node
 
-The `DELETE` clause can be used to delete a node.
+The `DELETE` clause can be used to delete a node:
 
 ```cypher
 MATCH (c:Country { name: 'United Kingdom' })
@@ -36,11 +38,12 @@ Output:
 Failed to remove node because of it's existing connections. Consider using DETACH DELETE.
 ```
 
-This will however result in an error because `DELETE` can only be used on nodes that have no relationships.
+On the data set we are using, this query results in an error because `DELETE`
+can only be used on nodes that have no relationships.
 
 ## 2. Deleting a node and its relationships
 
-The `DELETE` clause can be used to delete a node along with all of its relationships with the keyword `DETACH`.
+The `DELETE` clause can be used to delete a node along with all of its relationships with the keyword `DETACH`:
 
 ```cypher
 MATCH (n:Country { name: 'United Kingdom' })
@@ -54,7 +57,7 @@ Empty set (0.001 sec)
 
 ## 3. Deleting a relationship
 
-The `DELETE` clause can be used to delete a relationship.
+The `DELETE` clause can be used to delete a relationship:
 
 ```cypher
 MATCH (n:Country { name: 'Germany' })-[r:LIVING_IN]-()
@@ -68,7 +71,7 @@ Empty set (0.003 sec)
 
 ## 4. Deleting everything
 
-To delete all nodes and relationships in a graph, use the following query.
+To delete all nodes and relationships in a graph, use the following query:
 
 ```cypher
 MATCH (n)

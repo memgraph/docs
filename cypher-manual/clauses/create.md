@@ -36,7 +36,7 @@ Output:
 +----+
 ```
 
-You can also specify a label while creating a node.
+You can also specify a label while creating a node:
 
 ```cypher
 CREATE (n:Country)

@@ -6,9 +6,11 @@ sidebar_label: WITH
 
 The `WITH` is used to chain together parts of a query, piping the results from one to be used as starting points or criteria in the next.
 
-1. [Filter on aggregate functions](#1-filter-on-aggregate-functions)
-2. [Sorting results](#2-sorting-results)
-3. [Limited path searches](#3-limited-path-searches)
+- [Data Set](#data-set)
+- [1. Filter on aggregate functions](#1-filter-on-aggregate-functions)
+- [2. Sorting results](#2-sorting-results)
+- [3. Limited path searches](#3-limited-path-searches)
+- [Data set Queries](#data-set-queries)
 
 
 ## Data Set
@@ -24,7 +26,7 @@ locally by executing the queries at the end of the page: [Data Set](#data-set-qu
 
 ## 1. Filter on aggregate functions
 
-Aggregated results have to pass through a `WITH` if you want to filter them.
+Aggregated results have to pass through a `WITH` if you want to filter them:
 
 ```cypher
 MATCH (p:Person { name: 'John' })--(person)-->()
@@ -45,7 +47,7 @@ Output:
 
 ## 2. Sorting results
 
-The `WITH` clause can be used to order results before using `collect()` on them.
+The `WITH` clause can be used to order results before using `collect()` on them:
 
 ```cypher
 MATCH (n)
@@ -66,7 +68,7 @@ Output:
 ## 3. Limited path searches
 
 The `WITH` clause can be used to match paths, limit to a certain number, 
-and then match again using those paths as a base.
+and then match again using those paths as a base:
 
 ```cypher
 MATCH (p1 { name: 'John' })--(p2)

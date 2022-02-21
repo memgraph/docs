@@ -89,7 +89,7 @@ RETURN CASE WHEN n.height < 30 THEN "short" WHEN n.height > 300 THEN "tall" END
 
 The `EXPLAIN` and `PROFILE` operators can be used to inspect and profile a
 particular Cypher query in order to see its internal representation and the way
-it behaves during execution.
+it behaves during execution:
 
 ```cypher
 EXPLAIN MATCH (n) RETURN n;
