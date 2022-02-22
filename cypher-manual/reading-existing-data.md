@@ -8,11 +8,11 @@ slug: /reading-existing-data
 The simplest usage of the language is to find data stored in the database. For
 that, you can use one of the following clauses:
 
-  * `MATCH` which searches for patterns;
-  * `WHERE` for filtering the matched data and
-  * `RETURN` for defining what will be presented to the user in the result set.
-  * `UNION` and `UNION ALL` for combining results from multiple queries.
-  * `UNWIND` for unwinding a list of values as individual rows.
+- `MATCH` which searches for patterns.
+- `WHERE` for filtering the matched data.
+- `RETURN` for defining what will be presented to the user in the result set.
+- `UNION` and `UNION ALL` for combining results from multiple queries.
+- `UNWIND` for unwinding a list of values as individual rows.
 
 ## MATCH
 
@@ -31,25 +31,25 @@ MATCH (node1)-[connection]-(node2) RETURN node1, connection, node2;
 ```
 
 In addition to general pattern matching, you can narrow the search down by
-specifying node labels and properties. Similarly, edge types and properties can
+specifying node labels and properties. Similarly, relationship types and properties can
 also be specified. For example, finding each node labeled as `Person` and with
 property `age` being 42, is done with the following query:
 
 ```cypher
-MATCH (n :Person {age: 42}) RETURN n;
+MATCH (n:Person {age: 42}) RETURN n;
 ```
 
 You can use the following query to find their friends:
 
 ```cypher
-MATCH (n :Person {age: 42})-[:FriendOf]-(friend) RETURN friend;
+MATCH (n:Person {age: 42})-[:FRIENDS_WITH]-(friend) RETURN friend;
 ```
 
 There are cases when a user needs to find data that is connected by traversing a
 path of connections, but the user doesn't know how many connections need to be
-traversed. Cypher allows for designating patterns with *variable path
-lengths*. Matching such a path is achieved by using the `*` (*asterisk*) symbol
-inside the edge element of a pattern. For example, traversing from `node1` to
+traversed. Cypher allows for designating patterns with _variable path
+lengths_. Matching such a path is achieved by using the `*` (_asterisk_) symbol
+inside the relationship element of a pattern. For example, traversing from `node1` to
 `node2` by following any number of connections in a single direction can be
 achieved with:
 
@@ -59,7 +59,7 @@ MATCH (node1)-[r*]->(node2) RETURN node1, r, node2;
 
 If paths are very long, finding them could take a long time. To prevent that, a
 user can provide the minimum and maximum length of the path. For example, paths
-of length between two and four can be obtained with a query like:
+of length between two and four nodes can be obtained with a query like:
 
 ```cypher
 MATCH (node1)-[r*2..4]->(node2) RETURN node1, r, node2;
@@ -87,7 +87,7 @@ use `WHERE` paired with `MATCH` or `OPTIONAL MATCH`. For example, finding each
 person older than 20 is done with this query:
 
 ```cypher
-MATCH (n :Person) WHERE n.age > 20 RETURN n;
+MATCH (n:Person) WHERE n.age > 20 RETURN n;
 ```
 
 Additional examples can be found [here](./clauses/where.md).
@@ -100,7 +100,7 @@ use a regular expression, you need to use the `=~` operator.
 For example, finding all `Person` nodes which have a name ending with `son`:
 
 ```cypher
-MATCH (n :Person) WHERE n.name =~ ".*son$" RETURN n;
+MATCH (n:Person) WHERE n.name =~ ".*son$" RETURN n;
 ```
 
 The regular expression syntax is based on the modified ECMAScript regular
@@ -118,14 +118,14 @@ Another feature of `RETURN` is renaming the results using the `AS` keyword.
 For example:
 
 ```cypher
-MATCH (n :Person) RETURN n AS people;
+MATCH (n:Person) RETURN n AS people;
 ```
 
 That query would display all nodes under the header named `people` instead of
 `n`.
 
 When you want to get everything that was matched, you can use the `*`
-(*asterisk*) symbol.
+(_asterisk_) symbol.
 
 This query:
 
@@ -143,16 +143,16 @@ MATCH (node1)-[connection]-(node2) RETURN node1, connection, node2;
 results. For example, getting unique names of people can be achieved with:
 
 ```cypher
-MATCH (n :Person) RETURN DISTINCT n.name;
+MATCH (n:Person) RETURN DISTINCT n.name;
 ```
 
 Besides choosing what will be the result and how it will be named, the `RETURN`
 clause can also be used to:
 
-  * limit results with `LIMIT` sub-clause;
-  * skip results with `SKIP` sub-clause;
-  * order results with `ORDER BY` sub-clause and
-  * perform aggregations (such as `count`).
+- limit results with `LIMIT` sub-clause;
+- skip results with `SKIP` sub-clause;
+- order results with `ORDER BY` sub-clause and
+- perform aggregations (such as `count`).
 
 More details on `RETURN` can be found [here](./clauses/return.md).
 
@@ -162,20 +162,20 @@ These sub-clauses take a number of how many results to skip or limit. For
 example, to get the first three results you can use this query:
 
 ```cypher
-MATCH (n :Person) RETURN n LIMIT 3;
+MATCH (n:Person) RETURN n LIMIT 3;
 ```
 
 If you want to get all the results after the first 3, you can use the following:
 
 ```cypher
-MATCH (n :Person) RETURN n SKIP 3;
+MATCH (n:Person) RETURN n SKIP 3;
 ```
 
 The `SKIP` and `LIMIT` can be combined. So for example, to get the 2nd result,
 you can do:
 
 ```cypher
-MATCH (n :Person) RETURN n SKIP 1 LIMIT 1;
+MATCH (n:Person) RETURN n SKIP 1 LIMIT 1;
 ```
 
 ### ORDER BY
@@ -188,7 +188,7 @@ For example, the following query will get all `:Person` nodes and order them by
 their names:
 
 ```cypher
-MATCH (n :Person) RETURN n ORDER BY n.name;
+MATCH (n:Person) RETURN n ORDER BY n.name;
 ```
 
 By default, ordering will be ascending. To change the order to be descending,
@@ -197,7 +197,7 @@ you should append `DESC`.
 For example, you can use this query to order people by their name descending:
 
 ```cypher
-MATCH (n :Person) RETURN n ORDER BY n.name DESC;
+MATCH (n:Person) RETURN n ORDER BY n.name DESC;
 ```
 
 You can also order by multiple variables. The results will be sorted by the
@@ -207,27 +207,27 @@ second variable, and so on.
 For example, ordering by first name descending and last name ascending:
 
 ```cypher
-MATCH (n :Person) RETURN n ORDER BY n.name DESC, n.lastName;
+MATCH (n:Person) RETURN n ORDER BY n.name DESC, n.lastName;
 ```
 
 Note that `ORDER BY` sees only the variable names as carried over by `RETURN`.
 This means that the following will result in an error.
 
 ```cypher
-MATCH (n :Person) RETURN old AS new ORDER BY old.name;
+MATCH (old:Person) RETURN old AS new ORDER BY old.name;
 ```
 
 Instead, the `new` variable must be used:
 
 ```cypher
-MATCH (n: Person) RETURN old AS new ORDER BY new.name;
+MATCH (old:Person) RETURN old AS new ORDER BY new.name;
 ```
 
 The `ORDER BY` sub-clause may come in handy with `SKIP` and/or `LIMIT`
 sub-clauses. For example, to get the oldest person you can use the following:
 
 ```cypher
-MATCH (n :Person) RETURN n ORDER BY n.age DESC LIMIT 1;
+MATCH (n:Person) RETURN n ORDER BY n.age DESC LIMIT 1;
 ```
 
 ### Aggregating
@@ -235,38 +235,37 @@ MATCH (n :Person) RETURN n ORDER BY n.age DESC LIMIT 1;
 Cypher has functions for aggregating data. Memgraph currently supports the
 following aggregating functions.
 
-  * `avg`, for calculating the average.
-  * `collect`, for collecting multiple values into a single list or map. If
-     given a single expression values are collected into a list. If given two
-     expressions, values are collected into a map where the first expression
-     denotes map keys (must be string values) and the second expression denotes
-     map values.
-  * `count`, for counting the resulting values.
-  * `max`, for calculating the maximum result.
-  * `min`, for calculating the minimum result.
-  * `sum`, for getting the sum of numeric results.
+- `avg`, for calculating the average value.
+- `sum`, for calculating the sum of numeric values.
+- `collect`, for collecting multiple values into a single list or map. If
+  given a single expression values are collected into a list. If given two
+  expressions, values are collected into a map where the first expression
+  denotes map keys (must be string values) and the second expression denotes
+  map values.
+- `count`, for counting the resulting values.
+- `max`, for returning the maximum value.
+- `min`, for returning the minimum value.
 
 Example, calculating the average age:
 
 ```cypher
-MATCH (n :Person) RETURN avg(n.age) AS averageAge;
+MATCH (n:Person) RETURN avg(n.age) AS averageAge;
 ```
 
 Collecting items into a list:
 
 ```cypher
-MATCH (n :Person) RETURN collect(n.name) AS list_of_names;
+MATCH (n:Person) RETURN collect(n.name) AS list_of_names;
 ```
 
 Collecting items into a map:
 
 ```cypher
-MATCH (n :Person) RETURN collect(n.name, n.age) AS map_name_to_age;
+MATCH (n:Person) RETURN collect(n.name, n.age) AS map_name_to_age;
 ```
 
-Click
-[here](https://neo4j.com/docs/developer-manual/current/cypher/functions/aggregating/)
-for additional details on how aggregations work.
+Check the detailed signatures of [aggregation
+functions](./functions.md#aggregation-functions).
 
 ## UNION and UNION ALL
 
@@ -278,23 +277,24 @@ Using `UNION` will contain only distinct rows, while `UNION ALL` will keep all
 rows from all given queries.
 
 Restrictions when using `UNION` or `UNION ALL`:
-  * The number and the names of columns returned by queries must be the same for
-    all of them.
-  * There can be only one union type between single queries, i.e. a query can't
-    contain both `UNION` and `UNION ALL`.
+
+- The number and the names of columns returned by queries must be the same for
+  all of them.
+- There can be only one union type between single queries, i.e. a query can't
+  contain both `UNION` and `UNION ALL`.
 
 For example to get distinct names that are shared between persons and movies use
 the following query:
 
 ```cypher
-MATCH(n: Person) RETURN n.name AS name UNION MATCH(n: Movie) RETURN n.name AS name;
+MATCH (n:Person) RETURN n.name AS name UNION MATCH (n:Movie) RETURN n.name AS name;
 ```
 
 To get all names that are shared between persons and movies (including
 duplicates) do the following:
 
 ```cypher
-MATCH(n: Person) RETURN n.name AS name UNION ALL MATCH(n: Movie) RETURN n.name AS name;
+MATCH (n:Person) RETURN n.name AS name UNION ALL MATCH (n:Movie) RETURN n.name AS name;
 ```
 
 ## UNWIND
@@ -313,16 +313,16 @@ More examples can be found [here](./clauses/unwind.md).
 
 Patterns are used to indicate specific graph traversals given directional
 relationships. How a graph is traversed for a query depends on what directions
-are defined for relationships and how the pattern is specified in the MATCH
+are defined for relationships and how the pattern is specified in the `MATCH`
 clause.
 
 ### Patterns in a query
 
-Here is an example of a pattern that utilizes the FRIENDS_WITH relationships
+Here is an example of a pattern that utilizes the `FRIENDS_WITH` relationships
 from our graph:
 
 ```cypher
-MATCH  (p1:Person)-[r:FRIENDS_WITH]->(p2:Person {name:'Alison'})
+MATCH (p1:Person)-[r:FRIENDS_WITH]->(p2:Person {name:'Alison'})
 RETURN p1, r, p2;
 ```
 
@@ -330,7 +330,7 @@ The output is:
 
 ![patterns-in-a-query](data/read-existing-data/patterns-in-a-query.png)
 
-Because the FRIENDS_WITH relationship is directional, only these two nodes are
+Because the `FRIENDS_WITH` relationship is directional, only these two nodes are
 returned.
 
 ### Reversing traversals
@@ -349,7 +349,7 @@ The output is:
 
 ### Bidirectional traversals
 
-We can also find out what Person nodes are connected by the FRIENDS_WITH
+We can also find out what `Person` nodes are connected with the `FRIENDS_WITH`
 relationship in either direction by removing the directional arrow from the
 pattern:
 

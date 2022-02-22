@@ -56,8 +56,43 @@ as a command-line parameter (e.g., when using Docker).
 :::caution
 
 Please remember that if you are using Memgraph Platform image, you should pass
-configuration flags within MEMGRAPH environmental variable (e.g. `docker run -e
-MEMGRAPH="--bolt-port=7687" memgraph/memgraph-platform`) and if you are using
+configuration flags within MEMGRAPH environmental variable (e.g. `docker run -e MEMGRAPH="--bolt-port=7687" memgraph/memgraph-platform`) and if you are using
+any other image you should pass them as arguments after the image name (e.g.,
+`memgraph/memgraph-mage --bolt-port=7687 --query-modules-directory=path/path`).
+
+:::
+
+<details>
+  <summary>Transfer transformation module into a Docker container</summary>
+  
+  If you are using Docker to run Memgraph, you will need to copy the
+  transformation module file from your local directory into the Docker
+  container where Memgraph can access it.
+
+  <p> </p>
+
+**1.** Open a new terminal and find the `CONTAINER ID` of the Memgraph Docker
+container:
+
+```
+docker ps
+```
+
+**2.** Copy a file from your current directory to the container with the
+command:
+
+```
+docker cp ./trans_module.py <CONTAINER ID>:/usr/lib/memgraph/query_modules/trans_module.py
+```
+
+The file is now inside your Docker container.
+
+</details>
+
+:::caution
+
+Please remember that if you are using Memgraph Platform image, you should pass
+configuration flags within MEMGRAPH environmental variable (e.g. `docker run -e MEMGRAPH="--bolt-port=7687" memgraph/memgraph-platform`) and if you are using
 any other image you should pass them as arguments after the image name (e.g.,
 `memgraph/memgraph-mage --bolt-port=7687 --query-modules-directory=path/path`).
 

@@ -11,11 +11,11 @@ The following sections describe some of the other supported features.
 Apart from comparison and concatenation operators Cypher provides special
 string operators for easier matching of substrings:
 
-Operator           | Description
--------------------|------------
- `a STARTS WITH b` | Returns true if the prefix of string a is equal to string b.
- `a ENDS WITH b`   | Returns true if the suffix of string a is equal to string b.
- `a CONTAINS b`    | Returns true if some substring of string a is equal to string b.
+| Operator          | Description                                                      |
+| ----------------- | ---------------------------------------------------------------- |
+| `a STARTS WITH b` | Returns true if the prefix of string a is equal to string b.     |
+| `a ENDS WITH b`   | Returns true if the suffix of string a is equal to string b.     |
+| `a CONTAINS b`    | Returns true if some substring of string a is equal to string b. |
 
 ## Parameters
 
@@ -41,6 +41,7 @@ MATCH (n $propertyMap) RETURN n;
 ```
 
 but this is supported:
+
 ```cypher
 CREATE (n $propertyMap) RETURN n;
 ```
@@ -73,7 +74,7 @@ following `ELSE` is returned is provided, or `null` if `ELSE` is not used:
 
 ```cypher
 MATCH (n)
-RETURN CASE n.currency WHEN "DOLLAR" THEN "$" WHEN "EURO" THEN "€" ELSE "UNKNOWN" END
+RETURN CASE n.currency WHEN "DOLLAR" THEN "$" WHEN "EURO" THEN "€" ELSE "UNKNOWN" END;
 ```
 
 In generic form, you don't need to provide an expression whose value is compared
@@ -82,14 +83,14 @@ evaluates to true is matched:
 
 ```cypher
 MATCH (n)
-RETURN CASE WHEN n.height < 30 THEN "short" WHEN n.height > 300 THEN "tall" END
+RETURN CASE WHEN n.height < 30 THEN "short" WHEN n.height > 300 THEN "tall" END;
 ```
 
 ## Inspecting and profiling queries
 
 The `EXPLAIN` and `PROFILE` operators can be used to inspect and profile a
 particular Cypher query in order to see its internal representation and the way
-it behaves during execution.
+it behaves during execution:
 
 ```cypher
 EXPLAIN MATCH (n) RETURN n;
@@ -100,5 +101,6 @@ PROFILE MATCH (n) RETURN n;
 ```
 
 For a detailed look at using `EXPLAIN` and `PROFILE`, take a look at the guides:
-* [Inspecting queries](/memgraph/database-functionalities/inspecting-queries)
-* [Profiling queries](/memgraph/database-functionalities/profiling-queries)
+
+- [Inspecting queries](/memgraph/database-functionalities/inspecting-queries)
+- [Profiling queries](/memgraph/database-functionalities/profiling-queries)

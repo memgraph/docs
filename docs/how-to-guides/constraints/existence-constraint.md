@@ -10,7 +10,7 @@ supplied at a time.  This constraint can be enforced using the following
 language construct:
 
 ```cypher
-CREATE CONSTRAINT ON (n:label) ASSERT exists (n.property);
+CREATE CONSTRAINT ON (n:label) ASSERT EXISTS (n.property);
 ```
 
 For example, suppose you are keeping track of basic employee info in your
@@ -18,8 +18,8 @@ database. Obviously, each employee should have a first name and last name. You
 can enforce this by issuing the following queries:
 
 ```cypher
-CREATE CONSTRAINT ON (n:Employee) ASSERT exists (n.first_name);
-CREATE CONSTRAINT ON (n:Employee) ASSERT exists (n.last_name);
+CREATE CONSTRAINT ON (n:Employee) ASSERT EXISTS (n.first_name);
+CREATE CONSTRAINT ON (n:Employee) ASSERT EXISTS (n.last_name);
 ```
 
 You can confirm that your constraint was successfully created by issuing the
@@ -48,8 +48,8 @@ dropping the previously created constraints can be done by the following
 query:
 
 ```cypher
-DROP CONSTRAINT ON (n:Employee) ASSERT exists (n.first_name);
-DROP CONSTRAINT ON (n:Employee) ASSERT exists (n.last_name);
+DROP CONSTRAINT ON (n:Employee) ASSERT EXISTS (n.first_name);
+DROP CONSTRAINT ON (n:Employee) ASSERT EXISTS (n.last_name);
 ```
 
 Now, `SHOW CONSTRAINT INFO;` yields an empty set.

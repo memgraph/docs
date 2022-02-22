@@ -6,7 +6,7 @@ slug: /differences
 ---
 
 Although we try to implement the [openCypher](https://www.opencypher.org/) query
-language as close to the language reference as possible, we have to make some
+language as close to the language reference as possible, we had to make some
 changes to enhance the user experience.
 
 ## Unicode codepoints in string literals
@@ -91,6 +91,6 @@ The example query would look like this:
 ```cypher
 OPTIONAL MATCH (n:NodeA)-[]->(m:NodeB)
 WHERE m IS null
-RETURN DISTINCT n
+RETURN DISTINCT n;
 ```
 
