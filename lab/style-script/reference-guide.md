@@ -301,18 +301,11 @@ Returns a textual representation of given value.
 Returns blue component of given color. The value will be between 0 and 255 (both
 inclusive).
 
-### `Call(f, [arg1, arg2,...])`
-
-- `f`: `Function`
-- `arg1`, `arg2`, `...`: `Any`
-
-Calls function `f` with given arguments and returns `f(arg1, arg2,...)`.
-
 ### `Contains?(array, value)`
 
 - `array`: `Array`
 - `value`: `Any`
-- Returns: `Boolean`
+- Returns: `Boolean` 
 
 Returns `True` if `array` contains `value`, `False` otherwise.
 
@@ -345,13 +338,6 @@ Binds the given value to the given name. Names cannot be redefined.
 
 Returns `value1` divided by `value2`.
 
-### `Do(exp1, [exp2, exp3,...])`
-
-- `exp1`, `exp2`, `exp3`, `...`: `Any`
-- Returns: `Any`
-
-Evaluates all given expressions and returns the value of last one.
-
 ### `Equals?(value1, value2)`
 
 - `val1`: `Any`
@@ -361,13 +347,6 @@ Evaluates all given expressions and returns the value of last one.
 Returns `True` if given values are equal, `False` otherwise. `Number`s,
 `String`s and `Boolean`s are compared by value, while objects of all other types
 are compared by identity.
-
-### `Error(message)`
-
-- `message`: `String`
-- Returns: `Never`
-
-Throws an error with the given message.
 
 ### `Exp(value)`
 
@@ -559,13 +538,6 @@ Returns `True` if `value` is `False`, and returns `False` if `value` is `True`.
 
 Returns `True` if any of the given values is `True`. Returns `False` otherwise.
 Expressions after first expression that evaluates to `True` are not evaluated.
-
-### `Print([value1, value2,...])`
-
-- `value1`, `value2`, `...`: `Any`
-- Returns: `Null`
-
-Logs the given values to the console.
 
 ### `Property(nodeOrEdge, propertyName)`
 

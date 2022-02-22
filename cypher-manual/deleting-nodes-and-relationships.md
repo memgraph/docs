@@ -39,5 +39,5 @@ The `REMOVE` clause is used to remove labels and properties from nodes and
 relationships:
 
 ```cypher
-MATCH (n :WrongLabel) REMOVE n :WrongLabel, n.property;
+MATCH (n:WrongLabel) REMOVE n:WrongLabel, n.property;
 ```

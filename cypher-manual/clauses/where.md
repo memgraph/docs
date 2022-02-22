@@ -189,7 +189,7 @@ use a regular expression, you need to use the `=~` operator.
 For example, finding all `Person` nodes which have a name ending with `a`:
 
 ```cypher
-MATCH (n :Person) WHERE n.name =~ ".*a$" RETURN n;
+MATCH (n:Person) WHERE n.name =~ ".*a$" RETURN n;
 ```
 
 Output:

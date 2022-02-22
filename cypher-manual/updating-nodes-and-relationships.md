@@ -78,5 +78,5 @@ You can use `SET` clause to do a bulk update. Here is an example of how to
 increment everyone's age by 1:
 
 ```cypher
-MATCH (n :Person) SET n.age = n.age + 1;
+MATCH (n:Person) SET n.age = n.age + 1;
 ```

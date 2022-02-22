@@ -36,13 +36,13 @@ also be specified. For example, finding each node labeled as `Person` and with
 property `age` being 42, is done with the following query:
 
 ```cypher
-MATCH (n :Person {age: 42}) RETURN n;
+MATCH (n:Person {age: 42}) RETURN n;
 ```
 
 You can use the following query to find their friends:
 
 ```cypher
-MATCH (n :Person {age: 42})-[:FriendOf]-(friend) RETURN friend;
+MATCH (n:Person {age: 42})-[:FriendOf]-(friend) RETURN friend;
 ```
 
 There are cases when a user needs to find data that is connected by traversing a
@@ -87,7 +87,7 @@ use `WHERE` paired with `MATCH` or `OPTIONAL MATCH`. For example, finding each
 person older than 20 is done with this query:
 
 ```cypher
-MATCH (n :Person) WHERE n.age > 20 RETURN n;
+MATCH (n:Person) WHERE n.age > 20 RETURN n;
 ```
 
 Additional examples can be found [here](./clauses/where.md).
@@ -100,7 +100,7 @@ use a regular expression, you need to use the `=~` operator.
 For example, finding all `Person` nodes which have a name ending with `son`:
 
 ```cypher
-MATCH (n :Person) WHERE n.name =~ ".*son$" RETURN n;
+MATCH (n:Person) WHERE n.name =~ ".*son$" RETURN n;
 ```
 
 The regular expression syntax is based on the modified ECMAScript regular
@@ -118,7 +118,7 @@ Another feature of `RETURN` is renaming the results using the `AS` keyword.
 For example:
 
 ```cypher
-MATCH (n :Person) RETURN n AS people;
+MATCH (n:Person) RETURN n AS people;
 ```
 
 That query would display all nodes under the header named `people` instead of
@@ -143,7 +143,7 @@ MATCH (node1)-[connection]-(node2) RETURN node1, connection, node2;
 results. For example, getting unique names of people can be achieved with:
 
 ```cypher
-MATCH (n :Person) RETURN DISTINCT n.name;
+MATCH (n:Person) RETURN DISTINCT n.name;
 ```
 
 Besides choosing what will be the result and how it will be named, the `RETURN`
@@ -162,20 +162,20 @@ These sub-clauses take a number of how many results to skip or limit. For
 example, to get the first three results you can use this query:
 
 ```cypher
-MATCH (n :Person) RETURN n LIMIT 3;
+MATCH (n:Person) RETURN n LIMIT 3;
 ```
 
 If you want to get all the results after the first 3, you can use the following:
 
 ```cypher
-MATCH (n :Person) RETURN n SKIP 3;
+MATCH (n:Person) RETURN n SKIP 3;
 ```
 
 The `SKIP` and `LIMIT` can be combined. So for example, to get the 2nd result,
 you can do:
 
 ```cypher
-MATCH (n :Person) RETURN n SKIP 1 LIMIT 1;
+MATCH (n:Person) RETURN n SKIP 1 LIMIT 1;
 ```
 
 ### ORDER BY
@@ -188,7 +188,7 @@ For example, the following query will get all `:Person` nodes and order them by
 their names:
 
 ```cypher
-MATCH (n :Person) RETURN n ORDER BY n.name;
+MATCH (n:Person) RETURN n ORDER BY n.name;
 ```
 
 By default, ordering will be ascending. To change the order to be descending,
@@ -197,7 +197,7 @@ you should append `DESC`.
 For example, you can use this query to order people by their name descending:
 
 ```cypher
-MATCH (n :Person) RETURN n ORDER BY n.name DESC;
+MATCH (n:Person) RETURN n ORDER BY n.name DESC;
 ```
 
 You can also order by multiple variables. The results will be sorted by the
@@ -207,27 +207,27 @@ second variable, and so on.
 For example, ordering by first name descending and last name ascending:
 
 ```cypher
-MATCH (n :Person) RETURN n ORDER BY n.name DESC, n.lastName;
+MATCH (n:Person) RETURN n ORDER BY n.name DESC, n.lastName;
 ```
 
 Note that `ORDER BY` sees only the variable names as carried over by `RETURN`.
 This means that the following will result in an error.
 
 ```cypher
-MATCH (n :Person) RETURN old AS new ORDER BY old.name;
+MATCH (old:Person) RETURN old AS new ORDER BY old.name;
 ```
 
 Instead, the `new` variable must be used:
 
 ```cypher
-MATCH (n: Person) RETURN old AS new ORDER BY new.name;
+MATCH (old:Person) RETURN old AS new ORDER BY new.name;
 ```
 
 The `ORDER BY` sub-clause may come in handy with `SKIP` and/or `LIMIT`
 sub-clauses. For example, to get the oldest person you can use the following:
 
 ```cypher
-MATCH (n :Person) RETURN n ORDER BY n.age DESC LIMIT 1;
+MATCH (n:Person) RETURN n ORDER BY n.age DESC LIMIT 1;
 ```
 
 ### Aggregating
@@ -250,19 +250,19 @@ following aggregating functions.
 Example, calculating the average age:
 
 ```cypher
-MATCH (n :Person) RETURN avg(n.age) AS averageAge;
+MATCH (n:Person) RETURN avg(n.age) AS averageAge;
 ```
 
 Collecting items into a list:
 
 ```cypher
-MATCH (n :Person) RETURN collect(n.name) AS list_of_names;
+MATCH (n:Person) RETURN collect(n.name) AS list_of_names;
 ```
 
 Collecting items into a map:
 
 ```cypher
-MATCH (n :Person) RETURN collect(n.name, n.age) AS map_name_to_age;
+MATCH (n:Person) RETURN collect(n.name, n.age) AS map_name_to_age;
 ```
 
 Check the detailed signatures of [aggregation
@@ -287,14 +287,14 @@ For example to get distinct names that are shared between persons and movies use
 the following query:
 
 ```cypher
-MATCH(n: Person) RETURN n.name AS name UNION MATCH(n: Movie) RETURN n.name AS name;
+MATCH(n:Person) RETURN n.name AS name UNION MATCH(n:Movie) RETURN n.name AS name;
 ```
 
 To get all names that are shared between persons and movies (including
 duplicates) do the following:
 
 ```cypher
-MATCH(n: Person) RETURN n.name AS name UNION ALL MATCH(n: Movie) RETURN n.name AS name;
+MATCH(n:Person) RETURN n.name AS name UNION ALL MATCH(n:Movie) RETURN n.name AS name;
 ```
 
 ## UNWIND
