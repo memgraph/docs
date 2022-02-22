@@ -287,14 +287,14 @@ For example to get distinct names that are shared between persons and movies use
 the following query:
 
 ```cypher
-MATCH(n:Person) RETURN n.name AS name UNION MATCH(n:Movie) RETURN n.name AS name;
+MATCH (n:Person) RETURN n.name AS name UNION MATCH (n:Movie) RETURN n.name AS name;
 ```
 
 To get all names that are shared between persons and movies (including
 duplicates) do the following:
 
 ```cypher
-MATCH(n:Person) RETURN n.name AS name UNION ALL MATCH(n:Movie) RETURN n.name AS name;
+MATCH (n:Person) RETURN n.name AS name UNION ALL MATCH (n:Movie) RETURN n.name AS name;
 ```
 
 ## UNWIND
@@ -322,7 +322,7 @@ Here is an example of a pattern that utilizes the `FRIENDS_WITH` relationships
 from our graph:
 
 ```cypher
-MATCH  (p1:Person)-[r:FRIENDS_WITH]->(p2:Person {name:'Alison'})
+MATCH (p1:Person)-[r:FRIENDS_WITH]->(p2:Person {name:'Alison'})
 RETURN p1, r, p2;
 ```
 

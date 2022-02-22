@@ -67,7 +67,7 @@ If `SET` is used to copy the properties of one node/relationship to another, all
 the properties of the latter will be removed and replaced with the new ones:
 
 ```cypher
-CREATE (p1:Person { name: 'Harry' }), (p2:Person { name: 'Anna' })
+CREATE (p1:Person {name: 'Harry'}), (p2:Person {name: 'Anna'})
 SET p1 = p2
 RETURN p1, p2;
 ```

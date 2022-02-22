@@ -6,18 +6,18 @@ sidebar_label: RETURN
 
 The `RETURN` clause defines which data should be included in the resulting set. 
 
-- [Data Set](#data-set)
-- [1. Returning nodes](#1-returning-nodes)
-- [2. Returning relationships](#2-returning-relationships)
-- [3. Returning properties](#3-returning-properties)
-- [4. Returning multiple elements](#4-returning-multiple-elements)
-- [5. Returning all elements](#5-returning-all-elements)
-- [6. Handling uncommon characters](#6-handling-uncommon-characters)
-- [7. Returning elements with an alias](#7-returning-elements-with-an-alias)
-- [8. Optional properties](#8-optional-properties)
-- [9. Returning expressions](#9-returning-expressions)
-- [10. Returning unique results](#10-returning-unique-results)
-- [Data set Queries](#data-set-queries)
+[Data Set](#data-set)
+[1. Returning nodes](#1-returning-nodes)
+[2. Returning relationships](#2-returning-relationships)
+[3. Returning properties](#3-returning-properties)
+[4. Returning multiple elements](#4-returning-multiple-elements)
+[5. Returning all elements](#5-returning-all-elements)
+[6. Handling uncommon characters](#6-handling-uncommon-characters)
+[7. Returning elements with an alias](#7-returning-elements-with-an-alias)
+[8. Optional properties](#8-optional-properties)
+[9. Returning expressions](#9-returning-expressions)
+[10. Returning unique results](#10-returning-unique-results)
+[Data set Queries](#data-set-queries)
 
 ## Data Set
 
@@ -35,7 +35,7 @@ locally by executing the queries at the end of the page: [Data Set](#data-set-qu
 The node variable needs to be added to the `RETURN` statement:
 
 ```cypher
-MATCH (c:Country { name: 'United Kingdom'})
+MATCH (c:Country {name: 'United Kingdom'})
 RETURN c;
 ```
 
@@ -53,7 +53,7 @@ Output:
 The relationship variable needs to be added to the `RETURN` statement:
 
 ```cypher
-MATCH (c:Country { name: 'United Kingdom'})-[r]-(:Person { name: 'Harry'})
+MATCH (c:Country {name: 'United Kingdom'})<-[r]-(:Person {name: 'Harry'})
 RETURN type(r);
 ```
 
@@ -72,7 +72,7 @@ Output:
 The property of a node or a relationship can be returned by using the dot separator:
 
 ```cypher
-MATCH (c:Country { name: 'United Kingdom'})
+MATCH (c:Country {name: 'United Kingdom'})
 RETURN c.name;
 ```
 
@@ -90,7 +90,7 @@ Output:
 To return multiple elements separate them with a comma character:
 
 ```cypher
-MATCH (c:Country { name: 'United Kingdom'})
+MATCH (c:Country {name: 'United Kingdom'})
 RETURN c.name, c.population, c.continent;
 ```
 
@@ -108,7 +108,7 @@ Output:
 To return all the elements from a query, use the `*` symbol:
 
 ```cypher
-MATCH (:Country { name: 'United Kingdom'})-[]-(p:Person)
+MATCH (:Country {name: 'United Kingdom'})-[]-(p:Person)
 RETURN *;
 ```
 
@@ -139,7 +139,7 @@ RETURN `An uncommon variable!`.value;
 You can specify an alias for an element in the `RETURN` statement using `AS`:
 
 ```cypher
-MATCH (c:Country { name: 'United Kingdom'})
+MATCH (c:Country {name: 'United Kingdom'})
 RETURN c.name AS Name;
 ```
 
@@ -157,7 +157,7 @@ Output:
 If the property being returned does not exist, `null` will be returned:
 
 ```cypher
-MATCH (c:Country { name: 'United Kingdom'})
+MATCH (c:Country {name: 'United Kingdom'})
 RETURN c.color;
 ```
 
@@ -175,7 +175,7 @@ Output:
  Expressions can be included in the `RETURN` statement:
 
 ```cypher
-MATCH (c:Country { name: 'United Kingdom'})
+MATCH (c:Country {name: 'United Kingdom'})
 RETURN c.name = 'United Kingdom', "Literal";
 ```
 
@@ -215,29 +215,29 @@ You can get our data set locally by executing the following query block.
 ```cypher
 MATCH (n) DETACH DELETE n;
 
-CREATE (c1:Country { name: 'Germany', language: 'German', continent: 'Europe', population: 83000000 });
-CREATE (c2:Country { name: 'France', language: 'French', continent: 'Europe', population: 67000000 });
-CREATE (c3:Country { name: 'United Kingdom', language: 'English', continent: 'Europe', population: 66000000 });
+CREATE (c1:Country {name: 'Germany', language: 'German', continent: 'Europe', population: 83000000});
+CREATE (c2:Country {name: 'France', language: 'French', continent: 'Europe', population: 67000000});
+CREATE (c3:Country {name: 'United Kingdom', language: 'English', continent: 'Europe', population: 66000000});
 
 MATCH (c1),(c2)
 WHERE c1.name= 'Germany' AND c2.name = 'France'
-CREATE (c2)<-[:WORKING_IN { date_of_start: 2014 }]-(p:Person { name: 'John' })-[:LIVING_IN { date_of_start: 2014 }]->(c1);
+CREATE (c2)<-[:WORKING_IN {date_of_start: 2014}]-(p:Person {name: 'John'})-[:LIVING_IN {date_of_start: 2014}]->(c1);
 
 MATCH (c)
 WHERE c.name= 'United Kingdom'
-CREATE (c)<-[:WORKING_IN { date_of_start: 2014 }]-(p:Person { name: 'Harry' })-[:LIVING_IN { date_of_start: 2013 }]->(c);
+CREATE (c)<-[:WORKING_IN {date_of_start: 2014}]-(p:Person {name: 'Harry'})-[:LIVING_IN {date_of_start: 2013}]->(c);
 
 MATCH (p1),(p2)
 WHERE p1.name = 'John' AND p2.name = 'Harry'
-CREATE (p1)-[:FRIENDS_WITH { date_of_start: 2011 }]->(p2);
+CREATE (p1)-[:FRIENDS_WITH {date_of_start: 2011}]->(p2);
 
 MATCH (p1),(p2)
 WHERE p1.name = 'John' AND p2.name = 'Harry'
-CREATE (p1)<-[:FRIENDS_WITH { date_of_start: 2012 }]-(:Person { name: 'Anna' })-[:FRIENDS_WITH { date_of_start: 2014 }]->(p2);
+CREATE (p1)<-[:FRIENDS_WITH {date_of_start: 2012}]-(:Person {name: 'Anna'})-[:FRIENDS_WITH {date_of_start: 2014}]->(p2);
 
 MATCH (p),(c1),(c2)
 WHERE p.name = 'Anna' AND c1.name = 'United Kingdom' AND c2.name = 'Germany'
-CREATE (c2)<-[:LIVING_IN { date_of_start: 2014 }]-(p)-[:LIVING_IN { date_of_start: 2014 }]->(c1);
+CREATE (c2)<-[:LIVING_IN {date_of_start: 2014}]-(p)-[:LIVING_IN {date_of_start: 2014}]->(c1);
 
 MATCH (n)-[r]->(m) RETURN n,r,m;
 ```

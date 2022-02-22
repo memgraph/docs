@@ -31,7 +31,7 @@ To create a relationship between two nodes, we need to specify which nodes
 either by creating them or filtering them with the `WHERE` clause:
 
 ```cypher
-CREATE (p1:Person { name: 'Harry' }), (p2:Person { name: 'Anna' })
+CREATE (p1:Person {name: 'Harry'}), (p2:Person {name: 'Anna'})
 CREATE (p1)-[r:MARRIED_TO]->(p2)
 RETURN r;
 ```
@@ -53,8 +53,8 @@ using the `WHERE` clause and accessing them using variables `p1` and `p2`.
 The built-in function `type()` can be used to return the type of a relationship:
 
 ```cypher
-CREATE (p1:Person { name: 'Harry' }), (p2:Person { name: 'Anna' })
-CREATE (p1)-[r:MARRIED_TO { weddingDate: '27-06-2019' }]->(p2)
+CREATE (p1:Person {name: 'Harry'}), (p2:Person {name: 'Anna'})
+CREATE (p1)-[r:MARRIED_TO {weddingDate: '27-06-2019'}]->(p2)
 RETURN r, type(r);
 ```
 
@@ -64,7 +64,7 @@ So far, we have only used nodes and their labels for querying the database, but
 you can also use relationships within the same clauses:
 
 ```cypher
-MATCH (p1)-[:MARRIED_TO]-(p2)
+MATCH (p1)-[:MARRIED_TO]->(p2)
 RETURN p1, p2
 ```
 
@@ -75,16 +75,14 @@ matching a relationship. You can add properties to relationships at the time of
 creation:
 
 ```cypher
-CREATE (p1:Person { name: 'Harry' }), (p2:Person { name: 'Anna' })
-CREATE (p1)-[r:MARRIED_TO { weddingDate: '27-06-2019' }]->(p2)
+CREATE (p1:Person {name: 'Harry'}), (p2:Person {name: 'Anna'})
+CREATE (p1)-[r:MARRIED_TO {weddingDate: '27-06-2019'}]->(p2)
 RETURN r;
 ```
 
 You can also specify them in the `MATCH` clause:
 
 ```cypher
-MATCH (p1)-[:MARRIED_TO { weddingDate: '27-06-2019' }]-(p2)
+MATCH (p1)-[:MARRIED_TO {weddingDate: '27-06-2019'}]->(p2)
 RETURN p1, p2
 ```
-
-

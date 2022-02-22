@@ -6,12 +6,12 @@ sidebar_label: DELETE
 
 The `DELETE` clause is used to delete nodes and relationships from the database.
 
-- [Data Set](#data-set)
-- [1. Deleting a node](#1-deleting-a-node)
-- [2. Deleting a node and its relationships](#2-deleting-a-node-and-its-relationships)
-- [3. Deleting a relationship](#3-deleting-a-relationship)
-- [4. Deleting everything](#4-deleting-everything)
-- [Data set Queries](#data-set-queries)
+[Data Set](#data-set)
+[1. Deleting a node](#1-deleting-a-node)
+[2. Deleting a node and its relationships](#2-deleting-a-node-and-its-relationships)
+[3. Deleting a relationship](#3-deleting-a-relationship)
+[4. Deleting everything](#4-deleting-everything)
+[Data set Queries](#data-set-queries)
 
 ## Data Set
 
@@ -29,7 +29,7 @@ locally by executing the queries at the end of the page: [Data Set](#data-set-qu
 The `DELETE` clause can be used to delete a node:
 
 ```cypher
-MATCH (c:Country { name: 'United Kingdom' })
+MATCH (c:Country {name: 'United Kingdom'})
 DELETE c;
 ```
 
@@ -46,7 +46,7 @@ can only be used on nodes that have no relationships.
 The `DELETE` clause can be used to delete a node along with all of its relationships with the keyword `DETACH`:
 
 ```cypher
-MATCH (n:Country { name: 'United Kingdom' })
+MATCH (n:Country {name: 'United Kingdom'})
 DETACH DELETE n;
 ```
 
@@ -60,7 +60,7 @@ Empty set (0.001 sec)
 The `DELETE` clause can be used to delete a relationship:
 
 ```cypher
-MATCH (n:Country { name: 'Germany' })-[r:LIVING_IN]-()
+MATCH (n:Country {name: 'Germany'})<-[r:LIVING_IN]-()
 DELETE r;
 ```
 
@@ -91,29 +91,29 @@ You can get our data set locally by executing the following query block.
 ```cypher
 MATCH (n) DETACH DELETE n;
 
-CREATE (c1:Country { name: 'Germany', language: 'German', continent: 'Europe', population: 83000000 });
-CREATE (c2:Country { name: 'France', language: 'French', continent: 'Europe', population: 67000000 });
-CREATE (c3:Country { name: 'United Kingdom', language: 'English', continent: 'Europe', population: 66000000 });
+CREATE (c1:Country {name: 'Germany', language: 'German', continent: 'Europe', population: 83000000});
+CREATE (c2:Country {name: 'France', language: 'French', continent: 'Europe', population: 67000000});
+CREATE (c3:Country {name: 'United Kingdom', language: 'English', continent: 'Europe', population: 66000000});
 
 MATCH (c1),(c2)
-WHERE c1.name= 'Germany' AND c2.name = 'France'
-CREATE (c2)<-[:WORKING_IN { date_of_start: 2014 }]-(p:Person { name: 'John' })-[:LIVING_IN { date_of_start: 2014 }]->(c1);
+WHERE c1.name = 'Germany' AND c2.name = 'France'
+CREATE (c2)<-[:WORKING_IN {date_of_start: 2014}]-(p:Person {name: 'John'})-[:LIVING_IN {date_of_start: 2014}]->(c1);
 
 MATCH (c)
-WHERE c.name= 'United Kingdom'
-CREATE (c)<-[:WORKING_IN { date_of_start: 2014 }]-(p:Person { name: 'Harry' })-[:LIVING_IN { date_of_start: 2013 }]->(c);
+WHERE c.name = 'United Kingdom'
+CREATE (c)<-[:WORKING_IN {date_of_start: 2014}]-(p:Person {name: 'Harry'})-[:LIVING_IN {date_of_start: 2013}]->(c);
 
 MATCH (p1),(p2)
 WHERE p1.name = 'John' AND p2.name = 'Harry'
-CREATE (p1)-[:FRIENDS_WITH { date_of_start: 2011 }]->(p2);
+CREATE (p1)-[:FRIENDS_WITH {date_of_start: 2011}]->(p2);
 
 MATCH (p1),(p2)
 WHERE p1.name = 'John' AND p2.name = 'Harry'
-CREATE (p1)<-[:FRIENDS_WITH { date_of_start: 2012 }]-(:Person { name: 'Anna' })-[:FRIENDS_WITH { date_of_start: 2014 }]->(p2);
+CREATE (p1)<-[:FRIENDS_WITH {date_of_start: 2012}]-(:Person {name: 'Anna'})-[:FRIENDS_WITH {date_of_start: 2014}]->(p2);
 
 MATCH (p),(c1),(c2)
 WHERE p.name = 'Anna' AND c1.name = 'United Kingdom' AND c2.name = 'Germany'
-CREATE (c2)<-[:LIVING_IN { date_of_start: 2014 }]-(p)-[:LIVING_IN { date_of_start: 2014 }]->(c1);
+CREATE (c2)<-[:LIVING_IN {date_of_start: 2014}]-(p)-[:LIVING_IN {date_of_start: 2014}]->(c1);
 
 MATCH (n)-[r]->(m) RETURN n,r,m;
 ```

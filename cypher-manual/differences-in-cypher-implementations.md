@@ -91,6 +91,6 @@ The example query would look like this:
 ```cypher
 OPTIONAL MATCH (n:NodeA)-[]->(m:NodeB)
 WHERE m IS null
-RETURN DISTINCT n
+RETURN DISTINCT n;
 ```
 

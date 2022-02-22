@@ -23,14 +23,14 @@ done by providing a pattern, similarly to `MATCH` clause.
 For example, use this query to create two new nodes connected with a new relationship.
 
 ```cypher
-CREATE (node2)-[:relationship_type]->(node2);
+CREATE (node2)-[:RELATIONSHIP_TYPE]->(node2);
 ```
 
 Labels and properties can be set during creation using the same syntax as in
 `MATCH` patterns. For example, creating a node with a label and a property:
 
 ```cypher
-CREATE (node:Label {property: "my property value"});
+CREATE (node:Label {property: 'my property value'});
 ```
 
 Additional information on `CREATE` is available [here](./clauses/create.md).
@@ -65,7 +65,7 @@ In a way, this clause is like a combination of `MATCH` and `CREATE`.
 For example, ensure that a person has at least one friend:
 
 ```cypher
-MATCH (n:Person) MERGE (n)-[:FriendOf]->(m);
+MATCH (n:Person) MERGE (n)-[:FRIEND_WITH]->(m);
 ```
 
 The clause also provides additional features for updating the values depending
@@ -75,7 +75,7 @@ and `ON MATCH` sub clauses.
 For example, set different properties depending on what `MERGE` did:
 
 ```cypher
-MATCH (n:Person) MERGE (n)-[:FriendOf]->(m)
+MATCH (n:Person) MERGE (n)-[:FRIEND_WITH]->(m)
 ON CREATE SET m.prop = "created" ON MATCH SET m.prop = "existed";
 ```
 

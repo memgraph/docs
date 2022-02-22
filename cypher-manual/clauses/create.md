@@ -73,7 +73,7 @@ Output:
 A node can be created with initial properties.
 
 ```cypher
-CREATE (n:Country { name: 'San Marino', continent: 'Europe' })
+CREATE (n:Country {name: 'San Marino', continent: 'Europe'})
 RETURN n;
 ```
 
@@ -112,7 +112,7 @@ To create a relationship between two nodes, we need to specify which nodes
 either by creating them or filtering them with the `WHERE` clause.
 
 ```cypher
-CREATE (c1:Country { name: 'Belgium' }), (c2:Country { name: 'Netherlands' })
+CREATE (c1:Country {name: 'Belgium'}), (c2:Country {name: 'Netherlands'})
 CREATE (c1)-[r:BORDERS_WITH]->(c2)
 RETURN r;
 ```
@@ -151,7 +151,7 @@ You can add properties to a relationship at the time of creation.
 ```cypher
 MATCH (c1:Country),(c2:Country)
 WHERE c1.name = 'Belgium' AND c2.name = 'Netherlands'
-CREATE (c1)-[r:BORDERS_WITH { length: '30KM' }]->(c2)
+CREATE (c1)-[r:BORDERS_WITH {length: '30KM'}]->(c2)
 RETURN r;
 ```
 
@@ -169,7 +169,7 @@ Output:
 When creating a path, all of the parts of the pattern that don't exist will be created.
 
 ```cypher
-CREATE p=((n:Country { name: 'Belgium' })-[r:BORDERS_WITH { length: '30KM' }]->(m:Country { name: 'Netherlands' }))
+CREATE p=((n:Country {name: 'Belgium'})-[r:BORDERS_WITH {length: '30KM'}]->(m:Country {name: 'Netherlands'}))
 RETURN p;
 ```
 
