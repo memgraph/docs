@@ -277,13 +277,13 @@ module.exports = {
         {
           type: "category",
           label: "Streams",
+          link: { type: "doc", id: "reference-guide/streams/overview" },
           items: [
-            "reference-guide/streams/overview",
             {
               type: "category",
               label: "Transformation Modules",
+              link: { type: "doc", id: "reference-guide/streams/transformation-modules/overview" },
               items: [
-                "reference-guide/streams/transformation-modules/overview",
                 {
                   type: "category",
                   label: "API",
