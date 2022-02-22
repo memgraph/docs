@@ -48,7 +48,7 @@ docker load -i /path-to/memgraph-<version>-docker.tar.gz
 To start Memgraph DB, use the following command:
 
 ```console
-docker run -p 7687:7687 memgraph -v mg_lib:/var/lib/memgraph memgraph
+docker run -p 7687:7687 -v mg_lib:/var/lib/memgraph memgraph
 ```
 
 If successful, you should see a message similar to the following:
