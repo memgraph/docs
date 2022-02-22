@@ -112,13 +112,11 @@ CALL mg.transformations() YIELD *;
 This will yield the following result:
 
 ```nocopy
-+---------------------+
-| name                |
-+---------------------+
-| ...                 |
-| batch.transform     |
-| ...                 |
-+---------------------+
++-------------------------------------------+-------------------------------------------------------+-------------+
+| name                                      | path                                                  | is_editable |
++-------------------------------------------+-------------------------------------------------------+-------------+
+| "batch.transform"                         | "/usr/lib/memgraph/query_modules/batch.py"            | true        |
++-------------------------------------------+-------------------------------------------------------+-------------+
 ```
 
 You can see that Memgraph has already loaded the user-defined transformation of

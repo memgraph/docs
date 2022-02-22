@@ -21,12 +21,12 @@ language for structuring, manipulating, and exploring data.
 
 There are three official Docker images for Memgraph:
 
-* `memgraph/memgraph` - the most basic Memgraph instance.
-* `memgraph/memgraph-mage` - the image contains a Memgraph instance together
+* `memgraph/memgraph` - the most basic MemgraphDB instance.
+* `memgraph/memgraph-mage` - the image contains a MemgraphDB instance together
   with all the newest [MAGE](/mage) modules and graph algorithms.
-* `memgraph/memgraph-platform` - the image contains Memgraph, Memgraph Lab, and
-  mgconsole. Once started, mgconsole will be opened in the terminal, while
-  Memgraph Lab is available at `http://localhost:3000`.
+* `memgraph/memgraph-platform` - the image contains MemgraphDB, Memgraph Lab,
+  mgconsole and MAGE. Once started, mgconsole will be opened in the terminal,
+  while Memgraph Lab is available at `http://localhost:3000`.
 
 ## Installation & upgrade
 

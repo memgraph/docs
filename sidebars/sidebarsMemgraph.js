@@ -125,9 +125,13 @@ module.exports = {
         "tutorials/football-transfers",
         "tutorials/got-deaths",
         "tutorials/graphing-the-premier-league",
+        "tutorials/install-memgraph-windows-10",
         "tutorials/marvel-universe",
         "tutorials/movie-recommendation",
+        "tutorials/migrate-relational-database",
+        "tutorials/graph-stream-processing-with-kafka",
         "tutorials/social-network-analysis",
+        "tutorials/style-your-graphs-in-memgraph-lab",
         "tutorials/understanding-music-with-modules",
       ],
     },
@@ -227,6 +231,7 @@ module.exports = {
         "reference-guide/indexing",
         "reference-guide/isolation-levels",
         "reference-guide/metadata",
+        "reference-guide/monitoring-server",
         {
           type: "category",
           label: "Query modules",
@@ -234,6 +239,7 @@ module.exports = {
             "reference-guide/query-modules/overview",
             "reference-guide/query-modules/available-query-modules",
             "reference-guide/query-modules/load-call-query-modules",
+            "reference-guide/query-modules/module-file-utilities",
             {
               type: "category",
               label: "API",
@@ -267,6 +273,7 @@ module.exports = {
         },
         "reference-guide/replication",
         "reference-guide/runtime-settings",
+        "reference-guide/server-stats",
         {
           type: "category",
           label: "Streams",
@@ -302,7 +309,7 @@ module.exports = {
             "reference-guide/ldap-security",
             "reference-guide/security",
           ],
-        },
+        }
       ],
     },
     {
