@@ -6,26 +6,24 @@ sidebar_label: SET
 
 The `SET` clause is used to update labels on nodes and properties on nodes and relationships.
 
-[Data Set](#data-set)
-[1. Setting a property](#1-setting-a-property)
-[2. Setting multiple properties](#2-setting-multiple-properties)
-[3. Setting node labels](#3-setting-node-labels)
-[4. Update a property](#4-update-a-property)
-[5. Remove a property](#5-remove-a-property)
-[6. Copy all properties](#6-copy-all-properties)
-[7. Replace all properties using map](#7-replace-all-properties-using-map)
-[8. Update all properties using map](#8-update-all-properties-using-map)
-[Data set Queries](#data-set-queries)
+1. [Setting a property](#1-setting-a-property) <br />
+2. [Setting multiple properties](#2-setting-multiple-properties) <br />
+3. [Setting node labels](#3-setting-node-labels) <br />
+4. [Update a property](#4-update-a-property) <br />
+5. [Remove a property](#5-remove-a-property) <br />
+6. [Copy all properties](#6-copy-all-properties) <br />
+7. [Replace all properties using map](#7-replace-all-properties-using-map) <br />
+8. [Update all properties using map](#8-update-all-properties-using-map)
 
-## Data Set
+## Dataset
 
-The following examples are executed with this data set. You can create this data set 
-locally by executing the queries at the end of the page: [Data Set](#data-set-queries).
+The following examples are executed with this dataset. You can create this dataset
+locally by executing the queries at the end of the page: [Dataset queries](#data-set-queries).
 
 <img
-  src="https://raw.githubusercontent.com/g-despot/images/master/data_set.png"
-  alt="Data set"
-  style={{height: 380}}
+src="https://raw.githubusercontent.com/g-despot/images/master/data_set.png"
+alt="Data set"
+style={{height: 380}}
 />
 
 ## 1. Setting a property
@@ -39,6 +37,7 @@ RETURN c.name, c.population;
 ```
 
 Output:
+
 ```nocopy
 +--------------+--------------+
 | c.name       | c.population |
@@ -58,6 +57,7 @@ RETURN c.name, c.population, c.capital;
 ```
 
 Output:
+
 ```nocopy
 +--------------+--------------+--------------+
 | c.name       | c.population | c.capital    |
@@ -77,6 +77,7 @@ RETURN labels(c);
 ```
 
 Output:
+
 ```nocopy
 +---------------------+
 | labels(c)           |
@@ -94,6 +95,7 @@ RETURN labels(c);
 ```
 
 Output:
+
 ```nocopy
 +--------------------------------------+
 | labels(c)                            |
@@ -113,6 +115,7 @@ RETURN c.population;
 ```
 
 Output:
+
 ```nocopy
 +---------------+
 | c.population  |
@@ -132,6 +135,7 @@ RETURN c.population;
 ```
 
 Output:
+
 ```nocopy
 +--------------+
 | c.population |
@@ -151,6 +155,7 @@ RETURN c2, c1;
 ```
 
 Output:
+
 ```nocopy
 +----------------------------------------------------------------------------+----------------------------------------------------------------------------+
 | c2                                                                         | c1                                                                         |
@@ -162,7 +167,7 @@ Output:
 ## 7. Replace all properties using map
 
 If `SET` is used with the property replacement operator `=`, all the properties in the map that are on the node or relationship will be updated.
-The properties that are not on the node or relationship but are in the map will be added. The properties that are not in the map will be removed. 
+The properties that are not on the node or relationship but are in the map will be added. The properties that are not in the map will be removed.
 
 ```cypher
 MATCH (c:Country {name: 'Germany'})
@@ -171,6 +176,7 @@ RETURN c;
 ```
 
 Output:
+
 ```nocopy
 +------------------------------------------------------+
 | c                                                    |
@@ -188,6 +194,7 @@ RETURN c;
 ```
 
 Output:
+
 ```nocopy
 +------------+
 | c          |
@@ -199,7 +206,7 @@ Output:
 ## 8. Update all properties using map
 
 If `SET` is used with the property mutation operator `+=`, all the properties in the map that are on the node or relationship will be updated.
-The properties that are not on the node or relationship but are in the map will be added. Properties that are not present in the map will be left as is. 
+The properties that are not on the node or relationship but are in the map will be added. Properties that are not present in the map will be left as is.
 
 ```cypher
 MATCH (c:Country {name: 'Germany'})
@@ -208,6 +215,7 @@ RETURN c;
 ```
 
 Output:
+
 ```nocopy
 +-----------------------------------------------------------------------------------------------+
 | c                                                                                             |
@@ -216,10 +224,10 @@ Output:
 +-----------------------------------------------------------------------------------------------+
 ```
 
-## Data set Queries
+## Dataset queries
 
 We encourage you to try out the examples by yourself.
-You can get our data set locally by executing the following query block.
+You can get our dataset locally by executing the following query block.
 
 ```cypher
 MATCH (n) DETACH DELETE n;

@@ -6,20 +6,18 @@ sidebar_label: REMOVE
 
 The `REMOVE` clause is used to remove labels and properties from nodes and relationships.
 
-[Data Set](#data-set)
-[1. Removing a property](#1-removing-a-property)
-[2. Removing a label](#2-removing-a-label)
-[Data set Queries](#data-set-queries)
+1. [Removing a property](#1-removing-a-property) <br />
+2. [Removing a label](#2-removing-a-label)
 
-## Data Set
+## Dataset
 
-The following examples are executed with this data set. You can create this data set 
-locally by executing the queries at the end of the page: [Data Set](#data-set-queries).
+The following examples are executed with this dataset. You can create this dataset
+locally by executing the queries at the end of the page: [Dataset queries](#data-set-queries).
 
 <img
-  src="https://raw.githubusercontent.com/g-despot/images/master/data_set.png"
-  alt="Data set"
-  style={{height: 380}}
+src="https://raw.githubusercontent.com/g-despot/images/master/data_set.png"
+alt="Data set"
+style={{height: 380}}
 />
 
 ## 1. Removing a property
@@ -33,6 +31,7 @@ RETURN n;
 ```
 
 Output:
+
 ```nocopy
 +-----------------------------------------------------------------------------+
 | n                                                                           |
@@ -54,6 +53,7 @@ RETURN n;
 ```
 
 Output:
+
 ```nocopy
 +--------------------------------------------------------------------------------------------+
 | n                                                                                          |
@@ -69,7 +69,7 @@ MATCH (n {name: 'United Kingdom'})
 SET n:Country:Kingdom;
 ```
 
-You can now remove multiple labels from a node at the same time. 
+You can now remove multiple labels from a node at the same time.
 
 ```cypher
 MATCH (n:Country {name: 'United Kingdom'})
@@ -78,6 +78,7 @@ RETURN n;
 ```
 
 Output:
+
 ```nocopy
 +--------------------------------------------------------------------------------------------+
 | n                                                                                          |
@@ -86,10 +87,10 @@ Output:
 +--------------------------------------------------------------------------------------------+
 ```
 
-## Data set Queries
+## Dataset queries
 
 We encourage you to try out the examples by yourself.
-You can get our data set locally by executing the following query block.
+You can get our dataset locally by executing the following query block.
 
 ```cypher
 MATCH (n) DETACH DELETE n;

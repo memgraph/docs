@@ -6,8 +6,8 @@ sidebar_label: Import data
 
 For adding new data, you can use the following clauses.
 
-  * `CREATE`, for creating new nodes and relationships.
-  * `SET`, for adding new or updating existing labels and properties.
+- `CREATE`, for creating new nodes and relationships.
+- `SET`, for adding new or updating existing labels and properties.
 
 You can still use the `RETURN` clause to produce results after writing, but it
 is not mandatory.
@@ -35,7 +35,6 @@ CREATE (node:Label {property: 'my property value'});
 
 Additional information on `CREATE` is available [here](./clauses/create.md).
 
-
 ## WITH
 
 The write part of the query cannot be simply followed by another read part. To
@@ -61,11 +60,10 @@ The `MERGE` clause is used to ensure that a pattern you are looking for exists
 in the database. This means that it will be created if the pattern is not found.
 In a way, this clause is like a combination of `MATCH` and `CREATE`.
 
-
 For example, ensure that a person has at least one friend:
 
 ```cypher
-MATCH (n:Person) MERGE (n)-[:FRIEND_WITH]->(m);
+MATCH (n:Person) MERGE (n)-[:FRIENDS_WITH]->(m);
 ```
 
 The clause also provides additional features for updating the values depending
@@ -75,7 +73,7 @@ and `ON MATCH` sub clauses.
 For example, set different properties depending on what `MERGE` did:
 
 ```cypher
-MATCH (n:Person) MERGE (n)-[:FRIEND_WITH]->(m)
+MATCH (n:Person) MERGE (n)-[:FRIENDS_WITH]->(m)
 ON CREATE SET m.prop = "created" ON MATCH SET m.prop = "existed";
 ```
 

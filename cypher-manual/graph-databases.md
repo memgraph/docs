@@ -7,22 +7,23 @@ sidebar_label: What are graph databases
 A **graph database** is a type of database that stores data in the form of nodes
 that can be connected with relationships. **Graphs** are essentially very simple
 structures that map relations between objects. We call these objects **nodes**
-and the connections between them are **relationships**.
+and the connections between them **relationships**.
 
 ![graph-database-example](data/graph-databases/graph-database-example.png)
 
-## Graph terminology 
-Every graph can consist of four components: 
+## Graph terminology
 
-* **Nodes** - the main entities in a graph. They are also sometimes referred to
-  as vertices or points. 
-* **Relationships** - the connections between those entities. Sometimes they are
+Every graph can consist of four components:
+
+- **Nodes** - the main entities in a graph. They are also sometimes referred to
+  as vertices or points.
+- **Relationships** - the connections between those entities. Sometimes they are
   referred to as edges or links.
-* **Labels** - attributes that group similar nodes together.
-* **Properties** - key/value pairs stored within nodes or relationships.
+- **Labels** - attributes that group similar nodes together.
+- **Properties** - key/value pairs stored within nodes or relationships.
 
 Nodes and relationships are fundamental components that are used. Labels and
-properties are often included because of the added functionalities they offer. 
+properties are often included because of the added functionalities they offer.
 
 ### Nodes
 
@@ -34,8 +35,8 @@ Here is the simplified syntax for representing a node:
 (node)
 ```
 
-The variable `(node)` stores node values by the query engine so they can be
-processed or returned in a query later on.  If you do not need to do anything
+The variable `(node)` stores node values so they can be
+processed or returned in a query later on. If you do not need to do anything
 with the node, you can skip the use of the variable. By doing so, you are
 creating an **anonymous node**.
 
@@ -44,7 +45,7 @@ creating an **anonymous node**.
 Relationships are the lines that connect nodes and represent a defined
 connection between them. Every relationship has a source node and a target node
 that represent the direction of the relationship. If this direction is
-important, the relationship is considered directed; otherwise, it’s undirected.
+important, the relationship is considered directed, otherwise, it’s undirected.
 
 Relationships can also store data in the form of properties, just as nodes. In
 most cases, relationships store quantitative properties such as weights, costs,
@@ -67,6 +68,7 @@ nodes can be represented in Cypher in the following way:
 (:Person)
 (:City:Location)
 ```
+
 ### Properties
 
 Properties are key-value pairs of data stored on nodes or on relationships. They
@@ -83,10 +85,10 @@ when working with the graph?
 
 Here is one simple example that shows properties for several nodes:
 
-* What are the names of the people? - `name`
-* How old are the people? - `dateOfBirth`
-* What is the name of the city? - `name`
-* What country is the city located in? - `country`
-* What is the population of the city? - `population`
+- What are the names of the people? - `name`
+- How old are the people? - `dateOfBirth`
+- What is the name of the city? - `name`
+- What country is the city located in? - `country`
+- What is the population of the city? - `population`
 
 ![properties-example](data/graph-databases/properties-example.png)

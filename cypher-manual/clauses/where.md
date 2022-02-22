@@ -9,30 +9,30 @@ sidebar_label: WHERE
 
 When used next to the `WITH` clause, the `WHERE` clause only filters the
 results, while when used with `MATCH` and `OPTIONAL MATCH` it adds constraints
-to the described patterns.  
+to the described patterns.
 
 `WHERE` should be used directly after `MATCH` or `OPTIONAL MATCH` clauses in
 order to avoid problems with performance or results.
 
 1. [Basic usage](#1-basic-usage)<br />
-    1.1. [Boolean Operators](#11-boolean-operators)<br />
-    1.2. [Inequality Operators Operators](#12-inequality-operators-operators)<br />
-    1.3. [Filter with node labels](#13-filter-with-node-labels)<br />
-    1.4. [Filter with node properties](#14-filter-with-node-properties)<br />
-    1.5. [Filter with relationship properties](#15-filter-with-relationship-properties)<br />
-    1.6. [Check if property is not null](#16-check-if-property-is-not-null)<br />
+   1.1. [Boolean Operators](#11-boolean-operators)<br />
+   1.2. [Inequality Operators Operators](#12-inequality-operators-operators)<br />
+   1.3. [Filter with node labels](#13-filter-with-node-labels)<br />
+   1.4. [Filter with node properties](#14-filter-with-node-properties)<br />
+   1.5. [Filter with relationship properties](#15-filter-with-relationship-properties)<br />
+   1.6. [Check if property is not null](#16-check-if-property-is-not-null)<br />
 2. [String matching](#2-string-matching)<br />
 3. [Regular Expressions](#3-regular-expressions)
 
-## Data Set
+## Dataset
 
-The following examples are executed with this data set. You can create this data set 
-locally by executing the queries at the end of the page: [Data Set](#data-set-queries).
+The following examples are executed with this dataset. You can create this dataset
+locally by executing the queries at the end of the page: [Dataset queries](#data-set-queries).
 
 <img
-  src="https://raw.githubusercontent.com/g-despot/images/master/data_set.png"
-  alt="Data set"
-  style={{height: 380}}
+src="https://raw.githubusercontent.com/g-despot/images/master/data_set.png"
+alt="Data set"
+style={{height: 380}}
 />
 
 ## 1. Basic Usage
@@ -48,6 +48,7 @@ RETURN c.name;
 ```
 
 Output:
+
 ```nocopy
 +----------------+
 | c.name         |
@@ -67,6 +68,7 @@ RETURN c.name;
 ```
 
 Output:
+
 ```nocopy
 +---------+
 | c.name  |
@@ -86,6 +88,7 @@ RETURN c.name;
 ```
 
 Output:
+
 ```nocopy
 +----------------+
 | c.name         |
@@ -107,6 +110,7 @@ RETURN c.name;
 ```
 
 Output:
+
 ```nocopy
 +----------------+
 | c.name         |
@@ -127,6 +131,7 @@ RETURN p;
 ```
 
 Output:
+
 ```nocopy
 +---------------------------+
 | p                         |
@@ -147,6 +152,7 @@ RETURN c.name, c.population;
 ```
 
 Output:
+
 ```nocopy
 +----------------+----------------+
 | c.name         | c.population   |
@@ -160,11 +166,11 @@ Output:
 Apart from comparison and concatenation operators Cypher provides special
 string operators for easier matching of substrings:
 
-Operator           | Description
--------------------|------------
- `a STARTS WITH b` | Returns true if the prefix of string a is equal to string b.
- `a ENDS WITH b`   | Returns true if the suffix of string a is equal to string b.
- `a CONTAINS b`    | Returns true if some substring of string a is equal to string b.
+| Operator          | Description                                                      |
+| ----------------- | ---------------------------------------------------------------- |
+| `a STARTS WITH b` | Returns true if the prefix of string a is equal to string b.     |
+| `a ENDS WITH b`   | Returns true if the suffix of string a is equal to string b.     |
+| `a CONTAINS b`    | Returns true if some substring of string a is equal to string b. |
 
 ```cypher
 MATCH (c:Country)
@@ -173,6 +179,7 @@ RETURN c.name;
 ```
 
 Output:
+
 ```nocopy
 +---------+
 | c.name  |
@@ -193,6 +200,7 @@ MATCH (n:Person) WHERE n.name =~ ".*a$" RETURN n;
 ```
 
 Output:
+
 ```nocopy
 +--------------------------+
 | n                        |
@@ -207,10 +215,10 @@ expression grammar. The ECMAScript grammar can be found
 modifications are described in [this
 document](https://en.cppreference.com/w/cpp/regex/ecmascript).
 
-## Data set Queries
+## Dataset queries
 
 We encourage you to try out the examples by yourself.
-You can get our data set locally by executing the following query block.
+You can get our dataset locally by executing the following query block.
 
 ```cypher
 MATCH (n) DETACH DELETE n;

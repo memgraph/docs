@@ -4,24 +4,22 @@ title: OPTIONAL MATCH clause
 sidebar_label: OPTIONAL MATCH
 ---
 
-The `MATCH` clause can be modified by prepending the `OPTIONAL` keyword. 
-`OPTIONAL MATCH` clause behaves the same as a regular `MATCH`, but when it fails to find the pattern, 
+The `MATCH` clause can be modified by prepending the `OPTIONAL` keyword.
+`OPTIONAL MATCH` clause behaves the same as a regular `MATCH`, but when it fails to find the pattern,
 missing parts of the pattern will be filled with null values.
 
-[Data Set](#data-set)
-[1. Get optional relationships](#1-get-optional-relationships)
-[2. Optional typed and named relationship](#2-optional-typed-and-named-relationship)
-[Data set Queries](#data-set-queries)
+1. [Get optional relationships](#1-get-optional-relationships) <br />
+2. [Optional typed and named relationship](#2-optional-typed-and-named-relationship)
 
-## Data Set
+## Dataset
 
-The following examples are executed with this data set. You can create this data set 
-locally by executing the queries at the end of the page: [Data Set](#data-set-queries).
+The following examples are executed with this dataset. You can create this dataset
+locally by executing the queries at the end of the page: [Dataset queries](#data-set-queries).
 
 <img
-  src="https://raw.githubusercontent.com/g-despot/images/master/data_set.png"
-  alt="Data set"
-  style={{height: 380}}
+src="https://raw.githubusercontent.com/g-despot/images/master/data_set.png"
+alt="Data set"
+style={{height: 380}}
 />
 
 ## 1. Get optional relationships
@@ -37,6 +35,7 @@ RETURN c2;
 ```
 
 Output:
+
 ```nocopy
 +------+
 | c2   |
@@ -56,6 +55,7 @@ RETURN c.name, r;
 ```
 
 Output:
+
 ```nocopy
 +----------------+----------------+
 | c.name         | r              |
@@ -66,10 +66,10 @@ Output:
 
 Because there are no outgoing relationships of type `LIVES_IN` for the node, the value of r is `null` while the value of `contry.name` is `'United Kingdom'`.
 
-## Data set Queries
+## Dataset queries
 
 We encourage you to try out the examples by yourself.
-You can get our data set locally by executing the following query block.
+You can get our dataset locally by executing the following query block.
 
 ```cypher
 MATCH (n) DETACH DELETE n;

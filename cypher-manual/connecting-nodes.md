@@ -7,12 +7,12 @@ sidebar_label: Connecting nodes
 **Relationships** (or edges) are the **lines that connect nodes** to each other
 and represent a defined connection between them. Every relationship has a source
 node and a target node that represent in which direction the relationship works.
-If this direction is important, the relationship is considered directed;
+If this direction is important, the relationship is considered directed,
 otherwise, it's undirected.
 
 Relationships can also store data in the form of **properties**, just as nodes.
 In most cases, relationships store quantitative properties such as weight,
-costs, distances, ratings, etc. 
+costs, distances, ratings, etc.
 
 ![](data/connecting-nodes/connecting-nodes.png)
 
@@ -65,7 +65,7 @@ you can also use relationships within the same clauses:
 
 ```cypher
 MATCH (p1)-[:MARRIED_TO]->(p2)
-RETURN p1, p2
+RETURN p1, p2;
 ```
 
 ### Relationship properties
@@ -84,5 +84,5 @@ You can also specify them in the `MATCH` clause:
 
 ```cypher
 MATCH (p1)-[:MARRIED_TO {weddingDate: '27-06-2019'}]->(p2)
-RETURN p1, p2
+RETURN p1, p2;
 ```

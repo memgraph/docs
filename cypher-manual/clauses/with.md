@@ -6,21 +6,19 @@ sidebar_label: WITH
 
 The `WITH` is used to chain together parts of a query, piping the results from one to be used as starting points or criteria in the next.
 
-[Data Set](#data-set)
-[1. Filter on aggregate functions](#1-filter-on-aggregate-functions)
-[2. Sorting results](#2-sorting-results)
-[3. Limited path searches](#3-limited-path-searches)
-[Data set Queries](#data-set-queries)
+1. [Filter on aggregate functions](#1-filter-on-aggregate-functions) <br />
+2. [Sorting results](#2-sorting-results) <br />
+3. [Limited path searches](#3-limited-path-searches)
 
-## Data Set
+## Dataset
 
-The following examples are executed with this data set. You can create this data set 
-locally by executing the queries at the end of the page: [Data Set](#data-set-queries).
+The following examples are executed with this dataset. You can create this dataset
+locally by executing the queries at the end of the page: [Dataset queries](#data-set-queries).
 
 <img
-  src="https://raw.githubusercontent.com/g-despot/images/master/data_set.png"
-  alt="Data set"
-  style={{height: 380}}
+src="https://raw.githubusercontent.com/g-despot/images/master/data_set.png"
+alt="Data set"
+style={{height: 380}}
 />
 
 ## 1. Filter on aggregate functions
@@ -35,6 +33,7 @@ RETURN person.name;
 ```
 
 Output:
+
 ```nocopy
 +-------------+
 | person.name |
@@ -56,6 +55,7 @@ RETURN collect(n.name);
 ```
 
 Output:
+
 ```nocopy
 +-------------------------------+
 | collect(n.name)               |
@@ -66,7 +66,7 @@ Output:
 
 ## 3. Limited path searches
 
-The `WITH` clause can be used to match paths, limit to a certain number, 
+The `WITH` clause can be used to match paths, limit to a certain number,
 and then match again using those paths as a base:
 
 ```cypher
@@ -78,6 +78,7 @@ RETURN p3.name;
 ```
 
 Output:
+
 ```nocopy
 +----------------+
 | p3.name        |
@@ -89,10 +90,10 @@ Output:
 +----------------+
 ```
 
-## Data set Queries
+## Dataset queries
 
 We encourage you to try out the examples by yourself.
-You can get our data set locally by executing the following query block.
+You can get our dataset locally by executing the following query block.
 
 ```cypher
 MATCH (n) DETACH DELETE n;

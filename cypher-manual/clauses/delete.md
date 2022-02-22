@@ -6,22 +6,20 @@ sidebar_label: DELETE
 
 The `DELETE` clause is used to delete nodes and relationships from the database.
 
-[Data Set](#data-set)
-[1. Deleting a node](#1-deleting-a-node)
-[2. Deleting a node and its relationships](#2-deleting-a-node-and-its-relationships)
-[3. Deleting a relationship](#3-deleting-a-relationship)
-[4. Deleting everything](#4-deleting-everything)
-[Data set Queries](#data-set-queries)
+1. [Deleting a node](#1-deleting-a-node) <br />
+2. [Deleting a node and its relationships](#2-deleting-a-node-and-its-relationships) <br />
+3. [Deleting a relationship](#3-deleting-a-relationship) <br />
+4. [Deleting everything](#4-deleting-everything)
 
-## Data Set
+## Dataset
 
-The following examples are executed with this data set. You can create this data set 
-locally by executing the queries at the end of the page: [Data Set](#data-set-queries).
+The following examples are executed with this data et. You can create this dataset
+locally by executing the queries at the end of the page: [Dataset queries](#data-set-queries).
 
 <img
-  src="https://raw.githubusercontent.com/g-despot/images/master/data_set.png"
-  alt="Data set"
-  style={{height: 380}}
+src="https://raw.githubusercontent.com/g-despot/images/master/data_set.png"
+alt="Data set"
+style={{height: 380}}
 />
 
 ## 1. Deleting a node
@@ -34,11 +32,12 @@ DELETE c;
 ```
 
 Output:
+
 ```nocopy
 Failed to remove node because of it's existing connections. Consider using DETACH DELETE.
 ```
 
-On the data set we are using, this query results in an error because `DELETE`
+On the dataset we are using, this query results in an error because `DELETE`
 can only be used on nodes that have no relationships.
 
 ## 2. Deleting a node and its relationships
@@ -51,6 +50,7 @@ DETACH DELETE n;
 ```
 
 Output:
+
 ```nocopy
 Empty set (0.001 sec)
 ```
@@ -65,6 +65,7 @@ DELETE r;
 ```
 
 Output:
+
 ```nocopy
 Empty set (0.003 sec)
 ```
@@ -79,14 +80,15 @@ DETACH DELETE n;
 ```
 
 Output:
+
 ```nocopy
 Empty set (0.001 sec)
 ```
 
-## Data set Queries
+## Dataset queries
 
 We encourage you to try out the examples by yourself.
-You can get our data set locally by executing the following query block.
+You can get our dataset locally by executing the following query block.
 
 ```cypher
 MATCH (n) DETACH DELETE n;

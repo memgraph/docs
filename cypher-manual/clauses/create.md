@@ -8,7 +8,7 @@ The `CREATE` clause is used to create nodes and relationships in a graph.
 
 1. [Creating nodes](#1-creating-nodes) <br />
     1.1. [Creating a single node](#11-creating-a-single-node)<br />
-    1.2.[Creating a node with properties](#12-creating-a-node-with-properties)<br />
+    1.2. [Creating a node with properties](#12-creating-a-node-with-properties)<br />
     1.3. [Creating multiple nodes](#13-creating-multiple-nodes)<br />
 2. [Creating relationships](#2-creating-relationships)<br />
     2.1. [Creating a relationship between two nodes](#21-creating-a-relationship-between-two-nodes)<br />

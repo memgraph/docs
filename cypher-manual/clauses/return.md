@@ -4,30 +4,28 @@ title: RETURN clause
 sidebar_label: RETURN
 ---
 
-The `RETURN` clause defines which data should be included in the resulting set. 
+The `RETURN` clause defines which data should be included in the resulting set.
 
-[Data Set](#data-set)
-[1. Returning nodes](#1-returning-nodes)
-[2. Returning relationships](#2-returning-relationships)
-[3. Returning properties](#3-returning-properties)
-[4. Returning multiple elements](#4-returning-multiple-elements)
-[5. Returning all elements](#5-returning-all-elements)
-[6. Handling uncommon characters](#6-handling-uncommon-characters)
-[7. Returning elements with an alias](#7-returning-elements-with-an-alias)
-[8. Optional properties](#8-optional-properties)
-[9. Returning expressions](#9-returning-expressions)
-[10. Returning unique results](#10-returning-unique-results)
-[Data set Queries](#data-set-queries)
+1. [Returning nodes](#1-returning-nodes) <br />
+2. [Returning relationships](#2-returning-relationships) <br />
+3. [Returning properties](#3-returning-properties) <br />
+4. [Returning multiple elements](#4-returning-multiple-elements) <br />
+5. [Returning all elements](#5-returning-all-elements) <br />
+6. [Handling uncommon characters](#6-handling-uncommon-characters) <br />
+7. [Returning elements with an alias](#7-returning-elements-with-an-alias) <br />
+8. [Optional properties](#8-optional-properties) <br />
+9. [Returning expressions](#9-returning-expressions) <br />
+10. [Returning unique results](#10-returning-unique-results)
 
-## Data Set
+## Dataset
 
-The following examples are executed with this data set. You can create this data set 
-locally by executing the queries at the end of the page: [Data Set](#data-set-queries).
+The following examples are executed with this dataset. You can create this dataset
+locally by executing the queries at the end of the page: [Dataset queries](#data-set-queries).
 
 <img
-  src="https://raw.githubusercontent.com/g-despot/images/master/data_set.png"
-  alt="Data set"
-  style={{height: 380}}
+src="https://raw.githubusercontent.com/g-despot/images/master/data_set.png"
+alt="Data set"
+style={{height: 380}}
 />
 
 ## 1. Returning nodes
@@ -40,6 +38,7 @@ RETURN c;
 ```
 
 Output:
+
 ```nocopy
 +-----------------------------------------------------------------------------------------------------+
 | c                                                                                                   |
@@ -58,6 +57,7 @@ RETURN type(r);
 ```
 
 Output:
+
 ```nocopy
 +------------+
 | type(r)    |
@@ -77,6 +77,7 @@ RETURN c.name;
 ```
 
 Output:
+
 ```nocopy
 +----------------+
 | c.name         |
@@ -95,6 +96,7 @@ RETURN c.name, c.population, c.continent;
 ```
 
 Output:
+
 ```nocopy
 +----------------+----------------+----------------+
 | c.name         | c.population   | c.continent    |
@@ -113,6 +115,7 @@ RETURN *;
 ```
 
 Output:
+
 ```nocopy
 +---------------------------+
 | p                         |
@@ -144,6 +147,7 @@ RETURN c.name AS Name;
 ```
 
 Output:
+
 ```nocopy
 +----------------+
 | Name           |
@@ -162,6 +166,7 @@ RETURN c.color;
 ```
 
 Output:
+
 ```nocopy
 +---------+
 | c.color |
@@ -172,7 +177,7 @@ Output:
 
 ## 9. Returning expressions
 
- Expressions can be included in the `RETURN` statement:
+Expressions can be included in the `RETURN` statement:
 
 ```cypher
 MATCH (c:Country {name: 'United Kingdom'})
@@ -180,6 +185,7 @@ RETURN c.name = 'United Kingdom', "Literal";
 ```
 
 Output:
+
 ```nocopy
 +---------------------------+---------------------------+
 | c.name = 'United Kingdom' | "Literal"                 |
@@ -198,6 +204,7 @@ RETURN DISTINCT c;
 ```
 
 Output:
+
 ```nocopy
 +-----------------------------------------------------------------------------------------------------+
 | c                                                                                                   |
@@ -207,10 +214,10 @@ Output:
 +-----------------------------------------------------------------------------------------------------+
 ```
 
-## Data set Queries
+## Dataset queries
 
 We encourage you to try out the examples by yourself.
-You can get our data set locally by executing the following query block.
+You can get our dataset locally by executing the following query block.
 
 ```cypher
 MATCH (n) DETACH DELETE n;

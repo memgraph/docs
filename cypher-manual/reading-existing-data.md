@@ -8,11 +8,11 @@ slug: /reading-existing-data
 The simplest usage of the language is to find data stored in the database. For
 that, you can use one of the following clauses:
 
-  * `MATCH` which searches for patterns.
-  * `WHERE` for filtering the matched data.
-  * `RETURN` for defining what will be presented to the user in the result set.
-  * `UNION` and `UNION ALL` for combining results from multiple queries.
-  * `UNWIND` for unwinding a list of values as individual rows.
+- `MATCH` which searches for patterns.
+- `WHERE` for filtering the matched data.
+- `RETURN` for defining what will be presented to the user in the result set.
+- `UNION` and `UNION ALL` for combining results from multiple queries.
+- `UNWIND` for unwinding a list of values as individual rows.
 
 ## MATCH
 
@@ -42,13 +42,13 @@ MATCH (n:Person {age: 42}) RETURN n;
 You can use the following query to find their friends:
 
 ```cypher
-MATCH (n:Person {age: 42})-[:FriendOf]-(friend) RETURN friend;
+MATCH (n:Person {age: 42})-[:FRIENDS_WITH]-(friend) RETURN friend;
 ```
 
 There are cases when a user needs to find data that is connected by traversing a
 path of connections, but the user doesn't know how many connections need to be
-traversed. Cypher allows for designating patterns with *variable path
-lengths*. Matching such a path is achieved by using the `*` (*asterisk*) symbol
+traversed. Cypher allows for designating patterns with _variable path
+lengths_. Matching such a path is achieved by using the `*` (_asterisk_) symbol
 inside the relationship element of a pattern. For example, traversing from `node1` to
 `node2` by following any number of connections in a single direction can be
 achieved with:
@@ -125,7 +125,7 @@ That query would display all nodes under the header named `people` instead of
 `n`.
 
 When you want to get everything that was matched, you can use the `*`
-(*asterisk*) symbol.
+(_asterisk_) symbol.
 
 This query:
 
@@ -149,10 +149,10 @@ MATCH (n:Person) RETURN DISTINCT n.name;
 Besides choosing what will be the result and how it will be named, the `RETURN`
 clause can also be used to:
 
-  * limit results with `LIMIT` sub-clause;
-  * skip results with `SKIP` sub-clause;
-  * order results with `ORDER BY` sub-clause and
-  * perform aggregations (such as `count`).
+- limit results with `LIMIT` sub-clause;
+- skip results with `SKIP` sub-clause;
+- order results with `ORDER BY` sub-clause and
+- perform aggregations (such as `count`).
 
 More details on `RETURN` can be found [here](./clauses/return.md).
 
@@ -235,17 +235,16 @@ MATCH (n:Person) RETURN n ORDER BY n.age DESC LIMIT 1;
 Cypher has functions for aggregating data. Memgraph currently supports the
 following aggregating functions.
 
-  * `avg`, for calculating the average value.
-  * `sum`, for calculating the sum of numeric values.
-  * `collect`, for collecting multiple values into a single list or map. If
-     given a single expression values are collected into a list. If given two
-     expressions, values are collected into a map where the first expression
-     denotes map keys (must be string values) and the second expression denotes
-     map values.
-  * `count`, for counting the resulting values.
-  * `max`, for returning the maximum value.
-  * `min`, for returning the minimum value.
-  
+- `avg`, for calculating the average value.
+- `sum`, for calculating the sum of numeric values.
+- `collect`, for collecting multiple values into a single list or map. If
+  given a single expression values are collected into a list. If given two
+  expressions, values are collected into a map where the first expression
+  denotes map keys (must be string values) and the second expression denotes
+  map values.
+- `count`, for counting the resulting values.
+- `max`, for returning the maximum value.
+- `min`, for returning the minimum value.
 
 Example, calculating the average age:
 
@@ -278,10 +277,11 @@ Using `UNION` will contain only distinct rows, while `UNION ALL` will keep all
 rows from all given queries.
 
 Restrictions when using `UNION` or `UNION ALL`:
-  * The number and the names of columns returned by queries must be the same for
-    all of them.
-  * There can be only one union type between single queries, i.e. a query can't
-    contain both `UNION` and `UNION ALL`.
+
+- The number and the names of columns returned by queries must be the same for
+  all of them.
+- There can be only one union type between single queries, i.e. a query can't
+  contain both `UNION` and `UNION ALL`.
 
 For example to get distinct names that are shared between persons and movies use
 the following query:

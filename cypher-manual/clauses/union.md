@@ -6,26 +6,24 @@ sidebar_label: UNION
 
 The `UNION` clause is used to combine the result of multiple queries.
 
-[Data Set](#data-set)
-[1. Combine queries and retain duplicates](#1-combine-queries-and-retain-duplicates)
-[2. Combine queries and remove duplicates](#2-combine-queries-and-remove-duplicates)
-[Data set Queries](#data-set-queries)
+1. [Combine queries and retain duplicates](#1-combine-queries-and-retain-duplicates) <br />
+2. [Combine queries and remove duplicates](#2-combine-queries-and-remove-duplicates)
 
-## Data Set
+## Dataset
 
-The following examples are executed with this data set. You can create this data set 
-locally by executing the queries at the end of the page: [Data Set](#data-set-queries).
+The following examples are executed with this dataset. You can create this dataset
+locally by executing the queries at the end of the page: [Dataset queries](#data-set-queries).
 
 <img
-  src="https://raw.githubusercontent.com/g-despot/images/master/data_set.png"
-  alt="Data set"
-  style={{height: 380}}
+src="https://raw.githubusercontent.com/g-despot/images/master/data_set.png"
+alt="Data set"
+style={{height: 380}}
 />
 
 ## 1. Combine queries and retain duplicates
 
 To combine two or more queries and return their results without removing duplicates, use the `UNION ALL` clause.
-First, let's add a few existing nodes to the data set:
+First, let's add a few existing nodes to the dataset:
 
 ```cypher
 CREATE (:Person {name: 'John'});
@@ -35,14 +33,15 @@ CREATE (:Person {name: 'Anna'});
 A query with the `UNION ALL` clause could look like this:
 
 ```cypher
-MATCH (c:Country) 
+MATCH (c:Country)
 RETURN c.name as columnName
-UNION ALL 
+UNION ALL
 MATCH (p:Person)
 RETURN p.name AS columnName;
 ```
 
 Output:
+
 ```nocopy
 +----------------+
 | columnName     |
@@ -63,14 +62,15 @@ Output:
 To combine two or more queries and return their results without removing duplicates, use the `UNION` clause without `ALL`.
 
 ```cypher
-MATCH (c:Country) 
+MATCH (c:Country)
 RETURN c.name as columnName
-UNION 
+UNION
 MATCH (p:Person)
 RETURN p.name AS columnName;
 ```
 
 Output:
+
 ```nocopy
 +----------------+
 | columnName     |
@@ -84,10 +84,10 @@ Output:
 +----------------+
 ```
 
-## Data set Queries
+## Dataset queries
 
 We encourage you to try out the examples by yourself.
-You can get our data set locally by executing the following query block.
+You can get our dataset locally by executing the following query block.
 
 ```cypher
 MATCH (n) DETACH DELETE n;
