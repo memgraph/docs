@@ -11,10 +11,10 @@ module in C++ on the example of the **random walk algorithm**.
 
 :::info
 
-If you wish to write your own query modules using the C API, you can write their
+If you wish to write your own query modules using the C API, you can write the
 procedures in any programming language that can work with C and can be compiled
-to the ELF shared library format. The latter requirement is there so that they
-can be loaded together when Memgraph starts.
+to the ELF shared library format. The latter requirement is necessary so that
+the modules can be loaded together when Memgraph starts.
 
 :::
 
