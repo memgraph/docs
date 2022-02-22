@@ -7,21 +7,22 @@ pagination_prev: import-data/overview
 ---
 
 Memgraph can natively ingest streaming data from upstream sources using [Apache
-Kafka](https://kafka.apache.org) and [Confulent
+Kafka](https://kafka.apache.org) and [Confluent
 Platform](https://www.confluent.io). To import data using streams, you must:
 
-1. Start MemgraphDB and connect to it
+1. Start Memgraph and connect to it
 2. Define a transformation module
 3. Create the stream in Memgraph
 4. Start ingesting data from the stream
 
-<img src={require('../../data/import-data/kafka-overview.png').default} height="300px"/>
+<img src={require('../../data/import-data/kafka-overview.png').default}/>
 
 ## Prerequisites
 
 In order to create a Kafka pipeline, you must have:
-* a working Kafka stream
-* access to a running MemgraphDB instance.
+
+- a working Kafka stream
+- access to a running Memgraph instance.
 
 ## Importing data
 
@@ -30,17 +31,18 @@ relationships our stream contains. The best practice is to have a dedicated
 topic for each message type in order to parse the data more efficiently. Each
 topic requires a separate procedure within a single transformation module to
 handle the conversion. Once we create a stream in Memgraph and start ingesting
-data we are all set to analyse it.
+data, we are all set to analyze it.
 
 ### 1. Start Memgraph
 
 [Start Memgraph](https://memgraph.com/docs/memgraph/next/installation) and
 [establish a
 connection](https://memgraph.com/docs/memgraph/next/connect-to-memgraph) to the
-database. 
+database.
 
 If you are starting Memgraph using a Docker image and would like to access
-configuration file or logs, be sure to run the image with the following volumes: 
+configuration files or logs, be sure to run the image with the following
+volumes:
 
 - `-v mg_log:/var/log/memgraph`
 - `-v mg_etc:/etc/memgraph`
@@ -53,16 +55,16 @@ formats received from Kafka are:
 
 - **[JSON](/import-data/kafka/json.md)**
 - **[Avro](/import-data/kafka/avro.md)**
-- **[Protobuf](/import-data/kafka/protobuf.md)**. 
+- **[Protobuf](/import-data/kafka/protobuf.md)**.
 
 Transformation modules can be written in either **Python** or **C**. Take a look
-at [Python API
+at the [Python API
 guide](/how-to-guides/streams/kafka/implement-transformation-module.md#python-api)
 for an example of how to implement transformation modules in Python.
 
 When started, Memgraph will automatically attempt to load the query modules from
 all `*.so` and `*.py` files it finds in the default
-`/usr/lib/memgraph/query_modules` directory. You can point to different
+`/usr/lib/memgraph/query_modules` directory. You can point to a different
 directory by changing or extending the `--query-modules-directory` flag in the
 main configuration file (`/etc/memgraph/memgraph.conf`) or define it within a
 command-line parameter when using Docker.
@@ -70,40 +72,40 @@ command-line parameter when using Docker.
 :::caution
 
 Please remember that if you are using Memgraph Platform image, you should pass
-configuration flags within MEMGRAPH environmental variable (e.g. `docker run -e
-MEMGRAPH="--bolt-port=7687" memgraph/memgraph-platform`) and if you are using
-any other image you should pass them as arguments after the image name (e.g.,
+configuration flags within MEMGRAPH environmental variable (e.g. `docker run -e MEMGRAPH="--bolt-port=7687" memgraph/memgraph-platform`) and if you are using
+any other image, you should pass them as arguments after the image name (e.g.,
 `memgraph/memgraph-mage --bolt-port=7687 --query-modules-directory=path/path`).
 
 :::
 
 <details>
-  <summary>Transfer transformation module into a Docker container</summary>
+  <summary>Transfer a transformation module into a Docker container</summary>
   
   If you are using Docker to run Memgraph, you will need to copy the
   transformation module file from your local directory into the Docker
   container where Memgraph can access it.
 
-  <p> </p> 
+  <p> </p>
 
-  **1.** Open a new terminal and find the `CONTAINER ID` of the Memgraph Docker
-  container:
+**1.** Open a new terminal and find the `CONTAINER ID` of the Memgraph Docker
+container:
 
-  ```
-  docker ps
-  ```
+```
+docker ps
+```
 
-  **2.** Copy a file from your current directory to the container with the
-  command:
+**2.** Copy a file from your current directory to the container with the
+command:
 
-  ```
-  docker cp ./trans_module.py <CONTAINER ID>:/usr/lib/memgraph/query_modules/trans_module.py
-  ```
+```
+docker cp ./trans_module.py <CONTAINER ID>:/usr/lib/memgraph/query_modules/trans_module.py
+```
 
-  The file is now inside your Docker container.
+The file is now inside your Docker container.
+
 </details>
 
-If the transformation module has been added to the directory while Memgraph
+If the transformation module has been added to the directory while the Memgraph
 instance was already running, you need to load it manually by using the
 following query:
 
@@ -135,7 +137,7 @@ You should see an output similar to the following:
 
 ### 3. Create a stream in Memgraph
 
-First, make sure Kafka and Memgraph are running and there is a topic available.
+First, make sure Kafka and Memgraph are running, and there is a topic available.
 Then, make sure the transformation module is loaded
 
 Create the stream in Memgraph with the following query:
@@ -149,13 +151,13 @@ TRANSFORM <transformation_module.transformation_procedure>
 
 You need to create one stream for each topic and procedure you have.
 
-For more options and information about the `CREATE .. STREAM` query check out the
-[reference guide](/reference-guide/streams/overview.md).
+For more options and information about the `CREATE .. STREAM` query check out
+the [reference guide](/reference-guide/streams/overview.md).
 
 ### 4. Start ingesting data from the stream
 
-The previous query only created the streams. To start streaming data, execute the
-following query:
+The previous query only created the streams. To start streaming data, execute
+the following query:
 
 ```cypher
 START STREAM <stream_name>;
@@ -183,7 +185,8 @@ SHOW STREAMS;
 You can also check the node counter in **Memgraph Lab** (**Overview tab**) to
 see if new nodes and relationships are arriving.
 
-For all the other stream commands check out [the reference guide](/reference-guide/streams/overview.md).  
+For all the other stream commands, check out [the reference
+guide](/reference-guide/streams/overview.md).
 
 ## Logs
 
@@ -198,12 +201,12 @@ grep '<stream_name>' /var/log/memgraph/memgraph_<date>.log
 
 ## What next?
 
-Take a look at tutorial we made to help you [connect Memgraph and
+Take a look at the tutorial we made to help you [connect Memgraph and
 Kafka](/tutorials/graph-stream-processing-with-kafka.md). Learn more about the
-query power of [Cypher language](/cypher-manual), or check out
-[MAGE](/mage) - an open-source repository that contains graph
-algorithms and modules that can help you tackle the most interesting and
-challenging graph analytics problems. If you are using **Memgraph Lab**, a
-visual user interface for running queries and visualizing graph data, you might
-be interested in [Style script language](/memgraph-lab/style-script/quick-start) that
-will help you bedazzle your graphs. Above all, enjoy your graph database!
+query power of [Cypher language](/cypher-manual), or check out [MAGE](/mage) -
+an open-source repository that contains graph algorithms and modules that can
+help you tackle the most interesting and challenging graph analytics problems.
+If you are using **Memgraph Lab**, a visual user interface for running queries
+and visualizing graph data, you might be interested in the [Style script
+language](/memgraph-lab/style-script/quick-start) that will help you bedazzle
+your graphs. Above all, enjoy your graph database!
