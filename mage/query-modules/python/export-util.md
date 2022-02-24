@@ -69,12 +69,15 @@ CALL export_util.json(path);
   ]
 }>
 <TabItem value="input">
-
+Below you can see how the data is going to look like once we create the nodes and relationships.
 <img src={require('../../data/query-modules/python/export-util/export-util-1.png').default}/>
     
 </TabItem>
 
 <TabItem value="load">
+
+
+Run the following queries in order to import the data into the database:
 
 ```cypher
 CREATE (n:Person {name:"Anna"}), (m:Person {name:"John"}), (k:Person {name:"Kim"})
@@ -93,7 +96,7 @@ CALL export_util.json("export_folder/output.json");
 
 <TabItem value="result">
 
-The local file `output.json` should be similar to the one belows (except for the
+The local file `output.json` should be similar to the one below (except for the
 `id` values that depend on the internal database `id`):
 
 

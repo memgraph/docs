@@ -137,7 +137,7 @@ CALL import_util.json("import_folder/input.json");
 </TabItem>
 
 <TabItem value="result">
-  
+Below you can see how the data is going to look like once we import it to the database.
 <img src={require('../../data/query-modules/python/import-util/import-util-1.png').default}/>
 
 </TabItem>
