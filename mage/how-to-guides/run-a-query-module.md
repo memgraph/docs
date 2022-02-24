@@ -1,6 +1,6 @@
 ---
 id: run-a-query-module
-title: Run a query module
+title: How to run a query module
 sidebar_label: Run a query module
 ---
 

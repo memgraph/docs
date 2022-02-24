@@ -12,14 +12,18 @@ file can be found in the Memgraph installation directory, under
 `/usr/lib/memgraph/python_support`.
 
 :::tip
-For an example of how to implement query modules in Python, check out
-[this
-guide](/database-functionalities/query-modules/implement-query-modules.md#python-api).
+
+For an example of how to implement query modules in Python, check out the
+[Python API
+guide](/how-to-guides/query-modules/implement-query-modules.md#python-api).
+
 :::
 
 :::tip
+
 If you install any Python modules after running Memgraph, you'll have to
 restart Memgraph in order to use them in query modules.
+
 :::
 
 ## `class mgp.read_proc(func: Callable[[…], mgp.Record])`

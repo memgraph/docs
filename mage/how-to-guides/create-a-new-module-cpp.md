@@ -1,6 +1,6 @@
 ---
 id: create-a-new-module-cpp
-title: Developing a query module in C++
+title: How to create a query module in C++
 sidebar_label: Create a C++ query module
 ---
 
@@ -12,9 +12,9 @@ module in C++ on the example of the **random walk algorithm**.
 :::info
 
 If you wish to write your own query modules using the C API, you can write the
-procedures in any programming language which can work with C and can be compiled
-to the ELF shared library format. The latter requirement is there so that they
-can be loaded together when Memgraph starts.
+procedures in any programming language that can work with C and can be compiled
+to the ELF shared library format. The latter requirement is necessary so that
+the modules can be loaded together when Memgraph starts.
 
 :::
 
@@ -22,11 +22,11 @@ can be loaded together when Memgraph starts.
 
 There are three options for installing and working with Memgraph MAGE:
 
-1.  **Pulling the `memgraph/memgraph-mage` image**: check the `Docker Hub`
+1.  **Pulling the `memgraph/memgraph-mage` image**: check the `Docker Hub` 
     [installation guide](/installation/docker-hub.md).
 2.  **Building a Docker image from the MAGE repository**: check the `Docker
     build` [installation guide](/installation/docker-build.md).
-3.  **Building MAGE from source**: check the `Build from source on Linux`
+3.  **Building MAGE from source**: check the `Build from source on Linux` 
     [installation guide](/installation/source.md).
 
 ## Developing a module
@@ -34,12 +34,12 @@ There are three options for installing and working with Memgraph MAGE:
 :::note
 
 These instructions are the same for every MAGE installation option: _Docker
-Hub_, _Docker build_, and _Build from source on Linux_.
+Hub_, _Docker build_ and _Build from source on Linux_.
 
 :::
 
 Position yourself in the **MAGE repository** you cloned earlier. Once you are
-there, enter the `cpp` sub-directory and create a new directory called
+there, enter the `cpp` subdirectory and create a new directory called
 `random_walk_module` with the `random_walk_module.cpp` file inside it.
 
 ```plaintext
@@ -48,11 +48,17 @@ cpp
     └── random_walk_module.cpp
 ```
 
-Our module contains a single procedure `random_walk` which implements the
+To make sure the module is linked with the rest of MAGE’s code, we need to add a 
+`CMakeLists.txt` script in the new directory and register our module in the 
+`cpp/CMakelists.txt` script as well. Refer to the existing scripts in MAGE’s 
+[query modules](https://github.com/memgraph/mage/tree/main/cpp).
+
+Our `random_walk` module contains a single procedure `get` which implements the
 algorithm. The procedure takes two input parameters: the starting node and the
-number of steps (10 by default), and it returns the generated random path. All
-in all, we can define its signature as `get_path(start: Node, steps: int = 10)
--> random_walk: Path`.
+number of steps (10 by default), and it returns the generated random walk in the
+form of a list of `step | node` entries, one for each step.
+All in all, we can define its signature as `get(start: Node, steps: int = 10)
+-> [step: int | node: Node]`.
 
 Let’s take a look at the structure of our query module.
 
@@ -101,12 +107,14 @@ That said, let’s now take a closer look at `RandomWalk` and `mgp_init_module`.
 void RandomWalk(mgp_list *args, mgp_graph *memgraph_graph, mgp_result *result,
                 mgp_memory *memory) {
   try {
-    const auto start_id = mgp::value_get_int(mgp::list_at(args, 0));
+    const auto start = mgp::value_get_vertex(mgp::list_at(args, 0));
     const auto n_steps = mgp::value_get_int(mgp::list_at(args, 1));
 
+    srand(time(NULL));
+
+    const auto start_id = mgp::vertex_get_id(start).as_int;
     const auto graph = mg_utility::GetGraphView(
         memgraph_graph, result, memory, mg_graph::GraphType::kUndirectedGraph);
-    srand(time(NULL));
 
     int step = 0;
     auto current_node = graph->GetNode(start_id);
@@ -114,11 +122,13 @@ void RandomWalk(mgp_list *args, mgp_graph *memgraph_graph, mgp_result *result,
 
     while (step <= n_steps) {
       const auto neighbors = graph->Neighbours(current_node.id);
-      const auto next = neighbors[rand() % neighbors.size()];
-      current_node = graph->GetNode(next.node_id);
+      if (neighbors.empty()) break;
+
+      const auto next_node = neighbors[rand() % neighbors.size()];
+      current_node = graph->GetNode(next_node.node_id);
+      // record the output
       InsertStepRecord(memgraph_graph, result, memory, step++, current_node.id);
     }
-
   } catch (const std::exception &e) {
     mgp::result_set_error_msg(result, e.what());
     return;
@@ -132,15 +142,18 @@ procedure, and its context is provided by `graph` and `memory`.
 
 With the C API, we next retrieve the argument values from `args` and access the
 graph in order to be able to implement the algorithm. As for the output, you
-might’ve noted that `RandomWalk` function does not return anything by itself.
+might’ve noted that the `RandomWalk` function does not return anything by itself.
 Instead, remember that the parameter `result` serves to record the output. We
-placed the logic for that task within the `InsertStepRecord` function:
+delegated the logic for this task to the `InsertStepRecord` function:
 
 ```cpp
+void InsertStepRecord(mgp_graph *graph, mgp_result *result, mgp_memory *memory,
+                      const int step, const int node_id) {
   auto *record = mgp::result_new_record(result);
 
-  mg_utility::InsertIntValueResult(record, kFieldStep, step, memory);
-  mg_utility::InsertNodeValueResult(graph, record, kFieldNode, node_id, memory);
+  mg_utility::InsertIntValueResult(record, "step", step, memory);
+  mg_utility::InsertNodeValueResult(graph, record, "node", node_id, memory);
+}
 ```
 
 :::tip
@@ -151,7 +164,7 @@ reference.
 :::
 
 The `mgp_init_module` function has as its main duty the registration of
-procedure(s) which can then be invoked in openCypher. With the C API, we add our
+procedure(s), which can then be invoked in openCypher. With the C API, we add our
 procedure and its inputs and outputs.
 
 ```cpp
@@ -159,16 +172,16 @@ extern "C" int mgp_init_module(struct mgp_module *module,
                                struct mgp_memory *memory) {
   {
     try {
-      auto *proc = mgp::module_add_read_procedure(module, "random_walk",
-                                                  RandomWalk);
+      auto *rw_proc = mgp::module_add_read_procedure(module, "get", RandomWalk);
 
       // optional parameters require a default value
       auto default_steps = mgp::value_make_int(10, memory);
 
-      mgp::proc_add_arg(proc, kStart, mgp::type_node());
-      mgp::proc_add_opt_arg(proc, kSteps, mgp::type_int(), default_steps);
+      mgp::proc_add_arg(rw_proc, "start", mgp::type_node());
+      mgp::proc_add_opt_arg(rw_proc, "steps", mgp::type_int(), default_steps);
 
-      mgp::proc_add_result(proc, kFieldRandomWalk, mgp::type_path());
+      mgp::proc_add_result(rw_proc, "step", mgp::type_int());
+      mgp::proc_add_result(rw_proc, "node", mgp::type_node());
 
       mgp_value_destroy(default_steps);
     } catch (const std::exception &e) {
@@ -179,16 +192,16 @@ extern "C" int mgp_init_module(struct mgp_module *module,
 }
 ```
 
-Although this example registers a single `procedure`, you can have multiple
-different procedures in a single module, each of which can be invoked using the
+Although this example registers a single procedure `get`, you can have multiple
+different procedures in one module, each of which can be invoked using the
 `CALL <module>.<procedure> ...` syntax (`<module>` being the name of the shared
-library). As we compile our example to `random_walk.so`, the module name is thus
+library). Since we compile our example to `random_walk.so`, the module is called
 `random_walk`.
 
 :::tip
 
-Note that, as the procedure name is defined upon registration, it can differ
-from its corresponding callback.
+As the procedure name is defined upon registration, it can differ from its 
+respective callback.
 
 :::
 
@@ -227,6 +240,6 @@ well.
 Now in order to import, query and test a module, check out the [following
 page](/mage/how-to-guides/run-a-query-module).
 
-Feel free to create an issue or open a pull request on our [Github
+Feel free to create an issue or open a pull request on our [GitHub
 repo](https://github.com/memgraph/mage) to speed up the development.<br/>
-Also, don't forget to throw us a star on GitHub. :star:
+Also, don’t forget to throw us a star on GitHub. :star:

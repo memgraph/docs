@@ -9,8 +9,36 @@ choosing in a row-based manner, within a query. We support the Excel CSV
 dialect, as it's the most commonly used one. For the syntax of the clause,
 please check the [Cypher manual](/cypher-manual/clauses/load-csv)
 
-The clause reads row by row from a CSV file, and binds the contents of the
-parsed row to the variable you specified.
+The syntax of the clause is:
+
+```cypher
+LOAD CSV FROM <csv-file-path> ( WITH | NO ) HEADER [IGNORE BAD] [DELIMITER <delimiter-string>] [QUOTE <quote-string>] AS <variable-name>
+```
+
+* `<csv-file-path>` is a string holding the path to the CSV file. There are no
+  restrictions on where in your filesystem the file can be located, as long as
+  the path is valid (i.e., the file exists).
+
+* `( WITH | NO ) HEADER ` flag specifies whether the CSV file is to be parsed as
+  though it has or hasn't got a header.
+
+* `IGNORE BAD` flag specifies whether rows containing errors should be ignored
+  or not. If it's set, the parser attempts to return the first valid row from
+  the CSV file. If it isn't set, an exception will be thrown on the first
+  invalid row encountered.
+
+* `DELIMITER <delimiter-string>` option enables you to specify the CSV delimiter
+  character. If it isn't set, the default delimiter character `,` is assumed.
+
+* `QUOTE <quote-string>` option enables you to specify the CSV quote character.
+  If it isn't set, the default quote character `"` is assumed.
+
+* `<variable-name>` is a symbolic name representing the variable to which the
+  contents of the parsed row will be bound to, enabling access to the row
+  contents later in the query.
+
+The clause reads row by row from a CSV file and binds the contents of the parsed
+row to the variable you specified.
 
 :::info
 
@@ -50,13 +78,13 @@ clause in the query, in addition to it. In other words, the following query will
 throw an exception:
 
 ```cypher
-LOAD CSV FROM "file.csv" WITH HEADER AS row ;
+LOAD CSV FROM "file.csv" WITH HEADER AS row;
 ```
 
 On the other hand, the following query is valid:
 
 ```cypher
-MERGE (n:A) LOAD CSV FROM "file.csv" WITH HEADER AS row ;
+MERGE (n:A) LOAD CSV FROM "file.csv" WITH HEADER AS row;
 ```
 
 Note that the row variable doesn't have to be used in any subsequent clause.
@@ -67,7 +95,7 @@ assume the following query:
 ```cypher
 MATCH (n)
 LOAD CSV FROM "file.csv" WITH HEADER as row
-SET n.p = row ;
+SET n.p = row;
 ```
 
 Let's say the `MATCH (n)` clause finds five nodes, whereas the "file.csv" has

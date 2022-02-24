@@ -3,9 +3,9 @@ module.exports = {
     "overview",
     {
       type: "category",
-      label: "Installation",
+      label: "Install MAGE",
+      link: {type: 'doc', id: 'installation/overview'},
       items: [
-        "installation/overview",
         "installation/docker-hub",
         "installation/docker-build",
         "installation/source",
@@ -19,6 +19,7 @@ module.exports = {
     {
       type: "category",
       label: "Available query modules",
+      link: {type: 'doc', id: 'query-modules/available-queries'},
       items: [
         "query-modules/cpp/betweenness-centrality",
         "query-modules/cpp/biconnected-components",
@@ -116,5 +117,6 @@ module.exports = {
       ],
     },
     "contributing",
+    "changelog"
   ],
 };

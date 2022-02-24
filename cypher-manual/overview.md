@@ -1,7 +1,7 @@
 ---
 id: overview
-title: Cypher manual
-sidebar_label: Cypher manual overview
+title: Getting started with Cypher
+sidebar_label: Getting started
 slug: /
 ---
 
@@ -9,54 +9,73 @@ slug: /
 for property graph databases. It provides an intuitive way to work with property
 graphs.
 
-## Getting started
+## Quick start
 
-Take a look at the following guides if you are new to the **Cypher** query
-language:
+If you are new to the **Cypher** query language, take a look at what you can do
+with a few simple commands. You will use our sandbox that we have already filled
+with sample data. There is no need for you to install anything at this point.
+Simply open Game of Thrones Deaths dataset on [**Memgraph
+playground**](https://playground.memgraph.com/sandbox/game-of-thrones-deaths).
+You will find some predefined queries there that will help you to get a glimpse
+of what you can accomplish with Cypher.
 
-- **[Reading existing data](/getting-started/reading-existing-data.md)**
-- **[Writing new data](/getting-started/writing-new-data.md)**
-- **[Reading and writing](/getting-started/reading-and-writing.md)**
+:::info
+
+Playground supports only read operations. If you'd like to modify the dataset,
+you will need to [install and run Memgraph](../memgraph/installation) on your
+computer.
+
+:::
+
+## What are graph databases?
+
+Is this your first encounter with graph databases? If so, get familiar with
+[graph database terminology](graph-databases.md) before you dip dive into them.
+
+## Cypher query language
+
+Now that you know what graph databases are let's see how you can use [Cypher
+query language](cypher-query-language.md) to get the job done.
+
+## Working with Memgraph
+
+[Memgraph](working-with-memgraph.md) has everything you need to start working
+with your data and streams.
+
+## Import data
+
+You can easily [Import data](import-data.md) or add new data to Memgraph.
+
+## Connecting nodes
+
+Memgraph is all about connections. Learn how to [connect
+nodes](connecting-nodes.md) with relationships.
+
+## Reading existing data
+
+When you have nodes and relationships, you will surely want to [read the
+existing data](reading-existing-data.md) and learn how you traverse
+relationships.
+
+## Updating nodes and relationships
+
+Things change over time. The same is true for your data. Learn how to [update
+nodes and relationships](updating-nodes-and-relationships.md) with already
+existing data. You can even create some new data along the way.
+
+## Deleting nodes and relationships
+
+Sometimes you will no longer need parts of the data. You can easily [delete nodes
+and relationships](deleting-nodes-and-relationships.md). You can even delete all
+of your data, but be careful with this if you don't have a backup!
 
 ## Clauses
 
-The **Cypher** language enables users to perform standard database operations by
-using the following clauses:
-
-- **[MATCH](/clauses/match.md)**, which searches for patterns;
-- **[WHERE](/clauses/where.md)**, for filtering the matched data;
-- **[RETURN](/clauses/return.md)**, for defining what will be presented to the
-  user in the result set;
-- **[UNION](/clauses/union.md)** and **[UNION ALL](/clauses/union.md)** for
-  combining results from multiple queries;
-- **[CREATE](/clauses/create.md)**, for creating new nodes and edges;
-- **[SET](/clauses/set.md)**, for adding new or updating existing labels and
-  properties;
-- **[DELETE](/clauses/delete.md)**, for deleting nodes and edges;
-- **[REMOVE](/clauses/remove.md)**, for removing labels and properties;
-- **[MERGE](/clauses/merge.md)**, for creating patterns if they do not exist;
-- **[WITH](/clauses/with.md)**, for combining multiple reads and writes.
+Maybe [clauses](clauses/clauses.md) are the reason why you are here. We have
+created a list of all Cypher clauses that Memgraph supports.
 
 ## Functions
 
-**Cypher** supports a large number of functions. The list can be found here:
-
-- **[Cypher functions](/functions.md)**
-
-## Other features
-
-The following sections describe some of the other supported features in
-Memgraph:
-
-- **[String operators](/other-features.md#string-operators)**
-- **[Parameters](/other-features.md#parameters)**
-- **[CASE expression](/other-features.md#case)**
-- **[Inspecting and profiling
-  queries](/other-features.md#inspecting-and-profiling-queries)**
-
-## Differences in Cypher implementations
-
-Although we try to implement openCypher query language as closely to the
-language reference as possible, we had to make some changes to enhance the user
-experience. You can find the differences in **[this
-article](/differences/overview.md)**.
+Sometimes clauses are not enough to get the data you are looking for. Don't
+worry, Memgraph has a lot of built-in [functions](functions.md) that will help
+you to get the right data.

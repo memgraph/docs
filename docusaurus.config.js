@@ -39,17 +39,17 @@ module.exports = {
       },
       items: [
         {
-          to: "/memgraph/getting-started",
+          to: "/memgraph/",
           label: "Memgraph",
           position: "left",
           activeBaseRegex: `/memgraph/`,
           items: [
             {
               label: "Getting started",
-              to: "/memgraph/getting-started",
+              to: "/memgraph",
             },
             {
-              label: "Installation",
+              label: "Install Memgraph",
               to: "/memgraph/installation",
             },
             {
@@ -61,8 +61,24 @@ module.exports = {
               to: "/memgraph/import-data",
             },
             {
+              label: "Tutorials",
+              to: "/memgraph/tutorials",
+            },
+            {
+              label: "How-to guides",
+              to: "memgraph/how-to-guides",
+            },
+            {
               label: "Reference guide",
               to: "/memgraph/reference-guide",
+            },
+            {
+              label: "Concepts",
+              to: "/memgraph/under-the-hood",
+            },
+            {
+              label: "Changelog",
+              to: "/memgraph/changelog",
             },
           ],
         },
@@ -71,6 +87,28 @@ module.exports = {
           label: "Memgraph Lab",
           position: "left",
           activeBaseRegex: `/lab/`,
+          items: [
+            {
+              label: "Getting started",
+              to: "memgraph-lab",
+            },
+            {
+              label: "Install Memgraph Lab",
+              to: "/memgraph-lab/installation",
+            },
+            {
+              label: "Connect to Memgraph",
+              to: "/memgraph-lab/connect-to-memgraph",
+            },
+            {
+              label: "Style script language",
+              to: "/memgraph-lab/style-script/quick-start",
+            },
+            {
+              label: "Changelog",
+              to: "/memgraph-lab/changelog",
+            },
+          ],
         },
         /*
         {
@@ -87,16 +125,20 @@ module.exports = {
           activeBaseRegex: `/mage/`,
           items: [
             {
-              label: "Overview",
+              label: "Getting started",
               to: "/mage",
             },
             {
-              label: "Installation",
+              label: "Install MAGE",
               to: "/mage/installation",
             },
             {
               label: "Using query modules",
               to: "/mage/usage/calling-procedures",
+            },
+            {
+              label: "Available query modules",
+              to: "/mage/query-modules/available-queries",
             },
             {
               label: "How-to guides",
@@ -114,6 +156,38 @@ module.exports = {
               label: "Contributing",
               to: "/mage/contributing",
             },
+            {
+              label: "Changelog",
+              to: "/mage/changelog",
+            },
+          ],
+        },
+        {
+          to: "/gqlalchemy/",
+          label: "GQLAlchemy",
+          position: "left",
+          activeBaseRegex: `/gqlalchemy/`,
+          items: [
+            {
+              label: "Getting started",
+              to: "/gqlalchemy/",
+            },
+            {
+              label: "Installation",
+              to: "/gqlalchemy/installation",
+            },
+            {
+              label: "How-to guides",
+              to: "/gqlalchemy/how-to-guides",
+            },
+            {
+              label: "Reference",
+              to: "/gqlalchemy/reference",
+            },
+            {
+              label: "Changelog",
+              to: "/gqlalchemy/changelog",
+            },
           ],
         },
         {
@@ -123,32 +197,82 @@ module.exports = {
           activeBaseRegex: `/cypher-manual/`,
           items: [
             {
-              label: "Overview",
+              label: "Getting started",
               to: "/cypher-manual/",
             },
             {
-              label: "Functions",
-              to: "/cypher-manual/functions",
+              label: "What are graph databases",
+              to: "/cypher-manual/what-are-graph-databases",
+            },
+            {
+              label: "Cypher query language",
+              to: "/cypher-manual/cypher-query-language",
+            },
+            {
+              label: "Working with Memgraph",
+              to: "/cypher-manual/working-with-memgraph",
+            },
+            {
+              label: "Import data",
+              to: "/cypher-manual/import-data",
+            },
+            {
+              label: "Connecting nodes",
+              to: "/cypher-manual/connecting-nodes",
+            },
+            {
+              label: "Reading existing data",
+              to: "/cypher-manual/reading-existing-data",
+            },
+            {
+              label: "Updating nodes and relationships",
+              to: "/cypher-manual/updating-nodes-and-relationships",
+            },
+            {
+              label: "Deleting nodes and relationships",
+              to: "/cypher-manual/deleting-nodes-and-relationships",
             },
             {
               label: "Clauses",
               to: "/cypher-manual/clauses",
             },
             {
-              label: "Other features",
-              to: "/cypher-manual/other-features",
+              label: "Using functions",
+              to: "/cypher-manual/functions",
             },
             {
-              label: "Differences",
-              to: "/cypher-manual/differences",
+              label: "Query modules",
+              to: "/cypher-manual/query-modules",
+            },
+            {
+              label: "Other features",
+              to: "/cypher-manual/other-features",
             },
           ],
         },
         {
           to: "/help-center",
-          label: "Help Center",
+          label: "Help center",
           position: "left",
           activeBaseRegex: `/help-center/`,
+          items: [
+            {
+              label: "Contact us",
+              to: "/help-center/",
+            },
+            {
+              label: "Memgraph FAQ",
+              to: "/help-center/faq/memgraph",
+            },
+            {
+              label: "Memgraph Lab FAQ",
+              to: "/help-center/faq/memgraph-lab",
+            },
+            {
+              label: "MAGE FAQ",
+              to: "/help-center/faq/mage",
+            },
+          ],
         },
         {
           type: "docsVersionDropdown",
@@ -157,9 +281,9 @@ module.exports = {
           dropdownItemsAfter: [
             {
               to: "https://memgraph-docs-archive.netlify.app/",
-              label: "Older versions ⌛",
+              label: "Older versions 🗄️",
             },
-          ]
+          ],
         },
         {
           href: "https://github.com/memgraph/memgraph",
@@ -176,7 +300,7 @@ module.exports = {
           items: [
             {
               label: "Memgraph",
-              to: "/memgraph/getting-started",
+              to: "/memgraph",
             },
             {
               label: "Memgraph Lab",
@@ -195,6 +319,10 @@ module.exports = {
             {
               label: "MAGE",
               to: "/mage",
+            },
+            {
+              label: "GQLAlchemy",
+              to: "/gqlalchemy",
             },
           ],
         },
@@ -246,13 +374,20 @@ module.exports = {
       contextualSearch: true,
     },
     prism: {
-      additionalLanguages: ["cypher", "php", "rust", "csharp", "java", "docker"],
+      additionalLanguages: [
+        "cypher",
+        "php",
+        "rust",
+        "csharp",
+        "java",
+        "docker",
+      ],
     },
     hideableSidebar: true,
     announcementBar: {
-      id: "app-challenge",
+      id: "gqlalchemy",
       content:
-        '🏆 Keep Rockin’ & Start Coding! Register and win $2,000! <a target="_blank" rel="noopener noreferrer" href="https://memgraph.com/memgraph-app-challenge"><b>Join the challenge</b></a> 🏆',
+        'Check out the new Python Object Graph Mapper (OGM) library <a target="_blank" rel="noopener noreferrer" href="https://github.com/memgraph/gqlalchemy"><b>GQLAlchemy</b></a> ⭐',
       backgroundColor: "#fafbfc",
       textColor: "#091E42",
       isCloseable: true,
@@ -343,19 +478,29 @@ module.exports = {
       },
     ],
     [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "gqlalchemy",
+        path: "gqlalchemy",
+        routeBasePath: "gqlalchemy",
+        sidebarPath: require.resolve("./sidebars/sidebarsGQLAlchemy.js"),
+        editUrl: "https://github.com/memgraph/docs/tree/master/",
+      },
+    ],
+    [
       "@docusaurus/plugin-client-redirects",
       {
         redirects: [
           {
-            to: "/memgraph/getting-started",
+            to: "/memgraph/",
             from: ["/memgraph/introduction"],
           },
           {
-            to: "/memgraph/getting-started",
+            to: "/memgraph/",
             from: ["/memgraph/overview"],
           },
           {
-            to: "/memgraph/getting-started",
+            to: "/memgraph/",
             from: ["/memgraph/quick-start"],
           },
           //Tutorial redirects
@@ -405,11 +550,11 @@ module.exports = {
           },
           //How-to guides redirects
           {
-            to: "/memgraph/database-functionalities",
+            to: "/memgraph/how-to-guides",
             from: ["/memgraph/how-to-guides-overview"],
           },
           {
-            to: "/memgraph/database-functionalities/profiling-queries",
+            to: "/memgraph/how-to-guides/profiling-queries",
             from: ["/memgraph/how-to-guides-overview/explain-profile"],
           },
           {
@@ -417,13 +562,13 @@ module.exports = {
             from: ["/memgraph/how-to-guides-overview/import-data"],
           },
           {
-            to: "/memgraph/connect-to-memgraph/methods/drivers",
+            to: "/memgraph/connect-to-memgraph/drivers",
             from: [
               "/memgraph/how-to-guides-overview/query-memgraph-programmatically",
             ],
           },
           {
-            to: "/memgraph/database-functionalities/constraints/uniqueness-constraint",
+            to: "/memgraph/how-to-guides/constraints/uniqueness-constraint",
             from: ["/memgraph/how-to-guides-overview/enforce-constraints"],
           },
           {
@@ -437,7 +582,7 @@ module.exports = {
             ],
           },
           {
-            to: "/memgraph/database-functionalities/query-modules/implement-query-modules",
+            to: "/memgraph/how-to-guides/query-modules/implement-query-modules",
             from: ["/memgraph/how-to-guides-overview/implement-query-modules"],
           },
           {
@@ -447,17 +592,17 @@ module.exports = {
             ],
           },
           {
-            to: "/memgraph/database-functionalities/query-modules/implement-query-modules",
+            to: "/memgraph/how-to-guides/query-modules/implement-query-modules",
             from: [
               "/memgraph/how-to-guides-overview/use-and-implement-query-modules",
             ],
           },
           {
-            to: "/memgraph/database-functionalities/manage-user-privileges",
+            to: "/memgraph/how-to-guides/manage-user-privileges",
             from: ["/memgraph/how-to-guides-overview/manage-user-privileges"],
           },
           {
-            to: "/memgraph/database-functionalities/manage-users-using-ldap",
+            to: "/memgraph/how-to-guides/manage-users-using-ldap",
             from: ["/memgraph/how-to-guides-overview/manage-users-using-ldap"],
           },
           {
@@ -478,11 +623,11 @@ module.exports = {
             from: ["/memgraph/reference-overview/reading-existing-data"],
           },
           {
-            to: "/cypher-manual/writing-new-data",
+            to: "/cypher-manual/import-data",
             from: ["/memgraph/reference-overview/writing-new-data"],
           },
           {
-            to: "/cypher-manual/reading-and-writing",
+            to: "/cypher-manual/import-data",
             from: ["/memgraph/reference-overview/reading-and-writing"],
           },
           {
@@ -506,19 +651,19 @@ module.exports = {
             from: ["/memgraph/reference-overview/query-modules/python-api"],
           },
           {
-            to: "/memgraph/database-functionalities/networkx",
+            to: "/memgraph/how-to-guides/networkx",
             from: ["/memgraph/reference-overview/networkx"],
           },
           {
-            to: "/memgraph/database-functionalities/networkx",
+            to: "/memgraph/how-to-guides/networkx",
             from: ["/memgraph/reference-overview/networkx/graph-analyzer"],
           },
           {
-            to: "/memgraph/database-functionalities/networkx",
+            to: "/memgraph/how-to-guides/networkx",
             from: ["/memgraph/reference-overview/networkx/wcc"],
           },
           {
-            to: "/memgraph/database-functionalities/networkx",
+            to: "/memgraph/how-to-guides/networkx",
             from: ["/memgraph/reference-overview/networkx/nxalg"],
           },
           {
@@ -608,29 +753,20 @@ module.exports = {
           },
           //Concepts redirects
           {
-            to: "/memgraph/concepts/indexing",
+            to: "/memgraph/under-the-hood/indexing",
             from: ["/memgraph/concepts-overview/indexing"],
           },
           {
-            to: "/memgraph/concepts/storage",
+            to: "/memgraph/under-the-hood/storage",
             from: ["/memgraph/concepts-overview/storage"],
           },
           {
-            to: "/memgraph/concepts/graph-algorithms",
+            to: "/memgraph/under-the-hood/graph-algorithms",
             from: ["/memgraph/concepts-overview/graph-algorithms"],
           },
           {
-            to: "/memgraph/concepts/replication",
+            to: "/memgraph/under-the-hood/replication",
             from: ["/memgraph/concepts-overview/replication"],
-          },
-          //Machine learning redirects
-          {
-            to: "/memgraph/database-functionalities/tensorflow-setup",
-            from: ["/machine-learning/tensorflow-op"],
-          },
-          {
-            to: "/memgraph/database-functionalities/tensorflow-setup",
-            from: ["/machine-learning/tensorflow-op/tensorflow"],
           },
           //Memgraph Lab redirects
           {
@@ -685,37 +821,37 @@ module.exports = {
             from: ["/memgraph/connection-methods"],
           },
           {
-            to: "/memgraph/connect-to-memgraph/methods/drivers",
+            to: "/memgraph/connect-to-memgraph/drivers",
             from: ["/memgraph/getting-started/connecting-applications"],
           },
           {
-            to: "/memgraph/connect-to-memgraph/methods/building-applications/python",
+            to: "/memgraph/connect-to-memgraph/drivers/python",
             from: ["/memgraph/getting-started/connecting-applications/python"],
           },
           {
-            to: "/memgraph/connect-to-memgraph/methods/building-applications/rust",
+            to: "/memgraph/connect-to-memgraph/drivers/rust",
             from: ["/memgraph/getting-started/connecting-applications/rust"],
           },
           {
-            to: "/memgraph/connect-to-memgraph/methods/building-applications/c-sharp",
+            to: "/memgraph/connect-to-memgraph/drivers/c-sharp",
             from: ["/memgraph/getting-started/connecting-applications/c-sharp"],
           },
           {
-            to: "/memgraph/connect-to-memgraph/methods/building-applications/java",
+            to: "/memgraph/connect-to-memgraph/drivers/java",
             from: ["/memgraph/getting-started/connecting-applications/java"],
           },
           {
-            to: "/memgraph/connect-to-memgraph/methods/building-applications/go",
+            to: "/memgraph/connect-to-memgraph/drivers/go",
             from: ["/memgraph/getting-started/connecting-applications/go"],
           },
           {
-            to: "/memgraph/connect-to-memgraph/methods/building-applications/javascript",
+            to: "/memgraph/connect-to-memgraph/drivers/javascript",
             from: [
               "/memgraph/getting-started/connecting-applications/javascript",
             ],
           },
           {
-            to: "/memgraph/connect-to-memgraph/methods/building-applications/php",
+            to: "/memgraph/connect-to-memgraph/drivers/php",
             from: ["/memgraph/getting-started/connecting-applications/php"],
           },
           {
@@ -751,15 +887,15 @@ module.exports = {
             from: ["/memgraph/reference-guide/query-modules/python-api"],
           },
           {
-            to: "/memgraph/database-functionalities/networkx",
+            to: "/memgraph/how-to-guides/networkx",
             from: ["/memgraph/reference-guide/networkx"],
           },
           {
-            to: "/memgraph/database-functionalities/networkx",
+            to: "/memgraph/how-to-guides/networkx",
             from: ["/memgraph/reference-guide/networkx/graph-analyzer"],
           },
           {
-            to: "/memgraph/database-functionalities/networkx",
+            to: "/memgraph/how-to-guides/networkx",
             from: ["/memgraph/reference-guide/networkx/nxalg"],
           },
           //Help Center redirects
@@ -777,12 +913,27 @@ module.exports = {
           },
           //Kafka redirects because of introducing other stream sources
           {
-            to: "/memgraph/database-functionalities/streams/kafka/kafka-streams",
+            to: "/memgraph/how-to-guides/streams/kafka/kafka-streams",
             from: ["/memgraph/database-functionalities/streams/kafka-streams"],
           },
           {
-            to: "/memgraph/database-functionalities/streams/kafka/implement-transformation-module",
-            from: ["/memgraph/database-functionalities/streams/implement-transformation-module"],
+            to: "/memgraph/how-to-guides/streams/kafka/implement-transformation-module",
+            from: [
+              "/memgraph/database-functionalities/streams/implement-transformation-module",
+            ],
+          },
+          //Cypher manual redirects because of new structure
+          {
+            to: "/cypher-manual/import-data",
+            from: ["/cypher-manual/writing-new-data"],
+          },
+          {
+            to: "/cypher-manual/import-data",
+            from: ["/cypher-manual/reading-and-writing"],
+          },
+          {
+            to: "/cypher-manual/differences",
+            from: ["/cypher-manual/differences/patterns-in-expressions"],
           },
           //MAGE redirects
           {
@@ -840,6 +991,188 @@ module.exports = {
           {
             to: "/mage/use-cases/transportation",
             from: ["/mage/applications/transportation-application"],
+          },
+          //How-to guides redirects
+          {
+            to: "/memgraph/how-to-guides",
+            from: [
+              "/memgraph/database-functionalities",
+            ],
+          },
+          {
+            to: "/memgraph/how-to-guides/streams/kafka/kafka-streams",
+            from: [
+              "/memgraph/database-functionalities/streams/kafka/kafka-streams",
+            ],
+          },
+          {
+            to: "/memgraph/how-to-guides/streams/kafka/implement-transformation-module",
+            from: [
+              "/memgraph/database-functionalities/streams/kafka/implement-transformation-module",
+            ],
+          },
+          {
+            to: "/memgraph/how-to-guides/streams/pulsar/pulsar-streams",
+            from: [
+              "/memgraph/database-functionalities/streams/pulsar/pulsar-streams",
+            ],
+          },
+          {
+            to: "/memgraph/how-to-guides/streams/pulsar/implement-transformation-module",
+            from: [
+              "/memgraph/database-functionalities/streams/pulsar/implement-transformation-module",
+            ],
+          },
+          {
+            to: "/memgraph/how-to-guides/constraints/existence-constraint",
+            from: [
+              "/memgraph/database-functionalities/constraints/existence-constraint",
+            ],
+          },
+          {
+            to: "/memgraph/how-to-guides/constraints/uniqueness-constraint",
+            from: [
+              "/memgraph/database-functionalities/constraints/uniqueness-constraint",
+            ],
+          },
+          {
+            to: "/memgraph/how-to-guides/inspecting-queries",
+            from: ["/memgraph/database-functionalities/inspecting-queries"],
+          },
+          {
+            to: "/memgraph/how-to-guides/profiling-queries",
+            from: ["/memgraph/database-functionalities/profiling-queries"],
+          },
+          {
+            to: "/memgraph/how-to-guides/memory-control",
+            from: ["/memgraph/database-functionalities/memory-control"],
+          },
+          {
+            to: "/memgraph/how-to-guides/networkx",
+            from: ["/memgraph/database-functionalities/networkx"],
+          },
+          {
+            to: "/memgraph/how-to-guides/query-modules",
+            from: ["/memgraph/database-functionalities/query-modules"],
+          },
+          {
+            to: "/memgraph/how-to-guides/query-modules/implement-query-modules",
+            from: [
+              "/memgraph/database-functionalities/query-modules/implement-query-modules",
+            ],
+          },
+          {
+            to: "/memgraph/how-to-guides/replication",
+            from: ["/memgraph/database-functionalities/replication"],
+          },
+          {
+            to: "/memgraph/reference-guide/triggers",
+            from: ["/memgraph/database-functionalities/triggers"],
+          },
+          {
+            to: "/memgraph/how-to-guides/manage-users-using-ldap",
+            from: [
+              "/memgraph/database-functionalities/manage-users-using-ldap",
+            ],
+          },
+          {
+            to: "/memgraph/how-to-guides/manage-user-privileges",
+            from: ["/memgraph/database-functionalities/manage-user-privileges"],
+          },
+          {
+            to: "/memgraph/reference-guide/triggers",
+            from: ["/memgraph/how-to-guides/triggers"],
+          },
+          //Connect to Memgraph redirects
+          {
+            to: "/memgraph/connect-to-memgraph/mgconsole",
+            from: ["/memgraph/connect-to-memgraph/methods/mgconsole"],
+          },
+          {
+            to: "/memgraph/connect-to-memgraph/drivers",
+            from: ["/memgraph/connect-to-memgraph/methods/drivers"],
+          },
+          {
+            to: "/memgraph/connect-to-memgraph/drivers/python",
+            from: [
+              "/memgraph/connect-to-memgraph/methods/building-applications/python",
+            ],
+          },
+          {
+            to: "/memgraph/connect-to-memgraph/drivers/rust",
+            from: [
+              "/memgraph/connect-to-memgraph/methods/building-applications/rust",
+            ],
+          },
+          {
+            to: "/memgraph/connect-to-memgraph/drivers/c-sharp",
+            from: [
+              "/memgraph/connect-to-memgraph/methods/building-applications/c-sharp",
+            ],
+          },
+          {
+            to: "/memgraph/connect-to-memgraph/drivers/java",
+            from: [
+              "/memgraph/connect-to-memgraph/methods/building-applications/java",
+            ],
+          },
+          {
+            to: "/memgraph/connect-to-memgraph/drivers/go",
+            from: [
+              "/memgraph/connect-to-memgraph/methods/building-applications/go",
+            ],
+          },
+          {
+            to: "/memgraph/connect-to-memgraph/drivers/nodejs",
+            from: [
+              "/memgraph/connect-to-memgraph/methods/building-applications/nodejs",
+            ],
+          },
+          {
+            to: "/memgraph/connect-to-memgraph/drivers/javascript",
+            from: [
+              "/memgraph/connect-to-memgraph/methods/building-applications/javascript",
+            ],
+          },
+          {
+            to: "/memgraph/connect-to-memgraph/drivers/php",
+            from: [
+              "/memgraph/connect-to-memgraph/methods/building-applications/php",
+            ],
+          },
+          //Renaming Concepts to Under the hood
+          {
+            to: "/memgraph/under-the-hood",
+            from: ["/memgraph/concepts"],
+          },
+          {
+            to: "/memgraph/under-the-hood/storage",
+            from: ["/memgraph/concepts/storage"],
+          },
+          {
+            to: "/memgraph/under-the-hood/graph-algorithms",
+            from: ["/memgraph/concepts/graph-algorithms"],
+          },
+          {
+            to: "/memgraph/under-the-hood/indexing",
+            from: ["/memgraph/concepts/indexing"],
+          },
+          {
+            to: "/memgraph/under-the-hood/replication",
+            from: ["/memgraph/concepts/replication"],
+          },
+          {
+            to: "/memgraph/under-the-hood/telemetry",
+            from: ["/memgraph/concepts/telemetry"],
+          },
+          //create redirect for Memgraph Getting started page
+          {
+            to: "/memgraph/",
+            from: ["/memgraph/getting-started"],
+          },
+          {
+            to: "/memgraph-lab/installation",
+            from: ["/memgraph-lab/installation/overview"],
           },
         ],
       },
