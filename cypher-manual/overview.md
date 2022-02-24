@@ -27,6 +27,14 @@ computer.
 
 :::
 
+:::tip
+
+Try out our [**free e-mail Cypher
+course**](https://memgraph.com/learn-cypher-query-language) and learn the Cypher
+query language in 10 days.
+
+:::
+
 ## What are graph databases?
 Is this your first encounter with graph databases? If so, get familiar with
 [graph database terminology](graph-databases.md) before you dip dive into them.

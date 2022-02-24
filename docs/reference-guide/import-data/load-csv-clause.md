@@ -113,7 +113,7 @@ exception. In other words, queries such as
 ```cypher
 LOAD CSV FROM "x.csv" WITH HEADER as x
 LOAD CSV FROM "y.csv" WITH HEADER as y
-CREATE (n:A { p1 : x, p2 : y });
+CREATE (n:A {p1 : x, p2 : y});
 ```
 
 are invalid.

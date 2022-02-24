@@ -1,7 +1,7 @@
 ---
 id: graph-algorithms
 title: Graph algorithms
-sidebar_label: Graph algorithms
+sidebar_label: Built-in graph algorithms
 ---
 
 ## Filtering Variable Length Paths

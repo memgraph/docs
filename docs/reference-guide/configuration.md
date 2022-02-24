@@ -1,7 +1,7 @@
 ---
 id: configuration
 title: Configuration
-sidebar_label: Configuration
+sidebar_label: Configuration settings
 ---
 
 The main Memgraph configuration file is available in

@@ -4,6 +4,19 @@ title: Isolation levels
 sidebar_label: Isolation levels
 ---
 
+In database systems, isolation determines how transaction integrity is visible
+to other users and systems.
+
+A lower isolation level increases the ability of many users to access the same
+data at the same time, but increases the number of concurrency effects (such as
+dirty reads or lost updates) users might encounter. Conversely, a higher
+isolation level reduces the types of concurrency effects that users may
+encounter, but requires more system resources and increases the chances that one
+transaction will block another.
+
+Isolation is typically defined at database level as a property that defines how
+or when the changes made by one operation become visible to others. 
+
 ## Supported isolation levels
 
 Memgraph currently supports three isolation levels:
