@@ -24,7 +24,7 @@ export const Highlight = ({children, color}) => (
 
 ## Abstract
 
-A module for exporting graph database in different formats.
+Module for exporting a graph database in different formats.
 
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |
@@ -41,11 +41,17 @@ A module for exporting graph database in different formats.
 * `path: str` ➡ Path to the file where JSON will be saved.
 
 #### Usage:
-In order to be able to export database to the local `JSON` file, you first have to create folder (for example, `export_folder`), and then you have to give permission to the user `memgraph`. To do that, place yourself in the folder containing `export_folder`, and run the following command in the terminal:
+To export database to a local `JSON` file create a new folder (for example,
+`export_folder`). Place yourself in the folder containing that new folder
+(`export_folder`), and run the following command in the terminal to give the
+user `memgraph` the necessary permissions:
+
 ```
 sudo chown memgraph export_folder
 ```
-After that, you can call the procedure by running:
+
+Then, call the procedure by running:
+
 ```cypher
 CALL export_util.json(path);
 ```
@@ -78,7 +84,7 @@ CREATE (n)-[:IS_FRIENDS_WITH]->(m), (n)-[:IS_FRIENDS_WITH]->(k), (m)-[:IS_MARRIE
 
 <TabItem value="run">
 
-We are exporting the database to the `output.json` file inside the local folder `export_folder`.
+This Cypher query will export the database to the `output.json` file inside the local folder `export_folder`.
 
 ```cypher
 CALL export_util.json("export_folder/output.json");
@@ -87,7 +93,8 @@ CALL export_util.json("export_folder/output.json");
 
 <TabItem value="result">
 
-The local file `output.json` looks similar to this (`id` depends on the internal database `id`):
+The local file `output.json` should be similar to the one belows (except for the
+`id` values that depend on the internal database `id`):
 
 
 ```json

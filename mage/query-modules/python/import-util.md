@@ -24,7 +24,7 @@ export const Highlight = ({children, color}) => (
 
 ## Abstract
 
-A module for importing files from which a graph database is created.
+Module for importing files to create a graph database.
 
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |
@@ -41,7 +41,10 @@ A module for importing files from which a graph database is created.
 * `path: str` ➡ Path to the JSON that is being imported.
 
 #### Usage:
-The `JSON` file you're importing as a graph database needs to be structured same as the `JSON` file that [`export_util.json(path)`](https://memgraph.com/docs/mage/query-modules/python/export-util) procedure generates.
+The `JSON` file you're importing as a graph database needs to be structured the
+same as the `JSON` file that
+[`export_util.json(path)`](https://memgraph.com/docs/mage/query-modules/python/export-util)
+procedure generates.
 
 ```cypher
 CALL import_util.json(path);
@@ -60,7 +63,7 @@ CALL import_util.json(path);
 }>
 <TabItem value="input">
 
-For example, let the input path be `"import_folder/input.json"`. There we can find `input.json`:
+Below is the content of the `input.json` file. File will be saved in the `import_folder`.
 
 ```json
 [
@@ -124,6 +127,8 @@ For example, let the input path be `"import_folder/input.json"`. There we can fi
 </TabItem>
 
 <TabItem value="run">
+
+In this example, the input path is  `"import_folder/input.json"`:
 
 ```cypher
 CALL import_util.json("import_folder/input.json");
