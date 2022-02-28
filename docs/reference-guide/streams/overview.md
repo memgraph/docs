@@ -12,8 +12,7 @@ Memgraph can connect to existing stream sources. To use streams, a user must:
 2. [Load the transformation
    module](/reference-guide/query-modules/load-call-query-modules.md) into
    Memgraph
-3. [Create the stream](#creating-a-stream) with a `CREATE <streaming platform>
-   STREAM` query and optionally [set its offset](#setting-a-stream-offset) with
+3. [Create the stream](#creating-a-stream) with a `CREATE <streaming platform> STREAM` query and optionally [set its offset](#setting-a-stream-offset) with
    `CALL mg.kafka_set_stream_offset(stream_name, offset)`
 4. [Start the stream](#start-a-stream) with a `START STREAM` query
 
@@ -46,17 +45,17 @@ CREATE KAFKA STREAM <stream name>
   [CREDENTIALS { <key1>: <value1> [, <key2>: <value2>, ...]}];
 ```
 
-option|description|type|example|default
-:-:|:-:|:-:|:-:|:-:
-stream name|Name of the stream in Memgraph|plain text|my_stream|/
-topic|Name of the topic in Kafka|plain text|my_topic|/
-transform procedure|Name of the transformation file followed by a procedure name|function|my_transformation.my_procedure|/
-consumer group|Name of the consumer group in Memgraph|plain text|my_group|mg_consumer
-batch interval duration|Maximum wait time in milliseconds for consuming messages before calling the transform procedure|int|9999|100
-batch size|Maximum number of messages to wait for before calling the transform procedure|int|99|1000
-bootstrap servers|Comma-separated list of bootstrap servers|string|"localhost:9092"|/
-configs|String key-value pairs of configuration options for the Kafka consumer|map with string key-value pairs|{"sasl.username": "michael.scott"}|/
-credentials|String key-value pairs of configuration options for the Kafka consumer, but their value aren't shown in the Kafka specific stream information|map with string key-value pairs|{"sasl.password": "password"}|/
+|         Option          |                                                                  Description                                                                  |              Type               |              Example               |   Default   |
+| :---------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------: | :--------------------------------: | :---------: |
+|       stream name       |                                                        Name of the stream in Memgraph                                                         |           plain text            |             my_stream              |      /      |
+|          topic          |                                                          Name of the topic in Kafka                                                           |           plain text            |              my_topic              |      /      |
+|   transform procedure   |                                         Name of the transformation file followed by a procedure name                                          |            function             |   my_transformation.my_procedure   |      /      |
+|     consumer group      |                                                    Name of the consumer group in Memgraph                                                     |           plain text            |              my_group              | mg_consumer |
+| batch interval duration |                      Maximum waiting time in milliseconds for consuming messages before calling the transform procedure                       |               int               |                9999                |     100     |
+|       batch size        |                                 Maximum number of messages to wait for before calling the transform procedure                                 |               int               |                 99                 |    1000     |
+|    bootstrap servers    |                                                   Comma-separated list of bootstrap servers                                                   |             string              |          "localhost:9092"          |      /      |
+|         configs         |                                    String key-value pairs of configuration options for the Kafka consumer                                     | map with string key-value pairs | {"sasl.username": "michael.scott"} |      /      |
+|       credentials       | String key-value pairs of configuration options for the Kafka consumer, but their value aren't shown in the Kafka specific stream information | map with string key-value pairs |   {"sasl.password": "password"}    |      /      |
 
 :::warning
 
@@ -180,7 +179,8 @@ probably because not enough messages were received, an exception is thrown.
 Default value of `<count>` is 1. `TIMEOUT` is measured in milliseconds, and its
 default value is 30000.
 
-Checking a stream won't commit any offsets.
+Default value of `<count>` is 1.
+`TIMEOUT` is measured in milliseconds, and it's default value is 30000.
 
 ## Kafka producer delivery semantics
 
