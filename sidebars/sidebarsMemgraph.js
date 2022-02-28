@@ -299,6 +299,7 @@ module.exports = {
         "reference-guide/temporal-types",
         //"reference-guide/tensorflow",
         "reference-guide/triggers",
+        "reference-guide/users",
         {
           type: "category",
           label: "Enterprise features",

@@ -34,6 +34,11 @@ password can be done by setting it to `null` as follows:
 ```cypher
   SET PASSWORD FOR user_name TO null;
 ```
+To delete a user use:
+
+```cypher
+DROP USER user_name;
+```
 
 ## User Roles
 

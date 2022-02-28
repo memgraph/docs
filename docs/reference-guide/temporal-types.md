@@ -51,7 +51,7 @@ Maps can contain the following six fields: `day`, `hour`, `minute`, `second`
 Example:
 
 ```cypher
-CREATE (:F1Laps {lap: duration({minute:2, seconds:2, microseconds:33})})
+CREATE (:F1Laps {lap: duration({minute:2, second:2, microsecond:33})})
 ```
 
 At this point, it must be pointed out that durations internally hold
@@ -60,7 +60,7 @@ microseconds and then reduced by addition to a single value. This has an
 interesting use case:
 
 ```cypher
-CREATE (:F1Laps {lap: duration({minute:2, seconds:-2, microseconds:-33})})
+CREATE (:F1Laps {lap: duration({minute:2, second:-2, microsecond:-33})})
 ```
 
 This converts `minutes`, `seconds` to `microseconds` and effectively produces
@@ -71,18 +71,35 @@ properties as follows:
 
 name|description
 :-:|:-:
-day|Converts all the microseconds to days and returns them.|/
-hour|Subtracts days and returns the leftover as hours.|/
-minute|Subtracts the days and returns the leftover as minutes.|/
-second|Subtracts the days and returns the leftover as seconds.|/
-millisecond|Subtracts the days and returns the leftover as milliseconds.|/
-microsecond|Subtracts the days and returns the leftover as microseconds.|/
-nanosecond|Subtracts the days and returns the leftover as nanoseconds.|/
+day|Converts all the microseconds back to days and returns the value.|/
+hour|Subtracts days and returns the leftover value as hours.|/
+minute|Subtracts the days and returns the leftover value as minutes.|/
+second|Subtracts the days and returns the leftover value as seconds.|/
+millisecond|Subtracts the days and returns the leftover value as milliseconds.|/
+microsecond|Subtracts the days and returns the leftover value as microseconds.|/
+nanosecond|Subtracts the days and returns the leftover value as nanoseconds.|/
 
 Example:
 
 ```cypher
+CREATE (:F1Laps {lap: duration({day:1, hour: 2, minute:3, second:4})})
+```
+
+```cypher
+MATCH (f:F1Laps) RETURN f.lap.day
+-> 1
+```
+```cypher
+MATCH (f:F1Laps) RETURN f.lap.hour
+-> 2
+```
+```cypher
 MATCH (f:F1Laps) RETURN f.lap.minute
+-> 123 // The value without days is 2 hours and 3  minutes, that is 123 minutes
+```
+```cypher
+MATCH (f:F1Laps) RETURN f.lap.second
+-> 7384 // The value without days is 2 hours, 3 minutes and 4 seconds, that is 7384 minutes
 ```
 
 ## Date

@@ -82,7 +82,7 @@ Memgraph comes with a couple of queries that allow you to safely make a backup
 of the files containing its data. Memgraph supports replication and allows you
 to create a cluster of nodes running Memgraph instances.
 
-## [Server stats](./server.stats.md)
+## [Server stats](./server-stats.md)
 
 Get information about the running instance. 
 
