@@ -213,8 +213,8 @@ module.exports = {
               type: "category",
               label: "CSV",
               items: [
-                "reference-guide/import-data/csv-import-tool",
                 "reference-guide/import-data/load-csv-clause",
+                "reference-guide/import-data/csv-import-tool",
               ],
             },
             "reference-guide/import-data/cypherl",
