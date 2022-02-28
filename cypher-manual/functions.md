@@ -8,66 +8,104 @@ sidebar_label: Functions
 
 This section contains the list of supported functions.
 
- Name            | Description
------------------|------------
- `startNode`     | Returns the starting node of an edge.
- `endNode`       | Returns the destination node of an edge.
- `degree`        | Returns the number of edges (both incoming and outgoing) of a node.
- `head`          | Returns the first element of a list.
- `last`          | Returns the last element of a list.
- `properties`    | Returns the properties of a node or an edge.
- `size`          | Returns the number of elements in a list or a map. When given a string it returns the number of characters. When given a path it returns the number of expansions (edges) in that path.
- `toBoolean`     | Converts the argument to a boolean.
- `toFloat`       | Converts the argument to a floating point number.
- `toInteger`     | Converts the argument to an integer.
- `type`          | Returns the type of an edge as a character string.
- `keys`          | Returns a list keys of properties from an edge or a node. Each key is represented as a string of characters.
- `labels`        | Returns a list of labels from a node. Each label is represented as a character string.
- `nodes`         | Returns a list of nodes from a path.
- `relationships` | Returns a list of relationships (edges) from a path.
- `range`         | Constructs a list of value in given range.
- `tail`          | Returns all elements after the first of a given list.
- `uniformSample` | Returns elements of given list randomly oversampled or undersampled to desired size, e.g. `uniformSample([1, 2, 3], 5) -> [1, 2, 3, 2, 3]`
- `abs`           | Returns the absolute value of a number.
- `ceil`          | Returns the smallest integer greater than or equal to given number.
- `floor`         | Returns the largest integer smaller than or equal to given number.
- `round`         | Returns the number, rounded to the nearest integer. Tie-breaking is done using the *commercial rounding*,  where -1.5 produces -2 and 1.5 produces 2.
- `exp`           | Calculates `e^n` where `e` is the base of the natural logarithm, and `n` is the given number.
- `log`           | Calculates the natural logarithm of a given number.
- `log10`         | Calculates the logarithm (base 10) of a given number.
- `sqrt`          | Calculates the square root of a given number.
- `acos`          | Calculates the arccosine of a given number.
- `asin`          | Calculates the arcsine of a given number.
- `atan`          | Calculates the arctangent of a given number.
- `atan2`         | Calculates the arctangent2 of a given number.
- `cos`           | Calculates the cosine of a given number.
- `sin`           | Calculates the sine of a given number.
- `tan`           | Calculates the tangent of a given number.
- `sign`          | Applies the signum function to a given number and returns the result. The signum of positive numbers is 1, of negative -1 and for 0 returns 0.
- `e`             | Returns the base of the natural logarithm.
- `pi`            | Returns the constant *pi*.
- `rand`          | Returns a random floating point number between 0 (inclusive) and 1 (exclusive).
- `startsWith`    | Check if the first argument starts with the second.
- `endsWith`      | Check if the first argument ends with the second.
- `contains`      | Check if the first argument has an element which is equal to the second argument.
- `left`          | Returns a string containing the specified number of leftmost characters of the original string.
- `lTrim`         | Returns the original string with leading whitespace removed.
- `replace`       | Returns a string in which all occurrences of a specified string in the original string have been replaced by another (specified) string.
- `reverse`       | Returns a string in which the order of all characters in the original string have been reversed.
- `right`         | Returns a string containing the specified number of rightmost characters of the original string.
- `rTrim`         | Returns the original string with trailing whitespace removed.
- `split`         | Returns a list of strings resulting from the splitting of the original string around matches of the given delimiter.
- `substring`     | Returns a substring of the original string, beginning with a 0-based index start and length.
- `toLower`       | Returns the original string in lowercase.
- `toString`      | Converts an integer, float or boolean value to a string.
- `toUpper`       | Returns the original string in uppercase.
- `trim`          | Returns the original string with leading and trailing whitespace removed.
- `all`           | Check if all elements of a list satisfy a predicate. The syntax is: `all(variable IN list WHERE predicate)`.<br/> NOTE: Whenever possible, use Memgraph's lambda functions when matching instead.
- `any`           | Check if any element in the list satisfies the predicate. The syntax is: `any(element IN list WHERE predicate_using_element)`.
- `single`        | Check if only one element of a list satisfies a predicate. The syntax is: `single(variable IN list WHERE predicate)`.
- `reduce`        | Accumulate list elements into a single result by applying an expression. The syntax is: `reduce(accumulator = initial_value, variable IN list \| expression)`.
- `extract`       | A list of values obtained by evaluating an expression for each element in list. The syntax is: `extract(variable IN list \| expression)`.
- `assert`        | Raises an exception reported to the client if the given argument is not `true`.
- `counter`       | Generates integers that are guaranteed to be unique within a single query for a given counter name. The syntax is `counter("counter_name", initial_value, [increment] = 1)`. The increment parameter can be any integer besides zero.
- `timestamp`     | Returns the difference, measured in microseconds, between the current time and midnight, January 1, 1970 UTC.
- `id`            | Returns identifier for a given node or edge. The identifier is generated during the initialization of node or edge and will be persisted through the durability mechanism.
+### Temporal functions
+
+ | Name            | Signature                                                                  | Description                                                               |
+ | --------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+ | `duration`      | <code>duration(value: string\|Duration) -> (Duration)</code>               | Returns the data type that represents a period of time.                   |
+ | `date`          | <code>date(value: string\|Date) -> (Date)</code>                           | Returns the data type that represents a date with year, month, and day.   |
+ | `localTime`     | <code>localTime(value: string\|LocalTime) -> (LocalTime)</code>            | Returns the data type that represents time within a day without timezone. |
+ | `localDateTime` | <code>localDateTime(value: string\|LocalDateTime)-> (LocalDateTime)</code> | Returns the data type that represents a date and local time.              |
+                             
+ ### Scalar functions
+
+ | Name         | Signature                                                                            | Description                                                                                                                                                                                                                              |
+ | ------------ | ------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+ | `startNode`  | `startNode(relationship: Relationship) -> (Node)`                                    | Returns the starting node of a relationship.                                                                                                                                                                                             |
+ | `endNode`    | `endNode(relationship: Relationship) -> (Node)`                                      | Returns the destination node of a relationship.                                                                                                                                                                                                 |
+ | `degree`     | `degree(node: Node) -> (integer)`                                                    | Returns the number of relationships (both incoming and outgoing) of a node.                                                                                                                                                                      |
+ | `head`       | `head(list: List[any]) -> (any)`                                                     | Returns the first element of a list.                                                                                                                                                                                                     |
+ | `last`       | `last(list: List[any]) -> (any)`                                                     | Returns the last element of a list.                                                                                                                                                                                                      |
+ | `properties` | <code>properties(value: Node\|Relationship) -> (Map[string, any])</code>             | Returns the property map of a node or a relationship.                                                                                                                                                                                   |
+ | `size`       | `size(value: any) -> (integer)`                                                      | Returns the number of elements in the value. When given a **list** it returns the size of the list. When given a string it returns the number of characters. When given a path it returns the number of expansions (relationships) in that path. |
+ | `toBoolean`  | `toBoolean(value: any) -> (boolean)`                                                 | Converts the argument to a boolean.                                                                                                                                                                                                      |
+ | `toFloat`    | `toFloat(value: any) -> (float)`                                                     | Converts the argument to a floating point number.                                                                                                                                                                                        |
+ | `toInteger`  | `toInteger(value: any) -> (integer)`                                                 | Converts the argument to an integer.                                                                                                                                                                                                     |
+ | `toString`   | `toString(value: any) -> (string)`                                                   | Converts the argument to a string.                                                                                                                                                                                                       |
+ | `type`       | `type(relationship: Relationship) -> (string)`                                       | Returns the type of a relationships as a character string.                                                                                                                                                                                       |
+ | `assert`     | `assert(value: any) -> ()`                                                           | Raises an exception if the given argument is not `true`.                                                                                                                                                                                 |
+ | `id`         | <code>id(value: Node\|Relationship) -> (integer)</code>                              | Returns identifier for a given node or relationship. The identifier is generated during the initialization of a node or a relationship  and will be persisted through the durability mechanism.                                                  |
+ | `timestamp`  | `timestamp() -> (integer)`                                                           | Returns the difference, measured in microseconds, between the current time and midnight, January 1, 1970 UTC.                                                                                                                            |
+ | `counter`    | `counter(name: string, initial-value: integer, increment: integer = 1) -> (integer)` | Generates integers that are guaranteed to be unique within a single query for a given counter name.  The increment parameter can be any integer besides zero.                                                                            |
+ 
+ ### Lists
+
+ | Name            | Signature                                                                                      | Description                                                                                                                                |
+ | --------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+ | `keys`          | <code>keys(value: Node\|Relationship) -> (List[string])</code>                                 | Returns a list keys of properties from a relationship or a node. Each key is represented as string.                                               |
+ | `labels`        | `labels(node: Node) -> (List[string])`                                                         | Returns a list of labels from a node. Each label is represented as string.                                                                 |
+ | `nodes`         | `nodes(path: Path) -> (List[Node])`                                                            | Returns a list of nodes from a path.                                                                                                       |
+ | `relationships` | `relationships(path: Path) -> (List[Relationship])`                                            | Returns a list of relationships (edges) from a path.                                                                                       |
+ | `tail`          | `tail(list: List[any]) -> (List[any])`                                                         | Returns all elements after the first of a given list.                                                                                      |
+ | `uniformSample` | `uniformSample(list: List[any], size: integer) -> (List[any])`                                 | Returns elements of a given list randomly oversampled or undersampled to desired size                                                      |
+ | `range`         | `range(start-number: integer, end-number: integer, increment: integer = 1) -> (List[integer])` | Constructs a list of value in given range.                                                                                                 |
+ | `reduce`        | <code>reduce(accumulator = initial_value, variable IN list \| expression)</code>               | Accumulate list elements into a single result by applying an expression.                                                                   |
+ | `extract`       | `extract(variable IN list \| expression)`                                                      | A list of values obtained by evaluating an expression for each element in list.                                                            |
+ |                 |
+ | `all`           | `all(variable IN list WHERE predicate)`                                                        | Check if all elements of a list satisfy a predicate. <br/> NOTE: Whenever possible, use Memgraph's lambda functions when matching instead. |
+ | `any`           | `any(element IN list WHERE predicate_using_element)`                                           | Check if any element in the list satisfies the predicate.                                                                                  |
+ | `single`        | `single(variable IN list WHERE predicate)`                                                     | Check if only one element of a list satisfies a predicate.                                                                                 |
+
+### Math functions
+
+ | Name    | Signature                                                             | Description                                                                                                                                           |
+ | ------- | --------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+ | `abs`   | <code>abs(number: integer \| float) -> (integer\|float)</code>        | Returns the absolute value of a number.                                                                                                               |
+ | `ceil`  | `ceil(number: float) -> (integer)`                                    | Returns the smallest integer greater than or equal to the iven float number.                                                                          |
+ | `floor` | `floor(number: float) -> (integer)`                                   | Returns the largest integer smaller than or equal to the given float number.                                                                          |
+ | `round` | `round(number: float) -> (integer)`                                   | Returns the number, rounded to the nearest integer. Tie-breaking is done using the *commercial rounding*,  where -1.5 produces -2 and 1.5 produces 2. |
+ | `pi`    | `pi() -> (float)`                                                     | Returns the constant *pi* (3.14159).                                                                                                                  |
+ | `e`     | `e() -> (float)`                                                      | Returns the base of the natural logarithm (2.71828)..                                                                                                 |
+ | `exp`   | <code>exp(number: integer \| float) -> (float)</code>                 | Calculates `e^n` where `e` is the base of the natural logarithm, and `n` is the given number.                                                         |
+ | `log`   | <code>log(number: integer \| float) -> (float)</code>                 | Calculates the natural logarithm of a given number.                                                                                                   |
+ | `log10` | <code>log10(number: integer \| float) -> (float)</code>               | Calculates the logarithm (base 10) of a given number.                                                                                                 |
+ | `sqrt`  | <code>sqrt(number: integer \| float) -> (float)</code>                | Calculates the square root of a given number.                                                                                                         |
+ | `acos`  | <code>acos(number: integer \| float) -> (float)</code>                | Calculates the arccosine of a number between -1 and 1 in radians.                                                                                     |
+ | `asin`  | <code>asin(number: integer \| float) -> (float)</code>                | Calculates the arcsine of a number between -1 and 1 in radians.                                                                                       |
+ | `atan`  | <code>atan(number: integer \| float) -> (float)</code>                | Calculates the arctangent of a given number in radians.                                                                                               |
+ | `atan2` | <code>atan2(y: integer \| float, x: integer\|float) -> (float)</code> | Calculates a unique arctangent value from a set of coordinates in radians.                                                                            |
+ | `cos`   | <code>cos(number: integer \| float) -> (float)</code>                 | Calculates the cosine of an angle specified in radians.                                                                                               |
+ | `sin`   | <code>sin(number: integer \| float) -> (float)</code>                 | Calculates the sine of an angle specified in radians.                                                                                                 |
+ | `tan`   | <code>tan(number: integer \| float) -> (float)</code>                 | Calculates the tangent of an angle specified in radians.                                                                                              |
+ | `sign`  | <code>sign(number: integer \| float) -> (integer)</code>              | Applies the signum function to a given number and returns the result. The signum of positive numbers is 1, of negative -1 and for 0 returns 0.        |
+ | `rand`  | `rand() -> (float)`                                                   | Returns a random floating point number between 0 (inclusive) and 1 (exclusive).                                                                       |
+
+ ### Aggregation functions
+
+ | Name      | Signature                                                     | Description                                                                                           |
+ | --------- | ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+ | `avg`     | <code>avg(row: int \| float] -> (float)</code>                | Returns an average value of rows with numerical values generated with the `MATCH` or `UNWIND` clause. |
+ | `collect` | <code>collect(values: any) -> (List[any])</code>              | Returns a single aggregated list containing returned values.                                          |
+ | `count`   | <code>count(values: any) -> (integer)</code>                  | Counts the number of non-null values returned by the expression.                                      |
+ | `max`     | <code>max(row: integer \| float) -> (integer \| float)</code> | Returns the maximum value in a set of values.                                                         |
+ | `min`     | <code>min(row: integer \| float) -> (integer \| float)</code> | Returns the minimum value in a set of values.                                                         |
+ | `sum`     | <code>sum(row: integer \| float) -> (integer \| float)</code> | Returns a sum value of rows with numerical values generated with the `MATCH` or `UNWIND` clause.      |
+
+### String functions
+
+| Name         | Signature                                                                                | Description                                                                                                                              |
+| ------------ | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `startsWith` | `startsWith(string: string, substring: string) -> (boolean)`                             | Check if the first argument starts with the second.                                                                                      |
+| `endsWith`   | `endsWith(string: string, substring: string) -> (boolean)`                               | Check if the first argument ends with the second.                                                                                        |
+| `contains`   | `contains(string: string, substring: string) -> (boolean)`                               | Check if the first argument has an element which is equal to the second argument.                                                        |
+| `left`       | `left(string: string, count: integer) -> (string)`                                       | Returns a string containing the specified number of leftmost characters of the original string.                                          |
+| `lTrim`      | `lTrim(string: string) -> (string)`                                                      | Returns the original string with leading whitespace removed.                                                                             |
+| `replace`    | `replace(string: string, search-string: string, replacement-string: string) -> (string)` | Returns a string in which all occurrences of a specified string in the original string have been replaced by another (specified) string. |
+| `reverse`    | `reverse(string: string) -> (string)`                                                    | Returns a string in which the order of all characters in the original string have been reversed.                                         |
+| `right`      | `right(string: string, count: integer) -> (string)`                                      | Returns a string containing the specified number of rightmost characters of the original string.                                         |
+| `rTrim`      | `rTrim(string: string) -> (string)`                                                      | Returns the original string with trailing whitespace removed.                                                                            |
+| `split`      | `split(string: string, delimiter: string) -> (List[string])`                             | Returns a list of strings resulting from the splitting of the original string around matches of the given delimiter.                     |
+| `substring`  | `substring(string: string, start-index: integer, length: integer = null) -> (string)`    | Returns a substring of the original string, beginning with a 0-based index start and length.                                             |
+| `toLower`    | `toLower(string: string) -> (string)`                                                    | Returns the original string in lowercase.                                                                                                |  |
+| `toUpper`    | `toUpper(string: string) -> (string)`                                                    | Returns the original string in uppercase.                                                                                                |
+| `trim`       | `trim(string: string) -> (string)`                                                       | Returns the original string with leading and trailing whitespace removed.                                                                |

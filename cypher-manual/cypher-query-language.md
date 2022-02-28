@@ -13,11 +13,10 @@ about the syntax.
 
 Cypher was designed to be easy to learn but very powerful when it comes to graph
 analytics. This means that you can use Cypher to write complex queries
-relatively easily. Being a declarative language, Cypher expresses what to
-retrieve and not how to retrieve it.
+relatively easily. 
 
 You can think of Cypher as mapping English language sentence structure to
-patterns in a graph. For example, the nouns are nodes of the graph, the verbs
+patterns in a graph. In most cases, the nouns are nodes of the graph, the verbs
 are the relationships in the graph, and the adjectives and adverbs are the
 properties.
 
@@ -46,7 +45,7 @@ want to be a comment:
 
 ```cypher
 // This is a Cypher comment
-CREATE (p1:Person { name: 'Harry' }), (p2:Person { name: 'Anna' })
+CREATE (p1:Person {name: 'Harry'}), (p2:Person  name: 'Anna'})
 CREATE (p1)-[r:MARRIED_TO]->(p2)
 RETURN r;
 ```
@@ -121,7 +120,7 @@ use a new line or an indent.
 
 ```cypher
 MATCH (p:Person)
-WHERE EXISTS { MATCH (p)-->(c:Country {name: 'UK'}) }
+WHERE EXISTS {MATCH (p)-->(c:Country {name: 'UK'})}
 RETURN p;
 ```
 

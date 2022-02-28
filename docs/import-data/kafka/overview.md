@@ -72,8 +72,7 @@ command-line parameter when using Docker.
 :::caution
 
 Please remember that if you are using Memgraph Platform image, you should pass
-configuration flags within MEMGRAPH environmental variable (e.g. `docker run -e
-MEMGRAPH="--bolt-port=7687" memgraph/memgraph-platform`) and if you are using
+configuration flags within MEMGRAPH environmental variable (e.g. `docker run -e MEMGRAPH="--bolt-port=7687" memgraph/memgraph-platform`) and if you are using
 any other image, you should pass them as arguments after the image name (e.g.,
 `memgraph/memgraph-mage --bolt-port=7687 --query-modules-directory=path/path`).
 
