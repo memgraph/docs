@@ -6,8 +6,7 @@ sidebar_label: LOAD CSV Cypher clause
 
 The `LOAD CSV` clause enables you to load and use data from a CSV file of your
 choosing in a row-based manner, within a query. We support the Excel CSV
-dialect, as it's the most commonly used one. For the syntax of the clause,
-please check the [Cypher manual](/cypher-manual/clauses/load-csv)
+dialect, as it's the most commonly used one. 
 
 The syntax of the clause is:
 
