@@ -24,9 +24,9 @@ There are three different types of data: `Movie`, `User` and `Genre`. Movies
 have properties: `id` and `title` Users have properties: `id`, `name` Genres
 have a property: `name`
 
-Each movie can be connected with `:ofGenre` edge to different genres. A user can
-rate some movie. Rating is modeled with `:Rating` edge and this edge has
-property `score` &mdash; float number between 0 and 5.
+Each movie can be connected with `:ofGenre` relationship to different genres. A user can
+rate some movie. Rating is modeled with `:Rating` relationship and this relationship has
+a property `score` &mdash; float number between 0 and 5.
 
 ![Movies](../data/movie_metagraph.png)
 
@@ -61,8 +61,8 @@ LIMIT 15;
 title
 
 ```cypher
-MATCH (movie:Movie)-[:ofGenre]->(:Genre {name:"Action"})
-MATCH (movie)-[:ofGenre]->(:Genre {name:"Comedy"})
+MATCH (movie:Movie)-[:ofGenre]->(:Genre {name:'Action'})
+MATCH (movie)-[:ofGenre]->(:Genre {name:'Comedy'})
 RETURN movie.title
 ORDER BY movie.title
 LIMIT 10;
@@ -76,18 +76,18 @@ Let's create a new unique constraint:
 CREATE CONSTRAINT ON (genre:Genre) ASSERT genre.name IS UNIQUE;
 ```
 
-And now we can try to create new `Genre` node with existing `name': "Comedy":
+And now we can try to create new `Genre` node with an existing `name': 'Comedy':
 
 ```cypher
-CREATE (:Genre {name: "Comedy"});
+CREATE (:Genre {name: 'Comedy'});
 ```
 
-This query returns an error because genre "Comedy" already exists.
+This query returns an error because genre 'Comedy' already exists.
 
 **5\.** Average score for _Star Wars_ movie:
 
 ```cypher
-MATCH (:User)-[rating:Rating]->(:Movie {title:"Star Wars"})
+MATCH (:User)-[rating:Rating]->(:Movie {title:'Star Wars'})
 RETURN avg(rating.score);
 ```
 
@@ -103,49 +103,49 @@ LIMIT 10;
 **7\.** Create a new user and rate some movies:
 
 ```cypher
-CREATE (:User {id:1000, name:"Aladin"});
+CREATE (:User {id:1000, name:'Aladin'});
 ```
 
 Check if new user is created:
 
 ```cypher
-MATCH (user:User{name:"Aladin"})
+MATCH (user:User{name:'Aladin'})
 RETURN user;
 ```
 
 Rate some movies:
 
 ```cypher
-MATCH (u:User {id:1000}), (m:Movie {title:"Trois couleurs : Rouge"})
-MERGE (u)-[:Rating {score:3.0}]-(m);
-MATCH (u:User {id:1000}), (m:Movie {title:"20,000 Leagues Under the Sea"})
-MERGE (u)-[:Rating {score:1.0}]-(m);
-MATCH (u:User {id:1000}), (m:Movie {title:"Star Trek: Generations"})
-MERGE (u)-[:Rating {score:0.5}]-(m);
-MATCH (u:User {id:1000}), (m:Movie {title:"Rebecca"})
-MERGE (u)-[:Rating {score:3.0}]-(m);
-MATCH (u:User {id:1000}), (m:Movie {title:"The 39 Steps"})
-MERGE (u)-[:Rating {score:4.5}]-(m);
-MATCH (u:User {id:1000}), (m:Movie {title:"Faster, Pussycat! Kill! Kill!"})
-MERGE (u)-[:Rating {score:3.5}]-(m);
-MATCH (u:User {id:1000}), (m:Movie {title:"Once Were Warriors"})
-MERGE (u)-[:Rating {score:3.5}]-(m);
-MATCH (u:User {id:1000}), (m:Movie {title:"Sleepless in Seattle"})
-MERGE (u)-[:Rating {score:4.0}]-(m);
-MATCH (u:User {id:1000}), (m:Movie {title:"Don Juan DeMarco"})
-MERGE (u)-[:Rating {score:4.0}]-(m);
-MATCH (u:User {id:1000}), (m:Movie {title:"Jack & Sarah"})
-MERGE (u)-[:Rating {score:1.5}]-(m);
-MATCH (u:User {id:1000}), (m:Movie {title:"Mr. Holland's Opus"})
-MERGE (u)-[:Rating {score:2.0}]-(m);
-MATCH (u:User {id:1000}), (m:Movie {title:"The Getaway"})
-MERGE (u)-[:Rating {score:3.0}]-(m);
-MATCH (u:User {id:1000}), (m:Movie {title:"Color of Night"})
-MERGE (u)-[:Rating {score:4.0}]-(m);
-MATCH (u:User {id:1000}), (m:Movie {title:"Reality Bites"})
-MERGE (u)-[:Rating {score:2.5}]-(m);
-MATCH (u:User {id:1000}), (m:Movie {title:"Notorious"})
-MERGE (u)-[:Rating {score:3.5}]-(m);
+MATCH (u:User {id:1000}), (m:Movie {title:'Trois couleurs : Rouge'})
+MERGE (u)-[:Rating {score:3.0}]->(m);
+MATCH (u:User {id:1000}), (m:Movie {title:'20,000 Leagues Under the Sea'})
+MERGE (u)-[:Rating {score:1.0}]->(m);
+MATCH (u:User {id:1000}), (m:Movie {title:'Star Trek: Generations'})
+MERGE (u)-[:Rating {score:0.5}]->(m);
+MATCH (u:User {id:1000}), (m:Movie {title:'Rebecca'})
+MERGE (u)-[:Rating {score:3.0}]->(m);
+MATCH (u:User {id:1000}), (m:Movie {title:'The 39 Steps'})
+MERGE (u)-[:Rating {score:4.5}]->(m);
+MATCH (u:User {id:1000}), (m:Movie {title:'Faster, Pussycat! Kill! Kill!'})
+MERGE (u)-[:Rating {score:3.5}]->(m);
+MATCH (u:User {id:1000}), (m:Movie {title:'Once Were Warriors'})
+MERGE (u)-[:Rating {score:3.5}]->(m);
+MATCH (u:User {id:1000}), (m:Movie {title:'Sleepless in Seattle'})
+MERGE (u)-[:Rating {score:4.0}]->(m);
+MATCH (u:User {id:1000}), (m:Movie {title:'Don Juan DeMarco'})
+MERGE (u)-[:Rating {score:4.0}]->(m);
+MATCH (u:User {id:1000}), (m:Movie {title:'Jack & Sarah'})
+MERGE (u)-[:Rating {score:1.5}]->(m);
+MATCH (u:User {id:1000}), (m:Movie {title:'Mr. Holland's Opus'})
+MERGE (u)-[:Rating {score:2.0}]->(m);
+MATCH (u:User {id:1000}), (m:Movie {title:'The Getaway'})
+MERGE (u)-[:Rating {score:3.0}]->(m);
+MATCH (u:User {id:1000}), (m:Movie {title:'Color of Night'})
+MERGE (u)-[:Rating {score:4.0}]->(m);
+MATCH (u:User {id:1000}), (m:Movie {title:'Reality Bites'})
+MERGE (u)-[:Rating {score:2.5}]->(m);
+MATCH (u:User {id:1000}), (m:Movie {title:'Notorious'})
+MERGE (u)-[:Rating {score:3.5}]->(m);
 ```
 
 **8\.** Recommendation system:

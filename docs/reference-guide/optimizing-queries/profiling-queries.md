@@ -2,6 +2,7 @@
 id: profiling-queries
 title: How to profile queries
 sidebar_label: Profile queries
+slug: /reference-guide/profiling-queries
 ---
 
 Along with inspecting a query's plan as described in the [Inspecting
