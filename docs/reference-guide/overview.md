@@ -39,13 +39,14 @@ a .cypherl format file.
 An index stores additional information on certain types of data, so that
 retrieving said data becomes more efficient.
 
-## [Inspecting and optimizing queries](./inspecting-queries/inspecting-queries.md)
+## [Inspecting and optimizing queries](/reference-guide/optimizing-queries/inspecting-queries.md)
 
-[Inspect the plan](./inspecting-queries/inspecting-queries.md) for executing a
-query, a pipeline of operations which will be performed on the database in order
-to yield the results for a given query, to gain insight into the execution of a
-query or [get a detailed report](./inspecting-queries/profiling-queries.md) on
-how the query's plan behaved.
+[Inspect the plan](/reference-guide/optimizing-queries/inspecting-queries.md)
+for executing a query, a pipeline of operations which will be performed on the
+database in order to yield the results for a given query, to gain insight into
+the execution of a query or [get a detailed
+report](/reference-guide/optimizing-queries//profiling-queries.md) on how the
+query's plan behaved.
 
 ## [Isolation levels](./isolation-levels.md)
 

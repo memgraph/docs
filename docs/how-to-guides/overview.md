@@ -33,8 +33,8 @@ Memgraph also enables you to inspect and profile the execution of a query and
 get a detailed report on how the query's plan behaved. Take a look at the
 guides:
 
-- [Inspecting queries](./inspecting-queries.md)
-- [Profiling queries](./profiling-queries.md)
+- [Inspecting queries](/reference-guide/optimizing-queries/inspecting-queries.md)
+- [Profiling queries](/reference-guide/optimizing-queries/profiling-queries.md)
 
 ## [Query modules](/reference-guide/query-modules/overview.md)
 
