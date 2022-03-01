@@ -123,6 +123,7 @@ module.exports = {
         "tutorials/backpacking-through-europe",
         "tutorials/exploring-the-european-road-network",
         "tutorials/football-transfers",
+        "tutorials/graph-modeling",
         "tutorials/got-deaths",
         "tutorials/graphing-the-premier-league",
         "tutorials/install-memgraph-windows-10",
