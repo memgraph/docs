@@ -690,7 +690,7 @@ sidebar_label: Changelog
 - Log an error if reading info on available memory fails.
 - Fix a bug when `MATCH` would stop matching if a result was empty, but later
   results still contain data to be matched. The simplest case of this was the
-  query: `UNWIND [1, 2, 3] AS x MATCH (n : Label {prop: x}) RETURN n`. If there
+  query: `UNWIND [1, 2, 3] AS x MATCH (n: Label {prop: x}) RETURN n`. If there
   was no node `(: Label {prop: 1})`, then the `MATCH` wouldn't even try to find
   for `x` being 2 or 3.
 - Report an error if trying to compare a property value with something that

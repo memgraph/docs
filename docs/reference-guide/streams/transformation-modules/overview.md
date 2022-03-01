@@ -26,8 +26,8 @@ transformation procedures are grouped into a module called **Transformation
 module** which is then loaded into Memgraph on startup or later on. A
 transformation module consists of a transformation, a query procedure, or both.
 
-Currently, we only support transformations for Kafka streams, but we are aiming
-to add support for other streaming engines as well.
+Currently, we support transformations for Kafka, Pulsar and Redpanda
+streams.
 
 The available API references are:
 
