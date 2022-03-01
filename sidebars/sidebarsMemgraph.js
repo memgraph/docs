@@ -225,8 +225,8 @@ module.exports = {
           type: "category",
           label: "Inspecting and optimizing queries",
           items: [
-            "reference-guide/inspecting-queries/inspecting-queries",
-            "reference-guide/inspecting-queries/profiling-queries",
+            "reference-guide/optimizing-queries/inspecting-queries",
+            "reference-guide/optimizing-queries/profiling-queries",
           ],
         },
         "reference-guide/isolation-levels",

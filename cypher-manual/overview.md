@@ -29,7 +29,7 @@ computer.
 
 :::tip
 
-Try out our [**free e-mail Cypher
+Check out our free [**Cypher e-mail 
 course**](https://memgraph.com/learn-cypher-query-language) and learn the Cypher
 query language in 10 days.
 

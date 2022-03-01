@@ -32,7 +32,7 @@ learn while providing a powerful interface for working with graph-based data.
 ## [Import data](./import-data/overview.md)
 
 Memgraph offers painless import of data from CSV files or Cypher queries within
-a .cypherl format.
+a .cypherl format file.
 
 ## [Indexing](./indexing.md)
 
@@ -107,7 +107,7 @@ overview page:
 ## [Triggers](./triggers.md)
 
 Memgraph enables running openCypher statements after a certain event happens
-during transaction execution, i.e. triggers.
+during transaction execution, i.e., triggers.
 
 ----
 
@@ -123,7 +123,7 @@ records of all queries executed on the database.
 ### Authentication and authorization
 
 Memgraph supports authentication and (optional) authorization using a
-custom-built external auth module. To learn more visit:
+custom-built external auth module. To learn more, visit:
 
 - **[Auth module](./auth-module.md)**
 - **[LDAP security](./ldap-security.md)**

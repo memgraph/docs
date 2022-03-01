@@ -1,6 +1,6 @@
 ---
 id: configuration
-title: Configuration
+title: Configuration settings
 sidebar_label: Configuration settings
 ---
 

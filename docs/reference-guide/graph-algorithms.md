@@ -1,8 +1,13 @@
 ---
 id: graph-algorithms
-title: Graph algorithms
+title: Built-in graph algorithms
 sidebar_label: Built-in graph algorithms
 ---
+
+These algorithms are part of Memgraph's query engine, and the Cypher query
+language has been extended to allow their usage. If you are looking for more
+graph algorithms, check out [MAGE](/mage) - a graph library that extends
+Memgraph with additional algorithms and utility modules.
 
 ## Filtering Variable Length Paths
 

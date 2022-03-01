@@ -1167,11 +1167,11 @@ module.exports = {
           },
           //Move Inspecting and optimizing queries from How-to guides to Reference guide
           {
-            to: "/memgraph/reference-guide/inspecting-queries/inspecting-queries",
+            to: "/memgraph/reference-guide/optimizing-queries/inspecting-queries",
             from: ["/memgraph/how-to-guides/inspecting-queries"],
           },
           {
-            to: "/memgraph/reference-guide/inspecting-queries/profiling-queries",
+            to: "/memgraph/reference-guide/optimizing-queries/profiling-queries",
             from: ["/memgraph/how-to-guides/profiling-queries"],
           },
           //create redirect for Memgraph Getting started page

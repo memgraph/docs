@@ -42,7 +42,7 @@ S|Seconds|/
 Example:
 
 ```cypher
-CREATE (:F1Laps {lap: duration("PT2M2.33S")})
+CREATE (:F1Laps {lap: duration("PT2M2.33S")});
 ```
 
 Maps can contain the following six fields: `day`, `hour`, `minute`, `second`
@@ -51,7 +51,7 @@ Maps can contain the following six fields: `day`, `hour`, `minute`, `second`
 Example:
 
 ```cypher
-CREATE (:F1Laps {lap: duration({minute:2, second:2, microsecond:33})})
+CREATE (:F1Laps {lap: duration({minute:2, second:2, microsecond:33})});
 ```
 
 At this point, it must be pointed out that durations internally hold
@@ -60,7 +60,7 @@ microseconds and then reduced by addition to a single value. This has an
 interesting use case:
 
 ```cypher
-CREATE (:F1Laps {lap: duration({minute:2, second:-2, microsecond:-33})})
+CREATE (:F1Laps {lap: duration({minute:2, second:-2, microsecond:-33})});
 ```
 
 This converts `minutes`, `seconds` to `microseconds` and effectively produces
@@ -82,24 +82,28 @@ nanosecond|Subtracts the days and returns the leftover value as nanoseconds.|/
 Example:
 
 ```cypher
-CREATE (:F1Laps {lap: duration({day:1, hour: 2, minute:3, second:4})})
+CREATE (:F1Laps {lap: duration({day:1, hour: 2, minute:3, second:4})});
 ```
 
 ```cypher
-MATCH (f:F1Laps) RETURN f.lap.day
--> 1
+MATCH (f:F1Laps) RETURN f.lap.day;
+// Result
+>> 1
 ```
 ```cypher
-MATCH (f:F1Laps) RETURN f.lap.hour
--> 2
+MATCH (f:F1Laps) RETURN f.lap.hour;
+// Result
+>> 2
 ```
 ```cypher
-MATCH (f:F1Laps) RETURN f.lap.minute
--> 123 // The value without days is 2 hours and 3  minutes, that is 123 minutes
+MATCH (f:F1Laps) RETURN f.lap.minute;
+// Result
+>> 123 // The value without days is 2 hours and 3  minutes, that is 123 minutes
 ```
 ```cypher
-MATCH (f:F1Laps) RETURN f.lap.second
--> 7384 // The value without days is 2 hours, 3 minutes and 4 seconds, that is 7384 minutes
+MATCH (f:F1Laps) RETURN f.lap.second;
+// Result
+>> 7384 // The value without days is 2 hours, 3 minutes and 4 seconds, that is 7384 minutes
 ```
 
 ## Date
@@ -122,7 +126,7 @@ the current date of the calendar (UTC clock).
 Example:
 
 ```cypher
-CREATE (:Person {birthday: date("1947-07-30")})
+CREATE (:Person {birthday: date("1947-07-30")});
 ```
 
 For maps, three fields are available: `year`, `month`, `day`.
@@ -130,7 +134,7 @@ For maps, three fields are available: `year`, `month`, `day`.
 Example:
 
 ```cypher
-CREATE (:Person {birthday: date({year:1947, month:7, day:30})})
+CREATE (:Person {birthday: date({year:1947, month:7, day:30})});
 ```
 
 You can access the individual fields of a date through its properties:
@@ -144,7 +148,7 @@ day|Returns the day field|/
 Example:
 
 ```cypher
-MATCH (b:Person) RETURN b.birthday.year
+MATCH (b:Person) RETURN b.birthday.year;
 ```
 
 ## LocalTime
@@ -170,7 +174,7 @@ to the current time of the calendar (UTC clock).
 Example:
 
 ```cypher
-CREATE (:School {Calculus: localTime("09:15:00")})
+CREATE (:School {Calculus: localTime("09:15:00")});
 ```
 
 For maps, there are 5 fields available: `hour`, `minute`, `second`,
@@ -179,7 +183,7 @@ For maps, there are 5 fields available: `hour`, `minute`, `second`,
 Example:
 
 ```cypher
-CREATE (:School {Calculus: localTime({hour:9, minute:15})})
+CREATE (:School {Calculus: localTime({hour:9, minute:15})});
 ```
 
 You can access the individual fields of a LocalTime through its properties:
@@ -195,7 +199,7 @@ microsecond|Returns the microsecond field|/
 Example:
 
 ```cypher
-MATCH (s:School) RETURN s.Calculus.hour
+MATCH (s:School) RETURN s.Calculus.hour;
 ```
 
 ## LocalDateTime
@@ -219,7 +223,7 @@ and time fields to the current date and time of the calendar (UTC clock).
 Example:
 
 ```cypher
-CREATE (:Flights {AIR123: localDateTime("2021-10-05T14:15:00")})
+CREATE (:Flights {AIR123: localDateTime("2021-10-05T14:15:00")});
 ```
 
 For maps the following fields are available: `year`, `month`, `day`, `hour`,
@@ -228,7 +232,7 @@ For maps the following fields are available: `year`, `month`, `day`, `hour`,
 Example:
 
 ```cypher
-CREATE (:Flights {AIR123: localDateTime(year:2021, month:10, day:5, hour:14, minute:15)})
+CREATE (:Flights {AIR123: localDateTime(year:2021, month:10, day:5, hour:14, minute:15)});
 ```
 
 You can access the individual fields of LocalDateTime through its properties:
@@ -247,7 +251,7 @@ microsecond|Returns the microsecond field|/
 Example:
 
 ```cypher
-MATCH (f:Flights) RETURN f.AIR123.year
+MATCH (f:Flights) RETURN f.AIR123.year;
 ```
 
 ## Temporal types arithmetic
