@@ -4,7 +4,7 @@ title: Graph modeling
 sidebar_label: Graph modeling
 ---
 
-In this tutorial, you will learn teh basic terminology related to graph
+In this tutorial, you will learn the basic terminology related to graph
 databases and graph modeling.
 
 ## Prerequisites
@@ -140,7 +140,90 @@ would be:
 
 ![graph-modeling-properties](../data/tutorials/graph-modeling/graph-modeling-properties.png)
 
-## 3. Types of graphs
+## 3. The labeled property graph model
+
+Graph data modeling is the process in which a user describes an arbitrary domain
+as a connected graph of nodes and relationships with properties and labels. In
+the graph world, the “property graph” style of graphing makes it possible to
+rethink the representation of data models. This kind of data model is very close
+to what people draw on whiteboards. They are very easy to visualize and easily
+follow the thought flow. 
+
+From trying to explain concepts while holding the presentation to complex board
+pins-and-red-string connections seen in detective movies, we are trying to
+explain the connection between data. Connections/relationships are the most
+essential part of graph databases. Because we are trying to explain them on a
+whiteboard sketch, it’s easy to transfer those sketches into graph schemes. This
+is what makes graph databases easy to visualize - connection to common real-life
+model and application. 
+
+![graph-modeling-whiteboard](../data/tutorials/graph-modeling/graph-modeling-whiteboard.png)
+
+### 3.1 Describing a domain
+
+Graph modeling starts from the domain itself. Domains come described in the form
+of requirements written down by clients or during the interviews. The graph
+structure is hidden within those requirements. The first step when modeling the
+database is to identify key entities that you have learned about in previous
+steps: nodes, labels, relationships, and properties. 
+
+Here is a new scenario that you will use: 
+> Cities London and Paris are connected via flights. They are also connected by
+> road. Distance between London and Paris is 340 km if we fly between and 455 km
+> by road. London is located in country England, as are Liverpool and Leicester.
+> Those cities are connected only by road and the distance between them is 190
+> km. Paris is located in France, as are Lyon and Nice. Lyon and Nice are
+> connected via flight and the distance is 290 km.
+
+You are thrown a lot of information within this scenario, right? You need to take the
+scenario into pieces and then connect those pieces together. Extracting data is
+really simple: first you need to identify nouns and verbs for the sentences.  Nouns
+(cities, countries) represent nodes or labels, and verbs (are connected, is
+located) represent relationships. Specific information, like London or Paris,
+are properties of either nodes or relationships. Now that you’ve identified your
+main entities, it is easy to piece them together to form a graph. You can take
+a step back and, instead of jumping right into modeling the graph, draw a
+whiteboard sketch. 
+
+![graph-modeling-describe-domain](../data/tutorials/graph-modeling/graph-modeling-describe-domain.png)
+
+
+### 3.2 Property or Relationship
+Sometimes, there are exceptions to the rules. One of the decisions that could be
+encountered is whether to model something as a property or as a relationship.
+The main idea behind deciding whether something is a property or a relationship
+is limiting the search as early as possible. Looping through the properties when
+trying to search particular data stored in them can greatly increase memory
+usage and take a toll on performance. It makes sense to create new nodes (and
+relationships as a consequence)  if data stored in properties is considered
+shared.  
+
+Here is another example for you. In it you will model the data on the Product node.
+Products in stores can be fitted in different categories. If you want to find
+out which categories Product falls into, you need to look up what’s listed
+in the category property.
+
+`MATCH (p:Product {name: ”Milk” }) RETURN p.category;`
+
+It is common knowledge that certain products share the category. If you
+want to find out which Product nodes share the same categories as Milk does,
+you would need a more complex query, looping through each category in the
+property array. This option would make performance take a toll, and this is
+exactly that you want to avoid.
+
+So, if you model your categories as separate nodes and create a relationship
+between them, your model would get more complicated. 
+
+![graph-modeling-property-or-relationship](../data/tutorials/graph-modeling/graph-modeling-property-or-relationship.png)
+
+Choosing between setting a value as a property or a separate entity depends on
+the type of analysis you want to make on the dataset. If the data serves only as
+information and it’s not used in any type of analysis, the first approach can be
+used. But if the data is used to find common grounds or in group analysis, then
+the second approach will improve performance for those query types.
+
+
+## 4. Types of graphs
 
 There are some characteristics that define the type of graph. Here are some basic types: 
 
@@ -173,3 +256,82 @@ With combination of mentioned characteristics and properties you can create diff
   relationships.
 * **MultiDiGraph** - A directed graph with self-loops and parallel
   relationships.
+
+## 5. Designing a graph database schema
+
+Now that you are familiar with basic terminology it is time do dive into graph
+database schema.
+
+When designing a graph database, the first and most important step is defining
+what will it be used for. Different requirements will lead to different
+information structures, relationships, designs, and in the end, implementations.
+When starting with the design process, it is always a good practice to write
+down the requirements the database needs to cover. 
+
+### 5.1 Defining the requirements
+In this example, we will use the following requirements as a base for our
+design:
+
+> The Language School is a language training school. It offers language classes
+> for client companies, which can be either held at the offices of the clients
+> or at the School itself. The School employs teachers who may teach multiple
+> courses. The School has clients who may offer multiple courses via the school.
+> Clients offer courses to their employees, who have the option to participate.
+> Each course is offered by one client. Each course has one teacher at any given
+> time. Participants in the course are employees of the clients. Each
+> participant can be employed by one company at a time. Participants may be
+> enrolled in more than one course. 
+
+When given the requirements document, it is important to read it carefully and
+to make notes of the things which might become entities, i.e. **nodes**, in our
+database and what would be the possible **relationships** between them. The very
+first step we are going to take is designing a base graph schema. A graph schema
+is a diagram that maps the relationship between nodes that are part of our
+database. Creating a graph schema is very helpful because we have everything
+planned in advance and it can decrease errors while implementing the database
+design. 
+
+
+### 5.2 Identifying the nodes
+Nodes will most often be represented as nouns in the sentence. Reading through
+the requirements, we can identify some possible candidates for nodes: `school`,
+`language`, `clients`, `offices`, `teachers`, `courses`, `employees`,
+`participants`… Not every noun written in the requirements has to become a
+specific node as seen in the following example: `employees` and `participants`
+refers to the same subject so we can use one label and node model for the
+participant of the course. For the sake of simplicity, we will assume that
+courses take place at the client’s office and each client has exactly one
+office. With that in mind, we can easily identify four node types/labels -
+`Teacher`, `Course`, `Client`, `Participant`. 
+
+
+### 5.3 Mapping the relationships
+Relationships are noted in the requirements as well. Most often, they are
+represented as verbs. It is stated that each teacher instructs one course. From
+this statement, we can infer our first relationship in the graph model:
+`teaches`. We can model our first relationship:
+`[:Teacher]-[:TEACHES]->[:Course]` . Reading further, we can identify other
+relationships between the nodes: `[:Client]-[:OFFERS]->[:Course]`,
+`[:Participant]-[:TAKES]-[:Course]`, `[:Participant]-[:WORKS_FOR]-[:Client]`.
+Now that we know all of the relationships and node types, we can draw our graph
+schema.
+
+![graph-modeling-mapping-relationships](../data/tutorials/graph-modeling/graph-modeling-mapping-relationships.png)
+
+### 5.4 Properties to store
+At this moment, our graph schema is just an empty shell. But, now that we have
+our basic model, we can populate it with data. Before we actually import the
+data itself, we need to define which properties we want to store. This can be
+specified in our requirements document or it may be left to our discretion.
+Sometimes, logical or natural data won’t be mentioned but it will be implied.
+For example, a teacher is a person and each person has a name and a surname.
+Naturally, this doesn’t have to be mentioned, but data like which language the
+teacher knows should be specified. So, our `Teacher` node should store some kind
+of ID, the teacher’s name and surname, an e-mail address, the date of birth, and
+languages they can teach. In a similar manner, we decide the data for the rest
+of the nodes. In the end, our graph should look like this:
+
+![graph-modeling-storing-properties](../data/tutorials/graph-modeling/graph-modeling-storing-properties.png)
+
+This isn't so complicated, right? Let's dig deeper into the realm of graph models.
+
