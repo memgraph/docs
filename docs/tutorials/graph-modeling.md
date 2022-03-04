@@ -263,18 +263,20 @@ of the nodes. In the end, our graph should look like this:
 
 ![graph-modeling-storing-properties](../data/tutorials/graph-modeling/graph-modeling-storing-properties.png)
 
-### 3.5 Property or Relationship
+### 3.5 Should I use property or relationship?
 
-Graph property model are not so complicated as they may have appeared, right? 
+Graph property model are not so complicated as they may have appeared, right?
+One of the questions that has probably come you your ming while you are reading
+this is: there some exceptions to those rules?
 
-Sometimes, there are exceptions to the rules. One of the decisions that could be
-encountered is whether to model something as a property or as a relationship.
-The main idea behind deciding whether something is a property or a relationship
-is limiting the search as early as possible. Looping through the properties when
-trying to search particular data stored in them can greatly increase memory
-usage and take a toll on performance. It makes sense to create new nodes (and
-relationships as a consequence)  if data stored in properties is considered
-shared.  
+You have asked a right questions! Sometimes, there are exceptions to some of the
+rules. One of the decisions that could be encountered is whether to model
+something as a property or as a relationship. The main idea behind deciding
+whether something is a property or a relationship is limiting the search as
+early as possible. Looping through the properties when trying to search
+particular data stored in them can greatly increase memory usage and take a toll
+on performance. It makes sense to create new nodes (and relationships as a
+consequence)  if data stored in properties is considered shared.  
 
 Here is another example for you. In it you will model the data on the Product node.
 Products in stores can be fitted in different categories. If you want to find
@@ -309,7 +311,7 @@ There are some characteristics that define the type of graph. Here are some basi
   have no orientation. These relationships are sometimes referred to as
   **bi-directional**. The relationships in a directed graph have an orientation. 
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/b/bf/Undirected.svg" width="250"/> <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Directed.svg" width="250" />
+![graph-modeling-undirected-graph](../data/tutorials/graph-modeling/graph-modeling-undirected-graph.png)![graph-modeling-directed-graph](../data/tutorials/graph-modeling/graph-modeling-directed-graph.png)
 
 * **Weighted And Unweighted Graphs**  - A weighted graph has attributes on its
 relationships that specify their weight. For example, an relationship that
@@ -317,8 +319,7 @@ represents the distance between two cities would have this distance stored as an
 relationship attribute.  Unweighted graphs have no such relationship attributes
 and are sometimes referred to as **Non-Weighted Graphs**.
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Shortest_path_with_direct_weights.svg" width="400"/>
-
+![graph-modeling-weighted-graph](../data/tutorials/graph-modeling/graph-modeling-weighted-graph.png)
 
 On top of direction and graph can also have a **self-loop** (also called a loop
 or a buckle). Self-loop is an relationship that connects a node to itself while
@@ -334,5 +335,3 @@ With combination of mentioned characteristics and properties you can create diff
   relationships.
 * **MultiDiGraph** - A directed graph with self-loops and parallel
   relationships.
-
-
