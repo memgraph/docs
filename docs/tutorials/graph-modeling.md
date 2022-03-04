@@ -31,12 +31,12 @@ Some of the most relevant use cases include:
 *  *Social Networks Graphs* - the most common use case for a graph database,
    typical for relationship analysis between the users, community detection, or
    finding the influence of people in the network.
-*  *Fraud Detection* - the scalability and agility of graph databases help to
-   avoid heavy and slow queries which are causing the late detection of frauds.
+*  *Fraud Detection* - the scalability and agility of graph databases help avoid
+   heavy and slow queries, which are causing the late detection of frauds.
 *  *Network Analysis* - network management revolves around complex
    interdependencies and high connectivity.
 *  *Graph Theory* - graph databases are built on the principles of graph theory
-   and as such can be used to showcase and solve common problems in the area.
+   and, as such can be used to showcase and solve common problems in the area.
 *  *Recommendations Systems* - real-time, sophisticated recommendation engines
    to personalize products, content, and services.
 *  *Data Management* - a way to manage “data silos”, keeping the track of data
@@ -44,7 +44,7 @@ Some of the most relevant use cases include:
 *  *Telecommunications* - telecommunications are all about connections users,
    network components, devices... which makes them suitable for graph modeling.
 *  *Supply Chain Management* - optimization of product flow, uncover
-   vulnerabilities, and boost the overall resilience of the supply chain.
+   vulnerabilities  and boost the overall resilience of the supply chain.
 
 ## 2. Graph components
 
@@ -160,11 +160,11 @@ follow the thought flow.
 
 From trying to explain concepts while holding the presentation to complex board
 pins-and-red-string connections seen in detective movies, we are trying to
-explain the connection between data. Connections/relationships are the most
-essential part of graph databases. Because we are trying to explain them on a
-whiteboard sketch, it’s easy to transfer those sketches into graph schemes. This
-is what makes graph databases easy to visualize - connection to common real-life
-model and application. 
+explain the connection between data. Connections/relationships are the essential
+part of graph databases. Because we are trying to explain them on a whiteboard
+sketch, it’s easy to transfer those sketches into graph schemes. This is what
+makes graph databases easy to visualize - connection to common real-life models
+and applications. 
 
 Graph modeling starts from the domain itself. Domains come described in the form
 of requirements written down by clients or during the interviews. The graph
@@ -176,25 +176,28 @@ This will allow you to go from your whiteboard sketch to a full graph model.
 
 ![graph-modeling-whiteboard](../data/tutorials/graph-modeling/graph-modeling-whiteboard.png)
 
-To make things not so abstract imagine the following scenario that you will model:
+To make things not so abstract, imagine the following scenario that you will
+model:
 
 > Cities London and Paris are connected via flights. They are also connected by
 > road. Distance between London and Paris is 340 km if we fly between and 455 km
-> by road. London is located in country England, as are Liverpool and Leicester.
-> Those cities are connected only by road and the distance between them is 190
-> km. Paris is located in France, as are Lyon and Nice. Lyon and Nice are
-> connected via flight and the distance is 290 km.
+> by road. London is located in the country England, as are Liverpool and
+> Leicester. Those cities are connected only by road and the distance between
+> them is 190 km. Paris is located in France, as are Lyon and Nice. Lyon and
+> Nice are connected via flight and the distance is 290 km.
 
-You got a lot of information within this scenario, right? First, break it down into pieces and connect them:
+You got a lot of information within this scenario so let's break it down into
+pieces and then connect them:
 
 * Identify nouns and verbs for the sentences:
    * Nouns (cities, countries) represent nodes or labels
    * Verbs (are connected, is located) represent relationships
 * Identify specific information:
-   * Words that describe type of connection and distance are properties of either nodes or relationships
+   * Words that describe the type of connection and distance are properties of
+     either nodes or relationships
    
-Now it is easy to piece them together to form a graph. Your final result should look something like image
-bellow.
+Now it is easy to piece them together to form a graph. Your final result should
+look something like the image below.
 
 
 ![graph-modeling-describe-domain](../data/tutorials/graph-modeling/graph-modeling-describe-domain.png)
@@ -203,11 +206,11 @@ bellow.
 ### 3.2 Defining the requirements
 
 In previous section you have seen where to start and what is your goal. Let's go
-together through another example. This is a a requirement document that you will
-use:
+together through another example. This is a document with requirements that you
+will use:
 
 > The Language School is a language training school. It offers language classes
-> for client companies, which can be either held at the offices of the clients
+> for client companies, which can be either held at the clients' offices
 > or at the School itself. The School employs teachers who may teach multiple
 > courses. The School has clients who may offer multiple courses via the school.
 > Clients offer courses to their employees, who have the option to participate.
@@ -222,7 +225,7 @@ database and what would be the possible **relationships** between them. The very
 first step we are going to take is designing a base graph schema. A graph schema
 is a diagram that maps the relationship between nodes that are part of our
 database. Creating a graph schema is very helpful because we have everything
-planned in advance and it can decrease errors while implementing the database
+planned in advance, and it can decrease errors while implementing the database
 design. 
 
 ### 3.2 Identifying the nodes
@@ -231,7 +234,7 @@ sentence. Reading through the requirements, we can identify some possible
 candidates for nodes: `school`, `language`, `clients`, `offices`, `teachers`,
 `courses`, `employees`, `participants`… Not every noun written in the
 requirements has to become a specific node as seen in the following example:
-`employees` and `participants` refers to the same subject so we can use one
+`employees` and `participants` refer to the same subject so we can use one
 label and node model for the participant of the course. For the sake of
 simplicity, we will assume that courses take place at the client’s office and
 each client has exactly one office. With that in mind, we can easily identify
@@ -251,23 +254,25 @@ schema.
 ![graph-modeling-mapping-relationships](../data/tutorials/graph-modeling/graph-modeling-mapping-relationships.png)
 
 ### 3.4 Properties to store
-At this moment, your graph schema is just an empty shell. But, now that you have basic model, you can populate it with data. Before data import you need to define which properties you want to store. This can be
-specified in  requirements document or it may be left to your discretion.
-Sometimes, logical or natural data won’t be mentioned but it will be implied.
-For example, a teacher is a person and each person has a name and a surname.
-Naturally, this doesn’t have to be mentioned, but data like which language the
-teacher knows should be specified. So, our `Teacher` node should store some kind
-of ID, the teacher’s name and surname, an e-mail address, the date of birth, and
-languages they can teach. In a similar manner, we decide the data for the rest
-of the nodes. In the end, our graph should look like this:
+At this moment, your graph schema is just an empty shell. But, now that you have
+a basic model, you can populate it with data. Before data import, you need to
+define which properties you want to store. This can be specified in the
+requirements document or it may be left to your discretion. Sometimes, logical
+or natural data won’t be mentioned but it will be implied. For example, a
+teacher is a person and each person has a name and a surname. Naturally, this
+doesn’t have to be mentioned, but data like which language the teacher knows
+should be specified. So, our `Teacher` node should store some kind of ID, the
+teacher’s name and surname, an e-mail address, the date of birth, and languages
+they can teach. In a similar manner, we decide the data for the rest of the
+nodes. In the end, our graph should look like this:
 
 ![graph-modeling-storing-properties](../data/tutorials/graph-modeling/graph-modeling-storing-properties.png)
 
 ### 3.5 Should I use property or relationship?
 
-Graph property model are not so complicated as they may have appeared, right?
-One of the questions that has probably come you your ming while you are reading
-this is: there some exceptions to those rules?
+Graph property models are not so complicated as they may have appeared, right?
+One of the questions that have probably come to your mind while reading this is:
+are there some exceptions to those rules?
 
 You have asked a right questions! Sometimes, there are exceptions to some of the
 rules. One of the decisions that could be encountered is whether to model
@@ -289,7 +294,7 @@ It is common knowledge that certain products share the category. If you
 want to find out which Product nodes share the same categories as Milk does,
 you would need a more complex query, looping through each category in the
 property array. This option would make performance take a toll, and this is
-exactly that you want to avoid.
+exactly what you want to avoid.
 
 So, if you model your categories as separate nodes and create a relationship
 between them, your model would get more complicated. 
@@ -314,20 +319,20 @@ There are some characteristics that define the type of graph. Here are some basi
 ![graph-modeling-undirected-graph](../data/tutorials/graph-modeling/graph-modeling-undirected-graph.png)![graph-modeling-directed-graph](../data/tutorials/graph-modeling/graph-modeling-directed-graph.png)
 
 * **Weighted And Unweighted Graphs**  - A weighted graph has attributes on its
-relationships that specify their weight. For example, an relationship that
-represents the distance between two cities would have this distance stored as an
+relationships that specify their weight. For example, a relationship that
+represents the distance between two cities would have this distance stored as a
 relationship attribute.  Unweighted graphs have no such relationship attributes
 and are sometimes referred to as **Non-Weighted Graphs**.
 
 ![graph-modeling-weighted-graph](../data/tutorials/graph-modeling/graph-modeling-weighted-graph.png)
 
 On top of direction and graph can also have a **self-loop** (also called a loop
-or a buckle). Self-loop is an relationship that connects a node to itself while
+or a buckle). Self-loop is a relationship that connects a node to itself, while
 **parallel relationships** (also called multiple relationships or a
 multi-relationship) are two or more relationships that are incident to the same
 two nodes.
 
-With combination of mentioned characteristics and properties you can create different graphs:
+With a combination of mentioned characteristics and properties, you can create different graphs:
 
 * **Graph** - An undirected graph with self-loops.
 * **DiGraph** - A directed graph with self-loops.
