@@ -340,3 +340,10 @@ With a combination of mentioned characteristics and properties, you can create d
   relationships.
 * **MultiDiGraph** - A directed graph with self-loops and parallel
   relationships.
+
+  ## Where to next?
+
+In this tutorial, you've learned basic terminology related to graps and how to
+model them. We hope that you had fun going through this tutorial. You can
+[download and install **Memgraph Platform**](/docs/memgraph/installation) on
+your computer and try to model some of your graphs!
