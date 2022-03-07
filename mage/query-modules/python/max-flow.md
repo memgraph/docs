@@ -70,7 +70,7 @@ algorithm noticeably compared to a standard DFS search.
 MATCH (source {id: 0}), (sink {id: 5})
 CALL max_flow.get_flow(source, sink, "weight")
 YIELD max_flow
-RETURN max_flow
+RETURN max_flow;
 ```
 
 ### `get_paths(parameters, edge_property)`
@@ -93,7 +93,7 @@ RETURN max_flow
 MATCH (source {id: 0}), (sink {id: 5})
 CALL max_flow.get_paths(source, sink, "weight")
 YIELD path, flow
-RETURN path, flow
+RETURN path, flow;
 ```
 
 ## Example
