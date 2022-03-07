@@ -14,7 +14,10 @@ For this tutorial, there are no particular prerequisites.
 
 ## 1. What is a graph database?
 
-A **graph database** uses mathematical graph structures to represent and store
+A **graph database** is a type of database that stores data in the form of **nodes**
+that can be connected with **relationships**. 
+
+A graph database uses mathematical graph structures to represent and store
 data. Graph databases are designed to treat the relationships between data as
 equally important as the data itself. Those relationships allow stored data to
 be linked together directly and, in many cases, retrieved with one operation.
@@ -49,8 +52,8 @@ Some of the most relevant use cases include:
 ## 2. Graph components
 
 **Graphs** are essentially very simple structures that map relations between
-objects. These objects are **nodes** and the connections between them are
-**relationships**. Keep in mind that there are other terms for nodes and
+objects. These objects are nodes and the connections between them are
+relationships. Keep in mind that there are other terms for nodes and
 relationships:
 
 * **node == vertex == point**
