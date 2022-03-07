@@ -4,10 +4,10 @@ title: Controlling memory usage
 sidebar_label: Controlling memory usage 
 ---
 
-In Memgraph you can control memory usage by limiting, inspecting and
+In Memgraph, you can control memory usage by limiting, inspecting and
 deallocating memory. 
 
-You can control memory usage of:
+You can control the memory usage of:
  - a whole instance by setting the `--memory-limit` within the configuration file 
  - a query by including the `QUERY MEMORY` clause at the end of a query
  - a procedure by including a `PROCEDURE MEMORY` clause
