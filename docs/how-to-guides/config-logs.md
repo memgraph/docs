@@ -33,28 +33,30 @@ Follow these steps to modify the main configuration file:
 
 **1.** Start Memgraph with a `docker run` command. 
 
-**2.** Open a new terminal and find the CONTAINER ID of the Memgraph Docker
+**2.** Open a new terminal and find the `CONTAINER ID` of the Memgraph Docker
 container using the following command:
 
-  ```plaintext
-  docker ps
-  ```
+```plaintext
+docker ps
+```
 
 **3.** Place yourself in the directory where you want to copy the configuration
 file. 
 
 **4.** Copy the file from the container to your current directory with the
 command:
+
 ```plaintext
 docker cp <CONTAINER ID>:/etc/memgraph/memgraph.conf memgraph.conf
 ```
+
 Be sure to replace the `<CONTAINER ID>` parameter.
 
 The example below will copy the configuration file to the user's Desktop: 
 
-  ```plaintext
-  C:\Users\Vlasta\Desktop>docker cp bb3de2634afe:/etc/memgraph/memgraph.conf memgraph.conf
-  ```
+```plaintext
+C:\Users\Vlasta\Desktop>docker cp bb3de2634afe:/etc/memgraph/memgraph.conf memgraph.conf
+```
 
 **5.** Open the configuration file with a text editor. 
 
@@ -63,17 +65,19 @@ The example below will copy the configuration file to the user's Desktop:
 **7.** Copy the file from your current directory to the container with the
 command:
 
-  ```plaintext
-  docker cp  memgraph.conf <CONTAINER ID>:/etc/memgraph/memgraph.conf
-  ```
+```plaintext
+docker cp  memgraph.conf <CONTAINER ID>:/etc/memgraph/memgraph.conf
+```
 
-  Be sure to replace the `<CONTAINER ID>` parameter.
+Be sure to replace the `<CONTAINER ID>` parameter.
 
-  The example below will replace the configuration file with the one from the
-  user's Desktop: 
-  ```plaintext
-  C:\Users\Vlasta\Desktop>docker cp memgraph.conf bb3de2634afe:/etc/memgraph/memgraph.conf
-  ```
+The example below will replace the configuration file with the one from the
+user's Desktop: 
+
+```plaintext
+C:\Users\Vlasta\Desktop>docker cp memgraph.conf bb3de2634afe:/etc/memgraph/memgraph.conf
+```
+
 **8.** Restart Memgraph.
 
 ----
@@ -97,6 +101,7 @@ configuration options inside of environmental variables.
 
 For example, if you want to limit memory usage for the whole instance to 50 MiB
 pass the configuration like this:
+
 ```plaintext
 docker run -it -p 7687:7687 -p 3000:3000 -e MEMGRAPH="--memory-limit=50" memgraph/memgraph-platform
 ```
@@ -109,6 +114,7 @@ configuration options as arguments.
 
 For example, if you want to limit memory usage for the whole instance to 50 MiB
 pass the configuration like this:
+
 ```plaintext
 docker run -it -p 7687:7687  memgraph --memory-limit=50
 ```
@@ -120,12 +126,13 @@ docker run -it -p 7687:7687  memgraph --memory-limit=50
 
 To access the logs of a running instance:
 
-**1.**  Open a new terminal and find the CONTAINER ID of the Memgraph Docker
+**1.**  Open a new terminal and find the `CONTAINER ID` of the Memgraph Docker
 container:
 
 ```plaintext
 docker ps
 ```
+
 **2.** Run the following command:
 
 ```plaintext
@@ -134,10 +141,10 @@ docker exec -it <CONTAINER ID> bash
 
 Be sure to replace the `<CONTAINER ID>` parameter.
 
-**3.** Position yourself in the /var/log/memgraph directory.
+**3.** Position yourself in the `/var/log/memgraph` directory.
 
 ```plaintext
-cd var/log/memgraph
+cd /var/log/memgraph
 ```
 
 **4.** List all the log files with `ls`.
@@ -148,7 +155,7 @@ For example, if the `ls` command returned `memgraph_2022-03-04.log` you would
 list the contents using the following command:
 
 ```plaintext
-`cat memgraph_2022-03-04.log`
+cat memgraph_2022-03-04.log
 ```
 
 **6.** If you want to save the log to your computer, exit the container with
@@ -169,7 +176,7 @@ C:\Users\Vlasta\Desktop>docker cp memgraph_2022-03-04.log bb3de2634afe:/var/log/
 ## Linux
 
 This section of the how-to guide will explain how to change the configuration
-file and access logs if you are using Memgraph DB with WSL, Ubuntu, Debian or
+file and access logs if you are using MemgraphDB with WSL, Ubuntu, Debian or
 RPM package.
 
 ### Configuring Memgraph
@@ -184,4 +191,4 @@ RPM package.
 
 ### Accessing logs
 
-Logs can be found in the `/var/lib/docker/volumes/mg_log` directory.
+Logs can be found in the `/var/log/memgraph` directory.
