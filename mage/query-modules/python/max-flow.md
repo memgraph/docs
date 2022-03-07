@@ -2,6 +2,7 @@
 id: max-flow
 title: max_flow
 sidebar_label: max_flow
+---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -22,12 +23,23 @@ export const Highlight = ({children, color}) => (
 
 ## Abstract
 
-Maximum flow problem consists of finding a flow through a graph such that it is the maximum possible flow.
+The maximum flow problem consists of finding a flow through a graph such that it
+is the maximum possible flow.
 
-Implemented algorithm is the Ford-Fulkerson method with capacity scaling. Ford-Fulkerson method is not itself an algorithm as it does not specify the procedure of finding augmenting paths in a residual graph. It is a greedy method, using augmenting paths as it comes across them. Input is a weighted graph with a defined source and sink, representing the beginning and end of the flow network. Algorithm begins with an empty flow, and at each step finds a path, called an augmenting path, from the source to the sink that generates more flow. When flow cannot be increased anymore, the algorithm stops and the maximum flow has been found.
+The algorithm implementation is based on the Ford-Fulkerson method with capacity
+scaling. Ford-Fulkerson method is not itself an algorithm as it does not specify
+the procedure of finding augmenting paths in a residual graph. It is a greedy
+method, using augmenting paths as it comes across them. Input is a weighted
+graph with a defined source and sink, representing the beginning and end of the
+flow network. The algorithm begins with an empty flow, and at each step finds a
+path, called an augmenting path, from the source to the sink that generates more
+flow. When flow cannot be increased anymore, the algorithm stops and the maximum
+flow has been found.
 
-The capacity scaling is a heuristic for finding augmenting paths, in such a way that prioritizes taking edges with larger capacities, maintaining a threshold value which is only lowered once no larger path can be found. It speeds up the algorithm noticably compared to normal DFS search.
-
+The capacity scaling is a heuristic for finding augmenting paths, in such a way
+that prioritizes taking edges with larger capacities, maintaining a threshold
+value that is only lowered once no larger path can be found. It speeds up the
+algorithm noticeably compared to a standard DFS search.
 
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |
@@ -45,13 +57,15 @@ The capacity scaling is a heuristic for finding augmenting paths, in such a way 
 
 * `start_v: Vertex` ➡ Source node from which the maximum flow is calculated
 * `end_v: Vertex` ➡ Sink node to which the max flow is calculated
-* `edge_property: str("weight")` ➡ Edge property which is used as the flow capacity of the edge
+* `edge_property: str("weight")` ➡ Edge property which is used as the flow
+  capacity of the edge
 
 #### Output:
 
-* `max_flow: Number` ➡ Maximum flow of network, from source to sink
+* `max_flow: Number` ➡ Maximum flow of the network, from source to sink
 
 #### Usage:
+
 ```cypher
 MATCH (source {id: 0}), (sink {id: 5})
 CALL max_flow.get_flow(source, sink, "weight")
@@ -65,7 +79,8 @@ RETURN max_flow
 
 * `start_v: Vertex` ➡ Source node from which the maximum flow is calculated
 * `end_v: Vertex` ➡ Sink node to which the max flow is calculated
-* `edge_property: str("weight")` ➡ Edge property which is used as the flow capacity of the edge
+* `edge_property: str("weight")` ➡ Edge property which is used as the flow
+  capacity of the edge
 
 #### Output:
 
@@ -73,6 +88,7 @@ RETURN max_flow
 * `flow: Number` ➡ flow amount corresponding to that path
 
 #### Usage:
+
 ```cypher
 MATCH (source {id: 0}), (sink {id: 5})
 CALL max_flow.get_paths(source, sink, "weight")
@@ -97,8 +113,6 @@ RETURN path, flow
   <img src={require('../../data/query-modules/python/max-flow/max-flow-1.png').default}/>
 
   </TabItem>
-
-
   <TabItem value="cypher">
 
 ```cypher
@@ -115,7 +129,6 @@ MERGE (a:Node {id: "F"}) MERGE (b:Node {id: "G"}) CREATE (a)-[:RELATION {weight:
 ```
 
   </TabItem>
-
   <TabItem value="run">
 
 ```cypher
@@ -125,8 +138,6 @@ YIELD max_flow RETURN max_flow;
 ```
 
   </TabItem>
-
-
   <TabItem value="result">
 
 ```plaintext
