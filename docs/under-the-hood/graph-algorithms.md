@@ -79,7 +79,7 @@ MATCH (a {id: 723})-[edge_list:Type *bfs..10]-(b {id: 882}) RETURN *;
 ```
 
 The above query will find all paths of length up to 10 between nodes `a` and `b`.
-The edge type and maximum path length are used in the same way like in variable
+The edge type and maximum path length are used in the same way as in variable
 length expansion.
 
 To find only the shortest path, simply append `LIMIT 1` to the `RETURN` clause.
