@@ -226,7 +226,6 @@ directive, along with their expected types.
 - `shadow-size`: `Number`
 - `shadow-offset-x`: `Number`
 - `shadow-offset-y`: `Number`
-- `type`: `String` (`"straight"` or `"smooth"`)
 - `width`: `Number`
 - `width-hover`: `Number`
 - `width-selected`: `Number`
@@ -263,6 +262,9 @@ Names `square` and `maxAllowedDebt` are visible inside `@NodeStyle` directive.
 
 Returns the sum of given values.
 
+Example:
+- `Add(10, Property(node, "age"))` will give node.age + 10 if age is defined (as a number).
+
 ### `And(value1, [value2, value3,...])`
 
 - `value1`, `value2`, `value3`, `...`: `Boolean`
@@ -271,12 +273,18 @@ Returns the sum of given values.
 Returns `True` if all of the given values are `True`. Returns `False` otherwise.
 Expressions after first expression that evaluates to `False` are not evaluated.
 
+Example:
+- `And(HasProperty?(node, "a"), HasProperty?(node, "b"))` will return `True` if node has properties `a` and `b`.
+
 ### `Array([value1, value2,...])`
 
 - `value1`, `value2`, `...`: `Any`
 - Returns: `Array`
 
 Creates and returns an array of given values.
+
+Example:
+- `Array("Alfa", "Bravo", "Charlie", "Delta", "Echo")`
 
 ### `AsNumber(value)`
 
@@ -286,10 +294,16 @@ Creates and returns an array of given values.
 Parses the given string and returns a number. The string should contain only one
 number in base 10 and nothing else.
 
+Example: 
+- `AsNumber("8")` will return number 8.
+
 ### `AsText(value)`
 
 - `value`: `Any`
 - Returns: `String`
+
+Example: 
+- `AsText(Property(node, "age"))` will return `node.age` as string.
 
 Returns a textual representation of given value.
 
@@ -301,6 +315,10 @@ Returns a textual representation of given value.
 Returns blue component of given color. The value will be between 0 and 255 (both
 inclusive).
 
+Examples:
+- `Blue(mediumseagreen)` will return value 113.
+- `Blue(#6a0dad)` will return value 173.
+
 ### `Contains?(array, value)`
 
 - `array`: `Array`
@@ -309,12 +327,18 @@ inclusive).
 
 Returns `True` if `array` contains `value`, `False` otherwise.
 
+Example:
+- `Contains?(Array(2,7,8,9),2)` will return `True`.
+
 ### `Concat(string1, [string2, string3,...])`
 
 - `string1`, `string2`, `string3`, `...`: `String`
 - Returns: `String`
 
 Concatenates given strings.
+
+Example:
+- `Concat("City", " ", "of", " ", "London")` will return `City of London`.
 
 ### `Darker(color)`
 
@@ -323,12 +347,19 @@ Concatenates given strings.
 
 Returns a darker version of the given color.
 
+Example:
+- `color-hover: Darker(#dd2222)` will make hover event color darker.
+
 ### `Define(name, value)`
 
 - `name`: `Name`
 - `value`: `Any`
 
 Binds the given value to the given name. Names cannot be redefined.
+
+Example:
+- `Define(city, "London")` will set the value of the `city` to `London`.
+
 
 ### `Div(value1, value2)`
 
@@ -337,6 +368,9 @@ Binds the given value to the given name. Names cannot be redefined.
 - Returns: `Number`
 
 Returns `value1` divided by `value2`.
+
+Example:
+- `Div(Property(node, "population"), 2)` will divide `node.population` with 2 if population is defined (as a number).
 
 ### `Equals?(value1, value2)`
 
@@ -348,12 +382,18 @@ Returns `True` if given values are equal, `False` otherwise. `Number`s,
 `String`s and `Boolean`s are compared by value, while objects of all other types
 are compared by identity.
 
+Example:
+-  `Equals?(Property(edge, "category"),"Food")` checks if `edge.category` equals to text "Food".
+
 ### `Exp(value)`
 
 - `value`: `Number`
 - Returns: `Number`
 
 Returns 2.71828... raised to the power `value`.
+
+Example:
+-`Exp(2)` will return the number 7.38905609893  
 
 ### `Format(formatString, [val1, val2,...])`
 
@@ -417,6 +457,11 @@ If `obj` is `Array`, returns the element with index `key` of array `obj`
 (indexing is zero based). If `obj` is `Dictionary` returns the value for key
 `key`.
 
+Examples:
+- `Get(Array(3,6,7,3), 2)` returns number 7.
+- `Get(Property(node, "map"), "year") will get the property `year` from the map of node properties. 
+
+
 ### `Greater?(value1, value2)`
 
 - `value1`: `Number`
@@ -424,6 +469,9 @@ If `obj` is `Array`, returns the element with index `key` of array `obj`
 - Returns: `Boolean`
 
 Returns `True` if `value1` is greater than `value2`, `False` otherwise.
+
+Example:
+- `Greater?(Size(Labels(node)), 0)`
 
 ### `Green(color)`
 
@@ -433,6 +481,10 @@ Returns `True` if `value1` is greater than `value2`, `False` otherwise.
 Returns green component of given color. The value will be between 0 and 255
 (both inclusive).
 
+Examples:
+- `Green(mediumseagreen)` will return value 179.
+- `Green(#6a0dad)` will return value 13.
+
 ### `HasLabel?(node, label)`
 
 - `node`: `Dictionary`
@@ -440,6 +492,9 @@ Returns green component of given color. The value will be between 0 and 255
 - Returns: `Boolean`
 
 Returns `True` if given graph node `node` has label `label`, `False` otherwise.
+
+Example:
+- `HasLabel?(node, "Category")` will return `True` if a node has a label with the name `Category`.
 
 ### `HasProperty?(nodeOrEdge, propertyName)`
 
@@ -450,12 +505,19 @@ Returns `True` if given graph node `node` has label `label`, `False` otherwise.
 Returns `True` if given graph node or graph edge `nodeOrEdge` has property
 `propertyName`.
 
+Example:
+- `HasProperty?(node, "City")` will return `True` if a node has a property with the name `City`.
+
 ### `Identity(node)`
 
 - `node`: `Dictionary`
 - Returns: `Number`
 
 Returns the id of the given graph node.
+
+ Example:
+- `label: AsText(Identity(node))` sets the label to be the node ID. 
+
 
 ### `If(condition, than, else)`
 
@@ -466,12 +528,22 @@ Returns the id of the given graph node.
 
 If `condition` is `True` returns `than`, otherwise returns `else`.
 
+Example:
+- `label: If(HasProperty?(node, "name"), Property(node, "name"), "No name")` returns the property `name` as label if the node has one, or `No name` if the node doesn't have it. 
+
+
+### `Join ()`
+
 ### `Labels(node)`
 
 - `node`: `Dictionary`
 - Returns: `Array`
 
 Returns the array of labels of the given graph node.
+
+Example: 
+- `label: Labels(node)` sets the label to be a list of all the node's labels. 
+
 
 ### `Less?(value1, value2)`
 
@@ -481,12 +553,21 @@ Returns the array of labels of the given graph node.
 
 Returns `True` if `value1` is less than `value2`, `False` otherwise.
 
+Example:
+- `Less?(Property(node, "age"),40)` will return `True` if given `node.age` is less than 40.
+
+
 ### `Lighter(color)`
 
 - `color`: `Color`
 - Returns: `Color`
 
 Returns a lighter version of the given color.
+
+Example:
+- `color-hover: Lighter(#dd2222)` sets a lighter on hover event color.
+
+### `Like?`
 
 ### `Log(value)`
 
@@ -495,6 +576,9 @@ Returns a lighter version of the given color.
 
 Returns the logarithm (to the base `e`) of `value`.
 
+Example:
+- `Log(Property(node, "sales"))`
+
 ### `Log10(value)`
 
 - `value`: `Number`
@@ -502,12 +586,18 @@ Returns the logarithm (to the base `e`) of `value`.
 
 Returns the logarithm (to the base 10) of `value`.
 
+Example:
+- `Log10(Property(node, "sales"))`
+
 ### `LowerCase(string)`
 
 - `string`: `String`
 - Returns: `String`
 
 Returns the value of `string` converted to lower case.
+
+Example:
+- `AsText(LowerCase(Property(node, "name")))` will return node name in lower case.
 
 ### `Mix(color1, color2)`
 
@@ -517,6 +607,9 @@ Returns the value of `string` converted to lower case.
 
 Mixes given colors (performs linear interpolation).
 
+Example:
+- `Mix(#1B5E20,orange)`
+
 ### `Mul(value1, [value2, value3,...])`
 
 - `value1`, `value2`, `value3`, `...`: `Number`
@@ -524,12 +617,18 @@ Mixes given colors (performs linear interpolation).
 
 Returns the product of given values.
 
+Example:
+- `Mul(2,10,3)` returns 60 (2*10*3).
+
 ### `Not(value)`
 
 - `value`: `Boolean`
 - Returns: `Boolean`
 
 Returns `True` if `value` is `False`, and returns `False` if `value` is `True`.
+
+Example: 
+- `@NodeStyle Not(HasProperty?(node, "count")) {...}` will apply the defined styles to the nodes without the `count` property.
 
 ### `Or(value1, [value2, value3,...])`
 
@@ -539,6 +638,10 @@ Returns `True` if `value` is `False`, and returns `False` if `value` is `True`.
 Returns `True` if any of the given values is `True`. Returns `False` otherwise.
 Expressions after first expression that evaluates to `True` are not evaluated.
 
+Example: 
+- `Or(Less?(Property(node, "age"),20), Greater?(Property(node, "age"),40))` returns `True` if the node's `age` property is either less than 20 or greater than 40.
+
+
 ### `Property(nodeOrEdge, propertyName)`
 
 - `nodeOrEdge`: `Dictionary`
@@ -546,6 +649,9 @@ Expressions after first expression that evaluates to `True` are not evaluated.
 - Returns: `Any``
 
 Returns the property with name `propertyName` of given graph node or graph edge.
+
+Example:
+- `label: AsText(Property(node, "name"))` creates a label using the node's `name` property.
 
 ### `Random()`
 
@@ -559,8 +665,14 @@ possible numbers are equally likely to be returned.
 - `array`: `Array`
 - Returns: `Any`
 
+Example:
+- `Random()`
+
 Returns a random element of the given array. All the elements are equally likely
 to be chosen.
+
+Example:
+- `RandomElement(Array(1,3,5,7,11,13))` will return one of the array elements.
 
 ### `RandomInteger(bound)`
 
@@ -570,6 +682,10 @@ to be chosen.
 Returns a random integer between 0 (inclusive) and `bound` (exclusive). All the
 possible numbers are equally likely to be returned.
 
+Example:
+- `RandomInteger(Property(node, "population"))` will return a integer between 0 and `node.population` if population is defined (as a number).
+
+
 ### `Red(color)`
 
 - `color`: `Color`
@@ -577,6 +693,10 @@ possible numbers are equally likely to be returned.
 
 Returns red component of given color. The value will be between 0 and 255 (both
 inclusive).
+
+Examples:
+- `Red(mediumseagreen)` will return value 60.
+- `Red(#6a0dad)` will return value 106.
 
 ### `RGB(red, green, blue)`
 
@@ -587,6 +707,9 @@ inclusive).
 
 Creates a new color with given components.
 
+Example:
+- `RGB (128, 159, 255)` will return the color that has value #809fff.
+
 ### `Size(value)`
 
 - `value`: `Array`, `Dictionary` or `String`
@@ -595,12 +718,19 @@ Creates a new color with given components.
 If `value` is of type `Array` or `Dictionary`, returns its size. If `value` is
 of type `String`, returns its length;
 
+Example:
+- `Size(Property(node, "name"))` returns the size of the node's `name` property. 
+
 ### `Sqrt(value)`
 
 - `value`: `Number`
 - Returns: `Number`
 
 Returns the square root of `value`.
+
+Example:
+- `Sqrt(Property(node, "surface"))` will return the square root of a `node.surface`.
+
 
 ### `Sub(value1, value2)`
 
@@ -609,6 +739,10 @@ Returns the square root of `value`.
 - Returns: `Number`
 
 Returns `value1` minus `value2`.
+
+Example:
+- `Sub(Property(node, "age"),10)` returns `node.age` - 10 if age is defined (as a number).
+
 
 <!-- ### `Try(tryClause, err, catchClause)` -->
 
@@ -619,6 +753,9 @@ Returns `value1` minus `value2`.
 
 Returns the type of the given graph edge.
 
+Example:
+- `label: Type(edge)` sets the label to the relationship type.
+
 ### `TypeOf(value)`
 
 - `value`: `Any`
@@ -626,9 +763,15 @@ Returns the type of the given graph edge.
 
 Returns the type of the given value.
 
+Example:
+- `TypeOf(Property(node, "name"))` returns `string`.
+
 ### `UpperCase(string)`
 
 - `string`: `String`
 - Returns: `String`
 
 Returns the value of `string` converted to upper case.
+
+Example:
+- `AsText(UpperCase(Property(node, "name")))` will return the node name in upper case.
