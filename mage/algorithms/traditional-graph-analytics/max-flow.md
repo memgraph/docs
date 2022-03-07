@@ -22,7 +22,7 @@ minimum cut.
 Multiple algorithms exist for solving the Maximum Flow problem, such as the
 Ford-Fulkerson method, Edmonds-Karp and push-relabel algorithm.
 
-<img src="https://i.imgur.com/XusgGt2.png" alt="drawing"/>
+<img src={require('../../data/algorithms/traditional-graph-analytics/maximum-flow-algorithm.png').default} alt="maximum-flow-algorithm" width="600"/>
 
 > Example of augmenting paths in max flow with edge property -> {flow /
 > capacity}, max flow is 19, the sum of inflows to sink (or outflows from
