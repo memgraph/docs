@@ -41,6 +41,11 @@ that prioritizes taking edges with larger capacities, maintaining a threshold
 value that is only lowered once no larger path can be found. It speeds up the
 algorithm noticeably compared to a standard DFS search.
 
+The algorithm is adapted to work with heterogeneous graph, meaning not all
+edges need to have the defined edge property used for edge flow. When edge does
+not have a flow, it is skipped, and when no edges have this property, the
+returning max flow value is 0.
+
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |
 | **Module type**     | <Highlight color="#FB6E00">**algorithm**</Highlight>  |
