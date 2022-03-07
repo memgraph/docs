@@ -41,3 +41,21 @@ Flow](https://img.shields.io/badge/Maximum_Flow-Documentation-FCC624?style=for-t
 **Maximum Flow** is implemented as part of the
 [**MAGE**](https://github.com/memgraph/mage) project. Be sure to check it out in
 the link above. :point_up:
+
+## Use cases
+
+[![Transportation](https://img.shields.io/badge/Transportation-Application-8A477F?style=for-the-badge)](/use-cases/transportation.md)
+
+In transportation networks max flow can be used for finding the throughput of a
+network or a part of it, finding the road or railway with the largest load or
+analysing which roads need to be expanded.
+
+[![Telecommunication](https://img.shields.io/badge/Telecommunication-Application-8A477F?style=for-the-badge)](/use-cases/telecommunication.md)
+
+Finding max flow means calculating the maximum throughput of a network, as well
+as identifying which connections are heavily relied upon.
+
+
+[![Power Grids](https://img.shields.io/badge/Power_Grids-Application-8A477F?style=for-the-badge)](/use-cases/power-grids.md)
+
+Relevant for calculating the capacity of a power network.
