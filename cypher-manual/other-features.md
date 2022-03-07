@@ -101,6 +101,6 @@ PROFILE MATCH (n) RETURN n;
 ```
 
 For a detailed look at using `EXPLAIN` and `PROFILE`, take a look at the guides:
+* [Inspecting queries](/memgraph/reference-guide/inspecting-queries)
+* [Profiling queries](/memgraph/reference-guide/profiling-queries)
 
-- [Inspecting queries](/memgraph/database-functionalities/inspecting-queries)
-- [Profiling queries](/memgraph/database-functionalities/profiling-queries)

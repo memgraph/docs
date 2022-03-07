@@ -554,7 +554,7 @@ module.exports = {
             from: ["/memgraph/how-to-guides-overview"],
           },
           {
-            to: "/memgraph/how-to-guides/profiling-queries",
+            to: "/memgraph/reference-guide/profiling-queries",
             from: ["/memgraph/how-to-guides-overview/explain-profile"],
           },
           {
@@ -1036,11 +1036,11 @@ module.exports = {
             ],
           },
           {
-            to: "/memgraph/how-to-guides/inspecting-queries",
+            to: "/memgraph/reference-guide/inspecting-queries",
             from: ["/memgraph/database-functionalities/inspecting-queries"],
           },
           {
-            to: "/memgraph/how-to-guides/profiling-queries",
+            to: "/memgraph/reference-guide/profiling-queries",
             from: ["/memgraph/database-functionalities/profiling-queries"],
           },
           {
@@ -1164,6 +1164,15 @@ module.exports = {
           {
             to: "/memgraph/under-the-hood/telemetry",
             from: ["/memgraph/concepts/telemetry"],
+          },
+          //Move Inspecting and optimizing queries from How-to guides to Reference guide
+          {
+            to: "/memgraph/reference-guide/inspecting-queries",
+            from: ["/memgraph/how-to-guides/inspecting-queries"],
+          },
+          {
+            to: "/memgraph/reference-guide/profiling-queries",
+            from: ["/memgraph/how-to-guides/profiling-queries"],
           },
           //create redirect for Memgraph Getting started page
           {

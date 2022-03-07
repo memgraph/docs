@@ -43,15 +43,15 @@ article should contain all the necessary steps for the user to do so without
 going into much detail on what user privileges are or why they might be
 important.
 
-### Concepts
-Concepts are understanding-oriented, their aim is to provide the users with the
-background, context and a detailed explanation of a specific concept. These
-articles tend to be written for more advanced users that really care how things
-work under the hood. They are usually written in a more formal language and can
-introduce more advanced terminology. Apart from satisfying the curiosity of
-advanced users, they aim to arm them with the knowledge that will reflect on
-their usage of our product. In other words, a deep understanding of concepts
-should make them use Memgraph more efficiently and effectively.
+### Under the hood (Concepts)
+Under the hood articles are understanding-oriented, their aim is to provide the
+users with the background, context and a detailed explanation of a specific
+concept. These articles tend to be written for more advanced users that really
+care how things work under the hood. They are usually written in a more formal
+language and can introduce more advanced terminology. Apart from satisfying the
+curiosity of advanced users, they aim to arm them with the knowledge that will
+reflect on their usage of our product. In other words, a deep understanding of
+concepts should make them use Memgraph more efficiently and effectively.
 
 An example of a good concept is an article that explains [Graph
 Algorithms](docs/concepts/graph-algorithms.md) that are implemented within

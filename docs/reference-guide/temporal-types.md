@@ -42,7 +42,7 @@ S|Seconds|/
 Example:
 
 ```cypher
-CREATE (:F1Laps {lap : duration("PT2M2.33S")})
+CREATE (:F1Laps {lap: duration("PT2M2.33S")});
 ```
 
 Maps can contain the following six fields: `day`, `hour`, `minute`, `second`
@@ -51,7 +51,7 @@ Maps can contain the following six fields: `day`, `hour`, `minute`, `second`
 Example:
 
 ```cypher
-CREATE (:F1Laps {lap : duration({minute:2, seconds:2, microseconds:33})})
+CREATE (:F1Laps {lap: duration({minute:2, second:2, microsecond:33})});
 ```
 
 At this point, it must be pointed out that durations internally hold
@@ -60,7 +60,7 @@ microseconds and then reduced by addition to a single value. This has an
 interesting use case:
 
 ```cypher
-CREATE (:F1Laps {lap : duration({minute:2, seconds:-2, microseconds:-33})})
+CREATE (:F1Laps {lap: duration({minute:2, second:-2, microsecond:-33})});
 ```
 
 This converts `minutes`, `seconds` to `microseconds` and effectively produces
@@ -71,18 +71,39 @@ properties as follows:
 
 name|description
 :-:|:-:
-day|This converts all the microseconds to days and returns them.|/
-hour|This subtracts days and returns the leftover as hours.|/
-minute|This subtracts the days and returns the leftover as minutes.|/
-second|This subtracts the days and returns the leftover as seconds.|/
-millisecond|This subtracts the days and returns the leftover as milliseconds.|/
-microsecond|This subtracts the days and returns the leftover as microseconds.|/
-nanosecond|This subtracts the days and returns the leftover as nanoseconds.|/
+day|Converts all the microseconds back to days and returns the value.|/
+hour|Subtracts days and returns the leftover value as hours.|/
+minute|Subtracts the days and returns the leftover value as minutes.|/
+second|Subtracts the days and returns the leftover value as seconds.|/
+millisecond|Subtracts the days and returns the leftover value as milliseconds.|/
+microsecond|Subtracts the days and returns the leftover value as microseconds.|/
+nanosecond|Subtracts the days and returns the leftover value as nanoseconds.|/
 
 Example:
 
 ```cypher
-MATCH (f:F1Laps) RETURN f.lap.minute
+CREATE (:F1Laps {lap: duration({day:1, hour: 2, minute:3, second:4})});
+```
+
+```cypher
+MATCH (f:F1Laps) RETURN f.lap.day;
+// Result
+>> 1
+```
+```cypher
+MATCH (f:F1Laps) RETURN f.lap.hour;
+// Result
+>> 2
+```
+```cypher
+MATCH (f:F1Laps) RETURN f.lap.minute;
+// Result
+>> 123 // The value without days is 2 hours and 3  minutes, that is 123 minutes
+```
+```cypher
+MATCH (f:F1Laps) RETURN f.lap.second;
+// Result
+>> 7384 // The value without days is 2 hours, 3 minutes and 4 seconds, that is 7384 minutes
 ```
 
 ## Date
@@ -105,7 +126,7 @@ the current date of the calendar (UTC clock).
 Example:
 
 ```cypher
-CREATE (:Person {birthday : date("1947-07-30")})
+CREATE (:Person {birthday: date("1947-07-30")});
 ```
 
 For maps, three fields are available: `year`, `month`, `day`.
@@ -113,7 +134,7 @@ For maps, three fields are available: `year`, `month`, `day`.
 Example:
 
 ```cypher
-CREATE (:Person {birthday: date({year:1947, month:7, day:30})})
+CREATE (:Person {birthday: date({year:1947, month:7, day:30})});
 ```
 
 You can access the individual fields of a date through its properties:
@@ -127,33 +148,33 @@ day|Returns the day field|/
 Example:
 
 ```cypher
-MATCH (b:Person) RETURN b.birthday.year
+MATCH (b:Person) RETURN b.birthday.year;
 ```
 
 ## LocalTime
 
 You can create `LocalTime` from a string or map by calling the function
-`localtime`. For strings, the local time format is specified by the ISO 8601:
+`localTime`. For strings, the local time format is specified by the ISO 8601:
 `[T]hh:mm:ss` or `[T]hh:mm` or `[T]hhmmss` or `[T]hhmm` or `[T]hh`.
 
 name|description
 :-:|:-:
-|h|hours|
-|m|minutes|
-|s|seconds|
+|h|Hours|
+|m|Minutes|
+|s|Seconds|
 
 `seconds` can be defined as decimal fractions with up to 6 digits. The first 3
 digits represent milliseconds, and the last 3 digits microseconds. For example,
 the string `T22:10:32.300600` specifies `300` milliseconds and `600`
 microseconds.
 
-You can call `localtime` without arguments. This effectively sets the time field
+You can call `localTime` without arguments. This effectively sets the time field
 to the current time of the calendar (UTC clock).
 
 Example:
 
 ```cypher
-CREATE (:School {Calculus : LocalTime("09:15:00")})
+CREATE (:School {Calculus: localTime("09:15:00")});
 ```
 
 For maps, there are 5 fields available: `hour`, `minute`, `second`,
@@ -162,7 +183,7 @@ For maps, there are 5 fields available: `hour`, `minute`, `second`,
 Example:
 
 ```cypher
-CREATE (:School {Calculus : LocalTime({hour:9, minute:15})})
+CREATE (:School {Calculus: localTime({hour:9, minute:15})});
 ```
 
 You can access the individual fields of a LocalTime through its properties:
@@ -178,13 +199,13 @@ microsecond|Returns the microsecond field|/
 Example:
 
 ```cypher
-MATCH (s:School) RETURN s.Calculus.hour
+MATCH (s:School) RETURN s.Calculus.hour;
 ```
 
 ## LocalDateTime
 
 You can create `LocalDateTime` from a string or map by calling the function
-`localdatetime`. For strings, the local time format is specified by the ISO
+`localDateTime`. For strings, the local time format is specified by the ISO
 8601: `YYYY-MM-DDThh:mm:ss` or `YYYY-MM-DDThh:mm` or `YYYYMMDDThhmmss` or
 `YYYYMMDDThhmm` or `YYYYMMDDThh`.
 
@@ -197,12 +218,12 @@ name|description
 |m|Minutes|/
 |s|Seconds|/
 
-You can call `localdatetime` without arguments. This effectively sets the date
+You can call `localDateTime` without arguments. This effectively sets the date
 and time fields to the current date and time of the calendar (UTC clock).
 Example:
 
 ```cypher
-CREATE (:Flights {AIR123 : LocalDateTime("2021-10-05T14:15:00")})
+CREATE (:Flights {AIR123: localDateTime("2021-10-05T14:15:00")});
 ```
 
 For maps the following fields are available: `year`, `month`, `day`, `hour`,
@@ -211,7 +232,7 @@ For maps the following fields are available: `year`, `month`, `day`, `hour`,
 Example:
 
 ```cypher
-CREATE (:Flights {AIR123 : LocalDateTime(year:2021, month:10, day:5, hour:14, minute:15)})
+CREATE (:Flights {AIR123: localDateTime(year:2021, month:10, day:5, hour:14, minute:15)});
 ```
 
 You can access the individual fields of LocalDateTime through its properties:
@@ -230,7 +251,7 @@ microsecond|Returns the microsecond field|/
 Example:
 
 ```cypher
-MATCH (f:Flights) RETURN f.AIR123.year
+MATCH (f:Flights) RETURN f.AIR123.year;
 ```
 
 ## Temporal types arithmetic
@@ -242,36 +263,36 @@ Duration operations:
 
 op|result
 :-:|:-:
-duration + duration|duration|/
-duration - duration|duration|/
--duration|duration|/
+Duration + Duration|Duration|/
+Duration - Duration|Duration|/
+- Duration|Duration|/
 
 Date operations:
 
 op|result
 :-:|:-:
-date + duration|date|/
-duration + date|date|/
-date - duration|date|/
-date - date|duration|/
+Date + Duration|Date|/
+Duration + Date|Date|/
+Date - Duration|Date|/
+Date - Date|Duration|/
 
 LocalTime operations:
 
 op|result
 :-:|:-:
-localtime + duration|localtime|/
-duration + localtime|localtime|/
-localtime - duration|localtime|/
-localtime - localtime|duration|/
+LocaTtime + Duration|LocalTime|/
+Duration + LocalTime|LocalTime|/
+LocalTime - Duration|LocalTime|/
+LocalTime - LocalTime|Duration|/
 
 LocalDateTime operations:
 
 operation|result
 :-:|:-:
-localdatetime + duration|localdatetime|/
-duration + localdatetime|localdatetime|/
-localdatetime - duration|localdatetime|/
-localdatetime - localdatetime|duration|/
+LocalDateTime + Duration|LocalDateTime|/
+Duration + LocalTateTime|LocalDateTime|/
+LocalDateTime - Duration|LocalDateTime|/
+LocalDateTime - LocalDateTime|Duration|/
 
 ## Procedures API
 
