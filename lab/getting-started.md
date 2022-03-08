@@ -40,7 +40,7 @@ experimenting with data and Cypher.
 ### 3. Check out Style script
 
 To give your graphs a bit more pizzazz, dive into the [Style script
-language](/style-script/quick-start.md) and learn how to customize the visual
+language](/style-script/overview.md) and learn how to customize the visual
 appearance of your graphs to make them truly remarkable.
 
 ### 4. Browse through the Changelog

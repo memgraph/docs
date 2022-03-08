@@ -1,7 +1,8 @@
 ---
-id: quick-start
-title: Quick start guide to Style script
-sidebar_label: Quick start
+id: graph-style-script-language
+title: Graph Style Script language
+sidebar_label: Graph Style Script language
+slug: /graph-style-script-language
 ---
 
 This guide will show you how to easily get started with Style script. Style
