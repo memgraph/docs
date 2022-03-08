@@ -87,6 +87,7 @@ module.exports = {
         {
           type: "category",
           label: "CSV",
+          link: { type: "doc", id: "import-data/csv/overview" },
           items: [
             "import-data/csv/load-csv-clause",
             "import-data/csv/csv-import-tool",
@@ -164,6 +165,7 @@ module.exports = {
             },
           ],
         },
+        "how-to-guides/config-logs",
         {
           type: "category",
           label: "Enforce constraints",
@@ -172,15 +174,6 @@ module.exports = {
             "how-to-guides/constraints/uniqueness-constraint",
           ],
         },
-        {
-          type: "category",
-          label: "Inspect and optimize queries",
-          items: [
-            "how-to-guides/inspecting-queries",
-            "how-to-guides/profiling-queries",
-          ],
-        },
-        "how-to-guides/memory-control",
         "how-to-guides/networkx",
         {
           type: "category",
@@ -210,34 +203,42 @@ module.exports = {
       link: { type: "doc", id: "reference-guide/overview" },
       items: [
         "reference-guide/backup",
-        "reference-guide/configuration",
         "reference-guide/graph-algorithms",
+        "reference-guide/configuration",
         {
           type: "category",
           label: "Import Data",
+          link: { type: "doc", id: "reference-guide/import-data/overview" },
           items: [
-            "reference-guide/import-data/overview",
             {
               type: "category",
               label: "CSV",
               items: [
-                "reference-guide/import-data/csv-import-tool",
                 "reference-guide/import-data/load-csv-clause",
+                "reference-guide/import-data/csv-import-tool",
               ],
             },
             "reference-guide/import-data/cypherl",
           ],
         },
-
         "reference-guide/indexing",
+        {
+          type: "category",
+          label: "Inspecting and optimizing queries",
+          items: [
+            "reference-guide/optimizing-queries/inspecting-queries",
+            "reference-guide/optimizing-queries/profiling-queries",
+          ],
+        },
         "reference-guide/isolation-levels",
         "reference-guide/metadata",
+        "reference-guide/memory-control",
         "reference-guide/monitoring-server",
         {
           type: "category",
           label: "Query modules",
+          link: { type: "doc", id: "reference-guide/query-modules/overview" },
           items: [
-            "reference-guide/query-modules/overview",
             "reference-guide/query-modules/available-query-modules",
             "reference-guide/query-modules/load-call-query-modules",
             "reference-guide/query-modules/module-file-utilities",
@@ -248,8 +249,8 @@ module.exports = {
                 {
                   type: "category",
                   label: "C API",
+                  link: { type: "doc", id: "reference-guide/query-modules/api/c-api/overview" },
                   items: [
-                    "reference-guide/query-modules/api/c-api/overview",
                     {
                       type: "category",
                       label: "Classes",
@@ -282,7 +283,7 @@ module.exports = {
           items: [
             {
               type: "category",
-              label: "Transformation Modules",
+              label: "Transformation modules",
               link: { type: "doc", id: "reference-guide/streams/transformation-modules/overview" },
               items: [
                 {
@@ -300,6 +301,7 @@ module.exports = {
         "reference-guide/temporal-types",
         //"reference-guide/tensorflow",
         "reference-guide/triggers",
+        "reference-guide/users",
         {
           type: "category",
           label: "Enterprise features",

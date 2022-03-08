@@ -26,8 +26,8 @@ transformation procedures are grouped into a module called **Transformation
 module** which is then loaded into Memgraph on startup or later on. A
 transformation module consists of a transformation, a query procedure, or both.
 
-Currently, we only support transformations for Kafka streams, but we are aiming
-to add support for other streaming engines as well.
+Currently, we support transformations for Kafka, Pulsar and Redpanda
+streams.
 
 The available API references are:
 
@@ -52,42 +52,6 @@ If you want to change the directory in which Memgraph searches for
 transformation modules, just change or extend the `--query-modules-directory`
 flag in the main configuration file (`/etc/memgraph/memgraph.conf`) or supply it
 as a command-line parameter (e.g., when using Docker).
-
-:::caution
-
-Please remember that if you are using Memgraph Platform image, you should pass
-configuration flags within MEMGRAPH environmental variable (e.g. `docker run -e MEMGRAPH="--bolt-port=7687" memgraph/memgraph-platform`) and if you are using
-any other image you should pass them as arguments after the image name (e.g.,
-`memgraph/memgraph-mage --bolt-port=7687 --query-modules-directory=path/path`).
-
-:::
-
-<details>
-  <summary>Transfer transformation module into a Docker container</summary>
-  
-  If you are using Docker to run Memgraph, you will need to copy the
-  transformation module file from your local directory into the Docker
-  container where Memgraph can access it.
-
-  <p> </p>
-
-**1.** Open a new terminal and find the `CONTAINER ID` of the Memgraph Docker
-container:
-
-```
-docker ps
-```
-
-**2.** Copy a file from your current directory to the container with the
-command:
-
-```
-docker cp ./trans_module.py <CONTAINER ID>:/usr/lib/memgraph/query_modules/trans_module.py
-```
-
-The file is now inside your Docker container.
-
-</details>
 
 :::caution
 
