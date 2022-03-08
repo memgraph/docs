@@ -33,5 +33,5 @@ The result will contain the following fields:
 | average_degree   | Average number of relationships of a single node                                                                                                            |
 | memory_usage     | Amount of RAM used reported by the OS (in bytes)                                                                                             |
 | disk_usage       | Amount of disk space used by the data directory (in bytes)                                                                                   |
-| memory_allocated | Amount of bytes allocated by the instance.<br/>For more info, check out the [memory control](../how-to-guides/memory-control).               |
-| allocation_limit | Current allocation limit in bytes set for this instance.<br/>For more info, check out the [memory control](../how-to-guides/memory-control). |
+| memory_allocated | Amount of bytes allocated by the instance.<br/>For more info, check out the [memory control](/reference-guide/memory-control.md).               |
+| allocation_limit | Current allocation limit in bytes set for this instance.<br/>For more info, check out the [memory control](/reference-guide/memory-control.md). |
