@@ -46,7 +46,7 @@ the link above. :point_up:
 
 [![Transportation](https://img.shields.io/badge/Transportation-Application-8A477F?style=for-the-badge)](/use-cases/transportation.md)
 
-In transportation networks max flow can be used for finding the throughput of a
+In transportation networks, max flow can be used for finding the throughput of a
 network or a part of it, finding the road or railway with the largest load or
 analysing which roads need to be expanded.
 

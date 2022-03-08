@@ -31,12 +31,12 @@ scaling. Ford-Fulkerson method is not itself an algorithm as it does not specify
 the procedure of finding augmenting paths in a residual graph. It is a greedy
 method, using augmenting paths as it comes across them. Input is a weighted
 graph with a defined source and sink, representing the beginning and end of the
-flow network. The algorithm begins with an empty flow, and at each step finds a
+flow network. The algorithm begins with an empty flow and, at each step, finds a
 path, called an augmenting path, from the source to the sink that generates more
-flow. When flow cannot be increased anymore, the algorithm stops and the maximum
+flow. When flow cannot be increased anymore, the algorithm stops, and the maximum
 flow has been found.
 
-The capacity scaling is a heuristic for finding augmenting paths, in such a way
+The capacity scaling is a heuristic for finding augmenting paths in such a way
 that prioritizes taking edges with larger capacities, maintaining a threshold
 value that is only lowered once no larger path can be found. It speeds up the
 algorithm noticeably compared to a standard DFS search.
