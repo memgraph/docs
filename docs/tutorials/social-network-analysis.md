@@ -6,10 +6,25 @@ sidebar_label: Social network analysis with NetworkX
 
 ## Introduction
 
-In this tutorial, we will show you how to perform simple network analysis with
+In this tutorial, we will show you how to perform a simple network analysis with
 the NetworkX library and data stored in Memgraph. You will also acquire a basic
-understanding of **Query Modules**, an easy method for extending the query
+understanding of **query modules**, an easy method for extending the query
 language with user-written procedures.
+
+To get started please install Memgraph using the `memgraph-platform` image by
+following the [installment instructions](/installation/overview.md) for your OS.
+
+Once Memgraph is up and running, there are three ways to execute queries and
+procedures in Memgraph:
+
+- using **Memgraph Lab**, a visual user interface that you can use in browser at
+  `http://localhost:3000` or [download as an application](https://memgraph.com/product/lab)
+- using the command-line tool [`mgconsole`](/connect-to-memgraph/mgconsole.md)
+- using [drivers](/connect-to-memgraph/drivers/overview.md) and the Bolt protocol
+
+For this tutorial you are going to need **Memgraph Lab** to import the dataset
+and then you can query it either with the Lab or with mgconsole. We copied the
+results from the command-line tool because of the format.
 
 ## Data model
 
@@ -25,36 +40,24 @@ src="https://raw.githubusercontent.com/g-despot/images/master/karate_club.png"
 alt="Karate club" style={{height: 400}}
 />
 
-## Importing the dataset
+## Import the dataset
 
-To import the dataset, download the [Memgraph
-Lab](https://memgraph.com/product/lab) desktop application and navigate to the
-`Datasets` tab in the sidebar. From there, choose the dataset `Karate club
-friendship network` and continue with the tutorial.
+To import the dataset, open Memgraph Lab and navigate to the *Datasets* tab in
+the sidebar. From there, load the  `Karate club friendship network` dataset,
+wait for the import to finish, move to the *Query* tab or mgconsole and continue
+with the tutorial.
 
-## Using existing NetworkX algorithms
+## Use existing NetworkX algorithms
 
-There are three ways to execute queries and procedures in Memgraph:
-
-- using the command-line tool `mgconsole`, which comes with Memgraph:
-  **[Querying the database](/connect-to-memgraph/overview.mdx)**
-- programmatically, by using the Bolt protocol: **[Building
-  applications](/connect-to-memgraph/drivers/overview.md)**
-- from **Memgraph Lab**, a visual user interface which you can download
-  **[here](https://memgraph.com/download)**.
-
-In this tutorial, we are using results from the command-line tool because of
-their text format but, it's alright to use Memgraph Lab instead. You can open
-Memgraph Lab and in the tab **Query** execute the following command:
+Execute the following command to get all the relationships inside our network:
 
 ```cypher
 MATCH (s)-[r]-(t)
 RETURN s, r, t;
 ```
 
-This is going to return all the relationships inside our network. Now we have a
-better overview of what we are dealing with, so it’s time to get some useful
-information about the network.
+Now we have a better overview of what we are dealing with, so it’s time to get
+some useful information about the network.
 
 To analyze the network we will use the built-in procedure `analyze()` from the
 `graph_analyzer` query module. This module utilizes the NetworkX library to
@@ -64,8 +67,8 @@ retrieve graph information. Run the following query:
 CALL graph_analyzer.analyze() YIELD *;
 ```
 
-You will get details about the graph like the number of nodes, edges, bridges...
-and many more.
+You will get details about the graph, such as the number of nodes, edges,
+bridges and many more.
 
 ### Betweenness centrality
 
@@ -141,35 +144,20 @@ The results are:
 +--------------+--------------+--------------+
 ```
 
-## Adding new NetworkX algorithms as query modules
+## Add new NetworkX algorithms as query modules
 
 Memgraph comes with over 70 NetworkX algorithms, but if the algorithm you
-require is missing, you can add it yourself as a query module.
+require is missing, you can add it yourself as a **query module**.
 
-If you are using Docker to run Memgraph you need to create a volume and mount it
-to access the directory `/usr/lib/memgraph/query_modules`. This can be done by
-creating an empty directory `~modules` on your host machine and executing the
-following command:
+Lets create a custom module, add it to to `/usr/lib/memgraph/query_modules`
+directory within Docker then load it into Memgraph and query the data.
 
-```
-docker volume create --driver local --opt type=none  --opt device=~modules --opt o=bind modules
-```
-
-Now, you can start Memgraph and mount the created volume:
-
-```
-docker run -it --rm -v modules:/usr/lib/memgraph/query_modules -p 7687:7687 memgraph/memgraph-platform
-```
-
-Everything from the directory `/usr/lib/memgraph/query_modules` will be
-visible/editable in your mounted volume and vice versa.
-
-### Community detection
+### Community detection algorithm
 
 Detecting communities in a network is a very common problem. Therefore, we need
 community detection algorithms that can partition the network into multiple
 communities. Let's create our own module that accomplishes this task. Create a
-file called `communities.py` in the `~modules` directory and copy the following
+file called `communities.py` on your computer and copy the following
 code into it:
 
 ```python=
@@ -192,14 +180,59 @@ def detect(
 ```
 
 We just created a query module with the procedure `detect()` that utilizes the
-Girvan–Newman method to find communities in a graph. Before we can call it, the
-newly created query module has to be loaded:
+Girvan–Newman method to find communities in a graph. 
+
+### Copy the module into Docker
+
+1. Open a new terminal and find out the `CONTAINER ID` of the `memgraph-platform`
+  container by running:
+
+  ```terminal
+  docker ps
+  ```
+
+2. Position yourself in the directory where the `communities.py` file is and copy the file
+   to the `memgraph-platform` container by running:
+
+   ```terminal
+   docker cp communities.py CONTAINER_ID:/usr/lib/memgraph/query_modules/movielens2.py
+   ```
+
+   Be sure to replace the `CONTAINER_ID`.
+
+3. Check if you copied the file correctly! Enter the container:
+
+   ```terminal
+   docker exec -it CONTAINER_ID bash
+   ```
+
+4. List all the files in the `/usr/lib/memgraph/query_modules` folder and check
+   if the `communities.py` file is there:
+
+   ```terminal
+   ls /usr/lib/memgraph/query_modules
+   ```
+
+### Load a new query module into Docker
+
+Once your transformation module is safe in Docker, you can load it into
+Memgraph.
+
+All modules are automatically loaded into Memgraph when it starts, but if the
+module was copied into Docker while the Memgraph was already running, like it
+was now, it needs to be loaded by using a Cypher procedure.
+
+You can either use the `CALL mg.load_all()` procedure to reload all existing
+modules and load any newly added ones, <br />or `CALL mg.load("module_name")` to
+(re)load a specific module.
 
 ```cypher
 CALL mg.load_all();
 ```
 
-And now it can be called:
+### Call a query module 
+
+Let's call the custom query module with Cypher:
 
 ```cypher
 CALL communities.detect()
