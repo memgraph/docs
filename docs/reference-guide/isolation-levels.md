@@ -20,13 +20,13 @@ how or when the changes made by one operation become visible to others.
 ## Supported isolation levels
 
 Memgraph currently supports three isolation levels:
- - SNAPSHOT ISOLATION (default)
- - READ COMMITTED
- - READ UNCOMMITTED
+ - SNAPSHOT_ISOLATION (default)
+ - READ_COMMITTED
+ - READ_UNCOMMITTED
 
 ## Setting the isolation level
 
-The default isolation level, `SNAPSHOT ISOLATION`, can be changed using the config
+The default isolation level, `SNAPSHOT_ISOLATION`, can be changed using the config
 or running a query.
 
 ### Configuration
@@ -50,6 +50,6 @@ It can take any of the following values:
 
 `<isolation_level` defines the isolation level which we want to use.
 It can take any of the following values:
- - SNAPSHOT ISOLATION
- - READ COMMITTED
- - READ UNCOMMITTED
+ - SNAPSHOT_ISOLATION
+ - READ_COMMITTED
+ - READ_UNCOMMITTED

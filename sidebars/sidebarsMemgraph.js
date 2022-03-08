@@ -164,6 +164,7 @@ module.exports = {
             },
           ],
         },
+        "how-to-guides/config-logs",
         {
           type: "category",
           label: "Enforce constraints",
@@ -172,7 +173,6 @@ module.exports = {
             "how-to-guides/constraints/uniqueness-constraint",
           ],
         },
-        "how-to-guides/memory-control",
         "how-to-guides/networkx",
         {
           type: "category",
@@ -231,6 +231,7 @@ module.exports = {
         },
         "reference-guide/isolation-levels",
         "reference-guide/metadata",
+        "reference-guide/memory-control",
         "reference-guide/monitoring-server",
         {
           type: "category",

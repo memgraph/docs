@@ -26,10 +26,11 @@ Query procedures that allow the users to gain more insight into other query
 modules and their procedures are written under the utility query module named `mg`.
 This module offers three procedures with the following signatures:
 
-* `mg.procedures() :: (name :: STRING, signature :: STRING)`: Lists loaded
-  procedures and their signatures.
-* `mg.load(module_name :: STRING) :: ()`: Loads or reloads the given module.
-* `mg.load_all() :: ()`: Loads or reloads all query modules.
+| Procedure                                  | Description                          |
+| ------------------------------------------ | ------------------------------------ |
+| `mg.procedures() :: (name :: STRING, signature :: STRING)` | Lists loaded procedures and their signatures. |
+| `mg.load(module_name :: STRING) :: ()`     | Loads or reloads the given module.   |
+| `mg.load_all() :: ()`                      | Loads or reloads all modules.        |
 
 For example, invoking `mg.procedures()` with Cypher looks like this:
 

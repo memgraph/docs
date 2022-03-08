@@ -5,7 +5,7 @@ sidebar_label: User management
 ---
 
 The community edition of Memgraph enables creating users that can access the
-database with our without a password.
+database with or without a password.
 
 To create a user, execute the following command:
 

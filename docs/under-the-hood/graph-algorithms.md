@@ -72,6 +72,35 @@ more efficient way of finding unweighted shortest paths than running [Dijkstra's
 algorithm](#weighted-shortest-path) on a graph with relationship weights equal
 to `1`.
 
+Here is an example of finding the shortest path between nodes:
+
+```cypher
+MATCH (a {id: 723})-[edge_list:Type *bfs..10]-(b {id: 882}) RETURN *;
+```
+
+The above query will find all paths of length up to 10 between nodes `a` and `b`.
+The edge type and maximum path length are used in the same way as in variable
+length expansion.
+
+To find only the shortest path, simply append `LIMIT 1` to the `RETURN` clause.
+
+```cypher
+MATCH (a {id: 723})-[edge_list:Type *bfs..10]-(b {id: 882}) RETURN * LIMIT 1;
+```
+
+Breadth-first expansion allows an arbitrary expression filter that determines
+if an expansion is allowed. Following is an example in which expansion is
+allowed only over edges whose `x` property is greater than `12` and nodes `y`
+whose property is less than `3`:
+
+```cypher
+MATCH (a {id: 723})-[*bfs..10 (e, n | e.x > 12 AND n.y < 3)]-() RETURN *;
+```
+
+The filter is defined as a lambda function over `e` and `n`, which denote the edge
+and node being expanded over in the breadth first search. If you omit the edge list symbol (`edge_list` in previous examples) it will not be included
+in the result.
+
 ## Weighted Shortest Path
 
 In [graph theory](https://en.wikipedia.org/wiki/Graph_theory), weighted shortest
