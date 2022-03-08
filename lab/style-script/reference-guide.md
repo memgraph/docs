@@ -1,10 +1,10 @@
 ---
 id: reference-guide
-title: Style script reference guide
+title: Graph Style Script reference guide
 sidebar_label: Reference guide
 ---
 
-The main building blocks of Style script are expressions and directives. Style
+The main building blocks of Graph Style Script (GSS) are expressions and directives. Style
 script files are a sequence of expressions and directives.
 
 ## Expressions
@@ -393,7 +393,7 @@ Example:
 Returns 2.71828... raised to the power `value`.
 
 Example:
--`Exp(2)` will return the number 7.38905609893  
+- `Exp(2)` will return the number 7.38905609893  
 
 ### `Format(formatString, [val1, val2,...])`
 
@@ -532,7 +532,16 @@ Example:
 - `label: If(HasProperty?(node, "name"), Property(node, "name"), "No name")` returns the property `name` as label if the node has one, or `No name` if the node doesn't have it. 
 
 
-### `Join ()`
+### `Join (array, delimiter)`
+
+- `array`: `Array`
+- `delimiter`: `String`
+- Returns: `String`
+
+Returns a new string by joining array elements with the delimiter.
+
+Example:  
+- `label: Join(Labels(node), ", ")` creates a label which is a string made out of all the labels delimited with a comma. 
 
 ### `Labels(node)`
 
@@ -567,7 +576,20 @@ Returns a lighter version of the given color.
 Example:
 - `color-hover: Lighter(#dd2222)` sets a lighter on hover event color.
 
-### `Like?`
+### `Like?(text, regex)`
+
+- `text`: `String`
+- `regex`: `String`
+- Returns: `Boolean`
+
+Returns `True` if text matches regex. The evaluation of the regex is done with
+the Javascript function `RegExp.test(text)`.
+
+Examples:
+- `Like?("Graph style script", "style")` -> `True`
+- `Like?("Graph style script", "st.* script")` -> `True`
+- `Like?("Graph style script", "^G")` -> `True`
+- `Like?("Graph style script", "GRAPH?")` -> `False`
 
 ### `Log(value)`
 
