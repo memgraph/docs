@@ -245,7 +245,7 @@ Memgraph.
 
 All modules are automatically loaded into Memgraph when it starts, but if the
 module was copied into Docker while the Memgraph was already running, like it
-was now, it needs to be loaded by using a Cypher procedure.
+was now in step 4, it needs to be loaded by using a Cypher procedure.
 
 You can either use the `CALL mg.load_all()` procedure to reload all existing
 modules and load any newly added ones, or `CALL mg.load("module_name")` to
@@ -259,7 +259,7 @@ I am going to load the original transformation module created for this tutorial
 `movielens.py`:
 
 ```cypher
-CALL mg.load("movielens2");
+CALL mg.load("movielens");
 ```
 
 If you don’t receive an error, the module was loaded successfully.
@@ -355,6 +355,9 @@ graphs.
    genre as well. The result of this query will be an alphabetized list of 10
    movie titles of those two genres.
 
+   Also, don't worry if the results show less than 10 movies - it just means not
+   enough movies of that genre were received from the stream.
+
    <img src={require('../data/tutorials/analyzing-data-streamed-from-kafka-genre-movies.png').default} className={"imgBorder"}/>
 
 3. Calculate the average rating score for the movie Matrix:
@@ -367,6 +370,9 @@ graphs.
 
    We are matching users and their ratings of specific movies. Then we filter
    only the ratings given to the movie Matrix and return the average rating.
+
+   If your result is `null`, check your stream for some other movie title and
+   edit the query.
 
    <img src={require('../data/tutorials/analyzing-data-streamed-from-kafka-matrix.png').default} className={"imgBorder"}/>
 
@@ -394,7 +400,7 @@ graphs.
    user 150.
 
    We got their ids, and then we wanted to filter out only those users who gave
-   the same or similar rating as our user 100. That is why we subtracted their
+   the same or similar rating as our user 150. That is why we subtracted their
    rating scores from the rating scores of user 150 and got an average score. If
    the result is 0 the users gave the same rating and had a similar taste. As
    that number grows, users have different tastes.

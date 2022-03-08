@@ -1044,7 +1044,7 @@ module.exports = {
             from: ["/memgraph/database-functionalities/profiling-queries"],
           },
           {
-            to: "/memgraph/how-to-guides/memory-control",
+            to: "/memgraph/reference-guide/memory-control",
             from: ["/memgraph/database-functionalities/memory-control"],
           },
           {
@@ -1182,6 +1182,11 @@ module.exports = {
           {
             to: "/memgraph-lab/installation",
             from: ["/memgraph-lab/installation/overview"],
+          },
+          //Redirect for memory-control page
+          {
+            to: "/memgraph/reference-guide/memory-control",
+            from: ["/memgraph/how-to-guides/memory-control"],
           },
         ],
       },

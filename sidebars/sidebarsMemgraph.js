@@ -124,6 +124,7 @@ module.exports = {
         "tutorials/backpacking-through-europe",
         "tutorials/exploring-the-european-road-network",
         "tutorials/football-transfers",
+        "tutorials/graph-modeling",
         "tutorials/got-deaths",
         "tutorials/graphing-the-premier-league",
         "tutorials/install-memgraph-windows-10",
@@ -164,6 +165,7 @@ module.exports = {
             },
           ],
         },
+        "how-to-guides/config-logs",
         {
           type: "category",
           label: "Enforce constraints",
@@ -172,7 +174,6 @@ module.exports = {
             "how-to-guides/constraints/uniqueness-constraint",
           ],
         },
-        "how-to-guides/memory-control",
         "how-to-guides/networkx",
         {
           type: "category",
@@ -231,6 +232,7 @@ module.exports = {
         },
         "reference-guide/isolation-levels",
         "reference-guide/metadata",
+        "reference-guide/memory-control",
         "reference-guide/monitoring-server",
         {
           type: "category",
