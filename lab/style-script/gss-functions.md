@@ -548,3 +548,4 @@ Returns the value of `string` converted to upper case.
 
 Example:
 - `AsText(UpperCase(Property(node, "name")))` will return the node name in upper case.
+

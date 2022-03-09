@@ -31,3 +31,4 @@ directive, along with their expected types.
 - `shape`: `String` (`"dot"`, `"square"`, `"diamond"`, `"triangle"`,
   `"triangleDown"`, `"star"`)
 - `size`: `Number`
+

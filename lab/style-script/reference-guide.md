@@ -214,3 +214,4 @@ Define(maxAllowedDebt, 10000)
 }
 ```
 Names `square` and `maxAllowedDebt` are visible inside `@NodeStyle` directive.
+

@@ -23,4 +23,3 @@ directive, along with their expected types.
 - `width`: `Number`
 - `width-hover`: `Number`
 - `width-selected`: `Number`
-
