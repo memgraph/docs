@@ -6,6 +6,8 @@ sidebar_label: GSS functions
 
 ## Builtin functions
 
+Graph Style Script has a large number of builtin functions. With this functions you can achieve the right style for your graph.
+
 ### `Add(value1, [value2, value3,...])`
 
 - `value1`, `value2`, `value3`, `...`: `Number`
@@ -548,4 +550,3 @@ Returns the value of `string` converted to upper case.
 
 Example:
 - `AsText(UpperCase(Property(node, "name")))` will return the node name in upper case.
-

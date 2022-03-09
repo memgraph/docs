@@ -133,7 +133,7 @@ Like in CSS, directives defined later override properties of the previous
 directives.
 
 Style script currently has two directives: `@NodeStyle`, for defining visual
-style of graph nodes, and `@EdgeStyle` for defining visual style of graph edges.
+style of graph nodes, and `@EdgeStyle` for defining visual style of graph relationships.
 
 An example of a directive is `@NodeStyle` directive which can be used to specify
 style properties of a graph node.
@@ -177,16 +177,16 @@ nodes or to no nodes.
 }
 ```
 
-Take a look at the [GSS @NodeStyle directive properties](/docs/memgraph-lab/style-script/gss-nodestyle-directive) page to see all styling possibilities. 
+Take a look at the [GSS @NodeStyle directive properties](/docs/memgraph-lab/style-script/gss-nodestyle-directive) page to see all node styling possibilities. 
 
 ### `@EdgeStyle`
 
-`@EdgeStyle` directive is used for defining style properties of a graph edge.
+`@EdgeStyle` directive is used for defining style properties of a graph relationship.
 Most things work like `@NodeStyle` directive with one exception: the directive
-will bind the name `edge` to the edge for which the directive is being
+will bind the name `edge` to the relationship for which the directive is being
 evaluated (`@NodeStyle` binds the name `node`).
 
-Take a look at the [GSS @EdgeStyle directive properties](/docs/memgraph-lab/style-script/gss-edgestyle-directive) page to see all styling possibilities. 
+Take a look at the [GSS @EdgeStyle directive properties](/docs/memgraph-lab/style-script/gss-edgestyle-directive) page to see all relationship styling possibilities. 
 
 # Builtin functions
 
@@ -197,7 +197,7 @@ Graph Style Script has a large number of builtin functions that can help you wit
 Style script files are composed of expressions and directives. All expressions
 outside directives are evaluated first in the global environment. This is useful
 for defining names using function `Define`. After that `@NodeStyle` and
-`@EdgeStyle` directives are evaluated for each node and edge, respectively. All
+`@EdgeStyle` directives are evaluated for each node and relationship, respectively. All
 the names in the global environment are visible while applying the directives so
 they can be used for defining property values inside directives.
 
@@ -214,4 +214,3 @@ Define(maxAllowedDebt, 10000)
 }
 ```
 Names `square` and `maxAllowedDebt` are visible inside `@NodeStyle` directive.
-

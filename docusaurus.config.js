@@ -101,8 +101,8 @@ module.exports = {
               to: "/memgraph-lab/connect-to-memgraph",
             },
             {
-              label: "Style script language",
-              to: "/memgraph-lab/style-script/quick-start",
+              label: "Graph Style Script language",
+              to: "/memgraph-lab/graph-style-script-language",
             },
             {
               label: "Changelog",
