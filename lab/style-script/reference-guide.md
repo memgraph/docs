@@ -4,8 +4,8 @@ title: Graph Style Script reference guide
 sidebar_label: GSS reference guide
 ---
 
-The main building blocks of Graph Style Script (GSS) are expressions and directives. Style
-script files are a sequence of expressions and directives.
+The main building blocks of Graph Style Script (GSS) are expressions and
+directives. Style script files are a sequence of expressions and directives.
 
 ## Expressions
 
@@ -15,7 +15,8 @@ example expression
 Add(2, 5)
   -> 7
 ```
-creates a new value 7 from values 2 and 5. There are a lot of functions built into Style script so there are even more ways to combine values. There is even a
+creates a new value 7 from values 2 and 5. There are a lot of functions built
+into Style script so there are even more ways to combine values. There is even a
 function to create new functions.
 
 When expressions are evaluated, values are created. There are several types of
@@ -53,8 +54,8 @@ literal expression for the color red.
 ```
 
 Name expressions are names that can be evaluated if there are values bound to
-them in the environment (lexical scope). Names can start with any of the
-lower case or upper case letters of the English alphabet and apart from those can
+them in the environment (lexical scope). Names can start with any of the lower
+case or upper case letters of the English alphabet and apart from those can
 contain digits and the following characters: ?, !, $, -, _, ., *. Names can be
 defined using the `Define` function.
 ```
@@ -63,8 +64,8 @@ superhero
   -> Iron Man
 ```
 In the previous example the value `"Iron Man"` was bound to the name
-`superhero`. After that name expression `superhero` evaluates the value
-`"Iron Man"` to type `String`.
+`superhero`. After that name expression `superhero` evaluates the value `"Iron
+Man"` to type `String`.
 
 There are many built-in names that are bound to useful values. Most used are
 boolean values which are bound to `True` and `False` and null value which is
@@ -76,8 +77,8 @@ forestgreen
   -> #228b22
 ```
 
-The third type of expressions are function application expressions. A function can
-be applied to the list of expressions (arguments) in the following way.
+The third type of expressions are function application expressions. A function
+can be applied to the list of expressions (arguments) in the following way.
 ```
 Concat("Agents", " ", "of", " ", "S.H.I.E.L.D.")
   -> Agents of S.H.I.E.L.D.
@@ -108,9 +109,9 @@ square(2)
   -> 4
 ```
 In the previous example the name `x` isn't evaluated in the first line, and
-neither is the expression `Mul(x, x)`. In the second line when the function `square`
-is called number 2 will be bound to the name `x` and only then will `Mul(x, x)`
-be evaluated.
+neither is the expression `Mul(x, x)`. In the second line when the function
+`square` is called number 2 will be bound to the name `x` and only then will
+`Mul(x, x)` be evaluated.
 
 
 ## Directives
@@ -133,7 +134,8 @@ Like in CSS, directives defined later override properties of the previous
 directives.
 
 Style script currently has two directives: `@NodeStyle`, for defining visual
-style of graph nodes, and `@EdgeStyle` for defining visual style of graph relationships.
+style of graph nodes, and `@EdgeStyle` for defining visual style of graph
+relationships.
 
 An example of a directive is `@NodeStyle` directive which can be used to specify
 style properties of a graph node.
@@ -177,29 +179,36 @@ nodes or to no nodes.
 }
 ```
 
-Take a look at the [GSS @NodeStyle directive properties](/docs/memgraph-lab/style-script/gss-nodestyle-directive) page to see all node styling possibilities. 
+Take a look at the [GSS @NodeStyle directive
+properties](/docs/memgraph-lab/style-script/gss-nodestyle-directive) page to see
+all node styling possibilities. 
 
 ### `@EdgeStyle`
 
-`@EdgeStyle` directive is used for defining style properties of a graph relationship.
-Most things work like `@NodeStyle` directive with one exception: the directive
-will bind the name `edge` to the relationship for which the directive is being
-evaluated (`@NodeStyle` binds the name `node`).
+`@EdgeStyle` directive is used for defining style properties of a graph
+relationship. Most things work like `@NodeStyle` directive with one exception:
+the directive will bind the name `edge` to the relationship for which the
+directive is being evaluated (`@NodeStyle` binds the name `node`).
 
-Take a look at the [GSS @EdgeStyle directive properties](/docs/memgraph-lab/style-script/gss-edgestyle-directive) page to see all relationship styling possibilities. 
+Take a look at the [GSS @EdgeStyle directive
+properties](/docs/memgraph-lab/style-script/gss-edgestyle-directive) page to see
+all relationship styling possibilities. 
 
 # Builtin functions
 
-Graph Style Script has a large number of builtin functions that can help you with achieving the right style for your graph. Take a look at the [list of GSS builtin functions](/docs/memgraph-lab/style-script/gss-functions).
+Graph Style Script has a large number of builtin functions that can help you
+with achieving the right style for your graph. Take a look at the [list of GSS
+builtin functions](/docs/memgraph-lab/style-script/gss-functions).
 
 ## File Structure
 
 Style script files are composed of expressions and directives. All expressions
 outside directives are evaluated first in the global environment. This is useful
 for defining names using function `Define`. After that `@NodeStyle` and
-`@EdgeStyle` directives are evaluated for each node and relationship, respectively. All
-the names in the global environment are visible while applying the directives so
-they can be used for defining property values inside directives.
+`@EdgeStyle` directives are evaluated for each node and relationship,
+respectively. All the names in the global environment are visible while applying
+the directives so they can be used for defining property values inside
+directives.
 
 Example.
 ```

@@ -39,9 +39,9 @@ The content inside the curly braces is ignored, but can be helpful for clarity.
 
 ## Setting node images
 
-It would be nice to display flags in the country nodes. This can be achieved 
+It would be nice to display flags in the country nodes. This can be achieved
 using URLs of flag images. There is a website that hosts many world flags so we
-can use images from [there](https://cdn.countryflags.com). Their API expects a 
+can use images from [there](https://cdn.countryflags.com). Their API expects a
 country name as a part of URL path so we will make the following directive.
 
 ```
@@ -51,9 +51,9 @@ country name as a part of URL path so we will make the following directive.
 }
 ```
 
-Unfortunately, this won't work for all countries. Flags for England and Scotland 
-cannot be found on the website because they aren't real countries. So we can 
-get around that by providing custom directives below the general one above.
+Unfortunately, this won't work for all countries. Flags for England and Scotland
+cannot be found on the website because they aren't real countries. So we can get
+around that by providing custom directives below the general one above.
 
 ```
 @NodeStyle Equals?(Property(node, "name"), "England") {
@@ -82,8 +82,8 @@ Now all the country nodes have their flags displayed.
 
 ## Highlighting interesting nodes
 
-We can highlight nodes with low drink price in the following way. We want to 
-use a beer image and a bigger size along with a red shadow.
+We can highlight nodes with low drink price in the following way. We want to use
+a beer image and a bigger size along with a red shadow.
 
 ```
 @NodeStyle And()

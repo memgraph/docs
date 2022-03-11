@@ -6,7 +6,8 @@ sidebar_label: GSS functions
 
 ## Builtin functions
 
-Graph Style Script has a large number of builtin functions. With this functions you can achieve the right style for your graph.
+Graph Style Script has a large number of builtin functions. With this functions
+you can achieve the right style for your graph.
 
 ### `Add(value1, [value2, value3,...])`
 
@@ -16,7 +17,8 @@ Graph Style Script has a large number of builtin functions. With this functions 
 Returns the sum of given values.
 
 Example:
-- `Add(10, Property(node, "age"))` will give node.age + 10 if age is defined (as a number).
+- `Add(10, Property(node, "age"))` will give node.age + 10 if age is defined (as
+  a number).
 
 ### `And(value1, [value2, value3,...])`
 
@@ -27,7 +29,8 @@ Returns `True` if all of the given values are `True`. Returns `False` otherwise.
 Expressions after first expression that evaluates to `False` are not evaluated.
 
 Example:
-- `And(HasProperty?(node, "a"), HasProperty?(node, "b"))` will return `True` if node has properties `a` and `b`.
+- `And(HasProperty?(node, "a"), HasProperty?(node, "b"))` will return `True` if
+  node has properties `a` and `b`.
 
 ### `Array([value1, value2,...])`
 
@@ -123,7 +126,8 @@ Example:
 Returns `value1` divided by `value2`.
 
 Example:
-- `Div(Property(node, "population"), 2)` will divide `node.population` with 2 if population is defined (as a number).
+- `Div(Property(node, "population"), 2)` will divide `node.population` with 2 if
+  population is defined (as a number).
 
 ### `Equals?(value1, value2)`
 
@@ -136,7 +140,8 @@ Returns `True` if given values are equal, `False` otherwise. `Number`s,
 are compared by identity.
 
 Example:
--  `Equals?(Property(edge, "category"),"Food")` checks if `edge.category` equals to text "Food".
+-  `Equals?(Property(edge, "category"),"Food")` checks if `edge.category` equals
+   to text "Food".
 
 ### `Exp(value)`
 
@@ -212,7 +217,8 @@ If `obj` is `Array`, returns the element with index `key` of array `obj`
 
 Examples:
 - `Get(Array(3,6,7,3), 2)` returns number 7.
-- `Get(Property(node, "map"), "year") will get the property `year` from the map of node properties. 
+- `Get(Property(node, "map"), "year") will get the property `year` from the map
+  of node properties. 
 
 
 ### `Greater?(value1, value2)`
@@ -247,7 +253,8 @@ Examples:
 Returns `True` if given graph node `node` has label `label`, `False` otherwise.
 
 Example:
-- `HasLabel?(node, "Category")` will return `True` if a node has a label with the name `Category`.
+- `HasLabel?(node, "Category")` will return `True` if a node has a label with
+  the name `Category`.
 
 ### `HasProperty?(nodeOrEdge, propertyName)`
 
@@ -259,7 +266,8 @@ Returns `True` if given graph node or graph edge `nodeOrEdge` has property
 `propertyName`.
 
 Example:
-- `HasProperty?(node, "City")` will return `True` if a node has a property with the name `City`.
+- `HasProperty?(node, "City")` will return `True` if a node has a property with
+  the name `City`.
 
 ### `Identity(node)`
 
@@ -282,7 +290,9 @@ Returns the id of the given graph node.
 If `condition` is `True` returns `than`, otherwise returns `else`.
 
 Example:
-- `label: If(HasProperty?(node, "name"), Property(node, "name"), "No name")` returns the property `name` as label if the node has one, or `No name` if the node doesn't have it. 
+- `label: If(HasProperty?(node, "name"), Property(node, "name"), "No name")`
+  returns the property `name` as label if the node has one, or `No name` if the
+  node doesn't have it. 
 
 
 ### `Join (array, delimiter)`
@@ -294,7 +304,8 @@ Example:
 Returns a new string by joining array elements with the delimiter.
 
 Example:  
-- `label: Join(Labels(node), ", ")` creates a label which is a string made out of all the labels delimited with a comma. 
+- `label: Join(Labels(node), ", ")` creates a label which is a string made out
+  of all the labels delimited with a comma. 
 
 ### `Labels(node)`
 
@@ -316,7 +327,8 @@ Example:
 Returns `True` if `value1` is less than `value2`, `False` otherwise.
 
 Example:
-- `Less?(Property(node, "age"),40)` will return `True` if given `node.age` is less than 40.
+- `Less?(Property(node, "age"),40)` will return `True` if given `node.age` is
+  less than 40.
 
 
 ### `Lighter(color)`
@@ -372,7 +384,8 @@ Example:
 Returns the value of `string` converted to lower case.
 
 Example:
-- `AsText(LowerCase(Property(node, "name")))` will return node name in lower case.
+- `AsText(LowerCase(Property(node, "name")))` will return node name in lower
+  case.
 
 ### `Mix(color1, color2)`
 
@@ -403,7 +416,8 @@ Example:
 Returns `True` if `value` is `False`, and returns `False` if `value` is `True`.
 
 Example: 
-- `@NodeStyle Not(HasProperty?(node, "count")) {...}` will apply the defined styles to the nodes without the `count` property.
+- `@NodeStyle Not(HasProperty?(node, "count")) {...}` will apply the defined
+  styles to the nodes without the `count` property.
 
 ### `Or(value1, [value2, value3,...])`
 
@@ -414,7 +428,9 @@ Returns `True` if any of the given values is `True`. Returns `False` otherwise.
 Expressions after first expression that evaluates to `True` are not evaluated.
 
 Example: 
-- `Or(Less?(Property(node, "age"),20), Greater?(Property(node, "age"),40))` returns `True` if the node's `age` property is either less than 20 or greater than 40.
+- `Or(Less?(Property(node, "age"),20), Greater?(Property(node, "age"),40))`
+  returns `True` if the node's `age` property is either less than 20 or greater
+  than 40.
 
 
 ### `Property(nodeOrEdge, propertyName)`
@@ -426,7 +442,8 @@ Example:
 Returns the property with name `propertyName` of given graph node or graph edge.
 
 Example:
-- `label: AsText(Property(node, "name"))` creates a label using the node's `name` property.
+- `label: AsText(Property(node, "name"))` creates a label using the node's
+  `name` property.
 
 ### `Random()`
 
@@ -458,7 +475,8 @@ Returns a random integer between 0 (inclusive) and `bound` (exclusive). All the
 possible numbers are equally likely to be returned.
 
 Example:
-- `RandomInteger(Property(node, "population"))` will return a integer between 0 and `node.population` if population is defined (as a number).
+- `RandomInteger(Property(node, "population"))` will return a integer between 0
+  and `node.population` if population is defined (as a number).
 
 
 ### `Red(color)`
@@ -504,7 +522,8 @@ Example:
 Returns the square root of `value`.
 
 Example:
-- `Sqrt(Property(node, "surface"))` will return the square root of a `node.surface`.
+- `Sqrt(Property(node, "surface"))` will return the square root of a
+  `node.surface`.
 
 
 ### `Sub(value1, value2)`
@@ -516,7 +535,8 @@ Example:
 Returns `value1` minus `value2`.
 
 Example:
-- `Sub(Property(node, "age"),10)` returns `node.age` - 10 if age is defined (as a number).
+- `Sub(Property(node, "age"),10)` returns `node.age` - 10 if age is defined (as
+  a number).
 
 
 <!-- ### `Try(tryClause, err, catchClause)` -->
@@ -549,4 +569,5 @@ Example:
 Returns the value of `string` converted to upper case.
 
 Example:
-- `AsText(UpperCase(Property(node, "name")))` will return the node name in upper case.
+- `AsText(UpperCase(Property(node, "name")))` will return the node name in upper
+  case.
