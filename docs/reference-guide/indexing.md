@@ -4,10 +4,14 @@ title: Indexing
 sidebar_label: Indexing
 ---
 
+In the worst case scenario when you execute a query all nodes need to be checked to see if there is match. By enabling indexes this process can be much faster. When a query is executed it is first checked if there is a index or not.
+
 An index stores additional information on certain types of data, so that
 retrieving said data becomes more efficient. There are some downsides to
 indexing so it is important to carefully the right data for indexing. Indexing
 all of the content will not improve the database speed.
+
+
 
 Downsides of indexing are:
 
@@ -22,6 +26,7 @@ property. They are not automatically created, instead a user needs to create
 them explicitly. Creation is done using a special
 `CREATE INDEX ON :Label(property)` language construct.
 
+When you create an index it is added to the registry of indexes.
 
 Memgraph supports two types of indexes:
 
@@ -73,6 +78,8 @@ expression can be complicated enough so that the index does not get used. We
 are continuously improving the recognition of index usage opportunities from a
 `WHERE` expression. If there is any suspicion that an index may not be used,
 we recommend putting properties and labels inside the `MATCH` pattern.
+
+When it comes to label properties indexes, MemgraphDB stores a list of specific properties that are used in label properties indexes. This list is ordered to make the search more faster. All property types can be ordered. First they are ordered based on the type and then within the type.
 
 ## Display available indexes
 
