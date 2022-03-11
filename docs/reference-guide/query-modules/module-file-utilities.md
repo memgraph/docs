@@ -1,97 +1,195 @@
 ---
 id: module-file-utilities
-title: Module file utilities
-sidebar_label: Module file utilities
+title: Utility query module
+sidebar_label: Utility query module
 ---
 
-Memgraph supports multiple built-in procedures allowing you to manipulate and
-inspect your Python module files.
+Built-in utility query module (`mg`) contains procedures that enable you to
+manage query modules files.
 
-## `mg.get_module_files`
+## General procedures
 
-### Signature
+Here is the list of procedures from the `mg` query module that can be used with
+all other query module files, and their signatures:
 
-```cypher
-mg.get_module_files() -> STRING, BOOLEAN
-```
+| Procedure                                  | Description                          |
+| ------------------------------------------ | ------------------------------------ |
+| <code>mg.procedures() -> (name\|STRING, signature\|STRING)</code> | Lists loaded procedures and their signatures. |
+| <code>mg.load(module_name\|STRING) -> ()</code> | Loads or reloads the given module.   |
+| <code>mg.load_all() -> ()</code>               | Loads or reloads all modules.        |
 
-### Description
 
-Get all the Python module files contained inside all the query module
-directories. Return the path to the file in the absolute form and the
-`is_editable` flag that denotes whether the file is modifiable by Memgraph.
+### `mg.procedures` 
 
-Required privilege: `MODULE_READ`
+Lists loaded procedures and their signatures.
 
-## `mg.get_module_file`
-
-### Signature
+Example of a Cypher query:
 
 ```cypher
-mg.get_module_file(path :: STRING) -> STRING
+CALL mg.procedures() YIELD *;
 ```
 
-### Description
+Example of a result:
 
-Get the content of a Python module file at `path`.  
-The `path` needs to be in absolute form and contained inside one of the query
+```plaintext
++-------------+---------------------+-------------------+-----------------------------------------------------------------------------------------------------------------------+
+| is_editable | name                | path              | signature                                                                                                             |
++-------------+---------------------+-------------------+-----------------------------------------------------------------------------------------------------------------------+
+| ...         | ...                 | ...               | ...                                                                                                                   |
+| true        | graph_analyzer.help | "/path/to/module" | graph_analyzer.help() :: (name :: STRING, value :: STRING)                                                            |
+| false       | mg.load             | "builtin"         | mg.load(module_name :: STRING) :: ()                                                                                  |
+| false       | mg.load_all         | "builtin"         | mg.load_all() :: ()                                                                                                   |
+| false       | mg.procedures       | "builtin"         | mg.procedures() :: (name :: STRING, signature :: STRING, is_write :: BOOLEAN, path :: STRING, is_editable :: BOOLEAN) |
+| ...         | ...                 | ...               | ...                                                                                                                   |
++-------------+---------------------+-------------------+-----------------------------------------------------------------------------------------------------------------------+
+```
+
+### `mg.load_all` 
+
+Loads or reloads the given module.
+
+Example of a Cypher query:
+
+```cypher
+CALL mg.load_all();
+```
+If the response is `Empty set (x.x sec)` and no error messages the load was successful.
+
+###  `mg.load` 
+
+Loads or reloads all modules.
+
+Example of a Cypher query:
+
+```cypher
+CALL mg.load("py_example");
+```
+
+If the response is `Empty set (x.x sec)` and no error messages the load was successful.
+
+## Procedures for `.py` module queries
+
+Memgraph includes several built-in procedures for editing and inspecting Python
+module files. 
+
+Below is a list of the procedures, their signatures, description and required
+privilege.<br/> Privileges can be assigned only in the enterprise edition of
+Memgraph. <br/>Click on a procedure to see an example of a Cypher query and
+possible result.
+
+| Procedure                                  | Description                          | Required privilege |
+| ------------------------------------------ | ------------------------------------ | ------------------ |
+| [<code>mg.get_module_files() <br/> -> (is_editable\|STRING, path\|STRING)</code>](#mgget_module_files) | Returns the value of a `is_editable` flag and the absolute path of each Python query module file in all the query module directories. | `MODULE_READ` |
+| [<code>mg.get_module_file(path\|STRING) <br/> -> (path\|STRING)</code>](#mgget_module_file) | Returns the content of a file located at the absolute path in one of the query module directories. | `MODULE_READ` |
+| [<code>mg.create_module_file(filename\|STRING, content\|STRING) <br/> -> (path\|STRING)</code>](#mgcreate_module_file) | Creates a `filename` Python module with `content` inside the internal query module directory (`/var/lib/memgraph/internal_modules`) and returns the path to the newly created file. The flag `is_editable` should be set to true if the module is located in the internal query module directory. <br/> The `filename` can consist of multiple nested directories (e.g. `subdir1/subdir2/module.py`) which will create all the necessary subdirectories. After successful creation, all the modules are reloaded.  |`MODULE_WRITE`|
+| [<code>mg.update_module_file(path\|STRING, content\|STRING)</code>](#mgupdate_module_file) | Updates a Python module file at an absolute `path` in one of the query module directories with `content` and reloads all the modules. You can only change the files with `is_editable` flag set to `true`. | `MODULE_WRITE` |
+| [<code>mg.delete_module_file(path\|STRING)</code>](#mgdelete_module_file) | Deletes a Python module file at an absolute `path` in one of the query module directories and reloads all the modules. You can only delete the files with `is_editable` flag set to `true`. | `MODULE_WRITE` |
+
+### `mg.get_module_files`
+
+Returns the value of a `is_editable` flag and the absolute path of each Python
+query module file in all the query module directories.
+
+Example of a Cypher query:
+
+```cypher
+CALL mg.get_module_files() YIELD *;
+```
+
+Example of a result:
+
+```plaintext
++-----------------------------------------------------+-----------------------------------------------------+
+| is_editable                                         | path                                                |
++-----------------------------------------------------+-----------------------------------------------------+
+| false                                               | "/usr/lib/memgraph/query_modules/mgp_networkx.py"   |
+| false                                               | "/usr/lib/memgraph/query_modules/wcc.py"            |
+| false                                               | "/usr/lib/memgraph/query_modules/graph_analyzer.py" |
+| false                                               | "/usr/lib/memgraph/query_modules/py_example.py"     |
+| false                                               | "/usr/lib/memgraph/query_modules/nxalg.py"          |
+| true                                                | "/var/lib/memgraph/internal_modules/module1.py"     |
++-----------------------------------------------------+-----------------------------------------------------+
+```
+
+### `mg.get_module_file`
+
+Returns the content of a file located at the absolute path in one of the query
 module directories.
 
-Required privilege: `MODULE_READ`
-
-## `mg.create_module_file`
-
-### Signature
+Example of a Cypher query:
 
 ```cypher
-mg.create_module_file(filename :: STRING, content :: STRING) -> STRING
+CALL mg.get_module_file("/usr/lib/memgraph/query_modules/py_example.py") YIELD *;
 ```
 
-### Description
+### `mg.create_module_file`
 
-Create a Python module file `filename` with `content` inside Memgraph's internal
-query module directory.  
-Return the path to the newly created file.  
-After successful creation, all the modules are reloaded.  
-The `filename` can consist of multiple nested directories (e.g.
-`subdir1/subidr2/script.py`) which will create all the necessary subdirectories.
+Creates a `filename` Python module with `content` inside the internal query
+module directory (`/var/lib/memgraph/internal_modules`) and returns the path to
+the newly created file. The flag `is_editable` should be set to true if the
+module is located in the internal query module directory. The `filename` can
+consist of multiple nested directories (e.g., `subdir1/subdir2/module.py`) which
+will create all the necessary subdirectories. After successful creation, all the
+modules are reloaded.
 
-Required privilege: `MODULE_WRITE`
+Examples of a Cypher query:
 
-## `mg.update_module_file`
+1. **Without defining the absolute path**
 
-### Signature
+    ```cypher
+    CALL mg.create_module_file("my_module.py", "Start of my query module.") YIELD *;
+    ```
+
+    Result:
+
+    ```plaintext
+    +---------------------------------------------------+
+    | path                                              |
+    +---------------------------------------------------+
+    | "/var/lib/memgraph/internal_modules/my_module.py" |
+    +---------------------------------------------------+
+    ```
+
+2. **With absolute path**
+
+    ```cypher
+    CALL mg.create_module_file("my_modules/my_module.py", "Start of my query module.") YIELD *;
+    ```
+
+    Result:
+
+    ```plaintext
+    +--------------------------------------------------------------+
+    | path                                                         |
+    +--------------------------------------------------------------+
+    | "/var/lib/memgraph/internal_modules/my_modules/my_module.py" |
+    +--------------------------------------------------------------+
+    ```
+
+### `mg.update_module_file`
+
+Updates a Python module file at an absolute `path` in one of the query module
+directories with `content`. You can only change the files with `is_editable`
+flag set to `true`.
+
+Example of a Cypher query:
 
 ```cypher
-mg.update_module_file(path :: STRING, content :: STRING)
+CALL mg.update_module_file("/var/lib/memgraph/internal_modules/my_module.py", "Start of my query module. Another line.");
 ```
 
-### Description
+If the response is `Empty set (x.x sec)` and no error messages the update was successful.
 
-Update a Python module file at `path` with `content`.  
-After a successful update, all the modules are reloaded.  
-The `path` needs to be in absolute form and contained inside one of the query
-module directories,  
-and the `is_editable` flag should be set to `true` (check
-[`mg.get_module_files`](#mgget_module_files) for more info).
+### `mg.delete_module_file`
 
-Required privilege: `MODULE_WRITE`
+Deletes a Python module file at an absolute `path` in one of the query module
+directories and reloads all the modules. You can only delete the files with
+`is_editable` flag set to `true`.
 
-## `mg.delete_module_file`
-
-### Signature
+Example of a Cypher query:
 
 ```cypher
-mg.delete_module_file(path :: STRING)
+CALL mg.delete_module_file("/var/lib/memgraph/internal_modules/my_module.py");
 ```
 
-### Description
-
-Delete a Python module file at `path`.  
-After a successful delete, all the modules are reloaded.  
-The `path` needs to be in absolute form and contained inside one of the query
-module directories,  
-and the `is_editable` flag should be set to `true` (check
-[`mg.get_module_files`](#mgget_module_files) for more info).
-
-Required privilege: `MODULE_WRITE`
+If the response is `Empty set (x.x sec)` and no error messages the update was successful.

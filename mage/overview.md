@@ -26,10 +26,16 @@ Start utilizing the power of MAGE with these simple steps.
 
 ### 1. Install MAGE
 
-Install MAGE using a prepared image from the [Docker Hub](/installation/docker-hub.md) or by [building a Docker
+If you are using Memgraph Platform and starting Memgraph with the
+`memgraph-platform` image, MAGE is already included and you can proceed to
+step 2 or 3.
+
+Install MAGE using a prepared image from the [Docker
+Hub](/installation/docker-hub.md) or by [building a Docker
 image](/installation/docker-build.md) from the [official MAGE GitHub
 repository](https://github.com/memgraph/mage). On Linux, you can also [install
-MAGE from source](/installation/source.md) but be aware you will also need to install additional
+MAGE from source](/installation/source.md) but be aware you will also need to
+install additional
 dependencies.
 
 ### 2. Load query modules

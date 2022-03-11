@@ -4,29 +4,28 @@ title: Query modules Python API
 sidebar_label: Python API
 ---
 
-This is the API documentation for `mgp.py`  which contains definitions of the
+This is the API documentation for `mgp.py` that contains definitions of the
 public Python API provided by Memgraph. In essence, this is a wrapper around the
-**[C API](/reference-guide/query-modules/api/c-api/overview.md)**. This source
-file can be found in the Memgraph installation directory, under
-`python_support`. On the standard Debian installation, this will be under
-`/usr/lib/memgraph/python_support`.
+**[C API](./c-api)**. This source file can be found in the Memgraph
+installation directory, under `/usr/lib/memgraph/python_support`.
 
 :::tip
 
-For an example of how to implement query modules in Python, check out the
-[Python API
-guide](/how-to-guides/query-modules/implement-query-modules.md#python-api).
+For an example of how to implement query modules in Python, take a look at [the
+example we
+provided](./custom-query-module-example#python-api).
 
 :::
 
 :::tip
 
-If you install any Python modules after running Memgraph, you'll have to
-restart Memgraph in order to use them in query modules.
+If you install any Python modules after running Memgraph, you'll have to [load
+them into Memgraph](../load-call-query-modules#loading-query-modules) or restart
+Memgraph in order to use them.
 
 :::
 
-## `class mgp.read_proc(func: Callable[[…], mgp.Record])`
+## class mgp.read_proc(func: Callable[[…], mgp.Record])
 
 Register func as a read-only procedure of the current module.
 
@@ -40,7 +39,7 @@ produce either a complete `Record` or `None`. To mark a field as deprecated, use
 returning an iterable of them. Registering generator functions is currently not
 supported.
 
-### Example usage
+**Example usage**
 
 ```python
     import mgp
@@ -76,7 +75,7 @@ properly and suggest methods and classes it contains. You can install the module
 by running `pip install mgp`.
 :::
 
-## `class mgp.write_proc(func: Callable[[…], mgp.Record])`
+## class mgp.write_proc(func: Callable[[…], mgp.Record])
 
 Register func as a writeable procedure of the current module.
 
@@ -90,7 +89,7 @@ produce either a complete `Record` or `None`. To mark a field as deprecated, use
 returning an iterable of them. Registering generator functions is currently not
 supported.
 
-### Example usage
+**Example usage**
 
 ```python
 import mgp
@@ -129,20 +128,20 @@ CALL example.procedure(“single argument”) YIELD result;
 Naturally, you may pass in different arguments.
 
 
-## `class mgp.Properties(vertex_or_edge)`
+## class mgp.Properties(vertex_or_edge)
 Bases: `object`
 
 A collection of properties either on a Vertex or an Edge.
 
 
-### `get(property_name: str, default=None)`
+### get(property_name: str, default=None)
 Get the value of a property with the given name or return default.
 
 Raise InvalidContextError. Raise UnableToAllocateError if unable to allocate a
 mgp.Value. Raise DeletedObjectError if the object has been deleted.
 
 
-### `items()`
+### items()
 Iterate over the properties.
 
 Doesn’t return a dynamic view of the properties, but copies the current
@@ -152,7 +151,7 @@ Raise InvalidContextError. Raise UnableToAllocateError if unable to allocate an
 iterator. Raise DeletedObjectError if the object has been deleted.
 
 
-### `keys()`
+### keys()
 Iterate over property names.
 
 Doesn’t return a dynamic view of the property names, but copies the name of the
@@ -162,7 +161,7 @@ Raise InvalidContextError. Raise UnableToAllocateError if unable to allocate an
 iterator. Raise DeletedObjectError if the object has been deleted.
 
 
-### `set(property_name: str, value: object)`
+### set(property_name: str, value: object)
 Set the value of the property. When the value is None, then the property is
 removed.
 
@@ -173,7 +172,7 @@ the object has been modified by another transaction. Raise ValueConversionError
 if value is vertex, edge or path.
 
 
-### `values()`
+### values()
 Iterate over property values.
 
 Doesn’t return a dynamic view of the property values, but copies the value of
@@ -183,23 +182,23 @@ Raise InvalidContextError. Raise UnableToAllocateError if unable to allocate an
 iterator. Raise DeletedObjectError if the object has been deleted.
 
 
-## `class mgp.Label(name: str)`
+## class mgp.Label(name: str)
 Bases: `object`
 
 Label of a Vertex.
 
 
-### `property name()`
+### property name()
 
-## `class mgp.EdgeType(name)`
+## class mgp.EdgeType(name)
 Bases: `object`
 
 Type of an Edge.
 
 
-### `property name()`
+### property name()
 
-## `class mgp.Edge(edge)`
+## class mgp.Edge(edge)
 Bases: `object`
 
 Edge in the graph database.
@@ -209,45 +208,45 @@ query. You should not globally store an instance of an Edge. Using an invalid
 Edge instance will raise InvalidContextError.
 
 
-### `property from_vertex()`
+### property from_vertex()
 Get the source vertex.
 
 Raise InvalidContextError.
 
 
-### `property id()`
+### property id()
 Get the ID of the edge.
 
 Raise InvalidContextError.
 
 
-### `is_valid()`
+### is_valid()
 Return True if self is in valid context and may be used.
 
 
-### `property properties()`
+### property properties()
 Get the properties of the edge.
 
 Raise InvalidContextError.
 
 
-### `property to_vertex()`
+### property to_vertex()
 Get the destination vertex.
 
 Raise InvalidContextError.
 
 
-### `property type()`
+### property type()
 Get the type of the edge.
 
 Raise InvalidContextError.
 
 
-### `underlying_graph_is_mutable()`
+### underlying_graph_is_mutable()
 Return True if the edge can be modified.
 
 
-## `class mgp.Vertex(vertex)`
+## class mgp.Vertex(vertex)
 Bases: `object`
 
 Vertex in the graph database.
@@ -257,7 +256,7 @@ query. You should not globally store an instance of a Vertex. Using an invalid
 Vertex instance will raise InvalidContextError.
 
 
-### `add_label(label: str)`
+### add_label(label: str)
 Add the label to the vertex.
 
 Raise InvalidContextError. Raise UnableToAllocateError if unable to allocate
@@ -266,13 +265,13 @@ Raise DeletedObjectError if self has been deleted. Raise SerializationError if
 self has been modified by another transaction.
 
 
-### `property id()`
+### property id()
 Get the ID of the vertex.
 
 Raise InvalidContextError.
 
 
-### `property in_edges()`
+### property in_edges()
 Iterate over inbound edges of the vertex.
 
 Doesn’t return a dynamic view of the edges, but copies the current inbound
@@ -282,11 +281,11 @@ Raise InvalidContextError. Raise UnableToAllocateError if unable to allocate an
 iterator. Raise DeletedObjectError if self has been deleted.
 
 
-### `is_valid()`
+### is_valid()
 Return True if self is in valid context and may be used.
 
 
-### `property labels()`
+### property labels()
 Get the labels of the vertex.
 
 Raise InvalidContextError. Raise OutOfRangeError if some of the labels are
@@ -294,7 +293,7 @@ removed while collecting the labels. Raise DeletedObjectError if self has been
 deleted.
 
 
-### `property out_edges()`
+### property out_edges()
 Iterate over outbound edges of the vertex.
 
 Doesn’t return a dynamic view of the edges, but copies the current outbound
@@ -304,13 +303,13 @@ Raise InvalidContextError. Raise UnableToAllocateError if unable to allocate an
 iterator. Raise DeletedObjectError if self has been deleted.
 
 
-### `property properties()`
+### property properties()
 Get the properties of the vertex.
 
 Raise InvalidContextError.
 
 
-### `remove_label(label: str)`
+### remove_label(label: str)
 Remove the label from the vertex.
 
 Raise InvalidContextError. Raise ImmutableObjectError if self is immutable.
@@ -318,23 +317,23 @@ Raise DeletedObjectError if self has been deleted. Raise SerializationError if
 self has been modified by another transaction.
 
 
-### `underlying_graph_is_mutable()`
+### underlying_graph_is_mutable()
 Return True if the vertex can be modified.
 
 
-## `class mgp.Path(starting_vertex_or_path: Union[_mgp.Path, mgp.Vertex])`
+## class mgp.Path(starting_vertex_or_path: Union[_mgp.Path, mgp.Vertex])
 Bases: `object`
 
 Path containing Vertex and Edge instances.
 
 
-### `property edges()`
+### property edges()
 Edges ordered from the start to the end of the path.
 
 Raise InvalidContextError if using an invalid Path instance.
 
 
-### `expand(edge: mgp.Edge)`
+### expand(edge: mgp.Edge)
 Append an edge continuing from the last vertex on the path.
 
 The last vertex on the path will become the other endpoint of the given edge, as
@@ -346,39 +345,39 @@ part of the given edge. Raise UnableToAllocateError if unable to allocate memory
 for path extension.
 
 
-### `is_valid()`
+### is_valid()
 
-### `property vertices()`
+### property vertices()
 Vertices ordered from the start to the end of the path.
 
 Raise InvalidContextError if using an invalid Path instance.
 
 
-## `class mgp.Record(**kwargs)`
+## class mgp.Record(**kwargs)
 Bases: `object`
 
 Represents a record of resulting field values.
 
 
-### `fields()`
+### fields()`
 
-## `class mgp.Vertices(graph)`
+## class mgp.Vertices(graph)
 Bases: `object`
 
 Iterable over vertices in a graph.
 
 
-### `is_valid()`
+### is_valid()
 Return True if self is in valid context and may be used.
 
 
-## `class mgp.Graph(graph)`
+## class mgp.Graph(graph)
 Bases: `object`
 
 State of the graph database in current ProcCtx.
 
 
-### `create_edge(from_vertex: mgp.Vertex, to_vertex: mgp.Vertex, edge_type: mgp.EdgeType)`
+### create_edge(from_vertex: mgp.Vertex, to_vertex: mgp.Vertex, edge_type: mgp.EdgeType)
 Create an edge.
 
 Raise ImmutableObjectError if self \` is immutable. Raise UnableToAllocateError
@@ -387,21 +386,21 @@ to_vertex has been deleted. Raise SerializationError if from_vertex or to_vertex
 has been modified by another transaction.
 
 
-### `create_vertex()`
+### create_vertex()
 Create a vertex.
 
 Raise ImmutableObjectError if self is immutable. Raise UnableToAllocateError if
 unable to allocate a vertex.
 
 
-### `delete_edge(edge: mgp.Edge)`
+### delete_edge(edge: mgp.Edge)
 Delete an edge.
 
 Raise ImmutableObjectError if self is immutable. Raise SerializationError if
 edge, its source or destination vertex has been modified by another transaction.
 
 
-### `delete_vertex(vertex: mgp.Vertex)`
+### delete_vertex(vertex: mgp.Vertex)
 Delete a vertex.
 
 Raise ImmutableObjectError if self is immutable. Raise LogicErrorError if vertex
@@ -409,14 +408,14 @@ has edges. Raise SerializationError if vertex has been modified by another
 transaction.
 
 
-### `detach_delete_vertex(vertex: mgp.Vertex)`
+### detach_delete_vertex(vertex: mgp.Vertex)
 Delete a vertex and all of its edges.
 
 Raise ImmutableObjectError if self is immutable. Raise SerializationError if
 vertex has been modified by another transaction.
 
 
-### `get_vertex_by_id(vertex_id: VertexId)`
+### get_vertex_by_id(vertex_id: VertexId)
 Return the Vertex corresponding to given vertex_id from the graph.
 
 Access to a Vertex is only valid during a single execution of a procedure in a
@@ -426,16 +425,16 @@ Raise IndexError if unable to find the given vertex_id. Raise
 InvalidContextError if context is invalid.
 
 
-### `is_mutable()`
+### is_mutable()
 Return True if self represents a mutable graph, thus it can be used to modify
 vertices and edges.
 
 
-### `is_valid()`
+### is_valid()
 Return True if self is in valid context and may be used.
 
 
-### `property vertices()`
+### property vertices()
 All vertices in the graph.
 
 Access to a Vertex is only valid during a single execution of a procedure in a
@@ -444,7 +443,7 @@ query. You should not globally store the returned Vertex instances.
 Raise InvalidContextError if context is invalid.
 
 
-## `class mgp.ProcCtx(graph)`
+## class mgp.ProcCtx(graph)
 Bases: `object`
 
 Context of a procedure being executed.
@@ -453,122 +452,122 @@ Access to a ProcCtx is only valid during a single execution of a procedure in a
 query. You should not globally store a ProcCtx instance.
 
 
-### `check_must_abort()`
+### check_must_abort()
 
-### `property graph()`
+### property graph()
 Raise InvalidContextError if context is invalid.
 
 
-### `is_valid()`
+### is_valid()
 
-### `must_abort()`
+### must_abort()
 
-## `class mgp.Deprecated(type_)`
+## class mgp.Deprecated(type_)
 Bases: `object`
 
 Annotate a resulting Record’s field as deprecated.
 
 
-### `field_type()`
+### field_type()
 
-## `class mgp._typing_to_cypher_type(type_)`
+## class mgp.\_typing\_to\_cypher\_type(type_)
 Convert typing annotation to a _mgp.CypherType instance.
 
 
-## `class mgp.UnsupportedTypingError(type_)`
+## class mgp.UnsupportedTypingError(type_)
 Bases: `Exception`
 
 Signals a typing annotation is not supported as a _mgp.CypherType.
 
 
-## `class mgp.AbortError()`
+## class mgp.AbortError()
 Bases: `Exception`
 
 Signals that the procedure was asked to abort its execution.
 
 
-## `class mgp.InvalidContextError()`
+## class mgp.InvalidContextError()
 Bases: `Exception`
 
 Signals using a graph element instance outside of the registered procedure.
 
 
-## `class mgp.InvalidMessageError()`
+## class mgp.InvalidMessageError()
 Bases: `Exception`
 
 Signals using a message instance outside of the registered transformation.
 
 
-## `class mgp.InvalidMessagesError()`
+## class mgp.InvalidMessagesError()
 Bases: `Exception`
 
 Signals using a messages instance outside of the registered transformation.
 
 
-## `class mgp.DeletedObjectError(*args: Any, **kwargs: Any)`
+## class mgp.DeletedObjectError(*args: Any, **kwargs: Any)
 Bases: `_mgp.`
 
 Signals accessing an already deleted object.
 
 
-## `class mgp.ImmutableObjectError(*args: Any, **kwargs: Any)`
+## class mgp.ImmutableObjectError(*args: Any, **kwargs: Any)
 Bases: `_mgp.`
 
 Signals modification of an immutable object.
 
 
-## `class mgp.InsufficientBufferError(*args: Any, **kwargs: Any)`
+## class mgp.InsufficientBufferError(*args: Any, **kwargs: Any)
 Bases: `_mgp.`
 
 Signals that some buffer is not big enough.
 
 
-## `class mgp.InvalidArgumentError(*args: Any, **kwargs: Any)`
+## class mgp.InvalidArgumentError(*args: Any, **kwargs: Any)
 Bases: `_mgp.`
 
 Signals that some of the arguments have invalid values.
 
 
-## `class mgp.KeyAlreadyExistsError(*args: Any, **kwargs: Any)`
+## class mgp.KeyAlreadyExistsError(*args: Any, **kwargs: Any)
 Bases: `_mgp.`
 
 Signals that a key already exists in a container-like object.
 
 
-## `class mgp.LogicErrorError(*args: Any, **kwargs: Any)`
+## class mgp.LogicErrorError(*args: Any, **kwargs: Any)
 Bases: `_mgp.`
 
 Signals faulty logic within the program such as violating logical preconditions
 or class invariants and may be preventable.
 
 
-## `class mgp.OutOfRangeError(*args: Any, **kwargs: Any)`
+## class mgp.OutOfRangeError(*args: Any, **kwargs: Any)
 Bases: `_mgp.`
 
 Signals that an index-like parameter has a value that is outside its possible
 values.
 
 
-## `class mgp.SerializationError(*args: Any, **kwargs: Any)`
+## class mgp.SerializationError(*args: Any, **kwargs: Any)
 Bases: `_mgp.`
 
 Signals serialization error caused by concurrent modifications from different
 transactions.
 
 
-## `class mgp.UnableToAllocateError(*args: Any, **kwargs: Any)`
+## class mgp.UnableToAllocateError(*args: Any, **kwargs: Any)
 Bases: `_mgp.`
 
 Signals failed memory allocation.
 
 
-## `class mgp.UnknownError(*args: Any, **kwargs: Any)`
+## class mgp.UnknownError(*args: Any, **kwargs: Any)
 Bases: `_mgp.`
 
 Signals unspecified failure.
 
 
-## `class mgp.ValueConversionError(*args: Any, **kwargs: Any)`
+## class mgp.ValueConversionError(*args: Any, **kwargs: Any)
 Bases: `_mgp.`
 
 Signals that the conversion failed between python and cypher values.
