@@ -13,6 +13,16 @@ retrieving said data becomes more efficient. Downsides of indexing are:
 Carefully choosing which data to index can tremendously improve data retrieval
 efficiency, and thus make index downsides negligible.
 
+## Index types
+
+At Memgraph, we support two types of indexes:
+
+  * label index
+  * label-property index
+
+
+Memgraph will NOT automatically index labeled data. If you want to optimize
+queries that fetch nodes by label you need to perform the indexing. 
 Indexing can be applied to data with a specific label or a combination of label and
 property. They are not automatically created, instead a user needs to create
 them explicitly. Creation is done using a special
