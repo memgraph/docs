@@ -369,7 +369,8 @@ module.exports = {
       copyright: `Copyright © ${new Date().getFullYear()} Memgraph. Built by developers, for developers!`,
     },
     algolia: {
-      apiKey: "05acf33bff73974c131732d34307085e",
+      appId: 'BH4D9OD16A',
+      apiKey: "28fd77eeb12664c0d258e03f94e27589",
       indexName: "g-despot",
       contextualSearch: true,
     },
