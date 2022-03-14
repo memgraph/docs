@@ -4,17 +4,15 @@ title: Indexing
 sidebar_label: Indexing
 ---
 
-When you are running queries you want to get results as soon as possible. In the
-worst case scenario when you execute a query all nodes need to be checked to see
-if there is match. 
+When you are running queries, you want to get results as soon as possible. In the
+worst case scenario, when you execute a query all nodes need to be checked to see
+if there is a match. 
 
-Here is how the query plan looks like if there is no index on the data:
-
-```cypher
-EXPLAIN MATCH (n:Person {prop: 1}) RETURN n;
-```
+Here is what the query plan looks like if there is no index on the data:
 
 ```nocopy
+EXPLAIN MATCH (n:Person {prop: 1}) RETURN n;
+
 +---------------------------------+
 | QUERY PLAN                      |
 +---------------------------------+
@@ -25,25 +23,21 @@ EXPLAIN MATCH (n:Person {prop: 1}) RETURN n;
 +---------------------------------+
 ```
 
-By enabling indexes this process can be much faster:
+By enabling indexes, this process can be much faster:
 
 ```cypher
 CREATE INDEX ON :Person(prop);
-
 ```
 
- When a query is executed it is first checked if there is a index or not. An
-index stores additional information on certain types of data, so that retrieving
+When a query is executed, it is first checked if there is an index. An
+index stores additional information on certain types of data so that retrieving
 indexed data becomes more efficient. 
 
-Here is how the query plan looks like if the indexing is enabled:
-
-```cypher
-
-EXPLAIN MATCH (n:Person {prop: 1}) RETURN n;
-```
+Here is what the query plan looks like if the indexing is enabled:
 
 ```nocopy
+EXPLAIN MATCH (n:Person {prop: 1}) RETURN n;
+
 +-----------------------------------------------------+
 | QUERY PLAN                                          |
 +-----------------------------------------------------+
@@ -53,7 +47,7 @@ EXPLAIN MATCH (n:Person {prop: 1}) RETURN n;
 +-----------------------------------------------------+
 ```
 
-There are some downsides to indexing so it is important to carefully the right
+There are some downsides to indexing, so it is important to carefully the right
 data for indexing. Downsides of indexing are:
 
   * requiring extra storage for each index and
@@ -64,11 +58,11 @@ Indexing all of the content will not improve the database speed.
 ## Creating index
 
 Indexing can be applied to data with a specific label or a combination of label and
-property. They are not automatically created, instead a user needs to create
+property. They are not automatically created, a user needs to create
 them explicitly. Creation is done using a special
 `CREATE INDEX ON :Label(property)` language construct.
 
-When you create an index it is added to the registry of indexes.
+When you create an index, it is added to the registry of indexes.
 
 Memgraph supports two types of indexes:
 
@@ -78,7 +72,7 @@ Memgraph supports two types of indexes:
 ### Label index
 
 Memgraph will not automatically index labeled data. If you want to optimize
-queries that fetch nodes by label you need to perform the indexing.
+queries that fetch nodes by label, you need to perform the indexing.
 
 ```cypher
 CREATE INDEX ON :Person;
@@ -123,7 +117,7 @@ we recommend putting properties and labels inside the `MATCH` pattern.
 
 When it comes to label properties indexes, MemgraphDB stores a list of specific
 properties that are used in label properties indexes. This list is ordered to
-make the search more faster. All property types can be ordered. First they are
+make the search faster. All property types can be ordered. First they are
 ordered based on the type and then within the type.
 
 ## Display available indexes
