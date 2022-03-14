@@ -5,22 +5,24 @@ sidebar_label: Graph Style Script language
 slug: /graph-style-script-language
 ---
 
-This guide will show you how to easily get started with Style script. Style
-script is a language for customizing the visual display of graphs. For complete
-list available features consult [Style script reference](./reference-guide.md).
+This guide will show you how to easily get started with the Graph Style Script
+language. GSS is a language for customizing the visual display of graphs. For a
+complete list of available features consult the [Style script
+reference guide](./reference-guide.md).
 
 ## Graph example
 
-In this guide, we will use an example graph with European countries and cities. 
-The data can be found [here](https://memgraph.com/docs/memgraph/tutorials-overview/backpacking-through-europe).
-Countries have the label `Country`, while cities have the label `City`. All 
-nodes have the property `name`. Cities have many additional properties, 
+In this guide, we will use an example graph with European countries and cities.
+The data can be found
+[here](https://memgraph.com/docs/memgraph/tutorials-overview/backpacking-through-europe).
+Countries have the label `Country`, while cities have the label `City`. All
+nodes have the property `name`. Cities have many additional properties,
 including `country` (containing country) and `drinks_USD` (average drink price).
 
 ## Setting graph labels
 
-We want to label country nodes with country names, and city nodes with city,
-names and containing country names. To achieve that we can use to directives.
+We want to label country nodes with country names, and city nodes with city
+names and containing country names. To achieve that we can use two directives.
 The first one selects countries and the second one selects cities.
 
 ```
@@ -35,14 +37,14 @@ The first one selects countries and the second one selects cities.
 }
 ```
 
-The content inside the curly braces is ignored, but can be helpful for clarity.
+The content inside the curly braces is ignored but can be helpful for clarity.
 
 ## Setting node images
 
 It would be nice to display flags in the country nodes. This can be achieved
 using URLs of flag images. There is a website that hosts many world flags so we
 can use images from [there](https://cdn.countryflags.com). Their API expects a
-country name as a part of URL path so we will make the following directive.
+country name as a part of the URL path so we will make the following directive.
 
 ```
 @NodeStyle HasLabel?(node, "Country") {
@@ -65,7 +67,7 @@ around that by providing custom directives below the general one above.
  }
 ```
 
-Also, URLs for a country name with whitespace inside them don't so we also have 
+Also, URLs for a country name with whitespace inside them don't so we also have
 to provide custom URLs for the Czech Republic and Bosnia and Herzegovina.
 
 ```
@@ -82,8 +84,8 @@ Now all the country nodes have their flags displayed.
 
 ## Highlighting interesting nodes
 
-We can highlight nodes with low drink price in the following way. We want to use
-a beer image and a bigger size along with a red shadow.
+We can highlight nodes with low drink prices in the following way. We want to
+use a beer image and a bigger size along with a red shadow.
 
 ```
 @NodeStyle And()

@@ -4,10 +4,10 @@ title: Graph Style Script functions
 sidebar_label: GSS functions
 ---
 
-## Builtin functions
+## Built-in functions
 
-Graph Style Script has a large number of builtin functions. With this functions
-you can achieve the right style for your graph.
+Graph Style Script has a large number of built-in functions. With these
+functions, you can achieve the right style for your graph.
 
 ### `Add(value1, [value2, value3,...])`
 
@@ -26,7 +26,8 @@ Example:
 - Returns: `Boolean`
 
 Returns `True` if all of the given values are `True`. Returns `False` otherwise.
-Expressions after first expression that evaluates to `False` are not evaluated.
+Expressions after the first expression that evaluates to `False` are not
+evaluated.
 
 Example:
 - `And(HasProperty?(node, "a"), HasProperty?(node, "b"))` will return `True` if
@@ -61,15 +62,15 @@ Example:
 Example: 
 - `AsText(Property(node, "age"))` will return `node.age` as string.
 
-Returns a textual representation of given value.
+Returns a textual representation of a given value.
 
 ### `Blue(color)`
 
 - `color`: `Color`
 - Returns: `Number`
 
-Returns blue component of given color. The value will be between 0 and 255 (both
-inclusive).
+Returns the blue component of a given color. The value will be between 0 and 255
+(both inclusive).
 
 Examples:
 - `Blue(mediumseagreen)` will return value 113.
@@ -104,7 +105,7 @@ Example:
 Returns a darker version of the given color.
 
 Example:
-- `color-hover: Darker(#dd2222)` will make hover event color darker.
+- `color-hover: Darker(#dd2222)` will make the hover event color darker.
 
 ### `Define(name, value)`
 
@@ -160,8 +161,8 @@ Example:
 - Returns: `String``
 
 Substitutes occurrences of curly brace pairs in `formatString` with textual
-representations of given values. First occurrence is substituted with first
-value, second occurrence with second value and so on.
+representations of given values. The first occurrence is substituted with the
+first value, the second occurrence with the second value and so on.
 
 Examples:
 
@@ -237,8 +238,8 @@ Example:
 - `color`: `Color`
 - Returns: `Number`
 
-Returns green component of given color. The value will be between 0 and 255
-(both inclusive).
+Returns the green component of a given color. The value will be between 0 and
+255 (both inclusive).
 
 Examples:
 - `Green(mediumseagreen)` will return value 179.
@@ -347,8 +348,8 @@ Example:
 - `regex`: `String`
 - Returns: `Boolean`
 
-Returns `True` if text matches regex. The evaluation of the regex is done with
-the Javascript function `RegExp.test(text)`.
+Returns `True` if the text matches regex. The evaluation of the regex is done
+with the Javascript function `RegExp.test(text)`.
 
 Examples:
 - `Like?("Graph style script", "style")` -> `True`
@@ -425,7 +426,8 @@ Example:
 - Returns: `Boolean`
 
 Returns `True` if any of the given values is `True`. Returns `False` otherwise.
-Expressions after first expression that evaluates to `True` are not evaluated.
+Expressions after the first expression that evaluates to `True` are not
+evaluated.
 
 Example: 
 - `Or(Less?(Property(node, "age"),20), Greater?(Property(node, "age"),40))`
@@ -439,7 +441,8 @@ Example:
 - `propertyName`: `String`
 - Returns: `Any``
 
-Returns the property with name `propertyName` of given graph node or graph edge.
+Returns the property with the name `propertyName` of given graph node or graph
+edge.
 
 Example:
 - `label: AsText(Property(node, "name"))` creates a label using the node's
@@ -484,8 +487,8 @@ Example:
 - `color`: `Color`
 - Returns: `Number`
 
-Returns red component of given color. The value will be between 0 and 255 (both
-inclusive).
+Returns the red component of a given color. The value will be between 0 and 255
+(both inclusive).
 
 Examples:
 - `Red(mediumseagreen)` will return value 60.

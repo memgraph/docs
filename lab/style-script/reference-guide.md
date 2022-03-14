@@ -5,16 +5,18 @@ sidebar_label: GSS reference guide
 ---
 
 The main building blocks of Graph Style Script (GSS) are expressions and
-directives. Style script files are a sequence of expressions and directives.
+directives. GSS files are a sequence of expressions and directives.
 
 ## Expressions
 
 Expressions are used to combine values to create new values using functions. For
-example expression
+example, the expression:
+
 ```
 Add(2, 5)
   -> 7
 ```
+
 creates a new value 7 from values 2 and 5. There are a lot of functions built
 into Style script so there are even more ways to combine values. There is even a
 function to create new functions.
@@ -27,18 +29,22 @@ An expression can be either literal expressions, name expressions or function
 applications. Literal expressions exist for `Color`s, `Number`s and `String`s.
 
 This is a literal expression for `String`s.
+
 ```
 "Hello"
   -> Hello
 ```
-It evaluates to the value `"Hello"` of type `String`. The newline character and
-double quotes can be escaped in strings using \\ (backslash).
+
+It evaluates to the value `"Hello"` of the type `String`. The newline character
+and double quotes can be escaped in strings using \\ (backslash).
+
 ```
 "In the end he said: \"I am Iron Man!\""
   -> In the end he said: "I am Iron Man!"
 ```
 
 These are literal expressions for `Number`s.
+
 ```
 123
   -> 123
@@ -48,6 +54,7 @@ These are literal expressions for `Number`s.
 
 Literal expressions for colors are hex strings starting with '#'. This is a
 literal expression for the color red.
+
 ```
 #ff0000
   -> #ff0000
@@ -56,13 +63,15 @@ literal expression for the color red.
 Name expressions are names that can be evaluated if there are values bound to
 them in the environment (lexical scope). Names can start with any of the lower
 case or upper case letters of the English alphabet and apart from those can
-contain digits and the following characters: ?, !, $, -, _, ., *. Names can be
+contain digits and the following characters: ?, !, $, -, \_, ., \*. Names can be
 defined using the `Define` function.
+
 ```
 Define(superhero, "Iron Man")
 superhero
   -> Iron Man
 ```
+
 In the previous example the value `"Iron Man"` was bound to the name
 `superhero`. After that name expression `superhero` evaluates the value `"Iron
 Man"` to type `String`.
@@ -70,6 +79,7 @@ Man"` to type `String`.
 There are many built-in names that are bound to useful values. Most used are
 boolean values which are bound to `True` and `False` and null value which is
 bound to `Null`. Also, all the CSS web colors are bound to their names.
+
 ```
 dodgerblue
   -> #1e90ff
@@ -79,15 +89,18 @@ forestgreen
 
 The third type of expressions are function application expressions. A function
 can be applied to the list of expressions (arguments) in the following way.
+
 ```
 Concat("Agents", " ", "of", " ", "S.H.I.E.L.D.")
   -> Agents of S.H.I.E.L.D.
 ```
+
 Here the function `Concat` was applied to the list of string literal expressions
 to produce their concatenation. Any expression can be an argument.
 
 Not all expressions have to be evaluated. For example, when calling `If`
 function one argument will not be evaluated.
+
 ```
 Define(mood, "happy")
 Define(name, "Happy Hogan")
@@ -96,6 +109,7 @@ If(Equals?(mood, "happy"),
    Format("{} is not happy today.", name))
   -> Happy Hogan is happy today.
 ```
+
 In the previous example expression `Format("{} is not happy today", name)` will
 not be evaluated because its value is not needed.
 
@@ -103,16 +117,17 @@ Some other function will not evaluate their arguments because they are
 interested in their names and not values. For example, when creating a new
 function argument names aren't evaluated, but are remembered to be later bound
 to the function arguments when the function is called.
+
 ```
 Define(square, Function(x, Mul(x, x)))
 square(2)
   -> 4
 ```
+
 In the previous example the name `x` isn't evaluated in the first line, and
 neither is the expression `Mul(x, x)`. In the second line when the function
 `square` is called number 2 will be bound to the name `x` and only then will
 `Mul(x, x)` be evaluated.
-
 
 ## Directives
 
@@ -121,7 +136,8 @@ with '@'. The name is followed by the optional expression (filter) which is
 followed by an opening curly brace, directive body and a closing curly brace.
 The directive body is a list of pairs of property names and expressions.
 Property names and expressions are separated by a colon and after every
-expression a newline must follow. The directive structure is the following.
+expression, a new line must follow. The directive structure is the following.
+
 ```
 @<DirectiveName> <expression>? {
   <property-name-1>: <expression-1>
@@ -130,15 +146,17 @@ expression a newline must follow. The directive structure is the following.
   <property-name-n>: <expression-n>
 }
 ```
+
 Like in CSS, directives defined later override properties of the previous
 directives.
 
-Style script currently has two directives: `@NodeStyle`, for defining visual
-style of graph nodes, and `@EdgeStyle` for defining visual style of graph
+Style script currently has two directives: `@NodeStyle`, for defining the visual
+style of graph nodes, and `@EdgeStyle` for defining the visual style of graph
 relationships.
 
 An example of a directive is `@NodeStyle` directive which can be used to specify
 style properties of a graph node.
+
 ```
 @NodeStyle {
   border-width: 2
@@ -149,17 +167,19 @@ style properties of a graph node.
 
 ### `@NodeStyle`
 
-`@NodeStyle` directive is used for defining style properties of a graph node. It
-is possible to filter the nodes to which the directive applies by providing an
-optional predicate after directive name and before the opening curly brace.
+The `@NodeStyle` directive is used for defining style properties of a graph
+node. It is possible to filter the nodes to which the directive applies by
+providing an optional predicate after the directive name and before the opening
+curly brace.
 
 Before any expressions are evaluated (including the predicate) the name `node`
 is bound to the graph node for which the directive is being evaluated. Graph
 node is of type `Dictionary` and has all information about the node (properties,
 labels).
 
-Here is an example of `@NodeStyle` directive that is applied to all graph nodes
-with the label superhero
+Here is an example of a `@NodeStyle` directive that is applied to all graph
+nodes with the label superhero:
+
 ```
 @NodeStyle HasLabel?(node, vehicle) {
   label: Format("{}, horsepower: {}",
@@ -167,9 +187,11 @@ with the label superhero
                 Property(node, "horsepower"))
 }
 ```
-Predicate can be any expression that returns a value of type `Boolean`. It
+
+The predicate can be any expression that returns a value of type `Boolean`. It
 should depend on `node`, because if it doesn't, it will either be applied to all
 nodes or to no nodes.
+
 ```
 @NodeStyle And(HasProperty(node, "name"),
                Equals?(Property(node, "name"), "Tony Stark")) {
@@ -181,24 +203,24 @@ nodes or to no nodes.
 
 Take a look at the [GSS @NodeStyle directive
 properties](/docs/memgraph-lab/style-script/gss-nodestyle-directive) page to see
-all node styling possibilities. 
+all node styling possibilities.
 
 ### `@EdgeStyle`
 
-`@EdgeStyle` directive is used for defining style properties of a graph
-relationship. Most things work like `@NodeStyle` directive with one exception:
-the directive will bind the name `edge` to the relationship for which the
-directive is being evaluated (`@NodeStyle` binds the name `node`).
+The `@EdgeStyle` directive is used for defining the style properties of a graph
+relationship. Most things work like the `@NodeStyle` directive with one
+exception: the directive will bind the name `edge` to the relationship for which
+the directive is being evaluated (`@NodeStyle` binds the name `node`).
 
 Take a look at the [GSS @EdgeStyle directive
 properties](/docs/memgraph-lab/style-script/gss-edgestyle-directive) page to see
-all relationship styling possibilities. 
+all relationship styling possibilities.
 
-# Builtin functions
+# Built-in functions
 
-Graph Style Script has a large number of builtin functions that can help you
+Graph Style Script has a large number of built-in functions that can help you
 with achieving the right style for your graph. Take a look at the [list of GSS
-builtin functions](/docs/memgraph-lab/style-script/gss-functions).
+built-in functions](/docs/memgraph-lab/style-script/gss-functions).
 
 ## File Structure
 
@@ -210,7 +232,8 @@ respectively. All the names in the global environment are visible while applying
 the directives so they can be used for defining property values inside
 directives.
 
-Example.
+For example:
+
 ```
 Define(square, Function(x, Mul(x, x)))
 Define(maxAllowedDebt, 10000)
@@ -222,4 +245,5 @@ Define(maxAllowedDebt, 10000)
             lightblue)
 }
 ```
+
 Names `square` and `maxAllowedDebt` are visible inside `@NodeStyle` directive.
