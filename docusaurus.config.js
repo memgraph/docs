@@ -369,7 +369,8 @@ module.exports = {
       copyright: `Copyright © ${new Date().getFullYear()} Memgraph. Built by developers, for developers!`,
     },
     algolia: {
-      apiKey: "05acf33bff73974c131732d34307085e",
+      appId: 'R5T3EMHC2U',
+      apiKey: "986c523abb1c0bbd68ec83d9ada11124",
       indexName: "g-despot",
       contextualSearch: true,
     },
@@ -1044,7 +1045,7 @@ module.exports = {
             from: ["/memgraph/database-functionalities/profiling-queries"],
           },
           {
-            to: "/memgraph/how-to-guides/memory-control",
+            to: "/memgraph/reference-guide/memory-control",
             from: ["/memgraph/database-functionalities/memory-control"],
           },
           {
@@ -1182,6 +1183,11 @@ module.exports = {
           {
             to: "/memgraph-lab/installation",
             from: ["/memgraph-lab/installation/overview"],
+          },
+          //Redirect for memory-control page
+          {
+            to: "/memgraph/reference-guide/memory-control",
+            from: ["/memgraph/how-to-guides/memory-control"],
           },
         ],
       },
