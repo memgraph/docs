@@ -120,6 +120,41 @@ properties that are used in label properties indexes. This list is ordered to
 make the search faster. All property types can be ordered. First they are
 ordered based on the type and then within the type.
 
+#### Speed comparison
+
+After the query execution you can see how much time did the query run. Here you
+can see the comparison of the same query run without index and with index on.
+
+```nocopy
+SHOW INDEX INFO;
+Empty set (0.001 sec)
+
+MATCH (n:Person) WHERE n.name =~ ".*an$" RETURN n.name;
++-------------+
+| n.name      |
++-------------+
+| "Lillian"   |
+| "Logan"     |
+| "Susan"     |
+| "Sebastian" |
++-------------+
+4 rows in set (0.021 sec)
+
+CREATE INDEX ON :Person(name);
+Empty set (0.015 sec)
+
+MATCH (n:Person) WHERE n.name =~ ".*an$" RETURN n.name;
++-------------+
+| n.name      |
++-------------+
+| "Lillian"   |
+| "Logan"     |
+| "Susan"     |
+| "Sebastian" |
++-------------+
+4 rows in set (0.006 sec)
+```
+
 ## Display available indexes
 
 Information about available indexes can be retrieved by using the following

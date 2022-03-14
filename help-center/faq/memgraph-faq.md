@@ -193,3 +193,14 @@ Memgraph doesn’t support the Tinkerpop API stack because Tinkerpop is highly
 dependent on the Java stack. Memgraph is implemented in C/C++/Assembly with
 openCypher and the Bolt protocol as an interface. We have considered Tinkerpop
 integration, but at the moment it’s not one of our highest priorities.
+
+
+### Which types of indexes does Memgraph support?
+
+Memgraph supports two types of indexes:
+
+- label index
+- label-property index
+
+Please take a look at our [documentation on
+indexing](/docs/memgraph/reference-guide/indexing) for more details.
