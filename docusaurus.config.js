@@ -771,7 +771,7 @@ module.exports = {
           },
           //Memgraph Lab redirects
           {
-            to: "/memgraph-lab/style-script/quick-start",
+            to: "/memgraph-lab/graph-style-script-language",
             from: ["/memgraph-lab/style_script"],
           },
           {
@@ -1188,6 +1188,11 @@ module.exports = {
           {
             to: "/memgraph/reference-guide/memory-control",
             from: ["/memgraph/how-to-guides/memory-control"],
+          },
+          //Redirect for graph style script page
+          {
+            to: "/memgraph-lab/graph-style-script-language",
+            from: ["/memgraph-lab/style-script/quick-start"],
           },
         ],
       },
