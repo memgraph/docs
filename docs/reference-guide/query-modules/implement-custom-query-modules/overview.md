@@ -17,7 +17,7 @@ Python API, you need to have Python version `3.5.0` or above installed.
 For more information check the [Python API reference guide](python-api).<br/>
 We also made [an example module](custom-query-module-example#python-api) to help you start developing your own modules. 
 
-## C API
+## C
 
 C API modules need to be compiled to a shared library so that they can be loaded
 when Memgraph starts. This means that you can write the procedures in any
