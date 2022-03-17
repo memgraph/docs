@@ -4,7 +4,7 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
-## v2.2.1 - TBA
+## v2.2.1 - Mar 17, 2022
 
 ### Bug Fixes
 
