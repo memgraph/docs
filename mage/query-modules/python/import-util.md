@@ -63,7 +63,8 @@ CALL import_util.json(path);
 }>
 <TabItem value="input">
 
-Below is the content of the `input.json` file. File will be saved in the `import_folder`.
+Below is the content of the `import.json` file. Let's say the file is located
+inside the `/users/my_user/import_folder` directory.
 
 ```json
 [
@@ -128,16 +129,18 @@ Below is the content of the `input.json` file. File will be saved in the `import
 
 <TabItem value="run">
 
-In this example, the input path is  `"import_folder/input.json"`:
+In this example, the path you have to provide to import the `import.json` file
+is `/users/my_user/import_folder/import.json`. To call the procedure, run the
+following query:
 
 ```cypher
-CALL import_util.json("import_folder/input.json");
+CALL import_util.json("/users/my_user/import_folder/import.json");
 ```
 
 </TabItem>
 
 <TabItem value="result">
-Below you can see how the data is going to look like once we import it to the database.
+Below you can see how the data looks like once it's imported to the database.
 <img src={require('../../data/query-modules/python/import-util/import-util-1.png').default}/>
 
 </TabItem>

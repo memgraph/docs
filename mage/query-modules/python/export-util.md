@@ -41,22 +41,64 @@ Module for exporting a graph database in different formats.
 * `path: str` ➡ Path to the file where JSON will be saved.
 
 #### Usage:
-To export database to a local `JSON` file create a new folder (for example,
-`export_folder`). Place yourself in the folder containing that new folder
-(`export_folder`), and run the following command in the terminal to give the
-user `memgraph` the necessary permissions:
+
+The `path` you have to provide as procedure argument depends on how you started
+Memgraph.
+
+<Tabs
+  groupId="export_to_json_usage"
+  defaultValue="docker"
+  values={[
+    {label: 'Docker', value: 'docker'},
+    {label: 'Linux', value: 'linux'},
+  ]
+}> 
+
+<TabItem value="docker">
+
+If you ran the Memgraph with Docker, the JSON file will be exported to the file
+inside the Docker container. We recommend exporting the JSON file to the
+`/usr/lib/memgraph/query_modules` directory.
+
+Then, call the procedure by running the following query:
+
+```cypher
+CALL export_util.json(path);
+```
+where `path` is the path to the JSON file inside the
+`/usr/lib/memgraph/query_modules` directory in the running Docker container (e.g.,
+`/usr/lib/memgraph/query_modules/export.json`).
+
+:::info
+You can copy the exported JSON file to your local file system using the [`docker cp`](https://docs.docker.com/engine/reference/commandline/cp/) command: 
+```
+docker cp <container_id>:/usr/lib/memgraph/query_modules/export.json /path_to_local_folder/export.json
+```
+:::
+</TabItem>
+
+<TabItem value="linux">
+
+To export database to a local `JSON` file create a new directory (for example,
+`export_folder`) and run the following command to give the user `memgraph` the
+necessary permissions:
 
 ```
 sudo chown memgraph export_folder
 ```
 
-Then, call the procedure by running:
+Then, call the procedure by running the following query:
 
 ```cypher
 CALL export_util.json(path);
 ```
+where `path` is the path to the local JSON file inside the `export_folder` (e.g.,
+`/users/my_user/export_folder/export.json`).
+</TabItem>
 
-## Example - Exporting JSON to a local file
+</Tabs>
+
+## Example - Exporting database to the JSON file
 
 <Tabs
   groupId="export_to_json_example"
@@ -69,7 +111,8 @@ CALL export_util.json(path);
   ]
 }>
 <TabItem value="input">
-Below you can see how the data is going to look like once we create the nodes and relationships.
+Below you can see how the data is going to look like once we create the nodes
+and relationships.
 <img src={require('../../data/query-modules/python/export-util/export-util-1.png').default}/>
     
 </TabItem>
@@ -77,7 +120,7 @@ Below you can see how the data is going to look like once we create the nodes an
 <TabItem value="load">
 
 
-Run the following queries in order to import the data into the database:
+Run the following queries to create the database:
 
 ```cypher
 CREATE (n:Person {name:"Anna"}), (m:Person {name:"John"}), (k:Person {name:"Kim"})
@@ -87,17 +130,28 @@ CREATE (n)-[:IS_FRIENDS_WITH]->(m), (n)-[:IS_FRIENDS_WITH]->(k), (m)-[:IS_MARRIE
 
 <TabItem value="run">
 
-This Cypher query will export the database to the `output.json` file inside the local folder `export_folder`.
+If you're using Memgraph with Docker, then the following Cypher query will
+export the database to the `export.json` file in the
+`/usr/lib/memgraph/query_modules` directory inside the running Docker container.
 
 ```cypher
-CALL export_util.json("export_folder/output.json");
+CALL export_util.json("/usr/lib/memgraph/query_modules/export.json");
 ```
+
+If you're using Memgraph on Ubuntu, Debian, RPM package or WSL, then the
+following Cypher query will export the database to the `export.json` file in the
+`/users/my_user/export_folder`.
+
+```cypher
+CALL export_util.json("/users/my_user/export_folder/export.json");
+```
+
 </TabItem>
 
 <TabItem value="result">
 
-The local file `output.json` should be similar to the one below (except for the
-`id` values that depend on the internal database `id`):
+The local file `export.json` should be similar to the one below, except for the
+`id` values that depend on the internal database `id` values:
 
 
 ```json
