@@ -4,6 +4,14 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v2.2.1 - TBA
+
+### Bug Fixes
+
+* Added Centos 7 release by fixing the compatibility with older version of SSL
+  that is used on Centos 7. [#361](https://github.com/memgraph/memgraph/pull/361)
+
+
 ## v2.2.0 - Feb 18, 2022
 
 ### Major Features and Improvements
