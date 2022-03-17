@@ -101,8 +101,8 @@ module.exports = {
               to: "/memgraph-lab/connect-to-memgraph",
             },
             {
-              label: "Style script language",
-              to: "/memgraph-lab/style-script/quick-start",
+              label: "Graph Style Script language",
+              to: "/memgraph-lab/graph-style-script-language",
             },
             {
               label: "Changelog",
@@ -369,7 +369,8 @@ module.exports = {
       copyright: `Copyright © ${new Date().getFullYear()} Memgraph. Built by developers, for developers!`,
     },
     algolia: {
-      apiKey: "05acf33bff73974c131732d34307085e",
+      appId: 'R5T3EMHC2U',
+      apiKey: "986c523abb1c0bbd68ec83d9ada11124",
       indexName: "g-despot",
       contextualSearch: true,
     },
@@ -554,7 +555,7 @@ module.exports = {
             from: ["/memgraph/how-to-guides-overview"],
           },
           {
-            to: "/memgraph/how-to-guides/profiling-queries",
+            to: "/memgraph/reference-guide/profiling-queries",
             from: ["/memgraph/how-to-guides-overview/explain-profile"],
           },
           {
@@ -770,7 +771,7 @@ module.exports = {
           },
           //Memgraph Lab redirects
           {
-            to: "/memgraph-lab/style-script/quick-start",
+            to: "/memgraph-lab/graph-style-script-language",
             from: ["/memgraph-lab/style_script"],
           },
           {
@@ -1036,15 +1037,15 @@ module.exports = {
             ],
           },
           {
-            to: "/memgraph/how-to-guides/inspecting-queries",
+            to: "/memgraph/reference-guide/inspecting-queries",
             from: ["/memgraph/database-functionalities/inspecting-queries"],
           },
           {
-            to: "/memgraph/how-to-guides/profiling-queries",
+            to: "/memgraph/reference-guide/profiling-queries",
             from: ["/memgraph/database-functionalities/profiling-queries"],
           },
           {
-            to: "/memgraph/how-to-guides/memory-control",
+            to: "/memgraph/reference-guide/memory-control",
             from: ["/memgraph/database-functionalities/memory-control"],
           },
           {
@@ -1165,6 +1166,15 @@ module.exports = {
             to: "/memgraph/under-the-hood/telemetry",
             from: ["/memgraph/concepts/telemetry"],
           },
+          //Move Inspecting and optimizing queries from How-to guides to Reference guide
+          {
+            to: "/memgraph/reference-guide/inspecting-queries",
+            from: ["/memgraph/how-to-guides/inspecting-queries"],
+          },
+          {
+            to: "/memgraph/reference-guide/profiling-queries",
+            from: ["/memgraph/how-to-guides/profiling-queries"],
+          },
           //create redirect for Memgraph Getting started page
           {
             to: "/memgraph/",
@@ -1173,6 +1183,16 @@ module.exports = {
           {
             to: "/memgraph-lab/installation",
             from: ["/memgraph-lab/installation/overview"],
+          },
+          //Redirect for memory-control page
+          {
+            to: "/memgraph/reference-guide/memory-control",
+            from: ["/memgraph/how-to-guides/memory-control"],
+          },
+          //Redirect for graph style script page
+          {
+            to: "/memgraph-lab/graph-style-script-language",
+            from: ["/memgraph-lab/style-script/quick-start"],
           },
         ],
       },

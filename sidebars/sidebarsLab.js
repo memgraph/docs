@@ -14,8 +14,22 @@ module.exports = {
     "connect-to-memgraph",
     {
       type: "category",
-      label: "Style script language",
-      items: ["style-script/quick-start", "style-script/reference-guide"],
+      label: "Graph Style Script language",
+      link: { type: "doc", id: "style-script/graph-style-script-language" },
+      items: [
+        {
+          type: "category",
+          label: "GSS reference guide",
+          link: { type: "doc", id: "style-script/reference-guide" },
+          items: [
+            "style-script/gss-functions",
+            "style-script/gss-nodestyle-directive",
+            "style-script/gss-edgestyle-directive",
+          ]
+        }
+        
+
+      ],
     },
     "changelog",
   ],

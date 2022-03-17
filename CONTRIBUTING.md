@@ -6,7 +6,7 @@ make the Memgraph documentation awesome!
 
 This guide only contains the most basic instructions, but if you need more
 functionalities, you can always take a look at the **[Docusaurus
-documentation](https://docusaurus.io/docs/2.0.0-beta.1/docs-introduction)**.
+documentation](https://docusaurus.io/docs)**.
 
 ## Table of contents
 

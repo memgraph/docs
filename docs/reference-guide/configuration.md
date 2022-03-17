@@ -1,7 +1,7 @@
 ---
 id: configuration
-title: Configuration
-sidebar_label: Configuration
+title: Configuration settings
+sidebar_label: Configuration settings
 ---
 
 The main Memgraph configuration file is available in
@@ -61,22 +61,22 @@ Each configuration setting is in the form: `--setting-name=value` .
 
 | Flag           | Description    | Type           |
 | -------------- | -------------- | -------------- |
-| --allow-load-csv | Controls whether LOAD CSV clause is allowed in queries | `[bool]` |
+| --allow-load-csv=true | Controls whether LOAD CSV clause is allowed in queries | `[bool]` |
 | --also-log-to-stderr=false | log messages go to stderr in addition to logfiles | `[bool]` |
 | --data-directory=/var/lib/memgraph | Path to directory in which to save all permanent data. | `[string]` |
-| --isolation-level | Default isolation level used for the transactions. Allowed values: SNAPSHOT_ISOLATION, READ_COMMITTED, READ_UNCOMMITTED | `[string]` |
+| --isolation-level=SNAPSHOT_ISOLATION | Isolation level used for the transactions. Allowed values: SNAPSHOT_ISOLATION, READ_COMMITTED, READ_UNCOMMITTED | `[string]` |
 | --log-file=/var/log/memgraph/memgraph.log | Path to where the log should be stored. | `[string]` |
-| --log-level | Minimum log level. Allowed values: TRACE, DEBUG, INFO, WARNING, ERROR, CRITICAL | `[string]` |
+| --log-level=WARNING | Minimum log level. Allowed values: TRACE, DEBUG, INFO, WARNING, ERROR, CRITICAL | `[string]` |
 | --memory-limit=0 | Total memory limit in MiB. Set to 0 to use the default values which are 100% of the physical memory if the swap is enabled and 90% of the physical memory otherwise. | `[uint64]` |
 | --memory-warning-threshold=1024 | Memory warning threshold, in MB. If Memgraph detects there is less available RAM it will log a warning. <br/>Set to 0 to disable. | `[uint64]` |
 | --telemetry-enabled=true | Set to true to enable telemetry. We collect information about the running system (CPU and memory information), information about the database runtime (vertex and edge counts and resource usage), and aggregated statistics about some features of the database (e.g. how many times a feature is used) to allow for an easier improvement of the product. | `[bool]` |
 
 ## Additional configuration inclusion
 
-You can include additional configuration files from this file. Additional files
-are processed after this file. Settings that are set in the additional files
-will override previously set values. Additional configuration files are
-specified with the `--flag-file` flag.
+You can define additional configuration files in the main configuration file or
+within a Docker command in the terminal. Additional files are processed after
+the main configuration file and they override the main configuration file.
+Additional configuration files are specified with the `--flag-file` flag.
 
 Example:
 

@@ -11,23 +11,27 @@ sidebar_label: Changelog
 - Added support for compilation on ARM architectures (aarch64) and Docker
   support for running Memgraph on Apple M1 machines.
   [#340](https://github.com/memgraph/memgraph/pull/340)
-- Added monitoring server that forwards certain information from Memgraph to the
-  clients connected to it (e.g. logs) using WebSocket.
-  [#337](https://github.com/memgraph/memgraph/pull/337)
-- Added `CONFIGS` and `CREDENTIALS` options to Kafka streams.
+- Added [monitoring server](/reference-guide/monitoring-server.md) that forwards
+  certain information from Memgraph to the clients connected to it (e.g. logs)
+  using WebSocket. [#337](https://github.com/memgraph/memgraph/pull/337)
+- Added `CONFIGS` and `CREDENTIALS` options to [Kafka streams](/reference-guide/streams/overview.md/#kafka).
   [#328](https://github.com/memgraph/memgraph/pull/328)
-- Added built-in procedures used for handling Python module files.
+- Added [built-in procedures used for handling Python module
+  files](/reference-guide/query-modules/module-file-utilities.md).
   `mg.create_module_file`, `mg.update_module_file`, `mg.delete_module_file`,
   `mg.get_module_file`, and `mg.get_module_files` allow you to do modifications
   on your Python module files, get their content, and list all the files present
   in your query module directories directly from Memgraph.
   [#330](https://github.com/memgraph/memgraph/pull/330)
-- Built-in procedures `mg.procedures` and `mg.transformations` return additional
-  information about the procedures and transformations scripts. `path` returns
-  an absolute path to the module file containing the procedure, while
-  `is_editable` returns `true` if the file can be edited using Memgraph or
-  `false` otherwise. [#310](https://github.com/memgraph/memgraph/pull/310)
-- Added `SHOW VERSION` query that returns the version of the Memgraph server
+- Built-in procedures
+  [`mg.procedures`](/mage/usage/loading-modules#utility-query-module) and
+  [`mg.transformations`](/reference-guide/streams/transformation-modules/overview.md#utility-procedures-for-transformations)
+  return additional information about the procedures and transformations
+  scripts. `path` returns an absolute path to the module file containing the
+  procedure, while `is_editable` returns `true` if the file can be edited using
+  Memgraph or `false` otherwise.
+  [#310](https://github.com/memgraph/memgraph/pull/310)
+- [Added `SHOW VERSION` query](/reference-guide/server-stats.md) that returns the version of the Memgraph server
   which is being queried. [#265](https://github.com/memgraph/memgraph/pull/265)
 
 ### Bug Fixes
@@ -690,7 +694,7 @@ sidebar_label: Changelog
 - Log an error if reading info on available memory fails.
 - Fix a bug when `MATCH` would stop matching if a result was empty, but later
   results still contain data to be matched. The simplest case of this was the
-  query: `UNWIND [1, 2, 3] AS x MATCH (n : Label {prop: x}) RETURN n`. If there
+  query: `UNWIND [1, 2, 3] AS x MATCH (n: Label {prop: x}) RETURN n`. If there
   was no node `(: Label {prop: 1})`, then the `MATCH` wouldn't even try to find
   for `x` being 2 or 3.
 - Report an error if trying to compare a property value with something that

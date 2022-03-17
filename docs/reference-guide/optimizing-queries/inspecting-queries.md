@@ -2,6 +2,7 @@
 id: inspecting-queries
 title: How to inspect queries
 sidebar_label: Inspect queries
+slug: /reference-guide/inspecting-queries
 ---
 
 Before a Cypher query is executed, it is converted into an internal form
