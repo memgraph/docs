@@ -25,9 +25,10 @@ Dynamic algorithms such as iCentral are especially suited for graph streaming
 solutions such as Memgraph. As updates arrive in a stream, the algorithm avoids redundant
 work by processing only the portion of the graph affected by the update.
 
-TODO: add drawing
+<img src={require('../../data/algorithms/dynamic-graph-analytics/betweenness_centrality_online.png').default} alt="betweenness-centrality-online-algorithm-illustration" width="600"/>
 
-> TODO: image caption
+> After the node in the center is erased, shortest paths run through other nodes and their betweenness centrality scores
+> increase. Larger node size signifies higher betweenness centrality score.
 
 ## Materials
 
