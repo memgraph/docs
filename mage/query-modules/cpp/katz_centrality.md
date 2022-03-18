@@ -66,7 +66,7 @@ centralities will be correct.
 #### Usage:
 
 ```cypher
-CALL pagerank.get()
+CALL katz_centrality.get()
 YIELD node, rank;
 ```
 
