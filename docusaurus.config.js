@@ -101,8 +101,8 @@ module.exports = {
               to: "/memgraph-lab/connect-to-memgraph",
             },
             {
-              label: "Style script language",
-              to: "/memgraph-lab/style-script/quick-start",
+              label: "Graph Style Script language",
+              to: "/memgraph-lab/graph-style-script-language",
             },
             {
               label: "Changelog",
@@ -369,7 +369,8 @@ module.exports = {
       copyright: `Copyright © ${new Date().getFullYear()} Memgraph. Built by developers, for developers!`,
     },
     algolia: {
-      apiKey: "05acf33bff73974c131732d34307085e",
+      appId: 'R5T3EMHC2U',
+      apiKey: "986c523abb1c0bbd68ec83d9ada11124",
       indexName: "g-despot",
       contextualSearch: true,
     },
@@ -770,7 +771,7 @@ module.exports = {
           },
           //Memgraph Lab redirects
           {
-            to: "/memgraph-lab/style-script/quick-start",
+            to: "/memgraph-lab/graph-style-script-language",
             from: ["/memgraph-lab/style_script"],
           },
           {
@@ -1187,6 +1188,11 @@ module.exports = {
           {
             to: "/memgraph/reference-guide/memory-control",
             from: ["/memgraph/how-to-guides/memory-control"],
+          },
+          //Redirect for graph style script page
+          {
+            to: "/memgraph-lab/graph-style-script-language",
+            from: ["/memgraph-lab/style-script/quick-start"],
           },
         ],
       },

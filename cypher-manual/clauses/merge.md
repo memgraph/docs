@@ -4,7 +4,17 @@ title: MERGE clause
 sidebar_label: MERGE
 ---
 
-The `MERGE` clause is used to ensure that a pattern you are looking for exists in the database. This means that if the pattern is not found, it will be created. In a way, this clause is like a combination of `MATCH` and `CREATE`.
+The `MERGE` clause is used to ensure that a pattern you are looking for exists
+in the database. This means that if the pattern is not found, it will be
+created. In a way, this clause is like a combination of `MATCH` and `CREATE`.
+
+:::info
+
+Indexing can increase performance when executing queries. Please take a look at
+our [documentation on indexing](/docs/memgraph/reference-guide/indexing) for
+more details.
+
+:::
 
 1. [Merging nodes](#1-merging-nodes) <br />
     1.1. [Merging nodes with labels](#11-merging-nodes-with-labels)<br />
