@@ -245,8 +245,8 @@ module.exports = {
               label: "Implement custom query modules",
               link: { type: "doc", id: "reference-guide/query-modules/implement-custom-query-modules/overview" },
               items: [
-                "reference-guide/query-modules/implement-custom-query-modules/python-api",
-                "reference-guide/query-modules/implement-custom-query-modules/c-api",
+                "reference-guide/query-modules/implement-custom-query-modules/api/python-api",
+                "reference-guide/query-modules/implement-custom-query-modules/api/c-api",
                 "reference-guide/query-modules/implement-custom-query-modules/custom-query-module-example",  
               ],
             },

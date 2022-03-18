@@ -19,7 +19,6 @@ comes with the `example.so` and `py_example.py` query modules located in the
 `/usr/lib/memgraph/query_modules` directory. They were provided as examples of
 query modules for you to examine and learn from. 
 
-
 Each query module file corresponds to one query module and file names are
 mapped as query module names. For example, `example.so` will be mapped as
 `example` module and `py_example.py` will be mapped as `py_example` module. If
@@ -38,8 +37,8 @@ To learn more about query modules take a look at the following guides:
   MAGE](/reference-guide/query-modules/available-query-modules.md)**
 * **[Implement custom query
   modules](./query-modules/implement-custom-query-modules/overview)** using:
-  *  **[Python API](./query-modules/implement-custom-query-modules/python-api)**
-  *  **[C API](./query-modules/implement-custom-query-modules/c-api)**
+  *  **[Python API](./query-modules/implement-custom-query-modules/api/python-api)**
+  *  **[C API](./query-modules/implement-custom-query-modules/api/c-api)**
 * **[Load and call query
   modules](/reference-guide/query-modules/load-call-query-modules.md)**
 * **[Manage module files from

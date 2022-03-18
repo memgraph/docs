@@ -14,7 +14,7 @@ installation directory `/usr/lib/memgraph/python_support`. In essence, it is a
 wrapper around the C API. If you wish to write your own query modules using the
 Python API, you need to have Python version `3.5.0` or above installed.
 
-For more information check the [Python API reference guide](python-api).<br/>
+For more information check the [Python API reference guide](/api/python-api).<br/>
 We also made [an example module](custom-query-module-example#python-api) to help you start developing your own modules. 
 
 ## C
@@ -32,7 +32,7 @@ compiler, for example, `clang`:
 clang -Wall -shared -fPIC -I /usr/include/memgraph example.c -o example.so
 ```
 
-For more information check the [C API reference guide](c-api).<br/>
+For more information check the [C API reference guide](/api/c-api).<br/>
 We also made [an example module](custom-query-module-example#c-api) to help you start developing your own modules. 
 
 

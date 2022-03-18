@@ -13,7 +13,7 @@ read [the query modules overview page](../overview.md)
 
 ## Python API
 
-Query modules can be implemented using [the Python API](python-api)
+Query modules can be implemented using [the Python API](api/python-api)
 provided by Memgraph. If you wish to write your own query modules using the
 Python API, you need to have Python version `3.5.0` or above installed.
 
@@ -216,7 +216,7 @@ the intent to use them in a different procedure invocation.
 
 ## C API
 
-Query modules can be implemented using the C API provided by Memgraph. Such
+Query modules can be implemented using the [C API](api/c-api) provided by Memgraph. Such
 modules need to be compiled to a shared library so that they can be loaded when
 Memgraph starts. This means that you can write the procedures in any programming
 language which can work with C and can be compiled to the ELF shared library
@@ -287,7 +287,7 @@ of the procedure, and they are used in some parts of the provided C API.
 
 For more information on what exactly is possible with C API, take a look at the
 `mg_procedure.h` file or the [C API reference
-guide](c-api).
+guide](api/c-api).
 
 The next line contains the `mgp_init_module` function that registers procedures
 that can be invoked through Cypher. Even though the example contains only one
