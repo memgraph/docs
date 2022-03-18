@@ -131,7 +131,7 @@ Below you can see how the data looks like after you created the nodes and relati
 
 <TabItem value="run">
 
-If you're using Memgraph with Docker, then the following Cypher query will
+If you're using **Memgraph with Docker**, then the following Cypher query will
 export the database to the `export.json` file in the
 `/usr/lib/memgraph/query_modules` directory inside the running Docker container.
 
@@ -139,7 +139,7 @@ export the database to the `export.json` file in the
 CALL export_util.json("/usr/lib/memgraph/query_modules/export.json");
 ```
 
-If you're using Memgraph on Ubuntu, Debian, RPM package or WSL, then the
+If you're using **Memgraph on Ubuntu, Debian, RPM package or WSL**, then the
 following Cypher query will export the database to the `export.json` file in the
 `/users/my_user/export_folder`.
 
@@ -151,7 +151,7 @@ CALL export_util.json("/users/my_user/export_folder/export.json");
 
 <TabItem value="result">
 
-The local file `export.json` should be similar to the one below, except for the
+The `export.json` file should be similar to the one below, except for the
 `id` values that depend on the internal database `id` values:
 
 

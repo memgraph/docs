@@ -24,7 +24,7 @@ export const Highlight = ({children, color}) => (
 
 ## Abstract
 
-Module for importing files to create a graph database.
+Module for importing data from different formats.
 
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |
@@ -38,19 +38,61 @@ Module for importing files to create a graph database.
 
 #### Input:
 
-* `path: str` ➡ Path to the JSON that is being imported.
+* `path: str` ➡ Path to the JSON file that is being imported.
 
 #### Usage:
-The `JSON` file you're importing as a graph database needs to be structured the
-same as the `JSON` file that
-[`export_util.json(path)`](https://memgraph.com/docs/mage/query-modules/python/export-util)
-procedure generates.
+The JSON file you're importing needs to be structured the same as the JSON
+file that
+the [`export_util.json(path)`](https://memgraph.com/docs/mage/query-modules/python/export-util)
+procedure generates. The `path` you have to provide as procedure argument depends on how you started Memgraph.
+
+
+<Tabs
+  groupId="import_to_json_usage"
+  defaultValue="docker"
+  values={[
+    {label: 'Docker', value: 'docker'},
+    {label: 'Linux', value: 'linux'},
+  ]
+}> 
+
+<TabItem value="docker">
+
+If you ran Memgraph with Docker, you need to save the JSON file inside the
+Docker container. We recommend saving the JSON file inside the
+`/usr/lib/memgraph/query_modules` directory.
+
+You can call the procedure by running the following query:
 
 ```cypher
-CALL import_util.json(path);
+CALL export_util.json(path);
 ```
+where `path` is the path to the JSON file inside the
+`/usr/lib/memgraph/query_modules` directory in the running Docker container (e.g.,
+`/usr/lib/memgraph/query_modules/import.json`).
 
-## Example - Importing JSON file
+:::info
+You can copy the JSON file to the running Docker container with the [`docker cp`](https://docs.docker.com/engine/reference/commandline/cp/) command: 
+```
+docker cp /path_to_local_folder/import.json <container_id>:/usr/lib/memgraph/query_modules/import.json
+```
+:::
+</TabItem>
+
+<TabItem value="linux">
+
+To import a local JSON file call the procedure by running the following query:
+
+```cypher
+CALL export_util.json(path);
+```
+where `path` is the path to a local JSON file that will be created inside the
+`import_folder` (e.g., `/users/my_user/import_folder/export.json`).
+</TabItem>
+
+</Tabs>
+
+## Example - Importing JSON file to create a database
 
 <Tabs
   groupId="import_json_example"
@@ -63,8 +105,11 @@ CALL import_util.json(path);
 }>
 <TabItem value="input">
 
-Below is the content of the `import.json` file. Let's say the file is located
-inside the `/users/my_user/import_folder` directory.
+Below is the content of the `import.json` file. 
+
+- If you're using **Memgraph with Docker**, then you have to save the `import.json` file in the `/usr/lib/memgraph/query_modules` directory inside the running Docker container. 
+
+- If you're using **Memgraph on Ubuntu, Debian, RPM package or WSL**, then you have to save the `import.json` file in the local `/users/my_user/import_folder` directory.
 
 ```json
 [
@@ -129,9 +174,13 @@ inside the `/users/my_user/import_folder` directory.
 
 <TabItem value="run">
 
-In this example, the path you have to provide to import the `import.json` file
-is `/users/my_user/import_folder/import.json`. To call the procedure, run the
-following query:
+If you're using **Memgraph with Docker**, then the following Cypher query will create a graph database from the provided JSON file:
+
+```cypher
+CALL import_util.json("/usr/lib/memgraph/query_modules/import.json");
+```
+
+If you're using **Memgraph on Ubuntu, Debian, RPM package or WSL**, then the following Cypher query will create a graph database from the provided JSON file:
 
 ```cypher
 CALL import_util.json("/users/my_user/import_folder/import.json");
@@ -140,7 +189,9 @@ CALL import_util.json("/users/my_user/import_folder/import.json");
 </TabItem>
 
 <TabItem value="result">
-Below you can see how the data looks like once it's imported to the database.
+
+After you import the `import.json` file, you get the following graph database:
+
 <img src={require('../../data/query-modules/python/import-util/import-util-1.png').default}/>
 
 </TabItem>
