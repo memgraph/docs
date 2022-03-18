@@ -15,7 +15,7 @@ Many today's real-world networks evolve over time at a great pace. Constant chan
 information leads to the dynamic environment and creation of methods that can handle
 large amount of data and provide quick results on updates. 
 
-<img src="https://i.imgur.com/mTBJCul.png" alt="drawing"/>
+<img src="https://i.imgur.com/9GUIJ42.png" alt="drawing"/>
 
 > Visualization of the Katz centrality progression through time. Warmer colored nodes 
 > represent the higher values for Katz centrality measurement.
