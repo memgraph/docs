@@ -24,11 +24,11 @@ export const Highlight = ({children, color}) => (
 
 ## Abstract
 
-Betweenness centrality is one of the most common metrics in graph analytics owing to its utility in identifying
-the critical vertices of graphs. It is a part of the set of *centrality analysis* metrics, a set of techniques 
+Betweenness centrality is among the most common metrics in graph analytics owing to its utility in 
+identifying critical vertices of graphs. It is one of the tools in *centrality analysis*, a set of techniques 
 for measuring the importance of nodes in networks.
 
-The notion of [Betweenness centrality](https://en.wikipedia.org/wiki/Betweenness_centrality)  is based on 
+The notion of [Betweenness centrality](https://en.wikipedia.org/wiki/Betweenness_centrality) is based on 
 shortest paths: the shortest path between two nodes is the one consisting of the fewest edges, or in case of weighted 
 graphs, the one with the smallest total edge weight. A node’s betweenness centrality is defined as the share of 
 all shortest paths in the graph that run through it.
@@ -37,7 +37,7 @@ This query module delivers a *fully dynamic* betweenness centrality computation 
 [iCentral](https://repository.kaust.edu.sa/bitstream/handle/10754/625935/08070346.pdf) [^1]
 algorithm. iCentral saves up on computation 
 in two ways: it singles out the nodes whose centrality scores could have changed and then incrementally updates 
-the scores making use of previously calculated data structures where applicable.
+the scores, making use of previously calculated data structures where applicable.
 
 This drives down the algorithm’s time complexity to *O*(*m′n′*) and space complexity to *O*(*m* + *n*),
 where *m* and *n* are the counts of edges and vertices in the graph, *m′* is the number of edges in the biconnected 
