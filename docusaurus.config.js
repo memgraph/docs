@@ -386,9 +386,9 @@ module.exports = {
     },
     hideableSidebar: true,
     announcementBar: {
-      id: "gqlalchemy",
+      id: "cypheremailcourse",
       content:
-        'Check out the new Python Object Graph Mapper (OGM) library <a target="_blank" rel="noopener noreferrer" href="https://github.com/memgraph/gqlalchemy"><b>GQLAlchemy</b></a> ⭐',
+        'Sing up for the new <a target="_blank" rel="noopener noreferrer" href="https://memgraph.com/learn-cypher-query-language"><b>Cypher Email Course</b></a> 📩',
       backgroundColor: "#fafbfc",
       textColor: "#091E42",
       isCloseable: true,
