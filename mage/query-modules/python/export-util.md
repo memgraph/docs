@@ -38,7 +38,7 @@ Module for exporting a graph database in different formats.
 
 #### Input:
 
-* `path: str` ➡ Path to the file where JSON will be saved.
+* `path: str` ➡ Path to the JSON file containing the exported graph database.
 
 #### Usage:
 
@@ -56,11 +56,11 @@ Memgraph.
 
 <TabItem value="docker">
 
-If you ran the Memgraph with Docker, the JSON file will be exported to the file
-inside the Docker container. We recommend exporting the JSON file to the
-`/usr/lib/memgraph/query_modules` directory.
+If you ran Memgraph with Docker, database will be exported to a JSON file inside
+the Docker container. We recommend exporting the database to the JSON file
+inside the `/usr/lib/memgraph/query_modules` directory.
 
-Then, call the procedure by running the following query:
+You can call the procedure by running the following query:
 
 ```cypher
 CALL export_util.json(path);
@@ -79,7 +79,7 @@ docker cp <container_id>:/usr/lib/memgraph/query_modules/export.json /path_to_lo
 
 <TabItem value="linux">
 
-To export database to a local `JSON` file create a new directory (for example,
+To export database to a local JSON file create a new directory (for example,
 `export_folder`) and run the following command to give the user `memgraph` the
 necessary permissions:
 
@@ -92,40 +92,41 @@ Then, call the procedure by running the following query:
 ```cypher
 CALL export_util.json(path);
 ```
-where `path` is the path to the local JSON file inside the `export_folder` (e.g.,
-`/users/my_user/export_folder/export.json`).
+where `path` is the path to a local JSON file that will be created inside the
+`export_folder` (e.g., `/users/my_user/export_folder/export.json`).
 </TabItem>
 
 </Tabs>
 
-## Example - Exporting database to the JSON file
+## Example - Exporting database to a JSON file
 
 <Tabs
   groupId="export_to_json_example"
   defaultValue="input"
   values={[
-    {label: 'Step 1: Input graph', value: 'input'},
-    {label: 'Step 2: Cypher load commands', value: 'load'},
+    {label: 'Step 1: Cypher load commands', value: 'load'},
+    {label: 'Step 2: Input graph', value: 'input'},
     {label: 'Step 3: Running command', value: 'run'},
     {label: 'Step 4: Results', value: 'result'},
   ]
 }>
-<TabItem value="input">
-Below you can see how the data is going to look like once we create the nodes
-and relationships.
-<img src={require('../../data/query-modules/python/export-util/export-util-1.png').default}/>
-    
-</TabItem>
 
 <TabItem value="load">
 
-
-Run the following queries to create the database:
+You can create a simple graph database by running the following queries:
 
 ```cypher
 CREATE (n:Person {name:"Anna"}), (m:Person {name:"John"}), (k:Person {name:"Kim"})
 CREATE (n)-[:IS_FRIENDS_WITH]->(m), (n)-[:IS_FRIENDS_WITH]->(k), (m)-[:IS_MARRIED_TO]->(k);
 ```
+</TabItem>
+
+<TabItem value="input">
+
+Below you can see how the data looks like after you created the nodes and relationships:
+
+<img src={require('../../data/query-modules/python/export-util/export-util-1.png').default}/>
+    
 </TabItem>
 
 <TabItem value="run">
