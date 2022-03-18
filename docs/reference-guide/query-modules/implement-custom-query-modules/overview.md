@@ -14,14 +14,14 @@ installation directory `/usr/lib/memgraph/python_support`. In essence, it is a
 wrapper around the C API. If you wish to write your own query modules using the
 Python API, you need to have Python version `3.5.0` or above installed.
 
-For more information check the [Python API reference guide](/api/python-api).<br/>
+For more information, check the [Python API reference guide](/api/python-api).<br/>
 We also made [an example module](custom-query-module-example#python-api) to help you start developing your own modules. 
 
 ## C
 
 C API modules need to be compiled to a shared library so that they can be loaded
 when Memgraph starts. This means that you can write the procedures in any
-programming language which can work with C and can be compiled to the ELF shared
+programming language that can work with C and be compiled to the ELF shared
 library format (`.so`). `mg_procedure.h` that can be found in Memgraph
 installation directory `/usr/include/memgraph` contains declarations of all
 functions that can be used to implement a query module procedure. 
@@ -32,7 +32,7 @@ compiler, for example, `clang`:
 clang -Wall -shared -fPIC -I /usr/include/memgraph example.c -o example.so
 ```
 
-For more information check the [C API reference guide](/api/c-api).<br/>
+For more information, check the [C API reference guide](/api/c-api).<br/>
 We also made [an example module](custom-query-module-example#c-api) to help you start developing your own modules. 
 
 

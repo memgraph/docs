@@ -4,7 +4,7 @@ title: Example of a custom query
 sidebar_label: Example of a custom query
 ---
 
-We are going to examine how the query module `example` is implemented using the
+We will examine how the query module `example` is implemented using the
 C API and the Python API. Both query modules can be found in the
 `/usr/lib/memgraph/query_modules` directory.
 
@@ -21,7 +21,7 @@ Every single Memgraph installation comes with the `py_example.py` query module
 located in the `/usr/lib/memgraph/query_modules` directory. It was provided
 as an example of a `.py` query module for you to examine and learn from.
 
-If you are working with Docker and would like to open the file on your computer
+If you are working with Docker and would like to open the file on your computer,
 copy it from the Docker container.
 
 <details>
@@ -66,7 +66,7 @@ C API described in the next section. This file (`mgp.py`) can be found in the
 Memgraph installation directory `/usr/lib/memgraph/python_support`.
 
 Because our procedure will only read from the database, we pass it to a
-`read_proc` decorator which handles read-only procedures. You can also inspect
+`read_proc` decorator, which handles read-only procedures. You can also inspect
 the definition of said decorator in the `mgp.py` file or take a look at the
 [Python API reference guide](python-api).
 
@@ -87,11 +87,11 @@ def procedure(context: mgp.ProcCtx,
 ```
 
 Because we need to access the graph to get results, the first argument takes the
-`ProcCtx` type which is actually the graph. Then we defined two arguments, a
-required and an optional argument that will bound to the values passed in
+`ProcCtx` type, which is actually the graph. Then we defined two arguments, a
+required and an optional argument that will be bound to the values passed in
 the Cypher query. They can be either null or of any type. 
 
-The return type must be `Record(field_name=type, ...)` and the procedure must
+The return type must be `Record(field_name=type, ...)`, and the procedure must
 produce either a complete `Record` or `None`. 
 
 In our case, the example procedure returns four fields:
@@ -122,7 +122,7 @@ elif isinstance(required_arg, mgp.Path):
 
 In the case of `mgp.Edge` and `mgp.Vertex`, we obtain an instance of
 `mgp.Properties` class and invoke the `items()` method which returns an
-`Iterable` that contains `mgp.Property` objects of our `mgp.Edge` or
+`Iterable` containing `mgp.Property` objects of our `mgp.Edge` or
 `mgp.Vertex`. Since the type of `mgp.Property` is a simple
 `collections.namedtuple` containing `name` and `value`, we can easily pass it to
 a `dict` constructor thus creating a map.
@@ -141,15 +141,15 @@ for v in context.graph.vertices:
     edge_count += sum(1 for e in v.out_edges)
 ```
 
-First we set our variables and then access the `mgp.Graph` instance via
+First, we set our variables and then access the `mgp.Graph` instance via
 `context.graph`. The `mgp.Graph` instance contains the state of the database at
 the time execution of the Cypher query that is calling our procedure. The
 `mgp.Graph` instance also has the property `vertices` that allows us to access
-the `mgp.Vertices` object which can be iterated upon thus
+the `mgp.Vertices` object, which can be iterated upon, thus
 increasing the variable on each traversed vertex.
 
-Similarly, each `mgp.Vertex` object has `in_edges` and `out_edges` properties
-which allow us to iterate over the corresponding `mgp.Edge` objects thus
+Similarly, each `mgp.Vertex` object has `in_edges` and `out_edges` properties,
+allowing us to iterate over the corresponding `mgp.Edge` objects, thus
 increasing the variable on each traversed edge.
 
 Lastly, we calculate the `avg_degree` value and obtain a copy of the passed
@@ -169,14 +169,14 @@ return mgp.Record(args=args_copy, vertex_count=vertex_count,
 
 ### Writeable procedures
 
-Writeable procedures are implemented in a similar way as read-only procedures.
-The only difference is that writeable procedures receive mutable objects,
-therefore they can create and delete vertices or edges, modify the properties of
-vertices and edges and they can add or remove labels of vertices.
+Writeable procedures are implemented similarly as read-only procedures.
+The only difference is that writeable procedures receive mutable objects.
+Therefore they can create and delete vertices or edges, modify the properties of
+vertices and edges, and add or remove labels of vertices.
 
 We can implement a very simple writeable query module similarly to read-only
 procedures. The following procedure creates a new vertex with a certain property
-name and its value passed as arguments, and connects it to all existing vertices
+name and its value passed as arguments and connects it to all existing vertices
 that have a property with the same name and value:
 
 ```python
@@ -219,7 +219,7 @@ the intent to use them in a different procedure invocation.
 Query modules can be implemented using the [C API](api/c-api) provided by Memgraph. Such
 modules need to be compiled to a shared library so that they can be loaded when
 Memgraph starts. This means that you can write the procedures in any programming
-language which can work with C and can be compiled to the ELF shared library
+language that can work with C and be compiled to the ELF shared library
 format (`.so`).
 
 :::warning
@@ -234,7 +234,7 @@ message. Exceptions that cross the module boundary will cause unexpected issues.
 Every single Memgraph installation comes with the `example.so` query module
 located in the `/usr/lib/memgraph/query_modules` directory. It was provided as
 an example of a query module written with C API for you to examine and learn
-from. The `query_module` directory also contains `src` directory with
+from. The `query_module` directory also contains `src` directory, with
 `example.c` file. 
 
 Let's take a look at the `example.c` file.
@@ -280,17 +280,17 @@ void procedure(const mgp_list *args, const mgp_graph *graph,
 }
 ```
 
-The `procedure` function receives the list of arguments (`args`) that are
-passed in the query. The parameter `result` is used to fill in the resulting
-records of the procedure. Parameters `graph` and `memory` are context parameters
-of the procedure, and they are used in some parts of the provided C API. 
+The `procedure` function receives the list of arguments (`args`) passed in the
+query. The parameter `result` is used to fill in the resulting records of the
+procedure. Parameters `graph` and `memory` are context parameters of the
+procedure, and they are used in some parts of the provided C API. 
 
 For more information on what exactly is possible with C API, take a look at the
 `mg_procedure.h` file or the [C API reference
 guide](api/c-api).
 
-The next line contains the `mgp_init_module` function that registers procedures
-that can be invoked through Cypher. Even though the example contains only one
+The following line contains the `mgp_init_module` function that registers procedures
+that can be invoked through Cypher. Even though the example has only one
 `procedure`, you can register multiple different procedures in a single module.
 
 Procedures are invoked using the `CALL <module>.<procedure> ...` syntax. The

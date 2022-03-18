@@ -10,7 +10,7 @@ manage query modules files.
 ## General procedures
 
 Here is the list of procedures from the `mg` query module that can be used with
-all other query module files, and their signatures:
+all other query module files and their signatures:
 
 | Procedure                                  | Description                          |
 | ------------------------------------------ | ------------------------------------ |
@@ -53,7 +53,7 @@ Example of a Cypher query:
 ```cypher
 CALL mg.load_all();
 ```
-If the response is `Empty set (x.x sec)` and no error messages the load was successful.
+If the response is `Empty set (x.x sec)` and no error messages, the load was successful.
 
 ###  `mg.load` 
 
@@ -65,7 +65,7 @@ Example of a Cypher query:
 CALL mg.load("py_example");
 ```
 
-If the response is `Empty set (x.x sec)` and no error messages the load was successful.
+If the response is `Empty set (x.x sec)` and no error messages, the load was successful.
 
 ## Procedures for `.py` module queries
 
@@ -87,7 +87,7 @@ possible result.
 
 ### `mg.get_module_files`
 
-Returns the value of a `is_editable` flag and the absolute path of each Python
+Returns the value of an `is_editable` flag and the absolute path of each Python
 query module file in all the query module directories.
 
 Example of a Cypher query:
@@ -126,10 +126,10 @@ CALL mg.get_module_file("/usr/lib/memgraph/query_modules/py_example.py") YIELD *
 
 Creates a `filename` Python module with `content` inside the internal query
 module directory (`/var/lib/memgraph/internal_modules`) and returns the path to
-the newly created file. The flag `is_editable` should be set to true if the
-module is located in the internal query module directory. The `filename` can
-consist of multiple nested directories (e.g., `subdir1/subdir2/module.py`) which
-will create all the necessary subdirectories. After successful creation, all the
+the newly created file. The flag `is_editable` should be true if the module is
+located in the internal query module directory. The `filename` can consist of
+multiple nested directories (e.g., `subdir1/subdir2/module.py`) and  all the
+necessary subdirectories will be created. After successful creation, all the
 modules are reloaded.
 
 Examples of a Cypher query:
@@ -192,4 +192,4 @@ Example of a Cypher query:
 CALL mg.delete_module_file("/var/lib/memgraph/internal_modules/my_module.py");
 ```
 
-If the response is `Empty set (x.x sec)` and no error messages the update was successful.
+If the response is `Empty set (x.x sec)` and no error messages, the update was successful.

@@ -11,7 +11,7 @@ contribute implementations of various algorithms in multiple programming
 languages, all runnable inside Memgraph.
 
 If you are using Docker and either `memgraph-platform` or `memgraph-mage`
-images, MAGE library is already loaded and ready to be used so you can skip to
+images, the MAGE library is already loaded and ready to be used so you can skip to
 the guide on [calling procedures within query
 modules](load-call-query-modules#calling-query-modules).
 

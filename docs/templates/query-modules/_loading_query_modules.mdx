@@ -34,16 +34,16 @@ to load it manually using the `mg.load("module_name")` procedure within a query:
 CALL mg.load("py_example");
 ```
 
-If there is no response (no error message) the load was successful.
+If there is no response (no error message), the load was successful.
 
-If you want to reload all existing modules and load any newly added ones use
+If you want to reload all existing modules and load any newly added ones, use
 `mg.load_all()`:
 
 ```cypher
 CALL mg.load_all();
 ```
 
-If there is no response (no error message) the load was successful.
+If there is no response (no error message), the load was successful.
 
 You can check if the query module has been loaded by using the `mg.procedures()`
 procedure within a query:
