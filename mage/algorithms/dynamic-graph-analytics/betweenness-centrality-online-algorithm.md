@@ -1,5 +1,5 @@
 ---
-id: betweenness-centrality-algorithm
+id: betweenness-centrality-online-algorithm
 title: Dynamic Betweenness Centrality
 sidebar_label: Dynamic Betweenness Centrality
 ---
