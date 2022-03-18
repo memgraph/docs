@@ -19,7 +19,7 @@ style={{
 </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-pagerank_online-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/cpp/pagerank_module/pagerank_online_module.cpp)
+[![docs-source](https://img.shields.io/badge/source-katz_centrality_online-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/cpp/katz_centrality_module/katz_centrality_online_module.cpp)
 
 ## Abstract
 
@@ -87,7 +87,7 @@ Alexander van der Grinten et. al.
 #### Usage:
 
 ```cypher
-CALL pagerank.set(100, 0.2)
+CALL katz_centrality_online.set(0.2, 0.01)
 YIELD node, rank;
 ```
 
@@ -104,7 +104,7 @@ been called before adding changes to the graph.
 #### Usage:
 
 ```cypher
-CALL pagerank.get()
+CALL katz_centrality_online.get()
 YIELD node, rank;
 ```
 
@@ -146,17 +146,17 @@ values={[
 }>
 <TabItem value="visualization">
 
-<img src={require('../../data/query-modules/cpp/pagerank-online/memgraph-pagerank-online.png').default}/>
+<img src={require('../../data/query-modules/cpp/katz-centrality/memgraph-katz.png').default}/>
 
   </TabItem>
   <TabItem value="cypher-preset">
 
 ```cypher
-CALL katz_centrality_online.set() YIELD *;
+CALL katz_centrality_online.set(0.2) YIELD *;
 
 CREATE TRIGGER katz_trigger
 BEFORE COMMIT
-EXECUTE CALL katz_trigger.update(createdVertices, createdEdges, deletedVertices, deletedEdges) YIELD *
+EXECUTE CALL katz_centrality_online.update(createdVertices, createdEdges, deletedVertices, deletedEdges) YIELD *
 SET node.rank = rank;
 ```
 
@@ -164,13 +164,22 @@ SET node.rank = rank;
   <TabItem value="cypher-load">
 
 ```cypher
-MERGE (a:Node {id: 0}) MERGE (b:Node {id: 1}) CREATE (a)-[:RELATION]->(b);
-MERGE (a:Node {id: 1}) MERGE (b:Node {id: 2}) CREATE (a)-[:RELATION]->(b);
-MERGE (a:Node {id: 2}) MERGE (b:Node {id: 0}) CREATE (a)-[:RELATION]->(b);
-MERGE (a:Node {id: 3}) MERGE (b:Node {id: 3}) CREATE (a)-[:RELATION]->(b);
-MERGE (a:Node {id: 3}) MERGE (b:Node {id: 4}) CREATE (a)-[:RELATION]->(b);
-MERGE (a:Node {id: 3}) MERGE (b:Node {id: 5}) CREATE (a)-[:RELATION]->(b);
-MERGE (a:Node {id: 4}) MERGE (b:Node {id: 6}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 1}) MERGE (b:Node {id: 0}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 1}) MERGE (b:Node {id: 10}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 2}) MERGE (b:Node {id: 1}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 2}) MERGE (b:Node {id: 8}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 2}) MERGE (b:Node {id: 10}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 3}) MERGE (b:Node {id: 10}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 4}) MERGE (b:Node {id: 10}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 4}) MERGE (b:Node {id: 2}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 5}) MERGE (b:Node {id: 10}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 5}) MERGE (b:Node {id: 2}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 6}) MERGE (b:Node {id: 2}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 7}) MERGE (b:Node {id: 2}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 8}) MERGE (b:Node {id: 2}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 8}) MERGE (b:Node {id: 10}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 9}) MERGE (b:Node {id: 10}) CREATE (a)-[:RELATION]->(b);
+MERGE (a:Node {id: 10}) MERGE (b:Node {id: 9}) CREATE (a)-[:RELATION]->(b);
 ```
 
   </TabItem>
@@ -185,17 +194,21 @@ RETURN node.id AS node_id, node.rank AS rank;
   <TabItem value="result">
 
 ```plaintext
-+-----------+-----------+
-| node_id   | rank      |
-+-----------+-----------+
-| 0         | 0.225225  |
-| 1         | 0.225225  |
-| 2         | 0.225225  |
-| 3         | 0.0675676 |
-| 4         | 0.0765766 |
-| 5         | 0.0585586 |
-| 6         | 0.121622  |
-+-----------+-----------+
++---------+---------+
+| node_id | rank    |
++---------+---------+
+| 1       | 0.408   |
+| 0       | 0.28    |
+| 10      | 1.864   |
+| 2       | 1.08    |
+| 8       | 0.408   |
+| 3       | 0       |
+| 4       | 0       |
+| 5       | 0       |
+| 6       | 0       |
+| 7       | 0       |
+| 9       | 0.544   |
++---------+---------+
 ```
 
   </TabItem>
