@@ -7,7 +7,7 @@ sidebar_label: Change configuration and access logs
 import Tabs from "@theme/Tabs"; 
 import TabItem from "@theme/TabItem";
 
-This how-to guide will show you how to change configuration settings for
+This how-to guide will show you how to change [configuration settings](/reference-guide/configuration.md) for
 Memgraph and check the log files.
 
 Continue reading if you are using [Memgraph with Docker](#docker), or skip to

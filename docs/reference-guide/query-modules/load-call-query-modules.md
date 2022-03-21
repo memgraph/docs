@@ -4,9 +4,9 @@ title: Load and call query modules
 sidebar_label: Load and call query modules
 ---
 
-import Loading from '../../../docs/templates/query-modules/_loading_query_modules.mdx';
-import Calling from '../../../docs/templates/query-modules/_calling_query_modules.mdx';
-import Controlling from '../../../docs/templates/query-modules/_controlling_procedure_memory_usage.mdx';
+import Loading from '../../templates/query-modules/_loading_query_modules.mdx';
+import Calling from '../../templates/query-modules/_calling_query_modules.mdx';
+import Controlling from '../../templates/query-modules/_controlling_procedure_memory_usage.mdx';
 
 
 The following page describes how query modules are loaded into Memgraph and

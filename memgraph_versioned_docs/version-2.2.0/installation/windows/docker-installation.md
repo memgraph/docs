@@ -1,6 +1,6 @@
 ---
 id: docker-installation
-title: Install Memgraph Platform on Windows
+title: Install Memgraph Platform on Windows with Docker
 sidebar_label: Install Memgraph Platform (recommended)
 slug: /install-memgraph-on-windows-docker
 pagination_prev: installation/overview

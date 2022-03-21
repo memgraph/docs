@@ -2,6 +2,7 @@
 id: c-api
 title: Query modules C API
 sidebar_label: C API
+slug: /reference-guide/query-modules/api/c-api
 ---
 
 This is the API documentation for `mg_procedure.h` that contains declarations
@@ -13,7 +14,7 @@ source file can be found in the Memgraph installation directory, under
 
 For an example of how to implement query modules in C, take a look at [the
 example we
-provided](./custom-query-module-example#c-api).
+provided](/reference-guide/query-modules/implement-custom-query-modules/custom-query-module-example.md#c-api).
 
 :::
 
@@ -463,8 +464,8 @@ int microsecond;
 
 | Type           | Name           |
 | -------------- | -------------- |
-| struct [mgp_date_parameters](mgp_date_parameters) * | **[date_parameters](#variable-date-parameters)**  |
-| struct [mgp_local_time_parameters](mgp_local_time_parameters) * | **[local_time_parameters](#variable-local-time-parameters)**  |
+| struct [mgp_date_parameters](#mgp_date_parameters) * | **[date_parameters](#variable-date-parameters)**  |
+| struct [mgp_local_time_parameters](#mgp_local_time_parameters) * | **[local_time_parameters](#variable-local-time-parameters)**  |
 
 #### variable date_parameters {#variable-date-parameters}
 

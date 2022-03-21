@@ -2,6 +2,7 @@
 id: python-api
 title: Query modules Python API
 sidebar_label: Python API
+slug: /reference-guide/query-modules/api/python-api
 ---
 
 This is the API documentation for `mgp.py` that contains definitions of the
@@ -13,7 +14,7 @@ installation directory, under `/usr/lib/memgraph/python_support`.
 
 For an example of how to implement query modules in Python, take a look at [the
 example we
-provided](./custom-query-module-example#python-api).
+provided](/reference-guide/query-modules/implement-custom-query-modules/custom-query-module-example.md#python-api).
 
 :::
 
@@ -359,7 +360,7 @@ Bases: `object`
 Represents a record of resulting field values.
 
 
-### fields()`
+### fields()
 
 ## class mgp.Vertices(graph)
 Bases: `object`
