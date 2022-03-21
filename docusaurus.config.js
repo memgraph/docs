@@ -369,7 +369,7 @@ module.exports = {
       copyright: `Copyright © ${new Date().getFullYear()} Memgraph. Built by developers, for developers!`,
     },
     algolia: {
-      appId: 'R5T3EMHC2U',
+      appId: "R5T3EMHC2U",
       apiKey: "986c523abb1c0bbd68ec83d9ada11124",
       indexName: "g-despot",
       contextualSearch: true,
@@ -386,9 +386,9 @@ module.exports = {
     },
     hideableSidebar: true,
     announcementBar: {
-      id: "gqlalchemy",
+      id: "cypheremailcourse",
       content:
-        'Check out the new Python Object Graph Mapper (OGM) library <a target="_blank" rel="noopener noreferrer" href="https://github.com/memgraph/gqlalchemy"><b>GQLAlchemy</b></a> ⭐',
+        'Sign up for the new <a target="_blank" rel="noopener noreferrer" href="https://memgraph.com/learn-cypher-query-language"><b>Cypher Email Course</b></a> 📩',
       backgroundColor: "#fafbfc",
       textColor: "#091E42",
       isCloseable: true,
@@ -996,9 +996,7 @@ module.exports = {
           //How-to guides redirects
           {
             to: "/memgraph/how-to-guides",
-            from: [
-              "/memgraph/database-functionalities",
-            ],
+            from: ["/memgraph/database-functionalities"],
           },
           {
             to: "/memgraph/how-to-guides/streams/kafka/kafka-streams",
@@ -1193,6 +1191,61 @@ module.exports = {
           {
             to: "/memgraph-lab/graph-style-script-language",
             from: ["/memgraph-lab/style-script/quick-start"],
+          },
+          //Redirect for query modules
+          {
+            to: "/memgraph/reference-guide/query-modules/api/c-api",
+            from: [
+              "/memgraph/reference-guide/query-modules/api/c-api/classes/mgp_date_parameters",
+            ],
+          },
+          {
+            to: "/memgraph/reference-guide/query-modules/api/c-api",
+            from: [
+              "/memgraph/reference-guide/query-modules/api/c-api/classes/mgp_duration_parameters",
+            ],
+          },
+          {
+            to: "/memgraph/reference-guide/query-modules/api/c-api",
+            from: [
+              "/memgraph/reference-guide/query-modules/api/c-api/classes/mgp_edge_id",
+            ],
+          },
+          {
+            to: "/memgraph/reference-guide/query-modules/api/c-api",
+            from: [
+              "/memgraph/reference-guide/query-modules/api/c-api/classes/mgp_edge_type",
+            ],
+          },
+          {
+            to: "/memgraph/reference-guide/query-modules/api/c-api",
+            from: [
+              "/memgraph/reference-guide/query-modules/api/c-api/classes/mgp_label",
+            ],
+          },
+          {
+            to: "/memgraph/reference-guide/query-modules/api/c-api",
+            from: [
+              "/memgraph/reference-guide/query-modules/api/c-api/classes/mgp_local_date_time_parameters",
+            ],
+          },
+          {
+            to: "/memgraph/reference-guide/query-modules/api/c-api",
+            from: [
+              "/memgraph/reference-guide/query-modules/api/c-api/classes/mgp_local_time_parameters",
+            ],
+          },
+          {
+            to: "/memgraph/reference-guide/query-modules/api/c-api",
+            from: [
+              "/memgraph/reference-guide/query-modules/api/c-api/classes/mgp_property",
+            ],
+          },
+          {
+            to: "/memgraph/reference-guide/query-modules/api/c-api",
+            from: [
+              "/memgraph/reference-guide/query-modules/api/c-api/classes/mgp_vertex_id",
+            ],
           },
         ],
       },

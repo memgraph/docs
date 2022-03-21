@@ -140,7 +140,6 @@ Now replace that code with this one:
   width: 1
   label: Type(edge)
   arrow-size: 0
-  type: "straight"
   color: #6AA84F
 }
 ```
@@ -185,7 +184,6 @@ The complete styling code for this graph is:
   width: 1
   label: Type(edge)
   arrow-size: 0
-  type: "straight"
   color: #6AA84F
 }
 

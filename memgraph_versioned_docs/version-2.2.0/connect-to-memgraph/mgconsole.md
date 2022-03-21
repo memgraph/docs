@@ -131,6 +131,7 @@ mgconsole with:
 
 ## 2. Execute a Cypher query {#execute-cypher-queries}
 
+
 After the client has started, it should present a command prompt similar to:
 
 ```
@@ -142,8 +143,15 @@ memgraph>
 ```
 
 At this point, it is possible to execute Cypher queries against a running
-Memgraph database instance. Each query needs to end with the `;` (*semicolon*)
-character. For example:
+Memgraph database instance. 
+
+:::tip
+
+You can use the `TAB` key to autocomplete commands in mgconsole.
+
+:::
+
+Each query needs to end with the `;` (*semicolon*) character. For example:
 
 ```cypher
 CREATE (u:User {name: "Alice"})-[:Likes]->(m:Software {name: "Memgraph"});

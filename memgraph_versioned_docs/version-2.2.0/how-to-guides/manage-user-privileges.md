@@ -55,7 +55,8 @@ At the moment, privileges are confined to users' abilities to perform certain
 `OpenCypher` queries. Namely users can be given permission to execute a subset
 of the following commands: `CREATE`, `DELETE`, `MATCH`, `MERGE`, `SET`,
 `REMOVE`, `INDEX`, `STATS`, `AUTH`, `REPLICATION`, `READ_FILE`, `DURABILITY`,
-`FREE_MEMORY`, `TRIGGER`, `STREAM`, and `CONFIG`.
+`FREE_MEMORY`, `TRIGGER`, `STREAM`, `CONFIG`, `MODULE_READ`, `MODULE_WRITE` and
+`WEBSOCKET`.
 
 We could naturally cluster those privileges into groups:
 
@@ -72,6 +73,9 @@ We could naturally cluster those privileges into groups:
   * Privilege to use trigger queries (`TRIGGER`)
   * Privilege to use stream queries (`STREAM`)
   * Privilege to configure Memgraph during runtime (`CONFIG`)
+  * Privilege to read the content of Python query module files (`MODULE_READ`)
+  * Privilege to modify the content of Python query modules files (`MODULE_WRITE`)
+  * Privilege to connect to [Memgraph monitoring server](/reference-guide/monitoring-server.md) (`WEBSOCKET`)
 
 If you are unfamiliar with any of these commands, you can look them up in our
 [Cypher manual](/cypher-manual).
