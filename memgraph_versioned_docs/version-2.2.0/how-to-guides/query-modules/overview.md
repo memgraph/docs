@@ -109,19 +109,22 @@ provided by Memgraph.
 Modules implemented using the C API need to be compiled to a shared library
 (`.so` file), so they can be loaded when Memgraph starts.  The C API is well
 documented in the `/usr/include/memgraph/mg_procedure.h` header and in the
-[reference guide](/reference-guide/query-modules/api/c-api/overview.md).
+[reference
+guide](/reference-guide/query-modules/implement-custom-query-modules/api/c-api.md).
 
 Modules implemented using the Python API need to be written in Python version
 `3.5.0` and above. The Python API is well documented in the
 `/usr/lib/memgraph/python_support/mgp.py` file and in the [reference
-guide](/reference-guide/query-modules/api/python-api.md).
+guide](/reference-guide/query-modules/implement-custom-query-modules/api/python-api.md).
 
 :::warning
-If your programming language of choice throws
-exceptions, these exceptions must never leave the scope of your module! You
-should have a top level exception handler which returns with an error value and
-potentially logs the error message. Exceptions which cross the module boundary
-will cause all sorts of unexpected issues.
+
+If your programming language of choice throws exceptions, these exceptions must
+never leave the scope of your module! You should have a top level exception
+handler which returns with an error value and potentially logs the error
+message. Exceptions which cross the module boundary will cause all sorts of
+unexpected issues.
+
 :::
 
 For a more detailed example on how to implement your own query modules, we

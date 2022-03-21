@@ -1,37 +1,44 @@
 ---
-id: overview
+id: c-api
 title: Query modules C API
-sidebar_label: C API Overview
+sidebar_label: C API
 slug: /reference-guide/query-modules/api/c-api
 ---
 
-This is the API documentation for `mg_procedure.h` which contains declarations
+This is the API documentation for `mg_procedure.h` that contains declarations
 of all functions that can be used to implement a query module procedure. The
 source file can be found in the Memgraph installation directory, under
-`include/memgraph`. On the standard Debian installation, this will be under
 `/usr/include/memgraph`.
 
 :::tip
 
-For an example of how to implement query modules in C, take a look at a guide
-about [query modules implementation using the C
-API](/how-to-guides/query-modules/implement-query-modules.md#c-api).
+For an example of how to implement query modules in C, take a look at [the
+example we
+provided](/reference-guide/query-modules/implement-custom-query-modules/custom-query-module-example.md#c-api).
+
+:::
+
+:::tip
+
+If you install any C modules after running Memgraph, you'll have to [load
+them into Memgraph](../load-call-query-modules#loading-query-modules) or restart
+Memgraph in order to use them.
 
 :::
 
 ## Classes
 
-|                | Name           |
+| Name           | Description    |
 | -------------- | -------------- |
-| struct | **[mgp_label](/reference-guide/query-modules/api/c-api/classes/mgp_label.md)** <br/>Label of a vertex.  |
-| struct | **[mgp_edge_type](/reference-guide/query-modules/api/c-api/classes/mgp_edge_type.md)** <br/>Type of an edge.  |
-| struct | **[mgp_property](/reference-guide/query-modules/api/c-api/classes/mgp_property.md)** <br/>Reference to a named property value.  |
-| struct | **[mgp_vertex_id](/reference-guide/query-modules/api/c-api/classes/mgp_vertex_id.md)** <br/>ID of a vertex; valid during a single query execution.  |
-| struct | **[mgp_edge_id](/reference-guide/query-modules/api/c-api/classes/mgp_edge_id.md)** <br/>ID of an edge; valid during a single query execution.  |
-| struct | **[mgp_date_parameters](/reference-guide/query-modules/api/c-api/classes/mgp_date_parameters.md)**  |
-| struct | **[mgp_local_time_parameters](/reference-guide/query-modules/api/c-api/classes/mgp_local_time_parameters.md)**  |
-| struct | **[mgp_local_date_time_parameters](/reference-guide/query-modules/api/c-api/classes/mgp_local_date_time_parameters.md)**  |
-| struct | **[mgp_duration_parameters](/reference-guide/query-modules/api/c-api/classes/mgp_duration_parameters.md)**  |
+| **[mgp_label](#mgp_label)** |  Label of a vertex.  |
+| **[mgp_edge_type](#mgp_edge_type)** |  Type of an edge.  |
+| **[mgp_property](#mgp_property)** |  Reference to a named property value.  |
+| **[mgp_vertex_id](#mgp_vertex_id)** | ID of a vertex; valid during a single query execution.  |
+| **[mgp_edge_id](#mgp_edge_id)** |  ID of an edge; valid during a single query execution.  |
+| **[mgp_date_parameters](#mgp_date_parameters)** |   |
+| **[mgp_local_time_parameters](#mgp_local_time_parameters)** |   |
+| **[mgp_local_date_time_parameters](#mgp_local_date_time_parameters)** |   |
+| **[mgp_duration_parameters](#mgp_duration_parameters)** |   |
 
 ## Types
 
@@ -124,20 +131,20 @@ API](/how-to-guides/query-modules/implement-query-modules.md#c-api).
 | enum [mgp_error](#variable-mgp-error) | **[mgp_result_new_record](#function-mgp-result-new-record)**(struct mgp_result * res, struct mgp_result_record ** result)<br/>Create a new record for results.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_result_record_insert](#function-mgp-result-record-insert)**(struct mgp_result_record * record, const char * field_name, struct mgp_value * val)<br/>Assign a value to a field in the given record.  |
 | void | **[mgp_properties_iterator_destroy](#function-mgp-properties-iterator-destroy)**(struct mgp_properties_iterator * it)<br/>Free the memory used by a mgp_properties_iterator.  |
-| enum [mgp_error](#variable-mgp-error) | **[mgp_properties_iterator_get](#function-mgp-properties-iterator-get)**(struct mgp_properties_iterator * it, struct [mgp_property](/reference-guide/query-modules/api/c-api/classes/mgp_property.md) ** result)<br/>Get the current property pointed to by the iterator.  |
-| enum [mgp_error](#variable-mgp-error) | **[mgp_properties_iterator_next](#function-mgp-properties-iterator-next)**(struct mgp_properties_iterator * it, struct [mgp_property](/reference-guide/query-modules/api/c-api/classes/mgp_property.md) ** result)<br/>Advance the iterator to the next property and return it.  |
+| enum [mgp_error](#variable-mgp-error) | **[mgp_properties_iterator_get](#function-mgp-properties-iterator-get)**(struct mgp_properties_iterator * it, struct [mgp_property](#mgp_property) ** result)<br/>Get the current property pointed to by the iterator.  |
+| enum [mgp_error](#variable-mgp-error) | **[mgp_properties_iterator_next](#function-mgp-properties-iterator-next)**(struct mgp_properties_iterator * it, struct [mgp_property](#mgp_property) ** result)<br/>Advance the iterator to the next property and return it.  |
 | void | **[mgp_edges_iterator_destroy](#function-mgp-edges-iterator-destroy)**(struct mgp_edges_iterator * it)<br/>Free the memory used by a mgp_edges_iterator.  |
-| enum [mgp_error](#variable-mgp-error) | **[mgp_vertex_get_id](#function-mgp-vertex-get-id)**(struct mgp_vertex * v, struct [mgp_vertex_id](/reference-guide/query-modules/api/c-api/classes/mgp_vertex_id.md) * result)<br/>Get the ID of given vertex.  |
+| enum [mgp_error](#variable-mgp-error) | **[mgp_vertex_get_id](#function-mgp-vertex-get-id)**(struct mgp_vertex * v, struct [mgp_vertex_id](#mgp_vertex_id) * result)<br/>Get the ID of given vertex.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_vertex_underlying_graph_is_mutable](#function-mgp-vertex-underlying-graph-is-mutable)**(struct mgp_vertex * v, int * result)<br/>Result is non-zero if the vertex can be modified.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_vertex_set_property](#function-mgp-vertex-set-property)**(struct mgp_vertex * v, const char * property_name, struct mgp_value * property_value)<br/>Set the value of a property on a vertex.  |
-| enum [mgp_error](#variable-mgp-error) | **[mgp_vertex_add_label](#function-mgp-vertex-add-label)**(struct mgp_vertex * v, struct [mgp_label](/reference-guide/query-modules/api/c-api/classes/mgp_label.md) label)<br/>Add the label to the vertex.  |
-| enum [mgp_error](#variable-mgp-error) | **[mgp_vertex_remove_label](#function-mgp-vertex-remove-label)**(struct mgp_vertex * v, struct [mgp_label](/reference-guide/query-modules/api/c-api/classes/mgp_label.md) label)<br/>Remove the label from the vertex.  |
+| enum [mgp_error](#variable-mgp-error) | **[mgp_vertex_add_label](#function-mgp-vertex-add-label)**(struct mgp_vertex * v, struct [mgp_label](#mgp_label) label)<br/>Add the label to the vertex.  |
+| enum [mgp_error](#variable-mgp-error) | **[mgp_vertex_remove_label](#function-mgp-vertex-remove-label)**(struct mgp_vertex * v, struct [mgp_label](#mgp_label) label)<br/>Remove the label from the vertex.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_vertex_copy](#function-mgp-vertex-copy)**(struct mgp_vertex * v, struct mgp_memory * memory, struct mgp_vertex ** result)<br/>Copy a mgp_vertex.  |
 | void | **[mgp_vertex_destroy](#function-mgp-vertex-destroy)**(struct mgp_vertex * v)<br/>Free the memory used by a mgp_vertex.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_vertex_equal](#function-mgp-vertex-equal)**(struct mgp_vertex * v1, struct mgp_vertex * v2, int * result)<br/>Result is non-zero if given vertices are equal, otherwise 0.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_vertex_labels_count](#function-mgp-vertex-labels-count)**(struct mgp_vertex * v, size_t * result)<br/>Get the number of labels a given vertex has.  |
-| enum [mgp_error](#variable-mgp-error) | **[mgp_vertex_label_at](#function-mgp-vertex-label-at)**(struct mgp_vertex * v, size_t index, struct [mgp_label](/reference-guide/query-modules/api/c-api/classes/mgp_label.md) * result)<br/>Get [mgp_label](/reference-guide/query-modules/api/c-api/classes/mgp_label.md) in mgp_vertex at given index.  |
-| enum [mgp_error](#variable-mgp-error) | **[mgp_vertex_has_label](#function-mgp-vertex-has-label)**(struct mgp_vertex * v, struct [mgp_label](/reference-guide/query-modules/api/c-api/classes/mgp_label.md) label, int * result)<br/>Result is non-zero if the given vertex has the given label.  |
+| enum [mgp_error](#variable-mgp-error) | **[mgp_vertex_label_at](#function-mgp-vertex-label-at)**(struct mgp_vertex * v, size_t index, struct [mgp_label](#mgp_label) * result)<br/>Get [mgp_label](#mgp_label) in mgp_vertex at given index.  |
+| enum [mgp_error](#variable-mgp-error) | **[mgp_vertex_has_label](#function-mgp-vertex-has-label)**(struct mgp_vertex * v, struct [mgp_label](#mgp_label) label, int * result)<br/>Result is non-zero if the given vertex has the given label.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_vertex_has_label_named](#function-mgp-vertex-has-label-named)**(struct mgp_vertex * v, const char * label_name, int * result)<br/>Result is non-zero if the given vertex has a label with given name.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_vertex_get_property](#function-mgp-vertex-get-property)**(struct mgp_vertex * v, const char * property_name, struct mgp_memory * memory, struct mgp_value ** result)<br/>Get a copy of a vertex property mapped to a given name.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_vertex_iter_properties](#function-mgp-vertex-iter-properties)**(struct mgp_vertex * v, struct mgp_memory * memory, struct mgp_properties_iterator ** result)<br/>Start iterating over properties stored in the given vertex.  |
@@ -146,30 +153,30 @@ API](/how-to-guides/query-modules/implement-query-modules.md#c-api).
 | enum [mgp_error](#variable-mgp-error) | **[mgp_edges_iterator_underlying_graph_is_mutable](#function-mgp-edges-iterator-underlying-graph-is-mutable)**(struct mgp_edges_iterator * it, int * result)<br/>Result is non-zero if the edges returned by this iterator can be modified.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_edges_iterator_get](#function-mgp-edges-iterator-get)**(struct mgp_edges_iterator * it, struct mgp_edge ** result)<br/>Get the current edge pointed to by the iterator.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_edges_iterator_next](#function-mgp-edges-iterator-next)**(struct mgp_edges_iterator * it, struct mgp_edge ** result)<br/>Advance the iterator to the next edge and return it.  |
-| enum [mgp_error](#variable-mgp-error) | **[mgp_edge_get_id](#function-mgp-edge-get-id)**(struct mgp_edge * e, struct [mgp_edge_id](/reference-guide/query-modules/api/c-api/classes/mgp_edge_id.md) * result)<br/>Get the ID of given edge.  |
+| enum [mgp_error](#variable-mgp-error) | **[mgp_edge_get_id](#function-mgp-edge-get-id)**(struct mgp_edge * e, struct [mgp_edge_id](#mgp_edge_id) * result)<br/>Get the ID of given edge.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_edge_underlying_graph_is_mutable](#function-mgp-edge-underlying-graph-is-mutable)**(struct mgp_edge * e, int * result)<br/>Result is non-zero if the edge can be modified.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_edge_copy](#function-mgp-edge-copy)**(struct mgp_edge * e, struct mgp_memory * memory, struct mgp_edge ** result)<br/>Copy a mgp_edge.  |
 | void | **[mgp_edge_destroy](#function-mgp-edge-destroy)**(struct mgp_edge * e)<br/>Free the memory used by a mgp_edge.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_edge_equal](#function-mgp-edge-equal)**(struct mgp_edge * e1, struct mgp_edge * e2, int * result)<br/>Result is non-zero if given edges are equal, otherwise 0.  |
-| enum [mgp_error](#variable-mgp-error) | **[mgp_edge_get_type](#function-mgp-edge-get-type)**(struct mgp_edge * e, struct [mgp_edge_type](/reference-guide/query-modules/api/c-api/classes/mgp_edge_type.md) * result)<br/>Get the type of the given edge.  |
+| enum [mgp_error](#variable-mgp-error) | **[mgp_edge_get_type](#function-mgp-edge-get-type)**(struct mgp_edge * e, struct [mgp_edge_type](#mgp_edge_type) * result)<br/>Get the type of the given edge.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_edge_get_from](#function-mgp-edge-get-from)**(struct mgp_edge * e, struct mgp_vertex ** result)<br/>Get the source vertex of the given edge.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_edge_get_to](#function-mgp-edge-get-to)**(struct mgp_edge * e, struct mgp_vertex ** result)<br/>Get the destination vertex of the given edge.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_edge_get_property](#function-mgp-edge-get-property)**(struct mgp_edge * e, const char * property_name, struct mgp_memory * memory, struct mgp_value ** result)<br/>Get a copy of a edge property mapped to a given name.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_edge_set_property](#function-mgp-edge-set-property)**(struct mgp_edge * e, const char * property_name, struct mgp_value * property_value)<br/>Set the value of a property on an edge.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_edge_iter_properties](#function-mgp-edge-iter-properties)**(struct mgp_edge * e, struct mgp_memory * memory, struct mgp_properties_iterator ** result)<br/>Start iterating over properties stored in the given edge.  |
-| enum [mgp_error](#variable-mgp-error) | **[mgp_graph_get_vertex_by_id](#function-mgp-graph-get-vertex-by-id)**(struct mgp_graph * g, struct [mgp_vertex_id](/reference-guide/query-modules/api/c-api/classes/mgp_vertex_id.md) id, struct mgp_memory * memory, struct mgp_vertex ** result)<br/>Get the vertex corresponding to given ID, or NULL if no such vertex exists.  |
+| enum [mgp_error](#variable-mgp-error) | **[mgp_graph_get_vertex_by_id](#function-mgp-graph-get-vertex-by-id)**(struct mgp_graph * g, struct [mgp_vertex_id](#mgp_vertex_id) id, struct mgp_memory * memory, struct mgp_vertex ** result)<br/>Get the vertex corresponding to given ID, or NULL if no such vertex exists.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_graph_is_mutable](#function-mgp-graph-is-mutable)**(struct mgp_graph * graph, int * result)<br/>Result is non-zero if the graph can be modified.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_graph_create_vertex](#function-mgp-graph-create-vertex)**(struct mgp_graph * graph, struct mgp_memory * memory, struct mgp_vertex ** result)<br/>Add a new vertex to the graph.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_graph_delete_vertex](#function-mgp-graph-delete-vertex)**(struct mgp_graph * graph, struct mgp_vertex * vertex)<br/>Delete a vertex from the graph.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_graph_detach_delete_vertex](#function-mgp-graph-detach-delete-vertex)**(struct mgp_graph * graph, struct mgp_vertex * vertex)<br/>Delete a vertex and all of its edges from the graph.  |
-| enum [mgp_error](#variable-mgp-error) | **[mgp_graph_create_edge](#function-mgp-graph-create-edge)**(struct mgp_graph * graph, struct mgp_vertex * from, struct mgp_vertex * to, struct [mgp_edge_type](/reference-guide/query-modules/api/c-api/classes/mgp_edge_type.md) type, struct mgp_memory * memory, struct mgp_edge ** result)<br/>Add a new directed edge between the two vertices with the specified label.  |
+| enum [mgp_error](#variable-mgp-error) | **[mgp_graph_create_edge](#function-mgp-graph-create-edge)**(struct mgp_graph * graph, struct mgp_vertex * from, struct mgp_vertex * to, struct [mgp_edge_type](#mgp_edge_type) type, struct mgp_memory * memory, struct mgp_edge ** result)<br/>Add a new directed edge between the two vertices with the specified label.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_graph_delete_edge](#function-mgp-graph-delete-edge)**(struct mgp_graph * graph, struct mgp_edge * edge)<br/>Delete an edge from the graph.  |
 | void | **[mgp_vertices_iterator_destroy](#function-mgp-vertices-iterator-destroy)**(struct mgp_vertices_iterator * it)<br/>Free the memory used by a mgp_vertices_iterator.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_graph_iter_vertices](#function-mgp-graph-iter-vertices)**(struct mgp_graph * g, struct mgp_memory * memory, struct mgp_vertices_iterator ** result)<br/>Start iterating over vertices of the given graph.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_vertices_iterator_underlying_graph_is_mutable](#function-mgp-vertices-iterator-underlying-graph-is-mutable)**(struct mgp_vertices_iterator * it, int * result)<br/>Result is non-zero if the vertices returned by this iterator can be modified.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_vertices_iterator_get](#function-mgp-vertices-iterator-get)**(struct mgp_vertices_iterator * it, struct mgp_vertex ** result)<br/>Get the current vertex pointed to by the iterator.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_date_from_string](#function-mgp-date-from-string)**(const char * string, struct mgp_memory * memory, struct mgp_date ** date)<br/>Create a date from a string following the ISO 8601 format.  |
-| enum [mgp_error](#variable-mgp-error) | **[mgp_date_from_parameters](#function-mgp-date-from-parameters)**(struct [mgp_date_parameters](/reference-guide/query-modules/api/c-api/classes/mgp_date_parameters.md) * parameters, struct mgp_memory * memory, struct mgp_date ** date)<br/>Create a date from mgp_date_parameter.  |
+| enum [mgp_error](#variable-mgp-error) | **[mgp_date_from_parameters](#function-mgp-date-from-parameters)**(struct [mgp_date_parameters](#mgp_date_parameters) * parameters, struct mgp_memory * memory, struct mgp_date ** date)<br/>Create a date from mgp_date_parameter.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_date_copy](#function-mgp-date-copy)**(struct mgp_date * date, struct mgp_memory * memory, struct mgp_date ** result)<br/>Copy a mgp_date.  |
 | void | **[mgp_date_destroy](#function-mgp-date-destroy)**(struct mgp_date * date)<br/>Free the memory used by a mgp_date.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_date_equal](#function-mgp-date-equal)**(struct mgp_date * first, struct mgp_date * second, int * result)<br/>Result is non-zero if given dates are equal, otherwise 0.  |
@@ -182,7 +189,7 @@ API](/how-to-guides/query-modules/implement-query-modules.md#c-api).
 | enum [mgp_error](#variable-mgp-error) | **[mgp_date_sub_duration](#function-mgp-date-sub-duration)**(struct mgp_date * date, struct mgp_duration * dur, struct mgp_memory * memory, struct mgp_date ** result)<br/>Subtract a duration from the date.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_date_diff](#function-mgp-date-diff)**(struct mgp_date * first, struct mgp_date * second, struct mgp_memory * memory, struct mgp_duration ** result)<br/>Get a duration between two dates.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_local_time_from_string](#function-mgp-local-time-from-string)**(const char * string, struct mgp_memory * memory, struct mgp_local_time ** local_time)<br/>Create a local time from a string following the ISO 8601 format.  |
-| enum [mgp_error](#variable-mgp-error) | **[mgp_local_time_from_parameters](#function-mgp-local-time-from-parameters)**(struct [mgp_local_time_parameters](/reference-guide/query-modules/api/c-api/classes/mgp_local_time_parameters.md) * parameters, struct mgp_memory * memory, struct mgp_local_time ** local_time)<br/>Create a local time from [mgp_local_time_parameters](/reference-guide/query-modules/api/c-api/classes/mgp_local_time_parameters.md).  |
+| enum [mgp_error](#variable-mgp-error) | **[mgp_local_time_from_parameters](#function-mgp-local-time-from-parameters)**(struct [mgp_local_time_parameters](#mgp_local_time_parameters) * parameters, struct mgp_memory * memory, struct mgp_local_time ** local_time)<br/>Create a local time from [mgp_local_time_parameters](#mgp_local_time_parameters).  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_local_time_copy](#function-mgp-local-time-copy)**(struct mgp_local_time * local_time, struct mgp_memory * memory, struct mgp_local_time ** result)<br/>Copy a mgp_local_time.  |
 | void | **[mgp_local_time_destroy](#function-mgp-local-time-destroy)**(struct mgp_local_time * local_time)<br/>Free the memory used by a mgp_local_time.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_local_time_equal](#function-mgp-local-time-equal)**(struct mgp_local_time * first, struct mgp_local_time * second, int * result)<br/>Result is non-zero if given local times are equal, otherwise 0.  |
@@ -197,7 +204,7 @@ API](/how-to-guides/query-modules/implement-query-modules.md#c-api).
 | enum [mgp_error](#variable-mgp-error) | **[mgp_local_time_sub_duration](#function-mgp-local-time-sub-duration)**(struct mgp_local_time * local_time, struct mgp_duration * dur, struct mgp_memory * memory, struct mgp_local_time ** result)<br/>Subtract a duration from the local time.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_local_time_diff](#function-mgp-local-time-diff)**(struct mgp_local_time * first, struct mgp_local_time * second, struct mgp_memory * memory, struct mgp_duration ** result)<br/>Get a duration between two local times.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_local_date_time_from_string](#function-mgp-local-date-time-from-string)**(const char * string, struct mgp_memory * memory, struct mgp_local_date_time ** local_date_time)<br/>Create a local date-time from a string following the ISO 8601 format.  |
-| enum [mgp_error](#variable-mgp-error) | **[mgp_local_date_time_from_parameters](#function-mgp-local-date-time-from-parameters)**(struct [mgp_local_date_time_parameters](/reference-guide/query-modules/api/c-api/classes/mgp_local_date_time_parameters.md) * parameters, struct mgp_memory * memory, struct mgp_local_date_time ** local_date_time)<br/>Create a local date-time from [mgp_local_date_time_parameters](/reference-guide/query-modules/api/c-api/classes/mgp_local_date_time_parameters.md).  |
+| enum [mgp_error](#variable-mgp-error) | **[mgp_local_date_time_from_parameters](#function-mgp-local-date-time-from-parameters)**(struct [mgp_local_date_time_parameters](#mgp_local_date_time_parameters) * parameters, struct mgp_memory * memory, struct mgp_local_date_time ** local_date_time)<br/>Create a local date-time from [mgp_local_date_time_parameters](#mgp_local_date_time_parameters).  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_local_date_time_copy](#function-mgp-local-date-time-copy)**(struct mgp_local_date_time * local_date_time, struct mgp_memory * memory, struct mgp_local_date_time ** result)<br/>Copy a mgp_local_date_time.  |
 | void | **[mgp_local_date_time_destroy](#function-mgp-local-date-time-destroy)**(struct mgp_local_date_time * local_date_time)<br/>Free the memory used by a mgp_local_date_time.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_local_date_time_equal](#function-mgp-local-date-time-equal)**(struct mgp_local_date_time * first, struct mgp_local_date_time * second, int * result)<br/>Result is non-zero if given local date-times are equal, otherwise 0.  |
@@ -215,7 +222,7 @@ API](/how-to-guides/query-modules/implement-query-modules.md#c-api).
 | enum [mgp_error](#variable-mgp-error) | **[mgp_local_date_time_sub_duration](#function-mgp-local-date-time-sub-duration)**(struct mgp_local_date_time * local_date_time, struct mgp_duration * dur, struct mgp_memory * memory, struct mgp_local_date_time ** result)<br/>Subtract a duration from the local date-time.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_local_date_time_diff](#function-mgp-local-date-time-diff)**(struct mgp_local_date_time * first, struct mgp_local_date_time * second, struct mgp_memory * memory, struct mgp_duration ** result)<br/>Get a duration between two local date-times.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_duration_from_string](#function-mgp-duration-from-string)**(const char * string, struct mgp_memory * memory, struct mgp_duration ** duration)<br/>Create a duration from a string following the ISO 8601 format.  |
-| enum [mgp_error](#variable-mgp-error) | **[mgp_duration_from_parameters](#function-mgp-duration-from-parameters)**(struct [mgp_duration_parameters](/reference-guide/query-modules/api/c-api/classes/mgp_duration_parameters.md) * parameters, struct mgp_memory * memory, struct mgp_duration ** duration)<br/>Create a duration from [mgp_duration_parameters](/reference-guide/query-modules/api/c-api/classes/mgp_duration_parameters.md).  |
+| enum [mgp_error](#variable-mgp-error) | **[mgp_duration_from_parameters](#function-mgp-duration-from-parameters)**(struct [mgp_duration_parameters](#mgp_duration_parameters) * parameters, struct mgp_memory * memory, struct mgp_duration ** duration)<br/>Create a duration from [mgp_duration_parameters](#mgp_duration_parameters).  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_duration_from_microseconds](#function-mgp-duration-from-microseconds)**(int64_t microseconds, struct mgp_memory * memory, struct mgp_duration ** duration)<br/>Create a duration from microseconds.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_duration_copy](#function-mgp-duration-copy)**(struct mgp_duration * duration, struct mgp_memory * memory, struct mgp_duration ** result)<br/>Copy a mgp_duration.  |
 | void | **[mgp_duration_destroy](#function-mgp-duration-destroy)**(struct mgp_duration * duration)<br/>Free the memory used by a mgp_duration.  |
@@ -276,41 +283,274 @@ API](/how-to-guides/query-modules/implement-query-modules.md#c-api).
 | | **[MGP_ERROR_VALUE_CONVERSION](#variable-mgp-error-value-conversion)**  |
 | | **[MGP_ERROR_SERIALIZATION_ERROR](#variable-mgp-error-serialization-error)**  |
 
-## Defines
+## Macros
+
+**[MGP_NODISCARD](#define-mgp-nodiscard)** 
+
+## Classes Documentation
+
+### mgp_label
+
+Label of a vertex.
+
+#### Public Attributes
+
+| Type           | Name           |
+| -------------- | -------------- |
+| const char * | **[name](#variable-name)** <br/>Name of the label as a NULL terminated character string.  |
+
+#### variable name {#variable-name}
+
+```cpp
+const char * name;
+```
+
+Name of the label as a NULL terminated character string.
+
+### mgp_edge_type
+
+Type of an edge.
+
+#### Public Attributes
+
+| Type           | Name           |
+| -------------- | -------------- |
+| const char * | **[name](#variable-name)** <br/>Name of the type as a NULL terminated character string.  |
+
+#### variable name {#variable-name}
+
+```cpp
+const char * name;
+```
+
+Name of the type as a NULL terminated character string.
+
+### mgp_property
+
+Reference to a named property value.
+
+#### Public Attributes
+
+| Type           | Name           |
+| -------------- | -------------- |
+| const char * | **[name](#variable-name)** <br/>Name (key) of a property as a NULL terminated string.  |
+| struct mgp_value * | **[value](#variable-value)** <br/>Value of the referenced property.  |
+
+#### variable name {#variable-name}
+
+```cpp
+const char * name;
+```
+
+Name (key) of a property as a NULL terminated string.
+
+#### variable value {#variable-value}
+
+```cpp
+struct mgp_value * value;
+```
+
+Value of the referenced property.
+
+### mgp_vertex_id
+
+ID of a vertex valid during a single query execution.
+
+#### Public Attributes
+
+| Type           | Name           |
+| -------------- | -------------- |
+| int64_t | **[as_int](#variable-as-int)**  |
+
+#### variable as_int {#variable-as-int}
+
+```cpp
+int64_t as_int;
+```
+
+### mgp_edge_id
+
+ID of an edge; valid during a single query execution.
+
+#### Public Attributes
+
+| Type           | Name           |
+| -------------- | -------------- |
+| int64_t | **[as_int](#variable-as-int)**  |
+
+#### variable as_int {#variable-as-int}
+
+```cpp
+int64_t as_int;
+```
+
+### mgp_date_parameters
+
+#### Public Attributes
+
+| Type           | Name           |
+| -------------- | -------------- |
+| int | **[year](#variable-year)**  |
+| int | **[month](#variable-month)**  |
+| int | **[day](#variable-day)**  |
+
+#### variable year {#variable-year}
+
+```cpp
+int year;
+```
+
+#### variable month {#variable-month}
+
+```cpp
+int month;
+```
+
+#### variable day {#variable-day}
+
+```cpp
+int day;
+```
+
+### mgp_local_time_parameters
+
+#### Public Attributes
+
+| Type           | Name           |
+| -------------- | -------------- |
+| int | **[hour](#variable-hour)**  |
+| int | **[minute](#variable-minute)**  |
+| int | **[second](#variable-second)**  |
+| int | **[millisecond](#variable-millisecond)**  |
+| int | **[microsecond](#variable-microsecond)**  |
+
+#### variable hour {#variable-hour}
+
+```cpp
+int hour;
+```
+
+
+#### variable minute {#variable-minute}
+
+```cpp
+int minute;
+```
+
+
+#### variable second {#variable-second}
+
+```cpp
+int second;
+```
+
+
+#### variable millisecond {#variable-millisecond}
+
+```cpp
+int millisecond;
+```
+
+
+#### variable microsecond {#variable-microsecond}
+
+```cpp
+int microsecond;
+```
+
+### mgp_local_date_time_parameters
+
+#### Public Attributes
+
+| Type           | Name           |
+| -------------- | -------------- |
+| struct [mgp_date_parameters](#mgp_date_parameters) * | **[date_parameters](#variable-date-parameters)**  |
+| struct [mgp_local_time_parameters](#mgp_local_time_parameters) * | **[local_time_parameters](#variable-local-time-parameters)**  |
+
+#### variable date_parameters {#variable-date-parameters}
+
+```cpp
+struct mgp_date_parameters * date_parameters;
+```
+
+
+#### variable local_time_parameters {#variable-local-time-parameters}
+
+```cpp
+struct mgp_local_time_parameters * local_time_parameters;
+```
+
+### mgp_duration_parameters
+
+#### Public Attributes
 
 |                | Name           |
 | -------------- | -------------- |
-|  | **[MGP_NODISCARD](#define-mgp-nodiscard)**  |
+| double | **[day](#variable-day)**  |
+| double | **[hour](#variable-hour)**  |
+| double | **[minute](#variable-minute)**  |
+| double | **[second](#variable-second)**  |
+| double | **[millisecond](#variable-millisecond)**  |
+| double | **[microsecond](#variable-microsecond)**  |
 
-## Detailed Description
+#### variable day {#variable-day}
 
+```cpp
+double day;
+```
 
-Provides API for usage in custom openCypher procedures
+#### variable hour {#variable-hour}
+
+```cpp
+double hour;
+```
+
+#### variable minute {#variable-minute}
+
+```cpp
+double minute;
+```
+
+#### variable second {#variable-second}
+
+```cpp
+double second;
+```
+
+#### variable millisecond {#variable-millisecond}
+
+```cpp
+double millisecond;
+```
+
+#### variable microsecond {#variable-microsecond}
+
+```cpp
+double microsecond;
+```
 
 ## Types Documentation
 
 ### enum mgp_value_type {#enum-mgp-value-type}
 
-| Enumerator | Value | Description |
-| ---------- | ----- | ----------- |
-| MGP_VALUE_TYPE_NULL | |   |
-| MGP_VALUE_TYPE_BOOL | |   |
-| MGP_VALUE_TYPE_INT | |   |
-| MGP_VALUE_TYPE_DOUBLE | |   |
-| MGP_VALUE_TYPE_STRING | |   |
-| MGP_VALUE_TYPE_LIST | |   |
-| MGP_VALUE_TYPE_MAP | |   |
-| MGP_VALUE_TYPE_VERTEX | |   |
-| MGP_VALUE_TYPE_EDGE | |   |
-| MGP_VALUE_TYPE_PATH | |   |
-| MGP_VALUE_TYPE_DATE | |   |
-| MGP_VALUE_TYPE_LOCAL_TIME | |   |
-| MGP_VALUE_TYPE_LOCAL_DATE_TIME | |   |
-| MGP_VALUE_TYPE_DURATION | |   |
-
-
-
 All available types that can be stored in a mgp_value.
+
+| Enumerator |
+| ---------- |
+| MGP_VALUE_TYPE_NULL |
+| MGP_VALUE_TYPE_BOOL |
+| MGP_VALUE_TYPE_INT |
+| MGP_VALUE_TYPE_DOUBLE |
+| MGP_VALUE_TYPE_STRING |
+| MGP_VALUE_TYPE_LIST |
+| MGP_VALUE_TYPE_MAP |
+| MGP_VALUE_TYPE_VERTEX |
+| MGP_VALUE_TYPE_EDGE |
+| MGP_VALUE_TYPE_PATH |
+| MGP_VALUE_TYPE_DATE |
+| MGP_VALUE_TYPE_LOCAL_TIME |
+| MGP_VALUE_TYPE_LOCAL_DATE_TIME |
+| MGP_VALUE_TYPE_DURATION |
 
 ### typedef mgp_proc_cb {#typedef-mgp-proc-cb}
 
@@ -337,7 +577,7 @@ Passed in arguments will not live longer than the callback's execution. Therefor
 
 ## Functions Documentation
 
-### function mgp_alloc {#function-mgp-alloc}
+### mgp_alloc {#function-mgp-alloc}
 
 ```cpp
 enum mgp_error mgp_alloc(
@@ -352,7 +592,7 @@ Allocate a block of memory with given size in bytes.
 Unlike malloc, this function is not thread-safe. `size_in_bytes` must be greater than 0. The resulting pointer must be freed with mgp_free. MGP_ERROR_UNABLE_TO_ALLOCATE is returned if unable to serve the requested allocation.
 
 
-### function mgp_aligned_alloc {#function-mgp-aligned-alloc}
+### mgp_aligned_alloc {#function-mgp-aligned-alloc}
 
 ```cpp
 enum mgp_error mgp_aligned_alloc(
@@ -368,7 +608,7 @@ Allocate an aligned block of memory with given size in bytes.
 Unlike malloc and aligned_alloc, this function is not thread-safe. `size_in_bytes` must be greater than 0. `alignment` must be a power of 2 value. The resulting pointer must be freed with mgp_free. MGP_ERROR_UNABLE_TO_ALLOCATE is returned if unable to serve the requested allocation.
 
 
-### function mgp_free {#function-mgp-free}
+### mgp_free {#function-mgp-free}
 
 ```cpp
 void mgp_free(
@@ -382,7 +622,7 @@ Deallocate an allocation from mgp_alloc or mgp_aligned_alloc.
 Unlike free, this function is not thread-safe. If `ptr` is NULL, this function does nothing. The behavior is undefined if `ptr` is not a value returned from a prior mgp_alloc or mgp_aligned_alloc call with the corresponding `memory`.
 
 
-### function mgp_global_alloc {#function-mgp-global-alloc}
+### mgp_global_alloc {#function-mgp-global-alloc}
 
 ```cpp
 enum mgp_error mgp_global_alloc(
@@ -396,7 +636,7 @@ Allocate a global block of memory with given size in bytes.
 This function can be used to allocate global memory that persists beyond a single invocation of mgp_main. The resulting pointer must be freed with mgp_global_free. MGP_ERROR_UNABLE_TO_ALLOCATE is returned if unable to serve the requested allocation.
 
 
-### function mgp_global_aligned_alloc {#function-mgp-global-aligned-alloc}
+### mgp_global_aligned_alloc {#function-mgp-global-aligned-alloc}
 
 ```cpp
 enum mgp_error mgp_global_aligned_alloc(
@@ -411,7 +651,7 @@ Allocate an aligned global block of memory with given size in bytes.
 This function can be used to allocate global memory that persists beyond a single invocation of mgp_main. The resulting pointer must be freed with mgp_global_free. MGP_ERROR_UNABLE_TO_ALLOCATE is returned if unable to serve the requested allocation.
 
 
-### function mgp_global_free {#function-mgp-global-free}
+### mgp_global_free {#function-mgp-global-free}
 
 ```cpp
 void mgp_global_free(
@@ -424,7 +664,7 @@ Deallocate an allocation from mgp_global_alloc or mgp_global_aligned_alloc.
 If `ptr` is NULL, this function does nothing. The behavior is undefined if `ptr` is not a value returned from a prior [mgp_global_alloc()](#function-mgp-global-alloc) or [mgp_global_aligned_alloc()](#function-mgp-global-aligned-alloc).
 
 
-### function mgp_value_destroy {#function-mgp-value-destroy}
+### mgp_value_destroy {#function-mgp-value-destroy}
 
 ```cpp
 void mgp_value_destroy(
@@ -434,7 +674,7 @@ void mgp_value_destroy(
 
 Free the memory used by the given mgp_value instance.
 
-### function mgp_value_make_null {#function-mgp-value-make-null}
+### mgp_value_make_null {#function-mgp-value-make-null}
 
 ```cpp
 enum mgp_error mgp_value_make_null(
@@ -448,7 +688,7 @@ Construct a value representing `null` in openCypher.
 You need to free the instance through mgp_value_destroy. MGP_ERROR_UNABLE_TO_ALLOCATE is returned if unable to allocate a mgp_value.
 
 
-### function mgp_value_make_bool {#function-mgp-value-make-bool}
+### mgp_value_make_bool {#function-mgp-value-make-bool}
 
 ```cpp
 enum mgp_error mgp_value_make_bool(
@@ -463,7 +703,7 @@ Construct a boolean value.
 Non-zero values represent `true`, while zero represents `false`. You need to free the instance through mgp_value_destroy. MGP_ERROR_UNABLE_TO_ALLOCATE is returned if unable to allocate a mgp_value.
 
 
-### function mgp_value_make_int {#function-mgp-value-make-int}
+### mgp_value_make_int {#function-mgp-value-make-int}
 
 ```cpp
 enum mgp_error mgp_value_make_int(
@@ -478,7 +718,7 @@ Construct an integer value.
 You need to free the instance through mgp_value_destroy. MGP_ERROR_UNABLE_TO_ALLOCATE is returned if unable to allocate a mgp_value.
 
 
-### function mgp_value_make_double {#function-mgp-value-make-double}
+### mgp_value_make_double {#function-mgp-value-make-double}
 
 ```cpp
 enum mgp_error mgp_value_make_double(
@@ -493,7 +733,7 @@ Construct a double floating point value.
 You need to free the instance through mgp_value_destroy. MGP_ERROR_UNABLE_TO_ALLOCATE is returned if unable to allocate a mgp_value.
 
 
-### function mgp_value_make_string {#function-mgp-value-make-string}
+### mgp_value_make_string {#function-mgp-value-make-string}
 
 ```cpp
 enum mgp_error mgp_value_make_string(
@@ -508,7 +748,7 @@ Construct a character string value from a NULL terminated string.
 You need to free the instance through mgp_value_destroy. MGP_ERROR_UNABLE_TO_ALLOCATE is returned if unable to allocate a mgp_value.
 
 
-### function mgp_value_make_list {#function-mgp-value-make-list}
+### mgp_value_make_list {#function-mgp-value-make-list}
 
 ```cpp
 enum mgp_error mgp_value_make_list(
@@ -522,7 +762,7 @@ Create a mgp_value storing a mgp_list.
 You need to free the instance through mgp_value_destroy. The ownership of the list is given to the created mgp_value and destroying the mgp_value will destroy the mgp_list. Therefore, if a mgp_value is successfully created you must not call mgp_list_destroy on the given list. MGP_ERROR_UNABLE_TO_ALLOCATE is returned if unable to allocate a mgp_value.
 
 
-### function mgp_value_make_map {#function-mgp-value-make-map}
+### mgp_value_make_map {#function-mgp-value-make-map}
 
 ```cpp
 enum mgp_error mgp_value_make_map(
@@ -536,7 +776,7 @@ Create a mgp_value storing a mgp_map.
 You need to free the instance through mgp_value_destroy. The ownership of the map is given to the created mgp_value and destroying the mgp_value will destroy the mgp_map. Therefore, if a mgp_value is successfully created you must not call mgp_map_destroy on the given map. MGP_ERROR_UNABLE_TO_ALLOCATE is returned if unable to allocate a mgp_value.
 
 
-### function mgp_value_make_vertex {#function-mgp-value-make-vertex}
+### mgp_value_make_vertex {#function-mgp-value-make-vertex}
 
 ```cpp
 enum mgp_error mgp_value_make_vertex(
@@ -550,7 +790,7 @@ Create a mgp_value storing a mgp_vertex.
 You need to free the instance through mgp_value_destroy. The ownership of the vertex is given to the created mgp_value and destroying the mgp_value will destroy the mgp_vertex. Therefore, if a mgp_value is successfully created you must not call mgp_vertex_destroy on the given vertex. MGP_ERROR_UNABLE_TO_ALLOCATE is returned if unable to allocate a mgp_value.
 
 
-### function mgp_value_make_edge {#function-mgp-value-make-edge}
+### mgp_value_make_edge {#function-mgp-value-make-edge}
 
 ```cpp
 enum mgp_error mgp_value_make_edge(
@@ -564,7 +804,7 @@ Create a mgp_value storing a mgp_edge.
 You need to free the instance through mgp_value_destroy. The ownership of the edge is given to the created mgp_value and destroying the mgp_value will destroy the mgp_edge. Therefore, if a mgp_value is successfully created you must not call mgp_edge_destroy on the given edge. MGP_ERROR_UNABLE_TO_ALLOCATE is returned if unable to allocate a mgp_value.
 
 
-### function mgp_value_make_path {#function-mgp-value-make-path}
+### mgp_value_make_path {#function-mgp-value-make-path}
 
 ```cpp
 enum mgp_error mgp_value_make_path(
@@ -578,7 +818,7 @@ Create a mgp_value storing a mgp_path.
 You need to free the instance through mgp_value_destroy. The ownership of the path is given to the created mgp_value and destroying the mgp_value will destroy the mgp_path. Therefore, if a mgp_value is successfully created you must not call mgp_path_destroy on the given path. MGP_ERROR_UNABLE_TO_ALLOCATE is returned if unable to allocate a mgp_value.
 
 
-### function mgp_value_make_date {#function-mgp-value-make-date}
+### mgp_value_make_date {#function-mgp-value-make-date}
 
 ```cpp
 enum mgp_error mgp_value_make_date(
@@ -592,7 +832,7 @@ Create a mgp_value storing a mgp_date.
 You need to free the instance through mgp_value_destroy. The ownership of the date is transferred to the created mgp_value and destroying the mgp_value will destroy the mgp_date. Therefore, if a mgp_value is successfully created you must not call mgp_date_destroy on the given date. MGP_ERROR_UNABLE_TO_ALLOCATE is returned if unable to allocate a mgp_value.
 
 
-### function mgp_value_make_local_time {#function-mgp-value-make-local-time}
+### mgp_value_make_local_time {#function-mgp-value-make-local-time}
 
 ```cpp
 enum mgp_error mgp_value_make_local_time(
@@ -606,7 +846,7 @@ Create a mgp_value storing a mgp_local_time.
 You need to free the instance through mgp_value_destroy. The ownership of the local time is transferred to the created mgp_value and destroying the mgp_value will destroy the mgp_local_time. Therefore, if a mgp_value is successfully created you must not call mgp_local_time_destroy on the given local time. MGP_ERROR_UNABLE_TO_ALLOCATE is returned if unable to allocate a mgp_value.
 
 
-### function mgp_value_make_local_date_time {#function-mgp-value-make-local-date-time}
+### mgp_value_make_local_date_time {#function-mgp-value-make-local-date-time}
 
 ```cpp
 enum mgp_error mgp_value_make_local_date_time(
@@ -620,7 +860,7 @@ Create a mgp_value storing a mgp_local_date_time.
 You need to free the instance through mgp_value_destroy. The ownership of the local date-time is transferred to the created mgp_value and destroying the mgp_value will destroy the mgp_local_date_time. Therefore, if a mgp_value is successfully created you must not call mgp_local_date_time_destroy on the given local date-time. MGP_ERROR_UNABLE_TO_ALLOCATE is returned if unable to allocate a mgp_value.
 
 
-### function mgp_value_make_duration {#function-mgp-value-make-duration}
+### mgp_value_make_duration {#function-mgp-value-make-duration}
 
 ```cpp
 enum mgp_error mgp_value_make_duration(
@@ -634,7 +874,7 @@ Create a mgp_value storing a mgp_duration.
 You need to free the instance through mgp_value_destroy. The ownership of the duration is transferred to the created mgp_value and destroying the mgp_value will destroy the mgp_duration. Therefore, if a mgp_value is successfully created you must not call mgp_duration_destroy on the given duration. MGP_ERROR_UNABLE_TO_ALLOCATE is returned if unable to allocate a mgp_value.
 
 
-### function mgp_value_get_type {#function-mgp-value-get-type}
+### mgp_value_get_type {#function-mgp-value-get-type}
 
 ```cpp
 enum mgp_error mgp_value_get_type(
@@ -648,7 +888,7 @@ Get the type of the value contained in mgp_value.
 Current implementation always returns without errors.
 
 
-### function mgp_value_is_null {#function-mgp-value-is-null}
+### mgp_value_is_null {#function-mgp-value-is-null}
 
 ```cpp
 enum mgp_error mgp_value_is_null(
@@ -662,7 +902,7 @@ Result is non-zero if the given mgp_value represents `null`.
 Current implementation always returns without errors.
 
 
-### function mgp_value_is_bool {#function-mgp-value-is-bool}
+### mgp_value_is_bool {#function-mgp-value-is-bool}
 
 ```cpp
 enum mgp_error mgp_value_is_bool(
@@ -676,7 +916,7 @@ Result is non-zero if the given mgp_value stores a boolean.
 Current implementation always returns without errors.
 
 
-### function mgp_value_is_int {#function-mgp-value-is-int}
+### mgp_value_is_int {#function-mgp-value-is-int}
 
 ```cpp
 enum mgp_error mgp_value_is_int(
@@ -690,7 +930,7 @@ Result is non-zero if the given mgp_value stores an integer.
 Current implementation always returns without errors.
 
 
-### function mgp_value_is_double {#function-mgp-value-is-double}
+### mgp_value_is_double {#function-mgp-value-is-double}
 
 ```cpp
 enum mgp_error mgp_value_is_double(
@@ -704,7 +944,7 @@ Result is non-zero if the given mgp_value stores a double floating-point.
 Current implementation always returns without errors.
 
 
-### function mgp_value_is_string {#function-mgp-value-is-string}
+### mgp_value_is_string {#function-mgp-value-is-string}
 
 ```cpp
 enum mgp_error mgp_value_is_string(
@@ -718,7 +958,7 @@ Result is non-zero if the given mgp_value stores a character string.
 Current implementation always returns without errors.
 
 
-### function mgp_value_is_list {#function-mgp-value-is-list}
+### mgp_value_is_list {#function-mgp-value-is-list}
 
 ```cpp
 enum mgp_error mgp_value_is_list(
@@ -732,7 +972,7 @@ Result is non-zero if the given mgp_value stores a list of values.
 Current implementation always returns without errors.
 
 
-### function mgp_value_is_map {#function-mgp-value-is-map}
+### mgp_value_is_map {#function-mgp-value-is-map}
 
 ```cpp
 enum mgp_error mgp_value_is_map(
@@ -746,7 +986,7 @@ Result is non-zero if the given mgp_value stores a map of values.
 Current implementation always returns without errors.
 
 
-### function mgp_value_is_vertex {#function-mgp-value-is-vertex}
+### mgp_value_is_vertex {#function-mgp-value-is-vertex}
 
 ```cpp
 enum mgp_error mgp_value_is_vertex(
@@ -760,7 +1000,7 @@ Result is non-zero if the given mgp_value stores a vertex.
 Current implementation always returns without errors.
 
 
-### function mgp_value_is_edge {#function-mgp-value-is-edge}
+### mgp_value_is_edge {#function-mgp-value-is-edge}
 
 ```cpp
 enum mgp_error mgp_value_is_edge(
@@ -774,7 +1014,7 @@ Result is non-zero if the given mgp_value stores an edge.
 Current implementation always returns without errors.
 
 
-### function mgp_value_is_path {#function-mgp-value-is-path}
+### mgp_value_is_path {#function-mgp-value-is-path}
 
 ```cpp
 enum mgp_error mgp_value_is_path(
@@ -788,7 +1028,7 @@ Result is non-zero if the given mgp_value stores a path.
 Current implementation always returns without errors.
 
 
-### function mgp_value_is_date {#function-mgp-value-is-date}
+### mgp_value_is_date {#function-mgp-value-is-date}
 
 ```cpp
 enum mgp_error mgp_value_is_date(
@@ -802,7 +1042,7 @@ Result is non-zero if the given mgp_value stores a date.
 Current implementation always returns without errors.
 
 
-### function mgp_value_is_local_time {#function-mgp-value-is-local-time}
+### mgp_value_is_local_time {#function-mgp-value-is-local-time}
 
 ```cpp
 enum mgp_error mgp_value_is_local_time(
@@ -816,7 +1056,7 @@ Result is non-zero if the given mgp_value stores a local time.
 Current implementation always returns without errors.
 
 
-### function mgp_value_is_local_date_time {#function-mgp-value-is-local-date-time}
+### mgp_value_is_local_date_time {#function-mgp-value-is-local-date-time}
 
 ```cpp
 enum mgp_error mgp_value_is_local_date_time(
@@ -830,7 +1070,7 @@ Result is non-zero if the given mgp_value stores a local date-time.
 Current implementation always returns without errors.
 
 
-### function mgp_value_is_duration {#function-mgp-value-is-duration}
+### mgp_value_is_duration {#function-mgp-value-is-duration}
 
 ```cpp
 enum mgp_error mgp_value_is_duration(
@@ -844,7 +1084,7 @@ Result is non-zero if the given mgp_value stores a duration.
 Current implementation always returns without errors.
 
 
-### function mgp_value_get_bool {#function-mgp-value-get-bool}
+### mgp_value_get_bool {#function-mgp-value-get-bool}
 
 ```cpp
 enum mgp_error mgp_value_get_bool(
@@ -858,7 +1098,7 @@ Get the contained boolean value.
 Non-zero values represent `true`, while zero represents `false`. Result is undefined if mgp_value does not contain the expected type. Current implementation always returns without errors.
 
 
-### function mgp_value_get_int {#function-mgp-value-get-int}
+### mgp_value_get_int {#function-mgp-value-get-int}
 
 ```cpp
 enum mgp_error mgp_value_get_int(
@@ -872,7 +1112,7 @@ Get the contained integer.
 Result is undefined if mgp_value does not contain the expected type. Current implementation always returns without errors.
 
 
-### function mgp_value_get_double {#function-mgp-value-get-double}
+### mgp_value_get_double {#function-mgp-value-get-double}
 
 ```cpp
 enum mgp_error mgp_value_get_double(
@@ -886,7 +1126,7 @@ Get the contained double floating-point.
 Result is undefined if mgp_value does not contain the expected type. Current implementation always returns without errors.
 
 
-### function mgp_value_get_string {#function-mgp-value-get-string}
+### mgp_value_get_string {#function-mgp-value-get-string}
 
 ```cpp
 enum mgp_error mgp_value_get_string(
@@ -900,7 +1140,7 @@ Get the contained character string.
 Result is undefined if mgp_value does not contain the expected type. Current implementation always returns without errors.
 
 
-### function mgp_value_get_list {#function-mgp-value-get-list}
+### mgp_value_get_list {#function-mgp-value-get-list}
 
 ```cpp
 enum mgp_error mgp_value_get_list(
@@ -914,7 +1154,7 @@ Get the contained list of values.
 Result is undefined if mgp_value does not contain the expected type. Current implementation always returns without errors.
 
 
-### function mgp_value_get_map {#function-mgp-value-get-map}
+### mgp_value_get_map {#function-mgp-value-get-map}
 
 ```cpp
 enum mgp_error mgp_value_get_map(
@@ -928,7 +1168,7 @@ Get the contained map of values.
 Result is undefined if mgp_value does not contain the expected type. Current implementation always returns without errors.
 
 
-### function mgp_value_get_vertex {#function-mgp-value-get-vertex}
+### mgp_value_get_vertex {#function-mgp-value-get-vertex}
 
 ```cpp
 enum mgp_error mgp_value_get_vertex(
@@ -942,7 +1182,7 @@ Get the contained vertex.
 Result is undefined if mgp_value does not contain the expected type. Current implementation always returns without errors.
 
 
-### function mgp_value_get_edge {#function-mgp-value-get-edge}
+### mgp_value_get_edge {#function-mgp-value-get-edge}
 
 ```cpp
 enum mgp_error mgp_value_get_edge(
@@ -956,7 +1196,7 @@ Get the contained edge.
 Result is undefined if mgp_value does not contain the expected type. Current implementation always returns without errors.
 
 
-### function mgp_value_get_path {#function-mgp-value-get-path}
+### mgp_value_get_path {#function-mgp-value-get-path}
 
 ```cpp
 enum mgp_error mgp_value_get_path(
@@ -970,7 +1210,7 @@ Get the contained path.
 Result is undefined if mgp_value does not contain the expected type. Current implementation always returns without errors.
 
 
-### function mgp_value_get_date {#function-mgp-value-get-date}
+### mgp_value_get_date {#function-mgp-value-get-date}
 
 ```cpp
 enum mgp_error mgp_value_get_date(
@@ -984,7 +1224,7 @@ Get the contained date.
 Result is undefined if mgp_value does not contain the expected type. Current implementation always returns without errors.
 
 
-### function mgp_value_get_local_time {#function-mgp-value-get-local-time}
+### mgp_value_get_local_time {#function-mgp-value-get-local-time}
 
 ```cpp
 enum mgp_error mgp_value_get_local_time(
@@ -998,7 +1238,7 @@ Get the contained local time.
 Result is undefined if mgp_value does not contain the expected type. Current implementation always returns without errors.
 
 
-### function mgp_value_get_local_date_time {#function-mgp-value-get-local-date-time}
+### mgp_value_get_local_date_time {#function-mgp-value-get-local-date-time}
 
 ```cpp
 enum mgp_error mgp_value_get_local_date_time(
@@ -1012,7 +1252,7 @@ Get the contained local date-time.
 Result is undefined if mgp_value does not contain the expected type. Current implementation always returns without errors.
 
 
-### function mgp_value_get_duration {#function-mgp-value-get-duration}
+### mgp_value_get_duration {#function-mgp-value-get-duration}
 
 ```cpp
 enum mgp_error mgp_value_get_duration(
@@ -1026,7 +1266,7 @@ Get the contained duration.
 Result is undefined if mgp_value does not contain the expected type. Current implementation always returns without errors.
 
 
-### function mgp_list_make_empty {#function-mgp-list-make-empty}
+### mgp_list_make_empty {#function-mgp-list-make-empty}
 
 ```cpp
 enum mgp_error mgp_list_make_empty(
@@ -1041,7 +1281,7 @@ Create an empty list with given capacity.
 You need to free the created instance with mgp_list_destroy. The created list will have allocated enough memory for `capacity` elements of mgp_value, but it will not contain any elements. Therefore, mgp_list_size will return 0. MGP_ERROR_UNABLE_TO_ALLOCATE is returned if unable to allocate a mgp_list.
 
 
-### function mgp_list_destroy {#function-mgp-list-destroy}
+### mgp_list_destroy {#function-mgp-list-destroy}
 
 ```cpp
 void mgp_list_destroy(
@@ -1051,7 +1291,7 @@ void mgp_list_destroy(
 
 Free the memory used by the given mgp_list and contained elements.
 
-### function mgp_list_append {#function-mgp-list-append}
+### mgp_list_append {#function-mgp-list-append}
 
 ```cpp
 enum mgp_error mgp_list_append(
@@ -1065,7 +1305,7 @@ Append a copy of mgp_value to mgp_list if capacity allows.
 The list copies the given value and therefore does not take ownership of the original value. You still need to call mgp_value_destroy to free the original value. Return MGP_ERROR_INSUFFICIENT_BUFFER if there's no capacity. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_value.
 
 
-### function mgp_list_append_extend {#function-mgp-list-append-extend}
+### mgp_list_append_extend {#function-mgp-list-append-extend}
 
 ```cpp
 enum mgp_error mgp_list_append_extend(
@@ -1079,7 +1319,7 @@ Append a copy of mgp_value to mgp_list increasing capacity if needed.
 The list copies the given value and therefore does not take ownership of the original value. You still need to call mgp_value_destroy to free the original value. In case of a capacity change, the previously contained elements will move in memory and any references to them will be invalid. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_value.
 
 
-### function mgp_list_size {#function-mgp-list-size}
+### mgp_list_size {#function-mgp-list-size}
 
 ```cpp
 enum mgp_error mgp_list_size(
@@ -1093,7 +1333,7 @@ Get the number of elements stored in mgp_list.
 Current implementation always returns without errors.
 
 
-### function mgp_list_capacity {#function-mgp-list-capacity}
+### mgp_list_capacity {#function-mgp-list-capacity}
 
 ```cpp
 enum mgp_error mgp_list_capacity(
@@ -1107,7 +1347,7 @@ Get the total number of elements for which there's already allocated memory in m
 Current implementation always returns without errors.
 
 
-### function mgp_list_at {#function-mgp-list-at}
+### mgp_list_at {#function-mgp-list-at}
 
 ```cpp
 enum mgp_error mgp_list_at(
@@ -1122,7 +1362,7 @@ Get the element in mgp_list at given position.
 MGP_ERROR_OUT_OF_RANGE is returned if the index is not within mgp_list_size.
 
 
-### function mgp_map_make_empty {#function-mgp-map-make-empty}
+### mgp_map_make_empty {#function-mgp-map-make-empty}
 
 ```cpp
 enum mgp_error mgp_map_make_empty(
@@ -1136,7 +1376,7 @@ Create an empty map of character strings to mgp_value instances.
 You need to free the created instance with mgp_map_destroy. MGP_ERROR_UNABLE_TO_ALLOCATE is returned if unable to allocate a mgp_map.
 
 
-### function mgp_map_destroy {#function-mgp-map-destroy}
+### mgp_map_destroy {#function-mgp-map-destroy}
 
 ```cpp
 void mgp_map_destroy(
@@ -1146,7 +1386,7 @@ void mgp_map_destroy(
 
 Free the memory used by the given mgp_map and contained items.
 
-### function mgp_map_insert {#function-mgp-map-insert}
+### mgp_map_insert {#function-mgp-map-insert}
 
 ```cpp
 enum mgp_error mgp_map_insert(
@@ -1161,7 +1401,7 @@ Insert a new mapping from a NULL terminated character string to a value.
 If a mapping with the same key already exists, it is _not_ replaced. In case of insertion, both the string and the value are copied into the map. Therefore, the map does not take ownership of the original key nor value, so you still need to free their memory explicitly. Return MGP_ERROR_UNABLE_TO_ALLOCATE is returned if unable to allocate for insertion. Return MGP_ERROR_KEY_ALREADY_EXISTS if a previous mapping already exists.
 
 
-### function mgp_map_size {#function-mgp-map-size}
+### mgp_map_size {#function-mgp-map-size}
 
 ```cpp
 enum mgp_error mgp_map_size(
@@ -1175,7 +1415,7 @@ Get the number of items stored in mgp_map.
 Current implementation always returns without errors.
 
 
-### function mgp_map_at {#function-mgp-map-at}
+### mgp_map_at {#function-mgp-map-at}
 
 ```cpp
 enum mgp_error mgp_map_at(
@@ -1190,7 +1430,7 @@ Get the mapped mgp_value to the given character string.
 Result is NULL if no mapping exists.
 
 
-### function mgp_map_item_key {#function-mgp-map-item-key}
+### mgp_map_item_key {#function-mgp-map-item-key}
 
 ```cpp
 enum mgp_error mgp_map_item_key(
@@ -1201,7 +1441,7 @@ enum mgp_error mgp_map_item_key(
 
 Get the key of the mapped item.
 
-### function mgp_map_item_value {#function-mgp-map-item-value}
+### mgp_map_item_value {#function-mgp-map-item-value}
 
 ```cpp
 enum mgp_error mgp_map_item_value(
@@ -1212,7 +1452,7 @@ enum mgp_error mgp_map_item_value(
 
 Get the value of the mapped item.
 
-### function mgp_map_iter_items {#function-mgp-map-iter-items}
+### mgp_map_iter_items {#function-mgp-map-iter-items}
 
 ```cpp
 enum mgp_error mgp_map_iter_items(
@@ -1227,7 +1467,7 @@ Start iterating over items contained in the given map.
 The resulting mgp_map_items_iterator needs to be deallocated with mgp_map_items_iterator_destroy. MGP_ERROR_UNABLE_TO_ALLOCATE is returned if unable to allocate a mgp_map_items_iterator.
 
 
-### function mgp_map_items_iterator_destroy {#function-mgp-map-items-iterator-destroy}
+### mgp_map_items_iterator_destroy {#function-mgp-map-items-iterator-destroy}
 
 ```cpp
 void mgp_map_items_iterator_destroy(
@@ -1237,7 +1477,7 @@ void mgp_map_items_iterator_destroy(
 
 Deallocate memory used by mgp_map_items_iterator.
 
-### function mgp_map_items_iterator_get {#function-mgp-map-items-iterator-get}
+### mgp_map_items_iterator_get {#function-mgp-map-items-iterator-get}
 
 ```cpp
 enum mgp_error mgp_map_items_iterator_get(
@@ -1251,7 +1491,7 @@ Get the current item pointed to by the iterator.
 When the mgp_map_items_iterator_next is invoked, the returned pointer to mgp_map_item becomes invalid. On the other hand, pointers obtained with mgp_map_item_key and mgp_map_item_value remain valid throughout the lifetime of a map. Therefore, you can store the key as well as the value before, and use them after invoking mgp_map_items_iterator_next. Result is NULL if the end of the iteration has been reached.
 
 
-### function mgp_map_items_iterator_next {#function-mgp-map-items-iterator-next}
+### mgp_map_items_iterator_next {#function-mgp-map-items-iterator-next}
 
 ```cpp
 enum mgp_error mgp_map_items_iterator_next(
@@ -1265,7 +1505,7 @@ Advance the iterator to the next item stored in map and return it.
 The previous pointer obtained through mgp_map_items_iterator_get will be invalidated, but the pointers to key and value will remain valid. Result is NULL if the end of the iteration has been reached.
 
 
-### function mgp_path_make_with_start {#function-mgp-path-make-with-start}
+### mgp_path_make_with_start {#function-mgp-path-make-with-start}
 
 ```cpp
 enum mgp_error mgp_path_make_with_start(
@@ -1280,7 +1520,7 @@ Create a path with the copy of the given starting vertex.
 You need to free the created instance with mgp_path_destroy. MGP_ERROR_UNABLE_TO_ALLOCATE is returned if unable to allocate a mgp_path.
 
 
-### function mgp_path_copy {#function-mgp-path-copy}
+### mgp_path_copy {#function-mgp-path-copy}
 
 ```cpp
 enum mgp_error mgp_path_copy(
@@ -1295,7 +1535,7 @@ Copy a mgp_path.
 Returned pointer must be freed with mgp_path_destroy. MGP_ERROR_UNABLE_TO_ALLOCATE is returned if unable to allocate a mgp_path.
 
 
-### function mgp_path_destroy {#function-mgp-path-destroy}
+### mgp_path_destroy {#function-mgp-path-destroy}
 
 ```cpp
 void mgp_path_destroy(
@@ -1305,7 +1545,7 @@ void mgp_path_destroy(
 
 Free the memory used by the given mgp_path and contained vertices and edges.
 
-### function mgp_path_expand {#function-mgp-path-expand}
+### mgp_path_expand {#function-mgp-path-expand}
 
 ```cpp
 enum mgp_error mgp_path_expand(
@@ -1319,7 +1559,7 @@ Append an edge continuing from the last vertex on the path.
 The edge is copied into the path. Therefore, the path does not take ownership of the original edge, so you still need to free the edge memory explicitly. The last vertex on the path will become the other endpoint of the given edge, as continued from the current last vertex. Return MGP_ERROR_LOGIC_ERROR if the current last vertex in the path is not part of the given edge. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate memory for path extension.
 
 
-### function mgp_path_size {#function-mgp-path-size}
+### mgp_path_size {#function-mgp-path-size}
 
 ```cpp
 enum mgp_error mgp_path_size(
@@ -1333,7 +1573,7 @@ Get the number of edges in a mgp_path.
 Current implementation always returns without errors.
 
 
-### function mgp_path_vertex_at {#function-mgp-path-vertex-at}
+### mgp_path_vertex_at {#function-mgp-path-vertex-at}
 
 ```cpp
 enum mgp_error mgp_path_vertex_at(
@@ -1348,7 +1588,7 @@ Get the vertex from a path at given index.
 The valid index range is [0, mgp_path_size]. MGP_ERROR_OUT_OF_RANGE is returned if index is out of range.
 
 
-### function mgp_path_edge_at {#function-mgp-path-edge-at}
+### mgp_path_edge_at {#function-mgp-path-edge-at}
 
 ```cpp
 enum mgp_error mgp_path_edge_at(
@@ -1363,7 +1603,7 @@ Get the edge from a path at given index.
 The valid index range is [0, mgp_path_size - 1]. MGP_ERROR_OUT_OF_RANGE is returned if index is out of range.
 
 
-### function mgp_path_equal {#function-mgp-path-equal}
+### mgp_path_equal {#function-mgp-path-equal}
 
 ```cpp
 enum mgp_error mgp_path_equal(
@@ -1375,7 +1615,7 @@ enum mgp_error mgp_path_equal(
 
 Result is non-zero if given paths are equal, otherwise 0.
 
-### function mgp_result_set_error_msg {#function-mgp-result-set-error-msg}
+### mgp_result_set_error_msg {#function-mgp-result-set-error-msg}
 
 ```cpp
 enum mgp_error mgp_result_set_error_msg(
@@ -1389,7 +1629,7 @@ Set the error as the result of the procedure.
 Return MGP_ERROR_UNABLE_TO_ALLOCATE ff there's no memory for copying the error message.
 
 
-### function mgp_result_new_record {#function-mgp-result-new-record}
+### mgp_result_new_record {#function-mgp-result-new-record}
 
 ```cpp
 enum mgp_error mgp_result_new_record(
@@ -1403,7 +1643,7 @@ Create a new record for results.
 The previously obtained mgp_result_record pointer is no longer valid, and you must not use it. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_result_record.
 
 
-### function mgp_result_record_insert {#function-mgp-result-record-insert}
+### mgp_result_record_insert {#function-mgp-result-record-insert}
 
 ```cpp
 enum mgp_error mgp_result_record_insert(
@@ -1418,7 +1658,7 @@ Assign a value to a field in the given record.
 Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate memory to copy the mgp_value to mgp_result_record. Return MGP_ERROR_OUT_OF_RANGE if there is no field named `field_name`. Return MGP_ERROR_LOGIC_ERROR `val` does not satisfy the type of the field name `field_name`.
 
 
-### function mgp_properties_iterator_destroy {#function-mgp-properties-iterator-destroy}
+### mgp_properties_iterator_destroy {#function-mgp-properties-iterator-destroy}
 
 ```cpp
 void mgp_properties_iterator_destroy(
@@ -1428,7 +1668,7 @@ void mgp_properties_iterator_destroy(
 
 Free the memory used by a mgp_properties_iterator.
 
-### function mgp_properties_iterator_get {#function-mgp-properties-iterator-get}
+### mgp_properties_iterator_get {#function-mgp-properties-iterator-get}
 
 ```cpp
 enum mgp_error mgp_properties_iterator_get(
@@ -1439,10 +1679,10 @@ enum mgp_error mgp_properties_iterator_get(
 
 Get the current property pointed to by the iterator.
 
-When the mgp_properties_iterator_next is invoked, the previous [mgp_property](/reference-guide/query-modules/api/c-api/classes/mgp_property.md) is invalidated and its value must not be used. Result is NULL if the end of the iteration has been reached.
+When the mgp_properties_iterator_next is invoked, the previous [mgp_property](#mgp_property) is invalidated and its value must not be used. Result is NULL if the end of the iteration has been reached.
 
 
-### function mgp_properties_iterator_next {#function-mgp-properties-iterator-next}
+### mgp_properties_iterator_next {#function-mgp-properties-iterator-next}
 
 ```cpp
 enum mgp_error mgp_properties_iterator_next(
@@ -1453,10 +1693,10 @@ enum mgp_error mgp_properties_iterator_next(
 
 Advance the iterator to the next property and return it.
 
-The previous [mgp_property](/reference-guide/query-modules/api/c-api/classes/mgp_property.md) obtained through mgp_properties_iterator_get will be invalidated, and you must not use its value. Result is NULL if the end of the iteration has been reached. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a [mgp_property](/reference-guide/query-modules/api/c-api/classes/mgp_property.md).
+The previous [mgp_property](#mgp_property) obtained through mgp_properties_iterator_get will be invalidated, and you must not use its value. Result is NULL if the end of the iteration has been reached. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a [mgp_property](#mgp_property).
 
 
-### function mgp_edges_iterator_destroy {#function-mgp-edges-iterator-destroy}
+### mgp_edges_iterator_destroy {#function-mgp-edges-iterator-destroy}
 
 ```cpp
 void mgp_edges_iterator_destroy(
@@ -1466,7 +1706,7 @@ void mgp_edges_iterator_destroy(
 
 Free the memory used by a mgp_edges_iterator.
 
-### function mgp_vertex_get_id {#function-mgp-vertex-get-id}
+### mgp_vertex_get_id {#function-mgp-vertex-get-id}
 
 ```cpp
 enum mgp_error mgp_vertex_get_id(
@@ -1477,7 +1717,7 @@ enum mgp_error mgp_vertex_get_id(
 
 Get the ID of given vertex.
 
-### function mgp_vertex_underlying_graph_is_mutable {#function-mgp-vertex-underlying-graph-is-mutable}
+### mgp_vertex_underlying_graph_is_mutable {#function-mgp-vertex-underlying-graph-is-mutable}
 
 ```cpp
 enum mgp_error mgp_vertex_underlying_graph_is_mutable(
@@ -1491,7 +1731,7 @@ Result is non-zero if the vertex can be modified.
 The mutability of the vertex is the same as the graph which it is part of. If a vertex is immutable, then edges cannot be created or deleted, properties and labels cannot be set or removed and all of the returned edges will be immutable also. Current implementation always returns without errors.
 
 
-### function mgp_vertex_set_property {#function-mgp-vertex-set-property}
+### mgp_vertex_set_property {#function-mgp-vertex-set-property}
 
 ```cpp
 enum mgp_error mgp_vertex_set_property(
@@ -1506,7 +1746,7 @@ Set the value of a property on a vertex.
 When the value is `null`, then the property is removed from the vertex. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate memory for storing the property. Return MGP_ERROR_IMMUTABLE_OBJECT if `v` is immutable. Return MGP_ERROR_DELETED_OBJECT if `v` has been deleted. Return MGP_ERROR_SERIALIZATION_ERROR if `v` has been modified by another transaction. Return MGP_ERROR_VALUE_CONVERSION if `property_value` is vertex, edge or path.
 
 
-### function mgp_vertex_add_label {#function-mgp-vertex-add-label}
+### mgp_vertex_add_label {#function-mgp-vertex-add-label}
 
 ```cpp
 enum mgp_error mgp_vertex_add_label(
@@ -1520,7 +1760,7 @@ Add the label to the vertex.
 If the vertex already has the label, this function does nothing. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate memory for storing the label. Return MGP_ERROR_IMMUTABLE_OBJECT if `v` is immutable. Return MGP_ERROR_DELETED_OBJECT if `v` has been deleted. Return MGP_ERROR_SERIALIZATION_ERROR if `v` has been modified by another transaction.
 
 
-### function mgp_vertex_remove_label {#function-mgp-vertex-remove-label}
+### mgp_vertex_remove_label {#function-mgp-vertex-remove-label}
 
 ```cpp
 enum mgp_error mgp_vertex_remove_label(
@@ -1534,7 +1774,7 @@ Remove the label from the vertex.
 If the vertex doesn't have the label, this function does nothing. Return MGP_ERROR_IMMUTABLE_OBJECT if `v` is immutable. Return MGP_ERROR_DELETED_OBJECT if `v` has been deleted. Return MGP_ERROR_SERIALIZATION_ERROR if `v` has been modified by another transaction.
 
 
-### function mgp_vertex_copy {#function-mgp-vertex-copy}
+### mgp_vertex_copy {#function-mgp-vertex-copy}
 
 ```cpp
 enum mgp_error mgp_vertex_copy(
@@ -1549,7 +1789,7 @@ Copy a mgp_vertex.
 Resulting pointer must be freed with mgp_vertex_destroy. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_vertex.
 
 
-### function mgp_vertex_destroy {#function-mgp-vertex-destroy}
+### mgp_vertex_destroy {#function-mgp-vertex-destroy}
 
 ```cpp
 void mgp_vertex_destroy(
@@ -1559,7 +1799,7 @@ void mgp_vertex_destroy(
 
 Free the memory used by a mgp_vertex.
 
-### function mgp_vertex_equal {#function-mgp-vertex-equal}
+### mgp_vertex_equal {#function-mgp-vertex-equal}
 
 ```cpp
 enum mgp_error mgp_vertex_equal(
@@ -1571,7 +1811,7 @@ enum mgp_error mgp_vertex_equal(
 
 Result is non-zero if given vertices are equal, otherwise 0.
 
-### function mgp_vertex_labels_count {#function-mgp-vertex-labels-count}
+### mgp_vertex_labels_count {#function-mgp-vertex-labels-count}
 
 ```cpp
 enum mgp_error mgp_vertex_labels_count(
@@ -1585,7 +1825,7 @@ Get the number of labels a given vertex has.
 Return MGP_ERROR_DELETED_OBJECT if `v` has been deleted.
 
 
-### function mgp_vertex_label_at {#function-mgp-vertex-label-at}
+### mgp_vertex_label_at {#function-mgp-vertex-label-at}
 
 ```cpp
 enum mgp_error mgp_vertex_label_at(
@@ -1595,12 +1835,12 @@ enum mgp_error mgp_vertex_label_at(
 )
 ```
 
-Get [mgp_label](/reference-guide/query-modules/api/c-api/classes/mgp_label.md) in mgp_vertex at given index.
+Get [mgp_label](#mgp_label) in mgp_vertex at given index.
 
 Return MGP_ERROR_OUT_OF_RANGE if the index is out of range. Return MGP_ERROR_DELETED_OBJECT if `v` has been deleted.
 
 
-### function mgp_vertex_has_label {#function-mgp-vertex-has-label}
+### mgp_vertex_has_label {#function-mgp-vertex-has-label}
 
 ```cpp
 enum mgp_error mgp_vertex_has_label(
@@ -1615,7 +1855,7 @@ Result is non-zero if the given vertex has the given label.
 Return MGP_ERROR_DELETED_OBJECT if `v` has been deleted.
 
 
-### function mgp_vertex_has_label_named {#function-mgp-vertex-has-label-named}
+### mgp_vertex_has_label_named {#function-mgp-vertex-has-label-named}
 
 ```cpp
 enum mgp_error mgp_vertex_has_label_named(
@@ -1630,7 +1870,7 @@ Result is non-zero if the given vertex has a label with given name.
 Return MGP_ERROR_DELETED_OBJECT if `v` has been deleted.
 
 
-### function mgp_vertex_get_property {#function-mgp-vertex-get-property}
+### mgp_vertex_get_property {#function-mgp-vertex-get-property}
 
 ```cpp
 enum mgp_error mgp_vertex_get_property(
@@ -1646,7 +1886,7 @@ Get a copy of a vertex property mapped to a given name.
 Resulting value must be freed with mgp_value_destroy. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_value. Return MGP_ERROR_DELETED_OBJECT if `v` has been deleted.
 
 
-### function mgp_vertex_iter_properties {#function-mgp-vertex-iter-properties}
+### mgp_vertex_iter_properties {#function-mgp-vertex-iter-properties}
 
 ```cpp
 enum mgp_error mgp_vertex_iter_properties(
@@ -1661,7 +1901,7 @@ Start iterating over properties stored in the given vertex.
 The properties of the vertex are copied when the iterator is created, therefore later changes won't affect them. The resulting mgp_properties_iterator needs to be deallocated with mgp_properties_iterator_destroy. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_properties_iterator. Return MGP_ERROR_DELETED_OBJECT if `v` has been deleted.
 
 
-### function mgp_vertex_iter_in_edges {#function-mgp-vertex-iter-in-edges}
+### mgp_vertex_iter_in_edges {#function-mgp-vertex-iter-in-edges}
 
 ```cpp
 enum mgp_error mgp_vertex_iter_in_edges(
@@ -1676,7 +1916,7 @@ Start iterating over inbound edges of the given vertex.
 The connection information of the vertex is copied when the iterator is created, therefore later creation or deletion of edges won't affect the iterated edges, however the property changes on the edges will be visible. The resulting mgp_edges_iterator needs to be deallocated with mgp_edges_iterator_destroy. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_edges_iterator. Return MGP_ERROR_DELETED_OBJECT if `v` has been deleted.
 
 
-### function mgp_vertex_iter_out_edges {#function-mgp-vertex-iter-out-edges}
+### mgp_vertex_iter_out_edges {#function-mgp-vertex-iter-out-edges}
 
 ```cpp
 enum mgp_error mgp_vertex_iter_out_edges(
@@ -1691,7 +1931,7 @@ Start iterating over outbound edges of the given vertex.
 The connection information of the vertex is copied when the iterator is created, therefore later creation or deletion of edges won't affect the iterated edges, however the property changes on the edges will be visible. The resulting mgp_edges_iterator needs to be deallocated with mgp_edges_iterator_destroy. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_edges_iterator. Return MGP_ERROR_DELETED_OBJECT if `v` has been deleted.
 
 
-### function mgp_edges_iterator_underlying_graph_is_mutable {#function-mgp-edges-iterator-underlying-graph-is-mutable}
+### mgp_edges_iterator_underlying_graph_is_mutable {#function-mgp-edges-iterator-underlying-graph-is-mutable}
 
 ```cpp
 enum mgp_error mgp_edges_iterator_underlying_graph_is_mutable(
@@ -1705,7 +1945,7 @@ Result is non-zero if the edges returned by this iterator can be modified.
 The mutability of the mgp_edges_iterator is the same as the graph which it belongs to. Current implementation always returns without errors.
 
 
-### function mgp_edges_iterator_get {#function-mgp-edges-iterator-get}
+### mgp_edges_iterator_get {#function-mgp-edges-iterator-get}
 
 ```cpp
 enum mgp_error mgp_edges_iterator_get(
@@ -1719,7 +1959,7 @@ Get the current edge pointed to by the iterator.
 When the mgp_edges_iterator_next is invoked, the previous mgp_edge is invalidated and its value must not be used. Result is NULL if the end of the iteration has been reached.
 
 
-### function mgp_edges_iterator_next {#function-mgp-edges-iterator-next}
+### mgp_edges_iterator_next {#function-mgp-edges-iterator-next}
 
 ```cpp
 enum mgp_error mgp_edges_iterator_next(
@@ -1733,7 +1973,7 @@ Advance the iterator to the next edge and return it.
 The previous mgp_edge obtained through mgp_edges_iterator_get will be invalidated, and you must not use its value. Result is NULL if the end of the iteration has been reached. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_edge.
 
 
-### function mgp_edge_get_id {#function-mgp-edge-get-id}
+### mgp_edge_get_id {#function-mgp-edge-get-id}
 
 ```cpp
 enum mgp_error mgp_edge_get_id(
@@ -1744,7 +1984,7 @@ enum mgp_error mgp_edge_get_id(
 
 Get the ID of given edge.
 
-### function mgp_edge_underlying_graph_is_mutable {#function-mgp-edge-underlying-graph-is-mutable}
+### mgp_edge_underlying_graph_is_mutable {#function-mgp-edge-underlying-graph-is-mutable}
 
 ```cpp
 enum mgp_error mgp_edge_underlying_graph_is_mutable(
@@ -1758,7 +1998,7 @@ Result is non-zero if the edge can be modified.
 The mutability of the edge is the same as the graph which it is part of. If an edge is immutable, properties cannot be set or removed and all of the returned vertices will be immutable also. Current implementation always returns without errors.
 
 
-### function mgp_edge_copy {#function-mgp-edge-copy}
+### mgp_edge_copy {#function-mgp-edge-copy}
 
 ```cpp
 enum mgp_error mgp_edge_copy(
@@ -1773,7 +2013,7 @@ Copy a mgp_edge.
 Resulting pointer must be freed with mgp_edge_destroy. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_edge.
 
 
-### function mgp_edge_destroy {#function-mgp-edge-destroy}
+### mgp_edge_destroy {#function-mgp-edge-destroy}
 
 ```cpp
 void mgp_edge_destroy(
@@ -1783,7 +2023,7 @@ void mgp_edge_destroy(
 
 Free the memory used by a mgp_edge.
 
-### function mgp_edge_equal {#function-mgp-edge-equal}
+### mgp_edge_equal {#function-mgp-edge-equal}
 
 ```cpp
 enum mgp_error mgp_edge_equal(
@@ -1795,7 +2035,7 @@ enum mgp_error mgp_edge_equal(
 
 Result is non-zero if given edges are equal, otherwise 0.
 
-### function mgp_edge_get_type {#function-mgp-edge-get-type}
+### mgp_edge_get_type {#function-mgp-edge-get-type}
 
 ```cpp
 enum mgp_error mgp_edge_get_type(
@@ -1806,7 +2046,7 @@ enum mgp_error mgp_edge_get_type(
 
 Get the type of the given edge.
 
-### function mgp_edge_get_from {#function-mgp-edge-get-from}
+### mgp_edge_get_from {#function-mgp-edge-get-from}
 
 ```cpp
 enum mgp_error mgp_edge_get_from(
@@ -1820,7 +2060,7 @@ Get the source vertex of the given edge.
 Resulting vertex is valid until the edge is valid and it must not be used afterwards. Current implementation always returns without errors.
 
 
-### function mgp_edge_get_to {#function-mgp-edge-get-to}
+### mgp_edge_get_to {#function-mgp-edge-get-to}
 
 ```cpp
 enum mgp_error mgp_edge_get_to(
@@ -1834,7 +2074,7 @@ Get the destination vertex of the given edge.
 Resulting vertex is valid until the edge is valid and it must not be used afterwards. Current implementation always returns without errors.
 
 
-### function mgp_edge_get_property {#function-mgp-edge-get-property}
+### mgp_edge_get_property {#function-mgp-edge-get-property}
 
 ```cpp
 enum mgp_error mgp_edge_get_property(
@@ -1850,7 +2090,7 @@ Get a copy of a edge property mapped to a given name.
 Resulting value must be freed with mgp_value_destroy. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_value. Return MGP_ERROR_DELETED_OBJECT if `e` has been deleted.
 
 
-### function mgp_edge_set_property {#function-mgp-edge-set-property}
+### mgp_edge_set_property {#function-mgp-edge-set-property}
 
 ```cpp
 enum mgp_error mgp_edge_set_property(
@@ -1865,7 +2105,7 @@ Set the value of a property on an edge.
 When the value is `null`, then the property is removed from the edge. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate memory for storing the property. Return MGP_ERROR_IMMUTABLE_OBJECT if `e` is immutable. Return MGP_ERROR_DELETED_OBJECT if `e` has been deleted. Return MGP_ERROR_LOGIC_ERROR if properties on edges are disabled. Return MGP_ERROR_SERIALIZATION_ERROR if `e` has been modified by another transaction. Return MGP_ERROR_VALUE_CONVERSION if `property_value` is vertex, edge or path.
 
 
-### function mgp_edge_iter_properties {#function-mgp-edge-iter-properties}
+### mgp_edge_iter_properties {#function-mgp-edge-iter-properties}
 
 ```cpp
 enum mgp_error mgp_edge_iter_properties(
@@ -1880,7 +2120,7 @@ Start iterating over properties stored in the given edge.
 The properties of the edge are copied when the iterator is created, therefore later changes won't affect them. Resulting mgp_properties_iterator needs to be deallocated with mgp_properties_iterator_destroy. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_properties_iterator. Return MGP_ERROR_DELETED_OBJECT if `e` has been deleted.
 
 
-### function mgp_graph_get_vertex_by_id {#function-mgp-graph-get-vertex-by-id}
+### mgp_graph_get_vertex_by_id {#function-mgp-graph-get-vertex-by-id}
 
 ```cpp
 enum mgp_error mgp_graph_get_vertex_by_id(
@@ -1896,7 +2136,7 @@ Get the vertex corresponding to given ID, or NULL if no such vertex exists.
 Resulting vertex must be freed using mgp_vertex_destroy. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate the vertex.
 
 
-### function mgp_graph_is_mutable {#function-mgp-graph-is-mutable}
+### mgp_graph_is_mutable {#function-mgp-graph-is-mutable}
 
 ```cpp
 enum mgp_error mgp_graph_is_mutable(
@@ -1910,7 +2150,7 @@ Result is non-zero if the graph can be modified.
 If a graph is immutable, then vertices cannot be created or deleted, and all of the returned vertices will be immutable also. The same applies for edges. Current implementation always returns without errors.
 
 
-### function mgp_graph_create_vertex {#function-mgp-graph-create-vertex}
+### mgp_graph_create_vertex {#function-mgp-graph-create-vertex}
 
 ```cpp
 enum mgp_error mgp_graph_create_vertex(
@@ -1925,7 +2165,7 @@ Add a new vertex to the graph.
 Resulting vertex must be freed using mgp_vertex_destroy. Return MGP_ERROR_IMMUTABLE_OBJECT if `graph` is immutable. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_vertex.
 
 
-### function mgp_graph_delete_vertex {#function-mgp-graph-delete-vertex}
+### mgp_graph_delete_vertex {#function-mgp-graph-delete-vertex}
 
 ```cpp
 enum mgp_error mgp_graph_delete_vertex(
@@ -1939,7 +2179,7 @@ Delete a vertex from the graph.
 Return MGP_ERROR_IMMUTABLE_OBJECT if `graph` is immutable. Return MGP_ERROR_LOGIC_ERROR if `vertex` has edges. Return MGP_ERROR_SERIALIZATION_ERROR if `vertex` has been modified by another transaction.
 
 
-### function mgp_graph_detach_delete_vertex {#function-mgp-graph-detach-delete-vertex}
+### mgp_graph_detach_delete_vertex {#function-mgp-graph-detach-delete-vertex}
 
 ```cpp
 enum mgp_error mgp_graph_detach_delete_vertex(
@@ -1953,7 +2193,7 @@ Delete a vertex and all of its edges from the graph.
 Return MGP_ERROR_IMMUTABLE_OBJECT if `graph` is immutable. Return MGP_ERROR_SERIALIZATION_ERROR if `vertex` has been modified by another transaction.
 
 
-### function mgp_graph_create_edge {#function-mgp-graph-create-edge}
+### mgp_graph_create_edge {#function-mgp-graph-create-edge}
 
 ```cpp
 enum mgp_error mgp_graph_create_edge(
@@ -1971,7 +2211,7 @@ Add a new directed edge between the two vertices with the specified label.
 Resulting edge must be freed using mgp_edge_destroy. Return MGP_ERROR_IMMUTABLE_OBJECT if `graph` is immutable. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_edge. Return MGP_ERROR_DELETED_OBJECT if `from` or `to` has been deleted. Return MGP_ERROR_SERIALIZATION_ERROR if `from` or `to` has been modified by another transaction.
 
 
-### function mgp_graph_delete_edge {#function-mgp-graph-delete-edge}
+### mgp_graph_delete_edge {#function-mgp-graph-delete-edge}
 
 ```cpp
 enum mgp_error mgp_graph_delete_edge(
@@ -1985,7 +2225,7 @@ Delete an edge from the graph.
 Return MGP_ERROR_IMMUTABLE_OBJECT if `graph` is immutable. Return MGP_ERROR_SERIALIZATION_ERROR if `edge`, its source or destination vertex has been modified by another transaction.
 
 
-### function mgp_vertices_iterator_destroy {#function-mgp-vertices-iterator-destroy}
+### mgp_vertices_iterator_destroy {#function-mgp-vertices-iterator-destroy}
 
 ```cpp
 void mgp_vertices_iterator_destroy(
@@ -1995,7 +2235,7 @@ void mgp_vertices_iterator_destroy(
 
 Free the memory used by a mgp_vertices_iterator.
 
-### function mgp_graph_iter_vertices {#function-mgp-graph-iter-vertices}
+### mgp_graph_iter_vertices {#function-mgp-graph-iter-vertices}
 
 ```cpp
 enum mgp_error mgp_graph_iter_vertices(
@@ -2010,7 +2250,7 @@ Start iterating over vertices of the given graph.
 Resulting mgp_vertices_iterator needs to be deallocated with mgp_vertices_iterator_destroy. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_vertices_iterator.
 
 
-### function mgp_vertices_iterator_underlying_graph_is_mutable {#function-mgp-vertices-iterator-underlying-graph-is-mutable}
+### mgp_vertices_iterator_underlying_graph_is_mutable {#function-mgp-vertices-iterator-underlying-graph-is-mutable}
 
 ```cpp
 enum mgp_error mgp_vertices_iterator_underlying_graph_is_mutable(
@@ -2024,7 +2264,7 @@ Result is non-zero if the vertices returned by this iterator can be modified.
 The mutability of the mgp_vertices_iterator is the same as the graph which it belongs to. Current implementation always returns without errors.
 
 
-### function mgp_vertices_iterator_get {#function-mgp-vertices-iterator-get}
+### mgp_vertices_iterator_get {#function-mgp-vertices-iterator-get}
 
 ```cpp
 enum mgp_error mgp_vertices_iterator_get(
@@ -2038,7 +2278,7 @@ Get the current vertex pointed to by the iterator.
 When the mgp_vertices_iterator_next is invoked, the previous mgp_vertex is invalidated and its value must not be used. Result is NULL if the end of the iteration has been reached.
 
 
-### function mgp_date_from_string {#function-mgp-date-from-string}
+### mgp_date_from_string {#function-mgp-date-from-string}
 
 ```cpp
 enum mgp_error mgp_date_from_string(
@@ -2053,7 +2293,7 @@ Create a date from a string following the ISO 8601 format.
 Resulting date must be freed with mgp_date_destroy. Return MGP_ERROR_INVALID_ARGUMENT if the string cannot be parsed correctly. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_date.
 
 
-### function mgp_date_from_parameters {#function-mgp-date-from-parameters}
+### mgp_date_from_parameters {#function-mgp-date-from-parameters}
 
 ```cpp
 enum mgp_error mgp_date_from_parameters(
@@ -2068,7 +2308,7 @@ Create a date from mgp_date_parameter.
 Resulting date must be freed with mgp_date_destroy. Return MGP_ERROR_INVALID_ARGUMENT if the parameters cannot be parsed correctly. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_date.
 
 
-### function mgp_date_copy {#function-mgp-date-copy}
+### mgp_date_copy {#function-mgp-date-copy}
 
 ```cpp
 enum mgp_error mgp_date_copy(
@@ -2083,7 +2323,7 @@ Copy a mgp_date.
 Resulting pointer must be freed with mgp_date_destroy. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_date.
 
 
-### function mgp_date_destroy {#function-mgp-date-destroy}
+### mgp_date_destroy {#function-mgp-date-destroy}
 
 ```cpp
 void mgp_date_destroy(
@@ -2093,7 +2333,7 @@ void mgp_date_destroy(
 
 Free the memory used by a mgp_date.
 
-### function mgp_date_equal {#function-mgp-date-equal}
+### mgp_date_equal {#function-mgp-date-equal}
 
 ```cpp
 enum mgp_error mgp_date_equal(
@@ -2105,7 +2345,7 @@ enum mgp_error mgp_date_equal(
 
 Result is non-zero if given dates are equal, otherwise 0.
 
-### function mgp_date_get_year {#function-mgp-date-get-year}
+### mgp_date_get_year {#function-mgp-date-get-year}
 
 ```cpp
 enum mgp_error mgp_date_get_year(
@@ -2116,7 +2356,7 @@ enum mgp_error mgp_date_get_year(
 
 Get the year property of the date.
 
-### function mgp_date_get_month {#function-mgp-date-get-month}
+### mgp_date_get_month {#function-mgp-date-get-month}
 
 ```cpp
 enum mgp_error mgp_date_get_month(
@@ -2127,7 +2367,7 @@ enum mgp_error mgp_date_get_month(
 
 Get the month property of the date.
 
-### function mgp_date_get_day {#function-mgp-date-get-day}
+### mgp_date_get_day {#function-mgp-date-get-day}
 
 ```cpp
 enum mgp_error mgp_date_get_day(
@@ -2138,7 +2378,7 @@ enum mgp_error mgp_date_get_day(
 
 Get the day property of the date.
 
-### function mgp_date_timestamp {#function-mgp-date-timestamp}
+### mgp_date_timestamp {#function-mgp-date-timestamp}
 
 ```cpp
 enum mgp_error mgp_date_timestamp(
@@ -2149,7 +2389,7 @@ enum mgp_error mgp_date_timestamp(
 
 Get the date as microseconds from Unix epoch.
 
-### function mgp_date_now {#function-mgp-date-now}
+### mgp_date_now {#function-mgp-date-now}
 
 ```cpp
 enum mgp_error mgp_date_now(
@@ -2163,7 +2403,7 @@ Get the date representing current date.
 Resulting date must be freed with mgp_date_destroy. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_date.
 
 
-### function mgp_date_add_duration {#function-mgp-date-add-duration}
+### mgp_date_add_duration {#function-mgp-date-add-duration}
 
 ```cpp
 enum mgp_error mgp_date_add_duration(
@@ -2179,7 +2419,7 @@ Add a duration to the date.
 Resulting date must be freed with mgp_date_destroy. Return MGP_ERROR_INVALID_ARGUMENT if the operation results in an invalid date. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_date.
 
 
-### function mgp_date_sub_duration {#function-mgp-date-sub-duration}
+### mgp_date_sub_duration {#function-mgp-date-sub-duration}
 
 ```cpp
 enum mgp_error mgp_date_sub_duration(
@@ -2195,7 +2435,7 @@ Subtract a duration from the date.
 Resulting date must be freed with mgp_date_destroy. Return MGP_ERROR_INVALID_ARGUMENT if the operation results in an invalid date. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_date.
 
 
-### function mgp_date_diff {#function-mgp-date-diff}
+### mgp_date_diff {#function-mgp-date-diff}
 
 ```cpp
 enum mgp_error mgp_date_diff(
@@ -2211,7 +2451,7 @@ Get a duration between two dates.
 Resulting duration must be freed with mgp_duration_destroy. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_date.
 
 
-### function mgp_local_time_from_string {#function-mgp-local-time-from-string}
+### mgp_local_time_from_string {#function-mgp-local-time-from-string}
 
 ```cpp
 enum mgp_error mgp_local_time_from_string(
@@ -2226,7 +2466,7 @@ Create a local time from a string following the ISO 8601 format.
 Resulting local time must be freed with mgp_local_time_destroy. Return MGP_ERROR_INVALID_ARGUMENT if the string cannot be parsed correctly. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_date.
 
 
-### function mgp_local_time_from_parameters {#function-mgp-local-time-from-parameters}
+### mgp_local_time_from_parameters {#function-mgp-local-time-from-parameters}
 
 ```cpp
 enum mgp_error mgp_local_time_from_parameters(
@@ -2236,12 +2476,12 @@ enum mgp_error mgp_local_time_from_parameters(
 )
 ```
 
-Create a local time from [mgp_local_time_parameters](/reference-guide/query-modules/api/c-api/classes/mgp_local_time_parameters.md).
+Create a local time from [mgp_local_time_parameters](#mgp_local_time_parameters).
 
 Resulting local time must be freed with mgp_local_time_destroy. Return MGP_ERROR_INVALID_ARGUMENT if the parameters cannot be parsed correctly. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_date.
 
 
-### function mgp_local_time_copy {#function-mgp-local-time-copy}
+### mgp_local_time_copy {#function-mgp-local-time-copy}
 
 ```cpp
 enum mgp_error mgp_local_time_copy(
@@ -2256,7 +2496,7 @@ Copy a mgp_local_time.
 Resulting pointer must be freed with mgp_local_time_destroy. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_date.
 
 
-### function mgp_local_time_destroy {#function-mgp-local-time-destroy}
+### mgp_local_time_destroy {#function-mgp-local-time-destroy}
 
 ```cpp
 void mgp_local_time_destroy(
@@ -2266,7 +2506,7 @@ void mgp_local_time_destroy(
 
 Free the memory used by a mgp_local_time.
 
-### function mgp_local_time_equal {#function-mgp-local-time-equal}
+### mgp_local_time_equal {#function-mgp-local-time-equal}
 
 ```cpp
 enum mgp_error mgp_local_time_equal(
@@ -2278,7 +2518,7 @@ enum mgp_error mgp_local_time_equal(
 
 Result is non-zero if given local times are equal, otherwise 0.
 
-### function mgp_local_time_get_hour {#function-mgp-local-time-get-hour}
+### mgp_local_time_get_hour {#function-mgp-local-time-get-hour}
 
 ```cpp
 enum mgp_error mgp_local_time_get_hour(
@@ -2289,7 +2529,7 @@ enum mgp_error mgp_local_time_get_hour(
 
 Get the hour property of the local time.
 
-### function mgp_local_time_get_minute {#function-mgp-local-time-get-minute}
+### mgp_local_time_get_minute {#function-mgp-local-time-get-minute}
 
 ```cpp
 enum mgp_error mgp_local_time_get_minute(
@@ -2300,7 +2540,7 @@ enum mgp_error mgp_local_time_get_minute(
 
 Get the minute property of the local time.
 
-### function mgp_local_time_get_second {#function-mgp-local-time-get-second}
+### mgp_local_time_get_second {#function-mgp-local-time-get-second}
 
 ```cpp
 enum mgp_error mgp_local_time_get_second(
@@ -2311,7 +2551,7 @@ enum mgp_error mgp_local_time_get_second(
 
 Get the second property of the local time.
 
-### function mgp_local_time_get_millisecond {#function-mgp-local-time-get-millisecond}
+### mgp_local_time_get_millisecond {#function-mgp-local-time-get-millisecond}
 
 ```cpp
 enum mgp_error mgp_local_time_get_millisecond(
@@ -2322,7 +2562,7 @@ enum mgp_error mgp_local_time_get_millisecond(
 
 Get the millisecond property of the local time.
 
-### function mgp_local_time_get_microsecond {#function-mgp-local-time-get-microsecond}
+### mgp_local_time_get_microsecond {#function-mgp-local-time-get-microsecond}
 
 ```cpp
 enum mgp_error mgp_local_time_get_microsecond(
@@ -2333,7 +2573,7 @@ enum mgp_error mgp_local_time_get_microsecond(
 
 Get the microsecond property of the local time.
 
-### function mgp_local_time_timestamp {#function-mgp-local-time-timestamp}
+### mgp_local_time_timestamp {#function-mgp-local-time-timestamp}
 
 ```cpp
 enum mgp_error mgp_local_time_timestamp(
@@ -2344,7 +2584,7 @@ enum mgp_error mgp_local_time_timestamp(
 
 Get the local time as microseconds from midnight.
 
-### function mgp_local_time_now {#function-mgp-local-time-now}
+### mgp_local_time_now {#function-mgp-local-time-now}
 
 ```cpp
 enum mgp_error mgp_local_time_now(
@@ -2358,7 +2598,7 @@ Get the local time representing current time.
 Resulting pointer must be freed with mgp_local_time_destroy. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_date.
 
 
-### function mgp_local_time_add_duration {#function-mgp-local-time-add-duration}
+### mgp_local_time_add_duration {#function-mgp-local-time-add-duration}
 
 ```cpp
 enum mgp_error mgp_local_time_add_duration(
@@ -2374,7 +2614,7 @@ Add a duration to the local time.
 Resulting pointer must be freed with mgp_local_time_destroy. Return MGP_ERROR_INVALID_ARGUMENT if the operation results in an invalid local time. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_date.
 
 
-### function mgp_local_time_sub_duration {#function-mgp-local-time-sub-duration}
+### mgp_local_time_sub_duration {#function-mgp-local-time-sub-duration}
 
 ```cpp
 enum mgp_error mgp_local_time_sub_duration(
@@ -2390,7 +2630,7 @@ Subtract a duration from the local time.
 Resulting pointer must be freed with mgp_local_time_destroy. Return MGP_ERROR_INVALID_ARGUMENT if the operation results in an invalid local time. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_date.
 
 
-### function mgp_local_time_diff {#function-mgp-local-time-diff}
+### mgp_local_time_diff {#function-mgp-local-time-diff}
 
 ```cpp
 enum mgp_error mgp_local_time_diff(
@@ -2406,7 +2646,7 @@ Get a duration between two local times.
 Resulting pointer must be freed with mgp_duration_destroy. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_date.
 
 
-### function mgp_local_date_time_from_string {#function-mgp-local-date-time-from-string}
+### mgp_local_date_time_from_string {#function-mgp-local-date-time-from-string}
 
 ```cpp
 enum mgp_error mgp_local_date_time_from_string(
@@ -2421,7 +2661,7 @@ Create a local date-time from a string following the ISO 8601 format.
 Resulting local date-time must be freed with mgp_local_date_time_destroy. Return MGP_ERROR_INVALID_ARGUMENT if the string cannot be parsed correctly. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_local_date_time.
 
 
-### function mgp_local_date_time_from_parameters {#function-mgp-local-date-time-from-parameters}
+### mgp_local_date_time_from_parameters {#function-mgp-local-date-time-from-parameters}
 
 ```cpp
 enum mgp_error mgp_local_date_time_from_parameters(
@@ -2431,12 +2671,12 @@ enum mgp_error mgp_local_date_time_from_parameters(
 )
 ```
 
-Create a local date-time from [mgp_local_date_time_parameters](/reference-guide/query-modules/api/c-api/classes/mgp_local_date_time_parameters.md).
+Create a local date-time from [mgp_local_date_time_parameters](#mgp_local_date_time_parameters).
 
 Resulting local date-time must be freed with mgp_local_date_time_destroy. Return MGP_ERROR_INVALID_ARGUMENT if the parameters cannot be parsed correctly. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_local_date_time.
 
 
-### function mgp_local_date_time_copy {#function-mgp-local-date-time-copy}
+### mgp_local_date_time_copy {#function-mgp-local-date-time-copy}
 
 ```cpp
 enum mgp_error mgp_local_date_time_copy(
@@ -2451,7 +2691,7 @@ Copy a mgp_local_date_time.
 Resulting pointer must be freed with mgp_local_date_time_destroy. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_local_date_time.
 
 
-### function mgp_local_date_time_destroy {#function-mgp-local-date-time-destroy}
+### mgp_local_date_time_destroy {#function-mgp-local-date-time-destroy}
 
 ```cpp
 void mgp_local_date_time_destroy(
@@ -2461,7 +2701,7 @@ void mgp_local_date_time_destroy(
 
 Free the memory used by a mgp_local_date_time.
 
-### function mgp_local_date_time_equal {#function-mgp-local-date-time-equal}
+### mgp_local_date_time_equal {#function-mgp-local-date-time-equal}
 
 ```cpp
 enum mgp_error mgp_local_date_time_equal(
@@ -2473,7 +2713,7 @@ enum mgp_error mgp_local_date_time_equal(
 
 Result is non-zero if given local date-times are equal, otherwise 0.
 
-### function mgp_local_date_time_get_year {#function-mgp-local-date-time-get-year}
+### mgp_local_date_time_get_year {#function-mgp-local-date-time-get-year}
 
 ```cpp
 enum mgp_error mgp_local_date_time_get_year(
@@ -2484,7 +2724,7 @@ enum mgp_error mgp_local_date_time_get_year(
 
 Get the year property of the local date-time.
 
-### function mgp_local_date_time_get_month {#function-mgp-local-date-time-get-month}
+### mgp_local_date_time_get_month {#function-mgp-local-date-time-get-month}
 
 ```cpp
 enum mgp_error mgp_local_date_time_get_month(
@@ -2495,7 +2735,7 @@ enum mgp_error mgp_local_date_time_get_month(
 
 Get the month property of the local date-time.
 
-### function mgp_local_date_time_get_day {#function-mgp-local-date-time-get-day}
+### mgp_local_date_time_get_day {#function-mgp-local-date-time-get-day}
 
 ```cpp
 enum mgp_error mgp_local_date_time_get_day(
@@ -2506,7 +2746,7 @@ enum mgp_error mgp_local_date_time_get_day(
 
 Get the day property of the local date-time.
 
-### function mgp_local_date_time_get_hour {#function-mgp-local-date-time-get-hour}
+### mgp_local_date_time_get_hour {#function-mgp-local-date-time-get-hour}
 
 ```cpp
 enum mgp_error mgp_local_date_time_get_hour(
@@ -2517,7 +2757,7 @@ enum mgp_error mgp_local_date_time_get_hour(
 
 Get the hour property of the local date-time.
 
-### function mgp_local_date_time_get_minute {#function-mgp-local-date-time-get-minute}
+### mgp_local_date_time_get_minute {#function-mgp-local-date-time-get-minute}
 
 ```cpp
 enum mgp_error mgp_local_date_time_get_minute(
@@ -2528,7 +2768,7 @@ enum mgp_error mgp_local_date_time_get_minute(
 
 Get the minute property of the local date-time.
 
-### function mgp_local_date_time_get_second {#function-mgp-local-date-time-get-second}
+### mgp_local_date_time_get_second {#function-mgp-local-date-time-get-second}
 
 ```cpp
 enum mgp_error mgp_local_date_time_get_second(
@@ -2539,7 +2779,7 @@ enum mgp_error mgp_local_date_time_get_second(
 
 Get the second property of the local date-time.
 
-### function mgp_local_date_time_get_millisecond {#function-mgp-local-date-time-get-millisecond}
+### mgp_local_date_time_get_millisecond {#function-mgp-local-date-time-get-millisecond}
 
 ```cpp
 enum mgp_error mgp_local_date_time_get_millisecond(
@@ -2550,7 +2790,7 @@ enum mgp_error mgp_local_date_time_get_millisecond(
 
 Get the milisecond property of the local date-time.
 
-### function mgp_local_date_time_get_microsecond {#function-mgp-local-date-time-get-microsecond}
+### mgp_local_date_time_get_microsecond {#function-mgp-local-date-time-get-microsecond}
 
 ```cpp
 enum mgp_error mgp_local_date_time_get_microsecond(
@@ -2561,7 +2801,7 @@ enum mgp_error mgp_local_date_time_get_microsecond(
 
 Get the microsecond property of the local date-time.
 
-### function mgp_local_date_time_timestamp {#function-mgp-local-date-time-timestamp}
+### mgp_local_date_time_timestamp {#function-mgp-local-date-time-timestamp}
 
 ```cpp
 enum mgp_error mgp_local_date_time_timestamp(
@@ -2572,7 +2812,7 @@ enum mgp_error mgp_local_date_time_timestamp(
 
 Get the local date-time as microseconds from Unix epoch.
 
-### function mgp_local_date_time_now {#function-mgp-local-date-time-now}
+### mgp_local_date_time_now {#function-mgp-local-date-time-now}
 
 ```cpp
 enum mgp_error mgp_local_date_time_now(
@@ -2586,7 +2826,7 @@ Get the local date-time representing current date and time.
 Resulting local date-time must be freed with mgp_local_date_time_destroy. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_local_date_time.
 
 
-### function mgp_local_date_time_add_duration {#function-mgp-local-date-time-add-duration}
+### mgp_local_date_time_add_duration {#function-mgp-local-date-time-add-duration}
 
 ```cpp
 enum mgp_error mgp_local_date_time_add_duration(
@@ -2602,7 +2842,7 @@ Add a duration to the local date-time.
 Resulting local date-time must be freed with mgp_local_date_time_destroy. Return MGP_ERROR_INVALID_ARGUMENT if the operation results in an invalid local date-time. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_local_date_time.
 
 
-### function mgp_local_date_time_sub_duration {#function-mgp-local-date-time-sub-duration}
+### mgp_local_date_time_sub_duration {#function-mgp-local-date-time-sub-duration}
 
 ```cpp
 enum mgp_error mgp_local_date_time_sub_duration(
@@ -2618,7 +2858,7 @@ Subtract a duration from the local date-time.
 Resulting local date-time must be freed with mgp_local_date_time_destroy. Return MGP_ERROR_INVALID_ARGUMENT if the operation results in an invalid local date-time. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_local_date_time.
 
 
-### function mgp_local_date_time_diff {#function-mgp-local-date-time-diff}
+### mgp_local_date_time_diff {#function-mgp-local-date-time-diff}
 
 ```cpp
 enum mgp_error mgp_local_date_time_diff(
@@ -2634,7 +2874,7 @@ Get a duration between two local date-times.
 Resulting duration must be freed with mgp_duration_destroy. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_local_date_time.
 
 
-### function mgp_duration_from_string {#function-mgp-duration-from-string}
+### mgp_duration_from_string {#function-mgp-duration-from-string}
 
 ```cpp
 enum mgp_error mgp_duration_from_string(
@@ -2649,7 +2889,7 @@ Create a duration from a string following the ISO 8601 format.
 Resulting duration must be freed with mgp_duration_destroy. Return MGP_ERROR_INVALID_ARGUMENT if the string cannot be parsed correctly. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_duration.
 
 
-### function mgp_duration_from_parameters {#function-mgp-duration-from-parameters}
+### mgp_duration_from_parameters {#function-mgp-duration-from-parameters}
 
 ```cpp
 enum mgp_error mgp_duration_from_parameters(
@@ -2659,12 +2899,12 @@ enum mgp_error mgp_duration_from_parameters(
 )
 ```
 
-Create a duration from [mgp_duration_parameters](/reference-guide/query-modules/api/c-api/classes/mgp_duration_parameters.md).
+Create a duration from [mgp_duration_parameters](#mgp_duration_parameters).
 
 Resulting duration must be freed with mgp_duration_destroy. Return MGP_ERROR_INVALID_ARGUMENT if the parameters cannot be parsed correctly. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_duration.
 
 
-### function mgp_duration_from_microseconds {#function-mgp-duration-from-microseconds}
+### mgp_duration_from_microseconds {#function-mgp-duration-from-microseconds}
 
 ```cpp
 enum mgp_error mgp_duration_from_microseconds(
@@ -2679,7 +2919,7 @@ Create a duration from microseconds.
 Resulting duration must be freed with mgp_duration_destroy. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_duration.
 
 
-### function mgp_duration_copy {#function-mgp-duration-copy}
+### mgp_duration_copy {#function-mgp-duration-copy}
 
 ```cpp
 enum mgp_error mgp_duration_copy(
@@ -2694,7 +2934,7 @@ Copy a mgp_duration.
 Resulting pointer must be freed with mgp_duration_destroy. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_duration.
 
 
-### function mgp_duration_destroy {#function-mgp-duration-destroy}
+### mgp_duration_destroy {#function-mgp-duration-destroy}
 
 ```cpp
 void mgp_duration_destroy(
@@ -2704,7 +2944,7 @@ void mgp_duration_destroy(
 
 Free the memory used by a mgp_duration.
 
-### function mgp_duration_equal {#function-mgp-duration-equal}
+### mgp_duration_equal {#function-mgp-duration-equal}
 
 ```cpp
 enum mgp_error mgp_duration_equal(
@@ -2716,7 +2956,7 @@ enum mgp_error mgp_duration_equal(
 
 Result is non-zero if given durations are equal, otherwise 0.
 
-### function mgp_duration_get_microseconds {#function-mgp-duration-get-microseconds}
+### mgp_duration_get_microseconds {#function-mgp-duration-get-microseconds}
 
 ```cpp
 enum mgp_error mgp_duration_get_microseconds(
@@ -2727,7 +2967,7 @@ enum mgp_error mgp_duration_get_microseconds(
 
 Get the duration as microseconds.
 
-### function mgp_duration_neg {#function-mgp-duration-neg}
+### mgp_duration_neg {#function-mgp-duration-neg}
 
 ```cpp
 enum mgp_error mgp_duration_neg(
@@ -2742,7 +2982,7 @@ Apply unary minus operator to the duration.
 Resulting pointer must be freed with mgp_duration_destroy. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_duration.
 
 
-### function mgp_duration_add {#function-mgp-duration-add}
+### mgp_duration_add {#function-mgp-duration-add}
 
 ```cpp
 enum mgp_error mgp_duration_add(
@@ -2758,7 +2998,7 @@ Add two durations.
 Resulting pointer must be freed with mgp_duration_destroy. Return MGP_ERROR_INVALID_ARGUMENT if the operation results in an invalid duration. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_duration.
 
 
-### function mgp_duration_sub {#function-mgp-duration-sub}
+### mgp_duration_sub {#function-mgp-duration-sub}
 
 ```cpp
 enum mgp_error mgp_duration_sub(
@@ -2774,7 +3014,7 @@ Subtract two durations.
 Resulting pointer must be freed with mgp_duration_destroy. Return MGP_ERROR_INVALID_ARGUMENT if the operation results in an invalid duration. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_duration.
 
 
-### function mgp_type_any {#function-mgp-type-any}
+### mgp_type_any {#function-mgp-type-any}
 
 ```cpp
 enum mgp_error mgp_type_any(
@@ -2787,7 +3027,7 @@ Get the type representing any value that isn't `null`.
 The ANY type is the parent type of all types. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate the new type.
 
 
-### function mgp_type_bool {#function-mgp-type-bool}
+### mgp_type_bool {#function-mgp-type-bool}
 
 ```cpp
 enum mgp_error mgp_type_bool(
@@ -2800,7 +3040,7 @@ Get the type representing boolean values.
 Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate the new type.
 
 
-### function mgp_type_string {#function-mgp-type-string}
+### mgp_type_string {#function-mgp-type-string}
 
 ```cpp
 enum mgp_error mgp_type_string(
@@ -2813,7 +3053,7 @@ Get the type representing character string values.
 Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate the new type.
 
 
-### function mgp_type_int {#function-mgp-type-int}
+### mgp_type_int {#function-mgp-type-int}
 
 ```cpp
 enum mgp_error mgp_type_int(
@@ -2826,7 +3066,7 @@ Get the type representing integer values.
 Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate the new type.
 
 
-### function mgp_type_float {#function-mgp-type-float}
+### mgp_type_float {#function-mgp-type-float}
 
 ```cpp
 enum mgp_error mgp_type_float(
@@ -2839,7 +3079,7 @@ Get the type representing floating-point values.
 Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate the new type.
 
 
-### function mgp_type_number {#function-mgp-type-number}
+### mgp_type_number {#function-mgp-type-number}
 
 ```cpp
 enum mgp_error mgp_type_number(
@@ -2852,7 +3092,7 @@ Get the type representing any number value.
 This is the parent type for numeric types, i.e. INTEGER and FLOAT. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate the new type.
 
 
-### function mgp_type_map {#function-mgp-type-map}
+### mgp_type_map {#function-mgp-type-map}
 
 ```cpp
 enum mgp_error mgp_type_map(
@@ -2871,7 +3111,7 @@ Get the type representing map values.
 Map values are those which map string keys to values of any type. For example `{ database: "Memgraph", version: 1.42 }`. Note that graph nodes contain property maps, so a node value will also satisfy the MAP type. The same applies for graph relationship values.
 
 
-### function mgp_type_node {#function-mgp-type-node}
+### mgp_type_node {#function-mgp-type-node}
 
 ```cpp
 enum mgp_error mgp_type_node(
@@ -2884,7 +3124,7 @@ Get the type representing graph node values.
 Since a node contains a map of properties, the node itself is also of MAP type. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate the new type.
 
 
-### function mgp_type_relationship {#function-mgp-type-relationship}
+### mgp_type_relationship {#function-mgp-type-relationship}
 
 ```cpp
 enum mgp_error mgp_type_relationship(
@@ -2897,7 +3137,7 @@ Get the type representing graph relationship values.
 Since a relationship contains a map of properties, the relationship itself is also of MAP type. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate the new type.
 
 
-### function mgp_type_path {#function-mgp-type-path}
+### mgp_type_path {#function-mgp-type-path}
 
 ```cpp
 enum mgp_error mgp_type_path(
@@ -2910,7 +3150,7 @@ Get the type representing a graph path (walk) from one node to another.
 Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate the new type.
 
 
-### function mgp_type_list {#function-mgp-type-list}
+### mgp_type_list {#function-mgp-type-list}
 
 ```cpp
 enum mgp_error mgp_type_list(
@@ -2924,7 +3164,7 @@ Build a type representing a list of values of given `element_type`.
 Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate the new type.
 
 
-### function mgp_type_date {#function-mgp-type-date}
+### mgp_type_date {#function-mgp-type-date}
 
 ```cpp
 enum mgp_error mgp_type_date(
@@ -2937,7 +3177,7 @@ Get the type representing a date.
 Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate the new type.
 
 
-### function mgp_type_local_time {#function-mgp-type-local-time}
+### mgp_type_local_time {#function-mgp-type-local-time}
 
 ```cpp
 enum mgp_error mgp_type_local_time(
@@ -2950,7 +3190,7 @@ Get the type representing a local time.
 Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate the new type.
 
 
-### function mgp_type_local_date_time {#function-mgp-type-local-date-time}
+### mgp_type_local_date_time {#function-mgp-type-local-date-time}
 
 ```cpp
 enum mgp_error mgp_type_local_date_time(
@@ -2963,7 +3203,7 @@ Get the type representing a local date-time.
 Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate the new type.
 
 
-### function mgp_type_duration {#function-mgp-type-duration}
+### mgp_type_duration {#function-mgp-type-duration}
 
 ```cpp
 enum mgp_error mgp_type_duration(
@@ -2976,7 +3216,7 @@ Get the type representing a duration.
 Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate the new type.
 
 
-### function mgp_type_nullable {#function-mgp-type-nullable}
+### mgp_type_nullable {#function-mgp-type-nullable}
 
 ```cpp
 enum mgp_error mgp_type_nullable(
@@ -2990,7 +3230,7 @@ Build a type representing either a `null` value or a value of given `type`.
 Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate the new type.
 
 
-### function mgp_module_add_read_procedure {#function-mgp-module-add-read-procedure}
+### mgp_module_add_read_procedure {#function-mgp-module-add-read-procedure}
 
 ```cpp
 enum mgp_error mgp_module_add_read_procedure(
@@ -3008,7 +3248,7 @@ The `name` must be a sequence of digits, underscores, lowercase and uppercase La
 Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate memory for mgp_proc. Return MGP_ERROR_INVALID_ARGUMENT if `name` is not a valid procedure name. RETURN MGP_ERROR_LOGIC_ERROR if a procedure with the same name was already registered.
 
 
-### function mgp_module_add_write_procedure {#function-mgp-module-add-write-procedure}
+### mgp_module_add_write_procedure {#function-mgp-module-add-write-procedure}
 
 ```cpp
 enum mgp_error mgp_module_add_write_procedure(
@@ -3026,7 +3266,7 @@ The `name` must be a valid identifier, following the same rules as the procedure
 Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate memory for mgp_proc. Return MGP_ERROR_INVALID_ARGUMENT if `name` is not a valid procedure name. RETURN MGP_ERROR_LOGIC_ERROR if a procedure with the same name was already registered.
 
 
-### function mgp_proc_add_arg {#function-mgp-proc-add-arg}
+### mgp_proc_add_arg {#function-mgp-proc-add-arg}
 
 ```cpp
 enum mgp_error mgp_proc_add_arg(
@@ -3047,7 +3287,7 @@ Passed in `type` describes what kind of values can be used as the argument.
 Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate memory for an argument. Return MGP_ERROR_INVALID_ARGUMENT if `name` is not a valid argument name. RETURN MGP_ERROR_LOGIC_ERROR if the procedure already has any optional argument.
 
 
-### function mgp_proc_add_opt_arg {#function-mgp-proc-add-opt-arg}
+### mgp_proc_add_opt_arg {#function-mgp-proc-add-opt-arg}
 
 ```cpp
 enum mgp_error mgp_proc_add_opt_arg(
@@ -3071,7 +3311,7 @@ Passed in `type` describes what kind of values can be used as the argument.
 Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate memory for an argument. Return MGP_ERROR_INVALID_ARGUMENT if `name` is not a valid argument name. RETURN MGP_ERROR_VALUE_CONVERSION if `default_value` is a graph element (vertex, edge or path). RETURN MGP_ERROR_LOGIC_ERROR if `default_value` does not satisfy `type`.
 
 
-### function mgp_proc_add_result {#function-mgp-proc-add-result}
+### mgp_proc_add_result {#function-mgp-proc-add-result}
 
 ```cpp
 enum mgp_error mgp_proc_add_result(
@@ -3090,7 +3330,7 @@ Passed in `type` describes what kind of values can be returned through the resul
 Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate memory for an argument. Return MGP_ERROR_INVALID_ARGUMENT if `name` is not a valid result name. RETURN MGP_ERROR_LOGIC_ERROR if a result field with the same name was already added.
 
 
-### function mgp_proc_add_deprecated_result {#function-mgp-proc-add-deprecated-result}
+### mgp_proc_add_deprecated_result {#function-mgp-proc-add-deprecated-result}
 
 ```cpp
 enum mgp_error mgp_proc_add_deprecated_result(
@@ -3107,7 +3347,7 @@ This is the same as mgp_proc_add_result, but the result field will be marked as 
 Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate memory for an argument. Return MGP_ERROR_INVALID_ARGUMENT if `name` is not a valid result name. RETURN MGP_ERROR_LOGIC_ERROR if a result field with the same name was already added.
 
 
-### function mgp_must_abort {#function-mgp-must-abort}
+### mgp_must_abort {#function-mgp-must-abort}
 
 ```cpp
 int mgp_must_abort(
@@ -3120,7 +3360,7 @@ Return non-zero if the currently executing procedure should abort as soon as pos
 Procedures which perform heavyweight processing run the risk of running too long and going over the query execution time limit. To prevent this, such procedures should periodically call this function at critical points in their code in order to determine whether they should abort or not. Note that this mechanism is purely cooperative and depends on the procedure doing the checking and aborting on its own.
 
 
-### function mgp_message_payload {#function-mgp-message-payload}
+### mgp_message_payload {#function-mgp-message-payload}
 
 ```cpp
 enum mgp_error mgp_message_payload(
@@ -3134,7 +3374,7 @@ Payload is not null terminated and not a string but rather a byte array.
 You need to call [mgp_message_payload_size()](#function-mgp-message-payload-size) first, to read the size of the payload.
 
 
-### function mgp_message_payload_size {#function-mgp-message-payload-size}
+### mgp_message_payload_size {#function-mgp-message-payload-size}
 
 ```cpp
 enum mgp_error mgp_message_payload_size(
@@ -3145,7 +3385,7 @@ enum mgp_error mgp_message_payload_size(
 
 Get the payload size.
 
-### function mgp_message_topic_name {#function-mgp-message-topic-name}
+### mgp_message_topic_name {#function-mgp-message-topic-name}
 
 ```cpp
 enum mgp_error mgp_message_topic_name(
@@ -3156,7 +3396,7 @@ enum mgp_error mgp_message_topic_name(
 
 Get the name of topic.
 
-### function mgp_message_key {#function-mgp-message-key}
+### mgp_message_key {#function-mgp-message-key}
 
 ```cpp
 enum mgp_error mgp_message_key(
@@ -3167,7 +3407,7 @@ enum mgp_error mgp_message_key(
 
 Get the key of mgp_message as a byte array.
 
-### function mgp_message_key_size {#function-mgp-message-key-size}
+### mgp_message_key_size {#function-mgp-message-key-size}
 
 ```cpp
 enum mgp_error mgp_message_key_size(
@@ -3178,7 +3418,7 @@ enum mgp_error mgp_message_key_size(
 
 Get the key size of mgp_message.
 
-### function mgp_message_timestamp {#function-mgp-message-timestamp}
+### mgp_message_timestamp {#function-mgp-message-timestamp}
 
 ```cpp
 enum mgp_error mgp_message_timestamp(
@@ -3189,7 +3429,7 @@ enum mgp_error mgp_message_timestamp(
 
 Get the timestamp of mgp_message as a byte array.
 
-### function mgp_messages_size {#function-mgp-messages-size}
+### mgp_messages_size {#function-mgp-messages-size}
 
 ```cpp
 enum mgp_error mgp_messages_size(
@@ -3200,7 +3440,7 @@ enum mgp_error mgp_messages_size(
 
 Get the number of messages contained in the mgp_messages list Current implementation always returns without errors.
 
-### function mgp_messages_at {#function-mgp-messages-at}
+### mgp_messages_at {#function-mgp-messages-at}
 
 ```cpp
 enum mgp_error mgp_messages_at(
@@ -3212,7 +3452,7 @@ enum mgp_error mgp_messages_at(
 
 Get the message from a messages list at given index.
 
-### function mgp_module_add_transformation {#function-mgp-module-add-transformation}
+### mgp_module_add_transformation {#function-mgp-module-add-transformation}
 
 ```cpp
 enum mgp_error mgp_module_add_transformation(
@@ -3229,7 +3469,7 @@ The `name` must be a sequence of digits, underscores, lowercase and uppercase La
 Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate memory for transformation. Return MGP_ERROR_INVALID_ARGUMENT if `name` is not a valid transformation name. RETURN MGP_ERROR_LOGIC_ERROR if a transformation with the same name was already registered.
 
 
-### function mgp_vertices_iterator_next {#function-mgp-vertices-iterator-next}
+### mgp_vertices_iterator_next {#function-mgp-vertices-iterator-next}
 
 ```cpp
 enum mgp_error mgp_vertices_iterator_next(
@@ -3246,7 +3486,7 @@ The previous mgp_vertex obtained through mgp_vertices_iterator_get will be inval
 
 ## Attributes Documentation
 
-### variable mgp_error {#variable-mgp-error}
+### mgp_error {#variable-mgp-error}
 
 ```cpp
 enum MGP_NODISCARD mgp_error;
@@ -3257,84 +3497,84 @@ All functions return an error code that can be used to figure out whether the AP
 In case of failure, the specific error code can be used to identify the reason of the failure.
 
 
-### variable MGP_ERROR_NO_ERROR {#variable-mgp-error-no-error}
+### MGP_ERROR_NO_ERROR {#variable-mgp-error-no-error}
 
 ```cpp
 MGP_ERROR_NO_ERROR = 0;
 ```
 
 
-### variable MGP_ERROR_UNKNOWN_ERROR {#variable-mgp-error-unknown-error}
+### MGP_ERROR_UNKNOWN_ERROR {#variable-mgp-error-unknown-error}
 
 ```cpp
 MGP_ERROR_UNKNOWN_ERROR;
 ```
 
 
-### variable MGP_ERROR_UNABLE_TO_ALLOCATE {#variable-mgp-error-unable-to-allocate}
+### MGP_ERROR_UNABLE_TO_ALLOCATE {#variable-mgp-error-unable-to-allocate}
 
 ```cpp
 MGP_ERROR_UNABLE_TO_ALLOCATE;
 ```
 
 
-### variable MGP_ERROR_INSUFFICIENT_BUFFER {#variable-mgp-error-insufficient-buffer}
+### MGP_ERROR_INSUFFICIENT_BUFFER {#variable-mgp-error-insufficient-buffer}
 
 ```cpp
 MGP_ERROR_INSUFFICIENT_BUFFER;
 ```
 
 
-### variable MGP_ERROR_OUT_OF_RANGE {#variable-mgp-error-out-of-range}
+### MGP_ERROR_OUT_OF_RANGE {#variable-mgp-error-out-of-range}
 
 ```cpp
 MGP_ERROR_OUT_OF_RANGE;
 ```
 
 
-### variable MGP_ERROR_LOGIC_ERROR {#variable-mgp-error-logic-error}
+### MGP_ERROR_LOGIC_ERROR {#variable-mgp-error-logic-error}
 
 ```cpp
 MGP_ERROR_LOGIC_ERROR;
 ```
 
 
-### variable MGP_ERROR_DELETED_OBJECT {#variable-mgp-error-deleted-object}
+### MGP_ERROR_DELETED_OBJECT {#variable-mgp-error-deleted-object}
 
 ```cpp
 MGP_ERROR_DELETED_OBJECT;
 ```
 
 
-### variable MGP_ERROR_INVALID_ARGUMENT {#variable-mgp-error-invalid-argument}
+### MGP_ERROR_INVALID_ARGUMENT {#variable-mgp-error-invalid-argument}
 
 ```cpp
 MGP_ERROR_INVALID_ARGUMENT;
 ```
 
 
-### variable MGP_ERROR_KEY_ALREADY_EXISTS {#variable-mgp-error-key-already-exists}
+### MGP_ERROR_KEY_ALREADY_EXISTS {#variable-mgp-error-key-already-exists}
 
 ```cpp
 MGP_ERROR_KEY_ALREADY_EXISTS;
 ```
 
 
-### variable MGP_ERROR_IMMUTABLE_OBJECT {#variable-mgp-error-immutable-object}
+### MGP_ERROR_IMMUTABLE_OBJECT {#variable-mgp-error-immutable-object}
 
 ```cpp
 MGP_ERROR_IMMUTABLE_OBJECT;
 ```
 
 
-### variable MGP_ERROR_VALUE_CONVERSION {#variable-mgp-error-value-conversion}
+### MGP_ERROR_VALUE_CONVERSION {#variable-mgp-error-value-conversion}
 
 ```cpp
 MGP_ERROR_VALUE_CONVERSION;
 ```
 
 
-### variable MGP_ERROR_SERIALIZATION_ERROR {#variable-mgp-error-serialization-error}
+### MGP_ERROR_SERIALIZATION_ERROR {#variable-mgp-error-serialization-error}
 
 ```cpp
 MGP_ERROR_SERIALIZATION_ERROR;
