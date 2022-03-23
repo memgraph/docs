@@ -73,7 +73,7 @@ module.exports = {
               to: "/memgraph/reference-guide",
             },
             {
-              label: "Concepts",
+              label: "Under the hood",
               to: "/memgraph/under-the-hood",
             },
             {

@@ -29,6 +29,10 @@ including another configuration file.
 efficient data querying in a property graph. It aims to be intuitive and easy to
 learn while providing a powerful interface for working with graph-based data.
 
+## [Data types](/reference-guide/data-types.md)
+
+Check what data types are supported by Memgraph. 
+
 ## [Import data](./import-data/overview.md)
 
 Memgraph offers painless import of data from CSV files or Cypher queries within
@@ -72,10 +76,11 @@ following guides:
 
 - [Available query
   modules](/reference-guide/query-modules/available-query-modules.md)
-- [Load and call query
-  modules](/reference-guide/query-modules/load-call-query-modules.md)
 - [Implement custom query
   modules](/how-to-guides/query-modules/implement-query-modules.md)
+- [Load and call query
+  modules](/reference-guide/query-modules/load-call-query-modules.md)
+- [Utility query module](/reference-guide/query-modules/module-file-utilities.md)
 
 ## [Replication](./replication.md)
 
@@ -97,13 +102,6 @@ take a look at the following pages:
 - [Streams overview](/reference-guide/streams/overview.md)
 - [Transformation
   modules](/reference-guide/streams/transformation-modules/overview.md)
-
-## [Temporal types](/reference-guide/temporal-types.md)
-
-Temporal data types store and manipulate time. To learn more, take a look at the
-overview page:
-
-- [Temporal types](/reference-guide/temporal-types.md)
 
 ## [Triggers](./triggers.md)
 
