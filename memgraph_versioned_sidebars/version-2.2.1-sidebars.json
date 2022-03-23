@@ -230,6 +230,7 @@
         "reference-guide/backup",
         "reference-guide/graph-algorithms",
         "reference-guide/configuration",
+        "reference-guide/data-types",
         {
           "type": "category",
           "label": "Import Data",
@@ -319,7 +320,6 @@
             }
           ]
         },
-        "reference-guide/temporal-types",
         "reference-guide/triggers",
         "reference-guide/users",
         {

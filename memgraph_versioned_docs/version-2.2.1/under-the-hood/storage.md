@@ -27,6 +27,9 @@ file.
 Behavior of these mechanisms can be tweaked in the configuration file,
 usually found in `/etc/memgraph/memgraph.conf`.
 
+Check the reference guide on Configuration to see the [possible configuration
+settings for storage](../reference-guide/configuration#storage).
+
 :::caution
 Snapshot and WAL files are (currently) not compatible between Memgraph
 versions.
@@ -70,6 +73,14 @@ Below is a table of supported data types.
  `Float`   | A floating-point number (real number).
  `List`    | A list containing any number of property values of any supported type under a single property name.
  `Map`     | A mapping of string keys to values of any supported type.
+ `Duration`| A period of time.
+ `Date`    | A date with year, month, and day.
+ `LocalTime` | Time within a day without timezone.
+ `LocalDateTime` | Date and local time.
+
+Check the reference guide to [read more about temporal
+types](/reference-guide/data-types.md) `Duration`, `Date`, `LocalTime` and
+`LocalDateTime`. 
 
 :::note
 
@@ -104,7 +115,7 @@ memory usage.
 You can disable properties on relationships with a non-empty database, just make
 sure the relationships are without properties.
 
-### Storage statistics
+## Storage statistics
 
 You can retrieve information and statistics about the storage of a running
 Memgraph instance by using the following query.

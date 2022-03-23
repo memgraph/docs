@@ -205,6 +205,7 @@ module.exports = {
         "reference-guide/backup",
         "reference-guide/graph-algorithms",
         "reference-guide/configuration",
+        "reference-guide/data-types",
         {
           type: "category",
           label: "Import Data",
@@ -279,7 +280,6 @@ module.exports = {
             },
           ],
         },
-        "reference-guide/temporal-types",
         //"reference-guide/tensorflow",
         "reference-guide/triggers",
         "reference-guide/users",
