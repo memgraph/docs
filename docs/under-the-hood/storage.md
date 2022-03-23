@@ -70,6 +70,14 @@ Below is a table of supported data types.
  `Float`   | A floating-point number (real number).
  `List`    | A list containing any number of property values of any supported type under a single property name.
  `Map`     | A mapping of string keys to values of any supported type.
+ `Duration`| A period of time.
+ `Date`    | A date with year, month, and day.
+ `LocalTime` | Time within a day without timezone.
+ `LocalDateTime` | Date and local time.
+
+Check the reference guide to [read more about temporal
+types](/reference-guide/temporal-types.md) `Duration`, `Date`, `LocalTime` and
+`LocalDateTime`. 
 
 :::note
 
