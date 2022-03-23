@@ -11,13 +11,13 @@ Memgraph.
 
 ## Node labels & relationship types
 
-Nodes can have labels that are used to label or group nodes. A label is of **text**
-data type, and each node can have none or multiple labels. Labels can be
-changed at any time. 
+**Nodes** can have labels that are used to label or group nodes. A label is of
+the type `String`, and each node can have none or multiple labels. Labels can be
+changed at any time.
 
-Relationships have a type, also represented as **text**. Unlike nodes, relationships
-must have exactly one relationship type and once it is set upon creation, it can
-never be modified again.
+**Relationships** have a type, also represented in the form of a `String`.
+Unlike nodes, relationships must have exactly one relationship type and once it
+is set upon creation, it can never be modified again.
 
 ## Property types
 
@@ -27,30 +27,30 @@ Property names are represented as text, while values can be of different types.
 
 Each property can store a single value, and it is not possible to have multiple
 properties with the same name on a single graph element. But, the same property
-names can be found across multiple graph elements. 
+names can be found across multiple graph elements.
 
 Also, there are no restrictions on the number of properties that can be stored
 in a single graph element. The only restriction is that the values must be of
 the supported types. Below is a table of supported data types.
 
- Type                              | Description
------------------------------------|------------
- `Null`                            | Property has no value, which is the same as if the property doesn't exist.
- `String`                          | A character string (text).
- `Boolean`                         | A boolean value, either `true` or `false`.
- `Integer`                         | An integer number.
- `Float`                           | A floating-point number (real number).
- `List`                            | A list containing any number of property values of any supported type under a single property name.
- `Map`                             | A mapping of string keys to values of any supported type.
- [`Duration`](#duration)           | A period of time.
- [`Date`](#date)                   | A date with year, month, and day.
- [`LocalTime`](#localtime)         | Time without the time zone.
- [`LocalDateTime`](#localdatetime) | Date and time without the time zone.
+| Type                              | Description                                                                                         |
+| --------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `Null`                            | Property has no value, which is the same as if the property doesn't exist.                          |
+| `String`                          | A character string (text).                                                                          |
+| `Boolean`                         | A boolean value, either `true` or `false`.                                                          |
+| `Integer`                         | An integer number.                                                                                  |
+| `Float`                           | A floating-point number (real number).                                                              |
+| `List`                            | A list containing any number of property values of any supported type under a single property name. |
+| `Map`                             | A mapping of string keys to values of any supported type.                                           |
+| [`Duration`](#duration)           | A period of time.                                                                                   |
+| [`Date`](#date)                   | A date with year, month, and day.                                                                   |
+| [`LocalTime`](#localtime)         | Time without the time zone.                                                                         |
+| [`LocalDateTime`](#localdatetime) | Date and time without the time zone.                                                                |
 
 :::note
 
 If you want to modify `List` and `Map` property values, you need to replace them
-entirely. 
+entirely.
 
 The following queries are valid:
 
@@ -68,24 +68,25 @@ MATCH (n:Node) SET n.property.key = "other value";
 
 :::
 
+## Temporal types
+
 ### Duration
 
 You can create a property of temporal type `Duration` from a string or a map by
-calling the function
-`duration`.
+calling the function `duration`.
 
 For strings, the duration format is: `P[nD]T[nH][nM][nS]` where `n` stands for
-number, and the capital letters are used as a separator with each field in `[]`
-marked optional. For strings, Memgraph only allows the last field to be a double,
-e.g., `P2DT2.5H`. However, for maps, every field can be a double, an int or a
-mixture of both. Memgraph also supports negative durations.
+a number, and the capital letters are used as a separator with each field in `[]`
+marked optional. For strings, Memgraph only allows the last field to be a
+double, e.g., `P2DT2.5H`. However, for maps, every field can be a double, an int
+or a mixture of both. Memgraph also supports negative durations.
 
-name|description
-:-:|:-:
-D|Days|/
-H|Hours|/
-M|Minutes|/
-S|Seconds|/
+| name | description |
+| :--: | :---------: |
+|  D   |    Days     |
+|  H   |    Hours    |
+|  M   |   Minutes   |
+|  S   |   Seconds   |
 
 Example:
 
@@ -117,15 +118,15 @@ the following equation: `minutes - seconds - microseconds`.
 Each of the individual fields of a duration can be accessed through its
 properties as follows:
 
-name|description
-:-:|:-:
-day|Converts all the microseconds back to days and returns the value.|/
-hour|Subtracts days and returns the leftover value as hours.|/
-minute|Subtracts the days and returns the leftover value as minutes.|/
-second|Subtracts the days and returns the leftover value as seconds.|/
-millisecond|Subtracts the days and returns the leftover value as milliseconds.|/
-microsecond|Subtracts the days and returns the leftover value as microseconds.|/
-nanosecond|Subtracts the days and returns the leftover value as nanoseconds.|/
+|    name     |                            description                             |
+| :---------: | :----------------------------------------------------------------: |
+|     day     | Converts all the microseconds back to days and returns the value.  |
+|    hour     |      Subtracts days and returns the leftover value as hours.       |
+|   minute    |   Subtracts the days and returns the leftover value as minutes.    |
+|   second    |   Subtracts the days and returns the leftover value as seconds.    |
+| millisecond | Subtracts the days and returns the leftover value as milliseconds. |
+| microsecond | Subtracts the days and returns the leftover value as microseconds. |
+| nanosecond  | Subtracts the days and returns the leftover value as nanoseconds.  |
 
 Example:
 
@@ -138,16 +139,19 @@ MATCH (f:F1Laps) RETURN f.lap.day;
 // Result
 >> 1
 ```
+
 ```cypher
 MATCH (f:F1Laps) RETURN f.lap.hour;
 // Result
 >> 2
 ```
+
 ```cypher
 MATCH (f:F1Laps) RETURN f.lap.minute;
 // Result
 >> 123 // The value without days is 2 hours and 3  minutes, that is 123 minutes
 ```
+
 ```cypher
 MATCH (f:F1Laps) RETURN f.lap.second;
 // Result
@@ -160,11 +164,11 @@ You can create a property of temporal type `Date` from a string or map by
 calling the function `Date`. For strings, the date format is specified by the
 ISO 8601: `YYYY-MM-DD` or `YYYYMMDD` or `YYYY-MM`.
 
-name|description
-:-:|:-:
-Y|Year|/
-M|Month|/
-D|Day|/
+| name | description |
+| :--: | :---------: |
+|  Y   |    Year     |
+|  M   |    Month    |
+|  D   |     Day     |
 
 The smallest year is `0` and the highest is `9999`.
 
@@ -187,11 +191,11 @@ CREATE (:Person {birthday: date({year:1947, month:7, day:30})});
 
 You can access the individual fields of a date through its properties:
 
-name|description
-:-:|:-:
-year|Returns the year field|/
-month|Returns the month field|/
-day|Returns the day field|/
+| name  |       description       |
+| :---: | :---------------------: |
+| year  | Returns the year field  |
+| month | Returns the month field |
+|  day  |  Returns the day field  |
 
 Example:
 
@@ -206,11 +210,11 @@ calling the function `localTime`. For strings, the local time format is
 specified by the ISO 8601: `[T]hh:mm:ss` or `[T]hh:mm` or `[T]hhmmss` or
 `[T]hhmm` or `[T]hh`.
 
-name|description
-:-:|:-:
-|h|Hours|
-|m|Minutes|
-|s|Seconds|
+| name | description |
+| :--: | :---------: |
+|  h   |    Hours    |
+|  m   |   Minutes   |
+|  s   |   Seconds   |
 
 `seconds` can be defined as decimal fractions with up to 6 digits. The first 3
 digits represent milliseconds, and the last 3 digits microseconds. For example,
@@ -227,7 +231,7 @@ CREATE (:School {Calculus: localTime("09:15:00")});
 ```
 
 For maps, there are 5 fields available: `hour`, `minute`, `second`,
- `millisecond` and `microsecond`.
+`millisecond` and `microsecond`.
 
 Example:
 
@@ -237,13 +241,13 @@ CREATE (:School {Calculus: localTime({hour:9, minute:15})});
 
 You can access the individual fields of a LocalTime through its properties:
 
-name|description
-:-:|:-:
-hour|Returns the hour field|/
-minute|Returns the minute field|/
-second|Returns the second field|/
-millisecond|Returns the millisecond field|/
-microsecond|Returns the microsecond field|/
+|    name     |          description          |
+| :---------: | :---------------------------: |
+|    hour     |    Returns the hour field     |
+|   minute    |   Returns the minute field    |
+|   second    |   Returns the second field    |
+| millisecond | Returns the millisecond field |
+| microsecond | Returns the microsecond field |
 
 Example:
 
@@ -258,14 +262,14 @@ by calling the function `localDateTime`. For strings, the local time format is
 specified by the ISO 8601: `YYYY-MM-DDThh:mm:ss` or `YYYY-MM-DDThh:mm` or
 `YYYYMMDDThhmmss` or `YYYYMMDDThhmm` or `YYYYMMDDThh`.
 
-name|description
-:-:|:-:
-|Y|Year|/
-|M|Month|/
-|D|Day|/
-|h|Hours|/
-|m|Minutes|/
-|s|Seconds|/
+| name | description |
+| :--: | :---------: |
+|  Y   |    Year     |
+|  M   |    Month    |
+|  D   |     Day     |
+|  h   |    Hours    |
+|  m   |   Minutes   |
+|  s   |   Seconds   |
 
 You can call `localDateTime` without arguments. This effectively sets the date
 and time fields to the current date and time of the calendar (UTC clock).
@@ -286,16 +290,16 @@ CREATE (:Flights {AIR123: localDateTime(year:2021, month:10, day:5, hour:14, min
 
 You can access the individual fields of LocalDateTime through its properties:
 
-name|description
-:-:|:-:
-year|Returns the year field|/
-month|Returns the month field|/
-day|Returns the day field|/
-hour|Returns the hour field|/
-minute|Returns the minute field|/
-second|Returns the second field|/
-millisecond|Returns the millisecond field|/
-microsecond|Returns the microsecond field|/
+|    name     |          description          |
+| :---------: | :---------------------------: |
+|    year     |    Returns the year field     |
+|    month    |    Returns the month field    |
+|     day     |     Returns the day field     |
+|    hour     |    Returns the hour field     |
+|   minute    |   Returns the minute field    |
+|   second    |   Returns the second field    |
+| millisecond | Returns the millisecond field |
+| microsecond | Returns the microsecond field |
 
 Example:
 
@@ -310,43 +314,43 @@ native arithmetic, and the operations are summarized in the following table:
 
 Duration operations:
 
-op|result
-:-:|:-:
-Duration + Duration|Duration|/
-Duration - Duration|Duration|/
-- Duration|Duration|/
+|         op          |  result  |
+| :-----------------: | :------: |
+| Duration + Duration | Duration |
+| Duration - Duration | Duration |
+|     - Duration      | Duration |
 
 Date operations:
 
-op|result
-:-:|:-:
-Date + Duration|Date|/
-Duration + Date|Date|/
-Date - Duration|Date|/
-Date - Date|Duration|/
+|       op        |  result  |
+| :-------------: | :------: |
+| Date + Duration |   Date   |
+| Duration + Date |   Date   |
+| Date - Duration |   Date   |
+|   Date - Date   | Duration |
 
 LocalTime operations:
 
-op|result
-:-:|:-:
-LocaTtime + Duration|LocalTime|/
-Duration + LocalTime|LocalTime|/
-LocalTime - Duration|LocalTime|/
-LocalTime - LocalTime|Duration|/
+|          op           |  result   |
+| :-------------------: | :-------: |
+| LocalTime + Duration  | LocalTime |
+| Duration + LocalTime  | LocalTime |
+| LocalTime - Duration  | LocalTime |
+| LocalTime - LocalTime | Duration  |
 
 LocalDateTime operations:
 
-operation|result
-:-:|:-:
-LocalDateTime + Duration|LocalDateTime|/
-Duration + LocalTateTime|LocalDateTime|/
-LocalDateTime - Duration|LocalDateTime|/
-LocalDateTime - LocalDateTime|Duration|/
+|           operation           |    result     |
+| :---------------------------: | :-----------: |
+|   LocalDateTime + Duration    | LocalDateTime |
+|   Duration + LocalTateTime    | LocalDateTime |
+|   LocalDateTime - Duration    | LocalDateTime |
+| LocalDateTime - LocalDateTime |   Duration    |
 
 ## Procedures API
 
-Data types are also used within query modules. Check out the
-documentation for the [Python
+Data types are also used within query modules. Check out the documentation for
+the [Python
 API](/reference-guide/query-modules/implement-custom-query-modules/api/python-api.md)
 and [C
 API](/reference-guide/query-modules/implement-custom-query-modules/api/c-api.md).
