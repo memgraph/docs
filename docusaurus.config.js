@@ -1247,6 +1247,12 @@ module.exports = {
               "/memgraph/reference-guide/query-modules/api/c-api/classes/mgp_vertex_id",
             ],
           },
+          {
+            to: "/memgraph/reference-guide/data-types",
+            from: [
+              "/memgraph/reference-guide/temporal-types",
+            ],
+          },
         ],
       },
     ],
