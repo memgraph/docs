@@ -1,7 +1,7 @@
 ---
 id: profiling-queries
-title: How to profile queries
-sidebar_label: Profile queries
+title: Profiling queries
+sidebar_label: Profiling queries
 slug: /reference-guide/profiling-queries
 ---
 

@@ -28,7 +28,7 @@ Behavior of these mechanisms can be tweaked in the configuration file,
 usually found in `/etc/memgraph/memgraph.conf`.
 
 Check the reference guide on Configuration to see the [possible configuration
-settings for storage](/reference-guide/configuration#storage).
+settings for storage](../reference-guide/configuration#storage).
 
 :::caution
 Snapshot and WAL files are (currently) not compatible between Memgraph
