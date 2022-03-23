@@ -298,5 +298,6 @@ LocalDateTime - LocalDateTime|Duration|/
 
 Temporal types can also be used within query modules. Check out the
 documentation for the [Pyhon
-API](/reference-guide/query-modules/api/python-api.md) and [C
-API](/reference-guide/query-modules/api/c-api/overview.md).
+API](/reference-guide/query-modules/implement-custom-query-modules/api/python-api.md)
+and [C
+API](/reference-guide/query-modules/implement-custom-query-modules/api/c-api.md).

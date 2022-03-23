@@ -15,6 +15,14 @@ is not mandatory.
 Details on which kind of data can be stored in Memgraph can be found in the
 [Storage](/memgraph/concepts/storage) chapter.
 
+:::info
+
+Indexing can increase performance when executing queries. Please take a look at
+our [documentation on indexing](/docs/memgraph/reference-guide/indexing) for
+more details.
+
+:::
+
 ## CREATE
 
 This clause is used to add new nodes and relationships to the database. The creation is

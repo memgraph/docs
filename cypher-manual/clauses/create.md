@@ -6,6 +6,14 @@ sidebar_label: CREATE
 
 The `CREATE` clause is used to create nodes and relationships in a graph.
 
+:::info
+
+Indexing can increase performance when executing queries. Please take a look at
+our [documentation on indexing](/docs/memgraph/reference-guide/indexing) for
+more details.
+
+:::
+
 1. [Creating nodes](#1-creating-nodes) <br />
     1.1. [Creating a single node](#11-creating-a-single-node)<br />
     1.2. [Creating a node with properties](#12-creating-a-node-with-properties)<br />

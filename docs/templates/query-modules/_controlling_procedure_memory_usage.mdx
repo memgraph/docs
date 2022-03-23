@@ -1,0 +1,16 @@
+<!-- ## Controlling procedure memory usage -->
+
+When running a procedure, Memgraph controls the maximum memory usage that the
+procedure may consume during its execution.  By default, the upper memory limit
+when running a procedure is `100 MB`.  If your query procedure requires more
+memory to yield its results, you can increase the memory limit using the
+following syntax:
+
+```cypher
+CALL module.procedure(arg1, arg2, ...) PROCEDURE MEMORY LIMIT 100 KB YIELD result;
+CALL module.procedure(arg1, arg2, ...) PROCEDURE MEMORY LIMIT 100 MB YIELD result;
+CALL module.procedure(arg1, arg2, ...) PROCEDURE MEMORY UNLIMITED YIELD result;
+```
+
+The limit can either be specified to a specific value (either in `KB` or in
+`MB`), or it can be set to unlimited.
