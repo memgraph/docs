@@ -1,36 +1,84 @@
 ---
-id: temporal-types
-title: Temporal types
-sidebar_label: Temporal types
+id: data-types
+title: Data types
+sidebar_label: Data types
 ---
 
-Temporal types can be stored as properties of a vertex or edge. The user can use
-Cypher queries or procedures to read or write these properties. The following
-table summarizes the temporal types that Memgraph currently supports:
+Since Memgraph is a graph database management system, data is stored in the form
+of graph elements: nodes and relationships. Each graph element can contain
+various types of data. This page describes which data types are supported in
+Memgraph.
 
-name|description|
-:-:|:-:
-Duration|Data type that represents a period of time.|/
-Date|Data type that represents a date with year, month, and day.|/
-LocalTime|Data type that represents time within a day without timezone.|/
-LocalDateTime|Data type that represents a date and local time.|/
+## Node labels & relationship types
+
+Nodes can have labels that are used to label or group nodes. A label is of **text**
+data type, and each node can have none or multiple labels. Labels can be
+changed at any time. 
+
+Relationships have a type, also represented as **text**. Unlike nodes, relationships
+must have exactly one relationship type and once it is set upon creation, it can
+never be modified again.
+
+## Property types
+
+Nodes and relationships can store various properties. Properties are similar to
+mappings or tables containing property names and their accompanying values.
+Property names are represented as text, while values can be of different types.
+
+Each property can store a single value, and it is not possible to have multiple
+properties with the same name on a single graph element. But, the same property
+names can be found across multiple graph elements. 
+
+Also, there are no restrictions on the number of properties that can be stored
+in a single graph element. The only restriction is that the values must be of
+the supported types. Below is a table of supported data types.
+
+ Type                              | Description
+-----------------------------------|------------
+ `Null`                            | Property has no value, which is the same as if the property doesn't exist.
+ `String`                          | A character string (text).
+ `Boolean`                         | A boolean value, either `true` or `false`.
+ `Integer`                         | An integer number.
+ `Float`                           | A floating-point number (real number).
+ `List`                            | A list containing any number of property values of any supported type under a single property name.
+ `Map`                             | A mapping of string keys to values of any supported type.
+ [`Duration`](#duration)           | A period of time.
+ [`Date`](#date)                   | A date with year, month, and day.
+ [`LocalTime`](#localtime)         | Time without the time zone.
+ [`LocalDateTime`](#localdatetime) | Date and time without the time zone.
 
 :::note
 
-All types excluding `Duration` are ISO 8601 compliant.
+If you want to modify `List` and `Map` property values, you need to replace them
+entirely. 
+
+The following queries are valid:
+
+```cypher
+CREATE (:Node {property: [1, 2, 3]});
+CREATE (:Node {property: {key: "value"}});
+```
+
+But these are not:
+
+```cypher
+MATCH (n:Node) SET n.property[0] = 0;
+MATCH (n:Node) SET n.property.key = "other value";
+```
 
 :::
 
-## Duration
+### Duration
 
-You can create `Duration` from a string or a map by calling the function
+You can create a property of temporal type `Duration` from a string or a map by
+calling the function
 `duration`.
 
 For strings, the duration format is: `P[nD]T[nH][nM][nS]` where `n` stands for
 number, and the capital letters are used as a separator with each field in `[]`
 marked optional. For strings, Memgraph only allows the last field to be a double,
 e.g., `P2DT2.5H`. However, for maps, every field can be a double, an int or a
-mixture of both. We also support negative durations.
+mixture of both. Memgraph also supports negative durations.
 
 name|description
 :-:|:-:
@@ -45,8 +93,8 @@ Example:
 CREATE (:F1Laps {lap: duration("PT2M2.33S")});
 ```
 
-Maps can contain the following six fields: `day`, `hour`, `minute`, `second`
-, `millisecond` and `microsecond`.
+Maps can contain the following six fields: `day`, `hour`, `minute`, `second`,
+`millisecond` and `microsecond`.
 
 Example:
 
@@ -106,11 +154,11 @@ MATCH (f:F1Laps) RETURN f.lap.second;
 >> 7384 // The value without days is 2 hours, 3 minutes and 4 seconds, that is 7384 minutes
 ```
 
-## Date
+### Date
 
-You can create `Date` from a string or map by calling the function `Date`. For
-strings, the date format is specified by the ISO 8601: `YYYY-MM-DD` or
-`YYYYMMDD` or `YYYY-MM`.
+You can create a property of temporal type `Date` from a string or map by
+calling the function `Date`. For strings, the date format is specified by the
+ISO 8601: `YYYY-MM-DD` or `YYYYMMDD` or `YYYY-MM`.
 
 name|description
 :-:|:-:
@@ -151,11 +199,12 @@ Example:
 MATCH (b:Person) RETURN b.birthday.year;
 ```
 
-## LocalTime
+### LocalTime
 
-You can create `LocalTime` from a string or map by calling the function
-`localTime`. For strings, the local time format is specified by the ISO 8601:
-`[T]hh:mm:ss` or `[T]hh:mm` or `[T]hhmmss` or `[T]hhmm` or `[T]hh`.
+You can create a property of temporal type `LocalTime` from a string or map by
+calling the function `localTime`. For strings, the local time format is
+specified by the ISO 8601: `[T]hh:mm:ss` or `[T]hh:mm` or `[T]hhmmss` or
+`[T]hhmm` or `[T]hh`.
 
 name|description
 :-:|:-:
@@ -202,12 +251,12 @@ Example:
 MATCH (s:School) RETURN s.Calculus.hour;
 ```
 
-## LocalDateTime
+### LocalDateTime
 
-You can create `LocalDateTime` from a string or map by calling the function
-`localDateTime`. For strings, the local time format is specified by the ISO
-8601: `YYYY-MM-DDThh:mm:ss` or `YYYY-MM-DDThh:mm` or `YYYYMMDDThhmmss` or
-`YYYYMMDDThhmm` or `YYYYMMDDThh`.
+You can create a property of temporal type `LocalDateTime` from a string or map
+by calling the function `localDateTime`. For strings, the local time format is
+specified by the ISO 8601: `YYYY-MM-DDThh:mm:ss` or `YYYY-MM-DDThh:mm` or
+`YYYYMMDDThhmmss` or `YYYYMMDDThhmm` or `YYYYMMDDThh`.
 
 name|description
 :-:|:-:
@@ -256,8 +305,8 @@ MATCH (f:Flights) RETURN f.AIR123.year;
 
 ## Temporal types arithmetic
 
-Temporal types support native arithmetic, and the operations are summarized in
-the following table:
+Temporal types `Duration`, `Date`, `LocalTime` and `LocalDateTime` support
+native arithmetic, and the operations are summarized in the following table:
 
 Duration operations:
 
@@ -296,8 +345,8 @@ LocalDateTime - LocalDateTime|Duration|/
 
 ## Procedures API
 
-Temporal types can also be used within query modules. Check out the
-documentation for the [Pyhon
+Data types are also used within query modules. Check out the
+documentation for the [Python
 API](/reference-guide/query-modules/implement-custom-query-modules/api/python-api.md)
 and [C
 API](/reference-guide/query-modules/implement-custom-query-modules/api/c-api.md).
