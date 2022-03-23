@@ -193,7 +193,7 @@ sidebar_label: Changelog
 
 - Added support for temporal types, a feature that allows the user to manipulate
   and store time related data in the graph. For more information take a look at
-  the [reference guide](/reference-guide/temporal-types.md)
+  the [reference guide](/reference-guide/data-types.md)
 - Added support for parameters with `CREATE` clause in the following form:
   `CREATE (n $param)`.
 - Introduced settings to Memgraph that can be modified during runtime. You can

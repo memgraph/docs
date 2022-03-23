@@ -1,7 +1,7 @@
 ---
 id: inspecting-queries
-title: How to inspect queries
-sidebar_label: Inspect queries
+title: Inspecting queries
+sidebar_label: Inspecting queries
 slug: /reference-guide/inspecting-queries
 ---
 
