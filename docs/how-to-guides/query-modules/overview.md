@@ -1,51 +1,125 @@
 ---
 id: overview
 title: How to use query modules
-sidebar_label: Query modules overview
+sidebar_label: Use query modules
 slug: /how-to-guides/query-modules
 ---
 
-Memgraph supports extending the query language with user-written procedures.
-These procedures are grouped into modules, which can then be loaded on startup.
+Query modules are extensions of the Cypher query language. They are groups of
+procedures written in **C**, **C++**, **Python**, and **Rust** and bundled up in
+either `*.so` or `*.py` query modules files. 
 
-:::note
-For detailed technical information on query modules, check out the
-[reference guide](/reference-guide/query-modules/overview.md).
-:::
+Some query modules are built-in, and others, like those that can help you solve
+complex graph issues, are available as part of the MAGE library you can add to
+your Memgraph installation. The library is already included if you are using
+Memgraph Platform or Memgraph MAGE Docker images to run Memgraph.
 
-## Loading query modules
+You can also implement custom query modules. 
+
+Regardless of where they come from and who wrote them, all modules need to be
+loaded into Memgraph so that they can be called while querying the database.
+They are either loaded automatically when Memgraph starts or manually if they
+were added while Memgraph was already running.
+
+On this page you will find the answers to the following questions regarding
+query modules:
+
+- [How to include MAGE library and its query modules into Memgraph?](#how-to-include-mage-library-and-its-query-modules-into-memgraph) 
+- [How to implement custom query modules?](#how-to-implement-custom-query-modules)
+- [How to list all loaded .py query modules?](#how-to-list-all-loaded-py-query-modules)
+- [How to list all loaded procedures and their signatures?](#how-to-list-all-loaded-procedures-and-their-signatures)
+- [How to load a query module?](#how-to-load-a-query-module)
+- [How to call a query module procedure?](#how-to-call-a-query-module-procedure)
+- [How to control the memory usage of a procedure?](#how-to-control-the-memory-usage-of-a-procedure)
+- [How to change the default query module directories?](#how-to-change-the-default-query-module-directories)
+
+## How to include MAGE library and its query modules into Memgraph?
+
+[**Memgraph Advanced Graph Extensions**](/mage), **MAGE** to friends, is an open-source
+repository that contains graph algorithms and procedures in the form of query
+modules thus giving everyone the tools they need to tackle the most interesting
+and challenging graph analytics problems.
+
+If you installed Memgraph with Docker using the `memgraph-platform` or
+`memgraph-mage` images the MAGE library is already loaded into Memgraph and you
+can proceed [to call any of the available procedures](#how-to-call-a-query-module).
+
+Otherwise, please check the [MAGE installation guide](/mage/installation). 
+
+## How to implement custom query modules?
+
+If you need to expand the Cypher language with custom procedures, Memgraph
+provides public APIs for writing custom query modules in Python and C.
+
+Please check [the reference guide on implementing custom query
+modules](../reference-guide/query-modules/implement-custom-query-modules/overview) that will
+provide you with the C and Python APIs and [give an
+example](../reference-guide/query-modules/implement-custom-query-modules/custom-query-module-example)
+to help you start implementing a custom query module. 
+
+## How to list all loaded .py query modules?
+
+To list the value of an `is_editable` flag and the absolute path of each Python
+query module file in all the query module directories run the following query:
+
+```cypher
+CALL mg.get_module_files() YIELD *;
+```
+
+Check the reference guide for more [utility procedures for query
+modules](./reference-guide/query-modules/module-file-utilities.md). 
+
+## How to list all loaded procedures and their signatures?
+
+To list loaded procedures and their signatures run the following query:
+
+```cypher
+CALL mg.procedures() YIELD *;
+```
+
+Check the reference guide for more [utility procedures for query
+modules](./reference-guide/query-modules/module-file-utilities.md). 
+
+## How to load a query module?
 
 Upon startup, Memgraph will attempt to load the query modules form all `*.so`
-and `*.py` files it finds in the default (`/usr/lib/memgraph/query_modules`)
-directory.
+and `*.py` files it finds in the default query module directories
+(`/usr/lib/memgraph/query_modules` and `/var/lib/memgraph/internal_modules/`).
 
-If you want to change the directory in which Memgraph searches for query
-modules, just change the `--query-modules-directory` flag in the main
-configuration file (`/etc/memgraph/memgraph.conf`) or supply it as a
-command-line parameter (e.g. when using Docker).
+You can also (re)load all or certain modules manually.
 
-## Avilable query modules
+To (re)load all query modules in all the query module directories run the
+following query:
 
-**MAGE**, also known as **Memgraph Advanced Graph Extensions**, is an
-open-source repository that contains graph algorithms in the form of **query
-modules** written by the team behind Memgraph and its users. You can find and
-contribute implementations of various algorithms in multiple programming
-languages, all runnable inside Memgraph.
+```cypher
+CALL mg.load_all();
+```
 
-:::info MAGE Documentation
-Check out the **[MAGE documentation](/mage)** for a
-detailed overview of all the available modules and installation instructions.
-:::
+If the response is `Empty set (x.x sec)` and there are no error messages, the
+update was successful.
 
-:::info MAGE Source code
-Check out the **[MAGE source
-code](https://github.com/memgraph/mage)** on GitHub if you are interested in the
-underlying implementation.
-:::
+To (re)load the given module run the following query:
 
-## Syntax for calling procedures
+```cypher
+CALL mg.load("py_example");
+```
 
-OpenCypher has a special syntax for calling procedures in loaded query modules:
+If the response is `Empty set (x.x sec)` and there are no error messages, the
+update was successful.
+
+For more information on loading procedures please read the
+[reference guide](../reference-guide/query-modules/load-call-query-modules#loading-query-modules).
+
+## How to call a query module procedure?
+
+Each query module file corresponds to one query module, and file names are
+mapped as query module names. For example, `example.so` will be mapped as
+`example` module, and `py_example.py` will be mapped as `py_example` module. If
+each module file has a procedure called `procedure` defined, those procedures
+would be mapped in the Cypher query language as `example.procedure()` and
+`py_example.procedure()` respectively.
+
+Syntax for calling procedures in loaded query modules is:
 
 ```cypher
 CALL module.procedure(arg1, arg2, ...) YIELD res1, res2, ...;
@@ -55,42 +129,19 @@ Each procedure returns zero or more records, where each record contains named
 fields. The `YIELD` part is used to select fields we are interested in. If the
 procedure doesn't return any fields, then the `YIELD` part can be omitted.
 
-Procedures may be called standalone as the above, or as a part of a larger
-query. This is useful if we want the procedure to work on data the query is
-producing. For example:
+Procedures can also be a part of a larger query:
 
 ```cypher
 MATCH (node) CALL module.procedure(node) YIELD result RETURN *;
 ```
 
-For **writeable procedures** we have some other limitations also:
+For more information and constrictions on calling procedures please read the
+[reference guide](../reference-guide/query-modules/load-call-query-modules#calling-query-modules).
 
-* the rest of the query has to be read-only
-* the writeable procedure call has to be the last cause in the query apart from
-  the `RETURN` clause. The last example also works with writeable procedures
-  because it satisfies all of these requirements.
+## How to control the memory usage of a procedure?
 
-When we use `CALL` in a larger query, we have to explicitly `RETURN` from the
-query to get the results. Naturally, the `RETURN` is not needed if we perform
-updates after `CALL` or the called procedure is a writeable procedure. This
-follows the openCypher convention that read-only queries need to end with a
-`RETURN`, while queries which update something don't need to `RETURN` anything.
-
-If a procedure returns a record with a field name that may clash with some
-variable we already have in a query, that field name can be aliased into some
-other name. For example:
-
-```cypher
-MATCH (node) CALL module.procedure(42) YIELD node AS result RETURN *;
-```
-
-## Controlling procedure memory usage
-
-When running a procedure, Memgraph controls the maximum memory usage that the
-procedure may consume during its execution.  By default, the upper memory limit
-when running a procedure is `100 MB`.  If your query procedure requires more
-memory to be able to yield its results, you can increase the memory limit using
-the following syntax:
+ When a procedure cannot yield results using the default 100 MB you can increase
+ the maximum memory usage by adding the following clause in the query: 
 
 ```cypher
 CALL module.procedure(arg1, arg2, ...) PROCEDURE MEMORY LIMIT 100 KB YIELD res1, res2, ...;
@@ -98,36 +149,20 @@ CALL module.procedure(arg1, arg2, ...) PROCEDURE MEMORY LIMIT 100 MB YIELD res1,
 CALL module.procedure(arg1, arg2, ...) PROCEDURE MEMORY UNLIMITED YIELD res1, res2, ...;
 ```
 
-The limit can either be specified to a specific value (either in `KB` or in
-`MB`), or it can be set to unlimited.
+The limit can be specified to a specific value in `KB` or `MB`), or it can be
+set to `UNLIMITED`.
 
-## Implementing custom query modules
+For more information on loading procedures please read the
+[reference guide](../reference-guide/query-modules/load-call-query-modules#controlling-procedure-memory-usage).
 
-Query modules can be implemented by either using the C API or Python API
-provided by Memgraph.
+## How to change the default query module directories?
 
-Modules implemented using the C API need to be compiled to a shared library
-(`.so` file), so they can be loaded when Memgraph starts.  The C API is well
-documented in the `/usr/include/memgraph/mg_procedure.h` header and in the
-[reference
-guide](/reference-guide/query-modules/implement-custom-query-modules/api/c-api.md).
+If you want to change the default query module directories
+(`/usr/lib/memgraph/query_modules` and `/var/lib/memgraph/internal_modules/`),
+that is, the directories in which Memgraph searches for query modules, change
+the `--query-modules-directory` flag in the main configuration file
+(`/etc/memgraph/memgraph.conf`) or supply it as a command-line parameter (e.g.
+when using Docker).
 
-Modules implemented using the Python API need to be written in Python version
-`3.5.0` and above. The Python API is well documented in the
-`/usr/lib/memgraph/python_support/mgp.py` file and in the [reference
-guide](/reference-guide/query-modules/implement-custom-query-modules/api/python-api.md).
-
-:::warning
-
-If your programming language of choice throws exceptions, these exceptions must
-never leave the scope of your module! You should have a top level exception
-handler which returns with an error value and potentially logs the error
-message. Exceptions which cross the module boundary will cause all sorts of
-unexpected issues.
-
-:::
-
-For a more detailed example on how to implement your own query modules, we
-suggest you take a look at the [Implement custom query
-modules](/how-to-guides/query-modules/implement-query-modules.md)
-guide.
+You can find all the [configuration settings](../reference-guide/configuration) in the reference guide, or check our
+guide on [how to change Memgraph configuration](./config-logs). 

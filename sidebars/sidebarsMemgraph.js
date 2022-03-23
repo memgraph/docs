@@ -175,14 +175,7 @@ module.exports = {
           ],
         },
         "how-to-guides/networkx",
-        {
-          type: "category",
-          label: "Use query modules",
-          items: [
-            "how-to-guides/query-modules/overview",
-            "how-to-guides/query-modules/implement-query-modules",
-          ],
-        },
+        "how-to-guides/query-modules/overview",
         "how-to-guides/replication",
         //"how-to-guides/tensorflow-setup",
         "reference-guide/triggers",
