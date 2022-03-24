@@ -21,10 +21,10 @@ loaded into Memgraph so that they can be called while querying the database.
 They are either loaded automatically when Memgraph starts or manually if they
 were added while Memgraph was already running.
 
-On this page you will find the answers to the following questions regarding
+On this page, you will find the answers to the following questions regarding
 query modules:
 
-- [How to include MAGE library and its query modules into Memgraph?](#how-to-include-mage-library-and-its-query-modules-into-memgraph) 
+- [How to include the MAGE library and its query modules into Memgraph?](#how-to-include-the-mage-library-and-its-query-modules-into-memgraph) 
 - [How to implement custom query modules?](#how-to-implement-custom-query-modules)
 - [How to list all loaded .py query modules?](#how-to-list-all-loaded-py-query-modules)
 - [How to list all loaded procedures and their signatures?](#how-to-list-all-loaded-procedures-and-their-signatures)
@@ -33,15 +33,15 @@ query modules:
 - [How to control the memory usage of a procedure?](#how-to-control-the-memory-usage-of-a-procedure)
 - [How to change the default query module directories?](#how-to-change-the-default-query-module-directories)
 
-## How to include MAGE library and its query modules into Memgraph?
+## How to include the MAGE library and its query modules into Memgraph?
 
-[**Memgraph Advanced Graph Extensions**](/mage), **MAGE** to friends, is an open-source
-repository that contains graph algorithms and procedures in the form of query
-modules thus giving everyone the tools they need to tackle the most interesting
+[**Memgraph Advanced Graph Extensions**](/mage), **MAGE** to friends, is an
+open-source repository that contains graph algorithms and procedures as query
+modules, thus giving everyone the tools they need to tackle the most interesting
 and challenging graph analytics problems.
 
 If you installed Memgraph with Docker using the `memgraph-platform` or
-`memgraph-mage` images the MAGE library is already loaded into Memgraph and you
+`memgraph-mage` images, the MAGE library is already loaded into Memgraph, and you
 can proceed [to call any of the available procedures](#how-to-call-a-query-module).
 
 Otherwise, please check the [MAGE installation guide](/mage/installation). 
@@ -60,7 +60,7 @@ to help you start implementing a custom query module.
 ## How to list all loaded .py query modules?
 
 To list the value of an `is_editable` flag and the absolute path of each Python
-query module file in all the query module directories run the following query:
+query module file in all the query module directories, run the following query:
 
 ```cypher
 CALL mg.get_module_files() YIELD *;
@@ -71,7 +71,7 @@ modules](./reference-guide/query-modules/module-file-utilities.md).
 
 ## How to list all loaded procedures and their signatures?
 
-To list loaded procedures and their signatures run the following query:
+To list loaded procedures and their signatures, run the following query:
 
 ```cypher
 CALL mg.procedures() YIELD *;
@@ -86,25 +86,25 @@ Upon startup, Memgraph will attempt to load the query modules form all `*.so`
 and `*.py` files it finds in the default query module directories
 (`/usr/lib/memgraph/query_modules` and `/var/lib/memgraph/internal_modules/`).
 
-You can also (re)load all or certain modules manually.
+You can also (re)load all or specific modules manually.
 
-To (re)load all query modules in all the query module directories run the
+To (re)load all query modules in all the query module directories, run the
 following query:
 
 ```cypher
 CALL mg.load_all();
 ```
 
-If the response is `Empty set (x.x sec)` and there are no error messages, the
+If the response is an `Empty set (x.x sec)` and there are no error messages, the
 update was successful.
 
-To (re)load the given module run the following query:
+To (re)load the given module, run the following query:
 
 ```cypher
 CALL mg.load("py_example");
 ```
 
-If the response is `Empty set (x.x sec)` and there are no error messages, the
+If the response is an `Empty set (x.x sec)` and there are no error messages, the
 update was successful.
 
 For more information on loading procedures please read the
@@ -127,7 +127,7 @@ CALL module.procedure(arg1, arg2, ...) YIELD res1, res2, ...;
 
 Each procedure returns zero or more records, where each record contains named
 fields. The `YIELD` part is used to select fields we are interested in. If the
-procedure doesn't return any fields, then the `YIELD` part can be omitted.
+procedure doesn't return any fields, the `YIELD` part can be omitted.
 
 Procedures can also be a part of a larger query:
 
@@ -135,12 +135,12 @@ Procedures can also be a part of a larger query:
 MATCH (node) CALL module.procedure(node) YIELD result RETURN *;
 ```
 
-For more information and constrictions on calling procedures please read the
+For more information and constrictions on calling procedures, please read the
 [reference guide](../reference-guide/query-modules/load-call-query-modules#calling-query-modules).
 
 ## How to control the memory usage of a procedure?
 
- When a procedure cannot yield results using the default 100 MB you can increase
+ When a procedure cannot yield results using the default 100 MB, you can increase
  the maximum memory usage by adding the following clause in the query: 
 
 ```cypher
@@ -149,11 +149,12 @@ CALL module.procedure(arg1, arg2, ...) PROCEDURE MEMORY LIMIT 100 MB YIELD res1,
 CALL module.procedure(arg1, arg2, ...) PROCEDURE MEMORY UNLIMITED YIELD res1, res2, ...;
 ```
 
-The limit can be specified to a specific value in `KB` or `MB`), or it can be
-set to `UNLIMITED`.
+The limit can be specified to a specific value in `KB` or `MB`) or set to
+`UNLIMITED`.
 
-For more information on loading procedures please read the
-[reference guide](../reference-guide/query-modules/load-call-query-modules#controlling-procedure-memory-usage).
+For more information on controlling the memory usage of procedures please read
+the [reference
+guide](../reference-guide/query-modules/load-call-query-modules#controlling-procedure-memory-usage).
 
 ## How to change the default query module directories?
 
@@ -164,5 +165,6 @@ the `--query-modules-directory` flag in the main configuration file
 (`/etc/memgraph/memgraph.conf`) or supply it as a command-line parameter (e.g.
 when using Docker).
 
-You can find all the [configuration settings](../reference-guide/configuration) in the reference guide, or check our
-guide on [how to change Memgraph configuration](./config-logs). 
+You can find all the [configuration settings](../reference-guide/configuration)
+in the reference guide or check our guide on [how to change the Memgraph
+configuration](./config-logs).
