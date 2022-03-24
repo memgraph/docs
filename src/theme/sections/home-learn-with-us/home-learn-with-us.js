@@ -5,12 +5,19 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 import CalloutImgBox from "../../../components/callout-img-box/callout-img-box";
 
 export default function HomeLearnWithUs() {
-    const items = [{
-        title: 'Playground',
-        description: 'No downloads, installations, or registration required. Just choose a tutorial and try out Memgraph in your browser.',
-        url: 'https://playground.memgraph.com/',
-        img: useBaseUrl('img/tutorial-playground.svg'),
-    },
+    const items = [
+        {
+            title: 'Playground',
+            description: 'No downloads, installations, or registration required. Just choose a tutorial and try out Memgraph in your browser.',
+            url: 'https://playground.memgraph.com/',
+            img: useBaseUrl('img/tutorial-playground.svg'),
+        },
+        {
+            title: 'Cypher Email Course',
+            description: 'Sign up for the free email course and learn the Cypher query language in 10 days.',
+            url: 'https://memgraph.com/learn-cypher-query-language',
+            img: useBaseUrl('img/cypher-email-course.svg'),
+        },
         {
             title: 'Tutorials',
             description: 'Select one of the many available tutorials and give it a go locally.',
@@ -29,7 +36,7 @@ export default function HomeLearnWithUs() {
     return (
         <div className={styles.homeLearnWithUs}>
             <div className={styles.homeLearnWithUs__bg}>
-                <img src={useBaseUrl('img/PatternBG.svg')}/>
+                <img src={useBaseUrl('img/PatternBG.svg')} />
             </div>
             <Container>
                 <h2>Learn With Us</h2>
@@ -43,7 +50,7 @@ export default function HomeLearnWithUs() {
                         return (
                             <div key={i}>
                                 <CalloutImgBox title={item.title} subtitle={item.description} url={item.url}
-                                               img={item.img}/>
+                                    img={item.img} />
                             </div>
                         );
                     })
