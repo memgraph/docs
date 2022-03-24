@@ -142,7 +142,7 @@ module.exports = {
       label: "How-to guides",
       link: { type: "doc", id: "how-to-guides/overview" },
       items: [
-        "reference-guide/backup",
+        "how-to-guides/how-to-create-backup",
         {
           type: "category",
           label: "Connect to stream sources",
