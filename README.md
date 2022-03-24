@@ -2,7 +2,7 @@
 [![PRs
 Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/memgraph/docs/blob/master/CONTRIBUTING.md)
 ![Build
-passing](https://img.shields.io/github/workflow/status/memgraph/docs/master/master)
+passing](https://img.shields.io/github/workflow/status/memgraph/docs/Deploy%20to%20GitHub%20Pages)
 <a href="https://twitter.com/intent/follow?screen_name=memgraphdb"><img
 src="https://img.shields.io/twitter/follow/memgraphdb.svg?label=Follow%20@memgraphdb"
 alt="Follow @memgraphdb" /></a>
