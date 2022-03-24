@@ -17,7 +17,7 @@ recoverable format.
 
 Snapshot is created periodically based on the time defined with the
 `--storage-snapshot-interval-sec` config in the [Memgraph configuration
-file](/docs/memgraph/haow-to-guides/config-logs).
+file](/docs/memgraph/how-to-guides/config-logs).
 
 ## 1. Creating snapshot
 
