@@ -61,3 +61,6 @@ UNLOCK DATA DIRECTORY;
 
 Memgraph will delete the files which should have been deleted before and allow
 any future deletion of the files contained in the data directory.
+
+
+
