@@ -467,7 +467,7 @@ betweenness centrality but in a much lower time.
 
 We encourage you to take a look at our `How to` for the modules at the [How to
 Implement Query
-Modules?](/how-to-guides/query-modules/implement-query-modules.md).
+Modules?](/reference-guide/query-modules/implement-custom-query-modules/custom-query-module-example.md).
 
 This tutorial showed you how with a little effort you can extend your control
 over the data. Using packages like `NetworkX` you get a huge amount of already

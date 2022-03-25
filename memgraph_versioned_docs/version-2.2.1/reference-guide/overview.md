@@ -77,7 +77,7 @@ following guides:
 - [Available query
   modules](/reference-guide/query-modules/available-query-modules.md)
 - [Implement custom query
-  modules](/how-to-guides/query-modules/implement-query-modules.md)
+  modules](/reference-guide/query-modules/implement-custom-query-modules/custom-query-module-example.md)
 - [Load and call query
   modules](/reference-guide/query-modules/load-call-query-modules.md)
 - [Utility query module](/reference-guide/query-modules/module-file-utilities.md)

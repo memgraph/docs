@@ -45,7 +45,7 @@ Example of a result:
 
 ### `mg.load_all`
 
-Loads or reloads the given module.
+Loads or reloads all modules.
 
 Example of a Cypher query:
 
@@ -58,7 +58,7 @@ update was successful.
 
 ### `mg.load`
 
-Loads or reloads all modules.
+Loads or reloads the given module.
 
 Example of a Cypher query:
 

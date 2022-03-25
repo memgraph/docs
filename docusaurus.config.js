@@ -583,7 +583,7 @@ module.exports = {
             ],
           },
           {
-            to: "/memgraph/how-to-guides/query-modules/implement-query-modules",
+            to: "/memgraph/how-to-guides/query-modules",
             from: ["/memgraph/how-to-guides-overview/implement-query-modules"],
           },
           {
@@ -593,7 +593,7 @@ module.exports = {
             ],
           },
           {
-            to: "/memgraph/how-to-guides/query-modules/implement-query-modules",
+            to: "/memgraph/how-to-guides/query-modules",
             from: [
               "/memgraph/how-to-guides-overview/use-and-implement-query-modules",
             ],
@@ -1055,7 +1055,7 @@ module.exports = {
             from: ["/memgraph/database-functionalities/query-modules"],
           },
           {
-            to: "/memgraph/how-to-guides/query-modules/implement-query-modules",
+            to: "/memgraph/how-to-guides/query-modules",
             from: [
               "/memgraph/database-functionalities/query-modules/implement-query-modules",
             ],
@@ -1247,10 +1247,16 @@ module.exports = {
               "/memgraph/reference-guide/query-modules/api/c-api/classes/mgp_vertex_id",
             ],
           },
+          // Redirect for temporal types
           {
             to: "/memgraph/reference-guide/data-types",
+            from: ["/memgraph/reference-guide/temporal-types"],
+          },
+          // Redirect for query module how-to guides
+          {
+            to: "/memgraph/how-to-guides/query-modules",
             from: [
-              "/memgraph/reference-guide/temporal-types",
+              "/memgraph/how-to-guides/query-modules/implement-query-modules",
             ],
           },
         ],
