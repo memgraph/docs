@@ -199,7 +199,7 @@ sidebar_label: Changelog
 - Introduced settings to Memgraph that can be modified during runtime. You can
   check out more details [here](reference-guide/runtime-settings).
 - Added writeable procedure support, so
-  [procedures](how-to-guides/query-modules/implement-query-modules)
+  [procedures](/reference-guide/query-modules/implement-custom-query-modules/custom-query-module-example.md)
   can modify the graph by creating and deleting vertices and edges, modifying
   the labels of vertices or setting the properties of vertices and edges.
 
