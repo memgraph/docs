@@ -1,18 +1,32 @@
-# [memgraph.com/docs](http://memgraph.com/docs/)
-[![PRs
-Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/memgraph/docs/blob/master/CONTRIBUTING.md)
-![Build
-passing](https://img.shields.io/github/workflow/status/memgraph/docs/Deploy%20to%20GitHub%20Pages)
-<a href="https://twitter.com/intent/follow?screen_name=memgraphdb"><img
-src="https://img.shields.io/twitter/follow/memgraphdb.svg?label=Follow%20@memgraphdb"
-alt="Follow @memgraphdb" /></a>
+# [Memgraph Documentation](http://memgraph.com/docs/)
+
+<p align="left">
+  <a href="https://github.com/memgraph/memgraph">
+    <img src="https://img.shields.io/github/workflow/status/memgraph/docs/Deploy%20to%20GitHub%20Pages" alt="build" title="build"/>
+  </a>
+  <a href="https://memgraph.com/docs/" alt="Documentation">
+    <img src="https://img.shields.io/badge/documentation-Memgraph-orange" />
+  </a>
+  <a href="https://github.com/memgraph/docs/blob/master/CONTRIBUTING.md" alt="PRs Welcome">
+    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" />
+  </a>
+</p>
+
+<p align="left">
+  <a href="https://memgr.ph/join-discord">
+    <img src="https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white" alt="Discord"/>
+  </a>
+  <a href="https://stackoverflow.com/questions/tagged/memgraphdb">
+    <img src="https://img.shields.io/badge/Stack_Overflow-FE7A16?style=for-the-badge&logo=stack-overflow&logoColor=white" alt="Stack Overflow"/>
+  </a>
+</p>
 
 <p align="left">
   <a href="https://memgraph.com/docs">
     <img src="https://public-assets.memgraph.com/github-readme-images/docs.memgraph-browser.png" 
          alt="memgraph-docs" 
          title="memgraph-docs"
-         style="width: 75%"/>
+         style="width: 60%"/>
   </a>
 </p>
 
@@ -23,11 +37,12 @@ technical documentation using markdown, it is also nicely rendered by GitHub, as
 you can see by following [this
 link](https://github.com/memgraph/docs/blob/master/docs/overview.md).
 
-## Running locally
+## :hammer_and_wrench: Running docs locally
 
 ### Prerequisites
 
 To run the documentation website locally, you will need to install:
+
 - [Node.js](https://nodejs.org/en/download/) version >= 12.13.0 or above (which
   can be checked by running `node -v`). You can use
   [nvm](https://github.com/nvm-sh/nvm) for managing multiple Node versions on a
@@ -46,12 +61,13 @@ npm install
 Start the server with:
 
 ```bash
-npm run-script start
+npm run start
 ```
 
-By default, a browser window will open at http://localhost:3000.
+By default, a browser window will open at
+[http://localhost:3000](http://localhost:3000).
 
-## Build
+## :construction: Build
 
 Docusaurus is a modern static website generator, so we need to build the website
 into a directory of static contents and put it on a web server so that it can be
@@ -64,17 +80,17 @@ npm install
 To build the website:
 
 ```bash
-npm run-script build
+npm run build
 ```
 
 and contents will be generated within the `/build` directory. To test your build
 locally, run:
 
 ```bash
-npm run-script serve
+npm run serve
 ```
 
-## Contributing
+## :writing_hand: Contributing
 
 We are grateful for any community contributions to the documentation as they are
 the best way of improving the overall user experience. If at any point you
