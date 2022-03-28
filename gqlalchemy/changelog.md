@@ -17,7 +17,7 @@ sidebar_label: Changelog
 - Added new methods to the query builder: `load_csv()` and `xor_where()`.
 - Added support for creating a trigger without `ON`.
 - Added Memgraph instance runner.
-- Added Azure blob importer.
+- Added Azure Blob importer.
 
 ## v1.1 - Jan 19, 2022
 
