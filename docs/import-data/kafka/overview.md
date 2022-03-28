@@ -207,6 +207,6 @@ query power of [Cypher language](/cypher-manual), or check out [MAGE](/mage) -
 an open-source repository that contains graph algorithms and modules that can
 help you tackle the most interesting and challenging graph analytics problems.
 If you are using **Memgraph Lab**, a visual user interface for running queries
-and visualizing graph data, you might be interested in the [Style script
+and visualizing graph data, you might be interested in the [Graph Style Script
 language](/memgraph-lab/style-script/quick-start) that will help you bedazzle
 your graphs. Above all, enjoy your graph database!

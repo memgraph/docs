@@ -429,5 +429,5 @@ data. You can continue to do so using the [**Cypher query
 language**](/cypher-manual). You can also try using various graph algorithms and
 modules from our open-source repository [**MAGE**](/mage) to solve graph
 analytics problems, create awesome customized visual displays of your nodes and
-relationships with [**Style script**](/memgraph-lab/style-script/quick-start)
+relationships with [**Graph Style Script**](/memgraph-lab/style-script/quick-start)
 and above all - enjoy your graph database!

@@ -37,9 +37,9 @@ Memgraph Lab as a desktop application on [Windows](/installation/windows.md),
 [Connect Memgraph Lab to Memgraph](/connect-to-memgraph.md) and start
 experimenting with data and Cypher.
 
-### 3. Check out Style script
+### 3. Check out Graph Style Script
 
-To give your graphs a bit more pizzazz, dive into the [Style script
+To give your graphs a bit more pizzazz, dive into the [Graph Style Script
 language](/style-script/overview.md) and learn how to customize the visual
 appearance of your graphs to make them truly remarkable.
 

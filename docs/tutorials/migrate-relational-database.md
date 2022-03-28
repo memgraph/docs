@@ -363,6 +363,6 @@ Congratulations! You now have a graph database. You can query it using the
 [**Cypher query language**](/cypher-manual), use various graph algorithms and
 modules from our open-source repository [**MAGE**](/mage) to solve graph
 analytics problems, create awesome customized visual displays of your nodes and
-relationships with [**Style script**](/memgraph-lab/style-script/quick-start),
+relationships with [**Graph Style Script**](/memgraph-lab/style-script/quick-start),
 find out how to connect any [**streams of data**](/memgraph/import-data/kafka)
 you might have with Memgraph and above all - enjoy your graph database!
