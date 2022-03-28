@@ -183,15 +183,14 @@ CREATE (p1)-[:IS_FRIENDS_WITH]->(p2);
 </TabItem>
 </Tabs>
 
+Run the following query to check the imported data:
+
+```
+MATCH p=()-[]-() RETURN p;  
+```
+
 <details>
   <summary>This is how the graph should look like in Memgraph after the import:</summary>
-  Run the following query: <br/>
-  <code>
-  MATCH p=()-[]-() RETURN p; 
-  </code>
-  <p>
-  
-   </p>
   <div>
     <img src={require('../../data/import-data/load_csv_one_type_of_nodes_and_relationships.png').default}/>
   </div>
@@ -247,15 +246,14 @@ LOAD CSV FROM "/path-to/people_nodes.csv" WITH HEADER AS row
 CREATE (n:Person {id: row.id, name: row.name, age: ToInteger(row.age), city: row.city});
 ```
 
+Run the following query to check the imported data:
+
+```
+MATCH (p) RETURN p; 
+```
+
 <details>
   <summary>This is how the graph should look like in Memgraph after the import:</summary>
-  Run the following query: <br/>
-  <code>
-  MATCH (p) RETURN p; 
-  </code>
-  <p> 
-  
-  </p>
   <div>
     <img src={require('../../data/import-data/load_csv_people_nodes.png').default}/>
   </div>
@@ -295,15 +293,14 @@ CREATE (p1)-[f:IS_FRIENDS_WITH]->(p2)
 SET f.met_in = row.met_in;
 ```
 
+Run the following query to check the imported data:
+
+```
+MATCH p=()-[]-() RETURN p; 
+```
+
 <details>
   <summary>This is how the graph should look like in Memgraph after the import:</summary>
-  Run the following query: <br/>
-  <code>
-  MATCH p=()-[]-() RETURN p; 
-  </code>
-  <p> 
-  
-  </p>
   <div>
     <img src={require('../../data/import-data/load_csv_people_relationships.png').default}/>
   </div>
@@ -336,15 +333,14 @@ LOAD CSV FROM "/path-to/restaurants_nodes.csv" WITH HEADER AS row
 CREATE (n:Restaurant {id: row.id, name: row.name, menu: row.menu});
 ```
 
+Run the following query to check the imported data:
+
+```
+MATCH (p) RETURN p; 
+```
+
 <details>
   <summary>This is how the graph should look like in Memgraph after the import:</summary>
-  Run the following query: <br/>
-  <code>
-  MATCH (p) RETURN p; 
-  </code>
-  <p> 
-  
-  </p>
   <div>
     <img src={require('../../data/import-data/load_csv_restaurant_nodes.png').default}/>
   </div>
@@ -384,15 +380,14 @@ CREATE (p1)-[ate:ATE_AT]->(re)
 SET ate.liked = ToBoolean(row.liked);
 ```
 
+Run the following query to check the imported data:
+
+```
+MATCH p=()-[]-() RETURN p; 
+```
+
 <details>
   <summary>This is how the graph should look like in Memgraph after the import:</summary>
-  Run the following query: <br/>
-  <code>
-  MATCH p=()-[]-() RETURN p; 
-  </code>
-  <p> 
-  
-  </p>
   <div>
     <img src={require('../../data/import-data/load_csv_restaurants_relationships.png').default}/>
   </div>
