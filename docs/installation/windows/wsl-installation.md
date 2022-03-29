@@ -7,6 +7,8 @@ pagination_prev: installation/overview
 pagination_next: connect-to-memgraph/overview
 ---
 
+[![Related - Tutorial](https://img.shields.io/static/v1?label=Related&message=Tutorial&color=008a00&style=for-the-badge)](/tutorials/install-memgraph-on-windows-10.md)
+
 This article briefly outlines the basic steps necessary to install and run
 Memgraph on Windows with the Windows Subsystem for Linux.
 

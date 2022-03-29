@@ -4,6 +4,8 @@ title: How to change configuration settings and access log files
 sidebar_label: Change configuration and access logs
 ---
 
+[![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/configuration.md)
+
 import Tabs from "@theme/Tabs"; 
 import TabItem from "@theme/TabItem";
 
