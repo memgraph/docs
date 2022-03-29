@@ -3,6 +3,9 @@ id: replication
 title: How to set up replication on a small cluster
 sidebar_label: Set up replication
 ---
+[![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/replication.md) [![Related - Under the Hood](https://img.shields.io/static/v1?label=Related&message=Under%20the%20hood&color=orange&style=for-the-badge)](/under-the-hood/replication.md)
+ 
+
 
 This article is a part of a series intended to showcase Memgraph's features
 and bring the user up to speed on developing with Memgraph.
