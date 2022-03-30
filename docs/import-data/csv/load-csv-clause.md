@@ -6,6 +6,8 @@ pagination_prev: import-data/overview
 slug: /import-data/load-csv-clause
 ---
 
+[![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/import-data/load-csv-clause.md)
+
 import Tabs from "@theme/Tabs"; import TabItem from "@theme/TabItem";
 
 The `LOAD CSV` Cypher clause enables you to load and use data from a CSV file of
