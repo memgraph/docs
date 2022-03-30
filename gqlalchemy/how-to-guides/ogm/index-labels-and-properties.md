@@ -39,7 +39,7 @@ node.
 Indexes will be created only if the database is provided.
 
 > To learn more about indexing, check out the [Under the
-> hood](https://memgraph.com/docs/memgraph/under-the-hood/indexing)
+> hood](/memgraph/under-the-hood/indexing)
 > documentation section.
 
 Hopefully this guide has taught you how to load nodes and relationships. If you
