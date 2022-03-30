@@ -53,5 +53,5 @@ issues. You don't have to be familiar with Docker to try out Memgraph Platform, 
 Graph Style Script is a language for customizing the visual display of graphs. It
 allows you to stylize labels and colors of nodes and relationships. Check out
 the [Graph Style Script
-guide](https://memgraph.com/docs/memgraph-lab/style-script/quick-start) for more
+guide](/memgraph-lab/graph-style-script-language) for more
 information.
