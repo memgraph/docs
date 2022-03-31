@@ -26,6 +26,12 @@ To set or change a user's password, use the following command:
 SET PASSWORD FOR user_name TO 'new_password';
 ```
 
+To check all the users created on an instance, use:
+
+```cypher
+SHOW USERS;
+```
+
 To remove a user's password, set it to `null`:
 
 ```cypher

@@ -4,121 +4,202 @@ title: Replication
 sidebar_label: Replication
 ---
 
-## User facing setup
+When distributing data across several instances, Memgraph uses replication to
+provide the satisfying ratio of the following properties:
 
-### How to set up a Memgraph cluster with replication?
+ 1. consistency - every node has the same view of data at a given point in
+    time 
+ 2. availability - all clients can find a replica of the data, even in the
+    case of a partial node failure
+ 3. partition tolerance - the system continues to work as expected despite a
+    partial network failure
 
-Replication configuration is done primarily through Memgraph Cypher commands. This
-allows the cluster to be dynamically rearranged (promoting a new main, addition
-of a new replica, etc.).
+Replication consists of replicating the data from one storage (MAIN instance) to
+other storages (REPLICA instances).
 
-Each Memgraph instance when first started will be a main. You have to change
-the role of all replica nodes using the following query before you
-can enable replication on the main:
+## Data replication implementation basics 
+
+In Memgraph, all instances are MAIN upon starting. When creating a replication
+cluster, one instance has to be chosen as the MAIN instance. The rest of the
+instances have to be demoted to REPLICA roles and have a port defined using a
+Cypher query. REPLICA instances no longer accept write queries. In order to
+start the replication, each REPLICA instance needs to be registered from the
+MAIN instance by setting a replication mode (SYNC, SYNC WITH TIMEOUT and ASYNC)
+and specifying the REPLICA instance's socket address. 
+
+Replication mode defines the terms by which the MAIN instance can commit the
+changes to the database, thus modifying the system to prioritize either
+consistency or availability: 
+  - SYNC - The MAIN instance will not commit a transaction until all REPLICA
+    instances confirm they have received the same transaction. SYNC mode
+    prioritizes data consistency. 
+  - SYNC WITH TIMEOUT - The MAIN instance will not commit a transaction until
+    all REPLICA instances confirm they have received the same transaction within
+    a configured time interval. If the response from a REPLICA times out, the
+    replication mode of that instance will be changed to ASYNC. SYNC WITH
+    TIMEOUT prioritizes data consistency until an unexpected issues force
+    the system to prioritize availability.
+  - ASYNC - The MAIN instance will commit a transaction without receiving
+    confirmation from REPLICA instances that they have received the same
+    transaction. ASYNC mode ensures system availability.
+
+Once the REPLICA instances are registered, data storage of the MAIN instance is
+replicated and synchronized using transaction timestamps and durability files
+(snapshot files and WALs). Memgraph does not support replication of
+authentication configurations, query and authentication modules, and audit logs.
+
+By using the timestamp, the MAIN instance knows the current state of the
+REPLICA. If the REPLICA is not synchronized with the MAIN instance, the MAIN
+instance sends the correct data for synchronization kept as deltas within WAL
+files. Deltas are the smallest possible updates of the database but they carry
+enough information to synchronize the data on a REPLICA. Memgraph stores only
+`remove` actions as deltas, for example, `REMOVE key:value ON node_id`.
+
+If the REPLICA is so far behind the MAIN instance that the synchronization using
+WAL files and deltas within it is not possible, Memgraph will use snapshots to
+synchronize the REPLICA to the state of the MAIN instance.
+
+## Running multiple instances
+
+When running multiple instances, each on its own machine, run Memgraph as you
+usually would.
+
+If you are exploring replication and running multiple instances on one machine,
+please install Memgraph with Docker.
+
+If you are starting instances with defined volume flags to enable data
+persistency (`-v mg_lib:/var/lib/memgraph`), access logs (`-v
+mg_log:/var/log/memgraph`) and configuration file (`-v mg_etc:/etc/memgraph`),
+be sure to use a different volume name for each instance, for example,
+`mg_lib1`, `mg_lib2`, etc.
+
+## Assigning roles 
+
+Each Memgraph instance has the role of the MAIN instance when it is first
+started. 
+
+### Assigning the REPLICA role
+
+Once you decide what instance will be the MAIN instance, all the other instances
+that will serve as REPLICA instances need to be demoted and have the port set
+using the following query:
 
 ```plaintext
-SET REPLICATION ROLE TO (MAIN|REPLICA) [WITH PORT <port_number>];
+SET REPLICATION ROLE TO REPLICA WITH PORT <port_number>;
 ```
 
-Note that the "WITH PORT <port_number>" part of the query sets the replication port,
-but it applies only to the replica. In other words, if you try to set the
-replication port as the main, the query will fail.
-After you have set your replica instance to the correct operating role, you can
-enable replication in the main instance by issuing the following Memgraph Cypher
-command:
+If you set the port of each REPLICA instance to `10000` it will be easier to
+register replicas later on, because the query for registering replicas uses the
+port 10000 as the default one.  
+
+### Assigning the MAIN role
+
+The replication cluster should have only one MAIN instance in order to
+avoid errors to the replication system. If the original MAIN instance fails, you
+can promote a REPLICA instance to be the new MAIN instance by running the
+following query:
+
 ```plaintext
-REGISTER REPLICA name (SYNC|ASYNC) [WITH TIMEOUT 0.5] TO <socket_address>;
+SET REPLICATION ROLE TO MAIN;
 ```
 
-The socket address must be a string of the following form:
+If the original instance was still alive when you promoted a new MAIN you need
+to manually resolve any conflicts and manage replication.
+
+If you demote the new MAIN instance back to REPLICA role it will not retrieve
+its original function. You need to drop it from the MAIN and register it again.
+
+If the crashed MAIN instance goes back online, it cannot reclaim its previous
+role. It has to be demoted and become a REPLICA instance of the new MAIN
+instance.
+
+### Checking the assigned role
+
+To check the replication role of an instance, run the following
+query:
+
+```plaintext
+SHOW REPLICATION ROLE;
+```
+
+## Registering REPLICA instances
+
+Once all the nodes in the cluster are assigned with appropriate roles, you can
+enable replication in the MAIN instance by registering REPLICA instances,
+setting a replication mode (SYNC, SYNC WITH TIMEOUT and ASYNC) and specifying
+the REPLICA instance's socket address. Memgraph doesn't support chaining REPLICA
+instances, that is, REPLICA instance cannot be replicated on another REPLICA
+instance.
+
+If you want to register a REPLICA instance with a SYNC or SYNC WITH TIMEOUT
+replication mode, run the following query:
+
+```plaintext
+REGISTER REPLICA name SYNC [WITH TIMEOUT 0.5] TO <socket_address>;
+```
+
+If you want to register a REPLICA instance with a ASYNC replication mode, run
+the following query:
+
+```plaintext
+REGISTER REPLICA name ASYNC TO <socket_address>;
+```
+
+The socket address must be a string value of as follows:
 
 ```plaintext
 "IP_ADDRESS:PORT_NUMBER"
 ```
 
 where IP_ADDRESS is a valid IP address, and PORT_NUMBER is a valid port number,
-both given in decimal notation.
-Note that in this case they must be separated by a single colon.
-Alternatively, one can give the socket address as:
+for example: 
+
+```plaintext
+"172.17.0.4:10050"
+```
+
+Default value of the PORT_NUMBER is `10000` so if you set REPLICA roles using
+that port you can define the socket address specifying only the valid IP address: 
 
 ```plaintext
 "IP_ADDRESS"
 ```
 
-where IP_ADDRESS must be a valid IP address, and the port number will be
-assumed to be the default one (we specify it to be 10000).
-
-Each Memgraph instance will remember what the configuration was set to and will
-automatically resume with its role when restarted.
-
-
-### How to see the current replication status?
-
-To see the replication ROLE of the current Memgraph instance, you can issue the
-following query:
+Example of a <socket_address> using only IP_ADDRESS:
 
 ```plaintext
-SHOW REPLICATION ROLE;
+"172.17.0.5"
 ```
 
-To see the replicas of the current Memgraph instance, you can issue the
-following query:
+### Listing all registered REPLICA instances
+
+You can check all the registered REPLICA instances by running the following query: 
 
 ```plaintext
 SHOW REPLICAS;
 ```
 
-To delete a replica, issue the following query:
+### Dropping a REPLICA instance
+
+To drop a replica, run the following query:
 
 ```plaintext
 DROP REPLICA <name>;
 ```
 
-### How to promote a new main?
+## MAIN and REPLICA synchronization
 
-When you have an already set-up cluster, to promote a new main, just set the
-replica that you want to be a main to the main role.
+By comparing timestamps, the MAIN instance knows when a REPLICA instance is not
+synchronized and is missing some earlier transactions. REPLICA instance is then
+set into a RECOVERY state and remains in it until it is fully synchronized with
+the MAIN instance. 
 
-```plaintext
-SET REPLICATION ROLE TO MAIN;  # on desired replica
-```
+The missing data changes can be sent as snapshot or WAL files. Snapshots files
+represent an image of the current state of the database and are much larger than
+the WAL files which only contain the changes, deltas. Because of the difference
+in file size, Memgraph favors the WAL files. 
 
-After the command is issued, if the original main is still alive, it won't be
-able to replicate its data to the replica (the new main) anymore and will enter
-an error state. You must ensure that at any given point in time there aren't
-two mains in the cluster.
-
-## Limitations and potential features
-
-Currently, we do not support chained replicas, i.e. a replica can't have its
-own replica. When this feature becomes available, the user will be able to
-configure scenarios such as the following one:
-
-```plaintext
-main -[asynchronous]-> replica 1 -[semi-synchronous]-> replica 2
-```
-
-To configure the above scenario, the user will be able to issue the following
-commands:
-```plaintext
-SET REPLICATION ROLE TO REPLICA WITH PORT <port1>;  # on replica 1
-SET REPLICATION ROLE TO REPLICA WITH PORT <port2>;  # on replica 2
-
-REGISTER REPLICA replica1 ASYNC TO "replica1_ip_address:port1";  # on main
-REGISTER REPLICA replica2 SYNC WITH TIMEOUT 0.5
-  TO "replica2_ip_address:port2";  # on replica 1
-```
-
-In addition, we do not yet support advanced recovery mechanisms. For example,
-if a main crashes, a suitable replica will take its place as the new main. If
-the crashed main goes back online, it will not be able to reclaim its previous
-role, but will be forced to be a replica of the new main.
-In the upcoming releases, we might be adding more advanced recovery mechanisms.
-However, users are able to set up their own recovery policies using the basic
-recovery mechanisms we currently provide, that can cover a wide range of
-real-life scenarios.
-
-Also, we do not yet support the replication of authentication configurations,
-rendering access control replication unavailable.
-
-The query and authentication modules, as well as audit logs are not replicated.
+While the REPLICA instance is in RECOVERY state, the MAIN instance calculates
+the optimal synchronization path based on REPLICA instance's timestamp and the
+current state of the durability files, while trying to keep the size of the
+files necessary for synchronization to a minimum.
