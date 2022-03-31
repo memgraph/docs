@@ -14,6 +14,7 @@ module.exports = {
             "how-to-guides/ogm/map-nodes-and-relationships",
             "how-to-guides/ogm/save-nodes-and-relationships",
             "how-to-guides/ogm/load-nodes-and-relationships",
+            "how-to-guides/ogm/index-labels-and-properties",
           ],
         },
         {

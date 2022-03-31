@@ -4,8 +4,8 @@ title: How to map nodes and relationships
 sidebar_label: Map nodes and relationships
 ---
 
-This guide will teach you how to map Python classes to nodes and relationships
-in a graph database. 
+Through this guide, you will learn how to map Python classes to nodes and
+relationships in a graph database. 
 
 > Make sure you have a running Memgraph instance. If you're not sure how to run
 > Memgraph, check out the Memgraph [Quick start](/memgraph/#quick-start).
