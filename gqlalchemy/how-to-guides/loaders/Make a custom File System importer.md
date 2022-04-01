@@ -70,7 +70,7 @@ importer = AzureBlobImporter(
     container_name="test"
 )
 
-importer.translate(drop_database_on_start=False)
+importer.translate(drop_database_on_start=True)
 ```
 
 If you want to see our full implementation of `AzureBlobFileSystem` and other components of the loader, have a look into our code. And if you make a feature we could use, you can make a PR on our Gqlalchemy [github](https://github.com/memgraph/gqlalchemy). If you have any more questions, join our community and ping us on

@@ -42,7 +42,7 @@ one_to_many_relations:
   individuals:
     - foreign_key: # foreign key used for mapping; 
       column_name: add_id         # specifies its column
-      reference_table: address    # name of table from which the foreing key is taken
+      reference_table: address    # name of table from which the foreign key is taken
       reference_key: add_id       # column name in reference table from which the foreign key is taken
     label: LIVES_IN        # label applied to relationship created
       from_entity: False     # (optional) define direction of relationship created
@@ -94,7 +94,7 @@ importer = LocalFileSystemImporter(
     local_storage_path="/home/user/table_data",
 )
 
-importer.translate(drop_database_on_start=False)
+importer.translate(drop_database_on_start=True)
 ```
 
 Aside from `csv`, currently we also support reading of `parquet`, `orc`, `ipc`, `feather` and `arrow` file formats via Pyarrow.
