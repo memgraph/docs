@@ -4,6 +4,8 @@ title: Replication
 sidebar_label: Replication
 ---
 
+[![Related - How-to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/replication.md) [![Related - Under the Hood](https://img.shields.io/static/v1?label=Related&message=Under%20the%20hood&color=orange&style=for-the-badge)](/under-the-hood/replication.md)
+
 ## User facing setup
 
 ### How to set up a Memgraph cluster with replication?

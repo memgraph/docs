@@ -4,6 +4,8 @@ title: Indexing
 sidebar_label: Indexing
 ---
 
+[![Related - Under the Hood](https://img.shields.io/static/v1?label=Related&message=Under%20the%20hood&color=orange&style=for-the-badge)](/under-the-hood/indexing.md)
+
 When you are running queries, you want to get results as soon as possible. In
 the worst-case scenario, when you execute a query, all nodes need to be checked
 to see if there is a match.

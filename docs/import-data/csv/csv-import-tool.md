@@ -6,6 +6,8 @@ pagination_prev: import-data/overview
 slug: /import-data/csv-import-tool
 ---
 
+[![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/import-data/csv-import-tool.md)
+
 import Tabs from "@theme/Tabs"; import TabItem from "@theme/TabItem";
 
 CSV is a universal and very versatile data format used to store large quantities

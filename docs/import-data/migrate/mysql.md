@@ -5,6 +5,8 @@ sidebar_label: MySQL
 pagination_prev: import-data/overview
 ---
 
+[![Related - Tutorial](https://img.shields.io/static/v1?label=Related&message=Tutorial&color=008a00&style=for-the-badge)](/tutorials/migrate-relational-database.md)
+
 ## Prerequisites
 
 * A running **[MySQL](https://www.mysql.com/)** instance with the database you wish to migrate.
