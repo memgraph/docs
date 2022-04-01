@@ -1,25 +1,30 @@
 ---
 id: custom-file-system-importer
-title: Make a custom File System importer
-sidebar_label: Make custom File System
+title: How to make a custom file system importer
+sidebar_label: Make custom file system importer
 ---
 
 > To learn how to import table data from a file to Memgraph database, head
-> over to [How to import table data](#TODO put link).
+> over to the How to import table data guide.
 
-Should you want to read from a filesystem not currently supported by Gqlalchemy, or use a file type currently not readable, you can implement your own by extending abstract classes `FileSystemHandler` and `DataLoader`, respectively.
+If you want to read from a file system not currently supported by GQLAlchemy, or use a file type currently not readable, you can implement your own by extending abstract classes `FileSystemHandler` and `DataLoader`, respectively.
 
+## Implementing a new `FileSystemHandler`
 
+For this guide, you will use the existing `PyarrowDataLoader` capable of reading
+`csv`, `parquet`, `orc` and `ipc/feather/arrow` file formats. PyArrow reader
+supports [fsspec](https://filesystem-spec.readthedocs.io/en/latest/)-compatible
+file systems, so to implement an Azure Blob filesystem, you need to follow these
+steps.
 
-## Implementing a new FileSystemHandler
+### 1. Extend the `FileSystemHandler` class
 
-For this guide, we will focus on using the existing `PyarrowDataLoader` capable of reading `csv`, `parquet`, `orc` and `ipc/feather/arrow` file formats. Pyarrow reader supports [fsspec](https://filesystem-spec.readthedocs.io/en/latest/)-compatible filesystems, so in order to implement an Azure Blob filesystem, you need to follow these steps.
+This class holds the connection to the filesystem service and handles the path
+from which the `DataLoader` object reads. To get a fsspec-compatible instance of
+an Azure Blob connection, you can use the `adlfs` package. All that's left to do
+is to override the `get_path` method.
 
-### 1. Extend the FileSystemHandler class
-
-This class holds the connection to the filesystem service and handles the path from which the `DataLoader` object reads. To get an fsspec-compatible instance of an Azure Blob connection, we can use the `adlfs` package. Then, we override the `get_path` method
-
-```python=
+```python
 import adlfs
 
 class AzureBlobFileSystemHandler(FileSystemHandler):
@@ -37,9 +42,9 @@ class AzureBlobFileSystemHandler(FileSystemHandler):
         return f"{self._container_name}/{collection_name}.{file_extension}"
 ```
 
-### 2. Wrap the TableToGraphImporter
+### 2. Wrap the `TableToGraphImporter`
 
-Next, we can wrap the `TableToGraphImporter` class and make our own `AzureBlobImporter` which initializes the `AzureBlobFileSystemHandler` and `PyarrowDataLoader` objects and passes the `DataLoader` to the `TableToGraphImporter`.
+Next, you need to wrap the `TableToGraphImporter` class and make your own `AzureBlobImporter`, which initializes the `AzureBlobFileSystemHandler` and `PyarrowDataLoader` objects, and passes the `DataLoader` to the `TableToGraphImporter`.
 
 ```python
 class AzureBlobImporter(TableToGraphImporter):
@@ -57,7 +62,7 @@ class AzureBlobImporter(TableToGraphImporter):
         )
 ```
 
-### 3. Call translate()
+### 3. Call `translate()`
 
 Finally, to use your custom filesystem, initialize the Importer class and call `translate()`
 
@@ -73,5 +78,5 @@ importer = AzureBlobImporter(
 importer.translate(drop_database_on_start=True)
 ```
 
-If you want to see our full implementation of `AzureBlobFileSystem` and other components of the loader, have a look into our code. And if you make a feature we could use, you can make a PR on our Gqlalchemy [github](https://github.com/memgraph/gqlalchemy). If you have any more questions, join our community and ping us on
+If you want to see the full implementation of the `AzureBlobFileSystem` and other loader components, have a look [at the code](https://github.com/memgraph/gqlalchemy). Feel free to create a PR on the GQLAlchemy repository if you think of a feature we could use. If you have any more questions, join our community and ping us on
 [Discord](https://discord.gg/memgraph).
