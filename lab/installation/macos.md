@@ -4,8 +4,10 @@ title: Installing Memgraph Lab on macOS
 sidebar_label: macOS
 ---
 
+import CompatibilityWarning from '../templates/_compatibility_warning.mdx';
+
 We recommend you [install **Memgraph Platform**](/memgraph/installation) and get
-the complete streaming graph application platform that includes <br/> **Memgraph DB**,
+the complete streaming graph application platform that includes <br/> **MemgraphDB**,
 command-line tool **mgconsole**, visual user interface **Memgraph Lab** running
 within the browser and **MAGE** - graph algorithms and modules library.
 
@@ -14,11 +16,13 @@ instructions below.
 
 ## Step 1 - Download and install Memgraph
 
-Memgraph Lab needs a running Memgraph DB instance
+Memgraph Lab needs a running MemgraphDB instance
 
 If you installed Memgraph Platform you should already have one. <br/>If not,
-install [Memgraph DB](/memgraph/installation) and once the database instance is
+install [MemgraphDB](/memgraph/installation) and once the database instance is
 running  you can continue with the next step.
+
+<CompatibilityWarning/>
 
 ## Step 2 - Installing and setting up Memgraph Lab
 

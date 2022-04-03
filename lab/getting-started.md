@@ -12,6 +12,7 @@ enables you to:
 - write and execute Cypher queries
 - import and export data
 - view and optimize query performance
+- develop query modules in Python
 
 It was designed to help you with every stage of your learning process and graph
 development.
@@ -24,7 +25,7 @@ Lab**, be sure to:
 ### 1. Install Memgraph Platform or Memgraph Lab
 
 We recommend you [install **Memgraph Platform**](/memgraph/installation) and get
-the complete streaming graph application platform that includes **Memgraph DB**,
+the complete streaming graph application platform that includes **MemgraphDB**,
 command-line tool **mgconsole**, visual user interface **Memgraph Lab** running
 within the browser and **MAGE** - graph algorithms and modules library.
 

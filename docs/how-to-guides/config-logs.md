@@ -105,7 +105,7 @@ For example, if you want to limit memory usage for the whole instance to 50 MiB
 pass the configuration like this:
 
 ```plaintext
-docker run -it -p 7687:7687 -p 3000:3000 -e MEMGRAPH="--memory-limit=50" memgraph/memgraph-platform
+docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 -e MEMGRAPH="--memory-limit=50" memgraph/memgraph-platform
 ```
 
    </TabItem>
@@ -118,7 +118,7 @@ For example, if you want to limit memory usage for the whole instance to 50 MiB
 pass the configuration like this:
 
 ```plaintext
-docker run -it -p 7687:7687  memgraph --memory-limit=50
+docker run -it -p 7687:7687 -p 7444:7444  memgraph --memory-limit=50
 ```
    
    </TabItem>

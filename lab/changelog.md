@@ -4,6 +4,33 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v2.0.0
+
+### Major Features and Improvements
+
+- Add horizontal and vertical layouts for custom layout configuration.
+- Add more query information in the latest queries: runtime, status, number of
+  results.
+- Add query collections to structure and save favorite queries.
+- Add better Cypher code suggestion for functions, modules, nodes,
+  relationships, properties.
+- Add Cypher code documentation on highlight.
+- Add Graph Style Script code suggestion for `@NodeStyle`, `@EdgeStyle`,
+  properties and functions.
+- Add Graph Style Script code documentation on highlight.
+- Add improved table views throughout the app.
+- Add new rendering and simulation engine based on D3.js.
+- Add new rendering simulation options: collision, repel force and link
+  distance.
+- Remove definition of query parameters when running a Cypher query with
+  `$variable`.
+- Add real-time logs view from Memgraph.
+- Add a status tray with connection status and main Memgraph metrics.
+- Add real-time connection status and automatic reconnect ability.
+- Add new graph schema view with distribution of present properties in
+  nodes/relationships.
+- Add ability to view, edit, remove and change query modules.
+
 ## v1.3.3
 
 ### Bug Fixes
