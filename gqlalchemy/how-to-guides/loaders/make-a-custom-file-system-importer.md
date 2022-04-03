@@ -12,7 +12,7 @@ If you want to read from a file system not currently supported by GQLAlchemy, or
 ## Implementing a new `FileSystemHandler`
 
 For this guide, you will use the existing `PyarrowDataLoader` capable of reading
-`csv`, `parquet`, `orc` and `ipc/feather/arrow` file formats. PyArrow reader
+CSV, Parquet, ORC, IPC, Feather and Arrow file formats. PyArrow reader
 supports [fsspec](https://filesystem-spec.readthedocs.io/en/latest/)-compatible
 file systems, so to implement an Azure Blob filesystem, you need to follow these
 steps.

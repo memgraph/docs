@@ -4,7 +4,7 @@ title: How to import table data to graph database
 sidebar_label: Import table to graph
 ---
 
-This guide will show you how to use `loaders.py` to translate table data in a file to graph data and import it to Memgraph. Currently, we support reading of `csv`, `parquet`, `orc`, `ipc/feather/arrow` file formats via Pyarrow. Data loading is implemented from `LocalFileSystem`, `AzureBlobFileSystem` and `AmazonS3FileSystem`.
+This guide will show you how to use `loaders.py` to translate table data from a file to graph data and import it to Memgraph. Currently, we support reading of CSV, Parquet, ORC, IPC, Feather and Arrow file formats via Pyarrow. Data loading is implemented from `LocalFileSystem`, `AzureBlobFileSystem` and `AmazonS3FileSystem`.
 
 > Make sure you have a running Memgraph instance. If you're not sure how to run
 > Memgraph, check out the Memgraph [Quick start](/memgraph/#quick-start).
