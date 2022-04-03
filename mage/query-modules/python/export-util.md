@@ -24,7 +24,8 @@ export const Highlight = ({children, color}) => (
 
 ## Abstract
 
-Module for exporting a graph database in different formats.
+Module for exporting a graph database in different formats. Currently, this
+module supports only the export to JSON file format.
 
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |

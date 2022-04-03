@@ -24,7 +24,8 @@ export const Highlight = ({children, color}) => (
 
 ## Abstract
 
-Module for importing data from different formats.
+Module for importing data from different formats. Currently, this module
+supports only the import of JSON file format.
 
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |
@@ -41,10 +42,55 @@ Module for importing data from different formats.
 * `path: str` ➡ Path to the JSON file that is being imported.
 
 #### Usage:
-The JSON file you're importing needs to be structured the same as the JSON
-file that
-the [`export_util.json(path)`](https://memgraph.com/docs/mage/query-modules/python/export-util)
-procedure generates. The `path` you have to provide as procedure argument depends on how you started Memgraph.
+The JSON file you're importing needs to be structured the same as the JSON file
+that the
+[`export_util.json(path)`](https://memgraph.com/docs/mage/query-modules/python/export-util)
+procedure generates. The generated JSON file is a list of objects representing
+nodes or relationships. If the object is node, then it looks like this:
+
+```json
+{
+    "id": 4000,
+    "labels": [
+        "City"
+    ],
+    "properties": {
+        "id": 0,
+        "name": "Amsterdam",
+    },
+    "type": "node"
+}
+```
+ 
+The `id` key has the value of the Memgraph's internal node ide. The `labels` key
+holds the information about node labels in a list. The `properties` are
+key-value pairs representing properties of the certain node. Each node needs to
+have the value of `type` set to `"node"`.
+
+On the other hand, if the object is a relationship, then it is structured like this:
+
+```json
+{
+    "end": 4052,
+    "id": 7175,
+    "label": "CloseTo",
+    "properties": {
+        "eu_border": true
+    },
+    "start": 4035,
+    "type": "relationship"
+}
+```
+
+The `end` and `start` keys hold the information about the internal ids of start
+and end node of the relationship. Each relationship also has it's internal id
+exported as a value of `id` key. A relationship can only have one label which is
+exported to the `label` key. Properties are again key-value pairs, and the value
+of `type` needs to be set to `"relationship"`.
+
+
+The `path` you have to provide as procedure argument depends on how you started
+Memgraph.
 
 
 <Tabs
@@ -107,9 +153,13 @@ where `path` is the path to a local JSON file that will be created inside the
 
 Below is the content of the `import.json` file. 
 
-- If you're using **Memgraph with Docker**, then you have to save the `import.json` file in the `/usr/lib/memgraph/query_modules` directory inside the running Docker container. 
+- If you're using **Memgraph with Docker**, then you have to save the
+  `import.json` file in the `/usr/lib/memgraph/query_modules` directory inside
+  the running Docker container. 
 
-- If you're using **Memgraph on Ubuntu, Debian, RPM package or WSL**, then you have to save the `import.json` file in the local `/users/my_user/import_folder` directory.
+- If you're using **Memgraph on Ubuntu, Debian, RPM package or WSL**, then you
+  have to save the `import.json` file in the local
+  `/users/my_user/import_folder` directory.
 
 ```json
 [
@@ -174,13 +224,15 @@ Below is the content of the `import.json` file.
 
 <TabItem value="run">
 
-If you're using **Memgraph with Docker**, then the following Cypher query will create a graph database from the provided JSON file:
+If you're using **Memgraph with Docker**, then the following Cypher query will
+create a graph database from the provided JSON file:
 
 ```cypher
 CALL import_util.json("/usr/lib/memgraph/query_modules/import.json");
 ```
 
-If you're using **Memgraph on Ubuntu, Debian, RPM package or WSL**, then the following Cypher query will create a graph database from the provided JSON file:
+If you're using **Memgraph on Ubuntu, Debian, RPM package or WSL**, then the
+following Cypher query will create a graph database from the provided JSON file:
 
 ```cypher
 CALL import_util.json("/users/my_user/import_folder/import.json");
