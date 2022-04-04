@@ -66,8 +66,7 @@ have entered the correct port number.
 Let's create a simple graph and execute some queries. This will make sure
 everything is running correctly.
 
-Go to the **Query** tab, enter the following Cypher query and click **Run
-query**.
+Go to **Query execution**, enter the following query in the **Cypher Editor** tab and click **Run Query**.
 
 ```cypher
 CREATE (u:User {name: "Alice"})-[:Likes]->(m:Software {name: "Memgraph"});
