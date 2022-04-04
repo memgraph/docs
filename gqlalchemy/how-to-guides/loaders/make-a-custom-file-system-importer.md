@@ -64,7 +64,7 @@ class AzureBlobImporter(TableToGraphImporter):
 
 ### 3. Call `translate()`
 
-Finally, to use your custom filesystem, initialize the Importer class and call `translate()`
+Finally, to use your custom file system, initialize the Importer class and call `translate()`
 
 ```python
 importer = AzureBlobImporter(
