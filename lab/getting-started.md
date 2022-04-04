@@ -17,6 +17,8 @@ enables you to:
 It was designed to help you with every stage of your learning process and graph
 development.
 
+<img alt="memgraph_lab_screenshot" src={require('./data/installation/lab-graph.png').default} style={{width:'80%'}}/>
+
 ## Quick start
 
 If you would like to query a running Memgraph database instance using **Memgraph
