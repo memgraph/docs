@@ -7,15 +7,15 @@ sidebar_label: Replication
 When distributing data across several instances, Memgraph uses replication to
 provide the satisfying ratio of the following properties:
 
- 1. consistency - every node has the same view of data at a given point in
+ 1. **consistency** - every node has the same view of data at a given point in
     time 
- 2. availability - all clients can find a replica of the data, even in the
+ 2. **availability** - all clients can find a replica of the data, even in the
     case of a partial node failure
- 3. partition tolerance - the system continues to work as expected despite a
+ 3. **partition tolerance** - the system continues to work as expected despite a
     partial network failure
 
-Replication consists of replicating the data from one storage (MAIN instance) to
-other storages (REPLICA instances).
+In the replication process the data is replicated from one storage (MAIN
+instance) to another (REPLICA instances).
 
 ## Data replication implementation basics 
 
@@ -24,7 +24,7 @@ cluster, one instance has to be chosen as the MAIN instance. The rest of the
 instances have to be demoted to REPLICA roles and have a port defined using a
 Cypher query. REPLICA instances no longer accept write queries. In order to
 start the replication, each REPLICA instance needs to be registered from the
-MAIN instance by setting a replication mode (SYNC, SYNC WITH TIMEOUT and ASYNC)
+MAIN instance by setting a replication mode (SYNC, SYNC WITH TIMEOUT, and ASYNC)
 and specifying the REPLICA instance's socket address. 
 
 Replication mode defines the terms by which the MAIN instance can commit the
@@ -32,16 +32,16 @@ changes to the database, thus modifying the system to prioritize either
 consistency or availability: 
   - SYNC - The MAIN instance will not commit a transaction until all REPLICA
     instances confirm they have received the same transaction. SYNC mode
-    prioritizes data consistency. 
+    prioritizes data consistency, but has no tolerance for any network failures.  
   - SYNC WITH TIMEOUT - The MAIN instance will not commit a transaction until
     all REPLICA instances confirm they have received the same transaction within
     a configured time interval. If the response from a REPLICA times out, the
     replication mode of that instance will be changed to ASYNC. SYNC WITH
-    TIMEOUT prioritizes data consistency until an unexpected issues force
-    the system to prioritize availability.
+    TIMEOUT prioritizes data consistency until unexpected issues force
+    the system to prioritize availability and partition tolerance.
   - ASYNC - The MAIN instance will commit a transaction without receiving
     confirmation from REPLICA instances that they have received the same
-    transaction. ASYNC mode ensures system availability.
+    transaction. ASYNC mode ensures system availability and partition tolerance.
 
 Once the REPLICA instances are registered, data storage of the MAIN instance is
 replicated and synchronized using transaction timestamps and durability files
@@ -51,12 +51,12 @@ authentication configurations, query and authentication modules, and audit logs.
 By using the timestamp, the MAIN instance knows the current state of the
 REPLICA. If the REPLICA is not synchronized with the MAIN instance, the MAIN
 instance sends the correct data for synchronization kept as deltas within WAL
-files. Deltas are the smallest possible updates of the database but they carry
+files. Deltas are the smallest possible updates of the database, but they carry
 enough information to synchronize the data on a REPLICA. Memgraph stores only
 `remove` actions as deltas, for example, `REMOVE key:value ON node_id`.
 
 If the REPLICA is so far behind the MAIN instance that the synchronization using
-WAL files and deltas within it is not possible, Memgraph will use snapshots to
+WAL files and deltas within it is impossible, Memgraph will use snapshots to
 synchronize the REPLICA to the state of the MAIN instance.
 
 ## Running multiple instances
@@ -68,7 +68,7 @@ If you are exploring replication and running multiple instances on one machine,
 please install Memgraph with Docker.
 
 If you are starting instances with defined volume flags to enable data
-persistency (`-v mg_lib:/var/lib/memgraph`), access logs (`-v
+persistency (`-v mg_lib:/var/lib/memgraph`), access logs <br/> (`-v
 mg_log:/var/log/memgraph`) and configuration file (`-v mg_etc:/etc/memgraph`),
 be sure to use a different volume name for each instance, for example,
 `mg_lib1`, `mg_lib2`, etc.
@@ -88,14 +88,14 @@ using the following query:
 SET REPLICATION ROLE TO REPLICA WITH PORT <port_number>;
 ```
 
-If you set the port of each REPLICA instance to `10000` it will be easier to
-register replicas later on, because the query for registering replicas uses the
+If you set the port of each REPLICA instance to `10000`, it will be easier to
+register replicas later on because the query for registering replicas uses the
 port 10000 as the default one.  
 
 ### Assigning the MAIN role
 
 The replication cluster should have only one MAIN instance in order to
-avoid errors to the replication system. If the original MAIN instance fails, you
+avoid errors in the replication system. If the original MAIN instance fails, you
 can promote a REPLICA instance to be the new MAIN instance by running the
 following query:
 
@@ -103,10 +103,10 @@ following query:
 SET REPLICATION ROLE TO MAIN;
 ```
 
-If the original instance was still alive when you promoted a new MAIN you need
-to manually resolve any conflicts and manage replication.
+If the original instance was still alive when you promoted a new MAIN, you need
+to resolve any conflicts and manage replication manually.
 
-If you demote the new MAIN instance back to REPLICA role it will not retrieve
+If you demote the new MAIN instance back to the REPLICA role, it will not retrieve
 its original function. You need to drop it from the MAIN and register it again.
 
 If the crashed MAIN instance goes back online, it cannot reclaim its previous
@@ -126,9 +126,9 @@ SHOW REPLICATION ROLE;
 
 Once all the nodes in the cluster are assigned with appropriate roles, you can
 enable replication in the MAIN instance by registering REPLICA instances,
-setting a replication mode (SYNC, SYNC WITH TIMEOUT and ASYNC) and specifying
+setting a replication mode (SYNC, SYNC WITH TIMEOUT, and ASYNC), and specifying
 the REPLICA instance's socket address. Memgraph doesn't support chaining REPLICA
-instances, that is, REPLICA instance cannot be replicated on another REPLICA
+instances, that is, a REPLICA instance cannot be replicated on another REPLICA
 instance.
 
 If you want to register a REPLICA instance with a SYNC or SYNC WITH TIMEOUT
@@ -158,8 +158,8 @@ for example:
 "172.17.0.4:10050"
 ```
 
-Default value of the PORT_NUMBER is `10000` so if you set REPLICA roles using
-that port you can define the socket address specifying only the valid IP address: 
+The default value of the PORT_NUMBER is `10000`, so if you set REPLICA roles using
+that port, you can define the socket address specifying only the valid IP address: 
 
 ```plaintext
 "IP_ADDRESS"
@@ -170,6 +170,11 @@ Example of a <socket_address> using only IP_ADDRESS:
 ```plaintext
 "172.17.0.5"
 ```
+
+When a REPLICA instance is registered it will start replication in ASYNC mode
+until it synchronizes to the the current state of the database. Upon
+synchronization, REPLICA instances will start replication in the replication
+mode set during registration.
 
 ### Listing all registered REPLICA instances
 
@@ -190,16 +195,16 @@ DROP REPLICA <name>;
 ## MAIN and REPLICA synchronization
 
 By comparing timestamps, the MAIN instance knows when a REPLICA instance is not
-synchronized and is missing some earlier transactions. REPLICA instance is then
-set into a RECOVERY state and remains in it until it is fully synchronized with
+synchronized and is missing some earlier transactions. The REPLICA instance is then
+set into a RECOVERY state where it remains until it is fully synchronized with
 the MAIN instance. 
 
-The missing data changes can be sent as snapshot or WAL files. Snapshots files
+The missing data changes can be sent as snapshots or WAL files. Snapshot files
 represent an image of the current state of the database and are much larger than
-the WAL files which only contain the changes, deltas. Because of the difference
+the WAL files, which only contain the changes, deltas. Because of the difference
 in file size, Memgraph favors the WAL files. 
 
-While the REPLICA instance is in RECOVERY state, the MAIN instance calculates
-the optimal synchronization path based on REPLICA instance's timestamp and the
-current state of the durability files, while trying to keep the size of the
+While the REPLICA instance is in the RECOVERY state, the MAIN instance calculates
+the optimal synchronization path based on the REPLICA instance's timestamp and the
+current state of the durability files while keeping the overall size of the
 files necessary for synchronization to a minimum.
