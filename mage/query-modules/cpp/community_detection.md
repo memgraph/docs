@@ -23,9 +23,8 @@ export const Highlight = ({children, color}) => (
 
 ## Abstract
 
-This query module makes available the [Louvain method](https://arxiv.org/abs/1305.2006)
-<sup>[1]</sup> for community detection, using the [Grappolo](https://github.com/Exa-Graph/grappolo)
-parallel implementation.
+This query module makes available the [Louvain method](https://arxiv.org/abs/1305.2006) <sup>[1]</sup> for community
+detection, using the [Grappolo](https://github.com/Exa-Graph/grappolo) parallel implementation.
 
 The Louvain algorithm belongs to the *modularity maximization* family of community
 detection algorithms. Each node is initially assigned to its own community, and the
