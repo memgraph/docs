@@ -34,7 +34,7 @@ instance, follow the installation steps.
   ]}>
   <TabItem value="docker">
 
-**1.** If you installed Memgraph DB using Docker, you can run the client from your
+**1.** If you installed MemgraphDB using Docker, you can run the client from your
 Docker image. First, you need to find the `CONTAINER_ID` of your Memgraph
 container:
 
