@@ -56,17 +56,16 @@ Computes graph communities using the Louvain method.
 
 * `weight: double(1)` ➡ Specifies the default edge weight. If not set, 
   the algorithm uses the `weight` edge attribute when present and otherwise 
-  treats the graph as undirected.
+  treats the graph as unweighted.
 * `coloring: bool(False)` ➡ If set, use the graph coloring heuristic for effective parallelization.
-* `min_graph_shrink: int(100000)` ➡ The graph coarsening optimization stops upon shrinking the graph to 
-  `min_graph_shrink` nodes.
+* `min_graph_shrink: int(100000)` ➡ The graph coarsening optimization stops upon shrinking the graph to this many nodes.
 * `community_alg_threshold: double(0.000001)` ➡ Controls how long the algorithm iterates. When the gain in modularity
-  goes below `community_alg_threshold`, iteration is over.
+  goes below the threshold, iteration is over.
   Valid values are between 0 and 1 (exclusive).
 * `coloring_alg_threshold: double(0.01)` ➡ If coloring is enabled, controls how long the algorithm iterates. When the
-  gain in modularity goes below `coloring_alg_threshold`, a final iteration is performed using the
+  gain in modularity goes below this threshold, a final iteration is performed using the
   `community_alg_threshold` value. 
-  Valid values are between 0 and 1 (exclusive); this parameter's value should be larger than `community_alg_threshold`.
+  Valid values are between 0 and 1 (exclusive); this parameter's value should be higher than `community_alg_threshold`.
 
 #### Output:
 
