@@ -24,17 +24,17 @@ export const Highlight = ({children, color}) => (
 ## Abstract
 
 The **temporal_graph_networks (TGNs)** is a **[graph neural network (GNN)](https://distill.pub/2021/gnn-intro/)** method on dynamic graphs. 
-In the recent years, **GNNs** have become very popular due to their ability to perform a wide variation of machine learning
-tasks on graphs, such as link prediction, node classification and so on. This rise started with **[Graph convolutional
-networks (GCN)](https://arxiv.org/pdf/1609.02907.pdf)** introduced by *Kipf et al*, following by **[GraphSAGE](https://arxiv.org/pdf/1706.02216.pdf)** introduced by *Hamilton et al*, and in recent years new
+In recent years, **GNNs** have become very popular due to their ability to perform a wide variety of machine learning
+tasks on graphs, such as link prediction, node classification, and so on. This rise started with **[Graph convolutional
+networks (GCN)](https://arxiv.org/pdf/1609.02907.pdf)** introduced by *Kipf et al*, followed by **[GraphSAGE](https://arxiv.org/pdf/1706.02216.pdf)** introduced by *Hamilton et al*, and in recent years new
 method was presented which introduces **attention mechanism** to graphs, known as **[Graph attention networks (GAT)](https://arxiv.org/pdf/1710.10903.pdf?ref=https://githubhelp.com)**, by *Veličković
-et al*. Last two methods offer great possibility for inductive learning. But they haven't been specifically developed
+et al*. The last two methods offer a great possibility for inductive learning. But they haven't been specifically developed
 to handle different events occurring on graphs, such as **node features updates**, **node deletion**, **edge deletion**
-and so on. These events happen regularly on **real world** examples such as **[Twitter network](https://twitter.com/memgraphmage)**, 
-where users update their profile, delete their profile or just unfollow other user.
+and so on. These events happen regularly on **real-world** examples such as **[Twitter network](https://twitter.com/memgraphmage)**, 
+where users update their profile, delete their profile or just unfollow another user.
 
-In their work, Rossi et al introduced to us [Temporal graph networks](https://arxiv.org/abs/2006.10637) which present great possibility to do graph machine
-learning on stream of data, use-case occurring more often in recent years.
+In their work, Rossi et al introduced to us [Temporal graph networks](https://arxiv.org/abs/2006.10637) which presents a great possibility to do graph machine
+learning on a stream of data, use-case occurring more often in recent years.
 
 ### About query module
 What we have covered in this module
@@ -65,14 +65,14 @@ What is **not** implemented in the module:
 
 
 What we **believe** we offer instead of authors implementation from **[twitter-research GitHub repo](https://github.com/twitter-research/tgn)**:
-  * Embedding calculation seems to be off. Problem seems that author doesn't use newly calculated embeddings in new layers, but instead uses raw features from 0th layer,
-    which according to paper is wrong. Anyway, if that is not a case, we still believe we fixed potential bug, and offer great possibility to explore
+  * Embedding calculation seems to be off. The problem seems that the author doesn't use newly calculated embeddings in new layers, but instead uses raw features from the 0th layer,
+    which according to the paper is wrong. Anyway, if that is not the case, we still believe we fixed the potential bug, and offer a great possibility to explore
     **temporal graph networks** with a lot of possibilities.
 
 
-How should **you** use following module?
-Prepare cypher queries, split them in the **train** set and **eval** set. Don't forget to call method `set_mode`.
-Every result will be stored so you can easily get it with module. We will report for you **[mean average precision](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.average_precision_score.html)**
+How should **you** use the following module?
+Prepare cypher queries, and split them in the **train** set and **eval** set. Don't forget to call method `set_mode`.
+Every result will be stored so you can easily get it with the module. We will report for you **[mean average precision](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.average_precision_score.html)**
 on every batch *training* or *evaluation* was done.
 
 ### Implementation details
@@ -80,7 +80,7 @@ on every batch *training* or *evaluation* was done.
 #### Query module
 Module is implemented using **[PyTorch](https://pytorch.org/)**. From `mgp.Edge` input features defined as edge label, 
 we extract `edge features` and from `mgp.Vertex` input features we extract `node features`. Since we expect in *your* learning activities 
-to use **triggers**, `update` query module procedure will parse all new edges, extract information **temporal graph networks** need to do a 
+to use **triggers**, the `update` query module procedure will parse all new edges, extract information **temporal graph networks** need to do a 
 batch by batch processing.
 
 From following piece of code, *you* can see what we extract from every edge, while filling up **batch**. When our current processing
@@ -102,8 +102,6 @@ class QueryModuleTGNBatch:
 
 ```
 
-
-
 #### Processing one batch
 
 
@@ -117,33 +115,36 @@ class QueryModuleTGNBatch:
 
         embeddings = self.tgn_net(graph_data)
 
-        ... process negative edges in similar way
+        ... process negative edges in a similar way
         
         self._process_current_batch(
             sources, destinations, node_features, edge_features, edge_idxs, timestamps
         )
 
 ```
-Our `torch.nn.Module` is organized as following:
-  * processing previous batches - if you follow *[research paper](https://arxiv.org/abs/2006.10637)* this will include new calculation of messages collected for each node in form of 
-    **message function**, aggregation of messages for each node in form of **message aggregator** and finally updating of each of the nodes memory
+Our `torch.nn.Module` is organized as follows:
+  * processing previous batches - if you follow *[research paper](https://arxiv.org/abs/2006.10637)* this will include a new calculation of messages collected for each node in the form of 
+    **message function**, aggregation of messages for each node in form of **message aggregator** and finally updating of each of the node's memory
     with **memory updater**
-  * afterwards we create computation graph used by **graph attention layer** or **graph sum layer**
+  * afterward we create a computation graph used by **graph attention layer** or **graph sum layer**
   * final step includes processing of current batch, creating new **interaction or node events**, updating **raw message store** with new **events**
 
-Process repeats as we get new edges in batch, and after batch is filled, we forward new edges again to **TGN** and so on...
+Process repeats as we get new edges in batch, and after a batch is filled, we forward new edges again to **TGN** and so on...
+
 
 
 :::info
 
-This **MAGE** module is still in its early phase. We intended its use for only **learning** activities. Problem 
-with current module is that we expect from **you** to know when your stream will end so you can switch **TGN** mode
+This **MAGE** module is still in its early phase. We intended its use for only **learning** activities. The problem 
+with the current module is that we expect **you** to know when your stream will end so you can switch **TGN** mode
 from **train** to **eval**. After you do a switch, all incoming edges will be used for only **evaluation** and not
-any new **training**. If you wish to make it production ready, because you like what you see :smile: be sure to either
+any new **training**. If you wish to make it production-ready, because you like what you see :smile: be sure to either
 open **pull request** on our **[GitHub page](https://github.com/memgraph/mage)**, or drop us a comment on **[Discord](https://discord.gg/memgraph)**.
 Also, if you like what you saw, consider giving us a :star: so we can continue to do even better work. 
 
 :::
+   
+
    
 
 | Trait               | Value                                                          |
