@@ -13,7 +13,7 @@ that will be used by the database to recover its state on its next startup.
 If you are already familiar with the Neo4j bulk import tool, then using the
 `mg_import_csv` tool should be easy.  The CSV import tool is fully compatible
 with the [Neo4j CSV
-format](https://neo4j.com/docs/operations-manual/current/tools/import/).  If you
+format](https://neo4j.com/docs/operations-manual/current/tools/import/). If you
 already have a pipeline set-up for Neo4j, you should only replace `neo4j-admin
 import` with `mg_import_csv`.
 
@@ -205,3 +205,4 @@ for row in csv.reader(stream, delimiter=',', doublequote=True,
 
 For more information about the meaning of the above values, see:
 https://docs.python.org/3/library/csv.html#csv.Dialect
+

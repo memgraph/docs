@@ -351,6 +351,10 @@ module.exports = {
           title: "More",
           items: [
             {
+              label: "Memgraph Playground",
+              href: "https://playground.memgraph.com"
+            },
+            {
               label: "GitHub",
               href: "https://github.com/memgraph/memgraph",
             },
