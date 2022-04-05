@@ -36,6 +36,7 @@ where users update their profile, delete their profile or just unfollow other us
 In their work, Rossi et al introduced to us [Temporal graph networks](https://arxiv.org/abs/2006.10637) which present great possibility to do graph machine
 learning on stream of data, use-case occurring more often in recent years.
 
+### About query module
 What we have covered in this module
   * **link prediction** - train your **TGN** to predict new **links/edges** and **node classification** - predict labels of nodes from graph structure and **node/edge** features
   * **graph attention layer** embedding calculation and **graph sum layer** embedding layer calculation
@@ -50,19 +51,11 @@ as introduced by **[Rossi et al](https://emanuelerossi.co.uk/)**.
 Following means **you** can use **TGN** to be able to **predict edges** or  to perform **node classification** tasks, with **graph attention layer** or **graph sum layer**, by using
 either **mean** or **last** as message aggregator, **mlp** or **identity** as message function, and finally  **gru** or **rnn** as memory updater.
 
-In total that gives *you* 2\*2\*2\*2\*2 options, in total of **32** options to explore on your graph :smile: 
+In total that gives *you* **2\*2\*2\*2\*2 options**, in total of **32** options to explore on your graph :smile: 
 
 To start exploring our module, **[github/memgraph/mage](https://github.com/memgraph/mage)** and start exploring our implementation, or even better, jump to 
 **[download page](https://memgraph.com/download)**, Download **Memgraph platform** and start exploring **TGN**
 
-
-Each of those methods consist of following steps you should look for in the module:
-  * processing previous batches - if you follow paper this will include new calculation of messages collected for each node in form of 
-    **message function**, aggregation of messages for each node in form of **message aggregator** and finally updating of each of the nodes memory
-    with **memory updater**
-  * afterwards we create computation graph used by **graph attention layer** or **graph sum layer**
-  * final step includes processing of current batch, creating new **interaction or node events**, updating **raw message store** with new **events**
-  * Afterwards process repeats as we process messages from **raw message store** to calculate messages and so on...
 
 What is **not** implemented in the module:
   * **node update/deletion events** since they occur very rarely - although we have prepared a terrain
@@ -81,6 +74,65 @@ How should **you** use following module?
 Prepare cypher queries, split them in the **train** set and **eval** set. Don't forget to call method `set_mode`.
 Every result will be stored so you can easily get it with module. We will report for you **[mean average precision](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.average_precision_score.html)**
 on every batch *training* or *evaluation* was done.
+
+### Implementation details
+
+#### Query module
+Module is implemented using **[PyTorch](https://pytorch.org/)**. From `mgp.Edge` input features defined as edge label, 
+we extract `edge features` and from `mgp.Vertex` input features we extract `node features`. Since we expect in *your* learning activities 
+to use **triggers**, `update` query module procedure will parse all new edges, extract information **temporal graph networks** need to do a 
+batch by batch processing.
+
+From following piece of code, *you* can see what we extract from every edge, while filling up **batch**. When our current processing
+batch size reaches **predefined batch size**, predefined by calling `set` query module procedure, we `forward` extracted information to `TGN` which
+extends `torch.nn.Module`.
+```python
+@dataclasses.dataclass
+class QueryModuleTGNBatch:
+    current_batch_size: int
+    sources: np.array
+    destinations: np.array
+    timestamps: np.array
+    edge_idxs: np.array
+    node_features: Dict[int, torch.Tensor]
+    edge_features: Dict[int, torch.Tensor]
+    batch_size: int
+    labels: np.array
+
+
+```
+
+
+
+#### Processing one batch
+
+
+```python
+        self._process_previous_batches()
+
+        graph_data = self._get_graph_data(
+            np.concatenate([sources.copy(), destinations.copy()], dtype=int),
+            np.concatenate([timestamps, timestamps]),
+        )
+
+        embeddings = self.tgn_net(graph_data)
+
+        ... process negative edges in similar way
+        
+        self._process_current_batch(
+            sources, destinations, node_features, edge_features, edge_idxs, timestamps
+        )
+
+```
+Our `torch.nn.Module` is organized as following:
+  * processing previous batches - if you follow *[research paper](https://arxiv.org/abs/2006.10637)* this will include new calculation of messages collected for each node in form of 
+    **message function**, aggregation of messages for each node in form of **message aggregator** and finally updating of each of the nodes memory
+    with **memory updater**
+  * afterwards we create computation graph used by **graph attention layer** or **graph sum layer**
+  * final step includes processing of current batch, creating new **interaction or node events**, updating **raw message store** with new **events**
+
+Process repeats as we get new edges in batch, and after batch is filled, we forward new edges again to **TGN** and so on...
+
 
 :::info
 
