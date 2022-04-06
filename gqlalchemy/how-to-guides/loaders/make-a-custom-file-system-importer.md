@@ -7,19 +7,19 @@ sidebar_label: Make custom file system importer
 > To learn how to import table data from a file to Memgraph database, head
 > over to the How to import table data guide.
 
-If you want to read from a file system not currently supported by GQLAlchemy, or use a file type currently not readable, you can implement your own by extending abstract classes `FileSystemHandler` and `DataLoader`, respectively.
+If you want to read from a file system not currently supported by **GQLAlchemy**, or use a file type currently not readable, you can implement your own by extending abstract classes `FileSystemHandler` and `DataLoader`, respectively.
 
 ## Implementing a new `FileSystemHandler`
 
-For this guide, you will use the existing `PyarrowDataLoader` capable of reading
-CSV, Parquet, ORC, IPC, Feather and Arrow file formats. PyArrow reader
+For this guide, you will use the existing `PyArrowDataLoader` capable of reading
+CSV, Parquet, ORC and IPC/Feather/Arrow file formats. The PyArrow loader class
 supports [fsspec](https://filesystem-spec.readthedocs.io/en/latest/)-compatible
-file systems, so to implement an Azure Blob filesystem, you need to follow these
+file systems, so to implement an **Azure Blob** file system, you need to follow these
 steps.
 
 ### 1. Extend the `FileSystemHandler` class
 
-This class holds the connection to the filesystem service and handles the path
+This class holds the connection to the file system service and handles the path
 from which the `DataLoader` object reads. To get a fsspec-compatible instance of
 an Azure Blob connection, you can use the `adlfs` package. All that's left to do
 is to override the `get_path` method.
@@ -44,7 +44,7 @@ class AzureBlobFileSystemHandler(FileSystemHandler):
 
 ### 2. Wrap the `TableToGraphImporter`
 
-Next, you need to wrap the `TableToGraphImporter` class and make your own `AzureBlobImporter`, which initializes the `AzureBlobFileSystemHandler` and `PyarrowDataLoader` objects, and passes the `DataLoader` to the `TableToGraphImporter`.
+Next, you need to wrap the `TableToGraphImporter` class and make your own `AzureBlobImporter`, which initializes the `AzureBlobFileSystemHandler` and `PyArrowDataLoader` objects, and passes the `DataLoader` to the `TableToGraphImporter`.
 
 ```python
 class AzureBlobImporter(TableToGraphImporter):
@@ -54,7 +54,7 @@ class AzureBlobImporter(TableToGraphImporter):
         self, file_extension: str, data_configuration: Dict[str, Any], memgraph: Optional[Memgraph] = None, **kwargs
     ) -> None:
         file_system_handler = AzureBlobFileSystemHandler(**kwargs)
-        data_loader = PyarrowDataLoader(file_extension=file_extension, file_system_handler=file_system_handler)
+        data_loader = PyArrowDataLoader(file_extension=file_extension, file_system_handler=file_system_handler)
         super().__init__(
             data_loader=data_loader,
             data_configuration=data_configuration,

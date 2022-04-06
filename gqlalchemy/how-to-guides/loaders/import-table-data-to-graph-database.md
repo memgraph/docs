@@ -4,12 +4,12 @@ title: How to import table data to graph database
 sidebar_label: Import table to graph
 ---
 
-This guide will show you how to use `loaders.py` to translate table data from a file to graph data and import it to Memgraph. Currently, we support reading of CSV, Parquet, ORC, IPC, Feather and Arrow file formats via Pyarrow.
+This guide will show you how to use `loaders.py` to translate table data from a file to graph data and import it to **Memgraph**. Currently, we support reading of CSV, Parquet, ORC and IPC/Feather/Arrow file formats via **PyArrow** package.
 
 > Make sure you have a running Memgraph instance. If you're not sure how to run
 > Memgraph, check out the Memgraph [Quick start](/memgraph/#quick-start).
 
- Data loading is implemented from local file system, as well as Azure Blob and Amazon S3 remote file systems. Depending on where your data is located, here are two guides how to import it to Memgraph:
+`loaders.py` implements loading data from local file system, as well as Azure Blob and Amazon S3 remote file systems. Depending on where your data is located, here are two guides how to import it to Memgraph:
 - [Loading a CSV file from local file system](#loading-a-csv-file-from-local-file-system)
 - [Using a cloud storage solution](#using-a-cloud-storage-solution)
 
@@ -24,7 +24,7 @@ Marko,Andric,5
 Luka,Lukic,3
 ```
 
-To create a translation from table to graph data, you need to define a <b>data configuration object</b>. This can be done inside your code by defining a dictionary, but it is recommended to use a YAML file, structured like this:
+To create a translation from table to graph data, you need to define a **data configuration object**. This can be done inside your code by defining a dictionary, but it is recommended to use a YAML file, structured like this:
 
 ```yaml
 indices:    # indices to be created for each table
