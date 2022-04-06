@@ -54,7 +54,7 @@ out at the above link. :point_up:
 [![Finance](https://img.shields.io/badge/Finance-Application-8A477F?style=for-the-badge)](/use-cases/finance.md)
 
 A natural usage of community detection is in the finance industry.
-Fraudsters often think alike, and act in criminal *rings*, what enables them to 
+Fraudsters often think alike, and act in criminal *rings*, which enables them to 
 be more efficient. However, such rings can easily be discovered with community
 detection methods from their interactions and shared traits/resources.
 
