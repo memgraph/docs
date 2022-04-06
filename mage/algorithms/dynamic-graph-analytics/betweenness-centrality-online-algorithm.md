@@ -71,10 +71,3 @@ measuring betweenness centrality helps identify bottlenecks and choke points, as
 how traffic is redistributed as nodes or connections between them become open or close.
 This can help with applications such as shipping/delivery routes or urban traffic grid optimization
 on both cost and benefit fronts.
-
-[![Bioinformatics](https://img.shields.io/badge/Bioinformatics-Application-8A477F?style=for-the-badge)](/use-cases/bioinformatics.md)
-
-[**Protein-protein interaction
-networks**](https://www.ebi.ac.uk/training/online/courses/network-analysis-of-protein-interaction-data-an-introduction/protein-protein-interaction-networks/)
-were created to get a better insight into how proteins interact with each other.
-
