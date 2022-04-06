@@ -7,11 +7,18 @@ import ThemedImage from "@theme/ThemedImage";
 export default function HomeGetInvolved() {
   const items = [
     {
-      title: "Developer Forum",
+      title: "GitHub",
+      urlText: "Explore",
+      url: "https://github.com/memgraph",
+      img: useBaseUrl("img/github.svg"),
+      imgDark: useBaseUrl("img/github-dark-mode.svg"),
+    },
+    {
+      title: "Discord",
       urlText: "Join",
-      url: "https://discourse.memgraph.com/",
-      img: useBaseUrl("img/dev-forum.svg"),
-      imgDark: useBaseUrl("img/dev-forum-dark-mode.svg"),
+      url: "https://discord.gg/memgraph",
+      img: useBaseUrl("img/discord.svg"),
+      imgDark: useBaseUrl("img/discord-dark-mode.svg"),
     },
     {
       title: "Stack Overflow",
@@ -21,11 +28,11 @@ export default function HomeGetInvolved() {
       imgDark: useBaseUrl("img/stack-overflow-dark-mode.svg"),
     },
     {
-      title: "GitHub",
-      urlText: "Explore",
-      url: "https://github.com/memgraph",
-      img: useBaseUrl("img/github.svg"),
-      imgDark: useBaseUrl("img/github-dark-mode.svg"),
+      title: "Developer Forum",
+      urlText: "Join",
+      url: "https://discourse.memgraph.com/",
+      img: useBaseUrl("img/dev-forum.svg"),
+      imgDark: useBaseUrl("img/dev-forum-dark-mode.svg"),
     },
   ];
 

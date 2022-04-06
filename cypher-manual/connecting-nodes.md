@@ -33,7 +33,7 @@ either by creating them or filtering them with the `WHERE` clause:
 ```cypher
 CREATE (p1:Person {name: 'Harry'}), (p2:Person {name: 'Anna'})
 CREATE (p1)-[r:MARRIED_TO]->(p2)
-RETURN r;
+RETURN p1, r, p2;
 ```
 
 If the nodes already existed, the query would look like this:
@@ -42,7 +42,7 @@ If the nodes already existed, the query would look like this:
 MATCH (p1:Person),(p2:Person)
 WHERE p1.name = 'Harry' AND p2.name = 'Anna'
 CREATE (p1)-[r:MARRIED_TO]->(p2)
-RETURN r;
+RETURN p1, r, p2;
 ```
 
 Instead of using the `CREATE` clause, you are just searching for existing nodes
@@ -55,17 +55,17 @@ The built-in function `type()` can be used to return the type of a relationship:
 ```cypher
 CREATE (p1:Person {name: 'Harry'}), (p2:Person {name: 'Anna'})
 CREATE (p1)-[r:MARRIED_TO {weddingDate: '27-06-2019'}]->(p2)
-RETURN r, type(r);
+RETURN type(r);
 ```
 
 ### Querying using relationships
 
-So far, we have only used nodes and their labels for querying the database, but
-you can also use relationships within the same clauses:
+You can query the database using relationship types. The following query will
+return nodes connected with the relationship of the following type:
 
 ```cypher
-MATCH (p1)-[:MARRIED_TO]->(p2)
-RETURN p1, p2;
+MATCH (p1)-[r:MARRIED_TO]->(p2)
+RETURN p1, r, p2;
 ```
 
 ### Relationship properties
@@ -77,12 +77,12 @@ creation:
 ```cypher
 CREATE (p1:Person {name: 'Harry'}), (p2:Person {name: 'Anna'})
 CREATE (p1)-[r:MARRIED_TO {weddingDate: '27-06-2019'}]->(p2)
-RETURN r;
+RETURN p1, r, p2;
 ```
 
 You can also specify them in the `MATCH` clause:
 
 ```cypher
-MATCH (p1)-[:MARRIED_TO {weddingDate: '27-06-2019'}]->(p2)
-RETURN p1, p2;
+MATCH (p1)-[r:MARRIED_TO {weddingDate: '27-06-2019'}]->(p2)
+RETURN p1, r, p2;
 ```

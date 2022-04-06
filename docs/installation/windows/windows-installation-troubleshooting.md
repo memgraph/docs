@@ -49,7 +49,7 @@ cause problems when trying to connect to the database via **Memgraph Lab** or
 container's port to the host using the `-p` flag and by specifying the port:
 
 ```console
-docker run -it -p 7687:7687 -p 3000:3000 memgraph/memgraph-platform
+docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 memgraph/memgraph-platform
 ```
 
 ## Issues with connecting **mgconsole** to the database
