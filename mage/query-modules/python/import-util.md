@@ -44,7 +44,7 @@ supports only the import of JSON file format.
 #### Usage:
 The JSON file you're importing needs to be structured the same as the JSON file
 that the
-[`export_util.json(path)`](https://memgraph.com/docs/mage/query-modules/python/export-util)
+[`export_util.json()`](/docs/mage/query-modules/python/export-util)
 procedure generates. The generated JSON file is a list of objects representing
 nodes or relationships. If the object is node, then it looks like this:
 
