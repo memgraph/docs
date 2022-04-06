@@ -145,7 +145,7 @@ the following query:
 REGISTER REPLICA name ASYNC TO <socket_address>;
 ```
 
-The socket address must be a string value of as follows:
+The socket address must be a string value as follows:
 
 ```plaintext
 "IP_ADDRESS:PORT_NUMBER"
