@@ -14,7 +14,7 @@ provide the satisfying ratio of the following properties:
  3. **partition tolerance** - the system continues to work as expected despite a
     partial network failure
 
-In the replication process the data is replicated from one storage (MAIN
+In the replication process, the data is replicated from one storage (MAIN
 instance) to another (REPLICA instances).
 
 ## Data replication implementation basics 
@@ -32,7 +32,7 @@ changes to the database, thus modifying the system to prioritize either
 consistency or availability: 
   - SYNC - The MAIN instance will not commit a transaction until all REPLICA
     instances confirm they have received the same transaction. SYNC mode
-    prioritizes data consistency, but has no tolerance for any network failures.  
+    prioritizes data consistency but has no tolerance for any network failures.  
   - SYNC WITH TIMEOUT - The MAIN instance will not commit a transaction until
     all REPLICA instances confirm they have received the same transaction within
     a configured time interval. If the response from a REPLICA times out, the
@@ -138,7 +138,7 @@ replication mode, run the following query:
 REGISTER REPLICA name SYNC [WITH TIMEOUT 0.5] TO <socket_address>;
 ```
 
-If you want to register a REPLICA instance with a ASYNC replication mode, run
+If you want to register a REPLICA instance with an ASYNC replication mode, run
 the following query:
 
 ```plaintext
@@ -171,8 +171,8 @@ Example of a <socket_address> using only IP_ADDRESS:
 "172.17.0.5"
 ```
 
-When a REPLICA instance is registered it will start replication in ASYNC mode
-until it synchronizes to the the current state of the database. Upon
+When a REPLICA instance is registered, it will start replication in ASYNC mode
+until it synchronizes to the current state of the database. Upon
 synchronization, REPLICA instances will start replication in the replication
 mode set during registration.
 
@@ -196,7 +196,7 @@ DROP REPLICA <name>;
 
 By comparing timestamps, the MAIN instance knows when a REPLICA instance is not
 synchronized and is missing some earlier transactions. The REPLICA instance is then
-set into a RECOVERY state where it remains until it is fully synchronized with
+set into a RECOVERY state, where it remains until it is fully synchronized with
 the MAIN instance. 
 
 The missing data changes can be sent as snapshots or WAL files. Snapshot files

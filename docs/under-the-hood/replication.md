@@ -20,14 +20,14 @@ three properties:
  3. **partition tolerance** - the system continues to work as expected despite a
     partial network failure
 
-Most of the Memgraph use-cases do not benefit from well known algorithms that
+Most of the Memgraph use-cases do not benefit from well-known algorithms that
 strive to achieve all three CAP properties, such as Raft, because due to their
 complexity they produce performance issues. Memgraph use-cases are based on
 running analytical graph workloads on real-time data, demanding a simpler
 concept such as **replication**. 
 
 Replication consists of replicating data from one storage to one or several
-other storages. Downside of its simplicity is that only two out of three CAP
+other storages. The downside of its simplicity is that only two out of three CAP
 properties can be achieved. 
 
 ## Replication implementation in Memgraph
@@ -38,7 +38,7 @@ accepts read and write queries to the database and REPLICA instances accept only
 read queries.
 
 The changes or state of the MAIN instance is replicated to the REPLICA instances
-in a SYNC, SYNC WITH TIMEOUT or ASYNC mode. 
+in a SYNC, SYNC WITH TIMEOUT, or ASYNC mode. 
 
 By using the timestamp, the MAIN instance knows the current state of the
 REPLICA. If the REPLICA is not synchronized with the MAIN instance, the MAIN
@@ -57,8 +57,8 @@ implemented in Memgraph replication:
   - ASYNC
   - SYNC WITH TIMEOUT
 
-When a REPLICA instance is registered and added to the cluster it will start
-replicating in ASYNC mode. That will allow it to catch-up to the current state
+When a REPLICA instance is registered and added to the cluster, it will start
+replicating in ASYNC mode. That will allow it to catch up to the current state
 of the MAIN instance. When the REPLICA instance synchronizes with the MAIN
 instance, the replication mode will change according to the mode defined during
 registration.
@@ -70,23 +70,23 @@ thread waits for the response and cannot continue until the response is
 received. That means that the MAIN instance will not commit a transaction until
 all REPLICA instances confirm they have received the same transaction. 
 
-SYNC mode prioritizes data consistency, but has no tolerance for any network
+SYNC mode prioritizes data consistency but has no tolerance for any network
 failures because if any of the REPLICATION instances fail, the MAIN instance
 will fail as well. 
 
 ### ASYN replication mode
 
-In the ASYNC replication mode the MAIN instance will commit a transaction
+In the ASYNC replication mode, the MAIN instance will commit a transaction
 without receiving confirmation from REPLICA instances that they have received
 the same transaction. This means that the MAIN instance does not wait for the
-response from the REPLICA threads in the main thread, but some other thread.
+response from the REPLICA instances in the main thread but some other thread.
 
 A new thread can be created every time a transaction needs to be replicated to
-the REPLICA instance but because transactions are committed often and uses a lot
+the REPLICA instance, but because transactions are committed often and use a lot
 of resources, each REPLICA instance has one permanent thread connecting it with
-the MAIN instance. Using this background thread REPLICA instance send
-confirmations of successful replication from the REPLICATION instance and the
-replication task are queued creating a custom thread pool pattern. 
+the MAIN instance. Using this background thread MAIN instance pushes replication
+tasks to the REPLICA instance, creating a custom thread pool pattern, and
+receives confirmations of successful replication from the REPLICATION instance.
 
 ASYNC mode ensures system availability and partition tolerance.
 
@@ -98,13 +98,13 @@ transaction within a configured time interval. If the response from a REPLICA
 times out, the replication mode of that instance will be changed to ASYNC. 
 
 Three threads are necessary for SYNC WITH TIMEOUT replication mode. The main
-thread sends the data for replication to the REPLICATION instance. It asks the
-background thread to wait for the response from the REPLICA instance, and
-notifies the timeout thread to start the time count. If the REPLICA instance
-replicates the data within the set time interval it confirms the replication to
-the background thread that notifies the main thread of a successful replication.
-If the REPLICA instance doesn't replicate the data within the set time interval,
-the timeout thread notifies the main thread of the timeout and the REPLICATION
+thread sends the data for replication to the REPLICATION instance using the
+background thread and notifies the timeout thread to start the time count. The
+background thread waits for the response from the REPLICA instance. If the
+REPLICA instance replicates the data within the set time interval, both the
+background thread and the timeout thread will confirm successful replication. If
+the REPLICA instance doesn't replicate the data within the set time interval,
+the timeout thread notifies the main thread of the timeout, and the REPLICATION
 instance's replication mode is changed to ASYNC mode. 
 
 SYNC WITH TIMEOUT prioritizes data consistency until unexpected issues force the
@@ -135,24 +135,22 @@ while (active)
 ```
 
 The finished flag was introduced because the timeout thread sleeps for some time
-while it’s active and it doesn’t immediately register that the replication
-thread finished. During that time another transaction can come in and try to
-replicate something to the same REPLICA and queue the timeout task. Because the
-while condition would be false, the lines after the while loop would be executed
-and the main thread would be notified that the response timed out.
+to conserve resources, and it doesn’t immediately register that the replication
+thread finished the replication successfully. During that time, another
+replication task can arrive for the same REPLICA and queue the timeout task.
+Upon waking, the timeout thread would check if the previous task is still active,
+and it would think it is because it would be reading the status of the
+new replication task. The timeout task would continue counting time for the new
+replication task, and eventually, some task would prematurely time out.
 
-That is why the sleep time is set at a reasonable value and the previous timeout
-task needs to finish before waiting for the response to avoid premature time
-outs. 
-
-We also wondered if using concurrency concepts like semaphore would make our
-lives easier in these cases while not sacrificing the performance. (AND?)
+That is why the sleep time is set at a reasonable value, and the previous timeout
+task needs to finish before sending a new one to avoid premature timeouts. 
 
 ## Synchronizing instances
 
 By comparing timestamps, the MAIN instance knows when a REPLICA instance is not
 synchronized and is missing some earlier transactions. The REPLICA instance is then
-set into a RECOVERY state where it remains until it is fully synchronized with   HOW IS THIS DONE WITH ASYNC REPLICAS?
+set into a RECOVERY state, where it remains until it is fully synchronized with 
 the MAIN instance. 
 
 The missing data changes can be sent as snapshots or WAL files. Snapshot files
@@ -166,9 +164,9 @@ current state of the durability files while keeping the overall size of the
 files necessary for synchronization to a minimum.
 
 Imagine there were 5 changes made to the database. Each change is saved in a WAL
-file so there are 5 WAL files, and the snapshot was created after 2 changes. The
+file, so there are 5 WAL files, and the snapshot was created after 2 changes. The
 REPLICA instance can be synchronized using a snapshot and the 3 latest WAL
-files, or using 5 WAL files. Both options would correctly synchronize the
+files or using 5 WAL files. Both options would correctly synchronize the
 instances, but 5 WAL files are much smaller. 
 
 The durability files are constantly being created, deleted, and updated. Also,
@@ -196,59 +194,58 @@ locked inside the locker.
 
 ### Writing and reading files simultaneously 
 
-Memgraph internal file buffer is used when writing deltas to WAL files and
-mid-writing the content of one WAL file can be divided across two locations. If
+Memgraph internal file buffer is used when writing deltas to WAL files, and
+mid-writing, the content of one WAL file can be divided across two locations. If
 at that point that WAL file is used to synchronize the REPLICA instance, once
-the WHO? starts reading the data from the internal buffer, the buffer can be
-flushed and the REPLICA could receives an invalid WAL file because it is missing
-a chunk of data. It could also happen that the WAL file is sent before all the
-transaction were written to the internal buffer. 
+the data is being read from the internal buffer, the buffer can be flushed, and the
+REPLICA could receive an invalid WAL file because it is missing a chunk of
+data. It could also happen that the WAL file is sent before all the transactions
+are written to the internal buffer. 
 
-To avoid these issues flushing of that internal buffer is disabled while the
-current WAL is sent to a replica. To get all the data necessary for the
-synchronization, the replication thread reads the content directly from the
+To avoid these issues, flushing of that internal buffer is disabled while the
+current WAL is sent to a REPLICA instance. To get all the data necessary for the
+synchronization, the replication thread reads the content directly from the WAL
 file, then reads how many bytes are written in the buffer and copies the data to
-another location. Then the flushing is enabled again and the transaction is
-replicated using the copied buffer. Because the the access to the internal
-buffer was not blocked, new data can be written. HOW DO WE ADD THAT NEW DATA?
-
-The only situation in which a committing thread can be block is when the buffer
-is full and it needs to be flushed so that the new data can be appended.
+another location. Then the flushing is enabled again, and the transaction is
+replicated using the copied buffer. Because the access to the internal
+buffer was not blocked, new data can be written. The content of the buffer
+(including any new data) is then written in a new WAL file that will be sent in
+the next synchronization process. 
 
 ### Fixing timestamp consistency
 
-Timestamps are used to compare the sate of the REPLICA instance in comparison to
+Timestamps are used to compare the state of the REPLICA instance in comparison to
 the MAIN instance. 
 
 At first, we used the current timestamp without increasing its value for global
 operations, like creating an index or creating a constraint. By using a single
-timestamp, it was impossible to know which operations the REPLICA has applied
+timestamp, it was impossible to know which operations the REPLICA had applied
 because sequential global operations had the same timestamp. To avoid this
 issue, a unique timestamp is assigned to each global operation 
 
 As replicas allow read queries, each of those queries was assigned with its own
 timestamp. Those timestamps caused issues when the replicated write transactions
 were assigned an older timestamp. A read transaction would return different data
-from the same read query, if a transaction was replicated between those two read
-transaction which obstructed the snapshot isolation. To avoid this problem, the
+from the same read query if a transaction was replicated between those two read
+transactions which obstructed the snapshot isolation. To avoid this problem, the
 timestamp on REPLICA instances isn't increased because the read transactions
 don't produce any changes, so no deltas need to be timestamped.  
 
 ### Incompatible instances
 
-To avoid issues when the durability files of two different database instance are stored
-in the same folder, a unique ID was assigned to each storage instance. The same
-ID is then assigned to the durability files. Replication uses the instance ID to
-validate that the files and the database are compatible.
+To avoid issues when the durability files of two different database instances are
+stored in the same folder, a unique ID is assigned to each storage instance. The
+same ID is then assigned to the durability files. Replication uses the instance
+ID to validate that the files and the database are compatible.
 
 A unique ID `epoch_id` is also assigned each time an instance is run as the MAIN
 instance in the replication cluster to check if the data is compatible for
 replication. The `epoch_id` is necessary when the original MAIN instance fails,
 a REPLICA instance becomes a new MAIN, and after some time, the original MAIN
-instance is brought back on-line. If no transaction were run on the original
+instance is brought back online. If no transactions were run on the original
 MAIN instance, the difference in timestamps will indicate that it is behind the
-new MAIN and it will be impossible to set the original MAIN-REPLICA
-relationship. But if transaction were run on the original MAIN after it was
+new MAIN, and it would be impossible to set the original MAIN-REPLICA
+relationship. But if the transactions were run on the original MAIN after it was
 brought back online, the timestamp would be of no help, but the `epoch_id` would
-indicate incomparability thus preventing the original MAIN to reclaim it's
+indicate incomparability, thus preventing the original MAIN from reclaiming its
 original role. 
