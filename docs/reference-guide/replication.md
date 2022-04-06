@@ -31,8 +31,9 @@ Replication mode defines the terms by which the MAIN instance can commit the
 changes to the database, thus modifying the system to prioritize either
 consistency or availability: 
   - SYNC - The MAIN instance will not commit a transaction until all REPLICA
-    instances confirm they have received the same transaction. SYNC mode
-    prioritizes data consistency but has no tolerance for any network failures.  
+    instances running in the SYNC mode confirm they have received the same
+    transaction. SYNC mode prioritizes data consistency but has no tolerance for
+    any network failures.  
   - SYNC WITH TIMEOUT - The MAIN instance will not commit a transaction until
     all REPLICA instances confirm they have received the same transaction within
     a configured time interval. If the response from a REPLICA times out, the

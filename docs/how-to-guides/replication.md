@@ -1,129 +1,142 @@
 ---
 id: replication
-title: How to set up replication on a small cluster
+title: How to set up replication on a small cluster?
 sidebar_label: Set up replication
 ---
 
-This article is a part of a series intended to showcase Memgraph's features
-and bring the user up to speed on developing with Memgraph.
-
-We highly recommend checking out the other articles from this series which
-are listed in our [how-to guides section](/how-to-guides/overview.md).
-
-## Introduction
+In the replication process, the data is replicated from one storage (MAIN
+instance) to another (REPLICA instances), thus providing a combination of
+consistency, availability and partition tolerance when distributing data over
+several instances.
 
 This example demonstrates how to create a simple cluster of nodes running
-Memgraph instances, and set up replication. We'll demonstrate the use and
-behavior of the available synchronization modes.
+Memgraph instances, and set up replication using various replication modes.
 
 ## Cluster topology
 
-The cluster consists of four nodes, a single main and three replicas:
+The cluster will consists of four nodes, a MAIN instance and 3 REPLICA
+instances. In order to showcase the creation of REPLICA instances with different
+replication modes we will create:
 
-* the main node, containing the original data to be replicated to other nodes,
-* a node that will be replicated to using the sync mode,
-* a node that will be replicated to using the async mode,
-* a node that will be replicated to using the semi-sync mode.
+* a MAIN instance - contains the original data that will be replicated to REPLICA instances
+* REPLICA instance 1 - replication in the SYNC mode
+* REPLICA instance 2 - replication in the SYNC WITH TIMEOUT mode
+* REPLICA instance 3 - replication in the ASYNC mode
 
-## Configuring the cluster
+## How to run multiple instances?
 
-We'll use Docker to set up and run the cluster on your local machine, so make
-sure you have it installed and ready, and grab your Memgraph docker image.
-Look [here](/installation/overview.md) for instructions.
-We assume you have already set up a client for running queries like [mgconsole](https://github.com/memgraph/mgconsole) installed.
-You can also use any of the supported drivers like [mgclient](https://github.com/memgraph/mgclient) or any of the Neo4j drivers.
+If you are running multiple instances, each on its own machine, run Memgraph as
+you usually would.
 
-We fire up the terminal, and for each Memgraph instance (node)  we have to start, we'll
-run:
+If you are exploring replication and running multiple instances on one machine,
+please install Memgraph with Docker, and run the following `docker run`
+commands:
 
-```console
-docker run --rm memgraph
+The MAIN instance:
+```
+docker run -it -p 7687:7687 -p 3000:3000 -p 7444:7444 -v mg_lib:/var/lib/memgraph memgraph/memgraph-platform
 ```
 
-The above commands will start a Memgraph node, and assign it its own IP address.
-
-Now, to set up the cluster, we'll have to start an `mgconsole`
-instance for every running Memgraph node, and connect to it. To do this, we
-have to figure out their IP addresses. Running
-
-```console
-docker ps
+REPLICA instance 1:
+```
+    docker run -it -p 7688:7687 -p 3001:3000 -p 7445:7444 -v mg_lib2:/var/lib/memgraph memgraph/memgraph-platform
 ```
 
-will list all the running docker processes, along with their "CONTAINER ID" and
-"NAME". Running
-
-```console
-docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' container_name_or_id
+REPLICA instance 2:
+```
+docker run -it -p 7689:7687 -p 3002:3000 -p 7446:7444 -v mg_lib3:/var/lib/memgraph memgraph/memgraph-platform
 ```
 
-where "container_name_or_id" is either the "CONTAINER ID" or "NAME" listed by
-`docker ps`, we can get the IP addresses of all the nodes. Once we have them, we
-can start setting up the replication. Let's say the ip addresses are as follows:
-* main:                      172.17.0.2
-* sync replica:              172.17.0.3
-* async replica:             172.17.0.4
-* semi-sync replica:         172.17.0.5 .
-
-Let's assume we're using mgconsole to connect to and query the nodes. Firstly,
-we have to set up the replicas. We connect to a replica by running
-
-```console
-mgconsole --host REPLICA_IP_ADDRESS --use-ssl=false
+REPLICA instance 3:
+```
+docker run -it -p 7690:7687 -p 3003:3000 -p 7447:7444 -v mg_lib4:/var/lib/memgraph memgraph/memgraph-platform
 ```
 
-where REPLICA_IP_ADDRESS is the address we found in the previous step. Once
-we're connected to a replica, we set its replication role to "REPLICA" by
-issuing
+You can connect to each instance with Memgraph Lab in-browser application at:
 
-```cypher
+* the MAIN instance - localhost:3000
+* REPLICA instance 1 - localhost:3001
+* REPLICA instance 2 - localhost:3002
+* REPLICA instance 3 - localhost:3003
+
+
+## How to demote an instance to a REPLICA role?
+
+Run the following query in each REPLICA instance to demote instances to the
+REPLICA role:
+
+```
 SET REPLICATION ROLE TO REPLICA WITH PORT 10000;
 ```
 
-Note that the port 10000 is arbitrary, and any available port number may be used
-instead. We repeat the process for all replicas.
+If you set the port of each REPLICA instance to `10000`, it will be easier to
+register replicas later on because the query for registering replicas uses the
+port 10000 as the default one.  
 
-Now, it's time to set up the main. Again, we connect to the main using
-mgconsole:
+## How to register REPLICA instances?
 
-```console
-mgconsole --host 172.17.0.2 --use-ssl=false
+To register REPLICA instance you need to find out the IP address of each instance.
+
+Then, run the following queries from the MAIN instance to register REPLICA instances:
+
+1. REPLICA instance 1 at `172.17.0.3`
+
+    ```
+    REGISTER REPLICA REP1 SYNC TO "172.17.0.3";
+    ```
+
+    REPLICA instance 1 is called REP 1, its replication mode is SYNC, and it is
+    located at IP address `172.17.0.3.` with port `10000`.
+
+    When the REPLICA instance is running in SYNC mode the MAIN instance will not
+    commit a transaction until all REPLICA instances running in the SYNC mode
+    confirm they have received the same transaction. SYNC mode prioritizes data
+    consistency but has no tolerance for any network failures.
+
+    If you used any other port other then 10000 while demoting a REPLICA
+    instance you will need to specify it like this: "172.17.0.3:5000"
+
+2. REPLICA instance 2 at `172.17.0.4`
+
+    ```
+    REGISTER REPLICA REP2 SYNC WITH TIMEOUT 1 TO "172.17.0.4";
+    ```
+
+    REPLICA instance 2 is called REP 2, its replication mode is SYNC WITH
+    TIMEOUT, and it is located at IP address `172.17.0.4.` with port `10000`.
+
+    When the REPLICA instance is running in SYNC WITH TIMEOUT mode the MAIN
+    instance will not commit a transaction until all REPLICA instances confirm
+    they have received the same transaction within a configured time interval.
+    If the response from a REPLICA times out, the replication mode of that
+    instance will be changed to ASYNC. SYNC WITH TIMEOUT prioritizes data
+    consistency until unexpected issues force the system to prioritize
+    availability and partition tolerance. 
+    
+    If you used any other port other then 10000 while demoting a REPLICA
+    instance you will need to specify it like this: "172.17.0.3:5000"
+
+3. REPLICA instance 3 at `172.17.0.5`
+
+    ```
+    REGISTER REPLICA REP3 ASYNC TO "172.17.0.5";
+    ```
+
+    REPLICA instance 3 is called REP 3, its replication mode is ASYNC, and it is
+    located at IP address `172.17.0.5.` with port `10000`.
+
+    When the REPLICA instance is running in ASYNC mode the MAIN instance will
+    commit a transaction without receiving confirmation from REPLICA instances
+    that they have received the same transaction. ASYNC mode ensures system
+    availability and partition tolerance.
+    
+    If you used any other port other then 10000 while demoting a REPLICA
+    instance you will need to specify it like this: "172.17.0.3:5000"
+
+## How to check info about registered REPLICA instances?
+
+Check all the REPLICA instances using the following query:
+
 ```
-
-Then, for every replica, we issue the query that registers it:
-
-```cypher
-REGISTER REPLICA r1 SYNC TO "172.17.0.3:10000";
-REGISTER REPLICA r2 ASYNC TO "172.17.0.4:10000";
-REGISTER REPLICA r3 SYNC WITH TIMEOUT 1 TO "172.17.0.5:10000";
+SHOW REPLICAS;
 ```
-
-Now we can create some nodes and edges on the main, and observe them replicate
-to the replicas. Firstly, we switch to the mgconsole instance connected to the
-main, and then issue:
-
-```cypher
-CREATE (n:N {p: "This is going to be replicated!"});
-```
-
-After that, we can switch to any replica and try to match this node:
-
-```cypher
-MATCH (n:N) RETURN n;
-```
-Lo and behold, we get:
-
-```plaintext
-+---------------------------------------------+
-| n                                           |
-+---------------------------------------------+
-| (:N {p: "This is going to be replicated!"}) |
-+---------------------------------------------+
-```
-
-Now, go on and have fun with more complex graphs! Happy hacking!
-
-## Where to next?
-
-To learn more about replication in Memgraph, visit the **[Reference guide](/reference-guide/replication.md)**.
-For real-world examples of how to use Memgraph, we strongly suggest going through one of the available **[Tutorials](/tutorials/overview.md)**.

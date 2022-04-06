@@ -4,8 +4,6 @@ title: Replication
 sidebar_label: Replication
 ---
 
-## Introduction
-
 Uninterrupted data and operational availability in production systems is
 critical and can be achieved in many ways.
 
@@ -68,7 +66,8 @@ registration.
 SYNC mode is the most straightforward replication mode in which the main storage
 thread waits for the response and cannot continue until the response is
 received. That means that the MAIN instance will not commit a transaction until
-all REPLICA instances confirm they have received the same transaction. 
+all REPLICA instances running in the SYNC mode confirm they have received the
+same transaction. 
 
 SYNC mode prioritizes data consistency but has no tolerance for any network
 failures because if any of the REPLICATION instances fail, the MAIN instance
