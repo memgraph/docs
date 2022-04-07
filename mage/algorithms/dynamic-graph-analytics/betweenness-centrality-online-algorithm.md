@@ -55,7 +55,7 @@ after each update often proves infeasible. Dynamic algorithms avoid redundant wo
 the portion of the network affected by the latest update.
 
 [![Social
-networks](https://img.shields.io/badge/Social_networks-Application-8A477F?style=for-the-badge)](/use-cases/social-media.md)
+networks](https://img.shields.io/badge/Social_Networks-Application-8A477F?style=for-the-badge)](/use-cases/social-media.md)
 
 **Social networks** are a quintessential example of rapidly evolving graphs – people step in and out
 of contact every day, and even a single change can significantly alter the network of relationships.
