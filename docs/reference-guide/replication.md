@@ -93,6 +93,8 @@ If you set the port of each REPLICA instance to `10000`, it will be easier to
 register replicas later on because the query for registering replicas uses the
 port 10000 as the default one.  
 
+Otherwise, you can use any unassigned port between 1000 and 10000.
+
 ### Assigning the MAIN role
 
 The replication cluster should have only one MAIN instance in order to

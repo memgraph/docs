@@ -39,7 +39,7 @@ docker run -it -p 7687:7687 -p 3000:3000 -p 7444:7444 -v mg_lib:/var/lib/memgrap
 
 REPLICA instance 1:
 ```
-    docker run -it -p 7688:7687 -p 3001:3000 -p 7445:7444 -v mg_lib2:/var/lib/memgraph memgraph/memgraph-platform
+docker run -it -p 7688:7687 -p 3001:3000 -p 7445:7444 -v mg_lib2:/var/lib/memgraph memgraph/memgraph-platform
 ```
 
 REPLICA instance 2:
@@ -54,10 +54,10 @@ docker run -it -p 7690:7687 -p 3003:3000 -p 7447:7444 -v mg_lib4:/var/lib/memgra
 
 You can connect to each instance with Memgraph Lab in-browser application at:
 
-* the MAIN instance - localhost:3000
-* REPLICA instance 1 - localhost:3001
-* REPLICA instance 2 - localhost:3002
-* REPLICA instance 3 - localhost:3003
+* the MAIN instance - `localhost:3000`
+* REPLICA instance 1 - `localhost:3001`
+* REPLICA instance 2 - `localhost:3002`
+* REPLICA instance 3 - `localhost:3003`
 
 
 ## How to demote an instance to a REPLICA role?
@@ -73,9 +73,21 @@ If you set the port of each REPLICA instance to `10000`, it will be easier to
 register replicas later on because the query for registering replicas uses the
 port 10000 as the default one.  
 
+Otherwise, you can use any unassigned port between 1000 and 10000.
+
 ## How to register REPLICA instances?
 
 To register REPLICA instance you need to find out the IP address of each instance.
+
+IP addresses will probably be:
+
+* the MAIN instance - `172.17.0.2`
+* REPLICA instance 1 - `172.17.0.3`
+* REPLICA instance 2 - `172.17.0.4`
+* REPLICA instance 3 - `172.17.0.5`
+
+If they are not, please change the IP addresses in the following queries to
+match the IP addresses on your cluster. 
 
 Then, run the following queries from the MAIN instance to register REPLICA instances:
 
