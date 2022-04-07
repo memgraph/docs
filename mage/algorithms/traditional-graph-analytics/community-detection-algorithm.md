@@ -21,17 +21,16 @@ to nodes in different communities.
 > Community detection assigns each node to a community. In this graph, each
 > community's nodes are labelled with a distinct color.
 
-There are several approaches to community detection. Among the most common
-algorithms there are:
-* [Louvain community detection](https://en.wikipedia.org/wiki/Louvain_method) -
-  based on modularity optimization; measures network connectivity within a
+There are various approaches to community detection. Among the most common
+algorithms there are the following:
+* [Louvain method](https://en.wikipedia.org/wiki/Louvain_method) - based
+  on modularity optimization; measures network connectivity within a
   community,
-* [Leiden community
-  detection](https://www.nature.com/articles/s41598-019-41695-z) - adjustment
+* [Leiden method](https://www.nature.com/articles/s41598-019-41695-z) - adjustment
   of the Louvain algorithm that introduces one level of refinement and brings
   together strongly connected communities,
 * [Label
-  propagation](https://en.wikipedia.org/wiki/Label_propagation_algorithm) - a
+  propagation](https://en.wikipedia.org/wiki/Label_propagation_algorithm) —a
   machine learning technique that assigns labels to unmarked nodes and modifies 
   them with respect to neighbors.
 

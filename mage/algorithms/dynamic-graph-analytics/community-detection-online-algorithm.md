@@ -39,8 +39,8 @@ Detection](https://img.shields.io/badge/Dynamic_Community_Detection-Implementati
 Detection](https://img.shields.io/badge/Dynamic_Community_Detection-Documentation-FCC624?style=for-the-badge&logo=cplusplus&logoColor=white)](/mage/query-modules/cpp/community-detection-online)
 
 **Dynamic Community Detection** is implemented as part of the 
-[**MAGE**](https://github.com/memgraph/mage) project. Be sure to check it out in the
-link above. :point_up:
+[**MAGE**](https://github.com/memgraph/mage) project. Be sure to check it out at the
+above link. :point_up:
 
 ### Blog posts
 
