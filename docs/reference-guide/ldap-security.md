@@ -4,6 +4,8 @@ title: LDAP Security (Enterprise)
 sidebar_label: LDAP Security
 ---
 
+[![Related - How to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/manage-users-using-ldap.md)
+
 For the purpose of supporting LDAP authentication and (optional)
 authorization, we have built an auth module that is packaged with Memgraph
 Enterprise. For more information about auth modules see the

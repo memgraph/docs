@@ -4,6 +4,8 @@ title: Security (Enterprise)
 sidebar_label: Security
 ---
 
+[![Related - How to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](how-to-guides/manage-user-privileges.md)
+
 Before reading this article we highly recommend going through a how-to guide
 on [managing user privileges](../how-to-guides/manage-user-privileges.md)
 which contains more thorough explanations of the concepts behind `openCypher`
@@ -14,7 +16,7 @@ commands listed in this article.
 Creating a user can be done by executing the following command:
 
 ```cypher
-  CREATE USER user_name [IDENTIFIED BY 'password'];
+CREATE USER user_name [IDENTIFIED BY 'password'];
 ```
 If the user should authenticate themself on each session, i.e. provide their
 password on each session, the part within the brackets is mandatory. Otherwise,
@@ -25,14 +27,14 @@ You can also set or alter a user's password anytime by issuing the following
 command:
 
 ```cypher
-  SET PASSWORD FOR user_name TO 'new_password';
+SET PASSWORD FOR user_name TO 'new_password';
 ```
 
 Removing a user's password, i.e. allowing the user to log-in using any
 password can be done by setting it to `null` as follows:
 
 ```cypher
-  SET PASSWORD FOR user_name TO null;
+SET PASSWORD FOR user_name TO null;
 ```
 To delete a user use:
 
@@ -58,31 +60,31 @@ to a user (even if it has been explicitly granted to that user).
 Creating a user role can be done by executing the following command:
 
 ```cypher
-  CREATE ROLE role_name;
+CREATE ROLE role_name;
 ```
 
 Assigning a user role to a certain user can be done by the following command:
 
 ```cypher
-  SET ROLE FOR user_name TO role_name;
+SET ROLE FOR user_name TO role_name;
 ```
 
 Removing the role from the user can be done by:
 
 ```cypher
-  CLEAR ROLE FOR user_name;
+CLEAR ROLE FOR user_name;
 ```
 
 Finally, showing all users that have a certain role can be done as:
 
 ```cypher
-  SHOW USERS FOR role_name;
+SHOW USERS FOR role_name;
 ```
 
 Similarly, querying which role a certain user has can be done as:
 
 ```cypher
-  SHOW ROLE FOR user_name;
+SHOW ROLE FOR user_name;
 ```
 
 ## Privileges
@@ -97,14 +99,14 @@ Granting a certain set of privileges to a specific user or user role can be
 done by issuing the following command:
 
 ```cypher
-  GRANT privilege_list TO user_or_role;
+GRANT privilege_list TO user_or_role;
 ```
 
 For example, granting `AUTH` and `INDEX` privileges to users with the role
 `moderator` would be written as:
 
 ```cypher
-  GRANT AUTH, INDEX TO moderator:
+GRANT AUTH, INDEX TO moderator:
 ```
 
 Similarly, denying privileges is done using the `DENY` keyword instead of
@@ -124,14 +126,14 @@ For example, revoking all privileges from user `jdoe` can be done with the
 following command:
 
 ```cypher
-  REVOKE ALL PRIVILEGES FROM jdoe;
+REVOKE ALL PRIVILEGES FROM jdoe;
 ```
 
 Finally, obtaining the status of each privilege for a certain user or role can be
 done by issuing the following command:
 
 ```cypher
-  SHOW PRIVILEGES FOR user_or_role;
+SHOW PRIVILEGES FOR user_or_role;
 ```
 
 ## Owners
