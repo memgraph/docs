@@ -149,8 +149,25 @@ Then, run the following queries from the MAIN instance to register REPLICA insta
 
 ## How to check info about registered REPLICA instances?
 
-Check all the REPLICA instances using the following query:
+Check all the REPLICA instances by running the following query from the MAIN
+instance:
 
 ```
 SHOW REPLICAS;
+```
+
+### How to drop a REPLICA instance?
+
+To drop a replica, run the following query:
+
+```plaintext
+DROP REPLICA <name>;
+```
+
+## How to promote a REPLICA instance to MAIN?
+
+To promote a REPLICA instance to MAIN, run the following query:
+
+```plaintext
+SET REPLICATION ROLE TO MAIN;
 ```
