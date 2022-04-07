@@ -5,12 +5,12 @@ sidebar_label: Implement a custom query module in Python
 ---
 
 This tutorial will give you a basic idea how to develop a custom query module in
-Python with Memgraph Lab and use it on a dataset. 
+Python with Memgraph Lab 2.0 and use it on a dataset. 
 
 In short, query modules allow you to expand the Cypher query module with various
 procedures. Procedures can be written in Python or C languages. Our MAGE library
 has various modules dealing with complex graph algorithms, but you can implement
-your own procedures gathered in query modules to optimise your queries. If you
+your own procedures gathered in query modules to optimize your queries. If you
 need more information about what query modules are, please read our [reference
 guide on query modules](/reference-guide/query-modules/overview.md).
 
@@ -72,8 +72,12 @@ Let's open Memgraph Lab where we will import the dataset, write and use the
 procedures from our query module.
 
 If you have successfully installed Memgraph Platform, you should be able to open
-Memgraph Lab in browser at `http://localhost:3000/`. Navigate to the **Datasets**
-tab, click on the **Europe backpacking** dataset to import it into Memgraph. 
+Memgraph Lab in browser at `http://localhost:3000/`. Navigate to the
+**Datasets** menu item, click on the **Europe backpacking** dataset to import it
+into Memgraph. You can also check the details of the dataset by clicking on
+**Quick View**
+
+<img src={require('../data/tutorials/query-modules/import-dataset.png').default} className={"imgBorder"}/>
 
 Go to the **Query Execution** tab and try running a test query that will show the
 city Vienna and all its relationships:
@@ -83,14 +87,22 @@ MATCH p=(:City {name: "Vienna"})-[]-()
 RETURN (p);
 ```
 
+<img src={require('../data/tutorials/query-modules/vienna.png').default} className={"imgBorder"}/>
+
 You can click on the `:City` nodes to check the nodes' properties and get better
 acquainted with the dataset. We will come back to this view every time we want to
 test our query modules in making.
 
-Now navigate to **Query Modules**, click on the **New Module** button, give the
-new module name `backpacking` and create the module. Memgraph Lab creates sample
-procedures to kick off your developing. But before we start, let's decide how we
-will expand the query language.
+<img src={require('../data/tutorials/query-modules/vienna-details.png').default} className={"imgBorder"}/>
+
+Now navigate to **Query Modules**. Here you can see all the query modules
+available in Memgraph, such as utility modules or query modules from MAGE
+library. To create a new custom query module, click on the **New Module**
+button, give the new module name `backpacking` and create the module. Memgraph
+Lab creates sample procedures to kick off your developing. But before we start,
+let's decide how we will expand the query language.
+
+<img src={require('../data/tutorials/query-modules/new-module.png').default} className={"imgBorder"}/>
 
 ## Goals
 
@@ -202,7 +214,7 @@ After defining the name and signature, the code should look like this:
 import mgp
 
 @mgp.read_proc
-def total_costs(context: mgp.ProcCtx,
+def total_cost(context: mgp.ProcCtx,
                city: mgp.Any[str],
                adults: mgp.Number[int],
                children: mgp.Nullable[int] = None,
@@ -218,7 +230,7 @@ those nodes that have both:
 import mgp
 
 @mgp.read_proc
-def total_costs(context: mgp.ProcCtx,
+def total_cost(context: mgp.ProcCtx,
               city: mgp.Any[str],
               adults: mgp.Number[int],
               children: mgp.Nullable[int] = None,
@@ -236,7 +248,7 @@ variable `cost_per_night` and multiply it with the number of adults to get the
 import mgp
 
 @mgp.read_proc
-def total_costs(context: mgp.ProcCtx,
+def total_cost(context: mgp.ProcCtx,
                city: mgp.Any[str],
                adults: mgp.Number[int],
                children: mgp.Nullable[int] = None,
@@ -257,7 +269,7 @@ accommodation per night.
 import mgp
 
 @mgp.read_proc
-def total_costs(context: mgp.ProcCtx,
+def total_cost(context: mgp.ProcCtx,
                city: mgp.Any[str],
                adults: mgp.Number[int],
                children: mgp.Nullable[int] = None,
@@ -282,7 +294,7 @@ The finished procedure now looks like this:
 import mgp
 
 @mgp.read_proc
-def total_costs(context: mgp.ProcCtx,
+def total_cost(context: mgp.ProcCtx,
               city: mgp.Any[str],
               adults: mgp.Number[int],
               children: mgp.Nullable[int] = None,
@@ -300,23 +312,50 @@ def total_costs(context: mgp.ProcCtx,
   return mgp.Record(Total_cost_per_night = None)
 ```
 
-Save the query module, switch to **Query Execution** and run the following
-queries, or any others you want to try out:
+Save and close the query module. You will get an overview of the module that
+lists procedures and their signature. 
+
+<img src={require('../data/tutorials/query-modules/module-details.png').default} className={"imgBorder"}/>
+
+### Testing the read procedure
+
+Switch to **Query Execution** and call the procedure using the clause `CALL`,
+then calling the right module and procedure within it
+(`backpacking.total_cost`). List all arguments except the whole graph inside
+brackets, and at the end YIELD all the results:
 
 ```
 CALL backpacking.total_cost("Zagreb", 2, 3) YIELD *;
--> Total_cost_per_night = 32.129999999999995
 ```
+Result -> `Total_cost_per_night = 32.129999999999995`
+
 
 ```
 CALL backpacking.total_cost("Vienna", 2) YIELD *;
--> Total_cost_per_night = 45.012
 ```
+Result -> `Total_cost_per_night = 45.012`
+
 
 ```
 CALL backpacking.total_cost("Whatever", 2) YIELD *;
--> Total_cost_per_night = null
 ```
+Result -> `Total_cost_per_night = null`
+
+<img src={require('../data/tutorials/query-modules/total-cost.png').default} className={"imgBorder"}/>
+
+## Detecting errors
+
+Some errors will be written out as you are trying to call the procedure. Others
+can be viewed in the log file. 
+
+If you started your Memgraph Platform image by exposing the `7444` port, you can
+check the logs from Memgraph Lab. Otherwise you need to access the logs in the
+Docker container. 
+
+But the rest of the errors in code will result in the procedure not being
+detected. That means that if you go to the **Query Modules** menu item and check
+module details by clicking on the arrow on the right, the procedure with an
+error will not be listed.
 
 ## Write procedure
 
@@ -328,11 +367,10 @@ code**. If you are writing the write procedure in a new module, don't forget to
 import the `mgp` module. For the write procedure we will use the `@write_proc`
 decorator.
 
-The goal of this procedure is to expand the data model by a given country and
-city. The new `City` node should get properties that it shares with the other
-cities in that country, such as `country`, `local_currency` and
+The goal of this write procedure is to expand the data model by a given country
+and city. The new `City` node should get properties that it shares with the
+other cities in that country, such as `country`, `local_currency` and
 `local_currency_code`. 
-
 
 Let's name the procedure `new_city`. The procedure needs to receive the
 following arguments in order to create two new nodes and connect them:
@@ -400,8 +438,15 @@ def new_city(context: mgp.ProcCtx,
                           country = r.to_vertex
                           return mgp.Record(City=v, Relationship=r, Country=country)
 ```
+At this point you can save the module and test the new procedure, by running the following query:
 
-### The country node exist but the city node doesn't
+```
+CALL backpacking.new_city("Zagreb","Croatia") YIELD *;
+```
+
+<img src={require('../data/tutorials/query-modules/existing.png').default} className={"imgBorder"}/>
+
+### The country node exists but the city node doesn't
 
 In the case that the `Country` node with that name exists, but the `City` node
 doesn't, we should create a new `City` node, and connect it with the existing
@@ -456,6 +501,15 @@ def new_city(context: mgp.ProcCtx,
                     if r.type == "Inside":
                         return mgp.Record(City=city, Relationship=r, Country=v)
 ```
+
+At this point you can save the module and test the new additions to the
+procedure, by running the following query:
+
+```
+CALL backpacking.new_city("Makarska","Croatia") YIELD *;
+```
+
+<img src={require('../data/tutorials/query-modules/no-city.png').default} className={"imgBorder"}/>
 
 ### Neither the country node nor the city node exist
 
@@ -530,8 +584,11 @@ def new_city(context: mgp.ProcCtx,
 
 ### Testing the write procedure
 
-Save the query module, switch to **Query Execution** and run the following
-queries, or any others you want to try out:
+Save the query module, switch to **Query Execution** and call the procedure
+using the clause `CALL`, then calling the right module and procedure within it
+(`backpacking.new_city`). List all arguments except the whole graph inside
+brackets, and at the end YIELD all the results:
+
 
 ```
 CALL backpacking.new_city("Zagreb", "Croatia") YIELD *;
@@ -539,13 +596,17 @@ CALL backpacking.new_city("Zagreb", "Croatia") YIELD *;
 The query returns existing `City` and `Country` nodes. 
 
 ```
-ALL backpacking.new_city("Makarska", "Croatia") YIELD *;
+ALL backpacking.new_city("Vinkovci", "Croatia") YIELD *;
 ```
 The query returns new `City` node connected to an existing `Country` node. 
 
 ```
-CALL backpacking.new_city("Makarska", "Makroland") YIELD *;
+CALL backpacking.new_city("Vinkovci", "Makroland") YIELD *;
 ```
 The query returns a new `City` node connected to a new `Country` node. 
 
-## Managing query modules through Memgraph Lab
+## Where to next?
+
+Congratulations! You've written your first custom query module! Feel free to
+play around with the Python API and let us know what you are working on via our
+social media!
