@@ -6,6 +6,8 @@ sidebar_label: Indexing
 
 [![Related - How-to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/indexes.md) [![Related - Under the Hood](https://img.shields.io/static/v1?label=Related&message=Under%20the%20hood&color=orange&style=for-the-badge)](/under-the-hood/indexing.md)
 
+## When to create indexes
+
 When you are running queries, you want to get results as soon as possible. In
 the worst-case scenario, when you execute a query, all nodes need to be checked
 to see if there is a match.
@@ -32,7 +34,14 @@ CREATE INDEX ON :Person(prop);
 
 When a query is executed, the engine first checks if there is an index. An index
 stores additional information on certain types of data so that retrieving
-indexed data becomes more efficient.
+indexed data becomes more efficient. Indexes basically store data in a different
+kind of way, i.e. they partition them by the key. For example, if you set an
+index on Label, then out of all the nodes in the graph, when you do `MATCH
+(:Label`) you won't have to explicitly check every node if it is of that label.
+You just need to check the nodes that you have placed on your "shelf". Each
+"shelf" has your nodes of that label. The data is not copied or duplicated to
+the "shelf". You actually create a memory map to those nodes. And there is no
+need to look anywhere else for them.
 
 Here is what the query plan looks like if indexing is enabled:
 
@@ -47,13 +56,31 @@ memgraph> EXPLAIN MATCH (n:Person {prop: 1}) RETURN n;
 +-----------------------------------------------------+
 ```
 
+## When not to create indexes
+
 There are some downsides to indexing, so it is important to carefully choose the
 right data for creating an index. The downsides of indexing are:
 
 - requiring extra storage for each index and
 - slowing down write operations to the database.
 
-Indexing all of the content will not improve the database speed.
+Indexing all of the content will not improve the database speed. The structures
+in the index are dynamically updated on modification or insertion of a new
+nodes. When you insert a new node, it has to be added to index group. This group
+has to such to allow it to be searchable more faster if index for the label or
+property of that node exists.
+
+Indexing will also not bring any improvement if a large number of properties has
+the same value. Take a look at following example. Let's say you have some
+property that can have 10 distinct values. Those values are integers in range 1
+to 10. If you have 100 nodes stored in the database and 1 of them has a score of
+1 while the others have a score of 10 (99 of them) then that is not a good
+distinguisher. If 10 of them have the score of 1, 10 of them have score of 2,
+etc. Then it is a good distinguisher because it partitions them to cut the order
+of searching by one magnitude.
+
+Also, indexing certain data types will not bring any significant performance
+gain, e.g. for boolean in the best case scenario the time will be cut in half.
 
 ## Creating an index
 
