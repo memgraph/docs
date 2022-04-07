@@ -206,8 +206,8 @@ install **Memgraph Platform**](/docs/memgraph/installation) on your computer.
 To get a taste of some more advanced styling features, head to our blog post
 [How to style your graphs in Memgraph
 Lab](https://memgraph.com/blog/how-to-style-your-graphs-in-memgraph-lab). Also,
-be sure to check out [Quick start guide to Style
-script](/docs/memgraph-lab/style-script/quick-start) or take a deep dive into
-the [Style script reference
-guide](http://localhost:3000/docs/memgraph-lab/style-script/reference-guide) to
-learn more about the language.
+be sure to check out [guide to Style Script
+script](/docs/memgraph-lab/graph-style-script-language) or take a deep dive into
+the [Graph Style Script reference
+guide](/docs/memgraph-lab/style-script/reference-guide) to learn more about the
+language.

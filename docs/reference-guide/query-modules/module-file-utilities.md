@@ -14,8 +14,8 @@ all other query module files and their signatures:
 
 | Procedure                                                         | Description                                   |
 | ----------------------------------------------------------------- | --------------------------------------------- |
-| `mg.procedures() -> (name\|STRING, signature\|STRING)`            | Lists loaded procedures and their signatures. |
-| `mg.load(module_name\|STRING) -> ()`                              | Loads or reloads the given module.            |
+| <code>mg.procedures() -> (name\|STRING, signature\|STRING)</code>            | Lists loaded procedures and their signatures. |
+| <code>mg.load(module_name\|STRING) -> ()</code>                              | Loads or reloads the given module.            |
 | `mg.load_all() -> ()`                                             | Loads or reloads all modules.                 |
 
 ### `mg.procedures`
@@ -45,7 +45,7 @@ Example of a result:
 
 ### `mg.load_all`
 
-Loads or reloads the given module.
+Loads or reloads all modules.
 
 Example of a Cypher query:
 
@@ -58,7 +58,7 @@ update was successful.
 
 ### `mg.load`
 
-Loads or reloads all modules.
+Loads or reloads the given module.
 
 Example of a Cypher query:
 

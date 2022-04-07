@@ -41,11 +41,9 @@ guides:
 Memgraph supports extending the query language with user-written procedures.
 These procedures are grouped into modules, which can then be loaded either on
 startup or later on. To learn more about query modules take a look at the
-following guides:
+following guide:
 
-- [Query modules basics](/how-to-guides/query-modules/overview.md)
-- [Implement custom query
-  modules](/how-to-guides/query-modules/implement-query-modules.md)
+- [Query modules](/how-to-guides/query-modules.md)
 
 ## Replication
 

@@ -7,7 +7,7 @@ slug: /reference-guide/query-modules
 
 Memgraph supports extending the query language with user-written procedures in
 **C**, **C++**, **Python**, and **Rust**. These procedures are grouped into
-modules - **query modules** files (either `*.so` or `.py` files).
+modules - **query modules** files (either `*.so` or `*.py` files).
 
 Some query modules are built-in, and others, like those that can help you solve
 complex graph issues, are available as part of the MAGE library you can add to

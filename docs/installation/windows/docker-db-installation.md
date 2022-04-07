@@ -1,6 +1,6 @@
 ---
 id: docker-db-installation
-title: Install Memgraph DB on Windows with Docker
+title: Install MemgraphDB on Windows with Docker
 sidebar_label: Docker
 slug: /install-memgraph-db-on-windows-docker
 pagination_prev: installation/overview
@@ -8,7 +8,7 @@ pagination_next: connect-to-memgraph/overview
 ---
 
 This article briefly outlines the basic steps necessary to install and run
-**Memgraph DB** on Windows with Docker.
+**MemgraphDB** on Windows with Docker.
 
 :::caution
 
@@ -23,7 +23,7 @@ different versions.
 Before you proceed with the installation guide, make sure that you have:
 
 - **Docker Desktop** - [Install Docker](https://docs.docker.com/get-docker/) in
-order to install Memgraph DB.
+order to install MemgraphDB.
 
 :::info
 
@@ -32,7 +32,7 @@ compatible with all newer versions.
 
 :::
 
-## Install Memgraph DB {#base-installation-guide}
+## Install MemgraphDB {#base-installation-guide}
 
 **1.** Download the latest **Memgraph Docker image** from the [Download
 Hub](https://memgraph.com/download/).
@@ -43,12 +43,12 @@ Hub](https://memgraph.com/download/).
 docker load -i /path-to/memgraph-<version>-docker.tar.gz
 ```
 
-## Start Memgraph DB {#starting-memgraph}
+## Start MemgraphDB {#starting-memgraph}
 
-To start Memgraph DB, use the following command:
+To start MemgraphDB, use the following command:
 
 ```console
-docker run -p 7687:7687 -v mg_lib:/var/lib/memgraph memgraph
+docker run -p 7687:7687 -p 7444:7444 -v mg_lib:/var/lib/memgraph memgraph
 ```
 
 If successful, you should see a message similar to the following:
@@ -68,7 +68,7 @@ The username and password for connecting to the database are empty by default.
 
 :::
 
-## Stop Memgraph DB {#stopping-memgraph}
+## Stop MemgraphDB {#stopping-memgraph}
 
 To stop a Memgraph database instance, run the following command:
 
@@ -88,7 +88,7 @@ If you need to access the Memgraph configuration file or logs, you will need to
 specify the following volumes when starting Memgraph through **PowerShell**:
 
 ```console
-docker run -p 7687:7687
+docker run -p 7687:7687 -p 7444:7444
   -v mg_lib:/var/lib/memgraph `
   -v mg_log:/var/log/memgraph `
   -v mg_etc:/etc/memgraph `
@@ -106,13 +106,13 @@ When using Docker, you can also specify the configuration options in the `docker
 run` command:
 
 ```console
-docker run -p 7687:7687 memgraph --bolt-port=7687
+docker run -p 7687:7687 -p 7444:7444 memgraph --bolt-port=7687
 ```
 :::caution
 
-When working with Memgraph DB, you should pass configuration flags as arguments.
+When working with MemgraphDB, you should pass configuration flags as arguments.
 
-For example, you should start the Memgraph DB image with `docker run memgraph
+For example, you should start the MemgraphDB image with `docker run memgraph
 --bolt-port=7687`, and Memgraph Platform with `docker run -e MEMGRAPH="--bolt-port=7687"
 memgraph/memgraph-platform`.
 

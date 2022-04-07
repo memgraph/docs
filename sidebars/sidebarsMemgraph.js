@@ -142,7 +142,7 @@ module.exports = {
       label: "How-to guides",
       link: { type: "doc", id: "how-to-guides/overview" },
       items: [
-        "reference-guide/backup",
+        "how-to-guides/create-backup",
         {
           type: "category",
           label: "Connect to stream sources",
@@ -175,14 +175,7 @@ module.exports = {
           ],
         },
         "how-to-guides/networkx",
-        {
-          type: "category",
-          label: "Use query modules",
-          items: [
-            "how-to-guides/query-modules/overview",
-            "how-to-guides/query-modules/implement-query-modules",
-          ],
-        },
+        "how-to-guides/query-modules",
         "how-to-guides/replication",
         //"how-to-guides/tensorflow-setup",
         "reference-guide/triggers",
@@ -205,6 +198,7 @@ module.exports = {
         "reference-guide/backup",
         "reference-guide/graph-algorithms",
         "reference-guide/configuration",
+        "reference-guide/data-types",
         {
           type: "category",
           label: "Import Data",
@@ -279,7 +273,6 @@ module.exports = {
             },
           ],
         },
-        "reference-guide/temporal-types",
         //"reference-guide/tensorflow",
         "reference-guide/triggers",
         "reference-guide/users",

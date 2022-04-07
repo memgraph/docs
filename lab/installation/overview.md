@@ -5,17 +5,20 @@ sidebar_label: Installation overview
 slug: /installation
 ---
 
-We recommend you use the `memgraph/memgraph-platform` Docker image to install
-**Memgraph Platform** and get the complete streaming graph application platform that
-includes:
+import CompatibilityWarning from '../templates/_compatibility_warning.mdx';
 
-- **Memgraph DB** - the database that holds your data
-- **Memgraph Lab** - visual user interface for running queries and visualizing graph data
+We recommend you use the `memgraph/memgraph-platform` Docker image to install
+**Memgraph Platform** and get the complete streaming graph application platform
+that includes:
+
+- **MemgraphDB** - the database that holds your data
+- **Memgraph Lab** - visual user interface for running queries and visualizing
+  graph data
 - **mgconsole** - command-line interface for running queries
 - **MAGE** - graph algorithms and modules library
 
-After running the image, mgconsole will open
-in the terminal while Memgraph Lab is available on `http://localhost:3000`. 
+After running the image, mgconsole will open in the terminal while Memgraph Lab
+is available on `http://localhost:3000`. 
 
 You can install Memgraph Platform on:
 
@@ -37,10 +40,4 @@ for [Windows](/memgraph-lab/installation/windows),
 [macOS](/memgraph-lab/installation/macos) and
 [Linux](/memgraph-lab/installation/linux).
 
-
-
-
-
-
-
-
+<CompatibilityWarning/>

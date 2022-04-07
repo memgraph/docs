@@ -193,13 +193,13 @@ sidebar_label: Changelog
 
 - Added support for temporal types, a feature that allows the user to manipulate
   and store time related data in the graph. For more information take a look at
-  the [reference guide](/reference-guide/temporal-types.md)
+  the [reference guide](/reference-guide/data-types.md)
 - Added support for parameters with `CREATE` clause in the following form:
   `CREATE (n $param)`.
 - Introduced settings to Memgraph that can be modified during runtime. You can
   check out more details [here](reference-guide/runtime-settings).
 - Added writeable procedure support, so
-  [procedures](how-to-guides/query-modules/implement-query-modules)
+  [procedures](/reference-guide/query-modules/implement-custom-query-modules/custom-query-module-example.md)
   can modify the graph by creating and deleting vertices and edges, modifying
   the labels of vertices or setting the properties of vertices and edges.
 

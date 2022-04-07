@@ -4,6 +4,8 @@ title: Indexing
 sidebar_label: Indexing
 ---
 
+[![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/indexing.md)
+
 ## Introduction
 
 A database index is a data structure used to improve the speed of data retrieval

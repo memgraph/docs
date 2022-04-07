@@ -73,7 +73,7 @@ module.exports = {
               to: "/memgraph/reference-guide",
             },
             {
-              label: "Concepts",
+              label: "Under the hood",
               to: "/memgraph/under-the-hood",
             },
             {
@@ -351,6 +351,10 @@ module.exports = {
           title: "More",
           items: [
             {
+              label: "Memgraph Playground",
+              href: "https://playground.memgraph.com"
+            },
+            {
               label: "GitHub",
               href: "https://github.com/memgraph/memgraph",
             },
@@ -583,7 +587,7 @@ module.exports = {
             ],
           },
           {
-            to: "/memgraph/how-to-guides/query-modules/implement-query-modules",
+            to: "/memgraph/how-to-guides/query-modules",
             from: ["/memgraph/how-to-guides-overview/implement-query-modules"],
           },
           {
@@ -593,7 +597,7 @@ module.exports = {
             ],
           },
           {
-            to: "/memgraph/how-to-guides/query-modules/implement-query-modules",
+            to: "/memgraph/how-to-guides/query-modules",
             from: [
               "/memgraph/how-to-guides-overview/use-and-implement-query-modules",
             ],
@@ -1055,7 +1059,7 @@ module.exports = {
             from: ["/memgraph/database-functionalities/query-modules"],
           },
           {
-            to: "/memgraph/how-to-guides/query-modules/implement-query-modules",
+            to: "/memgraph/how-to-guides/query-modules",
             from: [
               "/memgraph/database-functionalities/query-modules/implement-query-modules",
             ],
@@ -1245,6 +1249,18 @@ module.exports = {
             to: "/memgraph/reference-guide/query-modules/api/c-api",
             from: [
               "/memgraph/reference-guide/query-modules/api/c-api/classes/mgp_vertex_id",
+            ],
+          },
+          // Redirect for temporal types
+          {
+            to: "/memgraph/reference-guide/data-types",
+            from: ["/memgraph/reference-guide/temporal-types"],
+          },
+          // Redirect for query module how-to guides
+          {
+            to: "/memgraph/how-to-guides/query-modules",
+            from: [
+              "/memgraph/how-to-guides/query-modules/implement-query-modules",
             ],
           },
         ],

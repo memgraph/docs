@@ -4,6 +4,8 @@ title: Connect to Memgraph
 sidebar_label: Connect to Memgraph
 ---
 
+import CompatibilityWarning from './templates/_compatibility_warning.mdx';
+
 ## Prerequisites
 
 Before you proceed with the guide, make sure that you have either:
@@ -11,9 +13,11 @@ Before you proceed with the guide, make sure that you have either:
 - Installed [**Memgraph Platform**](/memgraph/installation) and now have a
   running database instance and Memgraph Lab is running within the browser on
   `http://localhost:3000`, or
-- Installed [**Memgraph DB**](/memgraph/installation) and [**Memgraph
+- Installed [**MemgraphDB**](/memgraph/installation) and [**Memgraph
   Lab**](/memgraph-lab/installation) and now have a running database instance
   and the Memgraph Lab desktop application
+
+<CompatibilityWarning/>
 
 ## Connecting to Memgraph
 
