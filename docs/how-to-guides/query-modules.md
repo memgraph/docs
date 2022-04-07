@@ -5,6 +5,8 @@ sidebar_label: Use query modules
 slug: /how-to-guides/query-modules
 ---
 
+[![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/query-modules/overview.md) [![Related - Tutorial](https://img.shields.io/static/v1?label=Related&message=Tutorial&color=008a00&style=for-the-badge)](tutorials/implement-custom-query-module-in-python.md)
+
 Query modules are extensions of the Cypher query language. They are groups of
 procedures written in **C**, **C++**, **Python**, and **Rust** and bundled up in
 either `*.so` or `*.py` query modules files.
