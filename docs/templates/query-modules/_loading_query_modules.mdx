@@ -22,7 +22,7 @@ If you are working with `memgraph` or `memgraph-mage` images you should pass
 configuration options like this: 
 
 ```terminal
-docker run -p 7687:7687 memgraph --query-modules-directory=/usr/lib/memgraph/my_modules
+docker run -p 7687:7687 -p 7444:7444 memgraph --query-modules-directory=/usr/lib/memgraph/my_modules
 ```
 
 :::

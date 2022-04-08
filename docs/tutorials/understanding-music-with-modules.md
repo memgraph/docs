@@ -79,7 +79,7 @@ When using Docker, the query module directory can be mounted with the following
 command:
 
 ```plaintext
-docker run -it -p 7687:7687 \
+docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 \
   -v $(pwd)/modules:/modules \
   -e MEMGRAPH="--query-modules-directory=/modules" \
   memgraph/memgraph-platform

@@ -44,7 +44,7 @@ docker load -i /path/to/memgraph-<version>-docker.tar.gz
 To start Memgraph, use the following command:
 
 ```console
-docker run -p 7687:7687 \
+docker run -p 7687:7687 -p 7444:7444 -p 3000:3000 \
   -v mg_lib:/var/lib/memgraph \
   -v mg_log:/var/log/memgraph \
   -v mg_etc:/etc/memgraph \
@@ -168,7 +168,7 @@ The following command should be used to successfully mount a volume containing
 your custom query module:
 
 ```console
-docker run -it -p 7687:7687 -p 3000:3000 \
+docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 \
   -v mg_lib:/var/lib/memgraph -v mg_log:/var/log/memgraph -v mg_etc:/etc/memgraph \
   -v $(pwd)/modules:/modules \
   -e MEMGRAPH="--query-modules-directory=/modules" \
