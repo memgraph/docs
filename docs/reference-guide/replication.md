@@ -4,22 +4,27 @@ title: Replication
 sidebar_label: Replication
 ---
 
-[![Related - How to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/replication.md) [![Related - Under the Hood](https://img.shields.io/static/v1?label=Related&message=Under%20the%20hood&color=orange&style=for-the-badge)](/under-the-hood/replication.md) [![Related - Blog Post](https://img.shields.io/static/v1?label=Related&message=Blog%20post&color=9C59DB&style=for-the-badge)](https://memgraph.com/blog/implementing-data-replication)
+[![Related - How
+to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/replication.md)
+[![Related - Under the
+Hood](https://img.shields.io/static/v1?label=Related&message=Under%20the%20hood&color=orange&style=for-the-badge)](/under-the-hood/replication.md)
+[![Related - Blog
+Post](https://img.shields.io/static/v1?label=Related&message=Blog%20post&color=9C59DB&style=for-the-badge)](https://memgraph.com/blog/implementing-data-replication)
 
 When distributing data across several instances, Memgraph uses replication to
-provide the satisfying ratio of the following properties:
+provide a satisfying ratio of the following properties:
 
- 1. **consistency** - every node has the same view of data at a given point in
-    time 
- 2. **availability** - all clients can find a replica of the data, even in the
+1.  **Consistency** - every node has the same view of data at a given point in
+    time
+2.  **Availability** - all clients can find a replica of the data, even in the
     case of a partial node failure
- 3. **partition tolerance** - the system continues to work as expected despite a
+3.  **Partition tolerance** - the system continues to work as expected despite a
     partial network failure
 
 In the replication process, the data is replicated from one storage (MAIN
 instance) to another (REPLICA instances).
 
-## Data replication implementation basics 
+## Data replication implementation basics
 
 In Memgraph, all instances are MAIN upon starting. When creating a replication
 cluster, one instance has to be chosen as the MAIN instance. The rest of the
@@ -27,24 +32,25 @@ instances have to be demoted to REPLICA roles and have a port defined using a
 Cypher query. REPLICA instances no longer accept write queries. In order to
 start the replication, each REPLICA instance needs to be registered from the
 MAIN instance by setting a replication mode (SYNC, SYNC WITH TIMEOUT, and ASYNC)
-and specifying the REPLICA instance's socket address. 
+and specifying the REPLICA instance's socket address.
 
-Replication mode defines the terms by which the MAIN instance can commit the
+The replication mode defines the terms by which the MAIN instance can commit the
 changes to the database, thus modifying the system to prioritize either
-consistency or availability: 
-  - SYNC - The MAIN instance will not commit a transaction until all REPLICA
-    instances running in the SYNC mode confirm they have received the same
-    transaction. SYNC mode prioritizes data consistency but has no tolerance for
-    any network failures.  
-  - SYNC WITH TIMEOUT - The MAIN instance will not commit a transaction until
-    all REPLICA instances confirm they have received the same transaction within
-    a configured time interval. If the response from a REPLICA times out, the
-    replication mode of that instance will be changed to ASYNC. SYNC WITH
-    TIMEOUT prioritizes data consistency until unexpected issues force
-    the system to prioritize availability and partition tolerance.
-  - ASYNC - The MAIN instance will commit a transaction without receiving
-    confirmation from REPLICA instances that they have received the same
-    transaction. ASYNC mode ensures system availability and partition tolerance.
+consistency or availability:
+
+- SYNC - The MAIN instance will not commit a transaction until all REPLICA
+  instances running in the SYNC mode confirm they have received the same
+  transaction. SYNC mode prioritizes data consistency but has no tolerance for
+  any network failures.
+- SYNC WITH TIMEOUT - The MAIN instance will not commit a transaction until all
+  REPLICA instances confirm they have received the same transaction within a
+  configured time interval. If the response from a REPLICA times out, the
+  replication mode of that instance will be changed to ASYNC. SYNC WITH TIMEOUT
+  prioritizes data consistency until unexpected issues force the system to
+  prioritize availability and partition tolerance.
+- ASYNC - The MAIN instance will commit a transaction without receiving
+  confirmation from REPLICA instances that they have received the same
+  transaction. ASYNC mode ensures system availability and partition tolerance.
 
 Once the REPLICA instances are registered, data storage of the MAIN instance is
 replicated and synchronized using transaction timestamps and durability files
@@ -68,18 +74,19 @@ When running multiple instances, each on its own machine, run Memgraph as you
 usually would.
 
 If you are exploring replication and running multiple instances on one machine,
-please install Memgraph with Docker.
+please install Memgraph with Docker. If you are starting instances with defined
+volume flags to enable:
+- data persistency (`-v mg_lib:/var/lib/memgraph`), 
+- access logs (`-v mg_log:/var/log/memgraph`) and 
+- configuration files (`-v mg_etc:/etc/memgraph`),
 
-If you are starting instances with defined volume flags to enable data
-persistency (`-v mg_lib:/var/lib/memgraph`), access logs <br/> (`-v
-mg_log:/var/log/memgraph`) and configuration file (`-v mg_etc:/etc/memgraph`),
 be sure to use a different volume name for each instance, for example,
 `mg_lib1`, `mg_lib2`, etc.
 
-## Assigning roles 
+## Assigning roles
 
 Each Memgraph instance has the role of the MAIN instance when it is first
-started. 
+started.
 
 ### Assigning the REPLICA role
 
@@ -92,17 +99,17 @@ SET REPLICATION ROLE TO REPLICA WITH PORT <port_number>;
 ```
 
 If you set the port of each REPLICA instance to `10000`, it will be easier to
-register replicas later on because the query for registering replicas uses the
-port 10000 as the default one.  
+register replicas later on because the query for registering replicas uses port
+10000 as the default one.
 
 Otherwise, you can use any unassigned port between 1000 and 10000.
 
 ### Assigning the MAIN role
 
-The replication cluster should have only one MAIN instance in order to
-avoid errors in the replication system. If the original MAIN instance fails, you
-can promote a REPLICA instance to be the new MAIN instance by running the
-following query:
+The replication cluster should only have one MAIN instance in order to avoid
+errors in the replication system. If the original MAIN instance fails, you can
+promote a REPLICA instance to be the new MAIN instance by running the following
+query:
 
 ```plaintext
 SET REPLICATION ROLE TO MAIN;
@@ -111,8 +118,9 @@ SET REPLICATION ROLE TO MAIN;
 If the original instance was still alive when you promoted a new MAIN, you need
 to resolve any conflicts and manage replication manually.
 
-If you demote the new MAIN instance back to the REPLICA role, it will not retrieve
-its original function. You need to drop it from the MAIN and register it again.
+If you demote the new MAIN instance back to the REPLICA role, it will not
+retrieve its original function. You need to drop it from the MAIN and register
+it again.
 
 If the crashed MAIN instance goes back online, it cannot reclaim its previous
 role. It has to be demoted and become a REPLICA instance of the new MAIN
@@ -120,8 +128,7 @@ instance.
 
 ### Checking the assigned role
 
-To check the replication role of an instance, run the following
-query:
+To check the replication role of an instance, run the following query:
 
 ```plaintext
 SHOW REPLICATION ROLE;
@@ -156,21 +163,22 @@ The socket address must be a string value as follows:
 "IP_ADDRESS:PORT_NUMBER"
 ```
 
-where IP_ADDRESS is a valid IP address, and PORT_NUMBER is a valid port number,
-for example: 
+where `IP_ADDRESS` is a valid IP address, and `PORT_NUMBER` is a valid port
+number, for example:
 
 ```plaintext
 "172.17.0.4:10050"
 ```
 
-The default value of the PORT_NUMBER is `10000`, so if you set REPLICA roles using
-that port, you can define the socket address specifying only the valid IP address: 
+The default value of the `PORT_NUMBER` is `10000`, so if you set REPLICA roles
+using that port, you can define the socket address specifying only the valid IP
+address:
 
 ```plaintext
 "IP_ADDRESS"
 ```
 
-Example of a <socket_address> using only IP_ADDRESS:
+Example of a `<socket_address>` using only `IP_ADDRESS`:
 
 ```plaintext
 "172.17.0.5"
@@ -183,7 +191,8 @@ mode set during registration.
 
 ### Listing all registered REPLICA instances
 
-You can check all the registered REPLICA instances by running the following query: 
+You can check all the registered REPLICA instances by running the following
+query:
 
 ```plaintext
 SHOW REPLICAS;
@@ -200,16 +209,16 @@ DROP REPLICA <name>;
 ## MAIN and REPLICA synchronization
 
 By comparing timestamps, the MAIN instance knows when a REPLICA instance is not
-synchronized and is missing some earlier transactions. The REPLICA instance is then
-set into a RECOVERY state, where it remains until it is fully synchronized with
-the MAIN instance. 
+synchronized and is missing some earlier transactions. The REPLICA instance is
+then set into a RECOVERY state, where it remains until it is fully synchronized
+with the MAIN instance.
 
 The missing data changes can be sent as snapshots or WAL files. Snapshot files
 represent an image of the current state of the database and are much larger than
 the WAL files, which only contain the changes, deltas. Because of the difference
-in file size, Memgraph favors the WAL files. 
+in file size, Memgraph favors the WAL files.
 
-While the REPLICA instance is in the RECOVERY state, the MAIN instance calculates
-the optimal synchronization path based on the REPLICA instance's timestamp and the
-current state of the durability files while keeping the overall size of the
-files necessary for synchronization to a minimum.
+While the REPLICA instance is in the RECOVERY state, the MAIN instance
+calculates the optimal synchronization path based on the REPLICA instance's
+timestamp and the current state of the durability files while keeping the
+overall size of the files necessary for synchronization to a minimum.
