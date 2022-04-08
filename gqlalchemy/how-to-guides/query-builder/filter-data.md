@@ -88,7 +88,7 @@ MATCH (p1:Person)-[:FRIENDS_WITH]->(p2:Person) WHERE NOT p1.name = p2.name RETUR
 </TabItem>
 </Tabs>
 
-In a similar way you can use `AND` and `AND NOT` clauses, that is
+In a similar way you can use `AND` and `AND NOT` clauses, that is,
 `and_where()` and `and_not_where()` methods. Using the query below you can find
 all persons with the same `first_name` and `last_name`, but different `address`.
 
@@ -124,13 +124,13 @@ MATCH (p1:Person)-[:FRIENDS_WITH]->(p2:Person) WHERE p1.name = p2.name AND p1.la
 </TabItem>
 </Tabs>
 
-The same goes for the `OR`, `OR NOT`, `XOR` and `XOR NOT` clauses, that is
+The same goes for the `OR`, `OR NOT`, `XOR` and `XOR NOT` clauses, that is,
 `or_where()`, `or_not_where()`, `xor_where()` and `xor_not_where()` methods.
 
 ## Filter data by property value
 
 You can filter data by comparing property of graph object to some value (a
-literal). Below you can see how to compare `age` property of a node to some
+literal). Below you can see how to compare `age` property of a node to the
 integer.
 
 
