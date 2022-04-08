@@ -120,6 +120,7 @@ module.exports = {
       label: "Tutorials",
       link: { type: "doc", id: "tutorials/overview" },
       items: [
+        "tutorials/first-steps-with-memgraph",
         "tutorials/analyzing-ted-talks",
         "tutorials/backpacking-through-europe",
         "tutorials/exploring-the-european-road-network",
