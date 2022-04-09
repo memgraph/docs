@@ -4,6 +4,8 @@ title: How to manage user privileges (Enterprise)
 sidebar_label: Manage user privileges
 ---
 
+[![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/security.md)
+
 :::warning
 This is an Enterprise feature.
 If the Memgraph Enterprise is not activated, all the created users will be granted
@@ -95,7 +97,7 @@ Therefore, let's create a user named `admin` and set its' password to `0000`.
 This can be done by executing:
 
 ```cypher
-  CREATE USER admin IDENTIFIED BY '0000';
+CREATE USER admin IDENTIFIED BY '0000';
 ```
 
 ## Creating other users
@@ -107,14 +109,14 @@ data within the database.
 Creating a user account for a new hire named Alice can be done as follows:
 
 ```cypher
-  CREATE USER alice IDENTIFIED BY '0042';
+CREATE USER alice IDENTIFIED BY '0042';
 ```
 
 Alice should also be granted a privilege to access data, which can be done by
 executing the following:
 
 ```cypher
-  GRANT MATCH, MERGE, SET TO alice;
+GRANT MATCH, MERGE, SET TO alice;
 ```
 
 ## Creating user roles
@@ -129,14 +131,14 @@ Creating a user role named `supervisor` can be done by executing the following
 command:
 
 ```cypher
-  CREATE ROLE supervisor;
+CREATE ROLE supervisor;
 ```
 
 Granting the privilege to create and delete data to our newly created role can
 be done as follows:
 
 ```cypher
-  GRANT CREATE, DELETE, REMOVE TO supervisor;
+GRANT CREATE, DELETE, REMOVE TO supervisor;
 ```
 
 Finally, we need to assign that role to each of the supervisors. Suppose, a user
@@ -144,7 +146,7 @@ named `bob` is indeed a supervisor within the company. Assigning them that role
 within the database can be done by the following command:
 
 ```cypher
-  SET ROLE FOR bob TO supervisor;
+SET ROLE FOR bob TO supervisor;
 ```
 
 ## Where to next?

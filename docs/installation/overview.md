@@ -10,7 +10,7 @@ import useBaseUrl from "@docusaurus/useBaseUrl";
 Install **Memgraph Platform** and get the complete streaming graph application
 platform that includes:
 
-- **Memgraph DB** - the database that holds your data
+- **MemgraphDB** - the database that holds your data
 - **Memgraph Lab** - visual user interface for running queries and visualizing
   graph data
 - **mgconsole** - command-line interface for running queries
@@ -18,7 +18,7 @@ platform that includes:
 
 Scroll down to the operating system of your choosing and install **Memgraph
 Platform** with Docker. If you only need to install a database instance, install
-Memgraph DB with Docker or some other available installation option.
+MemgraphDB with Docker or some other available installation option.
 
 ## Windows
 
@@ -35,7 +35,7 @@ Memgraph DB with Docker or some other available installation option.
     </ul>
   </div>
   <div class="column">
-    <p><b>Install Memgraph DB</b></p>
+    <p><b>Install MemgraphDB</b></p>
     <ul>
       <li><a href='install-memgraph-db-on-windows-docker'><b>Docker</b></a></li>
       <li><a href='install-memgraph-on-windows-wsl'><b>Windows Subsystem for Linux (WSL)</b></a></li>
@@ -58,7 +58,7 @@ Memgraph DB with Docker or some other available installation option.
     </ul>
   </div>
   <div class="column">
-    <p><b>Install Memgraph DB</b></p>
+    <p><b>Install MemgraphDB</b></p>
     <ul>
       <li><a href='install-memgraph-db-on-macos-docker'><b>Docker</b></a></li>
     </ul>
@@ -81,7 +81,7 @@ Memgraph DB with Docker or some other available installation option.
     </ul>
   </div>
   <div class="column" style={{'paddingLeft':'60px'}}>
-    <p><b>Install Memgraph DB</b></p>
+    <p><b>Install MemgraphDB</b></p>
     <ul>
       <li><a href='install-memgraph-db-on-linux-docker'><b>Docker</b></a></li>
       <li><a href='install-memgraph-on-ubuntu'><b>Ubuntu</b></a></li>

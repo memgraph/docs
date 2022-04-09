@@ -4,6 +4,8 @@ title: How to create a backup
 sidebar_label: Create a backup
 ---
 
+[![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/backup.md)
+
 While running, Memgraph generates several different files in its data directory.
 This is the location where Memgraph saves all permanent data. The default data
 directory is `/var/lib/memgraph` and you can change it in the main [Memgraph

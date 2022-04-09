@@ -4,6 +4,8 @@ title: Configuration settings
 sidebar_label: Configuration settings
 ---
 
+[![Related - How-to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/config-logs.md)
+
 The main Memgraph configuration file is available in
 `/etc/memgraph/memgraph.conf` . You can modify that file to suit your specific
 needs. Additional configuration can be specified by including another

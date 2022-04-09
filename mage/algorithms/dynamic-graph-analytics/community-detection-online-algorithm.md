@@ -6,18 +6,17 @@ sidebar_label: Dynamic Community Detection
 
 ## Description
 
-To address the hidden relations among the nodes in the graph, especially those
-not connected directly, [community
-detection](https://en.wikipedia.org/wiki/Community_structure) can provide help.
-This familiar graph analytics method is being solved in various different ways.
+In addressing the hidden relations among the nodes in the graph, especially 
+those not connected directly, [community
+detection](https://en.wikipedia.org/wiki/Community_structure) can be helpful.
+This familiar graph analytics task has been solved with various methods.
 However, demand for scale and speed has increased over the years and therefore
-led to the construction of **dynamic community detection** algorithms.  To
-leverage the needs for scalability and speed, community detection lends itself
-well to dynamic operations for two reasons:
+led to the construction of **dynamic community detection** algorithms. 
+Community detection lends itself well to dynamic operation for two reasons:
 
+- Locality: community changes tend to be local in scope after partial updates
 - Complexity: algorithms often have high time complexity that scales with the
   number of nodes in the network
-- Locality: community changes tend to be local in scope after partial updates.
 
 Academic research of temporal graphs yielded [LabelRankT: Incremental Community
 Detection in Dynamic Networks via Label
@@ -39,8 +38,8 @@ Detection](https://img.shields.io/badge/Dynamic_Community_Detection-Implementati
 Detection](https://img.shields.io/badge/Dynamic_Community_Detection-Documentation-FCC624?style=for-the-badge&logo=cplusplus&logoColor=white)](/mage/query-modules/cpp/community-detection-online)
 
 **Dynamic Community Detection** is implemented as part of the 
-[**MAGE**](https://github.com/memgraph/mage) project. Be sure to check it out in the
-link above. :point_up:
+[**MAGE**](https://github.com/memgraph/mage) project. Be sure to check it out at the
+above link. :point_up:
 
 ### Blog posts
 
@@ -83,6 +82,6 @@ points by using dynamic community detection.
 [![Retail](https://img.shields.io/badge/Retail-Application-8A477F?style=for-the-badge)](/use-cases/retail.md)
 
 With new items being sold every day, using dynamic community detection one can
-quickly follow the trends that are being formed and submit recommendations based
-on trends within a community. This approach enables the seller to adapt more
+quickly follow the trends as they form and submit recommendations based on 
+trends within a community. This approach enables the vendor to adapt more
 flexibly to unexpected events.
