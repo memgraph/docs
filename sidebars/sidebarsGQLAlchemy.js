@@ -38,6 +38,14 @@ module.exports = {
         },
         {
           type: "category",
+          label: "Import data from different sources",
+          items: [
+            "how-to-guides/loaders/table-to-graph-importer",
+            "how-to-guides/loaders/custom-file-system-importer",
+          ],
+        },
+        {
+          type: "category",
           label: "Manage isntances",
           items: [
             "how-to-guides/instance-runner/memgraph-docker-instance",
