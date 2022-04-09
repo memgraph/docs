@@ -48,6 +48,16 @@ the following guides:
 - [**Pulsar streams**](/how-to-guides/streams/pulsar-streams.md)
 - [**Triggers**](/how-to-guides/triggers/triggers.md)
 
+## Instance runner
+
+There are two ways of managing a Memgraph instance with the `instance_runner`
+module:
+
+- **[How to manage a Memgraph instance with
+  Docker?](/how-to-guides/instance-runner/memgraph-docker-instance.md)**
+- **[How to manage a Memgraph instance from a
+  binary?](/how-to-guides/instance-runner/memgraph-binary-instance.md)**
+
 ## On-disk storage
 
 Since Memgraph is an in-memory graph database, the GQLAlchemy library provides

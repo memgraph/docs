@@ -36,6 +36,14 @@ module.exports = {
             "how-to-guides/streams/pulsar-streams",
           ],
         },
+        {
+          type: "category",
+          label: "Manage isntances",
+          items: [
+            "how-to-guides/instance-runner/memgraph-docker-instance",
+            "how-to-guides/instance-runner/memgraph-binary-instance",
+          ],
+        },
         "how-to-guides/triggers/triggers",
         "how-to-guides/on-disk-storage/on-disk-storage"
       ],
