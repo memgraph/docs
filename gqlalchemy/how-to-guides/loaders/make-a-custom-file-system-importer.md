@@ -1,21 +1,25 @@
 ---
 id: custom-file-system-importer
 title: How to make a custom file system importer
-sidebar_label: Make custom file system importer
+sidebar_label: Make a custom file system importer
 ---
 
-> To learn how to import table data from a file to Memgraph database, head
-> over to the How to import table data guide.
+> To learn how to import table data from a file to the Memgraph database, head
+> over to the [How to import table
+> data](/how-to-guides/loaders/import-table-data-to-graph-database.md) guide.
 
-If you want to read from a file system not currently supported by **GQLAlchemy**, or use a file type currently not readable, you can implement your own by extending abstract classes `FileSystemHandler` and `DataLoader`, respectively.
+If you want to read from a file system not currently supported by
+**GQLAlchemy**, or use a file type currently not readable, you can implement
+your own by extending abstract classes `FileSystemHandler` and `DataLoader`,
+respectively.
 
 ## Implementing a new `FileSystemHandler`
 
 For this guide, you will use the existing `PyArrowDataLoader` capable of reading
 CSV, Parquet, ORC and IPC/Feather/Arrow file formats. The PyArrow loader class
 supports [fsspec](https://filesystem-spec.readthedocs.io/en/latest/)-compatible
-file systems, so to implement an **Azure Blob** file system, you need to follow these
-steps.
+file systems, so to implement an **Azure Blob** file system, you need to follow
+these steps.
 
 ### 1. Extend the `FileSystemHandler` class
 
@@ -28,7 +32,7 @@ is to override the `get_path` method.
 import adlfs
 
 class AzureBlobFileSystemHandler(FileSystemHandler):
-    
+
     def __init__(self, **kwargs) -> None:
         """Initializes connection and data container."""
         self.fs = adlfs.AzureBlobFileSystem(
@@ -44,7 +48,10 @@ class AzureBlobFileSystemHandler(FileSystemHandler):
 
 ### 2. Wrap the `TableToGraphImporter`
 
-Next, you need to wrap the `TableToGraphImporter` class and make your own `AzureBlobImporter`, which initializes the `AzureBlobFileSystemHandler` and `PyArrowDataLoader` objects, and passes the `DataLoader` to the `TableToGraphImporter`.
+Next, you need to wrap the `TableToGraphImporter` class and make your own
+`AzureBlobImporter`, which initializes the `AzureBlobFileSystemHandler` and
+`PyArrowDataLoader` objects, and passes the `DataLoader` to the
+`TableToGraphImporter`.
 
 ```python
 class AzureBlobImporter(TableToGraphImporter):
@@ -64,7 +71,8 @@ class AzureBlobImporter(TableToGraphImporter):
 
 ### 3. Call `translate()`
 
-Finally, to use your custom file system, initialize the Importer class and call `translate()`
+Finally, to use your custom file system, initialize the Importer class and call
+`translate()`
 
 ```python
 importer = AzureBlobImporter(
@@ -78,5 +86,9 @@ importer = AzureBlobImporter(
 importer.translate(drop_database_on_start=True)
 ```
 
-If you want to see the full implementation of the `AzureBlobFileSystem` and other loader components, have a look [at the code](https://github.com/memgraph/gqlalchemy). Feel free to create a PR on the GQLAlchemy repository if you think of a feature we could use. If you have any more questions, join our community and ping us on
+If you want to see the full implementation of the `AzureBlobFileSystem` and
+other loader components, have a look [at the
+code](https://github.com/memgraph/gqlalchemy). Feel free to create a PR on the
+GQLAlchemy repository if you think of a new feature we could use. If you have
+any more questions, join our community and ping us on
 [Discord](https://discord.gg/memgraph).
