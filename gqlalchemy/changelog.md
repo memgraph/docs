@@ -43,7 +43,6 @@ sidebar_label: Changelog
 - Removed extra argument called `optional` from the `Merge` class. [#118](https://github.com/memgraph/gqlalchemy/pull/118)
 - Removed unnecessary quotes from the `bootstraps_servers` argument when creating a stream. [#98](https://github.com/memgraph/gqlalchemy/pull/98)
 
-
 ## v1.1 - Jan 19, 2022
 
 ### Major Features and Improvements

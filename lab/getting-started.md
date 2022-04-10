@@ -12,9 +12,12 @@ enables you to:
 - write and execute Cypher queries
 - import and export data
 - view and optimize query performance
+- develop query modules in Python
 
 It was designed to help you with every stage of your learning process and graph
 development.
+
+<img alt="memgraph_lab_screenshot" src={require('./data/installation/lab-graph.png').default} style={{width:'80%'}}/>
 
 ## Quick start
 
@@ -24,7 +27,7 @@ Lab**, be sure to:
 ### 1. Install Memgraph Platform or Memgraph Lab
 
 We recommend you [install **Memgraph Platform**](/memgraph/installation) and get
-the complete streaming graph application platform that includes **Memgraph DB**,
+the complete streaming graph application platform that includes **MemgraphDB**,
 command-line tool **mgconsole**, visual user interface **Memgraph Lab** running
 within the browser and **MAGE** - graph algorithms and modules library.
 
@@ -37,9 +40,9 @@ Memgraph Lab as a desktop application on [Windows](/installation/windows.md),
 [Connect Memgraph Lab to Memgraph](/connect-to-memgraph.md) and start
 experimenting with data and Cypher.
 
-### 3. Check out Style script
+### 3. Check out Graph Style Script
 
-To give your graphs a bit more pizzazz, dive into the [Style script
+To give your graphs a bit more pizzazz, dive into the [Graph Style Script
 language](/style-script/overview.md) and learn how to customize the visual
 appearance of your graphs to make them truly remarkable.
 

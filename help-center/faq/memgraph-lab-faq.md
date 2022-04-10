@@ -48,10 +48,10 @@ run Memgraph virtually on any system without having to worry about compatibility
 issues. You don't have to be familiar with Docker to try out Memgraph Platform, so
 [install Docker](https://docs.docker.com/get-docker/) without fear.
 
-### What is Style script language?
+### What is  Graph Style Script language?
 
-Style script is a language for customizing the visual display of graphs. It
+Graph Style Script is a language for customizing the visual display of graphs. It
 allows you to stylize labels and colors of nodes and relationships. Check out
-the [Style script
-guide](https://memgraph.com/docs/memgraph-lab/style-script/quick-start) for more
+the [Graph Style Script
+guide](/memgraph-lab/graph-style-script-language) for more
 information.

@@ -152,7 +152,7 @@ container so Memgraph can access them.
 1. Start your Memgraph instance by writing the following command in a terminal:
 
 ```
-docker run -it -p 7687:7687 -p 3000:3000 -v mg_lib:/var/lib/memgraph memgraph/memgraph-platform
+docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 -v mg_lib:/var/lib/memgraph memgraph/memgraph-platform
 ```
 
 2. Open a new terminal and find the CONTAINER ID of the Memgraph Docker
@@ -363,6 +363,6 @@ Congratulations! You now have a graph database. You can query it using the
 [**Cypher query language**](/cypher-manual), use various graph algorithms and
 modules from our open-source repository [**MAGE**](/mage) to solve graph
 analytics problems, create awesome customized visual displays of your nodes and
-relationships with [**Style script**](/memgraph-lab/style-script/quick-start),
+relationships with [**Graph Style Script**](/memgraph-lab/graph-style-script-language),
 find out how to connect any [**streams of data**](/memgraph/import-data/kafka)
 you might have with Memgraph and above all - enjoy your graph database!

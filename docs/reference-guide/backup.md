@@ -4,6 +4,8 @@ title: Backup
 sidebar_label: Backup
 ---
 
+[![Related - How-to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/create-backup.md)
+
 While running, Memgraph generates a couple of different files in its data
 directory. The directory includes multiple different subdirectories, one of
 them being the storage directory which contains the durability files. In that

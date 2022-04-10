@@ -18,11 +18,11 @@ Add(2, 5)
 ```
 
 creates a new value 7 from values 2 and 5. There are a lot of functions built
-into Style script so there are even more ways to combine values. There is even a
+into Graph Style Script so there are even more ways to combine values. There is even a
 function to create new functions.
 
 When expressions are evaluated, values are created. There are several types of
-Style script values: `Boolean`, `Color`, `Number`, `String`, `Array`,
+Graph Style Script values: `Boolean`, `Color`, `Number`, `String`, `Array`,
 `Dictionary`, `Function`and `Null`.
 
 An expression can be either literal expressions, name expressions or function
@@ -150,7 +150,7 @@ expression, a new line must follow. The directive structure is the following.
 Like in CSS, directives defined later override properties of the previous
 directives.
 
-Style script currently has two directives: `@NodeStyle`, for defining the visual
+Graph Style Script currently has two directives: `@NodeStyle`, for defining the visual
 style of graph nodes, and `@EdgeStyle` for defining the visual style of graph
 relationships.
 
