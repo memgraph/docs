@@ -25,6 +25,7 @@ module.exports = {
             "how-to-guides/query-builder/filter-data",
             "how-to-guides/query-builder/call-procedures",
             "how-to-guides/query-builder/delete-remove-objects",
+            "how-to-guides/query-builder/set-or-update-objects",
           ],
         },
         {
