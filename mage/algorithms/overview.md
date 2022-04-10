@@ -44,7 +44,7 @@ algorithm can be used to find bridges in graphs.
 The notion of community in a graph represents similarly to what it represents in
 the real world. In graphs, community represents a partition of a graph, i.e., a
 set of nodes. There are several different ways to approach [Community
-detection](/algorithms/traditional-graph-analytics/community-detection.md).
+detection](/algorithms/traditional-graph-analytics/community-detection-algorithm.md).
 
 ### Cycle Detection
 
