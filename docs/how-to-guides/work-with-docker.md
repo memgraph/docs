@@ -5,262 +5,267 @@ sidebar_label: Work with Docker
 slug: /how-to-work-with-docker
 ---
 
-This guide serves as an explanation of how to use Docker with Memgraph and
-setting up your development environment.
-
-Memgraph supports custom, user-written Cypher procedures. It is easy to extend
-built-in features by creating your own query modules. To access those query
-modules, we need to take a few extra steps while using Docker and this guide
-will show you how to work with them.
-
-## Why Docker?
-
 [Docker](https://www.docker.com) is a service that uses OS-level virtualization
 to deliver software in packages that are called
-[containers](https://www.docker.com/resources/what-container). We at Memgraph
-chose Docker because of its many useful features:
+[containers](https://www.docker.com/resources/what-container).
 
-* Flexibility
-* Lightweight - efficient in terms of system resources
-* Portable - you can build locally or deploy to the cloud
-* Runs on all platforms - Windows, Linux and, macOS
-* Deploy in Kubernetes
+Memgraph uses Docker because it is:
 
-## Setting up Memgraph with Docker
+- Flexible
+- Lightweight
+- Portable - you can build locally or deploy to the cloud
+- Runs on all platforms - Windows, Linux and macOS
+- Deploys in Kubernetes
 
-To start implementing and testing custom query modules in Memgraph, it is
-necessary to set up a Docker container first.
+If you are new to Docker, this guide will help you get a grasp of Docker and
+make it easier to accomplish tasks within Memgraph. After installing Docker, all
+commands are run from the command-line tool of your preference.
 
-The Memgraph Docker image can be downloaded
-[here](https://memgraph.com/download).
+## How to set up Memgraph with Docker?
 
-After successfully [installing Docker](https://docs.docker.com/get-started/),
-import the Memgraph Docker image with the following command:
+We recommend installing and running Memgraph using Docker.
 
-```console
-docker load -i /path/to/memgraph-<version>-docker.tar.gz
+There are three Docker images you can use to run Memgraph:
+
+- `memgraph-platform` - installs the whole Memgraph Platform, which includes:
+  - **MemgraphDB**: the graph database
+  - **mgconsole**: a command-line interface for running queries
+  - **Memgraph Lab**: visual user interface for running queries and visualizing
+    graph data
+  - **MAGE**: an open-source library of graph algorithms and custom Cypher
+    procedures
+- `memgraph-mage` - installs **MemgraphDB** and **MAGE**
+- `memgraph` - installs **MemgraphDB**
+
+### Download the Memgraph Docker image
+
+Images are downloaded using the `docker pull` command followed by the name of
+the Docker image. We encourage you to use Memgraph Platform as it includes
+everything you might need while making the best of Memgraph.
+
+To download the latest Memgraph Platform image, run:
+
+```
+docker pull memgraph/memgraph-platform
 ```
 
-To start Memgraph, use the following command:
+### Create Docker image tags
 
-```console
-docker run -p 7687:7687 -p 7444:7444 -p 3000:3000 \
-  -v mg_lib:/var/lib/memgraph \
-  -v mg_log:/var/log/memgraph \
-  -v mg_etc:/etc/memgraph \
-  memgraph/memgraph-platform
+Some images might need tags to be able to run properly and this is usually noted
+in the installation process. By creating a tag for the image, you are allowing
+all the dependencies within the Docker container to refer to the image by its
+original name and the tag.
+
+For example, the following command allows the processes inside the image to
+refer to the image as `memgraph-platform` and `memgraph`:
+
+```
+docker image tag memgraph/memgraph-platform memgraph
 ```
 
-At this point, Memgraph is ready for you to [submit
-queries](/connect-to-memgraph/overview.mdx).
+### Run a Memgraph Docker image
 
-For an explanation of how to write custom query modules, follow our [how-to
-guide](/how-to-guides/query-modules.md).
+All images are started using the `docker run` command followed by various flags,
+environmental variables and configuration options.
 
-## Find the IP address of a Docker Container {#docker-container-ip-address}
+The most common flags used while running Memgraph images are:
 
-Although unlikely, some users might experience minor difficulties after the
-Docker installation. Instead of running on `localhost` , a Docker container for
-Memgraph may be running on a custom IP address. Fortunately, that IP address can
-be found as follows:
+- enable interactive mode: `-it`
+- publish ports: `-p 3000:3000`
+- specify volumes for data persistance `-v mg_lib:/var/lib/memgraph`
+- set up configuration using environmental variables in the case of the
+  `memgraph-platform` image, or configuration flags using the `memgraph` or
+  `memgraph-mage` image
 
-**1.** Determine the ID of the Memgraph Container by issuing the command `docker
-ps`. The user should get an output similar to the following:
+A `docker run` command can look like this:
 
-```console
-CONTAINER ID    IMAGE       COMMAND                  CREATED
-9397623cd87e    memgraph    "/usr/lib/memgraph/m…"   2 seconds ago
+```
+docker run -it -p 7687:7687 [-p host_port:container_port] [-v volume_name:volume_path] [configuration] memgraph/image_name
 ```
 
-At this point, it is important to remember the container ID of the Memgraph
-Image. In our case, that is `9397623cd87e` .
+#### Publish ports
 
-**2.** Use the this ID to retrieve the IP address of the Container:
+Ports are published in order to allow services outside the container to be able
+to connect to the container. When publishing ports, you need to define two ports
+separated by a colon. The left side port stands for the **host port** and the
+right side port is the **container port**.
+
+The most common ports published while running Memgraph are:
+
+- `-p 7687:7687` - connection to the database instance (the Bolt protocol uses
+  this port by default)
+- `-p 3000:3000` - connection to the Memgraph Lab application when running
+  Memgraph Platform
+- `-p 7444:7444` - connection to fetch log files from Memgraph Lab (only in
+  version 2.0 and newer)
+
+For example, if you are running two instances using the `memgraph-platform`
+image and you want to connect to both instances using the Memgraph Lab
+in-browser application. You would run the first instance with:
+
+```
+docker run -it -p 7687:7687 -p 3000:3000 memgraph/memgraph-platform
+```
+
+Because ports `7687` and `3000` are now taken, you need to change the left side
+ports (host ports):
+
+```
+docker run -it -p 7688:7687 -p 3001:3000 memgraph/memgraph-platform
+```
+
+To connect to the first instance, you should open Memgraph Lab in your browser
+at `localhost:3000`, but the second instance is at `localhost:3001`.
+
+#### Specify volumes
+
+Specifying a volume creates a copy of a directory inside the Docker container as
+a local directory. The `-v` flag is followed by the name of the local directory
+separated from the path of the volume in the container by a semicolon:
+
+```
+-v volume_name:volume_path
+```
+
+Useful volumes you can specify while running Memgraph are:
+
+- `-v mg_lib:/var/lib/memgraph` - directory containing data, enables data
+  persistency
+- `-v mg_log:/var/log/memgraph` - directory containing log files
+- `-v mg_etc:/etc/memgraph` - directory containing the configuration file
+
+The exact location of the local directories depends on your specific setup.
+
+The configuration file can usually be found at
+`/var/lib/docker/volumes/mg_etc/_data/memgraph.conf` but you can also copy the
+file from the Docker container, modify it and copy it back into the container.
+
+Logs can usually be found in
+`\\wsl$\docker-desktop-data\version-pack-data\community\docker\volumes\`, but
+you can also view them in the Memgraph Lab 2.0 (or newer) by publishing the port
+`7444`.
+
+#### Set up the configuration
+
+If you want a certain configuration setting to be applied during this run only,
+you need to pass the configuration option within the `docker run` command
+instead of changing the configuration file.
+
+If you are working with the `memgraph-platform` image, you should pass
+configuration options with environmental variables.
+
+For example, if you want to limit memory usage for the whole instance to 50 MiB,
+pass the configuration like this:
+
+```
+docker run -it -p 7687:7687 -p 3000:3000 -e MEMGRAPH="--memory-limit=50" memgraph/memgraph-platform
+```
+
+When you are working with `memgraph` or `memgraph-mage` images, you should pass
+configuration options as arguments.
+
+For example, if you want to limit memory usage for the whole instance to 50 MiB,
+pass the configuration argument like this:
+
+```
+docker run -it -p 7687:7687  memgraph/memgraph --memory-limit=50
+```
+
+### Stop image
+
+Database instances are stopped by stopping the Docker container with the command
+`docker stop`. To stop a container you need [to know the container's
+ID](#how-to-retrieve-docker-container-id).
+
+You can list all the containers you want to stop in one `docker stop` command:
+
+```
+docker stop CONTAINER1_ID CONTAINER2_ID
+```
+
+## How to retrieve a Docker container ID?
+
+Run the following command:
+
+```
+docker ps
+```
+
+You should get an output similar to this:
+
+```console
+CONTAINER ID   IMAGE                        COMMAND                  CREATED        STATUS        PORTS                                                                    NAMES
+45fa0f86f826   memgraph/memgraph-platform   "/bin/sh -c '/usr/bi…"   21 hours ago   Up 21 hours   0.0.0.0:3000->3000/tcp, 0.0.0.0:7444->7444/tcp, 0.0.0.0:7687->7687/tcp   admiring_almeida
+```
+
+You can shorten this ID to 4 letters if the ID remains unique, for example,
+`45fa`.
+
+## How to retrieve a Docker container IP address?
+
+To retrieve the Docker container IP address, first, you need [to retrieve its
+ID](#how-to-retrieve-a-docker-container-id).
+
+Then run the following command if the container ID is `9397623cd87e`.
 
 ```console
 docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' 9397623cd87e
 ```
 
-The command above will yield the IP address that should be used when connecting
-to Memgraph via **Memgraph Lab** or **mgconsole** as described in the
-[querying](/connect-to-memgraph/overview.mdx) section. Just replace `HOST` from
-the following command with the appropriate IP address:
+## How to browse files inside a Docker container?
 
-```console
-docker run -it --entrypoint=mgconsole memgraph/memgraph-platform --host HOST
-```
+To browse files inside a Docker container, first, you need [to retrieve its
+ID](#how-to-retrieve-docker-container-id).
 
-## Importing data
-
-If you wish to test and run your procedures on a custom dataset, first you need
-to populate the database. We will be using the CSV Import Tool which creates a
-snapshot that will be used by the database to recover its state on its next
-startup. Make sure that your Memgraph container is stopped and run the importer
-using the following command:
-
-```console
-docker run -v mg_lib:/var/lib/memgraph -v mg_etc:/etc/memgraph -v mg_import:/import-data \
-  --entrypoint=mg_import_csv memgraph/memgraph-platform
-```
-
-You can pass CSV files containing nodes and relationships with `--nodes` and
-`--relationships` flags respectively. Multiple files can be specified by
-repeating either of the flags. At least one node needs to be specified, but
-relationships are not required. For more information on how to structure your
-CSV file, please refer to our [Import tool guide](/import-data/overview.mdx).
-
-To import the snapshot, you will need to copy your files where Docker can see
-them by creating another container and filling it with your data:
-
-```console
-docker container create --name mg_import_helper -v mg_import:/import-data busybox
-docker cp nodes.csv mg_import_helper:/import-data
-docker cp relationships.csv mg_import_helper:/import-data
-docker rm mg_import_helper
-```
-
-To run the importer, we need to slightly modify the first command by adding the
-flags for nodes and relationships:
-
-```console
-docker run -v mg_lib:/var/lib/memgraph -v mg_etc:/etc/memgraph -v mg_import:/import-data \
-  --entrypoint=mg_import_csv memgraph/memgraph-platform \
-  --nodes /import-data/nodes.csv \
-  --relationships /import-data/relationships.csv
-```
-
-Next time you start Memgraph, your dataset will be ready for use!
-
-## Accessing query modules
-
-Before running our custom procedures, we need to configure Memgraph to know
-where to fetch query modules. By default, Memgraph will search for query modules
-in the `usr/lib/memgraph/query-modules` directory. If you wish to change the
-directory in which Memgraph searches for query modules, you can do it in one of
-the following ways:
-* change the `--query-modules-directory` flag in the main
-  [configuration](/reference-guide/configuration.md) file located at
-  `/etc/memgraph/memgraph.conf` or
-* supply it as a command-line parameter
-
-When supplying the path for our query module, first we need to mount the volume
-containing it. **Mounting** is a process by which the operating system makes
-files and directories on a storage device available for users to access via the
-computer's file system. In our case, we are allowing an isolated environment of
-the Docker container to access data located in our computer's file system. There
-are two types of mounts in Docker:
-[volume](https://docs.docker.com/storage/volumes/) and [bind
-mounting](https://docs.docker.com/storage/bind-mounts/). The graphic below shows
-the differences between the two mounting techniques:
-
-<img src="https://raw.githubusercontent.com/g-despot/images/master/docker.png"
-  alt="Docker" style={{height: 360}}
-/>
-
-In context of Memgraph, we will use volume mounting meaning we are going to put
-our files in a container and mount that container to the Docker area. Bind
-mounts are dependant on the file system of the host machine therefore if we move
-the file elsewhere, we need to re-mount. With volume binding, we have placed the
-files inside the Docker area and Memgraph will always have access to it no
-matter where they exist in our file system.
-
-The following command should be used to successfully mount a volume containing
-your custom query module:
-
-```console
-docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 \
-  -v mg_lib:/var/lib/memgraph -v mg_log:/var/log/memgraph -v mg_etc:/etc/memgraph \
-  -v $(pwd)/modules:/modules \
-  -e MEMGRAPH="--query-modules-directory=/modules" \
-  memgraph/memgraph-platform
-```
-
-We've added two flags to the original command:
-* `-v $(pwd)/modules:/modules ` - flag for mounting the volume `modules` and
-* `--query-modules-directory=/modules` - flag used to change the place where
-  Memgraph searches for modules.
-
-Now that we have access to our query modules, we can go on and run them.
-
-## Running query modules
-
-There are three ways to execute queries and procedures in Memgraph:
-
-* using the command-line tool, `mgconsole`, which comes with Memgraph,
-  ([Querying](/connect-to-memgraph/overview.mdx))
-* [programmatically](/connect-to-memgraph/drivers/overview.md) by using the Bolt
-  protocol,
-* from **Memgraph Lab**, a visual user interface that can be downloaded
-  [here](https://memgraph.com/download).
-
-If you've decided to use the command-line tool, you will need to run the
-following command:
-
-```console
- docker run -it --entrypoint=mgconsole memgraph/memgraph-platform --host HOST
-```
-
-`HOST` part of the command should be replaced with valid IP - most likely
- `localhost` .   If you are a macOS or Linux user and are having issues with
- connecting, please refer to the [Note for Docker
- users](#docker-container-ip-address).
-
-:::note
-
-If `localhost` refuses to connect, try using `host.docker.internal` instead.
-
-:::
-
-After running the command, you should get a command prompt similar to this one:
+Then run the following command if the container ID is `9397623cd87e`:
 
 ```
-Type :help for shell usage
-Quit the shell by typing Ctrl-D(eof) or :quit
-Connected to 'memgraph://127.0.0.1:7687'
-memgraph>
+docker -it exec 9397623cd87e bash
 ```
 
-Query modules are loaded on start, but you can also load them by executing the
-following procedure:
+To navigate through the container, use the following commands:
 
-```cypher
-CALL mg.load_all();
+- `ls` - list all the directories and files
+- `cd <directory>` - enter a directory
+- `cd ..` - leave the directory
+- `cat <file>` - list the content of a file
+
+You don't have to write file and directory names in full, once you write enough
+letters to have a unique string, press the `<TAB>` key.
+
+## How to copy files from and to a Docker container?
+
+To copy files from and to the Docker container, first, you need [to retrieve its
+ID](#how-to-retrieve-docker-container-id).
+
+1. Place yourself in the local directory where you want to copy the
+   configuration file.
+
+2. Copy the file from the container to your current directory with the command:
+
+```
+docker cp <CONTAINER ID>:<path_in_container> <local_file_name>
 ```
 
-Each time you change a query module don't forget to reload it. The syntax for
-calling the procedures is as follows:
+Be sure to replace the `<CONTAINER ID>` parameter.
 
-```cypher
-CALL example.procedure("string-argument") YIELD *;
+The example below will copy the configuration file to the user's Desktop:
+
+```
+C:\Users\Vlasta\Desktop>docker cp bb3de2634afe:/etc/memgraph/memgraph.conf memgraph.conf
 ```
 
-Each procedure returns either zero or more records, where each record contains
-named fields. The `YIELD` part is used to select fields we are interested in.
-Custom procedures may be called standalone or as part of a larger query. This is
-useful if we want the procedure to work on data the query is producing.
+3. Copy the file from your current directory to the container with the command:
 
-With this, your developing environment is ready and you are able to easily
-implement and run your own query modules. Check out our [Reference
-Guide](/reference-guide/query-modules/overview.md) to see which Query Modules
-are included in Memgraph.
-
-### Reusing volumes between Memgraph versions
-
-If it happens that the named volumes are reused between different Memgraph
-versions, Docker will overwrite a folder within the container with existing data
-from the host machine. If a new file is introduced, or two versions of Memgraph
-are not compatible, some features might not work, or Memgraph might not be able
-to work correctly. We strongly advise you to use different named volumes for
-different Memgraph versions or to remove the existing volume from the host with
-the following command:
-
-```console
-docker volume rm <volume_name>
+```
+docker cp  <local_file_name> <CONTAINER ID>:<path_in_container>
 ```
 
-## Where to next?
+Be sure to replace the `<CONTAINER ID>` parameter.
 
-To learn more about Memgraph's functionalities, visit the **[Reference
-guide](/reference-guide/overview.md)**. For real-world examples of how to use
-Memgraph, we strongly suggest going through one of the available
-**[Tutorials](/tutorials/overview.md)**.
+The example below will replace the configuration file with the one from the
+user's Desktop:
+
+```
+C:\Users\Vlasta\Desktop>docker cp memgraph.conf bb3de2634afe:/etc/memgraph/memgraph.conf
+```
