@@ -19,11 +19,11 @@ export const Highlight = ({children, color}) => (
   </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-community_detection_online-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/cpp/community_detection_module/community_detection_module.cpp)
+[![docs-source](https://img.shields.io/badge/source-community_detection-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/cpp/community_detection_module/community_detection_module.cpp)
 
 ## Abstract
 
-This query module makes available the [Louvain method](https://arxiv.org/abs/1305.2006) <sup>[1]</sup> for community
+This query module makes available the [Louvain method](https://en.wikipedia.org/wiki/Louvain_method) <sup>[1]</sup> for community
 detection, using the [Grappolo](https://github.com/Exa-Graph/grappolo) parallel implementation.
 
 The Louvain algorithm belongs to the *modularity maximization* family of community
@@ -35,7 +35,7 @@ The algorithm is suitable for large-scale graphs as it runs in *O*(*n*log*n*) ti
 on a graph with *n* nodes. Further performance gains are obtained by parallelization using 
 a distance-1 graph coloring heuristic, and a graph coarsening algorithm that aims to preserve communities.
 
-[^1] [Fast unfolding of communities in large networks](https://arxiv.org/abs/1305.2006), 
+[^1] [Fast unfolding of communities in large networks](https://arxiv.org/abs/0803.0476), 
 Blondel et al.
 
 | Trait               | Value                                                                                                       |
@@ -54,7 +54,7 @@ Computes graph communities using the Louvain method.
 
 #### Input
 
-* `weight: double(1)` ➡ Specifies the default edge weight. If not set, 
+* `weight: str(null)` ➡ Specifies the default edge weight. If not set, 
   the algorithm uses the `weight` edge attribute when present and otherwise 
   treats the graph as unweighted.
 * `coloring: bool(False)` ➡ If set, use the graph coloring heuristic for effective parallelization.

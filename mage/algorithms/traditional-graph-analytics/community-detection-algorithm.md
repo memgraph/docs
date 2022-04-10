@@ -69,7 +69,7 @@ Interests are usually shared within the community. To target a specific
 audience, community detection can be used to recommend certain products among
 users that are sharing interests.
 
-[![Retail](https://img.shields.io/badge/Retail-Application-8A477F?style=for-the-badge)](/use-cases/social-media.md)
+[![Retail](https://img.shields.io/badge/Retail-Application-8A477F?style=for-the-badge)](/use-cases/retail.md)
 
 The methods stated above under **Social networks application** can be applied in
 the retail industry. Targeting a product lineup to like-minded consumers has been
