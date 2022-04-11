@@ -106,10 +106,9 @@ Having defined the data configuration for the translation, all you need to do is
 make an instance of an `Importer` and call `translate()`.
 
 ```python
-importer = LocalFileSystemImporter(
-    file_extension="parquet",
+importer = ParquetLocalFileSystemImporter(
     data_configuration=parsed_yaml,
-    local_storage_path="/home/user/table_data",
+    path="/home/user/table_data",
 )
 
 importer.translate(drop_database_on_start=True)
@@ -121,12 +120,11 @@ To connect to Azure Blob, simply change the Importer object you are using. Like
 above, first, define a data configuration object and then simply call:
 
 ```python
-importer = AzureBlobImporter(
-    file_extension="parquet",
+importer = ParquetAzureBlobFileSystemImporter(
+    container_name="test",
     data_configuration=parsed_yaml,
     blob_account_name="your_account_name",
     blob_account_key="your_account_key",
-    container_name="test"
 )
 ```
 
