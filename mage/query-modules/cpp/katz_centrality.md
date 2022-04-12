@@ -23,12 +23,12 @@ export const Highlight = ({children, color}) => (
 
 ## Abstract
 
-**Katz Centrality** is the measurement of centrality that incorporates the inbound path length starting from wanted node.
-More central nodes will have more closer connections rather than having many long-distance nodes connected to it. 
+**Katz Centrality** is the measurement of centrality that incorporates the inbound path length starting from the wanted node.
+More central nodes will have more closer connections rather than having many long-distance nodes connected to them. 
 
 The implemented algorithm is based on the work of Alexander van der Grinten et. al.  called
-[Scalable Katz Ranking Computation in Large Static and Dynamic Graphs](https://arxiv.org/pdf/1807.03847.pdf). Author
-proposes estimation method that preserves rankings for both static and dynamic Katz centrality scenarios. 
+[Scalable Katz Ranking Computation in Large Static and Dynamic Graphs <sup>[1]</sup>](https://arxiv.org/pdf/1807.03847.pdf). Author
+proposes an estimation method that preserves rankings for both static and dynamic Katz centrality scenarios. 
 
 Theoretically speaking there exists an attenuation factor `(alpha^i)` smaller than 1 which is  applied to walks of length `i`. 
 If `w_i(v)` is the number of walks of length i starting from node v, Katz centrality is defined as:
@@ -40,6 +40,9 @@ Centrality(v) = sum { w_i(v) * alpha ^ i}
 Constructed algorithm computes Katz centrality by iteratively improving the upper and lower bounds on centrality scores. 
 This guarantees that centrality rankings will be correct, but it does not guarantee that the corresponding resulting 
 centralities will be correct.
+
+[^1] [Scalable Katz Ranking Computation in Large Static and Dynamic Graphs](https://arxiv.org/pdf/1807.03847.pdf),
+Alexander van der Grinten et. al.
 
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |
@@ -56,7 +59,7 @@ centralities will be correct.
 #### Input:
 
 * `alpha: double(0.2)` ➡ Exponential decay factor defining the walk length importance. 
-* `epsilon: double(1e-2)` ➡ Convergence tolerance. Minimal difference in two adjacent pairs of nodes in final ranking.
+* `epsilon: double(1e-2)` ➡ Convergence tolerance. Minimal difference in two adjacent pairs of nodes in the final ranking.
 
 #### Output:
 

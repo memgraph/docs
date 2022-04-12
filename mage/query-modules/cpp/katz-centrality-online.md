@@ -30,14 +30,13 @@ and weighting walks by some attenuation factor smaller than 1.
 
 Just as the other centrality measures got their instances of dynamic update algorithms,
 so is **Katz Centrality**. Reduction of computations needed to update already calculated
-results offers a substantially large speedups compared to static algorithm runs. 
+results offers substantially large speedups compared to static algorithm runs. 
 
 The algorithm is based on the work of Alexander van der Grinten et. al.  called
-[Scalable Katz Ranking Computation in Large Static and Dynamic Graphs](https://arxiv.org/pdf/1807.03847.pdf). Author
-proposes estimation method that computes Katz centrality by iteratively improving
+[Scalable Katz Ranking Computation in Large Static and Dynamic Graphs <sup>[1]</sup>](https://arxiv.org/pdf/1807.03847.pdf). Author
+proposes an estimation method that computes Katz's centrality by iteratively improving
 upper and lower bounds on the centrality scores. The computed scores may differ
 from the real values, but the algorithm has the guarantee of preserving the rankings. 
-
 ### Usage
 
 Online Katz centrality should be used in a specific way. To set the parameters, the
