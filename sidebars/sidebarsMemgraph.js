@@ -179,6 +179,7 @@ module.exports = {
         "how-to-guides/replication",
         //"how-to-guides/tensorflow-setup",
         "reference-guide/triggers",
+        "how-to-guides/work-with-docker",
 
         {
           type: "category",

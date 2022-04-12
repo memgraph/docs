@@ -146,7 +146,7 @@ module.exports = {
             },
             {
               label: "Algorithms",
-              to: "/mage/algorithms/traditional-graph-analytics/betweenness-centrality-algorithm",
+              to: "/mage/algorithms/algorithms",
             },
             {
               label: "Use cases",
@@ -350,6 +350,10 @@ module.exports = {
         {
           title: "More",
           items: [
+            {
+              label: "Memgraph Playground",
+              href: "https://playground.memgraph.com"
+            },
             {
               label: "GitHub",
               href: "https://github.com/memgraph/memgraph",

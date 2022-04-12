@@ -15,7 +15,7 @@ module.exports = {
       type: "category",
       label: "Using query modules",
       items: ["usage/loading-modules", "usage/calling-procedures"],
-    }, 
+    },
     {
       type: "category",
       label: "Available query modules",
@@ -28,8 +28,10 @@ module.exports = {
         "query-modules/cpp/community-detection-online",
         "query-modules/cpp/cycles",
         "query-modules/python/distance-calculator",
+        "query-modules/python/export-util",
         "query-modules/python/graph-analyzer",
         "query-modules/python/graph-coloring",
+        "query-modules/python/import-util",
         "query-modules/python/json-util",
         "query-modules/python/max-flow",
         "query-modules/python/node2vec",
@@ -58,6 +60,7 @@ module.exports = {
     {
       type: "category",
       label: "Algorithms",
+      link: {type: 'doc', id: 'algorithms/algorithms'},
       items: [
         {
           type: "category",

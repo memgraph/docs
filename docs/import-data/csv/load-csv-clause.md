@@ -6,6 +6,8 @@ pagination_prev: import-data/overview
 slug: /import-data/load-csv-clause
 ---
 
+[![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/import-data/load-csv-clause.md)
+
 import Tabs from "@theme/Tabs"; import TabItem from "@theme/TabItem";
 
 The `LOAD CSV` Cypher clause enables you to load and use data from a CSV file of
@@ -61,8 +63,10 @@ files into the container.
 
 Below, you can find two examples of how to use the LOAD CSV clause depending on
 the complexity of your data:
-- [One type of nodes and relationships](#one-type-of-nodes-and-relationships)
-- [Multiple types of nodes and
+- [Transferring CSV files into a Docker container {#transfer}](#transferring-csv-files-into-a-docker-container-transfer)
+- [Examples](#examples)
+  - [One type of nodes and relationships](#one-type-of-nodes-and-relationships)
+  - [Multiple types of nodes and relationships](#multiple-types-of-nodes-and-relationships)
   relationships](#multiple-types-of-nodes-and-relationships)
 
 ### One type of nodes and relationships
@@ -183,6 +187,13 @@ CREATE (p1)-[:IS_FRIENDS_WITH]->(p2);
 
 <details>
   <summary>This is how the graph should look like in Memgraph after the import:</summary>
+  Run the following query: <br/>
+  <code>
+  MATCH p=()-[]-() RETURN p; 
+  </code>
+  <p>
+  
+   </p>
   <div>
     <img src={require('../../data/import-data/load_csv_one_type_of_nodes_and_relationships.png').default}/>
   </div>
@@ -240,6 +251,13 @@ CREATE (n:Person {id: row.id, name: row.name, age: ToInteger(row.age), city: row
 
 <details>
   <summary>This is how the graph should look like in Memgraph after the import:</summary>
+  Run the following query: <br/>
+  <code>
+  MATCH (p) RETURN p; 
+  </code>
+  <p> 
+  
+  </p>
   <div>
     <img src={require('../../data/import-data/load_csv_people_nodes.png').default}/>
   </div>
@@ -281,6 +299,13 @@ SET f.met_in = row.met_in;
 
 <details>
   <summary>This is how the graph should look like in Memgraph after the import:</summary>
+  Run the following query: <br/>
+  <code>
+  MATCH p=()-[]-() RETURN p; 
+  </code>
+  <p> 
+  
+  </p>
   <div>
     <img src={require('../../data/import-data/load_csv_people_relationships.png').default}/>
   </div>
@@ -315,6 +340,13 @@ CREATE (n:Restaurant {id: row.id, name: row.name, menu: row.menu});
 
 <details>
   <summary>This is how the graph should look like in Memgraph after the import:</summary>
+  Run the following query: <br/>
+  <code>
+  MATCH (p) RETURN p; 
+  </code>
+  <p> 
+  
+  </p>
   <div>
     <img src={require('../../data/import-data/load_csv_restaurant_nodes.png').default}/>
   </div>
@@ -356,6 +388,13 @@ SET ate.liked = ToBoolean(row.liked);
 
 <details>
   <summary>This is how the graph should look like in Memgraph after the import:</summary>
+  Run the following query: <br/>
+  <code>
+  MATCH p=()-[]-() RETURN p; 
+  </code>
+  <p> 
+  
+  </p>
   <div>
     <img src={require('../../data/import-data/load_csv_restaurants_relationships.png').default}/>
   </div>
