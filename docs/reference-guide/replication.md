@@ -31,8 +31,9 @@ cluster, one instance has to be chosen as the MAIN instance. The rest of the
 instances have to be demoted to REPLICA roles and have a port defined using a
 Cypher query. REPLICA instances no longer accept write queries. In order to
 start the replication, each REPLICA instance needs to be registered from the
-MAIN instance by setting a replication mode (SYNC, SYNC WITH TIMEOUT, and ASYNC)
-and specifying the REPLICA instance's socket address.
+MAIN instance by setting [a replication
+mode](/under-the-hood/replication.md#replication-modes) (SYNC, SYNC WITH TIMEOUT,
+and ASYNC) and specifying the REPLICA instance's socket address.
 
 The replication mode defines the terms by which the MAIN instance can commit the
 changes to the database, thus modifying the system to prioritize either
@@ -210,8 +211,8 @@ DROP REPLICA <name>;
 
 By comparing timestamps, the MAIN instance knows when a REPLICA instance is not
 synchronized and is missing some earlier transactions. The REPLICA instance is
-then set into a RECOVERY state, where it remains until it is fully synchronized
-with the MAIN instance.
+then set into a RECOVERY state, where it remains until it is [fully synchronized
+with the MAIN instance](/under-the-hood/replication.md#synchronizing-instances).
 
 The missing data changes can be sent as snapshots or WAL files. Snapshot files
 represent an image of the current state of the database and are much larger than
