@@ -23,7 +23,7 @@ continue with the tutorial.
 
 So far we have covered the following topics with basic tutorials:
 
-- **[Analyzing TED Talks](/tutorials/analyzing-ted-talks)** - [Try it on
+- **[Analyzing TED Talks](analyzing-ted-talks.md)** - [Try it on
   Playground!](https://playground.memgraph.com/sandbox/ted-talks)
 - **[Backpacking Through Europe](backpacking-through-europe.md)** - [Try it on
   Playground!](https://playground.memgraph.com/sandbox/europe-backpacking)
@@ -36,6 +36,6 @@ So far we have covered the following topics with basic tutorials:
   Playground!](https://playground.memgraph.com/sandbox/game-of-thrones-deaths)
 - **[Graphing the Premier League](graphing-the-premier-league.md)** - [Try it on
   Playground!](https://playground.memgraph.com/sandbox/football-premier-league)
-- **[Movie Recommendation System](movie-recommendation.md)**
 - **[Marvel Comic Universe Social Network](marvel-universe.md)** - [Try it on
   Playground!](https://playground.memgraph.com/sandbox/marvel-comics)
+- **[Movie Recommendation System](movie-recommendation.md)**

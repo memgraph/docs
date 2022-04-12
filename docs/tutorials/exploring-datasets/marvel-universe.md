@@ -75,7 +75,7 @@ operations.
 On the other hand, if you would like to add changes to the dataset, download the
 [Memgraph Platform](https://memgraph.com/download#memgraph-platform). Once you
 have it up and running, open Memgraph Lab web application within the browser on
-[`localhost:3000`](http://localhost:3000) and navigate to the `Datasets` in the
+[`localhost:3000`](http://localhost:3000) and navigate to `Datasets` in the
 sidebar. From there, choose the dataset `Marvel Comic Universe social network`
 and continue with the tutorial.
 

@@ -36,7 +36,7 @@ a property `score` &mdash; float number between 0 and 5.
 Download the [Memgraph
 Platform](https://memgraph.com/download#memgraph-platform). Once you have it up
 and running, open Memgraph Lab web application within the browser on
-[`localhost:3000`](http://localhost:3000) and navigate to the `Datasets` in the
+[`localhost:3000`](http://localhost:3000) and navigate to `Datasets` in the
 sidebar. From there, choose the dataset `MovieLens: Movies, genres and users`
 and continue with the tutorial.
 
