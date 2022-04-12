@@ -36,6 +36,22 @@ module.exports = {
             "how-to-guides/streams/pulsar-streams",
           ],
         },
+        {
+          type: "category",
+          label: "Import data from different sources",
+          items: [
+            "how-to-guides/loaders/table-to-graph-importer",
+            "how-to-guides/loaders/custom-file-system-importer",
+          ],
+        },
+        {
+          type: "category",
+          label: "Manage isntances",
+          items: [
+            "how-to-guides/instance-runner/memgraph-docker-instance",
+            "how-to-guides/instance-runner/memgraph-binary-instance",
+          ],
+        },
         "how-to-guides/triggers/triggers",
         "how-to-guides/on-disk-storage/on-disk-storage"
       ],
