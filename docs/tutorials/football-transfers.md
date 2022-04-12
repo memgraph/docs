@@ -93,8 +93,8 @@ continue with the tutorial there. Note that you will not be able to execute
 On the other hand, if you would like to add changes to the dataset, download the
 [Memgraph Platform](https://memgraph.com/download#memgraph-platform). Once you
 have it up and running, open Memgraph Lab web application within the browser on
-[`localhost:3000`](http://localhost:3000) and navigate to the `Datasets` tab in
-the sidebar. From there, choose the dataset `Football player's transfers` and
+[`localhost:3000`](http://localhost:3000) and navigate to the `Datasets` in the
+sidebar. From there, choose the dataset `Football player's transfers` and
 continue with the tutorial.
 
 ## Example queries using Cypher
