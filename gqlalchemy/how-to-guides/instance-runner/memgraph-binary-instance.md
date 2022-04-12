@@ -8,7 +8,7 @@ slug: /how-to-guides/memgraph-binary-instance
 Through this guide, you will learn how to start, stop, connect to and monitor
 Memgraph instances with GQLAlchemy.
 
-First, do all necessary imports and create an instance of the database:
+First, perform all the necessary imports:
 
 ```python
 from gqlalchemy.instance_runner import MemgraphInstanceBinary
@@ -79,6 +79,6 @@ memgraph_instance.is_running()
 
 ## Where to next?
 
-Hopefully, this guide has taught you how to map nodes and relationships. If you
-have any more questions, join our community and ping us on
+Hopefully, this guide has taught you how to manage Memgraph Docker instances. If
+you have any more questions, join our community and ping us on
 [Discord](https://discord.gg/memgraph).

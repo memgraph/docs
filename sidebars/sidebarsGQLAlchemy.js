@@ -74,8 +74,8 @@ module.exports = {
         slug: "/reference",
       },
       items: [
-        "reference/connection",
         "reference/disk_storage",
+        "reference/instance_runner",
         "reference/memgraph",
         "reference/models",
         "reference/query_builder",
