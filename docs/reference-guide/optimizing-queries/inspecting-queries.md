@@ -22,40 +22,40 @@ produced plan and gain insight into the execution of a query.
 
 ## Operators
 
-| Operator                      | Description                                                                                                              |
-| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| Operator                      | Description                                                                                                                |
+| ----------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
 | `Accumulate`                    | Accumulates the input it received.                                                                                       |
 | `Aggregate`                     | Aggregates the input it received.                                                                                        |
 | `CallProcedure`                 | Calls a procedure.                                                                                                       |
 | `Cartesian`                     | Applies the Cartesian product (the set of all possible ordered combinations consisting of one member from each of those sets) on the input it received. |
 | `ConstructNamedPath`            | Creates a path.                                                                                                          |
 | `CreateNode`                    | Creates a node.                                                                                                          |
-| `CreateExpand`                  | Creates edges/nodes on existing nodes.                                                                                   |
+| `CreateExpand`                  | Creates edges and  new nodes to connect with existing nodes.                                                             |
 | `Delete`                        | Deletes nodes and edges.                                                                                                 |
 | `EdgeUniquenessFilter`          | Filters unique edges.                                                                                                    |
-| `Expand`                        | Expands the node by finding the node's children.                                                                                 |
-| `ExpandVariable`                | Performs a node expansion of variable length.                                                                            |
+| `Expand`                        | Expands the node by finding the node's children.                                                                         |
+| `ExpandVariable`                | Performs a node expansion of a variable number of relationships                                                          |
 | `Filter`                        | Filters the input it received.                                                                                           |
 | `Foreach`                       | Iterates over a list and applies one or more update clauses.                                                             | 
-| `Limit`                         | Limits pulls within the input it received.                                                                               |
+| `Limit`                         | Limits certain rows from the pull chain.                                                                                 |
 | `LoadCsv`                       | Loads CSV file in order to import files into the database.                                                               |
 | `Merge`                         | Applies merge on the input it received.                                                                                  |
 | `Once`                          | Forms the beginning of an operator chain with "only once" semantics. The operator will return false on subsequent pulls. |
 | `Optional`                      | Performs optional matching and returns null if a match is not found.                                                     |
 | `OrderBy`                       | Orders the input it received.                                                                                            |
 | `Produce`                       | Produces results.                                                                                                        |
-| `RemoveLabels`                  | Removes an arbitrary number of node labels.                                                                              |
+| `RemoveLabels`                  | Removes a variable number of node labels.                                                                                |
 | `RemoveProperty`                | Removes a node or relationship property.                                                                                 |
-| `ScanAll`                       | Returns all nodes in the database.                                                                                       |
-| `ScanAllById`                   | Returns nodes with a certain index.                                                                                      |
-| `ScanAllByLabel`                | Returns nodes with a certain label.                                                                                      |
-| `ScanAllByLabelProperty`        | Returns nodes with a certain label and property.                                                                         |
-| `ScanAllByLabelPropertyRange`   | Returns nodes with a certain label and property value within the given range (both inclusive and exclusive).             |
-| `ScanAllByLabelPropertyValue`   | Returns nodes with a certain label and property value.                                                                   |
-| `SetLabels`                     | Sets arbitrary node labels.                                                                                              |
+| `ScanAll`                       | Produces all nodes in the database.                                                                                      |
+| `ScanAllById`                   | Produces nodes with a certain index.                                                                                     |
+| `ScanAllByLabel`                | Produces nodes with a certain label.                                                                                     |
+| `ScanAllByLabelProperty`        | Produces nodes with a certain label and property.                                                                        |
+| `ScanAllByLabelPropertyRange`   | Produces nodes with a certain label and property value within the given range (both inclusive and exclusive).            |
+| `ScanAllByLabelPropertyValue`   | Produces nodes with a certain label and property value.                                                                  |
+| `SetLabels`                     | Sets node labels of variable length.                                                                                     |
 | `SetProperty`                   | Sets a node or relationship property.                                                                                    |
 | `SetProperties`                 | Sets a list of node or relationship properties.                                                                          |
-| `Skip`                          | Skips pulls within the input it received.                                                                                |
+| `Skip`                          | Skips certain rows from the pull chain.                                                                                  |
 | `Unwind`                        | Unwinds an expression to multiple records.                                                                               |
 | `Distinct`                      | Applies a distinct filter on the input it received.                                                                      |
 
