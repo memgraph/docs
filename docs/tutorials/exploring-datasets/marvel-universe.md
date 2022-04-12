@@ -2,6 +2,7 @@
 id: marvel-universe
 title: Marvel Comic Universe social network
 sidebar_label: Marvel Comic Universe social network
+slug: /tutorials/marvel-universe
 ---
 
 This article is a part of a series intended to show how to use Memgraph on
@@ -61,7 +62,7 @@ Now, the data we'll be using in our queries can be classified as follows:
 
 A visual scheme of our graph database is given below.
 
-![MCU](../data/mcu_metagraph.png)
+![MCU](../../data/mcu_metagraph.png)
 
 ## Exploring the dataset
 

@@ -2,6 +2,7 @@
 id: graphing-the-premier-league
 title: Graphing the Premier League
 sidebar_label: Graphing the Premier League
+slug: /tutorials/graphing-the-premier-league
 ---
 
 This article is a part of a series intended to show users how to use Memgraph on
@@ -34,7 +35,7 @@ nodes to the game node and are labeled as `:Played`.
 Every bit of information regarding the data model is nicely condensed in the
 following visual representation.
 
-![Football](../data/football_metagraph.png)
+![Football](../../data/football_metagraph.png)
 
 ## Exploring the dataset
 

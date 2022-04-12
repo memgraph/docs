@@ -2,6 +2,7 @@
 id: movie-recommendation
 title: Movie recommendation system
 sidebar_label: Movie recommendation system
+slug: /tutorials/movie-recommendation
 ---
 
 This article is a part of a series intended to show users how to use Memgraph on
@@ -28,14 +29,16 @@ Each movie can be connected with `:ofGenre` relationship to different genres. A 
 rate some movie. Rating is modeled with `:Rating` relationship and this relationship has
 a property `score` &mdash; float number between 0 and 5.
 
-![Movies](../data/movie_metagraph.png)
+![Movies](../../data/movie_metagraph.png)
 
-## Importing the dataset
+## Exploring the dataset
 
-To import the dataset, download the [Memgraph
-Lab](https://memgraph.com/product/lab) desktop application and navigate to the
-`Datasets` tab in the sidebar. From there, choose the dataset `MovieLens:
-Movies, genres and users` and continue with the tutorial.
+Download the [Memgraph
+Platform](https://memgraph.com/download#memgraph-platform). Once you have it up
+and running, open Memgraph Lab web application within the browser on
+[`localhost:3000`](http://localhost:3000) and navigate to the `Datasets` in the
+sidebar. From there, choose the dataset `MovieLens: Movies, genres and users`
+and continue with the tutorial.
 
 ## Example queries
 

@@ -2,6 +2,7 @@
 id: analyzing-ted-talks
 title: Analyzing TED Talks
 sidebar_label: Analyzing TED Talks
+slug: /tutorials/analyzing-ted-talks
 ---
 
 This article is a part of a series intended to show how to use Memgraph on
@@ -35,7 +36,7 @@ few example queries.
   and relationship`HasRating` with property `user_count` between talk and rating
   nodes.
 
-![TED](../data/TED_metagraph.png)
+![TED](../../data/TED_metagraph.png)
 
 ## Exploring the dataset
 

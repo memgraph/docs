@@ -2,6 +2,7 @@
 id: exploring-the-european-road-network
 title: Exploring the European road network
 sidebar_label: Exploring the European road network
+slug: /tutorials/exploring-the-european-road-network
 ---
 
 This article is a part of a series intended to show users how to use Memgraph on
@@ -27,7 +28,7 @@ city is connected to the country it belongs to via an edge of type `:In_`. There
 are edges of type `:Road` connecting cities less than 500 kilometers apart.
 Distance between cities is specified in the `length` property of the edge.
 
-![Road network](../data/road_network_metagraph.png)
+![Road network](../../data/road_network_metagraph.png)
 
 ## Exploring the dataset
 

@@ -2,6 +2,7 @@
 id: backpacking-through-europe
 title: Backpacking through Europe
 sidebar_label: Backpacking through Europe
+slug: /tutorials/backpacking-through-europe
 ---
 
 This article is a part of a series intended to show users how to use Memgraph on
@@ -36,7 +37,7 @@ for tourist information such as `local_currency`, `local_currency_code`, and
 if they are neighboring countries. This edge also has the `eu_border` property.
 Every city node is connected to its parent country node via the `:Inside` edge.
 
-![Backpacking](../data/backpacking_metagraph.png)
+![Backpacking](../../data/backpacking_metagraph.png)
 
 ## Exploring the dataset
 

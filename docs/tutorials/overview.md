@@ -5,41 +5,18 @@ sidebar_label: Tutorials overview
 slug: /tutorials
 ---
 
-Articles within the tutorials section serve as real-world examples of using
-Memgraph.
+Tutorials are guides on how to use Memgraph in real-world examples to help you
+kick off your own Memgraph graph database. You can learn:
 
-## Cypher and graph analytics tutorials
-
-These articles tend to provide the user with a reasonably-sized dataset and some
-example queries that showcase how to use Memgraph on that particular dataset. We
-encourage all Memgraph users to go through at least one of the tutorials as they
-can also serve as a verification that Memgraph is successfully installed on your
-system.
-
-So far we have covered the following topics with basic tutorials:
-
-- **[Analyzing TED Talks](analyzing-ted-talks.md)** - [Try it on
-  Playground!](https://playground.memgraph.com/sandbox/ted-talks)
-- **[Backpacking Through Europe](backpacking-through-europe.md)** - [Try it on
-  Playground!](https://playground.memgraph.com/sandbox/europe-backpacking)
-- **[Exploring the European Road
-  Network](exploring-the-european-road-network.md)** - [Try it on
-  Playground!](https://playground.memgraph.com/sandbox/europe-roads)
-- **[Football Transfers](football-transfers.md)** - [Try it on
-  Playground!](https://playground.memgraph.com/sandbox/football-transfers)
-- **[Game of Thrones deaths](got-deaths.md)** - [Try it on
-  Playground!](https://playground.memgraph.com/sandbox/game-of-thrones-deaths)
-- **[Graphing the Premier League](graphing-the-premier-league.md)** - [Try it on
-  Playground!](https://playground.memgraph.com/sandbox/football-premier-league)
-- **[Movie Recommendation System](movie-recommendation.md)**
-- **[Marvel Comic Universe Social Network](marvel-universe.md)** - [Try it on
-  Playground!](https://playground.memgraph.com/sandbox/marvel-comics)
-
-If you are looking for more complex tutorials that include the usage of database
-functionalities such as query modules, then take a look at these:
-
-- **[Understanding music (with modules)](understanding-music-with-modules.md)**
-- **[Social Network Analysis with NetworkX](social-network-analysis.md)**
+-  [basic terminology and practices related to graph databases and graph modeling](graph-modeling.md)
+-  [the installation process of Memgraph on Windows 10](install-memgraph-on-windows-10.md)
+-  [Cypher language used to query the Memgraph database instance](/tutorials/exploring-datasets)
+-  [Style script to add style to your graphs in Memgraph Lab](style-your-graphs-in-memgraph-lab.md)
+-  [migration of relational database to Memgraph](migrate-relational-database.md)
+-  [how to connect Memgraph to an existing Kafka stream in order to analyze data
+in real-time](graph-stream-processing-with-kafka.md)
+-  [how to analyze social networks with NetworkX](social-network-analysis.md)
+-  [how to extend the Cypher query language by implementing query modules](understanding-music-with-modules.md)
 
 ## Building applications and other tutorials
 

@@ -2,6 +2,7 @@
 id: got-deaths
 title: Game of Thrones deaths
 sidebar_label: Game of Thrones deaths
+slug: /tutorials/got-deaths
 ---
 
 This article is part of a series intended to show how to use Memgraph on
@@ -75,7 +76,7 @@ Nodes are connected with the following edges:
   nodes representing details of the death
 - `:PART_OF` connects node `Episode` with `Season` node which episode is part of
 
-![GOT deaths](../data/got-deaths.png)
+![GOT deaths](../../data/got-deaths.png)
 
 ## Exploring the dataset
 

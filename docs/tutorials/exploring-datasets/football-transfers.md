@@ -2,6 +2,7 @@
 id: football-transfers
 title: Football transfers
 sidebar_label: Football transfers
+slug: /tutorials/football-transfers
 ---
 
 This article is a part of a series intended to show how to use Memgraph on
@@ -80,7 +81,7 @@ Nodes are connected with the following edges:
   transfer has happened.
 - `:PLAYS_IN` - connects node `Team` that plays in league node `League`.
 
-![Football transfers](../data/football_transfers_metagraph.png)
+![Football transfers](../../data/football_transfers_metagraph.png)
 
 ## Exploring the dataset
 
@@ -370,4 +371,4 @@ all the information for the graph visual:
 
 Here is a picture of how it will look if you run the query in MemgraphLab.
 
-![football_transfers_MemgraphLab_visual](../data/football_transfers_MemgraphLab_visual.png)
+![football_transfers_MemgraphLab_visual](../../data/football_transfers_MemgraphLab_visual.png)
