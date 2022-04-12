@@ -24,8 +24,8 @@ these steps.
 ### 1. Extend the `FileSystemHandler` class
 
 This class holds the connection to the file system service and handles the path
-from which the `DataLoader` object reads. To get a fsspec-compatible instance of
-an Azure Blob connection, you can use the `adlfs` package. All that's left to do
+from which the `DataLoader` object reads files. To get a fsspec-compatible instance of
+an Azure Blob connection, you can use the [adlfs](https://github.com/fsspec/adlfs) package. We are going to pass `adlfs`-specific parameters such as `blob_account_name` and `blob_account_key` via kwargs. All that's left to do
 is to override the `get_path` method.
 
 ```python
@@ -33,37 +33,38 @@ import adlfs
 
 class AzureBlobFileSystemHandler(FileSystemHandler):
 
-    def __init__(self, **kwargs) -> None:
+    def __init__(self, container_name: str, **kwargs) -> None:
         """Initializes connection and data container."""
-        self.fs = adlfs.AzureBlobFileSystem(
-            account_name=kwargs["blob_account_name"],
-            account_key=kwargs["blob_account_key"],
-        )
-        self._container_name = kwargs["blob_container_name"]
+        super().__init__(fs=adlfs.AzureBlobFileSystem(**kwargs))
+        self._container_name = container_name
 
-    def get_path(self, collection_name: str, file_extension: str) -> str:
+    def get_path(self, collection_name: str) -> str:
         """Get file path in file system."""
-        return f"{self._container_name}/{collection_name}.{file_extension}"
+        return f"{self._container_name}/{collection_name}"
 ```
 
 ### 2. Wrap the `TableToGraphImporter`
 
-Next, you need to wrap the `TableToGraphImporter` class and make your own
-`AzureBlobImporter`, which initializes the `AzureBlobFileSystemHandler` and
-`PyArrowDataLoader` objects, and passes the `DataLoader` to the
-`TableToGraphImporter`.
+Next, you are going to wrap the `TableToGraphImporter` class. This is optional since you can use the class directly, but it will be easier to use if we extend it with our custom importer class. Since we will be using PyArrow for data loading, you can extend the `PyArrowImporter` class (which extends the `TableToGraphImporter`) and make your own
+`PyArrowAzureBlobImporter`. This class should initialize the `AzureBlobFileSystemHandler` and leave the rest to the `PyArrowImporter` class. It should also receive a `file_extension_enum` argument, which defines the file type that you are going to be reading.
 
 ```python
-class AzureBlobImporter(TableToGraphImporter):
-    """TableToGraphImporter wrapper for use with Azure Blob File System."""
+class PyArrowAzureBlobImporter(PyArrowImporter):
+    """PyArrowImporter wrapper for use with Azure Blob File System."""
 
     def __init__(
-        self, file_extension: str, data_configuration: Dict[str, Any], memgraph: Optional[Memgraph] = None, **kwargs
+        self,
+        container_name: str,
+        file_extension_enum: PyArrowFileTypeEnum,
+        data_configuration: Dict[str, Any],
+        memgraph: Optional[Memgraph] = None,
+        **kwargs,
     ) -> None:
-        file_system_handler = AzureBlobFileSystemHandler(**kwargs)
-        data_loader = PyArrowDataLoader(file_extension=file_extension, file_system_handler=file_system_handler)
         super().__init__(
-            data_loader=data_loader,
+            file_system_handler=AzureBlobFileSystemHandler(        
+                container_name=container_name, **kwargs
+            ),
+            file_extension_enum=file_extension_enum,
             data_configuration=data_configuration,
             memgraph=memgraph,
         )
@@ -75,12 +76,12 @@ Finally, to use your custom file system, initialize the Importer class and call
 `translate()`
 
 ```python
-importer = AzureBlobImporter(
-    file_extension="parquet",
+importer = PyArrowAzureBlobImporter(
+    container_name="test"
+    file_extension_enum=PyArrowFileTypeEnum.Parquet,
     data_configuration=parsed_yaml,
     blob_account_name="your_account_name",
     blob_account_key="your_account_key",
-    container_name="test"
 )
 
 importer.translate(drop_database_on_start=True)
