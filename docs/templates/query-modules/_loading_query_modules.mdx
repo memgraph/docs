@@ -1,0 +1,53 @@
+<!-- ## Loading query modules -->
+
+Once you start Memgraph, it will attempt to load query modules from all `*.so`
+and `*.py` files from the default (`/usr/lib/memgraph/query_modules`)
+directory. 
+
+If you want to change the location from which Memgraph will load query modules,
+change the `--query-modules-directory` flag in the main configuration file
+(`/etc/memgraph/memgraph.conf`) or supply it as a command-line parameter (e.g.
+when using Docker).
+
+:::caution
+
+When working with Docker and `memgraph-platform` image, you should pass
+configuration flags inside of environmental variables, for example:
+
+```terminal
+docker run -p 7687:7686 -e MEMGRAPH="--query-modules-directory=/usr/lib/memgraph/my_modules" memgraph/memgraph-platform`.
+```
+
+If you are working with `memgraph` or `memgraph-mage` images you should pass
+configuration options like this: 
+
+```terminal
+docker run -p 7687:7687 -p 7444:7444 memgraph --query-modules-directory=/usr/lib/memgraph/my_modules
+```
+
+:::
+
+If a certain query module was added while Memgraph was already running, you need
+to load it manually using the `mg.load("module_name")` procedure within a query:
+
+```cypher
+CALL mg.load("py_example");
+```
+
+If there is no response (no error message), the load was successful.
+
+If you want to reload all existing modules and load any newly added ones, use
+`mg.load_all()`:
+
+```cypher
+CALL mg.load_all();
+```
+
+If there is no response (no error message), the load was successful.
+
+You can check if the query module has been loaded by using the `mg.procedures()`
+procedure within a query:
+
+```cypher
+CALL mg.procedures() YIELD *;
+```

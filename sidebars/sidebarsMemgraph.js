@@ -142,7 +142,7 @@ module.exports = {
       label: "How-to guides",
       link: { type: "doc", id: "how-to-guides/overview" },
       items: [
-        "reference-guide/backup",
+        "how-to-guides/create-backup",
         {
           type: "category",
           label: "Connect to stream sources",
@@ -175,17 +175,11 @@ module.exports = {
           ],
         },
         "how-to-guides/networkx",
-        {
-          type: "category",
-          label: "Use query modules",
-          items: [
-            "how-to-guides/query-modules/overview",
-            "how-to-guides/query-modules/implement-query-modules",
-          ],
-        },
+        "how-to-guides/query-modules",
         "how-to-guides/replication",
         //"how-to-guides/tensorflow-setup",
         "reference-guide/triggers",
+        "how-to-guides/work-with-docker",
 
         {
           type: "category",
@@ -205,6 +199,7 @@ module.exports = {
         "reference-guide/backup",
         "reference-guide/graph-algorithms",
         "reference-guide/configuration",
+        "reference-guide/data-types",
         {
           type: "category",
           label: "Import Data",
@@ -240,37 +235,18 @@ module.exports = {
           link: { type: "doc", id: "reference-guide/query-modules/overview" },
           items: [
             "reference-guide/query-modules/available-query-modules",
-            "reference-guide/query-modules/load-call-query-modules",
-            "reference-guide/query-modules/module-file-utilities",
             {
               type: "category",
-              label: "API",
+              label: "Implement custom query modules",
+              link: { type: "doc", id: "reference-guide/query-modules/implement-custom-query-modules/overview" },
               items: [
-                {
-                  type: "category",
-                  label: "C API",
-                  link: { type: "doc", id: "reference-guide/query-modules/api/c-api/overview" },
-                  items: [
-                    {
-                      type: "category",
-                      label: "Classes",
-                      items: [
-                        "reference-guide/query-modules/api/c-api/classes/mgp_date_parameters",
-                        "reference-guide/query-modules/api/c-api/classes/mgp_duration_parameters",
-                        "reference-guide/query-modules/api/c-api/classes/mgp_edge_id",
-                        "reference-guide/query-modules/api/c-api/classes/mgp_edge_type",
-                        "reference-guide/query-modules/api/c-api/classes/mgp_label",
-                        "reference-guide/query-modules/api/c-api/classes/mgp_local_date_time_parameters",
-                        "reference-guide/query-modules/api/c-api/classes/mgp_local_time_parameters",
-                        "reference-guide/query-modules/api/c-api/classes/mgp_property",
-                        "reference-guide/query-modules/api/c-api/classes/mgp_vertex_id",
-                      ],
-                    },
-                  ],
-                },
-                "reference-guide/query-modules/api/python-api",
+                "reference-guide/query-modules/implement-custom-query-modules/api/python-api",
+                "reference-guide/query-modules/implement-custom-query-modules/api/c-api",
+                "reference-guide/query-modules/implement-custom-query-modules/custom-query-module-example",  
               ],
             },
+            "reference-guide/query-modules/load-call-query-modules",
+            "reference-guide/query-modules/module-file-utilities",
           ],
         },
         "reference-guide/replication",
@@ -298,7 +274,6 @@ module.exports = {
             },
           ],
         },
-        "reference-guide/temporal-types",
         //"reference-guide/tensorflow",
         "reference-guide/triggers",
         "reference-guide/users",

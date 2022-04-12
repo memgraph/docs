@@ -73,7 +73,7 @@ module.exports = {
               to: "/memgraph/reference-guide",
             },
             {
-              label: "Concepts",
+              label: "Under the hood",
               to: "/memgraph/under-the-hood",
             },
             {
@@ -146,7 +146,7 @@ module.exports = {
             },
             {
               label: "Algorithms",
-              to: "/mage/algorithms/traditional-graph-analytics/betweenness-centrality-algorithm",
+              to: "/mage/algorithms/algorithms",
             },
             {
               label: "Use cases",
@@ -351,6 +351,10 @@ module.exports = {
           title: "More",
           items: [
             {
+              label: "Memgraph Playground",
+              href: "https://playground.memgraph.com"
+            },
+            {
               label: "GitHub",
               href: "https://github.com/memgraph/memgraph",
             },
@@ -369,7 +373,7 @@ module.exports = {
       copyright: `Copyright © ${new Date().getFullYear()} Memgraph. Built by developers, for developers!`,
     },
     algolia: {
-      appId: 'R5T3EMHC2U',
+      appId: "R5T3EMHC2U",
       apiKey: "986c523abb1c0bbd68ec83d9ada11124",
       indexName: "g-despot",
       contextualSearch: true,
@@ -386,9 +390,9 @@ module.exports = {
     },
     hideableSidebar: true,
     announcementBar: {
-      id: "gqlalchemy",
+      id: "cypheremailcourse",
       content:
-        'Check out the new Python Object Graph Mapper (OGM) library <a target="_blank" rel="noopener noreferrer" href="https://github.com/memgraph/gqlalchemy"><b>GQLAlchemy</b></a> ⭐',
+        'Sign up for the new <a target="_blank" rel="noopener noreferrer" href="https://memgraph.com/learn-cypher-query-language"><b>Cypher Email Course</b></a> 📩',
       backgroundColor: "#fafbfc",
       textColor: "#091E42",
       isCloseable: true,
@@ -583,7 +587,7 @@ module.exports = {
             ],
           },
           {
-            to: "/memgraph/how-to-guides/query-modules/implement-query-modules",
+            to: "/memgraph/how-to-guides/query-modules",
             from: ["/memgraph/how-to-guides-overview/implement-query-modules"],
           },
           {
@@ -593,7 +597,7 @@ module.exports = {
             ],
           },
           {
-            to: "/memgraph/how-to-guides/query-modules/implement-query-modules",
+            to: "/memgraph/how-to-guides/query-modules",
             from: [
               "/memgraph/how-to-guides-overview/use-and-implement-query-modules",
             ],
@@ -996,9 +1000,7 @@ module.exports = {
           //How-to guides redirects
           {
             to: "/memgraph/how-to-guides",
-            from: [
-              "/memgraph/database-functionalities",
-            ],
+            from: ["/memgraph/database-functionalities"],
           },
           {
             to: "/memgraph/how-to-guides/streams/kafka/kafka-streams",
@@ -1057,7 +1059,7 @@ module.exports = {
             from: ["/memgraph/database-functionalities/query-modules"],
           },
           {
-            to: "/memgraph/how-to-guides/query-modules/implement-query-modules",
+            to: "/memgraph/how-to-guides/query-modules",
             from: [
               "/memgraph/database-functionalities/query-modules/implement-query-modules",
             ],
@@ -1193,6 +1195,73 @@ module.exports = {
           {
             to: "/memgraph-lab/graph-style-script-language",
             from: ["/memgraph-lab/style-script/quick-start"],
+          },
+          //Redirect for query modules
+          {
+            to: "/memgraph/reference-guide/query-modules/api/c-api",
+            from: [
+              "/memgraph/reference-guide/query-modules/api/c-api/classes/mgp_date_parameters",
+            ],
+          },
+          {
+            to: "/memgraph/reference-guide/query-modules/api/c-api",
+            from: [
+              "/memgraph/reference-guide/query-modules/api/c-api/classes/mgp_duration_parameters",
+            ],
+          },
+          {
+            to: "/memgraph/reference-guide/query-modules/api/c-api",
+            from: [
+              "/memgraph/reference-guide/query-modules/api/c-api/classes/mgp_edge_id",
+            ],
+          },
+          {
+            to: "/memgraph/reference-guide/query-modules/api/c-api",
+            from: [
+              "/memgraph/reference-guide/query-modules/api/c-api/classes/mgp_edge_type",
+            ],
+          },
+          {
+            to: "/memgraph/reference-guide/query-modules/api/c-api",
+            from: [
+              "/memgraph/reference-guide/query-modules/api/c-api/classes/mgp_label",
+            ],
+          },
+          {
+            to: "/memgraph/reference-guide/query-modules/api/c-api",
+            from: [
+              "/memgraph/reference-guide/query-modules/api/c-api/classes/mgp_local_date_time_parameters",
+            ],
+          },
+          {
+            to: "/memgraph/reference-guide/query-modules/api/c-api",
+            from: [
+              "/memgraph/reference-guide/query-modules/api/c-api/classes/mgp_local_time_parameters",
+            ],
+          },
+          {
+            to: "/memgraph/reference-guide/query-modules/api/c-api",
+            from: [
+              "/memgraph/reference-guide/query-modules/api/c-api/classes/mgp_property",
+            ],
+          },
+          {
+            to: "/memgraph/reference-guide/query-modules/api/c-api",
+            from: [
+              "/memgraph/reference-guide/query-modules/api/c-api/classes/mgp_vertex_id",
+            ],
+          },
+          // Redirect for temporal types
+          {
+            to: "/memgraph/reference-guide/data-types",
+            from: ["/memgraph/reference-guide/temporal-types"],
+          },
+          // Redirect for query module how-to guides
+          {
+            to: "/memgraph/how-to-guides/query-modules",
+            from: [
+              "/memgraph/how-to-guides/query-modules/implement-query-modules",
+            ],
           },
         ],
       },

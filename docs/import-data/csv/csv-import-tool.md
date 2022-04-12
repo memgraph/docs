@@ -6,6 +6,8 @@ pagination_prev: import-data/overview
 slug: /import-data/csv-import-tool
 ---
 
+[![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/import-data/csv-import-tool.md)
+
 import Tabs from "@theme/Tabs"; import TabItem from "@theme/TabItem";
 
 CSV is a universal and very versatile data format used to store large quantities
@@ -133,7 +135,7 @@ If you get a `--nodes flag is required!` error, the paths to the files are incom
 Next time you run Memgraph, the dataset will be loaded.
 
 ```bash
- docker run -it -p 7687:7687 -p 3000:3000 -v mg_lib:/var/lib/memgraph memgraph/memgraph-platform
+ docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 -v mg_lib:/var/lib/memgraph memgraph/memgraph-platform
 ```
 
 For information on other options, run:
@@ -299,7 +301,7 @@ docker run --user="memgraph" -v mg_lib:/var/lib/memgraph -v mg_etc:/etc/memgraph
 The next time you run Memgraph, the dataset will be loaded:
 
 ```bash
- docker run -it -p 7687:7687 -p 3000:3000 -v mg_lib:/var/lib/memgraph memgraph/memgraph-platform
+ docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 -v mg_lib:/var/lib/memgraph memgraph/memgraph-platform
 ```
 
 For information on other options, run:
