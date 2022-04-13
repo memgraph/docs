@@ -16,8 +16,7 @@ to handle different events occurring on graphs, such as **node features updates*
 and so on. These events happen regularly on **real-world** examples such as **[Twitter network](https://twitter.com/memgraphmage)**, 
 where users update their profile, delete their profile or just unfollow another user.
 
-In their work, Rossi et al introduced to us [**Temporal graph networks**](https://arxiv.org/abs/2006.10637) which presents a great possibility to do graph machine
-learning on a stream of data, use-case occurring more often in recent years.
+In their work, Rossi et al. introduce [**Temporal graph networks**](https://arxiv.org/abs/2006.10637), an architecture for machine learning on streamed graphs, a rapidly-growing ML use case.
 
 
 There exist two main modules of **dynamic** graphs. Discrete-time dynamic graphs (DTDG) represent snapshots of static graphs taken at intervals in time. On the other hand continuous-time dynamic
