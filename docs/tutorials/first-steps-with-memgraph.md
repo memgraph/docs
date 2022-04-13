@@ -61,23 +61,70 @@ That's it! You will no see Memgraph Lab Dashboard. Let's go to the next step.
 
 ## 3. Import dataset
 
-Import data set "Capital cities and borders"
+Since this is a fresh install there are no nodes and relationships in your database. We have prepared more than 20 datasets that you can use for testing and learning. You will now import of of those datasets. In the sidebar click **Datasets**. Next go to **Capital cities and borders** and click **Load Dataset**.
 
-## Run query
+<img src={require('../data/tutorials/getting-started/memgraph-lab-datasets.png').default} className={"imgBorder"}/>
+
+You will see the warning that a new dataset will overwrite current data in the database. This is not a problem for you since you don't have any data in your database but in future be careful when importing data. Go ahead and click **Confirm**. Once the import is click **Run Sample Query**.
+
+## 4. Run query
+
+You can see the the sample query in **Cypher Editor**. The graph is visible in **Graph results** tab.
+
+<img src={require('../data/tutorials/getting-started/memgraph-lab-cypher-editor.png').default} className={"imgBorder"}/>
+
+You will now modify that query so that you can see the all of the capital cities that are up to three steps away from Madrid. Just copy paste this cove over the existing one. Don't worry about exact semantics of this query for now. We have great learning materials for Cypher. You can check them out latter.
+
 
 ```cypher
 
-MATCH p = (paris:City { name: "Paris" })-[e * bfs .. 2]->(:City)
+MATCH p = (paris:City { name: "Madrid" })-[e * bfs ..3]-(:City)
 RETURN p;
+
 
 ```
 
 ## Style your graph
 
+Change the map style to **Detailed**.
+
 ```
+
 
 @NodeStyle {
   image-url: Property(node, "flag")
+  size: 10
+  color: #DD2222
+  color-hover: Lighter(#DD2222)
+  color-selected: Lighter(#DD2222)
+  border-width: 1.8
+  border-color: #1d1d1d
+  font-size: 7
+}
+
+@NodeStyle HasLabel?(node, "City") {
+  color: #DD2222
+  color-hover: Lighter(#DD2222)
+  color-selected: Lighter(#DD2222)
+}
+
+@NodeStyle Greater?(Size(Labels(node)), 0) {
+  label: Format(":{}", Join(Labels(node), " :"))
+}
+
+@NodeStyle HasProperty?(node, "name") {
+  label: AsText(Property(node, "name"))
+}
+
+@EdgeStyle {
+  color: #ff0000
+  color-hover: #1d1d1d
+  color-selected: #1d1d1d
+  width: 0.9
+  width-hover: 2.7
+  width-selected: 2.7
+  font-size: 7
+  label: Type(edge)
 }
 
 ```
