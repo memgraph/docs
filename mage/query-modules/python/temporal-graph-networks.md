@@ -33,11 +33,10 @@ to handle different events occurring on graphs, such as **node features updates*
 and so on. These events happen regularly on **real-world** examples such as **[Twitter network](https://twitter.com/memgraphmage)**, 
 where users update their profile, delete their profile or just unfollow another user.
 
-In their work, Rossi et al introduced to us [Temporal graph networks](https://arxiv.org/abs/2006.10637) which presents a great possibility to do graph machine
-learning on a stream of data, use-case occurring more often in recent years.
+In their work, Rossi et al. introduce [**Temporal graph networks**](https://arxiv.org/abs/2006.10637), an architecture for machine learning on streamed graphs, a rapidly-growing ML use case.
 
-### About query module
-What we have covered in this module
+### About the query module
+What we have got in this module:
   * **link prediction** - train your **TGN** to predict new **links/edges** and **node classification** - predict labels of nodes from graph structure and **node/edge** features
   * **graph attention layer** embedding calculation and **graph sum layer** embedding layer calculation
   * **mean** and **last** as message aggregators

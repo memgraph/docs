@@ -62,7 +62,6 @@ and it will do the work for you.
 [![Node
 classification](https://img.shields.io/badge/Node_classification-Application-8A477F?style=for-the-badge)](/mage/algorithms/machine-learning-graph-analytics/node-classification-algorithm)
 
-Furthermore, we can use temporal graph networks for the node classification task. Again, from **edge features**, **node features**
-and **graph structure** will try to predict labels. In a social network, labels may indicate interests, beliefs, or demographics.
+Furthermore, we can use temporal graph networks for the task of node classification. Again, with **edge features**, **node features** and **graph structure**, we will try to predict labels. In social networks, labels may indicate interests, beliefs, or demographics.
 
 
