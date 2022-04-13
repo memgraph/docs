@@ -47,7 +47,7 @@ What we have got in this module:
 
 as introduced by **[Rossi et al.](https://emanuelerossi.co.uk/)**.
 
-Following means **you** can use **TGN** to be able to **predict edges** or  to perform **node classification** tasks, with **graph attention layer** or **graph sum layer**, by using
+The following means **you** can use **TGN** to **predict edges** or perform **node classification** tasks, with **graph attention layer** or **graph sum layer**, by using
 either **mean** or **last** as message aggregator, **mlp** or **identity** as message function, and finally  **gru** or **rnn** as memory updater.
 
 In total that gives *you* **2\*2\*2\*2\*2 options**, in total of **32** options to explore on your graph :smile: 
