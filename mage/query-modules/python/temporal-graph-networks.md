@@ -19,7 +19,7 @@ export const Highlight = ({children, color}) => (
   </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-node2vec_online-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/tgn.py)
+[![docs-source](https://img.shields.io/badge/source-temporal_graph_networks-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/tgn.py)
 
 ## Abstract
 
@@ -53,7 +53,7 @@ either **mean** or **last** as message aggregator, **mlp** or **identity** as me
 In total, this gives *you* **2\*2\*2\*2\*2 options**, that is, **32** options to explore on your graph! :smile: 
 
 If you want to explore our implementation jump to **[github/memgraph/mage](https://github.com/memgraph/mage)** and find `python/tgn.py`. Or you can jump to 
-**[download page](https://memgraph.com/download)**, download **Memgraph Platform** and fire up **TGN**. We have prepared **Amazon product-item** dataset on which you 
+**[download page](https://memgraph.com/download)**, download **Memgraph Platform** and fire up **TGN**. We have prepared **Amazon user-item** dataset on which you 
 can explore link prediction in **[Jupyter Notebook](https://github.com/memgraph/jupyter-memgraph-tutorials)**
 
 
@@ -69,6 +69,19 @@ How should **you** use the following module?
 Prepare cypher queries, and split them in the **train** set and **eval** set. Don't forget to call the `set_mode` method.
 Every result is stored so that you can easily get it with the module. The module reports the **[mean average precision](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.average_precision_score.html)**
 for every batch *training* or *evaluation* was done.
+### Usage
+
+Following procedure is expected when using **TGN**:
+* set parameters by calling `set_params()` function
+* set trigger on edge create event to call `update()` function
+* start loading your `train` queries
+* when `train` queries are loaded, switch **TGN** mode to `eval` by calling `set_eval()` function
+* load `eval` queries
+* do few more epochs of training and evaluating to get best results by calling `train_and_eval()`
+
+One thing is important to mention: by calling `set_eval()` function you change the mode of **temporal graph networks** to `eval` mode. 
+Any new edges which arrive will **not** be used to `train` the module, but to `eval`.
+
 
 ### Implementation details
 
@@ -96,7 +109,6 @@ class QueryModuleTGNBatch:
 ```
 
 #### Processing one batch
-
 
 ```python
         self._process_previous_batches()
@@ -149,31 +161,35 @@ Also, consider giving us a :star: so we can continue to do even better work.
 
 ## Procedures
 
-### `set_params( params)`
-
+### `set_params(params)`
+We have defined `default` value for each of the parameters. If you wish to change any of them, call method with defined new value.
 #### Input:
 
 * `params: mgp.Map` ➡ dictionary conataining following parameters:
-  * `learning_type: str` ➡ `self_supervised` or `supervised` depending on if you want to predict edges or node labels
-  * `batch_size: int` ➡ size of batch to process by TGN, recommended size **200**
-  * `num_of_layers: int` ➡ number of layers of graph neural network, **2** is optimal size, GNNs perform worse with more layers in terms of time needed to train, but gain in accuracy is not much bigger
-  * `layer_type: str` ➡ `graph_attn` or `graph_sum` layer type as defined in original paper
-  * `memory_dimension: int`➡ dimension of memory tensor of each node
-  * `time_dimension: int` ➡ dimension of time vector from `time2vec` paper
-  * `num_edge_features: int` ➡ number of edge features we will use from each edge
-  * `num_node_features: int` ➡ number of expected node features
-  * `message_dimension: int` ➡ dimension of message, only used if you use MLP as message function type, otherwise ignored
-  * `num_neighbors: int` ➡ number of sampled neighbors
-  * `edge_message_function_type: str` ➡ message function type, `identity` for concatenation or `mlp` for projection
-  * `message_aggregator_type: str` ➡ message aggregator type, `mean` or `last`
-  * `memory_updater_type: str` ➡ memory updater type, `gru` or `rnn`
-  * `num_attention_heads: int` ➡ **[OPTIONAL]** number of attention heads used if you define `graph_attn` as layer type
-  * `learning_rate: float` ➡ **[OPTIONAL]** - learning rate for optimizer
-  * `weight_decay: float` ➡ **[OPTIONAL]** weight decay used in optimizer
-  * `device_type: str`  ➡ **[OPTIONAL]** type of device you want to use for training - cuda or cpu
-  * `node_features_property: str`➡ **[OPTIONAL]** name of features property on nodes from which we read features
-  * `edge_features_property: str`➡ **[OPTIONAL]** name of features property on edges from which we read features
-  * `node_label_property: str` ➡ **[OPTIONAL]** name of label property on nodes from which we read features
+
+| Name 	                                | Type 	         | Default 	            | Description 	|
+|-	                                    |-	             |-	                    |-	            |
+| learning_type 	                    | String 	     | `self_supervised` 	| `self_supervised` or `supervised` depending on if you want to predict edges or node labels 	|
+| batch_size 	                        | Integer 	     | 200 	                | size of batch to process by TGN, recommended size **200** 	|
+| num_of_layers 	                    | Integer 	     | 2	                | number of layers of graph neural network, **2** is optimal size, GNNs perform worse with more layers in terms of time needed to train, but gain in accuracy is not much bigger 	|
+| layer_type 	                        | String 	     | `graph_attn` 	    | `graph_attn` or `graph_sum` layer type as defined in original paper 	|
+| memory_dimension 	                    | Integer 	     | 100              	| dimension of memory tensor of each node 	|
+| time_dimension 	                    | Integer 	     | 100	                | dimension of time vector from `time2vec` paper  	|
+| num_edge_features 	                | Integer 	     | 50           	    | number of edge features we will use from each edge	|
+| num_node_features 	                | Integer 	     | 50 	                | number of expected node features	|
+| message_dimension 	                | Integer 	     | 100 	                | dimension of message, only used if you use MLP as message function type, otherwise ignored 	|
+| num_neighbors 	                    | Integer 	     | 15 	                | number of sampled neighbors 	|
+| edge_message_function_type 	        | String 	     | `identity` 	        | message function type, `identity` for concatenation or `mlp` for projection 	|
+| message_aggregator_type 	            | String 	     | `last` 	            | message aggregator type, `mean` or `last` 	|
+| memory_updater_type 	                | String 	     | `gru` 	            | memory updater type, `gru` or `rnn` 	|
+| num_attention_heads 	                | Integer 	     | 1 	                | number of attention heads used if you define `graph_attn` as layer type  	|
+| learning_rate 	                    | Float 	     | 1e-4	                | learning rate for `adam` optimizer  |
+| weight_decay 	                        | Float 	     | 5e-5 	            | weight decay used in `adam` optimizer 	|
+| device_type 	                        | String 	     | `cuda` 	            | type of device you want to use for training -  `cuda` or `cpu` 	|
+| node_features_property 	            | String 	     | `features`	        | name of features property on nodes from which we read features 	|
+| edge_features_property 	            | String 	     | `features` 	        | name of features property on edges from which we read features	|
+| node_label_property 	                | String 	     | `label` 	            |  name of label property on nodes from which we read features	|
+
 #### Usage:
 
 ```cypher
@@ -186,7 +202,8 @@ Also, consider giving us a :star: so we can continue to do even better work.
 
 
 ### `update(edges)`
-
+This function scrapes data from edge, including `edge_features` and `node_features` if they exist. It also fills up the batch, and once the batch is ready **TGN** will process
+batch, and be ready to accept new incoming edges.
 #### Input:
 
 * `edges: mgp.List[mgp.Edges]` ➡ list of edges that arrive in a stream to `Memgraph` database to preprocess. If a batch is full, `train` or `eval` starts, depending on the mode.
@@ -214,7 +231,7 @@ CALL tgn.update(edges) RETURN 1;
 
 
 ### `get()`
-
+Get calculated embeddings for each vertex.
 #### Output:
 
 * `node: mgp.Vertex` ➡ vertex in Memgraph database
@@ -228,14 +245,7 @@ CALL tgn.get() YIELD * RETURN *;
 
 
 ### `set_eval()`
-
-With this function, you change the mode of **temporal graph networks** to `eval` mode. Any new edges which arrive
-will **not** be used to **train** the module, but to **evaluate**.
-
-If you know when the stream will end, it is good to change the mode to "eval" and test how your model performs. 
-Once the stream finishes, a good option is to run a few training epochs to get the best results.
-
-
+Change **TGN* mode to `eval`.
 #### Usage:
 
 ```cypher
@@ -244,14 +254,15 @@ CALL tgn.set_eval() YIELD *;
 
 
 ### `get_results()`
-
+This method will return for `results` for every batch you did `train` or `eval` on, as well as `accuracy`, and `batch_process_time`. 
+Epoch count starts from 1.
 #### Output:
 
-* `epoch_num=mgp.Number` ➡ number of `train` or `eval` epochs
-* `batch_num=mgp.Number` ➡ number of batches per `train` or `eval` epoch
-* `batch_process_time=mgp.Number` ➡ time needed to process batch 
-* `accuracy=mgp.Number` ➡ mean average precision on current batch
-* `accuracy_type=str` ➡ type of MAP performed, "train" or "eval"
+* `epoch_num:mgp.Number` ➡ number of `train` or `eval` epochs
+* `batch_num:mgp.Number` ➡ number of batches per `train` or `eval` epoch
+* `batch_process_time:mgp.Number` ➡ time needed to process batch 
+* `accuracy:mgp.Number` ➡ mean average precision on current batch
+* `accuracy_type:str` ➡ type of MAP performed, "train" or "eval"
 
 
 #### Usage:
@@ -263,8 +274,6 @@ CALL tgn.get_results() YIELD * RETURN *;
 
 ### `train_and_eval(num_epochs)`
 The purpose of this method is to do additional training rounds on `train` edges and `eval` on evaluation edges.
-All the edges that arrived in the stream before the `set_eval()` function was called will be used for additional training
-in batches, the same as when they first arrived. All edges after the function call will be used for `eval`.
 #### Input:
 
 * `num_epochs: int` ➡ perform additional epoch training and evaluation **after** stream is done
