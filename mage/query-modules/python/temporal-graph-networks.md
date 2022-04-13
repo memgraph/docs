@@ -23,10 +23,10 @@ export const Highlight = ({children, color}) => (
 
 ## Abstract
 
-The **temporal_graph_networks (TGNs)** is a **[graph neural network (GNN)](https://distill.pub/2021/gnn-intro/)** method on dynamic graphs. 
+The **temporal_graph_networks (TGNs)** are a type of **[graph neural network (GNN)](https://distill.pub/2021/gnn-intro/)** for dynamic graphs.
 In recent years, **GNNs** have become very popular due to their ability to perform a wide variety of machine learning
 tasks on graphs, such as link prediction, node classification, and so on. This rise started with **[Graph convolutional
-networks (GCN)](https://arxiv.org/pdf/1609.02907.pdf)** introduced by *Kipf et al*, followed by **[GraphSAGE](https://arxiv.org/pdf/1706.02216.pdf)** introduced by *Hamilton et al*, and in recent years new
+networks (GCN)](https://arxiv.org/pdf/1609.02907.pdf)** introduced by *Kipf et al.*, followed by **[GraphSAGE](https://arxiv.org/pdf/1706.02216.pdf)** introduced by *Hamilton et al.*, and recently a new
 method was presented which introduces **attention mechanism** to graphs, known as **[Graph attention networks (GAT)](https://arxiv.org/pdf/1710.10903.pdf?ref=https://githubhelp.com)**, by *Veličković
 et al*. The last two methods offer a great possibility for inductive learning. But they haven't been specifically developed
 to handle different events occurring on graphs, such as **node features updates**, **node deletion**, **edge deletion**
@@ -52,27 +52,23 @@ either **mean** or **last** as message aggregator, **mlp** or **identity** as me
 
 In total, this gives *you* **2\*2\*2\*2\*2 options**, that is, **32** options to explore on your graph! :smile: 
 
-To start exploring our module, **[github/memgraph/mage](https://github.com/memgraph/mage)** and start exploring our implementation, or even better, jump to 
-**[download page](https://memgraph.com/download)**, download **Memgraph Platform** and start exploring **TGN**
+If you want to explore our implementation jump to **[github/memgraph/mage](https://github.com/memgraph/mage)** and find `python/tgn.py`. Or you can jump to 
+**[download page](https://memgraph.com/download)**, download **Memgraph Platform** and fire up **TGN**. We have prepared **Amazon product-item** dataset on which you 
+can explore link prediction in **[Jupyter Notebook](https://github.com/memgraph/jupyter-memgraph-tutorials)**
 
 
 What is **not** implemented in the module:
-  * **node update/deletion events** since they occur very rarely - although we have prepared a terrain
+  * **node update/deletion events** since they occur very rarely - although we have prepared a codebase to easily integrate them. 
   * **edge deletion** events 
   * **time projection** embedding calculation and **identity** embedding calculation since author mentions 
     they perform very poorly on all datasets - although it is trivial to add new layer
 
-
-What we **believe** we offer instead of authors implementation from **[twitter-research GitHub repo](https://github.com/twitter-research/tgn)**:
-  * Embedding calculation seems to be off. The problem seems that the author doesn't use newly calculated embeddings in new layers, but instead uses raw features from the 0th layer,
-    which according to the paper is wrong. Anyway, if that is not the case, we still believe we fixed the potential bug, and offer a great possibility to explore
-    **temporal graph networks** with a lot of possibilities.
-
+Feel free to open an **[GitHub issue](https://github.com/memgraph/mage/issues)** or start discussion on **[Discord](https://discord.gg/memgraph)** if you want to speed up development.
 
 How should **you** use the following module?
 Prepare cypher queries, and split them in the **train** set and **eval** set. Don't forget to call the `set_mode` method.
 Every result is stored so that you can easily get it with the module. The module reports the **[mean average precision](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.average_precision_score.html)**
-for every batch *training* or *evaluation* was done on.
+for every batch *training* or *evaluation* was done.
 
 ### Implementation details
 
@@ -126,18 +122,17 @@ Our `torch.nn.Module` is organized as follows:
   * afterward we create a computation graph used by **graph attention layer** or **graph sum layer**
   * final step includes processing of current batch, creating new **interaction or node events**, updating **raw message store** with new **events**
 
-The process repeats: as we get new edges in a batch, the batch fills, and the new edges are forwarded to the **TGN** and so on.
+The process repeats: as we get new edges in a batch, the batch files, and the new edges are forwarded to the **TGN** and so on.
 
 
 
 :::info
 
-This **MAGE** module is still in its early phase. We intended its use for only **learning** activities. The problem 
-with the current module is that we expect **you** to know when your stream will end so you can switch **TGN** mode
-from **train** to **eval**. After you do a switch, all incoming edges will be used for only **evaluation** and not
-any new **training**. If you wish to make it production-ready, because you like what you see :smile: be sure to either
-open **pull request** on our **[GitHub page](https://github.com/memgraph/mage)**, or drop us a comment on **[Discord](https://discord.gg/memgraph)**.
-Also, if you like what you saw, consider giving us a :star: so we can continue to do even better work. 
+This **MAGE** module is still in its early phase. We intended its use only for **learning** activities. The problem 
+with the current module is that **you** need to switch **TGN** mode to `eval`. After you do a switch, all incoming edges will be used only for **evaluation**. 
+If you wish to make it production-ready because you like what you see :smile: be sure to either
+open **[GitHub issue](https://github.com/memgraph/mage/issues)**, or drop us a comment on **[Discord](https://discord.gg/memgraph)**.
+Also, consider giving us a :star: so we can continue to do even better work. 
 
 :::
    
@@ -154,31 +149,39 @@ Also, if you like what you saw, consider giving us a :star: so we can continue t
 
 ## Procedures
 
-### `set_params(learning_type, batch_size, num_of_layers, layer_type, memory_dimension, time_dimension, num_edge_features, num_node_features, message_dimension, num_neighbors, edge_message_function_type, message_aggregator_type, memory_updater_type, num_attention_heads, learning_rate, weight_decay)`
+### `set_params( params)`
 
 #### Input:
 
-* `learning_type: str` ➡ "self_supervised" or "supervised" depending on if you want to predict edges or node labels
-* `batch_size: int` ➡ size of batch to process by TGN, recommended size 200
-* `num_of_layers: int` ➡ number of layers of graph neural network, 2 is optimal size, GNNs perform worse with bigger size
-* `layer_type: str` ➡ "graph_attn" or "graph_sum" layer type as defined in original paper
-* `memory_dimension: int`➡ dimension of memory tensor of each node
-* `time_dimension : int` ➡ dimension of time vector from "time2vec" paper
-* `num_edge_features : int` ➡ number of edge features we will use from each edge
-* `num_node_features : int` ➡ number of expected node features
-* `message_dimension : int` ➡ dimension of message, only used if you use MLP as message function type, otherwise ignored
-* `num_neighbors : int` ➡ number of sampled neighbors
-* `edge_message_function_type: str` ➡ message function type, "identity" for concatenation or "mlp" for projection
-* `message_aggregator_type: str` ➡ message aggregator type, "mean" or "last"
-* `memory_updater_type: str` ➡ memory updater type, "gru" or "rnn"
-* `num_attention_heads: int` ➡ number of attention heads used if you define "graph_attn" as layer type
-* `learning_rate: float` ➡ learning rate for optimizer
-* `weight_decay: float` ➡ weight decay used in optimizer
-
+* `params: mgp.Map` ➡ dictionary conataining following parameters:
+  * `learning_type: str` ➡ `self_supervised` or `supervised` depending on if you want to predict edges or node labels
+  * `batch_size: int` ➡ size of batch to process by TGN, recommended size **200**
+  * `num_of_layers: int` ➡ number of layers of graph neural network, **2** is optimal size, GNNs perform worse with more layers in terms of time needed to train, but gain in accuracy is not much bigger
+  * `layer_type: str` ➡ `graph_attn` or `graph_sum` layer type as defined in original paper
+  * `memory_dimension: int`➡ dimension of memory tensor of each node
+  * `time_dimension: int` ➡ dimension of time vector from `time2vec` paper
+  * `num_edge_features: int` ➡ number of edge features we will use from each edge
+  * `num_node_features: int` ➡ number of expected node features
+  * `message_dimension: int` ➡ dimension of message, only used if you use MLP as message function type, otherwise ignored
+  * `num_neighbors: int` ➡ number of sampled neighbors
+  * `edge_message_function_type: str` ➡ message function type, `identity` for concatenation or `mlp` for projection
+  * `message_aggregator_type: str` ➡ message aggregator type, `mean` or `last`
+  * `memory_updater_type: str` ➡ memory updater type, `gru` or `rnn`
+  * `num_attention_heads: int` ➡ **[OPTIONAL]** number of attention heads used if you define `graph_attn` as layer type
+  * `learning_rate: float` ➡ **[OPTIONAL]** - learning rate for optimizer
+  * `weight_decay: float` ➡ **[OPTIONAL]** weight decay used in optimizer
+  * `device_type: str`  ➡ **[OPTIONAL]** type of device you want to use for training - cuda or cpu
+  * `node_features_property: str`➡ **[OPTIONAL]** name of features property on nodes from which we read features
+  * `edge_features_property: str`➡ **[OPTIONAL]** name of features property on edges from which we read features
+  * `node_label_property: str` ➡ **[OPTIONAL]** name of label property on nodes from which we read features
 #### Usage:
 
 ```cypher
-CALL tgn.set_params("self_supervised", 200, 2, "graph_attn", 100, 100, 20, 20, 100, 10, "identity", "last", "gru", 1) YIELD *;
+ CALL tgn.set_params({learning_type:'self_supervised', batch_size:200, num_of_layers:2, 
+                      layer_type:'graph_attn',memory_dimension:20, time_dimension:50, 
+                      num_edge_features:20, num_node_features:20, message_dimension:100, 
+                      num_neighbors:15, edge_message_function_type:'identity',
+                      message_aggregator_type:'last', memory_updater_type:'gru', num_attention_heads:1});
 ```
 
 
@@ -186,15 +189,14 @@ CALL tgn.set_params("self_supervised", 200, 2, "graph_attn", 100, 100, 20, 20, 1
 
 #### Input:
 
-* `edges: mgp.List[mgp.Edges]` ➡ list of edges to preprocess, and if current batch size is big enough use for training or evaluation
-
+* `edges: mgp.List[mgp.Edges]` ➡ list of edges that arrive in a stream to `Memgraph` database to preprocess. If a batch is full, `train` or `eval` starts, depending on the mode.
 
 #### Usage:
 
 There are a few options here:
 
-The most convenient one is to create a **[trigger](https://memgraph.com/docs/memgraph/reference-guide/triggers)**, so that every
-time an edge is added to graph, the trigger calls the procedure and makes an
+The most convenient one is to create a **[trigger](https://memgraph.com/docs/memgraph/reference-guide/triggers)** so that every
+time an edge is added to the graph, the trigger calls the procedure and makes an
 update.
 
 ```cypher
@@ -225,23 +227,19 @@ CALL tgn.get() YIELD * RETURN *;
 ```
 
 
-### `set_mode(mode)`
+### `set_eval()`
 
-With this function you can change mode of **temporal graph networks** to "eval" mode. Any new edges which arrive
-will **not** be used to **train** the module, but to **evaluate** its mean average precision on the **evaluation** set.
+With this function, you change the mode of **temporal graph networks** to `eval` mode. Any new edges which arrive
+will **not** be used to **train** the module, but to **evaluate**.
 
 If you know when the stream will end, it is good to change the mode to "eval" and test how your model performs. 
-Once the stream finishes, a good option is to run a few training epochs in order to get the best results.
-
-#### Input:
-
-* `mode: str` ➡ The **temporal graph network** mode of operation ("train" or "eval").
+Once the stream finishes, a good option is to run a few training epochs to get the best results.
 
 
 #### Usage:
 
 ```cypher
-CALL tgn.set_mode(eval) YIELD *;
+CALL tgn.set_eval() YIELD *;
 ```
 
 
@@ -263,8 +261,10 @@ CALL tgn.get_results() YIELD * RETURN *;
 ```
 
 
-### `process_epochs(num_epochs)`
-
+### `train_and_eval(num_epochs)`
+The purpose of this method is to do additional training rounds on `train` edges and `eval` on evaluation edges.
+All the edges that arrived in the stream before the `set_eval()` function was called will be used for additional training
+in batches, the same as when they first arrived. All edges after the function call will be used for `eval`.
 #### Input:
 
 * `num_epochs: int` ➡ perform additional epoch training and evaluation **after** stream is done
@@ -282,7 +282,7 @@ CALL tgn.get_results() YIELD * RETURN *;
 #### Usage:
 
 ```cypher
-CALL tgn.process_epochs(10) YIELD * RETURN *;
+CALL tgn.train_and_eval(10) YIELD * RETURN *;
 ```
 
 
@@ -311,7 +311,11 @@ CALL tgn.process_epochs(10) YIELD * RETURN *;
   <TabItem value="cypher-param-set">
 
 ```cypher
-CALL tgn.set_params("self_supervised", 2, 1, "graph_attn", 100, 100, 20, 20, 100, 10, "identity", "last", "gru", 1) YIELD *;
+CALL tgn.set_params({learning_type:'self_supervised', batch_size:2, num_of_layers:1, 
+                      layer_type:'graph_attn',memory_dimension:100, time_dimension:100, 
+                      num_edge_features:20, num_node_features:20, message_dimension:100, 
+                      num_neighbors:10, edge_message_function_type:'identity',
+                      message_aggregator_type:'last', memory_updater_type:'gru', num_attention_heads:1});
 ```
   </TabItem>
   <TabItem value="cypher-trigger-set">
@@ -339,7 +343,7 @@ MERGE (n:Node {id: 9}) MERGE (m:Node {id: 8}) CREATE (n)-[:RELATION]->(m);
   <TabItem value="cypher-mode-change">
 
 ```cypher
-CALL tgn.set_mode("eval") YIELD *;
+CALL tgn.set_eval() YIELD *;
 
 ```
   </TabItem>
@@ -355,7 +359,7 @@ MERGE (n:Node {id: 4}) MERGE (m:Node {id: 6}) CREATE (n)-[:RELATION]->(m);
   <TabItem value="cypher-epoch-train">
 
 ```cypher
- CALL tgn.process_epochs(5) YIELD *
+ CALL tgn.train_and_eval(5) YIELD *
 
 ```
   </TabItem>
@@ -363,7 +367,7 @@ MERGE (n:Node {id: 4}) MERGE (m:Node {id: 6}) CREATE (n)-[:RELATION]->(m);
 
 ```cypher
  CALL tgn.get_results() YIELD  epoch_num, batch_num, accuracy, batch_process_time, accuracy_type
- RETURN epoch_num, batch_num, round(accuracy * 100) / 100 as accuracy, round(batch_process_time * 100) / 100 as batch_process_time;
+ RETURN epoch_num, batch_num, accuracy, batch_process_time;
 ```
 
   </TabItem>
