@@ -39,7 +39,7 @@ And finally, we prepared an example of  [**link prediction** on the Amazon datas
 [![Temporal Graph Networks](https://img.shields.io/badge/Node2Vec_Online-Documentation-FCC624?style=for-the-badge&logo=python&logoColor=white)](/mage/query-modules/python/temporal-graph-networks)
 
 **Temporal graph networks** are implemented as part of the
-[**MAGE**](https://github.com/memgraph/mage) project. Be sure to check it out in
+[**MAGE**](https://github.com/memgraph/mage) project. Make sure to check it out in
 the link above. :point_up:
 
 
