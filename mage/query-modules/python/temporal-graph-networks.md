@@ -50,10 +50,10 @@ as introduced by **[Rossi et al.](https://emanuelerossi.co.uk/)**.
 The following means **you** can use **TGN** to **predict edges** or perform **node classification** tasks, with **graph attention layer** or **graph sum layer**, by using
 either **mean** or **last** as message aggregator, **mlp** or **identity** as message function, and finally  **gru** or **rnn** as memory updater.
 
-In total that gives *you* **2\*2\*2\*2\*2 options**, in total of **32** options to explore on your graph :smile: 
+In total, this gives *you* **2\*2\*2\*2\*2 options**, that is, **32** options to explore on your graph! :smile: 
 
 To start exploring our module, **[github/memgraph/mage](https://github.com/memgraph/mage)** and start exploring our implementation, or even better, jump to 
-**[download page](https://memgraph.com/download)**, Download **Memgraph platform** and start exploring **TGN**
+**[download page](https://memgraph.com/download)**, download **Memgraph Platform** and start exploring **TGN**
 
 
 What is **not** implemented in the module:
@@ -70,20 +70,18 @@ What we **believe** we offer instead of authors implementation from **[twitter-r
 
 
 How should **you** use the following module?
-Prepare cypher queries, and split them in the **train** set and **eval** set. Don't forget to call method `set_mode`.
-Every result will be stored so you can easily get it with the module. We will report for you **[mean average precision](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.average_precision_score.html)**
-on every batch *training* or *evaluation* was done.
+Prepare cypher queries, and split them in the **train** set and **eval** set. Don't forget to call the `set_mode` method.
+Every result is stored so that you can easily get it with the module. The module reports the **[mean average precision](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.average_precision_score.html)**
+for every batch *training* or *evaluation* was done on.
 
 ### Implementation details
 
 #### Query module
-Module is implemented using **[PyTorch](https://pytorch.org/)**. From `mgp.Edge` input features defined as edge label, 
-we extract `edge features` and from `mgp.Vertex` input features we extract `node features`. Since we expect in *your* learning activities 
-to use **triggers**, the `update` query module procedure will parse all new edges, extract information **temporal graph networks** need to do a 
-batch by batch processing.
+The module is implemented using **[PyTorch](https://pytorch.org/)**. From the input (`mgp.Edge` and `mgp.Vertex` labels), `edge features` and `node features` are extracted.
+With a trigger set, the `update` query module procedure will parse all new edges and extract the information the **TGN** needs to do batch by batch processing.
 
-From following piece of code, *you* can see what we extract from every edge, while filling up **batch**. When our current processing
-batch size reaches **predefined batch size**, predefined by calling `set` query module procedure, we `forward` extracted information to `TGN` which
+On the following piece of code, *you* can see what is extracted from edges while the **batch** is filling up. When the current processing
+batch size reaches `batch size` (predefined in `set()`), we **forward** extracted information to the **TGN**, which
 extends `torch.nn.Module`.
 ```python
 @dataclasses.dataclass
@@ -128,7 +126,7 @@ Our `torch.nn.Module` is organized as follows:
   * afterward we create a computation graph used by **graph attention layer** or **graph sum layer**
   * final step includes processing of current batch, creating new **interaction or node events**, updating **raw message store** with new **events**
 
-Process repeats as we get new edges in batch, and after a batch is filled, we forward new edges again to **TGN** and so on...
+The process repeats: as we get new edges in a batch, the batch fills, and the new edges are forwarded to the **TGN** and so on.
 
 
 
@@ -193,10 +191,10 @@ CALL tgn.set_params("self_supervised", 200, 2, "graph_attn", 100, 100, 20, 20, 1
 
 #### Usage:
 
-There are a few options here. 
+There are a few options here:
 
-The best one is to create a **[trigger](https://memgraph.com/docs/memgraph/reference-guide/triggers)**, so every
-time an edge is added to graph, the trigger calls a procedure and makes an
+The most convenient one is to create a **[trigger](https://memgraph.com/docs/memgraph/reference-guide/triggers)**, so that every
+time an edge is added to graph, the trigger calls the procedure and makes an
 update.
 
 ```cypher
@@ -204,8 +202,7 @@ CREATE TRIGGER create_embeddings ON --> CREATE BEFORE COMMIT
 EXECUTE CALL tgn.update(createdEdges) RETURN 1;
 ```
 
-The second option is to add all the edges and then call the algorithm with those
-edges:
+The second option is to add all the edges and then call the algorithm with them:
 
 ```cypher
 MATCH (n)-[e]->(m)
@@ -231,14 +228,14 @@ CALL tgn.get() YIELD * RETURN *;
 ### `set_mode(mode)`
 
 With this function you can change mode of **temporal graph networks** to "eval" mode. Any new edges which arrive
-will **not** be used to **train** module, but to **evaluate** it's mean average precision on **evaluation** set.
+will **not** be used to **train** the module, but to **evaluate** its mean average precision on the **evaluation** set.
 
-If you know when your stream will end, it is good option to change mode to "eval" and test how it performs. Once stream
-is done, good option will be to run training of few epochs to get best results.
+If you know when the stream will end, it is good to change the mode to "eval" and test how your model performs. 
+Once the stream finishes, a good option is to run a few training epochs in order to get the best results.
 
 #### Input:
 
-* `mode: str` ➡ mode in which **temporal graph networks** should be working, "train" or "eval"
+* `mode: str` ➡ The **temporal graph network** mode of operation ("train" or "eval").
 
 
 #### Usage:
@@ -252,8 +249,8 @@ CALL tgn.set_mode(eval) YIELD *;
 
 #### Output:
 
-* `epoch_num=mgp.Number` ➡ number of epoch in which "training" or "evaluation" was done
-* `batch_num=mgp.Number` ➡ number of batch inside of epoch in which "training" or "evaluation" was done
+* `epoch_num=mgp.Number` ➡ number of `train` or `eval` epochs
+* `batch_num=mgp.Number` ➡ number of batches per `train` or `eval` epoch
 * `batch_process_time=mgp.Number` ➡ time needed to process batch 
 * `accuracy=mgp.Number` ➡ mean average precision on current batch
 * `accuracy_type=str` ➡ type of MAP performed, "train" or "eval"
