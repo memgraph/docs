@@ -189,6 +189,7 @@ module.exports = {
             "how-to-guides/manage-user-privileges",
           ],
         },
+        "how-to-guides/indexes",
       ],
     },
     {
