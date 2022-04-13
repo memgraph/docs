@@ -45,7 +45,7 @@ What we have got in this module:
   * **uniform** temporal neighborhood sampler
   * **memory** store and **raw message store**
 
-as introduced by **[Rossi et al](https://emanuelerossi.co.uk/)**.
+as introduced by **[Rossi et al.](https://emanuelerossi.co.uk/)**.
 
 Following means **you** can use **TGN** to be able to **predict edges** or  to perform **node classification** tasks, with **graph attention layer** or **graph sum layer**, by using
 either **mean** or **last** as message aggregator, **mlp** or **identity** as message function, and finally  **gru** or **rnn** as memory updater.
