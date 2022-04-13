@@ -51,7 +51,7 @@ networks](https://img.shields.io/badge/Social_networks-Application-8A477F?style=
 Temporal graph networks can be used to find communities in social networks like
 [Twitter](https://twitter.com), [Facebook](https://www.facebook.com/), and so
 on. To find communities, we can use **semi-supervised** learning, and from **graph structure** and **available** labels
-**TGN** will try to predict new **labels** and that way find communities.
+**TGN** will try to predict new **labels** and find communities that way.
 
 [![Link
 prediction](https://img.shields.io/badge/Link_prediction-Application-8A477F?style=for-the-badge)](/mage/algorithms/machine-learning-graph-analytics/link-prediction-algorithm)
