@@ -19,10 +19,10 @@ where users update their profile, delete their profile or just unfollow another 
 In their work, Rossi et al. introduce [**Temporal graph networks**](https://arxiv.org/abs/2006.10637), an architecture for machine learning on streamed graphs, a rapidly-growing ML use case.
 
 
-There exist two main modules of **dynamic** graphs. Discrete-time dynamic graphs (DTDG) represent snapshots of static graphs taken at intervals in time. On the other hand continuous-time dynamic
-graphs (CTDG) are more general and can be represented as timed lists of events, which may include edge addition or deletion, node addition or deletion, and node or edge feature transformations.
+There exist two main modalities of **dynamic** graphs. Discrete-time dynamic graphs (DTDG) represent snapshots of static graphs taken at intervals in time. On the other hand, continuous-time dynamic
+graphs (CTDG) are more general and can be represented as timestamped lists of events which may include edge addition or deletion, node addition or deletion, and node or edge feature transformations.
 
-**Temporal graph networks** is a model of **CTDG**, which consists of time-stamped events. An **interaction** event is represented by temporal edge creation, and **node-wise** is represented by node creation or node feature update.
+**Temporal graph networks** is a modality of **CTDG** that consists of temporal (timestamped) events. An **interaction** event represents a temporal edge creation, and a **nodewise** event represents node creation or feature update.
 
 
 ## Materials
