@@ -50,7 +50,7 @@ as introduced by **[Rossi et al.](https://emanuelerossi.co.uk/)**.
 The following means **you** can use **TGN** to **predict edges** or perform **node classification** tasks, with **graph attention layer** or **graph sum layer**, by using
 either **mean** or **last** as message aggregator, **mlp** or **identity** as message function, and finally  **gru** or **rnn** as memory updater.
 
-In total, this gives *you* **2\*2\*2\*2\*2 options**, that is, **32** options to explore on your graph! :smile: 
+In total, this gives *you* **2✕2✕2✕2✕2 options**, that is, **32** options to explore on your graph! :smile: 
 
 If you want to explore our implementation jump to **[github/memgraph/mage](https://github.com/memgraph/mage)** and find `python/tgn.py`. Or you can jump to 
 **[download page](https://memgraph.com/download)**, download **Memgraph Platform** and fire up **TGN**. We have prepared **Amazon user-item** dataset on which you 
@@ -245,7 +245,7 @@ CALL tgn.get() YIELD * RETURN *;
 
 
 ### `set_eval()`
-Change **TGN* mode to `eval`.
+Change **TGN** mode to `eval`.
 #### Usage:
 
 ```cypher
