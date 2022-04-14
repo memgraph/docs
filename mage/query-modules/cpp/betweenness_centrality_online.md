@@ -151,7 +151,7 @@ Communities calculated by `update()` are accessible by subsequently calling
 `get()`:
 
 ```cypher
-CALL betweenness_centrality.get()
+CALL betweenness_centrality_online.get()
 YIELD node, betweenness_centrality;
 ```
 
