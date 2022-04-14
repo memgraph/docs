@@ -5,6 +5,8 @@ sidebar_label: Use query modules
 slug: /how-to-guides/query-modules
 ---
 
+[![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/query-modules/overview.md) 
+
 Query modules are extensions of the Cypher query language. They are groups of
 procedures written in **C**, **C++**, **Python**, and **Rust** and bundled up in
 either `*.so` or `*.py` query modules files.
@@ -63,6 +65,11 @@ modules](../reference-guide/query-modules/implement-custom-query-modules/overvie
 that will provide you with the C and Python APIs and [give an
 example](../reference-guide/query-modules/implement-custom-query-modules/custom-query-module-example)
 to help you start implementing a custom query module.
+
+You can develop query modules in Python directly from Memgraph Lab (v2.0 and
+newer). Just navigate to **Query Modules** and click on **New Module** to start.
+
+<img src={require('../data/memgraph_lab_query_modules.png').default} className={"imgBorder"}/>
 
 ## How to list all loaded .py query modules?
 

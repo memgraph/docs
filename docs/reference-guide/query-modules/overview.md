@@ -5,6 +5,8 @@ sidebar_label: Query modules overview
 slug: /reference-guide/query-modules
 ---
 
+[![Related - How-to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/query-modules.md)
+
 Memgraph supports extending the query language with user-written procedures in
 **C**, **C++**, **Python**, and **Rust**. These procedures are grouped into
 modules - **query modules** files (either `*.so` or `*.py` files).
@@ -30,6 +32,14 @@ Regardless of where they come from and who wrote them, all modules need to be
 loaded into Memgraph so that they can be called while querying the database.
 They are either loaded automatically when Memgraph starts or manually if they
 were added while Memgraph was already running.
+
+You can also inspect and develop query modules in Memgraph Lab (v2.0 and newer).
+Just navigate to **Query Modules**.
+
+<details>
+  <summary>Screenshot of Query Modules from Memgraph Lab</summary>
+<img src={require('../../data/memgraph_lab_query_modules.png').default} className={"imgBorder"}/>
+</details>
 
 To learn more about query modules, take a look at the following guides:
 
