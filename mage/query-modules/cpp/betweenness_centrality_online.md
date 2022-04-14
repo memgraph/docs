@@ -144,7 +144,7 @@ available:
 
 ```cypher
 CREATE TRIGGER sample_trigger BEFORE COMMIT
-EXECUTE CALL community_detection_online.update(createdVertices, createdEdges, deletedVertices, deletedEdges, normalize, threads) YIELD *;
+EXECUTE CALL betweenness_centrality_online.update(createdVertices, createdEdges, deletedVertices, deletedEdges, normalize, threads) YIELD *;
 ```
 
 Communities calculated by `update()` are accessible by subsequently calling
