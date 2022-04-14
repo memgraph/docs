@@ -254,15 +254,15 @@ CALL tgn.set_eval() YIELD *;
 
 
 ### `get_results()`
-This method will return for `results` for every batch you did `train` or `eval` on, as well as `accuracy`, and `batch_process_time`. 
+This method will return for `results` for every batch you did `train` or `eval` on, as well as `average_precision`, and `batch_process_time`. 
 Epoch count starts from 1.
 #### Output:
 
 * `epoch_num:mgp.Number` ➡ number of `train` or `eval` epochs
 * `batch_num:mgp.Number` ➡ number of batches per `train` or `eval` epoch
 * `batch_process_time:mgp.Number` ➡ time needed to process batch 
-* `accuracy:mgp.Number` ➡ mean average precision on current batch
-* `accuracy_type:str` ➡ type of MAP performed, "train" or "eval"
+* `average_precision:mgp.Number` ➡ mean average precision on the current batch
+* `batch_type:str` ➡ whether we performed `train` or `eval` on the batch
 
 
 #### Usage:
@@ -283,8 +283,8 @@ The purpose of this method is to do additional training rounds on `train` edges 
 * `epoch_num: int` ➡ the epoch of the batch for which performance statistics will be returned
 * `batch_num: int` ➡ the number of the batch for which performance statistics will be returned
 * `batch_process_time: float` ➡ processing time in seconds for a batch 
-* `accuracy: int` ➡ **mean average precision** 
-* `accuracy_type: int` ➡ **mean average precision** type, "train" or "eval"
+* `average_precision:mgp.Number` ➡ mean average precision on the current batch
+* `batch_type:str` ➡ whether we performed `train` or `eval` on the batch
 
 
 
@@ -359,7 +359,6 @@ CALL tgn.set_eval() YIELD *;
   <TabItem value="cypher-eval-load">
 
 ```cypher
-
 MERGE (n:Node {id: 8}) MERGE (m:Node {id: 4}) CREATE (n)-[:RELATION]->(m);
 MERGE (n:Node {id: 4}) MERGE (m:Node {id: 6}) CREATE (n)-[:RELATION]->(m);
 
@@ -375,8 +374,8 @@ MERGE (n:Node {id: 4}) MERGE (m:Node {id: 6}) CREATE (n)-[:RELATION]->(m);
   <TabItem value="run">
 
 ```cypher
- CALL tgn.get_results() YIELD  epoch_num, batch_num, accuracy, batch_process_time, accuracy_type
- RETURN epoch_num, batch_num, accuracy, batch_process_time;
+ CALL tgn.get_results() YIELD  epoch_num, batch_num, average_precision, batch_process_time, batch_type
+ RETURN epoch_num, batch_num, average_precision, batch_type, batch_process_time;
 ```
 
   </TabItem>
@@ -384,7 +383,7 @@ MERGE (n:Node {id: 4}) MERGE (m:Node {id: 6}) CREATE (n)-[:RELATION]->(m);
 
 ```plaintext
 +--------------------+--------------------+--------------------+--------------------+--------------------+
-| epoch_num          | batch_num          | accuracy           | accuracy_type      | batch_process_time |
+| epoch_num          | batch_num          | average_precision  | batch_type         | batch_process_time |
 +--------------------+--------------------+--------------------+--------------------+--------------------+
 | 1                  | 1                  | 0.5                | "Train"            | 0.05               |
 | 1                  | 2                  | 0.42               | "Eval"             | 0.02               |
