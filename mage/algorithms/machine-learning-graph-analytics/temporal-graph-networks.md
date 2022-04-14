@@ -57,7 +57,7 @@ on. To find communities, we can use **semi-supervised** learning, and from **gra
 prediction](https://img.shields.io/badge/Link_prediction-Application-8A477F?style=for-the-badge)](/mage/algorithms/machine-learning-graph-analytics/link-prediction-algorithm)
 
 We can use temporal graph networks in the case of link prediction. In the link prediction task, **TGN** needs to correctly predict which edges won't appear - *positive samples* and which edges will not appear - 
-*negative samples*. We use edges that arrive in batches of a stream as a *positive sample* and *negative samples* we artificially create. *Negative samples* consist of nodes that are not linked.
+*negative samples*. We use the edges that arrive in batches of a stream as a *positive sample*, and we artificially create *negative samples*. The *Negative samples* consist of nodes that are not linked.
 Now, all that is left is to fire up **TGN** in **self_supervised** mode and it will do the work for you.
 
 [![Node

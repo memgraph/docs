@@ -27,7 +27,7 @@ The **temporal_graph_networks (TGNs)** are a type of **[graph neural network (GN
 In recent years, **GNNs** have become very popular due to their ability to perform a wide variety of machine learning
 tasks on graphs, such as link prediction, node classification, and so on. This rise started with **[Graph convolutional
 networks (GCN)](https://arxiv.org/pdf/1609.02907.pdf)** introduced by *Kipf et al.*, followed by **[GraphSAGE](https://arxiv.org/pdf/1706.02216.pdf)** introduced by *Hamilton et al.*, and recently a new
-method was presented which introduces **attention mechanism** to graphs, known as **[Graph attention networks (GAT)](https://arxiv.org/pdf/1710.10903.pdf?ref=https://githubhelp.com)**, by *Veličković
+method which introduces the **attention mechanism** to graphs was presented - **[Graph attention networks (GAT)](https://arxiv.org/pdf/1710.10903.pdf?ref=https://githubhelp.com)**, by *Veličković
 et al*. The last two methods offer a great possibility for inductive learning. But they haven't been specifically developed
 to handle different events occurring on graphs, such as **node features updates**, **node deletion**, **edge deletion**
 and so on. These events happen regularly on **real-world** examples such as **[Twitter network](https://twitter.com/memgraphmage)**, 
@@ -61,7 +61,7 @@ What is **not** implemented in the module:
   * **node update/deletion events** since they occur very rarely - although we have prepared a codebase to easily integrate them. 
   * **edge deletion** events 
   * **time projection** embedding calculation and **identity** embedding calculation since author mentions 
-    they perform very poorly on all datasets - although it is trivial to add new layer
+    they perform very poorly on all datasets - although it is trivial to add a new layer
 
 Feel free to open an **[GitHub issue](https://github.com/memgraph/mage/issues)** or start discussion on **[Discord](https://discord.gg/memgraph)** if you want to speed up development.
 
@@ -90,7 +90,7 @@ The module is implemented using **[PyTorch](https://pytorch.org/)**. From the in
 With a trigger set, the `update` query module procedure will parse all new edges and extract the information the **TGN** needs to do batch by batch processing.
 
 On the following piece of code, *you* can see what is extracted from edges while the **batch** is filling up. When the current processing
-batch size reaches `batch size` (predefined in `set()`), we **forward** extracted information to the **TGN**, which
+batch size reaches `batch size` (predefined in `set()`), we **forward** the extracted information to the **TGN**, which
 extends `torch.nn.Module`.
 ```python
 @dataclasses.dataclass
@@ -128,7 +128,7 @@ class QueryModuleTGNBatch:
 
 ```
 Our `torch.nn.Module` is organized as follows:
-  * processing previous batches - if you follow *[research paper](https://arxiv.org/abs/2006.10637)* this will include a new calculation of messages collected for each node in the form of 
+  * processing previous batches - if you follow the *[research paper](https://arxiv.org/abs/2006.10637)* this will include a new calculation of messages collected for each node in the form of 
     **message function**, aggregation of messages for each node in form of **message aggregator** and finally updating of each of the node's memory
     with **memory updater**
   * afterward we create a computation graph used by **graph attention layer** or **graph sum layer**
@@ -140,8 +140,8 @@ The process repeats: as we get new edges in a batch, the batch files, and the ne
 
 :::info
 
-This **MAGE** module is still in its early phase. We intended its use only for **learning** activities. The problem 
-with the current module is that **you** need to switch **TGN** mode to `eval`. After you do a switch, all incoming edges will be used only for **evaluation**. 
+This **MAGE** module is still in its early phase. We intend using it only for **learning** activities. The current state 
+of the module is that you need to manually switch the TGN mode to `eval`. After the switch, incoming edges will be used for **evaluation** only. 
 If you wish to make it production-ready because you like what you see :smile: be sure to either
 open **[GitHub issue](https://github.com/memgraph/mage/issues)**, or drop us a comment on **[Discord](https://discord.gg/memgraph)**.
 Also, consider giving us a :star: so we can continue to do even better work. 
@@ -276,12 +276,12 @@ CALL tgn.get_results() YIELD * RETURN *;
 The purpose of this method is to do additional training rounds on `train` edges and `eval` on evaluation edges.
 #### Input:
 
-* `num_epochs: int` ➡ perform additional epoch training and evaluation **after** stream is done
+* `num_epochs: int` ➡ perform additional epoch training and evaluation **after** the stream is done
 
 #### Output:
 
-* `epoch_num: int` ➡ overall epoch of batch for which performance statistics will be returned
-* `batch_num: int` ➡ batch inside of epoch for which performance statistics will be returned
+* `epoch_num: int` ➡ the epoch of the batch for which performance statistics will be returned
+* `batch_num: int` ➡ the number of the batch for which performance statistics will be returned
 * `batch_process_time: float` ➡ processing time in seconds for a batch 
 * `accuracy: int` ➡ **mean average precision** 
 * `accuracy_type: int` ➡ **mean average precision** type, "train" or "eval"
