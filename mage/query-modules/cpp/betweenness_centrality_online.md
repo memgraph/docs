@@ -38,10 +38,10 @@ shortest paths in the graph that run through it.
 This query module delivers a _fully dynamic_ betweenness centrality computation
 tool using the
 [iCentral](https://repository.kaust.edu.sa/bitstream/handle/10754/625935/08070346.pdf)
-[^1] algorithm by Jamour, Skiadopoulos and Kalnis. iCentral saves up on computation 
-in two ways: it singles out the nodes whose centrality scores could have changed 
-and then incrementally updates their scores, making use of previously calculated 
-data structures where applicable.
+[^1] algorithm by Jamour, Skiadopoulos and Kalnis. iCentral saves up on
+computation in two ways: it singles out the nodes whose centrality scores could
+have changed and then incrementally updates their scores, making use of
+previously calculated data structures where applicable.
 
 This drives down the algorithm’s time complexity to _O_(_m′n′_) and space
 complexity to _O_(_m_ + _n_), where _m_ and _n_ are the counts of edges and
@@ -158,17 +158,17 @@ YIELD node, betweenness_centrality;
 ## Example
 
 <Tabs
-    groupId="example"
-    defaultValue="visualization"
-    values={[
-      {label: 'Step 1: Input graph', value: 'visualization'},
-      {label: 'Step 2: Set trigger', value: 'cypher-trigger'},
-      {label: 'Step 3: Cypher load commands', value: 'cypher-load'},
-      {label: 'Step 4: Running command', value: 'run'},
-      {label: 'Step 5: Results', value: 'result'},
-    ]}
->
-<TabItem value="visualization">
+groupId="example"
+defaultValue="visualization"
+values={[
+{label: 'Step 1: Input graph', value: 'visualization'},
+{label: 'Step 2: Set trigger', value: 'cypher-trigger'},
+{label: 'Step 3: Cypher load commands', value: 'cypher-load'},
+{label: 'Step 4: Running command', value: 'run'},
+{label: 'Step 5: Results', value: 'result'},
+]}
+
+> <TabItem value="visualization">
 
 <img src={require('../../data/query-modules/cpp/betweenness-centrality-online/betweenness-centrality-online-1.png').default}/>
 
