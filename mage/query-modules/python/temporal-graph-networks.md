@@ -142,7 +142,7 @@ The process repeats: as we get new edges in a batch, the batch fills, and the ne
 
 This **MAGE** module is still in its early phase. We intend using it only for **learning** activities. The current state 
 of the module is that you need to manually switch the TGN mode to `eval`. After the switch, incoming edges will be used for **evaluation** only. 
-If you wish to make it production-ready because you like what you see :smile: be sure to either
+If you wish to make it production-ready because you like what you see :smile: make sure to either
 open **[GitHub issue](https://github.com/memgraph/mage/issues)**, or drop us a comment on **[Discord](https://discord.gg/memgraph)**.
 Also, consider giving us a :star: so we can continue to do even better work. 
 
