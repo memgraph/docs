@@ -134,7 +134,7 @@ Our `torch.nn.Module` is organized as follows:
   * afterward we create a computation graph used by **graph attention layer** or **graph sum layer**
   * final step includes processing of current batch, creating new **interaction or node events**, updating **raw message store** with new **events**
 
-The process repeats: as we get new edges in a batch, the batch files, and the new edges are forwarded to the **TGN** and so on.
+The process repeats: as we get new edges in a batch, the batch fills, and the new edges are forwarded to the **TGN** and so on.
 
 
 
