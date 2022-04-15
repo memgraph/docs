@@ -132,7 +132,7 @@ Our `torch.nn.Module` is organized as follows:
     **message function**, aggregation of messages for each node with a **message aggregator** and finally updating of each node's memory
     with a **memory updater**
   * afterward we create a computation graph used by **graph attention layer** or **graph sum layer**
-  * final step includes processing of current batch, creating new **interaction or node events**, updating **raw message store** with new **events**
+  * the final step includes processing of the current batch, creating new **interaction** or **node events**, and updating the **raw message store** with new **events**
 
 The process repeats: as we get new edges in a batch, the batch fills, and the new edges are forwarded to the **TGN** and so on.
 
