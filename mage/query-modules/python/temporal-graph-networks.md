@@ -128,9 +128,9 @@ class QueryModuleTGNBatch:
 
 ```
 Our `torch.nn.Module` is organized as follows:
-  * processing previous batches - if you follow the *[research paper](https://arxiv.org/abs/2006.10637)* this will include a new calculation of messages collected for each node in the form of 
-    **message function**, aggregation of messages for each node in form of **message aggregator** and finally updating of each of the node's memory
-    with **memory updater**
+  * processing previous batches - as in the *[research paper](https://arxiv.org/abs/2006.10637)* this will include new computation of messages collected for each node with a 
+    **message function**, aggregation of messages for each node with a **message aggregator** and finally updating of each node's memory
+    with a **memory updater**
   * afterward we create a computation graph used by **graph attention layer** or **graph sum layer**
   * final step includes processing of current batch, creating new **interaction or node events**, updating **raw message store** with new **events**
 
