@@ -233,7 +233,7 @@ CALL tgn.update(edges) RETURN 1;
 Get calculated embeddings for each vertex.
 #### Output:
 
-* `node: mgp.Vertex` ➡ vertex in Memgraph database
+* `node: mgp.Vertex` ➡ vertex (node) in Memgraph
 * `embedding: mgp.List[float]` ➡ low-dimensional representation of node in form of graph embedding
 
 #### Usage:
