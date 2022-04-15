@@ -253,7 +253,7 @@ CALL tgn.set_eval() YIELD *;
 
 
 ### `get_results()`
-This method will return for `results` for every batch you did `train` or `eval` on, as well as `average_precision`, and `batch_process_time`. 
+This method will return `results` for every batch you did `train` or `eval` on, as well as `average_precision`, and `batch_process_time`. 
 Epoch count starts from 1.
 #### Output:
 
