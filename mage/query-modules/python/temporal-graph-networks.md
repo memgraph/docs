@@ -202,8 +202,7 @@ We have defined `default` value for each of the parameters. If you wish to chang
 
 
 ### `update(edges)`
-This function scrapes data from edge, including `edge_features` and `node_features` if they exist. It also fills up the batch, and once the batch is ready **TGN** will process
-batch, and be ready to accept new incoming edges.
+This function scrapes data from edges, including `edge_features` and `node_features` if they exist, and fills up the batch. If the batch is ready the **TGN** will process it and be ready to accept new incoming edges.
 #### Input:
 
 * `edges: mgp.List[mgp.Edges]` ➡ list of edges that arrive in a stream to `Memgraph` database to preprocess. If a batch is full, `train` or `eval` starts, depending on the mode.
