@@ -351,6 +351,35 @@ and `eval` on evaluation edges.
 CALL tgn.train_and_eval(10) YIELD * RETURN *;
 ```
 
+
+### `predict_link_score(vertex_1, vertex_2)`
+
+The purpose of this method is to get the link prediction score for two vertices in graph if you have been
+training `TGN` for the link prediction task.
+
+#### Input:
+
+- `src: mgp.Vertex` ➡ Source vertex of the link prediction
+- `dest: mgp.Vertex` ➡ Destination vertex of the link prediction
+
+#### Output:
+
+- `prediction: mgp.Number` ➡ Float number between 0 and 1, likelihood of link between `source` vertex and `destination`
+vertex.
+
+#### Usage:
+
+```cypher
+MATCH (n:User)
+WITH n
+LIMIT 1
+MATCH (m:Item)
+OPTIONAL MATCH  (n)-[r]->(m)
+  WHERE r is null
+CALL tgn.predict_link_score(n,m) YIELD *
+RETURN n,m, prediction;
+```
+
 ## Example
 
 <Tabs
