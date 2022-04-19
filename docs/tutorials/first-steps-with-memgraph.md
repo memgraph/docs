@@ -4,34 +4,29 @@ title: First steps with Memgraph
 sidebar_label: First steps with Memgraph
 ---
 
-In this tutorial, you will learn how to install Memgraph, connect to it using
-Memgraph Lab, run your first query and style your graph. You will see that using
-memgraph is not hard at all! 
-
-You will use Memgraph Platform for this tutorial.
+In this tutorial, you will learn how to install Memgraph Platform, connect to it
+using Memgraph Lab, run your first query and style your graph. You will see that
+using Memgraph is not hard at all! 
 
 Let's get started!
 
 ## Prerequisites 
 
-Memgraph Platform can be installed only with Docker. Instructions on how to
+Memgraph Platform can be installed only with **Docker**. Instructions on how to
 install Docker can be found on the [official Docker
 website](https://docs.docker.com/get-docker/).
 
 
 ## 1. Install Memgraph Platform
 
-First you need to download and install Memgraph Platform! All you need to do is
+First, you need to download and install Memgraph Platform. All you need to do is
 to open a terminal on your computer and run the following command:
 
 ```bash
 docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 -v mg_lib:/var/lib/memgraph memgraph/memgraph-platform
 ```
-Depending on the speed of your internet connection it may take few minutes to
-download Memgraph docker image. At the end of this tutorial we have included
-more about on working with Docker.
 
-Once the installation is done you Memgraph will see message similar to this one:
+Once the installation is done, you will see a message similar to this one:
 
 ```nocopy
 
@@ -46,48 +41,47 @@ memgraph>
 
 ```
 
-This means that you have installed Memgraph Platform and that you have Memgraph
+That means that you have installed Memgraph Platform and that you have Memgraph
 up and running. Kudos!
 
-## 2. Connect to MemgraphLab
+## 2. Connect to Memgraph Lab
 
-MemgraphLab is running on your localhost at port 3000 so all that you need is to
-open your web browser and go to [`localhost:3000`](http://localhost:3000). When
-the Memgraph Lab loads click **Connect now**.
+Since you installed and started the Memgraph Platform, then the Memgraph Lab is
+already running, so open your web browser and go to
+[`localhost:3000`](http://localhost:3000). When the Memgraph Lab loads, click
+**Connect now**.
 
 <img src={require('../data/tutorials/getting-started/connect-to-memgraph-lab.png').default} className={"imgBorder"}/>
 
-That's it! You will no see Memgraph Lab Dashboard. Let's go to the next step.
+That's it! You can see the Memgraph Lab Dashboard, so you are ready to head over
+to the next step.
 
 <img src={require('../data/tutorials/getting-started/memgraph-lab-dashboard.png').default} className={"imgBorder"}/>
 
 ## 3. Import dataset
 
-Since this is a fresh install there are no nodes and relationships in your
+Since this is a fresh install, there are no nodes and relationships in your
 database. We have prepared more than 20 datasets that you can use for testing
 and learning. You will now import one of those datasets. In the sidebar click
-**Datasets**. Next go to **Capital cities and borders** and click **Load
-Dataset**.
+**Datasets**. Next, go to **Capital cities and borders** and click **Load Dataset**.
 
 <img src={require('../data/tutorials/getting-started/memgraph-lab-datasets.png').default} className={"imgBorder"}/>
 
 You will see the warning that a new dataset will overwrite current data in the
-database. This is not a problem for you since you don't have any data in your
-database, but in future be careful when importing data. Go ahead and click
-**Confirm**. Once the import done click the **X** to close the dialog. 
+database. That is not a problem for you since you don't have any data in your
+database, but in the future be careful when importing data. Go ahead and click
+**Confirm**. Once the import is done, click the **X** to close the dialog. 
 
 <img src={require('../data/tutorials/getting-started/memgraph-lab-dataset-import.png').default} className={"imgBorder"}/>
 
 ## 4. Run query
 
-Here is task tah you are trying to solve. Imagine that you are in Madrid. And
-you want to visit other capital cities. You've decided that you want to visit
-one ofe the cities that are one or two hops away from Madrid. How can you find
-out which cities your possible destinations? You will use Cypher query language
-to find that out.
+Imagine that you are in Madrid and you want to visit other capital cities that
+are one or two hops away from Madrid. How can you figure out which cities are your
+possible destinations? You will use Cypher query language to find that out.
 
 Click the **Query Execution** in the sidebar, and then copy-and-paste the
-following code into **Cypher Editor**.
+following code into the **Cypher Editor**.
 
 ```cypher
 
@@ -95,11 +89,11 @@ MATCH p = (madrid:City { name: "Madrid" })-[e * bfs ..2]-(:City)
 RETURN p;
 
 ```
-This query will show on the map all of the capital cities that are up to two
-hops away from Madrid. Don't worry about exact semantics of this query for now.
-We have great learning materials for Cypher. You can check them out once you are
-done with this tutorial. Click **Run query** to run it. The result of the query
-is visible in **Graph results** tab.
+
+This query will show all of the capital cities on the map that are up to two
+hops away from Madrid. Yout don't have to worry about exact semantics of this
+query for now, but if you want to find out more, check out the [learning materials](/cypher-manual/) for Cypher. Click **Run query** to run the above
+query and see the result in the **Graph results** tab.
 
 <img src={require('../data/tutorials/getting-started/memgraph-lab-cypher-editor.png').default} className={"imgBorder"}/>
 
@@ -108,22 +102,19 @@ away from Madrid.
 
 <img src={require('../data/tutorials/getting-started/memgraph-lab-graph-results.png').default} className={"imgBorder"}/>
 
-We will not go deeper into the query at this time. We have great learning
-materials for Cypher and we will link them at the end of the tutorial.
-
 ## 5. Style your graph
 
-When your results are shown on the map you can move around the map. Go ahead and
+When your results are shown on the map, you can move around. Go ahead and
 zoom in and change the map style to **Detailed**. 
 
 <img src={require('../data/tutorials/getting-started/memgraph-lab-map-style.png').default} className={"imgBorder"}/>
 
-You will now use **Graph Style Editor** to change the way that nodes and
-relationships are shown on the map. For each capital city we have included a
-flag fo that country as a node property. You will now add one line of code to
-make it appear on the graph.
+You will now use **Graph Style Editor** to change how nodes and relationships
+are shown on the map. We have included a flag for each capital city as a node
+property for the country it belongs to. You will now add one line of code to
+change the style of the graph.
 
-Find the part of the code that looks like this
+Find the part of the code that looks like this:
 
 ```nocopy
 @NodeStyle HasLabel?(node, "City") {
@@ -138,7 +129,7 @@ and add the line
   image-url: Property(node, "flag")
 ```
 
-so that this block looks like this.
+so that the above block looks like this:
 
 ```nocopy
 @NodeStyle HasLabel?(node, "City") {
@@ -149,16 +140,16 @@ so that this block looks like this.
 }
 ```
 
-Click **Apply** any your result should look like this.
+Click **Apply**, and your result should look like this:
 
 <img
 src={require('../data/tutorials/getting-started/memgraph-lab-style-editor.png').default}
 className={"imgBorder"}/>
 
-This looks great, but let's make names of the cites and nodes a little bit
+That looks great, but let's make the names of the cities and nodes a little bit
 bigger.
 
-In the Graph Style Editor locate the following code
+In the Graph Style Editor, locate the following code:
 
 ```nocopy
 @NodeStyle {
@@ -171,7 +162,7 @@ In the Graph Style Editor locate the following code
   font-size: 7
 }
 ```
-and replace it with
+and replace it with:
 
 ```
 @NodeStyle {
@@ -183,8 +174,9 @@ and replace it with
   border-color: #1d1d1d
   font-size: 12
 }
+```
 
-You have increased the size of node to 10, and font size to 12. Now you will update the styling for relationships. To make them a ticker, and when you hover over them we want them to become red. In the Graph Style Editor locate the following code
+You have increased the node size to 10, and the font size to 12. Now you will update the styling for the relationships. To make them thicker and change their color to red on hover, replace the following code in the Graph Style Editor:
 
 ```nocopy
 @EdgeStyle {
@@ -198,7 +190,8 @@ You have increased the size of node to 10, and font size to 12. Now you will upd
   label: Type(edge)
 }
 ```
-and replace it with
+
+with
 
 ```
 @EdgeStyle {
@@ -212,10 +205,9 @@ and replace it with
   label: Type(edge)
 }
 ```
-With this code you have updated the width and hover color for the relationships.
 
 <details>
-  <summary>If you need it here is the complete Graph Style Code for this graph:</summary>
+  <summary>In case you need it, here is the complete Graph Style Code:</summary>
 
 ```
 @NodeStyle {
@@ -257,14 +249,17 @@ With this code you have updated the width and hover color for the relationships.
 
 </details>
 
-Here is what your graph looks like now. We hope that you have enjoyed this short tutorial. Now that you have seen Memgraph in action we encourage you to keep exploring Memgraph features. Wonderful world of graphs awaits you!
+Below you can see how the graph looks like in the end. We hope that you have
+enjoyed this short tutorial. Now that you have seen Memgraph in action, we
+encourage you to keep exploring Memgraph features. A wonderful world of graphs
+awaits you!
 
 <img src={require('../data/tutorials/getting-started/memgraph-lab-map-style-final.png').default} className={"imgBorder"}/>
 
 ## Where to next?
 
-In this tutorial, you've learned how to install Memgraph, use Memgraph Lab to
-import dataset, run queries and style your graph. Not bad for a start, right?
+In this tutorial, you've learned how to install Memgraph Platform, use Memgraph Lab to
+import a dataset, run queries and style your graph. Not bad for a start, right?
 
 We have promised along the way some more resources, so here they are:
 
@@ -272,9 +267,7 @@ We have promised along the way some more resources, so here they are:
 * [Guide to Style Script script](/docs/memgraph-lab/graph-style-script-language)
 * [How to work with Docker](/memgraph/how-to-work-with-docker)
 
-
-We hope that you had fun going through this tutorial! You can continue checkout
-[some of the tutorials](overview.md) that web have prepared for you or you can
-go to [Memgraph Playground](https://playground.memgraph.com/) to go through
-guided lessons, or to check out other dataset in sandbox sites.
-
+We hope that you had fun going through this tutorial! You can check out
+[some of the tutorials](/memgraph/tutorials/) that we have prepared for you, or you can
+go to [Memgraph Playground](https://playground.memgraph.com/) and go through
+the guided lessons.
