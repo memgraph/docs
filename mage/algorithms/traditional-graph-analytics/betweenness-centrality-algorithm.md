@@ -32,10 +32,10 @@ Konstanz](https://www.uni-konstanz.de/en/).
 ### Implementation
 
 [![Betweenness
-Centrality](https://img.shields.io/badge/Betweenness_Centrality-Implementation-FB6E00?style=for-the-badge&logo=github&logoColor=white)](https://github.com/memgraph/mage/blob/main/cpp/betweenness_centrality_module/betweenness_centrality_module.cpp)
+Centrality](https://img.shields.io/badge/Betweenness_Centrality_Implementation-FB6E00?style=for-the-badge&logo=github&logoColor=white)](https://github.com/memgraph/mage/blob/main/cpp/betweenness_centrality_module/betweenness_centrality_module.cpp)
 
 [![Betweenness
-Centrality](https://img.shields.io/badge/Betweenness_Centrality-Documentation-FCC624?style=for-the-badge&logo=cplusplus&logoColor=white)](/mage/query-modules/cpp/betweenness-centrality)
+Centrality](https://img.shields.io/badge/Betweenness_Centrality_Documentation-FCC624?style=for-the-badge&logo=cplusplus&logoColor=white)](/mage/query-modules/cpp/betweenness-centrality)
 
 Betweenness Centrality is implemented as part of the
 [**MAGE**](https://github.com/memgraph/mage) project. Be sure to check it out in

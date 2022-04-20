@@ -22,6 +22,7 @@ module.exports = {
       link: {type: 'doc', id: 'query-modules/available-queries'},
       items: [
         "query-modules/cpp/betweenness-centrality",
+        "query-modules/cpp/betweenness-centrality-online",
         "query-modules/cpp/biconnected-components",
         "query-modules/cpp/bipartite-matching",
         "query-modules/cpp/bridges",
@@ -86,6 +87,7 @@ module.exports = {
           type: "category",
           label: "Streaming Graph Analytics",
           items: [
+            "algorithms/dynamic-graph-analytics/betweenness-centrality-online-algorithm",
             "algorithms/dynamic-graph-analytics/community-detection-online-algorithm",
             "algorithms/dynamic-graph-analytics/node2vec-online-algorithm",
             "algorithms/dynamic-graph-analytics/katz-centrality-online-algorithm",
