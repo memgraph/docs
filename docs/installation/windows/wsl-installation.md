@@ -1,6 +1,6 @@
 ---
 id: wsl-installation
-title: Install Memgraph DB on Windows with WSL
+title: Install MemgraphDB on Windows with WSL
 sidebar_label: Windows Subsystem for Linux
 slug: /install-memgraph-on-windows-wsl
 pagination_prev: installation/overview
@@ -38,7 +38,7 @@ Before you proceed with the installation guide make sure that you have:
 wsl
 ```
 
-**2.** Install Memgraph DB using the latest Memgraph Ubuntu package and by running the
+**2.** Install MemgraphDB using the latest Memgraph Ubuntu package and by running the
 following command in the Ubuntu terminal:
 
 ```console

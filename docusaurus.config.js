@@ -146,7 +146,7 @@ module.exports = {
             },
             {
               label: "Algorithms",
-              to: "/mage/algorithms/traditional-graph-analytics/betweenness-centrality-algorithm",
+              to: "/mage/algorithms/algorithms",
             },
             {
               label: "Use cases",

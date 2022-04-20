@@ -8,33 +8,45 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 export const Highlight = ({children, color}) => (
-  <span
-    style={{
+<span
+style={{
       backgroundColor: color,
       borderRadius: '2px',
       color: '#fff',
       padding: '0.2rem',
     }}>
-    {children}
-  </span>
+{children}
+</span>
 );
 
 [![docs-source](https://img.shields.io/badge/source-betweenness_centrality-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/cpp/betweenness_centrality_module/betweenness_centrality_module.cpp)
 
-
 ## Abstract
 
-Centrality analysis provides information about the node’s importance for an information flow or connectivity of the network. Betweenness centrality is one of the most used centrality metrics. Betweenness centrality measures the extent to which a node lies on paths between other nodes in the graph. Thus, nodes with high betweenness may have considerable influence within a network under their control over information passing between others. The calculation of betweenness centrality is not standardized, and there are many ways to solve it. It is defined as the number of shortest paths in the graph that passes through the node divided by the total number of shortest paths. The implemented algorithm is described in the paper "[A Faster Algorithm for Betweenness Centrality](http://www.uvm.edu/pdodds/research/papers/others/2001/brandes2001a.pdf)" [^1].
+Centrality analysis provides information about the node’s importance for an
+information flow or connectivity of the network. Betweenness centrality is one
+of the most used centrality metrics. Betweenness centrality measures the extent
+to which a node lies on paths between other nodes in the graph. Thus, nodes with
+high betweenness may have considerable influence within a network under their
+control over information passing between others. The calculation of betweenness
+centrality is not standardized, and there are many ways to solve it. It is
+defined as the number of shortest paths in the graph that passes through the
+node divided by the total number of shortest paths. The implemented algorithm is
+described in the paper "[A Faster Algorithm for Betweenness
+Centrality](http://www.uvm.edu/pdodds/research/papers/others/2001/brandes2001a.pdf)"
+[^1].
 
-[^1] [A Faster Algorithm for Betweenness Centrality](http://www.uvm.edu/pdodds/research/papers/others/2001/brandes2001a.pdf), Ulrik Brandes
+[^1] [A Faster Algorithm for Betweenness
+Centrality](http://www.uvm.edu/pdodds/research/papers/others/2001/brandes2001a.pdf),
+Ulrik Brandes
 
-| Trait               | Value                                                 |
-| ------------------- | ----------------------------------------------------- |
-| **Module type**     | <Highlight color="#FB6E00">**algorithm**</Highlight>  |
-| **Implementation**  | <Highlight color="#FB6E00">**C++**</Highlight>        |
-| **Graph direction** | <Highlight color="#FB6E00">**directed**</Highlight>/<Highlight color="#FB6E00">**undirected**</Highlight>  |
-| **Edge weights**    | <Highlight color="#FB6E00">**unweighted**</Highlight> |
-| **Parallelism**     | <Highlight color="#FB6E00">**parallel**</Highlight> |
+| Trait               | Value                                                                                                     |
+| ------------------- | --------------------------------------------------------------------------------------------------------- |
+| **Module type**     | <Highlight color="#FB6E00">**algorithm**</Highlight>                                                      |
+| **Implementation**  | <Highlight color="#FB6E00">**C++**</Highlight>                                                            |
+| **Graph direction** | <Highlight color="#FB6E00">**directed**</Highlight>/<Highlight color="#FB6E00">**undirected**</Highlight> |
+| **Edge weights**    | <Highlight color="#FB6E00">**unweighted**</Highlight>                                                     |
+| **Parallelism**     | <Highlight color="#FB6E00">**parallel**</Highlight>                                                       |
 
 ## Procedures
 
@@ -42,18 +54,22 @@ Centrality analysis provides information about the node’s importance for an in
 
 #### Input:
 
-* `directed: bool(True)` ➡ If `False` the direction of the edges is ignored
-* `normalized: bool(True)` ➡  If `True` the betweenness values are normalized by `2/((n-1)(n-2))` for graphs, and `1/((n-1)(n-2))` for directed graphs where `n` is the number of nodes.
-* `threads: Integer(number of concurrent threads supported by the implementation)` ➡  The number of threads used to calculate betweenness centrality.
-
+- `directed: bool(True)` ➡ If `False` the direction of the edges is ignored.
+- `normalized: bool(True)` ➡ If `True` the betweenness values are normalized by
+  `2/((n-1)(n-2))` for graphs, and `1/((n-1)(n-2))` for directed graphs where
+  `n` is the number of nodes.
+- `threads: Integer(number of concurrent threads supported by the
+  implementation)` ➡ The number of threads used to calculate betweenness
+  centrality.
 
 #### Output:
 
-* `betweenness_centrality: float` ➡ Value of betweenness for a given node
+- `betweenness_centrality: float` ➡ Value of betweenness for a given node.
 
-* `node: Vertex` ➡ Graph vertex for betweenness calculation
+- `node: Vertex` ➡ Graph vertex for betweenness calculation.
 
 #### Usage:
+
 ```cypher
 CALL betweenness_centrality.get()
 YIELD node, betweenness_centrality;
@@ -62,21 +78,20 @@ YIELD node, betweenness_centrality;
 ## Example
 
 <Tabs
-  groupId="example"
-  defaultValue="visualization"
-  values={[
-    {label: 'Step 1: Input graph', value: 'visualization'},
-    {label: 'Step 2: Cypher load commands', value: 'cypher'},
-    {label: 'Step 3: Running command', value: 'run'},
-    {label: 'Step 4: Results', value: 'result'},
-  ]
+groupId="example"
+defaultValue="visualization"
+values={[
+{label: 'Step 1: Input graph', value: 'visualization'},
+{label: 'Step 2: Cypher load commands', value: 'cypher'},
+{label: 'Step 3: Running command', value: 'run'},
+{label: 'Step 4: Results', value: 'result'},
+]
 }>
-  <TabItem value="visualization">
+<TabItem value="visualization">
 
-  <img src={require('../../data/query-modules/cpp/betweenness-centrality/betweenness-centrality-1.png').default}/>
+<img src={require('../../data/query-modules/cpp/betweenness-centrality/betweenness-centrality-1.png').default}/>
 
   </TabItem>
-
 
   <TabItem value="cypher">
 
@@ -107,7 +122,6 @@ YIELD node, betweenness_centrality;
 ```
 
   </TabItem>
-
 
   <TabItem value="result">
 
