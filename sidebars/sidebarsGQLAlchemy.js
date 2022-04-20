@@ -46,7 +46,7 @@ module.exports = {
         },
         {
           type: "category",
-          label: "Manage isntances",
+          label: "Manage instances",
           items: [
             "how-to-guides/instance-runner/memgraph-docker-instance",
             "how-to-guides/instance-runner/memgraph-binary-instance",
