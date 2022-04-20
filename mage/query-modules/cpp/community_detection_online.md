@@ -112,8 +112,7 @@ are none, defaults to calling `set()` with default parameters.
 #### Output:
 
 * `node: Vertex` ➡ Graph node.
-* `community_id: int` ➡ Community ID. Defaults to ***-1*** if the node is not
-  associated with any community.
+* `community_id: int` ➡ Community ID. Defaults to ***-1*** if the node does not belong to any community.
 
 #### Usage:
 
