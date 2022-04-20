@@ -23,6 +23,8 @@ To learn more about how to use OGM, take a look at the following pages:
   relationships**](/how-to-guides/ogm/save-nodes-and-relationships.md)
 - [**Load nodes and
   relationships**](/how-to-guides/ogm/load-nodes-and-relationships.md)
+- [**Index labels and
+  properties**](/how-to-guides/ogm/index-labels-and-properties.md)
 
 ## Query builder
 
@@ -33,7 +35,7 @@ query builder, check out the following how-to guide:
 - [**Creates nodes and
   relationships**](/how-to-guides/query-builder/create-nodes-relationships.md)
 - [**Return results**](/how-to-guides/query-builder/return-results.md)
-- [**Filter data by properties**](/how-to-guides/query-builder/filter-data.md)
+- [**Filter data**](/how-to-guides/query-builder/filter-data.md)
 - [**Call query module
   procedures**](/how-to-guides/query-builder/call-procedures.md)
 - [**Delete and remove
@@ -48,15 +50,32 @@ the following guides:
 - [**Pulsar streams**](/how-to-guides/streams/pulsar-streams.md)
 - [**Triggers**](/how-to-guides/triggers/triggers.md)
 
+## Import data from different sources
+
+You can translate table data from a file to graph data and import it to
+Memgraph. Currently, we support reading of CSV, Parquet, ORC and
+IPC/Feather/Arrow file formats via the PyArrow package.
+
+You can use `loaders.py` which implements loading data from the local file
+system, as well as Azure Blob and Amazon S3 remote file systems:
+
+- **[Import table data to a graph
+  database](/how-to-guides/loaders/import-table-data-to-graph-database.md)**
+
+The other way to import data is to implement a custom file system importer:
+
+- **[Implement a custom file system
+  importer](/how-to-guides/loaders/make-a-custom-file-system-importer.md)**
+  
 ## Instance runner
 
 There are two ways of managing a Memgraph instance with the `instance_runner`
 module:
 
-- **[How to manage a Memgraph instance with
-  Docker?](/how-to-guides/instance-runner/memgraph-docker-instance.md)**
-- **[How to manage a Memgraph instance from a
-  binary?](/how-to-guides/instance-runner/memgraph-binary-instance.md)**
+- **[Manage a Memgraph instance with
+Docker](/how-to-guides/instance-runner/memgraph-docker-instance.md)**
+- **[Manage a Memgraph instance from a
+  binary](/how-to-guides/instance-runner/memgraph-binary-instance.md)**
 
 ## On-disk storage
 
