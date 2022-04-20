@@ -57,6 +57,14 @@ def ensure_indexes(indexes: List[MemgraphIndex]) -> None
 
 Ensures that database indexes match input indexes
 
+#### drop\_indexes
+
+```python
+def drop_indexes() -> None
+```
+
+Drops all indexes in the database
+
 #### create\_constraint
 
 ```python
@@ -97,6 +105,14 @@ def create_stream(stream: MemgraphStream) -> None
 
 Create a stream
 
+#### start\_stream
+
+```python
+def start_stream(stream: MemgraphStream) -> None
+```
+
+Start a stream
+
 #### get\_streams
 
 ```python
@@ -135,15 +151,23 @@ Creates a trigger
 def get_triggers() -> List[str]
 ```
 
-Creates a trigger
+Returns a list of all database triggers
 
 #### drop\_trigger
 
 ```python
-def drop_trigger(trigger) -> None
+def drop_trigger(trigger: MemgraphTrigger) -> None
 ```
 
 Drop a trigger
+
+#### drop\_triggers
+
+```python
+def drop_triggers() -> None
+```
+
+Drops all triggers in the database
 
 #### new\_connection
 
@@ -202,6 +226,14 @@ If the node has unique fields it fetches the nodes with the same unique
 fields from Memgraph and updates it&#x27;s fields.
 Otherwise it creates a new node with the same properties.
 Null properties are ignored.
+
+#### save\_nodes
+
+```python
+def save_nodes(nodes: List[Node]) -> None
+```
+
+Saves a list of nodes to Memgraph.
 
 #### save\_node\_with\_id
 
@@ -286,6 +318,14 @@ and updates it&#x27;s properties with the values in `relationship`.
 If relationship._id is None, it creates a new relationship.
 If you want to set a relationship._id instead of creating a new
 relationship, use `load_relationship` first.
+
+#### save\_relationships
+
+```python
+def save_relationships(relationships: List[Relationship]) -> None
+```
+
+Saves a list of relationships to Memgraph.
 
 #### save\_relationship\_with\_id
 
