@@ -19,7 +19,7 @@ style={{
 </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-betweenness_centrality_online-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/cpp/betweenness_centrality_online_module/betweenness_centrality_online_module.cpp)
+[![docs-source](https://img.shields.io/badge/source-betweenness_centrality_online-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/cpp/betweenness_centrality_module/betweenness_centrality_online_module.cpp)
 
 ## Abstract
 
