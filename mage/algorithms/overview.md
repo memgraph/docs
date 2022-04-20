@@ -61,6 +61,13 @@ coloring](/algorithms/traditional-graph-analytics/graph-coloring.md). This
 “special” labeling refers to the assignment of labels (which we call colors) in
 such a way that connected neighbors must not be given the same color.
 
+### Katz Centrality
+
+[Katz Centrality](/algorithms/traditional-graph-analytics/katz-centrality.md) is
+the measurement of centrality that incorporates the inbound path length starting
+from the wanted node. More central nodes will have closer connections rather
+than having many long-distance nodes connected to them.
+
 ### Maximum Flow
 
 The [Maximum Flow](/algorithms/traditional-graph-analytics/max-flow.md) problem
@@ -95,6 +102,22 @@ splitting optimizations.
 
 ## Streaming Graph Analytics
 
+### Katz Centrality
+
+The online [Katz
+centrality](/algorithms/dynamic-graph-analytics/katz-centrality-online-algorithm.md)
+implementation results in a reduction of computations needed to update already
+calculated results. The algorithm offers substantially large speedups compared
+to static algorithm runs.
+
+### Dynamic Community Detection
+
+To address the hidden relations among the nodes in the graph, especially those
+not connected directly, [community
+detection](/algorithms/dynamic-graph-analytics/community-detection-online-algorithm.md)
+can provide help. This familiar graph analytics method is being solved in
+various different ways.
+
 ### Dynamic Node2Vec
 
 [Dynamic
@@ -111,14 +134,6 @@ arguably the most popular tool. Today, the most popular search engine in the
 world, Google, owes its popularity solely to this algorithm, developed in the
 early days by its founders. The need for its dynamic implementation arose at the
 moment when nodes and edges arrive in a short period of time.
-
-### Dynamic Community Detection
-
-To address the hidden relations among the nodes in the graph, especially those
-not connected directly, [community
-detection](/algorithms/dynamic-graph-analytics/community-detection-online-algorithm.md)
-can provide help. This familiar graph analytics method is being solved in
-various different ways.
 
 ## Machine Learning Graph Algorithms
 

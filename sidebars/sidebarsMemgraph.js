@@ -127,6 +127,7 @@ module.exports = {
         "tutorials/graph-modeling",
         "tutorials/got-deaths",
         "tutorials/graphing-the-premier-league",
+        "tutorials/implement-custom-query-module-in-python",
         "tutorials/install-memgraph-windows-10",
         "tutorials/marvel-universe",
         "tutorials/movie-recommendation",
@@ -189,6 +190,7 @@ module.exports = {
             "how-to-guides/manage-user-privileges",
           ],
         },
+        "how-to-guides/indexes",
       ],
     },
     {

@@ -175,7 +175,7 @@ docker run -it -p 7687:7687  memgraph/memgraph --memory-limit=50
 
 Database instances are stopped by stopping the Docker container with the command
 `docker stop`. To stop a container you need [to know the container's
-ID](#how-to-retrieve-docker-container-id).
+ID](#how-to-retrieve-a-docker-container-id).
 
 You can list all the containers you want to stop in one `docker stop` command:
 
@@ -215,7 +215,7 @@ docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' 9397
 ## How to browse files inside a Docker container?
 
 To browse files inside a Docker container, first, you need [to retrieve its
-ID](#how-to-retrieve-docker-container-id).
+ID](#how-to-retrieve-a-docker-container-id).
 
 Then run the following command if the container ID is `9397623cd87e`:
 
@@ -236,36 +236,36 @@ letters to have a unique string, press the `<TAB>` key.
 ## How to copy files from and to a Docker container?
 
 To copy files from and to the Docker container, first, you need [to retrieve its
-ID](#how-to-retrieve-docker-container-id).
+ID](#how-to-retrieve-a-docker-container-id).
 
 1. Place yourself in the local directory where you want to copy the
    configuration file.
 
 2. Copy the file from the container to your current directory with the command:
 
-```
-docker cp <CONTAINER ID>:<path_in_container> <local_file_name>
-```
+  ```
+  docker cp <CONTAINER ID>:<path_in_container> <local_file_name>
+  ```
 
-Be sure to replace the `<CONTAINER ID>` parameter.
+  Be sure to replace the `<CONTAINER ID>` parameter.
 
-The example below will copy the configuration file to the user's Desktop:
+  The example below will copy the configuration file to the user's Desktop:
 
-```
-C:\Users\Vlasta\Desktop>docker cp bb3de2634afe:/etc/memgraph/memgraph.conf memgraph.conf
-```
+  ```
+  C:\Users\Vlasta\Desktop>docker cp bb3de2634afe:/etc/memgraph/memgraph.conf memgraph.conf
+  ```
 
 3. Copy the file from your current directory to the container with the command:
 
-```
-docker cp  <local_file_name> <CONTAINER ID>:<path_in_container>
-```
+  ```
+  docker cp  <local_file_name> <CONTAINER ID>:<path_in_container>
+  ```
 
-Be sure to replace the `<CONTAINER ID>` parameter.
+  Be sure to replace the `<CONTAINER ID>` parameter.
 
-The example below will replace the configuration file with the one from the
-user's Desktop:
+  The example below will replace the configuration file with the one from the
+  user's Desktop:
 
-```
-C:\Users\Vlasta\Desktop>docker cp memgraph.conf bb3de2634afe:/etc/memgraph/memgraph.conf
-```
+  ```
+  C:\Users\Vlasta\Desktop>docker cp memgraph.conf bb3de2634afe:/etc/memgraph/memgraph.conf
+  ```
