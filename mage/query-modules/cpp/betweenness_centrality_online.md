@@ -166,8 +166,8 @@ values={[
 {label: 'Step 3: Cypher load commands', value: 'cypher-load'},
 {label: 'Step 4: Running command', value: 'run'},
 {label: 'Step 5: Results', value: 'result'},
-]}
-> <TabItem value="visualization">
+]}>
+  <TabItem value="visualization">
 
 <img src={require('../../data/query-modules/cpp/betweenness-centrality-online/betweenness-centrality-online-1.png').default}/>
 

@@ -102,7 +102,18 @@ splitting optimizations.
 
 ## Streaming Graph Analytics
 
-### Katz Centrality
+### Dynamic Betweenness Centrality
+
+MAGE includes a _fully dynamic_ [betweenness
+centrality](/algorithms/dynamic-graph-analytics/betweenness-centrality-online-algorithm.md)
+computation tool that implements the
+[iCentral](https://repository.kaust.edu.sa/bitstream/handle/10754/625935/08070346.pdf)
+[^1] algorithm. iCentral saves up on computation in two ways: it singles out the
+nodes whose centrality scores could have changed and then incrementally updates
+the scores, making use of previously calculated data structures where
+applicable.
+
+### Dynamic Katz Centrality
 
 The online [Katz
 centrality](/algorithms/dynamic-graph-analytics/katz-centrality-online-algorithm.md)
@@ -152,6 +163,12 @@ can reveal some hidden features in a graph. The main technique is to design
 features over the structure of the graph itself and then apply a classification
 algorithm.
 
+### Graph Clustering
+
+In graph theory, [Graph
+clustering](/algorithms/machine-learning-graph-analytics/graph-clustering-algorithm.md)
+is used to find subsets of similar nodes and group them together.
+
 ### Link Prediction
 
 [Link
@@ -174,8 +191,11 @@ that don't have them.
 random walks. The point of this method is to map nodes that are most likely to
 be within a common random walk to the same place in n-dimensional space.
 
-### Graph Clustering
+### Temporal Graph Networks (TGNs)
 
-In graph theory, [Graph
-clustering](/algorithms/machine-learning-graph-analytics/graph-clustering-algorithm.md)
-is used to find subsets of similar nodes and group them together.
+[Temporal Graph
+Networks](/algorithms/machine-learning-graph-analytics/temporal-graph-networks.md)
+are a type of graph neural network (GNN) for dynamic graphs. In recent years,
+GNNs have become very popular due to their ability to perform a wide variety of
+machine learning tasks on graphs, such as link prediction, node classification,
+and so on.
