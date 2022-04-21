@@ -2,6 +2,7 @@
 id: custom-file-system-importer
 title: How to make a custom file system importer
 sidebar_label: Make a custom file system importer
+slug: /how-to-guides/custom-file-system-importer
 ---
 
 > To learn how to import table data from a file to the Memgraph database, head

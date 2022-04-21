@@ -2,6 +2,7 @@
 id: table-to-graph-importer
 title: How to import table data to a graph database
 sidebar_label: Import table data as a graph
+slug: /how-to-guides/table-to-graph-importer
 ---
 
 This guide will show you how to use `loaders.py` to translate table data from a
