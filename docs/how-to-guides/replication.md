@@ -64,7 +64,8 @@ REPLICA instance 3:
 docker run -it -p 7690:7687 -p 3003:3000 -p 7447:7444 -v mg_lib4:/var/lib/memgraph memgraph/memgraph-platform
 ```
 
-You can connect to each instance with Memgraph Lab in-browser application at:
+You can connect to each instance with the [Memgraph Lab](/memgraph-lab)
+in-browser application at:
 
 - the MAIN instance - `localhost:3000`
 - REPLICA instance 1 - `localhost:3001`
@@ -82,7 +83,7 @@ SET REPLICATION ROLE TO REPLICA WITH PORT 10000;
 
 If you set the port of each REPLICA instance to `10000`, it will be easier to
 register replicas later on because the query for registering replicas uses port
-10000 as the default one.
+`10000` as the default one.
 
 Otherwise, you can use any unassigned port between 1000 and 10000.
 
@@ -118,7 +119,7 @@ instances:
    confirm they have received the same transaction. SYNC mode prioritizes data
    consistency but has no tolerance for any network failures.
 
-   If you used any port other than 10000 while demoting a REPLICA instance,
+   If you used any port other than `10000` while demoting a REPLICA instance,
    you will need to specify it like this: "172.17.0.3:5000"
 
 2. REPLICA instance 2 at `172.17.0.4`
@@ -138,7 +139,7 @@ instances:
    until unexpected issues force the system to prioritize availability and
    partition tolerance.
 
-   If you used any port other than 10000 while demoting a REPLICA instance,
+   If you used any port other than `10000` while demoting a REPLICA instance,
    you will need to specify it like this: "172.17.0.3:5000"
 
 3. REPLICA instance 3 at `172.17.0.5`
@@ -155,7 +156,7 @@ instances:
    that they have received the same transaction. ASYNC mode ensures system
    availability and partition tolerance.
 
-   If you used any port other than 10000 while demoting a REPLICA instance,
+   If you used any port other than `10000` while demoting a REPLICA instance,
    you will need to specify it like this: "172.17.0.3:5000"
 
 ## How to check info about registered REPLICA instances?
