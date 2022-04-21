@@ -4,6 +4,8 @@ title: How to manage authentication and authorization (Enterprise)
 sidebar_label: Manage authentication and authorization
 ---
 
+[![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/ldap-security.md)
+
 In large organizations it is often difficult to manage permissions that staff
 members have in the organization.  Organizations typically use an LDAP server
 to hold and manage the permissions.  Because LDAP servers are already set-up in

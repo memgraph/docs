@@ -4,6 +4,8 @@ title: How to implement transformation modules
 sidebar_label: Implement transformation modules
 ---
 
+[![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/streams/transformation-modules/overview.md)
+
 The prerequisite of connecting Memgraph to a Pulsar stream is to have a
 transformation module that can produce Cypher queries based on the received
 messages. We are going to implement a simple transformation that stores the
@@ -31,7 +33,7 @@ docker volume create --driver local --opt type=none --opt device=modules --opt o
 Now, you can start Memgraph and mount the created volume:
 
 ```shell
-docker run -it --rm -p 7687:7687 -p 3000:3000 -v modules:/usr/lib/memgraph/query_modules memgraph
+docker run -it --rm -p 7687:7687 -p 7444:7444 -p 3000:3000 -v modules:/usr/lib/memgraph/query_modules memgraph
 ```
 
 Everything from the directory `/usr/lib/memgraph/query_modules` will be
