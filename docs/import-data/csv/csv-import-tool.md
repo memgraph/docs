@@ -26,7 +26,7 @@ import` with `mg_import_csv`.
 :::info
 
 For more detailed information about the CSV import tool, check our [Reference
-guide](/memgraph/reference-guide/import-data/csv-import-tool).
+guide](/reference-guide/import-data/csv-import-tool.md).
 
 :::
 
