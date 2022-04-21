@@ -5,7 +5,7 @@ module.exports = {
   tagline: "Welcome to the Memgraph Docs site!",
   url: "https://memgraph.com",
   baseUrl,
-  onBrokenLinks: "throw",
+  onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/social-logo-round-corners.png",
   organizationName: "memgraph",
