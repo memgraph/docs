@@ -6,7 +6,7 @@ pagination_prev: import-data/overview
 slug: /import-data/csv-import-tool
 ---
 
-[![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/import-data/csv-import-tool.md)
+[![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](../../reference-guide/import-data/csv-import-tool.md)
 
 import Tabs from "@theme/Tabs"; import TabItem from "@theme/TabItem";
 
@@ -26,7 +26,7 @@ import` with `mg_import_csv`.
 :::info
 
 For more detailed information about the CSV import tool, check our [Reference
-guide](/reference-guide/import-data/csv-import-tool.md).
+guide](../../reference-guide/import-data/csv-import-tool.md).
 
 :::
 
