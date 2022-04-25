@@ -1,13 +1,17 @@
 <!-- ## Loading query modules -->
 
 Once you start Memgraph, it will attempt to load query modules from all `*.so`
-and `*.py` files from the default (`/usr/lib/memgraph/query_modules`)
-directory. 
+and `*.py` files from the default (`/usr/lib/memgraph/query_modules` and
+`/var/lib/memgraph/internal_modules`) directories. 
 
-If you want to change the location from which Memgraph will load query modules,
-change the `--query-modules-directory` flag in the main configuration file
-(`/etc/memgraph/memgraph.conf`) or supply it as a command-line parameter (e.g.
-when using Docker).
+MAGE modules are located at
+`/usr/lib/memgraph/query_modules` and custom modules developed via Memgraph Lab at
+`/var/lib/memgraph/internal_modules`.
+
+If you want to change the location from which Memgraph will load query modules
+or add a new directory to the list, change the `--query-modules-directory` flag
+in the main configuration file (`/etc/memgraph/memgraph.conf`) or supply it as a
+command-line parameter (e.g. when using Docker).
 
 :::caution
 

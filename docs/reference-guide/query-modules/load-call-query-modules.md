@@ -37,6 +37,9 @@ By expanding procedures you can receive information about the procedure's
 signature, input and output variables and their data type, as well as the `CALL`
 query you can run directly from the **Query Modules** view.
 
+Custom modules developed via Memgraph Lab are located at
+`/var/lib/memgraph/internal_modules`.
+
 <img src={require('../../data/memgraph_lab_query_modules_details.png').default} className={"imgBorder"}/>
 
 ## Controlling procedure memory usage

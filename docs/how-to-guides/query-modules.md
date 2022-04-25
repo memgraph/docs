@@ -174,7 +174,7 @@ guide](../reference-guide/query-modules/load-call-query-modules#controlling-proc
 ## How to change the default query module directories?
 
 If you want to change the default query module directories
-(`/usr/lib/memgraph/query_modules` and `/var/lib/memgraph/internal_modules/`),
+(`/usr/lib/memgraph/query_modules` and `/var/lib/memgraph/internal_modules`),
 that is, the directories in which Memgraph searches for query modules, change
 the `--query-modules-directory` flag in the main configuration file
 (`/etc/memgraph/memgraph.conf`) or supply it as a command-line parameter (e.g.

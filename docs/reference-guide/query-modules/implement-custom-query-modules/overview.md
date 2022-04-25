@@ -25,6 +25,9 @@ navigate to **Query Modules** and click on **New Module** to start.
 
 <img src={require('../../../data/memgraph_lab_query_modules.png').default} className={"imgBorder"}/>
 
+Custom modules developed via Memgraph Lab are located at
+`/var/lib/memgraph/internal_modules`.
+
 ## C API
 
 C API modules need to be compiled to a shared library so that they can be loaded

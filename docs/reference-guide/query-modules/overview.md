@@ -31,7 +31,7 @@ would be mapped in the Cypher query language as `example.procedure()` and
 Regardless of where they come from and who wrote them, all modules need to be
 loaded into Memgraph so that they can be called while querying the database.
 They are either loaded automatically when Memgraph starts or manually if they
-were added while Memgraph was already running.
+were added while Memgraph was already running. 
 
 You can also inspect and develop query modules in Memgraph Lab (v2.0 and newer).
 Just navigate to **Query Modules**.
@@ -40,6 +40,11 @@ Just navigate to **Query Modules**.
   <summary>Screenshot of Query Modules from Memgraph Lab</summary>
 <img src={require('../../data/memgraph_lab_query_modules.png').default} className={"imgBorder"}/>
 </details>
+
+Once you start Memgraph, it will attempt to load query modules from all *.so and
+*.py files from the default directories. MAGE modules are located at
+`/usr/lib/memgraph/query_modules` and custom modules developed via Memgraph Lab at
+`/var/lib/memgraph/internal_modules`.
 
 To learn more about query modules, take a look at the following guides:
 
