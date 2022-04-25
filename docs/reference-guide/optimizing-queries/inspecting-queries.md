@@ -33,7 +33,7 @@ produced plan and gain insight into the execution of a query.
 | `CreateExpand`                  | Creates edges and  new nodes to connect with existing nodes.                                                             |
 | `Delete`                        | Deletes nodes and edges.                                                                                                 |
 | `EdgeUniquenessFilter`          | Filters unique edges.                                                                                                    |
-| `Expand`                        | Expands the node by finding the node's children.                                                                         |
+| `Expand`                        | Expands the node by finding the node's relationships.                                                                    |
 | `ExpandVariable`                | Performs a node expansion of a variable number of relationships                                                          |
 | `Filter`                        | Filters the input it received.                                                                                           |
 | `Foreach`                       | Iterates over a list and applies one or more update clauses.                                                             | 
@@ -41,7 +41,7 @@ produced plan and gain insight into the execution of a query.
 | `LoadCsv`                       | Loads CSV file in order to import files into the database.                                                               |
 | `Merge`                         | Applies merge on the input it received.                                                                                  |
 | `Once`                          | Forms the beginning of an operator chain with "only once" semantics. The operator will return false on subsequent pulls. |
-| `Optional`                      | Performs optional matching and returns null if a match is not found.                                                     |
+| `Optional`                      | Performs optional matching.                                                     |
 | `OrderBy`                       | Orders the input it received.                                                                                            |
 | `Produce`                       | Produces results.                                                                                                        |
 | `RemoveLabels`                  | Removes a variable number of node labels.                                                                                |
