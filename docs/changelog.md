@@ -4,6 +4,12 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v2.3.0 - Apr 27, 2022
+### Bug Fixes
+
+### Major Features and Improvements
+* Added bolt over websocket support to Memgraph server. [#384](https://github.com/memgraph/memgraph/pull/384)
+
 ## v2.2.1 - Mar 17, 2022
 
 ### Bug Fixes
