@@ -4,6 +4,9 @@ title: Style your graphs in Memgraph Lab
 sidebar_label: Style your graphs in Memgraph Lab
 ---
 
+[![Related - Blog
+Post](https://img.shields.io/static/v1?label=Related&message=Blog%20post&color=9C59DB&style=for-the-badge)](https://memgraph.com/blog/how-to-style-your-graphs-in-memgraph-lab)
+
 In this tutorial, you'll learn how to use **Style script** to add style to your
 graphs. You'll use the sandbox site **Memgraph Playground** that runs **Memgraph Lab** to
 try out some styling.
