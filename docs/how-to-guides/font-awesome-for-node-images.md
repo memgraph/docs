@@ -1,5 +1,5 @@
 ---
-id: font-awesome-for-images
+id: font-awesome-for-node-images
 title: Use Font Awesome icons for node images
 sidebar_label: Use Font Awesome for node images
 ---
@@ -7,7 +7,7 @@ sidebar_label: Use Font Awesome for node images
 [![Related - Tutorial](https://img.shields.io/static/v1?label=Related&message=Tutorial&color=008a00&style=for-the-badge)](/tutorials/style-your-graphs-in-memgraph-lab.md) [![Related - Blog
 Post](https://img.shields.io/static/v1?label=Related&message=Blog%20post&color=9C59DB&style=for-the-badge)](https://memgraph.com/blog/how-to-style-your-graphs-in-memgraph-lab)
 
-[Font Awesome](https://fontawesome.com/) is a popular icon library. You can not
+[Font Awesome](https://fontawesome.com/) is a popular icon library. You can't
 use those icons directly or SVG file as background images, but there is a
 workaround. Memgraph Lab supports the following image formats: `png`, `jpeg`,
 `gif` (static, not dynamic) and `webp`.
