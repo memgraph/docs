@@ -243,16 +243,33 @@ CREATE SET` and `ON MATCH SET` you can just use `SET`:
 
 ```cypher
 MERGE (p:Person {name: 'Angela'})
-ON CREATE SET p.notFound = TRUE
-ON MATCH SET p.notFound = TRUE;
+ON CREATE SET p.found = TRUE
+ON MATCH SET p.found = TRUE;
 ```
 
-is the same as the below query:
+is the same as the query below:
 
 ```cypher
 MERGE (p:Person {name: 'Angela'})
-SET p.notFound = TRUE;
+SET p.Found = TRUE;
 ```
+
+### 3.5. Combination of clauses
+
+You can also combine all three clauses (`ON CREATE SET`, `ON MATCH SET` and
+`SET`) to set a certain property depending on whether the node has been merged
+or created, and to set another property to a certain value regardless of the
+creation or merger of the node:
+
+```cypher
+MERGE (p:Person {name: 'Angela'})
+ON CREATE SET p.found = FALSE
+ON MATCH SET p.found = TRUE
+SET p.last_name = 'Smith'
+```
+
+The `found` property will be set to `FALSE` if the node was created, on `TRUE`
+if it was merged, but in any case, the last name will be set to `Smith`.
 
 ## Data set Queries
 
