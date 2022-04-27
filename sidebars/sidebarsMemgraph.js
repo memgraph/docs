@@ -181,7 +181,7 @@ module.exports = {
         "how-to-guides/replication",
         //"how-to-guides/tensorflow-setup",
         "reference-guide/triggers",
-        "how-to-guides/font-awesome-for-images",
+        "how-to-guides/font-awesome-for-node-images",
         "how-to-guides/work-with-docker",
 
         {
