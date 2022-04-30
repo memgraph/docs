@@ -10,6 +10,9 @@ sidebar_label: Changelog
 
 - Fix header on `SHOW REPLICATION ROLE` query and wrong timout info on `SHOW
   REPLICAS` query. [#376](https://github.com/memgraph/memgraph/pull/376)
+
+### Major Features and Improvements
+
 - Add replica state to `SHOW REPLICAS` query.
   [#379](https://github.com/memgraph/memgraph/pull/379)
 - Add frequent replica ping. `main` instance checks state of the replicas with
