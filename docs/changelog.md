@@ -8,8 +8,8 @@ sidebar_label: Changelog
 
 ### Bug Fixes
 
-- Fix header on `SHOW REPLICATION ROLE` query.
-  [#376](https://github.com/memgraph/memgraph/pull/376)
+- Fix header on `SHOW REPLICATION ROLE` query and wrong timout info on `SHOW
+  REPLICAS` query. [#376](https://github.com/memgraph/memgraph/pull/376)
 
 ## v2.2.1 - Mar 17, 2022
 
