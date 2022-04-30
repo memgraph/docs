@@ -4,6 +4,13 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v2.4.0
+
+### Bug Fixes
+
+- Fix header on `SHOW REPLICATION ROLE` query.
+  [#376](https://github.com/memgraph/memgraph/pull/376)
+
 ## v2.2.1 - Mar 17, 2022
 
 ### Bug Fixes
