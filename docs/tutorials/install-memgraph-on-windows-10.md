@@ -1,7 +1,7 @@
 ---
 id: install-memgraph-windows-10
 title: Install MemgraphDB and Memgraph Lab on Windows 10
-sidebar_label: Install MemgraphDB and Memgraph Lab on Windows 10
+sidebar_label: Install Memgraph on Windows 10
 ---
 
 In this tutorial, you will install both MemgraphDB and Memgraph Lab on Windows 10. 

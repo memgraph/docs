@@ -2,6 +2,7 @@
 id: exploring-the-european-road-network
 title: Exploring the European road network
 sidebar_label: Exploring the European road network
+slug: /tutorials/exploring-the-european-road-network
 ---
 
 This article is a part of a series intended to show users how to use Memgraph on
@@ -27,7 +28,7 @@ city is connected to the country it belongs to via an edge of type `:In_`. There
 are edges of type `:Road` connecting cities less than 500 kilometers apart.
 Distance between cities is specified in the `length` property of the edge.
 
-![Road network](../data/road_network_metagraph.png)
+![Road network](../../data/road_network_metagraph.png)
 
 ## Exploring the dataset
 
@@ -38,9 +39,11 @@ with the tutorial there. Note that you will not be able to execute `write`
 operations.
 
 On the other hand, if you would like to add changes to the dataset, download the
-[Memgraph Lab](https://memgraph.com/product/lab) desktop application and
-navigate to the `Datasets` tab in the sidebar. From there, choose the dataset
-`Europe road network` and continue with the tutorial.
+[Memgraph Platform](https://memgraph.com/download#memgraph-platform). Once you
+have it up and running, open Memgraph Lab web application within the browser on
+[`localhost:3000`](http://localhost:3000) and navigate to `Datasets` in the
+sidebar. From there, choose the dataset `Europe road network` and continue with
+the tutorial.
 
 ## Example queries
 

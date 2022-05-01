@@ -192,5 +192,5 @@ be as precise as possible in order to have a more performant query.
 
 For some real-world application of WSP we encourage you to visit our article
 [Exploring the European road
-network](/tutorials/exploring-the-european-road-network.md) which was specially
+network](/tutorials/exploring-datasets/exploring-the-european-road-network.md) which was specially
 crafted to showcase our graph algorithms.
