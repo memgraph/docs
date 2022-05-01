@@ -148,6 +148,7 @@
         "tutorials/graph-modeling",
         "tutorials/got-deaths",
         "tutorials/graphing-the-premier-league",
+        "tutorials/implement-custom-query-module-in-python",
         "tutorials/install-memgraph-windows-10",
         "tutorials/marvel-universe",
         "tutorials/movie-recommendation",
@@ -166,7 +167,7 @@
         "id": "how-to-guides/overview"
       },
       "items": [
-        "reference-guide/backup",
+        "how-to-guides/create-backup",
         {
           "type": "category",
           "label": "Connect to stream sources",
@@ -202,6 +203,7 @@
         "how-to-guides/query-modules",
         "how-to-guides/replication",
         "reference-guide/triggers",
+        "how-to-guides/work-with-docker",
         {
           "type": "category",
           "label": "Enterprise features",
@@ -209,7 +211,8 @@
             "how-to-guides/manage-users-using-ldap",
             "how-to-guides/manage-user-privileges"
           ]
-        }
+        },
+        "how-to-guides/indexes"
       ]
     },
     {

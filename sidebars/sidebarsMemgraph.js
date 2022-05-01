@@ -136,6 +136,9 @@ module.exports = {
           ],
         },
         "tutorials/graph-modeling",
+        "tutorials/first-steps-with-memgraph",
+        "tutorials/graph-modeling",
+        "tutorials/implement-custom-query-module-in-python",
         "tutorials/install-memgraph-windows-10",
         "tutorials/style-your-graphs-in-memgraph-lab",
         "tutorials/migrate-relational-database",
@@ -196,6 +199,7 @@ module.exports = {
             "how-to-guides/manage-user-privileges",
           ],
         },
+        "how-to-guides/indexes",
       ],
     },
     {

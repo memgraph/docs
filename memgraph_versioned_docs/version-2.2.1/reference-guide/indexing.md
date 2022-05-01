@@ -4,6 +4,13 @@ title: Indexing
 sidebar_label: Indexing
 ---
 
+[![Related -
+How-to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/indexes.md)
+[![Related - Under the
+Hood](https://img.shields.io/static/v1?label=Related&message=Under%20the%20hood&color=orange&style=for-the-badge)](/under-the-hood/indexing.md)
+
+## When to create indexes?
+
 When you are running queries, you want to get results as soon as possible. In
 the worst-case scenario, when you execute a query, all nodes need to be checked
 to see if there is a match.
@@ -30,7 +37,13 @@ CREATE INDEX ON :Person(prop);
 
 When a query is executed, the engine first checks if there is an index. An index
 stores additional information on certain types of data so that retrieving
-indexed data becomes more efficient.
+indexed data becomes more efficient. Indexes basically store data in a different
+kind of way, i.e., they partition it with a key. For example, if you set an
+index on a label, the query `MATCH (:Label)` won't have to explicitly check
+every node. You just need to check the nodes that were placed on a "shelf". Each
+"shelf" has nodes with a specific label. The data is not copied or duplicated to
+the "shelf". You actually create a memory map to those nodes and there is no
+need to look anywhere else for them.
 
 Here is what the query plan looks like if indexing is enabled:
 
@@ -45,13 +58,30 @@ memgraph> EXPLAIN MATCH (n:Person {prop: 1}) RETURN n;
 +-----------------------------------------------------+
 ```
 
+## When not to create indexes?
+
 There are some downsides to indexing, so it is important to carefully choose the
 right data for creating an index. The downsides of indexing are:
 
-- requiring extra storage for each index and
+- requiring extra storage (memory) for each index and
 - slowing down write operations to the database.
 
-Indexing all of the content will not improve the database speed.
+Indexing all of the content will not improve the database speed. The structures
+in the index are dynamically updated on modifications or insertions of new
+nodes. Once a new node is created, it needs to be assigned to an index group.
+Such an indexed node will be retrieved much faster from the database.
+
+Indexing will also not bring any improvement if a large number of properties
+have the same value. Take a look at the following example. Let's say you have
+some property that can have 10 distinct values. Those values are integers in the
+range 1 to 10. If you have 100 nodes stored in the database and 1 of them has a
+score of 1 while the others have a score of 10 (99 of them), then that is not a
+good distinguisher. If 10 of them have a score of 1, 10 of them have a score of
+2, etc. then it is a good distinguisher because it partitions them to cut the
+order of searching by one magnitude.
+
+Also, indexing certain data types will not bring any significant performance
+gain, e.g., for boolean in the best case scenario, the time will be cut in half.
 
 ## Creating an index
 
@@ -70,7 +100,7 @@ Memgraph supports two types of indexes:
 ### Label index
 
 Memgraph will not automatically index labeled data. If you want to optimize
-queries that fetch nodes by label, you need to perform the indexing.
+queries that fetch nodes by label, you need to create the indexes:
 
 ```cypher
 CREATE INDEX ON :Person;
@@ -79,12 +109,12 @@ CREATE INDEX ON :Person;
 Retrieving nodes using this query is now much more efficient:
 
 ```cypher
-MATCH (n :Person) RETURN n;
+MATCH (n:Person) RETURN n;
 ```
 
 ### Label-property index
 
-For example, to index nodes which are labeled as `:Person` and have a property
+For example, to index nodes that are labeled as `:Person` and have a property
 named `age`:
 
 ```cypher
@@ -94,7 +124,7 @@ CREATE INDEX ON :Person(age);
 After the index is created, retrieving those nodes will become more efficient.
 For example, the following query will retrieve all nodes which have an `age`
 property, instead of fetching each `:Person` node and checking whether the
-property exists.
+property exists:
 
 ```cypher
 MATCH (n :Person {age: 42}) RETURN n;

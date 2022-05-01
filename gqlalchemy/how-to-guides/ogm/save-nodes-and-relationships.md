@@ -4,8 +4,8 @@ title: How to save nodes and relationships
 sidebar_label: Save nodes and relationships
 ---
 
-With the help of this guide you can learn how to save nodes and relationships to
-a graph database.
+Through this guide, you will learn how to save nodes and relationships to a
+graph database.
 
 > Make sure you have a running Memgraph instance. If you're not sure how to run
 > Memgraph, check out the Memgraph [Quick start](/memgraph/#quick-start).
