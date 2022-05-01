@@ -2,6 +2,7 @@
 id: graphing-the-premier-league
 title: Graphing the Premier League
 sidebar_label: Graphing the Premier League
+slug: /tutorials/graphing-the-premier-league
 ---
 
 This article is a part of a series intended to show users how to use Memgraph on
@@ -34,7 +35,7 @@ nodes to the game node and are labeled as `:Played`.
 Every bit of information regarding the data model is nicely condensed in the
 following visual representation.
 
-![Football](../data/football_metagraph.png)
+![Football](../../data/football_metagraph.png)
 
 ## Exploring the dataset
 
@@ -45,9 +46,11 @@ continue with the tutorial there. Note that you will not be able to execute
 `write` operations.
 
 On the other hand, if you would like to add changes to the dataset, download the
-[Memgraph Lab](https://memgraph.com/product/lab) desktop application and
-navigate to the `Datasets` tab in the sidebar. From there, choose the dataset
-`Football Premier league games` and continue with the tutorial.
+[Memgraph Platform](https://memgraph.com/download#memgraph-platform). Once you
+have it up and running, open Memgraph Lab web application within the browser on
+[`localhost:3000`](http://localhost:3000) and navigate to `Datasets` in the
+sidebar. From there, choose the dataset `Football Premier league games` and
+continue with the tutorial.
 
 ## Example queries
 

@@ -2,6 +2,7 @@
 id: analyzing-ted-talks
 title: Analyzing TED Talks
 sidebar_label: Analyzing TED Talks
+slug: /tutorials/analyzing-ted-talks
 ---
 
 This article is a part of a series intended to show how to use Memgraph on
@@ -35,7 +36,7 @@ few example queries.
   and relationship`HasRating` with property `user_count` between talk and rating
   nodes.
 
-![TED](../data/TED_metagraph.png)
+![TED](../../data/TED_metagraph.png)
 
 ## Exploring the dataset
 
@@ -46,9 +47,11 @@ the tutorial there. Note that you will not be able to execute `write`
 operations.
 
 On the other hand, if you would like to add changes to the dataset, download the
-[Memgraph Lab](https://memgraph.com/product/lab) desktop application and
-navigate to the `Datasets` tab in the sidebar. From there, choose the dataset
-`TED talks` and continue with the tutorial.
+[Memgraph Platform](https://memgraph.com/download#memgraph-platform). Once you
+have it up and running, open Memgraph Lab web application within the browser on
+[`localhost:3000`](http://localhost:3000) and navigate to `Datasets` in the
+sidebar. From there, choose the dataset `TED talks` and continue with the
+tutorial.
 
 ## Example queries using Cypher
 

@@ -2,6 +2,7 @@
 id: backpacking-through-europe
 title: Backpacking through Europe
 sidebar_label: Backpacking through Europe
+slug: /tutorials/backpacking-through-europe
 ---
 
 This article is a part of a series intended to show users how to use Memgraph on
@@ -36,7 +37,7 @@ for tourist information such as `local_currency`, `local_currency_code`, and
 if they are neighboring countries. This edge also has the `eu_border` property.
 Every city node is connected to its parent country node via the `:Inside` edge.
 
-![Backpacking](../data/backpacking_metagraph.png)
+![Backpacking](../../data/backpacking_metagraph.png)
 
 ## Exploring the dataset
 
@@ -47,9 +48,11 @@ continue with the tutorial there. Note that you will not be able to execute
 `write` operations.
 
 On the other hand, if you would like to add changes to the dataset, download the
-[Memgraph Lab](https://memgraph.com/product/lab) desktop application and
-navigate to the `Datasets` tab in the sidebar. From there, choose the dataset
-`Backpacking through Europe` and continue with the tutorial.
+[Memgraph Platform](https://memgraph.com/download#memgraph-platform). Once you
+have it up and running, open Memgraph Lab web application within the browser on
+[`localhost:3000`](http://localhost:3000) and navigate to `Datasets` in the
+sidebar. From there, choose the dataset `Backpacking through Europe` and
+continue with the tutorial.
 
 ## Example queries
 

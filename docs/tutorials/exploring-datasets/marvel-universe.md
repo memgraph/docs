@@ -2,6 +2,7 @@
 id: marvel-universe
 title: Marvel Comic Universe social network
 sidebar_label: Marvel Comic Universe social network
+slug: /tutorials/marvel-universe
 ---
 
 This article is a part of a series intended to show how to use Memgraph on
@@ -61,7 +62,7 @@ Now, the data we'll be using in our queries can be classified as follows:
 
 A visual scheme of our graph database is given below.
 
-![MCU](../data/mcu_metagraph.png)
+![MCU](../../data/mcu_metagraph.png)
 
 ## Exploring the dataset
 
@@ -72,9 +73,11 @@ with the tutorial there. Note that you will not be able to execute `write`
 operations.
 
 On the other hand, if you would like to add changes to the dataset, download the
-[Memgraph Lab](https://memgraph.com/product/lab) desktop application and
-navigate to the `Datasets` tab in the sidebar. From there, choose the dataset
-`Marvel Comic Universe social network` and continue with the tutorial.
+[Memgraph Platform](https://memgraph.com/download#memgraph-platform). Once you
+have it up and running, open Memgraph Lab web application within the browser on
+[`localhost:3000`](http://localhost:3000) and navigate to `Datasets` in the
+sidebar. From there, choose the dataset `Marvel Comic Universe social network`
+and continue with the tutorial.
 
 ## Example queries using Cypher
 
