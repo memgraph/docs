@@ -390,9 +390,9 @@ module.exports = {
     },
     hideableSidebar: true,
     announcementBar: {
-      id: "cypheremailcourse",
+      id: "graphmodelingemailcourse",
       content:
-        'Sign up for the new <a target="_blank" rel="noopener noreferrer" href="https://memgraph.com/learn-cypher-query-language"><b>Cypher Email Course</b></a> 📩',
+        'Sign up for the new <a target="_blank" rel="noopener noreferrer" href="https://memgraph.com/learn-graph-modeling"><b>Graph Modeling Email Course</b></a> 📩',
       backgroundColor: "#fafbfc",
       textColor: "#091E42",
       isCloseable: true,
