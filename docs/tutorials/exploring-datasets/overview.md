@@ -1,6 +1,6 @@
 ---
 id: overview
-title: Exploring datasets
+title: Exploring datasets with graph analytics
 slug: /tutorials/exploring-datasets
 ---
 

@@ -6,18 +6,28 @@ slug: /tutorials
 ---
 
 Tutorials are guides on how to use Memgraph in real-world examples to help you
-kick off your own Memgraph graph database. 
+kick off your own Memgraph graph database adventures.
 
-## Basic tutorials 
+## Basic tutorials
 
--  [**Graph modeling**](graph-modeling.md) - learn basic terminology and practices related to graph databases and graph modeling
--  [**Install MemgraphDB and Memgraph Lab on Windows 10**](install-memgraph-on-windows-10.md)
--  [**Exploring datasets**](/tutorials/exploring-datasets) - learn Cypher language used to query the Memgraph database instance
--  [**Style your graphs in Memgraph Lab**](style-your-graphs-in-memgraph-lab.md) - learn Style script to add style to your graphs in Memgraph Lab
--  [**Migrate from RDBMS to Memgraph**](migrate-relational-database.md) - learn how to migrate your data from a relational database to Memgraph
--  [**Graph stream processing with Kafka**](graph-stream-processing-with-kafka.md) - learn how to connect Memgraph to an existing Kafka stream in order to analyze data in real-time
--  [**Social network analysis with NetworkX**](social-network-analysis.md)
--  [**Understanding music (with query modules)**](understanding-music-with-modules.md) - learn how to extend the Cypher query language by implementing query modules
+- [**Exploring datasets**](/tutorials/exploring-datasets/overview.md) - learn
+  the Cypher query language used to interact with the Memgraph graph database
+- [**Graph modeling**](graph-modeling.md) - learn basic terminology and
+  practices related to graph databases and graph modeling
+- [**Install MemgraphDB and Memgraph Lab on Windows
+  10**](install-memgraph-on-windows-10.md)
+- [**Style your graphs in Memgraph Lab**](style-your-graphs-in-memgraph-lab.md)
+  - learn Style script to add style to your graphs in Memgraph Lab
+- [**Migrate from RDBMS to Memgraph**](migrate-relational-database.md) - learn
+  how to migrate your data from a relational database to Memgraph
+- [**Graph stream processing with
+  Kafka**](graph-stream-processing-with-kafka.md) - learn how to connect
+  Memgraph to an existing Kafka stream in order to ingest and analyze data in
+  real-time
+- [**Social network analysis with NetworkX**](social-network-analysis.md)
+- [**Understanding music (with query
+  modules)**](understanding-music-with-modules.md) - learn how to extend the
+  Cypher query language by implementing query modules
 
 ## Tutorials with available GitHub repositories
 
@@ -27,15 +37,14 @@ graph analytics and how to perform complex network analysis with Memgraph.
 
 | Article                                                                                                                                                                                                                           | GitHub code                                                                                    | Streaming data |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | :------------: |
-| [Analyzing Interactions in a Slack Communication Network](https://memgraph.com/blog/slack-influence-bot)                                                                                                                          | [Repository](https://github.com/memgraph/slack-influence-bot/)                                 | ☑️             |
-| [How to build a Spotify Recommendation Engine using Kafka and Memgraph](https://memgraph.com/blog/spotify-song-recommender)                                                                                                       | [Repository](https://github.com/memgraph/spotify-song-recommender)                             | ☑️             |
-| [Visualizing and Analyzing Reddit In Real-Time with Kafka and Memgraph](https://memgraph.com/blog/reddit-network-explorer)                                                                                                        | [Repository](https://github.com/memgraph/reddit-network-explorer/)                             | ☑️             |
+| [Analyzing Interactions in a Slack Communication Network](https://memgraph.com/blog/slack-influence-bot)                                                                                                                          | [Repository](https://github.com/memgraph/slack-influence-bot/)                                 |       ☑️       |
+| [How to build a Spotify Recommendation Engine using Kafka and Memgraph](https://memgraph.com/blog/spotify-song-recommender)                                                                                                       | [Repository](https://github.com/memgraph/spotify-song-recommender)                             |       ☑️       |
+| [Visualizing and Analyzing Reddit In Real-Time with Kafka and Memgraph](https://memgraph.com/blog/reddit-network-explorer)                                                                                                        | [Repository](https://github.com/memgraph/reddit-network-explorer/)                             |       ☑️       |
 | [Building a BitClout Social Network Visualization App With Memgraph and D3.js](https://memgraph.com/blog/visualize-the-bitclout-network-using-d3js)                                                                               | [Repository](https://github.com/memgraph/bitclout-visualizing-hodlers/tree/main/bitclout-demo) |                |
 | [How to Build a Flight Network Analysis Graph-Based ASP.NET Application with Memgraph, C#, and D3.js](https://memgraph.com/blog/how-to-build-a-flight-network-analysis-graph-asp-net-application-with-memgraph-c-sharp-and-d3-js) | [Repository](https://github.com/memgraph/MemFlights)                                           |                |
 | [How to Develop a Credit Card Fraud Detection Application using Memgraph, Flask, and D3.js](https://memgraph.com/blog/how-to-develop-a-credit-card-fraud-detection-application-using-memgraph-flask-and-d3js)                     | [Repository](https://github.com/memgraph/card-fraud)                                           |                |
 | [How to Visualize a Social Network in Python with a Graph Database: Flask + Docker + D3.js](https://memgraph.com/blog/how-to-visualize-a-social-network-in-python-with-a-graph-database)                                          | [Repository](https://github.com/memgraph/sng-demo)                                             |                |
 | [Identifying Essential Proteins using Betweenness Centrality & Memgraph MAGE](https://memgraph.com/blog/identifying-essential-proteins)                                                                                           | [Repository](https://github.com/memgraph/protein-explorer)                                     |                |
-
 
 ## Various other blog tutorials
 

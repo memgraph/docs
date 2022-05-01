@@ -120,11 +120,9 @@ module.exports = {
       label: "Tutorials",
       link: { type: "doc", id: "tutorials/overview" },
       items: [
-        "tutorials/graph-modeling",
-        "tutorials/install-memgraph-windows-10",
         {
           type: "category",
-          label: "Exploring datasets",
+          label: "Exploring datasets with graph analytics",
           link: { type: "doc", id: "tutorials/exploring-datasets/overview" },
           items: [
             "tutorials/exploring-datasets/analyzing-ted-talks",
@@ -137,6 +135,8 @@ module.exports = {
             "tutorials/exploring-datasets/movie-recommendation",
           ],
         },
+        "tutorials/graph-modeling",
+        "tutorials/install-memgraph-windows-10",
         "tutorials/style-your-graphs-in-memgraph-lab",
         "tutorials/migrate-relational-database",
         "tutorials/graph-stream-processing-with-kafka",
