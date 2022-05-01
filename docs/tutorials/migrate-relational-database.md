@@ -207,8 +207,8 @@ boot  customerpurchase.csv  etc  lab   lib32  mage   mnt    proc  productpurchas
 ### 3. Run Memgraph Lab
 
 If you installed Memgraph Platform correctly, you should be able to access
-Memgraph Lab in your browser by visiting `http://localhost:3000/` and connect to
-the database.
+Memgraph Lab in your browser by visiting
+[`http://localhost:3000/`](http://localhost:3000) and connect to the database.
 
 Place yourself in the **Query** tab where we will write queries in the **Query
 editor** to import data into Memgraph.

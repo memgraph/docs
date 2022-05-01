@@ -74,7 +74,7 @@ memgraph>
 ```
 
 Command-line tool **mgconsole** is open in the terminal, and the visual user
-interface **Memgraph Lab** is available at `http://localhost:3000`.
+interface **Memgraph Lab** is available at [`http://localhost:3000`](http://localhost:3000).
 
 User either **mgconsole**, **Memgraph Lab** or various **drivers** to [**connect to
 MemgraphDB**](/connect-to-memgraph/overview.mdx).
