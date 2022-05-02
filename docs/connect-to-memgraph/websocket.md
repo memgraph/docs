@@ -9,7 +9,7 @@ import Tabs from "@theme/Tabs"; import TabItem from "@theme/TabItem";
 It is also possible to send queries and receive results via `WebSocket`
 connection.
 
-## 1. How to setup a WebSocket connection
+## How to setup a WebSocket connection
 
 First, you need to start running Memgraph. You can check out
 [installation](/installation/overview) pages to help you get started.
@@ -22,7 +22,7 @@ you will be connected to remains the same.
 In other words, you should use the Memgraph's address and the port number
 defined by the configuration flag `--bolt-port` to connect to Memgraph.
 
-## 2. WebSocket clients
+## WebSocket clients
 
 To connect to memgraph via WebSocket you can use our [jsmgclient](https://github.com/memgraph/jsmgclient)
 `JavaScript` client.
