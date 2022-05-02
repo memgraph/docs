@@ -191,6 +191,7 @@ So let's create `c_transformation.cpp` and start to populate it!
 
 ```cpp
 #include <exception>
+#include <optional>
 #include <string>
 
 #include "mg_procedure.h"
