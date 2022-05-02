@@ -8,7 +8,7 @@ sidebar_label: Changelog
 ### Bug Fixes
 
 ### Major Features and Improvements
-* Added bolt over websocket support to Memgraph server. [#384](https://github.com/memgraph/memgraph/pull/384)
+* Added bolt over `WebSocket` support to Memgraph server. [#384](https://github.com/memgraph/memgraph/pull/384)
 
 ## v2.2.1 - Mar 17, 2022
 
