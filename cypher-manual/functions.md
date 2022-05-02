@@ -6,11 +6,11 @@ sidebar_label: Functions
 
 ## User-defined Memgraph Magic functions
 
-Memgraph offers flexibility of creating a custom functions. When supported builtin functions are not enough, there is a way to define a custom one by using `C`, `C++`, `Python` or `Rust` programming language. Mechanism of [query modules](../memgraph/reference-guide/query-modules)  enables to integrate custom functionality. 
+Memgraph offers the flexibility of implementing custom functions. When supported built-in functions are not enough, there is an option to define a custom one by using C, C++, Python or Rust. The mechanism of [query modules](../memgraph/reference-guide/query-modules) enables the integration of custom functionalities.
 
-Semantically, functions should be a small fragments of functionality that do not require long computations and large memory consumption. The only requirement for functions is to not modify the graph. Mentioned functionality  offers the flexibility in terms of nested calls within the Cypher. Furthermore, the benefit of user-defined functions is large modularity and possibility to create your own functions if Memgraph builtin defined are not enough. 
+Semantically, functions should be a small fragment of functionality that does not require long computations and large memory consumption. The only requirement for functions is to not modify the graph. Mentioned functionality offers flexibility in terms of nested calls within the Cypher.
 
-## Supported builtin functions
+## Supported built-in functions
 
 This section contains the list of supported functions.
 

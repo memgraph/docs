@@ -160,14 +160,14 @@ guide](../reference-guide/query-modules/load-call-query-modules#calling-query-mo
 
 ## How to call a user-defined function?
 
-Similar, query procedure rules apply for the functions. Although their context
+Similarly, query procedure rules apply to the functions. Although their context
 is different, the mechanism behind functions maps the written functions to
-`example.function()` and `py_example.function()` respectively, just as it was
-the case above.
+`example.function()` and `py_example.function()` respectively, just as was the
+case above.
 
 The syntax for calling functions in loaded query modules is similar to the
-builtin functions, with the difference being case sensitivity. User defined
-functions do have a case sensitive names, while builtin ones don't:
+built-in functions, with the difference being case sensitivity. User-defined
+functions do have a case sensitive name, while builtin ones don't:
 
 ```cypher
 RETURN example.function();

@@ -1,7 +1,7 @@
 ---
 id: custom-query-module-example
-title: Example of a custom query
-sidebar_label: Example of a custom query
+title: Example of a custom query module
+sidebar_label: Example of a custom query module
 ---
 
 We will examine how the query module `example` is implemented using the
@@ -205,12 +205,12 @@ def write_procedure(context: mgp.ProcCtx,
 
 ### Magic functions
 
-User-defined, or so called "Memgraph Magic functions" are implemented similarly
-as read and write procedures. The difference between these is the end use-case
-and graph mutability. In the functions, user should not modify (create, delete,
-or update) any graph object.
+User-defined, or so-called "Memgraph Magic functions" are implemented similarly
+to read and write procedures. The difference between these is the end use-case
+and graph mutability. Users should not modify (create, delete, or update) any
+graph objects through functions.
 
-Semanticaly, functions should be a small fragments of functionality that do not
+Semantically, functions should be small fragments of functionality that do not
 require long computations and large memory consumption.
 
 The example of how to create and run a function is written below. This example
@@ -227,22 +227,22 @@ def func_example(context: mgp.FuncCtx,
     if opt_argument is not None:
       return_arguments.append(opt_argument)
 
-    # Note that we do not need to specify the result Record as long as it is
+    # Note that we do not need to specify the result Record as long as it is a
     # Memgraph defined value type.
     return return_arguments
 ```
 
-At the first glance, there is a huge similarity between defining a function and
-a procedure. Let's talk about differences. The first difference is the context
+At first glance, there is a huge similarity between defining a function and a
+procedure. Let's talk about differences. The first difference is the context
 type. `FuncCtx` prevents you to modify the graph and does not offer the API to
 communicate with the graph entities not related to the entry arguments.
 
-The second difference is the result signature. Functions do not require user to
-provide the resulting signature. The reason being the return value. Function
+The second difference is the resulting signature. Functions do not require the
+user to provide a resulting signature because of the return value. A function
 call can be nested in Cypher and therefore the only requirement for the
-returning value is to be the supported `mgp.Type`
+returning value is to be of a supported `mgp.Type`.
 
-The Cypher call for the written custom function can be executed like following:
+The Cypher call for the written custom function can be executed like this:
 
 ```cypher
 RETURN py_example.func_example("First argument", "Second argument");
@@ -398,12 +398,12 @@ in `mgp_init_module` and `mgp_shutdown_module` as well.
 
 ### Magic functions
 
-Major part of defining the "Magic function" is similar to query procedures. The
-steps of defining a callback and registering arguments are repeated in the magic
-functions, only with the different syntax.
+A major part of defining the "Magic function" is similar to query procedures.
+The steps of defining a callback and registering arguments are repeated in the
+magic functions, only with a different syntax.
 
-To define a function, first step is to define a callback. The example only shows
-C++ code.
+To define a function, the first step is to define a callback. The example only
+shows C++ code.
 
 ```cpp
 namespace {
@@ -421,13 +421,13 @@ void function(const mgp_list *args, mgp_func_context *func_ctx,
 ```
 
 The parameter `args` is used to fetch the required and optional arguments from
-the Cypher call. Parameter `result` defines the resulting value, it can carry
-either an error or a return value, depending on the runtime execution. There is
-no `mgp_graph` argument because graph is immutable in the functions.
+the Cypher call. The parameter `result` defines the resulting value. It can
+carry either an error or a return value, depending on the runtime execution.
+There is no `mgp_graph` argument because the graph is immutable in functions.
 
-To initialize and register the written function as the magic function, one
-should write the initialization in `mgp_init_module`. The registered function
-can then be called in similar fashion as the built-in functions, just with the
+To initialize and register the written function as a magic function, one should
+write the initialization in the `mgp_init_module`. The registered function can
+then be called in similar fashion as the built-in functions, just with the
 syntax defining the module it is stored in: `<module>.<function_name>(...)`.
 
 ```cpp
