@@ -11,8 +11,8 @@ Tutorial](https://img.shields.io/static/v1?label=Related&message=Tutorial&color=
 Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/query-modules/overview.md)
 
 Query modules are extensions of the Cypher query language. They are groups of
-procedures written in **C**, **C++**, **Python**, and **Rust** and bundled up in
-either `*.so` or `*.py` query modules files.
+procedures and functions written in **C**, **C++**, **Python**, and **Rust** and
+bundled up in either `*.so` or `*.py` query modules files.
 
 Some query modules are built-in, and others, like those that can help you solve
 complex graph issues, are available as part of the MAGE library you can add to
@@ -81,12 +81,19 @@ CALL mg.get_module_files() YIELD *;
 Check the reference guide for more [utility procedures for query
 modules](./reference-guide/query-modules/module-file-utilities.md).
 
-## How to list all loaded procedures and their signatures?
+## How to list all loaded procedures, user-defined functions and their signatures?
 
 To list loaded procedures and their signatures, run the following query:
 
 ```cypher
 CALL mg.procedures() YIELD *;
+```
+
+On the other side, if you are interested in listing all user-defined functions,
+run this query:
+
+```cypher
+CALL mg.functions() YIELD *;
 ```
 
 Check the reference guide for more [utility procedures for query
@@ -150,6 +157,28 @@ MATCH (node) CALL module.procedure(node) YIELD result RETURN *;
 For more information and constrictions on calling procedures, please read the
 [reference
 guide](../reference-guide/query-modules/load-call-query-modules#calling-query-modules).
+
+## How to call a user-defined function?
+
+Similar, query procedure rules apply for the functions. Although their context
+is different, the mechanism behind functions maps the written functions to
+`example.function()` and `py_example.function()` respectively, just as it was
+the case above.
+
+The syntax for calling functions in loaded query modules is similar to the builtin
+functions, with the difference being case-sensitivity. User defined functions do have a
+case sensitive names, while builtin ones don't:
+
+```cypher
+RETURN example.function();
+```
+
+Since functions do not require a heavy context around them, they are easily nested and
+combined with other Cypher syntax.
+
+```cypher
+MATCH (node) CALL module.procedure(module.function(node)) YIELD result RETURN ABS(result);
+```
 
 ## How to control the memory usage of a procedure?
 
