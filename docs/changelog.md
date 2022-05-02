@@ -3,12 +3,14 @@ id: changelog
 title: Changelog
 sidebar_label: Changelog
 ---
+
 ## v2.3.0 -
 
 ### Bug Fixes
 
 - Fixed incorrect loading of c-query modules.
   [#387] (https://github.com/memgraph/memgraph/pull/387)
+
 ## v2.2.1 - Mar 17, 2022
 
 ### Bug Fixes
