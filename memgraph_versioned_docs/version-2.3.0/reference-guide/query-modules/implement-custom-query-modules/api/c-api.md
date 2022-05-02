@@ -47,6 +47,7 @@ Memgraph in order to use them.
 | enum| **[mgp_value_type](#enum-mgp-value-type)** { MGP_VALUE_TYPE_NULL, MGP_VALUE_TYPE_BOOL, MGP_VALUE_TYPE_INT, MGP_VALUE_TYPE_DOUBLE, MGP_VALUE_TYPE_STRING, MGP_VALUE_TYPE_LIST, MGP_VALUE_TYPE_MAP, MGP_VALUE_TYPE_VERTEX, MGP_VALUE_TYPE_EDGE, MGP_VALUE_TYPE_PATH, MGP_VALUE_TYPE_DATE, MGP_VALUE_TYPE_LOCAL_TIME, MGP_VALUE_TYPE_LOCAL_DATE_TIME, MGP_VALUE_TYPE_DURATION}<br/>All available types that can be stored in a mgp_value.  |
 | typedef void(*)(struct mgp_list *, struct mgp_graph *, struct mgp_result *, struct mgp_memory *) | **[mgp_proc_cb](#typedef-mgp-proc-cb)** <br/>Entry-point for a query module read procedure, invoked through openCypher.  |
 | typedef void(*)(struct mgp_messages *, struct mgp_graph *, struct mgp_result *, struct mgp_memory *) | **[mgp_trans_cb](#typedef-mgp-trans-cb)** <br/>Entry-point for a module transformation, invoked through a stream transformation.  |
+| typedef void(*)(struct mgp_list *, struct mgp_func_context *, struct mgp_func_result *, struct mgp_memory *) | **[mgp_func_cb](#typedef-mgp-func-cb)** <br/>Entry-point for a module function, invoked through openCypher function call.  |
 
 ## Functions
 
@@ -264,6 +265,11 @@ Memgraph in order to use them.
 | enum [mgp_error](#variable-mgp-error) | **[mgp_messages_at](#function-mgp-messages-at)**(struct mgp_messages * message, size_t index, struct mgp_message ** result)<br/>Get the message from a messages list at given index.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_module_add_transformation](#function-mgp-module-add-transformation)**(struct mgp_module * module, const char * name, [mgp_trans_cb](#typedef-mgp-trans-cb) cb)<br/>Register a transformation with a module.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_vertices_iterator_next](#function-mgp-vertices-iterator-next)**(struct mgp_vertices_iterator * it, struct mgp_vertex ** result)<br/>Advance the iterator to the next vertex and return it.  |
+| enum [mgp_error](#variable-mgp-error) | **[mgp_module_add_function](#function-mgp-module-add-function)**(struct mgp_module * module, const char * name, [mgp_func_cb](#typedef-mgp-func-cb) cb, struct mgp_proc ** result)<br/>Register a user function with a module.  |
+| enum [mgp_error](#variable-mgp-error) | **[mgp_func_add_arg](#function-mgp-func-add-arg)**(struct mgp_func *func, const char *name, struct mgp_type *type)<br/>Add a required argument to a function.  |
+| enum [mgp_error](#variable-mgp-error) | **[mgp_func_add_opt_arg](#function-mgp-func-add-opt-arg)**(struct mgp_func *func, const char *name, struct mgp_type *type, struct mgp_value *default_value)<br/>Add an optional argument with a default value to a function.  |
+| enum [mgp_error](#variable-mgp-error) | **[mgp_func_result_set_value](#function-mgp-func-add-opt-arg)**(struct mgp_func_result *result, struct mgp_value *value, struct mgp_memory *memory)<br/>Setting the resulting value as the output of function run.  |
+| enum [mgp_error](#variable-mgp-error) | **[mgp_func_result_set_error_msg](#function-mgp-func-add-arg)**(struct mgp_func_result *result, const char *error_msg, struct mgp_memory *memory)<br/>Sets the error message and informs user that function has failed.  |
 
 ## Attributes
 
@@ -573,6 +579,15 @@ Entry-point for a module transformation, invoked through a stream transformation
 
 Passed in arguments will not live longer than the callback's execution. Therefore, you must not store them globally or use the passed in mgp_memory to allocate global resources.
 
+### typedef mgp_func_cb {#typedef-mgp-func-cb}
+
+```cpp
+typedef void(* mgp_func_cb) (struct mgp_list *, struct mgp_func_context *, struct mgp_func_result *, struct mgp_memory *);
+```
+
+Entry-point for a module function, invoked through openCypher function call. The graph in function call is not mutable.
+
+Passed in arguments will not live longer than the callback's execution. Therefore, you must not store them globally or use the passed in mgp_memory to allocate global resources.
 
 
 ## Functions Documentation
@@ -3483,6 +3498,94 @@ Advance the iterator to the next vertex and return it.
 The previous mgp_vertex obtained through mgp_vertices_iterator_get will be invalidated, and you must not use its value. Result is NULL if the end of the iteration has been reached. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_vertex.
 
 
+### mgp_module_add_function {#function-mgp-module-add-function}
+
+```cpp
+enum mgp_error mgp_module_add_function(
+    struct mgp_module *module, 
+    const char *name, 
+    mgp_func_cb cb,
+    struct mgp_func **result
+)
+```
+
+Registers a Memgraph function to a module.
+
+The `name` must be a sequence of digits, underscores, lowercase and uppercase Latin letters. The name must begin with a non-digit character. Note that Unicode characters are not allowed. Additionally, names are case-sensitive.
+
+Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate memory for mgp_func. Return MGP_ERROR_INVALID_ARGUMENT if `name` is not a valid function name. RETURN MGP_ERROR_LOGIC_ERROR if a user-function with the same name was already registered.
+
+### mgp_func_add_arg {#function-mgp-func-add-arg}
+
+```cpp
+enum mgp_error mgp_func_add_arg(
+    struct mgp_func * func,
+    const char * name,
+    struct mgp_type * type
+)
+```
+
+Add a required argument to a Memgraph function.
+
+The order of adding arguments will correspond to the order the function must receive them through openCypher. Required arguments will be followed by optional arguments.
+
+The `name` must be a valid identifier, following the same rules as the function `name` in mgp_module_add_function.
+
+Passed in `type` describes what kind of values can be used as the argument.
+
+Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate memory for an argument. Return MGP_ERROR_INVALID_ARGUMENT if `name` is not a valid argument name. RETURN MGP_ERROR_LOGIC_ERROR if the function already has any optional argument.
+
+
+### mgp_func_add_opt_arg {#function-mgp-func-add-opt-arg}
+
+```cpp
+enum mgp_error mgp_func_add_opt_arg(
+    struct mgp_func * func,
+    const char * name,
+    struct mgp_type * type,
+    struct mgp_value * default_value
+)
+```
+
+Add an optional argument with a default value to a Memgraph function.
+
+The order of adding arguments will correspond to the order the function must receive them through openCypher. Optional arguments must follow the required arguments.
+
+The `name` must be a valid identifier, following the same rules as the function `name` in mgp_module_add_function.
+
+Passed in `type` describes what kind of values can be used as the argument.
+
+`default_value` is copied and set as the default value for the argument. Don't forget to call `mgp_value_destroy` when you are done using `default_value`. When the function is called, if this argument is not provided, `default_value` will be used instead. `default_value` must not be a graph element (node, relationship, path) and it must satisfy the given `type`.
+
+Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate memory for an argument. Return MGP_ERROR_INVALID_ARGUMENT if `name` is not a valid argument name. RETURN MGP_ERROR_VALUE_CONVERSION if `default_value` is a graph element (vertex, edge or path). RETURN MGP_ERROR_LOGIC_ERROR if `default_value` does not satisfy `type`.
+
+### mgp_func_result_set_value {#function-mgp-result-set-error-msg}
+
+```cpp
+enum mgp_error mgp_func_result_set_error_msg(
+    struct mgp_func_result *result, 
+    struct mgp_value *value,
+    struct mgp_memory *memory
+)
+```
+
+Set an output value for the Memgraph function. Error message, if set, overrides the output value. 
+
+Return MGP_ERROR_UNABLE_TO_ALLOCATE if there's no memory for copying `mgp_value` to `mgp_func_result`.
+
+### mgp_result_set_error_msg {#function-mgp-result-set-error-msg}
+
+```cpp
+enum mgp_error mgp_func_result_set_error_msg(
+    struct mgp_func_result *result, 
+    const char *error_msg,
+    struct mgp_memory *memory
+)
+```
+
+Set the error as the result of the function.
+
+Return MGP_ERROR_UNABLE_TO_ALLOCATE if there's no memory for copying the error message.
 
 ## Attributes Documentation
 
@@ -4227,6 +4330,20 @@ enum mgp_error mgp_messages_at(struct mgp_messages *message, size_t index, struc
 typedef void (*mgp_trans_cb)(struct mgp_messages *, struct mgp_graph *, struct mgp_result *, struct mgp_memory *);
 
 enum mgp_error mgp_module_add_transformation(struct mgp_module *module, const char *name, mgp_trans_cb cb);
+
+struct mgp_func;
+
+typedef void (*mgp_func_cb)(struct mgp_list *, struct mgp_func_context *, struct mgp_func_result *, struct mgp_memory *);
+
+enum mgp_error mgp_module_add_function(struct mgp_module *module, const char *name, mgp_func_cb cb, struct mgp_func **result);
+
+enum mgp_error mgp_func_add_arg(struct mgp_func *func, const char *name, struct mgp_type *type);
+
+enum mgp_error mgp_func_add_opt_arg(struct mgp_func *func, const char *name, struct mgp_type *type, struct mgp_value *default_value);
+
+enum mgp_error mgp_func_result_set_value(struct mgp_func_result *result, struct mgp_value *value, struct mgp_memory *memory);
+
+enum mgp_error mgp_func_result_set_error_msg(struct mgp_func_result *result, const char *error_msg, struct mgp_memory *memory);
 
 #ifdef __cplusplus
 }  // extern "C"
