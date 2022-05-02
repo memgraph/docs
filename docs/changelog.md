@@ -4,11 +4,16 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
-## v2.3.0 -
+## v2.3.0 - Apr 27, 2022
+
+### Major Features and Improvements
+
+- Added [Bolt over WebSocket](/connect-to-memgraph/websocket.md) support to
+  Memgraph. [#384](https://github.com/memgraph/memgraph/pull/384)
 
 ### Bug Fixes
 
-- Fixed incorrect loading of c-query modules.
+- Fixed incorrect loading of C query modules.
   [#387] (https://github.com/memgraph/memgraph/pull/387)
 
 ## v2.2.1 - Mar 17, 2022

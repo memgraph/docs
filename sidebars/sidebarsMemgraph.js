@@ -77,6 +77,7 @@ module.exports = {
             "connect-to-memgraph/drivers/php",
           ],
         },
+        "connect-to-memgraph/websocket",
       ],
     },
     {
@@ -253,7 +254,7 @@ module.exports = {
               items: [
                 "reference-guide/query-modules/implement-custom-query-modules/api/python-api",
                 "reference-guide/query-modules/implement-custom-query-modules/api/c-api",
-                "reference-guide/query-modules/implement-custom-query-modules/custom-query-module-example",  
+                "reference-guide/query-modules/implement-custom-query-modules/custom-query-module-example",
               ],
             },
             "reference-guide/query-modules/load-call-query-modules",
