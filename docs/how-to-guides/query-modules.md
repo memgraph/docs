@@ -166,7 +166,7 @@ is different, the mechanism behind functions maps the written functions to
 the case above.
 
 The syntax for calling functions in loaded query modules is similar to the
-builtin functions, with the difference being case-sensitivity. User defined
+builtin functions, with the difference being case sensitivity. User defined
 functions do have a case sensitive names, while builtin ones don't:
 
 ```cypher
