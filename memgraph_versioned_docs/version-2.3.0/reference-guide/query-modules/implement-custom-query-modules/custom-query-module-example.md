@@ -211,7 +211,7 @@ read and write procedures. The difference between these is the end use-case and
 graph mutability. In the functions, user should not modify (create, delete, or update)
 any graph object.
 
-Semanticaly, functions should be a small fragments of functionality that do not require
+Semantically, functions should be a small fragments of functionality that do not require
 long computations and large memory consumption.
 
 The example of how to create and run a function is written below. This example shows
