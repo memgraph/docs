@@ -232,9 +232,9 @@ def func_example(context: mgp.FuncCtx,
     return return_arguments
 ```
 
-On the first glance, there is huge similarity between defining a function and a
-procedure. Let's talk differences. First difference is the context type.
-`FuncCtx` prevents you to modify the graph and does not offer the API to
+At the first glance, there is a huge similarity between defining a function and
+a procedure. Let's talk about differences. The first difference is the context
+type. `FuncCtx` prevents you to modify the graph and does not offer the API to
 communicate with the graph entities not related to the entry arguments.
 
 The second difference is the result signature. Functions do not require user to
