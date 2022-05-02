@@ -101,6 +101,14 @@ export default function ConnectToMemgraph() {
         imgDarkActive: useBaseUrl(imgFolder + 'dark/mgconsole-selected-dm.svg'),
         url: useBaseUrl('memgraph/connect-to-memgraph/mgconsole'),
     };
+    const viaWebsocket = {
+        title: 'websocket',
+        img: useBaseUrl(imgFolder + 'websocket-unselected.svg'),
+        imgActive: useBaseUrl(imgFolder + 'websocket-selected.svg'),
+        imgDark: useBaseUrl(imgFolder + 'dark/websocket-unselected-dm.svg'),
+        imgDarkActive: useBaseUrl(imgFolder + 'dark/websocket-selected-dm.svg'),
+        url: useBaseUrl('memgraph/connect-to-memgraph/websocket'),
+    };
     return (
                 <Container size="small">
                     <div className={styles.connectToMemgraph}>
@@ -149,6 +157,11 @@ export default function ConnectToMemgraph() {
                                     );
                                 })}
                             </div>
+                        </section>
+                        <section>
+                            <h2>Connect via WebSocket</h2>
+                            <p>Connect to Memgraph using a WebSocket connection.</p>
+                            <ConnectButton title={viaWebsocket.title} url={viaWebsocket.url} img={viaWebsocket.img} imgActive={viaWebsocket.imgActive} imgDark={viaWebsocket.imgDark} imgDarkActive={viaWebsocket.imgDarkActive} />
                         </section>
                         <section>
                             <h2>Where to next?</h2>
