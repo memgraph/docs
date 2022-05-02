@@ -199,7 +199,6 @@ const std::string query_part_1{"CREATE (n:MESSAGE {timestamp: '"};
 const std::string query_part_2{"', payload: '"};
 const std::string query_part_3{"', topic: '"};
 const std::string query_part_4{"'})"};
-const std::string emptyQuery{""};
 
 std::string create_query(mgp_message &message, struct mgp_result *result) {
   int64_t timestamp{0};
