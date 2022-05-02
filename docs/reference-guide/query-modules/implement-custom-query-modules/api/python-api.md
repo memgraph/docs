@@ -136,10 +136,9 @@ Register func as a Memgraph function in the current module.
 `function` is meant to be used as a decorator function to register module
 functions. The registered func needs to be a callable which optionally takes
 `FuncCtx` as the first argument. Other arguments of func will be bound to values
-passed in the Cypher query. Only the signature of funcion arguments need to be
-annotated with types. The return type doesn't need to be specified and the
-function must produce any supported `mgp` type. Registering generator functions
-is currently not supported.
+passed in the Cypher query. Only the funcion arguments need to be annotated with
+types. The return type doesn't need to be specified, but it has to be supported
+by `mgp.Any`. Registering generator functions is currently not supported.
 
 **Example usage**
 
@@ -161,7 +160,7 @@ def func_example(context: mgp.FuncCtx,
     return return_args
 ```
 
-The example functions above returns a list of provided arguments:
+The example function above returns a list of provided arguments:
 * `required_arg` is always present and its value is the first argument of the
   function.
 * `optional_arg` is present if the second argument of the function is not
