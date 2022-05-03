@@ -84,8 +84,9 @@ created a list of all Cypher clauses that Memgraph supports.
 
 ## Extension clauses
 
-Extension clauses (for example, `FOREACH`), are additional clauses added
-in Cypher query language. Jump on the [extensions](extensions.md) page and have a look!
+Extension clauses (for example, `FOREACH`), are additional clauses added in
+Cypher query language. Jump on the
+[extensions](/extension-clauses.md) page and have a look!
 
 ## Functions
 

@@ -3,9 +3,11 @@ id: changelog
 title: Changelog
 sidebar_label: Changelog
 ---
+
 ## v2.3.0
 
-- Added [`FOREACH`](/cypher-manual/extensions.md) clause. [#351](https://github.com/memgraph/memgraph/pull/351)
+- Added [`FOREACH`](/cypher-manual/extension-clauses) clause.
+  [#351](https://github.com/memgraph/memgraph/pull/351)
 
 ## v2.2.1 - Mar 17, 2022
 
