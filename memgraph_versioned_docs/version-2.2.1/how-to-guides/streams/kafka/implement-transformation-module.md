@@ -213,7 +213,7 @@ std::string create_query(mgp_message &message, struct mgp_result *result) {
     throw "Internal error!";
   }
 
-  size_t payload_size;
+  size_t payload_size{0};
   if (mgp_error::MGP_ERROR_NO_ERROR !=
       mgp_message_payload_size(&message, &payload_size)) {
     throw "Internal error!";
