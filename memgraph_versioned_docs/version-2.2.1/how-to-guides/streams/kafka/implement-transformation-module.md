@@ -219,7 +219,7 @@ std::string create_query(mgp_message &message, struct mgp_result *result) {
     throw "Internal error!";
   }
 
-  const char *topic_name;
+  const char *topic_name{nullptr};
   if (mgp_error::MGP_ERROR_NO_ERROR !=
       mgp_message_topic_name(&message, &topic_name)) {
     throw "Internal error!";
@@ -233,16 +233,17 @@ std::string create_query(mgp_message &message, struct mgp_result *result) {
 void my_c_transformation(struct mgp_messages *messages, mgp_graph *,
                          mgp_result *result, mgp_memory *memory) {
 
-  mgp_value *null_value = NULL;
-  if (mgp_error::MGP_ERROR_NO_ERROR !=
-      mgp_value_make_null(memory, &null_value)) {
-    return;
-  }
+  mgp_value *null_value{nullptr};
 
   try {
     size_t messages_size{0};
     if (mgp_error::MGP_ERROR_NO_ERROR !=
         mgp_messages_size(messages, &messages_size)) {
+      return;
+    }
+
+    if (mgp_error::MGP_ERROR_NO_ERROR !=
+        mgp_value_make_null(memory, &null_value)) {
       return;
     }
 
