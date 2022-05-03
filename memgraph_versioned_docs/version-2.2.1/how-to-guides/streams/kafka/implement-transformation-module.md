@@ -240,7 +240,7 @@ void my_c_transformation(struct mgp_messages *messages, mgp_graph *,
   }
 
   try {
-    size_t messages_size;
+    size_t messages_size{0};
     if (mgp_error::MGP_ERROR_NO_ERROR !=
         mgp_messages_size(messages, &messages_size)) {
       return;
