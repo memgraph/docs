@@ -262,7 +262,7 @@ void my_c_transformation(struct mgp_messages *messages, mgp_graph *,
         break;
       }
 
-      mgp_value *query_value = NULL;
+      mgp_value *query_value{nullptr};
       if (mgp_error::MGP_ERROR_NO_ERROR !=
           mgp_value_make_string(query.c_str(), memory, &query_value)) {
         break;
