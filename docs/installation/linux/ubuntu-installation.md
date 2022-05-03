@@ -32,6 +32,11 @@ Memgraph packages are available for:
 
 :::
 
+You can also directly download .deb packages for the latest Memgraph from the following URLs:
+
+- **Ubuntu 18.04** - [https://download.memgraph.com/memgraph/v2.3.0/ubuntu-18.04/memgraph_2.3.0-1_amd64.deb](https://download.memgraph.com/memgraph/v2.3.0/ubuntu-18.04/memgraph_2.3.0-1_amd64.deb)
+- **Ubuntu 20.04** - [https://download.memgraph.com/memgraph/v2.3.0/ubuntu-20.04/memgraph_2.3.0-1_amd64.deb](https://download.memgraph.com/memgraph/v2.3.0/ubuntu-20.04/memgraph_2.3.0-1_amd64.deb)
+
 ## Installation guide {#installation-guide}
 
 After downloading Memgraph as a Debian package, install it by running the

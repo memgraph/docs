@@ -32,6 +32,12 @@ Memgraph packages are available for:
 
 :::
 
+You can also directly download .deb packages for the latest Memgraph from the following URLs:
+
+- **Debian 10** - [https://download.memgraph.com/memgraph/v2.3.0/debian-10/memgraph_2.3.0-1_amd64.deb](https://download.memgraph.com/memgraph/v2.3.0/debian-10/memgraph_2.3.0-1_amd64.deb)
+- **Debian 11** - [https://download.memgraph.com/memgraph/v2.3.0/debian-11/memgraph_2.3.0-1_amd64.deb](https://download.memgraph.com/memgraph/v2.3.0/debian-11/memgraph_2.3.0-1_amd64.deb)
+- **Debian 11 (ARM64/AArch64)** - [https://download.memgraph.com/memgraph/v2.3.0/debian-11-aarch64/memgraph_2.3.0-1_arm64.deb](https://download.memgraph.com/memgraph/v2.3.0/debian-11-aarch64/memgraph_2.3.0-1_arm64.deb)
+
 ## Installation guide {#installation-guide}
 
 After downloading Memgraph as a Debian package, install it by running the
