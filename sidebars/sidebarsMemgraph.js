@@ -120,6 +120,7 @@ module.exports = {
       label: "Tutorials",
       link: { type: "doc", id: "tutorials/overview" },
       items: [
+        "tutorials/first-steps-with-memgraph",
         {
           type: "category",
           label: "Exploring datasets with graph analytics",
@@ -135,8 +136,6 @@ module.exports = {
             "tutorials/exploring-datasets/movie-recommendation",
           ],
         },
-        "tutorials/graph-modeling",
-        "tutorials/first-steps-with-memgraph",
         "tutorials/graph-modeling",
         "tutorials/implement-custom-query-module-in-python",
         "tutorials/install-memgraph-windows-10",

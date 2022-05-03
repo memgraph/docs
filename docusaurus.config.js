@@ -272,6 +272,10 @@ module.exports = {
               label: "MAGE FAQ",
               to: "/help-center/faq/mage",
             },
+            {
+              label: "Errors overview",
+              to: "/errors/",
+            },
           ],
         },
         {
