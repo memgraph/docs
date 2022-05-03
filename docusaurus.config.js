@@ -5,7 +5,7 @@ module.exports = {
   tagline: "Welcome to the Memgraph Docs site!",
   url: "https://memgraph.com",
   baseUrl,
-  onBrokenLinks: "throw",
+  onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/social-logo-round-corners.png",
   organizationName: "memgraph",
@@ -146,7 +146,7 @@ module.exports = {
             },
             {
               label: "Algorithms",
-              to: "/mage/algorithms/traditional-graph-analytics/betweenness-centrality-algorithm",
+              to: "/mage/algorithms/algorithms",
             },
             {
               label: "Use cases",
@@ -394,9 +394,9 @@ module.exports = {
     },
     hideableSidebar: true,
     announcementBar: {
-      id: "cypheremailcourse",
+      id: "graphmodelingemailcourse",
       content:
-        'Sign up for the new <a target="_blank" rel="noopener noreferrer" href="https://memgraph.com/learn-cypher-query-language"><b>Cypher Email Course</b></a> 📩',
+        'Sign up for the new <a target="_blank" rel="noopener noreferrer" href="https://memgraph.com/learn-graph-modeling"><b>Graph Modeling Email Course</b></a> 📩',
       backgroundColor: "#fafbfc",
       textColor: "#091E42",
       isCloseable: true,

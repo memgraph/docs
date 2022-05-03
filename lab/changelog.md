@@ -4,6 +4,39 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v2.0.2
+
+### Major Features and Improvements
+
+- Add guides for empty states throughout the app.
+- Add an ability to close hints for transformations and procedures in module view.
+- Add an ability to download query results in JSON format.
+- Add confirmation step for all delete actions throughout the app.
+- Add the generic Cypher query as a sample query after custom dataset file import.
+
+### Bug Fixes
+
+- Fix the table view with a better resize functionality throughout the app.
+- Change the color of the node labels and relationship types in the Cypher query editor.
+- Fix the delete query collection action.
+- Fix opening an external link in the browser instead of the Lab app.
+- Fix the initial render of the map for geo graph results.
+- Replace the toast message "Web socket stopped working" with better notice in the "Logs" view.
+
+## v2.0.1
+
+### Major Features and Improvements
+
+- Add context (graph schema, description) to each dataset template.
+- Add an action to download query results.
+
+### Bug Fixes
+
+- Fix the bug when adding a query to the query collection.
+- Fix several typos and copies.
+- Fix the web socket connection issue for the manual Memgraph connect.
+- Fix initial code suggestions which are dependent on the Memgraph version.
+
 ## v2.0.0
 
 ### Major Features and Improvements

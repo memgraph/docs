@@ -2,6 +2,7 @@
 id: football-transfers
 title: Football transfers
 sidebar_label: Football transfers
+slug: /tutorials/football-transfers
 ---
 
 This article is a part of a series intended to show how to use Memgraph on
@@ -80,7 +81,7 @@ Nodes are connected with the following edges:
   transfer has happened.
 - `:PLAYS_IN` - connects node `Team` that plays in league node `League`.
 
-![Football transfers](../data/football_transfers_metagraph.png)
+![Football transfers](../../data/football_transfers_metagraph.png)
 
 ## Exploring the dataset
 
@@ -91,9 +92,11 @@ continue with the tutorial there. Note that you will not be able to execute
 `write` operations.
 
 On the other hand, if you would like to add changes to the dataset, download the
-[Memgraph Lab](https://memgraph.com/product/lab) desktop application and
-navigate to the `Datasets` tab in the sidebar. From there, choose the dataset
-`Football player's transfers` and continue with the tutorial.
+[Memgraph Platform](https://memgraph.com/download#memgraph-platform). Once you
+have it up and running, open Memgraph Lab web application within the browser on
+[`localhost:3000`](http://localhost:3000) and navigate to `Datasets` in the
+sidebar. From there, choose the dataset `Football player's transfers` and
+continue with the tutorial.
 
 ## Example queries using Cypher
 
@@ -368,4 +371,4 @@ all the information for the graph visual:
 
 Here is a picture of how it will look if you run the query in MemgraphLab.
 
-![football_transfers_MemgraphLab_visual](../data/football_transfers_MemgraphLab_visual.png)
+![football_transfers_MemgraphLab_visual](../../data/football_transfers_MemgraphLab_visual.png)

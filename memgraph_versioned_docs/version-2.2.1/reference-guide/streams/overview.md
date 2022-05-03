@@ -176,11 +176,8 @@ that is, the queries and parameters that would be executed in a normal run. If
 `<count>` number of batches are not processed within the specified `TIMEOUT`,
 probably because not enough messages were received, an exception is thrown.
 
-Default value of `<count>` is 1. `TIMEOUT` is measured in milliseconds, and its
-default value is 30000.
-
-Default value of `<count>` is 1.
-`TIMEOUT` is measured in milliseconds, and it's default value is 30000.
+The default value of `<count>` is 1. `TIMEOUT` is measured in milliseconds, and
+its default value is 30000.
 
 ## Kafka producer delivery semantics
 

@@ -129,6 +129,54 @@ CALL example.procedure(“single argument”) YIELD result;
 Naturally, you may pass in different arguments.
 
 
+## class mgp.function(func: Callable[[…]])
+
+Register func as a Memgraph function in the current module.
+
+`function` is meant to be used as a decorator function to register module
+functions. The registered func needs to be a callable which optionally takes
+`FuncCtx` as the first argument. Other arguments of func will be bound to values
+passed in the Cypher query. Only the funcion arguments need to be annotated with
+types. The return type doesn't need to be specified, but it has to be supported
+by `mgp.Any`. Registering generator functions is currently not supported.
+
+**Example usage**
+
+```python
+import mgp
+
+@mgp.function
+def func_example(context: mgp.FuncCtx,
+    required_arg: str,
+    optional_arg: mgp.Nullable[str] = None
+    ):
+
+    return_args = [required_arg]
+
+    if optional_arg is not None:
+        return_args.append(optional_arg)
+
+    # Return any kind of result supported by mgp.Any
+    return return_args
+```
+
+The example function above returns a list of provided arguments:
+* `required_arg` is always present and its value is the first argument of the
+  function.
+* `optional_arg` is present if the second argument of the function is not
+  `null`.
+
+Any errors can be reported by raising an `Exception`.
+
+The function can be invoked in Cypher using the following calls:
+
+```cypher
+RETURN example.func_example("first argument", "second_argument");
+RETURN example.func_example("first argument");
+```
+
+Naturally, you may pass in different arguments.
+
 ## class mgp.Properties(vertex_or_edge)
 Bases: `object`
 
@@ -462,6 +510,17 @@ Raise InvalidContextError if context is invalid.
 ### is_valid()
 
 ### must_abort()
+
+## class mgp.FuncCtx(graph)
+Bases: `object`
+
+Context of a function being executed.
+
+Access to a FuncCtx is only valid during a single execution of a function in a
+query. You should not globally store a FuncCtx instance. The graph object within
+the FuncCtx is not mutable.
+
+### is_valid()
 
 ## class mgp.Deprecated(type_)
 Bases: `object`

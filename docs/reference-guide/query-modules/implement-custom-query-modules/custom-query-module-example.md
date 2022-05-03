@@ -1,7 +1,7 @@
 ---
 id: custom-query-module-example
-title: Example of a custom query
-sidebar_label: Example of a custom query
+title: Example of a custom query module
+sidebar_label: Example of a custom query module
 ---
 
 We will examine how the query module `example` is implemented using the
@@ -13,7 +13,7 @@ read [the query modules overview page](/reference-guide/query-modules/overview.m
 
 ## Python API
 
-Query modules can be implemented using [the Python API](/reference-guide/query-modules/implement-custom-query-modules/api/python-api.md) 
+Query modules can be implemented using [the Python API](/reference-guide/query-modules/implement-custom-query-modules/api/python-api.md)
 provided by Memgraph. If you wish to write your own query modules using the
 Python API, you need to have Python version `3.5.0` or above installed.
 
@@ -26,11 +26,11 @@ copy it from the Docker container.
 
 <details>
   <summary>Transferring files from a Docker container</summary>
-  
+
   If you are using Docker to run Memgraph, you can copy the files from the
   Docker container to your local directory.
 
-  <p> </p> 
+  <p> </p>
 
   **1.** Start your Memgraph instance using Docker.
 
@@ -49,7 +49,7 @@ copy it from the Docker container.
   docker cp CONTAINER ID:/usr/lib/memgraph/query_modules/py_example.py py_example.py
   ```
 
-  Don't forget to replace the `CONTAINER ID`. 
+  Don't forget to replace the `CONTAINER ID`.
 </details>
 
 ### Readable procedure
@@ -90,10 +90,10 @@ def procedure(context: mgp.ProcCtx,
 Because we need to access the graph to get results, the first argument takes the
 `ProcCtx` type, which is actually the graph. Then we defined two arguments, a
 required and an optional argument that will be bound to the values passed in
-the Cypher query. They can be either null or of any type. 
+the Cypher query. They can be either null or of any type.
 
 The return type must be `Record(field_name=type, ...)`, and the procedure must
-produce either a complete `Record` or `None`. 
+produce either a complete `Record` or `None`.
 
 In our case, the example procedure returns four fields:
 
@@ -101,8 +101,8 @@ In our case, the example procedure returns four fields:
 - `vertex_count`: number of vertices in the database.
 - `avg_degree`: average degree of vertices.
 - `props`: properties map of the Vertex or Edge object passed as the `required_arg`.
-   In case a Path object is passed, the procedure returns the properties map
-   of the starting vertex.
+  In case a Path object is passed, the procedure returns the properties map
+  of the starting vertex.
 
 We defined that this procedure can be invoked in Cypher as follows:
 
@@ -203,12 +203,66 @@ def write_procedure(context: mgp.ProcCtx,
 
 ```
 
+### Magic functions
+
+User-defined, or so-called "Memgraph Magic functions" are implemented similarly
+to read and write procedures. The difference between these is the end use-case
+and graph mutability. Users should not modify (create, delete, or update) any
+graph objects through functions.
+
+Semantically, functions should be small fragments of functionality that do not
+require long computations and large memory consumption.
+
+The example of how to create and run a function is written below. This example
+shows one trivial use-case of fetching the arguments as a list of returning
+values.
+
+```python
+@mgp.function
+def func_example(context: mgp.FuncCtx,
+            argument: mgp.Any,
+            opt_argument: mgp.Nullable[mgp.Any] = None):
+    return_arguments = [argument]
+
+    if opt_argument is not None:
+      return_arguments.append(opt_argument)
+
+    # Note that we do not need to specify the result Record as long as it is a
+    # Memgraph defined value type.
+    return return_arguments
+```
+
+At first glance, there is a huge similarity between defining a function and a
+procedure. Let's talk about differences. The first difference is the context
+type. `FuncCtx` prevents you to modify the graph and does not offer the API to
+communicate with the graph entities not related to the entry arguments.
+
+The second difference is the resulting signature. Functions do not require the
+user to provide a resulting signature because of the return value. A function
+call can be nested in Cypher and therefore the only requirement for the
+returning value is to be of a supported `mgp.Type`.
+
+The Cypher call for the written custom function can be executed like this:
+
+```cypher
+RETURN py_example.func_example("First argument", "Second argument");
+```
+
+This call can also be nested and used as a preprocessing for some other function
+or procedure. The example of how to combine a built-in function with the
+currently developed one looks like
+this:
+
+```cypher
+RETURN head(py_example.func_example("First argument", "Second argument"));
+```
+
 Python API provided by Memgraph can be a very powerful tool for implementing
 query modules. We strongly suggest you thoroughly inspect the `mgp.py` source
 file located in the Memgraph installation directory
 `/usr/lib/memgraph/python_support`.
 
-:::warning 
+:::warning
 
 Do not store any graph elements globally when writing custom query modules with
 the intent to use them in a different procedure invocation.
@@ -237,7 +291,7 @@ Every single Memgraph installation comes with the `example.so` query module
 located in the `/usr/lib/memgraph/query_modules` directory. It was provided as
 an example of a query module written with C API for you to examine and learn
 from. The `query_module` directory also contains `src` directory, with
-`example.c` file. 
+`example.c` file.
 
 Let's take a look at the `example.c` file.
 
@@ -254,6 +308,8 @@ appropriate flags to the compiler, for example, `clang`:
 ```plaintext
 clang -Wall -shared -fPIC -I /usr/include/memgraph example.c -o example.so
 ```
+
+### Query procedures
 
 Next, we have a `procedure` function. This function will serve as the callback
 for our `example.procedure` invocation through Cypher.
@@ -285,7 +341,7 @@ void procedure(const mgp_list *args, const mgp_graph *graph,
 The `procedure` function receives the list of arguments (`args`) passed in the
 query. The parameter `result` is used to fill in the resulting records of the
 procedure. Parameters `graph` and `memory` are context parameters of the
-procedure, and they are used in some parts of the provided C API. 
+procedure, and they are used in some parts of the provided C API.
 
 For more information on what exactly is possible with C API, take a look at the
 `mg_procedure.h` file or the [C API reference
@@ -324,7 +380,7 @@ documentation on functions prefixed with `mgp_proc_`.
 The passed in `memory` argument is only alive throughout the execution of
 `mgp_init_module`, so you must not allocate any global resources with it. If you
 really need to set up a certain global state, you may do so in the
- `mgp_init_module` using the standard global allocators.
+`mgp_init_module` using the standard global allocators.
 
 Consequently, you may want to reset any global state or release global resources
 in the following function.
@@ -339,3 +395,51 @@ int mgp_shutdown_module() {
 As mentioned before, no exceptions should leave your module. If you are writing
 the module in a language that throws them, use exception handlers
 in `mgp_init_module` and `mgp_shutdown_module` as well.
+
+### Magic functions
+
+A major part of defining the "Magic function" is similar to query procedures.
+The steps of defining a callback and registering arguments are repeated in the
+magic functions, only with a different syntax.
+
+To define a function, the first step is to define a callback. The example only
+shows C++ code.
+
+```cpp
+namespace {
+void function(const mgp_list *args, mgp_func_context *func_ctx,
+               mgp_func_result *result, mgp_memory *memory) {
+  try {
+    ...
+  } catch (const std::exception &e) {
+    // We must not let any exceptions out of our module.
+    mgp_func_result_set_error_msg(result, e.what(), memory);
+    return;
+  }
+}
+}
+```
+
+The parameter `args` is used to fetch the required and optional arguments from
+the Cypher call. The parameter `result` defines the resulting value. It can
+carry either an error or a return value, depending on the runtime execution.
+There is no `mgp_graph` argument because the graph is immutable in functions.
+
+To initialize and register the written function as a magic function, one should
+write the initialization in the `mgp_init_module`. The registered function can
+then be called in similar fashion as the built-in functions, just with the
+syntax defining the module it is stored in: `<module>.<function_name>(...)`.
+
+```cpp
+int mgp_init_module(struct mgp_module *module, struct mgp_memory *memory) {
+  // Register our `function` as a Magic function with the name "function".
+  struct mgp_func *func =
+      mgp_module_add_function(module, "function", function); // Above defined function pointer
+  // Return non-zero on error.
+  if (!func) return 1;
+  // Additional code for better specifying the function with arguments (omitted here).
+  ...
+  // Return 0 to indicate success.
+  return 0;
+}
+```

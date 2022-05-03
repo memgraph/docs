@@ -80,7 +80,8 @@ following guides:
   modules](/reference-guide/query-modules/implement-custom-query-modules/custom-query-module-example.md)
 - [Load and call query
   modules](/reference-guide/query-modules/load-call-query-modules.md)
-- [Utility query module](/reference-guide/query-modules/module-file-utilities.md)
+- [Utility query
+  module](/reference-guide/query-modules/module-file-utilities.md)
 
 ## [Replication](./replication.md)
 
