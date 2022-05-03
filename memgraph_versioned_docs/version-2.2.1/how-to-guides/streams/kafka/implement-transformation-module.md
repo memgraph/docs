@@ -207,7 +207,7 @@ std::string create_query(mgp_message &message, struct mgp_result *result) {
     throw "Internal error!";
   }
 
-  const char *payload;
+  const char *payload{nullptr};
   if (mgp_error::MGP_ERROR_NO_ERROR !=
       mgp_message_payload(&message, &payload)) {
     throw "Internal error!";
