@@ -32,6 +32,12 @@ Memgraph packages are available for:
 
 :::
 
+You can also directly download .rpm packages for the latest Memgraph from the following URLs:
+
+- **CentOS 7** - [https://download.memgraph.com/memgraph/v2.3.0/centos-7/memgraph-2.3.0_1-1.x86_64.rpm](https://download.memgraph.com/memgraph/v2.3.0/centos-7/memgraph-2.3.0_1-1.x86_64.rpm)
+- **CentOS 8** - [https://download.memgraph.com/memgraph/v2.3.0/centos-8/memgraph-2.3.0_1-1.x86_64.rpm](https://download.memgraph.com/memgraph/v2.3.0/centos-8/memgraph-2.3.0_1-1.x86_64.rpm)
+
+
 ## Installation guide
 
 After downloading the Memgraph RPM package, you can install it by issuing the
