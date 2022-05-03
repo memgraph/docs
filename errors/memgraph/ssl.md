@@ -23,7 +23,7 @@ import Help from '../templates/_help.mdx';
 
 Secure connections are supported and disabled by default. The server initially
 ships with a self-signed testing certificate located at `/etc/memgraph/ssl/`.
-You can use it by [changing the configuration](/how-to-guides/config-logs.md) and passing its path within the
+You can use it by [changing the configuration](/memgraph/how-to-guides/config-logs) and passing its path within the
 following parameters:
 
 ```
