@@ -10,6 +10,9 @@ sidebar_label: Changelog
 
 - Added [Bolt over WebSocket](/connect-to-memgraph/websocket.md) support to
   Memgraph. [#384](https://github.com/memgraph/memgraph/pull/384)
+- Added [user-defined Memgraph magic
+  functions](/cypher-manual/functions/#user-defined-memgraph-magic-functions).
+  [#345](https://github.com/memgraph/memgraph/pull/345)
 
 ### Bug Fixes
 
