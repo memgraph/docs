@@ -20,7 +20,8 @@ want to use as a node background and download it as SVG file.
 
 <img src={require('../data/how-to-guides/font-awesome-locate-icon.png').default} className={"imgBorder"}/>
 
-2. Convert SVG file to PNG with your favorite image editing program, or you can use one of the dozen online services for file conversion. 
+2. Convert SVG file to PNG with your favorite image editing program, or you can
+   use one of the dozen online services for file conversion. 
 
 :::info
 
@@ -32,9 +33,10 @@ You can use programs such as [Gimp](https://www.gimp.org/) or
 3. Upload PNG file to a web server so that you can set it for node background.
 If you are using an image hosting service, make a note of the URL. Some of those
 services use URLs unrelated to the image name and are hard to come by at a
-latter time.
+later time.
 
-4. Edit the code of the Graph Style Editor in Memgraph Lab by adding the `image-url` property to the `@NodeStyle` class. Here is an example:  
+4. Edit the code of the Graph Style Editor in Memgraph Lab by adding the
+   `image-url` property to the `@NodeStyle` class. Here is an example:  
 
 ```
 image-url: "https://i.imgur.com/bLF8qWQ.png"
@@ -53,7 +55,7 @@ Your `@NodeStyle` block of code should look something like this:
 }
 ```
 
-You can take a look at [Graph Style Script @NodeStyle directive
+You can look at [Graph Style Script @NodeStyle directive
 properties](/memgraph-lab/style-script/gss-nodestyle-directive#image-url-string)
 for additional info on the syntax. 
 
