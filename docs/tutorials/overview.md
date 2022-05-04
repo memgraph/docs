@@ -10,7 +10,7 @@ kick off your own Memgraph graph database adventures.
 
 ## Basic tutorials
 
-- [**First steps with Memgraph**](/tutorials/first-steps-with-memgraph) - learn
+- [**First steps with Memgraph**](first-steps-with-memgraph.md) - learn
   how to install Memgraph Platform, connect to it using Memgraph Lab, run your
   first query and style your graph
 - [**Exploring datasets**](/tutorials/exploring-datasets/overview.md) - learn
