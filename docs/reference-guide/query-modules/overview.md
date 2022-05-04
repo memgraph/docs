@@ -5,10 +5,7 @@ sidebar_label: Query modules overview
 slug: /reference-guide/query-modules
 ---
 
-[![Related -
-Tutorial](https://img.shields.io/static/v1?label=Related&message=Tutorial&color=008a00&style=for-the-badge)](tutorials/implement-custom-query-module-in-python.md)
-[![Related - How
-to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/query-modules.md)
+[![Related - How-to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/query-modules.md)
 
 Memgraph supports extending the query language with user-written procedures in
 **C**, **C++**, **Python**, and **Rust**. These procedures are grouped into
@@ -34,7 +31,20 @@ would be mapped in the Cypher query language as `example.procedure()` and
 Regardless of where they come from and who wrote them, all modules need to be
 loaded into Memgraph so that they can be called while querying the database.
 They are either loaded automatically when Memgraph starts or manually if they
-were added while Memgraph was already running.
+were added while Memgraph was already running. 
+
+You can also inspect and develop query modules in Memgraph Lab (v2.0 and newer).
+Just navigate to **Query Modules**.
+
+<details>
+  <summary>Screenshot of Query Modules from Memgraph Lab</summary>
+<img src={require('../../data/memgraph_lab_query_modules.png').default} className={"imgBorder"}/>
+</details>
+
+Once you start Memgraph, it will attempt to load query modules from all *.so and
+*.py files from the default directories. MAGE modules are located at
+`/usr/lib/memgraph/query_modules` and custom modules developed via Memgraph Lab at
+`/var/lib/memgraph/internal_modules`.
 
 To learn more about query modules, take a look at the following guides:
 
