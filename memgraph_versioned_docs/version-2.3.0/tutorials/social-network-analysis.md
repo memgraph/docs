@@ -12,7 +12,7 @@ understanding of **query modules**, an easy method for extending the query
 language with user-written procedures.
 
 To get started, please install Memgraph using the `memgraph-platform` image by
-following the [installment instructions](/installation/overview.md) for your OS.
+following the [installment instructions](/installation/overview.mdx) for your OS.
 
 Once Memgraph is up and running, there are three ways to execute queries and
 procedures in Memgraph:
