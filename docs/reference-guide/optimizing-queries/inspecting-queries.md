@@ -18,11 +18,48 @@ and passes it onto the logical operator next in the pipeline for further
 processing.
 
 Using the `EXPLAIN` operator, it is possible for the user to inspect the
-produced plan and gain insight into the execution of a query. Currently, the
-various logical operators aren't fully documented as their behavior is subject
-to change. However, the behavior of most of them can be deduced from their name.
-In the future, additional information might be added to the output of the
-`EXPLAIN` operator.
+produced plan and gain insight into the execution of a query.
+
+## Operators
+
+| Operator                      | Description                                                                                                                |
+| ----------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `Accumulate`                    | Accumulates the input it received.                                                                                       |
+| `Aggregate`                     | Aggregates the input it received.                                                                                        |
+| `CallProcedure`                 | Calls a procedure.                                                                                                       |
+| `Cartesian`                     | Applies the Cartesian product (the set of all possible ordered combinations consisting of one member from each of those sets) on the input it received. |
+| `ConstructNamedPath`            | Creates a path.                                                                                                          |
+| `CreateNode`                    | Creates a node.                                                                                                          |
+| `CreateExpand`                  | Creates edges and  new nodes to connect with existing nodes.                                                             |
+| `Delete`                        | Deletes nodes and edges.                                                                                                 |
+| `EdgeUniquenessFilter`          | Filters unique edges.                                                                                                    |
+| `Expand`                        | Expands the node by finding the node's relationships.                                                                    |
+| `ExpandVariable`                | Performs a node expansion of a variable number of relationships                                                          |
+| `Filter`                        | Filters the input it received.                                                                                           |
+| `Foreach`                       | Iterates over a list and applies one or more update clauses.                                                             | 
+| `Limit`                         | Limits certain rows from the pull chain.                                                                                 |
+| `LoadCsv`                       | Loads CSV file in order to import files into the database.                                                               |
+| `Merge`                         | Applies merge on the input it received.                                                                                  |
+| `Once`                          | Forms the beginning of an operator chain with "only once" semantics. The operator will return false on subsequent pulls. |
+| `Optional`                      | Performs optional matching.                                                     |
+| `OrderBy`                       | Orders the input it received.                                                                                            |
+| `Produce`                       | Produces results.                                                                                                        |
+| `RemoveLabels`                  | Removes a variable number of node labels.                                                                                |
+| `RemoveProperty`                | Removes a node or relationship property.                                                                                 |
+| `ScanAll`                       | Produces all nodes in the database.                                                                                      |
+| `ScanAllById`                   | Produces nodes with a certain index.                                                                                     |
+| `ScanAllByLabel`                | Produces nodes with a certain label.                                                                                     |
+| `ScanAllByLabelProperty`        | Produces nodes with a certain label and property.                                                                        |
+| `ScanAllByLabelPropertyRange`   | Produces nodes with a certain label and property value within the given range (both inclusive and exclusive).            |
+| `ScanAllByLabelPropertyValue`   | Produces nodes with a certain label and property value.                                                                  |
+| `SetLabels`                     | Sets node labels of variable length.                                                                                     |
+| `SetProperty`                   | Sets a node or relationship property.                                                                                    |
+| `SetProperties`                 | Sets a list of node or relationship properties.                                                                          |
+| `Skip`                          | Skips certain rows from the pull chain.                                                                                  |
+| `Unwind`                        | Unwinds an expression to multiple records.                                                                               |
+| `Distinct`                      | Applies a distinct filter on the input it received.                                                                      |
+
+## Example plans
 
 As an example, let's inspect the plan produced for a simple query:
 

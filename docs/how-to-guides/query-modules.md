@@ -5,10 +5,7 @@ sidebar_label: Use query modules
 slug: /how-to-guides/query-modules
 ---
 
-[![Related -
-Tutorial](https://img.shields.io/static/v1?label=Related&message=Tutorial&color=008a00&style=for-the-badge)](tutorials/implement-custom-query-module-in-python.md)
-[![Related - Reference
-Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/query-modules/overview.md)
+[![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/query-modules/overview.md) 
 
 Query modules are extensions of the Cypher query language. They are groups of
 procedures and functions written in **C**, **C++**, **Python**, and **Rust** and
@@ -61,13 +58,19 @@ Otherwise, please check the [MAGE installation guide](/mage/installation).
 ## How to implement custom query modules?
 
 If you need to expand the Cypher language with custom procedures, Memgraph
-provides public APIs for writing custom query modules in Python and C/C++.
+provides public APIs for writing custom query modules in Python, C/C++ and Rust.
 
 Please check [the reference guide on implementing custom query
 modules](../reference-guide/query-modules/implement-custom-query-modules/overview)
 that will provide you with the C and Python APIs and [give an
 example](../reference-guide/query-modules/implement-custom-query-modules/custom-query-module-example)
 to help you start implementing a custom query module.
+
+You can develop query modules in Python directly from Memgraph Lab (v2.0 or
+newer). To start, just navigate to **Query Modules** and click on **New
+Module**.
+
+<img src={require('../data/memgraph_lab_query_modules.png').default} className={"imgBorder"}/>
 
 ## How to list all loaded .py query modules?
 
@@ -103,7 +106,7 @@ modules](./reference-guide/query-modules/module-file-utilities.md).
 
 Upon startup, Memgraph will attempt to load the query modules from all `*.so`
 and `*.py` files it finds in the default query module directories
-(`/usr/lib/memgraph/query_modules` and `/var/lib/memgraph/internal_modules/`).
+(`/usr/lib/memgraph/query_modules` and `/var/lib/memgraph/internal_modules`).
 
 You can also (re)load all or specific modules manually.
 
@@ -117,7 +120,7 @@ CALL mg.load_all();
 If the response is an `Empty set (x.x sec)` and there are no error messages, the
 update was successful.
 
-To (re)load the given module, run the following query:
+To (re)load a specific module, run the following query:
 
 ```cypher
 CALL mg.load("py_example");
@@ -136,7 +139,7 @@ mapped as query module names. For example, `example.so` will be mapped as
 `example` module, and `py_example.py` will be mapped as `py_example` module. If
 each module file has a procedure called `procedure` defined, those procedures
 would be mapped in the Cypher query language as `example.procedure()` and
-`py_example.procedure()` respectively.
+`py_example.procedure()`, respectively.
 
 The syntax for calling procedures in loaded query modules is:
 
@@ -191,7 +194,7 @@ CALL module.procedure(arg1, arg2, ...) PROCEDURE MEMORY LIMIT 100 MB YIELD res1,
 CALL module.procedure(arg1, arg2, ...) PROCEDURE MEMORY UNLIMITED YIELD res1, res2, ...;
 ```
 
-The limit can be specified to a specific value in `KB` or `MB`) or set to
+The limit can be specified to a specific value (in `KB` or `MB`) or set to
 `UNLIMITED`.
 
 For more information on controlling the memory usage of procedures please read
@@ -201,7 +204,7 @@ guide](../reference-guide/query-modules/load-call-query-modules#controlling-proc
 ## How to change the default query module directories?
 
 If you want to change the default query module directories
-(`/usr/lib/memgraph/query_modules` and `/var/lib/memgraph/internal_modules/`),
+(`/usr/lib/memgraph/query_modules` and `/var/lib/memgraph/internal_modules`),
 that is, the directories in which Memgraph searches for query modules, change
 the `--query-modules-directory` flag in the main configuration file
 (`/etc/memgraph/memgraph.conf`) or supply it as a command-line parameter (e.g.

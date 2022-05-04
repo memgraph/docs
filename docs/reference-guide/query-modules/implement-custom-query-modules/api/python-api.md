@@ -24,6 +24,9 @@ If you install any Python modules after running Memgraph, you'll have to [load
 them into Memgraph](../load-call-query-modules#loading-query-modules) or restart
 Memgraph in order to use them.
 
+You can also develop query modules in Python from Memgraph Lab (v2.0 and newer). Just
+navigate to **Query Modules** and click on **New Module** to start.
+
 :::
 
 ## class mgp.read_proc(func: Callable[[…], mgp.Record])
