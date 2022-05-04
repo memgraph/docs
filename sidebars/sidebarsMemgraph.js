@@ -188,8 +188,9 @@ module.exports = {
         "how-to-guides/replication",
         //"how-to-guides/tensorflow-setup",
         "reference-guide/triggers",
+        "how-to-guides/font-awesome-for-node-images",
         "how-to-guides/work-with-docker",
-
+        "how-to-guides/indexes",
         {
           type: "category",
           label: "Enterprise features",
@@ -198,7 +199,6 @@ module.exports = {
             "how-to-guides/manage-user-privileges",
           ],
         },
-        "how-to-guides/indexes",
       ],
     },
     {
