@@ -20,8 +20,8 @@ clauses are executed per iteration of the list.
 |   expression   |                                     Any expression that results in a list                                     |
 | update clauses | One or more Cypher update clauses: `SET`, `REMOVE`, `CREATE`, `MERGE`, `DELETE` including `FOREACH` extension |
 
-It must be noted that if the result `&lt;expression&gt;` is null, then `FOREACH`
-will not fail but rather skip the execution of `&lt;update clauses&gt;`
+It must be noted that if the result `<expression>` is null, then `FOREACH`
+will not fail but rather skip the execution of `<update clauses>`
 altogether.
 
 Examples:
