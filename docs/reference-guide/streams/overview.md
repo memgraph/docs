@@ -179,6 +179,26 @@ probably because not enough messages were received, an exception is thrown.
 The default value of `<count>` is 1. `TIMEOUT` is measured in milliseconds, and
 its default value is 30000.
 
+## Get stream information
+
+To get more information about a specific stream, use the following queries:
+
+```cypher
+CALL mg.kafka_stream_info("stream_name") YIELD *;
+```
+
+or
+
+```cypher
+CALL mg.pulsar_stream_info("stream_name") YIELD *;
+```
+
+This procedure will return information about the bootstrap server, set
+configuration, consumer group, credentials and topics regarding the Kafka
+stream.
+
+In the case of a Pulsar stream, it will return service URL and topics.
+
 ## Kafka producer delivery semantics
 
 In stream processing, it is important to consider how failures are handled. When
