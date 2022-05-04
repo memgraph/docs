@@ -23,7 +23,7 @@ application platform in no time at all. Here is what you need to do:
 ### 1. Download and install Memgraph
 
 Start your journey through the world of graph analytics by [downloading and
-installing](/installation/overview.md) Memgraph. You can install Memgraph using
+installing](/installation/overview.mdx) Memgraph. You can install Memgraph using
 Docker on Windows and macOS, or natively on Linux and WSL.
 
 ### 2. Connect to Memgraph

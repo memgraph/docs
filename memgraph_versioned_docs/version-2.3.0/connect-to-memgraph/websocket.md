@@ -10,7 +10,7 @@ connection.
 ## How to set up a WebSocket connection?
 
 First, you need to start Memgraph. You can check out
-[installation](/installation/overview.md) pages to help you get started.
+[installation](/installation/overview.mdx) pages to help you get started.
 
 You don't need to set up anything to start using a WebSocket connection, the
 only thing you need is a client that uses `WebSocket` to connect to Memgraph,
