@@ -146,7 +146,7 @@ module.exports = {
             },
             {
               label: "Algorithms",
-              to: "/mage/algorithms/algorithms",
+              to: "/mage/algorithms",
             },
             {
               label: "Use cases",
