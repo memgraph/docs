@@ -11,7 +11,7 @@ program that connects to the Memgraph database and executes simple queries.
 
 To follow this guide, you will need:
 * A **running Memgraph instance**. If you need to set up Memgraph, take a look
-  at the [Installation guide](/installation/overview.md).
+  at the [Installation guide](/installation/overview.mdx).
 * A basic understanding of graph databases and the property graph model.
 * **Composer**, a tool for dependency management in PHP. Instructions on how to
   install Composer can be found [here](https://getcomposer.org/doc/00-intro.md).
