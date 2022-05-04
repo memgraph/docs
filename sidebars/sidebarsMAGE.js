@@ -65,7 +65,7 @@ module.exports = {
     {
       type: "category",
       label: "Algorithms",
-      link: {type: 'doc', id: 'algorithms/algorithms'},
+      link: {type: 'doc', id: 'algorithms/overview'},
       items: [
         {
           type: "category",
