@@ -237,6 +237,10 @@ module.exports = {
               to: "/cypher-manual/clauses",
             },
             {
+              label: "Extension clauses",
+              to: "/cypher-manual/extension-clauses",
+            },
+            {
               label: "Using functions",
               to: "/cypher-manual/functions",
             },

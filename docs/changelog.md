@@ -8,6 +8,8 @@ sidebar_label: Changelog
 
 ### Major Features and Improvements
 
+- Added [`FOREACH`](/cypher-manual/extension-clauses) clause.
+  [#351](https://github.com/memgraph/memgraph/pull/351)
 - Added [Bolt over WebSocket](/connect-to-memgraph/websocket.md) support to
   Memgraph. [#384](https://github.com/memgraph/memgraph/pull/384)
 
