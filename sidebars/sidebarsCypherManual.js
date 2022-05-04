@@ -36,6 +36,7 @@ module.exports = {
         "clauses/with",
       ],
     },
+    "extension-clauses",
     "functions",
     "query-modules",
     "other-features",

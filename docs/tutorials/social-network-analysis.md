@@ -18,7 +18,7 @@ Once Memgraph is up and running, there are three ways to execute queries and
 procedures in Memgraph:
 
 - using **Memgraph Lab**, a visual user interface that you can use from your
-  browser at `http://localhost:3000` or [download as an
+  browser at [`http://localhost:3000`](http://localhost:3000) or [download as an
   application](https://memgraph.com/product/lab)
 - using the command-line tool [`mgconsole`](/connect-to-memgraph/mgconsole.md)
 - using [drivers](/connect-to-memgraph/drivers/overview.md) and the Bolt

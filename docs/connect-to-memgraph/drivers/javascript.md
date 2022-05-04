@@ -27,52 +27,12 @@ To follow this guide, you will need:
 
 ## Basic Setup
 
-Memgraph doesn't have integrated support for `WebSocket` which is required
-during the execution of Cypher commands in any web browser. If you want to run
-`Cypher` queries from a web browser,
-[websockify](https://github.com/novnc/websockify-js) has to be up and running.
-Requests from web browsers are wrapped into `WebSocket` messages, and a proxy is
-needed to handle the overhead. The proxy has to be configured so that the web
-browser driver sends requests to the proxy port which sends them to Memgraph's
-Bolt port. Presented with Cypher language, the communication goes like this:
-
-```cypher
-(:Browser:Javascript)-[:CONNECTS_TO]->(:Websockify { mode: "WS" })-[:PROXY_TO]->(:Memgraph { "encryption": "off" })
-```
-
-Proxy `Websockify` runs in unencrypted HTTP (ws://) mode by default which isn't
-encrypted, so to match that, Memgraph needs to be running with encryption turned
-off (the default setting).
-
-The code snippet below outlines a basic usage example that executes a couple of
-elementary queries. The first two steps are about starting Websockify to proxy
-queries to the database.
-
 Let's jump in and connect a simple program to Memgraph.
 
 **1.** Create a new directory for your application, for example `/MyApp` and
 position yourself in it.
 
-**2.** Create a `websockify.sh` script with the following code:
-
-```bash
-#!/bin/bash
-
-if [ ! -d "websockify-js" ]; then
-    git clone https://github.com/novnc/websockify-js.git
-fi
-cd websockify-js/websockify
-npm install
-./websockify.js 9999 :7687
-```
-
-**3.** Run `Websockify` with the command:
-
-```
-bash websockify.sh
-```
-
-**4.** To make the actual program, create a `program.html` file and add the
+**2.** To make the actual program, create a `program.html` file and add the
 following code:
 
 ```html
@@ -87,7 +47,7 @@ following code:
     <p>Check console for Cypher query outputs...</p>
     <script>
       const driver = neo4j.driver(
-        "bolt://localhost:9999",
+        "bolt://localhost:7687",
         neo4j.auth.basic("", "")
       );
 
@@ -129,7 +89,7 @@ following code:
 </html>
 ```
 
-**5.** Open the `program.html` file in your browser and look for the output in
+**3.** Open the `program.html` file in your browser and look for the output in
 the console.
 
 You should see an output similar to the following:

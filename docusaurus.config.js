@@ -146,7 +146,7 @@ module.exports = {
             },
             {
               label: "Algorithms",
-              to: "/mage/algorithms/algorithms",
+              to: "/mage/algorithms",
             },
             {
               label: "Use cases",
@@ -237,6 +237,10 @@ module.exports = {
               to: "/cypher-manual/clauses",
             },
             {
+              label: "Extension clauses",
+              to: "/cypher-manual/extension-clauses",
+            },
+            {
               label: "Using functions",
               to: "/cypher-manual/functions",
             },
@@ -271,6 +275,10 @@ module.exports = {
             {
               label: "MAGE FAQ",
               to: "/help-center/faq/mage",
+            },
+            {
+              label: "Errors overview",
+              to: "/errors/",
             },
           ],
         },
@@ -390,9 +398,9 @@ module.exports = {
     },
     hideableSidebar: true,
     announcementBar: {
-      id: "cypheremailcourse",
+      id: "graphmodelingemailcourse",
       content:
-        'Sign up for the new <a target="_blank" rel="noopener noreferrer" href="https://memgraph.com/learn-cypher-query-language"><b>Cypher Email Course</b></a> 📩',
+        'Sign up for the new <a target="_blank" rel="noopener noreferrer" href="https://memgraph.com/learn-graph-modeling"><b>Graph Modeling Email Course</b></a> 📩',
       backgroundColor: "#fafbfc",
       textColor: "#091E42",
       isCloseable: true,

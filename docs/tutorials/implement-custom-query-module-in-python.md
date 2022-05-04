@@ -86,15 +86,15 @@ Let's open Memgraph Lab where we will import the dataset, as well as write and
 use the procedures from our query module.
 
 If you have successfully installed Memgraph Platform, you should be able to open
-Memgraph Lab in a browser at `http://localhost:3000/`. Navigate to the
-**Datasets** menu item, click on the **Europe backpacking** dataset to import it
-into Memgraph. You can also check the details of the dataset by clicking on
-**Quick View**
+Memgraph Lab in a browser at [`http://localhost:3000/`](http://localhost:3000/).
+Navigate to the **Datasets** menu item, click on the **Europe backpacking**
+dataset to import it into Memgraph. You can also check the details of the
+dataset by clicking on **Quick View**
 
 <img src={require('../data/tutorials/query-modules/import-dataset.png').default}
 className={"imgBorder"}/>
 
-Go to the **Query Execution** tab and try running a test query that will show
+Go to the **Query Execution** and try running a test query that will show
 the city Vienna and all its relationships:
 
 ```Cypher
@@ -372,8 +372,8 @@ Some errors will be written out as you are trying to call the procedure. Others
 can be viewed in the log file.
 
 If you started your Memgraph Platform image by exposing the `7444` port, you can
-check the logs from Memgraph Lab. Otherwise, you need to access the logs in the
-Docker container.
+check the logs from Memgraph Lab. Otherwise, you need to [access the logs in the
+Docker container](../how-to-guides/config-logs.md#accessing-logs).
 
 But the rest of the errors in the code will result in the procedure not being
 detected. That means that if you go to the **Query Modules** menu item and check
@@ -484,9 +484,9 @@ to the new `City` node, such as `local_currency` and `local_currency_code`.
 
 The new `City` node also has to get a new `id` number, that's why we will save
 the highest existing `id` among `City` nodes in the `city_id` and increase that
-number by 1 to get the ID of the new City node. Now that we have created a new
+number by 1 to get the ID of the new `City` node. Now that we have created a new
 `City` node, we need to create a relationship to connect it with the existing
-Country node and return both nodes and the relationship.
+`Country` node and return both nodes and the relationship.
 
 ```python
 @mgp.write_proc
@@ -616,7 +616,7 @@ def new_city(context: mgp.ProcCtx,
 Save the query module, switch to **Query Execution** and call the procedure
 using the clause `CALL`, then calling the right module and procedure within it
 (`backpacking.new_city`). List all arguments except the whole graph inside
-brackets, and at the end YIELD all the results:
+brackets, and at the end `YIELD` all the results:
 
 ```cypher
 CALL backpacking.new_city("Zagreb", "Croatia") YIELD *;

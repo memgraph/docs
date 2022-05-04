@@ -55,7 +55,7 @@ element is a result matrix.
 ### Example
 
 Here is a simple example. You can use [the movie
-dataset](/tutorials/movie-recommendation.md) or you can use this simple dataset:
+dataset](/tutorials/exploring-datasets/movie-recommendation.md) or you can use this simple dataset:
 
 ```cypher
 CREATE (:User {id: 1})-[:Rating {score:5.0}]->(:Movie {id: 1});
@@ -220,4 +220,4 @@ if __name__ == "__main__":
 ## Where to next?
 
 To learn more about Memgraph's functionalities, visit the **[Reference guide](/reference-guide/overview.md)**.
-For real-world examples of how to use Memgraph, we strongly suggest going through one of the available **[Tutorials](../tutorials/overview.md)**.
+For real-world examples of how to use Memgraph, we strongly suggest going through one of the available **[Tutorials](/tutorials/overview.md)**.
