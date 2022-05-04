@@ -12,7 +12,7 @@ queries.
 
 To follow this guide, you will need:
 * A **running Memgraph instance**. If you need to set up Memgraph, take a look
-  at the [Installation guide](/installation/overview.md).
+  at the [Installation guide](/installation/overview.mdx).
 * A basic understanding of graph databases and the property graph model.
 * **Docker** installed and running. Instructions on how to setup Docker can be
   found on the [official Docker website](https://docs.docker.com/get-docker/).

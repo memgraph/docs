@@ -12,7 +12,7 @@ queries.
 
 To follow this guide, you will need:
 * A **running Memgraph instance**. If you need to set up Memgraph, take a look
-  at the [Installation guide](/installation/overview.md).
+  at the [Installation guide](/installation/overview.mdx).
 * The [**pymgclient driver**](https://github.com/memgraph/pymgclient). A
   Memgraph database adapter for the Python programming language.
 * A basic understanding of graph databases and the property graph model.

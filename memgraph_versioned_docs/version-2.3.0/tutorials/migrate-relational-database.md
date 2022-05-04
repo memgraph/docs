@@ -29,7 +29,7 @@ To follow along, you will need:
   and modules library.<br/>
   To install Memgraph Platform and set it up, please follow the Docker
   installation instructions on the [Installation
-  guide](/installation/overview.md).
+  guide](/installation/overview.mdx).
 - (optional) A running relational database either with your own schema and data
   or you can use the schema we used and populate the tables
 
