@@ -10,6 +10,8 @@ modules** written by the team behind Memgraph and its users. You can find and
 contribute implementations of various algorithms in multiple programming
 languages, all runnable inside Memgraph.
 
+MAGE modules are located at `/usr/lib/memgraph/query_modules`.
+
 If you are using Docker and either `memgraph-platform` or `memgraph-mage`
 images, the MAGE library is already loaded and ready to be used so you can skip to
 the guide on [calling procedures within query
