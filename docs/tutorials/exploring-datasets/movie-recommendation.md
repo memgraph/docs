@@ -97,7 +97,7 @@ RETURN avg(rating.score);
 **6\.** Average scores for first 10 movies:
 
 ```cypher
-MATCH (:User)-[:Rating]->(movie:Movie)
+MATCH (:User)-[r:Rating]->(movie:Movie)
 RETURN movie.title, avg(r.score) AS score
 ORDER BY score DESC
 LIMIT 10;
@@ -119,35 +119,35 @@ RETURN user;
 Rate some movies:
 
 ```cypher
-MATCH (u:User {id:1000}), (m:Movie {title:'Trois couleurs : Rouge'})
+MATCH (u:User {id:1000}), (m:Movie {title:"Trois couleurs : Rouge"})
 MERGE (u)-[:Rating {score:3.0}]->(m);
-MATCH (u:User {id:1000}), (m:Movie {title:'20,000 Leagues Under the Sea'})
+MATCH (u:User {id:1000}), (m:Movie {title:"20,000 Leagues Under the Sea"})
 MERGE (u)-[:Rating {score:1.0}]->(m);
-MATCH (u:User {id:1000}), (m:Movie {title:'Star Trek: Generations'})
+MATCH (u:User {id:1000}), (m:Movie {title:"Star Trek: Generations"})
 MERGE (u)-[:Rating {score:0.5}]->(m);
-MATCH (u:User {id:1000}), (m:Movie {title:'Rebecca'})
+MATCH (u:User {id:1000}), (m:Movie {title:"Rebecca"})
 MERGE (u)-[:Rating {score:3.0}]->(m);
-MATCH (u:User {id:1000}), (m:Movie {title:'The 39 Steps'})
+MATCH (u:User {id:1000}), (m:Movie {title:"The 39 Steps"})
 MERGE (u)-[:Rating {score:4.5}]->(m);
-MATCH (u:User {id:1000}), (m:Movie {title:'Faster, Pussycat! Kill! Kill!'})
+MATCH (u:User {id:1000}), (m:Movie {title:"Faster, Pussycat! Kill! Kill!"})
 MERGE (u)-[:Rating {score:3.5}]->(m);
-MATCH (u:User {id:1000}), (m:Movie {title:'Once Were Warriors'})
+MATCH (u:User {id:1000}), (m:Movie {title:"Once Were Warriors"})
 MERGE (u)-[:Rating {score:3.5}]->(m);
-MATCH (u:User {id:1000}), (m:Movie {title:'Sleepless in Seattle'})
+MATCH (u:User {id:1000}), (m:Movie {title:"Sleepless in Seattle"})
 MERGE (u)-[:Rating {score:4.0}]->(m);
-MATCH (u:User {id:1000}), (m:Movie {title:'Don Juan DeMarco'})
+MATCH (u:User {id:1000}), (m:Movie {title:"Don Juan DeMarco"})
 MERGE (u)-[:Rating {score:4.0}]->(m);
-MATCH (u:User {id:1000}), (m:Movie {title:'Jack & Sarah'})
+MATCH (u:User {id:1000}), (m:Movie {title:"Jack & Sarah"})
 MERGE (u)-[:Rating {score:1.5}]->(m);
-MATCH (u:User {id:1000}), (m:Movie {title:'Mr. Holland's Opus'})
+MATCH (u:User {id:1000}), (m:Movie {title:"Mr. Holland's Opus"})
 MERGE (u)-[:Rating {score:2.0}]->(m);
-MATCH (u:User {id:1000}), (m:Movie {title:'The Getaway'})
+MATCH (u:User {id:1000}), (m:Movie {title:"The Getaway"})
 MERGE (u)-[:Rating {score:3.0}]->(m);
-MATCH (u:User {id:1000}), (m:Movie {title:'Color of Night'})
+MATCH (u:User {id:1000}), (m:Movie {title:"Color of Night"})
 MERGE (u)-[:Rating {score:4.0}]->(m);
-MATCH (u:User {id:1000}), (m:Movie {title:'Reality Bites'})
+MATCH (u:User {id:1000}), (m:Movie {title:"Reality Bites"})
 MERGE (u)-[:Rating {score:2.5}]->(m);
-MATCH (u:User {id:1000}), (m:Movie {title:'Notorious'})
+MATCH (u:User {id:1000}), (m:Movie {title:"Notorious"})
 MERGE (u)-[:Rating {score:3.5}]->(m);
 ```
 
