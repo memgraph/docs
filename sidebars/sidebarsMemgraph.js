@@ -77,6 +77,7 @@ module.exports = {
             "connect-to-memgraph/drivers/php",
           ],
         },
+        "connect-to-memgraph/websocket",
       ],
     },
     {
@@ -120,6 +121,7 @@ module.exports = {
       label: "Tutorials",
       link: { type: "doc", id: "tutorials/overview" },
       items: [
+        "tutorials/first-steps-with-memgraph",
         {
           type: "category",
           label: "Exploring datasets with graph analytics",
@@ -135,8 +137,6 @@ module.exports = {
             "tutorials/exploring-datasets/movie-recommendation",
           ],
         },
-        "tutorials/graph-modeling",
-        "tutorials/first-steps-with-memgraph",
         "tutorials/graph-modeling",
         "tutorials/implement-custom-query-module-in-python",
         "tutorials/install-memgraph-windows-10",
@@ -189,8 +189,9 @@ module.exports = {
         "how-to-guides/replication",
         //"how-to-guides/tensorflow-setup",
         "reference-guide/triggers",
+        "how-to-guides/font-awesome-for-node-images",
         "how-to-guides/work-with-docker",
-
+        "how-to-guides/indexes",
         {
           type: "category",
           label: "Enterprise features",
@@ -199,7 +200,6 @@ module.exports = {
             "how-to-guides/manage-user-privileges",
           ],
         },
-        "how-to-guides/indexes",
       ],
     },
     {
@@ -253,7 +253,7 @@ module.exports = {
               items: [
                 "reference-guide/query-modules/implement-custom-query-modules/api/python-api",
                 "reference-guide/query-modules/implement-custom-query-modules/api/c-api",
-                "reference-guide/query-modules/implement-custom-query-modules/custom-query-module-example",  
+                "reference-guide/query-modules/implement-custom-query-modules/custom-query-module-example",
               ],
             },
             "reference-guide/query-modules/load-call-query-modules",

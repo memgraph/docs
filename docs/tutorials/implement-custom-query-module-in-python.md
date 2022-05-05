@@ -23,7 +23,7 @@ guide on query modules](/reference-guide/query-modules/overview.md).
 
 In order to start developing a custom query you will need:
 
-- [Memgraph Platform](/installation/overview.md)
+- [Memgraph Platform](/installation/overview.mdx)
 - Visual Studio Code or a code editor of your choice
 
 ## Data model
