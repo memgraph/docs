@@ -59,7 +59,7 @@ Output:
 
 ## 2. Combine queries and remove duplicates
 
-To combine two or more queries and return their results without removing duplicates, use the `UNION` clause without `ALL`.
+To combine two or more queries and return their results while removing duplicates, use the `UNION` clause without `ALL`.
 
 ```cypher
 MATCH (c:Country)
