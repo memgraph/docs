@@ -190,6 +190,7 @@ So let's create `c_transformation.cpp` and start to populate it!
 ```cpp
 #include <exception>
 #include <string>
+#include <string_view>
 
 #include "mg_procedure.h"
 
@@ -198,95 +199,44 @@ const std::string query_part_2{"', payload: '"};
 const std::string query_part_3{"', topic: '"};
 const std::string query_part_4{"'})"};
 
-std::string create_query(mgp_message &message, struct mgp_result *result) {
-  int64_t timestamp{0};
-  if (mgp_error::MGP_ERROR_NO_ERROR !=
-      mgp_message_timestamp(&message, &timestamp)) {
-    throw "Internal error!";
-  }
-
-  const char *payload{nullptr};
-  if (mgp_error::MGP_ERROR_NO_ERROR !=
-      mgp_message_payload(&message, &payload)) {
-    throw "Internal error!";
-  }
-
-  size_t payload_size{0};
-  if (mgp_error::MGP_ERROR_NO_ERROR !=
-      mgp_message_payload_size(&message, &payload_size)) {
-    throw "Internal error!";
-  }
-
-  const char *topic_name{nullptr};
-  if (mgp_error::MGP_ERROR_NO_ERROR !=
-      mgp_message_topic_name(&message, &topic_name)) {
-    throw "Internal error!";
-  }
-
-  return query_part_1 + std::to_string(timestamp) + query_part_2 +
-         std::string{payload, payload_size} + query_part_3 + topic_name +
-         query_part_4;
+std::string create_query(const mgp_message &message) {
+  return query_part_1 + std::to_string(mgp_message_timestamp(&message)) +
+         query_part_2 +
+         std::string{mgp_message_payload(&message),
+                     mgp_message_payload_size(&message)} +
+         query_part_3 + mgp_message_topic_name(&message) + query_part_4;
 }
 
-void my_c_transformation(struct mgp_messages *messages, mgp_graph *,
-                         mgp_result *result, mgp_memory *memory) {
+void my_c_transformation(const struct mgp_messages *messages,
+                         const struct mgp_graph *, struct mgp_result *result,
+                         struct mgp_memory *memory) {
 
-  mgp_value *null_value{nullptr};
-
+  auto *null_value = mgp_value_make_null(memory);
   try {
-    size_t messages_size{0};
-    if (mgp_error::MGP_ERROR_NO_ERROR !=
-        mgp_messages_size(messages, &messages_size)) {
-      return;
-    }
-
-    if (mgp_error::MGP_ERROR_NO_ERROR !=
-        mgp_value_make_null(memory, &null_value)) {
-      return;
-    }
-
+    auto messages_size = mgp_messages_size(messages);
     for (auto i = 0; i < messages_size; ++i) {
-
-      mgp_message *message{nullptr};
-      if (mgp_error::MGP_ERROR_NO_ERROR !=
-          mgp_messages_at(messages, i, &message)) {
-        break;
-      }
-
-      const auto query = create_query(*message, result);
-
-      mgp_result_record *record{nullptr};
-      if (mgp_error::MGP_ERROR_NO_ERROR !=
-          mgp_result_new_record(result, &record)) {
-        break;
-      }
-
-      mgp_value *query_value{nullptr};
-      if (mgp_error::MGP_ERROR_NO_ERROR !=
-          mgp_value_make_string(query.c_str(), memory, &query_value)) {
-        break;
-      }
-
-      auto mgp_result = mgp_result_record_insert(record, "query", query_value);
+      auto *message = mgp_messages_at(messages, i);
+      auto query = create_query(*message);
+      auto *record = mgp_result_new_record(result);
+      auto *query_value = mgp_value_make_string(query.c_str(), memory);
+      auto record_inserted =
+          mgp_result_record_insert(record, "query", query_value) != 0;
       mgp_value_destroy(query_value);
-
-      if (mgp_error::MGP_ERROR_NO_ERROR != mgp_result) {
-        static_cast<void>(
-            mgp_result_set_error_msg(result, "Couldn't insert field"));
+      if (!record_inserted) {
+        mgp_result_set_error_msg(result, "Couldn't insert field");
         break;
       }
-
-      mgp_result = mgp_result_record_insert(record, "parameters", null_value);
-      if (mgp_error::MGP_ERROR_NO_ERROR != mgp_result) {
-        static_cast<void>(
-            mgp_result_set_error_msg(result, "Couldn't insert field"));
+      record_inserted =
+          mgp_result_record_insert(record, "parameters", null_value) != 0;
+      if (!record_inserted) {
+        mgp_result_set_error_msg(result, "Couldn't insert field");
         break;
       }
     }
     mgp_value_destroy(null_value);
   } catch (const std::exception &e) {
     mgp_value_destroy(null_value);
-    static_cast<void>(mgp_result_set_error_msg(result, e.what()));
+    mgp_result_set_error_msg(result, e.what());
     return;
   }
 }
@@ -296,10 +246,8 @@ Now we have to register the transformation in the `mgp_init_module` function:
 
 ```cpp
 extern "C" int mgp_init_module(mgp_module *module, mgp_memory *memory) {
-
-  return mgp_error::MGP_ERROR_NO_ERROR !=
-         mgp_module_add_transformation(module, "my_c_transformation",
-                                       my_c_transformation);
+  return mgp_module_add_transformation(module, "my_c_transformation",
+                                       my_c_transformation) == 0;
 }
 ```
 
