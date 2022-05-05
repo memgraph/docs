@@ -29,17 +29,19 @@ The first one selects countries and the second one selects cities.
 
 ```
 @NodeStyle HasLabel?(node, "Country") {
-  label: Format(Property(node, "name"))
+  label: Property(node, "name")
 }
 
 @NodeStyle HasLabel?(node, "City") {
-    label: Format(Format("{cityName}, {countryName}"),
+    label: Format("{cityName}, {countryName}",
                   Property(node, "name"),
-                  Property(node, "country_name"))
+                  Property(node, "country"))
 }
 ```
 
-The content inside the curly braces is ignored but can be helpful for clarity.
+In the case of the [`Format`](gss-functions.md#formatformatstring-val1-val2)
+function, content inside the curly braces is ignored but can be helpful for
+clarity.
 
 ## Setting node images
 
