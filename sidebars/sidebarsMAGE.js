@@ -9,6 +9,7 @@ module.exports = {
         "installation/docker-hub",
         "installation/docker-build",
         "installation/source",
+        "installation/cugraph",
       ],
     },
     {
@@ -27,6 +28,7 @@ module.exports = {
         "query-modules/cpp/bridges",
         "query-modules/cpp/community-detection-online",
         "query-modules/cpp/cycles",
+        "query-modules/cuda/cugraph",
         "query-modules/python/distance-calculator",
         "query-modules/python/graph-analyzer",
         "query-modules/python/graph-coloring",
@@ -53,6 +55,7 @@ module.exports = {
         "how-to-guides/create-a-new-module-python",
         "how-to-guides/create-a-new-module-cpp",
         "how-to-guides/run-a-query-module",
+        "how-to-guides/run-a-query-module-cugraph",
       ],
     },
     {
