@@ -10,5 +10,10 @@ module.exports = {
         "faq/mage-faq",
       ],
     },
+    {
+      type: 'link',
+      label: 'Errors overview', // The link label
+      href: '/errors', // The external URL
+    },
   ],
 };
