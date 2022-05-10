@@ -7,8 +7,22 @@
 .homePlaygroundEmbed h2 {
     font-size: 39px;
     margin-bottom: 42px;
+    float: right;
 }
 
 .homePlaygroundEmbed__subtitle {
     max-width: 50%;
+    float: right;
+}
+
+.homePlaygroundEmbed__bg {
+    position: absolute;
+    left: 0;
+    z-index: 1;
+}
+
+.homePlaygroundEmbed__embed iframe{
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 2px 10px 0 rgba(0,0,0,0.2);
 }
