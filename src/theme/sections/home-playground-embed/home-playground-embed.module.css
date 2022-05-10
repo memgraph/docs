@@ -1,0 +1,14 @@
+.homePlaygroundEmbed {
+    padding: 85px 0;
+    position: relative;
+    margin-top: 156px;
+}
+
+.homePlaygroundEmbed h2 {
+    font-size: 39px;
+    margin-bottom: 42px;
+}
+
+.homePlaygroundEmbed__subtitle {
+    max-width: 50%;
+}
