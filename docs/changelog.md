@@ -6,6 +6,8 @@ sidebar_label: Changelog
 
 ## v2.4.0
 
+- Added `raw message` field to [`CHECK STREAM` query](/reference-guide/streams/overview.md) that returns the raw message received by the transformation. [#394](https://github.com/memgraph/memgraph/pull/394)
+
 ### Bug Fixes
 
 - Fix header on `SHOW REPLICATION ROLE` query and wrong timout info on `SHOW
