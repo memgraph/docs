@@ -81,7 +81,7 @@ python3 setup build --gpu
 ```
 
 :::info
-The **--gpu** flag will enable building the cuGraph dependencies and creating the shared library with **cuGraph** algorithms ready to be loaded into Memgraph. 
+The `--gpu` flag will enable building the cuGraph dependencies and creating the shared library with **cuGraph** algorithms ready to be loaded into Memgraph. 
 :::
 
 **2.** Copy the contents of the newly created `dist` directory to
