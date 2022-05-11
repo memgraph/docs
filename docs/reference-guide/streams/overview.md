@@ -172,9 +172,10 @@ CHECK STREAM <stream name> [BATCH_LIMIT <count>] [TIMEOUT <milliseconds>];
 
 The `CHECK STREAM` clause does a dry-run on the stream with name `<stream name>`
 with `<count>` number of batches and returns the result of the transformation,
-that is, the queries and parameters that would be executed in a normal run. If
-`<count>` number of batches are not processed within the specified `TIMEOUT`,
-probably because not enough messages were received, an exception is thrown.
+that is, the queries and parameters that would be executed in a normal run as 
+well as the original raw message. If `<count>` number of batches are not processed 
+within the specified `TIMEOUT`,probably because not enough messages were received, 
+an exception is thrown.
 
 The default value of `<count>` is 1. `TIMEOUT` is measured in milliseconds, and
 its default value is 30000.
