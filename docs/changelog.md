@@ -10,6 +10,7 @@ sidebar_label: Changelog
 
 - Fix header on `SHOW REPLICATION ROLE` query and wrong timout info on `SHOW
   REPLICAS` query. [#376](https://github.com/memgraph/memgraph/pull/376)
+- Fix SSL connection shutdown hanging. [#395](https://github.com/memgraph/memgraph/pull/395)
 
 ### Major Features and Improvements
 
