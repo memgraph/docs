@@ -12,8 +12,8 @@ module.exports = {
     },
     {
       type: 'link',
-      label: 'Errors overview', // The link label
-      href: '/errors', // The external URL
+      label: 'Errors overview',
+      href: '/errors', 
     },
   ],
 };
