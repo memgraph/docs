@@ -51,12 +51,12 @@ already running, so open your web browser and go to
 [`localhost:3000`](http://localhost:3000). When the Memgraph Lab loads, click
 **Connect now**.
 
-<img src={require('../data/tutorials/getting-started/connect-to-memgraph-lab.png').default} className={"imgBorder"}/>
+<img src={require('../data/tutorials/first-steps/connect-to-memgraph-lab.png').default} className={"imgBorder"}/>
 
 That's it! You can see the Memgraph Lab Dashboard, so you are ready to head over
 to the next step.
 
-<img src={require('../data/tutorials/getting-started/memgraph-lab-dashboard.png').default} className={"imgBorder"}/>
+<img src={require('../data/tutorials/first-steps/memgraph-lab-dashboard.png').default} className={"imgBorder"}/>
 
 ## 3. Import dataset
 
@@ -65,49 +65,70 @@ database. We have prepared more than 20 datasets that you can use for testing
 and learning. You will now import one of those datasets. In the sidebar click
 **Datasets**. Next, go to **Capital cities and borders** and click **Load Dataset**.
 
-<img src={require('../data/tutorials/getting-started/memgraph-lab-datasets.png').default} className={"imgBorder"}/>
+<img src={require('../data/tutorials/first-steps/memgraph-lab-datasets.png').default} className={"imgBorder"}/>
 
 You will see the warning that a new dataset will overwrite current data in the
 database. That is not a problem for you since you don't have any data in your
 database, but in the future be careful when importing data. Go ahead and click
 **Confirm**. Once the import is done, click the **X** to close the dialog. 
 
-<img src={require('../data/tutorials/getting-started/memgraph-lab-dataset-import.png').default} className={"imgBorder"}/>
+<img src={require('../data/tutorials/first-steps/memgraph-lab-dataset-import.png').default} className={"imgBorder"}/>
 
 ## 4. Run query
 
-Imagine that you are in Madrid and you want to visit other capital cities that
-are one or two hops away from Madrid. How can you figure out which cities are your
-possible destinations? You will use Cypher query language to find that out.
+Now that the data is imported it is time to run your first Cypher query. You
+will write a query that that displays all of the cities and all of the
+connections. 
 
 Click the **Query Execution** in the sidebar, and then copy-and-paste the
 following code into the **Cypher Editor**.
 
 ```cypher
 
-MATCH p = (madrid:City { name: "Madrid" })-[e * bfs ..2]-(:City)
+MATCH (n)-[r]-(m)
+RETURN n, r, m;
+
+```
+
+Click **Run query** to run the above query and see the result in the **Graph
+results** tab.
+
+<img src={require('../data/tutorials/first-steps/memgraph-lab-first-cypher-query.png').default} className={"imgBorder"}/>
+
+Here is another query for you. Imagine that you are in Madrid and you want to
+visit other capital cities that are one or two hops away from Madrid. How can
+you figure out which cities are your possible destinations? You will use Cypher
+query language to find that out.
+
+Click the **Query Execution** in the sidebar, and then copy-and-paste the
+following code into the **Cypher Editor**.
+
+```cypher
+
+MATCH p = (madrid:City { name: "Madrid" })-[e *BSF ..2]-(:City)
 RETURN p;
 
 ```
 
 This query will show all of the capital cities on the map that are up to two
-hops away from Madrid. Yout don't have to worry about exact semantics of this
-query for now, but if you want to find out more, check out the [learning materials](/cypher-manual/) for Cypher. Click **Run query** to run the above
+hops away from Madrid. You don't have to worry about exact semantics of this
+query for now, but if you want to find out more, check out the [learning
+materials](/cypher-manual/) for Cypher. Click **Run query** to run the above
 query and see the result in the **Graph results** tab.
 
-<img src={require('../data/tutorials/getting-started/memgraph-lab-cypher-editor.png').default} className={"imgBorder"}/>
+<img src={require('../data/tutorials/first-steps/memgraph-lab-cypher-editor.png').default} className={"imgBorder"}/>
 
 The result that you can see shows all of the capital cities that are two hops
 away from Madrid.
 
-<img src={require('../data/tutorials/getting-started/memgraph-lab-graph-results.png').default} className={"imgBorder"}/>
+<img src={require('../data/tutorials/first-steps/memgraph-lab-graph-results.png').default} className={"imgBorder"}/>
 
 ## 5. Style your graph
 
 When your results are shown on the map, you can move around. Go ahead and
 zoom in and change the map style to **Detailed**. 
 
-<img src={require('../data/tutorials/getting-started/memgraph-lab-map-style.png').default} className={"imgBorder"}/>
+<img src={require('../data/tutorials/first-steps/memgraph-lab-map-style.png').default} className={"imgBorder"}/>
 
 You will now use **Graph Style Editor** to change how nodes and relationships
 are shown on the map. We have included a flag for each capital city as a node
@@ -143,7 +164,7 @@ so that the above block looks like this:
 Click **Apply**, and your result should look like this:
 
 <img
-src={require('../data/tutorials/getting-started/memgraph-lab-style-editor.png').default}
+src={require('../data/tutorials/first-steps/memgraph-lab-style-editor.png').default}
 className={"imgBorder"}/>
 
 That looks great, but let's make the names of the cities and nodes a little bit
@@ -254,7 +275,7 @@ enjoyed this short tutorial. Now that you have seen Memgraph in action, we
 encourage you to keep exploring Memgraph features. A wonderful world of graphs
 awaits you!
 
-<img src={require('../data/tutorials/getting-started/memgraph-lab-map-style-final.png').default} className={"imgBorder"}/>
+<img src={require('../data/tutorials/first-steps/memgraph-lab-map-style-final.png').default} className={"imgBorder"}/>
 
 ## Where to next?
 
