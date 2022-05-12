@@ -25,7 +25,7 @@ them into a Docker
 container](/how-to-guides/work-with-docker.md#how-to-copy-files-from-and-to-a-Docker-container)
 in order to utilize them. 
 
-## Configuring the server
+## Configure the server
 
 To use a certain SSL certificate, change the configuration file to include the
 `--bolt-cert-file` and `--bolt-key-file` flags and set them to the location of
@@ -37,7 +37,7 @@ flags to:
 ```
 --bolt-cert-file=/etc/memgraph/ssl/cert.pem
 --bolt-key-file=/etc/memgraph/ssl/key.pem
-```
+``` 
 
 When using Linux, be sure that the user `memgraph` has permissions (400) to
 access the files.
@@ -49,7 +49,7 @@ insecure connection.
 
 <Tabs
   groupId="connectiontype"
-  defaultValue="MemgraphLab"
+  defaultValue="lab"
   values={[
     {label: 'Memgraph Lab', value: 'lab'},
     {label: 'mgconsole', value: 'mgconsole'},
@@ -85,7 +85,7 @@ insecure connection.
    
    or if you are using `memgraph` or `memgraph-mage` Docker images:
    
-    ```
+   ```
    docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 -v mg_lib:/var/lib/memgraph -v mg_etc:/etc/memgraph memgraph/memgraph-mage --use-ssl=true
    ```
 
@@ -94,7 +94,7 @@ insecure connection.
 
    **Javascript**
 
-   Use [Neo4j driver for JavaScript](https://neo4j.com/developer/javascript/), and add `+ssc` to the UNI when defining a `MEMGRAPH_URI` constant: `MEMGRAPH_URI = 'bolt+ssc://18.196.53.118:7687'`.
+   Use [Neo4j driver for JavaScript](https://neo4j.com/developer/javascript/), and add `+ssc` to the UNI when defining a `MEMGRAPH_URI` constant: <br/> <code>MEMGRAPH_URI = 'bolt+ssc://18.196.53.118:7687'</code>.
    
    **Python**
 
@@ -106,7 +106,7 @@ insecure connection.
 
    **Go**
 
-   Use the [Neo4j driver for Go](https://neo4j.com/developer/go/), and add `+ssc` to the UNI:: `"bolt+ssc://18.196.53.118:7687"`.
+   Use the [Neo4j driver for Go](https://neo4j.com/developer/go/), and add `+ssc` to the UNI: `"bolt+ssc://18.196.53.118:7687"`.
 
    **PHP**
   
