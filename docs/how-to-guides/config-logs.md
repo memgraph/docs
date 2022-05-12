@@ -46,8 +46,17 @@ docker ps
 Now, you can choose to either modify the main configuration file outside of
 Docker, or within Docker with a command-line text editor (such as **vim**).
 
-**To change the configuration file outside the Docker container continue with the
-following steps:**
+<Tabs
+  groupId="container"
+  defaultValue="outside"
+  values={[
+    {label: 'Changing configuration outside the container', value: 'outside'},
+    {label: 'Changing configuration inside the container', value: 'inside'},
+  ]}>
+    <TabItem value="outside">
+
+To change the configuration file outside the Docker container continue with the
+following steps
 
 **3.** Place yourself in the directory where you want to copy the configuration
 file. 
@@ -89,8 +98,11 @@ C:\Users\Vlasta\Desktop>docker cp memgraph.conf bb3de2634afe:/etc/memgraph/memgr
 
 **8.** Restart Memgraph.
 
-**To change the configuration file inside the Docker container continue with the
-following steps:**
+   </TabItem>
+   <TabItem value="inside">
+
+To change the configuration file inside the Docker container continue with the
+following steps:
 
 **3.** Enter the Docker container with the following command:
 
@@ -103,6 +115,9 @@ docker exec -it <CONTAINER ID> bash
 **5.** Edit the configuration file located at `/etc/memgraph/memgraph.conf`
 
 **6.** Restart Memgraph.
+
+   </TabItem>
+   </Tabs>
 
 ----
 
