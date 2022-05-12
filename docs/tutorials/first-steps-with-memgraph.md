@@ -180,7 +180,7 @@ You have increased the node size to 10, and the font size to 12. Now you will up
 
 ```nocopy
 @EdgeStyle {
-  color: #ff0000
+  color: #999999
   color-hover: #1d1d1d
   color-selected: #1d1d1d
   width: 0.9
