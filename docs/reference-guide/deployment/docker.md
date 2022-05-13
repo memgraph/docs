@@ -26,18 +26,22 @@ services:
       - "3000:3000"
       - "7444:7444"
     volumes:
-      - ./memgraph/mg_lib:/var/lib/memgraph
-      - ./memgraph/mg_log:/var/log/memgraph
-      - ./memgraph/mg_etc:/etc/memgraph
+      - mg_lib:/var/lib/memgraph
+      - mg_log:/var/log/memgraph
+      - mg_etc:/etc/memgraph
     environment:
       - MEMGRAPH="--bolt-port=7687"
     entrypoint: ["/usr/bin/supervisord"]
+volumes:
+  mg_lib:
+  mg_log:
+  mg_etc:
 ```
 
 The port `7687` is used for communication with Memgraph via Bolt protocol. The port `3000` is binded because Memgraph Lab will be running on `localhost:3000`, while the port `7444` is there so that you can see logs from Memgraph inside Memgraph Lab. We specified three useful volumes:
-- `./memgraph/mg_lib` - directory containing data which enables data persistency
-- `./memgraph/mg_log` - directory containing log files
-- `./memgraph/mg_etc` - directory containing the configuration file
+- `mg_lib` - directory containing data which enables data persistency
+- `mg_log` - directory containing log files
+- `mg_etc` - directory containing the configuration file
 
 The exact location of the local directories depends on your specific setup.
 
@@ -55,17 +59,21 @@ services:
   memgraph:
       image: "memgraph/memgraph-mage"
       volumes:
-        - ./memgraph/mg_lib:/var/lib/memgraph
-        - ./memgraph/mg_log:/var/log/memgraph
-        - ./memgraph/mg_etc:/etc/memgraph
+        - mg_lib:/var/lib/memgraph
+        - mg_log:/var/log/memgraph
+        - mg_etc:/etc/memgraph
       ports:
         - "7687:7687"
+volumes:
+  mg_lib:
+  mg_log:
+  mg_etc:
 ```
 
 The port `7687` is used for communication with Memgraph via Bolt protocol. We specified three useful volumes:
-- `./memgraph/mg_lib` - directory containing data which enables data persistency
-- `./memgraph/mg_log` - directory containing log files
-- `./memgraph/mg_etc` - directory containing the configuration file
+- `mg_lib` - directory containing data which enables data persistency
+- `mg_log` - directory containing log files
+- `mg_etc` - directory containing the configuration file
 
 The exact location of the local directories depends on your specific setup.
 
@@ -78,19 +86,23 @@ The exact location of the local directories depends on your specific setup.
 version: "3"
 services:
   memgraph:
-      image: "memgraph/memgraph"
-      volumes:
-        - ./memgraph/mg_lib:/var/lib/memgraph
-        - ./memgraph/mg_log:/var/log/memgraph
-        - ./memgraph/mg_etc:/etc/memgraph
-      ports:
-        - "7687:7687"
+    image: "memgraph/memgraph"
+    ports:
+      - "7687:7687"
+    volumes:
+      - mg_lib:/var/lib/memgraph
+      - mg_log:/var/log/memgraph
+      - mg_etc:/etc/memgraph
+volumes:
+  mg_lib:
+  mg_log:
+  mg_etc:
 ```
 
 The port `7687` is used for communication with Memgraph via Bolt protocol. We specified three useful volumes:
-- `./memgraph/mg_lib` - directory containing data which enables data persistency
-- `./memgraph/mg_log` - directory containing log files
-- `./memgraph/mg_etc` - directory containing the configuration file
+- `mg_lib` - directory containing data which enables data persistency
+- `mg_log` - directory containing log files
+- `mg_etc` - directory containing the configuration file
 
 The exact location of the local directories depends on your specific setup.
 
