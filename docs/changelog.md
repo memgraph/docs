@@ -6,7 +6,7 @@ sidebar_label: Changelog
 
 ## v2.4.0
 
-- Added `raw message` field to [`CHECK STREAM` query](/reference-guide/streams/overview.md) that returns the raw message received by the transformation. [#394](https://github.com/memgraph/memgraph/pull/394)
+- Updated results return by [`CHECK STREAM` query](/reference-guide/streams/overview.md) to group all queries/raw messages on single line per batch. [#394](https://github.com/memgraph/memgraph/pull/394)
 
 ### Bug Fixes
 

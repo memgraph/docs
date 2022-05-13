@@ -85,11 +85,11 @@ If you started the query, let's send some messages to the topic. You should see
 a similar output:
 
 ```plaintext
-+---------------------------------------------------------------+-------------------------------------------------+-------------------------------------------------+
-| query                                                         | parameters                                      | raw message                                     |
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| "CREATE (n:MESSAGE {payload: $payload, topic: $topic})"       | {payload: "Example message 1", topic: "topic1"} | "Example message 1"                             |
-+---------------------------------------------------------------+----------------------+--------------------------+-------------------------------------------------+
++---------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
+| queries                                                                                                                               | raw messages          |
++---------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
+| [{parameters: {payload: "Example message 1", topic: "topic1"}, query: "CREATE (n:MESSAGE {payload: $payload, topic: $topic})"}]       | ["Example message 1"] |
++---------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
 ```
 
 If you want to consume more batches, you can also increase the batch limit:
@@ -101,13 +101,13 @@ CHECK STREAM myStream BATCH_LIMIT 3 TIMEOUT 60000;
 As a result, you should see multiple messages (probably 3) in the output:
 
 ```plaintext
-+---------------------------------------------------------------+--------------------------------------------------+-------------------------------------------------+
-| query                                                         | parameters                                       | raw message                                     |
-+---------------------------------------------------------------+--------------------------------------------------+-------------------------------------------------+
-| "CREATE (n:MESSAGE {payload: $payload, topic: $topic})"       | {payload: "Memgraph <3 Pulsar", topic: "topic1"} | "Memgraph <3 Pulsar"                            |
-| "CREATE (n:MESSAGE {payload: $payload, topic: $topic})"       | {payload: "Example message 2", topic: "topic1"}  | "Example message 2"                             |
-| "CREATE (n:MESSAGE {payload: $payload, topic: $topic})"       | {payload: "Example message 3", topic: "topic1"}  | "Example message 3"                             |
-+---------------------------------------------------------------+--------------------------------------------------+-------------------------------------------------+
++---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| queries                                                                                                                               | raw messages           |
++---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
+| [{parameters: {payload: "Memgraph <3 Pulsar", topic: "topic1"}, query: "CREATE (n:MESSAGE {payload: $payload, topic: $topic})"}]      | ["Memgraph <3 Pulsar"] |
+| [{parameters: {payload: "Example message 2", topic: "topic1"}, query: "CREATE (n:MESSAGE {payload: $payload, topic: $topic})"}]       | ["Example message 2"]  |
+| [{parameters: {payload: "Example message 3", topic: "topic1"}, query: "CREATE (n:MESSAGE {payload: $payload, topic: $topic})"}]       | ["Example message 3"]  |
++---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
 ```
 
 ## Start the stream
