@@ -213,6 +213,13 @@ module.exports = {
         "reference-guide/data-types",
         {
           type: "category",
+          label: "Deployment",
+          items: [
+            "reference-guide/deployment/docker",
+          ],
+        },
+        {
+          type: "category",
           label: "Import Data",
           link: { type: "doc", id: "reference-guide/import-data/overview" },
           items: [
