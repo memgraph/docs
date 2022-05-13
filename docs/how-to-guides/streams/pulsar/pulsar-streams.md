@@ -114,9 +114,10 @@ As a result, you should see multiple messages (probably 3) in the output:
 
 As we just demonstrated that the stream is working, we can start to ingest data
 into the database by starting the stream and sending some messages to the topic.
+As a safeguard, you can use the `BATCH_LIMIT` option to first start the stream and let it consume a limited number of batches. 
 
 ```
-START STREAM myStream;
+START STREAM myStream [BATCH_LIMIT <count>];
 ```
 
 After sending a few messages to the topic, the created vertices can be checked
@@ -130,6 +131,11 @@ by executing `MATCH (n: MESSAGE) RETURN n`:
 | (:MESSAGE {payload: "another message", topic: "topic1"}) |
 | (:MESSAGE {payload: "it is working!", topic: "topic1"})  |
 +----------------------------------------------------------+
+```
+If the result satisfies you, then you can fully start the stream by calling `START STREAM myStream` without providing a `BATCH_LIMIT` option. 
+
+```
+START STREAM myStream;
 ```
 
 ## Acknowledging messages

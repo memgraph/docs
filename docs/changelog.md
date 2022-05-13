@@ -6,6 +6,9 @@ sidebar_label: Changelog
 
 ## v2.4.0
 
+
+- Added `BATCH_LIMIT` option to [`START STREAM` query](/reference-guide/streams/overview.md) that returns the raw message received by the transformation. [#392](https://github.com/memgraph/memgraph/pull/392)
+
 ### Bug Fixes
 
 - Fix header on `SHOW REPLICATION ROLE` query and wrong timout info on `SHOW

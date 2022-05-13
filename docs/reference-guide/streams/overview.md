@@ -123,14 +123,16 @@ Drops a stream with the name `<stream name>`.
 ## Start a stream
 
 ```cypher
-START STREAM <stream name>;
+START STREAM <stream name> [BATCH_LIMIT <count>];
 ```
+Starts a specific stream with name `<stream name>`with `<count>` number of batches. The stream will automatically stop after having consumed the given number of batches.
+If no `BATCH_LIMIT` limit is provided, then the stream will run for an infinite number of batches.
 
 ```cypher
 START ALL STREAMS;
 ```
 
-Starts a specific stream or all streams.
+Starts all streams for an infinite number of batches.
 
 When a stream is started, it resumes ingesting data from the last committed
 offset. If there is no committed offset for the consumer group, then the largest
