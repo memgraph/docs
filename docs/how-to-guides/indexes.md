@@ -1,7 +1,7 @@
 ---
 id: indexes
-title: Working with indexes
-sidebar_label: Working with indexes
+title: How to work with indexes
+sidebar_label: Work with indexes
 ---
 
 [![Related - Reference

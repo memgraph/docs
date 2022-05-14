@@ -1,18 +1,23 @@
 ---
 id: encryption
-title: Encryption
-sidebar_label: Encryption
+title: SSL encryption
+sidebar_label: SSL encryption
 ---
 
 import Tabs from "@theme/Tabs"; 
 import TabItem from "@theme/TabItem";
 
-Memgraph uses SSL (Secure Sockets Layer) protocol for establishing authenticated and encrypted connection to a database instance.
+Memgraph uses SSL (Secure Sockets Layer) protocol for establishing authenticated
+and encrypted connection to a database instance.
+
+[![Related - How-to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/encryption.md)
 
 Achieving a secure connections is a three step process which requires:
 1. Owning a SSL certificate
 2. Configuring the server
-3. Enabling SSL connection  
+3. Enabling SSL connection
+
+For any errors that might come up check out [the Help center page on errors](/errors/memgraph/ssl). 
 
 ## SSL certificate
 
@@ -60,7 +65,10 @@ insecure connection.
 
    To enable SSL connection in Memgraph Lab, switch to **Connect Manually** view
    and turn the SSL on.
-    
+   
+   When Memgraph Lab is connected to Memgraph DB using SSL encryption, logs
+   cannot be viewed inside the Lab.
+
    </TabItem>
    <TabItem value="mgconsole">
 
