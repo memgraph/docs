@@ -4,6 +4,8 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v1.3
+
 ## v1.2 - Apr 12, 2022
 
 :::warning
