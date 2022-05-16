@@ -67,7 +67,6 @@ the complexity of your data:
 - Examples
   - [One type of nodes and relationships](#one-type-of-nodes-and-relationships)
   - [Multiple types of nodes and relationships](#multiple-types-of-nodes-and-relationships)
-  relationships](#multiple-types-of-nodes-and-relationships)
 
 ### One type of nodes and relationships
 
