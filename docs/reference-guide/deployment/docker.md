@@ -4,8 +4,12 @@ title: Docker
 sidebar_label: Docker
 ---
 
-If you define an application with **Docker Compose**, you can use that definition to run the application in CI, staging or production environment.
-Here you can find `docker-compose.yml` files necessary to run [**Memgraph Platform**](#docker-compose-for-memgraph-platform-image), [**Memgraph MAGE**](#docker-compose-for-memgraph-mage-image) and [**Memgraph**](#docker-compose-for-memgraph-image) images.
+If you define an application with **Docker Compose**, you can use that
+definition to run the application in CI, staging, or production environment.
+Here you can find `docker-compose.yml` files necessary to run [**Memgraph
+Platform**](#docker-compose-for-memgraph-platform-image), [**Memgraph
+MAGE**](#docker-compose-for-memgraph-mage-image) and
+[**Memgraph**](#docker-compose-for-memgraph-image) images.
 
 ## Docker Compose for Memgraph Platform image
 
@@ -19,7 +23,7 @@ Here you can find `docker-compose.yml` files necessary to run [**Memgraph Platfo
 ```yaml
 version: "3"
 services:
-  memgraph:
+  memgraph-platform:
     image: "memgraph/memgraph-platform"
     ports:
       - "7687:7687"
@@ -30,7 +34,7 @@ services:
       - mg_log:/var/log/memgraph
       - mg_etc:/etc/memgraph
     environment:
-      - MEMGRAPH="--bolt-port=7687"
+      - MEMGRAPH="--log-level=TRACE"
     entrypoint: ["/usr/bin/supervisord"]
 volumes:
   mg_lib:
@@ -38,14 +42,23 @@ volumes:
   mg_etc:
 ```
 
-The port `7687` is used for communication with Memgraph via Bolt protocol. The port `3000` is binded because Memgraph Lab will be running on `localhost:3000`, while the port `7444` is there so that you can see logs from Memgraph inside Memgraph Lab. We specified three useful volumes:
-- `mg_lib` - directory containing data which enables data persistency
+The port `7687` is used for communication with Memgraph via Bolt protocol. The
+port `3000` is exposed because Memgraph Lab will be running on `localhost:3000`,
+while the port `7444` is there so that you can see logs from Memgraph inside
+Memgraph Lab. We specified three useful volumes:
+- `mg_lib` - directory containing data that enables data persistency
 - `mg_log` - directory containing log files
 - `mg_etc` - directory containing the configuration file
 
 The exact location of the local directories depends on your specific setup.
 
-[Configuration settings](/reference-guide/configuration.md) can be changed by setting the value of `MEMGRAPH` environment variable. Since Memgraph Platform is not a single service, process manager [`supervisord`](https://docs.docker.com/config/containers/multi-service_container/) is used as the main running process in the `entrypoint`.
+[Configuration settings](/reference-guide/configuration.md) can be changed by
+setting the value of `MEMGRAPH` environment variable. In the above example, you
+can see how to set `--log-level` to `TRACE`. Since Memgraph Platform is not a
+single service, process manager
+[`supervisord`](https://docs.docker.com/config/containers/multi-service_container/)
+is used as the main running process in the `entrypoint`. The MAGE library is
+included in this image, so you can use the available graph algorithms.
 
 ## Docker Compose for Memgraph MAGE image
 
@@ -56,7 +69,7 @@ The exact location of the local directories depends on your specific setup.
 ```yaml
 version: "3"
 services:
-  memgraph:
+  memgraph-mage:
       image: "memgraph/memgraph-mage"
       volumes:
         - mg_lib:/var/lib/memgraph
@@ -64,19 +77,31 @@ services:
         - mg_etc:/etc/memgraph
       ports:
         - "7687:7687"
+        - "7444:7444"
+      entrypoint:
+        [
+          "/usr/lib/memgraph/memgraph",
+          "--log-level=TRACE",
+        ]
 volumes:
   mg_lib:
   mg_log:
   mg_etc:
 ```
 
-The port `7687` is used for communication with Memgraph via Bolt protocol. We specified three useful volumes:
-- `mg_lib` - directory containing data which enables data persistency
+The port `7687` is used for communication with Memgraph via Bolt protocol. We
+specified three useful volumes:
+- `mg_lib` - directory containing data that enables data persistency
 - `mg_log` - directory containing log files
 - `mg_etc` - directory containing the configuration file
 
 The exact location of the local directories depends on your specific setup.
 
+[Configuration settings](/reference-guide/configuration.md) can be changed by
+adding the `entrypoint`. You first need to add `/usr/lib/memgraph/memgraph` and
+then the configuration setting you'd like to change. In the above example, you
+can see how to set `--log-level` to `TRACE`. Since MAGE library is included in
+this image, you can use the available graph algorithms.
 
 ## Docker Compose for Memgraph image
 
@@ -93,17 +118,30 @@ services:
       - mg_lib:/var/lib/memgraph
       - mg_log:/var/log/memgraph
       - mg_etc:/etc/memgraph
+    entrypoint:
+      [
+        "/usr/lib/memgraph/memgraph",
+        "--log-level=TRACE",
+      ]
 volumes:
   mg_lib:
   mg_log:
   mg_etc:
 ```
 
-The port `7687` is used for communication with Memgraph via Bolt protocol. We specified three useful volumes:
+The port `7687` is used for communication with Memgraph via Bolt protocol. We
+specified three useful volumes:
 - `mg_lib` - directory containing data which enables data persistency
 - `mg_log` - directory containing log files
 - `mg_etc` - directory containing the configuration file
 
 The exact location of the local directories depends on your specific setup.
 
-> Want to see applications built with Memgraph and Docker Compose? Check out the [Memgraph's Github](https://github.com/memgraph) repositories.
+[Configuration settings](/reference-guide/configuration.md) can be changed by
+adding the `entrypoint`. You first need to add `/usr/lib/memgraph/memgraph` and
+then the configuration setting you'd like to change. In the above example, you
+can see how to set `--log-level` to `TRACE`. Since this image doesn't have the
+MAGE library included, you won't be able to use graph algorithms.
+
+> Want to see applications built with Memgraph and Docker Compose? Check out the
+> [Memgraph's Github](https://github.com/memgraph) repositories.
