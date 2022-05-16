@@ -35,6 +35,9 @@ Konstanz](https://www.uni-konstanz.de/en/).
 Centrality](https://img.shields.io/badge/Betweenness_Centrality-Implementation-FB6E00?style=for-the-badge&logo=github&logoColor=white)](https://github.com/memgraph/mage/blob/main/cpp/betweenness_centrality_module/betweenness_centrality_module.cpp)
 
 [![Betweenness
+Centrality](https://img.shields.io/badge/Betweenness_Centrality-Implementation-76B900?style=for-the-badge&logo=NVIDIA&logoColor=white)](https://github.com/memgraph/mage/blob/main/cpp/cugraph_module/algorithms/betweenness_centrality.cu)
+
+[![Betweenness
 Centrality](https://img.shields.io/badge/Betweenness_Centrality-Documentation-FCC624?style=for-the-badge&logo=cplusplus&logoColor=white)](/mage/query-modules/cpp/betweenness-centrality)
 
 Betweenness Centrality is implemented as part of the

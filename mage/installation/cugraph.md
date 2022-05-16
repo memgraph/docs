@@ -5,25 +5,27 @@ sidebar_label: Install NVIDIA accelerated MAGE
 ---
 
 In this step, we'll show how to prepare the MAGE to work with NVIDIA accelerated graph algorithms
-called [cuGraph](https://github.com/rapidsai/cugraph). cuGraph is part of  [RAPIDS](https://rapids.ai/) - GPU Data Science library developed by NVIDIA.
+called [cuGraph](https://github.com/rapidsai/cugraph). cuGraph is part of [RAPIDS](https://rapids.ai/) - GPU Data Science library developed by NVIDIA.
 
 ### Prerequisites
-:::info 
-To successfully run NVIDIA powered graph analytics make sure that you have a compatible infrascture which includes **NVIDIA GPU**. More about system requirements can be found on [**RAPIDS requirements**](https://rapids.ai/start.html#requirements) pages. Make sure to have the right hardware and the right CUDA versions as well as NVIDIA drivers. 
+
+:::info
+To successfully run NVIDIA-powered graph analytics make sure that you have a compatible infrastructure which includes **NVIDIA GPU**. More about system requirements can be found on [**RAPIDS requirements**](https://rapids.ai/start.html#requirements) pages. Make sure to have the right hardware and the right CUDA versions as well as NVIDIA drivers.
 :::
 
 Except for the hardware requirements, there is another checklist depending on the installation source:
 
 **1. Docker requirements :whale::**
-- To be able to run on NVIDIA powered GPUs, RAPIDS requires Docker CE v19.03+ and [**nvidia-container-toolkit**](https://github.com/NVIDIA/nvidia-docker#quickstart) installed.
-- Legacy Docker CE v17-18 users require the installation of [**nvidia-docker2**](https://github.com/NVIDIA/nvidia-docker/wiki/Installation-(version-2.0)) package  
+
+- To be able to run on NVIDIA-powered GPUs, RAPIDS requires Docker CE v19.03+ and [**nvidia-container-toolkit**](https://github.com/NVIDIA/nvidia-docker#quickstart) installed.
+- Legacy Docker CE v17-18 users require the installation of [**nvidia-docker2**](<https://github.com/NVIDIA/nvidia-docker/wiki/Installation-(version-2.0)>) package
 
 **2. Local build requirements:**
 
 To be able to locally build NVIDIA support, make sure to enable these requirements, written and tested on the Ubuntu system:
 
 - [CMake](https://cmake.org/) version above 3.20
-- [CUDA](https://developer.nvidia.com/cuda-toolkit) Developer toolkit 
+- [CUDA](https://developer.nvidia.com/cuda-toolkit) Developer toolkit
 - System dependencies: `libblas-dev`, `liblapack-dev`, `libboost-all-dev`
 - NVIDIA [NCCL](https://developer.nvidia.com/nccl) - Communications library
 
@@ -36,7 +38,8 @@ To be able to locally build NVIDIA support, make sure to enable these requiremen
 docker run -p 7687:7687 memgraph/memgraph-mage:1.3-cugraph-22.02-cuda-11.5
 ```
 
-*NOTE*: Development image for cuGraph support is not available at this moment, send us a question if you want to develop modules with the support of NVIDIA analytics on Docker.
+_NOTE_: Development image for cuGraph support is not available at this moment, send us a question if you want to develop modules with the support of NVIDIA analytics on Docker.
+
 ## Installing MAGE with NVIDIA cuGraph for Docker
 
 **1.** Download the MAGE source code from
@@ -55,7 +58,7 @@ docker build -f Dockerfile.cugraph -t memgraph-mage .
 **3.** Start Memgraph-MAGE with the following command:
 
 ```shell
-docker run --rm -p 7687:7687 -p7444:7444 --name mage memgraph-mage
+docker run --rm -p 7687:7687 -p 7444:7444 --name mage memgraph-mage
 ```
 
 :::info
@@ -70,7 +73,12 @@ process for MAGE with
 Docker](https://github.com/memgraph/mage#developing-mage-with-docker).
 :::
 
-## Installing MAGE natively from source
+## Installing MAGE natively from the source
+
+:::warning
+Make sure you have installed all the prerequisites and dependencies before building
+the MAGE with NVIDIA support from the source.
+:::
 
 **1.** Download the MAGE source code from
 **[GitHub](https://github.com/memgraph/mage)** and run the `setup` script. It
@@ -81,7 +89,7 @@ python3 setup build --gpu
 ```
 
 :::info
-The `--gpu` flag will enable building the cuGraph dependencies and creating the shared library with **cuGraph** algorithms ready to be loaded into Memgraph. 
+The `--gpu` flag will enable building the cuGraph dependencies and creating the shared library with **cuGraph** algorithms ready to be loaded into Memgraph.
 :::
 
 **2.** Copy the contents of the newly created `dist` directory to
@@ -89,7 +97,7 @@ The `--gpu` flag will enable building the cuGraph dependencies and creating the 
 
 :::info
 
-If you want to be quicker, you can specify a path for setup script to copy the
+If you want to be quicker, you can specify a path for the setup script to copy the
 built executables:
 
 ```shell
@@ -115,4 +123,3 @@ If your changes are not loaded, make sure to restart the instance by running
 If you want to find out more about loading query modules, visit [this
 guide](/usage/loading-modules.md).
 :::
-

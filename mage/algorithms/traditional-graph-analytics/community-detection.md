@@ -38,12 +38,15 @@ more popular algorithms are:
 
 ### Implementation
 
-![Community
-Detection](https://img.shields.io/badge/Not_implemented-EB3434?style=for-the-badge&logo=github&logoColor=white)
+[![Community Detection](https://img.shields.io/badge/Community_Detection-Implementation-FB6E00?style=for-the-badge&logo=github&logoColor=white)](https://github.com/memgraph/mage/blob/main/cpp/community_detection_module/community_detection_module.cpp)
 
-Unfortunately, **Community Detection** is not yet implemented within the
-[**MAGE**](https://github.com/memgraph/mage) project. Be sure to raise the issue
-on the GitHub repo and ping us to speed up the development. :point_up:
+[![Community Detection](https://img.shields.io/badge/Community_Detection-Implementation-76B900?style=for-the-badge&logo=NVIDIA&logoColor=white)](https://github.com/memgraph/mage/blob/main/cpp/cugraph_module/algorithms/louvain.cu)
+
+[![Community Detection](https://img.shields.io/badge/Community_Detection-Documentation-FCC624?style=for-the-badge&logo=cplusplus&logoColor=white)](/mage/query-modules/cpp/community-detection)
+
+Community Detection is implemented as part of the
+[**MAGE**](https://github.com/memgraph/mage) project. Be sure to check it out in
+the link above. :point_up:
 
 ## Use cases
 
