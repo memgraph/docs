@@ -265,7 +265,7 @@ We have promised along the way some more resources, so here they are:
 
 * [Cypher manual](/cypher-manual/)
 * [Guide to Style Script script](/docs/memgraph-lab/graph-style-script-language)
-* [How to work with Docker](/memgraph/how-to-work-with-docker)
+* [How to work with Docker](/how-to-guides/work-with-docker.md)
 
 We hope that you had fun going through this tutorial! You can check out
 [some of the tutorials](/memgraph/tutorials/) that we have prepared for you, or you can

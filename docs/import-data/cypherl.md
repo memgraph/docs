@@ -73,7 +73,7 @@ command, but be careful of four things:
    </ul>
    <p> </p>
    <li>Remember to replace <code>HOST</code> with a valid IP of the container (see the 
-   <a href="/memgraph/how-to-work-with-docker#docker-container-ip-address"> Note for Docker users</a>).</li>
+   <a href="/how-to-guides/work-with-docker.md#docker-container-ip-address"> Note for Docker users</a>).</li>
    <p> </p>
  <li>Check that the paths of the files you want to import are correct.</li>
 </ol>
@@ -177,7 +177,7 @@ command, but be careful of four things:
    </ul>
    <p> </p>
    <li>Remember to replace <code>HOST</code> with a valid IP of the container (see the 
-   <a href="/memgraph/how-to-work-with-docker#docker-container-ip-address"> Note for Docker users</a>).</li>
+   <a href="/how-to-guides/work-with-docker.md#docker-container-ip-address"> Note for Docker users</a>).</li>
    <p> </p>
  <li>Check that the paths of the files you want to import are correct.</li>
 </ol>
