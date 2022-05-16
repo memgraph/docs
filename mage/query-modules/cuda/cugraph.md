@@ -68,7 +68,7 @@ CALL cugraph.generator.rmat();
 #### Procedures
 
 ##### `get(weight, max_iterations, damping_factor, stop_epsilon)`
-Get PageRank scores for each node in the graph.
+Find PageRank scores for all nodes in the graph.
 
 ###### Input:
 * `weight: str("weight")` ➡  The values of the given relationship property are used as weights by the algorithm.
@@ -83,13 +83,13 @@ Get PageRank scores for each node in the graph.
 
 ###### Output:
 * `node: Vertex` ➡ graph node
-* `rank: float` ➡ above node's PageRank score
+* `pagerank: float` ➡ above node's PageRank score
 
 ###### Usage:
 ```cypher
 CALL cugraph.pagerank.get() 
-YIELD node, rank
-RETURN node, rank;
+YIELD node, pagerank
+RETURN node, pagerank;
 ```
 
 
@@ -98,7 +98,7 @@ RETURN node, rank;
 #### Procedures
 
 ##### `get(personalization_vertices, personalization_values, weight, max_iterations, damping_factor, stop_epsilon)`
-Get personalized PageRank scores for each node in the graph.
+Find personalized PageRank scores for all nodes in the graph.
 
 ###### Input:
 * `personalization_vertices: mgp.List[mgp.Vertex]` ➡ graph nodes with personalization values
@@ -115,14 +115,14 @@ Get personalized PageRank scores for each node in the graph.
 
 ###### Output:
 * `node: Vertex` ➡ graph node
-* `rank: float` ➡ above node's PageRank score
+* `pagerank: float` ➡ above node's PageRank score
 
 ###### Usage:
 ```cypher
 MATCH (n: Node {id: 1}), (m: Node {id: 2})
 CALL cugraph.pagerank.get([n, m], [0.2, 0.5])
-YIELD node, rank
-RETURN node, rank;
+YIELD node, pagerank
+RETURN node, pagerank;
 ```
 
 
@@ -130,19 +130,24 @@ RETURN node, rank;
 
 #### Procedures
 
-##### `get()`
-Compute HITS hubs and authorities values for each vertex The HITS algorithm computes two numbers for a node. 
-Authorities estimate the node value based on the incoming links. Hubs estimate the node value based on outgoing links.
+##### `get(tolerance, max_iterations, normalized)`
+Find HITS authority and hub values for all nodes in the graph.
+The HITS algorithm computes two numbers for each node: its *authority*, which estimates the value of its content, and 
+its *hub value*, which estimates the value of its links to other nodes.
+
+Whereas the HITS algorithm was designed for directed graphs, this implementation does not check if the input graph is 
+directed and will execute on undirected graphs.
 
 ###### Input:
-* `tolerance: mgp.List[mgp.Vertex]` ➡ the tolerance of the approximation, this parameter should be a small magnitude value
-* `max_iterations: int(100)` ➡ The maximum number of iterations before returning an answer. Default is `100`.
-* `normalize: bool(True)` ➡ Not currently supported by `cuGraph`, always used as `True`
+* `tolerance: float(1e-5)` ➡ HITS approximation tolerance (custom values not supported by NVIDIA cuGraph)
+* `max_iterations: int(100)` ➡  maximum number of iterations before returning an answer 
+                                (custom values not supported by NVIDIA cuGraph)
+* `normalized: bool(True)` ➡ normalize the output (`False` not supported by NVIDIA cuGraph)
 
 ###### Output:
-* `node: Vertex` ➡ `node` for which we return `HITS` value
-* `hubs: float` ➡ `hubs` value for given node
-* `authorities: float` ➡ `authorities` value for given node
+* `node: Vertex` ➡ graph node
+* `hubs: float` ➡ above node's hub value
+* `authorities: float` ➡ above node's authority value
 
 ###### Usage:
 ```cypher
@@ -156,26 +161,27 @@ RETURN node, hubs, authorities;
 
 #### Procedures
 
-##### `get()`
-Find the Katz centrality scores of the graph nodes.
+##### `get(alpha, beta, epsilon, normalized, max_iterations, directed)`
+Find Katz centrality scores for all nodes in the graph.
 
 ###### Input:
-* `alpha: float(1.0)` ➡ Attenuation factor defaulted to None. If alpha is not specified then it is internally calculated as 1/(degree_max) where degree_max is the maximum out degree. - double check
-* `beta: float(1.0)` ➡ A weight scalar - currently Not Supported
+* `alpha: float(None)` ➡ attenuation factor defining the walk length importance (If not specified, calculated as 
+                         1 / max(out_degree).)
+* `beta: float(1.0)` ➡ weight scalar (currently not supported by NVIDIA cuGraph)
 * `epsilon: float(1e-6)` ➡ Set the tolerance the approximation, this parameter should be a small magnitude value.
-* `normalized: bool(True)` ➡ If `True` normalize the resulting katz centrality values. Default `True`
-* `max_iterations: int(100)` ➡ The maximum number of iterations before an answer is returned. Default `100`
+* `normalized: bool(True)` ➡ normalize the output
+* `max_iterations: int(100)` ➡ maximum number of iterations before returning an answer
 * `directed: bool(True)` ➡ graph directedness (default `True`) 
 
 ###### Output:
-* `node: Vertex` ➡ `node` for which we return `Katz centrality` value
-* `rank: float` ➡ `rank` value for given node
+* `node: Vertex` ➡ graph node
+* `katz_centrality: float` ➡ above node's Katz centrality score
 
 ###### Usage:
 ```cypher
 CALL cugraph.katz_centrality.get()
-YIELD node, rank
-RETURN node, rank;
+YIELD node, katz_centrality
+RETURN node, katz_centrality;
 ```
 
 
@@ -183,22 +189,22 @@ RETURN node, rank;
 
 #### Procedures
 
-##### `get()`
-Find the betweenness centrality scores of the graph nodes.
+##### `get(normalized, directed)`
+Find betweenness centrality scores for all nodes in the graph.
 
 ###### Input:
-* `normalized: bool(True)` ➡ If `True`, normalize the betweenness centrality values.
+* `normalized: bool(True)` ➡ normalize the output
 * `directed: bool(True)` ➡ graph directedness (default `True`)
 
 ###### Output:
-* `node: Vertex` ➡ `node` for which we return `Betweenness centrality` value
-* `rank: float` ➡ `rank` value for given node
+* `node: Vertex` ➡ graph node
+* `betweenness_centrality: float` ➡ above node's betweenness centrality score
 
 ###### Usage:
 ```cypher
 CALL cugraph.betweenness_centrality.get()
-YIELD node, rank
-RETURN node, rank;
+YIELD node, betweenness_centrality
+RETURN node, betweenness_centrality;
 ```
 
 
@@ -221,13 +227,13 @@ Find the spectral clustering of the graph's nodes.
 
 ###### Output:
 * `node: Vertex` ➡ graph node
-* `cluster_id: int` ➡ above node's cluster ID
+* `cluster: int` ➡ above node's cluster
 
 ###### Usage:
 ```cypher
 CALL cugraph.spectral_clustering.get(3)
-YIELD node, cluster_id
-RETURN node, cluster_id;
+YIELD node, cluster
+RETURN node, cluster;
 ```
 
 
@@ -250,13 +256,13 @@ Find the balanced cut clustering of the graph's nodes.
 
 ###### Output:
 * `node: Vertex` ➡ graph node
-* `cluster_id: int` ➡ above node's cluster ID
+* `cluster: int` ➡ above node's cluster
 
 ###### Usage:
 ```cypher
 CALL cugraph.balanced_cut_clustering.get(3)
-YIELD node, cluster_id
-RETURN node, cluster_id;
+YIELD node, cluster
+RETURN node, cluster;
 ```
 
 
@@ -265,7 +271,7 @@ RETURN node, cluster_id;
 #### Procedures
 
 ##### `get(max_level, resolution, directed)`
-Find graph communities using the Louvain method.
+Find the partition of the graph into communities using the Louvain method.
 
 ###### Input:
 * `max_level: int(100)` ➡ maximum number of iterations (levels) of the algorithm
@@ -274,13 +280,13 @@ Find graph communities using the Louvain method.
 
 ###### Output:
 * `node: Vertex` ➡ graph node
-* `cluster_id: int` ➡ above node's cluster ID
+* `partition: int` ➡ above node's partition
 
 ###### Usage:
 ```cypher
 CALL cugraph.louvain.get()
-YIELD node, cluster_id
-RETURN node, cluster_id;
+YIELD node, partition
+RETURN node, partition;
 ```
 
 
@@ -289,7 +295,7 @@ RETURN node, cluster_id;
 #### Procedures
 
 ##### `get(max_level, resolution)`
-Find graph communities using the Leiden method.
+Find the partition of the graph into communities using the Leiden method.
 
 ###### Input:
 * `max_level: int(100)` ➡ maximum number of iterations (levels) of the algorithm
@@ -297,11 +303,11 @@ Find graph communities using the Leiden method.
 
 ###### Output:
 * `node: Vertex` ➡ graph node
-* `cluster_id: int` ➡ above node's cluster ID
+* `partition: int` ➡ above node's partition
 
 ###### Usage:
 ```cypher
 CALL cugraph.leiden.get()
-YIELD node, cluster_id
-RETURN node, cluster_id;
+YIELD node, partition
+RETURN node, partition;
 ```
