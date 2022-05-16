@@ -89,7 +89,7 @@ from gqlalchemy import create
 
 query = create()
         .node(labels="Person", name="Leslie")
-        .to(edge_label="FRIENDS_WITH")
+        .to(relationship_type="FRIENDS_WITH")
         .node(labels="Person", name="Ron")
         .execute()
 ```
