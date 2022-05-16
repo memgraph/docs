@@ -23,245 +23,285 @@ style={{
 
 ## Abstract
 
-This is not a one module but series of modules built on top of the **cugraph**, provides a set of wrappers around most of the algorithms present in the [cuGraph](https://github.com/rapidsai/cugraph) repository. 
+This set of modules is built on top of NVIDIA cuGraph and provides a set of wrappers for most of the algorithms
+present in the [cuGraph](https://github.com/rapidsai/cugraph) repository.
 
-
-
-| Trait               | Value                                                                                                                |
-| ------------------- |----------------------------------------------------------------------------------------------------------------------|
-| **Module type**     | <Highlight color="#FB6E00">**module**</Highlight>                                                                    |
-| **Implementation**  | <Highlight color="#FB6E00">**C++**</Highlight>                                                                       |
-| **Graph direction** | <Highlight color="#FB6E00">**undirected/directed**</Highlight>/<Highlight color="#FB6E00">**undirected**</Highlight> |
-| **Edge weights**    | <Highlight color="#FB6E00">**unweighted/weighted**</Highlight>/<Highlight color="#FB6E00">**unweighted**</Highlight> |
-| **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight>                                                                |
+| Trait               | Value                                                                                                 |
+|---------------------|-------------------------------------------------------------------------------------------------------|
+| **Module type**     | <Highlight color="#FB6E00">**module**</Highlight>                                                     |
+| **Implementation**  | <Highlight color="#FB6E00">**C++**</Highlight>                                                        |
+| **Graph direction** | <Highlight color="#FB6E00">**undirected**</Highlight>/<Highlight color="#FB6E00">**both**</Highlight> |
+| **Edge weights**    | <Highlight color="#FB6E00">**unweighted**</Highlight>/<Highlight color="#FB6E00">**both**</Highlight> |
+| **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight>                                                 |
 
 ## Modules
-###  `cugraph.pagerank`
-#### Procedures
-##### `get(weight, max_iterations, damping_factor, stop_epsilon)`
 
-Get PageRank values for each node.
+### `cugraph.generator`
+
+#### Procedures
+
+##### `rmat(scale, num_edges, a, b, c, seed, clip_and_flip)`
+Generate a graph using a Recursive MATrix (R-MAT) graph generation algorithm and load it in Memgraph.
+
+##### Input:
+* `scale: int(4)` ➡ scale factor to set the number of vertices in the graph
+* `num_edges: int(100)` ➡ number of edges in the generated graph
+* `a: double(0.57)` ➡ first partition probability
+* `b: double(0.19)` ➡ second partition probability
+* `c: double(0.19)` ➡ third partition probability
+* `seed: int(0)` ➡  RNG (random number generator) seed value
+* `clip_and_flip: bool(False)` ➡ controls whether to generate edges only in the lower triangular part 
+                                 (including the diagonal) of the graph adjacency matrix (if set to `True`) 
+                                 or not (if set to `False`)
+
+##### Output:
+N/A (the generated graph is loaded in Memgraph)
+
+##### Usage:
+```cypher
+CALL cugraph.generator.rmat();
+```
+
+
+###  `cugraph.pagerank`
+
+#### Procedures
+
+##### `get(weight, max_iterations, damping_factor, stop_epsilon)`
+Get PageRank scores for each node in the graph.
 
 ###### Input:
-
-* `weight: str("weight")` ➡ Name of edge property which represents edge weight. Default `weight`. If there is not such property, `1.0` value is taken as default instead.
-* `max_iterations: int(100)` ➡ The maximum number of iterations before returning an answer. Use it to limit the execution time or to do an early exit before the solver reaches the convergence tolerance. Default is `100`.
-* `damping_factor: float(0.85)` ➡ The probability to follow an outgoing edge, default is `0.85`.
-* `stop_epsilon: float(1e-5)` ➡ Set the tolerance for the approximation. This parameter should be of a small magnitude value. The lower the tolerance the better the approximation will be.
+* `weight: str("weight")` ➡  The values of the given relationship property are used as weights by the algorithm.
+                             If this property is not set for a relationship, the fallback value is `1.0`.
+* `max_iterations: int(100)` ➡ The maximum number of iterations before returning an answer (default `100`). Use it to 
+                               limit the execution time or do an early exit before the solver reaches the convergence 
+                               tolerance.
+* `damping_factor: float(0.85)` ➡ The damping factor represents the probability to follow an outgoing edge (default `0.85`).
+* `stop_epsilon: float(1e-5)` ➡ The convergence tolerance for PageRank approximation. Lowering tolerance improves the
+                                approximation, but setting this parameter too low can ensue in non-convergence due 
+                                to numerical round-off. Values between `0.01` and `0.00001` are usually acceptable.
 
 ###### Output:
-
-* `node: Vertex` ➡ `node` for which we return `Pagerank` value
-* `rank: float` ➡ the `rank` value for given `node`
+* `node: Vertex` ➡ graph node
+* `rank: float` ➡ above node's PageRank score
 
 ###### Usage:
 ```cypher
-CALL cugraph.pagerank.get() YIELD node,rank
-RETURN node,rank;
+CALL cugraph.pagerank.get() 
+YIELD node, rank
+RETURN node, rank;
 ```
-
 
 
 ###  `cugraph.personalized_pagerank`
-#### Procedures
-##### `get(personalization_vertices, personalization_values, weight, max_iterations, damping_factor, stop_epsilon)`
 
-Get Personalized PageRank values for each node.
+#### Procedures
+
+##### `get(personalization_vertices, personalization_values, weight, max_iterations, damping_factor, stop_epsilon)`
+Get personalized PageRank scores for each node in the graph.
 
 ###### Input:
-* `weight: mgp.List[mgp.Vertex]` ➡ subset of vertices of graph for personalization
-* `weight: mgp.List[float]` ➡  personalization values for vertices
-* `weight: str("weight")` ➡ Name of edge property which represents edge weight. Default `weight`. If there is not such property, `1.0` value is taken as default instead.
-* `max_iterations: int(100)` ➡ The maximum number of iterations before returning an answer. Use it to limit the execution time or to do an early exit before the solver reaches the convergence tolerance. Default is `100`.
-* `damping_factor: float(0.85)` ➡ The probability to follow an outgoing edge, default is `0.85`.
-* `stop_epsilon: float(1e-5)` ➡ Set the tolerance for the approximation. This parameter should be of a small magnitude value. The lower the tolerance the better the approximation will be.
+* `personalization_vertices: mgp.List[mgp.Vertex]` ➡ graph nodes with personalization values
+* `personalization_values: mgp.List[float]` ➡  the nodes' personalization values
+* `weight: str("weight")` ➡ The values of the given relationship property are used as weights by the algorithm.
+                            If this property is not set for a relationship, the fallback value is `1.0`.
+* `max_iterations: int(100)` ➡ The maximum number of iterations before returning an answer (default `100`). Use it to 
+                               limit the execution time or do an early exit before the solver reaches the convergence 
+                               tolerance.
+* `damping_factor: float(0.85)` ➡ The damping factor represents the probability to follow an outgoing edge (default `0.85`).
+* `stop_epsilon: float(1e-5)` ➡  The convergence tolerance for PageRank approximation. Lowering tolerance improves the
+                                 approximation, but setting this parameter too low can ensue in non-convergence due 
+                                 to numerical round-off. Values between `0.01` and `0.00001` are usually acceptable.
 
 ###### Output:
-
-* `node: Vertex` ➡ `node` for which we return `Pagerank` value
-* `rank: float` ➡ the `rank` value for given `node`
+* `node: Vertex` ➡ graph node
+* `rank: float` ➡ above node's PageRank score
 
 ###### Usage:
 ```cypher
-MATCH (n:Node{id:1}), (m:Node{id:2})
-CALL cugraph.pagerank.get([n,m], [0.2, 0.5]) YIELD node,rank
-RETURN node,rank;
+MATCH (n: Node {id: 1}), (m: Node {id: 2})
+CALL cugraph.pagerank.get([n, m], [0.2, 0.5])
+YIELD node, rank
+RETURN node, rank;
 ```
 
 
-
-
 ###  `cugraph.hits`
-#### Procedures
-##### `get()`
 
+#### Procedures
+
+##### `get()`
 Compute HITS hubs and authorities values for each vertex The HITS algorithm computes two numbers for a node. 
 Authorities estimate the node value based on the incoming links. Hubs estimate the node value based on outgoing links.
 
 ###### Input:
-
 * `tolerance: mgp.List[mgp.Vertex]` ➡ the tolerance of the approximation, this parameter should be a small magnitude value
 * `max_iterations: int(100)` ➡ The maximum number of iterations before returning an answer. Default is `100`.
 * `normalize: bool(True)` ➡ Not currently supported by `cuGraph`, always used as `True`
 
 ###### Output:
-
 * `node: Vertex` ➡ `node` for which we return `HITS` value
 * `hubs: float` ➡ `hubs` value for given node
 * `authorities: float` ➡ `authorities` value for given node
 
 ###### Usage:
 ```cypher
-CALL cugraph.hits.get() YIELD node,hubs,authorities
-RETURN node,hubs,authorities;
+CALL cugraph.hits.get()
+YIELD node, hubs, authorities
+RETURN node, hubs, authorities;
 ```
 
 
 ###  `cugraph.katz_centrality`
-#### Procedures
-##### `get()`
 
-Compute the Katz centrality for the nodes of the graph.
+#### Procedures
+
+##### `get()`
+Find the Katz centrality scores of the graph nodes.
 
 ###### Input:
-
 * `alpha: float(1.0)` ➡ Attenuation factor defaulted to None. If alpha is not specified then it is internally calculated as 1/(degree_max) where degree_max is the maximum out degree. - double check
 * `beta: float(1.0)` ➡ A weight scalar - currently Not Supported
 * `epsilon: float(1e-6)` ➡ Set the tolerance the approximation, this parameter should be a small magnitude value.
 * `normalized: bool(True)` ➡ If `True` normalize the resulting katz centrality values. Default `True`
 * `max_iterations: int(100)` ➡ The maximum number of iterations before an answer is returned. Default `100`
-* `directed: bool(True)` ➡ Whether graph is directed. Default `True` 
+* `directed: bool(True)` ➡ graph directedness (default `True`) 
 
 ###### Output:
-
 * `node: Vertex` ➡ `node` for which we return `Katz centrality` value
 * `rank: float` ➡ `rank` value for given node
 
 ###### Usage:
 ```cypher
-CALL cugraph.katz_centrality.get() YIELD node,rank
-RETURN node,rank;
+CALL cugraph.katz_centrality.get()
+YIELD node, rank
+RETURN node, rank;
 ```
 
 
 ###  `cugraph.betweenness_centrality`
-#### Procedures
-##### `get()`
 
-Compute the Betweenness Centrality for the nodes of the graph.
+#### Procedures
+
+##### `get()`
+Find the betweenness centrality scores of the graph nodes.
 
 ###### Input:
-
-* `normalized: bool(True)` ➡ If `True` normalize the resulting Betweenness centrality values. Default `True`
-* `directed: bool(True)` ➡ Whether graph is directed. Default `True` 
+* `normalized: bool(True)` ➡ If `True`, normalize the betweenness centrality values.
+* `directed: bool(True)` ➡ graph directedness (default `True`)
 
 ###### Output:
-
 * `node: Vertex` ➡ `node` for which we return `Betweenness centrality` value
 * `rank: float` ➡ `rank` value for given node
 
 ###### Usage:
 ```cypher
-CALL cugraph.hits.get() YIELD node,hubs,authorities
-RETURN node,hubs,authorities;
+CALL cugraph.betweenness_centrality.get()
+YIELD node, rank
+RETURN node, rank;
 ```
 
 
 ###  `cugraph.spectral_clustering`
-#### Procedures
-##### `get()`
 
-Compute the Katz centrality for the nodes of the graph.
+#### Procedures
+
+##### `get(num_clusters, num_eigenvectors, ev_tolerance, ev_max_iter, kmean_tolerance, kmean_max_iter, weight)`
+Find the spectral clustering of the graph's nodes.
 
 ###### Input:
-
-* `tolerance: mgp.List[mgp.Vertex]` ➡ the tolerance of the approximation, this parameter should be a small magnitude value
-* `max_iterations: int(100)` ➡ The maximum number of iterations before returning an answer. Default is `100`.
-* `normalize: bool(True)` ➡ Not currently supported by `cuGraph`, always used as `True`
+* `num_clusters: int` ➡ number of clusters
+* `num_eigenvectors: int(2)` ➡ number of eigenvectors to be used (must be less than or equal to `num_clusters`)
+* `ev_tolerance: float(0.00001)` ➡ tolerance used by the eigensolver
+* `ev_max_iter: int(100)` ➡ maximum number of iterations for the eigensolver
+* `kmean_tolerance: float(0.00001)` ➡ tolerance used by the k-means solver
+* `kmean_max_iter: int(100)` ➡ maximum number of iterations for the k-means solver
+* `weight: str("weight")` ➡ The values of the given relationship property are used as weights by the algorithm.
+                            If this property is not set for a relationship, the fallback value is `1.0`.
 
 ###### Output:
-
-* `node: Vertex` ➡ `node` for which we return `HITS` value
-* `hubs: float` ➡ `hubs` value for given node
-* `authorities: float` ➡ `authorities` value for given node
+* `node: Vertex` ➡ graph node
+* `cluster_id: int` ➡ above node's cluster ID
 
 ###### Usage:
 ```cypher
-CALL cugraph.hits.get() YIELD node,hubs,authorities
-RETURN node,hubs,authorities;
+CALL cugraph.spectral_clustering.get(3)
+YIELD node, cluster_id
+RETURN node, cluster_id;
 ```
 
 
 ###  `cugraph.balanced_cut_clustering`
-#### Procedures
-##### `get()`
 
-Compute the Katz centrality for the nodes of the graph.
+#### Procedures
+
+##### `get(num_clusters, num_eigenvectors, ev_tolerance, ev_max_iter, kmean_tolerance, kmean_max_iter, weight)`
+Find the balanced cut clustering of the graph's nodes.
 
 ###### Input:
-
-* `tolerance: mgp.List[mgp.Vertex]` ➡ the tolerance of the approximation, this parameter should be a small magnitude value
-* `max_iterations: int(100)` ➡ The maximum number of iterations before returning an answer. Default is `100`.
-* `normalize: bool(True)` ➡ Not currently supported by `cuGraph`, always used as `True`
+* `num_clusters: int` ➡ number of clusters
+* `num_eigenvectors: int(2)` ➡ number of eigenvectors to be used (must be less than or equal to `num_clusters`)
+* `ev_tolerance: float(0.00001)` ➡ tolerance used by the eigensolver
+* `ev_max_iter: int(100)` ➡ maximum number of iterations for the eigensolver
+* `kmean_tolerance: float(0.00001)` ➡ tolerance used by the k-means solver
+* `kmean_max_iter: int(100)` ➡ maximum number of iterations for the k-means solver
+* `weight: str("weight")` ➡ The values of the given relationship property are used as weights by the algorithm.
+                            If this property is not set for a relationship, the fallback value is `1.0`.
 
 ###### Output:
-
-* `node: Vertex` ➡ `node` for which we return `HITS` value
-* `hubs: float` ➡ `hubs` value for given node
-* `authorities: float` ➡ `authorities` value for given node
+* `node: Vertex` ➡ graph node
+* `cluster_id: int` ➡ above node's cluster ID
 
 ###### Usage:
 ```cypher
-CALL cugraph.hits.get() YIELD node,hubs,authorities
-RETURN node,hubs,authorities;
+CALL cugraph.balanced_cut_clustering.get(3)
+YIELD node, cluster_id
+RETURN node, cluster_id;
 ```
 
 
 ###  `cugraph.louvain`
-#### Procedures
-##### `get()`
 
-Compute the Katz centrality for the nodes of the graph.
+#### Procedures
+
+##### `get(max_level, resolution, directed)`
+Find graph communities using the Louvain method.
 
 ###### Input:
-
-* `tolerance: mgp.List[mgp.Vertex]` ➡ the tolerance of the approximation, this parameter should be a small magnitude value
-* `max_iterations: int(100)` ➡ The maximum number of iterations before returning an answer. Default is `100`.
-* `normalize: bool(True)` ➡ Not currently supported by `cuGraph`, always used as `True`
+* `max_level: int(100)` ➡ maximum number of iterations (levels) of the algorithm
+* `resolution: float(1.0)` ➡ controls community size (lower values lead to fewer, larger communities and vice versa)
+* `directed: bool(True)` ➡ graph directedness (default `True`)
 
 ###### Output:
-
-* `node: Vertex` ➡ `node` for which we return `HITS` value
-* `hubs: float` ➡ `hubs` value for given node
-* `authorities: float` ➡ `authorities` value for given node
+* `node: Vertex` ➡ graph node
+* `cluster_id: int` ➡ above node's cluster ID
 
 ###### Usage:
 ```cypher
-CALL cugraph.hits.get() YIELD node,hubs,authorities
-RETURN node,hubs,authorities;
+CALL cugraph.louvain.get()
+YIELD node, cluster_id
+RETURN node, cluster_id;
 ```
 
 
 ###  `cugraph.leiden`
-#### Procedures
-##### `get()`
 
-Compute the Katz centrality for the nodes of the graph.
+#### Procedures
+
+##### `get(max_level, resolution)`
+Find graph communities using the Leiden method.
 
 ###### Input:
-
-* `tolerance: mgp.List[mgp.Vertex]` ➡ the tolerance of the approximation, this parameter should be a small magnitude value
-* `max_iterations: int(100)` ➡ The maximum number of iterations before returning an answer. Default is `100`.
-* `normalize: bool(True)` ➡ Not currently supported by `cuGraph`, always used as `True`
+* `max_level: int(100)` ➡ maximum number of iterations (levels) of the algorithm
+* `resolution: float(1.0)` ➡ controls community size (lower values lead to fewer, larger communities and vice versa)
 
 ###### Output:
-
-* `node: Vertex` ➡ `node` for which we return `HITS` value
-* `hubs: float` ➡ `hubs` value for given node
-* `authorities: float` ➡ `authorities` value for given node
+* `node: Vertex` ➡ graph node
+* `cluster_id: int` ➡ above node's cluster ID
 
 ###### Usage:
 ```cypher
-CALL cugraph.hits.get() YIELD node,hubs,authorities
-RETURN node,hubs,authorities;
+CALL cugraph.leiden.get()
+YIELD node, cluster_id
+RETURN node, cluster_id;
 ```
