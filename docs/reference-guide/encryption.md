@@ -4,20 +4,23 @@ title: SSL encryption
 sidebar_label: SSL encryption
 ---
 
-import Tabs from "@theme/Tabs"; 
+import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-Memgraph uses SSL (Secure Sockets Layer) protocol for establishing authenticated
-and encrypted connection to a database instance.
+Memgraph uses SSL (Secure Sockets Layer) protocol for establishing an
+authenticated and encrypted connection to a database instance.
 
-[![Related - How-to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/encryption.md)
+[![Related -
+How-to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/encryption.md)
 
-Achieving a secure connections is a three step process which requires:
+Achieving a secure connection is a three-step process that requires
+
 1. Owning a SSL certificate
 2. Configuring the server
 3. Enabling SSL connection
 
-For any errors that might come up check out [the Help center page on errors](/errors/memgraph/ssl). 
+For any errors that might come up, check out [the Help center page on
+errors](/errors/memgraph/ssl).
 
 ## SSL certificate
 
@@ -28,13 +31,13 @@ Certification Authority. Memgraph contains a self-signed testing certificate
 If you are using Docker and want to use your own certificates, you need to [move
 them into a Docker
 container](/how-to-guides/work-with-docker.md#how-to-copy-files-from-and-to-a-Docker-container)
-in order to utilize them. 
+in order to utilize them.
 
 ## Configure the server
 
 To use a certain SSL certificate, change the configuration file to include the
 `--bolt-cert-file` and `--bolt-key-file` flags and set them to the location of
-the certification files. 
+the certification files.
 
 If you are using the Memgraph self-signed certificate, set the configuration
 flags to:
@@ -42,12 +45,12 @@ flags to:
 ```
 --bolt-cert-file=/etc/memgraph/ssl/cert.pem
 --bolt-key-file=/etc/memgraph/ssl/key.pem
-``` 
+```
 
 When using Linux, be sure that the user `memgraph` has permissions (400) to
 access the files.
 
-Once the flags are included in the configuration you cannot establish an
+Once the flags are included in the configuration, you cannot establish an
 insecure connection.
 
 ## Enable SSL connection
@@ -59,92 +62,99 @@ insecure connection.
     {label: 'Memgraph Lab', value: 'lab'},
     {label: 'mgconsole', value: 'mgconsole'},
     {label: 'Drivers', value: 'drivers'},
-    {label: 'WebSocket', value: 'websocket'},
-  ]}>
-   <TabItem value="lab">
+    {label: 'WebSocket', value: 'websocket'},]}>
+  <TabItem value="lab">
 
-   To enable SSL connection in Memgraph Lab, switch to **Connect Manually** view
-   and turn the SSL on.
-   
-   When Memgraph Lab is connected to Memgraph DB using SSL encryption, logs
-   cannot be viewed inside the Lab.
+To enable SSL connection in Memgraph Lab, switch to **Connect Manually** view
+and turn the SSL on.
 
-   </TabItem>
-   <TabItem value="mgconsole">
+When Memgraph Lab is connected to Memgraph DB using SSL encryption, logs cannot
+be viewed inside the Lab.
 
-   When starting mgconsol include the `--use-ssl=true` flag. Flag can also be
-   explicitly set to `false` if needed. 
+  </TabItem>
+  <TabItem value="mgconsole">
 
-   When working with Memgraph Platform, you should pass configuration flags
-   inside of environmental variables as a part of the `docker run` command, for
-   example:
-   
-   ```
-   docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 -v mg_lib:/var/lib/memgraph -v mg_etc:/etc/memgraph -e MGCONSOLE="--use-ssl=true" memgraph/memgraph-platform
-   ```
+When starting mgconsol include the `--use-ssl=true` flag. Flag can also be
+explicitly set to `false` if needed.
 
-   In all other cases passed them on as regular configuration flags.
+When working with Memgraph Platform, you should pass configuration flags inside
+of environmental variables as a part of the `docker run` command, for example:
 
-   For example, if you are starting mgconsole on Linux:
-   
-   ```
-   mgconsole --host 127.0.0.1 --port 7687 --use-ssl=true
-   ```
-   
-   or if you are using `memgraph` or `memgraph-mage` Docker images:
-   
-   ```
-   docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 -v mg_lib:/var/lib/memgraph -v mg_etc:/etc/memgraph memgraph/memgraph-mage --use-ssl=true
-   ```
+```
+docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 -v mg_lib:/var/lib/memgraph -v mg_etc:/etc/memgraph -e MGCONSOLE="--use-ssl=true" memgraph/memgraph-platform
+```
 
-   </TabItem>
-   <TabItem value="drivers">
+In all other cases passed them on as regular configuration flags.
 
-   **Javascript**
+For example, if you are starting mgconsole on Linux:
 
-   Use [Neo4j driver for JavaScript](https://neo4j.com/developer/javascript/), and add `+ssc` to the UNI when defining a `MEMGRAPH_URI` constant: <br/> <code>MEMGRAPH_URI = 'bolt+ssc://18.196.53.118:7687'</code>.
-   
-   **Python**
+```
+mgconsole --host 127.0.0.1 --port 7687 --use-ssl=true
+```
 
-   Use [pymgclient](https://github.com/memgraph/pymgclient), and add `sslmode=mgclient.MG_SSLMODE_REQUIRE` to the `mgclient.connect`.
+or if you are using `memgraph` or `memgraph-mage` Docker images:
 
-   **C/C++**
+```
+docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 -v mg_lib:/var/lib/memgraph -v mg_etc:/etc/memgraph memgraph/memgraph-mage --use-ssl=true
+```
 
-   Use [mgclient](https://github.com/memgraph/mgclient), and add set the `params.use_ssl` to `true` or `false`.
+  </TabItem>
+  <TabItem value="drivers">
 
-   **Go**
+**Javascript**
 
-   Use the [Neo4j driver for Go](https://neo4j.com/developer/go/), and add `+ssc` to the UNI: `"bolt+ssc://18.196.53.118:7687"`.
+Use [Neo4j driver for JavaScript](https://neo4j.com/developer/javascript/), and
+add `+ssc` to the UNI when defining a `MEMGRAPH_URI` constant: <br/>
+<code>MEMGRAPH_URI = 'bolt+ssc://18.196.53.118:7687'</code>.
 
-   **PHP**
-  
-   Use the [Bolt protocol library by stefanak-michal](https://github.com/neo4j-php/Bolt) and add the following code
+**Python**
 
-   ```python
-   $conn->setSslContextOptions([
-    'passphrase' => 'bolt',
-    'allow_self_signed' => true,
-    'verify_peer' => false,
-    'verify_peer_name' => false
-   ]);
-   ```
+Use [pymgclient](https://github.com/memgraph/pymgclient), and add
+`sslmode=mgclient.MG_SSLMODE_REQUIRE` to the `mgclient.connect`.
 
-   **C#**
-   
-   Use the [Neo4j.Driver.Simple](https://neo4j.com/developer/dotnet/), and add `+ssc` to the UNI: `"bolt+ssc://18.196.53.118:7687"`.
+**C/C++**
 
-   **Java**
+Use [mgclient](https://github.com/memgraph/mgclient), and add set the
+`params.use_ssl` to `true` or `false`.
 
-   Use the [Neo4j driver for Java](https://neo4j.com/developer/java/) and add `+ssc` to the UNI: `"bolt+ssc://18.196.53.118:7687"`.
+**Go**
 
-   **Rust**
+Use the [Neo4j driver for Go](https://neo4j.com/developer/go/), and add `+ssc`
+to the UNI: `"bolt+ssc://18.196.53.118:7687"`.
 
-   Use [mgclient](https://github.com/memgraph/mgclient), and add `sslmode: SSLMode::Require` to the `ConnectParams`.
+**PHP**
 
-   </TabItem>
-   <TabItem value="websocket">
+Use the [Bolt protocol library by
+stefanak-michal](https://github.com/neo4j-php/Bolt) and add the following code
 
-   WebSocket over SSL is currently not supported in Memgraph.
-   
-   </TabItem>
-   </Tabs>
+```python
+$conn->setSslContextOptions([
+ 'passphrase' => 'bolt',
+ 'allow_self_signed' => true,
+ 'verify_peer' => false,
+ 'verify_peer_name' => false
+]);
+```
+
+**C#**
+
+Use the [Neo4j.Driver.Simple](https://neo4j.com/developer/dotnet/), and add
+`+ssc` to the UNI: `"bolt+ssc://18.196.53.118:7687"`.
+
+**Java**
+
+Use the [Neo4j driver for Java](https://neo4j.com/developer/java/) and add
+`+ssc` to the UNI: `"bolt+ssc://18.196.53.118:7687"`.
+
+**Rust**
+
+Use [mgclient](https://github.com/memgraph/mgclient), and add `sslmode:
+SSLMode::Require` to the `ConnectParams`.
+
+  </TabItem> 
+  <TabItem value="websocket">
+
+WebSocket over SSL is currently not supported in Memgraph.
+
+  </TabItem>
+</Tabs>

@@ -56,7 +56,7 @@ Docker, or within Docker with a command-line text editor (such as **vim**).
     <TabItem value="outside">
 
 To change the configuration file outside the Docker container continue with the
-following steps
+following steps:
 
 **3.** Place yourself in the directory where you want to copy the configuration
 file. 
