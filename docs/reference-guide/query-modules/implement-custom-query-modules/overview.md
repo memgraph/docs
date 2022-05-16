@@ -20,6 +20,14 @@ We also made [an example
 module](/reference-guide/query-modules/implement-custom-query-modules/custom-query-module-example.md#python-api)
 to help you start developing your own modules.
 
+You can develop query modules in Python from Memgraph Lab (v2.0 and newer). Just
+navigate to **Query Modules** and click on **New Module** to start.
+
+<img src={require('../../../data/memgraph_lab_query_modules.png').default} className={"imgBorder"}/>
+
+Custom modules developed via Memgraph Lab are located at
+`/var/lib/memgraph/internal_modules`.
+
 ## C API
 
 C API modules need to be compiled to a shared library so that they can be loaded

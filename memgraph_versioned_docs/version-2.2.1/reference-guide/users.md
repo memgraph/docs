@@ -26,6 +26,12 @@ To set or change a user's password, use the following command:
 SET PASSWORD FOR user_name TO 'new_password';
 ```
 
+To check all the users created on an instance, use:
+
+```cypher
+SHOW USERS;
+```
+
 To remove a user's password, set it to `null`:
 
 ```cypher
@@ -55,13 +61,13 @@ If you are using Docker and `memgraph-platform` image, you should pass the
 `username` and `password` environmental variables when starting Memgraph:
 
 ```terminal
-docker run -it -p 7687:7687 -p 3000:3000 -e MGCONSOLE="--username <username> --password <password>" memgraph/memgraph-platform
+docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 -e MGCONSOLE="--username <username> --password <password>" memgraph/memgraph-platform
 ```
 
 Example:
 
 ```terminal
-docker run -it -p 7687:7687 -p 3000:3000 -e MGCONSOLE="--username vlasta --password vp" memgraph/memgraph-platform
+docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 -e MGCONSOLE="--username vlasta --password vp" memgraph/memgraph-platform
 ```
 
 Upon connecting with Memgraph Lab you should select *Connect Manually* and enter

@@ -90,7 +90,7 @@ CREATE PULSAR STREAM <stream name>
 |   transform procedure   |                    Name of the transformation file followed by a procedure name                    |  function  | my_transformation.my_procedure |    /    |
 | batch interval duration | Maximum waiting time in milliseconds for consuming messages before calling the transform procedure |    int     |              9999              |   100   |
 |       batch size        |           Maximum number of messages to wait for before calling the transform procedure            |    int     |               99               |  1000   |
-|       service url       |                                 URL to the running Pulsar cluster                                  |   string   |        "127.0.0.1:6650"        |    /    |
+|       service url       |                                 URL to the running Pulsar cluster                                  |   string   |        "pulsar://127.0.0.1:6650"        |    /    |
 
 The transformation procedure is called if either the `BATCH_INTERVAL` or the
 `BATCH_SIZE` is reached, and there is at least one received message.
@@ -178,6 +178,26 @@ probably because not enough messages were received, an exception is thrown.
 
 The default value of `<count>` is 1. `TIMEOUT` is measured in milliseconds, and
 its default value is 30000.
+
+## Get stream information
+
+To get more information about a specific stream, use the following queries:
+
+```cypher
+CALL mg.kafka_stream_info("stream_name") YIELD *;
+```
+
+or
+
+```cypher
+CALL mg.pulsar_stream_info("stream_name") YIELD *;
+```
+
+This procedure will return information about the bootstrap server, set
+configuration, consumer group, credentials and topics regarding the Kafka
+stream.
+
+In the case of a Pulsar stream, it will return service URL and topics.
 
 ## Kafka producer delivery semantics
 

@@ -1,7 +1,7 @@
 ---
 id: migrate-relational-database
 title: Migrate from RDBMS to Memgraph
-sidebar_label: Migrate from a relational database to Memgraph
+sidebar_label: Migrate from RDBMS to Memgraph
 ---
 
 This tutorial will help you import your data from a MySQL database into Memgraph
@@ -29,7 +29,7 @@ To follow along, you will need:
   and modules library.<br/>
   To install Memgraph Platform and set it up, please follow the Docker
   installation instructions on the [Installation
-  guide](/installation/overview.md).
+  guide](/installation/overview.mdx).
 - (optional) A running relational database either with your own schema and data
   or you can use the schema we used and populate the tables
 
@@ -152,7 +152,7 @@ container so Memgraph can access them.
 1. Start your Memgraph instance by writing the following command in a terminal:
 
 ```
-docker run -it -p 7687:7687 -p 3000:3000 -v mg_lib:/var/lib/memgraph memgraph/memgraph-platform
+docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 -v mg_lib:/var/lib/memgraph memgraph/memgraph-platform
 ```
 
 2. Open a new terminal and find the CONTAINER ID of the Memgraph Docker
@@ -207,8 +207,8 @@ boot  customerpurchase.csv  etc  lab   lib32  mage   mnt    proc  productpurchas
 ### 3. Run Memgraph Lab
 
 If you installed Memgraph Platform correctly, you should be able to access
-Memgraph Lab in your browser by visiting `http://localhost:3000/` and connect to
-the database.
+Memgraph Lab in your browser by visiting
+[`http://localhost:3000/`](http://localhost:3000) and connect to the database.
 
 Place yourself in the **Query** tab where we will write queries in the **Query
 editor** to import data into Memgraph.
