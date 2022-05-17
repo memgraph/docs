@@ -90,8 +90,9 @@ volumes:
   mg_etc:
 ```
 
-The port `7687` is used for communication with Memgraph via Bolt protocol. We
-specified three useful volumes:
+The port `7687` is used for communication with Memgraph via Bolt protocol, while
+the port `7444` is there so that you can see logs from Memgraph inside the
+Memgraph Lab application. We specified three useful volumes:
 
 - `mg_lib` - directory containing data that enables data persistency
 - `mg_log` - directory containing log files
@@ -117,6 +118,7 @@ services:
     image: "memgraph/memgraph"
     ports:
       - "7687:7687"
+      - "7444:7444"
     volumes:
       - mg_lib:/var/lib/memgraph
       - mg_log:/var/log/memgraph
@@ -128,8 +130,9 @@ volumes:
   mg_etc:
 ```
 
-The port `7687` is used for communication with Memgraph via Bolt protocol. We
-specified three useful volumes:
+The port `7687` is used for communication with Memgraph via Bolt protocol, while
+the port `7444` is there so that you can see logs from Memgraph inside the
+Memgraph Lab application. We specified three useful volumes:
 
 - `mg_lib` - directory containing data that enables data persistency
 - `mg_log` - directory containing log files
