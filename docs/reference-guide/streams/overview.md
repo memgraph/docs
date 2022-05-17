@@ -90,7 +90,7 @@ CREATE PULSAR STREAM <stream name>
 |   transform procedure   |                    Name of the transformation file followed by a procedure name                    |  function  | my_transformation.my_procedure |    /    |
 | batch interval duration | Maximum waiting time in milliseconds for consuming messages before calling the transform procedure |    int     |              9999              |   100   |
 |       batch size        |           Maximum number of messages to wait for before calling the transform procedure            |    int     |               99               |  1000   |
-|       service url       |                                 URL to the running Pulsar cluster                                  |   string   |        "127.0.0.1:6650"        |    /    |
+|       service url       |                                 URL to the running Pulsar cluster                                  |   string   |        "pulsar://127.0.0.1:6650"        |    /    |
 
 The transformation procedure is called if either the `BATCH_INTERVAL` or the
 `BATCH_SIZE` is reached, and there is at least one received message.

@@ -1,8 +1,7 @@
 ---
 id: work-with-docker
-title: How to work with Docker?
+title: How to work with Docker
 sidebar_label: Work with Docker
-slug: /how-to-work-with-docker
 ---
 
 [Docker](https://www.docker.com) is a service that uses OS-level virtualization

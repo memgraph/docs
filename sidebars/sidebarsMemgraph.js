@@ -185,11 +185,12 @@ module.exports = {
           ],
         },
         "how-to-guides/networkx",
-        "how-to-guides/query-modules",
         "how-to-guides/replication",
         //"how-to-guides/tensorflow-setup",
         "reference-guide/triggers",
         "how-to-guides/font-awesome-for-node-images",
+        "how-to-guides/query-modules",
+        "how-to-guides/encryption",
         "how-to-guides/work-with-docker",
         "how-to-guides/indexes",
         {
@@ -293,6 +294,7 @@ module.exports = {
           ],
         },
         //"reference-guide/tensorflow",
+        "reference-guide/encryption",
         "reference-guide/triggers",
         "reference-guide/users",
         {
