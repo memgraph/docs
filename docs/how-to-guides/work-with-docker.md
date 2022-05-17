@@ -21,6 +21,8 @@ If you are new to Docker, this guide will help you get a grasp of Docker and
 make it easier to accomplish tasks within Memgraph. After installing Docker, all
 commands are run from the command-line tool of your preference.
 
+[![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/deployment/docker.md) 
+
 ## How to set up Memgraph with Docker?
 
 We recommend installing and running Memgraph using Docker.

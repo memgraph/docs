@@ -11,6 +11,8 @@ Platform**](#docker-compose-for-memgraph-platform-image), [**Memgraph
 MAGE**](#docker-compose-for-memgraph-mage-image) and
 [**Memgraph**](#docker-compose-for-memgraph-image) images.
 
+[![Related - How-to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/work-with-docker.md)
+
 ## Docker Compose for Memgraph Platform image
 
 The **Memgraph Platform** image contains:
