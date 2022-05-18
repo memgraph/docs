@@ -4,7 +4,7 @@ title: SSL encryption
 sidebar_label: SSL encryption
 ---
 
-import Tabs from "@theme/Tabs";
+import Tabs from "@theme/Tabs"; 
 import TabItem from "@theme/TabItem";
 
 Memgraph uses SSL (Secure Sockets Layer) protocol for establishing an
@@ -68,9 +68,9 @@ insecure connection.
 To enable SSL connection in Memgraph Lab, switch to **Connect Manually** view
 and turn the SSL on.
 
-<img src={require('../data/memgraph_lab_ssl.png').default} className={"imgBorder"}/>
+<img src={require('../data/encryption/memgraph_lab_ssl.png').default} className={"imgBorder"}/>
 
-When Memgraph Lab is connected to Memgraph DB using SSL encryption, logs cannot
+When Memgraph Lab is connected to MemgraphDB using SSL encryption, logs cannot
 be viewed inside the Lab.
 
   </TabItem>
