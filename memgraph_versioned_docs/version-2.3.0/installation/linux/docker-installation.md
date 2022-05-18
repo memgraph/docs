@@ -38,26 +38,9 @@ compatible with all newer versions.
 
 :::
 
-## Install Memgraph Platform {#installation-guide}
+## Install and start Memgraph Platform {#installation-guide}
 
-**1.** Open a terminal.
-
-**2.** Download and load the **Memgraph Platform Docker image** with the
-following command:
-
-```console
- docker pull memgraph/memgraph-platform
-```
-
-**3.** Create a new tag for the image:
-
-```console
-docker image tag memgraph/memgraph-platform memgraph
-```
-
-## Start Memgraph Platform {#starting-memgraph-platform}
-
-To start Memgraph, use the following command:
+Open a terminal and use the following command:
 
 ```console
 docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 -v mg_lib:/var/lib/memgraph memgraph/memgraph-platform
@@ -140,7 +123,7 @@ to work with Docker](/how-to-guides/work-with-docker.md)**.<br/>
 To learn how to query the database, take a look at the
 **[querying](/connect-to-memgraph/overview.mdx)** guide or **[Memgraph
 Playground](https://playground.memgraph.com/)** for interactive tutorials.<br/>
-Visit the **[Building applications](/connect-to-memgraph/drivers/overview.md)**
+Visit the **[Drivers overview](/connect-to-memgraph/drivers/overview.md)**
 page if you need to connect to the database programmatically.
 
 ## Getting help {#getting-help}

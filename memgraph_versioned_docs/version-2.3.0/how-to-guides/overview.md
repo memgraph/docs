@@ -114,7 +114,7 @@ custom-built external auth module. To learn more visit:
 If you are new to Docker, this how-to guide will help you get a grasp of Docker and
 make it easier to accomplish tasks within Memgraph:
 
-- [Work with Docker](/memgraph/how-to-work-with-docker)
+- [Work with Docker](/how-to-guides/work-with-docker.md)
 
 
 ## Triggers

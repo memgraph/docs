@@ -1,6 +1,6 @@
 ---
 id: font-awesome-for-node-images
-title: Use Font Awesome icons for node images
+title: How to use Font Awesome icons for node images
 sidebar_label: Use Font Awesome for node images
 ---
 

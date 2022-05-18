@@ -212,10 +212,11 @@
           ]
         },
         "how-to-guides/networkx",
-        "how-to-guides/query-modules",
         "how-to-guides/replication",
         "reference-guide/triggers",
         "how-to-guides/font-awesome-for-node-images",
+        "how-to-guides/query-modules",
+        "how-to-guides/encryption",
         "how-to-guides/work-with-docker",
         "how-to-guides/indexes",
         {
@@ -240,6 +241,13 @@
         "reference-guide/graph-algorithms",
         "reference-guide/configuration",
         "reference-guide/data-types",
+        {
+          "type": "category",
+          "label": "Deployment",
+          "items": [
+            "reference-guide/deployment/docker"
+          ]
+        },
         {
           "type": "category",
           "label": "Import Data",
@@ -329,6 +337,7 @@
             }
           ]
         },
+        "reference-guide/encryption",
         "reference-guide/triggers",
         "reference-guide/users",
         {

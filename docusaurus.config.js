@@ -619,7 +619,7 @@ module.exports = {
             from: ["/memgraph/how-to-guides-overview/manage-users-using-ldap"],
           },
           {
-            to: "/memgraph/how-to-work-with-docker",
+            to: "/memgraph/how-to-guides/work-with-docker",
             from: ["/memgraph/how-to-guides-overview/work-with-docker"],
           },
           {
@@ -812,7 +812,7 @@ module.exports = {
             from: ["/memgraph/getting-started/installation/rpm-installation"],
           },
           {
-            to: "/memgraph/how-to-work-with-docker",
+            to: "/memgraph/how-to-guides/work-with-docker",
             from: ["/memgraph/database-functionalities/work-with-docker"],
           },
           //Memgraph getting started redirects
@@ -1269,6 +1269,13 @@ module.exports = {
             to: "/memgraph/how-to-guides/query-modules",
             from: [
               "/memgraph/how-to-guides/query-modules/implement-query-modules",
+            ],
+          },
+          // Redirect for the Docker how-to guide
+          {
+            to: "/memgraph/how-to-guides/work-with-docker",
+            from: [
+              "/memgraph/how-to-work-with-docker",
             ],
           },
         ],
