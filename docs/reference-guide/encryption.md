@@ -68,6 +68,8 @@ insecure connection.
 To enable SSL connection in Memgraph Lab, switch to **Connect Manually** view
 and turn the SSL on.
 
+<img src={require('../data/memgraph_lab_ssl.png').default} className={"imgBorder"}/>
+
 When Memgraph Lab is connected to Memgraph DB using SSL encryption, logs cannot
 be viewed inside the Lab.
 
@@ -106,6 +108,8 @@ docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 -v mg_lib:/var/lib/memgrap
 Use [Neo4j driver for JavaScript](https://neo4j.com/developer/javascript/), and
 add `+ssc` to the UNI when defining a `MEMGRAPH_URI` constant: <br/>
 <code>MEMGRAPH_URI = 'bolt+ssc://18.196.53.118:7687'</code>.
+<p>
+</p>
 
 **Python**
 

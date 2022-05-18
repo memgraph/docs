@@ -51,6 +51,8 @@ Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&
 6. Open Memgraph Lab and switch to **Connect Manually** view, turn the **SSL
    On** and connect.
 
+   <img src={require('../data/memgraph_lab_ssl.png').default} className={"imgBorder"}/>
+
 7. If you are using [pymgclient](https://github.com/memgraph/pymgclient) to
    query the database with Python, add `sslmode=mgclient.MG_SSLMODE_REQUIRE` to
    the `mgclient.connect`
