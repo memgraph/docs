@@ -23,15 +23,15 @@ style={{
 
 ## Abstract
 
-[**RAPIDS.AI**](https://rapids.ai/) is NVIDIA open-source data science library created for optimized, GPU-powered algorithms.
-The library offers support for various machine learning tool, as well as cuGraph – a library for graph analytics. Memgraph
-integrates NVIDIA cuGraph and supports to run optimized algorithms with the requirement of specific hardware.
+**NVIDIA cuGraph** is a graph analytics library that is part of NVIDIA’s [**RAPIDS**](https://rapids.ai/) open-source
+data science suite containing machine learning tools and libraries for various applications in data science; it can be
+used from Memgraph on machines that meet the [**system requirements**](https://rapids.ai/start.html#requirements).
 
 This set of modules is built on top of NVIDIA cuGraph and provides a set of wrappers for most of the algorithms
 present in the [**cuGraph**](https://github.com/rapidsai/cugraph) repository.
 
 | Trait               | Value                                                                                                     |
-| ------------------- | --------------------------------------------------------------------------------------------------------- |
+|---------------------|-----------------------------------------------------------------------------------------------------------|
 | **Module type**     | <Highlight color="#FB6E00">**module**</Highlight>                                                         |
 | **Implementation**  | <Highlight color="#FB6E00">**CUDA**</Highlight>                                                           |
 | **Graph direction** | <Highlight color="#FB6E00">**undirected**</Highlight>/<Highlight color="#FB6E00">**directed**</Highlight> |
