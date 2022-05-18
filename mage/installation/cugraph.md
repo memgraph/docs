@@ -22,30 +22,32 @@ If running MAGE × NVIDIA cuGraph in Docker, the following applies:
 - To run on NVIDIA-powered GPUs, RAPIDS requires Docker CE v19.03+ and
   [**nvidia-container-toolkit**](https://github.com/NVIDIA/nvidia-docker#quickstart) installed.
 - Legacy Docker CE v17-18 users require the installation of the
-  [**nvidia-docker2**](<https://github.com/NVIDIA/nvidia-docker/wiki/Installation-(version-2.0)>) package.
+  [**nvidia-docker2**](https://github.com/NVIDIA/nvidia-docker/wiki/Installation-(version-2.0)) package.
 
 **Local build requirements:**
 
 If building MAGE × NVIDIA cuGraph locally, these requirements apply (tested on Ubuntu):
 
 - [**CMake**](https://cmake.org/) version above 3.20
-- [**NVIDIA CUDA developer toolkit**](https://developer.nvidia.com/cuda-toolkit)
+- [**NVIDIA CUDA developer toolkit**](https://developer.nvidia.com/cuda-toolkit) – CUDA version 11.6
 - System dependencies: `libblas-dev`, `liblapack-dev`, `libboost-all-dev`
 - [**NVIDIA NCCL communications library**](https://developer.nvidia.com/nccl)
 
 ## Pulling the Docker image from DockerHub
 
 ```shell
-docker run -p 7687:7687 memgraph/memgraph-mage:1.3-cugraph-22.02-cuda-11.5
+docker run -p 7444:7444 memgraph/memgraph-mage:1.3-cugraph-22.02-cuda-11.5
 ```
 
 * Depending on your environment, different versions of MAGE/cuGraph/CUDA can be installed:
 ```shell
-# docker run -p 7687:7687 memgraph/memgraph-mage:${MAGE_VERSION}-cugraph-${CUGRAPH_VERSION}-cuda-${CUDA_VERSION}
+docker run -p 7444:7444 memgraph/memgraph-mage:${MAGE_VERSION}-cugraph-${CUGRAPH_VERSION}-cuda-${CUDA_VERSION}
 ```
 
-_NOTE_: The development image with cuGraph support is not available yet. If you want to develop cuGraph-powered query
-modules in Docker, do not hesitate to contact us about it.
+:::info
+The development image with cuGraph support is not available yet. If you want to develop cuGraph-powered query
+modules in Docker, do not hesitate to [contact us](https://memgraph.com/community) about it.
+:::
 
 ## Installing MAGE with NVIDIA cuGraph for Docker
 
@@ -61,7 +63,7 @@ modules in Docker, do not hesitate to contact us about it.
 
 3.  Start Memgraph-MAGE with the following command:
     ```shell
-    docker run --rm -p 7687:7687 -p 7444:7444 --name mage memgraph-mage
+    docker run --rm -p 7444:7444 --name mage memgraph-mage
     ```
 
 :::info
@@ -69,7 +71,7 @@ You can now query Memgraph from querying platforms such as [Memgraph Lab](https:
 [mgconsole](https://github.com/memgraph/mgconsole).
 
 If you made any changes while the Docker container was running, you need to stop the container and rebuild the image.
-To avoid this, learn about the
+For a workaround, check
 [Development process for MAGE with Docker](https://github.com/memgraph/mage#developing-mage-with-docker).
 :::
 
@@ -100,7 +102,7 @@ python3 setup build -p /usr/lib/memgraph/query_modules --gpu
 ```
 :::
 
-3. Start Memgraph and enjoy **MAGE**!
+3. Start Memgraph and enjoy MAGE × cuGraph!
 
 :::info
 If your Memgraph instance was already running, execute the following query inside one of the 
