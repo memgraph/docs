@@ -35,8 +35,8 @@ If building MAGE × NVIDIA cuGraph locally, these requirements apply (tested on 
 
 ## Pulling the Docker image from DockerHub
 
-Simplest method of starting the Memgraph powered by the GPU analytics, is by downloading the image from DockerHub.
-Simply pull the image, and run it by using these simple commands:
+The simplest way of starting Memgraph with cuGraph GPU analytics is to download the image from DockerHub.
+Just pull the image, and get it running with these simple commands:
 
 ```shell
 # Pull the image from DockerHub
@@ -51,7 +51,8 @@ docker run --rm --gpus all -p 7688:7687 -p 7444:7444 memgraph/memgraph-mage:1.3-
 docker run --gpus all -p 7688:7687 -p 7444:7444 memgraph/memgraph-mage:${MAGE_VERSION}-cugraph-${CUGRAPH_VERSION}-cuda-${CUDA_VERSION}
 ```
 
-To check the available versions, explore our DockerHub organization, and check out [**memgraph-mage**](https://hub.docker.com/r/memgraph/memgraph-mage/tags) tagged images.
+To see the available versions, explore our DockerHub organization and look for the images tagged
+[**memgraph-mage**](https://hub.docker.com/r/memgraph/memgraph-mage/tags).
 
 :::info
 The development image with cuGraph support is not available yet. If you want to develop cuGraph-powered query
