@@ -157,6 +157,7 @@ directed and will execute on undirected graphs.
 - `max_iterations: int(100)` ➡ Maximum number of iterations before returning an answer
   (custom values not supported by NVIDIA cuGraph)
 - `normalized: bool(True)` ➡ Normalize the output (`False` not supported by NVIDIA cuGraph)
+- `directed: bool(True)` ➡ Graph directedness (default `True`)
 
 #### Output:
 
