@@ -121,7 +121,7 @@ into the database by starting the stream and sending some messages to the topic.
 As a safeguard, you can use the `BATCH_LIMIT` option to first start the stream and let it consume a limited number of batches. 
 
 ```
-START STREAM myStream [BATCH_LIMIT <count>];
+START STREAM myStream [BATCH_LIMIT <count>] [TIMEOUT <milliseconds>];
 ```
 
 After sending a few messages to the topic, the created vertices can be checked

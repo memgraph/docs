@@ -7,7 +7,7 @@ sidebar_label: Changelog
 ## v2.4.0
 
 
-- Added `BATCH_LIMIT` option to [`START STREAM` query](/reference-guide/streams/overview.md) that returns the raw message received by the transformation. [#392](https://github.com/memgraph/memgraph/pull/392)
+- Added `BATCH_LIMIT` and `TIMEOUT` options to [`START STREAM`](/reference-guide/streams/overview.md) query that returns the raw message received by the transformation. [#392](https://github.com/memgraph/memgraph/pull/392)
 
 ### Bug Fixes
 
