@@ -15,6 +15,9 @@ kick off your own Memgraph graph database adventures.
   first query and style your graph
 - [**Exploring datasets**](/tutorials/exploring-datasets/overview.md) - learn
   the Cypher query language used to interact with the Memgraph graph database
+- [**Implement a custom query module in
+  Python**](implement-custom-query-module-in-python.md) - learn how to develop a
+  custom query module in Python with Memgraph Lab and use it on a dataset
 - [**Graph modeling**](graph-modeling.md) - learn basic terminology and
   practices related to graph databases and graph modeling
 - [**Install MemgraphDB and Memgraph Lab on Windows
