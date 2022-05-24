@@ -38,6 +38,7 @@ module.exports = {
     },
     "extension-clauses",
     "functions",
+    "graph-algorithms",
     "query-modules",
     "other-features",
   ],
