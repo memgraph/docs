@@ -107,7 +107,8 @@ When working with Memgraph Platform, you should pass configuration flags inside
 of environmental variables.
 
 For example, you can start the MemgraphDB image with `docker run memgraph
---bolt-port=7687`, but you should start Memgraph Platform with `docker run -e MEMGRAPH="--bolt-port=7687"
+--bolt-port=7687 --log-level=TRACE`, but you should start Memgraph Platform with
+`docker run -e MEMGRAPH="--bolt-port=7687 --log-level=TRACE"
 memgraph/memgraph-platform`.
 
 :::

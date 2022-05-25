@@ -113,8 +113,8 @@ docker run -p 7687:7687 -p 7444:7444 memgraph --bolt-port=7687
 When working with MemgraphDB, you should pass configuration flags as arguments.
 
 For example, you should start the MemgraphDB image with `docker run memgraph
---bolt-port=7687`, and Memgraph Platform with `docker run -e MEMGRAPH="--bolt-port=7687"
-memgraph/memgraph-platform`.
+--bolt-port=7687 --log-level=TRACE`, and Memgraph Platform with `docker run -e
+MEMGRAPH="--bolt-port=7687 --log-level=TRACE" memgraph/memgraph-platform`.
 
 :::
 

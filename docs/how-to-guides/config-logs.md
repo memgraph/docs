@@ -135,28 +135,29 @@ passing configuration options within the `docker run` command.
   ]}>
     <TabItem value="platform">
 
-When you are working with the `memgraph-platform` image you should pass
-configuration options inside of environmental variables.
+If you are working with the `memgraph-platform` image, you should pass
+configuration options with environmental variables.
 
 For example, if you want to limit memory usage for the whole instance to 50 MiB
-pass the configuration like this:
+and set the log level to trace, pass the configuration like this:
 
-```plaintext
-docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 -e MEMGRAPH="--memory-limit=50" memgraph/memgraph-platform
+```
+docker run -it -p 7687:7687 -p 3000:3000 -e MEMGRAPH="--memory-limit=50 --log-level=TRACE" memgraph/memgraph-platform
 ```
 
    </TabItem>
    <TabItem value="other">
 
-When you are working with `memgraph` or `memgraph-mage` images you should pass
-configuration options as arguments. 
+When you are working with `memgraph` or `memgraph-mage` images, you should pass
+configuration options as arguments.
 
 For example, if you want to limit memory usage for the whole instance to 50 MiB
-pass the configuration like this:
+and set the log level to trace, pass the configuration argument like this:
 
-```plaintext
-docker run -it -p 7687:7687 -p 7444:7444 memgraph --memory-limit=50
 ```
+docker run -it -p 7687:7687  memgraph/memgraph --memory-limit=50 --log-level=TRACE
+```
+
    
    </TabItem>
    </Tabs>
