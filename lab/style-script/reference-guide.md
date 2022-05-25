@@ -18,8 +18,8 @@ Add(2, 5)
 ```
 
 creates a new value 7 from values 2 and 5. There are a lot of functions built
-into Graph Style Script so there are even more ways to combine values. There is even a
-function to create new functions.
+into Graph Style Script so there are even more ways to combine values. There is
+even a function to create new functions.
 
 When expressions are evaluated, values are created. There are several types of
 Graph Style Script values: `Boolean`, `Color`, `Number`, `String`, `Array`,
@@ -63,8 +63,8 @@ literal expression for the color red.
 Name expressions are names that can be evaluated if there are values bound to
 them in the environment (lexical scope). Names can start with any of the lower
 case or upper case letters of the English alphabet and apart from those can
-contain digits and the following characters: -, \_. Names can be
-defined using the `Define` function.
+contain digits and the following characters: -, \_. Names can be defined using
+the `Define` function.
 
 ```
 Define(superhero, "Iron Man")
@@ -150,9 +150,9 @@ expression, a new line must follow. The directive structure is the following.
 Like in CSS, directives defined later override properties of the previous
 directives.
 
-Graph Style Script currently has two directives: `@NodeStyle`, for defining the visual
-style of graph nodes, and `@EdgeStyle` for defining the visual style of graph
-relationships.
+Graph Style Script currently has two directives: `@NodeStyle`, for defining the
+visual style of graph nodes, and `@EdgeStyle` for defining the visual style of
+graph relationships.
 
 An example of a directive is `@NodeStyle` directive which can be used to specify
 style properties of a graph node.
@@ -216,21 +216,23 @@ Take a look at the [GSS @EdgeStyle directive
 properties](/docs/memgraph-lab/style-script/gss-edgestyle-directive) page to see
 all relationship styling possibilities.
 
-# Built-in functions
+## Built-in functions
 
 Graph Style Script has a large number of built-in functions that can help you
 with achieving the right style for your graph. Take a look at the [list of GSS
 built-in functions](/docs/memgraph-lab/style-script/gss-functions).
 
-# Built-in colors
+## Built-in colors
 
 Graph Style Script comes with built-in colors that you can use the color's name.
-Take a look at the [list of built-in colors](/docs/memgraph-lab/style-script/gss-colors).
+Take a look at the [list of built-in
+colors](/docs/memgraph-lab/style-script/gss-colors).
 
-# Built-in variables
+## Built-in variables
 
-Graph Style Script has few built-in variables that you can use: `node`, `edge`, and
-`graph`. Read more about it at [list of built-in variables](/docs/memgraph-lab/style-script/gss-variables).
+Graph Style Script has a few built-in variables that you can use: `node`,
+`edge`, and `graph`. Read more about it in the [list of built-in
+variables](/docs/memgraph-lab/style-script/gss-variables).
 
 ## File Structure
 
