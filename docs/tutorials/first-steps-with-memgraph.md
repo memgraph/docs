@@ -138,7 +138,7 @@ change the style of the graph.
 Find the part of the code that looks like this:
 
 ```nocopy
-@NodeStyle HasLabel?(node, "City") {
+@NodeStyle HasLabel(node, "City") {
   color: #DD2222
   color-hover: Lighter(#DD2222)
   color-selected: Lighter(#DD2222)
@@ -153,7 +153,7 @@ and add the line
 so that the above block looks like this:
 
 ```nocopy
-@NodeStyle HasLabel?(node, "City") {
+@NodeStyle HasLabel(node, "City") {
   image-url: Property(node, "flag")
   color: #DD2222
   color-hover: Lighter(#DD2222)
@@ -241,18 +241,18 @@ with
   font-size: 12
 }
 
-@NodeStyle HasLabel?(node, "City") {
+@NodeStyle HasLabel(node, "City") {
   image-url: Property(node, "flag")
   color: #DD2222
   color-hover: Lighter(#DD2222)
   color-selected: Lighter(#DD2222)
 }
 
-@NodeStyle Greater?(Size(Labels(node)), 0) {
+@NodeStyle Greater(Size(Labels(node)), 0) {
   label: Format(":{}", Join(Labels(node), " :"))
 }
 
-@NodeStyle HasProperty?(node, "name") {
+@NodeStyle HasProperty(node, "name") {
   label: AsText(Property(node, "name"))
 }
 
