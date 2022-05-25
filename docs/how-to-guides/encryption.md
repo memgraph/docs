@@ -45,7 +45,7 @@ Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&
    <code>MGCONSOLE="--use-ssl=true"</code>:
 
    ```
-   docker run -it -p 7687:7687 -p 3000:3000 -v mg_lib:/var/lib/memgraph -v mg_etc:/etc/memgraph -e MGCONSOLE="--use-ssl=true" memgraph/memgraph-platform
+   docker run -it -p 7687:7687 -p 3000:3000 -p 7444:7444 -v mg_lib:/var/lib/memgraph -v mg_etc:/etc/memgraph -e MGCONSOLE="--use-ssl=true" memgraph/memgraph-platform
    ```
 
 6. Open Memgraph Lab and switch to **Connect Manually** view, turn the **SSL

@@ -105,14 +105,14 @@ image and you want to connect to both instances using the Memgraph Lab
 in-browser application. You would run the first instance with:
 
 ```
-docker run -it -p 7687:7687 -p 3000:3000 memgraph/memgraph-platform
+docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 memgraph/memgraph-platform
 ```
 
-Because ports `7687` and `3000` are now taken, you need to change the left side
+Because ports `7687`, `7444` and `3000` are now taken, you need to change the left side
 ports (host ports):
 
 ```
-docker run -it -p 7688:7687 -p 3001:3000 memgraph/memgraph-platform
+docker run -it -p 7688:7687 -p 7445:7444 -p 3001:3000 memgraph/memgraph-platform
 ```
 
 To connect to the first instance, you should open Memgraph Lab in your browser
@@ -156,20 +156,20 @@ If you are working with the `memgraph-platform` image, you should pass
 configuration options with environmental variables.
 
 For example, if you want to limit memory usage for the whole instance to 50 MiB
-and set the log level to trace, pass the configuration like this:
+and set the log level to `TRACE`, pass the configuration like this:
 
 ```
-docker run -it -p 7687:7687 -p 3000:3000 -e MEMGRAPH="--memory-limit=50 --log-level=TRACE" memgraph/memgraph-platform
+docker run -it -p 7687:7687 -p 3000:3000 -p 7444:7444 -e MEMGRAPH="--memory-limit=50 --log-level=TRACE" memgraph/memgraph-platform
 ```
 
 When you are working with `memgraph` or `memgraph-mage` images, you should pass
 configuration options as arguments.
 
 For example, if you want to limit memory usage for the whole instance to 50 MiB
-and set the log level to trace, pass the configuration argument like this:
+and set the log level to `TRACE`, pass the configuration argument like this:
 
 ```
-docker run -it -p 7687:7687  memgraph/memgraph --memory-limit=50 --log-level=TRACE
+docker run -it -p 7687:7687 memgraph/memgraph --memory-limit=50 --log-level=TRACE
 ```
 
 ### Stop image

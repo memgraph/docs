@@ -48,7 +48,7 @@ docker load -i /path-to/memgraph-<version>-docker.tar.gz
 To start Memgraph, use the following command:
 
 ```console
-docker run -p 7687:7687 -p 7444:7444 -v mg_lib:/var/lib/memgraph memgraph
+docker run -p 7687:7687 -p 7444:7444 -v mg_lib:/var/lib/memgraph memgraph/memgraph
 ```
 
 If successful, you should see a message similar to the following:
@@ -92,7 +92,7 @@ docker run -p 7687:7687 -p 7444:7444 \
   -v mg_lib:/var/lib/memgraph \
   -v mg_log:/var/log/memgraph \
   -v mg_etc:/etc/memgraph \
-  memgraph --bolt-port=7687
+  memgraph/memgraph --log-level=TRACE
 ```
 
 The configuration file is located in the `mg_etc` volume. The exact location of
@@ -106,14 +106,14 @@ When using Docker, you can also specify the configuration options in the `docker
 run` command:
 
 ```console
-docker run -p 7687:7687 -p 7444:7444 memgraph --bolt-port=7687
+docker run -p 7687:7687 -p 7444:7444 memgraph/memgraph --log-level=TRACE
 ```
 
 :::caution
 
 When working with MemgraphDB, you should pass configuration flags as arguments.
 
-For example, you should start the MemgraphDB image with `docker run memgraph
+For example, you should start the MemgraphDB image with `docker run memgraph/memgraph
 --bolt-port=7687 --log-level=TRACE`, and Memgraph Platform with `docker run -e
 MEMGRAPH="--bolt-port=7687 --log-level=TRACE" memgraph/memgraph-platform`.
 
