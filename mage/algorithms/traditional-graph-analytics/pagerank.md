@@ -34,6 +34,8 @@ is extremely useful in recommendation systems.
 
 [![PageRank](https://img.shields.io/badge/PageRank-Implementation-FB6E00?style=for-the-badge&logo=github&logoColor=white)](https://github.com/memgraph/mage/blob/main/cpp/pagerank_module/pagerank_module.cpp)
 
+[![PageRank](https://img.shields.io/badge/PageRank-Implementation-76B900?style=for-the-badge&logo=NVIDIA&logoColor=white)](https://github.com/memgraph/mage/blob/main/cpp/cugraph_module/algorithms/pagerank.cu)
+
 [![PageRank](https://img.shields.io/badge/PageRank-Documentation-FCC624?style=for-the-badge&logo=cplusplus&logoColor=white)](/mage/query-modules/cpp/pagerank)
 
 **PageRank** is implemented as part of the
