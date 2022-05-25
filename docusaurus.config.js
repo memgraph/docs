@@ -245,6 +245,10 @@ module.exports = {
               to: "/cypher-manual/functions",
             },
             {
+              label: "Graph algorithms",
+              to: "/cypher-manual/graph-algorithms",
+            },
+            {
               label: "Query modules",
               to: "/cypher-manual/query-modules",
             },
