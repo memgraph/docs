@@ -13,7 +13,7 @@ them directly in your Cypher queries. You can use them within
 
 The built-in algorithms are:
 
-- **Filtering Variable Length Paths** - you can filtering the data through lambda functions
+- **Filtering Variable Length Paths** - you can filter the data through lambda functions
 - **Breadth First Search** - you can use it for searching the shortest path between nodes
 - **Weighted Shortest Path** - you can use it for searching the weighted shortest path between nodes
 
