@@ -8,6 +8,10 @@ In this tutorial, you will learn how to install Memgraph Platform, connect to it
 using Memgraph Lab, run your first query and style your graph. You will see that
 using Memgraph is not hard at all! 
 
+This tutorial is also available as a video on Memgraph's YouTube channel.
+
+[![How To Install Memgraph Platform](../data/tutorials/first-steps/yt-video-preview.png)](https://www.youtube.com/watch?v=6qYsAMisqQg "How To Install Memgraph Platform")
+
 Let's get started!
 
 ## Prerequisites 
