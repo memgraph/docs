@@ -217,6 +217,7 @@ module.exports = {
           label: "Deployment",
           items: [
             "reference-guide/deployment/docker",
+            "reference-guide/deployment/kubernetes",
           ],
         },
         {
