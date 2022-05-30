@@ -36,7 +36,7 @@ Check what data types are supported by Memgraph.
 ## [Deployment](/reference-guide/deployment/docker.md)
 
 Deploy your application with Memgraph as a part of your [Docker Compose file](/reference-guide/deployment/docker.md)
-or use [Helm Chart](/reference-guide/deployment/kubernetes.md) to make Memgraph part of your Kubernetes cluster.
+or use a [Helm Chart](/reference-guide/deployment/kubernetes.md) to make Memgraph part of your Kubernetes cluster.
 
 ## [Import data](./import-data/overview.md)
 
