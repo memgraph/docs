@@ -124,8 +124,8 @@ above, first, define a data configuration object and then simply call:
 importer = ParquetAzureBlobFileSystemImporter(
     container_name="test",
     data_configuration=parsed_yaml,
-    blob_account_name="your_account_name",
-    blob_account_key="your_account_key",
+    account_name="your_account_name",
+    account_key="your_account_key",
 )
 ```
 

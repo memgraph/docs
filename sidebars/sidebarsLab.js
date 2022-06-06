@@ -22,9 +22,11 @@ module.exports = {
           label: "GSS reference guide",
           link: { type: "doc", id: "style-script/reference-guide" },
           items: [
+            "style-script/gss-colors",
             "style-script/gss-functions",
-            "style-script/gss-nodestyle-directive",
+            "style-script/gss-variables",
             "style-script/gss-edgestyle-directive",
+            "style-script/gss-nodestyle-directive",
           ]
         }
         

@@ -51,6 +51,9 @@ Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&
 6. Open Memgraph Lab and switch to **Connect Manually** view, turn the **SSL
    On** and connect.
 
+   <img src={require('../data/encryption/memgraph_lab_ssl.png').default}
+   className={"imgBorder"}/>
+
 7. If you are using [pymgclient](https://github.com/memgraph/pymgclient) to
    query the database with Python, add `sslmode=mgclient.MG_SSLMODE_REQUIRE` to
    the `mgclient.connect`
@@ -71,7 +74,7 @@ For other ways of connecting to Memgraph DB using SSL encryption, check the
    --bolt-key-file=<path>
    ```
 
-5. Set the flags to the paths of your SSL certificate, or use Memgraph
+4. Set the flags to the paths of your SSL certificate, or use Memgraph
    self-signed certificates (`cert.pem` and `key.pem`) located at
    `/etc/memgraph/ssl/`:
 
@@ -80,12 +83,12 @@ For other ways of connecting to Memgraph DB using SSL encryption, check the
    --bolt-key-file=/etc/memgraph/ssl/key.pem
    ```
 
-4. Restart Memgraph.
+5. Restart Memgraph.
 
-5. Open Memgraph Lab and switch to **Connect Manually** view, turn the **SSL
+6. Open Memgraph Lab and switch to **Connect Manually** view, turn the **SSL
    On** and connect.
 
-6. If you are using [pymgclient](https://github.com/memgraph/pymgclient) to
+7. If you are using [pymgclient](https://github.com/memgraph/pymgclient) to
    query the database with Python, add `sslmode=mgclient.MG_SSLMODE_REQUIRE` to
    the `mgclient.connect`
 

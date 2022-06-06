@@ -10,10 +10,11 @@ program that connects to the Memgraph database and executes simple queries.
 ## Prerequisites
 
 To follow this guide, you will need:
-* A **running Memgraph instance**. If you need to set up Memgraph, take a look
+
+- A **running Memgraph instance**. If you need to set up Memgraph, take a look
   at the [Installation guide](/installation/overview.mdx).
-* A basic understanding of graph databases and the property graph model.
-* **Composer**, a tool for dependency management in PHP. Instructions on how to
+- A basic understanding of graph databases and the property graph model.
+- **Composer**, a tool for dependency management in PHP. Instructions on how to
   install Composer can be found [here](https://getcomposer.org/doc/00-intro.md).
 
 :::note
@@ -37,7 +38,7 @@ following code to it:
 ```php
 <?php
 
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 // Create new Bolt instance
 $bolt = new \Bolt\Bolt(new \Bolt\connection\StreamSocket());
@@ -61,12 +62,12 @@ echo 'Node ' . $rows[0][0] . ' says: ' . $rows[0][1];
 
 ```json
 {
-    "name": "memgraph/myapp",
-    "description": "This is a simple Hello World app.",
-    "require": {
-        "php": ">=7.1",
-        "stefanak-michal/bolt": "^2.1"
-    }
+  "name": "memgraph/myapp",
+  "description": "This is a simple Hello World app.",
+  "require": {
+    "php": ">=7.1",
+    "stefanak-michal/bolt": "^2.7.2"
+  }
 }
 ```
 
@@ -92,5 +93,5 @@ Node 1: Hello, World!
 
 For real-world examples of how to use Memgraph, we suggest you take a look at
 the **[Tutorials](/tutorials/overview.md)** page. You can also browse through
-the **[How-to guides](/how-to-guides/overview.md)**
-section to get an overview of all the functionalities Memgraph offers.
+the **[How-to guides](/how-to-guides/overview.md)** section to get an overview
+of all the functionalities Memgraph offers.

@@ -63,11 +63,10 @@ files into the container.
 
 Below, you can find two examples of how to use the LOAD CSV clause depending on
 the complexity of your data:
-- [Transferring CSV files into a Docker container {#transfer}](#transferring-csv-files-into-a-docker-container-transfer)
-- [Examples](#examples)
+- [Transferring CSV files into a Docker container](#transfer)
+- Examples
   - [One type of nodes and relationships](#one-type-of-nodes-and-relationships)
   - [Multiple types of nodes and relationships](#multiple-types-of-nodes-and-relationships)
-  relationships](#multiple-types-of-nodes-and-relationships)
 
 ### One type of nodes and relationships
 

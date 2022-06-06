@@ -32,11 +32,8 @@ Memgraph packages are available for:
 
 :::
 
-You can also directly download .deb packages for the latest Memgraph from the following URLs:
-
-- **Debian 10** - [https://download.memgraph.com/memgraph/v2.3.0/debian-10/memgraph_2.3.0-1_amd64.deb](https://download.memgraph.com/memgraph/v2.3.0/debian-10/memgraph_2.3.0-1_amd64.deb)
-- **Debian 11** - [https://download.memgraph.com/memgraph/v2.3.0/debian-11/memgraph_2.3.0-1_amd64.deb](https://download.memgraph.com/memgraph/v2.3.0/debian-11/memgraph_2.3.0-1_amd64.deb)
-- **Debian 11 (ARM64/AArch64)** - [https://download.memgraph.com/memgraph/v2.3.0/debian-11-aarch64/memgraph_2.3.0-1_arm64.deb](https://download.memgraph.com/memgraph/v2.3.0/debian-11-aarch64/memgraph_2.3.0-1_arm64.deb)
+You can also use [direct download](../direct-download-links.md) links to get the
+latest Memgraph packages. 
 
 ## Installation guide {#installation-guide}
 
@@ -118,7 +115,7 @@ guide](/reference-guide/configuration.md).
 To learn how to query the database, take a look at the
 **[querying](/connect-to-memgraph/overview.mdx)** guide or **[Memgraph
 Playground](https://playground.memgraph.com/)** for interactive tutorials.<br/>
-Visit the **[Building applications](/connect-to-memgraph/drivers/overview.md)**
+Visit the **[Drivers overview](/connect-to-memgraph/drivers/overview.md)**
 page if you need to connect to the database programmatically.
 
 ## Getting help

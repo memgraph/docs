@@ -233,9 +233,9 @@ import mgp
 
 @mgp.read_proc
 def total_cost(context: mgp.ProcCtx,
-               city: mgp.Any[str],
-               adults: mgp.Number[int],
-               children: mgp.Nullable[int] = None,
+               city: mgp.Nullable[str],
+               adults: mgp.Nullable[int],
+               children: mgp.Nullable[int] = None
                ) -> mgp.Record(Total_cost_per_night = mgp.Nullable[float]):
 ```
 
@@ -252,7 +252,7 @@ import mgp
 def total_cost(context: mgp.ProcCtx,
               city: mgp.Any[str],
               adults: mgp.Number[int],
-              children: mgp.Nullable[int] = None,
+              children: mgp.Nullable[int] = None
               ) -> mgp.Record(Total_cost_per_night = mgp.Nullable[float]):
 
   for vertex in context.graph.vertices:
@@ -270,7 +270,7 @@ import mgp
 def total_cost(context: mgp.ProcCtx,
                city: mgp.Any[str],
                adults: mgp.Number[int],
-               children: mgp.Nullable[int] = None,
+               children: mgp.Nullable[int] = None
                ) -> mgp.Record(Total_cost_per_night = mgp.Nullable[float]):
 
   for vertex in context.graph.vertices:
@@ -291,7 +291,7 @@ import mgp
 def total_cost(context: mgp.ProcCtx,
                city: mgp.Any[str],
                adults: mgp.Number[int],
-               children: mgp.Nullable[int] = None,
+               children: mgp.Nullable[int] = None
                ) -> mgp.Record(Total_cost_per_night = mgp.Nullable[float]):
 
   for vertex in context.graph.vertices:
@@ -317,7 +317,7 @@ import mgp
 def total_cost(context: mgp.ProcCtx,
               city: mgp.Any[str],
               adults: mgp.Number[int],
-              children: mgp.Nullable[int] = None,
+              children: mgp.Nullable[int] = None
               ) -> mgp.Record(
                               Total_cost_per_night = mgp.Nullable[float]):
 
@@ -414,7 +414,7 @@ After defining the name and signature, the code should look like this:
 @mgp.write_proc
 def new_city(context: mgp.ProcCtx,
              in_city: mgp.Nullable[str],
-             in_country: mgp.Nullable[str],
+             in_country: mgp.Nullable[str]
                     ) -> mgp.Record(City = mgp.Vertex,
                                     Relationship = mgp.Edge,
                                     Country = mgp.Vertex):
@@ -450,7 +450,7 @@ and the relationship.
 @mgp.write_proc
 def new_city(context: mgp.ProcCtx,
              in_city: mgp.Nullable[str],
-             in_country: mgp.Nullable[str],
+             in_country: mgp.Nullable[str]
                     ) -> mgp.Record(City = mgp.Vertex,
                                     Relationship = mgp.Edge,
                                     Country = mgp.Vertex):
@@ -492,7 +492,7 @@ number by 1 to get the ID of the new `City` node. Now that we have created a new
 @mgp.write_proc
 def new_city(context: mgp.ProcCtx,
              in_city: mgp.Nullable[str],
-             in_country: mgp.Nullable[str],
+             in_country: mgp.Nullable[str]
                     ) -> mgp.Record(City = mgp.Vertex,
                                     Relationship = mgp.Edge,
                                     Country = mgp.Vertex):
@@ -557,7 +557,7 @@ This is also the finished procedure:
 @mgp.write_proc
 def new_city(context: mgp.ProcCtx,
              in_city: mgp.Nullable[str],
-             in_country: mgp.Nullable[str],
+             in_country: mgp.Nullable[str]
                     ) -> mgp.Record(City = mgp.Vertex,
                                     Relationship = mgp.Edge,
                                     Country = mgp.Vertex):

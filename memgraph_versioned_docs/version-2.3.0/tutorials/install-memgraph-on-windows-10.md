@@ -227,5 +227,5 @@ MemgraphDB by executing Cypher queries.
 To learn how to query the database, take a look at the
 **[querying](/connect-to-memgraph/overview.mdx)** guide or **[Memgraph
 Playground](https://playground.memgraph.com/)** for interactive tutorials.<br/>
-Visit the **[Building applications](/connect-to-memgraph/drivers/overview.md)**
+Visit the **[Drivers overview](/connect-to-memgraph/drivers/overview.md)**
 page if you need to connect to the database programmatically.

@@ -32,11 +32,8 @@ Memgraph packages are available for:
 
 :::
 
-You can also directly download .rpm packages for the latest Memgraph from the following URLs:
-
-- **CentOS 7** - [https://download.memgraph.com/memgraph/v2.3.0/centos-7/memgraph-2.3.0_1-1.x86_64.rpm](https://download.memgraph.com/memgraph/v2.3.0/centos-7/memgraph-2.3.0_1-1.x86_64.rpm)
-- **CentOS 8** - [https://download.memgraph.com/memgraph/v2.3.0/centos-8/memgraph-2.3.0_1-1.x86_64.rpm](https://download.memgraph.com/memgraph/v2.3.0/centos-8/memgraph-2.3.0_1-1.x86_64.rpm)
-
+You can also use [direct download](../direct-download-links.md) links to get the
+latest Memgraph packages. 
 
 ## Installation guide
 
@@ -103,7 +100,7 @@ guide](/reference-guide/configuration.md).
 To learn how to query the database, take a look at the
 **[querying](/connect-to-memgraph/overview.mdx)** guide or **[Memgraph
 Playground](https://playground.memgraph.com/)** for interactive tutorials.<br/>
-Visit the **[Building applications](/connect-to-memgraph/drivers/overview.md)**
+Visit the **[Drivers overview](/connect-to-memgraph/drivers/overview.md)**
 page if you need to connect to the database programmatically.
 
 ## Getting help
