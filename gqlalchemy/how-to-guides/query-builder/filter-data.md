@@ -35,7 +35,7 @@ from gqlalchemy import match
 
 query = match()
         .node(labels="Person", variable="p1")
-        .to(edge_label="FRIENDS_WITH")
+        .to(relationship_type="FRIENDS_WITH")
         .node(labels="Person", variable="p2")
         .where(item="p1.name", operator="=", expression="p2.name")
         .return_()
@@ -72,7 +72,7 @@ from gqlalchemy import match
 
 query = match()
         .node(labels="Person", variable="p1")
-        .to(edge_label="FRIENDS_WITH")
+        .to(relationship_type="FRIENDS_WITH")
         .node(labels="Person", variable="p2")
         .where_not(item="p1.name", operator="=", expression="p2.name")
         .return_()
@@ -107,7 +107,7 @@ from gqlalchemy import match
 
 query = match()
         .node(labels="Person", variable="p1")
-        .to(edge_label="FRIENDS_WITH")
+        .to(relationship_type="FRIENDS_WITH")
         .node(labels="Person", variable="p2")
         .where(item="p1.first_name", operator="=", expression="p2.first_name")
         .and_where(item="p1.last_name", operator="=", expression="p2.last_name")

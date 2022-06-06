@@ -92,14 +92,14 @@ Add a node pattern to the query.
 #### to
 
 ```python
-def to(edge_label: Optional[str] = "", directed: Optional[bool] = True, variable: Optional[str] = None, relationship: Optional["Relationship"] = None, **kwargs, ,) -> "DeclarativeBase"
+def to(relationship_type: Optional[str] = "", directed: Optional[bool] = True, variable: Optional[str] = None, relationship: Optional["Relationship"] = None, **kwargs, ,) -> "DeclarativeBase"
 ```
 
 Add a relationship pattern to the query.
 
 **Arguments**:
 
-- `edge_label` - A string representing the type of the relationship.
+- `relationship_type` - A string representing the type of the relationship.
 - `directed` - A bool indicating if the relationship is directed.
 - `variable` - A string representing the name of the variable for storing
   results of the relationship pattern.
@@ -114,14 +114,14 @@ Add a relationship pattern to the query.
 #### from\_
 
 ```python
-def from_(edge_label: Optional[str] = "", directed: Optional[bool] = True, variable: Optional[str] = None, relationship: Optional["Relationship"] = None, **kwargs, ,) -> "Match"
+def from_(relationship_type: Optional[str] = "", directed: Optional[bool] = True, variable: Optional[str] = None, relationship: Optional["Relationship"] = None, **kwargs, ,) -> "Match"
 ```
 
 Add a relationship pattern to the query.
 
 **Arguments**:
 
-- `edge_label` - A string representing the type of the relationship.
+- `relationship_type` - A string representing the type of the relationship.
 - `directed` - A bool indicating if the relationship is directed.
 - `variable` - A string representing the name of the variable for storing
   results of the relationship pattern.

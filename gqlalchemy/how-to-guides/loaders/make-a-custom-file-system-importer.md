@@ -26,7 +26,7 @@ these steps.
 
 This class holds the connection to the file system service and handles the path
 from which the `DataLoader` object reads files. To get a fsspec-compatible instance of
-an Azure Blob connection, you can use the [adlfs](https://github.com/fsspec/adlfs) package. We are going to pass `adlfs`-specific parameters such as `blob_account_name` and `blob_account_key` via kwargs. All that's left to do
+an Azure Blob connection, you can use the [adlfs](https://github.com/fsspec/adlfs) package. We are going to pass `adlfs`-specific parameters such as `account_name` and `account_key` via kwargs. All that's left to do
 is to override the `get_path` method.
 
 ```python
@@ -81,8 +81,8 @@ importer = PyArrowAzureBlobImporter(
     container_name="test"
     file_extension_enum=PyArrowFileTypeEnum.Parquet,
     data_configuration=parsed_yaml,
-    blob_account_name="your_account_name",
-    blob_account_key="your_account_key",
+    account_name="your_account_name",
+    account_key="your_account_key",
 )
 
 importer.translate(drop_database_on_start=True)

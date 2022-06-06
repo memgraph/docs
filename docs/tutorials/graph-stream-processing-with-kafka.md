@@ -27,8 +27,9 @@ To follow this tutorial, you will need:
 1. [**Docker**](https://docs.docker.com/get-docker/)
 2. If you are using Linux, you will also need [**Docker
    Compose**](https://docs.docker.com/compose/install/)
-3. [**Memgraph Lab**](https://memgraph.com/download/#memgraph-lab) - visual user
-   interface that enables you to visualize graphs and execute Cypher queries
+3. [**Memgraph Lab**](https://memgraph.com/download/#memgraph-lab) - a desktop
+   application providing a visual user interface that enables you to visualize
+   graphs and execute Cypher queries
 4. [**Python**](https://www.python.org/downloads/)
 
 ## Data model
@@ -125,8 +126,9 @@ data-streams-memgraph-mage-1  | You are running Memgraph v2.1.0
 data-streams-memgraph-mage-1  | To get started with Memgraph, visit https://memgr.ph/start
 ```
 
-To check if Memgraph is indeed running, open **Memgraph Lab** and connect to the
-empty database.
+To check if Memgraph is indeed running, open [**Memgraph
+Lab**](https://memgraph.com/download/#memgraph-lab) desktop application you
+downloaded and installed, and connect to the empty database.
 
 ### 3. Create a transformation module
 
