@@ -12,7 +12,7 @@ construct queries that will return data from the database.
 
 - `return_(results: Optional[Union[str, Tuple[str, str], Dict[str, str],
   List[Union[str, Tuple[str, str]]], Set[Union[str, Tuple[str, str]]]]] =
-  None,)` - Return data from the database with aliases formatted as `key AS
+  None)` - Return data from the database with aliases formatted as `key AS
   value`.
 - `limit(integer_expression: str)` - Limits the number of returned results equal
   to `integer_expression`.
