@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 You can use the methods `return_()`, `limit()`, `skip()` and `order_by()` to
 construct queries that will return data from the database.
 
-- `return_(results: Optional[Union[str, Tuple[str, str], List[Union[str, Tuple[str, str]]], Dict[str, str]]] = None)` - Return data from the database
+- `return_(results: Optional[Union[str, Tuple[str, str], Iterable[Union[str, Tuple[str, str]]]]] = None)` - Return data from the database
   with aliases formatted as `key AS value`.
 - `limit(integer_expression: str)` - Limits the number of returned results equal
   to `integer_expression`.
@@ -68,7 +68,7 @@ query = match()
         .node(labels="Person", variable="p1")
         .to()
         .node(labels="Person", variable="p2")
-        .return_({"p1":"p1"})
+        .return_([("p1", "first"), "p2"])
         .execute()
 ```
 
@@ -76,7 +76,7 @@ query = match()
   <TabItem value="cypher">
 
 ```cypher
-MATCH (p1:Person)-[]->(p2:Person) RETURN p1;
+MATCH (p1:Person)-[]->(p2:Person) RETURN p1 AS first, p2;
 ```
 
 </TabItem>
