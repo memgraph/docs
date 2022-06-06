@@ -8,7 +8,7 @@ Graph algorithms are a set of instructions that traverse (visits nodes of) a
 graph and find specific nodes, paths or a path between two nodes. Some of these
 algorithms are built into Memgraph and don't require any additional libraries:
 
-  * [Depth-first search (DFS)] (#depth-first-search)
+  * [Depth-first search (DFS)](#depth-first-search)
   * [Breadth-first search (BFS)](#breadth-first-search)
   * [Weighted shortest path (WSP)](#weighted-shortest-path)
 
@@ -29,17 +29,14 @@ nodes. In that way, the algorithm visits each node in the graph.
 DFS in Memgraph has been implemented based on the relationship expansion syntax.
 Below are several examples how to use the DFS in Memgraph.
 
-### Getting graph results
+### Getting various results
 
-The following query will show all the paths between nodes `n` and `m` as a graph
-result.
+The following query will show all the paths between nodes `n` and `m`:
 
 ```cypher
 MATCH path=(n {id: 0})-[*]-(m {id: 8}) 
 RETURN path;
 ```
-
-### Getting a list of relationships
 
 To get the list of all relationships, add a variable in the square brackets and
 return it as a result:
@@ -47,6 +44,13 @@ return it as a result:
 ```cypher
 MATCH (n {id: 0})-[relationships *]-(m {id: 8}) 
 RETURN relationships;
+```
+
+To get the list of nodes of the path use the `nodes` function:
+
+```cypher
+MATCH path=(n {id: 0})-[*]-(m {id: 8}) 
+RETURN nodes(path);
 ```
 
 ### Filtering by relationships type and direction
@@ -57,15 +61,6 @@ variable, and you decide the direction by changing the dash into an arrow:
 ```cypher
 MATCH (n {id: 0})-[relationships:Type *]->(m {id: 8}) 
 RETURN relationships;
-```
-
-### Getting the nodes in the path
-
-To get the nodes of the path use the `nodes` function:
-
-```cypher
-MATCH path=(n {id: 0})-[relationships:CONNECTED *]-(m {id: 8}) 
-RETURN nodes(path);
 ```
 
 ### Constraining the length of the path
@@ -123,7 +118,7 @@ Currently, it isn't possible to get all shortest paths to a single node using
 Memgraph's breadth-first expansion. Below are several examples how to use the BFS
 in Memgraph.
 
-### Getting graph results
+### Getting various results
 
 The following query will show the shortest path between nodes `n` and `m` as a
 graph result.
@@ -133,8 +128,6 @@ MATCH path=(n {id: 0})-[*BFS]-(m {id: 8})
 RETURN path;
 ```
 
-### Getting a list of relationships
-
 To get the list of relationships, add a variable before the `*BFS` and return
 it as a result:
 
@@ -143,25 +136,23 @@ MATCH (n {id: 0})-[relationships *BFS]-(m {id: 8})
 RETURN relationships;
 ```
 
+To get a list of nodes of the path use the `nodes` function. You can then return
+the results as list, or use the `UNWIND` clause to return individual nodes:
+
+```cypher
+MATCH path=(n {id: 0})-[relationships:Type *BFS]-(m {id: 8}) 
+UNWIND (nodes(path)) AS node
+RETURN node.id;
+```
+
 ### Filtering by relationships type and direction
 
 You can filter relationships by type by defining the type after the list
 variable, and you decide the direction by changing the dash into an arrow:
 
 ```cypher
-MATCH (n {id: 0})-[relationships:Type *BFS]-(m {id: 8}) 
+MATCH (n {id: 0})-[relationships:Type *BFS]->(m {id: 8}) 
 RETURN relationships;
-```
-
-### Getting the nodes in the path
-
-To get the nodes of the path use the `nodes` function. You can then return the
-results as list, or use the `UNWIND` clause to return individual nodes:
-
-```cypher
-MATCH path=(n {id: 0})-[relationships:Type *BFS]-(m {id: 8}) 
-UNWIND (nodes(path)) AS node
-RETURN node.id;
 ```
 
 ### Constraining the length of the path
@@ -207,7 +198,7 @@ One of the most important algorithms for finding weighted shortest paths is
 **Dijkstra's algorithm**. Below are several examples how to use the BFS
 in Memgraph.
 
-### Getting graph results
+### Getting various results
 
 To find the weighted shortest path between nodes and return the result as graph
 use the the weighted shortest path expansion.
@@ -217,8 +208,6 @@ MATCH path=(a {id: 0})-[*WSHORTEST (r, n | r.weight)]-(b {id: 9})
 RETURN path;
 ```
 
-### Deciding the source of the weight
-
 In the above example, the weight is a property of a relationship, but you can also
 use weight of some node property:
 
@@ -227,8 +216,6 @@ MATCH path=(a {id: 0})-[*WSHORTEST (r, n | n.weight)]-(b {id: 9})
 RETURN path;
 ```
 
-### Getting a list of relationships
-
 To get the list of relationships, add a variable before the `*WSHORTEST` and
 return it as a result:
 
@@ -236,18 +223,6 @@ return it as a result:
 MATCH path=(a {id: 0})-[relationships *WSHORTEST (r, n | r.weight)]-(b {id: 9})
 RETURN relationships;
 ```
-
-### Filtering by relationships type and direction
-
-You can filter relationships by type by defining the type after the list
-variable, and you decide the direction by changing the dash into an arrow:
-
-```cypher
-MATCH path=(a {id: 0})-[relationships:Type *WSHORTEST (r, n | r.weight)]-(b {id: 9})
-RETURN relationships;
-```
-
-### Getting the nodes in the path
 
 To get the nodes of the path use the `nodes` function. You can then return the
 results as list, or use the `UNWIND` clause to return individual nodes:
@@ -258,8 +233,6 @@ UNWIND (nodes(path)) AS node
 RETURN node.id;
 ```
 
-### Getting total weight value
-
 To get the total weight, add a variable at the end of the expression: 
 
 ```cypher
@@ -269,6 +242,16 @@ RETURN relationships, total_weight;
 
 Remember that in the case when weight is taken from the node property, the value
 of the last node is not taken into the total weight. 
+
+### Filtering by relationships type and direction
+
+You can filter relationships by type by defining the type after the list
+variable, and you decide the direction by changing the dash into an arrow:
+
+```cypher
+MATCH path=(a {id: 0})-[relationships:Type *WSHORTEST (r, n | r.weight)]-(b {id: 9})
+RETURN relationships;
+```
 
 ### Constraining the length of the path
 
