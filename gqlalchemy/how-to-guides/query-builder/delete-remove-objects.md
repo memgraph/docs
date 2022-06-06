@@ -31,8 +31,8 @@ To delete a node from the database, use the `delete()` method:
 from gqlalchemy import match
 
 query = match()
-        .node("Person", variable="p")
-        .delete(["p"])
+        .node(labels="Person", variable="p")
+        .delete(variable_expressions="p")
         .execute()
 ```
 
@@ -62,10 +62,10 @@ To delete a relationship from the database, use the `delete()` method:
 from gqlalchemy import match
 
 query = match()
-        .node("Person")
-        .to("FRIENDS_WITH", variable="f")
-        .node("Person")
-        .delete(["f"])
+        .node(labels="Person")
+        .to(relationship_type="FRIENDS_WITH", variable="f")
+        .node(labels="Person")
+        .delete(variable_expressions="f")
         .execute()
 ```
 
@@ -95,8 +95,8 @@ To remove a property from the database, use the `remove()` method:
 from gqlalchemy import match
 
 query = match()
-        .node("Person", variable="p")
-        .remove(["p.name"])
+        .node(labels="Person", variable="p")
+        .remove(items="p.name")
 ```
 
   </TabItem>
