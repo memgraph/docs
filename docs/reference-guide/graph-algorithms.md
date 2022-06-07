@@ -13,7 +13,7 @@ algorithms are built into Memgraph and don't require any additional libraries:
   * [Weighted shortest path (WSP)](#weighted-shortest-path)
 
 
-Below you can find examples of how to use these algorithms, and you can them out
+Below you can find examples of how to use these algorithms, and you can try them out
 in the [Playground
 sandbox](https://playground.memgraph.com/sandbox/europe-backpacking) using the
 Europe backpacking dataset, or adjust them to the dataset of your choice. 
@@ -113,7 +113,7 @@ RETURN path;
 
 ## Breadth-first search
 
-In breadth-first search traversal starts from a single node, and the order of
+In breadth-first search (BFS) traversal starts from a single node, and the order of
 visited nodes is decided based on nodes' breadth (distance from the source
 node). This means that when a certain node is visited, it can be safely assumed
 that all nodes that are fewer relationships away from the source node have

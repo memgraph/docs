@@ -13,27 +13,25 @@ kick off your own Memgraph graph database adventures.
 - [**First steps with Memgraph**](first-steps-with-memgraph.md) - learn
   how to install Memgraph Platform, connect to it using Memgraph Lab, run your
   first query and style your graph
+- [**Install MemgraphDB and Memgraph Lab on Windows
+  10**](install-memgraph-on-windows-10.md)
+- [**Graph modeling**](graph-modeling.md) - learn basic terminology and
+  practices related to graph databases and graph modeling
+- [**Migrate from RDBMS to Memgraph**](migrate-relational-database.md) - learn
+  how to migrate your data from a relational database to Memgraph
 - [**Exploring datasets**](/tutorials/exploring-datasets/overview.md) - learn
   the Cypher query language used to interact with the Memgraph graph database
+- [**Style your graphs in Memgraph Lab**](style-your-graphs-in-memgraph-lab.md) - learn Style script to add style to your graphs in Memgraph Lab
 - [**Implement a custom query module in
   Python**](implement-custom-query-module-in-python.md) - learn how to develop a
   custom query module in Python with Memgraph Lab and use it on a dataset
-- [**Graph modeling**](graph-modeling.md) - learn basic terminology and
-  practices related to graph databases and graph modeling
-- [**Install MemgraphDB and Memgraph Lab on Windows
-  10**](install-memgraph-on-windows-10.md)
-- [**Style your graphs in Memgraph Lab**](style-your-graphs-in-memgraph-lab.md)
-  - learn Style script to add style to your graphs in Memgraph Lab
-- [**Migrate from RDBMS to Memgraph**](migrate-relational-database.md) - learn
-  how to migrate your data from a relational database to Memgraph
+- [**Social network analysis with NetworkX**](social-network-analysis.md)
+- [**Exploring a music social network**](understanding-music-with-modules.md) - learn how to extend the
+  Cypher query language by implementing query modules
 - [**Graph stream processing with
   Kafka**](graph-stream-processing-with-kafka.md) - learn how to connect
   Memgraph to an existing Kafka stream in order to ingest and analyze data in
   real-time
-- [**Social network analysis with NetworkX**](social-network-analysis.md)
-- [**Understanding music (with query
-  modules)**](understanding-music-with-modules.md) - learn how to extend the
-  Cypher query language by implementing query modules
 
 ## Tutorials with available GitHub repositories
 
