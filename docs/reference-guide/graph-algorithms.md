@@ -32,7 +32,8 @@ possible. The moment it reaches a dead-end, it backtracks until it finds a new,
 undiscovered node, then traverses from that node to find more undiscovered
 nodes. In that way, the algorithm visits each node in the graph.
 
-DFS in Memgraph has been implemented based on the relationship expansion syntax.
+DFS in Memgraph has been implemented based on the relationship expansion syntax
+which allows it to find multiple relationships between two nodes if such exist.
 Below are several examples of how to use the DFS in Memgraph.
 
 ### Getting various results
