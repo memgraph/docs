@@ -62,20 +62,21 @@ RETURN path,nodes(path);
 
 ### Filtering by relationships type and direction
 
-You can filter relationships by type by defining the type after the list
-variable, and you decide the direction by changing the dash into an arrow and
-vice versa.
+You can filter relationships by type by defining the type after the relationship
+list variable, and you decide the direction by adding or removing an arrow from
+the dash.
 
 In the following example, the algorithm will traverse only across `CloseTo` type
-of relationships.
+of relationships:
 
 ```cypher
 MATCH path=(n {id: 0})-[relationships:CloseTo *]->(m {id: 8}) 
 RETURN path,relationships;
 ```
 
-Be careful when using algorithms without defining a direction. Depending on the
-size of the dataset, the execution of the query can cause a timeout. 
+Be careful when using algorithms, especially DFS, without defining a direction.
+Depending on the size of the dataset, the execution of the query can cause a
+timeout. 
 
 ### Constraining the path's length
 
@@ -150,8 +151,9 @@ MATCH (n {id: 0})-[relationships *BFS]->(m {id: 8})
 RETURN relationships;
 ```
 
-To get a list of path nodes use the `nodes()` function. You can then return
-the results as a list, or use the `UNWIND` clause to return individual nodes:
+To get a list of path nodes use the `nodes()` function. You can then return the
+results as a list, or use the `UNWIND` clause to return individual node
+properties:
 
 ```cypher
 MATCH path=(n {id: 0})-[*BFS]->(m {id: 8}) 
@@ -160,12 +162,12 @@ RETURN nodes(path);
 
 ### Filtering by relationships type and direction
 
-You can filter relationships by type by defining the type after the list
-variable, and you decide the direction by changing the dash into an arrow and
-vice versa.
+You can filter relationships by type by defining the type after the relationship
+list variable, and you decide the direction by adding or removing an arrow from
+the dash.
 
 In the following example, the algorithm will traverse only across `CloseTo` type
-of relationships regardless of the direction.
+of relationships regardless of the direction:
 
 ```cypher
 MATCH (n {id: 0})-[relationships:CloseTo *BFS]-(m {id: 8}) 
@@ -217,7 +219,7 @@ One of the most important algorithms for finding weighted shortest paths is
 relationship expansion syntax. In the brackets following the `*WSHORTEST`
 algorithm definition, you need to define what relationship or node property
 carries the weight, for example, `[*WSHORTEST (r, n | r.weight)]`. Below are
-several examples of how to use the BFS in Memgraph.
+several examples of how to use the WSHORTEST in Memgraph.
 
 ### Getting various results
 
@@ -247,7 +249,8 @@ RETURN relationships;
 ```
 
 To get the path nodes, use the `nodes()` function. You can then return the
-results as a list, or use the `UNWIND` clause to return individual nodes:
+results as a list, or use the `UNWIND` clause to return individual node
+properties:
 
 ```cypher
 MATCH path=(n {id: 0})-[relationships:CloseTo *WSHORTEST (r, n | n.total_USD)]-(m {id: 9})
@@ -267,8 +270,12 @@ of the last node is not taken into the total weight.
 
 ### Filtering by relationships type and direction
 
-You can filter relationships by type by defining the type after the list
-variable, and you decide the direction by changing the dash into an arrow:
+You can filter relationships by type by defining the type after the relationship
+list variable, and you decide the direction by adding or removing an arrow from
+the dash.
+
+In the following example, the algorithm will traverse only across `CloseTo` type
+of relationships:
 
 ```cypher
 MATCH path=(n {id: 0})-[relationships:CloseTo *WSHORTEST (r, n | n.total_USD)]->(m {id: 46})
@@ -280,12 +287,12 @@ RETURN relationships;
 Memgraph's implementation of the Dijkstra's algorithm uses a modified version of
 this algorithm that can handle length restriction and is based on the relationship
 expansion syntax. The length restriction parameter is optional, and when it's not
-set, it can increase the complexity of the algorithm. It is important to note
+set, it can increase the complexity of algorithm execution. It is important to note
 that the term "length" in this context denotes the number of traversed
 relationships and not the sum of their weights.
 
 The following example will find the shortest path with a maximum length of 4
-relationships between nodes `n`  and `m`. 
+relationships between nodes `n` and `m`. 
 
 ```cypher
 MATCH path=(n {id: 0})-[:CloseTo *WSHORTEST 4 (r, n | n.total_USD) total_weight]-(m {id: 46})
