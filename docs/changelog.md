@@ -10,6 +10,7 @@ sidebar_label: Changelog
 
 - Fix header on `SHOW REPLICATION ROLE` query and wrong timout info on `SHOW
   REPLICAS` query. [#376](https://github.com/memgraph/memgraph/pull/376)
+- Fix WebSocket connection with clients that do not use binary protocol header.  [#403](https://github.com/memgraph/memgraph/pull/403)
 
 ### Major Features and Improvements
 
