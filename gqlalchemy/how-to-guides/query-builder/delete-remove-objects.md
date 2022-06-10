@@ -10,10 +10,10 @@ import TabItem from '@theme/TabItem';
 You can use the methods `delete()` and `remove()` to construct queries that will
 remove nodes and relationships or remove properties and labels.
 
-- `delete(variable_expressions: List[str], detach: Optional[bool] = False)` -
+- `delete(variable_expressions: Union[str, List[str]], detach: Optional[bool] = False)` -
   Remove nodes and relationships. Set the argument `detach` to true in order to
   delete nodes with their relationships.
-- `remove(items: List[str])` - Remove properties and labels.
+- `remove(items: Union[str, List[str]])` - Remove properties and labels.
 
 ## Delete nodes
 
@@ -32,7 +32,7 @@ from gqlalchemy import match
 
 query = match()
         .node("Person", variable="p")
-        .delete(["p"])
+        .delete("p")
         .execute()
 ```
 
@@ -65,7 +65,7 @@ query = match()
         .node("Person")
         .to("FRIENDS_WITH", variable="f")
         .node("Person")
-        .delete(["f"])
+        .delete("f")
         .execute()
 ```
 
@@ -81,7 +81,7 @@ MATCH (:Person)-[f:FRIENDS_WITH]->(:Person) DELETE f;
 
 ## Remove properties
 
-To remove a property from the database, use the `remove()` method:
+To remove a property (or properties) from the database, use the `remove()` method:
 
 <Tabs
   defaultValue="gqlalchemy"
@@ -96,7 +96,7 @@ from gqlalchemy import match
 
 query = match()
         .node("Person", variable="p")
-        .remove(["p.name"])
+        .remove(["p.name", "p.last_name"])
 ```
 
   </TabItem>
