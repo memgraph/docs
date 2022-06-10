@@ -70,7 +70,7 @@ query = call("json_util.load_from_url", "https://some-url.com")
   <TabItem value="cypher">
 
 ```cypher
-CALL json_util.load_from_url(https://some-url.com) YIELD objects RETURN objects;
+CALL json_util.load_from_url("https://some-url.com") YIELD objects RETURN objects;
 ```
 
 </TabItem>
