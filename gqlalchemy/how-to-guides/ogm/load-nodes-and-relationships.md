@@ -4,9 +4,9 @@ title: How to load nodes and relationships
 sidebar_label: Load nodes and relationships
 ---
 
-In this guide you'll learn how to load nodes and relationships from the
-database. First, do all necessary imports and create an instance of the
-database:
+Through this guide, you will learn how to load nodes and relationships from a
+graph database. First, perform all necessary imports and create an instance of
+the database:
 
 ```python
 from gqlalchemy import Memgraph, Node, Relationship, Field

@@ -4,6 +4,9 @@ title: Style your graphs in Memgraph Lab
 sidebar_label: Style your graphs in Memgraph Lab
 ---
 
+[![Related - Blog
+Post](https://img.shields.io/static/v1?label=Related&message=Blog%20post&color=9C59DB&style=for-the-badge)](https://memgraph.com/blog/how-to-style-your-graphs-in-memgraph-lab)
+
 In this tutorial, you'll learn how to use **Style script** to add style to your
 graphs. You'll use the sandbox site **Memgraph Playground** that runs **Memgraph Lab** to
 try out some styling.
@@ -83,7 +86,7 @@ Update value of the property `color` to `#ffd700` and `color-hover` to
 `#ffa500`. The updated code should look like this:
 
 ```
-@NodeStyle HasLabel?(node, "Country") {
+@NodeStyle HasLabel(node, "Country") {
   color: #ffd700
   color-hover: #ffa500
   color-selected: #dd2222
@@ -105,11 +108,11 @@ To display the two images, add the following code at the end of the style
 script:
 
 ```
-@NodeStyle Equals?(Property(node, "name"), "Russia") {
+@NodeStyle Equals(Property(node, "name"), "Russia") {
    image-url: "https://upload.wikimedia.org/wikipedia/en/thumb/f/f3/Flag_of_Russia.svg/320px-Flag_of_Russia.svg.png"
 }
 
-@NodeStyle Equals?(Property(node, "name"), "Spain") {
+@NodeStyle Equals(Property(node, "name"), "Spain") {
   image-url: "https://upload.wikimedia.org/wikipedia/en/thumb/9/9a/Flag_of_Spain.svg/320px-Flag_of_Spain.svg.png"
  }
 ```
@@ -166,17 +169,17 @@ The complete styling code for this graph is:
   shadow-size: 20
 }
 
-@NodeStyle Greater?(Size(Labels(node)), 0) {
+@NodeStyle Greater(Size(Labels(node)), 0) {
   label: Format(":{}", Join(Labels(node), " :"))
 }
 
-@NodeStyle HasLabel?(node, "Country") {
+@NodeStyle HasLabel(node, "Country") {
   color: #ffd700
   color-hover: #ffa500
   color-selected: #dd2222
 }
 
-@NodeStyle HasProperty?(node, "name") {
+@NodeStyle HasProperty(node, "name") {
   label: AsText(Property(node, "name"))
 }
 
@@ -187,11 +190,11 @@ The complete styling code for this graph is:
   color: #6AA84F
 }
 
-@NodeStyle Equals?(Property(node, "name"), "Russia") {
+@NodeStyle Equals(Property(node, "name"), "Russia") {
    image-url: "https://upload.wikimedia.org/wikipedia/en/thumb/f/f3/Flag_of_Russia.svg/320px-Flag_of_Russia.svg.png"
 }
 
-@NodeStyle Equals?(Property(node, "name"), "Spain") {
+@NodeStyle Equals(Property(node, "name"), "Spain") {
   image-url: "https://upload.wikimedia.org/wikipedia/en/thumb/9/9a/Flag_of_Spain.svg/320px-Flag_of_Spain.svg.png"
  }
 ```

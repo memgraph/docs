@@ -11,10 +11,11 @@ queries.
 ## Prerequisites
 
 For this guide you will need:
-* A **running Memgraph instance**. If you need to set up Memgraph, take a look
-  at the [Installation guide](/installation/overview.md).
-* A basic understanding of graph databases and the property graph model.
-* Java 8 or 11 installed.
+
+- A **running Memgraph instance**. If you need to set up Memgraph, take a look
+  at the [Installation guide](/installation/overview.mdx).
+- A basic understanding of graph databases and the property graph model.
+- Java 8 or 11 installed.
 
 ## Basic Setup
 
@@ -108,5 +109,5 @@ Node 1: Hello, World!
 
 For real-world examples of how to use Memgraph, we suggest you take a look at
 the **[Tutorials](/tutorials/overview.md)** page. You can also browse through
-the **[How-to guides](/how-to-guides/overview.md)**
-section to get an overview of all the functionalities Memgraph offers.
+the **[How-to guides](/how-to-guides/overview.md)** section to get an overview
+of all the functionalities Memgraph offers.

@@ -5,8 +5,8 @@ module.exports = {
   tagline: "Welcome to the Memgraph Docs site!",
   url: "https://memgraph.com",
   baseUrl,
-  onBrokenLinks: "throw",
-  onBrokenMarkdownLinks: "warn",
+  onBrokenLinks: "error",
+  onBrokenMarkdownLinks: "error",
   favicon: "img/social-logo-round-corners.png",
   organizationName: "memgraph",
   projectName: "docs",
@@ -146,7 +146,7 @@ module.exports = {
             },
             {
               label: "Algorithms",
-              to: "/mage/algorithms/algorithms",
+              to: "/mage/algorithms",
             },
             {
               label: "Use cases",
@@ -237,8 +237,16 @@ module.exports = {
               to: "/cypher-manual/clauses",
             },
             {
+              label: "Extension clauses",
+              to: "/cypher-manual/extension-clauses",
+            },
+            {
               label: "Using functions",
               to: "/cypher-manual/functions",
+            },
+            {
+              label: "Graph algorithms",
+              to: "/cypher-manual/graph-algorithms",
             },
             {
               label: "Query modules",
@@ -271,6 +279,10 @@ module.exports = {
             {
               label: "MAGE FAQ",
               to: "/help-center/faq/mage",
+            },
+            {
+              label: "Errors overview",
+              to: "/errors/",
             },
           ],
         },
@@ -390,9 +402,9 @@ module.exports = {
     },
     hideableSidebar: true,
     announcementBar: {
-      id: "cypheremailcourse",
+      id: "graphmodelingemailcourse",
       content:
-        'Sign up for the new <a target="_blank" rel="noopener noreferrer" href="https://memgraph.com/learn-cypher-query-language"><b>Cypher Email Course</b></a> 📩',
+        'Sign up for the new <a target="_blank" rel="noopener noreferrer" href="https://memgraph.com/learn-graph-modeling"><b>Graph Modeling Email Course</b></a> 📩',
       backgroundColor: "#fafbfc",
       textColor: "#091E42",
       isCloseable: true,
@@ -611,7 +623,7 @@ module.exports = {
             from: ["/memgraph/how-to-guides-overview/manage-users-using-ldap"],
           },
           {
-            to: "/memgraph/how-to-work-with-docker",
+            to: "/memgraph/how-to-guides/work-with-docker",
             from: ["/memgraph/how-to-guides-overview/work-with-docker"],
           },
           {
@@ -804,7 +816,7 @@ module.exports = {
             from: ["/memgraph/getting-started/installation/rpm-installation"],
           },
           {
-            to: "/memgraph/how-to-work-with-docker",
+            to: "/memgraph/how-to-guides/work-with-docker",
             from: ["/memgraph/database-functionalities/work-with-docker"],
           },
           //Memgraph getting started redirects
@@ -1261,6 +1273,13 @@ module.exports = {
             to: "/memgraph/how-to-guides/query-modules",
             from: [
               "/memgraph/how-to-guides/query-modules/implement-query-modules",
+            ],
+          },
+          // Redirect for the Docker how-to guide
+          {
+            to: "/memgraph/how-to-guides/work-with-docker",
+            from: [
+              "/memgraph/how-to-work-with-docker",
             ],
           },
         ],

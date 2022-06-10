@@ -32,6 +32,9 @@ Memgraph packages are available for:
 
 :::
 
+You can also use [direct download](../direct-download-links.md) links to get the
+latest Memgraph packages. 
+
 ## Installation guide
 
 After downloading the Memgraph RPM package, you can install it by issuing the
@@ -97,7 +100,7 @@ guide](/reference-guide/configuration.md).
 To learn how to query the database, take a look at the
 **[querying](/connect-to-memgraph/overview.mdx)** guide or **[Memgraph
 Playground](https://playground.memgraph.com/)** for interactive tutorials.<br/>
-Visit the **[Building applications](/connect-to-memgraph/drivers/overview.md)**
+Visit the **[Drivers overview](/connect-to-memgraph/drivers/overview.md)**
 page if you need to connect to the database programmatically.
 
 ## Getting help

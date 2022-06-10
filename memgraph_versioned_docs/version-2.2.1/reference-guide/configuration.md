@@ -4,6 +4,8 @@ title: Configuration settings
 sidebar_label: Configuration settings
 ---
 
+[![Related - How-to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/config-logs.md)
+
 The main Memgraph configuration file is available in
 `/etc/memgraph/memgraph.conf` . You can modify that file to suit your specific
 needs. Additional configuration can be specified by including another
@@ -31,7 +33,7 @@ Each configuration setting is in the form: `--setting-name=value` .
 | --query-cost-planner=true | Use the cost-estimating query planner. | `[bool]` |
 | --query-execution-timeout-sec=180 | Maximum allowed query execution time. <br/>Queries exceeding this limit will be aborted. Value of 0 means no limit. | `[uint64]` |
 | --query-max-plans=1000 | Maximum number of generated plans for a query. | `[uint64]` |
-| --query-modules-directory=/usr/lib/memgraph/query-modules | Directory where modules with custom query procedures are stored. NOTE: Multiple comma-separated directories can be defined. | `[string]` |
+| --query-modules-directory=/usr/lib/memgraph/query_modules | Directory where modules with custom query procedures are stored. NOTE: Multiple comma-separated directories can be defined. | `[string]` |
 | --query-plan-cache-ttl=60 | Time to live for cached query plans, in seconds. | `[int32]` |
 | --query-vertex-count-to-expand-existing=10 | Maximum count of indexed vertices which provoke indexed lookup and then expand to existing, <br/>instead of a regular expand. Default is 10, to turn off use -1. | `[int64]` |
 

@@ -4,17 +4,17 @@ title: Node.js quick start
 sidebar_label: Node.js
 ---
 
-At the end of this guide, you will have created a simple Node.js **`Hello,
-World!`** program that connects to the Memgraph database and executes simple
+At the end of this guide, you will have created a simple Node.js **`Hello, World!`** program that connects to the Memgraph database and executes simple
 queries.
 
 ## Prerequisites
 
 To follow this guide, you will need:
-* A **running Memgraph instance**. If you need to set up Memgraph, take a look
-  at the [Installation guide](/installation/overview.md).
-* A basic understanding of graph databases and the property graph model.
-* The newest version of **Node.js** installed. Instructions on how to setup
+
+- A **running Memgraph instance**. If you need to set up Memgraph, take a look
+  at the [Installation guide](/installation/overview.mdx).
+- A basic understanding of graph databases and the property graph model.
+- The newest version of **Node.js** installed. Instructions on how to setup
   Node. JS can be found on the [official
   website](https://nodejs.org/en/download/).
 
@@ -48,45 +48,46 @@ npm install neo4j-driver --save
 following code:
 
 ```javascript
-const express = require('express')
-const app = express()
-const port = 3000
-var neo4j = require('neo4j-driver')
+const express = require("express");
+const app = express();
+const port = 3000;
+var neo4j = require("neo4j-driver");
 
-app.get('/', async (req, res) => {
-    const driver = neo4j.driver("bolt://localhost:7687")
-    const session = driver.session()
+app.get("/", async (req, res) => {
+  const driver = neo4j.driver("bolt://localhost:7687");
+  const session = driver.session();
 
-    try {
-        const result = await session.writeTransaction(tx =>
-            tx.run(
-                'CREATE (a:Greeting) SET a.message = $message RETURN "Node " + id(a) + ": " + a.message', {
-                    message: 'Hello, World!'
-                }
-            )
-        )
+  try {
+    const result = await session.writeTransaction((tx) =>
+      tx.run(
+        'CREATE (a:Greeting) SET a.message = $message RETURN "Node " + id(a) + ": " + a.message',
+        {
+          message: "Hello, World!",
+        }
+      )
+    );
 
-        const singleRecord = result.records[0]
-        const greeting = singleRecord.get(0)
+    const singleRecord = result.records[0];
+    const greeting = singleRecord.get(0);
 
-        console.log(greeting)
-    } finally {
-        await session.close()
-    }
+    console.log(greeting);
+  } finally {
+    await session.close();
+  }
 
-    // on application exit:
-    await driver.close()
-})
+  // on application exit:
+  await driver.close();
+});
 
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
-})
+  console.log(`Example app listening at http://localhost:${port}`);
+});
 ```
 
 **5.** Run the application with the following command:
 
 ```
-node .\program.js
+node program.js
 ```
 
 You should see an output similar to the following:

@@ -11,11 +11,12 @@ queries.
 ## Prerequisites
 
 To follow this guide, you will need:
-* A **running Memgraph instance**. If you need to set up Memgraph, take a look
-  at the [Installation guide](/installation/overview.md).
-* The [**pymgclient driver**](https://github.com/memgraph/pymgclient). A
-  Memgraph database adapter for the Python programming language.
-* A basic understanding of graph databases and the property graph model.
+
+- A **running Memgraph instance**. If you need to set up Memgraph, take a look
+  at the [Installation guide](/installation/overview.mdx).
+- The [**GQLAlchemy client**](https://github.com/memgraph/gqlalchemy). A
+  Memgraph OGM (Object Graph Mapper) for the Python programming language.
+- A basic understanding of graph databases and the property graph model.
 
 ## Basic setup
 
@@ -25,37 +26,33 @@ Memgraph database instance.<br />
 Let's jump in and connect a simple program to Memgraph.
 
 **1.** Create a new directory for your program, for example, `/memgraph_python`
-and position yourself in it.<br /> **2.** Create a new Python script and name it
-`program.py` . Add the following code to it:
+and position yourself in it.<br /> 
+
+**2.** Create a new Python script and name it `program.py` . Add the following
+code to it:
 
 ```python
-import mgclient
+from gqlalchemy import Memgraph
 
 # Make a connection to the database
-connection = mgclient.connect(host='127.0.0.1', port=7687)
-
-# Create a cursor for query execution
-cursor = connection.cursor()
+memgraph = Memgraph(host='127.0.0.1', port=7687)
 
 # Delete all nodes and relationships
 query = "MATCH (n) DETACH DELETE n"
 
 # Execute the query
-cursor.execute(query)
+memgraph.execute(query)
 
 # Create a node with the label FirstNode and message property with the value "Hello, World!"
 query = """CREATE (n:FirstNode)
            SET n.message = '{message}'
-           RETURN 'Node '  + id(n) + ': ' + n.message""".format(message="Hello, World!")
+           RETURN 'Node '  + id(n) + ': ' + n.message AS result""".format(message="Hello, World!")
 
 # Execute the query
-cursor.execute(query)
+results = memgraph.execute_and_fetch(query)
 
-# Fetch one row of query results
-row = cursor.fetchone()
-
-# Print the first member in row
-print(row[0])
+# Print the first member
+print(list(results)[0]['result'])
 ```
 
 :::note Note for Docker users
@@ -89,5 +86,5 @@ Node 1: Hello, World!
 
 For real-world examples of how to use Memgraph, we suggest you take a look at
 the **[Tutorials](/tutorials/overview.md)** page. You can also browse through
-the **[How-to guides](/how-to-guides/overview.md)**
-section to get an overview of all the functionalities Memgraph offers.
+the **[How-to guides](/how-to-guides/overview.md)** section to get an overview
+of all the functionalities Memgraph offers.

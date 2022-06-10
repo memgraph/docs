@@ -4,6 +4,8 @@ title: How to change configuration settings and access log files
 sidebar_label: Change configuration and access logs
 ---
 
+[![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/configuration.md)
+
 import Tabs from "@theme/Tabs"; 
 import TabItem from "@theme/TabItem";
 
@@ -103,7 +105,7 @@ For example, if you want to limit memory usage for the whole instance to 50 MiB
 pass the configuration like this:
 
 ```plaintext
-docker run -it -p 7687:7687 -p 3000:3000 -e MEMGRAPH="--memory-limit=50" memgraph/memgraph-platform
+docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 -e MEMGRAPH="--memory-limit=50" memgraph/memgraph-platform
 ```
 
    </TabItem>
@@ -116,7 +118,7 @@ For example, if you want to limit memory usage for the whole instance to 50 MiB
 pass the configuration like this:
 
 ```plaintext
-docker run -it -p 7687:7687  memgraph --memory-limit=50
+docker run -it -p 7687:7687 -p 7444:7444  memgraph --memory-limit=50
 ```
    
    </TabItem>

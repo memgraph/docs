@@ -4,19 +4,19 @@ title: Rust quick start
 sidebar_label: Rust
 ---
 
-At the end of this guide, you will have created a simple Rust **`Hello,
-World!`** program that connects to the Memgraph database and executes simple
+At the end of this guide, you will have created a simple Rust **`Hello, World!`** program that connects to the Memgraph database and executes simple
 queries.
 
 ## Prerequisites
 
 To follow this guide, you will need:
-* A **running Memgraph instance**. If you need to set up Memgraph, take a look
-  at the [Installation guide](/installation/overview.md).
-* A basic understanding of graph databases and the property graph model.
-* **Docker** installed and running. Instructions on how to setup Docker can be
+
+- A **running Memgraph instance**. If you need to set up Memgraph, take a look
+  at the [Installation guide](/installation/overview.mdx).
+- A basic understanding of graph databases and the property graph model.
+- **Docker** installed and running. Instructions on how to setup Docker can be
   found on the [official Docker website](https://docs.docker.com/get-docker/).
-* A locally installed [**rsmgclient
+- A locally installed [**rsmgclient
   driver**](https://github.com/memgraph/rsmgclient) if you are not using Docker
   to build the program.
 
@@ -48,7 +48,7 @@ cargo new memgraph_rust --bin
 `[dependencies]` :
 
 ```
-rsmgclient = "0.1.1"
+rsmgclient = "1.0.0"
 ```
 
 **3.** To create the actual program, add the following code to the `src/main.rs`
@@ -101,14 +101,14 @@ it `Dockerfile` . Add the following code to it:
 
 ```dockerfile
 # Set base image (host OS)
-FROM rust:1.42
+FROM rust:1.56
 
 # Install CMake
 RUN apt-get update && \
   apt-get --yes install cmake
 
 # Install mgclient
-RUN apt-get install -y git cmake make gcc g++ libssl-dev && \
+RUN apt-get install -y git cmake make gcc g++ libssl-dev clang && \
   git clone https://github.com/memgraph/mgclient.git /mgclient && \
   cd mgclient && \
   git checkout 5ae69ea4774e9b525a2be0c9fc25fb83490f13bb && \
@@ -136,11 +136,11 @@ CMD [ "cargo", "run" ]
 ```
 
 **5.** Don't forget to change the host address in your code.<br /> Find the
-**`CONTAINER ID`** with `docker ps` and use it in the following command to
+**`CONTAINER_ID`** with `docker ps` and use it in the following command to
 retrieve the address:
 
 ```
-docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' CONTAINER ID
+docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' CONTAINER_ID
 ```
 
 **6.** To run the application, first, you need to create a Docker image with:

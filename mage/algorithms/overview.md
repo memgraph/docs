@@ -1,7 +1,8 @@
 ---
-id: algorithms
+id: overview
 title: Graph algorithms
 sidebar_label: Graph algorithms
+slug: /algorithms
 ---
 
 ## Traditional Graph Analytics
@@ -44,7 +45,7 @@ algorithm can be used to find bridges in graphs.
 The notion of community in a graph represents similarly to what it represents in
 the real world. In graphs, community represents a partition of a graph, i.e., a
 set of nodes. There are several different ways to approach [Community
-detection](/algorithms/traditional-graph-analytics/community-detection.md).
+detection](/algorithms/traditional-graph-analytics/community-detection-algorithm.md).
 
 ### Cycle Detection
 
@@ -60,6 +61,13 @@ Certain applications require the special labeling of a graph called [graph
 coloring](/algorithms/traditional-graph-analytics/graph-coloring.md). This
 “special” labeling refers to the assignment of labels (which we call colors) in
 such a way that connected neighbors must not be given the same color.
+
+### Katz Centrality
+
+[Katz Centrality](/algorithms/traditional-graph-analytics/katz-centrality.md) is
+the measurement of centrality that incorporates the inbound path length starting
+from the wanted node. More central nodes will have closer connections rather
+than having many long-distance nodes connected to them.
 
 ### Maximum Flow
 
@@ -95,6 +103,33 @@ splitting optimizations.
 
 ## Streaming Graph Analytics
 
+### Dynamic Betweenness Centrality
+
+MAGE includes a _fully dynamic_ [betweenness
+centrality](/algorithms/dynamic-graph-analytics/betweenness-centrality-online-algorithm.md)
+computation tool that implements the
+[iCentral](https://repository.kaust.edu.sa/bitstream/handle/10754/625935/08070346.pdf)
+[^1] algorithm. iCentral saves up on computation in two ways: it singles out the
+nodes whose centrality scores could have changed and then incrementally updates
+the scores, making use of previously calculated data structures where
+applicable.
+
+### Dynamic Katz Centrality
+
+The online [Katz
+centrality](/algorithms/dynamic-graph-analytics/katz-centrality-online-algorithm.md)
+implementation results in a reduction of computations needed to update already
+calculated results. The algorithm offers substantially large speedups compared
+to static algorithm runs.
+
+### Dynamic Community Detection
+
+To address the hidden relations among the nodes in the graph, especially those
+not connected directly, [community
+detection](/algorithms/dynamic-graph-analytics/community-detection-online-algorithm.md)
+can provide help. This familiar graph analytics method is being solved in
+various different ways.
+
 ### Dynamic Node2Vec
 
 [Dynamic
@@ -112,14 +147,6 @@ world, Google, owes its popularity solely to this algorithm, developed in the
 early days by its founders. The need for its dynamic implementation arose at the
 moment when nodes and edges arrive in a short period of time.
 
-### Dynamic Community Detection
-
-To address the hidden relations among the nodes in the graph, especially those
-not connected directly, [community
-detection](/algorithms/dynamic-graph-analytics/community-detection-online-algorithm.md)
-can provide help. This familiar graph analytics method is being solved in
-various different ways.
-
 ## Machine Learning Graph Algorithms
 
 ### Graph Neural Networks (GNN)
@@ -136,6 +163,12 @@ allows you to analyze a graph as a whole. The structure and arrangement of nodes
 can reveal some hidden features in a graph. The main technique is to design
 features over the structure of the graph itself and then apply a classification
 algorithm.
+
+### Graph Clustering
+
+In graph theory, [Graph
+clustering](/algorithms/machine-learning-graph-analytics/graph-clustering-algorithm.md)
+is used to find subsets of similar nodes and group them together.
 
 ### Link Prediction
 
@@ -159,8 +192,11 @@ that don't have them.
 random walks. The point of this method is to map nodes that are most likely to
 be within a common random walk to the same place in n-dimensional space.
 
-### Graph Clustering
+### Temporal Graph Networks (TGNs)
 
-In graph theory, [Graph
-clustering](/algorithms/machine-learning-graph-analytics/graph-clustering-algorithm.md)
-is used to find subsets of similar nodes and group them together.
+[Temporal Graph
+Networks](/algorithms/machine-learning-graph-analytics/temporal-graph-networks.md)
+are a type of graph neural network (GNN) for dynamic graphs. In recent years,
+GNNs have become very popular due to their ability to perform a wide variety of
+machine learning tasks on graphs, such as link prediction, node classification,
+and so on.

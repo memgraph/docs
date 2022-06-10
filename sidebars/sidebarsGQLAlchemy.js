@@ -14,6 +14,7 @@ module.exports = {
             "how-to-guides/ogm/map-nodes-and-relationships",
             "how-to-guides/ogm/save-nodes-and-relationships",
             "how-to-guides/ogm/load-nodes-and-relationships",
+            "how-to-guides/ogm/index-labels-and-properties",
           ],
         },
         {
@@ -34,6 +35,22 @@ module.exports = {
           items: [
             "how-to-guides/streams/kafka-streams",
             "how-to-guides/streams/pulsar-streams",
+          ],
+        },
+        {
+          type: "category",
+          label: "Import data from different sources",
+          items: [
+            "how-to-guides/loaders/table-to-graph-importer",
+            "how-to-guides/loaders/custom-file-system-importer",
+          ],
+        },
+        {
+          type: "category",
+          label: "Manage instances",
+          items: [
+            "how-to-guides/instance-runner/memgraph-docker-instance",
+            "how-to-guides/instance-runner/memgraph-binary-instance",
           ],
         },
         "how-to-guides/triggers/triggers",
@@ -58,8 +75,8 @@ module.exports = {
         slug: "/reference",
       },
       items: [
-        "reference/connection",
         "reference/disk_storage",
+        "reference/instance_runner",
         "reference/memgraph",
         "reference/models",
         "reference/query_builder",

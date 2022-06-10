@@ -18,8 +18,8 @@ Add(2, 5)
 ```
 
 creates a new value 7 from values 2 and 5. There are a lot of functions built
-into Graph Style Script so there are even more ways to combine values. There is even a
-function to create new functions.
+into Graph Style Script so there are even more ways to combine values. There is
+even a function to create new functions.
 
 When expressions are evaluated, values are created. There are several types of
 Graph Style Script values: `Boolean`, `Color`, `Number`, `String`, `Array`,
@@ -63,8 +63,8 @@ literal expression for the color red.
 Name expressions are names that can be evaluated if there are values bound to
 them in the environment (lexical scope). Names can start with any of the lower
 case or upper case letters of the English alphabet and apart from those can
-contain digits and the following characters: ?, !, $, -, \_, ., \*. Names can be
-defined using the `Define` function.
+contain digits and the following characters: -, \_. Names can be defined using
+the `Define` function.
 
 ```
 Define(superhero, "Iron Man")
@@ -104,7 +104,7 @@ function one argument will not be evaluated.
 ```
 Define(mood, "happy")
 Define(name, "Happy Hogan")
-If(Equals?(mood, "happy"),
+If(Equals(mood, "happy"),
    Format("{} is happy today.", name),
    Format("{} is not happy today.", name))
   -> Happy Hogan is happy today.
@@ -139,7 +139,7 @@ Property names and expressions are separated by a colon and after every
 expression, a new line must follow. The directive structure is the following.
 
 ```
-@<DirectiveName> <expression>? {
+@<DirectiveName> <expression> {
   <property-name-1>: <expression-1>
   ...
   ...
@@ -150,9 +150,9 @@ expression, a new line must follow. The directive structure is the following.
 Like in CSS, directives defined later override properties of the previous
 directives.
 
-Graph Style Script currently has two directives: `@NodeStyle`, for defining the visual
-style of graph nodes, and `@EdgeStyle` for defining the visual style of graph
-relationships.
+Graph Style Script currently has two directives: `@NodeStyle`, for defining the
+visual style of graph nodes, and `@EdgeStyle` for defining the visual style of
+graph relationships.
 
 An example of a directive is `@NodeStyle` directive which can be used to specify
 style properties of a graph node.
@@ -181,7 +181,7 @@ Here is an example of a `@NodeStyle` directive that is applied to all graph
 nodes with the label superhero:
 
 ```
-@NodeStyle HasLabel?(node, vehicle) {
+@NodeStyle HasLabel(node, vehicle) {
   label: Format("{}, horsepower: {}",
                 Property(node, "model"),
                 Property(node, "horsepower"))
@@ -194,7 +194,7 @@ nodes or to no nodes.
 
 ```
 @NodeStyle And(HasProperty(node, "name"),
-               Equals?(Property(node, "name"), "Tony Stark")) {
+               Equals(Property(node, "name"), "Tony Stark")) {
   color: gold
   shadow-color: red
   label: "You know who I am"
@@ -216,11 +216,23 @@ Take a look at the [GSS @EdgeStyle directive
 properties](/docs/memgraph-lab/style-script/gss-edgestyle-directive) page to see
 all relationship styling possibilities.
 
-# Built-in functions
+## Built-in functions
 
 Graph Style Script has a large number of built-in functions that can help you
 with achieving the right style for your graph. Take a look at the [list of GSS
 built-in functions](/docs/memgraph-lab/style-script/gss-functions).
+
+## Built-in colors
+
+Graph Style Script comes with built-in colors that you can use the color's name.
+Take a look at the [list of built-in
+colors](/docs/memgraph-lab/style-script/gss-colors).
+
+## Built-in variables
+
+Graph Style Script has a few built-in variables that you can use: `node`,
+`edge`, and `graph`. Read more about it in the [list of built-in
+variables](/docs/memgraph-lab/style-script/gss-variables).
 
 ## File Structure
 
@@ -238,9 +250,9 @@ For example:
 Define(square, Function(x, Mul(x, x)))
 Define(maxAllowedDebt, 10000)
 
-@NodeStyle HasLabel?(node, "BankUser") {
+@NodeStyle HasLabel(node, "BankUser") {
   size: square(Property(node, "debt"))
-  color: If(Greater?(Property(node, "debt"), maxAllowedDebt),
+  color: If(Greater(Property(node, "debt"), maxAllowedDebt),
             red,
             lightblue)
 }
