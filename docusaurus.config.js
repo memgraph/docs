@@ -110,14 +110,12 @@ module.exports = {
             },
           ],
         },
-        /*
         {
           to: '/memgraph-cloud/',
           label: 'Memgraph Cloud',
           position: 'left',
           activeBaseRegex: `/cloud/`,
         },
-        */
         {
           to: "/mage",
           label: "MAGE",
@@ -318,12 +316,10 @@ module.exports = {
               label: "Memgraph Lab",
               to: "/memgraph-lab",
             },
-            /*
             {
               label: 'Memgraph Cloud',
               to: '/memgraph-cloud',
             },
-            */
             {
               label: "Cypher manual",
               to: "/cypher-manual",
