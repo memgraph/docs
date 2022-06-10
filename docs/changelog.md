@@ -10,6 +10,7 @@ sidebar_label: Changelog
 
 - Fix header on `SHOW REPLICATION ROLE` query and wrong timout info on `SHOW
   REPLICAS` query. [#376](https://github.com/memgraph/memgraph/pull/376)
+- Added a check to ensure two replicas cannot be registered to an identical end-point. [#406](https://github.com/memgraph/memgraph/pull/406)
 
 ### Major Features and Improvements
 
