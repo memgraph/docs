@@ -61,8 +61,8 @@ To call a procedure with arguments, specify the arguments as a string in the
 from gqlalchemy import call
 
 query = call("json_util.load_from_url", "https://some-url.com")
-        .yield_({"objects":"objects"})
-        .return_({"objects":"objects"})
+        .yield_(results="objects")
+        .return_(results="objects")
         .execute()
 ```
 
