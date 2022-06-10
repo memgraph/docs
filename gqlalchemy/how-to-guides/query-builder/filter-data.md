@@ -87,12 +87,13 @@ values={[
 
 ```python
 from gqlalchemy import match
+from gqlalchemy.query_builder import Operator
 
 query = match()
         .node(labels="Person", variable="p1")
         .to(relationship_type="FRIENDS_WITH")
         .node(labels="Person", variable="p2")
-        .where_not(item="p1.name", operator="=", expression="p2.name")
+        .where_not(item="p1.name", operator=Operator.EQUAL, expression="p2.name")
         .return_()
         .execute()
 ```
@@ -122,14 +123,15 @@ values={[
 
 ```python
 from gqlalchemy import match
+from gqlalchemy.query_builder import Operator
 
 query = match()
         .node(labels="Person", variable="p1")
         .to(relationship_type="FRIENDS_WITH")
         .node(labels="Person", variable="p2")
-        .where(item="p1.first_name", operator="=", expression="p2.first_name")
-        .and_where(item="p1.last_name", operator="=", expression="p2.last_name")
-        .and_not_where(item="p1.address", operator="=", expression="p2.address")
+        .where(item="p1.first_name", operator=Operator.EQUAL, expression="p2.first_name")
+        .and_where(item="p1.last_name", operator=Operator.EQUAL, expression="p2.last_name")
+        .and_not_where(item="p1.address", operator=Operator.EQUAL, expression="p2.address")
         .return_()
         .execute()
 ```
@@ -198,11 +200,12 @@ values={[
 
 ```python
 from gqlalchemy import match
+from gqlalchemy.query_builder import Operator
 
 query = match()
         .node(labels="Person", variable="p")
-        .where(item="p.age", operator=">", literal=18)
-        .or_where(item="p.name", operator="=", literal="John")
+        .where(item="p.age", operator=Operator.GREATER_THAN, literal=18)
+        .or_where(item="p.name", operator=Operator.EQUAL, literal="John")
         .return_()
         .execute()
 ```
@@ -239,10 +242,11 @@ values={[
 
 ```python
 from gqlalchemy import match
+from gqlalchemy.query_builder import Operator
 
 query = match()
         .node(variable="p")
-        .where(item="p", operator=":", expression="Person")
+        .where(item="p", operator=Operator.LABEL_FILTER, expression="Person")
         .return_()
         .execute()
 ```
