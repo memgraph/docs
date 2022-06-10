@@ -10,6 +10,9 @@ import TabItem from '@theme/TabItem';
 The `set_()` method is used to set or update labels on nodes, and properties on
 nodes and relationships.
 
+- `set_(self, item: str, operator: Operator, **kwargs)` - sets or updates the
+  value of item to `literal` or `expression` value, depending on the `operator`.
+
 ## Set or update a property
 
 You can assign a value to a node property with the query builder's `set_()`
@@ -65,8 +68,8 @@ from gqlalchemy.query_builder import Operator
 query = match()
         .node(variable='n')
         .where(item='n.name', operator='=', literal='Germany')
-        .set_(item='n.population', operator=SetOperator.ASSIGNMENT, literal=83000001)
-        .set_(item='n.capital', operator=SetOperator.ASSIGNMENT, literal='Berlin')
+        .set_(item='n.population', operator=Operator.ASSIGNMENT, literal=83000001)
+        .set_(item='n.capital', operator=Operator.ASSIGNMENT, literal='Berlin')
         .return_()
         .execute()
 ```
@@ -120,7 +123,7 @@ MATCH (c {name: 'Germany'}) SET c:Land RETURN *;
 
 ## Replace all properties using map
 
-If `set()` is used with the `SetOperator.ASSIGNMENT` (`=`), all the properties
+If `set()` is used with the `Operator.ASSIGNMENT` (`=`), all the properties
 in the map (value of the `literal` argument) that are on the node or
 relationship will be updated. The properties that are not on the node or
 relationship but are in the map will be added. The properties that are not in
@@ -141,7 +144,7 @@ from gqlalchemy.query_builder import Operator
 query = match()
         .node(variable='c', labels='Country')
         .where(item='c.name', operator='=', literal='Germany')
-        .set_(item='c', operator=SetOperator.ASSIGNMENT, literal={'name': 'Germany', 'population': '85000000'})
+        .set_(item='c', operator=Operator.ASSIGNMENT, literal={'name': 'Germany', 'population': '85000000'})
         .return_()
         .execute()
 ```
@@ -157,7 +160,7 @@ MATCH (c:Country) WHERE c.name = 'Germany' SET c = {name: 'Germany', population:
 
 ## Update all properties using map
 
-If `set()` is used with the `SetOperator.INCREMENT` (`+=`), all the properties
+If `set()` is used with the `Operator.INCREMENT` (`+=`), all the properties
 in the map (value of the `literal` argument) that are on the node or
 relationship will be updated. The properties that are not on the node or
 relationship but are in the map will be added. Properties that are not present
@@ -178,7 +181,7 @@ from gqlalchemy.query_builder import Operator
 query = match()
         .node(variable='c', labels='Country')
         .where(item='c.name', operator='=', literal='Germany')
-        .set_(item='c', operator=SetOperator.INCREMENT, literal={'name': 'Germany', 'population': '85000000'})
+        .set_(item='c', operator=Operator.INCREMENT, literal={'name': 'Germany', 'population': '85000000'})
         .return_()
         .execute()
 ```

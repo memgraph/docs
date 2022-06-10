@@ -7,15 +7,26 @@ sidebar_label: Filter data
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-You can use the methods `where()`, `or_where()` and `and_where()` to construct
-queries that will filter data.
+You can use the methods `where()`, `where_not()`, `or_where()`,
+`or_where_not()`, `and_where()`, `and_where_not()`, `xor_where()` and
+`xor_where_not()` to construct queries that will filter data.
 
-- `where(property: str, operator: str, value: Any)` - Filter data so that
-  `operator` evaluates `property` and `value` to true.
-- `or_where(property: str, operator: str, value: Any)` - Append an additional
+- `where(self, item: str, operator: Operator, **kwargs)` - Filter data so that
+  `operator` evaluates the comparison of `item` and `literal` or `expression` to true.
+- `where_not(self, item: str, operator: Operator, **kwargs)` - Filter data so that
+  `operator` evaluates the comparison of `item` and `literal` or `expression` to false.
+- `or_where(self, item: str, operator: Operator, **kwargs)` - Append an additional
   filter with `OR`.
-- `and_where(property: str, operator: str, value: Any)` - Append an additional
+- `or_not_where(self, item: str, operator: Operator, **kwargs)` - Append an additional
+  filter with `OR NOT`.
+- `and_where(self, item: str, operator: Operator, **kwargs)` - Append an additional
   filter with `AND`.
+- `and_not_where(self, item: str, operator: Operator, **kwargs)` - Append an additional
+  filter with `AND NOT`.
+- `xor_where(self, item: str, operator: Operator, **kwargs)` - Append an additional
+  filter with `XOR`.
+- `xor_not_where(self, item: str, operator: Operator, **kwargs)` - Append an additional
+  filter with `XOR NOT`.
 
 ## Filter by property value
 
@@ -32,13 +43,14 @@ end of your query:
 
 ```python
 from gqlalchemy import match
+from gqlalchemy.query_builder import Operator
 
 query = match()
         .node("Person", variable="p1")
         .to("FRIENDS_WITH")
         .node("Person", variable="p2")
-        .where("n.name", "=", "Ron")
-        .or_where("m.id", "=", 0)
+        .where("n.name", Operator.EQUAL, "Ron")
+        .or_where("m.id", Operator.EQUAL, 0)
         .return_()
         .execute()
 ```
