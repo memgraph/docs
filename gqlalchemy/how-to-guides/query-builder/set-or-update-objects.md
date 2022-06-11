@@ -28,10 +28,10 @@ also use a simple equals sign as a string - `"="`.
   <TabItem value="gqlalchemy">
 
 ```python
-from gqlalchemy import match
+from gqlalchemy import Match
 from gqlalchemy.query_builder import Operator
 
-query = match()
+query = Match()
         .node(labels="Country", variable="c", name="Germany")
         .set_(item="c.population", operator=Operator.ASSIGNMENT, literal=83000001)
         .return_()
@@ -62,10 +62,10 @@ it to a new value.
   <TabItem value="gqlalchemy">
 
 ```python
-from gqlalchemy import match
+from gqlalchemy import Match
 from gqlalchemy.query_builder import Operator
 
-query = match()
+query = Match()
         .node(variable='n')
         .where(item='n.name', operator='=', literal='Germany')
         .set_(item='n.population', operator=Operator.ASSIGNMENT, literal=83000001)
@@ -101,10 +101,10 @@ has a label, then it will have both old and new label.
   <TabItem value="gqlalchemy">
 
 ```python
-from gqlalchemy import match
+from gqlalchemy import Match
 from gqlalchemy.query_builder import Operator
 
-query = match()
+query = Match()
         .node(variable="c", name="Germany")
         .set_(item="c", operator=Operator.LABEL_FILTER, expression="Land")
         .return_()
@@ -138,10 +138,10 @@ the map will be removed.
   <TabItem value="gqlalchemy">
 
 ```python
-from gqlalchemy import match
+from gqlalchemy import Match
 from gqlalchemy.query_builder import Operator
 
-query = match()
+query = Match()
         .node(variable='c', labels='Country')
         .where(item='c.name', operator='=', literal='Germany')
         .set_(item='c', operator=Operator.ASSIGNMENT, literal={'name': 'Germany', 'population': '85000000'})
@@ -175,10 +175,10 @@ in the map will be left as is.
   <TabItem value="gqlalchemy">
 
 ```python
-from gqlalchemy import match
+from gqlalchemy import Match
 from gqlalchemy.query_builder import Operator
 
-query = match()
+query = Match()
         .node(variable='c', labels='Country')
         .where(item='c.name', operator='=', literal='Germany')
         .set_(item='c', operator=Operator.INCREMENT, literal={'name': 'Germany', 'population': '85000000'})

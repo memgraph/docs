@@ -4,6 +4,8 @@ title: How to map nodes and relationships
 sidebar_label: Map nodes and relationships
 ---
 
+import Neo4jOption from '../../templates/_neo4j_option.mdx';
+
 Through this guide, you will learn how to map Python classes to nodes and
 relationships in a graph database. 
 
@@ -36,6 +38,8 @@ class Streamer(User):
     totalViewCount: Optional[int] = Field()
     description: Optional[str] = Field()
 ```
+
+<Neo4jOption/>
 
 `Node` is a Python class which maps to a graph object in Memgraph. `User` and
 `Streamer` are classes which inherit from `Node` and they map to a label in the

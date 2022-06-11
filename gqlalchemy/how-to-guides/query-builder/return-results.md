@@ -35,9 +35,9 @@ values={[
 <TabItem value="gqlalchemy">
 
 ```python
-from gqlalchemy import match
+from gqlalchemy import Match
 
-query = match().node(labels="Person", variable="p").return_().execute()
+query = Match().node(labels="Person", variable="p").return_().execute()
 ```
 
   </TabItem>
@@ -64,9 +64,9 @@ values={[
 <TabItem value="gqlalchemy">
 
 ```python
-from gqlalchemy import match
+from gqlalchemy import Match
 
-query = match()
+query = Match()
         .node(labels="Person", variable="p1")
         .to()
         .node(labels="Person", variable="p2")
@@ -98,7 +98,7 @@ values={[
 <TabItem value="gqlalchemy">
 
 ```python
-from gqlalchemy import match
+from gqlalchemy import Match
 
 query = match().node(labels="Person", variable="p").return_().limit(10).execute()
 ```
@@ -139,9 +139,9 @@ values={[
 <TabItem value="gqlalchemy">
 
 ```python
-from gqlalchemy import match
+from gqlalchemy import Match
 
-query = match().node(variable="n").return_().order_by(properties="n.id").execute()
+query = Match().node(variable="n").return_().order_by(properties="n.id").execute()
 ```
 
   </TabItem>
@@ -165,10 +165,10 @@ values={[
 <TabItem value="gqlalchemy">
 
 ```python
-from gqlalchemy import match
+from gqlalchemy import Match
 from gqlalchemy.query_builder import Order
 
-query = match().node(variable="n").return_().order_by(properties=("n.id", Order.ASC).execute()
+query = Match().node(variable="n").return_().order_by(properties=("n.id", Order.ASC).execute()
 ```
 
   </TabItem>
@@ -192,10 +192,10 @@ values={[
 <TabItem value="gqlalchemy">
 
 ```python
-from gqlalchemy import match
+from gqlalchemy import Match
 from gqlalchemy.query_builder import Order
 
-query = match().node(variable="n").return_().order_by(properties=("n.id", Order.ASCENDING).execute()
+query = Match().node(variable="n").return_().order_by(properties=("n.id", Order.ASCENDING).execute()
 ```
 
   </TabItem>
@@ -230,10 +230,10 @@ values={[
 <TabItem value="gqlalchemy">
 
 ```python
-from gqlalchemy import match
+from gqlalchemy import Match
 from gqlalchemy.query_builder import Order
 
-query = match().node(variable="n").return_().order_by(properties=("n.id", Order.DESC).execute()
+query = Match().node(variable="n").return_().order_by(properties=("n.id", Order.DESC).execute()
 ```
 
   </TabItem>
@@ -270,10 +270,10 @@ values={[
 <TabItem value="gqlalchemy">
 
 ```python
-from gqlalchemy import match
+from gqlalchemy import Match
 from gqlalchemy.query_builder import Order
 
-query = match()
+query = Match()
         .node(variable="n")
         .return_()
         .order_by(
