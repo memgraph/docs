@@ -10,6 +10,7 @@ sidebar_label: Changelog
 
 - Fix header on `SHOW REPLICATION ROLE` query and wrong timout info on `SHOW
   REPLICAS` query. [#376](https://github.com/memgraph/memgraph/pull/376)
+- Adapted compilation flag so that the memory allocator uses JEMALLOC while counting allocated memory. [#401](https://github.com/memgraph/memgraph/pull/401)
 
 ### Major Features and Improvements
 
