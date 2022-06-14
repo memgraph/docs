@@ -5,8 +5,12 @@ sidebar_label: Manage Memgraph Docker instances
 slug: /how-to-guides/memgraph-docker-instance
 ---
 
+import Neo4jWarning from '../../templates/_neo4j_warning.mdx';
+
 Through this guide, you will learn how to start, stop, connect to and monitor
 Memgraph instances with GQLAlchemy.
+
+<Neo4jWarning/>
 
 First, perform all the necessary imports:
 

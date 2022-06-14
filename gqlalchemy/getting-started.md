@@ -9,7 +9,7 @@ slug: /
 
 **GQLAlchemy** is a fully open-source Python library that aims to be the go-to
 **Object Graph Mapper** (OGM) -- a link between Graph Database objects and Python
-objects.
+objects. GQLAlchemy supports **Memgraph** and **Neo4j**.
 
 An Object Graph Mapper or OGM provides a developer-friendly workflow that allows
 for writing object-oriented notation to communicate to a graph database. Instead

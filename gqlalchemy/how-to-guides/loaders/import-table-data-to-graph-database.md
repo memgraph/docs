@@ -5,6 +5,8 @@ sidebar_label: Import table data as a graph
 slug: /how-to-guides/table-to-graph-importer
 ---
 
+import Neo4jWarning from '../../templates/_neo4j_warning.mdx';
+
 This guide will show you how to use `loaders.py` to translate table data from a
 file to graph data and import it to **Memgraph**. Currently, we support reading
 of CSV, Parquet, ORC and IPC/Feather/Arrow file formats via the **PyArrow** package.
@@ -19,6 +21,8 @@ data is located, here are two guides on how to import it to Memgraph:
 - [Loading a CSV file from the local file
   system](#loading-a-csv-file-from-the-local-file-system)
 - [Using a cloud storage solution](#using-a-cloud-storage-solution)
+
+<Neo4jWarning/>
 
 ## Loading a CSV file from the local file system
 

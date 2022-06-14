@@ -28,9 +28,9 @@ To delete a node from the database, use the `delete()` method:
   <TabItem value="gqlalchemy">
 
 ```python
-from gqlalchemy import match
+from gqlalchemy import Match
 
-query = match()
+query = Match()
         .node(labels="Person", variable="p")
         .delete(variable_expressions="p")
         .execute()
@@ -61,7 +61,7 @@ To delete a relationship from the database, use the `delete()` method:
 ```python
 from gqlalchemy import match
 
-query = match()
+query = Match()
         .node(labels="Person")
         .to(relationship_type="FRIENDS_WITH", variable="f")
         .node(labels="Person")
@@ -92,9 +92,9 @@ To remove a property (or properties) from the database, use the `remove()` metho
   <TabItem value="gqlalchemy">
 
 ```python
-from gqlalchemy import match
+from gqlalchemy import Match
 
-query = match()
+query = Match()
         .node(labels="Person", variable="p")
         .remove(items=["p.name", "p.last_name"])
 ```

@@ -48,10 +48,10 @@ values={[
 <TabItem value="gqlalchemy">
 
 ```python
-from gqlalchemy import match
+from gqlalchemy import Match
 from gqlalchemy.query_builder import Operator
 
-query = match()
+query = Match()
         .node(labels="Person", variable="p1")
         .to(relationship_type="FRIENDS_WITH")
         .node(labels="Person", variable="p2")
@@ -86,10 +86,10 @@ values={[
 <TabItem value="gqlalchemy">
 
 ```python
-from gqlalchemy import match
+from gqlalchemy import Match
 from gqlalchemy.query_builder import Operator
 
-query = match()
+query = Match()
         .node(labels="Person", variable="p1")
         .to(relationship_type="FRIENDS_WITH")
         .node(labels="Person", variable="p2")
@@ -122,10 +122,10 @@ values={[
 <TabItem value="gqlalchemy">
 
 ```python
-from gqlalchemy import match
+from gqlalchemy import Match
 from gqlalchemy.query_builder import Operator
 
-query = match()
+query = Match()
         .node(labels="Person", variable="p1")
         .to(relationship_type="FRIENDS_WITH")
         .node(labels="Person", variable="p2")
@@ -165,9 +165,9 @@ values={[
 <TabItem value="gqlalchemy">
 
 ```python
-from gqlalchemy import match
+from gqlalchemy import Match
 
-query = match()
+query = Match()
         .node(labels="Person", variable="p")
         .where(item="p.age", operator=">", literal=18)
         .return_()
@@ -199,10 +199,10 @@ values={[
 <TabItem value="gqlalchemy">
 
 ```python
-from gqlalchemy import match
+from gqlalchemy import Match
 from gqlalchemy.query_builder import Operator
 
-query = match()
+query = Match()
         .node(labels="Person", variable="p")
         .where(item="p.age", operator=Operator.GREATER_THAN, literal=18)
         .or_where(item="p.name", operator=Operator.EQUAL, literal="John")
@@ -241,10 +241,10 @@ values={[
 <TabItem value="gqlalchemy">
 
 ```python
-from gqlalchemy import match
+from gqlalchemy import Match
 from gqlalchemy.query_builder import Operator
 
-query = match()
+query = Match()
         .node(variable="p")
         .where(item="p", operator=Operator.LABEL_FILTER, expression="Person")
         .return_()
