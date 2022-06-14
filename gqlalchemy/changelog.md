@@ -5,6 +5,44 @@ sidebar_label: Changelog
 ---
 
 ## v1.3 - Jun 14, 2022
+:::warning
+
+### Breaking Changes
+
+- Renamed keyword argument `edge_label` to `relationship_type` in `to()` and `from()` methods from the query builder. [#145](https://github.com/memgraph/gqlalchemy/pull/145)
+
+:::
+
+### Major Features and Improvements
+
+- Added option to suppress warning `GQLAlchemySubclassNotFoundWarning`. [#121](https://github.com/memgraph/gqlalchemy/pull/121)
+- Added the possibility to import `Field` from `gqlalchemy.models`. [#122](https://github.com/memgraph/gqlalchemy/pull/122)
+- Added `set_()` method to the query builder. [#128](https://github.com/memgraph/gqlalchemy/pull/128)
+- Added wrapper class for query modules. [#130](https://github.com/memgraph/gqlalchemy/pull/130)
+- Added `foreach()` method to the query builder. [#135](https://github.com/memgraph/gqlalchemy/pull/135)
+- Added `load_csv()` and `return()` methods from the query builder to base classes list. [#139](https://github.com/memgraph/gqlalchemy/pull/139)
+- Added new argument types in `return_()`, `yield_()` and `with_()` methods in the query builder. [#146](https://github.com/memgraph/gqlalchemy/pull/146)
+- Added `IntegratedAlgorithm` class instance as argument in `to()` and `from()` methods in the query builder. [#141](https://github.com/memgraph/gqlalchemy/pull/141) 
+- Extended `IntegratedAlgorithm` class with the Breadth-first search algorithm. [#142](https://github.com/memgraph/gqlalchemy/pull/142)
+- Extended `IntegratedAlgorithm` class with the Weighted shortest path algorithm. [#143](https://github.com/memgraph/gqlalchemy/pull/143)
+- Extended `IntegratedAlgorithm` class with the Depth-first search algorithm. [#144](https://github.com/memgraph/gqlalchemy/pull/144)
+- Removed the usage of `sudo` from the `instance_runner` module. [#148](https://github.com/memgraph/gqlalchemy/pull/148)
+- Changed string variables for Blob and S3 keyword arguments. [#151](https://github.com/memgraph/gqlalchemy/pull/151)
+- Added variable support for node and relationship properties. [#154](https://github.com/memgraph/gqlalchemy/pull/154)
+- Added `Tuple` as new argument type in query modules. [#155](https://github.com/memgraph/gqlalchemy/pull/155/)
+- Changed `host` and `port` `Memgraph` properties to readonly. [#156](https://github.com/memgraph/gqlalchemy/pull/156)
+- Changed `Memgraph.new_connection()` to be a private method. [#157](https://github.com/memgraph/gqlalchemy/pull/157)
+- Added `push()` query modules for Kafka streams and Power BI. [#158](https://github.com/memgraph/gqlalchemy/pull/158)
+- Added argument `lazy` for configuring lazy loading in the `Memgraph` class. [#159](https://github.com/memgraph/gqlalchemy/pull/159)
+- Added `datetime` support for property types. [#161](https://github.com/memgraph/gqlalchemy/pull/161)
+- Added `Operator` enum which can be used as `operator` value in `set_()` and `where()` methods in the query builder. [#165](https://github.com/memgraph/gqlalchemy/pull/165)
+- Added an extension to the `QueryBuilder` class to support and autocomplete integrated and MAGE query modules. [#168](https://github.com/memgraph/gqlalchemy/pull/168)
+
+### Bug fixes
+
+- Fixed the unbound variable error in the return statement of the Cypher query in `memgraph.save_relationship_with_id()`. [#166](https://github.com/memgraph/gqlalchemy/pull/166)
+- Fixed checking if `None` for `Optional` properties. [#167](https://github.com/memgraph/gqlalchemy/pull/167)
+
 
 ## v1.2 - Apr 12, 2022
 
