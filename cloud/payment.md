@@ -2,7 +2,6 @@
 id: payment
 title: Manage payment
 sidebar_label: Payment
-slug: /
 ---
 
 ## Add a payment method

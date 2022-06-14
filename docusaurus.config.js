@@ -115,6 +115,28 @@ module.exports = {
           label: 'Memgraph Cloud',
           position: 'left',
           activeBaseRegex: `/cloud/`,
+          items: [
+            {
+              label: "Getting started",
+              to: "getting-started",
+            },
+            {
+              label: "Cloud account",
+              to: "cloud-account",
+            },
+            {
+              label: "Cloud instances",
+              to: "cloud-instances",
+            },
+            {
+              label: "Connect to Cloud",
+              to: "cloud-connect",
+            },
+            {
+              label: "Payment",
+              to: "payment",
+            },
+          ],
         },
         {
           to: "/mage",

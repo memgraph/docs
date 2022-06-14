@@ -2,7 +2,6 @@
 id: cloud-instances
 title: Manage your Cloud instances
 sidebar_label: Cloud instances
-slug: /
 ---
 
 ## Create a new Cloud instance
