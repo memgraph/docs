@@ -60,11 +60,10 @@ You can also customize the *Batch Interval* and *Batch Size* by editing the basi
 To connect to the [Awesome Streams](https://awesomedata.stream/) you need to set
 the following Kafka configuration parameters:
 
-`sasl.username:public`
-`sasl.password:public`
-`security.protocol:SASL_PLAINTEXT`
-`sasl.mechanism:PLAIN`
-```
+sasl.username:`public`
+sasl.password:`public`
+security.protocol:`SASL_PLAINTEXT`
+sasl.mechanism:`PLAIN`
 
 ## 4. Connect Memgraph to the stream and start ingesting the data
 
