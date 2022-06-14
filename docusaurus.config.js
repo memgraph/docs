@@ -118,23 +118,23 @@ module.exports = {
           items: [
             {
               label: "Getting started",
-              to: "getting-started",
+              to: "/memgraph-cloud/",
             },
             {
               label: "Cloud account",
-              to: "cloud-account",
+              to: "/memgraph-cloud/cloud-account",
             },
             {
               label: "Cloud instances",
-              to: "cloud-instances",
+              to: "/memgraph-cloud/cloud-instances",
             },
             {
               label: "Connect to Cloud",
-              to: "cloud-connect",
+              to: "/memgraph-cloud/cloud-connect",
             },
             {
               label: "Payment",
-              to: "payment",
+              to: "/memgraph-cloud/payment",
             },
           ],
         },
