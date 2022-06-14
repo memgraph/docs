@@ -9,7 +9,7 @@ sidebar_label: Changelog
 
 ### Breaking Changes
 
-- Renamed keyword argument `edge_label` to `relationship_type` in `to()` and `from()` methods from the query builder. [#145](https://github.com/memgraph/gqlalchemy/pull/145)
+- Renamed keyword argument `edge_label` to `relationship_type` in `to()` and `from()` methods in the query builder. [#145](https://github.com/memgraph/gqlalchemy/pull/145)
 
 :::
 
@@ -27,6 +27,7 @@ sidebar_label: Changelog
 - Extended `IntegratedAlgorithm` class with the Weighted shortest path algorithm. [#143](https://github.com/memgraph/gqlalchemy/pull/143)
 - Extended `IntegratedAlgorithm` class with the Depth-first search algorithm. [#144](https://github.com/memgraph/gqlalchemy/pull/144)
 - Removed the usage of `sudo` from the `instance_runner` module. [#148](https://github.com/memgraph/gqlalchemy/pull/148)
+- Added support for Neo4j in the Object-Graph Mapper and the query builder. [#149](https://github.com/memgraph/gqlalchemy/pull/149)
 - Changed string variables for Blob and S3 keyword arguments. [#151](https://github.com/memgraph/gqlalchemy/pull/151)
 - Added variable support for node and relationship properties. [#154](https://github.com/memgraph/gqlalchemy/pull/154)
 - Added `Tuple` as new argument type in query modules. [#155](https://github.com/memgraph/gqlalchemy/pull/155/)
@@ -37,6 +38,7 @@ sidebar_label: Changelog
 - Added `datetime` support for property types. [#161](https://github.com/memgraph/gqlalchemy/pull/161)
 - Added `Operator` enum which can be used as `operator` value in `set_()` and `where()` methods in the query builder. [#165](https://github.com/memgraph/gqlalchemy/pull/165)
 - Added an extension to the `QueryBuilder` class to support and autocomplete integrated and MAGE query modules. [#168](https://github.com/memgraph/gqlalchemy/pull/168)
+
 
 ### Bug fixes
 
