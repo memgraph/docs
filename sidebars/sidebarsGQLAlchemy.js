@@ -77,11 +77,36 @@ module.exports = {
       items: [
         "reference/disk_storage",
         "reference/instance_runner",
-        "reference/memgraph",
+        "reference/loaders",
         "reference/models",
-        "reference/query_builder",
         "reference/transformations",
         "reference/utilities",
+        {
+          type: "category",
+          label: "graph_algorithms",
+          items: [
+            "reference/graph_algorithms/integrated_algorithms",
+            "reference/graph_algorithms/query_builder",
+            "reference/graph_algorithms/query_modules",
+          ],
+        },
+        {
+          type: "category",
+          label: "query_builders",
+          items: [
+            "reference/query_builders/declarative_base",
+            "reference/query_builders/memgraph_query_builder",
+          ],
+        },
+        {
+          type: "category",
+          label: "vendors",
+          items: [
+            "reference/vendors/database_client",
+            "reference/vendors/memgraph",
+            "reference/vendors/neo4j",
+          ],
+        },
       ],
     },
     "changelog",
