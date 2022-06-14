@@ -7,6 +7,6 @@ slug: /
 
 ## Create a new Cloud instance
 ## Pause, resume or delete an instance
-## Backup and restore an instance
-## Clone an instance
-## Resize a project
+## Backup and restore an instance (V)
+## Clone an instance (V)
+## Resize a project (V)

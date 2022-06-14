@@ -10,4 +10,4 @@ slug: /
 ## Change Memgraph Cloud password
 ## Retrieve Memgraph Cloud password
 ## Retrieve Memgraph Cloud project password
-## Manage payment methods
+## Manage payment methods (V)

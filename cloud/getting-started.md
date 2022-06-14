@@ -31,6 +31,8 @@ with feedback on X, Y, Z:
 
 ## How to Connect to Memgraph Cloud
 
+Ovo bi ja izbacila - treba vidjet sto se moze od tog iskoristiti za druge stranice
+
 To query Memgraph from the graphical user interface, please download and
 install [Memgraph Lab](https://memgraph.com/download#tools).
 

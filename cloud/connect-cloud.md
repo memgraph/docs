@@ -6,5 +6,5 @@ slug: /
 ---
 
 ## Connect with Memgraph Lab
-## Connect with mgconsole
-## Connect with drivers
+## Connect with mgconsole (V)
+## Connect with drivers (V)
