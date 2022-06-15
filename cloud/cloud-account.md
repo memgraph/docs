@@ -4,38 +4,49 @@ title: Manage your Cloud account
 sidebar_label: Cloud account
 ---
 
-## Memgraph Cloud account
+## Create Memgraph Cloud account
 
-If you are a first-time user, go to [Memgraph Cloud sign up
-page](https://cloud.memgraph.com/signup)  and provide your personal information, set up a password and accept the terms of service. You can also register to Memgraph Cloud with your Google account.
+To create Memgraph Cloud account:
 
+1. Go to [Memgraph Cloud sign up page](https://cloud.memgraph.com/signup).
+2. Provide your personal information, set up a password and accept the terms of
+   service. You can also register to Memgraph Cloud with your Google account.
+3. Verify your email address by clicking on the link in the email you got from Memgraph.
+4. Before you start using Cloud, help us by choosing a programming language you prefer. In
+   return, we can direct our support better, and adding languages that we
+   haven’t listed helps us leave no man behind once a user base is established. 
+ 
+As a new user you will start using a 14-day free trial version of Memgraph
+Cloud, in which you can create one project that uses up to 2GB RAM. 
 
-If you already have an account, go to [Memgraph Cloud log-in
-page)(https://cloud.memgraph.com/login) and sign in by providing your email and
-password. 
+If you require more compute, enter a valid payment method and upgrade your
+project.
 
 ### Change Memgraph Cloud password
 
-To change your Memgraph Cloud password, login into your account and then:
+To change your Memgraph Cloud password, login into your account and:
 
-1. Click **Account** in the left sidebar
+1. Click **Account** in the left sidebar.
 2. In the **Payments section** tab, locate **Personal information** section and
-   click the **Change password** link
-3. In the popup, fill in the **Old Password** and **New Password**
-4. Click **Confirm** to save changes
+   click the **Change password** link.
+3. In the pop-up, fill in the **Old Password** and **New Password**.
+4. Click **Confirm** to save changes.
 
 ### Retrieve Memgraph Cloud password
 
-If you have forgotten your Memgraph Cloud password to reset it go to [Forgot
-your password page](https://cloud.memgraph.com/reset-password-request), enter
-your email address and click **Send recovery email**. You will receive an email
-from Memgraph with a link for a password reset.
+If you forgot your Memgraph Cloud password you can reset it:
+
+1.  Visit [Forgot your password page](https://cloud.memgraph.com/reset-password-request). 
+2.  Enter your email address and click **Send recovery email**. 
+3.  Click on the link in the *Reset the password for Memgraph Cloud* email. It
+    will redirect you to the *Reset your password* page.
+4.  Enter a new password and **Confirm changes**.
 
 ## Retrieve Memgraph Cloud project password
 
-Each project within your Memgraph Cloud account has its password. The
-project password is not the same password you use to log into Memgraph Cloud. We
-don't have access to those credentials and can't help you if you lost
-credentials for your Memgraph Cloud project.
+Each project within your Memgraph Cloud account has its password. The project
+password is not the same password you use to log into Memgraph Cloud. Memgraph
+**doesn't have access** to those credentials and can't retrieve lost credentials
+for Memgraph Cloud projects.
 
 ## Manage payment methods (V)

@@ -2,7 +2,7 @@ module.exports = {
   cloud: [
     'getting-started',
     'cloud-account',
-    'cloud-instances',
+    'cloud-projects',
     'cloud-connect',
     'payment'
   ],
