@@ -35,3 +35,59 @@ To connect to Cloud via a command-line interface **mgconsole**:
    console** section of the Memgraph Cloud project.
 
 ## Connect with drivers
+
+### Python
+
+Step 1: Install the driver with pip or poetry:
+
+```
+pip install gqlalchemy
+# or with Poetry: poetry add gqlalchemy
+
+```
+
+Step 2: Copy the following code. Fill out <YOUR MEMGRAPH PASSWORD HERE> with a password that you created for a Memgraph project and run the code:
+
+```
+from gqlalchemy import Memgraph
+
+MEMGRAPH_HOST = '18.156.117.180'
+MEMGRAPH_PORT = 7687
+MEMGRAPH_USERNAME = 'kruno.golubic@memgraph.io'
+# Place your Memgraph password that was created during Project creation
+MEMGRAPH_PASSWORD = '<YOUR MEMGRAPH PASSWORD HERE>'
+
+def hello_memgraph(host: str, port: int, username: str, password: str):
+    connection = Memgraph(host, port, username, password, encrypted=True)
+    results = connection.execute_and_fetch(
+        'CREATE (n:FirstNode { message: "Hello Memgraph from Python!" }) RETURN n.message AS message'
+    )
+    print("Created node with message:", next(results)["message"])
+
+if __name__ == "__main__":
+    hello_memgraph(MEMGRAPH_HOST, MEMGRAPH_PORT, MEMGRAPH_USERNAME, MEMGRAPH_PASSWORD)
+
+```
+
+Read more about it on [GQLAlchemy Quick Start Guide](gqlalchemy/how-to-guides).
+
+
+### Rust
+
+
+### C++
+
+
+### Java
+
+
+### C#
+
+
+### Golang
+
+
+### PHP
+
+
+### node.js
