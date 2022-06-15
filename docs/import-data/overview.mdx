@@ -75,11 +75,6 @@ export default function ConnectToMemgraph() {
             </li>
             <li>
               <b>
-                <a href="#csv-tool">How to create a snapshot from CSV files?</a>
-              </b>
-            </li>
-            <li>
-              <b>
                 <a href="#kafka">
                   How to import streaming data from Kafka into Memgraph?
                 </a>
@@ -149,35 +144,6 @@ export default function ConnectToMemgraph() {
             imgDark={viaLoadJSON.imgDark}
             imgDarkActive={viaLoadJSON.imgDarkActive}
           />
-        </section>
-        <section>
-          <h2 id="csv-tool">How to create a snapshot from CSV files?</h2>
-          <p>
-            The{" "}
-            <b>
-              <a href={useBaseUrl("/memgraph/import-data/csv-import-tool")}>
-                CSV import tool
-              </a>
-            </b>{" "}
-            allows you to import nodes and relationships from multiple CSV files
-            at once. The import is done while Memgraph is not running, and the
-            data is loaded the next time it starts. The tool is fully compatible
-            with the{" "}
-            <b>
-              <a href="https://neo4j.com/docs/operations-manual/current/tools/import/">
-                Neo4j CSV format
-              </a>
-            </b>
-            . If you already have a pipeline set-up for Neo4j, you should only replace
-            <br />
-            <code>neo4j-admin import</code> with <code>mg_import_csv</code>. Keep
-            in mind that the CSV Import Tool creates only one snapshot from the supplied
-            CSV files. Memgraph will overwrite any present data with the newly created
-            snapshot. This means that additional imports need to be done with the{" "}
-            <a href={useBaseUrl("/memgraph/import-data/load-csv-clause")}>
-              LOAD CSV clause
-            </a> if you want to preserve the already imported data.
-          </p>
         </section>
         <section>
           <h2 id="kafka">

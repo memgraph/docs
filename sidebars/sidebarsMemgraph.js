@@ -91,7 +91,6 @@ module.exports = {
           link: { type: "doc", id: "import-data/csv/overview" },
           items: [
             "import-data/csv/load-csv-clause",
-            "import-data/csv/csv-import-tool",
           ],
         },
         {
@@ -230,7 +229,6 @@ module.exports = {
               label: "CSV",
               items: [
                 "reference-guide/import-data/load-csv-clause",
-                "reference-guide/import-data/csv-import-tool",
               ],
             },
             "reference-guide/import-data/cypherl",
