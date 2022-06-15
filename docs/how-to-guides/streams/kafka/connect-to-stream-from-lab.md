@@ -18,7 +18,7 @@ To add a stream in Memgraph Lab:
 2. Choose Kafka stream type, enter a stream name, server address, and topics you want to subscribe to.
 3. Go to the **Next Step**.
 4. Click on **Edit** (pencil icon) to modify the *Consumer Group*, *Batch
-   Interval* or *Size*.
+   Interval* or *Batch Size*.
 
 If you are trying to connect to MovieLens data stream from the Awesome Data
 streams, the stream configuration should look similar to this:
