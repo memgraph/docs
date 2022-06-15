@@ -7,9 +7,26 @@ sidebar_label: Filter data
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-You can use `where()`, `where_not()`, `or_where()`, `or_not_where()`,
-`and_where()`, `and_not_where()`, `xor_where()` and `xor_not_where()` methods to
-construct queries that will filter data.
+You can use the methods `where()`, `where_not()`, `or_where()`,
+`or_where_not()`, `and_where()`, `and_where_not()`, `xor_where()` and
+`xor_where_not()` to construct queries that will filter data.
+
+- `where(self, item: str, operator: Operator, **kwargs)` - Filter data so that
+  `operator` evaluates the comparison of `item` and `literal` or `expression` to true.
+- `where_not(self, item: str, operator: Operator, **kwargs)` - Filter data so that
+  `operator` evaluates the comparison of `item` and `literal` or `expression` to false.
+- `or_where(self, item: str, operator: Operator, **kwargs)` - Append an additional
+  filter with `OR`.
+- `or_not_where(self, item: str, operator: Operator, **kwargs)` - Append an additional
+  filter with `OR NOT`.
+- `and_where(self, item: str, operator: Operator, **kwargs)` - Append an additional
+  filter with `AND`.
+- `and_not_where(self, item: str, operator: Operator, **kwargs)` - Append an additional
+  filter with `AND NOT`.
+- `xor_where(self, item: str, operator: Operator, **kwargs)` - Append an additional
+  filter with `XOR`.
+- `xor_not_where(self, item: str, operator: Operator, **kwargs)` - Append an additional
+  filter with `XOR NOT`.
 
 In this guide, you'll learn how to:
 
@@ -31,13 +48,14 @@ values={[
 <TabItem value="gqlalchemy">
 
 ```python
-from gqlalchemy import match
+from gqlalchemy import Match
+from gqlalchemy.query_builder import Operator
 
-query = match()
+query = Match()
         .node(labels="Person", variable="p1")
-        .to(edge_label="FRIENDS_WITH")
+        .to(relationship_type="FRIENDS_WITH")
         .node(labels="Person", variable="p2")
-        .where(item="p1.name", operator="=", expression="p2.name")
+        .where(item="p1.name", operator=Operator.EQUAL, expression="p2.name")
         .return_()
         .execute()
 ```
@@ -68,13 +86,14 @@ values={[
 <TabItem value="gqlalchemy">
 
 ```python
-from gqlalchemy import match
+from gqlalchemy import Match
+from gqlalchemy.query_builder import Operator
 
-query = match()
+query = Match()
         .node(labels="Person", variable="p1")
-        .to(edge_label="FRIENDS_WITH")
+        .to(relationship_type="FRIENDS_WITH")
         .node(labels="Person", variable="p2")
-        .where_not(item="p1.name", operator="=", expression="p2.name")
+        .where_not(item="p1.name", operator=Operator.EQUAL, expression="p2.name")
         .return_()
         .execute()
 ```
@@ -103,15 +122,16 @@ values={[
 <TabItem value="gqlalchemy">
 
 ```python
-from gqlalchemy import match
+from gqlalchemy import Match
+from gqlalchemy.query_builder import Operator
 
-query = match()
+query = Match()
         .node(labels="Person", variable="p1")
-        .to(edge_label="FRIENDS_WITH")
+        .to(relationship_type="FRIENDS_WITH")
         .node(labels="Person", variable="p2")
-        .where(item="p1.first_name", operator="=", expression="p2.first_name")
-        .and_where(item="p1.last_name", operator="=", expression="p2.last_name")
-        .and_not_where(item="p1.address", operator="=", expression="p2.address")
+        .where(item="p1.first_name", operator=Operator.EQUAL, expression="p2.first_name")
+        .and_where(item="p1.last_name", operator=Operator.EQUAL, expression="p2.last_name")
+        .and_not_where(item="p1.address", operator=Operator.EQUAL, expression="p2.address")
         .return_()
         .execute()
 ```
@@ -145,9 +165,9 @@ values={[
 <TabItem value="gqlalchemy">
 
 ```python
-from gqlalchemy import match
+from gqlalchemy import Match
 
-query = match()
+query = Match()
         .node(labels="Person", variable="p")
         .where(item="p.age", operator=">", literal=18)
         .return_()
@@ -179,12 +199,13 @@ values={[
 <TabItem value="gqlalchemy">
 
 ```python
-from gqlalchemy import match
+from gqlalchemy import Match
+from gqlalchemy.query_builder import Operator
 
-query = match()
+query = Match()
         .node(labels="Person", variable="p")
-        .where(item="p.age", operator=">", literal=18)
-        .or_where(item="p.name", operator="=", literal="John")
+        .where(item="p.age", operator=Operator.GREATER_THAN, literal=18)
+        .or_where(item="p.name", operator=Operator.EQUAL, literal="John")
         .return_()
         .execute()
 ```
@@ -220,11 +241,12 @@ values={[
 <TabItem value="gqlalchemy">
 
 ```python
-from gqlalchemy import match
+from gqlalchemy import Match
+from gqlalchemy.query_builder import Operator
 
-query = match()
+query = Match()
         .node(variable="p")
-        .where(item="p", operator=":", expression="Person")
+        .where(item="p", operator=Operator.LABEL_FILTER, expression="Person")
         .return_()
         .execute()
 ```

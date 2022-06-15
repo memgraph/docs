@@ -5,8 +5,12 @@ sidebar_label: Kafka streams
 slug: /how-to-guides/streams/manage-kafka-streams
 ---
 
+import Neo4jWarning from '../../templates/_neo4j_warning.mdx';
+
 The stream functionality enables Memgraph to connect to a Kafka, Pulsar or
 Redpanda cluster and run graph analytics on the data stream.
+
+<Neo4jWarning/>
 
 ## 1. Create a Kafka stream in Memgraph
 

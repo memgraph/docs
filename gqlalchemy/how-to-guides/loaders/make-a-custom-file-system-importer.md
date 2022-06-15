@@ -5,6 +5,8 @@ sidebar_label: Make a custom file system importer
 slug: /how-to-guides/custom-file-system-importer
 ---
 
+import Neo4jWarning from '../../templates/_neo4j_warning.mdx';
+
 > To learn how to import table data from a file to the Memgraph database, head
 > over to the [How to import table
 > data](/how-to-guides/loaders/import-table-data-to-graph-database.md) guide.
@@ -13,6 +15,8 @@ If you want to read from a file system not currently supported by
 **GQLAlchemy**, or use a file type currently not readable, you can implement
 your own by extending abstract classes `FileSystemHandler` and `DataLoader`,
 respectively.
+
+<Neo4jWarning/>
 
 ## Implementing a new `FileSystemHandler`
 
