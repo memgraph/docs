@@ -8,7 +8,7 @@ If you prefere to use GUI, you can now connect to data streams by using a wizard
 in the Memgraph Lab.
 
 If you need a stream to play around with, we've provided some [Awesome
-Streams](https://awesomedata.stream/)! 
+Data Streams](https://awesomedata.stream/)! 
 
 ## 1. Add a stream
 
@@ -17,14 +17,16 @@ To add a stream in Memgraph Lab:
 1. Switch to **Streams** and **Add New Stream**.
 2. Choose Kafka stream type, enter a stream name, server address, and topics you want to subscribe to.
 3. Go to the **Next Step**.
+4. Click on **Edit** (pencil icon) to modify the *Consumer Group*, *Batch
+   Interval* or *Size*.
 
-If you are trying to connect to MovieLens data stream, the stream configuration
-should looks like this:
+If you are trying to connect to MovieLens data stream from the Awesome Data
+streams, the stream configuration should look similar to this:
 
+<img src={require('../../../data/tutorials/create-stream-lab/creating-stream-movielens.png').default}className={"imgBorder"}/>
 
 Once the basic configuration is finished, you need to define a transformation
 module and attach it to the stream. 
-
 
 ## 2. Add a transformation module
 
@@ -46,6 +48,8 @@ To add the transformation module:
 
 Check the transformation module for MovieLens on [Awesome Streams](https://awesomedata.stream/#/movielens).
 
+<img src={require('../../../data/tutorials/create-stream-lab/transformation-module.png').default}className={"imgBorder"}/>
+
 ## 3. Set Kafka configuration parameters
 
 If necessary, add the Kafka configuration parameters to customize the stream further:
@@ -55,15 +59,13 @@ If necessary, add the Kafka configuration parameters to customize the stream fur
 3. To add another parameter, **Add parameter filed**.
 4. Save Configuration once you have set all parameters.
 
-You can also customize the *Batch Interval* and *Batch Size* by editing the basic stream configuration.
-
 To connect to the [Awesome Streams](https://awesomedata.stream/) you need to set
 the following Kafka configuration parameters:
 
-sasl.username:`public`
-sasl.password:`public`
-security.protocol:`SASL_PLAINTEXT`
-sasl.mechanism:`PLAIN`
+sasl.username:`public` <br/>
+sasl.password:`public` <br/>
+security.protocol:`SASL_PLAINTEXT` <br/>
+sasl.mechanism:`PLAIN` <br/>
 
 ## 4. Connect Memgraph to the stream and start ingesting the data
 
@@ -87,3 +89,4 @@ Switch to **Query Execution** and run a query to visualize the data coming in:
 MATCH p=(n)-[r]-(m)
 RETURN p LIMIT 100;
 ```
+<img src={require('../../../data/tutorials/create-stream-lab/graph.png').default}lassName={"imgBorder"}/>
