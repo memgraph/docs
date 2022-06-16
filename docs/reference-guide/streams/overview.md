@@ -170,11 +170,9 @@ Shows a list of existing streams with the following information:
 CHECK STREAM <stream name> [BATCH_LIMIT <count>] [TIMEOUT <milliseconds>];
 ```
 
-The `CHECK STREAM` clause does a dry-run on the stream with name `<stream name>`
-with `<count>` number of batches and returns the result of the transformation,
-that is, the queries and parameters that would be executed in a normal run. If
-`<count>` number of batches are not processed within the specified `TIMEOUT`,
-probably because not enough messages were received, an exception is thrown.
+The `CHECK STREAM` clause does a dry-run on the stream with name `<stream name>` with `<count>` number of batches and returns a the result of the transformation that will consist of `count` rows. Each row will contain on one hand all raw messages belonging to one batch and on the other all queries and parameters produced by the transformation from that batch.
+
+If `<count>` number of batches are not processed within the specified `TIMEOUT`,probably because not enough messages were received, an exception is thrown.
 
 The default value of `<count>` is 1. `TIMEOUT` is measured in milliseconds, and
 its default value is 30000.
