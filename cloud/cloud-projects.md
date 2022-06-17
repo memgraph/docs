@@ -10,8 +10,8 @@ If you are using a 14-day free trial version of Memgraph Cloud, you can create
 one project that uses up to 2GB of RAM. 
 
 If you are using a paid version of Memgraph Cloud, you can create a maximum of 3
-projects. If you need more projects, feel free to [contact
-us](/help_center/overview.md).
+projects with the following [rates](/payment.md). If you need more projects, feel free to
+[contact us](/help_center/overview.md). 
 
 To create a new project:
 
@@ -55,8 +55,8 @@ Project is backed up by creating a snapshot as Amazon EBS. You cannot create a
 snapshot if you are using a 14-day free trial version of Memgraph Cloud.
 
 If you are using a paid version of Memgraph Cloud, you can create a maximum of 5
-snapshots. If you need more snapshots, feel free to [contact
-us](/help_center/overview.md). 
+snapshots with the following [rates](/payment.md). If you need more snapshots,
+feel free to [contact us](/help_center/overview.md). 
 
 The size of the snapshot is 8 GB smaller than the disk size the project is
 using. If you are using 1 GB of RAM and 11 GB of disk, the snapshot size is 3GB. 
