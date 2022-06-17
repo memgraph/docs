@@ -125,8 +125,8 @@ module.exports = {
               to: "/memgraph-cloud/cloud-account",
             },
             {
-              label: "Cloud instances",
-              to: "/memgraph-cloud/cloud-instances",
+              label: "Cloud projects",
+              to: "/memgraph-cloud/cloud-projects",
             },
             {
               label: "Connect to Cloud",
