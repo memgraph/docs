@@ -51,7 +51,7 @@ To delete a project:
 
 ## Back up a project
 
-Project is backed up by creating a snapshot as Amazon EBS. You cannot create a
+Project is backed up by creating a snapshot with Amazon EBS. You cannot create a
 snapshot if you are using a 14-day free trial version of Memgraph Cloud.
 
 If you are using a paid version of Memgraph Cloud, you can create a maximum of 5
