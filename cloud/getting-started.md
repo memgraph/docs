@@ -31,7 +31,7 @@ with feedback on [Discord](https://discord.com/invite/memgraph):
 
 Here, you can find everything you want to know about:
 
-* [Managing your Cloud account](/cloud-account.md)
-* [Managing you projects within the Memgraph Cloud](/cloud-projects.md)
-* [Connecting to the Memgraph instance running in the Cloud](/cloud-connect.md)
-* [Payment rates and methods](/payment.md)
+* [Managing your Cloud account](cloud-account)
+* [Managing you projects within the Memgraph Cloud](cloud-projects)
+* [Connecting to the Memgraph instance running in the Cloud](cloud-connect)
+* [Payment rates and methods](payment)
