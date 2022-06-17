@@ -9,8 +9,9 @@ sidebar_label: Cloud projects
 If you are using a 14-day free trial version of Memgraph Cloud, you can create
 one project that uses up to 2GB of RAM. 
 
-If you are using a paid version of Memgraph Cloud, you can create an unlimited
-number of projects.
+If you are using a paid version of Memgraph Cloud, you can create a maximum of 3
+projects. If you need more projects, feel free to [contact
+us](/help_center/overview.md).
 
 To create a new project:
 
@@ -22,7 +23,6 @@ To create a new project:
    **Next**. Keep in mind that Memgraph can't retrieve this password if you lose
    it. 
 5. Click **Go to project** to complete the project creation.
-
 
 ## Pause, resume or delete a project
 
@@ -51,7 +51,15 @@ To delete a project:
 
 ## Back up a project
 
-Project is backed up by creating a snapshot.
+Project is backed up by creating a snapshot. You cannot create snapshot if you
+are using a 14-day free trial version of Memgraph Cloud.
+
+If you are using a paid
+version of Memgraph Cloud, you can create a maximum of 5 snapshots. If you need
+more projects, feel free to [contact us](/help_center/overview.md). 
+
+The size of the snapshot is 8 GB smaller than the disk size the project is
+using. If you are using 1 GB of RAM and 11 GB of disk, the snapshot size is 3GB. 
 
 To create a snapshot:
 1. Click **Projects** in the left sidebar.
