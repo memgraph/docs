@@ -21,9 +21,17 @@ Instances can be easily paused to save resources, backed up and cloned by
 creating snapshots. 
 
 As a new user, try out Memgraph Cloud in a 14-days free trial and provide us
-with feedback on X, Y, Z:
+with feedback on [Discord](https://discord.com/invite/memgraph):
 
-1. Go to [cloud.memgraph.com].
+1. Go to [Memgraph Cloud](cloud.memgraph.com).
 2. Sign up with Google or create an account.
 3. Give your project a name and provide a password. 
-4. Your instance is up and running - connect to it and start querying!
+4. Your project is up and running - connect to the instance, import data and
+   start querying!
+
+Here, you can find everything you want to know about:
+
+* [Managing your Cloud account](/cloud-account.md)
+* [Managing you projects within the Memgraph Cloud](/cloud-projects.md)
+* [Connecting to the Memgraph instance running in the Cloud](/cloud-connect.md)
+* [Payment rates and methods](/payment.md)
