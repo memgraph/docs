@@ -8,14 +8,21 @@ slug: /
 [Memgraph Cloud](https://cloud.memgraph.com/) is a fully managed cloud service
 that allows you to create instances of MemgraphDB from your browser. You can
 create projects with instances that can use up to 32 GB of RAM to which you can
-connect using Memgraph Lab, mgconsole or various drivers. All connections¸use
-SSL encryption with a self-signed certificate. 
+connect using [Memgraph Lab](cloud-connect#connect-with-memgraph-lab),
+[mgconsole](cloud-connect#connect-with-mgconsole) or various
+[drivers](cloud-connect#connect-with-drivers). All connections¸use SSL
+encryption with a self-signed certificate. 
 
 Use Memgraph Cloud to stream data into Memgraph in real-time and run complex
-graph algorithms and modules developed within the MAGE repository, such as
-PageRank, Community detection or Betweenness centrality. You can also extend the
-Cypher query language by developing your own procedures within query modules in
-Memgraph Lab.
+graph algorithms and modules developed within the [MAGE](/docs/mage) repository,
+such as
+[PageRank](/docs/mage/algorithms/traditional-graph-analytics/pagerank-algorithm),
+[Community
+detection](/docs/mage/algorithms/traditional-graph-analytics/community-detection-algorithm)
+or [Betweenness
+centrality](/docs/mage/algorithms/traditional-graph-analytics/betweenness-centrality-algorithm).
+You can also extend the Cypher query language by developing your own procedures
+within query modules in Memgraph Lab.
 
 Instances can be easily paused to save resources, backed up and cloned by
 creating snapshots. 
