@@ -10,7 +10,9 @@ sidebar_label: Changelog
 
 - Fix header on `SHOW REPLICATION ROLE` query and wrong timout info on `SHOW
   REPLICAS` query. [#376](https://github.com/memgraph/memgraph/pull/376)
+- Added a check to ensure two replicas cannot be registered to an identical end-point. [#406](https://github.com/memgraph/memgraph/pull/406)
 - Adapted compilation flag so that the memory allocator uses JEMALLOC while counting allocated memory. [#401](https://github.com/memgraph/memgraph/pull/401)
+
 
 ### Major Features and Improvements
 
@@ -22,6 +24,7 @@ sidebar_label: Changelog
   check allows latest information about the state of each replica from `main`
   point of view. [#380](https://github.com/memgraph/memgraph/pull/380)
 - Updated results return by [`CHECK STREAM`](/reference-guide/streams/overview.md) query to group all queries/raw messages on single line per batch. [#394](https://github.com/memgraph/memgraph/pull/394)
+- Added `BATCH_LIMIT` and `TIMEOUT` options to [`START STREAM`](/reference-guide/streams/overview.md) query that returns the raw message received by the transformation. [#392](https://github.com/memgraph/memgraph/pull/392)
 
 ## v2.2.1 - Mar 17, 2022
 
