@@ -8,7 +8,7 @@ sidebar_label: Cloud account
 
 To create Memgraph Cloud account:
 
-1. Go to [Memgraph Cloud sign up page](https://cloud.memgraph.com/signup).
+1. Go to [Memgraph Cloud sign-up page](https://cloud.memgraph.com/signup).
 2. Provide your personal information, set up a password and accept the terms of
    service. You can also register to Memgraph Cloud with your Google account.
 3. Verify your email address by clicking on the link in the email you got from Memgraph.
@@ -16,7 +16,7 @@ To create Memgraph Cloud account:
    return, we can direct our support better, and adding languages that we
    haven’t listed helps us leave no man behind once a user base is established. 
  
-As a new user you will start using a 14-day free trial version of Memgraph
+As a new user, you will start using a 14-day free trial version of Memgraph
 Cloud, in which you can create one project that uses up to 2GB RAM. 
 
 If you require more compute, enter a valid payment method and upgrade your
@@ -34,13 +34,13 @@ To change your Memgraph Cloud password, login into your account and:
 
 ### Retrieve Memgraph Cloud password
 
-If you forgot your Memgraph Cloud password you can reset it:
+If you forgot your Memgraph Cloud password, you can reset it:
 
-1.  Visit [Forgot your password page](https://cloud.memgraph.com/reset-password-request). 
-2.  Enter your email address and click **Send recovery email**. 
-3.  Click on the link in the *Reset the password for Memgraph Cloud* email. It
-    will redirect you to the *Reset your password* page.
-4.  Enter a new password and **Confirm changes**.
+1. Visit [Forgot your password page](https://cloud.memgraph.com/reset-password-request). 
+2. Enter your email address and click **Send recovery email**. 
+3. Click on the link in the *Reset the password for Memgraph Cloud* email. It
+   will redirect you to the *Reset your password* page.
+4. Enter a new password and **Confirm changes**.
 
 ## Retrieve Memgraph Cloud project password
 
@@ -49,4 +49,10 @@ password is not the same password you use to log into Memgraph Cloud. Memgraph
 **doesn't have access** to those credentials and can't retrieve lost credentials
 for Memgraph Cloud projects.
 
-## Manage payment methods (V)
+## Manage payment methods
+
+In the **Account** section of Memgraph Cloud you can **Add Credit Card**, **Redeem
+Code** or switch to the **Invoice** tab to check paid and due invoices. 
+
+For more details and current rates, visit the [payment](/payment.md) section of
+the docs. 

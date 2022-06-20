@@ -6,10 +6,10 @@ sidebar_label: Connect to Cloud
 
 ## Connect with Memgraph Lab
 
-Memgraph Lab comes in two flavors, as a desktop application and as a in-browser
+Memgraph Lab comes in two flavors, as a desktop application and as an in-browser
 application. 
 
-To connect using in-browser application:
+To connect using the in-browser application:
 1. Click **Projects** in the left sidebar. 
 2. Locate **Connect via client** section.
 3. Click **Connect in browser** button to open Memgraph Lab in your browser. The
@@ -18,7 +18,7 @@ To connect using in-browser application:
 
 <img src={require('./data/connect-to-cloud-memgraph-lab-web.png').default} className={"imgBorder"}/>
 
-To use desktop version of Memgraph Lab:
+To use the desktop version of Memgraph Lab:
 1. Download [Memgraph Lab](https://memgraph.com/download/#memgraph-lab).
 2. Open Memgraph Lab and switch to **Connect Manually**.
 3. Extend the **Advanced Settings** and fill out the connection fields with the
@@ -76,7 +76,7 @@ Read more about it on [GQLAlchemy Quick Start Guide](/gqlalchemy/how-to-guides).
 
 Rust driver `rsmgclient` is implemented as a wrapper around `mgclient`, the official Memgraph client library. You will need to install `mgclient` before using `rsmgclient`.
 
-Step 1: Install `mgclient` which is a C library interface for the Memgraph database. Follow the installation instructions from [GitHub main page](https://github.com/memgraph/mgclient).
+Step 1: Install `mgclient`, which is a C library interface for the Memgraph database. Follow the installation instructions from [GitHub main page](https://github.com/memgraph/mgclient).
 
 ```
 git clone https://github.com/memgraph/mgclient
@@ -129,7 +129,7 @@ Read more about it on [Rust Quick Start Guide](/memgraph/connect-to-memgraph/dri
 
 ### C++
 
-Step 1: Install `mgclient` which is a C library interface for the Memgraph database. Follow the installation instructions from [GitHub main page](https://github.com/memgraph/mgclient).
+Step 1: Install `mgclient`, which is a C library interface for the Memgraph database. Follow the installation instructions from [GitHub main page](https://github.com/memgraph/mgclient).
 
 ```
 git clone https://github.com/memgraph/mgclient
@@ -319,7 +319,7 @@ namespace MemgraphApp
 
 ### Golang
 
-Step 1: Make sure your application has been setup to use go modules (there should be a `go.mod` file in your application root). Add the driver with:
+Step 1: Make sure your application has been set up to use go modules (there should be a `go.mod` file in your application root). Add the driver with:
 
 ```
 go get github.com/neo4j/neo4j-go-driver/neo4j

@@ -47,11 +47,11 @@ To delete a project:
 1. Click **Projects** in the left sidebar.
 2. Click on the project you want to delete.
 3. In the **Actions** section, click **Delete Project**.
-4. In the confirmation pop-up, click **Confirm** button.
+4. In the confirmation pop-up, click the **Confirm** button.
 
 ## Back up a project
 
-Project is backed up by creating a snapshot with Amazon EBS. You cannot create a
+A project is backed up by creating a snapshot with Amazon EBS. You cannot create a
 snapshot if you are using a 14-day free trial version of Memgraph Cloud.
 
 If you are using a paid version of Memgraph Cloud, you can create a maximum of 5
@@ -67,7 +67,7 @@ To create a snapshot:
 3. In the **Actions** section, click **Create Snapshot**.
 4. In the pop-up, give the snapshot a name and **Create** it.
 
-You can manage your snapshots in the **Snapshots** view where you can **Edit
+You can manage your snapshots in the **Snapshots** view, where you can **Edit
 Name** or **Delete Snapshot**.
 
 ## Restore or clone a project
@@ -80,7 +80,7 @@ To restore or clone a project:
 2. Click on the snapshot you want to use.
 3. In the **Actions** section, click **Reboot as Project**.
 4. In the pop-up, give the new project a name, set password and select project
-   size then **RESTORE**.
+   size, then **RESTORE**.
    
 ## Resize a project
 

@@ -25,12 +25,12 @@ If you get a coupon code, you can add it by:
 Each code has an expiration date. If do not create a project or snapshot within
 that period, the code will expire. 
 
-Once you redeem a code it will be applied on your next invoice, regardless of
+Once you redeem a code, it will be applied to your next invoice, regardless of
 the amount of fees on the invoice, which means that the whole coupon will
 applied even if the value of the coupon is higher than the amount of the invoice
 it is applied to. 
 
-## Check payed and due invoices
+## Check paid and due invoices
 
 To check pay and due invoices:
 
@@ -89,43 +89,45 @@ calculated by the following rates:
 
 ## Snapshot rates
 
+The size of a snapshot is 8 GB smaller than the disk size the project is
+using. If you are using 1 GB of RAM and 11 GB of disk, the snapshot size is 3GB.
 Snapshots will be charged by the following rates:
 
-| AWS region                       | Disk (GB) | Daily price ($) | Monthly price ($) |
-|----------------------------------|-----------|-----------------|-------------------|
-| N. Virginia (us-east-1)          | 3         | 0.01            | 0.29              |
-|                                  | 6         | 0.02            | 0.59              |
-|                                  | 12        | 0.04            | 1.18              |
-|                                  | 24        | 0.08            | 2.35              |
-|                                  | 48        | 0.16            | 4.70              |
-|                                  | 96        | 0.32            | 9.40              |
-| N. California (us-west-1)        | 3         | 0.01            | 0.32              |
-|                                  | 6         | 0.02            | 0.65              |
-|                                  | 12        | 0.04            | 1.30              |
-|                                  | 24        | 0.09            | 2.59              |
-|                                  | 48        | 0.17            | 5.18              |
-|                                  | 96        | 0.34            | 10.37             |
-| Frankfurt (eu-central-1)         | 3         | 0.01            | 0.32              |
-|                                  | 6         | 0.02            | 0.65              |
-|                                  | 12        | 0.04            | 1.30              |
-|                                  | 24        | 0.09            | 2.59              |
-|                                  | 48        | 0.17            | 5.18              |
-|                                  | 96        | 0.35            | 10.37             |
-| Hong Kong (ap-east-1)            | 3         | 0.01            | 0.32              |
-|                                  | 6         | 0.02            | 0.65              |
-|                                  | 12        | 0.04            | 1.30              |
-|                                  | 24        | 0.09            | 2.59              |
-|                                  | 48        | 0.17            | 5.18              |
-|                                  | 96        | 0.35            | 10.37             |
-| Sydney (ap-southeast-2)          | 3         | 0.01            | 0.32              |
-|                                  | 6         | 0.02            | 0.65              |
-|                                  | 12        | 0.04            | 1.30              |
-|                                  | 24        | 0.09            | 2.59              |
-|                                  | 48        | 0.17            | 5.18              |
-|                                  | 96        | 0.35            | 10.37             |
-| Ohio (us-east-2)                 | 3         | 0.01            | 0.29              |
-|                                  | 6         | 0.02            | 0.59              |
-|                                  | 12        | 0.04            | 1.18              |
-|                                  | 24        | 0.08            | 2.35              |
-|                                  | 48        | 0.16            | 4.70              |
-|                                  | 96        | 0.31            | 9.40              |
+| AWS region                       | Source project size |Disk (GB) | Daily price ($) | Monthly price ($) |
+|----------------------------------|---------------------|-----------|-----------------|-------------------|
+| N. Virginia (us-east-1)          | 1 GB RAM            | 3         | 0.01            | 0.29              |
+|                                  | 2 GB RAM            | 6         | 0.02            | 0.59              |
+|                                  | 4 GB RAM            | 12        | 0.04            | 1.18              |
+|                                  | 8 GB RAM            | 24        | 0.08            | 2.35              |
+|                                  | 16 GB RAM           | 48        | 0.16            | 4.70              |
+|                                  | 32 GB RAM           | 96        | 0.32            | 9.40              |
+| N. California (us-west-1)        | 1 GB RAM            | 3         | 0.01            | 0.32              |
+|                                  | 2 GB RAM            | 6         | 0.02            | 0.65              |
+|                                  | 4 GB RAM            | 12        | 0.04            | 1.30              |
+|                                  | 8 GB RAM            | 24        | 0.09            | 2.59              |
+|                                  | 16 GB RAM           | 48        | 0.17            | 5.18              |
+|                                  | 32 GB RAM           | 96        | 0.34            | 10.37             |
+| Frankfurt (eu-central-1)         | 1 GB RAM            | 3         | 0.01            | 0.32              |
+|                                  | 2 GB RAM            | 6         | 0.02            | 0.65              |
+|                                  | 4 GB RAM            | 12        | 0.04            | 1.30              |
+|                                  | 8 GB RAM            | 24        | 0.09            | 2.59              |
+|                                  | 16 GB RAM           | 48        | 0.17            | 5.18              |
+|                                  | 32 GB RAM           | 96        | 0.35            | 10.37             |
+| Hong Kong (ap-east-1)            | 1 GB RAM            | 3         | 0.01            | 0.32              |
+|                                  | 2 GB RAM            | 6         | 0.02            | 0.65              |
+|                                  | 4 GB RAM            | 12        | 0.04            | 1.30              |
+|                                  | 8 GB RAM            | 24        | 0.09            | 2.59              |
+|                                  | 16 GB RAM           | 48        | 0.17            | 5.18              |
+|                                  | 32 GB RAM           | 96        | 0.35            | 10.37             |
+| Sydney (ap-southeast-2)          | 1 GB RAM            | 3         | 0.01            | 0.32              |
+|                                  | 2 GB RAM            | 6         | 0.02            | 0.65              |
+|                                  | 4 GB RAM            | 12        | 0.04            | 1.30              |
+|                                  | 8 GB RAM            | 24        | 0.09            | 2.59              |
+|                                  | 16 GB RAM           | 48        | 0.17            | 5.18              |
+|                                  | 32 GB RAM           | 96        | 0.35            | 10.37             |
+| Ohio (us-east-2)                 | 1 GB RAM            | 3         | 0.01            | 0.29              |
+|                                  | 2 GB RAM            | 6         | 0.02            | 0.59              |
+|                                  | 4 GB RAM            | 12        | 0.04            | 1.18              |
+|                                  | 8 GB RAM            | 24        | 0.08            | 2.35              |
+|                                  | 16 GB RAM           | 48        | 0.16            | 4.70              |
+|                                  | 32 GB RAM           | 96        | 0.31            | 9.40              |
