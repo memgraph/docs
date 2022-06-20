@@ -10,7 +10,6 @@ are an advanced Memgraph users or a graph database enthusiasts we hope you will
 enjoy reading about the following topics:
 
   * [Storage](storage.md)
-  * [Graph algorithms](graph-algorithms.md)
   * [Indexing](indexing.md)
   * [Replication](replication.md)
   * [Telemetry](telemetry.md)

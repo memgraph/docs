@@ -1,7 +1,7 @@
 ---
 id: understanding-music-with-modules
-title: Understanding music (with query modules)
-sidebar_label: Understanding music (with query modules)
+title: Exploring a music social network
+sidebar_label: Exploring a music social network
 ---
 
 This article is part of a series intended to show users how to use Memgraph on
@@ -40,6 +40,8 @@ a social network. Social networks appear in various sites, e.g., Youtube, which
 is primarily a site for watching videos, can be classified as a social network.
 For this tutorial, we'll use data consisting of users of the music streaming
 platform called [Deezer](https://www.deezer.com/).
+
+<img src={require('../data/music-genres-social-network.png').default} className={"imgBorder"}/>
 
 The data consists of around 50k Deezer users from Croatia, but we prepared a
 subset of the dataset only composed of 2k users. Each user is defined by id and

@@ -121,6 +121,9 @@ module.exports = {
       link: { type: "doc", id: "tutorials/overview" },
       items: [
         "tutorials/first-steps-with-memgraph",
+        "tutorials/install-memgraph-windows-10",
+        "tutorials/graph-modeling",
+        "tutorials/migrate-relational-database",
         {
           type: "category",
           label: "Exploring datasets with graph analytics",
@@ -136,14 +139,11 @@ module.exports = {
             "tutorials/exploring-datasets/movie-recommendation",
           ],
         },
-        "tutorials/graph-modeling",
-        "tutorials/implement-custom-query-module-in-python",
-        "tutorials/install-memgraph-windows-10",
         "tutorials/style-your-graphs-in-memgraph-lab",
-        "tutorials/migrate-relational-database",
-        "tutorials/graph-stream-processing-with-kafka",
+        "tutorials/implement-custom-query-module-in-python",
         "tutorials/social-network-analysis",
         "tutorials/understanding-music-with-modules",
+        "tutorials/graph-stream-processing-with-kafka",
       ],
     },
     {
@@ -210,6 +210,7 @@ module.exports = {
       items: [
         "reference-guide/backup",
         "reference-guide/graph-algorithms",
+        "reference-guide/memory-control",
         "reference-guide/configuration",
         "reference-guide/data-types",
         {
@@ -246,7 +247,6 @@ module.exports = {
         },
         "reference-guide/isolation-levels",
         "reference-guide/metadata",
-        "reference-guide/memory-control",
         "reference-guide/monitoring-server",
         {
           type: "category",
@@ -316,7 +316,7 @@ module.exports = {
       link: { type: "doc", id: "under-the-hood/overview" },
       items: [
         "under-the-hood/storage",
-        "under-the-hood/graph-algorithms",
+        //"under-the-hood/graph-algorithms",
         "under-the-hood/indexing",
         "under-the-hood/replication",
         "under-the-hood/telemetry",
