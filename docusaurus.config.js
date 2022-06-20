@@ -110,14 +110,34 @@ module.exports = {
             },
           ],
         },
-        /*
         {
           to: '/memgraph-cloud/',
           label: 'Memgraph Cloud',
           position: 'left',
           activeBaseRegex: `/cloud/`,
+          items: [
+            {
+              label: "Getting started",
+              to: "/memgraph-cloud/",
+            },
+            {
+              label: "Cloud account",
+              to: "/memgraph-cloud/cloud-account",
+            },
+            {
+              label: "Cloud projects",
+              to: "/memgraph-cloud/cloud-projects",
+            },
+            {
+              label: "Connect to Cloud",
+              to: "/memgraph-cloud/cloud-connect",
+            },
+            {
+              label: "Payment",
+              to: "/memgraph-cloud/payment",
+            },
+          ],
         },
-        */
         {
           to: "/mage",
           label: "MAGE",
@@ -318,12 +338,10 @@ module.exports = {
               label: "Memgraph Lab",
               to: "/memgraph-lab",
             },
-            /*
             {
               label: 'Memgraph Cloud',
               to: '/memgraph-cloud',
             },
-            */
             {
               label: "Cypher manual",
               to: "/cypher-manual",
