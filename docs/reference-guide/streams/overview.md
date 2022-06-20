@@ -123,14 +123,25 @@ Drops a stream with the name `<stream name>`.
 ## Start a stream
 
 ```cypher
+START STREAM <stream name> [BATCH_LIMIT <count>] [TIMEOUT <milliseconds>];
+```
+
+Starts a specific stream with name `<stream name>` with `<count>` number of batches for a maximum duration of `<milliseconds>` milliseconds. The stream will automatically stop after having consumed the given number of batches or if the timeout is reached.  If `<count>` number of batches are not processed within the specified `TIMEOUT`, probably because not enough messages were received, an exception is thrown. 
+`TIMEOUT` is measured in milliseconds, and its default value is 30000. It can only be used in combination of `BATCH_LIMIT`.
+
+If no `BATCH_LIMIT` limit is provided (thus no `TIMEOUT` neither), then the stream will run for an infinite number of batches and without a timeout limit (see below).
+
+```cypher
 START STREAM <stream name>;
 ```
+
+Starts a specific stream with name `<stream name>` for an infinite number of batches and without a timeout limit.
 
 ```cypher
 START ALL STREAMS;
 ```
 
-Starts a specific stream or all streams.
+Starts all streams for an infinite number of batches and without a timeout limit.
 
 When a stream is started, it resumes ingesting data from the last committed
 offset. If there is no committed offset for the consumer group, then the largest

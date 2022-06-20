@@ -118,9 +118,10 @@ As a result, you should see multiple messages (probably 3) in the output:
 
 As we just demonstrated that the stream is working, we can start to ingest data
 into the database by starting the stream and sending some messages to the topic.
+As a safeguard, you can use the `BATCH_LIMIT` option to first start the stream and let it consume a limited number of batches. 
 
 ```
-START STREAM myStream;
+START STREAM myStream [BATCH_LIMIT <count>] [TIMEOUT <milliseconds>];
 ```
 
 After sending a few messages to the topic, the created vertices can be checked
@@ -134,6 +135,12 @@ by executing `MATCH (n: MESSAGE) RETURN n`:
 | (:MESSAGE {payload: "another message", timestamp: 1625757441665, topic: "quickstart-events"}) |
 | (:MESSAGE {payload: "it is working!", timestamp: 1625757444175, topic: "quickstart-events"})  |
 +-----------------------------------------------------------------------------------------------+
+```
+
+If the result satisfies you, then you can fully start the stream by calling `START STREAM myStream` without providing a `BATCH_LIMIT` option. 
+
+```
+START STREAM myStream;
 ```
 
 ## Committed offsets
