@@ -4,11 +4,14 @@ title: Manage your Cloud account
 sidebar_label: Cloud account
 ---
 
+Find out how to sign up for Memgraph Cloud and manage
+passwords.  
+
 ## Create Memgraph Cloud account
 
 To create Memgraph Cloud account:
 
-1. Go to [Memgraph Cloud sign-up page](https://cloud.memgraph.com/signup).
+1. Go to [Memgraph Cloud sign-up](https://cloud.memgraph.com/signup) page.
 2. Provide your personal information, set up a password and accept the terms of
    service. You can also register to Memgraph Cloud with your Google account.
 3. Verify your email address by clicking on the link in the email you got from Memgraph.
@@ -36,7 +39,7 @@ To change your Memgraph Cloud password, login into your account and:
 
 If you forgot your Memgraph Cloud password, you can reset it:
 
-1. Visit [Forgot your password page](https://cloud.memgraph.com/reset-password-request). 
+1. Visit [Forgot your password](https://cloud.memgraph.com/reset-password-request) page. 
 2. Enter your email address and click **Send recovery email**. 
 3. Click on the link in the *Reset the password for Memgraph Cloud* email. It
    will redirect you to the *Reset your password* page.
@@ -54,5 +57,5 @@ for Memgraph Cloud projects.
 In the **Account** section of Memgraph Cloud you can **Add Credit Card**, **Redeem
 Code** or switch to the **Invoice** tab to check paid and due invoices. 
 
-For more details and current rates, visit the [payment](/payment.md) section of
+For more details and current rates, visit the [payment](payment) section of
 the docs. 

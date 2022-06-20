@@ -4,6 +4,9 @@ title: Manage payment
 sidebar_label: Payment
 ---
 
+Below are instructions on how to manage Memgraph Cloud payment, and current
+Cloud rates. 
+
 ## Add a payment method
 
 To add a payment method:

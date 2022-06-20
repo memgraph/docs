@@ -4,6 +4,10 @@ title: Connect to a Cloud instances
 sidebar_label: Connect to Cloud
 ---
 
+You can connect to an instance running within the Memgraph Cloud project via
+**Memgraph Lab**, a visual interface, **mgconsole**, command-line interface, or
+one of many **drivers** below. 
+
 ## Connect with Memgraph Lab
 
 Memgraph Lab comes in two flavors, as a desktop application and as an in-browser

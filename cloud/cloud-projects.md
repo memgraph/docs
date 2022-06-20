@@ -4,13 +4,16 @@ title: Manage your Cloud projects
 sidebar_label: Cloud projects
 ---
 
-## Create a new Memgraph project
+After you've created a Memgraph Cloud project, you can pause and resume it,
+delete, backup, restore, clone and resize it.
+
+## Create a new Memgraph Cloud project
 
 If you are using a 14-day free trial version of Memgraph Cloud, you can create
 one project that uses up to 2GB of RAM. 
 
 If you are using a paid version of Memgraph Cloud, you can create a maximum of 3
-projects with the following [rates](/payment.md). If you need more projects, feel free to
+projects with the following [rates](payment). If you need more projects, feel free to
 [contact us](/memgraph/help_center). 
 
 To create a new project:
@@ -55,7 +58,7 @@ A project is backed up by creating a snapshot with Amazon EBS. You cannot create
 snapshot if you are using a 14-day free trial version of Memgraph Cloud.
 
 If you are using a paid version of Memgraph Cloud, you can create a maximum of 5
-snapshots with the following [rates](/payment.md). If you need more snapshots,
+snapshots with the following [rates](payment). If you need more snapshots,
 feel free to [contact us](/memgraph/help_center). 
 
 The size of the snapshot is 8 GB smaller than the disk size the project is
