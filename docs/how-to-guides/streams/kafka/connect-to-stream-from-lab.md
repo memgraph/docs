@@ -8,7 +8,7 @@ If you prefer to use GUI, you can now connect to data streams by using a wizard
 in the Memgraph Lab.
 
 If you need a stream to play around with, we've provided some [Awesome
-Data Streams](https://awesomedata.stream/)! 
+Data Stream](https://awesomedata.stream/)! 
 
 ## 1. Add a stream
 
@@ -46,7 +46,7 @@ To add the transformation module:
    transformation functions** on the right.
 7. Select a transformation procedure and **Attach to Stream**.
 
-Check the transformation module for MovieLens on [Awesome Data Streams](https://awesomedata.stream/#/movielens).
+Check the transformation module for MovieLens on [Awesome Data Stream](https://awesomedata.stream/#/movielens).
 
 <img src={require('../../../data/tutorials/create-stream-lab/transformation-module.png').default}className={"imgBorder"}/>
 
@@ -59,7 +59,7 @@ If necessary, add the Kafka configuration parameters to customize the stream fur
 3. To add another parameter, **Add parameter filed**.
 4. **Save Configuration** once you have set all parameters.
 
-To connect to the [Awesome Data Streams](https://awesomedata.stream/) you need to set
+To connect to the [Awesome Data Stream](https://awesomedata.stream/) you need to set
 the following Kafka configuration parameters:
 
 * **sasl.username** \| public <br/>
