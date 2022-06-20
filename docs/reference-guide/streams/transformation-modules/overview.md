@@ -18,6 +18,9 @@ To create a transformation module, you need to:
 3. Load the file into Memgraph either on startup (automatically) or by running a
    `CALL mg.load();` query
 
+If you are using Memgraph Lab you can [create transformation module within the
+application](#creating-transformation-modules-within-memgraph-lab). 
+
 ## Creating a transformation module
 
 Memgraph supports user-defined transformations procedures written in **C** and
@@ -42,7 +45,8 @@ you are using
 ## Loading modules on startup
 
 Memgraph attempts to load the modules from all `*.so` and `*.py` files it finds
-in the default (`/usr/lib/memgraph/query_modules`) directory. The `*.so` modules
+in the default (`/usr/lib/memgraph/query_modules` and
+`/memgraph/internal_modules/`) directories. The `*.so` modules
 are written using the C API and the `*.py` modules are written using the Python
 API. Each file corresponds to one module. Names of these files will be mapped to
 module names. For example, `hello.so` will be mapped to the `hello` module and a
@@ -88,6 +92,18 @@ docker cp ./trans_module.py <CONTAINER ID>:/usr/lib/memgraph/query_modules/trans
 The file is now inside your Docker container.
 
 </details>
+
+## Creating transformation modules within Memgraph Lab
+
+If you are using Memgraph Lab to connect to the database instance, you can
+create the transformation module within the application:
+
+1. Go to **Query Modules** and click on **+ New Module**
+2. Give the transformation module a name and **Create** it
+3. Write the transformation procedures and click **Save & Close**
+
+You will see the signature and overview of the transformation procedure that you
+can now use while creating a new stream. 
 
 ## Utility procedures for transformations
 

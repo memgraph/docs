@@ -109,7 +109,7 @@ following code into the **Cypher Editor**.
 
 ```cypher
 
-MATCH p = (madrid:City { name: "Madrid" })-[e *BSF ..2]-(:City)
+MATCH p = (madrid:City { name: "Madrid" })-[e *BFS ..2]-(:City)
 RETURN p;
 
 ```

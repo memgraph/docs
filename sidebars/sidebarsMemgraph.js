@@ -162,6 +162,7 @@ module.exports = {
               items: [
                 "how-to-guides/streams/kafka/kafka-streams",
                 "how-to-guides/streams/kafka/implement-transformation-module",
+                "how-to-guides/streams/kafka/connect-to-stream-from-lab",
               ],
             },
             {
