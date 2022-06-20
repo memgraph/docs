@@ -82,7 +82,7 @@ If you need to access the Memgraph configuration file or logs, you will need to
 specify the following volumes when starting Memgraph through **PowerShell**:
 
 ```console
-docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 -e MEMGRAPH="--bolt-port=7687" `
+docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 -e MEMGRAPH="--log-level=TRACE" `
   -v mg_lib:/var/lib/memgraph `
   -v mg_log:/var/log/memgraph `
   -v mg_etc:/etc/memgraph `
@@ -100,7 +100,7 @@ When using Docker, you can also specify the configuration options in the `docker
 run` command:
 
 ```console
-docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 -e MEMGRAPH="--bolt-port=7687" memgraph/memgraph-platform
+docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 -e MEMGRAPH="--log-level=TRACE" memgraph/memgraph-platform
 ```
 
 :::caution
@@ -108,8 +108,9 @@ docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 -e MEMGRAPH="--bolt-port=7
 When working with Memgraph Platform, you should pass configuration flags inside
 of environmental variables.
 
-For example, you can start the MemgraphDB image with `docker run memgraph
---bolt-port=7687`, but you should start Memgraph Platform with `docker run -e MEMGRAPH="--bolt-port=7687"
+For example, you can start the MemgraphDB image with `docker run memgraph/memgraph
+--bolt-port=7687 --log-level=TRACE`, but you should start Memgraph Platform with
+`docker run -e MEMGRAPH="--bolt-port=7687 --log-level=TRACE"
 memgraph/memgraph-platform`.
 
 :::

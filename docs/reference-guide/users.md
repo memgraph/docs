@@ -82,13 +82,13 @@ If you are connecting with mgconsole you should add the username and password
 flags to the `docker run` command: 
 
 ```terminal
-docker run -it --entrypoint=mgconsole memgraph --host CONTAINER_IP --username=<username> --password=<password>
+docker run -it --entrypoint=mgconsole memgraph/memgraph --host CONTAINER_IP --username=<username> --password=<password>
 ```
 
 Example:
 
 ```terminal
-docker run -it --entrypoint=mgconsole memgraph --host 172.17.0.2 --username=vlasta --password=vp
+docker run -it --entrypoint=mgconsole memgraph/memgraph --host 172.17.0.2 --username=vlasta --password=vp
 ```
 
    </TabItem>

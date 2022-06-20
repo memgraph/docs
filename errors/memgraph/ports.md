@@ -46,7 +46,7 @@ When using Docker, you can also specify the configuration options in the `docker
 run` command:
 
 ```
-docker run -p 7687:7687 memgraph --bolt-port=7687
+docker run -p 7687:7687 memgraph/memgraph --log-level=TRACE
 ```
 
   </TabItem>

@@ -23,14 +23,14 @@ When working with Docker and `memgraph-platform` image, you should pass
 configuration flags inside of environmental variables, for example:
 
 ```terminal
-docker run -p 7687:7686 -e MEMGRAPH="--query-modules-directory=/usr/lib/memgraph/query_modules,/usr/lib/memgraph/my_modules" memgraph/memgraph-platform`
+docker run -p 7687:7687 -p 7444:7444 -p 3000:3000 -e MEMGRAPH="--query-modules-directory=/usr/lib/memgraph/query_modules,/usr/lib/memgraph/my_modules" memgraph/memgraph-platform`
 ```
 
 If you are working with `memgraph` or `memgraph-mage` images you should pass
 configuration options like this: 
 
 ```terminal
-docker run -p 7687:7687 -p 7444:7444 memgraph --query-modules-directory=/usr/lib/memgraph/query_modules,/usr/lib/memgraph/my_modules
+docker run -p 7687:7687 -p 7444:7444 memgraph/memgraph --query-modules-directory=/usr/lib/memgraph/query_modules,/usr/lib/memgraph/my_modules
 ```
 
 :::

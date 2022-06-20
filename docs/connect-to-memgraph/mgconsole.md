@@ -18,10 +18,13 @@ If you installed **Memgraph Platform** with the Docker image
 the container. Skip the installation steps and continue with [executing
 Cypher queries](#execute-cypher-queries).
 
+If you installed any other Docker image, you need to manually run mgconsole
+following the steps described below.
+
 :::
 
-If you want to install mgconsole to query a running Memgraph database
-instance, follow the installation steps.
+If you want to install or run mgconsole to query a running Memgraph database
+instance, use the following steps:
 
 <Tabs
   groupId="platform"
@@ -52,7 +55,7 @@ docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' CONT
 **3.** Now, you can start mgconsole by running the following command:
 
 ```terminal
-docker run -it --entrypoint=mgconsole memgraph --host CONTAINER_IP
+docker run -it --entrypoint=mgconsole memgraph/memgraph --host CONTAINER_IP
 ```
 
   </TabItem>
