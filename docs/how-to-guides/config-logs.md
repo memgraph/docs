@@ -155,7 +155,7 @@ For example, if you want to limit memory usage for the whole instance to 50 MiB
 and set the log level to `TRACE`, pass the configuration argument like this:
 
 ```
-docker run -it -p 7687:7687  memgraph/memgraph --memory-limit=50 --log-level=TRACE
+docker run -it -p 7687:7687 -p 7444:7444 memgraph/memgraph --memory-limit=50 --log-level=TRACE
 ```
 
    
