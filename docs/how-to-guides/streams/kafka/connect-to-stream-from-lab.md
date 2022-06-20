@@ -4,7 +4,7 @@ title: How to connect to a data stream from Memgraph Lab
 sidebar_label: Connect to a data stream from Memgraph Lab
 ---
 
-If you prefere to use GUI, you can now connect to data streams by using a wizard
+If you prefer to use GUI, you can now connect to data streams by using a wizard
 in the Memgraph Lab.
 
 If you need a stream to play around with, we've provided some [Awesome
@@ -31,7 +31,7 @@ module and attach it to the stream.
 ## 2. Add a transformation module
 
 A transformation module is a set of user-defined transformation procedures
-written in C or Python that act on data received from a streaming engine.
+written in [C](/reference-guide/streams/transformation-modules/api/c-api.md) or [Python](/reference-guide/streams/transformation-modules/api/python-api.md) that act on data received from a streaming engine.
 Transformation procedures instruct Memgraph on how to transform the incoming
 messages to consume them correctly. 
 
@@ -46,7 +46,7 @@ To add the transformation module:
    transformation functions** on the right.
 7. Select a transformation procedure and **Attach to Stream**.
 
-Check the transformation module for MovieLens on [Awesome Streams](https://awesomedata.stream/#/movielens).
+Check the transformation module for MovieLens on [Awesome Data Streams](https://awesomedata.stream/#/movielens).
 
 <img src={require('../../../data/tutorials/create-stream-lab/transformation-module.png').default}className={"imgBorder"}/>
 
@@ -57,15 +57,15 @@ If necessary, add the Kafka configuration parameters to customize the stream fur
 1. In the Kafka Configuration Parameters **+ Add parameter field**.
 2. Insert the parameter name and value.
 3. To add another parameter, **Add parameter filed**.
-4. Save Configuration once you have set all parameters.
+4. **Save Configuration** once you have set all parameters.
 
-To connect to the [Awesome Streams](https://awesomedata.stream/) you need to set
+To connect to the [Awesome Data Streams](https://awesomedata.stream/) you need to set
 the following Kafka configuration parameters:
 
-sasl.username:`public` <br/>
-sasl.password:`public` <br/>
-security.protocol:`SASL_PLAINTEXT` <br/>
-sasl.mechanism:`PLAIN` <br/>
+* **sasl.username** \| public <br/>
+* **sasl.password** \| public <br/>
+* **security.protocol** \| SASL_PLAINTEXT <br/>
+* **sasl.mechanism** \| PLAIN <br/>
 
 ## 4. Connect Memgraph to the stream and start ingesting the data
 
@@ -73,7 +73,7 @@ Once the stream is configured, you can **Connect to Stream**.
 
 Memgraph will do a series of checks, ensuring that defined topics and
 transformation procedures are correctly configured. If all checks pass
-successfully, you can Start the stream. Once you start the stream, you will no
+successfully, you can **Start the stream**. Once you start the stream, you will no
 longer be able to change any of the configuration settings, except the stream
 offset and the transformation module. 
 
