@@ -7,7 +7,7 @@ sidebar_label: Connect to a data stream from Memgraph Lab
 If you prefer to use GUI, you can now connect to data streams by using a wizard
 in the Memgraph Lab.
 
-If you need a stream to play around with, we've provided some [Awesome
+If you need a stream to play around with, we've provided some at [Awesome
 Data Stream](https://awesomedata.stream/)! 
 
 ## 1. Add a stream
