@@ -49,7 +49,7 @@ values={[
 
 ```python
 from gqlalchemy import Match
-from gqlalchemy.query_builder import Operator
+from gqlalchemy.query_builders.memgraph_query_builder import Operator
 
 query = Match()
         .node(labels="Person", variable="p1")
@@ -87,7 +87,7 @@ values={[
 
 ```python
 from gqlalchemy import Match
-from gqlalchemy.query_builder import Operator
+from gqlalchemy.query_builders.memgraph_query_builder import Operator
 
 query = Match()
         .node(labels="Person", variable="p1")
@@ -123,7 +123,7 @@ values={[
 
 ```python
 from gqlalchemy import Match
-from gqlalchemy.query_builder import Operator
+from gqlalchemy.query_builders.memgraph_query_builder import Operator
 
 query = Match()
         .node(labels="Person", variable="p1")
@@ -200,7 +200,7 @@ values={[
 
 ```python
 from gqlalchemy import Match
-from gqlalchemy.query_builder import Operator
+from gqlalchemy.query_builders.memgraph_query_builder import Operator
 
 query = Match()
         .node(labels="Person", variable="p")
@@ -242,7 +242,7 @@ values={[
 
 ```python
 from gqlalchemy import Match
-from gqlalchemy.query_builder import Operator
+from gqlalchemy.query_builders.memgraph_query_builder import Operator
 
 query = Match()
         .node(variable="p")

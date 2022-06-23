@@ -40,6 +40,7 @@ query builder, check out the following how-to guide:
   procedures**](/how-to-guides/query-builder/call-procedures.md)
 - [**Delete and remove
   objects**](/how-to-guides/query-builder/delete-remove-objects.md)
+- [**Set or update objects](/how-to-guides/query-builder/set-or-update-objects.md)
 
 ## Stream & trigger support
 
