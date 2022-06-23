@@ -95,16 +95,18 @@ using the Python API or C API.
 
 You can change the directory where query modules are stored by using the
 `--query-modules-directory` flag. For more information about using configuration
-flags, check out the Reference guide](/memgraph/reference-guide/configuration).
+flags, check out the [Reference guide](/memgraph/reference-guide/configuration).
 
 ## Memgraph & cloud
 
 ### Does Memgraph offer a cloud graph database as a service?
 
 Yes, we offer fully-managed Memgraph on our cloud infrastructure as a service.
-For more details please visit our [cloud pages](https://cloud.memgraph.com/). In
-addition, [Memgraph Playground](https://playground.memgraph.com/) is a testing
-environment where you can play with various graph datasets.
+For more details please visit [Memgraph Cloud
+pages](https://cloud.memgraph.com/) or check out the [Cloud
+documentation](/cloud). In addition, [Memgraph
+Playground](https://playground.memgraph.com/) is a testing environment where you
+can play with various graph datasets.
 
 ### Can Memgraph be deployed in the cloud?
 
