@@ -6,9 +6,6 @@ sidebar_label: Changelog
 
 ## v2.4.0
 
-- Added `BATCH_LIMIT` and `TIMEOUT` options to [`START STREAM`](/reference-guide/streams/overview.md) query that returns the raw message received by the transformation. [#392](https://github.com/memgraph/memgraph/pull/392)
-- Updated results return by [`CHECK STREAM` query](/reference-guide/streams/overview.md) to group all queries/raw messages on single line per batch. [#394](https://github.com/memgraph/memgraph/pull/394)
-
 ### Bug Fixes
 
 - Fix header on `SHOW REPLICATION ROLE` query and wrong timout info on `SHOW
@@ -21,10 +18,13 @@ sidebar_label: Changelog
 
 - Add replica state to `SHOW REPLICAS` query.
   [#379](https://github.com/memgraph/memgraph/pull/379)
+- Add `current_timestamp` and `number_of_timestamp_behind_master` to `SHOW REPLICAS` query.[#412](https://github.com/memgraph/memgraph/pull/412)
 - Add frequent replica ping. `main` instance checks state of the replicas with
   given frequency controller by `--replication-replica-check-delay-sec`. The
   check allows latest information about the state of each replica from `main`
   point of view. [#380](https://github.com/memgraph/memgraph/pull/380)
+- Updated results return by [`CHECK STREAM`](/reference-guide/streams/overview.md) query to group all queries/raw messages on single line per batch. [#394](https://github.com/memgraph/memgraph/pull/394)
+- Added `BATCH_LIMIT` and `TIMEOUT` options to [`START STREAM`](/reference-guide/streams/overview.md) query that returns the raw message received by the transformation. [#392](https://github.com/memgraph/memgraph/pull/392)
 
 ## v2.2.1 - Mar 17, 2022
 
