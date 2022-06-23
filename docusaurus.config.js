@@ -293,6 +293,10 @@ module.exports = {
               to: "/help-center/faq/memgraph",
             },
             {
+              label: "Memgraph Cloud FAQ",
+              to: "/help-center/faq/cloud",
+            },
+            {
               label: "Memgraph Lab FAQ",
               to: "/help-center/faq/memgraph-lab",
             },
