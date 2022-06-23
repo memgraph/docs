@@ -4,6 +4,19 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v2.3.1 - Jun 23, 2022
+
+### Major Features and Improvements
+### Bug Fixes
+
+- Fix WebSocket connection with clients that do not use binary protocol header. [#403](https://github.com/memgraph/memgraph/pull/403)
+- Fix SSL connection shutdown hanging. [#395](https://github.com/memgraph/memgraph/pull/395)
+- Fix module symbol loading with python modules. [#335](https://github.com/memgraph/memgraph/pull/335)
+- Fix header on `SHOW REPLICATION ROLE` query and wrong timeout info on
+  `SHOW REPLICAS query`. [#376](https://github.com/memgraph/memgraph/pull/376)
+- Adapted compilation flag so that the memory allocator uses JEMALLOC while
+  counting allocated memory. [#401](https://github.com/memgraph/memgraph/pull/401)
+
 ## v2.3.0 - Apr 27, 2022
 
 ### Major Features and Improvements
