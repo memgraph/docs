@@ -44,7 +44,8 @@ You can also download paid invoices as PDF to check the cost breakdown.
 
 ## Charge rates
 
-Below are daily and monthly project and snapshot rates within the Memgraph Cloud.
+Below are daily and monthly project and snapshot rates within the Memgraph
+Cloud.
 
 ## Project rates
 
@@ -92,8 +93,8 @@ calculated by the following rates:
 
 ## Snapshot rates
 
-The size of a snapshot is 8 GB smaller than the disk size the project is
-using. If you are using 1 GB of RAM and 11 GB of disk, the snapshot size is 3GB.
+The size of a snapshot is 8 GB smaller than the disk size the project is using.
+If you are using 1 GB of RAM and 11 GB of disk, the snapshot size is 3GB.
 Snapshots will be charged by the following rates:
 
 | AWS region                       | Source project size |Disk (GB) | Daily price ($) | Monthly price ($) |
