@@ -52,6 +52,8 @@ To delete a project:
 3. In the **Actions** section, click **Delete Project**.
 4. In the confirmation pop-up, click the **Confirm** button.
 
+<img src={require('./data/pause-project.png').default} className={"imgBorder"}/>
+
 ## Back up a project
 
 A project is backed up by creating a snapshot with Amazon EBS. You cannot create
@@ -87,8 +89,24 @@ To restore or clone a project:
    
 ## Resize a project
 
-When your project becomes to big for the current compute, resize it:
+When your project becomes to big for the current compute, upgrade it:
 
 1. [Back up the project](#back-up-a-project) by creating a snapshot.
 2. [Clone the project](#restore-or-clone-a-project) to a bigger project.
-3. [Delete the smaller project.](#pause-resume-or-delete-a-project).
+3. [Delete the smaller project.](#pause-resume-or-delete-a-project)
+
+If you feel your project is too small for the current compute, downgrade it:
+1. Export the database (using Memgraph Lab, mgconsole, GQLAlchemy, driver or any
+other tool).
+2. [Create a new Memgraph Cloud project](#create-a-new-memgraph-cloud-project).
+3. Use an appropriate tool to connect to the project and import the database.
+
+## Role-base access control
+
+Memgraph Cloud project instances come with 3 roles: `admin`, `readonly`,
+`readwrite`
+
+Users can belong to one of these three roles and the admin can grant, deny or
+revoke a certain set of privileges, thereby eliminating security concerns.
+Read more [how to manage user
+privileges](/docs/memgraph/how-to-guides/manage-user-privileges).

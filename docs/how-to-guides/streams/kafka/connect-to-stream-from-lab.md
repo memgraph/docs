@@ -67,6 +67,8 @@ the following Kafka configuration parameters:
 * **security.protocol** \| SASL_PLAINTEXT <br/>
 * **sasl.mechanism** \| PLAIN <br/>
 
+<img src={require('../../../data/tutorials/create-stream-lab/config-parameters.png').default}className={"imgBorder"}/>
+
 ## 4. Connect Memgraph to the stream and start ingesting the data
 
 Once the stream is configured, you can **Connect to Stream**. 
