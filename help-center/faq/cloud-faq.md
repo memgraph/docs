@@ -32,7 +32,7 @@ That is the initial limit for new users. If you want to create more projects,
 Yes, it is. You can find detailed instructions in [Memgraph Cloud
 documentation](/docs/memgraph-cloud/cloud-projects#resize-a-project).
 
-### I've created a project with 2GB RAM, but Memgraph Labs says there is only1.54GB available. Why is that so?
+### I've created a project with 2GB RAM, but Memgraph Labs says there is only 1.54GB available. Why is that so?
 A par of RAM is allocated to the operating system and other services. They
 usually take 13-15% of the total RAM. Approximate free RAM is: 
 - 1GB RAM Memgraph Cloud project has about 860 MB free RAM
