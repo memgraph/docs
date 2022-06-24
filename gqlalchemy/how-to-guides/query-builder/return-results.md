@@ -166,7 +166,7 @@ values={[
 
 ```python
 from gqlalchemy import Match
-from gqlalchemy.query_builder import Order
+from gqlalchemy.query_builders.memgraph_query_builder import Order
 
 query = Match().node(variable="n").return_().order_by(properties=("n.id", Order.ASC).execute()
 ```
@@ -193,7 +193,7 @@ values={[
 
 ```python
 from gqlalchemy import Match
-from gqlalchemy.query_builder import Order
+from gqlalchemy.query_builders.memgraph_query_builder import Order
 
 query = Match().node(variable="n").return_().order_by(properties=("n.id", Order.ASCENDING).execute()
 ```
@@ -231,7 +231,7 @@ values={[
 
 ```python
 from gqlalchemy import Match
-from gqlalchemy.query_builder import Order
+from gqlalchemy.query_builders.memgraph_query_builder import Order
 
 query = Match().node(variable="n").return_().order_by(properties=("n.id", Order.DESC).execute()
 ```
@@ -271,7 +271,7 @@ values={[
 
 ```python
 from gqlalchemy import Match
-from gqlalchemy.query_builder import Order
+from gqlalchemy.query_builders.memgraph_query_builder import Order
 
 query = Match()
         .node(variable="n")

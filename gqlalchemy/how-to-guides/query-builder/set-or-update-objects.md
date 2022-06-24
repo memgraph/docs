@@ -29,7 +29,7 @@ also use a simple equals sign as a string - `"="`.
 
 ```python
 from gqlalchemy import Match
-from gqlalchemy.query_builder import Operator
+from gqlalchemy.query_builders.memgraph_query_builder import Operator
 
 query = Match()
         .node(labels="Country", variable="c", name="Germany")
@@ -63,7 +63,7 @@ it to a new value.
 
 ```python
 from gqlalchemy import Match
-from gqlalchemy.query_builder import Operator
+from gqlalchemy.query_builders.memgraph_query_builder import Operator
 
 query = Match()
         .node(variable='n')
@@ -102,7 +102,7 @@ has a label, then it will have both old and new label.
 
 ```python
 from gqlalchemy import Match
-from gqlalchemy.query_builder import Operator
+from gqlalchemy.query_builders.memgraph_query_builder import Operator
 
 query = Match()
         .node(variable="c", name="Germany")
@@ -139,7 +139,7 @@ the map will be removed.
 
 ```python
 from gqlalchemy import Match
-from gqlalchemy.query_builder import Operator
+from gqlalchemy.query_builders.memgraph_query_builder import Operator
 
 query = Match()
         .node(variable='c', labels='Country')
@@ -176,7 +176,7 @@ in the map will be left as is.
 
 ```python
 from gqlalchemy import Match
-from gqlalchemy.query_builder import Operator
+from gqlalchemy.query_builders.memgraph_query_builder import Operator
 
 query = Match()
         .node(variable='c', labels='Country')

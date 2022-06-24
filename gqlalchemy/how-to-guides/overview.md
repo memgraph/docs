@@ -32,7 +32,7 @@ When working with GQLAlchemy, you can connect to the database and execute Cypher
 queries using the query builder. To learn more about how to create a query using
 query builder, check out the following how-to guide:
 
-- [**Creates nodes and
+- [**Create nodes and
   relationships**](/how-to-guides/query-builder/create-nodes-relationships.md)
 - [**Return results**](/how-to-guides/query-builder/return-results.md)
 - [**Filter data**](/how-to-guides/query-builder/filter-data.md)
@@ -40,6 +40,7 @@ query builder, check out the following how-to guide:
   procedures**](/how-to-guides/query-builder/call-procedures.md)
 - [**Delete and remove
   objects**](/how-to-guides/query-builder/delete-remove-objects.md)
+- [**Set or update objects**](/how-to-guides/query-builder/set-or-update-objects.md)
 
 ## Stream & trigger support
 
