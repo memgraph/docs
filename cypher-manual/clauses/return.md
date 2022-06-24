@@ -15,7 +15,8 @@ The `RETURN` clause defines which data should be included in the resulting set.
 7. [Returning elements with an alias](#7-returning-elements-with-an-alias) <br />
 8. [Optional properties](#8-optional-properties) <br />
 9. [Returning expressions](#9-returning-expressions) <br />
-10. [Returning unique results](#10-returning-unique-results)
+10. [Returning unique results](#10-returning-unique-results)<br />
+11. [Limiting the number of returned results]
 
 ## Dataset
 
@@ -248,3 +249,5 @@ CREATE (c2)<-[:LIVING_IN {date_of_start: 2014}]-(p)-[:LIVING_IN {date_of_start: 
 
 MATCH (n)-[r]->(m) RETURN n,r,m;
 ```
+
+## 11. Limiting the number of returned results
