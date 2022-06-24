@@ -104,7 +104,7 @@ flags, check out the [Reference guide](/memgraph/reference-guide/configuration).
 Yes, we offer fully-managed Memgraph on our cloud infrastructure as a service.
 For more details please visit [Memgraph Cloud
 pages](https://cloud.memgraph.com/) or check out the [Cloud
-documentation](/cloud). In addition, [Memgraph
+documentation](/memgraph-cloud). In addition, [Memgraph
 Playground](https://playground.memgraph.com/) is a testing environment where you
 can play with various graph datasets.
 
