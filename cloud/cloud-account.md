@@ -19,8 +19,13 @@ To create Memgraph Cloud account:
    prefer. In return, we can direct our support better, and adding languages
    that we haven’t listed helps us leave no man behind once a user base is
    established. 
- 
-You can also register to Memgraph Cloud with your Google account.
+
+:::tip
+
+You can also register to Memgraph Cloud with your Google account. 
+
+:::
+
 
 As a new user, you will start using a 14-day free trial version of Memgraph
 Cloud, in which you can create one project that uses up to 2GB RAM. 
