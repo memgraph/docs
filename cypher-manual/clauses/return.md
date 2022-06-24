@@ -252,9 +252,8 @@ MATCH (n)-[r]->(m) RETURN n,r,m;
 
 ## 11. Limiting the number of returned results
 
-You can limit the the number of returned results with `LIMIT` sub-clause.
-
-To get the first ten results you can use this query:
+You can limit the number of returned results with the `LIMIT` sub-clause.
+To get the first ten results, you can use this query:
 
 ```cypher
 MATCH (n:Person) RETURN n LIMIT 10;
