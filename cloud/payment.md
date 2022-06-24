@@ -20,12 +20,13 @@ same steps, and the **Remove** button will remove the credit card completely.
 
 ## Redeem coupon code
 
-If you get a coupon code, you can add it by:
+To redeem a coupon code you first need to [add a payment
+method](#add-a-payment-method), then:
 
 1. Go to **Account** and expand the **Add Coupon Code** section
-2. Enter the coupon code s and **Redeem code**
+2. Enter the coupon code and **Redeem code**
 
-Each code has an expiration date. If do not create a project or snapshot within
+Each code has an expiration date. If you do not create a project or snapshot within
 that period, the code will expire. 
 
 Once you redeem a code, it will be applied to your next invoice, regardless of

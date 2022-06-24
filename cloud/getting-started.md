@@ -5,10 +5,11 @@ sidebar_label: Getting started
 slug: /
 ---
 
-[Memgraph Cloud](https://cloud.memgraph.com/) is a fully managed cloud service
-that allows you to create instances of MemgraphDB from your browser. You can
-create projects with instances that can use up to 32 GB of RAM to which you can
-connect using [Memgraph Lab](cloud-connect#connect-with-memgraph-lab),
+[Memgraph Cloud](https://cloud.memgraph.com/) is a cloud service fully managed
+on AWS and available in 26 geographic regions around the world. Memgraph Cloud
+allows you to create projects with Enterprise instances of MemgraphDB from your
+browser. The instances can use up to 32 GB of RAM and you can connect to them
+using [Memgraph Lab](cloud-connect#connect-with-memgraph-lab),
 [mgconsole](cloud-connect#connect-with-mgconsole) or various
 [drivers](cloud-connect#connect-with-drivers). All connections¸use SSL
 encryption with a self-signed certificate. 
@@ -25,7 +26,8 @@ You can also extend the Cypher query language by developing your own procedures
 within query modules in Memgraph Lab.
 
 Instances can be easily paused to save resources, backed up and cloned by
-creating snapshots. 
+creating snapshots, and they all use the Enterprise edition of Memgraph which
+includes the [role-base access control](cloud-projects/#role-base-access-control).
 
 As a new user, try out Memgraph Cloud in a 14-days free trial and provide us
 with feedback on [Discord](https://discord.com/invite/memgraph):
