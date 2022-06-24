@@ -16,7 +16,7 @@ The `RETURN` clause defines which data should be included in the resulting set.
 8. [Optional properties](#8-optional-properties) <br />
 9. [Returning expressions](#9-returning-expressions) <br />
 10. [Returning unique results](#10-returning-unique-results)<br />
-11. [Limiting the number of returned results]
+11. [Limiting the number of returned results](#11-limiting-the-number-of-returned-results)
 
 ## Dataset
 
@@ -251,3 +251,11 @@ MATCH (n)-[r]->(m) RETURN n,r,m;
 ```
 
 ## 11. Limiting the number of returned results
+
+You can limit the the number of returned results with `LIMIT` sub-clause.
+
+To get the first ten results you can use this query:
+
+```cypher
+MATCH (n:Person) RETURN n LIMIT 10;
+```
