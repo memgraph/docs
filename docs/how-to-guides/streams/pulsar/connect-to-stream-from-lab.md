@@ -7,9 +7,6 @@ sidebar_label: Connect to a data stream from Memgraph Lab
 If you prefer to use GUI, you can now connect to data streams by using a wizard
 in the **Stream** section of Memgraph Lab.
 
-If you need a stream to play around with, we've provided some at [Awesome
-Data Stream](https://awesomedata.stream/)! 
-
 [![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/streams/overview.md)
 
 ## 1. Add a stream
@@ -17,16 +14,10 @@ Data Stream](https://awesomedata.stream/)!
 To add a stream in Memgraph Lab: 
 
 1. Switch to **Streams** and **Add New Stream**.
-2. Choose Kafka stream type, enter a stream name, server address, and topics you want to subscribe to.
+2. Choose Pulsar stream type, enter a stream name, server address, and topics you want to subscribe to.
 3. Go to the **Next Step**.
 4. Click on **Edit** (pencil icon) to modify the *Consumer Group*, *Batch
    Interval* or *Batch Size*.
-
-If you are trying to connect to MovieLens data stream from the [Awesome Data
-Stream](https://awesomedata.stream/#/movielens), the stream configuration should
-look like this:
-
-<img src={require('../../../data/tutorials/create-stream-lab/creating-stream-movielens.png').default}className={"imgBorder"}/>
 
 Once the basic configuration is finished, you need to define a transformation
 module and attach it to the stream. 
@@ -41,7 +32,7 @@ Memgraph on how to transform the incoming messages to consume them correctly.
 
 At the moment, you can only develop Python transformation modules directly from
 Memgraph Lab. If you need to develop a procedure in C, check this
-guide on [how to load it into Memgraph](/how-to-guides/streams/kafka/kafka-streams#how-to-create-and-load-a-transformation-module-into-memgraph). 
+guide on [how to load it into Memgraph](/how-to-guides/streams/pulsar/pulsar-streams#how-to-create-and-load-a-transformation-module-into-memgraph). 
 
 To add the Python transformation module to a stream:
 1. Click on **Add Transformation Module**.
@@ -58,31 +49,7 @@ You can also develop transformation modules in Python beforehand, in the section
 **Query Modules**. Click on the **New Module**, and the Lab will automatically
 recognize transformation procedures once you define them.
 
-Check the transformation module for MovieLens on [Awesome Data
-Stream](https://awesomedata.stream/#/movielens).
-
-<img src={require('../../../data/tutorials/create-stream-lab/transformation-module.png').default}className={"imgBorder"}/>
-
-## 3. Set Kafka configuration parameters
-
-If necessary, add the Kafka configuration parameters to customize the stream further:
-
-1. In the Kafka Configuration Parameters **+ Add parameter field**.
-2. Insert the parameter name and value.
-3. To add another parameter, **Add parameter filed**.
-4. **Save Configuration** once you have set all parameters.
-
-To connect to the [Awesome Data Stream](https://awesomedata.stream/) you need to set
-the following Kafka configuration parameters:
-
-* **sasl.username** \| public <br/>
-* **sasl.password** \| public <br/>
-* **security.protocol** \| SASL_PLAINTEXT <br/>
-* **sasl.mechanism** \| PLAIN <br/>
-
-<img src={require('../../../data/tutorials/create-stream-lab/config-parameters.png').default}className={"imgBorder"}/>
-
-## 4. Connect Memgraph to the stream and start ingesting the data
+## 3. Connect Memgraph to the stream and start ingesting the data
 
 Once the stream is configured, you can **Connect to Stream**. 
 
@@ -124,5 +91,4 @@ To delete a stream, click on **Delete Stream**.
 You cannot edit a started stream. You can only create a new stream with the
 changes you want to implement.
 
-You can only change the transformation module and [the stream
-offset](/how-to-guides/streams/kafka/kafka-streams#how-to-change-the-stream-offset).
+You can only change the transformation module the stream is using.

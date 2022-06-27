@@ -4,178 +4,119 @@ title: How to manage Kafka streams
 sidebar_label: Manage Kafka streams
 ---
 
-If you are not familiar with Kafka, then please check out their [quickstart
-guide](https://kafka.apache.org/quickstart) to get familiar. In the
-documentation, we assume that a Kafka server is available on the 9092 port of
-the local machine (`localhost:9092`) as the default configuration of the Kafka
-quick start guide. Please adjust your setup accordingly.
+All the managing procedures for the streams that are described in this page are
+using queries. Streams can also be [managed through the **Stream** section in the
+Memgraph Lab](/how-to-guides/streams/kafka/connect-to-stream-from-lab.md). 
 
-:::tip
+If you need a stream to play around with, we've provided some at [Awesome
+Data Stream](https://awesomedata.stream/)! 
 
-Check out the **example-streaming-app** on
-[GitHub](https://github.com/memgraph/example-streaming-app) to see how Memgraph
-can be connected to a Kafka stream.
+[![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/streams/overview.md)
 
-:::
+## How to create and load a transformation module into Memgraph?
 
-:::note
+A [transformation
+module](/reference-guide/streams/transformation-modules/overview.md) is a set of
+user-defined transformation procedures written in
+[C](/reference-guide/streams/transformation-modules/api/c-api.md) or
+[Python](/reference-guide/streams/transformation-modules/api/python-api.md) that
+act on data received from a streaming engine. Transformation procedures instruct
+Memgraph on how to transform the incoming messages to consume them correctly. 
 
-For detailed technical information on streaming support, check out the
-[reference guide](/reference-guide/streams/overview.md).
+To create a transformation module, you need to:
 
-:::
+1. [Create a Python or a shared library file
+   (module)](/how-to-guides/streams/kafka/implement-transformation-module.md)
+2. Save the file into the Memgraph's `query_modules` directory (default:
+   `/usr/lib/memgraph/query_modules`)
+3. Load the file into Memgraph either on startup (automatically) or by running a
+   `CALL mg.load_all();` query
 
-## Configuring Memgraph
+If you are using Docker to run Memgraph, check [how to transfer the file into the container](/how-to-guides/work-with-docker#how-to-copy-files-from-and-to-a-docker-container?). 
 
-The list of default bootstrap servers can be set by the
-`--kafka-bootstrap-servers` configuration option. It has to be set explicitly.
-Morever, the user can overwrite the default list of brokers passed to
-`--kafka-bootstrap-servers` by setting the `BOOTSTRAP_SERVERS <brokers>` option
-on a `CREATE KAFKA STREAM` clause.
+If you are using Memgraph Lab you can [create transformation module within the
+application](/reference-guide/streams/transformation-modules/overview/#creating-transformation-modules-within-memgraph-lab). 
 
-## Creating the stream
+## How to create a stream?
 
-The very first step is to make sure at least one transformation module is loaded
-into Memgraph. If you are not sure how to define them, check out the
-[transformation module
-guide](/how-to-guides/streams/kafka/implement-transformation-module.md).
-We are going to use `transformation.my_transformation` from that example, but we
-are going to alias it as `my.transform` to make the size of result tables
-slimmer. For the topic name, we are going to use the topic from the Kafka quick
-start, `quickstart-events`.
+In order to create a stream with a query, first you need to [load the
+transformation module into
+Memgraph](#how-to-create-and-load-a-transformation-module-into-memgraph). The
+most basic query for creating a stream is:
+
 
 ```cypher
-CREATE KAFKA STREAM myStream
-TOPICS quickstart-events
-TRANSFORM my.transform;
+CREATE KAFKA STREAM streamName
+TOPICS topic1[, <topic2>, ...]
+TRANSFORM transModule.transProcedure
+BOOTSTRAP_SERVERS bootstrapServers;
 ```
 
-Check the created stream:
+Additional options for creating a stream are explained in the [reference
+guide](/reference-guide/streams/overview#Kafka). 
+
+## How to get information about a stream?
+
+You can get the basic stream information with:
 
 ```cypher
 SHOW STREAMS;
 ```
 
-The result should be similar to:
+## How to check the transformed incoming data?
 
-```plaintext
-+----------------------+----------------------+---------------------+---------------------+----------------------+----------------------+----------------------+
-| name                 | type                 | batch_interval      | batch_size          | transformation_name  | owner                | is running           |
-+----------------------+----------------------+---------------------+---------------------+----------------------+----------------------+----------------------+
-| "myStream"           | "kafka"              | 100                 | 1000                | "my.kafka_transform" | Null                 | false                |
-+----------------------+----------------------+---------------------+---------------------+----------------------+----------------------+----------------------+
-```
+To see the results of the transformation module use the `CHECK STREAM` clause.
+It will consume the message from the last committed offset but won't commit the
+offsets. There is no committed offset coming from a newly created stream, so by
+default, the query will wait `30000` milliseconds (`30` seconds) for new
+messages and after that, it will throw a timeout exception. You can change the
+timeout by adding the `TIMEOUT` sub-clause and adding a custom time to the query. 
 
-The result contains the most important information about the existing streams,
-e.g., its name, topics it is subscribed to, etc.
-
-## Check if the stream is working
-
-Maybe at first, you don't want to run the stream in the background but see the
-actual result of the transformation. This can be handy when implementing a
-transformation. To achieve that, we can use the `CHECK STREAM` query. This query
-will consume the message from the last committed offset but won't commit the
-offsets. That means you are free to play around with it, and there won't be any
-permanent effects. For a freshly created stream there is probably no committed offset, so the `CHECK STREAM` query will wait for new messages. By default, the
-query will wait `30000` milliseconds (`30` seconds) and after that, it will
-throw a timeout exception. To give us some more time, use a larger timeout,
-e.g.: `60000` milliseconds (`60` seconds):
+The following query will transform new messages that come from the stream within
+60 seconds:
 
 ```cypher
 CHECK STREAM myStream TIMEOUT 60000;
 ```
 
-If you started the query, let's send some messages to the topic in the same way
-as described in the Kafka quick start guide. You should see a similar output:
-
-```plaintext
-+--------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
-| query                                                                                | parameters                                                                           |
-+--------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
-| "CREATE (n:MESSAGE {timestamp: $timestamp, payload: $payload, topic: $topic})"       | {payload: "Example message 1", timestamp: 1625757014009, topic: "quickstart-events"} |
-+--------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
-```
-
-If you want to consume more batches, you can also increase the batch limit:
+To consume more batches, increase the `BATCH_LIMIT`:
 
 ```cypher
 CHECK STREAM myStream BATCH_LIMIT 3 TIMEOUT 60000;
 ```
 
-As a result, you should see multiple messages (probably 3) in the output:
+## How to start, stop or delete a stream?
 
-```plaintext
-+--------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
-| query                                                                                | parameters                                                                           |
-+--------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
-| "CREATE (n:MESSAGE {timestamp: $timestamp, payload: $payload, topic: $topic})"       | {payload: "Memgraph <3 Kafka", timestamp: 1625757026942, topic: "quickstart-events"} |
-| "CREATE (n:MESSAGE {timestamp: $timestamp, payload: $payload, topic: $topic})"       | {payload: "Example message 2", timestamp: 1625757112493, topic: "quickstart-events"} |
-| "CREATE (n:MESSAGE {timestamp: $timestamp, payload: $payload, topic: $topic})"       | {payload: "Example message 3", timestamp: 1625757118408, topic: "quickstart-events"} |
-+--------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
-```
-
-## Start the stream
-
-As we just demonstrated that the stream is working, we can start to ingest data
-into the database by starting the stream and sending some messages to the topic.
-
-```
-START STREAM myStream;
-```
-
-After sending a few messages to the topic, the created vertices can be checked
-by executing `MATCH (n: MESSAGE) RETURN n`:
-
-```plaintext
-+-----------------------------------------------------------------------------------------------+
-| n                                                                                             |
-+-----------------------------------------------------------------------------------------------+
-| (:MESSAGE {payload: "first message", timestamp: 1625757438919, topic: "quickstart-events"})   |
-| (:MESSAGE {payload: "another message", timestamp: 1625757441665, topic: "quickstart-events"}) |
-| (:MESSAGE {payload: "it is working!", timestamp: 1625757444175, topic: "quickstart-events"})  |
-+-----------------------------------------------------------------------------------------------+
-```
-
-## Committed offsets
-
-As our stream processed at least one message after starting it, it will commit
-the message offset to the Kafka cluster. That means if the stream is stopped
-by stopping it with the `STOP STREAM myStream` query (or by shutting Memgraph
-down), the last committed offset will be retrieved from the Kafka cluster after
-restarting the stream.
-
-:::info
-NOTE: As the committed offsets are stored for the consumer groups on the Kafka
-cluster, if a new stream is created using the same consumer group, it might
-continue consuming the message from the same offset where the previous stream
-stopped. You can mitigate this by using different consumer group names or
-resetting the committed offset via Kafka admin client.
-:::
-
-Previously, we mentioned that the `CHECK STREAM` query doesn't modify the
-committed offsets, which means using `CHECK STREAM` on a stream that already
-has some offsets committed can result in executing the transformation on the
-same message multiple times. To demonstrate that, first, let's stop the stream:
+To start a stream:
 
 ```cypher
-STOP STREAM myStream;
+START STREAM streamName;
 ```
 
-And then send a few messages to the topic, e.g.: `message A`, `message B` and
-`message C`. Then run the same query as before:
+To stop a stream:
 
 ```cypher
-CHECK STREAM myStream TIMEOUT 60000;
+STOP STREAM streamName;
 ```
 
-Running this query multiple times should emit the same results:
+To delete a stream:
 
-```plaintext
-+--------------------------------------------------------------------------------+--------------------------------------------------------------------------------+
-| query                                                                          | parameters                                                                     |
-+--------------------------------------------------------------------------------+--------------------------------------------------------------------------------+
-| "CREATE (n:MESSAGE {timestamp: $timestamp, payload: $payload, topic: $topic})" | {payload: "message A", timestamp: 1625758319964, topic: "quickstart-events"}   |
-| "CREATE (n:MESSAGE {timestamp: $timestamp, payload: $payload, topic: $topic})" | {payload: "message B", timestamp: 1625758321735, topic: "quickstart-events"}   |
-| "CREATE (n:MESSAGE {timestamp: $timestamp, payload: $payload, topic: $topic})" | {payload: "message C", timestamp: 1625758323795, topic: "quickstart-events"}   |
-+--------------------------------------------------------------------------------+--------------------------------------------------------------------------------+
+```cypher
+DROP STREAM streamName;
 ```
+
+For more options, [check the reference guide](/reference-guide/streams/overview#start-a-stream).
+
+## How to change the stream offset?
+
+Use the following query to change the stream offset:
+
+```cypher
+CALL mg.kafka_set_stream_offset(streamName, offset)
+```
+
+An offset of `-1` denotes the beginning offset available for the given
+topic/partition. 
+
+An offset of `-2` denotes the end of the stream and only the
+next produced message will be consumed.

@@ -4,137 +4,103 @@ title: How to manage Pulsar streams
 sidebar_label: Manage Pulsar streams
 ---
 
-If you are not familiar with Pulsar, then please check out their
-[site](https://pulsar.apache.org) to get a better understanding. In the
-documentation, we assume that a Pulsar cluster is available on the 6650 port of
-the local machine (`127.0.0.1:6650`). Please adjust your setup accordingly.
+All the managing procedures for the streams that are described in this page are
+using queries. Streams can also be managed through the **Stream** section in the
+Memgraph Lab.
 
-:::note
+[![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/streams/overview.md)
 
-For detailed technical information on streaming support, check out the
-[reference guide](/reference-guide/streams/overview.md).
+## How to create and load a transformation module into Memgraph?
 
-:::
+A [transformation
+module](/reference-guide/streams/transformation-modules/overview.md) is a set of
+user-defined transformation procedures written in
+[C](/reference-guide/streams/transformation-modules/api/c-api.md) or
+[Python](/reference-guide/streams/transformation-modules/api/python-api.md) that
+act on data received from a streaming engine. Transformation procedures instruct
+Memgraph on how to transform the incoming messages to consume them correctly. 
 
-## Configuring Memgraph
+To create a transformation module, you need to:
 
-You need to provide a service URL so Memgraph can locate the Pulsar cluster. The
-service URL can be set using the configuration flag `--pulsar-service-url`.
+1. [Create a Python or a shared library file
+   (module)](/how-to-guides/streams/kafka/implement-transformation-module.md)
+2. Save the file into the Memgraph's `query_modules` directory (default:
+   `/usr/lib/memgraph/query_modules`)
+3. Load the file into Memgraph either on startup (automatically) or by running a
+   `CALL mg.load_all();` query
 
-## Creating the stream
+If you are using Docker to run Memgraph, check [how to transfer the file into the container](/how-to-guides/work-with-docker#how-to-copy-files-from-and-to-a-docker-container?). 
 
-The very first step is to make sure at least one transformation module is loaded
-into Memgraph. If you are not sure how to define them, check out the
-[transformation module
-guide](/how-to-guides/streams/pulsar/implement-transformation-module.md).
-We will use `transformation.my_pulsar_transformation` from that example, but we
-are going to alias it as `my.pulsar_transform` to make the size of result tables
-slimmer. For the topic name, we are going to use `topic1`.
+If you are using Memgraph Lab you can [create transformation module within the
+application](/reference-guide/streams/transformation-modules/overview/#creating-transformation-modules-within-memgraph-lab). 
+
+## How to create a stream?
+
+In order to create a stream with a query, first you need to [load the
+transformation module into
+Memgraph](#how-to-create-and-load-a-transformation-module-into-memgraph). The
+most basic query for creating a stream is:
+
 
 ```cypher
-CREATE PULSAR STREAM myStream
-TOPICS topic1
-TRANSFORM my.pulsar_transform;
+CREATE PULSAR STREAM streamName
+TOPICS topic1[,topic2, ...]
+TRANSFORM transModule.transProcedure
+SERVICE_URL serviceURL;
 ```
 
-Check the created stream:
+Additional options for creating a stream are explained in the [reference
+guide](/reference-guide/streams/overview#Kafka). 
+
+## How to get information about a stream?
+
+You can get the basic stream information with:
 
 ```cypher
 SHOW STREAMS;
 ```
 
-The result should be similar to:
+## How to check the transformed incoming data?
 
-```plaintext
-+-----------------------+-----------------------+----------------------+-----------------------+-----------------------+-----------------------+-----------------------+
-| name                  | type                  | batch_interval       | batch_size            | transformation_name   | owner                 | is running            |
-+-----------------------+-----------------------+----------------------+-----------------------+-----------------------+-----------------------+-----------------------+
-| "myStream"            | "pulsar"              | 100                  | 1000                  | "my.pulsar_transform" | Null                  | false                 |
-+-----------------------+-----------------------+----------------------+-----------------------+-----------------------+-----------------------+-----------------------+
-```
+To see the results of the transformation module use the `CHECK STREAM` clause.
+It will consume the message from the last committed offset but won't commit the
+offsets. There is no committed offset coming from a newly created stream, so by
+default, the query will wait `30000` milliseconds (`30` seconds) for new
+messages and after that, it will throw a timeout exception. You can change the
+timeout by adding the `TIMEOUT` sub-clause and adding a custom time to the query. 
 
-The result contains the most important information about the existing streams,
-e.g., its name, topics it is subscribed to, etc.
-
-## Check if the stream is working
-
-:::warning
-
-`CHECK STREAM` only works for single non-partitioned topic consumers. The next
-examples will fail if your Pulsar stream source consumes multiple topics or from
-a partitioned topic.
-
-:::
-
-Maybe at first, you don't want to run the stream in the background but see the
-actual result of the transformation. This can be handy when implementing a
-transformation. To achieve that, we can use the `CHECK STREAM` query. This query
-will consume the message from the last acknowledged message but won't
-acknowledge the next message. That means you are free to play around with it,
-and there won't be any permanent effects. For a freshly created stream, there is
-probably no acknowledged message, so the `CHECK STREAM` query will wait for new
-messages. By default, the query will wait `30000` milliseconds ( `30` seconds)
-and after that, it will throw a timeout exception. To give us some more time,
-use a larger timeout, e.g.: `60000` milliseconds ( `60` seconds):
+The following query will transform new messages that come from the stream within
+60 seconds:
 
 ```cypher
 CHECK STREAM myStream TIMEOUT 60000;
 ```
 
-If you started the query, let's send some messages to the topic. You should see
-a similar output:
-
-```plaintext
-+-----------------------------------------------------------------------------------------------------------------+
-| query                                                         | parameters                                      |
-+-----------------------------------------------------------------------------------------------------------------+
-| "CREATE (n:MESSAGE {payload: $payload, topic: $topic})"       | {payload: "Example message 1", topic: "topic1"} |
-+--------------------------------------------------------------------------------------+---------------------------
-```
-
-If you want to consume more batches, you can also increase the batch limit:
+To consume more batches, increase the `BATCH_LIMIT`:
 
 ```cypher
 CHECK STREAM myStream BATCH_LIMIT 3 TIMEOUT 60000;
 ```
+## How to start, stop or delete a stream?
 
-As a result, you should see multiple messages (probably 3) in the output:
+To start a stream:
 
-```plaintext
-+---------------------------------------------------------------+--------------------------------------------------+
-| query                                                         | parameters                                       |
-+---------------------------------------------------------------+--------------------------------------------------+
-| "CREATE (n:MESSAGE {payload: $payload, topic: $topic})"       | {payload: "Memgraph <3 Pulsar", topic: "topic1"} |
-| "CREATE (n:MESSAGE {payload: $payload, topic: $topic})"       | {payload: "Example message 2", topic: "topic1"}  |
-| "CREATE (n:MESSAGE {payload: $payload, topic: $topic})"       | {payload: "Example message 3", topic: "topic1"}  |
-+---------------------------------------------------------------+--------------------------------------------------+
+```cypher
+START STREAM streamName;
 ```
 
-## Start the stream
+To stop a stream:
 
-As we just demonstrated that the stream is working, we can start to ingest data
-into the database by starting the stream and sending some messages to the topic.
-
-```
-START STREAM myStream;
+```cypher
+STOP STREAM streamName;
 ```
 
-After sending a few messages to the topic, the created vertices can be checked
-by executing `MATCH (n: MESSAGE) RETURN n`:
+To delete a stream:
 
-```plaintext
-+----------------------------------------------------------+
-| n                                                        |
-+----------------------------------------------------------+
-| (:MESSAGE {payload: "first message", topic: "topic1"})   |
-| (:MESSAGE {payload: "another message", topic: "topic1"}) |
-| (:MESSAGE {payload: "it is working!", topic: "topic1"})  |
-+----------------------------------------------------------+
+```cypher
+DROP STREAM streamName;
 ```
 
-## Acknowledging messages
+For more options, [check the reference guide](/reference-guide/streams/overview#start-a-stream).
 
-After each message is processed, the stream will acknowledge them. If the stream
-is stopped using the `STOP STREAM myStream` query (or by shutting Memgraph
-down), next time the stream is started, it will continue processing the message
-from the last acknowledged message.
+

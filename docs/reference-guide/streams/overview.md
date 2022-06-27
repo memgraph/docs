@@ -16,6 +16,9 @@ Memgraph can connect to existing stream sources. To use streams, a user must:
    `CALL mg.kafka_set_stream_offset(stream_name, offset)`
 4. [Start the stream](#start-a-stream) with a `START STREAM` query
 
+You can now write transformation modules, create and start streams using the
+Stream section in the Memgraph Lab, [check out how](/how-to-guide/connect-to-stream-from-lab.md). 
+
 :::tip
 
 Check out the **example-streaming-app** on
@@ -101,6 +104,10 @@ The `BATCH_INTERVAL` starts when the:
 - the processing of the previous batch is completed
 - the previous batch interval ended without receiving any messages
 
+After each message is processed, the stream will acknowledge them. If the stream
+is stopped, next time it starts, it will continue processing the message from
+the last acknowledged message.
+
 The user who executes the `CREATE` query is the owner of the stream.
 
 **Memgraph Community** doesn't support authentication and authorization, so the
@@ -111,14 +118,6 @@ queries returned from the transformation procedures. If the owner doesn't have
 the required privileges, the execution of the queries will fail. Find more
 information about how the owner affects the stream in the [reference
 guide](reference-guide/security.md#owners).
-
-## Delete a stream
-
-```cypher
-DROP STREAM <stream name>;
-```
-
-Drops a stream with the name `<stream name>`.
 
 ## Start a stream
 
@@ -147,6 +146,14 @@ STOP ALL STREAMS;
 ```
 
 Stops a specific stream or all streams.
+
+## Delete a stream
+
+```cypher
+DROP STREAM <stream name>;
+```
+
+Drops a stream with the name `<stream name>`.
 
 ## Show streams
 

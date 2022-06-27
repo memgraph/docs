@@ -4,12 +4,13 @@ title: How to implement transformation modules
 sidebar_label: Implement transformation modules
 ---
 
-[![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/streams/transformation-modules/overview.md)
-
 The prerequisite of connecting Memgraph to a Kafka stream is to have a
 transformation module that can produce Cypher queries based on the received
 messages. We are going to implement a simple transformation that stores the
 properties of each message in a vertex.
+
+[![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/streams/transformation-modules/overview.md)
+
 
 :::note
 For detailed technical information on transformation modules, check out the [reference guide](/reference-guide/streams/transformation-modules/overview.md).

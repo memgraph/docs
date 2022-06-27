@@ -16,7 +16,7 @@ To create a transformation module, you need to:
 2. Save the file into the Memgraph's `query_modules` directory (default:
    `/usr/lib/memgraph/query_modules`)
 3. Load the file into Memgraph either on startup (automatically) or by running a
-   `CALL mg.load();` query
+   `CALL mg.load_all();` query
 
 If you are using Memgraph Lab you can [create transformation module within the
 application](#creating-transformation-modules-within-memgraph-lab). 
@@ -106,7 +106,8 @@ create the transformation module within the application:
 3. Write the transformation procedures and click **Save & Close**
 
 You will see the signature and overview of the transformation procedure that you
-can now use while creating a new stream. 
+can now use while [creating a new
+stream](/how-to-guides/connect-to-stream-from-lab.md). 
 
 ## Utility procedures for transformations
 
