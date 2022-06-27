@@ -41,10 +41,8 @@ data, we are all set to analyze it.
 
 ### 1. Start Memgraph
 
-[Start Memgraph](https://memgraph.com/docs/memgraph/next/installation) and
-[establish a
-connection](https://memgraph.com/docs/memgraph/next/connect-to-memgraph) to the
-database.
+[Start Memgraph](/memgraph/installation) and [establish a
+connection](/docs/memgraph/connect-to-memgraph) to the database.
 
 If you are starting Memgraph using a Docker image and would like to access
 configuration files or logs, be sure to run the image with the following
