@@ -6,7 +6,6 @@ sidebar_label: Changelog
 
 ## v2.3.1 - Jun 23, 2022
 
-### Major Features and Improvements
 ### Bug Fixes
 
 - Fix WebSocket connection with clients that do not use binary protocol header. [#403](https://github.com/memgraph/memgraph/pull/403)
