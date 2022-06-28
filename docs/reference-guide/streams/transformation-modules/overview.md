@@ -10,8 +10,8 @@ the incoming messages in order to consume them correctly. This is done with a
 transformation module.
 
 [![Related - How
-to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/streams/manage-streams#how-to-create-and-load-a-transformation-module-into-memgraph) [![Related -
-Tutorial](https://img.shields.io/static/v1?label=Related&message=Tutorial&color=008a00&style=for-the-badge)](/tutorials/graph-stream-processing-with-kafka#create-a-transformation-module)
+to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/streams/manage-streams.md#how-to-create-and-load-a-transformation-module-into-memgraph) [![Related -
+Tutorial](https://img.shields.io/static/v1?label=Related&message=Tutorial&color=008a00&style=for-the-badge)](/tutorials/graph-stream-processing-with-kafka.md#create-a-transformation-module)
 
 To create a transformation module, you need to:
 
@@ -42,9 +42,9 @@ The available API references are:
 - **[Python API](./api/python-api.md)**
 
 Check out [the tutorial on implementing a Python transformation
-module](/tutorials/graph-stream-processing-with-kafka#create-a-transformation-module), or [an example of a
+module](/tutorials/graph-stream-processing-with-kafka.md#create-a-transformation-module), or [an example of a
 transformation module written in
-C](/reference-guide/streams/transformation-modules/c-api#transformation-module-example). 
+C](./api/c-api.md#transformation-module-example). 
 
 ## Loading modules on startup
 

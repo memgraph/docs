@@ -21,7 +21,7 @@ version will soon be available.
 :::tip 
 
 For an example how to implement transformation modules in Python with Memgraph Lab, check out
-tise [tutorial](/tutorials/graph-stream-processing-with-kafka#create-a-transformation-module).
+tise [tutorial](/tutorials/graph-stream-processing-with-kafka.md#create-a-transformation-module).
 
 :::
 

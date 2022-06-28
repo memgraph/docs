@@ -150,9 +150,7 @@ sidebar_label: Changelog
   you'll know how many nodes/edges were created by it.
   [#285](https://github.com/memgraph/memgraph/pull/285)
 - Added support for connecting to Pulsar as a new stream source. For more
-  details, check out our
-  [example](how-to-guides/streams/pulsar/pulsar-streams) and
-  [reference pages](reference-guide/streams).
+  details, check out our [reference pages](reference-guide/streams).
   [#293](https://github.com/memgraph/memgraph/pull/293)
 
 ### Bug Fixes

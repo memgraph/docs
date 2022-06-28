@@ -27,16 +27,16 @@ Memgraph on how to transform the incoming messages to consume them correctly.
 To create a transformation module, you need to:
 
 1. [Create a Python or a shared library file
-   (module)](/reference-guide/streams/transformation-modules)
+   (module)](/reference-guide/streams/transformation-modules/overview.md)
 2. Save the file into the Memgraph's `query_modules` directory (default:
    `/usr/lib/memgraph/query_modules`)
 3. Load the file into Memgraph either on startup (automatically) or by running a
    `CALL mg.load_all();` query
 
-If you are using Docker to run Memgraph, check [how to transfer the file into the container](/how-to-guides/work-with-docker#how-to-copy-files-from-and-to-a-docker-container?). 
+If you are using Docker to run Memgraph, check [how to transfer the file into the container](/how-to-guides/work-with-docker.md#how-to-copy-files-from-and-to-a-docker-container?). 
 
 If you are using Memgraph Lab you can [create transformation module within the
-application](/reference-guide/streams/transformation-modules/overview/#creating-transformation-modules-within-memgraph-lab). 
+application](/reference-guide/streams/transformation-modules/overview.md#creating-transformation-modules-within-memgraph-lab). 
 
 ## How to create a Kafka stream?
 
@@ -54,7 +54,7 @@ BOOTSTRAP_SERVERS bootstrapServers;
 ```
 
 Additional options for creating a stream are explained in the [reference
-guide](/reference-guide/streams/overview#Kafka). 
+guide](/reference-guide/streams/overview.md#Kafka). 
 
 ## How to create a Pulsar stream?
 
@@ -72,7 +72,7 @@ SERVICE_URL serviceURL;
 ```
 
 Additional options for creating a stream are explained in the [reference
-guide](/reference-guide/streams/overview#Pulsar).
+guide](/reference-guide/streams/overview.md#Pulsar).
 
 ## How to get information about a stream?
 
@@ -124,7 +124,7 @@ To delete a stream:
 DROP STREAM streamName;
 ```
 
-For more options, [check the reference guide](/reference-guide/streams/overview#start-a-stream).
+For more options, [check the reference guide](/reference-guide/streams/overview.md#start-a-stream).
 
 ## How to change Kafka stream offset?
 

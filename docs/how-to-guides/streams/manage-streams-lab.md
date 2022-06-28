@@ -42,7 +42,7 @@ Memgraph on how to transform the incoming messages to consume them correctly.
 
 At the moment, you can only develop Python transformation modules directly from
 Memgraph Lab. If you need to develop a procedure in C, check this
-guide on [how to load it into Memgraph](/how-to-guides/streams/kafka/kafka-streams#how-to-create-and-load-a-transformation-module-into-memgraph). 
+guide on [how to load it into Memgraph](manage-streams.md#how-to-create-and-load-a-transformation-module-into-memgraph). 
 
 To add the Python transformation module to a stream:
 1. Click on **Add Transformation Module**.
@@ -126,7 +126,7 @@ You cannot edit a started stream. You can only create a new stream with the
 changes you want to implement.
 
 You can only change the transformation module and [the stream
-offset](/how-to-guides/streams/kafka/kafka-streams#how-to-change-the-stream-offset).
+offset](manage-streams.md#how-to-change-the-kafka-stream-offset).
 
 ## How to change Kafka stream offset?
 
