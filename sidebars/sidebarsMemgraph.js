@@ -156,23 +156,8 @@ module.exports = {
           type: "category",
           label: "Connect to stream sources",
           items: [
-            {
-              type: "category",
-              label: "Kafka",
-              items: [
-                "how-to-guides/streams/kafka/kafka-streams",
-                "how-to-guides/streams/kafka/implement-transformation-module",
-                "how-to-guides/streams/kafka/connect-to-stream-from-lab",
-              ],
-            },
-            {
-              type: "category",
-              label: "Pulsar",
-              items: [
-                "how-to-guides/streams/pulsar/pulsar-streams",
-                "how-to-guides/streams/pulsar/implement-transformation-module",
-              ],
-            },
+            "how-to-guides/streams/manage-streams",
+            "how-to-guides/streams/manage-streams-lab",
           ],
         },
         "how-to-guides/config-logs",
@@ -281,14 +266,8 @@ module.exports = {
               label: "Transformation modules",
               link: { type: "doc", id: "reference-guide/streams/transformation-modules/overview" },
               items: [
-                {
-                  type: "category",
-                  label: "API",
-                  items: [
-                    "reference-guide/streams/transformation-modules/api/c-api",
-                    "reference-guide/streams/transformation-modules/api/python-api",
-                  ],
-                },
+                "reference-guide/streams/transformation-modules/api/c-api",
+                "reference-guide/streams/transformation-modules/api/python-api",
               ],
             },
           ],

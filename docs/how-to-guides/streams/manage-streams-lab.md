@@ -1,37 +1,38 @@
 ---
-id: connect-to-stream-from-lab
-title: How to connect to a data stream from Memgraph Lab
-sidebar_label: Connect to a data stream from Memgraph Lab
+id: manage-streams-lab
+title: How to manage data streams from Memgraph Lab
+sidebar_label: manage data streams from Memgraph Lab
 ---
 
 If you prefer to use GUI, you can now connect to data streams by using a wizard
 in the **Stream** section of Memgraph Lab.
 
-If you need a stream to play around with, we've provided some at [Awesome
+If you need a Kafka stream to play around with, we've provided some at [Awesome
 Data Stream](https://awesomedata.stream/)! 
 
-[![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/streams/overview.md)
+[![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/streams/overview.md) [![Related -
+Tutorial](https://img.shields.io/static/v1?label=Related&message=Tutorial&color=008a00&style=for-the-badge)](/tutorials/graph-stream-processing-with-kafka.md)
 
-## 1. Add a stream
+## How to add a stream?
 
 To add a stream in Memgraph Lab: 
 
 1. Switch to **Streams** and **Add New Stream**.
-2. Choose Kafka stream type, enter a stream name, server address, and topics you want to subscribe to.
+2. Choose stream type, enter a stream name, server address, and topics you want to subscribe to.
 3. Go to the **Next Step**.
 4. Click on **Edit** (pencil icon) to modify the *Consumer Group*, *Batch
    Interval* or *Batch Size*.
 
-If you are trying to connect to MovieLens data stream from the [Awesome Data
+If you are trying to connect to MovieLens Kafka data stream from the [Awesome Data
 Stream](https://awesomedata.stream/#/movielens), the stream configuration should
 look like this:
 
-<img src={require('../../../data/tutorials/create-stream-lab/creating-stream-movielens.png').default}className={"imgBorder"}/>
+<img src={require('../../data/tutorials/create-stream-lab/creating-stream-movielens.png').default}className={"imgBorder"}/>
 
 Once the basic configuration is finished, you need to define a transformation
 module and attach it to the stream. 
 
-## 2. Add a transformation module
+## How to add a transformation module?
 
 A transformation module is a set of user-defined transformation procedures
 written in [C](/reference-guide/streams/transformation-modules/api/c-api.md) or
@@ -61,9 +62,9 @@ recognize transformation procedures once you define them.
 Check the transformation module for MovieLens on [Awesome Data
 Stream](https://awesomedata.stream/#/movielens).
 
-<img src={require('../../../data/tutorials/create-stream-lab/transformation-module.png').default}className={"imgBorder"}/>
+<img src={require('../../data/tutorials/create-stream-lab/transformation-module.png').default}className={"imgBorder"}/>
 
-## 3. Set Kafka configuration parameters
+## How to set Kafka configuration parameters?
 
 If necessary, add the Kafka configuration parameters to customize the stream further:
 
@@ -80,9 +81,9 @@ the following Kafka configuration parameters:
 * **security.protocol** \| SASL_PLAINTEXT <br/>
 * **sasl.mechanism** \| PLAIN <br/>
 
-<img src={require('../../../data/tutorials/create-stream-lab/config-parameters.png').default}className={"imgBorder"}/>
+<img src={require('../../data/tutorials/create-stream-lab/config-parameters.png').default}className={"imgBorder"}/>
 
-## 4. Connect Memgraph to the stream and start ingesting the data
+## How to connect Memgraph to the stream and start ingesting the data?
 
 Once the stream is configured, you can **Connect to Stream**. 
 
@@ -104,14 +105,14 @@ Switch to **Query Execution** and run a query to visualize the data coming in:
 MATCH p=(n)-[r]-(m)
 RETURN p LIMIT 100;
 ```
-<img src={require('../../../data/tutorials/create-stream-lab/graph.png').default}lassName={"imgBorder"}/>
+<img src={require('../../data/tutorials/create-stream-lab/graph.png').default}lassName={"imgBorder"}/>
 
-## Managing a stream
+## How to manage a stream?
 
 To manage a stream in Memgraph Lab, go to **Streams** and click on the stream
 you want to manage. 
 
-### Start, stop or delete a stream
+### Start, stop or delete a stream?
 
 To start a draft steam, click on **Connect to Stream**.
 
@@ -119,10 +120,24 @@ To stop or start a stream, click on **Stop Stream**/**Start Stream**.
 
 To delete a stream, click on **Delete Stream**.
 
-### Edit a stream
+### How to edit a stream?
 
 You cannot edit a started stream. You can only create a new stream with the
 changes you want to implement.
 
 You can only change the transformation module and [the stream
 offset](/how-to-guides/streams/kafka/kafka-streams#how-to-change-the-stream-offset).
+
+## How to change Kafka stream offset?
+
+Kafka stream offset can be changed using a query only:
+
+```cypher
+CALL mg.kafka_set_stream_offset(streamName, offset)
+```
+
+An offset of `-1` denotes the beginning offset available for the given
+topic/partition. 
+
+An offset of `-2` denotes the end of the stream and only the
+next produced message will be consumed.

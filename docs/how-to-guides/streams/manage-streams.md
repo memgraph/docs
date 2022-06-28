@@ -1,14 +1,18 @@
 ---
-id: pulsar-streams
-title: How to manage Pulsar streams
-sidebar_label: Manage Pulsar streams
+id: manage-streams
+title: How to manage data streams with queries
+sidebar_label: Manage data streams with queries
 ---
 
-All the managing procedures for the streams that are described in this page are
-using queries. Streams can also be managed through the **Stream** section in the
-Memgraph Lab.
+The following page instructs how to manage streams using queries. Streams can
+also be [managed through the **Stream** section in the Memgraph
+Lab](/how-to-guides/streams/manage-streams-lab.md). 
 
-[![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/streams/overview.md)
+If you need a Kafka stream to play around with, we've provided some at [Awesome
+Data Stream](https://awesomedata.stream/)! 
+
+[![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/streams/overview.md) [![Related -
+Tutorial](https://img.shields.io/static/v1?label=Related&message=Tutorial&color=008a00&style=for-the-badge)](/tutorials/graph-stream-processing-with-kafka.md)
 
 ## How to create and load a transformation module into Memgraph?
 
@@ -23,7 +27,7 @@ Memgraph on how to transform the incoming messages to consume them correctly.
 To create a transformation module, you need to:
 
 1. [Create a Python or a shared library file
-   (module)](/how-to-guides/streams/kafka/implement-transformation-module.md)
+   (module)](/reference-guide/streams/transformation-modules)
 2. Save the file into the Memgraph's `query_modules` directory (default:
    `/usr/lib/memgraph/query_modules`)
 3. Load the file into Memgraph either on startup (automatically) or by running a
@@ -34,7 +38,25 @@ If you are using Docker to run Memgraph, check [how to transfer the file into th
 If you are using Memgraph Lab you can [create transformation module within the
 application](/reference-guide/streams/transformation-modules/overview/#creating-transformation-modules-within-memgraph-lab). 
 
-## How to create a stream?
+## How to create a Kafka stream?
+
+In order to create a stream with a query, first you need to [load the
+transformation module into
+Memgraph](#how-to-create-and-load-a-transformation-module-into-memgraph). The
+most basic query for creating a stream is:
+
+
+```cypher
+CREATE KAFKA STREAM streamName
+TOPICS topic1[, <topic2>, ...]
+TRANSFORM transModule.transProcedure
+BOOTSTRAP_SERVERS bootstrapServers;
+```
+
+Additional options for creating a stream are explained in the [reference
+guide](/reference-guide/streams/overview#Kafka). 
+
+## How to create a Pulsar stream?
 
 In order to create a stream with a query, first you need to [load the
 transformation module into
@@ -50,7 +72,7 @@ SERVICE_URL serviceURL;
 ```
 
 Additional options for creating a stream are explained in the [reference
-guide](/reference-guide/streams/overview#Kafka). 
+guide](/reference-guide/streams/overview#Pulsar).
 
 ## How to get information about a stream?
 
@@ -81,6 +103,7 @@ To consume more batches, increase the `BATCH_LIMIT`:
 ```cypher
 CHECK STREAM myStream BATCH_LIMIT 3 TIMEOUT 60000;
 ```
+
 ## How to start, stop or delete a stream?
 
 To start a stream:
@@ -103,4 +126,16 @@ DROP STREAM streamName;
 
 For more options, [check the reference guide](/reference-guide/streams/overview#start-a-stream).
 
+## How to change Kafka stream offset?
 
+Use the following query to change Kafka stream offset:
+
+```cypher
+CALL mg.kafka_set_stream_offset(streamName, offset)
+```
+
+An offset of `-1` denotes the beginning offset available for the given
+topic/partition. 
+
+An offset of `-2` denotes the end of the stream and only the
+next produced message will be consumed.

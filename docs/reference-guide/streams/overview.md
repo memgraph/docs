@@ -5,7 +5,15 @@ sidebar_label: Streams overview
 slug: /reference-guide/streams
 ---
 
-Memgraph can connect to existing stream sources. To use streams, a user must:
+Memgraph can connect to existing Kafka/Redpanda and Pulsar sources to ingest the
+data, which you can then query with all the power of the MAGE or any other graph algorithms you need.
+
+[![Related - How
+to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/streams/manage-streams.md)
+[![Related -
+Tutorial](https://img.shields.io/static/v1?label=Related&message=Tutorial&color=008a00&style=for-the-badge)](/tutorials/graph-stream-processing-with-kafka.md)
+
+To use streams, a user must:
 
 1. [Create a transformation
    module](/reference-guide/streams/transformation-modules/overview.md)
@@ -16,8 +24,8 @@ Memgraph can connect to existing stream sources. To use streams, a user must:
    `CALL mg.kafka_set_stream_offset(stream_name, offset)`
 4. [Start the stream](#start-a-stream) with a `START STREAM` query
 
-You can now write transformation modules, create and start streams using the
-Stream section in the Memgraph Lab, [check out how](/how-to-guide/connect-to-stream-from-lab.md). 
+You can now write Python transformation modules, create and start streams using the
+**Stream** section in the Memgraph Lab, [check out how](/how-to-guide/streams/manage-streams-lab.md). 
 
 :::tip
 
@@ -34,7 +42,7 @@ specific type supports a different set of configuration options.
 
 There is no strict order for specifying the configuration options.
 
-### Kafka
+### Kafka and Redpanda
 
 ```cypher
 CREATE KAFKA STREAM <stream name>

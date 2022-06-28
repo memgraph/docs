@@ -6,15 +6,17 @@ slug: /import-data/kafka
 pagination_prev: import-data/overview
 ---
 
+Memgraph can natively ingest streaming data from upstream sources using [Apache
+Kafka](https://kafka.apache.org) and [Confluent
+Platform](https://www.confluent.io). 
+
 [![Related - Tutorial](https://img.shields.io/static/v1?label=Related&message=Tutorial&color=008a00&style=for-the-badge)](/tutorials/graph-stream-processing-with-kafka.md)
 
-[![Related - How to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/streams/kafka/kafka-streams.md)
+[![Related - How to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/streams/manage-streams.md)
 
 [![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/streams/overview.md)
 
-Memgraph can natively ingest streaming data from upstream sources using [Apache
-Kafka](https://kafka.apache.org) and [Confluent
-Platform](https://www.confluent.io). To import data using streams, you must:
+To import data using streams, you must:
 
 1. Start Memgraph and connect to it
 2. Define a transformation module

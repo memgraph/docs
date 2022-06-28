@@ -20,9 +20,8 @@ version will soon be available.
 
 :::tip 
 
-For an example of how to implement transformation modules in Python, check out
-the [Python API
-guide](/how-to-guides/streams/pulsar/implement-transformation-module.md#python-api).
+For an example how to implement transformation modules in Python with Memgraph Lab, check out
+tise [tutorial](/tutorials/graph-stream-processing-with-kafka#create-a-transformation-module).
 
 :::
 

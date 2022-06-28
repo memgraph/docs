@@ -9,6 +9,10 @@ In order to connect Memgraph to a data stream, it needs to know how to transform
 the incoming messages in order to consume them correctly. This is done with a
 transformation module.
 
+[![Related - How
+to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/streams/manage-streams#how-to-create-and-load-a-transformation-module-into-memgraph) [![Related -
+Tutorial](https://img.shields.io/static/v1?label=Related&message=Tutorial&color=008a00&style=for-the-badge)](/tutorials/graph-stream-processing-with-kafka#create-a-transformation-module)
+
 To create a transformation module, you need to:
 
 1. Create a [Python](./api/python-api.md) or a [shared library](./api/c-api.md)
@@ -23,8 +27,8 @@ application](#creating-transformation-modules-within-memgraph-lab).
 
 ## Creating a transformation module
 
-Memgraph supports user-defined transformations procedures written in **C** and
-**Python** that act on data received from a streaming engine. These
+Memgraph supports user-defined transformations procedures written in **Python**
+and **C**  that act on data received from a streaming engine. These
 transformation procedures are grouped into a module called **Transformation
 module** which is then loaded into Memgraph on startup or later on. A
 transformation module consists of a transformation, a query procedure, or both.
@@ -37,10 +41,10 @@ The available API references are:
 - **[C API](./api/c-api.md)**
 - **[Python API](./api/python-api.md)**
 
-Check out our how-to guides on implementing a typical transformation module if
-you are using
-[Kafka](/how-to-guides/streams/kafka/implement-transformation-module.md) or
-[Pulsar](/how-to-guides/streams/pulsar/implement-transformation-module.md).
+Check out [the tutorial on implementing a Python transformation
+module](/tutorials/graph-stream-processing-with-kafka#create-a-transformation-module), or [an example of a
+transformation module written in
+C](/reference-guide/streams/transformation-modules/c-api#transformation-module-example). 
 
 ## Loading modules on startup
 
@@ -107,7 +111,7 @@ create the transformation module within the application:
 
 You will see the signature and overview of the transformation procedure that you
 can now use while [creating a new
-stream](/how-to-guides/connect-to-stream-from-lab.md). 
+stream](/how-to-guides/streams/manage-streams-lab.md). 
 
 ## Utility procedures for transformations
 
