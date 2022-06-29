@@ -13,30 +13,29 @@ have noticed you were not able to do that by using the icon directly. Memgraph
 Lab doesn't support `SVG` format at this time, but it supports `PNG`, `JPEG`,
 `GIF` and `WEBP` formats. Here is a workaround for this problem.
 
-
-1. Find the Font Awesome icon that you want to convert to PNG. Go to [Font
-Awesome](https://fontawesome.com/icons/) website and locate the icon that you
-want to use as a node background and download it as SVG file.
+1. Find the Font Awesome icon that you want to convert to PNG. Go to the [Font
+   Awesome](https://fontawesome.com/icons/) website and locate the icon that you
+   want to use as a node background and download it in SVG format.
 
 <img src={require('../data/how-to-guides/font-awesome-locate-icon.png').default} className={"imgBorder"}/>
 
-2. Convert SVG file to PNG with your favorite image editing program, or you can
-   use one of the dozen online services for file conversion. 
+
+2. Convert SVG file to PNG with your favorite image editing program, or you can use one of the dozen online services for file conversion.
+
 
 :::info
 
 You can use programs such as [Gimp](https://www.gimp.org/) or
-[Inkscape](https://inkscape.org/) to convert SVG to PNG. 
+[Inkscape](https://inkscape.org/) to convert SVG to PNG.
 
 :::
 
-3. Upload PNG file to a web server so that you can set it for node background.
-If you are using an image hosting service, make a note of the URL. Some of those
-services use URLs unrelated to the image name and are hard to come by at a
-later time.
+3. Upload the PNG file to a web server so that you can set it for node background.
+   If you are using an image hosting service, make a note of the URL. Some of those
+   services use URLs unrelated to the image name and are hard to come by at a
+   latter time.
 
-4. Edit the code of the Graph Style Editor in Memgraph Lab by adding the
-   `image-url` property to the `@NodeStyle` class. Here is an example:  
+4. Edit the code of the Graph Style Editor in Memgraph Lab by adding the `image-url` property to the `@NodeStyle` class. Here is an example:
 
 ```
 image-url: "https://i.imgur.com/bLF8qWQ.png"
@@ -57,7 +56,7 @@ Your `@NodeStyle` block of code should look something like this:
 
 You can look at [Graph Style Script @NodeStyle directive
 properties](/memgraph-lab/style-script/gss-nodestyle-directive#image-url-string)
-for additional info on the syntax. 
+for additional info on the syntax.
 
 5. Apply the style and review changes.
 
