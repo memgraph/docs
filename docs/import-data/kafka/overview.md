@@ -67,7 +67,7 @@ formats received from Kafka are:
 
 Transformation modules can be written in either **Python** or **C**. Take a look
 at the [Python API
-guide](/tutorials/implement-transformation-module.md#python-api)
+guide](/tutorials/graph-stream-processing-with-kafka.md#2.-create-a-transformation-module)
 for an example of how to implement transformation modules in Python.
 
 When started, Memgraph will automatically attempt to load the query modules from

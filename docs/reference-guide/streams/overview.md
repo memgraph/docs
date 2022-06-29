@@ -18,14 +18,15 @@ To use streams, a user must:
 1. [Create a transformation
    module](/reference-guide/streams/transformation-modules/overview.md)
 2. [Load the transformation
-   module](/reference-guide/query-modules/load-call-query-modules.md) into
+   module](/reference-guide/streams/transformation-modules/overview.md#loading-modules) into
    Memgraph
-3. [Create the stream](#creating-a-stream) with a `CREATE <streaming platform> STREAM` query and optionally [set its offset](#setting-a-stream-offset) with
+3. [Create the stream](#create-a-stream) with a `CREATE <streaming platform> STREAM` query and optionally [set its offset](#setting-a-stream-offset) with
    `CALL mg.kafka_set_stream_offset(stream_name, offset)`
 4. [Start the stream](#start-a-stream) with a `START STREAM` query
 
-You can now write Python transformation modules, create and start streams using the
-**Stream** section in the Memgraph Lab, [check out how](/how-to-guides/streams/manage-streams-lab.md). 
+You can now write Python transformation modules, create and start streams using
+the **Stream** section in the Memgraph Lab, [check out
+how](/how-to-guides/streams/manage-streams-lab.md). 
 
 :::tip
 

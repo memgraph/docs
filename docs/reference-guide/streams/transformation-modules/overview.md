@@ -16,11 +16,11 @@ Tutorial](https://img.shields.io/static/v1?label=Related&message=Tutorial&color=
 To create a transformation module, you need to:
 
 1. Create a [Python](./api/python-api.md) or a [shared library](./api/c-api.md)
-   file (module)
+   file (module).
 2. Save the file into the Memgraph's `query_modules` directory (default:
-   `/usr/lib/memgraph/query_modules`)
+   `/usr/lib/memgraph/query_modules`).
 3. Load the file into Memgraph either on startup (automatically) or by running a
-   `CALL mg.load_all();` query
+   `CALL mg.load_all();` query.
 
 If you are using Memgraph Lab you can [create transformation module within the
 application](#creating-transformation-modules-within-memgraph-lab). 
@@ -46,7 +46,11 @@ module](/tutorials/graph-stream-processing-with-kafka.md#create-a-transformation
 transformation module written in
 C](./api/c-api.md#transformation-module-example). 
 
-## Loading modules on startup
+## Loading modules
+
+Modules can be loaded on startup, or when the instance is already running.
+
+### Loading on startup
 
 Memgraph attempts to load the modules from all `*.so` and `*.py` files it finds
 in the default (`/usr/lib/memgraph/query_modules` and
@@ -99,6 +103,31 @@ docker cp ./trans_module.py <CONTAINER ID>:/usr/lib/memgraph/query_modules/trans
 The file is now inside your Docker container.
 
 </details>
+
+### Loading while the instance is already running
+
+To load a specific transformation module from a `*.so` and `*.py` files that
+ were added to the default directories (`/usr/lib/memgraph/query_modules` and
+`/memgraph/internal_modules/`) while the instance was already running, use:
+
+```
+CALL mg.load(module_name);
+```
+
+To load all transformation modules, use:
+
+```
+CALL mg.load_all();
+```
+
+## Creating transformation modules within Memgraph Lab
+
+If you are using Memgraph Lab to connect to the database instance, you can
+create the transformation module within the application:
+
+1. Go to **Query Modules** and click on **+ New Module**.
+2. Give the transformation module a name and **Create** it.
+3. Write the transformation procedures and click **Save & Close**.
 
 ## Creating transformation modules within Memgraph Lab
 
