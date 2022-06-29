@@ -82,6 +82,12 @@ of your data, but be careful with this if you don't have a backup!
 Maybe [clauses](clauses/clauses.md) are the reason why you are here. We have
 created a list of all Cypher clauses that Memgraph supports.
 
+## Extension clauses
+
+Extension clauses (for example, `FOREACH`), are additional clauses added in
+Cypher query language. Jump on the
+[extensions](/extension-clauses.md) page and have a look!
+
 ## Functions
 
 Sometimes clauses are not enough to get the data you are looking for. Don't

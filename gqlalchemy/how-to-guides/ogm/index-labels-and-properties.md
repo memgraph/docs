@@ -4,6 +4,8 @@ title: How to index labels and properties
 sidebar_label: Index labels and properties
 ---
 
+import Neo4jOption from '../../templates/_neo4j_option.mdx';
+
 Through this guide, you will learn how to index labels and properties in a graph
 database.
 
@@ -17,6 +19,8 @@ from gqlalchemy import Memgraph, Node, Field
 
 db = Memgraph()
 ```
+
+<Neo4jOption/>
 
 After that, you can create two classes that represent:
 

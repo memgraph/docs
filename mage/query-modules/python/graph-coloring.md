@@ -82,7 +82,7 @@ YIELD node, color;
 
 #### Usage:
 ```cypher
-MATCH (a:)-[e:]->(b:)
+MATCH (a)-[e]->(b)
 WITH collect(a) as nodes, collect (e) as edges
 CALL graph_coloring.color_subgraph(nodes, edges, {no_of_colors: 2})
 YIELD color, node;

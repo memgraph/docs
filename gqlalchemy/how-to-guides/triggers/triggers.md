@@ -5,9 +5,13 @@ sidebar_label: Manage database triggers
 slug: /how-to-guides/triggers
 ---
 
+import Neo4jWarning from '../../templates/_neo4j_warning.mdx';
+
 Because Memgraph supports database triggers on `CREATE`, `UPDATE` and `DELETE`
 operations, GQLAlchemy also implements a simple interface for maintaining these
 triggers. 
+
+<Neo4jWarning/>
 
 ## 1. Create the trigger
 

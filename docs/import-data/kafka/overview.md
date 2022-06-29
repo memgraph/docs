@@ -41,10 +41,8 @@ data, we are all set to analyze it.
 
 ### 1. Start Memgraph
 
-[Start Memgraph](https://memgraph.com/docs/memgraph/next/installation) and
-[establish a
-connection](https://memgraph.com/docs/memgraph/next/connect-to-memgraph) to the
-database.
+[Start Memgraph](/memgraph/installation) and [establish a
+connection](/docs/memgraph/connect-to-memgraph) to the database.
 
 If you are starting Memgraph using a Docker image and would like to access
 configuration files or logs, be sure to run the image with the following
@@ -78,9 +76,11 @@ command-line parameter when using Docker.
 :::caution
 
 Please remember that if you are using Memgraph Platform image, you should pass
-configuration flags within MEMGRAPH environmental variable (e.g. `docker run -e MEMGRAPH="--bolt-port=7687" memgraph/memgraph-platform`) and if you are using
-any other image, you should pass them as arguments after the image name (e.g.,
-`memgraph/memgraph-mage --bolt-port=7687 --query-modules-directory=path/path`).
+configuration flags within MEMGRAPH environmental variable (e.g. `docker run -p
+7687:7687 -p 3000:3000 -p 4777:4777 -e MEMGRAPH="--log-level=TRACE"
+memgraph/memgraph-platform`) and if you are using any other image, you should
+pass them as arguments after the image name (e.g., `... memgraph/memgraph-mage
+--log-level=TRACE --query-modules-directory=path/path`).
 
 :::
 

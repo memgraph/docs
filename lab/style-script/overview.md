@@ -28,18 +28,20 @@ names and containing country names. To achieve that we can use two directives.
 The first one selects countries and the second one selects cities.
 
 ```
-@NodeStyle HasLabel?(node, "Country") {
-  label: Format(Property(node, "name"))
+@NodeStyle HasLabel(node, "Country") {
+  label: Property(node, "name")
 }
 
-@NodeStyle HasLabel?(node, "City") {
-    label: Format(Format("{cityName}, {countryName}"),
+@NodeStyle HasLabel(node, "City") {
+    label: Format("{cityName}, {countryName}",
                   Property(node, "name"),
-                  Property(node, "country_name"))
+                  Property(node, "country"))
 }
 ```
 
-The content inside the curly braces is ignored but can be helpful for clarity.
+In the case of the [`Format`](gss-functions.md#formatformatstring-val1-val2)
+function, content inside the curly braces is ignored but can be helpful for
+clarity.
 
 ## Setting node images
 
@@ -49,7 +51,7 @@ can use images from [there](https://cdn.countryflags.com). Their API expects a
 country name as a part of the URL path so we will make the following directive.
 
 ```
-@NodeStyle HasLabel?(node, "Country") {
+@NodeStyle HasLabel(node, "Country") {
   image-url: Format("https://cdn.countryflags.com/thumbs/{}/flag-800.png",
                     LowerCase(Property(node, "name")))
 }
@@ -60,11 +62,11 @@ cannot be found on the website because they aren't real countries. So we can get
 around that by providing custom directives below the general one above.
 
 ```
-@NodeStyle Equals?(Property(node, "name"), "England") {
+@NodeStyle Equals(Property(node, "name"), "England") {
    image-url: "https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/2560px-Flag_of_England.svg.png"
 }
 
-@NodeStyle Equals?(Property(node, "name"), "Scotland") {
+@NodeStyle Equals(Property(node, "name"), "Scotland") {
   image-url: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Flag_of_Scotland.svg/1200px-Flag_of_Scotland.svg.png"
  }
 ```
@@ -73,11 +75,11 @@ Also, URLs for a country name with whitespace inside them don't so we also have
 to provide custom URLs for the Czech Republic and Bosnia and Herzegovina.
 
 ```
-@NodeStyle Equals?(Property(node, "name"), "Bosnia and Herzegovina") {
+@NodeStyle Equals(Property(node, "name"), "Bosnia and Herzegovina") {
    image-url: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Flag_of_Bosnia_and_Herzegovina.svg/1200px-Flag_of_Bosnia_and_Herzegovina.svg.png"
  }
 
- @NodeStyle Equals?(Property(node, "name"), "Czech Republic") {
+ @NodeStyle Equals(Property(node, "name"), "Czech Republic") {
    image-url: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Flag_of_the_Czech_Republic.svg/2560px-Flag_of_the_Czech_Republic.svg.png"
  }
 ```
@@ -91,8 +93,8 @@ use a beer image and a bigger size along with a red shadow.
 
 ```
 @NodeStyle And()
-     HasLabel?(node, "City"),
-     Less?(Property(node, "drinks_USD"), 5)) {
+     HasLabel(node, "City"),
+     Less(Property(node, "drinks_USD"), 5)) {
   size: 50
   image-url: "https://www.sciencenews.org/wp-content/uploads/2020/05/050620_mt_beer_feat-1028x579.jpg"
   shadow-color: red

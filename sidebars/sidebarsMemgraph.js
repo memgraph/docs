@@ -77,6 +77,7 @@ module.exports = {
             "connect-to-memgraph/drivers/php",
           ],
         },
+        "connect-to-memgraph/websocket",
       ],
     },
     {
@@ -90,7 +91,6 @@ module.exports = {
           link: { type: "doc", id: "import-data/csv/overview" },
           items: [
             "import-data/csv/load-csv-clause",
-            "import-data/csv/csv-import-tool",
           ],
         },
         {
@@ -121,22 +121,29 @@ module.exports = {
       link: { type: "doc", id: "tutorials/overview" },
       items: [
         "tutorials/first-steps-with-memgraph",
-        "tutorials/analyzing-ted-talks",
-        "tutorials/backpacking-through-europe",
-        "tutorials/exploring-the-european-road-network",
-        "tutorials/football-transfers",
-        "tutorials/graph-modeling",
-        "tutorials/got-deaths",
-        "tutorials/graphing-the-premier-league",
-        "tutorials/implement-custom-query-module-in-python",
         "tutorials/install-memgraph-windows-10",
-        "tutorials/marvel-universe",
-        "tutorials/movie-recommendation",
+        "tutorials/graph-modeling",
         "tutorials/migrate-relational-database",
-        "tutorials/graph-stream-processing-with-kafka",
-        "tutorials/social-network-analysis",
+        {
+          type: "category",
+          label: "Exploring datasets with graph analytics",
+          link: { type: "doc", id: "tutorials/exploring-datasets/overview" },
+          items: [
+            "tutorials/exploring-datasets/analyzing-ted-talks",
+            "tutorials/exploring-datasets/backpacking-through-europe",
+            "tutorials/exploring-datasets/exploring-the-european-road-network",
+            "tutorials/exploring-datasets/football-transfers",
+            "tutorials/exploring-datasets/got-deaths",
+            "tutorials/exploring-datasets/graphing-the-premier-league",
+            "tutorials/exploring-datasets/marvel-universe",
+            "tutorials/exploring-datasets/movie-recommendation",
+          ],
+        },
         "tutorials/style-your-graphs-in-memgraph-lab",
+        "tutorials/implement-custom-query-module-in-python",
+        "tutorials/social-network-analysis",
         "tutorials/understanding-music-with-modules",
+        "tutorials/graph-stream-processing-with-kafka",
       ],
     },
     {
@@ -155,6 +162,7 @@ module.exports = {
               items: [
                 "how-to-guides/streams/kafka/kafka-streams",
                 "how-to-guides/streams/kafka/implement-transformation-module",
+                "how-to-guides/streams/kafka/connect-to-stream-from-lab",
               ],
             },
             {
@@ -177,11 +185,12 @@ module.exports = {
           ],
         },
         "how-to-guides/networkx",
-        "how-to-guides/query-modules",
         "how-to-guides/replication",
         //"how-to-guides/tensorflow-setup",
         "reference-guide/triggers",
         "how-to-guides/font-awesome-for-node-images",
+        "how-to-guides/query-modules",
+        "how-to-guides/encryption",
         "how-to-guides/work-with-docker",
         "how-to-guides/indexes",
         {
@@ -201,8 +210,17 @@ module.exports = {
       items: [
         "reference-guide/backup",
         "reference-guide/graph-algorithms",
+        "reference-guide/memory-control",
         "reference-guide/configuration",
         "reference-guide/data-types",
+        {
+          type: "category",
+          label: "Deployment",
+          items: [
+            "reference-guide/deployment/docker",
+            "reference-guide/deployment/kubernetes",
+          ],
+        },
         {
           type: "category",
           label: "Import Data",
@@ -213,7 +231,6 @@ module.exports = {
               label: "CSV",
               items: [
                 "reference-guide/import-data/load-csv-clause",
-                "reference-guide/import-data/csv-import-tool",
               ],
             },
             "reference-guide/import-data/cypherl",
@@ -230,7 +247,6 @@ module.exports = {
         },
         "reference-guide/isolation-levels",
         "reference-guide/metadata",
-        "reference-guide/memory-control",
         "reference-guide/monitoring-server",
         {
           type: "category",
@@ -245,7 +261,7 @@ module.exports = {
               items: [
                 "reference-guide/query-modules/implement-custom-query-modules/api/python-api",
                 "reference-guide/query-modules/implement-custom-query-modules/api/c-api",
-                "reference-guide/query-modules/implement-custom-query-modules/custom-query-module-example",  
+                "reference-guide/query-modules/implement-custom-query-modules/custom-query-module-example",
               ],
             },
             "reference-guide/query-modules/load-call-query-modules",
@@ -278,6 +294,7 @@ module.exports = {
           ],
         },
         //"reference-guide/tensorflow",
+        "reference-guide/encryption",
         "reference-guide/triggers",
         "reference-guide/users",
         {
@@ -299,7 +316,7 @@ module.exports = {
       link: { type: "doc", id: "under-the-hood/overview" },
       items: [
         "under-the-hood/storage",
-        "under-the-hood/graph-algorithms",
+        //"under-the-hood/graph-algorithms",
         "under-the-hood/indexing",
         "under-the-hood/replication",
         "under-the-hood/telemetry",

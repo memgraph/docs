@@ -1,6 +1,6 @@
 ---
 id: font-awesome-for-node-images
-title: Use Font Awesome icons for node images
+title: How to use Font Awesome icons for node images
 sidebar_label: Use Font Awesome for node images
 ---
 
@@ -19,7 +19,9 @@ Lab doesn't support `SVG` format at this time, but it supports `PNG`, `JPEG`,
 
 <img src={require('../data/how-to-guides/font-awesome-locate-icon.png').default} className={"imgBorder"}/>
 
+
 2. Convert SVG file to PNG with your favorite image editing program, or you can use one of the dozen online services for file conversion.
+
 
 :::info
 
@@ -52,7 +54,7 @@ Your `@NodeStyle` block of code should look something like this:
 }
 ```
 
-You can take a look at [Graph Style Script @NodeStyle directive
+You can look at [Graph Style Script @NodeStyle directive
 properties](/memgraph-lab/style-script/gss-nodestyle-directive#image-url-string)
 for additional info on the syntax.
 
