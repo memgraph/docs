@@ -32,7 +32,7 @@ instances have to be demoted to REPLICA roles and have a port defined using a
 Cypher query. REPLICA instances no longer accept write queries. In order to
 start the replication, each REPLICA instance needs to be registered from the
 MAIN instance by setting [a replication
-mode](/under-the-hood/replication.md#replication-modes) (SYNC, SYNC WITH TIMEOUT,
+mode](/under-the-hood/replication.md#replication-modes) (SYNC
 and ASYNC) and specifying the REPLICA instance's socket address.
 
 The replication mode defines the terms by which the MAIN instance can commit the
@@ -43,12 +43,6 @@ consistency or availability:
   instances running in the SYNC mode confirm they have received the same
   transaction. SYNC mode prioritizes data consistency but has no tolerance for
   any network failures.
-- **SYNC WITH TIMEOUT** - The MAIN instance will not commit a transaction until
-  all REPLICA instances confirm they have received the same transaction within a
-  configured time interval. If the response from a REPLICA times out, the
-  replication mode of that instance will be changed to ASYNC. SYNC WITH TIMEOUT
-  prioritizes data consistency until unexpected issues force the system to
-  prioritize availability and partition tolerance.
 - **ASYNC** - The MAIN instance will commit a transaction without receiving
   confirmation from REPLICA instances that they have received the same
   transaction. ASYNC mode ensures system availability and partition tolerance.
@@ -139,16 +133,15 @@ SHOW REPLICATION ROLE;
 
 Once all the nodes in the cluster are assigned with appropriate roles, you can
 enable replication in the MAIN instance by registering REPLICA instances,
-setting a replication mode (SYNC, SYNC WITH TIMEOUT, and ASYNC), and specifying
+setting a replication mode (SYNC and ASYNC), and specifying
 the REPLICA instance's socket address. Memgraph doesn't support chaining REPLICA
 instances, that is, a REPLICA instance cannot be replicated on another REPLICA
 instance.
 
-If you want to register a REPLICA instance with a SYNC or SYNC WITH TIMEOUT
-replication mode, run the following query:
+If you want to register a REPLICA instance with a SYNC replication mode, run the following query:
 
 ```plaintext
-REGISTER REPLICA name SYNC [WITH TIMEOUT 0.5] TO <socket_address>;
+REGISTER REPLICA name SYNC TO <socket_address>;
 ```
 
 If you want to register a REPLICA instance with an ASYNC replication mode, run

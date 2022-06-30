@@ -28,7 +28,7 @@ replication modes, we will create:
 - The MAIN instance - contains the original data that will be replicated to
   REPLICA instances
 - REPLICA instance 1 - replication in the SYNC mode
-- REPLICA instance 2 - replication in the SYNC WITH TIMEOUT mode
+- REPLICA instance 2 - replication in the SYNC mode
 - REPLICA instance 3 - replication in the ASYNC mode
 
 ## How to run multiple instances?
@@ -125,19 +125,15 @@ instances:
 2. REPLICA instance 2 at `172.17.0.4`
 
    ```
-   REGISTER REPLICA REP2 SYNC WITH TIMEOUT 1 TO "172.17.0.4";
+   REGISTER REPLICA REP2 SYNC TO "172.17.0.4";
    ```
 
-   REPLICA instance 2 is called REP 2, its replication mode is SYNC WITH
-   TIMEOUT, and it is located at IP address `172.17.0.4.` with port `10000`.
+   REPLICA instance 2 is called REP 2, its replication mode is SYNC, and it is located at IP address `172.17.0.4.` with port `10000`.
 
-   When the REPLICA instance is running in SYNC WITH TIMEOUT mode the MAIN
-   instance will not commit a transaction until all REPLICA instances confirm
-   they have received the same transaction within a configured time interval. If
-   the response from a REPLICA times out, the replication mode of that instance
-   will be changed to ASYNC. SYNC WITH TIMEOUT prioritizes data consistency
-   until unexpected issues force the system to prioritize availability and
-   partition tolerance.
+   When the REPLICA instance is running in SYNC mode, the MAIN instance will not
+   commit a transaction until all REPLICA instances running in the SYNC mode
+   confirm they have received the same transaction. SYNC mode prioritizes data
+   consistency but has no tolerance for any network failures.
 
    If you used any port other than `10000` while demoting a REPLICA instance,
    you will need to specify it like this: "172.17.0.3:5000"
