@@ -306,14 +306,14 @@ current properties.
   ```
   items = vertex.properties.items()
   for it in items:
-  name = it.name
-  value = it.value
+    name = it.name
+    value = it.value
   ```
   ```
   items = edge.properties.items()
   for it in items:
-  name = it.name
-  value = it.value
+    name = it.name
+    value = it.value
   ```
 
 ### keys()
@@ -854,8 +854,8 @@ Remove the label from the vertex.
 
 - `InvalidContextError` - If `Vertex` is out of context.
 - `ImmutableObjectError` - If `Vertex` is immutable.
-  DeletedObjectError if `Vertex` has been deleted.
-  SerializationError if `Vertex` has been modified by another transaction.
+- `DeletedObjectError` - If `Vertex` has been deleted.
+- `SerializationError` - If `Vertex` has been modified by another transaction.
   
 
 **Examples**:
@@ -967,7 +967,7 @@ Initialize with a starting Vertex.
 **Raises**:
 
 - `InvalidContextError` - If passed in Vertex is invalid.
-  UnableToAllocateError If cannot allocate a path.
+- `UnableToAllocateError` - If cannot allocate a path.
 
 ### is\_valid()
 
@@ -1322,8 +1322,7 @@ Delete a vertex if there are no edges.
 
 - `ImmutableObjectError` - If `graph` is immutable.
 - `LogicErrorError` - If `vertex` has edges.
-- `SerializationError` - If `vertex` has been modified by
-  another transaction.
+- `SerializationError` - If `vertex` has been modified by another transaction.
 
 **Examples**:
 
