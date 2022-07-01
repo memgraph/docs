@@ -13,6 +13,7 @@ sidebar_label: Changelog
 - Added a check to ensure two replicas cannot be registered to an identical end-point. [#406](https://github.com/memgraph/memgraph/pull/406)
 - Adapted compilation flag so that the memory allocator uses JEMALLOC while counting allocated memory. [#401](https://github.com/memgraph/memgraph/pull/401)
 - `REGISTER REPLICA` with `TIMEOUT 0` is no longer allowed. [#414](https://github.com/memgraph/memgraph/pull/414)
+- Added a check to ensure that `null` can not be compared against in the simple form of CASE clause. [#422](https://github.com/memgraph/memgraph/pull/422)
 
 ### Major Features and Improvements
 

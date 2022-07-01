@@ -86,6 +86,8 @@ MATCH (n)
 RETURN CASE WHEN n.height < 30 THEN "short" WHEN n.height > 300 THEN "tall" END;
 ```
 
+When checking against `null` always use the generic form.
+
 ## Inspecting and profiling queries
 
 The `EXPLAIN` and `PROFILE` operators can be used to inspect and profile a
