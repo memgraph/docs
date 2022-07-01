@@ -29,7 +29,7 @@ navigate to **Query Modules** and click on **New Module** to start.
 
 :::
 
-## class mgp.read_proc(func: Callable[[…], mgp.Record])
+## mgp.read_proc(func: Callable[[…], mgp.Record])
 
 Register func as a read-only procedure of the current module.
 
@@ -79,7 +79,7 @@ properly and suggest methods and classes it contains. You can install the module
 by running `pip install mgp`.
 :::
 
-## class mgp.write_proc(func: Callable[[…], mgp.Record])
+## mgp.write_proc(func: Callable[[…], mgp.Record])
 
 Register func as a writeable procedure of the current module.
 
@@ -132,7 +132,7 @@ CALL example.procedure(“single argument”) YIELD result;
 Naturally, you may pass in different arguments.
 
 
-## class mgp.function(func: Callable[[…]])
+## mgp.function(func: Callable[[…]])
 
 Register func as a Memgraph function in the current module.
 
@@ -190,7 +190,7 @@ class Label()
 
 Label of a `Vertex`.
 
-#### name
+### name
 
 ```python
 @property
@@ -216,7 +216,7 @@ class Properties()
 
 A collection of properties either on a `Vertex` or an `Edge`.
 
-#### get
+### get()
 
 ```python
 def get(property_name: str, default=None) -> object
@@ -249,7 +249,7 @@ Get the value of a property with the given name or return default value.
   edge.properties.get(property_name)
   ```
 
-#### set
+### set()
 
 ```python
 def set(property_name: str, value: object) -> None
@@ -280,7 +280,7 @@ property is removed.
   edge.properties.set(property_name, value)
   ```
 
-#### items
+### items()
 
 ```python
 def items() -> typing.Iterable[Property]
@@ -316,7 +316,7 @@ current properties.
   value = it.value
   ```
 
-#### keys
+### keys()
 
 ```python
 def keys() -> typing.Iterable[str]
@@ -344,7 +344,7 @@ name of the current properties.
   graph.edge.properties.keys()
   ```
 
-#### values
+### values()
 
 ```python
 def values() -> typing.Iterable[object]
@@ -372,7 +372,7 @@ value of the current properties.
   edge.properties.values()
   ```
 
-#### \_\_len\_\_
+### \_\_len\_\_
 
 ```python
 def __len__() -> int
@@ -399,7 +399,7 @@ Get the number of properties.
   len(edge.properties)
   ```
 
-#### \_\_iter\_\_
+### \_\_iter\_\_
 
 ```python
 def __iter__() -> typing.Iterable[str]
@@ -426,7 +426,7 @@ Iterate over property names.
   iter(edge.properties)
   ```
 
-#### \_\_getitem\_\_
+### \_\_getitem\_\_
 
 ```python
 def __getitem__(property_name: str) -> object
@@ -458,7 +458,7 @@ Get the value of a property with the given name or raise KeyError.
   edge.properties[property_name]
   ```
 
-#### \_\_setitem\_\_
+### \_\_setitem\_\_
 
 ```python
 def __setitem__(property_name: str, value: object) -> None
@@ -489,7 +489,7 @@ property is removed.
   edge.properties[property_name] = value
   ```
 
-#### \_\_contains\_\_
+### \_\_contains\_\_
 
 ```python
 def __contains__(property_name: str) -> bool
@@ -531,7 +531,7 @@ class EdgeType()
 
 Type of an Edge.
 
-#### name
+### name
 
 ```python
 @property
@@ -561,7 +561,7 @@ Access to an Edge is only valid during a single execution of a procedure in
 a query. You should not globally store an instance of an Edge. Using an
 invalid Edge instance will raise InvalidContextError.
 
-#### is\_valid
+### is\_valid()
 
 ```python
 def is_valid() -> bool
@@ -578,7 +578,7 @@ Check if `edge` is in a valid context and may be used.
 
   ```edge.is_valid()```
 
-#### underlying\_graph\_is\_mutable
+### underlying\_graph\_is\_mutable()
 
 ```python
 def underlying_graph_is_mutable() -> bool
@@ -595,7 +595,7 @@ Check if the `graph` can be modified.
 
   ```edge.underlying_graph_is_mutable()```
 
-#### id
+### id
 
 ```python
 @property
@@ -618,7 +618,7 @@ Get the ID of the edge.
 
   ```edge.id```
 
-#### type
+### type
 
 ```python
 @property
@@ -641,7 +641,7 @@ Get the type of edge.
 
   ```edge.type```
 
-#### from\_vertex
+### from\_vertex()
 
 ```python
 @property
@@ -664,7 +664,7 @@ Get the source vertex.
 
   ```edge.from_vertex```
 
-#### to\_vertex
+### to\_vertex()
 
 ```python
 @property
@@ -687,7 +687,7 @@ Get the destination vertex.
 
   ```edge.to_vertex```
 
-#### properties
+### properties
 
 ```python
 @property
@@ -710,7 +710,7 @@ Get the properties of the edge.
 
   ```edge.properties```
 
-#### \_\_eq\_\_
+### \_\_eq\_\_
 
 ```python
 def __eq__(other) -> bool
@@ -730,7 +730,7 @@ Access to a Vertex is only valid during a single execution of a procedure
 in a query. You should not globally store an instance of a Vertex. Using an
 invalid Vertex instance will raise InvalidContextError.
 
-#### is\_valid
+### is\_valid()
 
 ```python
 def is_valid() -> bool
@@ -747,7 +747,7 @@ Checks if `Vertex` is in valid context and may be used.
 
   ```vertex.is_valid()```
 
-#### underlying\_graph\_is\_mutable
+### underlying\_graph\_is\_mutable()
 
 ```python
 def underlying_graph_is_mutable() -> bool
@@ -764,7 +764,7 @@ Check if the `graph` is mutable.
 
   ```vertex.underlying_graph_is_mutable()```
 
-#### id
+### id
 
 ```python
 @property
@@ -787,7 +787,7 @@ Get the ID of the Vertex.
 
   ```vertex.id```
 
-#### labels
+### labels
 
 ```python
 @property
@@ -812,7 +812,7 @@ Get the labels of the vertex.
 
   ```vertex.labels```
 
-#### add\_label
+### add\_label()
 
 ```python
 def add_label(label: str) -> None
@@ -838,7 +838,7 @@ Add the label to the vertex.
 
   ```vertex.add_label(label)```
 
-#### remove\_label
+### remove\_label()
 
 ```python
 def remove_label(label: str) -> None
@@ -862,7 +862,7 @@ Remove the label from the vertex.
 
   ```vertex.remove_label(label)```
 
-#### properties
+### properties
 
 ```python
 @property
@@ -885,7 +885,7 @@ Get the properties of the vertex.
 
   ```vertex.properties```
 
-#### in\_edges
+### in\_edges
 
 ```python
 @property
@@ -912,7 +912,7 @@ current inbound edges.
 
   ```for edge in vertex.in_edges:```
 
-#### out\_edges
+### out\_edges
 
 ```python
 @property
@@ -940,7 +940,7 @@ current outbound edges.
 
   ```for edge in vertex.out_edges:```
 
-#### \_\_eq\_\_
+### \_\_eq\_\_
 
 ```python
 def __eq__(other) -> bool
@@ -956,7 +956,7 @@ class Path()
 
 Path containing Vertex and Edge instances.
 
-#### \_\_init\_\_
+### \_\_init\_\_
 
 ```python
 def __init__(starting_vertex_or_path: typing.Union[_mgp.Path, Vertex])
@@ -969,7 +969,7 @@ Initialize with a starting Vertex.
 - `InvalidContextError` - If passed in Vertex is invalid.
   UnableToAllocateError If cannot allocate a path.
 
-#### is\_valid
+### is\_valid()
 
 ```python
 def is_valid() -> bool
@@ -986,7 +986,7 @@ Check if `Path` is in valid context and may be used.
 
   ```path.is_valid()```
 
-#### expand
+### expand()
 
 ```python
 def expand(edge: Edge)
@@ -1013,7 +1013,7 @@ edge, as continued from the current last vertex.
 
   ```path.expand(edge)```
 
-#### vertices
+### vertices
 
 ```python
 @property
@@ -1036,7 +1036,7 @@ Vertices are ordered from the start to the end of the path.
 
   ```path.vertices```
 
-#### edges
+### edges
 
 ```python
 @property
@@ -1065,7 +1065,7 @@ class Record()
 
 Represents a record of resulting field values.
 
-#### \_\_init\_\_
+### \_\_init\_\_
 
 ```python
 def __init__(**kwargs)
@@ -1081,7 +1081,7 @@ class Vertices()
 
 Iterable over vertices in a graph.
 
-#### is\_valid
+### is\_valid()
 
 ```python
 def is_valid() -> bool
@@ -1098,7 +1098,7 @@ Check if `Vertices` is in valid context and may be used.
 
   ```vertices.is_valid()```
 
-#### \_\_iter\_\_
+### \_\_iter\_\_
 
 ```python
 def __iter__() -> typing.Iterable[Vertex]
@@ -1126,7 +1126,7 @@ Iterate over vertices.
   iter(graph.vertices)
   ```
 
-#### \_\_contains\_\_
+### \_\_contains\_\_
 
 ```python
 def __contains__(vertex)
@@ -1153,7 +1153,7 @@ Check if Vertices contain the given vertex.
 
   ```if vertex in graph.vertices:```
 
-#### \_\_len\_\_
+### \_\_len\_\_
 
 ```python
 def __len__()
@@ -1184,7 +1184,7 @@ class Graph()
 
 State of the graph database in current ProcCtx.
 
-#### is\_valid
+### is\_valid()
 
 ```python
 def is_valid() -> bool
@@ -1201,7 +1201,7 @@ Check if `graph` is in a valid context and may be used.
 
   ```graph.is_valid()```
 
-#### get\_vertex\_by\_id
+### get\_vertex\_by\_id()
 
 ```python
 def get_vertex_by_id(vertex_id: VertexId) -> Vertex
@@ -1233,7 +1233,7 @@ Vertex.
 
   ```graph.get_vertex_by_id(vertex_id)```
 
-#### vertices
+### vertices
 
 ```python
 @property
@@ -1265,7 +1265,7 @@ instances.
   for vertex in graph.vertices:
   ```
 
-#### is\_mutable
+### is\_mutable()
 
 ```python
 def is_mutable() -> bool
@@ -1282,7 +1282,7 @@ Check if the graph is mutable. Thus it can be used to modify vertices and edges.
 
   ```graph.is_mutable()```
 
-#### create\_vertex
+### create\_vertex()
 
 ```python
 def create_vertex() -> Vertex
@@ -1306,7 +1306,7 @@ Create an empty vertex.
   Creating an empty vertex.
   ```vertex = graph.create_vertex()```
 
-#### delete\_vertex
+### delete\_vertex()
 
 ```python
 def delete_vertex(vertex: Vertex) -> None
@@ -1329,7 +1329,7 @@ Delete a vertex if there are no edges.
 
   ```graph.delete_vertex(vertex)```
 
-#### detach\_delete\_vertex
+### detach\_delete\_vertex()
 
 ```python
 def detach_delete_vertex(vertex: Vertex) -> None
@@ -1351,7 +1351,7 @@ Delete a vertex and all of its edges.
 
   ```graph.detach_delete_vertex(vertex)```
 
-#### create\_edge
+### create\_edge()
 
 ```python
 def create_edge(from_vertex: Vertex, to_vertex: Vertex,
@@ -1378,7 +1378,7 @@ Create an edge.
 
   ```graph.create_edge(from_vertex, vertex, edge_type)```
 
-#### delete\_edge
+### delete\_edge()
 
 ```python
 def delete_edge(edge: Edge) -> None
@@ -1415,7 +1415,7 @@ Context of a procedure being executed.
 Access to a ProcCtx is only valid during a single execution of a procedure
 in a query. You should not globally store a ProcCtx instance.
 
-#### graph
+### graph
 
 ```python
 @property
@@ -1454,7 +1454,7 @@ class Deprecated()
 
 Annotate a resulting Record&#x27;s field as deprecated.
 
-#### read\_proc
+### read\_proc()
 
 ```python
 def read_proc(func: typing.Callable[..., Record])
@@ -1473,7 +1473,7 @@ Multiple records can be produced by returning an iterable of them.
 Registering generator functions is currently not supported.
 
 
-#### write\_proc
+### write\_proc()
 
 ```python
 def write_proc(func: typing.Callable[..., Record])
@@ -1509,7 +1509,7 @@ class Message()
 
 Represents a message from a stream.
 
-#### is\_valid
+### is\_valid()
 
 ```python
 def is_valid() -> bool
@@ -1517,7 +1517,7 @@ def is_valid() -> bool
 
 Return True if `self` is in valid context and may be used.
 
-#### source\_type
+### source\_type()
 
 ```python
 def source_type() -> str
@@ -1527,7 +1527,7 @@ Supported in all stream sources
 
 Raise InvalidArgumentError if the message is from an unsupported stream source.
 
-#### payload
+### payload()
 
 ```python
 def payload() -> bytes
@@ -1539,7 +1539,7 @@ Supported stream sources:
 
 Raise InvalidArgumentError if the message is from an unsupported stream source.
 
-#### topic\_name
+### topic\_name()
 
 ```python
 def topic_name() -> str
@@ -1551,7 +1551,7 @@ Supported stream sources:
 
 Raise InvalidArgumentError if the message is from an unsupported stream source.
 
-#### key
+### key()
 
 ```python
 def key() -> bytes
@@ -1562,7 +1562,7 @@ Supported stream sources:
 
 Raise InvalidArgumentError if the message is from an unsupported stream source.
 
-#### timestamp
+### timestamp()
 
 ```python
 def timestamp() -> int
@@ -1573,7 +1573,7 @@ Supported stream sources:
 
 Raise InvalidArgumentError if the message is from an unsupported stream source.
 
-#### offset
+### offset()
 
 ```python
 def offset() -> int
@@ -1600,7 +1600,7 @@ class Messages()
 
 Represents a list of messages from a stream.
 
-#### is\_valid
+### is\_valid()
 
 ```python
 def is_valid() -> bool
@@ -1608,7 +1608,7 @@ def is_valid() -> bool
 
 Return True if `self` is in valid context and may be used.
 
-#### message\_at
+### message\_at()
 
 ```python
 def message_at(id: int) -> Message
@@ -1616,7 +1616,7 @@ def message_at(id: int) -> Message
 
 Raise InvalidMessagesError if context is invalid.
 
-#### total\_messages
+### total\_messages()
 
 ```python
 def total_messages() -> int
@@ -1635,7 +1635,7 @@ Context of a transformation being executed.
 Access to a TransCtx is only valid during a single execution of a transformation.
 You should not globally store a TransCtx instance.
 
-#### graph
+### graph
 
 ```python
 @property
@@ -1656,7 +1656,7 @@ Access to a FuncCtx is only valid during a single execution of a function in
 a query. You should not globally store a FuncCtx instance. The graph object
 within the FuncCtx is not mutable.
 
-#### function
+### function()
 
 ```python
 def function(func: typing.Callable)
