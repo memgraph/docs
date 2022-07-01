@@ -85,24 +85,8 @@ module.exports = {
       label: "Import data",
       link: { type: "doc", id: "import-data/overview" },
       items: [
-        {
-          type: "category",
-          label: "CSV",
-          link: { type: "doc", id: "import-data/csv/overview" },
-          items: [
-            "import-data/csv/load-csv-clause",
-          ],
-        },
-        {
-          type: "category",
-          label: "Kafka",
-          link: { type: "doc", id: "import-data/kafka/overview" },
-          items: [
-            "import-data/kafka/json",
-            "import-data/kafka/avro",
-            "import-data/kafka/protobuf",
-          ],
-        },
+        "import-data/csv/load-csv-clause",
+        "import-data/kafka/overview",
         {
           type: "category",
           label: "Migrate SQL",

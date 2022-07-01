@@ -1,10 +1,17 @@
 ---
 id: load-csv-clause
 title: LOAD CSV Cypher clause
-sidebar_label: LOAD CSV Cypher clause
+sidebar_label: CSV files
 pagination_prev: import-data/overview
 slug: /import-data/load-csv-clause
 ---
+
+If your data is in CSV format, you can import it into the Memgraph database
+using [**`LOAD CSV` Cypher clause**](./load-csv-clause.md). 
+
+Once you have a running Memgraph instance, you can trigger data import from a
+designated CSV file. Import populates the database if it is empty, or appends
+new data to an existing dataset.
 
 [![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/import-data/load-csv-clause.md)
 
@@ -63,8 +70,8 @@ files into the container.
 
 Below, you can find two examples of how to use the LOAD CSV clause depending on
 the complexity of your data:
-- [Transferring CSV files into a Docker container](#transfer)
-- Examples
+- [Transferring CSV files into a Docker container {#transfer}](#transferring-csv-files-into-a-docker-container-transfer)
+- [Examples](#examples)
   - [One type of nodes and relationships](#one-type-of-nodes-and-relationships)
   - [Multiple types of nodes and relationships](#multiple-types-of-nodes-and-relationships)
 

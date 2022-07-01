@@ -73,19 +73,23 @@ messages. Procedures can be written in
 need more information about what transformation modules are, please read our [reference
 guide on transformation modules](/reference-guide/streams/transformation-modules/overview.md).
 
-In Memgraph Lab allows you to develop Python transformation modules in-app:
+Memgraph Lab allows you to develop Python transformation modules in-app:
 
-1. Navigate to **Query Modules**. Here you can see all the query
-modules available in Memgraph, such as utility modules or query modules from the
-MAGE library. Here you will also be able to check out and edit any
-transformation modules you develop while using Memgraph. 
+1. Navigate to **Query Modules**. Here you can see all the query modules
+   available in Memgraph, such as utility modules or query modules from the MAGE
+   library. Here you will also be able to check out and edit any transformation
+   modules you develop while using Memgraph.
 
-2. Click on the **+ New Module** button, give the new module name `movielens` and
-create the module. 
+   <img src={require('../data/tutorials/create-stream-lab/query-modules.png').default}className={"imgBorder"}/>
 
-3. Memgraph Lab creates some sample procedures you can erase, so we we have a
-clean slate for writing the `movielens` transformation module.
+2. Click on the **+ New Module** button, give the new module name `movielens`
+   and create the module.
 
+3. Memgraph Lab creates sample procedures you can erase, so you have a clean
+   slate for writing the `movielens` transformation module.
+
+   <img src={require('../data/tutorials/create-stream-lab/query-modules-empty.png').default}className={"imgBorder"}/>
+ 
 ### Python API 
 
 Python API is defined in the `mgp` module you can find in the Memgraph
@@ -209,9 +213,14 @@ def rating(messages: mgp.Messages
 
 Congratulations, you just created your first transformation procedure! Save it
 and you should be able to see transformation `rating() -> ()` among the
-**Detected procedures & transformations**. You can now **Save and Close** the
-module to get an overview of the module that lists procedures and their
-signature.
+**Detected procedures & transformations**. 
+
+<img src={require('../data/tutorials/create-stream-lab/transformation-module-from-qm.png').default}className={"imgBorder"}/>
+
+You can now **Save and Close** the module to get an overview of the module that
+lists procedures and their signature.
+
+<img src={require('../data/tutorials/create-stream-lab/signature.png').default}className={"imgBorder"}/>
 
 ## 3. Create a stream
 
@@ -284,6 +293,7 @@ Switch to **Query Execution** and run a query to visualize the data coming in:
 MATCH p=(n)-[r]-(m)
 RETURN p LIMIT 100;
 ```
+<img src={require('../data/tutorials/create-stream-lab/graph.png').default}className={"imgBorder"}/>
 
 Congratulations! You have connected Memgraph to a Kafka stream. We've prepared
 queries that utilize the most powerful graph algorithms to gain every last bit

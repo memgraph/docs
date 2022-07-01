@@ -1,11 +1,12 @@
 ---
 id: manage-streams-lab
 title: How to manage data streams from Memgraph Lab
-sidebar_label: manage data streams from Memgraph Lab
+sidebar_label: Manage data streams from Memgraph Lab
 ---
 
-If you prefer to use GUI, you can now connect to data streams by using a wizard
-in the **Stream** section of Memgraph Lab.
+If you prefer to use GUI, you can connect to data streams by using a wizard in
+the **Stream** section of Memgraph Lab. If you prefere writing commands, you can
+[manage streams with queries](/how-to-guides/streams/manage-streams.md). 
 
 If you need a Kafka stream to play around with, we've provided some at [Awesome
 Data Stream](https://awesomedata.stream/)! 
@@ -41,10 +42,9 @@ act on data received from a streaming engine. Transformation procedures instruct
 Memgraph on how to transform the incoming messages to consume them correctly.
 
 At the moment, you can only develop Python transformation modules directly from
-Memgraph Lab. If you need to develop a procedure in C, check this
-guide on [how to load it into Memgraph](manage-streams.md#how-to-create-and-load-a-transformation-module-into-memgraph). 
+Memgraph Lab. 
 
-To add the Python transformation module to a stream:
+To add a Python transformation module to a stream:
 1. Click on **Add Transformation Module**.
 2. Click on **Choose Transformation Module**.
 3. Select an existing transformation module or **+ Create new transformation**.
@@ -58,6 +58,11 @@ To add the Python transformation module to a stream:
 You can also develop transformation modules in Python beforehand, in the section
 **Query Modules**. Click on the **New Module**, and the Lab will automatically
 recognize transformation procedures once you define them.
+
+If you developed a procedure in C, you have to [load it into
+Memgraph](manage-streams.md#how-to-create-and-load-a-transformation-module-into-memgraph)
+first, and then you will be able to see it in the **Query Modules** section and
+attach it to a stream. 
 
 Check the transformation module for MovieLens on [Awesome Data
 Stream](https://awesomedata.stream/#/movielens).
@@ -112,7 +117,7 @@ RETURN p LIMIT 100;
 To manage a stream in Memgraph Lab, go to **Streams** and click on the stream
 you want to manage. 
 
-### Start, stop or delete a stream?
+### How to start, stop or delete a stream?
 
 To start a draft steam, click on **Connect to Stream**.
 
@@ -125,8 +130,8 @@ To delete a stream, click on **Delete Stream**.
 You cannot edit a started stream. You can only create a new stream with the
 changes you want to implement.
 
-You can only change the transformation module and [the stream
-offset](manage-streams.md#how-to-change-the-kafka-stream-offset).
+You can only change the transformation module and the stream
+offset..
 
 ## How to change Kafka stream offset?
 

@@ -50,7 +50,7 @@ order to create a transformation module, you need to:
 2. Save it into the Memgraph's query modules directory (default:
    `/usr/lib/memgraph/query_modules`)
 3. Load it into Memgraph either on startup (automatically) or by running the
-   `CALL mg.load_all` query
+   `CALL mg.load_all();` query
 
 Each procedure in the transformation module is responsible for one type of data
 in the stream. The procedure `profile_transformation` can be found below:

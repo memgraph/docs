@@ -76,7 +76,7 @@ export default function ConnectToMemgraph() {
             <li>
               <b>
                 <a href="#kafka">
-                  How to import streaming data from Kafka into Memgraph?
+                  How to import streaming data from Kafka or Redpanda into Memgraph?
                 </a>
               </b>
             </li>
@@ -147,46 +147,12 @@ export default function ConnectToMemgraph() {
         </section>
         <section>
           <h2 id="kafka">
-            How to import streaming data from Kafka into Memgraph?
+            How to import streaming data from Kafka and Redpanda into Memgraph?
           </h2>
           <p>
-            Memgraph comes with full streaming support, and you can connect
-            Memgraph directly to a Kafka stream. Check out{" "}
-            <a href={useBaseUrl("/memgraph/import-data/kafka")}>this guide</a>{" "}
-            to find out how to connect to a Kafka stream and take a look at the
-            examples with different serialization mechanisms:
+            Memgraph comes with full streaming support, and you can {" "}<a href={useBaseUrl("/memgraph/import-data/kafka")}>connect
+            directly to a Kafka or a Redpanda stream.</a>{" "}
           </p>
-          {/*<ConnectButton
-            title={viaKafka.title}
-            url={viaKafka.url}
-            img={viaKafka.img}
-            imgActive={viaKafka.imgActive}
-            imgDark={viaKafka.imgDark}
-            imgDarkActive={viaKafka.imgDarkActive}
-          />*/}
-          <ul>
-            <li>
-              <b>
-                <a href={useBaseUrl("/memgraph/import-data/kafka/json")}>
-                  JSON
-                </a>
-              </b>
-            </li>
-            <li>
-              <b>
-                <a href={useBaseUrl("/memgraph/import-data/kafka/avro")}>
-                  Avro
-                </a>
-              </b>
-            </li>
-            <li>
-              <b>
-                <a href={useBaseUrl("/memgraph/import-data/kafka/protobuf")}>
-                  Protobuf
-                </a>
-              </b>
-            </li>
-          </ul>
         </section>
         <section>
           <h2 id="migrate">How to migrate data from a relational database?</h2>

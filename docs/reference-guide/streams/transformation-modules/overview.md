@@ -17,8 +17,8 @@ To create a transformation module, you need to:
 
 1. Create a [Python](./api/python-api.md) or a [shared library](./api/c-api.md)
    file (module).
-2. Save the file into the Memgraph's `query_modules` directory (default:
-   `/usr/lib/memgraph/query_modules`).
+2. Save the file into the Memgraph's `query_modules` or `internal_modules` directory (default:
+   `/usr/lib/memgraph/query_modules` and `/memgraph/internal_modules/`).
 3. Load the file into Memgraph either on startup (automatically) or by running a
    `CALL mg.load_all();` query.
 
@@ -41,9 +41,10 @@ The available API references are:
 - **[C API](./api/c-api.md)**
 - **[Python API](./api/python-api.md)**
 
-Check out [the tutorial on implementing a Python transformation
-module](/tutorials/graph-stream-processing-with-kafka.md#create-a-transformation-module), or [an example of a
-transformation module written in
+For examples of transformation modules check out [the tutorial on implementing a
+Python transformation
+module](/tutorials/graph-stream-processing-with-kafka.md#2-create-a-transformation-module),
+or [an example of a transformation module written in
 C](./api/c-api.md#transformation-module-example). 
 
 ## Loading modules
@@ -70,7 +71,7 @@ as a command-line parameter (e.g., when using Docker).
 Please remember that if you are using Memgraph Platform image, you should pass
 configuration flags within MEMGRAPH environmental variable (e.g. `docker run -p
 7687:7687 -p 7444:7444 -p 3000:3000 -e MEMGRAPH="--log-level=TRACE
---query-modules-directory=path/path`" memgraph/memgraph-platform`) and if you
+--query-modules-directory=path/path" memgraph/memgraph-platform`) and if you
 are using any other image you should pass them as arguments after the image name
 (e.g., `... memgraph/memgraph-mage --log-level=TRACE
 --query-modules-directory=path/path`).
@@ -97,7 +98,7 @@ docker ps
 command:
 
 ```
-docker cp ./trans_module.py <CONTAINER ID>:/usr/lib/memgraph/query_modules/trans_module.py
+docker cp ./file_name.py <CONTAINER ID>:/usr/lib/memgraph/query_modules/file_name.py
 ```
 
 The file is now inside your Docker container.
@@ -129,24 +130,15 @@ create the transformation module within the application:
 2. Give the transformation module a name and **Create** it.
 3. Write the transformation procedures and click **Save & Close**.
 
-## Creating transformation modules within Memgraph Lab
-
-If you are using Memgraph Lab to connect to the database instance, you can
-create the transformation module within the application:
-
-1. Go to **Query Modules** and click on **+ New Module**
-2. Give the transformation module a name and **Create** it
-3. Write the transformation procedures and click **Save & Close**
-
 You will see the signature and overview of the transformation procedure that you
 can now use while [creating a new
 stream](/how-to-guides/streams/manage-streams-lab.md). 
 
 ## Utility procedures for transformations
 
-Query procedures that allow you to gain more insight modules and transformations
-are written under our utility `mg` query module. For transformations, this
-module offers:
+Query procedures that allow you to gain more insight into modules and
+transformations are written under our utility `mg` query module. For
+transformations, this module offers:
 
 | Procedure                                  | Description                          |
 | ------------------------------------------ | ------------------------------------ |
@@ -170,9 +162,6 @@ This will yield the following result:
 | "batch.transform"                         | "/usr/lib/memgraph/query_modules/batch.py"            | true        |
 +-------------------------------------------+-------------------------------------------------------+-------------+
 ```
-
-You can see that Memgraph has already loaded the user-defined transformation of
-the module `batch`.
 
 To load a module (named e.g. `hello`) that wasn't loaded on startup (probably
 because it was added to Memgraph's directory once Memgraph was already running),

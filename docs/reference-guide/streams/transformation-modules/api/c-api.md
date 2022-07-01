@@ -4,9 +4,9 @@ title: Transformation modules C API
 sidebar_label: C API
 ---
 
-This is the additional API documentation for `mg_procedure.h` that contains
-declarations of all functions that can be used to implement a transformation.
-The source file can be found in the Memgraph installation directory, under
+This is the C API documentation for `mg_procedure.h` that contains declarations
+of all functions that can be used to implement a transformation. This source
+file can be found in the Memgraph installation directory, under
 `include/memgraph`. On the standard Debian installation, this will be under
 `/usr/include/memgraph`.
 
@@ -298,7 +298,7 @@ clang++ --std=c++17 -Wall -shared -fPIC -I /usr/include/memgraph c_transformatio
 ```
 
 After copying the resulting `c_transformation.so` to the
-`/usr/lib/memgraph/query_modules` directory, we can reload the modules and check
+`/usr/lib/memgraph/query_modules` or `/memgraph/internal_modules` directory, we can reload the modules and check
 if Memgraph found our newly created transformation:
 
 ```cypher

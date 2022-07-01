@@ -5,7 +5,7 @@ sidebar_label: Streams overview
 slug: /reference-guide/streams
 ---
 
-Memgraph can connect to existing Kafka/Redpanda and Pulsar sources to ingest the
+Memgraph can connect to existing Kafka, Redpanda and Pulsar sources to ingest the
 data, which you can then query with all the power of the MAGE or any other graph algorithms you need.
 
 [![Related - How
@@ -197,23 +197,24 @@ its default value is 30000.
 
 ## Get stream information
 
-To get more information about a specific stream, use the following queries:
+To get more information about a specific Kafka or Redpanda stream, use the
+following query:
 
 ```cypher
 CALL mg.kafka_stream_info("stream_name") YIELD *;
 ```
 
-or
+This procedure will return information about the bootstrap server, set
+configuration, consumer group, credentials and topics.
+
+To get more information about a specific Pulsar stream, use the
+following query:
 
 ```cypher
 CALL mg.pulsar_stream_info("stream_name") YIELD *;
 ```
 
-This procedure will return information about the bootstrap server, set
-configuration, consumer group, credentials and topics regarding the Kafka
-stream.
-
-In the case of a Pulsar stream, it will return service URL and topics.
+The procedure will return service URL and topics.
 
 ## Kafka producer delivery semantics
 
