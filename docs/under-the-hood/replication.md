@@ -4,15 +4,15 @@ title: Replication
 sidebar_label: Replication
 ---
 
+Uninterrupted data and operational availability in production systems are
+critical and can be achieved in many ways. In Memgraph we opted for replication.
+
 [![Related - How
 to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/replication.md)
 [![Related - Reference
 Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/replication.md)
 [![Related - Blog
 Post](https://img.shields.io/static/v1?label=Related&message=Blog%20post&color=9C59DB&style=for-the-badge)](https://memgraph.com/blog/implementing-data-replication)
-
-Uninterrupted data and operational availability in production systems are
-critical and can be achieved in many ways.
 
 In distributed systems theory the CAP theorem, also named Brewer's theorem,
 states that any distributed system can simultaneously guarantee two out of the
@@ -54,6 +54,14 @@ WAL files is impossible, Memgraph will use snapshots.
 
 ## Replication modes
 
+:::info
+
+From version 2.4 it is no longer possible to specify a timeout when registering
+a sync replica. To mimic this behavior in higher releases, please use ASYNC
+replication instead.
+
+:::
+
 Replication mode defines the terms by which the MAIN instance can commit the
 changes to the database, thus modifying the system to prioritize either
 consistency or availability. There are two possible replication modes
@@ -79,12 +87,6 @@ same transaction.
 SYNC mode prioritizes data consistency but has no tolerance for any network
 failures because if any of the REPLICATION instances fail, the MAIN instance
 will fail as well.
-
-:::info
-
-From version 2.4 it is no longer possible to specify a timeout when registering a sync replica. To mimic this behavior in higher releases, please use ASYNC replication instead.
-
-:::
 
 ### ASYN replication mode
 

@@ -4,13 +4,6 @@ title: Replication
 sidebar_label: Replication
 ---
 
-[![Related - How
-to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/replication.md)
-[![Related - Under the
-Hood](https://img.shields.io/static/v1?label=Related&message=Under%20the%20hood&color=orange&style=for-the-badge)](/under-the-hood/replication.md)
-[![Related - Blog
-Post](https://img.shields.io/static/v1?label=Related&message=Blog%20post&color=9C59DB&style=for-the-badge)](https://memgraph.com/blog/implementing-data-replication)
-
 When distributing data across several instances, Memgraph uses replication to
 provide a satisfying ratio of the following properties:
 
@@ -24,6 +17,23 @@ provide a satisfying ratio of the following properties:
 In the replication process, the data is replicated from one storage (MAIN
 instance) to another (REPLICA instances).
 
+:::info
+
+From version 2.4 it is no longer possible to specify a timeout when registering
+a sync replica. To mimic this behavior in higher releases, please use ASYNC
+replication instead.
+
+:::
+
+
+[![Related - How
+to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/replication.md)
+[![Related - Under the
+Hood](https://img.shields.io/static/v1?label=Related&message=Under%20the%20hood&color=orange&style=for-the-badge)](/under-the-hood/replication.md)
+[![Related - Blog
+Post](https://img.shields.io/static/v1?label=Related&message=Blog%20post&color=9C59DB&style=for-the-badge)](https://memgraph.com/blog/implementing-data-replication)
+
+
 ## Data replication implementation basics
 
 In Memgraph, all instances are MAIN upon starting. When creating a replication
@@ -33,7 +43,7 @@ Cypher query. REPLICA instances no longer accept write queries. In order to
 start the replication, each REPLICA instance needs to be registered from the
 MAIN instance by setting [a replication
 mode](/under-the-hood/replication.md#replication-modes) (SYNC
-and ASYNC) and specifying the REPLICA instance's socket address.
+or ASYNC) and specifying the REPLICA instance's socket address.
 
 The replication mode defines the terms by which the MAIN instance can commit the
 changes to the database, thus modifying the system to prioritize either
@@ -180,8 +190,8 @@ Example of a `<socket_address>` using only `IP_ADDRESS`:
 
 When a REPLICA instance is registered, it will start replication in ASYNC mode
 until it synchronizes to the current state of the database. Upon
-synchronization, REPLICA instances will start replication in the replication
-mode set during registration.
+synchronization, REPLICA instances will either continue working in the ASYNC
+mode or reset to SYNC mode.
 
 ### Listing all registered REPLICA instances
 
