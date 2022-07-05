@@ -19,12 +19,11 @@ string operators for easier matching of substrings:
 
 ## Parameters
 
-When automating the queries for Memgraph, it comes in handy to change only some
-parts of the query. Usually, these parts are values that are used for filtering
-results or similar, while the rest of the query remains the same.
+When automating queries in Memgraph, it comes in handy to change only some parts
+of the query, such as values used for filtering results.
 
 Parameters allow reusing the same query but with different parameter values. The
-syntax uses the `$` symbol to designate a parameter name. We don't allow old
+syntax uses the `$` symbol to designate a parameter name. Memgraph doesn't allow old
 Cypher parameter syntax using curly braces. For example, you can parameterize
 filtering a node property:
 
@@ -46,14 +45,14 @@ but this is supported:
 CREATE (n $propertyMap) RETURN n;
 ```
 
-To use parameters with a Python driver use the following syntax:
+To use parameters with a Python driver, use the following syntax:
 
 ```python
 session.run('CREATE (alice:Person {name: $name, age: $ageValue}',
             name='Alice', ageValue=22)).consume()
 ```
 
-To use parameters whose names are integers, you will need to wrap parameters in
+To use parameters with integers as names, you will need to wrap parameters in
 a dictionary and convert them to strings before running a query:
 
 ```python
@@ -69,17 +68,17 @@ documentation.
 Conditional expressions can be expressed in the Cypher language with the `CASE`
 expression. A simple form is used to compare an expression against multiple
 predicates. For the first matched predicate result of the expression provided
-after the `THEN` keyword is returned. If no expression is matched value
-following `ELSE` is returned is provided, or `null` if `ELSE` is not used:
+after the `THEN` keyword is returned. If no expression is matched, value
+following `ELSE` is returned, or `null` if `ELSE` is not used:
 
 ```cypher
 MATCH (n)
 RETURN CASE n.currency WHEN "DOLLAR" THEN "$" WHEN "EURO" THEN "€" ELSE "UNKNOWN" END;
 ```
 
-In generic form, you don't need to provide an expression whose value is compared
+In generic form, you don't need to provide an expression if its value is compared
 to predicates, but you can list multiple predicates and the first one that
-evaluates to true is matched:
+returns `true` is matched:
 
 ```cypher
 MATCH (n)
@@ -105,4 +104,3 @@ PROFILE MATCH (n) RETURN n;
 For a detailed look at using `EXPLAIN` and `PROFILE`, take a look at the guides:
 * [Inspecting queries](/memgraph/reference-guide/inspecting-queries)
 * [Profiling queries](/memgraph/reference-guide/profiling-queries)
-
