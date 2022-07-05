@@ -424,7 +424,7 @@ module.exports = {
     },
     hideableSidebar: true,
     announcementBar: {
-      id: "graphmodelingemailcourse",
+      id: "memgraphwebinarsignup",
       content:
         'Sign up for Memgraph Webinar: <a target="_blank" rel="noopener noreferrer" href="https://memgraph.com/memgraph-webinar-astrazeneca-biomedical-knowledge-graph"><b>Accelerating Drug Discovery With a Biomedical Knowledge Graph</b></a> ⚗️',
       backgroundColor: "#fafbfc",
