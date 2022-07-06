@@ -86,6 +86,9 @@ MATCH (n)
 RETURN CASE WHEN n.height < 30 THEN "short" WHEN n.height > 300 THEN "tall" END;
 ```
 
+Most expressions that take `null` as input will produce `null`. This includes boolean expressions that are used as
+predicates. In this case, anything that is not true is interpreted as being false. This also concludes that logically `null!=null`.
+
 ## Inspecting and profiling queries
 
 The `EXPLAIN` and `PROFILE` operators can be used to inspect and profile a
