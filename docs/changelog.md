@@ -13,7 +13,6 @@ sidebar_label: Changelog
 - Added a check to ensure two replicas cannot be registered to an identical end-point. [#406](https://github.com/memgraph/memgraph/pull/406)
 - Adapted compilation flag so that the memory allocator uses JEMALLOC while counting allocated memory. [#401](https://github.com/memgraph/memgraph/pull/401)
 
-
 ### Major Features and Improvements
 
 - Add replica state to `SHOW REPLICAS` query.
@@ -25,7 +24,9 @@ sidebar_label: Changelog
   point of view. [#380](https://github.com/memgraph/memgraph/pull/380)
 - Updated results return by [`CHECK STREAM`](/reference-guide/streams/overview.md) query to group all queries/raw messages on single line per batch. [#394](https://github.com/memgraph/memgraph/pull/394)
 - Added `BATCH_LIMIT` and `TIMEOUT` options to [`START STREAM`](/reference-guide/streams/overview.md) query that returns the raw message received by the transformation. [#392](https://github.com/memgraph/memgraph/pull/392)
+- Query `REGISTER REPLICA replica_name SYNC` no longer supports `TIMEOUT` parameter. To mimic the previous behavior of `REGISTER REPLICA replica_name SYNC WITH TIMEOUT 1`, one should use `REGISTER REPLICA replica_name ASYNC` instead. [#423](https://github.com/memgraph/memgraph/pull/423)
 - Previously registered replicas are automatically registered on restart of Memgraph. [#415](https://github.com/memgraph/memgraph/pull/415)
+
 
 ## v2.2.1 - Mar 17, 2022
 
