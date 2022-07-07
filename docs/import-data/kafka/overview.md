@@ -38,7 +38,7 @@ volumes:
 
 ## 2. Define a transformation module
 
-A transformation module is a user-defined program that receives data from a
+A transformation module is a user-defined module that receives data from a
 stream and returns processed data in the form of Cypher queries. The most common
 formats are:
 
@@ -49,7 +49,7 @@ formats are:
 Transformation modules can be written in either
 [**Python**](/reference-guide/streams/transformation-modules/api/python-api.md)
 or [**C**](/reference-guide/streams/transformation-modules/api/c-api.md)
-languages. Python procedures can be written directly within Memgraph Lab, either
+languages. Python transformation procedures can be written directly within Memgraph Lab, either
 in the **Query Modules** section, or as a part of the wizard when setting up
 streams. 
 

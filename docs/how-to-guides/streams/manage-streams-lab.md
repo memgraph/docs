@@ -38,7 +38,7 @@ module and attach it to the stream.
 A transformation module is a set of user-defined transformation procedures
 written in [C](/reference-guide/streams/transformation-modules/api/c-api.md) or
 [Python](/reference-guide/streams/transformation-modules/api/python-api.md) that
-act on data received from a streaming engine. Transformation procedures instruct
+act on data received from a streaming source. Transformation procedures instruct
 Memgraph on how to transform the incoming messages to consume them correctly.
 
 At the moment, you can only develop Python transformation modules directly from
