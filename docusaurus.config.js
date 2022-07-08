@@ -385,6 +385,10 @@ module.exports = {
           title: "More",
           items: [
             {
+              label: "Memgraph Cloud",
+              href: "https://memgraph.com/cloud"
+            },
+            {
               label: "Memgraph Playground",
               href: "https://playground.memgraph.com"
             },
@@ -393,7 +397,7 @@ module.exports = {
               href: "https://github.com/memgraph/memgraph",
             },
             {
-              label: "Youtube",
+              label: "YouTube",
               href: "https://www.youtube.com/channel/UCZ3HOJvHGxtQ_JHxOselBYg",
             },
           ],
