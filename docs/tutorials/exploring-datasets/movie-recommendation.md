@@ -20,29 +20,29 @@ and then we will implement a query for the movie recommendation.
 
 ## Data model
 
-In this example, we will use reduced MovieLens dataset (less than 1000 movies).
-There are three different types of data: `Movie`, `User` and `Genre`. Movies
-have properties: `id` and `title` Users have properties: `id`, `name` Genres
+In this example, we will use MovieLens dataset, which consists of 9742 movies across 20 genres. 
+There are three types of nodes: `Movie`, `User` and `Genre`. Movie nodes
+have properties: `id` and `title`. Users have an `id` property, while genres nodes
 have a property: `name`
 
-Each movie can be connected with `:ofGenre` relationship to different genres. A user can
-rate some movie. Rating is modeled with `:Rating` relationship and this relationship has
-a property `score` &mdash; float number between 0 and 5.
+Each movie can be connected with `:OF_GENRE` relationship to different genres. A user can
+rate some movies. Rating is modeled with `:RATED` relationship and this relationship has
+a property `rating` &mdash; float number between 0 and 5.
 
-![Movies](../../data/movie_metagraph.png)
+![Movies](../../data/movielens_model.png)
 
 ## Exploring the dataset
 
-Download the [Memgraph
+To follow this tutorial, download the [Memgraph
 Platform](https://memgraph.com/download#memgraph-platform). Once you have it up
 and running, open Memgraph Lab web application within the browser on
 [`localhost:3000`](http://localhost:3000) and navigate to `Datasets` in the
 sidebar. From there, choose the dataset `MovieLens: Movies, genres and users`
-and continue with the tutorial.
+and continue with the tutorial. 
 
 ## Example queries
 
-**1\.** List first 10 movies sorted by title
+**1\.** List first 10 movies sorted by title:
 
 ```cypher
 MATCH (movie:Movie)
@@ -51,127 +51,117 @@ ORDER BY movie.title
 LIMIT 10;
 ```
 
-**2\.** List last 15 users sorted by name
+**2\.** List 15 users from the dataset:
 
 ```cypher
 MATCH (user:User)
 RETURN user
-ORDER BY user.name DESC
 LIMIT 15;
 ```
 
 **3\.** List 10 movies that have _Comedy_ and _Action_ genres and sort them by
-title
+title: 
 
 ```cypher
-MATCH (movie:Movie)-[:ofGenre]->(:Genre {name:'Action'})
-MATCH (movie)-[:ofGenre]->(:Genre {name:'Comedy'})
+MATCH (movie:Movie)-[:OF_GENRE]->(:Genre {name:'Action'})
+MATCH (movie)-[:OF_GENRE]->(:Genre {name:'Comedy'})
 RETURN movie.title
 ORDER BY movie.title
 LIMIT 10;
 ```
 
-**4\.** Uniqueness constraint for genre:
-
-Let's create a new unique constraint:
+**4\.** Average score for _Star Wars: Episode IV - A New Hope (1977)_ movie:
 
 ```cypher
-CREATE CONSTRAINT ON (genre:Genre) ASSERT genre.name IS UNIQUE;
+MATCH (:User)-[r:RATED]->(:Movie {title:"Star Wars: Episode IV - A New Hope (1977)"})
+RETURN avg(r.rating)
 ```
 
-And now we can try to create new `Genre` node with an existing `name': 'Comedy':
+**5\.** Return the first 10 movies that are ordered by rating:
 
 ```cypher
-CREATE (:Genre {name: 'Comedy'});
-```
-
-This query returns an error because genre 'Comedy' already exists.
-
-**5\.** Average score for _Star Wars_ movie:
-
-```cypher
-MATCH (:User)-[rating:Rating]->(:Movie {title:'Star Wars'})
-RETURN avg(rating.score);
-```
-
-**6\.** Average scores for first 10 movies:
-
-```cypher
-MATCH (:User)-[r:Rating]->(movie:Movie)
-RETURN movie.title, avg(r.score) AS score
-ORDER BY score DESC
+MATCH (:User)-[r:RATED]->(movie:Movie)
+RETURN movie.title, avg(r.rating) AS rating
+ORDER BY rating DESC
 LIMIT 10;
 ```
 
-**7\.** Create a new user and rate some movies:
+**6\.** Create a new user and rate some movies:
 
 ```cypher
-CREATE (:User {id:1000, name:'Aladin'});
+CREATE (:User {id:1000});
 ```
 
 Check if new user is created:
 
 ```cypher
-MATCH (user:User{name:'Aladin'})
+MATCH (user:User{id:1000})
 RETURN user;
 ```
 
-Rate some movies:
+Create some ratings for the user:
 
 ```cypher
-MATCH (u:User {id:1000}), (m:Movie {title:"Trois couleurs : Rouge"})
-MERGE (u)-[:Rating {score:3.0}]->(m);
-MATCH (u:User {id:1000}), (m:Movie {title:"20,000 Leagues Under the Sea"})
-MERGE (u)-[:Rating {score:1.0}]->(m);
-MATCH (u:User {id:1000}), (m:Movie {title:"Star Trek: Generations"})
-MERGE (u)-[:Rating {score:0.5}]->(m);
-MATCH (u:User {id:1000}), (m:Movie {title:"Rebecca"})
-MERGE (u)-[:Rating {score:3.0}]->(m);
-MATCH (u:User {id:1000}), (m:Movie {title:"The 39 Steps"})
-MERGE (u)-[:Rating {score:4.5}]->(m);
-MATCH (u:User {id:1000}), (m:Movie {title:"Faster, Pussycat! Kill! Kill!"})
-MERGE (u)-[:Rating {score:3.5}]->(m);
-MATCH (u:User {id:1000}), (m:Movie {title:"Once Were Warriors"})
-MERGE (u)-[:Rating {score:3.5}]->(m);
-MATCH (u:User {id:1000}), (m:Movie {title:"Sleepless in Seattle"})
-MERGE (u)-[:Rating {score:4.0}]->(m);
-MATCH (u:User {id:1000}), (m:Movie {title:"Don Juan DeMarco"})
-MERGE (u)-[:Rating {score:4.0}]->(m);
-MATCH (u:User {id:1000}), (m:Movie {title:"Jack & Sarah"})
-MERGE (u)-[:Rating {score:1.5}]->(m);
-MATCH (u:User {id:1000}), (m:Movie {title:"Mr. Holland's Opus"})
-MERGE (u)-[:Rating {score:2.0}]->(m);
-MATCH (u:User {id:1000}), (m:Movie {title:"The Getaway"})
-MERGE (u)-[:Rating {score:3.0}]->(m);
-MATCH (u:User {id:1000}), (m:Movie {title:"Color of Night"})
-MERGE (u)-[:Rating {score:4.0}]->(m);
-MATCH (u:User {id:1000}), (m:Movie {title:"Reality Bites"})
-MERGE (u)-[:Rating {score:2.5}]->(m);
-MATCH (u:User {id:1000}), (m:Movie {title:"Notorious"})
-MERGE (u)-[:Rating {score:3.5}]->(m);
+MATCH (u:User {id:1000}), (m:Movie {title:"2 Guns (2013)"})
+MERGE (u)-[:RATED {score:3.0}]->(m);
+MATCH (u:User {id:1000}), (m:Movie {title:"21 Jump Street (2012)"})
+MERGE (u)-[:RATED {score:3.0}]->(m);
+MATCH (u:User {id:1000}), (m:Movie {title:"Toy Story (1995)"})
+MERGE (u)-[:RATED {score:3.5}]->(m);
+MATCH (u:User {id:1000}), (m:Movie {title:"Lion King, The (1994)"})
+MERGE (u)-[:RATED {score:4.0}]->(m);
+MATCH (u:User {id:1000}), (m:Movie {title:"Dark Knight, The (2008)"})
+MERGE (u)-[:RATED {score:4.5}]->(m);
+MATCH (u:User {id:1000}), (m:Movie {title:"Star Wars: Episode VI - Return of the Jedi (1983)"})
+MERGE (u)-[:RATED {score:4.5}]->(m);
+MATCH (u:User {id:1000}), (m:Movie {title:"Godfather, The (1972)"})
+MERGE (u)-[:RATED {score:5.0}]->(m);
+MATCH (u:User {id:1000}), (m:Movie {title:"Lord of the Rings: The Return of the King, The (2003)"})
+MERGE (u)-[:RATED {score:4.0}]->(m);
+MATCH (u:User {id:1000}), (m:Movie {title:"Aladdin (1992)"})
+MERGE (u)-[:RATED {score:4.0}]->(m);
+MATCH (u:User {id:1000}), (m:Movie {title:"Pirates of the Caribbean: The Curse of the Black Pearl (2003)"})
+MERGE (u)-[:RATED {score:4.5}]->(m);
+MATCH (u:User {id:1000}), (m:Movie {title:"Departed, The (2006)"})
+MERGE (u)-[:RATED {score:4.0}]->(m);
+MATCH (u:User {id:1000}), (m:Movie {title:"Texas Rangers (2001)"})
+MERGE (u)-[:RATED {score:2.0}]->(m);
+MATCH (u:User {id:1000}), (m:Movie {title:"Eve of Destruction (1991)"})
+MERGE (u)-[:RATED {score:1.0}]->(m);
+MATCH (u:User {id:1000}), (m:Movie {title:"Sharkwater (2006)"})
+MERGE (u)-[:RATED {score:2.0}]->(m);
+MATCH (u:User {id:1000}), (m:Movie {title:"Extreme Days (2001)"})
+MERGE (u)-[:RATED {score:1.5}]->(m);
 ```
 
-**8\.** Recommendation system:
+Check all the movies user with `id = 1000` has rated: 
+
+```
+MATCH (user:User {id:1000})-[rating:RATED]->(movie:Movie)
+RETURN user, movie, rating
+```
+
+**7\.** Recommendation system:
 
 The idea is to implement simple [memory based collaborative
 filtering](https://en.wikipedia.org/wiki/Collaborative_filtering).
 
-Let's recommend some movies for user Aladin:
+Let's recommend some movies for user with `id = 1000`:
 
 ```cypher
-MATCH (u:User {id:1000})-[r:Rating]-(m:Movie)
-      -[other_r:Rating]-(other:User)
+MATCH (u:User {id:1000})-[r:RATED]-(m:Movie)
+      -[other_r:RATED]-(other:User)
 WITH other.id AS other_id,
-     avg(abs(r.score-other_r.score)) AS similarity,
+     avg(abs(r.rating-other_r.rating)) AS similarity,
      count(*) AS similar_user_count
 WHERE similar_user_count > 2
 WITH other_id
 ORDER BY similarity
 LIMIT 10
 WITH collect(other_id) AS similar_user_set
-MATCH (some_movie: Movie)-[fellow_rate:Rating]-(fellow_user:User)
+MATCH (some_movie: Movie)-[fellow_rate:RATED]-(fellow_user:User)
 WHERE fellow_user.id IN similar_user_set
-WITH some_movie, avg(fellow_rate.score) AS prediction_score
+WITH some_movie, avg(fellow_rate.rating) AS prediction_score
 RETURN some_movie.title AS Title, prediction_score
 ORDER BY prediction_score DESC;
 ```
@@ -185,19 +175,19 @@ This query has two parts:
 
 In the first part, we are looking for similar users. First, we need to define
 similar users: Two users are considered similar if they tend to give similar
-scores to the same movies. For the target user (Aladin) and some other user we
+ratings to the same movies. For the target user and some other user we
 are searching for the same movies:
 
 ```cypher
-MATCH (u:User {id:1000})-[r:Rating]-(m:Movie)-[other_r:Rating]-(other:User);
+MATCH (u:User {id:1000})-[r:RATED]-(m:Movie)-[other_r:RATED]-(other:User);
 ```
 
 But this is not enough for finding similar users. We need to choose users with
-the same movies and similar scores:
+the same movies and similar ratings:
 
 ```cypher
 WITH other.id AS other_id,
-     avg(abs(r.score-other_r.score)) AS similarity,
+     avg(abs(r.rating-other_r.rating)) AS similarity,
      count(*) AS similar_user_count
 WHERE similar_user_count > 2
 WITH other_id
@@ -205,8 +195,8 @@ ORDER BY similarity
 LIMIT 10;
 ```
 
-Here we calculate similarities as the average distance between target user score
-and some other user score on the same set of movies. There are two parameters:
+Here we calculate similarities as the average distance between target user rating
+and some other user rating on the same set of movies. There are two parameters:
 similarUserCount limit (2) and similar user set size limit (10). Similar user
 count limit is used for filtering users who have at least 2 movies in common
 with the target user. Similar user set size is used to peek top 10 similar users
@@ -216,9 +206,9 @@ Now we have similar user set. We will use those users to calculate the average
 score for all movies in the database.
 
 ```cypher
-MATCH (some_movie: Movie)-[fellow_rate:Rating]-(fellow_user:User)
+MATCH (some_movie: Movie)-[fellow_rate:RATED]-(fellow_user:User)
 WHERE fellow_user.id IN similar_user_set
-WITH some_movie, avg(fellow_rate.score) AS prediction_score
+WITH some_movie, avg(fellow_rate.rating) AS prediction_score
 RETURN some_movie.title AS title, prediction_score
 ORDER BY prediction_score DESC;
 ```
@@ -229,7 +219,7 @@ functions, for example [Euclidean
 distance](https://en.wikipedia.org/wiki/Euclidean_distance):
 
 ```cypher
-sqrt(reduce(a=0, x IN collect((r.score - other_r.score) * (r.score - other_r.score)) | a + x)) AS similarity;
+sqrt(reduce(a=0, x IN collect((r.rating - other_r.rating) * (r.rating - other_r.rating)) | a + x)) AS similarity;
 ```
 
 Here we use `reduce` function. Reduce function accumulate list elements into a
