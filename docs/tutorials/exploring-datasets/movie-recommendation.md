@@ -92,14 +92,14 @@ LIMIT 10;
 CREATE (:User {id:1000});
 ```
 
-Check if new user is created:
+**7\.** Check if new user is created:
 
 ```cypher
 MATCH (user:User{id:1000})
 RETURN user;
 ```
 
-Create some ratings for the user:
+**8\.** Create some ratings for the user:
 
 ```cypher
 MATCH (u:User {id:1000}), (m:Movie {title:"2 Guns (2013)"})
@@ -134,14 +134,14 @@ MATCH (u:User {id:1000}), (m:Movie {title:"Extreme Days (2001)"})
 MERGE (u)-[:RATED {score:1.5}]->(m);
 ```
 
-Check all the movies user with `id = 1000` has rated: 
+**9\.**Check all the movies user with `id = 1000` has rated: 
 
 ```
 MATCH (user:User {id:1000})-[rating:RATED]->(movie:Movie)
 RETURN user, movie, rating
 ```
 
-**7\.** Recommendation system:
+**10\.** Recommendation system:
 
 The idea is to implement simple [memory based collaborative
 filtering](https://en.wikipedia.org/wiki/Collaborative_filtering).
