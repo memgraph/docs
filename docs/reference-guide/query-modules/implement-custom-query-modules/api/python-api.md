@@ -1119,12 +1119,8 @@ Iterate over vertices.
 
 **Examples**:
 
-  ```
-  for vertex in graph.vertices:
-  ```
-  ```
-  iter(graph.vertices)
-  ```
+  ```for vertex in graph.vertices``````iter(graph.vertices)```
+  
 
 ### \_\_contains\_\_
 
@@ -1301,9 +1297,8 @@ Create an empty vertex.
 - `UnableToAllocateError` - If unable to allocate a vertex.
   
 
-**Examples**:
+**Examples**
 
-  Creating an empty vertex.
   ```vertex = graph.create_vertex()```
 
 ### delete\_vertex()
@@ -1362,7 +1357,7 @@ Create an edge.
 **Arguments**:
 
 - `from_vertex` - `Vertex` from where edge is directed.
-- `to_vertex` - `Vertex&#x27;  to where edge is directed.
+- `to_vertex` - `Vertex`  to where edge is directed.
 - `edge_type` - `EdgeType` defines the type of edge.
   
 
@@ -1392,8 +1387,12 @@ Delete an edge.
 
 **Raises**:
 
-  ImmutableObjectError if `graph` is immutable.
-  Raise SerializationError if `edge`, its source or destination vertex has been modified by another transaction.
+  ImmutableObjectError: If `graph` is immutable.
+  Raise SerializationError: If `edge`, its source or destination vertex has been modified by another transaction.
+
+**Examples**
+
+  ```graph.delete_edge(edge)```
 
 ## AbortError Objects
 
