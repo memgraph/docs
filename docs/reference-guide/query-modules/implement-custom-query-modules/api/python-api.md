@@ -1119,7 +1119,7 @@ Iterate over vertices.
 
 **Examples**:
 
-  ```for vertex in graph.vertices``````iter(graph.vertices)```
+  ```for vertex in graph.vertices```
   
 
 ### \_\_contains\_\_
@@ -1387,8 +1387,8 @@ Delete an edge.
 
 **Raises**:
 
-  ImmutableObjectError: If `graph` is immutable.
-  Raise SerializationError: If `edge`, its source or destination vertex has been modified by another transaction.
+- ImmutableObjectError: If `graph` is immutable.
+- Raise SerializationError: If `edge`, its source or destination vertex has been modified by another transaction.
 
 **Examples**
 
