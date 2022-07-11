@@ -63,7 +63,7 @@ following guides:
 Memgraph currently provides three query modules
 that utilize the NetworkX library. Take a look how to use the NetworkX library with Memgraph:
 
-- [Utilize the NetworkX library](/how-to-guides/networkx.md))
+- [Utilize the NetworkX library](/how-to-guides/networkx.md)
 
 ## TensorFlow Op
 
