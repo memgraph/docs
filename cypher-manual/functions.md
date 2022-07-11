@@ -16,7 +16,7 @@ This section contains the list of supported functions.
  | `date`          | <code>date(value: string\|Date) -> (Date)</code>                           | Returns the data type that represents a date with year, month, and day.   |
  | `localTime`     | <code>localTime(value: string\|LocalTime) -> (LocalTime)</code>            | Returns the data type that represents time within a day without timezone. |
  | `localDateTime` | <code>localDateTime(value: string\|LocalDateTime)-> (LocalDateTime)</code> | Returns the data type that represents a date and local time.              |
-                             
+
  ### Scalar functions
 
  | Name         | Signature                                                                            | Description                                                                                                                                                                                                                              |
@@ -37,7 +37,7 @@ This section contains the list of supported functions.
  | `id`         | <code>id(value: Node\|Relationship) -> (integer)</code>                              | Returns identifier for a given node or relationship. The identifier is generated during the initialization of a node or a relationship  and will be persisted through the durability mechanism.                                                  |
  | `timestamp`  | `timestamp() -> (integer)`                                                           | Returns the difference, measured in microseconds, between the current time and midnight, January 1, 1970 UTC.                                                                                                                            |
  | `counter`    | `counter(name: string, initial-value: integer, increment: integer = 1) -> (integer)` | Generates integers that are guaranteed to be unique within a single query for a given counter name.  The increment parameter can be any integer besides zero.                                                                            |
- 
+
  ### Lists
 
  | Name            | Signature                                                                                      | Description                                                                                                                                |

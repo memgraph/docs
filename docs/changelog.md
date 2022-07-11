@@ -12,6 +12,7 @@ sidebar_label: Changelog
   REPLICAS` query. [#376](https://github.com/memgraph/memgraph/pull/376)
 - Added a check to ensure two replicas cannot be registered to an identical end-point. [#406](https://github.com/memgraph/memgraph/pull/406)
 - Adapted compilation flag so that the memory allocator uses JEMALLOC while counting allocated memory. [#401](https://github.com/memgraph/memgraph/pull/401)
+- `toString` function is now able to accept `Date`, `LocalTime`, `LocalDateTime` and `Duration` data types. [#429](https://github.com/memgraph/memgraph/pull/429)
 
 ### Major Features and Improvements
 
