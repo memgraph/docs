@@ -21,7 +21,9 @@ the OGM will automatically translate into Cypher queries.
 ### 1. Install GQLAlchemy
 
 Either install GQLAlchemy through [pip](/installation.md#pip) or [build it from
-source](/installation.md#source).
+source](/installation.md#source). If you are using [Conda](https://docs.conda.io/en/latest/) as your Python
+environment management, you can install GQLAlchemy through
+[pip](/installation.md#pip).
 
 ### 2. Learn how to use the OGM
 
