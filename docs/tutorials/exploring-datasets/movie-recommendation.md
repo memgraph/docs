@@ -103,35 +103,35 @@ RETURN user;
 
 ```cypher
 MATCH (u:User {id:1000}), (m:Movie {title:"2 Guns (2013)"})
-MERGE (u)-[:RATED {score:3.0}]->(m);
+MERGE (u)-[:RATED {rating:3.0}]->(m);
 MATCH (u:User {id:1000}), (m:Movie {title:"21 Jump Street (2012)"})
-MERGE (u)-[:RATED {score:3.0}]->(m);
+MERGE (u)-[:RATED {rating:3.0}]->(m);
 MATCH (u:User {id:1000}), (m:Movie {title:"Toy Story (1995)"})
-MERGE (u)-[:RATED {score:3.5}]->(m);
+MERGE (u)-[:RATED {rating:3.5}]->(m);
 MATCH (u:User {id:1000}), (m:Movie {title:"Lion King, The (1994)"})
-MERGE (u)-[:RATED {score:4.0}]->(m);
+MERGE (u)-[:RATED {rating:4.0}]->(m);
 MATCH (u:User {id:1000}), (m:Movie {title:"Dark Knight, The (2008)"})
-MERGE (u)-[:RATED {score:4.5}]->(m);
+MERGE (u)-[:RATED {rating:4.5}]->(m);
 MATCH (u:User {id:1000}), (m:Movie {title:"Star Wars: Episode VI - Return of the Jedi (1983)"})
-MERGE (u)-[:RATED {score:4.5}]->(m);
+MERGE (u)-[:RATED {rating:4.5}]->(m);
 MATCH (u:User {id:1000}), (m:Movie {title:"Godfather, The (1972)"})
-MERGE (u)-[:RATED {score:5.0}]->(m);
+MERGE (u)-[:RATED {rating:5.0}]->(m);
 MATCH (u:User {id:1000}), (m:Movie {title:"Lord of the Rings: The Return of the King, The (2003)"})
-MERGE (u)-[:RATED {score:4.0}]->(m);
+MERGE (u)-[:RATED {rating:4.0}]->(m);
 MATCH (u:User {id:1000}), (m:Movie {title:"Aladdin (1992)"})
-MERGE (u)-[:RATED {score:4.0}]->(m);
+MERGE (u)-[:RATED {rating:4.0}]->(m);
 MATCH (u:User {id:1000}), (m:Movie {title:"Pirates of the Caribbean: The Curse of the Black Pearl (2003)"})
-MERGE (u)-[:RATED {score:4.5}]->(m);
+MERGE (u)-[:RATED {rating:4.5}]->(m);
 MATCH (u:User {id:1000}), (m:Movie {title:"Departed, The (2006)"})
-MERGE (u)-[:RATED {score:4.0}]->(m);
+MERGE (u)-[:RATED {rating:4.0}]->(m);
 MATCH (u:User {id:1000}), (m:Movie {title:"Texas Rangers (2001)"})
-MERGE (u)-[:RATED {score:2.0}]->(m);
+MERGE (u)-[:RATED {rating:2.0}]->(m);
 MATCH (u:User {id:1000}), (m:Movie {title:"Eve of Destruction (1991)"})
-MERGE (u)-[:RATED {score:1.0}]->(m);
+MERGE (u)-[:RATED {rating:1.0}]->(m);
 MATCH (u:User {id:1000}), (m:Movie {title:"Sharkwater (2006)"})
-MERGE (u)-[:RATED {score:2.0}]->(m);
+MERGE (u)-[:RATED {rating:2.0}]->(m);
 MATCH (u:User {id:1000}), (m:Movie {title:"Extreme Days (2001)"})
-MERGE (u)-[:RATED {score:1.5}]->(m);
+MERGE (u)-[:RATED {rating:1.5}]->(m);
 ```
 
 **9\.**Check all the movies user with `id = 1000` has rated: 
@@ -153,13 +153,13 @@ MATCH (u:User {id:1000})-[r:RATED]-(m:Movie)
       -[other_r:RATED]-(other:User)
 WITH other.id AS other_id,
      avg(abs(r.rating-other_r.rating)) AS similarity,
-     count(*) AS similar_user_count
-WHERE similar_user_count > 2
+     count(*) AS same_movies_rated
+WHERE same_movies_rated > 2
 WITH other_id
 ORDER BY similarity
 LIMIT 10
 WITH collect(other_id) AS similar_user_set
-MATCH (some_movie: Movie)-[fellow_rate:RATED]-(fellow_user:User)
+MATCH (some_movie:Movie)-[fellow_rate:RATED]-(fellow_user:User)
 WHERE fellow_user.id IN similar_user_set
 WITH some_movie, avg(fellow_rate.rating) AS prediction_score
 RETURN some_movie.title AS Title, prediction_score
@@ -179,31 +179,31 @@ ratings to the same movies. For the target user and some other user we
 are searching for the same movies:
 
 ```cypher
-MATCH (u:User {id:1000})-[r:RATED]-(m:Movie)-[other_r:RATED]-(other:User);
+MATCH (u:User {id:1000})-[r:RATED]-(m:Movie)-[other_r:RATED]-(other:User)
+RETURN *;
 ```
-
+If you try to execute the query above with added `RETURN` statement, you will get all
+potential similar users and movies they rated. 
 But this is not enough for finding similar users. We need to choose users with
 the same movies and similar ratings:
 
 ```cypher
 WITH other.id AS other_id,
      avg(abs(r.rating-other_r.rating)) AS similarity,
-     count(*) AS similar_user_count
-WHERE similar_user_count > 2
+     count(*) AS same_movies_rated
+WHERE same_movies_rated > 2
 WITH other_id
 ORDER BY similarity
 LIMIT 10;
+WITH collect(other_id) AS similar_user_set
 ```
 
-Here we calculate similarities as the average distance between target user rating
+Here we calculate similarities as the average distance between the target user rating
 and some other user rating on the same set of movies. There are two parameters:
-similarUserCount limit (2) and similar user set size limit (10). Similar user
-count limit is used for filtering users who have at least 2 movies in common
-with the target user. Similar user set size is used to peek top 10 similar users
-(10 or less).
+`same_movies_rated` defines the number of same movies (more than 3) that the target user and other users need to rate, and `similar_user_set` represents the users that gave a similar rating to the movies that the target user has rated. This parameters enable extracting best users for movie recomendations.
 
-Now we have similar user set. We will use those users to calculate the average
-score for all movies in the database.
+Now we have a similar user set. We will use those users to calculate the average
+rating score for all movies they rated in the database, and return the best rated that are ordered by rating quality, but as `prediction_score` variable.
 
 ```cypher
 MATCH (some_movie: Movie)-[fellow_rate:RATED]-(fellow_user:User)
