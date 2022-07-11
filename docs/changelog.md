@@ -25,6 +25,7 @@ sidebar_label: Changelog
 - Updated results return by [`CHECK STREAM`](/reference-guide/streams/overview.md) query to group all queries/raw messages on single line per batch. [#394](https://github.com/memgraph/memgraph/pull/394)
 - Added `BATCH_LIMIT` and `TIMEOUT` options to [`START STREAM`](/reference-guide/streams/overview.md) query that returns the raw message received by the transformation. [#392](https://github.com/memgraph/memgraph/pull/392)
 - Query `REGISTER REPLICA replica_name SYNC` no longer supports `TIMEOUT` parameter. To mimic the previous behavior of `REGISTER REPLICA replica_name SYNC WITH TIMEOUT 1`, one should use `REGISTER REPLICA replica_name ASYNC` instead. [#423](https://github.com/memgraph/memgraph/pull/423)
+- Make behavior more [openCypher](http://opencypher.org/) compliant regarding checking against `NULL` values is `CASE` expressions. [#432](https://github.com/memgraph/memgraph/pull/432)
 - Previously registered replicas are automatically registered on restart of Memgraph. [#415](https://github.com/memgraph/memgraph/pull/415)
 
 
