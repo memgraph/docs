@@ -203,7 +203,7 @@ and some other user rating on the same set of movies. There are two parameters:
 `same_movies_rated` defines the number of same movies (more than 3) that the target user and other users need to rate, and `similar_user_set` represents the users that gave a similar rating to the movies that the target user has rated. These parameters enable extracting the best users for movie recommendations.
 
 Now we have a similar user set. We will use those users to calculate the average
-rating value for all movies they rated in the database, and return the best-rated movies as `prediction_rating` variable.
+rating value for all movies they rated in the database as `prediction_rating` variable, and return the best-rated movies order by `prediction_rating` variable.
 
 ```cypher
 MATCH (some_movie: Movie)-[fellow_rate:RATED]-(fellow_user:User)
