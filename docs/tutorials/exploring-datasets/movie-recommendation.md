@@ -161,9 +161,9 @@ LIMIT 10
 WITH collect(other_id) AS similar_user_set
 MATCH (some_movie:Movie)-[fellow_rate:RATED]-(fellow_user:User)
 WHERE fellow_user.id IN similar_user_set
-WITH some_movie, avg(fellow_rate.rating) AS prediction_score
-RETURN some_movie.title AS Title, prediction_score
-ORDER BY prediction_score DESC;
+WITH some_movie, avg(fellow_rate.rating) AS prediction_rating
+RETURN some_movie.title AS Title, prediction_rating
+ORDER BY prediction_rating DESC;
 ```
 
 How does this query work?
@@ -200,21 +200,21 @@ WITH collect(other_id) AS similar_user_set
 
 Here we calculate similarities as the average distance between the target user rating
 and some other user rating on the same set of movies. There are two parameters:
-`same_movies_rated` defines the number of same movies (more than 3) that the target user and other users need to rate, and `similar_user_set` represents the users that gave a similar rating to the movies that the target user has rated. This parameters enable extracting best users for movie recomendations.
+`same_movies_rated` defines the number of same movies (more than 3) that the target user and other users need to rate, and `similar_user_set` represents the users that gave a similar rating to the movies that the target user has rated. These parameters enable extracting the best users for movie recommendations.
 
 Now we have a similar user set. We will use those users to calculate the average
-rating score for all movies they rated in the database, and return the best rated that are ordered by rating quality, but as `prediction_score` variable.
+rating value for all movies they rated in the database, and return the best-rated movies as `prediction_rating` variable.
 
 ```cypher
 MATCH (some_movie: Movie)-[fellow_rate:RATED]-(fellow_user:User)
 WHERE fellow_user.id IN similar_user_set
-WITH some_movie, avg(fellow_rate.rating) AS prediction_score
-RETURN some_movie.title AS title, prediction_score
-ORDER BY prediction_score DESC;
+WITH some_movie, avg(fellow_rate.rating) AS prediction_rating
+RETURN some_movie.title AS title, prediction_rating
+ORDER BY prediction_rating DESC;
 ```
 
-We encourage you to play with some parameters, like similar user count limit and
-similar user set size limit. You can also try to use different similarity
+We encourage you to play with some parameters, like `same_movies_rated` limit and
+`similar_user_set` size limit. You can also try to use different similarity
 functions, for example [Euclidean
 distance](https://en.wikipedia.org/wiki/Euclidean_distance):
 
