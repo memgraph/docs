@@ -38,4 +38,5 @@ So far we have covered the following topics with basic tutorials:
   Playground!](https://playground.memgraph.com/sandbox/football-premier-league)
 - **[Marvel Comic Universe Social Network](marvel-universe.md)** - [Try it on
   Playground!](https://playground.memgraph.com/sandbox/marvel-comics)
-- **[Movie Recommendation System](movie-recommendation.md)**
+- **[Movie Recommendation System](movie-recommendation.md)** - [Try it on
+  Playground!](https://playground.memgraph.com/sandbox/movielens)
