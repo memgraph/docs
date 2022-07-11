@@ -36,6 +36,8 @@ export default function HomeGetInvolved() {
     },
   ];
 
+  const iconArrowRight = "fa fa-arrow-right";
+
   return (
     <Container>
       <div className={styles.homeGetInvolved}>
@@ -55,7 +57,7 @@ export default function HomeGetInvolved() {
                   </div>
                   <div>
                     <div>{item.title}</div>
-                    <a href={item.url}>{item.urlText}</a>
+                    <a className={styles.linkCommunity} href={item.url}><span>{item.urlText}</span> <i className={iconArrowRight}>&nbsp;</i></a>
                   </div>
                 </div>
               );
