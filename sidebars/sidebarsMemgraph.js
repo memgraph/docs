@@ -316,7 +316,6 @@ module.exports = {
       link: { type: "doc", id: "under-the-hood/overview" },
       items: [
         "under-the-hood/storage",
-        //"under-the-hood/graph-algorithms",
         "under-the-hood/indexing",
         "under-the-hood/replication",
         "under-the-hood/telemetry",
