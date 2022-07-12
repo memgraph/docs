@@ -1,6 +1,6 @@
-# [Memgraph Documentation](http://memgraph.com/docs/)
+<h1 align="center"><a href="http://memgraph.com/docs/">Memgraph Documentation</a></h1>
 
-<p align="left">
+<p align="center">
   <a href="https://github.com/memgraph/memgraph">
     <img src="https://img.shields.io/github/workflow/status/memgraph/docs/Deploy%20to%20GitHub%20Pages" alt="build" title="build"/>
   </a>
@@ -12,7 +12,7 @@
   </a>
 </p>
 
-<p align="left">
+<p align="center">
   <a href="https://memgr.ph/join-discord">
     <img src="https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white" alt="Discord"/>
   </a>
@@ -21,7 +21,7 @@
   </a>
 </p>
 
-<p align="left">
+<p align="center">
   <a href="https://memgraph.com/docs">
     <img src="https://public-assets.memgraph.com/github-readme-images/docs.memgraph-browser.png" 
          alt="memgraph-docs" 
