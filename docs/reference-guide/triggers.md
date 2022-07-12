@@ -4,20 +4,15 @@ title: Triggers
 sidebar_label: Triggers
 ---
 
-This article is a part of a series intended to showcase Memgraph's features and
-bring the user up to speed on developing with Memgraph.
-
-We highly recommend checking out the other articles from this series which are
-listed in our [how-to guides
-section](/how-to-guides/overview.md).
+*Database triggers* are integral part of most database system. Trigger is an procedural code that is automatically executed in response to certain events. Events are related to some type of change in data, such as created, updated and deleted data records. The trigger is often used for maintaining the integrity of the information in the database. For example, in a graph database, when a new property is added to the Employee node, a new Tax, Vacation, and Salary node should be created, along with the relationships between them. Triggers can also be used to log historical data, for example, to keep track of employees' previous salaries.
 
 ## Introduction
 
 Memgraph supports running openCypher statements after a certain event happens
-during transaction execution, i.e. triggers.
+during database transaction execution, i.e. triggers.
 
-You can create triggers, delete them, and print them out. All the triggers are
-persisted on the disk, so no information is lost between the runs.
+You can *create*, *delete* and *print* triggers. All the triggers are
+persisted on the disk, so no information is lost on database reruns.
 
 ## Creating a trigger
 
@@ -48,7 +43,7 @@ SET object.updated_at = timestamp();
 The query may seem complex, so let's break it down:
 * `CREATE TRIGGER exampleTrigger`: This statement creates the trigger.
 * `ON UPDATE AFTER COMMIT EXECUTE`: This statement specifies what kind of event
-  should activate the trigger. This one will be triggered for every update
+  should activate the execution of trigger. This one will be triggered for every update
   operation and the query below will be executed after the update event has been
   committed.
 * `UNWIND updatedObjects AS updatedObject`: If multiple objects were updated,
@@ -110,7 +105,9 @@ which are based on the event type specified for the trigger.
 
 ### Predefined variables
 Statements that a trigger executes can contain certain predefined variables
-which contain information about the event that triggered it.
+which contain information about the event that triggered it. Values of predefined variables are determined 
+by database transaction, multiple creations, updates or deletes that are part of single transaction
+will be in predefined variables. 
 
 Based on the event type, the following predefined variables are available:
 
@@ -126,6 +123,7 @@ Based on the event type, the following predefined variables are available:
 | ON () DELETE | deletedVertices |
 | ON --> DELETE | deletedEdges |
 | no event type specified | All predefined variables can be used |
+
 
 #### createdVertices
 List of all created vertices.
