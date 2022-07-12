@@ -804,7 +804,7 @@ module.exports = {
             from: ["/memgraph/concepts-overview/storage"],
           },
           {
-            to: "/memgraph/under-the-hood/graph-algorithms",
+            to: "/memgraph/reference-guide/graph-algorithms",
             from: ["/memgraph/concepts-overview/graph-algorithms"],
           },
           {
@@ -1191,7 +1191,7 @@ module.exports = {
             from: ["/memgraph/concepts/storage"],
           },
           {
-            to: "/memgraph/under-the-hood/graph-algorithms",
+            to: "/memgraph/reference-guide/graph-algorithms",
             from: ["/memgraph/concepts/graph-algorithms"],
           },
           {
