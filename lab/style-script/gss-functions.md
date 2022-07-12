@@ -713,7 +713,7 @@ Outputs:
 
 ### `Floor(value)`
 
-Returns the largest integer not greater than the input value.
+Returns the largest integer less than or equal to the input value.
 
 Examples:
 
