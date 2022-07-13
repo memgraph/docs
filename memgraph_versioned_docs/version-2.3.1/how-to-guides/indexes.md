@@ -56,6 +56,12 @@ their age, it might be beneficial to create an index on nodes labeled as
 CREATE INDEX ON :Person(age);
 ```
 
+:::tip
+
+For the best performance, create index on properties containing unique integer values.
+
+:::
+
 ## How to delete indexes?
 
 You can delete created indexes by using the following Cypher queries:

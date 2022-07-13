@@ -10,7 +10,7 @@ them directly in your Cypher queries. You can use them within
 [`MATCH`](clauses/match.md) clause to obtain data from the database.
 
 [![Related - Reference
-Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/docs/memgraph/reference-guide/graph-algorithms)
+Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/docs/memgraph/reference-guide/built-in-graph-algorithms)
 
 The built-in algorithms are:
 
@@ -22,7 +22,7 @@ The built-in algorithms are:
   shortest path between nodes
 
 Take a look at [Graph algorithms in our reference
-manual](/docs/memgraph/reference-guide/graph-algorithms) for code examples. 
+manual](/docs/memgraph/reference-guide/built-in-graph-algorithms) for code examples. 
 
 If Memgraph's built-in algorithms are not enough for you, don't worry, we've got
 you covered. We have developed [MAGE](/mage) - a graph library that extends

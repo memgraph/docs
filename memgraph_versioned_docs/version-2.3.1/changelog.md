@@ -31,7 +31,7 @@ sidebar_label: Changelog
 ### Bug Fixes
 
 - Fixed incorrect loading of C query modules.
-  [#387] (https://github.com/memgraph/memgraph/pull/387)
+  [#387](https://github.com/memgraph/memgraph/pull/387)
 
 ## v2.2.1 - Mar 17, 2022
 
@@ -170,7 +170,7 @@ sidebar_label: Changelog
 ### Bug Fixes
 
 - Allow duration values to be used as weights in the [Weighted Shortest
-  Path](/memgraph/reference-guide/graph-algorithms#weighted-shortest-path)
+  Path](/memgraph/reference-guide/built-in-graph-algorithms#weighted-shortest-path)
   query. [#278](https://github.com/memgraph/memgraph/pull/278)
 - Fix linkage error when `mgp_local_time_get_minute` is used.
   [#273](https://github.com/memgraph/memgraph/pull/273)
