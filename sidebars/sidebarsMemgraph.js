@@ -209,7 +209,7 @@ module.exports = {
       link: { type: "doc", id: "reference-guide/overview" },
       items: [
         "reference-guide/backup",
-        "reference-guide/graph-algorithms",
+        "reference-guide/built-in-graph-algorithms",
         "reference-guide/memory-control",
         "reference-guide/configuration",
         "reference-guide/data-types",
@@ -316,7 +316,6 @@ module.exports = {
       link: { type: "doc", id: "under-the-hood/overview" },
       items: [
         "under-the-hood/storage",
-        //"under-the-hood/graph-algorithms",
         "under-the-hood/indexing",
         "under-the-hood/replication",
         "under-the-hood/telemetry",
