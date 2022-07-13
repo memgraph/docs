@@ -14,5 +14,3 @@ The following pages instruct how to connect to data streams to ingest the data
 and manage the connection using:
 - [Cypher queries](/import-data/data-streams/manage-streams.md)
 - [a wizard in the **Stream** section of Memgraph Lab](/import-data/data-streams/manage-streams-lab.md)
-
-
