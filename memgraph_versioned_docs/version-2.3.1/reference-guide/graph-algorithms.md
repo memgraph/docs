@@ -1,5 +1,5 @@
 ---
-id: graph-algorithms
+id: built-in-graph-algorithms
 title: Built-in graph algorithms
 sidebar_label: Built-in graph algorithms
 ---
