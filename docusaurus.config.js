@@ -677,10 +677,12 @@ module.exports = {
             to: "/memgraph/reference-guide/indexing",
             from: ["/memgraph/reference-overview/indexing"],
           },
+          /*
           {
             to: "/memgraph/reference-guide/graph-algorithms",
             from: ["/memgraph/reference-overview/graph-algorithms"],
           },
+          */
           {
             to: "/memgraph/reference-guide/query-modules",
             from: ["/memgraph/reference-overview/query-modules"],
@@ -803,10 +805,12 @@ module.exports = {
             to: "/memgraph/under-the-hood/storage",
             from: ["/memgraph/concepts-overview/storage"],
           },
+          /*
           {
             to: "/memgraph/reference-guide/graph-algorithms",
             from: ["/memgraph/concepts-overview/graph-algorithms"],
           },
+          */
           {
             to: "/memgraph/under-the-hood/replication",
             from: ["/memgraph/concepts-overview/replication"],
@@ -1190,10 +1194,12 @@ module.exports = {
             to: "/memgraph/under-the-hood/storage",
             from: ["/memgraph/concepts/storage"],
           },
+          /*
           {
             to: "/memgraph/reference-guide/graph-algorithms",
             from: ["/memgraph/concepts/graph-algorithms"],
           },
+          */
           {
             to: "/memgraph/under-the-hood/indexing",
             from: ["/memgraph/concepts/indexing"],

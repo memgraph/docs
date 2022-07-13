@@ -209,7 +209,7 @@ module.exports = {
       link: { type: "doc", id: "reference-guide/overview" },
       items: [
         "reference-guide/backup",
-        "reference-guide/graph-algorithms",
+        "reference-guide/built-in-graph-algorithms",
         "reference-guide/memory-control",
         "reference-guide/configuration",
         "reference-guide/data-types",
