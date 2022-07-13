@@ -4,7 +4,7 @@ title: How to work with triggers
 sidebar_label: Work with triggers
 ---
 
-Memgraph supports *database triggers* that can be executed if a particular type of event occurs. Events are related to changes in data, such as created, updated, and deleted nodes or relationships. 
+Memgraph supports **database triggers** that can be executed if a particular type of event occurs. Events are related to changes in data, such as created, updated, and deleted nodes or relationships. 
 
 [![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/triggers.md) 
 
@@ -20,7 +20,7 @@ UNWIND createdVertices AS createdVertex
 SET createdVertex.created = timestamp()
 ```
 
-Here the trigger's name is `createdVertex`,  `ON CREATE` defines what operation will trigger execute. `AFTER COMMIT EXECUTE` means the trigger will be executed after changes have been committed to the database. For the sake of ease of use, triggers have a set o *predefined variables*. One is `createdVertices`, a list of all created nodes (vertices). To find a complete list of predefined variables, supported operations, and configuration details, look at triggers [reference guide](https://memgraph.com/docs/memgraph/reference-guide/triggers).
+Here the trigger's name is `createdVertex`,  `ON CREATE` defines what operation will trigger execute. `AFTER COMMIT EXECUTE` means the trigger will be executed after changes have been committed to the database. For the sake of ease of use, triggers have a set o **predefined variables**. One is `createdVertices`, a list of all created nodes (vertices). To find a complete list of predefined variables, supported operations, and configuration details, look at triggers [reference guide](https://memgraph.com/docs/memgraph/reference-guide/triggers).
 
 The trigger for updates on the nodes is almost the same. Notice different predefined variable and `ON UPDATE` command:  
 
