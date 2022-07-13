@@ -8,8 +8,7 @@ In this tutorial, you will learn how to connect Memgraph to an existing Kafka
 stream and transform data into graph database objects in order to analyze it in
 real-time.
 
-[![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/streams/overview.md) [![Related - How
-to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/streams/manage-streams.md)
+[![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/streams/overview.md)
 
 If you are still very new to streaming, feel free to first read some of our blog
 posts about the topic to learn [what stream processing

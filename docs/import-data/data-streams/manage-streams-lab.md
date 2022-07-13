@@ -1,6 +1,6 @@
 ---
 id: manage-streams-lab
-title: Connect to stream sources using Memgraph Lab wizard
+title: Connect to data streams using Memgraph Lab wizard
 sidebar_label: Connect using Memgraph Lab wizard
 ---
 

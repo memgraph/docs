@@ -1,6 +1,6 @@
 ---
 id: manage-streams
-title: Connect to stream sources using Cypher queries
+title: Connect to data streams using Cypher queries
 sidebar_label: Connect using Cypher queries
 ---
 

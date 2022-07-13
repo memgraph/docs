@@ -88,7 +88,8 @@ module.exports = {
         "import-data/csv/load-csv-clause",
         {
           type: "category",
-          label: "Connect to a data stream",
+          label: "Connect to data streams",
+          link: { type: "doc", id: "import-data/data-streams/overview" },
           items: [
             "import-data/data-streams/manage-streams",
             "import-data/data-streams/manage-streams-lab",
