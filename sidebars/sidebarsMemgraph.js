@@ -86,7 +86,14 @@ module.exports = {
       link: { type: "doc", id: "import-data/overview" },
       items: [
         "import-data/csv/load-csv-clause",
-        "import-data/kafka/overview",
+        {
+          type: "category",
+          label: "Connect to a data stream",
+          items: [
+            "import-data/data-streams/manage-streams",
+            "import-data/data-streams/manage-streams-lab",
+          ],
+        },
         {
           type: "category",
           label: "Migrate SQL",
@@ -136,14 +143,6 @@ module.exports = {
       link: { type: "doc", id: "how-to-guides/overview" },
       items: [
         "how-to-guides/create-backup",
-        {
-          type: "category",
-          label: "Connect to stream sources",
-          items: [
-            "how-to-guides/streams/manage-streams",
-            "how-to-guides/streams/manage-streams-lab",
-          ],
-        },
         "how-to-guides/config-logs",
         {
           type: "category",

@@ -16,8 +16,8 @@ The streams use user-defined transformations to produce Cypher queries based on
 the received messages. To learn more about streams and transformations take a
 look at the following pages:
 
-- [**How to manage streams with queries**](/how-to-guides/streams/manage-streams.md)
-- [**How to manage streams with Memgraph Lab**](/how-to-guides/streams/manage-streams-lab.md)
+- [How to manage streams with queries](/how-to-guides/streams/manage-streams.md)
+- [How to manage streams with Memgraph Lab](/how-to-guides/streams/manage-streams-lab.md)
 
 ## Inspect and profile Cypher queries
 
