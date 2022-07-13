@@ -119,10 +119,9 @@ make it easier to accomplish tasks within Memgraph:
 
 ## Triggers
 
-Memgraph supports running openCypher statements after a certain event happens
-during transaction execution, i.e. triggers:
+Memgraph supports database triggers that can be executed if a particular type of event occurs. Events are related to changes in data, such as created, updated, and deleted nodes or relationships. 
 
-- [Triggers](/reference-guide/triggers.md)
+- [Work with Triggers](/how-to-guides/work-with-triggers.md)
 
 ## Use Font Awesome icons for node images
 
