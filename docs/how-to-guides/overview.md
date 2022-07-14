@@ -121,7 +121,7 @@ make it easier to accomplish tasks within Memgraph:
 
 Memgraph supports database triggers that can be executed if a particular type of event occurs. Events are related to changes in data, such as created, updated, and deleted nodes or relationships. 
 
-- [Work with Triggers](/how-to-guides/work-with-triggers.md)
+- [How to setup triggers](/how-to-guides/how-to-setup-triggers.md)
 
 ## Use Font Awesome icons for node images
 
