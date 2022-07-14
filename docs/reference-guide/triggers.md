@@ -4,6 +4,8 @@ title: Triggers
 sidebar_label: Triggers
 ---
 
+[![Related -How-to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/how-to-setup-triggers.md)
+
 **Database triggers** are an integral part of most database systems. A trigger is a procedural code that is automatically executed in response to specific events. Events are related to some change in data, such as created, updated and deleted data records. The trigger is often used for maintaining the integrity of the information in the database. For example, in a graph database, when a new property is added to the Employee node, a new Tax, Vacation, and Salary node should be created, along with the relationships between them. Triggers can also be used to log historical data, for example, to keep track of employees' previous salaries.
 
 ## Introduction
@@ -23,11 +25,9 @@ CREATE TRIGGER trigger_name ( ON ( () | --> ) CREATE | UPDATE | DELETE )
 ( BEFORE | AFTER ) COMMIT
 EXECUTE openCypherStatements
 ```
+As you can see from the format, you can choose on what object event needs to happen , on `()` node or `-->` relationship. After that you can define on what type of event you what to execute the trigger `CREATE`, `UPDATE` or `DELETE`. After the `EXECUTE` is series of cypher statements you want to execute.
 
-You can find detailed explanations for each part of the trigger [further
-down](#trigger-name).
-
-An example would be:
+An example of the trigger would be:
 
 ```cypher
 CREATE TRIGGER exampleTrigger
@@ -41,7 +41,7 @@ SET object.updated_at = timestamp();
 ```
 
 The query may seem complex, so let's break it down:
-* `CREATE TRIGGER exampleTrigger`: This statement creates the trigger.
+* `CREATE TRIGGER exampleTrigger`: This statement creates the trigger. Here the part `exampleTrigger` is the name of    the trigger and it must be unique.
 * `ON UPDATE AFTER COMMIT EXECUTE`: This statement specifies what kind of event
   should activate the execution of trigger. This one will be triggered for every update
   operation and the query below will be executed after the update event has been
