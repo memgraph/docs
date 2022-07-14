@@ -1299,7 +1299,7 @@ module.exports = {
           // Redirect for Graph algorithms
           {
             to: "/memgraph/reference-guide/built-in-graph-algorithms",
-            from: ["/memgraph/reference-overview/graph-algorithms", "/memgraph/concepts-overview/graph-algorithms", "/memgraph/concepts/graph-algorithms", "/memgraph/under-the-hood/graph-algorithms"],
+            from: ["/memgraph/reference-overview/graph-algorithms", "/memgraph/concepts-overview/graph-algorithms", "/memgraph/concepts/graph-algorithms", "/memgraph/under-the-hood/graph-algorithms","/memgraph/reference-guide/graph-algorithms"],
           },
         ],
       },
