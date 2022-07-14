@@ -67,7 +67,7 @@ what type of object has been created. If your Query is creating multiple nodes a
 
 In this trigger via `SET object.created_at = timestamp();` command, node or relationships property `created_at` is set to current timestamp. 
 
-### How to create trigger for Python query module? 
+## How to create trigger for Python query module? 
 
 If you what to react on event by executing code from query module in Python, you can do it by calling query module from trigger. Sample trigger below will call `query_module.new_edge(edge)` on each new relationship (edge) creation:
 
