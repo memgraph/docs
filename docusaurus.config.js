@@ -280,7 +280,7 @@ module.exports = {
         },
         {
           to: "/help-center",
-          label: "Help center",
+          label: "Help",
           position: "left",
           activeBaseRegex: `/help-center/`,
           items: [
@@ -323,8 +323,9 @@ module.exports = {
         },
         {
           href: "https://github.com/memgraph/memgraph",
-          label: "GitHub",
+          className: 'header-github-link',
           position: "right",
+          'aria-label': 'GitHub repository'
         },
       ],
     },
@@ -1299,7 +1300,7 @@ module.exports = {
           // Redirect for Graph algorithms
           {
             to: "/memgraph/reference-guide/built-in-graph-algorithms",
-            from: ["/memgraph/reference-overview/graph-algorithms", "/memgraph/concepts-overview/graph-algorithms", "/memgraph/concepts/graph-algorithms", "/memgraph/under-the-hood/graph-algorithms","/memgraph/reference-guide/graph-algorithms"],
+            from: ["/memgraph/reference-overview/graph-algorithms", "/memgraph/concepts-overview/graph-algorithms", "/memgraph/concepts/graph-algorithms", "/memgraph/under-the-hood/graph-algorithms", "/memgraph/reference-guide/graph-algorithms"],
           },
         ],
       },
