@@ -90,8 +90,8 @@ Bahman Bahmani et al.
 
 #### Input:
 
-- `walks_per_node: int(10)` ➡ Number of sampled walks per node.
-- `walk_stop_epsilon: double(0.1)` ➡ The probability of stopping when deriving
+- `walks_per_node: integer (default=10)` ➡ Number of sampled walks per node.
+- `walk_stop_epsilon: double (default=0.1)` ➡ The probability of stopping when deriving
   the random walk. On average, it will create walks of length `1 /
   walk_stop_epsilon`.
 

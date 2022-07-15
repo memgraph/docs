@@ -54,11 +54,11 @@ Ulrik Brandes
 
 #### Input:
 
-- `directed: bool(True)` ➡ If `False` the direction of the edges is ignored.
-- `normalized: bool(True)` ➡ If `True` the betweenness values are normalized by
+- `directed: boolean (default=True)` ➡ If `False` the direction of the edges is ignored.
+- `normalized: boolean (default=True)` ➡ If `True` the betweenness values are normalized by
   `2/((n-1)(n-2))` for graphs, and `1/((n-1)(n-2))` for directed graphs where
   `n` is the number of nodes.
-- `threads: Integer(number of concurrent threads supported by the
+- `threads: integer (default=number of concurrent threads supported by the
   implementation)` ➡ The number of threads used to calculate betweenness
   centrality.
 

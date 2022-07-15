@@ -73,9 +73,9 @@ Graphs](https://repository.kaust.edu.sa/bitstream/handle/10754/625935/08070346.p
 
 #### Input:
 
-- `normalize: bool(True)` ➡ If `True`, the betweenness values are normalized by
+- `normalize: boolean (default=True)` ➡ If `True`, the betweenness values are normalized by
   `2/((n-1)(n-2))`, where `n` is the number of nodes in the graph.
-- `threads: int(Nº of concurrent threads supported by the implementation)` ➡ The
+- `threads: integer (default=Nº of concurrent threads supported by the implementation)` ➡ The
   number of threads used in calculating betweenness centrality.
 
 #### Output:
@@ -95,7 +95,7 @@ YIELD node, betweenness_centrality;
 
 #### Input:
 
-- `normalize: bool(True)` ➡ If `True`, the betweenness values are normalized by
+- `normalize: boolean (default=True)` ➡ If `True`, the betweenness values are normalized by
   `2/((n-1)(n-2))`, where `n` is the number of nodes in the graph.
 
 #### Output:
@@ -122,9 +122,9 @@ YIELD node, betweenness_centrality;
 - `deleted_vertices: List[Vertex]` ➡ Vertices deleted in the latest graph
   update.
 - `deleted_edges: List[Edge]` ➡ Edges deleted in the latest graph update.
-- `normalize: bool(True)` ➡ If `True`, the betweenness values are normalized by
+- `normalize: boolean (default=True)` ➡ If `True`, the betweenness values are normalized by
   `2/((n-1)(n-2))`, where `n` is the number of nodes in the graph.
-- `threads: int(Nº of concurrent threads supported by the implementation)` ➡ The
+- `threads: integer (default=Nº of concurrent threads supported by the implementation)` ➡ The
   number of threads used in updating betweenness centrality.
 
 #### Output:
