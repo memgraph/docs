@@ -192,7 +192,7 @@ module.exports = {
         "how-to-guides/encryption",
         "how-to-guides/work-with-docker",
         "how-to-guides/indexes",
-        "how-to-guides/how-to-setup-triggers",
+        "how-to-guides/set-up-triggers",
         {
           type: "category",
           label: "Enterprise features",

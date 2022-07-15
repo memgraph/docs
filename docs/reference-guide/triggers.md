@@ -4,13 +4,13 @@ title: Triggers
 sidebar_label: Triggers
 ---
 
-[![Related -How-to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/how-to-setup-triggers.md)
-
 **Database triggers** are an integral part of most database systems. A trigger is a procedural code that is automatically executed in response to specific events. Events are related to some change in data, such as created, updated and deleted data records. The trigger is often used for maintaining the integrity of the information in the database. For example, in a graph database, when a new property is added to the Employee node, a new Tax, Vacation, and Salary node should be created, along with the relationships between them. Triggers can also be used to log historical data, for example, to keep track of employees' previous salaries.
+
+[![Related -How-to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/how-to-setup-triggers.md)
 
 ## Introduction
 
-Memgraph supports running openCypher statements after a certain event happens
+Memgraph supports running openCypher clauses after a certain event happens
 during database transaction execution, i.e. triggers.
 
 You can **create**, **delete** and **print** triggers. All the triggers are
@@ -25,9 +25,9 @@ CREATE TRIGGER trigger_name ( ON ( () | --> ) CREATE | UPDATE | DELETE )
 ( BEFORE | AFTER ) COMMIT
 EXECUTE openCypherStatements
 ```
-As you can see from the format, you can choose on what object event needs to happen , on `()` node or `-->` relationship. After that you can define on what type of event you what to execute the trigger `CREATE`, `UPDATE` or `DELETE`. After the `EXECUTE` is series of cypher statements you want to execute.
+As you can see from the format, you can choose on what object event needs to happen , on `()` node or `-->` relationship. After that you can define on what type of event you what to execute the trigger `CREATE`, `UPDATE` or `DELETE`. After the `EXECUTE` is series of Cypher clauses you want to execute.
 
-An example of the trigger would be:
+An example of a trigger would be:
 
 ```cypher
 CREATE TRIGGER exampleTrigger

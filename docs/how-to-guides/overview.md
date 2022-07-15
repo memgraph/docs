@@ -117,11 +117,11 @@ make it easier to accomplish tasks within Memgraph:
 - [Work with Docker](/how-to-guides/work-with-docker.md)
 
 
-## Work with Triggers
+## Set up triggers
 
-Memgraph supports database triggers that can be executed if a particular type of event occurs. Events are related to changes in data, such as created, updated, and deleted nodes or relationships. 
+Memgraph supports database triggers that can be executed if a particular type of event occurs. Events are related to changes in the data, such as created, updated, and deleted nodes or relationships. 
 
-- [How to setup triggers](/how-to-guides/how-to-setup-triggers.md)
+- [How to setup triggers](/how-to-guides/set-up-triggers.md)
 
 ## Use Font Awesome icons for node images
 
