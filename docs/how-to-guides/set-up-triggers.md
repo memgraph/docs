@@ -11,12 +11,12 @@ Memgraph supports **database triggers** that can be executed if a particular typ
 
 ## How to create a trigger?
 
-You can create a trigger by executing Cypher clauses. Creating a trigger will ensure that some procedural code is executed on certain type of event. 
+You can create a trigger by executing Cypher clauses. Creating a trigger will ensure that some procedural code is executed on a certain type of event. 
 All created triggers are persisted on the disk, which means they will be active on database reruns and no information is ever lost/will be lost.
 
 ### Trigger execution upon node creation
 
-Node creation is the most common event your Memgraph database can react to. For example, you need to updated some values on a created node. 
+Node creation is the most common event your Memgraph database can react to. For example, you need to update some values on a created node. 
 If you need a trigger after the node (vertex) has been created, you can set up the following trigger: 
 
 ```cypher
@@ -33,7 +33,7 @@ In this trigger via `SET createdVertex.created = timestamp()`  clause, new node 
 
 ### Trigger execution upon node update
 
-Node property updates are common in graphs, in order to react to them you can create trigger for that type of event: 
+Node property updates are common in graphs, in order to react to them, you can create a trigger for that type of event: 
 
 ```cypher
 CREATE TRIGGER updateVertex
@@ -48,7 +48,7 @@ In this trigger, a node is getting new updated timestamp via `SET updatedVertex.
 
 ### Trigger execution upon node or relationship creation
 
-You can also set up a trigger for multiple events, such as node or relationships creation. It doesn't matter what will be created, a node or relationship, but the event will execute the trigger.
+You can also set up a trigger for multiple events, such as node or relationship creation. It doesn't matter what will be created, a node or relationship, but the event will execute the trigger.
 A sample query for that kind of trigger: 
 
 ```cypher
@@ -66,7 +66,7 @@ By using a predefined variable `createdObjects` you are getting all created obje
 
 In this trigger, the node or relationships property `created_at` is set to the current timestamp value via `SET object.created_at = timestamp();` Cypher clause. 
 
-## How to create trigger for Python query module? 
+## How to create a trigger for Python query module? 
 If you want a trigger to be activated by executing code from a Python query module, you can call the query module from the trigger. In the example below, the trigger will call `query_module.new_edge(edge)` each time a new relationship (edge) is created:
 
 ```cypher
@@ -76,7 +76,7 @@ UNWIND createdEdges AS edge
 CALL query_module.new_edge(edge) YIELD *;
 ```
 
-Make sure that your function accepts proper Memgraph type, `mgp.Edge` in this case. 
+Make sure your function accepts the proper Memgraph type, `mgp.Edge` in this case. 
 
 ```python
 def new_edge(
@@ -84,7 +84,7 @@ def new_edge(
     edge: mgp.Edge
 )
 ```
-Memgraph Python API is defined by `mgp.py` script an in it you can find all supported types such as `mgp.Edge`, `mgp.Vertex` etc. If you what to explore the API further, feel free to check the reference guide on [Python API](https://memgraph.com/docs/memgraph/reference-guide/query-modules/api/python-api).
+Memgraph Python API is defined by `mgp.py` script, and in it, you can find all supported types such as `mgp.Edge`, `mgp.Vertex` etc. If you what to explore the API further, feel free to check the reference guide on [Python API](https://memgraph.com/docs/memgraph/reference-guide/query-modules/api/python-api).
 
 ## How to create a trigger for dynamic algorithms? 
 
