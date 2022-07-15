@@ -80,6 +80,15 @@ tricky problem, try to find the solution in the [How-to
 guides](/how-to-guides/overview.md). Even more tutorials dealing with specific
 issues are available on our [Blog](https://memgraph.com/category/tutorials).
 
+#### Email courses
+
+We have created two free email courses for you. The first one covers [Cypher
+query language](https://memgraph.com/learn-cypher-query-language). By the end of
+the ten days, you'll have learned everything you need to start with Cypher and
+graph database. The second one is a [Graph modeling
+course](https://memgraph.com/learn-graph-modeling). After ten days of this
+course, you will know how to model graphs.
+
 #### Video courses
 
 For those of you who are more visual and auditory learners, you can find the
