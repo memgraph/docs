@@ -25,7 +25,7 @@ To use streams, a user must:
 
 You can write Python transformation modules, create and start streams using the
 **Stream** section in the Memgraph Lab, [check out
-how](/import-data/data-streams/manage-streams-lab.md). 
+how](/memgraph/import-data/data-streams/manage-streams-lab). 
 
 :::tip
 
