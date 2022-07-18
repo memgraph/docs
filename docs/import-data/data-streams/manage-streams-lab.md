@@ -57,7 +57,9 @@ Memgraph on how to transform incoming messages to consume them correctly.
 While you are creating a new stream, you can create and add a new transformation
 module in Python from the stream details view:
 1. Click on **Add Transformation Module**.
+
    <img src={require('../../data/tutorials/create-stream-lab/add-trans-module.png').default}className={"imgBorder"}/>
+
 2. Click on **Choose Transformation Module**.
 3. Select an existing transformation module or **+ Create new transformation**.
 4. Review an existing module or clear the screen and write a new transformation
@@ -66,6 +68,7 @@ module in Python from the stream details view:
 6. Check if the necessary transformation procedure is visible under **Detected
    transformation functions** on the right.
 7. Select a transformation procedure and **Attach to Stream**.
+
    <img src={require('../../data/tutorials/create-stream-lab/transformation-module.png').default}className={"imgBorder"}/>
 
 You can also develop transformation modules in Python beforehand, in the section
@@ -74,7 +77,7 @@ recognize transformation procedures once you define them and save the module.
 
 If you developed a procedure in C (or Python) as a separate file, you have to
 [load it into
-Memgraph](manage-streams.md#how-to-create-and-load-a-transformation-module-into-memgraph)
+Memgraph](manage-streams.md#create-and-load-a-transformation-module-into-memgraph)
 first, and then you will be able to see it in the **Query Modules** section
 and attach it to a stream. 
 
@@ -93,10 +96,10 @@ If necessary, add the Kafka configuration parameters to customize the stream:
 To connect to the [Awesome Data Stream](https://awesomedata.stream/) you need to set
 the following Kafka configuration parameters:
 
-* **sasl.username** \| public <br/>
-* **sasl.password** \| public <br/>
-* **security.protocol** \| SASL_PLAINTEXT <br/>
-* **sasl.mechanism** \| PLAIN <br/>
+* **sasl.username**: public <br/>
+* **sasl.password**: public <br/>
+* **security.protocol**: SASL_PLAINTEXT <br/>
+* **sasl.mechanism**: PLAIN <br/>
 
 <img src={require('../../data/tutorials/create-stream-lab/config-parameters.png').default}className={"imgBorder"}/>
 
@@ -122,6 +125,7 @@ Switch to **Query Execution** and run a query to visualize the data coming in:
 MATCH p=(n)-[r]-(m)
 RETURN p LIMIT 100;
 ```
+
 <img src={require('../../data/tutorials/create-stream-lab/graph.png').default}lassName={"imgBorder"}/>
 
 ## Manage a stream
@@ -148,7 +152,10 @@ You can only change the transformation module in the stream details view.
 
 ## Change Kafka stream offset
 
-Kafka stream offset can be changed only by using a Cypher query:
+Kafka stream offset can be changed only by using a Cypher query. 
+
+First stop the stream if it's running, then use the following Cypher query to
+change Kafka stream offset if necessary and start it again:
 
 ```cypher
 CALL mg.kafka_set_stream_offset(streamName, offset)

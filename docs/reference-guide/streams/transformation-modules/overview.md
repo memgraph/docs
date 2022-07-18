@@ -133,7 +133,7 @@ create the transformation module within the application:
 
 You will see the signature and overview of the transformation procedure that you
 can now use while [creating a new
-stream](/how-to-guides/streams/manage-streams-lab.md). 
+stream](/import-data/data-streams/manage-streams-lab.md). 
 
 ## Utility procedures for transformations
 

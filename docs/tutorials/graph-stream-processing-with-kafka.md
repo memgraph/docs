@@ -21,8 +21,8 @@ Now that you've covered theory let's dive into practice!
 
 We will focus on processing real-time movie ratings that are streamed through
 MovieLens Kafka stream from the [Awesome Data
-Stream](https://awesomedata.stream/#/movielens) in order to generate movie
-recommendations using Memgraph and the Cypher query language.
+Stream](https://awesomedata.stream/#/movielens) using Memgraph and the Cypher
+query language.
 
 ## Prerequisites
 
@@ -256,10 +256,10 @@ To add the `movielens` Python transformation module you developed earlier to a s
 Due to the nature of the public MovieLens Awesome Data Stream, you need to add
 additional Kafka configuration parameters:
 
-* **sasl.username** \| public <br/>
-* **sasl.password** \| public <br/>
-* **security.protocol** \| SASL_PLAINTEXT <br/>
-* **sasl.mechanism** \| PLAIN <br/>
+* **sasl.username**: public <br/>
+* **sasl.password**: public <br/>
+* **security.protocol**: SASL_PLAINTEXT <br/>
+* **sasl.mechanism**: PLAIN <br/>
 
 In order to do so:
 

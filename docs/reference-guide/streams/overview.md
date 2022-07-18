@@ -5,8 +5,9 @@ sidebar_label: Streams overview
 slug: /reference-guide/streams
 ---
 
-Memgraph can connect to existing Kafka, Redpanda and Pulsar sources to ingest the
-data, which you can then query with all the power of the MAGE or any other graph algorithms you need.
+Memgraph can connect to existing Kafka, Redpanda and Pulsar sources to ingest
+the data, which you can then query with the power of MAGE algorithms or your own
+custom procedures.
 
 [![Related -
 Tutorial](https://img.shields.io/static/v1?label=Related&message=Tutorial&color=008a00&style=for-the-badge)](/tutorials/graph-stream-processing-with-kafka.md)
@@ -14,7 +15,7 @@ Tutorial](https://img.shields.io/static/v1?label=Related&message=Tutorial&color=
 To use streams, a user must:
 
 1. [Create a transformation
-   module](/reference-guide/streams/transformation-modules/overview.md)
+   module](/reference-guide/streams/transformation-modules/overview.md#creating-a-transformation-module)
 2. [Load the transformation
    module](/reference-guide/streams/transformation-modules/overview.md#loading-modules) into
    Memgraph
@@ -22,9 +23,9 @@ To use streams, a user must:
    `CALL mg.kafka_set_stream_offset(stream_name, offset)`
 4. [Start the stream](#start-a-stream) with a `START STREAM` query
 
-You can now write Python transformation modules, create and start streams using
-the **Stream** section in the Memgraph Lab, [check out
-how](/how-to-guides/streams/manage-streams-lab.md). 
+You can write Python transformation modules, create and start streams using the
+**Stream** section in the Memgraph Lab, [check out
+how](/import-data/data-streams/manage-streams-lab.md). 
 
 :::tip
 

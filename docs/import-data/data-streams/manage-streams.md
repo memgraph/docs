@@ -67,8 +67,8 @@ You can also define the flag within a command-line parameter when using Docker.
 :::caution
 
 Please remember that if you are using Memgraph Platform image, you should pass
-configuration flags within MEMGRAPH environmental variable (e.g. `docker run -p
-7687:7687 -p 3000:3000 -p 4777:4777 -e MEMGRAPH="--log-level=TRACE"
+configuration flags within MEMGRAPH environment variable (e.g. `docker run -p
+7687:7687 -p 3000:3000 -p 7444:7444 -e MEMGRAPH="--log-level=TRACE"
 memgraph/memgraph-platform`) and if you are using any other image, you should
 pass them as arguments after the image name (e.g., `... memgraph/memgraph-mage
 --log-level=TRACE --query-modules-directory=path/path`).
@@ -207,7 +207,8 @@ For more options, [check the reference guide](/reference-guide/streams/overview.
 
 ## Change Kafka stream offset
 
-Use the following Cypher query to change Kafka stream offset if necessary:
+First stop the stream if it's running, then use the following Cypher query to
+change Kafka stream offset if necessary and start it again:
 
 ```cypher
 CALL mg.kafka_set_stream_offset(streamName, offset)
@@ -218,6 +219,7 @@ topic/partition.
 
 An offset of `-2` denotes the end of the stream and only the
 next produced message will be consumed.
+
 
 ## Logs
 
