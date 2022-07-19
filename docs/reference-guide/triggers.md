@@ -106,9 +106,9 @@ which are based on the event type specified for the trigger.
 
 ### Predefined variables
 Statements that a trigger executes can contain certain predefined variables
-which contain information about the event that triggered it. Values of predefined variables are determined 
-by database transaction, multiple creations, updates or deletes that are part of single transaction
-will be in predefined variables. 
+which contain information about the event that triggered it. Values of
+predefined variables are determined by database transactions, that is, by all
+the creations, updates or deletes that are part of a single transaction.
 
 Based on the event type, the following predefined variables are available:
 

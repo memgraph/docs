@@ -79,11 +79,11 @@ WITH CASE
 SET object.created_at = timestamp();
 ```
 
-By using a predefined variable `createdObjects` you are getting all created
-objects. The variable `createdObjects` is a list of maps in which each map
-contains `event_type`, and an `edge` or `vertex` property. Both properties
-depend on the type of object being created. If your query is creating multiple
-nodes and relationships, they will be created as separate objects maps. 
+A predefined variable `createdObjects` is a list of dictionaries. Each
+dictionary contains information about the created object, which can be either a
+node or a relationship. The object's key `event_type` is set based on the
+dictionary and information within it, and the value of the key `vertex` or `edge`
+(depending on the type of object) is set to that created object.
 
 In this trigger, the node or relationships property `created_at` is set to the
 current timestamp value via `SET object.created_at = timestamp();` Cypher
