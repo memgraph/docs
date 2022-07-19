@@ -29,7 +29,7 @@ application](#creating-transformation-modules-within-memgraph-lab).
 Memgraph supports user-defined transformations procedures written in **Python**
 and **C**  that act on data received from a streaming engine. These
 transformation procedures are grouped into a module called **Transformation
-module** which is then loaded into Memgraph on startup or later on. A
+module**, which is then loaded into Memgraph on startup or later on. A
 transformation module consists of a transformation, a query procedure, or both.
 
 Currently, we support transformations for Kafka, Pulsar and Redpanda
@@ -50,7 +50,7 @@ in C](./api/c-api.md#transformation-module-example).
 
 ## Loading modules
 
-Modules can be loaded on startup, or when the instance is already running.
+Modules can be loaded on startup or when the instance is already running.
 
 ### Loading on startup
 
@@ -58,12 +58,12 @@ Memgraph attempts to load the modules from all `*.so` and `*.py` files it finds
 in the default (`/usr/lib/memgraph/query_modules` and
 `/memgraph/internal_modules/`) directories. The `*.so` modules
 are written using the C API and the `*.py` modules are written using the Python
-API. Each file corresponds to one module. Names of these files will be mapped to
+API. Each file corresponds to one module. The names of these files will be mapped to
 module names. For example, `hello.so` will be mapped to the `hello` module and a
 `py_hello.py` script will be mapped to the `py_hello` module.
 
 If you want to change the directory in which Memgraph searches for
-transformation modules, just change or extend the `--query-modules-directory`
+transformation modules, change or extend the `--query-modules-directory`
 flag in the main configuration file (`/etc/memgraph/memgraph.conf`) or supply it
 as a command-line parameter (e.g., when using Docker).
 
@@ -133,7 +133,7 @@ create the transformation module within the application:
 
 You will see the signature and overview of the transformation procedure that you
 can now use while [creating a new
-stream](/memgraph/import-data/data-streams/manage-streams-lab). 
+stream](/import-data/data-streams/manage-streams-lab.md). 
 
 ## Utility procedures for transformations
 
@@ -179,7 +179,7 @@ same procedure:
 CALL mg.load("hello");
 ```
 
-To reload all existing modules and load any newly added ones use:
+To reload all existing modules and load any newly added ones, use:
 
 ```cypher
 CALL mg.load_all();

@@ -5,7 +5,7 @@ sidebar_label: Graph stream processing with Kafka
 ---
 
 In this tutorial, you will learn how to connect Memgraph to an existing Kafka
-stream and transform data into graph database objects in order to analyze it in
+stream and transform data into graph database objects to analyze it in
 real-time.
 
 [![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/streams/overview.md)
@@ -17,7 +17,7 @@ differs from batch
 processing](https://memgraph.com/blog/batch-processing-vs-stream-processing) and
 [how streaming databases work](https://memgraph.com/blog/streaming-databases).
 
-Now that you've covered theory let's dive into practice!
+Now that you've covered theory, let's dive into practice!
 
 We will focus on processing real-time movie ratings that are streamed through
 MovieLens Kafka stream from the [Awesome Data
@@ -52,7 +52,7 @@ movie ratings, and each JSON message represents a new movie rating:
 
 ## 1. Prepare Memgraph
 
-Let's open Memgraph Lab where we will write the transformation module and
+Let's open Memgraph Lab, where we will write the transformation module and
 connect to the stream.
 
 If you have successfully installed Memgraph Platform, you should be able to open
@@ -93,7 +93,7 @@ Memgraph Lab allows you to develop Python transformation modules in-app:
 
 Python API is defined in the `mgp` module you can find in the Memgraph
 installation directory `/usr/lib/memgraph/python_support`. In essence, Python
-API is a wrapper around the C API and at the beginning of each new module you
+API is a wrapper around the C API, and at the beginning of each new module, you
 need to import the `mgp`. As the messages from the streams are coming as JSON
 messages, you need to `import json` module for Memgraph to read them correctly.
 Below the imported modules, you need to define the `@mgp.transformation`
@@ -131,7 +131,7 @@ def rating(messages: mgp.Messages
     result_queries = []
 ```
 
-Now you need to iterate through each messages within the batch, decode it with
+Now you need to iterate through each message within the batch, decode it with
 `json.loads` and save the elements of the message in the `movie_dict` variable.
 
 ```python
@@ -149,7 +149,7 @@ def rating(messages: mgp.Messages
 ```
 Now, you create the queries that will execute in Memgraph. You instruct Memgraph
 to create `User`, `Movie` and `Genre` nodes, then connect the nodes with
-appropriate relationships. In each query you also define the entity properties.  
+appropriate relationships. In each query, you also define the entity properties.  
 
 ```python
 import mgp
@@ -174,7 +174,7 @@ def rating(messages: mgp.Messages
 
 ```
 
-Once you set the placeholders, you can fill them out, by applying the values
+Once you set the placeholders, you can fill them out by applying the values
 from the messages to the node and relationship properties, and return the
 queries. 
 
@@ -277,8 +277,8 @@ Once the stream is configured, you can **Connect to Stream**.
 Memgraph will do a series of checks, ensuring that defined topics and
 transformation procedures are correctly configured. If all checks pass
 successfully, you can **Start the stream**. Once you start the stream, you will
-no longer be able to change any of the configuration settings, just the
-transformation module. 
+no longer be able to change configuration settings, just the transformation
+module. 
 
 The stream status changes to **Running**, and data is ingested into Memgraph.
 You can see the number of nodes and relationships rising as the data keeps
@@ -299,11 +299,12 @@ queries that utilize the most powerful graph algorithms to gain every last bit
 of insight that data can provide. [Let the querying
 begin](https://memgraph.com/blog/how-to-analyze-a-streaming-dataset-of-movie-ratings-using-custom-query-modules)!
 
-If you are a new to Cypher check [**Cypher query
-language manual**](/cypher-manual). You can also try using various graph algorithms and
+If you are new to Cypher, check [**Cypher query language
+manual**](/cypher-manual). You can also try using various graph algorithms and
 modules from our open-source repository [**MAGE**](/mage) to solve graph
 analytics problems, create awesome customized visual displays of your nodes and
-relationships with [**Graph Style Script**](/memgraph-lab/graph-style-script-language).
+relationships with [**Graph Style
+Script**](/memgraph-lab/graph-style-script-language).
 
 You can also explore other data streams from the [Awesome Data
 Stream](https://awesomedata.stream/) site! Feel free to play around with the

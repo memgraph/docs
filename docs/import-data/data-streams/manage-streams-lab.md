@@ -61,8 +61,8 @@ module in Python from the stream details view:
    <img src={require('../../data/tutorials/create-stream-lab/add-trans-module.png').default}className={"imgBorder"}/>
 
 2. Click on **Choose Transformation Module**.
-3. Select an existing transformation module or **+ Create new transformation**.
-4. Review an existing module or clear the screen and write a new transformation
+3. Select an existing transformation module, or **+ Create new transformation**.
+4. Review an existing module, or clear the screen and write a new transformation
    procedure.
 5. Save the transformation module.
 6. Check if the necessary transformation procedure is visible under **Detected
@@ -71,7 +71,7 @@ module in Python from the stream details view:
 
    <img src={require('../../data/tutorials/create-stream-lab/transformation-module.png').default}className={"imgBorder"}/>
 
-You can also develop transformation modules in Python beforehand, in the section
+You can also develop transformation modules in Python beforehand in the section
 **Query Modules**. Click on the **New Module**, and the Lab will automatically
 recognize transformation procedures once you define them and save the module.
 
@@ -110,10 +110,10 @@ Once the stream is configured, you can **Connect to Stream**.
 Memgraph will do a series of checks, ensuring that defined topics and
 transformation procedures are correctly configured. If all checks pass
 successfully, you can **Start the stream**. Once you start the stream, you will
-no longer be able to change any of the configuration settings, just the
-transformation module. 
+no longer be able to change configuration settings, just the transformation
+module. 
 
-The stream status changes to **Running**, and data is ingested into Memgraph.
+The stream status changes to **Running** and data is ingested into Memgraph.
 You can see the number of nodes and relationships rising as the data keeps
 coming in. If your nodes and relationships numbers stay at zero, check the
 transformation module, as there might be a flaw in the logic that needs to be
@@ -133,7 +133,7 @@ RETURN p LIMIT 100;
 To manage a stream in Memgraph Lab, go to **Streams** and click on the stream
 you want to manage (**View stream details**). 
 
-### Start, stop or delete a stream
+### Start, stop, or delete a stream
 
 Position yourself in the stream details view. 
 
@@ -164,15 +164,15 @@ CALL mg.kafka_set_stream_offset(streamName, offset)
 An offset of `-1` denotes the beginning offset available for the given
 topic/partition. 
 
-An offset of `-2` denotes the end of the stream and only the
+An offset of `-2` denotes the end of the stream in which case only the
 next produced message will be consumed.
 
 ## Logs
 
 If you are running Memgraph with Docker and want to see logs in Memgraph Lab, be
-sure to exposed the 7444 port when running the `docker run` command.
+sure to expose the 7444 port when running the `docker run` command.
 
-Otherwise Memgraph's log files can be found at
+Otherwise, Memgraph's log files can be found at
 `/var/log/memgraph/memgraph_<date>.log`. Look for the name of your stream in the
 log file to find the error.
 

@@ -48,9 +48,9 @@ container](/how-to-guides/work-with-docker.md#how-to-copy-files-from-and-to-a-do
 If you are using Memgraph Lab you can [create transformation module in Python within the
 application](/reference-guide/streams/transformation-modules/overview.md#creating-transformation-modules-within-memgraph-lab). 
 
-The best practice is to have a dedicated topic for each message type in order to
-parse the data more efficiently. Each topic requires a separate procedure within
-a single transformation module to handle the conversion.
+The best practice is to have a dedicated topic for each message type to parse the
+data more efficiently. Each topic requires a separate procedure within a single
+transformation module to handle the conversion.
 
 ### Load the transformation module
 
@@ -60,9 +60,9 @@ modules from all `*.so` and `*.py` files it finds in the default
 
 You can point to a different directory by changing or extending the
 `--query-modules-directory` flag in the main configuration file
-(`/etc/memgraph/memgraph.conf`). If you need help with changing the
-configuration file, check out the [how-to guide](/how-to-guides/config-logs.md).
-You can also define the flag within a command-line parameter when using Docker.
+(`/etc/memgraph/memgraph.conf`). If you need help changing the configuration
+file, check out the [how-to guide](/how-to-guides/config-logs.md). You can also
+define the flag within a command-line parameter when using Docker.
 
 :::caution
 
@@ -109,14 +109,14 @@ You should see an output similar to the following:
 
 ## Create a stream in Memgraph
 
-In order to create a stream with a Cypher query, you first need to [load the
+To create a stream with a Cypher query, you first need to [load the
 transformation module into
-Memgraph](#create-and-load-a-transformation-module-into-memgraph), then
-run a `CREATE .. STREAM` Cypher query to create a stream. 
+Memgraph](#create-and-load-a-transformation-module-into-memgraph), then run a
+`CREATE .. STREAM` Cypher query to create a stream. 
 
 You need to create one stream for each topic and procedure you have.
 
-Below are basic Cypher queries for starting streams, and for more options and
+Below are basic Cypher queries for starting streams. For more options and
 information about the `CREATE .. STREAM` query and all the other options
 regarding streams, such as additional Kafka configuration options, check out the
 [reference guide](/reference-guide/streams/overview.md).
@@ -153,12 +153,12 @@ SHOW STREAMS;
 
 ### Check the transformed incoming data
 
-To see the results of the transformation module use the `CHECK STREAM` clause.
+To see the results of the transformation module, use the `CHECK STREAM` clause.
 It will consume the message from the last committed offset but won't commit the
 offsets. There is no committed offset coming from a newly created stream, so by
 default, Memgraph will wait `30000` milliseconds (`30` seconds) for new
-messages and after that, it will throw a timeout exception. You can change the
-timeout by adding the `TIMEOUT` sub-clause and adding a custom time to the query. 
+messages, and after that, it will throw a timeout exception. You can change the
+timeout by adding the `TIMEOUT` sub-clause and a custom time to the query. 
 
 The following Cypher query will transform new messages that come from the stream
 within 60 seconds:
@@ -207,7 +207,7 @@ For more options, [check the reference guide](/reference-guide/streams/overview.
 
 ## Change Kafka stream offset
 
-First stop the stream if it's running, then use the following Cypher query to
+First, stop the stream if it's running, then use the following Cypher query to
 change Kafka stream offset if necessary and start it again:
 
 ```cypher
@@ -217,14 +217,14 @@ CALL mg.kafka_set_stream_offset(streamName, offset)
 An offset of `-1` denotes the beginning offset available for the given
 topic/partition. 
 
-An offset of `-2` denotes the end of the stream and only the
+An offset of `-2` denotes the end of the stream in which case only the
 next produced message will be consumed.
 
 
 ## Logs
 
 Errors and notifications regarding streams are contained in Memgraph's log files
-which can be found at `/var/log/memgraph/memgraph_<date>.log` Look for the name
+which can be found at `/var/log/memgraph/memgraph_<date>.log`. Look for the name
 of your stream in the log file to find the error. You can use the `grep` command
 to search for the stream in the log file:
 

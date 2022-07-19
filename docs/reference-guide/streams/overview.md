@@ -5,7 +5,7 @@ sidebar_label: Streams overview
 slug: /reference-guide/streams
 ---
 
-Memgraph can connect to existing Kafka, Redpanda and Pulsar sources to ingest
+Memgraph can connect to existing Kafka, Redpanda, and Pulsar sources to ingest
 the data, which you can then query with the power of MAGE algorithms or your own
 custom procedures.
 
@@ -25,7 +25,7 @@ To use streams, a user must:
 
 You can write Python transformation modules, create and start streams using the
 **Stream** section in the Memgraph Lab, [check out
-how](/memgraph/import-data/data-streams/manage-streams-lab). 
+how](/import-data/data-streams/manage-streams-lab.md). 
 
 :::tip
 
@@ -71,7 +71,7 @@ CREATE KAFKA STREAM <stream name>
 :::warning
 
 The credentials are stored on the disk without any encryption, which means
-everybody who has access to the data directory of Memgraph is able to get the
+everybody who has access to the data directory of Memgraph can get the
 credentials.
 
 :::
@@ -79,7 +79,7 @@ credentials.
 To check the list of possible configuration options and their values, please
 check the documentation of
 [librdkafka](https://github.com/edenhill/librdkafka/blob/v1.7.0/CONFIGURATION.md)
-library which is used in Memgraph. At the time of writing this documentation
+library, which is used in Memgraph. At the time of writing this documentation
 Memgraph uses version 1.7.0 of librdkafka.
 
 ### Pulsar
@@ -104,7 +104,7 @@ CREATE PULSAR STREAM <stream name>
 |       service url       |                                 URL to the running Pulsar cluster                                  |   string   |        "pulsar://127.0.0.1:6650"        |    /    |
 
 The transformation procedure is called if either the `BATCH_INTERVAL` or the
-`BATCH_SIZE` is reached, and there is at least one received message.
+`BATCH_SIZE` is reached, and at least one message is received.
 
 The `BATCH_INTERVAL` starts when the:
 
@@ -113,7 +113,7 @@ The `BATCH_INTERVAL` starts when the:
 - the previous batch interval ended without receiving any messages
 
 After each message is processed, the stream will acknowledge them. If the stream
-is stopped, next time it starts, it will continue processing the message from
+is stopped, the next time it starts, it will continue processing the message from
 the last acknowledged message.
 
 The user who executes the `CREATE` query is the owner of the stream.
@@ -129,6 +129,8 @@ guide](reference-guide/security.md#owners).
 
 ## Start a stream
 
+The following queries start a specific stream or all streams.
+
 ```cypher
 START STREAM <stream name>;
 ```
@@ -137,13 +139,13 @@ START STREAM <stream name>;
 START ALL STREAMS;
 ```
 
-Starts a specific stream or all streams.
-
 When a stream is started, it resumes ingesting data from the last committed
-offset. If there is no committed offset for the consumer group, then the largest
+offset. If no offset is committed for the consumer group, the largest
 offset will be used. Therefore, only the new messages will be consumed.
 
 ## Stop a stream
+
+The following queries stop a specific stream or all streams.
 
 ```cypher
 STOP STREAM <stream name>;
@@ -153,23 +155,23 @@ STOP STREAM <stream name>;
 STOP ALL STREAMS;
 ```
 
-Stops a specific stream or all streams.
-
 ## Delete a stream
+
+The following query drops a stream with the name `<stream name>`.
 
 ```cypher
 DROP STREAM <stream name>;
 ```
 
-Drops a stream with the name `<stream name>`.
-
 ## Show streams
+
+To show streams, use the following query: 
 
 ```cypher
 SHOW STREAMS;
 ```
 
-Shows a list of existing streams with the following information:
+It shows a list of existing streams with the following information:
 
 - stream name
 - stream type
@@ -181,13 +183,16 @@ Shows a list of existing streams with the following information:
 
 ## Check stream
 
+To perform a dry-run on the stream and get the results of the transformation,
+use the following query: 
+
 ```cypher
 CHECK STREAM <stream name> [BATCH_LIMIT <count>] [TIMEOUT <milliseconds>];
 ```
 
-The `CHECK STREAM` clause does a dry-run on the stream with name `<stream name>`
-with `<count>` number of batches and returns the result of the transformation,
-that is, the queries and parameters that would be executed in a normal run. If
+The `CHECK STREAM` clause will do a dry-run on the `<stream name>` stream with
+`<count>` number of batches and return the result of the transformation, that
+is, the queries and parameters that would be executed in a normal run. If
 `<count>` number of batches are not processed within the specified `TIMEOUT`,
 probably because not enough messages were received, an exception is thrown.
 
@@ -204,7 +209,7 @@ CALL mg.kafka_stream_info("stream_name") YIELD *;
 ```
 
 This procedure will return information about the bootstrap server, set
-configuration, consumer group, credentials and topics.
+configuration, consumer group, credentials, and topics.
 
 To get more information about a specific Pulsar stream, use the
 following query:
@@ -213,7 +218,7 @@ following query:
 CALL mg.pulsar_stream_info("stream_name") YIELD *;
 ```
 
-The procedure will return service URL and topics.
+The procedure will return the service URL and topics.
 
 ## Kafka producer delivery semantics
 
@@ -222,25 +227,25 @@ connecting an external application such as Memgraph to a Kafka stream, there are
 two possible ways to handle failures during message processing:
 
 1. Every message is processed **at least once**: the message offsets are
-   committed to the Kafka cluster after the processing is done. This means if
-   the committing fails, the messages can get processed multiple times.
+   committed to the Kafka cluster after processing. If the committing fails, the
+   messages can get processed multiple times.
 2. Every message is processed **at most once**: the message offsets are
    committed to the Kafka cluster right after they are received before the
-   processing is started. This means if the processing fails, the same messages
+   processing is started. If the processing fails, the same messages
    won't be processed again.
 
 Missing a message can result in missing an edge that would connect two
-independent components of a graph. Therefore, we think that missing some
-information is a bigger problem in graphs databases than having duplicated
-information, so we implemented our streams using the **at least once**
-semantics, i.e. the queries returned by the transformations are first executed
-and committed to the database for every batch of messages and only then is the
+independent components of a graph. Therefore, the general opinion in Memgraph is
+that missing some information is a bigger problem in graphs databases than
+having duplicated information, so Memgraph uses **at least once** semantics,
+i.e., the queries returned by the transformations are first executed and
+committed to the database for every batch of messages, and only then is the
 message offset committed to the Kafka cluster.
 
-However, even though we cannot guarantee **exactly once** semantics, we tried to
-minimize the possibility of processing messages multiple times. This means
-committing the message offsets to the Kafka cluster happens right after the
-transaction is committed to the database.
+However, even though Memgraph cannot guarantee **exactly once** semantics, it
+tries to minimize the possibility of processing messages multiple times. This
+means committing the message offsets to the Kafka cluster happens right after
+the transaction is committed to the database.
 
 ## Configuring stream transactions
 
@@ -255,7 +260,7 @@ remedied by the following Memgraph flag:
 ```
 
 By default, Memgraph will always try to execute a transaction once. However, for
-streams, if Memgraph fails because of transaction conflicts it will retry to
+streams, if Memgraph fails because of transaction conflicts, it will retry to
 execute the transaction again for up to `TIMES_TO_RETRY` times (default value is
 30).
 
@@ -266,7 +271,7 @@ the following Memgraph flag:
 --stream-transaction-retry-interval=INTERVAL_TIME
 ```
 
-The `INTERVAL_TIME` is measured in `milliseconds` and its default value is
+The `INTERVAL_TIME` is measured in `milliseconds` and the default value is
 `500ms`.
 
 ## Setting a stream offset
@@ -289,7 +294,7 @@ CALL mg.kafka_set_stream_offset(stream_name, offset)
   topic/partition, its logical end such that only the next produced message will
   be consumed.
 
-Keep in mind that a stream can consume from multiple topics with multiple
-partitions. Therefore, when setting the offsets to an arbitrary number be aware
-that setting the offset of a stream internally sets all of the associated
-offsets of that stream (topics/partitions) to that value.
+Stream can consume messages from multiple topics with multiple partitions.
+Therefore, when setting the offsets to an arbitrary number be aware that setting
+the offset of a stream internally sets all of the associated offsets of that
+stream (topics/partitions) to that value.
