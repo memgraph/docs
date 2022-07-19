@@ -80,7 +80,7 @@ When starting mgconsol include the `--use-ssl=true` flag. Flag can also be
 explicitly set to `false` if needed.
 
 When working with Memgraph Platform, you should pass configuration flags inside
-of environmental variables as a part of the `docker run` command, for example:
+of environment variables as a part of the `docker run` command, for example:
 
 ```
 docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 -v mg_lib:/var/lib/memgraph -v mg_etc:/etc/memgraph -e MGCONSOLE="--use-ssl=true" memgraph/memgraph-platform
