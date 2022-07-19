@@ -158,17 +158,18 @@ IMAGE
 In Memgraph Lab you can connect to a data stream by running a series of Cypher
 queries, or you can connect to it using the **Streams** section.
 
-Once you enter the basic information about the stream, such as type, name,
-server address and topics, the Streams section allows you to add an existing
-query module containing transformation procedure or to write a new one in
-Python. 
+Once you enter basic information about the stream, such as type, name, server
+address and topics, the Streams section allows you to add an existing query
+module containing transformation procedure or to write a new one in Python. 
 
-Once you have written and saved the query module, Memgraph Lab will
-automatically detect transformation procedures within it, which you can then
-attach to the created stream.
+When saving a new query module, Memgraph Lab will automatically detect
+transformation procedures within it, which you can then attach to the created
+stream.
 
 Adding Kafka Configuration Parameters is also done via the Stream section, as
 well as managing the connection - starting, pausing or deleting it. 
+
+IMAGE
 
 ## Graph Schema
 
