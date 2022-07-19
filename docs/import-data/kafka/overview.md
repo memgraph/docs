@@ -76,7 +76,7 @@ command-line parameter when using Docker.
 :::caution
 
 Please remember that if you are using Memgraph Platform image, you should pass
-configuration flags within MEMGRAPH environmental variable (e.g. `docker run -p
+configuration flags within MEMGRAPH environment variable (e.g. `docker run -p
 7687:7687 -p 3000:3000 -p 4777:4777 -e MEMGRAPH="--log-level=TRACE"
 memgraph/memgraph-platform`) and if you are using any other image, you should
 pass them as arguments after the image name (e.g., `... memgraph/memgraph-mage

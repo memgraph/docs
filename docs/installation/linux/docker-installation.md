@@ -105,7 +105,7 @@ docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 -e MEMGRAPH="--log-level=T
 :::caution
 
 When working with Memgraph Platform, you should pass configuration flags inside
-of environmental variables.
+of environment variables.
 
 For example, you can start the MemgraphDB image with `docker run memgraph/memgraph
 --bolt-port=7687 --log-level=TRACE`, but you should start Memgraph Platform with
