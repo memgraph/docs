@@ -41,7 +41,8 @@ SET object.updated_at = timestamp();
 ```
 
 The query may seem complex, so let's break it down:
-* `CREATE TRIGGER exampleTrigger`: This statement creates the trigger. Here the part `exampleTrigger` is the name of    the trigger and it must be unique.
+* `CREATE TRIGGER exampleTrigger`: This statement creates the trigger. Here the
+  part `exampleTrigger` is the name of the trigger and it must be unique.
 * `ON UPDATE AFTER COMMIT EXECUTE`: This statement specifies what kind of event
   should activate the execution of trigger. This one will be triggered for every update
   operation and the query below will be executed after the update event has been
