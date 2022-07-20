@@ -46,7 +46,7 @@ $bolt = new \Bolt\Bolt($conn);
 // Build and get protocol version instance which creates connection and executes handshake
 $protocol = $bolt->build();
 // Login to database with credentials
-$protocol->hello(\Bolt\helpers\Auth::basic('neo4j', 'enter your password'));
+$protocol->hello(\Bolt\helpers\Auth::basic('username', 'password'));
 // Execute query with parameters
 $stats = $protocol->run(
     'CREATE (a:Greeting) SET a.message = $message RETURN id(a) AS nodeId, a.message AS message',
