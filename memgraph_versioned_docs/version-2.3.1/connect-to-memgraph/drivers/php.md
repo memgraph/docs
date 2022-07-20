@@ -37,47 +37,46 @@ following code to it:
 
 ```php
 <?php
-
 require_once __DIR__ . '/vendor/autoload.php';
 
-// Create new Bolt instance
-$bolt = new \Bolt\Bolt(new \Bolt\connection\StreamSocket());
-// Set Bolt protocol version if needed
-$bolt->setProtocolVersions(4.0);
-// Connect to database
-$bolt->init('MyClient/1.0', '', '');
-
-// Execute query
-$res = $bolt->run(
+// Create connection class and specify target host and port
+$conn = new \Bolt\connection\Socket();
+// Create new Bolt instance and provide connection object
+$bolt = new \Bolt\Bolt($conn);
+// Build and get protocol version instance which creates connection and executes handshake
+$protocol = $bolt->build();
+// Login to database with credentials
+$protocol->hello(\Bolt\helpers\Auth::basic('neo4j', 'enter your password'));
+// Execute query with parameters
+$stats = $protocol->run(
     'CREATE (a:Greeting) SET a.message = $message RETURN id(a) AS nodeId, a.message AS message',
     ['message' => 'Hello, World!']
 );
-// Pull records from last query
-$rows = $bolt->pull();
-
+// Pull records from last executed query
+$rows = $protocol->pull();
 echo 'Node ' . $rows[0][0] . ' says: ' . $rows[0][1];
 ```
 
-**3.** Create a `composer.json` file with the following contents:
+If you need SSL connection you have to replace `Socket` instance with `StreamSocket` and enable SSL with additional method.
 
-```json
-{
-  "name": "memgraph/myapp",
-  "description": "This is a simple Hello World app.",
-  "require": {
-    "php": ">=7.1",
-    "stefanak-michal/bolt": "^2.7.2"
-  }
-}
+```php
+$conn = new \Bolt\connection\StreamSocket('URI or IP', 7687);
+$conn->setSslContextOptions([
+    'verify_peer' => true
+]);
 ```
 
-**4.** Execute the next command to install the needed dependencies:
+Library is automatically requesting latest 4 versions. If you need to request other Bolt version you have to call `$bolt->setProtocolVersions(3.0);`.
 
-```
-composer install
+**3.** Run a composer command to get the required library:
+
+```sh
+composer require stefanak-michal/bolt
 ```
 
-**5.** Start the application with the following command:
+_It will auto create composer.json file._
+
+**4.** Start the application with the following command:
 
 ```
 php -S localhost:4000
@@ -89,7 +88,13 @@ You should see an output similar to the following:
 Node 1: Hello, World!
 ```
 
+_If you run apache/nginx instance you can open your project in web browser and you will get same result._
+
+
+
 ## Where to next?
+
+To learn more about using PHP Bolt libary take a look at readme and wiki at https://github.com/neo4j-php/Bolt.
 
 For real-world examples of how to use Memgraph, we suggest you take a look at
 the **[Tutorials](/tutorials/overview.md)** page. You can also browse through
