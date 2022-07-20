@@ -10,6 +10,7 @@ Please delete options that are not relevant and check the ones that are.
 - [ ] Language fixes
 - [ ] New documentation page
 - [ ] Base PR for the release
+- [ ] Documentation improvements
 - [ ] Other (please describe):
 
 ### Related issues

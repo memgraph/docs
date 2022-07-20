@@ -280,7 +280,7 @@ module.exports = {
         },
         {
           to: "/help-center",
-          label: "Help center",
+          label: "Help",
           position: "left",
           activeBaseRegex: `/help-center/`,
           items: [
@@ -323,8 +323,9 @@ module.exports = {
         },
         {
           href: "https://github.com/memgraph/memgraph",
-          label: "GitHub",
+          className: 'header-github-link',
           position: "right",
+          'aria-label': 'GitHub repository'
         },
       ],
     },
@@ -385,6 +386,10 @@ module.exports = {
           title: "More",
           items: [
             {
+              label: "Memgraph Cloud",
+              href: "https://memgraph.com/cloud"
+            },
+            {
               label: "Memgraph Playground",
               href: "https://playground.memgraph.com"
             },
@@ -393,7 +398,7 @@ module.exports = {
               href: "https://github.com/memgraph/memgraph",
             },
             {
-              label: "Youtube",
+              label: "YouTube",
               href: "https://www.youtube.com/channel/UCZ3HOJvHGxtQ_JHxOselBYg",
             },
           ],
@@ -674,10 +679,6 @@ module.exports = {
             from: ["/memgraph/reference-overview/indexing"],
           },
           {
-            to: "/memgraph/reference-guide/graph-algorithms",
-            from: ["/memgraph/reference-overview/graph-algorithms"],
-          },
-          {
             to: "/memgraph/reference-guide/query-modules",
             from: ["/memgraph/reference-overview/query-modules"],
           },
@@ -798,10 +799,6 @@ module.exports = {
           {
             to: "/memgraph/under-the-hood/storage",
             from: ["/memgraph/concepts-overview/storage"],
-          },
-          {
-            to: "/memgraph/under-the-hood/graph-algorithms",
-            from: ["/memgraph/concepts-overview/graph-algorithms"],
           },
           {
             to: "/memgraph/under-the-hood/replication",
@@ -1187,10 +1184,6 @@ module.exports = {
             from: ["/memgraph/concepts/storage"],
           },
           {
-            to: "/memgraph/under-the-hood/graph-algorithms",
-            from: ["/memgraph/concepts/graph-algorithms"],
-          },
-          {
             to: "/memgraph/under-the-hood/indexing",
             from: ["/memgraph/concepts/indexing"],
           },
@@ -1303,6 +1296,11 @@ module.exports = {
             from: [
               "/memgraph/how-to-work-with-docker",
             ],
+          },
+          // Redirect for Graph algorithms
+          {
+            to: "/memgraph/reference-guide/built-in-graph-algorithms",
+            from: ["/memgraph/reference-overview/graph-algorithms", "/memgraph/concepts-overview/graph-algorithms", "/memgraph/concepts/graph-algorithms", "/memgraph/under-the-hood/graph-algorithms", "/memgraph/reference-guide/graph-algorithms"],
           },
         ],
       },

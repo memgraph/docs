@@ -78,9 +78,9 @@ new runs.
 
 #### Input:
 
-- `alpha: double(0.2)` ➡ Exponential decay factor defining the walk length
+- `alpha: double (default=0.2)` ➡ Exponential decay factor defining the walk length
   importance.
-- `epsilon: double(1e-2)` ➡ Convergence tolerance. Minimal difference in two
+- `epsilon: double (default=1e-2)` ➡ Convergence tolerance. Minimal difference in two
   adjacent pairs of nodes in the final ranking.
 
 #### Output:

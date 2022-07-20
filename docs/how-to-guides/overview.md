@@ -57,7 +57,7 @@ following guides:
 Memgraph currently provides three query modules
 that utilize the NetworkX library. Take a look how to use the NetworkX library with Memgraph:
 
-- [Utilize the NetworkX library](/how-to-guides/networkx.md))
+- [Utilize the NetworkX library](/how-to-guides/networkx.md)
 
 ## TensorFlow Op
 
@@ -111,12 +111,11 @@ make it easier to accomplish tasks within Memgraph:
 - [Work with Docker](/how-to-guides/work-with-docker.md)
 
 
-## Triggers
+## Set up triggers
 
-Memgraph supports running openCypher statements after a certain event happens
-during transaction execution, i.e. triggers:
+Memgraph supports database triggers that can be executed if a particular type of event occurs. Events are related to changes in the data, such as created, updated, and deleted nodes or relationships. 
 
-- [Triggers](/reference-guide/triggers.md)
+- [How to setup triggers](/how-to-guides/set-up-triggers.md)
 
 ## Use Font Awesome icons for node images
 

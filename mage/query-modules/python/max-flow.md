@@ -62,7 +62,7 @@ returning max flow value is 0.
 
 * `start_v: Vertex` ➡ Source node from which the maximum flow is calculated
 * `end_v: Vertex` ➡ Sink node to which the max flow is calculated
-* `edge_property: str("weight")` ➡ Edge property which is used as the flow
+* `edge_property: string (default="weight")` ➡ Edge property which is used as the flow
   capacity of the edge
 
 #### Output:
@@ -84,7 +84,7 @@ RETURN max_flow;
 
 * `start_v: Vertex` ➡ Source node from which the maximum flow is calculated
 * `end_v: Vertex` ➡ Sink node to which the max flow is calculated
-* `edge_property: str("weight")` ➡ Edge property which is used as the flow
+* `edge_property: string (default="weight")` ➡ Edge property which is used as the flow
   capacity of the edge
 
 #### Output:

@@ -67,14 +67,14 @@ docker image tag memgraph/memgraph-platform memgraph
 ### Run a Memgraph Docker image
 
 All images are started using the `docker run` command followed by various flags,
-environmental variables and configuration options.
+environment variables and configuration options.
 
 The most common flags used while running Memgraph images are:
 
 - enable interactive mode: `-it`
 - publish ports: `-p 3000:3000`
 - specify volumes for data persistance `-v mg_lib:/var/lib/memgraph`
-- set up configuration using environmental variables in the case of the
+- set up configuration using environment variables in the case of the
   `memgraph-platform` image, or configuration flags using the `memgraph` or
   `memgraph-mage` image
 
@@ -153,7 +153,7 @@ you need to pass the configuration option within the `docker run` command
 instead of changing the configuration file.
 
 If you are working with the `memgraph-platform` image, you should pass
-configuration options with environmental variables.
+configuration options with environment variables.
 
 For example, if you want to limit memory usage for the whole instance to 50 MiB
 and set the log level to `TRACE`, pass the configuration like this:

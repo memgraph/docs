@@ -1,0 +1,276 @@
+---
+id: overview
+title: Import data
+sidebar_label: Import data overview
+slug: /import-data
+---
+
+import Container from "@site/src/components/container-docs/container-docs";
+import styles from "@site/src/css/import-data-docs.module.css";
+import useBaseUrl from "@docusaurus/useBaseUrl";
+import ConnectButton from "@site/src/components/connect-button/connect-button";
+
+export default function ConnectToMemgraph() {
+  const imgFolder = "img/import-data/";
+  const viaLoadCsv = {
+    title: "LOADCSVClause#",
+    img: useBaseUrl(imgFolder + "loadcsvclause-unselected.svg"),
+    imgActive: useBaseUrl(imgFolder + "loadcsvclause-selected.svg"),
+    imgDark: useBaseUrl(imgFolder + "dark/loadcsvclause-unselected-dm.svg"),
+    imgDarkActive: useBaseUrl(imgFolder + "dark/loadcsvclause-selected-dm.svg"),
+    url: useBaseUrl("memgraph/import-data/load-csv-clause"),
+  };
+  const viaLoadJSON = {
+    title: "LoadJSON",
+    img: useBaseUrl(imgFolder + "json-unselected.svg"),
+    imgActive: useBaseUrl(imgFolder + "json-selected.svg"),
+    imgDark: useBaseUrl(imgFolder + "dark/json-unselected-dm.svg"),
+    imgDarkActive: useBaseUrl(imgFolder + "dark/json-selected-dm.svg"),
+    url: useBaseUrl("memgraph/import-data/json/load-json"),
+  };
+  const viaMigrate = [
+    {
+      title: "MySQL",
+      img: useBaseUrl(imgFolder + "mysql-unselected.svg"),
+      imgActive: useBaseUrl(imgFolder + "mysql-selected.svg"),
+      imgDark: useBaseUrl(imgFolder + "dark/mysql-unselected-dm.svg"),
+      imgDarkActive: useBaseUrl(imgFolder + "dark/mysql-selected-dm.svg"),
+      url: useBaseUrl("memgraph/import-data/migrate/mysql"),
+    },
+    {
+      title: "PostgreSQL",
+      img: useBaseUrl(imgFolder + "postgresql-unselected.svg"),
+      imgActive: useBaseUrl(imgFolder + "postgresql-selected.svg"),
+      imgDark: useBaseUrl(imgFolder + "dark/postgresql-unselected-dm.svg"),
+      imgDarkActive: useBaseUrl(imgFolder + "dark/postgresql-selected-dm.svg"),
+      url: useBaseUrl("memgraph/import-data/migrate/postgresql"),
+    },
+  ];
+  const viaCypherl = {
+    title: "cypherl",
+    img: useBaseUrl(imgFolder + "cypherqueries-unselected.svg"),
+    imgActive: useBaseUrl(imgFolder + "cypherqueries-selected.svg"),
+    imgDark: useBaseUrl(imgFolder + "dark/cypherqueries-unselected-dm.svg"),
+    imgDarkActive: useBaseUrl(imgFolder + "dark/cypherqueries-selected-dm.svg"),
+    url: useBaseUrl("memgraph/import-data/cypherl"),
+  };
+  return (
+    <Container size="small">
+      <div className={styles.connectToMemgraph}>
+        <section>
+          <p>
+            There are a few methods for importing data into Memgraph and they
+            cover:
+          </p>
+          <ul>
+            <li>
+              <b>
+                <a href="#csv">How to import CSV files into Memgraph?</a>
+              </b>
+            </li>
+            <li>
+              <b>
+                <a href="#json">How to import JSON files into Memgraph?</a>
+              </b>
+            </li>
+            <li>
+              <b>
+                <a href="#kafka">
+                  How to import streaming data from Kafka into Memgraph?
+                </a>
+              </b>
+            </li>
+            <li>
+              <b>
+                <a href="#migrate">
+                  How to migrate data from a relational database?
+                </a>
+              </b>
+            </li>
+            <li>
+              <b>
+                <a href="#queries">
+                  How to import data in the form of Cypher queries?
+                </a>
+              </b>
+            </li>
+            <li>
+              <b>
+                <a href="#application">
+                  How to import data directly from an application/program?
+                </a>
+              </b>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2 id="csv">How to import CSV files into Memgraph?</h2>
+          <p>
+            The easiest way to import data into Memgraph is to use the{" "}
+            <b>
+              <a href={useBaseUrl("/memgraph/import-data/load-csv-clause")}>
+                LOAD CSV clause
+              </a>
+            </b>
+            , which is used as a standard Cypher clause, and can be invoked
+            straight from a running Memgraph instance.
+          </p>
+          <ConnectButton
+            title={viaLoadCsv.title}
+            url={viaLoadCsv.url}
+            img={viaLoadCsv.img}
+            imgActive={viaLoadCsv.imgActive}
+            imgDark={viaLoadCsv.imgDark}
+            imgDarkActive={viaLoadCsv.imgDarkActive}
+          />
+        </section>
+        <section>
+          <h2 id="json">How to import JSON files into Memgraph?</h2>
+          <p>
+            You can import the JSON file into Memgraph by using the{" "}
+            <b>
+              <a href={useBaseUrl("/memgraph/import-data/json/load-json")}>
+                JSON query module
+              </a>
+            </b>{" "}
+            , which has procedures for loading JSON file from local file or
+            remote address.
+          </p>
+          <ConnectButton
+            title={viaLoadJSON.title}
+            url={viaLoadJSON.url}
+            img={viaLoadJSON.img}
+            imgActive={viaLoadJSON.imgActive}
+            imgDark={viaLoadJSON.imgDark}
+            imgDarkActive={viaLoadJSON.imgDarkActive}
+          />
+        </section>
+        <section>
+          <h2 id="kafka">
+            How to import streaming data from Kafka into Memgraph?
+          </h2>
+          <p>
+            Memgraph comes with full streaming support, and you can connect
+            Memgraph directly to a Kafka stream. Check out{" "}
+            <a href={useBaseUrl("/memgraph/import-data/kafka")}>this guide</a>{" "}
+            to find out how to connect to a Kafka stream and take a look at the
+            examples with different serialization mechanisms:
+          </p>
+          {/*<ConnectButton
+            title={viaKafka.title}
+            url={viaKafka.url}
+            img={viaKafka.img}
+            imgActive={viaKafka.imgActive}
+            imgDark={viaKafka.imgDark}
+            imgDarkActive={viaKafka.imgDarkActive}
+          />*/}
+          <ul>
+            <li>
+              <b>
+                <a href={useBaseUrl("/memgraph/import-data/kafka/json")}>
+                  JSON
+                </a>
+              </b>
+            </li>
+            <li>
+              <b>
+                <a href={useBaseUrl("/memgraph/import-data/kafka/avro")}>
+                  Avro
+                </a>
+              </b>
+            </li>
+            <li>
+              <b>
+                <a href={useBaseUrl("/memgraph/import-data/kafka/protobuf")}>
+                  Protobuf
+                </a>
+              </b>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2 id="migrate">How to migrate data from a relational database?</h2>
+          <p>
+            You can migrate data from a{" "}
+            <a href={useBaseUrl("/memgraph/import-data/migrate/mysql")}>
+              MySQL
+            </a>{" "}
+            or{" "}
+            <a href={useBaseUrl("/memgraph/import-data/migrate/postgresql")}>
+              PostgreSQL
+            </a>{" "}
+            database using the{" "}
+            <a href="https://github.com/memgraph/mgmigrate">mgmigrate</a> tool.
+          </p>
+          <div className={styles.connectToMemgraph__grid}>
+            {viaMigrate.map((item, i) => {
+              return (
+                <ConnectButton
+                  key={i}
+                  url={item.url}
+                  title={item.title}
+                  img={item.img}
+                  imgActive={item.imgActive}
+                  imgDark={item.imgDark}
+                  imgDarkActive={item.imgDarkActive}
+                />
+              );
+            })}
+          </div>
+        </section>
+        <section>
+          <h2 id="queries">How to import data from Cypher queries?</h2>
+          <p>
+            If your data is in the form of Cypher queries (<code>CREATE</code>{" "}
+            and <code>MERGE</code> clauses) you can import it by using the{" "}
+            <b>mgconsole</b> tool or <b>Memgraph Lab</b>. We refer to this
+            format as <code>.cypherl</code> and you can find an example of how
+            to import such data{" "}
+            <a href={useBaseUrl("/memgraph/import-data/cypherl")}>here</a>.
+          </p>
+          <ConnectButton
+            title={viaCypherl.title}
+            url={viaCypherl.url}
+            img={viaCypherl.img}
+            imgActive={viaCypherl.imgActive}
+            imgDark={viaCypherl.imgDark}
+            imgDarkActive={viaCypherl.imgDarkActive}
+          />
+        </section>
+        <section>
+          <h2 id="application">
+            How to import data directly from an application/program?
+          </h2>
+          <p>
+            Memgraph offers a wide range of drivers that can be used to connect
+            directly to the platform. You can find a list of all the supported
+            connection methods{" "}
+            <a href={useBaseUrl("/memgraph/connect-to-memgraph")}>here</a>.
+          </p>
+        </section>
+        <section>
+          <h2>Where to next?</h2>
+          <p>
+            To learn more about the <b>Cypher</b> language, visit the{" "}
+            <b>
+              <a href={useBaseUrl("cypher-manual")}>Cypher manual</a>
+            </b>{" "}
+            or{" "}
+            <b>
+              <a href="https://playground.memgraph.com/">Memgraph Playground</a>
+            </b>{" "}
+            for interactive guides. For real-world examples of how to use
+            Memgraph, we strongly suggest going through one of the available{" "}
+            <b>
+              <a href={useBaseUrl("memgraph/tutorials")}>Tutorials</a>
+            </b>
+            . Details on what can be stored in Memgraph can be found in the article
+            about <b>
+              <a href={useBaseUrl("memgraph/concepts/storage")}>Data storage</a>
+            </b>.
+          </p>
+        </section>
+      </div>
+    </Container>
+  );
+}

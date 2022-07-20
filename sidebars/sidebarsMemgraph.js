@@ -156,12 +156,12 @@ module.exports = {
         "how-to-guides/networkx",
         "how-to-guides/replication",
         //"how-to-guides/tensorflow-setup",
-        "reference-guide/triggers",
         "how-to-guides/font-awesome-for-node-images",
         "how-to-guides/query-modules",
         "how-to-guides/encryption",
         "how-to-guides/work-with-docker",
         "how-to-guides/indexes",
+        "how-to-guides/set-up-triggers",
         {
           type: "category",
           label: "Enterprise features",
@@ -178,7 +178,7 @@ module.exports = {
       link: { type: "doc", id: "reference-guide/overview" },
       items: [
         "reference-guide/backup",
-        "reference-guide/graph-algorithms",
+        "reference-guide/built-in-graph-algorithms",
         "reference-guide/memory-control",
         "reference-guide/configuration",
         "reference-guide/data-types",
@@ -279,7 +279,6 @@ module.exports = {
       link: { type: "doc", id: "under-the-hood/overview" },
       items: [
         "under-the-hood/storage",
-        //"under-the-hood/graph-algorithms",
         "under-the-hood/indexing",
         "under-the-hood/replication",
         "under-the-hood/telemetry",

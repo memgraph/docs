@@ -237,8 +237,8 @@ import mgp
 
 @mgp.read_proc
 def total_cost(context: mgp.ProcCtx,
-               city: mgp.Nullable[str],
-               adults: mgp.Nullable[int],
+               city: str,
+               adults: int,
                children: mgp.Nullable[int] = None
                ) -> mgp.Record(Total_cost_per_night = mgp.Nullable[float]):
 ```
@@ -254,8 +254,8 @@ import mgp
 
 @mgp.read_proc
 def total_cost(context: mgp.ProcCtx,
-              city: mgp.Any[str],
-              adults: mgp.Number[int],
+              city: str,
+              adults: int,
               children: mgp.Nullable[int] = None
               ) -> mgp.Record(Total_cost_per_night = mgp.Nullable[float]):
 
@@ -272,8 +272,8 @@ import mgp
 
 @mgp.read_proc
 def total_cost(context: mgp.ProcCtx,
-               city: mgp.Any[str],
-               adults: mgp.Number[int],
+               city: str,
+               adults: int,
                children: mgp.Nullable[int] = None
                ) -> mgp.Record(Total_cost_per_night = mgp.Nullable[float]):
 
@@ -293,8 +293,8 @@ import mgp
 
 @mgp.read_proc
 def total_cost(context: mgp.ProcCtx,
-               city: mgp.Any[str],
-               adults: mgp.Number[int],
+               city: str,
+               adults: int,
                children: mgp.Nullable[int] = None
                ) -> mgp.Record(Total_cost_per_night = mgp.Nullable[float]):
 
@@ -319,8 +319,8 @@ import mgp
 
 @mgp.read_proc
 def total_cost(context: mgp.ProcCtx,
-              city: mgp.Any[str],
-              adults: mgp.Number[int],
+              city: str,
+              adults: int,
               children: mgp.Nullable[int] = None
               ) -> mgp.Record(
                               Total_cost_per_night = mgp.Nullable[float]):

@@ -60,12 +60,12 @@ The first thing someone should focus on when working with graphs is getting deep
 
 #### Input:
 
-* `analyses: List[str](NULL)` ➡ List of analytics names to be fetched. If provided with NULL, the whole set of analytics will be included.
+* `analyses: List[string] (default=NULL)` ➡ List of analytics names to be fetched. If provided with NULL, the whole set of analytics will be included.
 
 #### Output:
 
-* `name: str` ➡ The name of the analytics
-* `value: str` ➡ Analytics value, stored as a string
+* `name: string` ➡ The name of the analytics
+* `value: string` ➡ Analytics value, stored as a string
 
 #### Usage:
 ```cypher
@@ -78,12 +78,12 @@ CALL graph_analyzer.analyze() YIELD *;
 
 * `vertices: List[Vertex]` ➡ Subset of vertices within a graph.
 * `edges: List[Edge]` ➡ Subset of edges in a graph for which analytics will take place.
-* `analyses: List[str](NULL)` ➡ List of analytics names to be fetched. If provided with NULL, the whole set of analytics will be included.
+* `analyses: List[string] (default=NULL)` ➡ List of analytics names to be fetched. If provided with NULL, the whole set of analytics will be included.
 
 #### Output:
 
-* `name: str` ➡ The name of the analytics
-* `value: str` ➡ Analytics value, stored as a string
+* `name: string` ➡ The name of the analytics
+* `value: string` ➡ Analytics value, stored as a string
 
 #### Usage:
 ```cypher

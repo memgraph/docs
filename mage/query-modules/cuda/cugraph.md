@@ -60,22 +60,22 @@ Find the balanced cut clustering of the graph’s nodes.
 
 #### Input:
 
-- `num_clusters: int` ➡ Number of clusters.
-- `num_eigenvectors: int(2)` ➡ Number of eigenvectors to be used (must be less
+- `num_clusters: integer` ➡ Number of clusters.
+- `num_eigenvectors: integer (default=2)` ➡ Number of eigenvectors to be used (must be less
   than or equal to `num_clusters`).
-- `ev_tolerance: float(0.00001)` ➡ Tolerance used by the eigensolver.
-- `ev_max_iter: int(100)` ➡ Maximum number of iterations for the eigensolver.
-- `kmean_tolerance: float(0.00001)` ➡ Tolerance used by the k-means solver.
-- `kmean_max_iter: int(100)` ➡ Maximum number of iterations for the k-means
+- `ev_tolerance: float (default=0.00001)` ➡ Tolerance used by the eigensolver.
+- `ev_max_iter: integer (default=100)` ➡ Maximum number of iterations for the eigensolver.
+- `kmean_tolerance: float (default=0.00001)` ➡ Tolerance used by the k-means solver.
+- `kmean_max_iter: integer (default=100)` ➡ Maximum number of iterations for the k-means
   solver.
-- `weight_property: str("weight")` ➡ The values of the given relationship.
+- `weight_property: string (default="weight")` ➡ The values of the given relationship.
   property are used as weights by the algorithm. If this property is not set for
   a relationship, the fallback value is `1.0`.
 
 #### Output:
 
 - `node: Vertex` ➡ Graph node.
-- `cluster: int` ➡ Cluster of a node.
+- `cluster: integer` ➡ Cluster of a node.
 
 #### Usage:
 
@@ -95,9 +95,9 @@ Find betweenness centrality scores for all nodes in the graph.
 
 #### Input:
 
-- `normalized: bool(True)` ➡ Normalize the output.
-- `directed: bool(True)` ➡ Graph directedness. (default `True`)
-- `weight_property: str("weight")` ➡ The values of the given relationship
+- `normalized: boolean (default=True)` ➡ Normalize the output.
+- `directed: boolean (default=True)` ➡ Graph directedness. (default `True`)
+- `weight_property: string (default="weight")` ➡ The values of the given relationship
   property are used as weights by the algorithm. If this property is not set for
   a relationship, the fallback value is `1.0`.
 
@@ -125,17 +125,17 @@ load it in Memgraph.
 
 #### Input:
 
-- `scale: int(4)` ➡ Scale factor to set the number of vertices in the graph.
-- `num_edges: int(100)` ➡ Number of edges in the generated graph.
-- `node_labels: mgp.List[str] ([])` ➡ Labels on created vertices. Defaults to
+- `scale: integer (default=4)` ➡ Scale factor to set the number of vertices in the graph.
+- `num_edges: integer (default=100)` ➡ Number of edges in the generated graph.
+- `node_labels: mgp.List[string] ([])` ➡ Labels on created vertices. Defaults to
   empty list.
-- `edge_type: str("RELATIONSHIP")` ➡ Edge type, defines the name of the
+- `edge_type: string (default="RELATIONSHIP")` ➡ Edge type, defines the name of the
   relationship.
-- `a: double(0.57)` ➡ First partition probability.
-- `b: double(0.19)` ➡ Second partition probability.
-- `c: double(0.19)` ➡ Third partition probability.
-- `seed: int(0)` ➡ RNG (random number generator) seed value
-- `clip_and_flip: bool(False)` ➡ Controls whether to generate edges only in the
+- `a: double (default=0.57)` ➡ First partition probability.
+- `b: double (default=0.19)` ➡ Second partition probability.
+- `c: double (default=0.19)` ➡ Third partition probability.
+- `seed: integer (default=0)` ➡ RNG (random number generator) seed value
+- `clip_and_flip: boolean (default=False)` ➡ Controls whether to generate edges only in the
   lower triangular part (including the diagonal) of the graph adjacency matrix
   (if set to `True`) or not (if set to `False`).
 
@@ -143,7 +143,7 @@ load it in Memgraph.
 
 The generated graph is loaded into Memgraph.
 
-- `message: str` ➡ Success message if the graph is loaded.
+- `message: string` ➡ Success message if the graph is loaded.
 
 #### Usage:
 
@@ -168,13 +168,13 @@ graphs.
 
 #### Input:
 
-- `tolerance: float(1e-5)` ➡ HITS approximation tolerance (custom values not
+- `tolerance: float (default=1e-5)` ➡ HITS approximation tolerance (custom values not
   supported by NVIDIA cuGraph).
-- `max_iterations: int(100)` ➡ Maximum number of iterations before returning an
+- `max_iterations: integer (default=100)` ➡ Maximum number of iterations before returning an
   answer (custom values not supported by NVIDIA cuGraph).
-- `normalized: bool(True)` ➡ Normalize the output (`False` not supported by
+- `normalized: boolean (default=True)` ➡ Normalize the output (`False` not supported by
   NVIDIA cuGraph).
-- `directed: bool(True)` ➡ Graph directedness. (default `True`)
+- `directed: boolean (default=True)` ➡ Graph directedness. (default `True`)
 
 #### Output:
 
@@ -200,16 +200,16 @@ Find Katz centrality scores for all nodes in the graph.
 
 #### Input:
 
-- `alpha: float(None)` ➡ Attenuation factor defining the walk length importance.
+- `alpha: float (default=None)` ➡ Attenuation factor defining the walk length importance.
   If not specified, calculated as `1 / max(out_degree)`.
-- `beta: float(1.0)` ➡ Weight scalar (currently not supported by NVIDIA
+- `beta: float (default=1.0)` ➡ Weight scalar (currently not supported by NVIDIA
   cuGraph).
-- `epsilon: float(1e-6)` ➡ Set the tolerance for the approximation, this
+- `epsilon: float (default=1e-6)` ➡ Set the tolerance for the approximation, this
   parameter should be a small magnitude value.
-- `max_iterations: int(100)` ➡ Maximum number of iterations before returning an
+- `max_iterations: integer (default=100)` ➡ Maximum number of iterations before returning an
   answer.
-- `normalized: bool(True)` ➡ Normalize the output.
-- `directed: bool(True)` ➡ Graph directedness. (default `True`)
+- `normalized: boolean (default=True)` ➡ Normalize the output.
+- `directed: boolean (default=True)` ➡ Graph directedness. (default `True`)
 
 #### Output:
 
@@ -234,15 +234,15 @@ Find the partition of the graph into communities using the Leiden method.
 
 #### Input:
 
-- `max_iterations: int(100)` ➡ Maximum number of iterations (levels) of the
+- `max_iterations: integer (default=100)` ➡ Maximum number of iterations (levels) of the
   algorithm. 
-- `resolution: float(1.0)` ➡ Controls community size (lower values lead to
+- `resolution: float (default=1.0)` ➡ Controls community size (lower values lead to
   fewer, larger communities and vice versa). 
 
 #### Output:
 
 - `node: Vertex` ➡ Graph node.
-- `partition: int` ➡ Partition of a node.
+- `partition: integer` ➡ Partition of a node.
 
 #### Usage:
 
@@ -262,16 +262,16 @@ Find the partition of the graph into communities using the Louvain method.
 
 #### Input:
 
-- `max_iterations: int(100)` ➡ Maximum number of iterations (levels) of the
+- `max_iterations: integer (default=100)` ➡ Maximum number of iterations (levels) of the
   algorithm.
-- `resolution: float(1.0)` ➡ Controls community size (lower values lead to
+- `resolution: float (default=1.0)` ➡ Controls community size (lower values lead to
   fewer, larger communities and vice versa).
-- `directed: bool(True)` ➡ Graph directedness. (default `True`)
+- `directed: boolean (default=True)` ➡ Graph directedness. (default `True`)
 
 #### Output:
 
 - `node: Vertex` ➡ Graph node.
-- `partition: int` ➡ Partition of a node.
+- `partition: integer` ➡ Partition of a node.
 
 #### Usage:
 
@@ -291,16 +291,16 @@ Find PageRank scores for all nodes in the graph.
 
 #### Input:
 
-- `max_iterations: int(100)` ➡ The maximum number of iterations before returning
+- `max_iterations: integer (default=100)` ➡ The maximum number of iterations before returning
   an answer (default `100`). Use it to limit the execution time or do an early
   exit before the solver reaches the convergence tolerance.
-- `damping_factor: float(0.85)` ➡ The damping factor represents the probability
-  to follow an outgoing edge (default `0.85`).
-- `stop_epsilon: float(1e-5)` ➡ The convergence tolerance for PageRank
+- `damping_factor: float (default=0.85)` ➡ The damping factor represents the probability
+  to follow an outgoing edge.
+- `stop_epsilon: float (default=1e-5)` ➡ The convergence tolerance for PageRank
   approximation. Lowering tolerance improves the approximation, but setting this
   parameter too low can ensue in non-convergence due to numerical round-off.
   Values between `0.01` and `0.00001` are usually acceptable.
-- `weight_property: str("weight")` ➡ The values of the given relationship
+- `weight_property: string (default="weight")` ➡ The values of the given relationship
   property are used as weights by the algorithm. If this property is not set for
   a relationship, the fallback value is `1.0`.
 
@@ -331,16 +331,16 @@ Find personalized PageRank scores for all nodes in the graph.
   personalization values.
 - `personalization_values: mgp.List[float]` ➡ Above nodes’ personalization
   values.
-- `weight_property: str("weight")` ➡ The values of the given relationship.
+- `weight_property: string (default="weight")` ➡ The values of the given relationship.
   property are used as weights by the algorithm. If this property is not set for
   a relationship, the fallback value is `1.0`.
-- `damping_factor: float(0.85)` ➡ The damping factor represents the probability
-  to follow an outgoing edge. (default `0.85`)
-- `stop_epsilon: float(1e-5)` ➡ The convergence tolerance for PageRank
+- `damping_factor: float (default=0.85)` ➡ The damping factor represents the probability
+  to follow an outgoing edge.
+- `stop_epsilon: float (default=1e-5)` ➡ The convergence tolerance for PageRank
   approximation. Lowering tolerance improves the approximation, but setting this
   parameter too low can ensue in non-convergence due to numerical round-off.
   Values between `0.01` and `0.00001` are usually acceptable.
-- `max_iterations: int(100)` ➡ The maximum number of iterations before returning
+- `max_iterations: integer (default=100)` ➡ The maximum number of iterations before returning
   an answer (default `100`). Use it to limit the execution time or do an early
   exit before the solver reaches the convergence tolerance.
 
@@ -368,22 +368,22 @@ Find the spectral clustering of the graph’s nodes.
 
 #### Input:
 
-- `num_clusters: int` ➡ Number of clusters.
-- `num_eigenvectors: int(2)` ➡ Number of eigenvectors to be used (must be less
+- `num_clusters: integer` ➡ Number of clusters.
+- `num_eigenvectors: integer (default=2)` ➡ Number of eigenvectors to be used (must be less
   than or equal to `num_clusters`).
-- `ev_tolerance: float(0.00001)` ➡ Tolerance used by the eigensolver.
-- `ev_max_iter: int(100)` ➡ Maximum number of iterations for the eigensolver.
-- `kmean_tolerance: float(0.00001)` ➡ Tolerance used by the k-means solver.
-- `kmean_max_iter: int(100)` ➡ Maximum number of iterations for the k-means
+- `ev_tolerance: float (default=0.00001)` ➡ Tolerance used by the eigensolver.
+- `ev_max_iter: integer (default=100)` ➡ Maximum number of iterations for the eigensolver.
+- `kmean_tolerance: float (default=0.00001)` ➡ Tolerance used by the k-means solver.
+- `kmean_max_iter: integer (default=100)` ➡ Maximum number of iterations for the k-means
   solver.
-- `weight_property: str("weight")` ➡ The values of the given relationship
+- `weight_property: string (default="weight")` ➡ The values of the given relationship
   property are used as weights by the algorithm. If this property is not set for
   a relationship, the fallback value is `1.0`.
 
 #### Output:
 
 - `node: Vertex` ➡ Graph node.
-- `cluster: int` ➡ Cluster of a node.
+- `cluster: integer` ➡ Cluster of a node.
 
 #### Usage:
 
