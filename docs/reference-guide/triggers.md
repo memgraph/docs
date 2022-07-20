@@ -4,20 +4,17 @@ title: Triggers
 sidebar_label: Triggers
 ---
 
-This article is a part of a series intended to showcase Memgraph's features and
-bring the user up to speed on developing with Memgraph.
+**Database triggers** are an integral part of most database systems. A trigger is a procedural code that is automatically executed in response to specific events. Events are related to some change in data, such as created, updated and deleted data records. The trigger is often used for maintaining the integrity of the information in the database. For example, in a graph database, when a new property is added to the Employee node, a new Tax, Vacation, and Salary node should be created, along with the relationships between them. Triggers can also be used to log historical data, for example, to keep track of employees' previous salaries.
 
-We highly recommend checking out the other articles from this series which are
-listed in our [how-to guides
-section](/how-to-guides/overview.md).
+[![Related -How-to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/how-to-setup-triggers.md)
 
 ## Introduction
 
-Memgraph supports running openCypher statements after a certain event happens
-during transaction execution, i.e. triggers.
+Memgraph supports running openCypher clauses after a certain event happens
+during database transaction execution, i.e. triggers.
 
-You can create triggers, delete them, and print them out. All the triggers are
-persisted on the disk, so no information is lost between the runs.
+You can **create**, **delete** and **print** triggers. All the triggers are
+persisted on the disk, so no information is lost on database reruns.
 
 ## Creating a trigger
 
@@ -28,11 +25,9 @@ CREATE TRIGGER trigger_name ( ON ( () | --> ) CREATE | UPDATE | DELETE )
 ( BEFORE | AFTER ) COMMIT
 EXECUTE openCypherStatements
 ```
+As you can see from the format, you can choose on what object event needs to happen , on `()` node or `-->` relationship. After that you can define on what type of event you what to execute the trigger `CREATE`, `UPDATE` or `DELETE`. After the `EXECUTE` is series of Cypher clauses you want to execute.
 
-You can find detailed explanations for each part of the trigger [further
-down](#trigger-name).
-
-An example would be:
+An example of a trigger would be:
 
 ```cypher
 CREATE TRIGGER exampleTrigger
@@ -46,9 +41,10 @@ SET object.updated_at = timestamp();
 ```
 
 The query may seem complex, so let's break it down:
-* `CREATE TRIGGER exampleTrigger`: This statement creates the trigger.
+* `CREATE TRIGGER exampleTrigger`: This statement creates the trigger. Here the
+  part `exampleTrigger` is the name of the trigger and it must be unique.
 * `ON UPDATE AFTER COMMIT EXECUTE`: This statement specifies what kind of event
-  should activate the trigger. This one will be triggered for every update
+  should activate the execution of trigger. This one will be triggered for every update
   operation and the query below will be executed after the update event has been
   committed.
 * `UNWIND updatedObjects AS updatedObject`: If multiple objects were updated,
@@ -110,7 +106,9 @@ which are based on the event type specified for the trigger.
 
 ### Predefined variables
 Statements that a trigger executes can contain certain predefined variables
-which contain information about the event that triggered it.
+which contain information about the event that triggered it. Values of
+predefined variables are determined by database transactions, that is, by all
+the creations, updates or deletes that are part of a single transaction.
 
 Based on the event type, the following predefined variables are available:
 
@@ -126,6 +124,7 @@ Based on the event type, the following predefined variables are available:
 | ON () DELETE | deletedVertices |
 | ON --> DELETE | deletedEdges |
 | no event type specified | All predefined variables can be used |
+
 
 #### createdVertices
 List of all created vertices.
