@@ -39,7 +39,7 @@ variables**. One of them is `createdVertices`, a list of all created nodes
 (vertices). In this example, the list is unwound by a Cypher clause `UNWIND`. To
 find a complete list of predefined variables, supported operations, and
 configuration details, look at triggers [reference
-guide](https://memgraph.com/docs/memgraph/reference-guide/triggers).
+guide](/reference-guide/triggers.md).
 
 In this trigger, a node is getting a timestamp upon creation via the `SET
 createdVertex.created = timestamp()` Cypher clause.
@@ -114,7 +114,7 @@ def new_edge(
 Memgraph Python API is defined by `mgp.py` script, and in it, you can find all
 supported types such as `mgp.Edge`, `mgp.Vertex` etc. If you want to explore the
 API further, feel free to check the reference guide on [Python
-API](https://memgraph.com/docs/memgraph/reference-guide/query-modules/api/python-api).
+API](/reference-guide/query-modules/implement-custom-query-modules/api/python-api.md).
 
 ## How to create a trigger for dynamic algorithms? 
 
@@ -122,7 +122,7 @@ Dynamic algorithms are often designed for dataset updates. With a trigger, you
 can ensure that any dataset is up to date and consistent. In the sample code
 below, a trigger is set to use MAGE `pagerank_online` algorithm. For more
 details on dynamic algorithms, visit [MAGE
-docs](https://memgraph.com/docs/mage/query-modules/available-queries). In this
+docs](/mage/query-modules/available-queries). In this
 case, all created or deleted objects are passed from the database transaction to
 the trigger. After each transaction that has created or deleted objects, the
 trigger will automatically execute the PageRank algorithm and update the rank
