@@ -14,6 +14,11 @@ variable or by passing arguments on the command line.
 
 Each configuration setting is in the form: `--setting-name=value` .
 
+Configuration can be fetched by calling the following query:
+```opencypher
+SHOW CONFIG;
+```
+
 ## Bolt
 
 | Flag           | Description    | Type           |
