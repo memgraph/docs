@@ -11,7 +11,7 @@ allows you to create projects with Enterprise instances of MemgraphDB from your
 browser. The instances can use up to 32 GB of RAM and you can connect to them
 using [Memgraph Lab](cloud-connect#connect-with-memgraph-lab),
 [mgconsole](cloud-connect#connect-with-mgconsole) or various
-[drivers](cloud-connect#connect-with-drivers). All connections¸use SSL
+[drivers](cloud-connect#connect-with-drivers). All connections use SSL
 encryption with a self-signed certificate. 
 
 <img src={require('./data/cloud.png').default}/>
