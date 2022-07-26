@@ -92,7 +92,7 @@ Minimal size without values: **2-9B**
 |`INT` uses the minimal amount of bytes |1B, 2B, 4B or 8B                                        |
 |`DOUBLE`                               |8B                                                      |
 |`STRING`                               |min 2B                                                  |
-|`LIST`                                 |recursively store values of the list based on their type|
+|`LIST`                                 |                                                        |
 |`MAP`                                  |                                                        |
 |`TEMPORAL DATA`                        |8B                                                      |
 
