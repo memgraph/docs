@@ -87,7 +87,6 @@ You should see an output similar to the following:
 Node 1: Hello, World!
 ```
 
-_If you run apache/nginx instance you can open your project in web browser and you will get same result._
 
 
 
