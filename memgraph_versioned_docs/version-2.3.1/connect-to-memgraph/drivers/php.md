@@ -59,12 +59,11 @@ echo 'Node ' . $rows[0][0] . ' says: ' . $rows[0][1];
 
 If you need SSL connection you have to replace `Socket` instance with `StreamSocket` and enable SSL with additional method.
 
-```php
+```nocopy
 $conn = new \Bolt\connection\StreamSocket('URI or IP', 7687);
 $conn->setSslContextOptions([
     'verify_peer' => true
 ]);
-```
 
 Library is automatically requesting latest 4 versions. If you need to request other Bolt version you have to call `$bolt->setProtocolVersions(3.0);`.
 
