@@ -26,7 +26,6 @@ guides:
 - [Existence constraint](/how-to-guides/constraints/existence-constraint.md)
 - [Uniqueness constraint](/how-to-guides/constraints/uniqueness-constraint.md)
 
-
 ## Change configuration and access logs
 
 Take a look how to change configuration settings and access log files:
@@ -77,7 +76,6 @@ of the files containing its data:
 
 - [How to create a backup?](/how-to-guides/create-backup.md)
 
-
 ## User privileges
 
 Memgraph comes with the option of granting, denying, or revoking a certain set
@@ -99,7 +97,6 @@ If you are new to Docker, this how-to guide will help you get a grasp of Docker 
 make it easier to accomplish tasks within Memgraph:
 
 - [Work with Docker](/how-to-guides/work-with-docker.md)
-
 
 ## Set up triggers
 
