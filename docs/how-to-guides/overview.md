@@ -9,16 +9,6 @@ How-to guides within this section serve as a cookbook for getting things done as
 fast as possible. These guides tend to provide a step-by-step guide on using
 certain Memgraph features or solving a particular problem.
 
-## Streams
-
-Memgraph can connect to existing **Kafka**, **Pulsar** and **Redpanda** streams.
-The streams use user-defined transformations to produce Cypher queries based on
-the received messages. To learn more about streams and transformations take a
-look at the following pages:
-
-- [How to manage streams with queries](/how-to-guides/streams/manage-streams.md)
-- [How to manage streams with Memgraph Lab](/how-to-guides/streams/manage-streams-lab.md)
-
 ## Inspect and profile Cypher queries
 
 Memgraph also enables you to inspect and profile the execution of a query and
