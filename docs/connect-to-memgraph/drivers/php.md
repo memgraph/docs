@@ -59,7 +59,7 @@ echo 'Node ' . $rows[0][0] . ' says: ' . $rows[0][1];
 
 If you need SSL connection you have to replace `Socket` instance with `StreamSocket` and enable SSL with additional method.
 
-```php
+```nocopy
 $conn = new \Bolt\connection\StreamSocket('URI or IP', 7687);
 $conn->setSslContextOptions([
     'verify_peer' => true
@@ -88,13 +88,12 @@ You should see an output similar to the following:
 Node 1: Hello, World!
 ```
 
-_If you run apache/nginx instance you can open your project in web browser and you will get same result._
 
 
 
 ## Where to next?
 
-To learn more about using PHP Bolt libary take a look at readme and wiki at https://github.com/neo4j-php/Bolt.
+Check out the [PHP Bolt driver repository](https://github.com/neo4j-php/Bolt) to learn more about using the PHP Bolt library.
 
 For real-world examples of how to use Memgraph, we suggest you take a look at
 the **[Tutorials](/tutorials/overview.md)** page. You can also browse through
