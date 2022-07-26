@@ -92,7 +92,7 @@ Node 1: Hello, World!
 
 ## Where to next?
 
-To learn more about using PHP Bolt libary take a look at readme and wiki at https://github.com/neo4j-php/Bolt.
+Check out the [PHP Bolt driver repository](https://github.com/neo4j-php/Bolt) to learn more about using the PHP Bolt library.
 
 For real-world examples of how to use Memgraph, we suggest you take a look at
 the **[Tutorials](/tutorials/overview.md)** page. You can also browse through
