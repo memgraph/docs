@@ -10,7 +10,7 @@ accurately. Below is an example that will try to show the basic reasoning.
 
 If you want to estimate the storage memory usage, use the following formula:
 
-`StorageRAMUsage = NumberOfNodes*260B + NumberOfEdges*180B`
+`StorageRAMUsage = NumberOfNodes x 260B + NumberOfEdges x 180B`
 
 Let's test this formula on the [Marvel Comic Universe Social Network
 dataset](https://memgraph.com/download/datasets/marvel-cinematic-universe/marvel-cinematic-universe.cypherl.gz),
@@ -19,12 +19,11 @@ nodes and 682,943 edges.
 
 According to the formula, storage memory usage should be: 
 
-StorageRAMUsage = 21,723*260B + 682,943*180B
-StorageRAMUsage = 5,647,980B + 122,929,740B = 128,577,720B ~125MB
+`StorageRAMUsage = 21,723 x 260B + 682,943 x 180B = 5,647,980B + 122,929,740B = 128,577,720B ~ 125MB`
 
 Now, let's run an empty Memgraph instance on a x86 Ubuntu. It consumes **~75MB**
 of RAM due to baseline runtime overhead. Once the dataset is loaded, RAM usage
-rises up to **~260MB**. memory usage primarily consists of storage and query
+rises up to **~260MB**. Memory usage primarily consists of storage and query
 execution memory usage. After executing `FREE MEMORY` query to force the cleanup
 of query execution, the RAM usage drops to **~200MB**. If the baseline runtime
 overhead of **75MB** is subtracted from the total memory usage of the dataset,
@@ -70,8 +69,8 @@ total, a minimum of **144B**.
 
 Each object (`Vertex`, `Edge`) is placed inside a data structure
 called a `SkipList`. The `SkipList` has an additional overhead in terms of
-`SkipListNode` structure and `nexts` pointers. Each `SkipListNode` has an
-additional **8B** element overhead + **8B x #next_pointers**.
+`SkipListNode` structure and `next_pointers`. Each `SkipListNode` has an
+additional **8B** element overhead and another **8B** for each of the `next_pointers`.
 
 It is impossible to know the exact size of the **#next_pointers** upfront, but
 it's never higher than **2 x #objects** because the number of pointers is
