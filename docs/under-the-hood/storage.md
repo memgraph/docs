@@ -8,31 +8,39 @@ Estimating Memgraph's storage memory usage is not entirely straightforward
 because it depends on a lot of variables, but it is possible to do so quite
 accurately. Below is an example that will try to show the basic reasoning.
 
-Empty Memgraph instance on x86 Ubuntu consumes **~75MB** of RAM (baseline
-runtime overhead). [Marvel Comic Universe Social Network
-dataset](https://memgraph.com/download/datasets/marvel-cinematic-universe/marvel-cinematic-universe.cypherl.gz)
-(which is also available as a dataset inside Memgraph Lab) contains 21723 nodes
-and 682943 edges. Once the dataset is loaded, RAM usage is **~260MB**. After
-executing `FREE MEMORY` query, the RAM usage drops to **~200MB** (forcing the
-cleanup of query execution).
+If you want to estimate the storage memory usage, use the following formula:
 
-If you want to estimate the storage memory usage, use the following formula
+`StorageRAMUsage = NumberOfNodes*260B + NumberOfEdges*180B`
 
-$$ StorageRAMUsage = NumberOfNodes*260B + NumberOfEdges*180B $$
+Let's test this formula on the [Marvel Comic Universe Social Network
+dataset](https://memgraph.com/download/datasets/marvel-cinematic-universe/marvel-cinematic-universe.cypherl.gz),
+which is also available as a dataset inside Memgraph Lab and contains 21,723
+nodes and 682,943 edges. 
 
-In the case of the Marvel dataset case, the usage is **~125MB**, which is quite
-accurate if **75MB** (baseline runtime overhead) is subtracted from **200MB**
-(total memory usage of the dataset).
+According to the formula, storage memory usage should be: 
 
-Memory usage primarily consists of storage and query execution memory usage.
+StorageRAMUsage = 21,723*260B + 682,943*180B
+StorageRAMUsage = 5,647,980B + 122,929,740B = 128,577,720B ~125MB
 
-## More accurate calculation
+Now, let's run an empty Memgraph instance on a x86 Ubuntu. It consumes **~75MB**
+of RAM due to baseline runtime overhead. Once the dataset is loaded, RAM usage
+rises up to **~260MB**. memory usage primarily consists of storage and query
+execution memory usage. After executing `FREE MEMORY` query to force the cleanup
+of query execution, the RAM usage drops to **~200MB**. If the baseline runtime
+overhead of **75MB** is subtracted from the total memory usage of the dataset,
+which is **200MB**, and storage memory usage comes up to **~125MB**, which shows
+that the formula is correct.
 
-Memgraph works on the x86 architecture. The following memory usage numbers are
-based on x86 Linux memory usage.
+## The calculation in detail
 
-:::tip
-For the latest and most precise memory layout please clone [Memgraph](https://github.com/memgraph/memgraph) and use, e.g., [pahole](https://github.com/PhilArmstrong/pahole-gdb) to discover accurate information.
+Let's dive deeper into the memory usage values. Because Memgraph works on the
+x86 architecture, calculations are based on the x86 Linux memory usage.
+
+:::tip 
+For the latest and most precise memory layout please clone
+[Memgraph](https://github.com/memgraph/memgraph) and use, e.g.,
+[pahole](https://github.com/PhilArmstrong/pahole-gdb) to discover accurate
+information. 
 :::
 
 Each `Vertex` and `Edge` object has a pointer to a `Delta` object. The
@@ -42,48 +50,58 @@ the `Delta` objects they are pointing to. If there are few updates, there are
 also few `Delta` objects because the latest data is stored in the object.
 But, if the database has a lot of concurrent operations, many `Delta` objects
 will be created. Of course, the `Delta` objects will be kept in memory as long as
-needed, and a bit more (because of the internal GC inefficiencies).
+needed, and a bit more, because of the internal GC inefficiencies.
 
-### Delta Memory Layout
+### Delta memory layout
 
 Each `Delta` object has a least **104B**.
 
-### Vertex Memory Layout
+### Vertex memory layout
 
-Each `Vertex` object has at least **112B** + **104B**
-(for the `Delta` object), in total, a minimum of **216B**.
+Each `Vertex` object has at least **112B** + **104B** for the `Delta` object, in
+total, a minimum of **216B**.
 
-### Edge Memory Layout
+### Edge memory layout
 
-Each `Edge` object has at least **40B** + **104B** (for the `Delta` object), in
+Each `Edge` object has at least **40B** + **104B** for the `Delta` object, in
 total, a minimum of **144B**.
 
-### Index Memory Layout**
+### `SkipList` memory layout
 
-Each `LabelIndex::Entry` object has exactly **16B**, and each
-`LabelPropertyIndex::Entry` has at least **72B** (depending on the actual value
-stored).
-
-### Skiplist
-
-Each object (`Vertex`, `Edge`, `Index Entry`) is placed inside a data structure
-called a skiplist. The skiplist has an additional overhead in terms of
+Each object (`Vertex`, `Edge`) is placed inside a data structure
+called a `SkipList`. The `SkipList` has an additional overhead in terms of
 `SkipListNode` structure and `nexts` pointers. Each `SkipListNode` has an
-additional **16B** overhead + **8B x #next_pointers**.
+additional **8B** element overhead + **8B x #next_pointers**.
 
 It is impossible to know the exact size of the **#next_pointers** upfront, but
 it's never higher than **2 x #objects** because the number of pointers is
 generated by binomial distribution (take a look at the source code for details).
 
+### Index memory layout
+
+Each `LabelIndex::Entry` object has exactly **16B**.
+
+Depending on the actual value stored, each `LabelPropertyIndex::Entry` has at least **72B**.
+
+Each Index Entry object is placed into the Skiplist.
+
+#### Each index object in total
+
+- `SkipListNode<LabelIndex::Entry>` object has **24B**.
+- `SkipListNode<LabelPropertyIndex::Entry>` has at least **80B**.
+- Each `SkipListNode` has an additional **16B** because of the **next_pointers**.
+
 ### Properties
 
 All properties use at least **1B** for encoding the extra information about the
-type of the value stored, size of the property key (is it an integer stored in
+type of the value stored, the size of the property key (is an integer stored in
 1B, 2B, 4B, or 8B), and the last **4bits** are used for a variety of reasons
 depending on the value type of the property. After the initial byte, properties
 store the value of its key.
 
 Minimal size without values: **2-9B**
+
+#### Size of the value
 
 |Value                                  |Size                                                    |
 |---------------------------------------|--------------------------------------------------------|
@@ -98,38 +116,46 @@ Minimal size without values: **2-9B**
 
 ### Marvel dataset use case
 
-Taking into account the Marvel dataset, the calculation is as follows:
+Taking into account the Marvel dataset, which has 3 labels and 3 property
+indices, the calculation is as follows:
 
 - Nodes x (`Vertex` + `name` property (let's assume each name is on average 10
 chars long, therefor the name on average has 2B+10B) + `SkipListNode` + `next_pointers` +
 `Delta`) = 21723×(112+12+16+16+104)
 - Edges x (`Edge` + `SkipListNode` + `next_pointers` + `Delta`) = 682943×(40+16+16+104)
-- Label Index Entry x (`LabelIndex::Entry` + `SkipListNode` + `next_pointers`) = 3×21723×(16+16)
-- Label Property Index Entry x (`LabelPropertyIndex::Entry` + `name` property +
-`SkipListNode` + `next_pointers`) = 3×21723×(72+12+16+16)
+- Label Index Entry x (`SkipListNode<LabelIndex::Entry>` + `next_pointers`) = 3×21723×(24+16)
+- Label Property Index Entry x (`SkipListNode<LabelIndex::Entry>` + `name`
+  property + `next_pointers`) = 3×21723×(80+12+16)
 
-Which in total gives **~130MB**. Still, that's not true always because objects
-can have higher overhead because of additional data, but gives you a quite
-accurate picture of what is going on under the hood.
+In total **~130MB**, but bear in mind the number can vary because objects
+can have higher overhead due to the additional data.
 
-# Query Execution Memory Usage
+## Query Execution memory Usage
 
-Query execution also needs RAM. In some cases, the query execution memory usage
-can become quite large due to a need to aggregate intermediate results to return
-a valid result out of a query. In general, it's good to have in mind that query
-execution memory monotonically grows in size during the execution, and it's
-freed once the query execution is done.
+Query execution also uses up RAM. In some cases, intermediate results are
+aggregated to return valid query results and the query execution memory can end
+up using a large amount of RAM. Keep in mind that query execution memory
+monotonically grows in size during the execution, and it's freed once the query
+execution is done.
 
 # Configuration options to reduce memory usage
 
-To reduce memory usage/increase scalability:
+Here are several tips how you can reduce memory usage and increase scalability:
 
 1. Consider removing label index by executing `DROP INDEX ON :Label;` 
-2. Consider removing label-property index by executing `DROP INDEX ON
-   :Label(property)` 
+2. Consider removing label-property index by executing `DROP INDEX
+   ON:Label(property);` 
 3. If you don't have properties on relationships, disable them in the
-configuration file by setting the `-storage-properties-on-edges` flag to
-`false`. This can significantly reduce memory usage because effectively `Edge`
- objects are not created, all info is inlined under `Vertex` objects. You can
-disable properties on relationships with a non-empty database, just make sure
-the relationships are without properties.
+   configuration file by setting the `-storage-properties-on-edges` flag to
+   `false`. This can significantly reduce memory usage because effectively
+   `Edge` objects will not be created, and all information will be inlined under
+   `Vertex` objects. You can disable properties on relationships with a
+   non-empty database, if the relationships are without properties. If you need
+   help with adapting the configuration to your needs, check out the the how-to
+   guide on [changing configuration settings](/how-to-guides/config-logs.md). 
+
+You can also check our reference guide for information about [controlling memory
+usage](/reference-guide/memory-control.md), and you
+[inspect](/reference-guide/inspecting-queries.md) and
+[profile](/reference-guide/profiling-queries.md) your queries to devise a plan
+for their optimization. 
