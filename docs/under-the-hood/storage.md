@@ -156,6 +156,6 @@ Here are several tips how you can reduce memory usage and increase scalability:
 
 You can also check our reference guide for information about [controlling memory
 usage](/reference-guide/memory-control.md), and you
-[inspect](/reference-guide/inspecting-queries.md) and
-[profile](/reference-guide/profiling-queries.md) your queries to devise a plan
-for their optimization. 
+[inspect](/reference-guide/optimizing-queries/inspecting-queries.md) and
+[profile](/reference-guide/optimizing-queries/profiling-queries.md) your queries
+to devise a plan for their optimization. 
