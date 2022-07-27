@@ -17,8 +17,7 @@ Every time you open Memgraph Lab it will greet you with an **Overview**,
 offering resources and actions depending whether your database is empty or not,
 and whether you ran any queries or not.
 
-<img src={require('./data/user-manual/overview.png').default} className={"imgBorder"}/>
-<p></p>
+<img src={require('./data/user-manual/overview.png').default} className={"imgBorder"} style={{marginBottom:'20px'}}/>
 
 At the top of the screen you will find information about: 
 - Connection status
@@ -44,8 +43,7 @@ can help you with clause completion and give information about signatures and
 parameters. If you need help writing Cypher queries, check out the [Cypher
 manual](/cypher-manual).
 
-<img src={require('./data/user-manual/intelisense.png').default} className={"imgBorder"}/>
-<p></p>
+<img src={require('./data/user-manual/intelisense.png').default} className={"imgBorder"} style={{marginBottom:'20px'}}/>
 
 Once you **Run** a query (by clicking a button or pressing **CTRL** +
 **Enter**), you can **Cancel** it, but if the query has already
@@ -70,16 +68,14 @@ Here, you can also **Download Results** in JSON format.
 
 Table rows can be expanded to show additional information about entities.
 
-<img src={require('./data/user-manual/rows.png').default} className={"imgBorder"}/>
-<p></p>
+<img src={require('./data/user-manual/rows.png').default} className={"imgBorder"} style={{marginBottom:'20px'}}/>
 
 When results are shown as a graph, you can click on each node or relationship to
 see additional information. You can also **Expand** a node to see its
 relationships, **Collapse** a node to hide its relationships, or **Hide** the node from
 the canvas. 
 
-<img src={require('./data/user-manual/graph-results.png').default} className={"imgBorder"}/>
-<p></p>
+<img src={require('./data/user-manual/graph-results.png').default} className={"imgBorder"} style={{marginBottom:'20px'}}/>
 
 In the bottom left corner you can **Enable physics**, that is, make nodes interact
 with each other, by pulling away or closing in to one another, depending on the
@@ -91,16 +87,14 @@ centre, the repel force that dictates how strongly nodes repel each other, and
 the link distance that dictates the minimum required distance between two
 connected nodes. 
 
-<img src={require('./data/user-manual/physics.png').default} className={"imgBorder"}/>
-<p></p>
+<img src={require('./data/user-manual/physics.png').default} className={"imgBorder"} style={{marginBottom:'20px'}}/>
 
 Graphs can be additionally styled by using the **Graph Style Editor**. By using
 a language especially designed to style the visual appearance of graphs, you can
 change color, size and shape of graph elements, even add pictures or
 backgrounds. 
 
-<img src={require('./data/user-manual/gss.png').default} className={"imgBorder"}/>
-<p></p>
+<img src={require('./data/user-manual/gss.png').default} className={"imgBorder"} style={{marginBottom:'20px'}}/>
 
 Be sure to check the [GSS reference guide](/style-script/overview.md) and a
 [tutorial](/memgraph/tutorials/style-your-graphs-in-memgraph-lab) on how to
@@ -127,8 +121,7 @@ an existing or new collection.
 In the query collections you can gather your favorite queries so they are always
 at hand.
 
-<img src={require('./data/user-manual/query-collection.png').default} className={"imgBorder"}/>
-<p></p>
+<img src={require('./data/user-manual/query-collection.png').default} className={"imgBorder"} style={{marginBottom:'20px'}}/>
 
 Queries can be added to the collection from the **Query Execution** and the **Latest
 Queries** section. 
@@ -156,8 +149,7 @@ All the query modules and procedures are listed in the **Query Modules**
 section. By expanding the information about each query module, you can see
 procedures it contains, as well as their signatures and examples. 
 
-<img src={require('./data/user-manual/query-modules.png').default} className={"imgBorder"}/>
-<p></p>
+<img src={require('./data/user-manual/query-modules.png').default} className={"imgBorder"} style={{marginBottom:'20px'}}/>
 
 In this section, you can also implement your own custom query modules written in
 Python by clicking on the **+ New Module**. A new file will open with example
@@ -165,8 +157,7 @@ procedures you can examine and learn from. Once you have written and saved the
 query module, Memgraph Lab will automatically detect procedures within it, which
 you can then call from queries. 
 
-<img src={require('./data/user-manual/custom-query-modules.png').default} className={"imgBorder"}/>
-<p></p>
+<img src={require('./data/user-manual/custom-query-modules.png').default} className={"imgBorder"} style={{marginBottom:'20px'}}/>
 
 If you need help writing custom query modules check out the [reference
 guide](/memgraph/reference-guide/query-modules/implement-custom-query-modules/overview),
@@ -189,8 +180,7 @@ stream.
 Adding Kafka Configuration Parameters is also done via the Stream section, as
 well as managing the connection - starting, pausing or deleting it. 
 
-<img src={require('./data/user-manual/streams.png').default} className={"imgBorder"}/>
-<p></p>
+<img src={require('./data/user-manual/streams.png').default} className={"imgBorder"} style={{marginBottom:'20px'}}/>
 
 Check out the [reference guide on
 streams](/memgraph/reference-guide/streams), and check [a how-to
@@ -221,8 +211,7 @@ more complex issues.
 You can check the structure of the dataset by checking its graph schema, as well
 as reading the explanations of all the entities and their properties. 
 
-<img src={require('./data/user-manual/dataset.png').default} className={"imgBorder"}/>
-<p></p>
+<img src={require('./data/user-manual/dataset.png').default} className={"imgBorder"} style={{marginBottom:'20px'}}/>
 
 There are several
 [tutorials](/memgraph/tutorials/exploring-datasets) you can use to
@@ -244,8 +233,7 @@ importing](/memgraph/import-data).
 To be able to see logs from Memgraph Lab you need to open port 7444 when
 starting Memgraph Lab with Docker. 
 
-<img src={require('./data/user-manual/logs.png').default} className={"imgBorder"}/>
-<p></p>
+<img src={require('./data/user-manual/logs.png').default} className={"imgBorder"} style={{marginBottom:'20px'}}/>
 
 Check the [reference guide on
 configuration](/memgraph/reference-guide/configuration#other) regarding logs
