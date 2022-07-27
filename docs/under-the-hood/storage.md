@@ -8,18 +8,22 @@ Estimating Memgraph's storage memory usage is not entirely straightforward
 because it depends on a lot of variables, but it is possible to do so quite
 accurately. Below is an example that will try to show the basic reasoning.
 
-If you want to estimate the storage memory usage, use the following formula:
+If you want to **estimate** the storage memory usage, use the following formula:
 
-`StorageRAMUsage = NumberOfNodes x 260B + NumberOfEdges x 180B`
+$\texttt{StorageRAMUsage} = \texttt{NumberOfVertices} \times 260\text{B} + \texttt{NumberOfEdges} \times 180\text{B}$
 
 Let's test this formula on the [Marvel Comic Universe Social Network
 dataset](https://memgraph.com/download/datasets/marvel-cinematic-universe/marvel-cinematic-universe.cypherl.gz),
 which is also available as a dataset inside Memgraph Lab and contains 21,723
-nodes and 682,943 edges. 
+vertices and 682,943 edges. 
 
 According to the formula, storage memory usage should be: 
 
-`StorageRAMUsage = 21,723 x 260B + 682,943 x 180B = 5,647,980B + 122,929,740B = 128,577,720B ~ 125MB`
+$
+\begin{aligned}
+\texttt{StorageRAMUsage} &= 21,723 \times 260\text{B} + 682,943 \times 180\text{B} \\ &= 5,647,980\text{B} + 122,929,740\text{B}\\ &= 128,577,720\text{B} \approx 125\text{MB}
+\end{aligned}
+$
 
 Now, let's run an empty Memgraph instance on a x86 Ubuntu. It consumes **~75MB**
 of RAM due to baseline runtime overhead. Once the dataset is loaded, RAM usage
@@ -115,19 +119,56 @@ Minimal size without values: **2-9B**
 
 ### Marvel dataset use case
 
-Taking into account the Marvel dataset, which has 3 labels and 3 property
-indices, the calculation is as follows:
+The Marvel dataset consists of `Hero`, `Comic` and `ComicSeries` labels, which are indexed. There are also three label-property indices - on the `name` property of `Hero` and `Comic` vertices, and on the `title` property of `ComicSeries` vertices. The `ComicSeries` vertices also have the `publishYear` property.
 
-- Nodes x (`Vertex` + `name` property (let's assume each name is on average 10
-chars long, therefor the name on average has 2B+10B) + `SkipListNode` + `next_pointers` +
-`Delta`) = 21723×(112+12+16+16+104)
-- Edges x (`Edge` + `SkipListNode` + `next_pointers` + `Delta`) = 682943×(40+16+16+104)
-- Label Index Entry x (`SkipListNode<LabelIndex::Entry>` + `next_pointers`) = 3×21723×(24+16)
-- Label Property Index Entry x (`SkipListNode<LabelIndex::Entry>` + `name`
-  property + `next_pointers`) = 3×21723×(80+12+16)
+ <img src={require('../data/under-the-hood/marvel-dataset-schema.png').default}/>
 
-In total **~130MB**, but bear in mind the number can vary because objects
-can have higher overhead due to the additional data.
+There are 6487 `Hero` and 12661 `Comic` vertices with the property `name`. That's 19148 vertices in total. To calculate how much storage those vertices and properties occupy, we are going to use the following formula:
+
+$\texttt{NumberOfVertices} \times (\texttt{Vertex} + \texttt{properties} + \texttt{SkipListNode} + \texttt{next\_pointers} + \texttt{Delta}).$
+
+Let's assume the name on average has $2\text{B}+10\text{B} = 12\text{B}$ (each name is on average 10 characters long). When we include the average values, we get:
+
+$19148 \times (112\text{B} + 12\text{B} + 16\text{B} + 16\text{B} + 104\text{B}) = 19148 \times 260\text{B} = 4978480\text{B}.$
+
+The remaining 2584 vertices are the `ComicSeries` vertices with the `title` and `publishYear` properties. The `publishYear` property is a list of integers. The average length of the `publishYear` list is 2.17, so to be sure, we'll say that each list has 3 elements. Since the integer is the year, 2B for each integer will be more than enough. Therefore, each list occupies $3 \times 2\text{B} = 6\text{B}$. We are going to use the same formula as above, we just have to be careful to include both `title` and `publishYear` properties. We can assume that the `title` property is approximately the same length as the `name` property. We have:
+
+$2584 \times (112\text{B} + 12\text{B} + 6\text{B} + 16\text{B} + 16\text{B} + 104\text{B}) = 2584 \times 266\text{B} = 687344\text{B}.$
+
+
+In total, $5665824\text{B}$ to store vertices.
+
+The edges don't have any properties on them, so the following formula is:
+
+$\texttt{NumberOfEdges} \times (\texttt{Edge} + \texttt{SkipListNode} + \texttt{next\_pointers} + \texttt{Delta}).$
+
+There are 682943 edges in the Marvel dataset. Hence, we have:
+
+$682943 \times (40\text{B}+16\text{B}+16\text{B}+104\text{B}) = 682943 \times 176\text{B} = 120197968\text{B}.$
+
+Next, we have label index on `Hero`, `Comic` and `ComicSeries` labels. To calculate how much space they take, we can use the following formula:
+
+$\texttt{NumberOfLabelIndices} \times \texttt{NumberOfVertices} \times (\texttt{SkipListNode<LabelIndex::Entry>} + \texttt{next\_pointers})$
+
+Since there are three label indices, we have the following calculation:
+
+$3 \times 21723 \times (24\text{B}+16\text{B}) = 65169 \times 40\text{B} = 2606760\text{B}.$
+
+For label-property index, we have to take labeled property into account. Property `name` is indexed on `Hero` and `Comic` vertices, while property `title` is indexed on `ComicSeries` vertices. We already assumed that the `title` property is approximately the same length as the `name` property. 
+
+Here is the formula:
+
+$\texttt{NumberOfLabelPropertyIndices} \times \texttt{NumberOfVertices} \times (\texttt{SkipListNode<LabelIndex::Entry>} + \texttt{property} + \texttt{next\_pointers}),$
+
+and when we include the appropriate values, we get:
+
+$3 \times 21723 \times (80\text{B}+12\text{B}+16\text{B})= 65169 \times 108\text{B} = 7038252\text{B}.$
+
+Now let's sum up everything we calculated:
+
+$5665824\text{B} + 120197968\text{B} + 2606760\text{B} + 7038252\text{B} = 135508804 \text{B} \approx 135\text{MB}.$
+
+Bear in mind the number can vary because objects can have higher overhead due to the additional data.
 
 ## Query Execution memory Usage
 
@@ -143,7 +184,7 @@ Here are several tips how you can reduce memory usage and increase scalability:
 
 1. Consider removing label index by executing `DROP INDEX ON :Label;` 
 2. Consider removing label-property index by executing `DROP INDEX
-   ON:Label(property);` 
+   ON :Label(property);` 
 3. If you don't have properties on relationships, disable them in the
    configuration file by setting the `-storage-properties-on-edges` flag to
    `false`. This can significantly reduce memory usage because effectively

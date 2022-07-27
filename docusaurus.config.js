@@ -1,4 +1,6 @@
 const baseUrl = "/docs/";
+const math = require('remark-math');
+const katex = require('rehype-katex');
 
 module.exports = {
   title: "Memgraph Docs",
@@ -13,6 +15,13 @@ module.exports = {
   stylesheets: [
     "https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:500,600",
     "https://fonts.googleapis.com/css?family=Roboto:400, 500,600",
+    {
+      href: 'https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css',
+      type: 'text/css',
+      integrity:
+        'sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM',
+      crossorigin: 'anonymous',
+    },
   ],
   scripts: [
     {
@@ -444,6 +453,8 @@ module.exports = {
         docs: {
           id: "memgraph",
           path: "docs",
+          remarkPlugins: [math],
+          rehypePlugins: [katex],
           routeBasePath: "memgraph",
           sidebarPath: require.resolve("./sidebars/sidebarsMemgraph.js"),
           editUrl: "https://github.com/memgraph/docs/tree/master/",
