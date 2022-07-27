@@ -17,7 +17,8 @@ Every time you open Memgraph Lab it will greet you with an **Overview**,
 offering resources and actions depending whether your database is empty or not,
 and whether you ran any queries or not.
 
-IMAGE
+<img src={require('./data/user-manual/overview.png').default} className={"imgBorder"}/>
+<p></p>
 
 At the top of the screen you will find information about: 
 - Connection status
@@ -26,10 +27,10 @@ At the top of the screen you will find information about:
 - Disk storage used, and total and available RAM 
 
 In the top right corner you can find the help button that will provide you with
-helpful documentation and links to Memgraph community 
+helpful documentation and links to the Memgraph community.
 
 All the Memgraph Lab sections are listed in the left side menu, below which you
-can find the Layout options as well as Memgraph Lab version. 
+can find the [Layout](#layout) options as well as Memgraph Lab version. 
 
 ## Query Execution
 
@@ -40,9 +41,11 @@ graphical results.
 
 Here is where you write and run your Cypher queries. A keyword suggestion tool
 can help you with clause completion and give information about signatures and
-parameters. 
+parameters. If you need help writing Cypher queries, check out the [Cypher
+manual](/cypher-manual).
 
-IMAGE
+<img src={require('./data/user-manual/intelisense.png').default} className={"imgBorder"}/>
+<p></p>
 
 Once you **Run** a query (by clicking a button or pressing **CTRL** +
 **Enter**), you can **Cancel** it, but if the query has already
@@ -67,14 +70,16 @@ Here, you can also **Download Results** in JSON format.
 
 Table rows can be expanded to show additional information about entities.
 
-IMAGE
+<img src={require('./data/user-manual/rows.png').default} className={"imgBorder"}/>
+<p></p>
 
 When results are shown as a graph, you can click on each node or relationship to
-see additional information. You can also **Expand** a node, to see its
+see additional information. You can also **Expand** a node to see its
 relationships, **Collapse** a node to hide its relationships, or **Hide** the node from
 the canvas. 
 
-IMAGE
+<img src={require('./data/user-manual/graph-results.png').default} className={"imgBorder"}/>
+<p></p>
 
 In the bottom left corner you can **Enable physics**, that is, make nodes interact
 with each other, by pulling away or closing in to one another, depending on the
@@ -86,22 +91,26 @@ centre, the repel force that dictates how strongly nodes repel each other, and
 the link distance that dictates the minimum required distance between two
 connected nodes. 
 
-IMAGE
+<img src={require('./data/user-manual/physics.png').default} className={"imgBorder"}/>
+<p></p>
 
 Graphs can be additionally styled by using the **Graph Style Editor**. By using
 a language especially designed to style the visual appearance of graphs, you can
 change color, size and shape of graph elements, even add pictures or
 backgrounds. 
 
-IMAGE
+<img src={require('./data/user-manual/gss.png').default} className={"imgBorder"}/>
+<p></p>
 
-Be sure to check the GSS reference guide and a tutorial on how to style your graphs. 
+Be sure to check the [GSS reference guide](/style-script/overview.md) and a
+[tutorial](/memgraph/tutorials/style-your-graphs-in-memgraph-lab) on how to
+style your graphs. 
 
 Another interesting feature you can use on graph data results is the map
 background. This feature automatically turns on when the result nodes have
 numeral `lat` and `lng` properties. 
 
-IMAGE
+<img src={require('./data/user-manual/map.png').default} className={"imgBorder"}/>
 
 ## Latest Queries
 
@@ -111,14 +120,15 @@ last run, runtime and wether they were successful or not.
 From this section you can run them again, copy them into clipboard, and save them to
 an existing or new collection. 
 
-IMAGE
+<img src={require('./data/user-manual/latest.png').default} className={"imgBorder"}/>
 
 ## Query Collections
 
 In the query collections you can gather your favorite queries so they are always
 at hand.
 
-IMAGE
+<img src={require('./data/user-manual/query-collection.png').default} className={"imgBorder"}/>
+<p></p>
 
 Queries can be added to the collection from the **Query Execution** and the **Latest
 Queries** section. 
@@ -128,22 +138,26 @@ into clipboard, and save them to an existing or a new collection.
 
 ## Query Modules 
 
-Query modules are collections of procedures written in **C**, **C++**,
-**Python**, and **Rust**  (either `*.so` or `*.py` files) to extend the query
-language. Transformation procedures necessary to ingest data from data streams
-are also written as query modules. 
+[Query modules](/memgraph/reference-guide/query-modules) are
+collections of procedures written in **C**, **C++**, **Python**, and **Rust**
+(either `*.so` or `*.py` files) to extend the query language. Transformation
+procedures necessary to ingest data from data streams are also written as query
+modules. 
 
 Some query modules are built-in, and others, like those that can help you solve
-complex graph issues, are available as part of the MAGE library you can add to
-your Memgraph installation. The library is already included if you are using
-Memgraph Platform or Memgraph MAGE Docker images to run Memgraph, or you are
-connecting to a Cloud instance. 
+complex graph issues, are available as part of the [MAGE](/mage)
+library you can add to your Memgraph installation. The library is already
+included if you are using [Memgraph
+Platform](/memgraph/installation) or [Memgraph
+MAGE](/mage/installation) Docker images to run Memgraph, or you are
+connecting to a [Cloud](/memgraph-cloud) instance. 
 
 All the query modules and procedures are listed in the **Query Modules**
 section. By expanding the information about each query module, you can see
 procedures it contains, as well as their signatures and examples. 
 
-IMAGE
+<img src={require('./data/user-manual/query-modules.png').default} className={"imgBorder"}/>
+<p></p>
 
 In this section, you can also implement your own custom query modules written in
 Python by clicking on the **+ New Module**. A new file will open with example
@@ -151,7 +165,13 @@ procedures you can examine and learn from. Once you have written and saved the
 query module, Memgraph Lab will automatically detect procedures within it, which
 you can then call from queries. 
 
-IMAGE
+<img src={require('./data/user-manual/custom-query-modules.png').default} className={"imgBorder"}/>
+<p></p>
+
+If you need help writing custom query modules check out the [reference
+guide](/memgraph/reference-guide/query-modules/implement-custom-query-modules/overview),
+or a [tutorial](/memgraph/tutorials/implement-custom-query-module-in-python)
+on query modules. 
 
 ## Streams
 
@@ -169,17 +189,27 @@ stream.
 Adding Kafka Configuration Parameters is also done via the Stream section, as
 well as managing the connection - starting, pausing or deleting it. 
 
-IMAGE
+<img src={require('./data/user-manual/streams.png').default} className={"imgBorder"}/>
+<p></p>
+
+Check out the [reference guide on
+streams](/memgraph/reference-guide/streams), and check [a how-to
+guide on connecting to data
+streams](/memgraph/import-data/data-streams/manage-streams-lab) from Memgraph
+Lab.
 
 ## Graph Schema
 
 If you need to check the data model of the data currently in the database, you
-can create a graph schema that will show all the node types and relationships between them.
+can create a graph schema that will show all the node types and relationships
+between them.
 
 By selecting a certain node or relationship type, Lab will provide information
 about the current number of nodes or relationships of that type, as well as
 percentage of existence of each property across the nodes and relationships of
 that type. 
+
+<img src={require('./data/user-manual/schema.png').default} className={"imgBorder"}/>
 
 ## Datasets
 
@@ -191,17 +221,36 @@ more complex issues.
 You can check the structure of the dataset by checking its graph schema, as well
 as reading the explanations of all the entities and their properties. 
 
+<img src={require('./data/user-manual/dataset.png').default} className={"imgBorder"}/>
+<p></p>
+
+There are several
+[tutorials](/memgraph/tutorials/exploring-datasets) you can use to
+explore the datasets available in Memgraph Lab.
+
 ## Import & Export
 
-In this section you can import and export data in .cypherl format, which
-represents data in the form of Cypher queries.
+In this section you can import and export data in [.cypherl
+format](/memgraph/import-data/cypherl), which represents data in the form of
+Cypher queries.
 
-To import data from other sources, check the guides on importing. 
+To import data from other sources, check the [guides on
+importing](/memgraph/import-data).
+
+<img src={require('./data/user-manual/import-export.png').default} className={"imgBorder"}/>
 
 ## Logs
 
 To be able to see logs from Memgraph Lab you need to open port 7444 when
 starting Memgraph Lab with Docker. 
+
+<img src={require('./data/user-manual/logs.png').default} className={"imgBorder"}/>
+<p></p>
+
+Check the [reference guide on
+configuration](/memgraph/reference-guide/configuration#other) regarding logs
+to check how to modify logging, and the [how-to guide on how to access
+logs](/memgraph/how-to-guides/config-logs) if you are not using Docker.
 
 ## Layout
 
@@ -209,3 +258,5 @@ You can split the work area horizontally to work with 2 sections at the same
 time, or vertically to work with up to 5 sections at the same time. 
 
 You can also combine the horizontal and vertical split. 
+
+<img src={require('./data/user-manual/layouts.png').default} className={"imgBorder"}/>
