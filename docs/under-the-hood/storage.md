@@ -119,26 +119,40 @@ Minimal size without values: **2-9B**
 
 ### Marvel dataset use case
 
-The Marvel dataset consists of `Hero`, `Comic` and `ComicSeries` labels, which are indexed. There are also three label-property indices - on the `name` property of `Hero` and `Comic` vertices, and on the `title` property of `ComicSeries` vertices. The `ComicSeries` vertices also have the `publishYear` property.
+The Marvel dataset consists of `Hero`, `Comic` and `ComicSeries` labels, which
+are indexed. There are also three label-property indices - on the `name`
+property of `Hero` and `Comic` vertices, and on the `title` property of
+`ComicSeries` vertices. The `ComicSeries` vertices also have the `publishYear`
+property.
 
  <img src={require('../data/under-the-hood/marvel-dataset-schema.png').default}/>
 
-There are 6487 `Hero` and 12,661 `Comic` vertices with the property `name`. That's 19,148 vertices in total. To calculate how much storage those vertices and properties occupy, we are going to use the following formula:
+There are 6487 `Hero` and 12,661 `Comic` vertices with the property `name`.
+That's 19,148 vertices in total. To calculate how much storage those vertices
+and properties occupy, we are going to use the following formula:
 
 $\texttt{NumberOfVertices} \times (\texttt{Vertex} + \texttt{properties} + \texttt{SkipListNode} + \texttt{next\_pointers} + \texttt{Delta}).$
 
-Let's assume the name on average has $2\text{B}+10\text{B} = 12\text{B}$ (each name is on average 10 characters long). When we include the average values, we get:
+Let's assume the name on average has $2\text{B}+10\text{B} = 12\text{B}$ (each
+name is on average 10 characters long). One the average values are included, the
+calculation is:
 
 $19,148 \times (112\text{B} + 12\text{B} + 16\text{B} + 16\text{B} + 104\text{B}) = 19,148 \times 260\text{B} = 4,978,480\text{B}.$
 
-The remaining 2,584 vertices are the `ComicSeries` vertices with the `title` and `publishYear` properties. The `publishYear` property is a list of integers. The average length of the `publishYear` list is 2.17, so to be sure, we'll say that each list has 3 elements. Since the integer is the year, 2B for each integer will be more than enough. Therefore, each list occupies $3 \times 2\text{B} = 6\text{B}$. We are going to use the same formula as above, we just have to be careful to include both `title` and `publishYear` properties. We can assume that the `title` property is approximately the same length as the `name` property. We have:
+The remaining 2,584 vertices are the `ComicSeries` vertices with the `title` and
+`publishYear` properties. Let's assume that the `title` property is
+approximately the same length as the `name` property. The `publishYear` property
+is a list of integers. The average length of the `publishYear` list is 2.17,
+let's round it up to 3 elements. Since the year is an integer, 2B for each
+integer will be more than enough. Therefore, each list occupies $3 \times
+2\text{B} = 6\text{B}$. Using the same formula as above, but being careful to
+include both `title` and `publishYear` properties, the calculation is:
 
 $2584 \times (112\text{B} + 12\text{B} + 6\text{B} + 16\text{B} + 16\text{B} + 104\text{B}) = 2584 \times 266\text{B} = 687,344\text{B}.$
 
-
 In total, $5,665,824\text{B}$ to store vertices.
 
-The edges don't have any properties on them, so the following formula is:
+The edges don't have any properties on them, so the formula is as follows:
 
 $\texttt{NumberOfEdges} \times (\texttt{Edge} + \texttt{SkipListNode} + \texttt{next\_pointers} + \texttt{Delta}).$
 
@@ -146,21 +160,25 @@ There are 682,943 edges in the Marvel dataset. Hence, we have:
 
 $682,943 \times (40\text{B}+16\text{B}+16\text{B}+104\text{B}) = 682,943 \times 176\text{B} = 120,197,968\text{B}.$
 
-Next, we have label index on `Hero`, `Comic` and `ComicSeries` labels. To calculate how much space they take, we can use the following formula:
+Next, `Hero`, `Comic` and `ComicSeries` labels have label indices. To calculate
+how much space they take up, use the following formula:
 
-$\texttt{NumberOfLabelIndices} \times \texttt{NumberOfVertices} \times (\texttt{SkipListNode<LabelIndex::Entry>} + \texttt{next\_pointers})$
+$\texttt{NumberOfLabelIndices} \times \texttt{NumberOfVertices} \times (\texttt{SkipListNode<LabelIndex::Entry>} + \texttt{next\_pointers}).$
 
 Since there are three label indices, we have the following calculation:
 
 $3 \times 21,723 \times (24\text{B}+16\text{B}) = 65,169 \times 40\text{B} = 2,606,760\text{B}.$
 
-For label-property index, we have to take labeled property into account. Property `name` is indexed on `Hero` and `Comic` vertices, while property `title` is indexed on `ComicSeries` vertices. We already assumed that the `title` property is approximately the same length as the `name` property. 
+For label-property index, labeled property needs to be taken into account.
+Property `name` is indexed on `Hero` and `Comic` vertices, while property
+`title` is indexed on `ComicSeries` vertices. We already assumed that the
+`title` property is approximately the same length as the `name` property. 
 
 Here is the formula:
 
-$\texttt{NumberOfLabelPropertyIndices} \times \texttt{NumberOfVertices} \times (\texttt{SkipListNode<LabelIndex::Entry>} + \texttt{property} + \texttt{next\_pointers}),$
+$\texttt{NumberOfLabelPropertyIndices} \times \texttt{NumberOfVertices} \times (\texttt{SkipListNode<LabelIndex::Entry>} + \texttt{property} + \texttt{next\_pointers}).$
 
-and when we include the appropriate values, we get:
+When the appropriate values are included, the calculation is:
 
 $3 \times 21,723 \times (80\text{B}+12\text{B}+16\text{B})= 65,169 \times 108\text{B} = 7,038,252\text{B}.$
 
@@ -168,7 +186,8 @@ Now let's sum up everything we calculated:
 
 $5,665,824\text{B} + 120,197,968\text{B} + 2,606,760\text{B} + 7,038,252\text{B} = 135,508,804 \text{B} \approx 135\text{MB}.$
 
-Bear in mind the number can vary because objects can have higher overhead due to the additional data.
+Bear in mind the number can vary because objects can have higher overhead due to
+the additional data.
 
 ## Query Execution memory Usage
 
