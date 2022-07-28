@@ -55,16 +55,16 @@ But, if the database has a lot of concurrent operations, many `Delta` objects
 will be created. Of course, the `Delta` objects will be kept in memory as long as
 needed, and a bit more, because of the internal GC inefficiencies.
 
-### Delta memory layout
+### `Delta` memory layout
 
 Each `Delta` object has a least **104B**.
 
-### Vertex memory layout
+### `Vertex` memory layout
 
 Each `Vertex` object has at least **112B** + **104B** for the `Delta` object, in
 total, a minimum of **216B**.
 
-### Edge memory layout
+### `Edge` memory layout
 
 Each `Edge` object has at least **40B** + **104B** for the `Delta` object, in
 total, a minimum of **144B**.
@@ -86,7 +86,7 @@ Each `LabelIndex::Entry` object has exactly **16B**.
 
 Depending on the actual value stored, each `LabelPropertyIndex::Entry` has at least **72B**.
 
-Each Index Entry object is placed into the Skiplist.
+Each Index Entry Object is placed into the `SkipList`.
 
 #### Each index object in total
 
@@ -123,28 +123,28 @@ The Marvel dataset consists of `Hero`, `Comic` and `ComicSeries` labels, which a
 
  <img src={require('../data/under-the-hood/marvel-dataset-schema.png').default}/>
 
-There are 6487 `Hero` and 12661 `Comic` vertices with the property `name`. That's 19148 vertices in total. To calculate how much storage those vertices and properties occupy, we are going to use the following formula:
+There are 6487 `Hero` and 12,661 `Comic` vertices with the property `name`. That's 19,148 vertices in total. To calculate how much storage those vertices and properties occupy, we are going to use the following formula:
 
 $\texttt{NumberOfVertices} \times (\texttt{Vertex} + \texttt{properties} + \texttt{SkipListNode} + \texttt{next\_pointers} + \texttt{Delta}).$
 
 Let's assume the name on average has $2\text{B}+10\text{B} = 12\text{B}$ (each name is on average 10 characters long). When we include the average values, we get:
 
-$19148 \times (112\text{B} + 12\text{B} + 16\text{B} + 16\text{B} + 104\text{B}) = 19148 \times 260\text{B} = 4978480\text{B}.$
+$19,148 \times (112\text{B} + 12\text{B} + 16\text{B} + 16\text{B} + 104\text{B}) = 19,148 \times 260\text{B} = 4,978,480\text{B}.$
 
-The remaining 2584 vertices are the `ComicSeries` vertices with the `title` and `publishYear` properties. The `publishYear` property is a list of integers. The average length of the `publishYear` list is 2.17, so to be sure, we'll say that each list has 3 elements. Since the integer is the year, 2B for each integer will be more than enough. Therefore, each list occupies $3 \times 2\text{B} = 6\text{B}$. We are going to use the same formula as above, we just have to be careful to include both `title` and `publishYear` properties. We can assume that the `title` property is approximately the same length as the `name` property. We have:
+The remaining 2,584 vertices are the `ComicSeries` vertices with the `title` and `publishYear` properties. The `publishYear` property is a list of integers. The average length of the `publishYear` list is 2.17, so to be sure, we'll say that each list has 3 elements. Since the integer is the year, 2B for each integer will be more than enough. Therefore, each list occupies $3 \times 2\text{B} = 6\text{B}$. We are going to use the same formula as above, we just have to be careful to include both `title` and `publishYear` properties. We can assume that the `title` property is approximately the same length as the `name` property. We have:
 
-$2584 \times (112\text{B} + 12\text{B} + 6\text{B} + 16\text{B} + 16\text{B} + 104\text{B}) = 2584 \times 266\text{B} = 687344\text{B}.$
+$2584 \times (112\text{B} + 12\text{B} + 6\text{B} + 16\text{B} + 16\text{B} + 104\text{B}) = 2584 \times 266\text{B} = 687,344\text{B}.$
 
 
-In total, $5665824\text{B}$ to store vertices.
+In total, $5,665,824\text{B}$ to store vertices.
 
 The edges don't have any properties on them, so the following formula is:
 
 $\texttt{NumberOfEdges} \times (\texttt{Edge} + \texttt{SkipListNode} + \texttt{next\_pointers} + \texttt{Delta}).$
 
-There are 682943 edges in the Marvel dataset. Hence, we have:
+There are 682,943 edges in the Marvel dataset. Hence, we have:
 
-$682943 \times (40\text{B}+16\text{B}+16\text{B}+104\text{B}) = 682943 \times 176\text{B} = 120197968\text{B}.$
+$682,943 \times (40\text{B}+16\text{B}+16\text{B}+104\text{B}) = 682,943 \times 176\text{B} = 120,197,968\text{B}.$
 
 Next, we have label index on `Hero`, `Comic` and `ComicSeries` labels. To calculate how much space they take, we can use the following formula:
 
@@ -152,7 +152,7 @@ $\texttt{NumberOfLabelIndices} \times \texttt{NumberOfVertices} \times (\texttt{
 
 Since there are three label indices, we have the following calculation:
 
-$3 \times 21723 \times (24\text{B}+16\text{B}) = 65169 \times 40\text{B} = 2606760\text{B}.$
+$3 \times 21,723 \times (24\text{B}+16\text{B}) = 65,169 \times 40\text{B} = 2,606,760\text{B}.$
 
 For label-property index, we have to take labeled property into account. Property `name` is indexed on `Hero` and `Comic` vertices, while property `title` is indexed on `ComicSeries` vertices. We already assumed that the `title` property is approximately the same length as the `name` property. 
 
@@ -162,11 +162,11 @@ $\texttt{NumberOfLabelPropertyIndices} \times \texttt{NumberOfVertices} \times (
 
 and when we include the appropriate values, we get:
 
-$3 \times 21723 \times (80\text{B}+12\text{B}+16\text{B})= 65169 \times 108\text{B} = 7038252\text{B}.$
+$3 \times 21,723 \times (80\text{B}+12\text{B}+16\text{B})= 65,169 \times 108\text{B} = 7,038,252\text{B}.$
 
 Now let's sum up everything we calculated:
 
-$5665824\text{B} + 120197968\text{B} + 2606760\text{B} + 7038252\text{B} = 135508804 \text{B} \approx 135\text{MB}.$
+$5,665,824\text{B} + 120,197,968\text{B} + 2,606,760\text{B} + 7,038,252\text{B} = 135,508,804 \text{B} \approx 135\text{MB}.$
 
 Bear in mind the number can vary because objects can have higher overhead due to the additional data.
 
