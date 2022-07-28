@@ -46,7 +46,7 @@ you are using
 
 Memgraph attempts to load the modules from all `*.so` and `*.py` files it finds
 in the default (`/usr/lib/memgraph/query_modules` and
-`/memgraph/internal_modules/`) directories. The `*.so` modules
+`/var/lib/memgraph/internal_modules/`) directories. The `*.so` modules
 are written using the C API and the `*.py` modules are written using the Python
 API. Each file corresponds to one module. Names of these files will be mapped to
 module names. For example, `hello.so` will be mapped to the `hello` module and a
