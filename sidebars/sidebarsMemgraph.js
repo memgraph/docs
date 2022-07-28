@@ -85,22 +85,14 @@ module.exports = {
       label: "Import data",
       link: { type: "doc", id: "import-data/overview" },
       items: [
+        "import-data/csv/load-csv-clause",
         {
           type: "category",
-          label: "CSV",
-          link: { type: "doc", id: "import-data/csv/overview" },
+          label: "Connect to data streams",
+          link: { type: "doc", id: "import-data/data-streams/overview" },
           items: [
-            "import-data/csv/load-csv-clause",
-          ],
-        },
-        {
-          type: "category",
-          label: "Kafka",
-          link: { type: "doc", id: "import-data/kafka/overview" },
-          items: [
-            "import-data/kafka/json",
-            "import-data/kafka/avro",
-            "import-data/kafka/protobuf",
+            "import-data/data-streams/manage-streams",
+            "import-data/data-streams/manage-streams-lab",
           ],
         },
         {
@@ -152,29 +144,6 @@ module.exports = {
       link: { type: "doc", id: "how-to-guides/overview" },
       items: [
         "how-to-guides/create-backup",
-        {
-          type: "category",
-          label: "Connect to stream sources",
-          items: [
-            {
-              type: "category",
-              label: "Kafka",
-              items: [
-                "how-to-guides/streams/kafka/kafka-streams",
-                "how-to-guides/streams/kafka/implement-transformation-module",
-                "how-to-guides/streams/kafka/connect-to-stream-from-lab",
-              ],
-            },
-            {
-              type: "category",
-              label: "Pulsar",
-              items: [
-                "how-to-guides/streams/pulsar/pulsar-streams",
-                "how-to-guides/streams/pulsar/implement-transformation-module",
-              ],
-            },
-          ],
-        },
         "how-to-guides/config-logs",
         {
           type: "category",
@@ -281,14 +250,8 @@ module.exports = {
               label: "Transformation modules",
               link: { type: "doc", id: "reference-guide/streams/transformation-modules/overview" },
               items: [
-                {
-                  type: "category",
-                  label: "API",
-                  items: [
-                    "reference-guide/streams/transformation-modules/api/c-api",
-                    "reference-guide/streams/transformation-modules/api/python-api",
-                  ],
-                },
+                "reference-guide/streams/transformation-modules/api/c-api",
+                "reference-guide/streams/transformation-modules/api/python-api",
               ],
             },
           ],

@@ -6,6 +6,7 @@ pagination_prev: import-data/overview
 slug: /import-data/csv-import-tool
 ---
 
+
 [![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](../../reference-guide/import-data/csv-import-tool.md)
 
 import Tabs from "@theme/Tabs"; import TabItem from "@theme/TabItem";
@@ -44,8 +45,9 @@ the complexity of your data.
 
 Here are two examples of how to use the CSV import tool depending on
 the complexity of your data:
-- [One type of nodes and relationships](#one-type-of-nodes-and-relationships)
-- [Multiple types of nodes and
+- [Examples](#examples)
+  - [One type of nodes and relationships](#one-type-of-nodes-and-relationships)
+  - [Multiple types of nodes and relationships](#multiple-types-of-nodes-and-relationships)
   relationships](#multiple-types-of-nodes-and-relationships)
 
 ### One type of nodes and relationships
