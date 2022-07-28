@@ -7,6 +7,11 @@ sidebar_label: Payment
 Below are instructions on how to manage Memgraph Cloud payment, and current
 Cloud rates. 
 
+Fell free to watch a demo video made for the Cloud launch that will explain
+the Account section of Memgraph Cloud where you handle your payment methods: 
+
+[<img alt="account-payment" src={require('./data/account-payment.png').default} style={{width:'50%'}}/>](https://youtu.be/Tt5KPKylU8k?t=941 "Account section")
+
 ## Add a payment method
 
 To add a payment method:
@@ -48,7 +53,12 @@ You can also download paid invoices as PDF to check the cost breakdown.
 Below are daily and monthly project and snapshot rates within the Memgraph
 Cloud.
 
-## Project rates
+Fell free to watch a demo video made for the Cloud launch that will explain
+the logic behind payment rates: 
+
+[<img alt="paused-project" src={require('./data/paused-project.png').default} style={{width:'50%'}}/>](https://youtu.be/Tt5KPKylU8k?t=1070 "How are rates applied")
+
+### Project rates
 
 Once your 2-week free trial is finished, the cost of the project will be
 calculated by the following rates:
@@ -92,7 +102,7 @@ calculated by the following rates:
 |                              | 16        | 56        | 6.45            | 193.39            |
 |                              | 32        | 104       | 12.81           | 384.30            |
 
-## Snapshot rates
+### Snapshot rates
 
 The size of a snapshot is 8 GB smaller than the disk size the project is using.
 If you are using 1 GB of RAM and 11 GB of disk, the snapshot size is 3GB.

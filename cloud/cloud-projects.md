@@ -27,6 +27,11 @@ To create a new project:
    it. 
 5. Click **Go to project** to complete the project creation.
 
+Below is a demo video made for the launch that will take you through setting up
+a new Cloud project: 
+
+[<img alt="cloud-new-project" src={require('./data/new-project.png').default} style={{width:'50%'}}/>](https://youtu.be/Tt5KPKylU8k?t=774 "How to create Cloud project")
+
 ## Pause, resume or delete a project
 
 When you don't need compute you can pause the project and you won't be charged
@@ -53,6 +58,11 @@ To delete a project:
 4. In the confirmation pop-up, click the **Confirm** button.
 
 <img src={require('./data/pause-project.png').default} className={"imgBorder"}/>
+
+Fell free to watch a demo video made for the Cloud launch that will explain
+the Projects section of Memgraph Cloud where you manage projects: 
+
+[<img alt="project-management" src={require('./data/project-management.png').default} style={{width:'50%'}}/>](https://youtu.be/Tt5KPKylU8k?t=1029 "Projects section")
 
 ## Back up a project
 

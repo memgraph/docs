@@ -4,7 +4,12 @@ title: Manage your Cloud account
 sidebar_label: Cloud account
 ---
 
-Find out how to sign up for Memgraph Cloud and manage passwords.  
+Find out how to sign up for Memgraph Cloud, manage passwords and add payment method.
+
+Fell free to watch a demo video made for the Cloud launch that will explain
+the Account section of Memgraph Cloud: 
+
+[<img alt="account-payment" src={require('./data/account-payment.png').default} style={{width:'50%'}}/>](https://youtu.be/Tt5KPKylU8k?t=941 "Account section")
 
 ## Create Memgraph Cloud account
 
@@ -32,6 +37,11 @@ Cloud, in which you can create one project that uses up to 2GB RAM.
 
 If you require more compute, enter a valid payment method and upgrade your
 project.
+
+Below is a demo video made for the launch that will take you through setting up
+the Cloud account: 
+
+[<img alt="cloud-singup" src={require('./data/cloud-login.png').default} style={{width:'50%'}}/>](https://youtu.be/Tt5KPKylU8k?t=683 "How to create Cloud account")
 
 ### Change Memgraph Cloud password
 
@@ -62,6 +72,11 @@ Each project within your Memgraph Cloud has its password. The project
 password is not the same password you use to log into Memgraph Cloud. Memgraph
 **doesn't have access** to those credentials and can't retrieve lost credentials
 for Memgraph Cloud projects.
+
+Below is a demo video made for the launch that will explain the importance of
+Memgraph Cloud project password: 
+
+[<img alt="project-password" src={require('./data/admin-credentials.png').default} style={{width:'50%'}}/>](https://youtu.be/Tt5KPKylU8k?t=862 "Why is it important to remember your project password")
 
 ## Manage payment methods
 
