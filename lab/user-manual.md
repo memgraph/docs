@@ -191,7 +191,8 @@ Lab.
 ## Graph Schema
 
 If you need to check the data model of the data currently in the database, you
-can create a graph schema that will show all the node types and relationships
+can generate a graph schema that will show all the node types and relationships
+
 between them.
 
 By selecting a certain node or relationship type, Lab will provide information
