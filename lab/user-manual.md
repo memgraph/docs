@@ -232,7 +232,8 @@ importing](/memgraph/import-data).
 ## Logs
 
 To be able to see logs from Memgraph Lab you need to open port 7444 when
-starting Memgraph Lab with Docker. 
+starting Memgraph with Docker. 
+
 
 <img src={require('./data/user-manual/logs.png').default} className={"imgBorder"} style={{marginBottom:'20px'}}/>
 
