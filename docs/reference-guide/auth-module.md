@@ -58,13 +58,15 @@ explicitly created role.
 This section contains the list of flags that are used to configure the external
 auth module authentication and authorization mechanisms used by Memgraph.
 
- Flag                         | Description
-------------------------------|------------
- `--auth-module-executable`   | Path to the executable that should be used for user authentication/authorization.
- `--auth-module-create-user`  | Controls whether users should be implicitly created on first login or they should be explicitly created manually.
- `--auth-module-create-role`  | Controls whether roles should be implicitly created on first appearance or they should be explicitly created manually.
- `--auth-module-manage-roles` | Specifies whether the module is used only for authentication (value is `false`), or it should be used for both authentication and authorization.
- `--auth-module-timeout`      | Specifies the maximum time that Memgraph will wait for a response from the external auth module.
+ Flag                               | Description
+------------------------------------|------------
+ `--auth-module-executable`         | Path to the executable that should be used for user authentication/authorization.
+ `--auth-module-create-user`        | Controls whether users should be implicitly created on first login or they should be explicitly created manually.
+ `--auth-module-create-role`        | Controls whether roles should be implicitly created on first appearance or they should be explicitly created manually.
+ `--auth-module-manage-roles`       | Specifies whether the module is used only for authentication (value is `false`), or it should be used for both authentication and authorization.
+ `--auth-module-timeout`            | Specifies the maximum time that Memgraph will wait for a response from the external auth module.
+ `--auth-password-permit-null`      | Can be set to false to disable null passwords.
+ `--auth-password-strength-regex`   | The regular expression that should be used to match the entire entered password to ensure its strength.
 
 ## Communication
 
