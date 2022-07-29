@@ -40,7 +40,12 @@ with feedback on [Discord](https://discord.com/invite/memgraph):
 4. Your project is up and running - connect to the instance, import data and
    start querying!
 
-Here, you can find everything you want to know about:
+Below is a demo video made for the launch that will take you through it's
+features: 
+
+[<img alt="memgraph_cloud" src={require('./data/cloud-login.png').default} style={{width:'30%'}}/>](https://youtu.be/Tt5KPKylU8k?t=683 "Get started with Memgraph Cloud")
+
+On the documentation pages, you can find everything you want to know about:
 
 * [Managing your Cloud account](cloud-account)
 * [Managing your projects within the Memgraph Cloud](cloud-projects)
