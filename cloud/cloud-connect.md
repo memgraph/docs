@@ -11,7 +11,7 @@ one of many **drivers** below.
 Fell free to watch a demo video made for the Cloud launch that will explain
 how to connect to Memgraph using Memgraph Cloud: 
 
-[<img alt="paused-project" src={require('./data/paused-project.png').default} style={{width:'50%'}}/>](https://youtu.be/Tt5KPKylU8k?t=1233 "Connect to Memgraph from Memgraph Cloud")
+[<img alt="paused-project" src={require('./data/paused-project.png').default} style={{width:'30%'}}/>](https://youtu.be/Tt5KPKylU8k?t=1233 "Connect to Memgraph from Memgraph Cloud")
 
 ## Connect with Memgraph Lab
 

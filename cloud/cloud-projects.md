@@ -30,7 +30,7 @@ To create a new project:
 Below is a demo video made for the launch that will take you through setting up
 a new Cloud project: 
 
-[<img alt="cloud-new-project" src={require('./data/new-project.png').default} style={{width:'50%'}}/>](https://youtu.be/Tt5KPKylU8k?t=774 "How to create Cloud project")
+[<img alt="cloud-new-project" src={require('./data/new-project.png').default} style={{width:'30%'}}/>](https://youtu.be/Tt5KPKylU8k?t=774 "How to create Cloud project")
 
 ## Pause, resume or delete a project
 
@@ -62,7 +62,7 @@ To delete a project:
 Fell free to watch a demo video made for the Cloud launch that will explain
 the Projects section of Memgraph Cloud where you manage projects: 
 
-[<img alt="project-management" src={require('./data/project-management.png').default} style={{width:'50%'}}/>](https://youtu.be/Tt5KPKylU8k?t=1029 "Projects section")
+[<img alt="project-management" src={require('./data/project-management.png').default} style={{width:'30%'}}/>](https://youtu.be/Tt5KPKylU8k?t=1029 "Projects section")
 
 ## Back up a project
 

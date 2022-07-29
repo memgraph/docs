@@ -10,7 +10,7 @@ Cloud rates.
 Fell free to watch a demo video made for the Cloud launch that will explain
 the Account section of Memgraph Cloud where you handle your payment methods: 
 
-[<img alt="account-payment" src={require('./data/account-payment.png').default} style={{width:'50%'}}/>](https://youtu.be/Tt5KPKylU8k?t=941 "Account section")
+[<img alt="account-payment" src={require('./data/account-payment.png').default} style={{width:'30%'}}/>](https://youtu.be/Tt5KPKylU8k?t=941 "Account section")
 
 ## Add a payment method
 
@@ -56,7 +56,7 @@ Cloud.
 Fell free to watch a demo video made for the Cloud launch that will explain
 the logic behind payment rates: 
 
-[<img alt="paused-project" src={require('./data/paused-project.png').default} style={{width:'50%'}}/>](https://youtu.be/Tt5KPKylU8k?t=1070 "How are rates applied")
+[<img alt="paused-project" src={require('./data/paused-project.png').default} style={{width:'30%'}}/>](https://youtu.be/Tt5KPKylU8k?t=1070 "How are rates applied")
 
 ### Project rates
 
