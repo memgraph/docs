@@ -49,6 +49,11 @@ sidebar_label: Changelog
 - Aggregation functions now return the openCypher-compliant results on `null`
   input and display the correct behavior when grouped with other operators.
   [#448](https://github.com/memgraph/memgraph/pull/448)
+- Fix handling `ROUTE` Bolt message. The fields of `ROUTE` message were not
+  handled properly, therefore the session might stuck into a state where even
+  the `RESET` message did not help. With this fix the `RESET` message can be
+  used to reset the session.
+  [#475](https://github.com/memgraph/memgraph/pull/475)
 
 ## v2.2.1 - Mar 17, 2022
 
