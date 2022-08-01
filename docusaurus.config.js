@@ -101,6 +101,10 @@ module.exports = {
               to: "/memgraph-lab/connect-to-memgraph",
             },
             {
+              label: "User manual",
+              to: "/memgraph-lab/user-manual",
+            },
+            {
               label: "Graph Style Script language",
               to: "/memgraph-lab/graph-style-script-language",
             },

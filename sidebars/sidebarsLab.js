@@ -12,6 +12,7 @@ module.exports = {
       ],
     },
     "connect-to-memgraph",
+    "user-manual",
     {
       type: "category",
       label: "Graph Style Script language",
@@ -29,8 +30,6 @@ module.exports = {
             "style-script/gss-nodestyle-directive",
           ]
         }
-        
-
       ],
     },
     "changelog",
