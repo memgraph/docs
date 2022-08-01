@@ -14,7 +14,7 @@ variable or by passing arguments on the command line.
 
 Each configuration setting is in the form: `--setting-name=value` .
 
-Privilege level `CONFIG` is required to be able to fetch the configuration and it can be attained by calling the following query:
+Privilege level `CONFIG` is required to be able to fetch the configuration via the following query:
 ```opencypher
 SHOW CONFIG;
 ```
