@@ -6,22 +6,6 @@ sidebar_label: Changelog
 
 ## v2.4.0
 
-### Bug Fixes
-
-- Fix header on `SHOW REPLICATION ROLE` query and wrong timout info on `SHOW
-  REPLICAS` query. [#376](https://github.com/memgraph/memgraph/pull/376)
-- Added a check to ensure two replicas cannot be registered to an identical
-  end-point. [#406](https://github.com/memgraph/memgraph/pull/406)
-- Adapted compilation flag so that the memory allocator uses JEMALLOC while
-  counting allocated memory.
-  [#401](https://github.com/memgraph/memgraph/pull/401)
-- `toString` function is now able to accept `Date`, `LocalTime`, `LocalDateTime`
-  and `Duration` data types.
-  [#429](https://github.com/memgraph/memgraph/pull/429)
-- Aggregation functions now return the openCypher-compliant results on `null`
-  input and display the correct behavior when grouped with other operators.
-  [#448](https://github.com/memgraph/memgraph/pull/448)
-
 ### Major Features and Improvements
 
 - Add replica state to `SHOW REPLICAS` query.
@@ -50,6 +34,21 @@ sidebar_label: Changelog
 - Previously registered replicas are automatically registered on restart of
   Memgraph. [#415](https://github.com/memgraph/memgraph/pull/415)
 
+### Bug Fixes
+
+- Fix header on `SHOW REPLICATION ROLE` query and wrong timout info on `SHOW
+  REPLICAS` query. [#376](https://github.com/memgraph/memgraph/pull/376)
+- Added a check to ensure two replicas cannot be registered to an identical
+  end-point. [#406](https://github.com/memgraph/memgraph/pull/406)
+- Adapted compilation flag so that the memory allocator uses JEMALLOC while
+  counting allocated memory.
+  [#401](https://github.com/memgraph/memgraph/pull/401)
+- `toString` function is now able to accept `Date`, `LocalTime`, `LocalDateTime`
+  and `Duration` data types.
+  [#429](https://github.com/memgraph/memgraph/pull/429)
+- Aggregation functions now return the openCypher-compliant results on `null`
+  input and display the correct behavior when grouped with other operators.
+  [#448](https://github.com/memgraph/memgraph/pull/448)
 
 ## v2.2.1 - Mar 17, 2022
 
