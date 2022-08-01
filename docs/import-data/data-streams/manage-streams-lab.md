@@ -176,6 +176,16 @@ Otherwise, Memgraph's log files can be found at
 `/var/log/memgraph/memgraph_<date>.log`. Look for the name of your stream in the
 log file to find the error.
 
+## Demo video
+
+As a part of the [Memgraph Cloud](/memgraph-cloud) release, we've showcased
+different features of Memgraph Lab, for example, how to connect to data streams
+using Memgraph Lab!
+
+Feel free to check it out:
+
+[<img alt="memgraph_lab" src={require('../../data/tutorials/create-stream-lab/stream-video.png').default} style={{width:'30%'}}/>](https://youtu.be/Tt5KPKylU8k?t=1585 "Connecting to streams from Memgraph Lab")
+
 ## What's next?
 
 Take a look at the tutorial we made to help you [connect Memgraph and

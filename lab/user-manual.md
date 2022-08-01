@@ -9,7 +9,9 @@ visualize graph data, view and optimize query performance, develop query modules
 in Python or connect to data streams. 
 
 Here is a short overview of the Lab's interface, features it provides, and links
-to resources that will help you achieve your graph goals. 
+to resources that will help you achieve your graph goals. At the end of the
+page, there is a Lab demo video from the Memgraph Cloud launch if you need more
+visual input.
 
 ## Overview
 
@@ -192,7 +194,6 @@ Lab.
 
 If you need to check the data model of the data currently in the database, you
 can generate a graph schema that will show all the node types and relationships
-
 between them.
 
 By selecting a certain node or relationship type, Lab will provide information
@@ -250,3 +251,26 @@ time, or vertically to work with up to 5 sections simultaneously.
 You can also combine the horizontal and vertical split. 
 
 <img src={require('./data/user-manual/layouts.png').default} className={"imgBorder"}/>
+
+## Memgraph Lab demo video
+
+As a part of the [Memgraph Cloud](/memgraph-cloud) release, we've showcased different
+features of Memgraph Lab, and we invite you to check it out!
+
+[<img alt="memgraph_lab" src={require('./data/user-manual/video.png').default} style={{width:'30%'}}/>](https://youtu.be/Tt5KPKylU8k?t=1390 "Get started with Memgraph Lab")
+
+If you are interested in a particular topic, below is the breakdown of the video
+by the topics covered in the user manual, but there is a breakdown in the
+description of the video as well:
+
+- Overview section ([25:35](https://youtu.be/Tt5KPKylU8k?t=1534))
+- Streams section ([26:25](https://youtu.be/Tt5KPKylU8k?t=1585))
+- Graph schema ([38:30](https://youtu.be/Tt5KPKylU8k?t=2310))
+- Query execution ([39:55](https://youtu.be/Tt5KPKylU8k?t=2395))
+- MAGE query modules ([42:00](https://youtu.be/Tt5KPKylU8k?t=2520))
+- GSS ([1:00:14](https://youtu.be/Tt5KPKylU8k?t=2520)) and ([1:14:20](https://youtu.be/Tt5KPKylU8k?t=4460))
+- Query collections ([1:08:18](https://youtu.be/Tt5KPKylU8k?t=4096))
+- Datasets section ([1:09:55](https://youtu.be/Tt5KPKylU8k?t=4195))
+- Keyword suggestion tool ([1:11:15](https://youtu.be/Tt5KPKylU8k?t=4275))
+- Customizing graph results ([1:12.48](https://youtu.be/Tt5KPKylU8k?t=4365))
+- Custom query modules ([1:27:33](https://youtu.be/Tt5KPKylU8k?t=5253))
