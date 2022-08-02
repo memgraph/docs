@@ -1284,7 +1284,11 @@ module.exports = {
           {
             to: "/memgraph/reference-guide/streams/transformation-modules/api/python-api",
             from: ["/memgraph/import-data/kafka/json", "/memgraph/import-data/kafka/avro", "/memgraph/import-data/kafka/protobuf"],
-          },          
+          },  
+          {
+            to: "/memgraph/import-data/data-streams/manage-streams-lab",
+            from: ["/memgraph/how-to-guides/streams/kafka/connect-to-stream-from-lab"],
+          },        
         ],
       },
     ],
