@@ -99,25 +99,30 @@ Objects of both types are placed into the `SkipList`.
 
 ### Properties
 
-All properties use at least **1B** for metadata - type, size of property ID and
-the size of payload in the case of `NULL` and `BOOLEAN` values, or size of
-payload size indicator (how big is the stored value, for example, integers can
-be 1B, 2B 4B or 8b depending on their value). After the initial byte, some
-properties (for example, those of `TEMPORAL_DATA` or `STRING` values) store
-addition metadata. After metadata, properties store the value. 
+All properties use **1B** for metadata - type, size of property ID and the size
+of payload in the case of `NULL` and `BOOLEAN` values, or size of payload size
+indicator for other types (how big is the stored value, for example, integers
+can be 1B, 2B 4B or 8b depending on their value). 
 
-#### Size of the additional metadata and value
+Then they take up **another byte** for storing property ID, which means each
+property takes up at least 2B. After those 2B, some properties (for example,
+`STRING` values) store addition metadata. And lastly, all properties store the
+value. So the layout of each property is:
 
-|Value            |Size                |Note
-|-----------------|--------------------|
-|`NULL`           |0B                  | The value is written in the first byte of the metadata.
-|`BOOL`           |0B                  | The value is written in the first byte of the metadata.
-|`INT`            |1B, 2B, 4B or 8B    | Depending on the size of the integer. 
-|`DOUBLE`         |8B                  |
-|`STRING`         |min 2B              | 1B for metadata, then 1B, 2B, 4B or 8B depending on the size of the string.
-|`LIST`           |min 2B              | 1B for metadata, and the total size depends on the number and size of the values in the list.
-|`MAP`            |                    | 1B for metadata, and the total size depends on the number and size of the values in the map.
-|`TEMPORAL_DATA`  |2B - 16B            | Depending on the type of the temporal data. 
+
+$\texttt{propertySize} = \texttt{basicMetadata} + \texttt{propertyID} + [\texttt{additionalMetadata}] + \texttt{value}.$
+
+
+|Value type       |Size                            |Note
+|-----------------|--------------------------------|-----------------------------------------------------------------------------------------------------|
+|`NULL`           |1B + 1B                         | The value is written in the first byte of the basic metadata.                                       |
+|`BOOL`           |1B + 1B                         | The value is written in the first byte of the basic metadata.
+|`INT`            |1B + 1B + 1B, 2B, 4B or 8B      | Basic metadata, property ID and the value depending on the size of the integer.                     |
+|`DOUBLE`         |1B + 1B + 8B                    | Basic metadata, property ID and the value                                                           |
+|`STRING`         |1B + 1B + 1B + min 1B           | Basic metadata, property ID, additional metadata and lastly the value depending on the size of the string, where 1 ASCII character in the string takes up 1B.|
+|`LIST`           |1B + 1B + 1B + min 1B           | Basic metadata, property ID, additional metadata and the total size depends on the number and size of the values in the list.|
+|`MAP`            |1B + 1B + 1B + min 1B           | Basic metadata, property ID, additional metadata and the total size depends on the number and size of the values in the map.|
+|`TEMPORAL_DATA`  |1B + 1B + 1B + min 1B + min 1B  | Basic metadata, property ID, additional metadata, seconds, microseconds. Value od the seconds and microseconds is at least 1B, but probably 4B in most cases due to the large values they store.|
 
 ### Marvel dataset use case
 
@@ -135,24 +140,25 @@ and properties occupy, we are going to use the following formula:
 
 $\texttt{NumberOfVertices} \times (\texttt{Vertex} + \texttt{properties} + \texttt{SkipListNode} + \texttt{next\_pointers} + \texttt{Delta}).$
 
-Let's assume the name on average has $2\text{B}+10\text{B} = 12\text{B}$ (each
+Let's assume the name on average has $3\text{B}+10\text{B} = 13\text{B}$ (each
 name is on average 10 characters long). One the average values are included, the
 calculation is:
 
-$19,148 \times (112\text{B} + 12\text{B} + 16\text{B} + 16\text{B} + 104\text{B}) = 19,148 \times 260\text{B} = 4,978,480\text{B}.$
+$19,148 \times (112\text{B} + 13\text{B} + 16\text{B} + 16\text{B} + 104\text{B}) = 19,148 \times 261\text{B} = 4,997,628\text{B}.$
 
 The remaining 2,584 vertices are the `ComicSeries` vertices with the `title` and
 `publishYear` properties. Let's assume that the `title` property is
 approximately the same length as the `name` property. The `publishYear` property
 is a list of integers. The average length of the `publishYear` list is 2.17,
 let's round it up to 3 elements. Since the year is an integer, 2B for each
-integer will be more than enough. Therefore, each list occupies $3 \times
-2\text{B} = 6\text{B}$. Using the same formula as above, but being careful to
-include both `title` and `publishYear` properties, the calculation is:
+integer will be more than enough, plus the 2B for the metadata. Therefore, each
+list occupies $3 \times 2\text{B} \times 2\text{B} = 12\text{B}$. Using the same
+formula as above, but being careful to include both `title` and `publishYear`
+properties, the calculation is:
 
-$2584 \times (112\text{B} + 12\text{B} + 6\text{B} + 16\text{B} + 16\text{B} + 104\text{B}) = 2584 \times 266\text{B} = 687,344\text{B}.$
+$2584 \times (112\text{B} + 13\text{B} + 12\text{B} + 16\text{B} + 16\text{B} + 104\text{B}) = 2584 \times 273\text{B} = 705,432\text{B}.$
 
-In total, $5,665,824\text{B}$ to store vertices.
+In total, $5,703,060\text{B}$ to store vertices.
 
 The edges don't have any properties on them, so the formula is as follows:
 
@@ -182,11 +188,11 @@ $\texttt{NumberOfLabelPropertyIndices} \times \texttt{NumberOfVertices} \times (
 
 When the appropriate values are included, the calculation is:
 
-$3 \times 21,723 \times (80\text{B}+12\text{B}+16\text{B})= 65,169 \times 108\text{B} = 7,038,252\text{B}.$
+$3 \times 21,723 \times (80\text{B}+13\text{B}+16\text{B})= 65,169 \times 109\text{B} = 7,103,421\text{B}.$
 
 Now let's sum up everything we calculated:
 
-$5,665,824\text{B} + 120,197,968\text{B} + 2,606,760\text{B} + 7,038,252\text{B} = 135,508,804 \text{B} \approx 135\text{MB}.$
+$5,703,060\text{B} + 120,197,968\text{B} + 2,606,760\text{B} + 7,103,421\text{B} = 135,611,209 \text{B} \approx 130\text{MB}.$
 
 Bear in mind the number can vary because objects can have higher overhead due to
 the additional data.
