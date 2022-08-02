@@ -1,138 +1,228 @@
 ---
 id: storage
-title: Storage
-sidebar_label: Storage
+title: Storage memory usage
+sidebar_label: Storage memory usage
 ---
 
-## Durability and data recovery
+Estimating Memgraph's storage memory usage is not entirely straightforward
+because it depends on a lot of variables, but it is possible to do so quite
+accurately. Below is an example that will try to show the basic reasoning.
 
-Memgraph uses two mechanisms to ensure the durability of the stored data:
+If you want to **estimate** the storage memory usage, use the following formula:
 
-  * write-ahead logging (WAL)
-  * periodic snapshots
+$\texttt{StorageRAMUsage} = \texttt{NumberOfVertices} \times 260\text{B} + \texttt{NumberOfEdges} \times 180\text{B}$
 
-In write-ahead logging, all database modifications are recorded in a log file
-before being applied to the database. WAL ensures that all operations are done
-atomically and provides steps needed to reconstruct the database state.
+Let's test this formula on the [Marvel Comic Universe Social Network
+dataset](https://memgraph.com/download/datasets/marvel-cinematic-universe/marvel-cinematic-universe.cypherl.gz),
+which is also available as a dataset inside Memgraph Lab and contains 21,723
+vertices and 682,943 edges. 
 
-Snapshots are taken periodically during the entire runtime of Memgraph. When
-a snapshot is triggered, the whole data storage is written to disk. The
-snapshot file provides a quicker way to restore the database state.
+According to the formula, storage memory usage should be: 
 
-Database recovery is done on startup from the most recent snapshot file. Since
-the snapshot may be older than the most recent update logged in the WAL file,
-the recovery process will apply the remaining state changes found in the WAL
-file.
+$
+\begin{aligned}
+\texttt{StorageRAMUsage} &= 21,723 \times 260\text{B} + 682,943 \times 180\text{B} \\ &= 5,647,980\text{B} + 122,929,740\text{B}\\ &= 128,577,720\text{B} \approx 125\text{MB}
+\end{aligned}
+$
 
-Behavior of these mechanisms can be tweaked in the configuration file,
-usually found in `/etc/memgraph/memgraph.conf`.
+Now, let's run an empty Memgraph instance on a x86 Ubuntu. It consumes **~75MB**
+of RAM due to baseline runtime overhead. Once the dataset is loaded, RAM usage
+rises up to **~260MB**. Memory usage primarily consists of storage and query
+execution memory usage. After executing `FREE MEMORY` query to force the cleanup
+of query execution, the RAM usage drops to **~200MB**. If the baseline runtime
+overhead of **75MB** is subtracted from the total memory usage of the dataset,
+which is **200MB**, and storage memory usage comes up to **~125MB**, which shows
+that the formula is correct.
 
-Check the reference guide on Configuration to see the [possible configuration
-settings for storage](../reference-guide/configuration#storage).
+## The calculation in detail
 
-:::caution
-Snapshot and WAL files are (currently) not compatible between Memgraph
-versions.
+Let's dive deeper into the memory usage values. Because Memgraph works on the
+x86 architecture, calculations are based on the x86 Linux memory usage.
+
+:::tip 
+For the latest and most precise memory layout please clone
+[Memgraph](https://github.com/memgraph/memgraph) and use, e.g.,
+[pahole](https://github.com/PhilArmstrong/pahole-gdb) to discover accurate
+information. 
 :::
 
-## Storable data types
+Each `Vertex` and `Edge` object has a pointer to a `Delta` object. The
+`Delta` object stores all changes on a certain `Vertex` or `Edge` and that's
+why `Vertex` and `Edge` memory usage will be increased by the memory of
+the `Delta` objects they are pointing to. If there are few updates, there are
+also few `Delta` objects because the latest data is stored in the object.
+But, if the database has a lot of concurrent operations, many `Delta` objects
+will be created. Of course, the `Delta` objects will be kept in memory as long as
+needed, and a bit more, because of the internal GC inefficiencies.
 
-Since Memgraph is a graph database management system, data is stored in the form
-of graph elements: nodes and relationships. Each graph element can contain
-various types of data. This chapter describes which data types are supported in
-Memgraph.
+### `Delta` memory layout
 
-### Node labels & relationship types
+Each `Delta` object has a least **104B**.
 
-Nodes can have labels that are used to label or group nodes. A label is a text
-value, and each node can have any number of labels, even none. Labels can be
-changed at any time. 
+### `Vertex` memory layout
 
-Relationships have a type, also represented as text. Unlike nodes, relationships
-must have exactly one relationship type and once it is set upon creation, it can
-never be modified again.
+Each `Vertex` object has at least **112B** + **104B** for the `Delta` object, in
+total, a minimum of **216B**.
+
+### `Edge` memory layout
+
+Each `Edge` object has at least **40B** + **104B** for the `Delta` object, in
+total, a minimum of **144B**.
+
+### `SkipList` memory layout
+
+Each object (`Vertex`, `Edge`) is placed inside a data structure
+called a `SkipList`. The `SkipList` has an additional overhead in terms of
+`SkipListNode` structure and `next_pointers`. Each `SkipListNode` has an
+additional **8B** element overhead and another **8B** for each of the `next_pointers`.
+
+It is impossible to know the exact number of **next_pointers** upfront, and
+consequently the total size, but it's never more than **double the number of
+objects** because the number of pointers is generated by binomial distribution
+(take a look at [the source
+code](https://github.com/memgraph/memgraph/blob/master/src/utils/skip_list.hpp)
+for details).
+
+### Index memory layout
+
+Each `LabelIndex::Entry` object has exactly **16B**.
+
+Depending on the actual value stored, each `LabelPropertyIndex::Entry` has at least **72B**.
+
+Objects of both types are placed into the `SkipList`.
+
+#### Each index object in total
+
+- `SkipListNode<LabelIndex::Entry>` object has **24B**.
+- `SkipListNode<LabelPropertyIndex::Entry>` has at least **80B**.
+- Each `SkipListNode` has an additional **16B** because of the **next_pointers**.
 
 ### Properties
 
-Nodes and relationships can store various properties. Properties are similar to
-mappings or tables containing property names and their accompanying values.
-Property names are represented as text, while values can be of different types.
-Each property can store a single value, and it is not possible to have multiple
-properties with the same name on a single graph element. But, the same property
-names can be found across multiple graph elements. Also, there are no
-restrictions on the number of properties that can be stored in a single graph
-element. The only restriction is that the values must be of the supported types.
-Below is a table of supported data types.
+All properties use **1B** for metadata - type, size of property ID and the size
+of payload in the case of `NULL` and `BOOLEAN` values, or size of payload size
+indicator for other types (how big is the stored value, for example, integers
+can be 1B, 2B 4B or 8b depending on their value). 
 
- Type      | Description
------------|------------
- `Null`    | Property has no value, which is the same as if the property does not exist.
- `String`  | A character string (text).
- `Boolean` | A boolean value, either `true` or `false`.
- `Integer` | An integer number.
- `Float`   | A floating-point number (real number).
- `List`    | A list containing any number of property values of any supported type under a single property name.
- `Map`     | A mapping of string keys to values of any supported type.
- `Duration`| A period of time.
- `Date`    | A date with year, month, and day.
- `LocalTime` | Time within a day without timezone.
- `LocalDateTime` | Date and local time.
+Then they take up **another byte** for storing property ID, which means each
+property takes up at least 2B. After those 2B, some properties (for example,
+`STRING` values) store addition metadata. And lastly, all properties store the
+value. So the layout of each property is:
 
-Check the reference guide to [read more about temporal
-types](/reference-guide/data-types.md) `Duration`, `Date`, `LocalTime` and
-`LocalDateTime`. 
 
-:::note
+$\texttt{propertySize} = \texttt{basicMetadata} + \texttt{propertyID} + [\texttt{additionalMetadata}] + \texttt{value}.$
 
-Even though it's possible to store `List` and `Map` property values, it is
-impossible to modify them. It is, however, possible to replace them entirely.
-So, the following queries are valid:
 
-```cypher
-CREATE (:Node {property: [1, 2, 3]});
-CREATE (:Node {property: {key: "value"}});
-```
+|Value type       |Size                            |Note
+|-----------------|--------------------------------|-----------------------------------------------------------------------------------------------------|
+|`NULL`           |1B + 1B                         | The value is written in the first byte of the basic metadata.                                       |
+|`BOOL`           |1B + 1B                         | The value is written in the first byte of the basic metadata.
+|`INT`            |1B + 1B + 1B, 2B, 4B or 8B      | Basic metadata, property ID and the value depending on the size of the integer.                     |
+|`DOUBLE`         |1B + 1B + 8B                    | Basic metadata, property ID and the value                                                           |
+|`STRING`         |1B + 1B + 1B + min 1B           | Basic metadata, property ID, additional metadata and lastly the value depending on the size of the string, where 1 ASCII character in the string takes up 1B.|
+|`LIST`           |1B + 1B + 1B + min 1B           | Basic metadata, property ID, additional metadata and the total size depends on the number and size of the values in the list.|
+|`MAP`            |1B + 1B + 1B + min 1B           | Basic metadata, property ID, additional metadata and the total size depends on the number and size of the values in the map.|
+|`TEMPORAL_DATA`  |1B + 1B + 1B + min 1B + min 1B  | Basic metadata, property ID, additional metadata, seconds, microseconds. Value od the seconds and microseconds is at least 1B, but probably 4B in most cases due to the large values they store.|
 
-But these are not:
+### Marvel dataset use case
 
-```cypher
-MATCH (n:Node) SET n.property[0] = 0;
-MATCH (n:Node) SET n.property.key = "other value";
-```
+The Marvel dataset consists of `Hero`, `Comic` and `ComicSeries` labels, which
+are indexed. There are also three label-property indices - on the `name`
+property of `Hero` and `Comic` vertices, and on the `title` property of
+`ComicSeries` vertices. The `ComicSeries` vertices also have the `publishYear`
+property.
 
-:::
+ <img src={require('../data/under-the-hood/marvel-dataset-schema.png').default}/>
 
-### Disabling properties on relationships
+There are 6487 `Hero` and 12,661 `Comic` vertices with the property `name`.
+That's 19,148 vertices in total. To calculate how much storage those vertices
+and properties occupy, we are going to use the following formula:
 
-If you have a use-case that doesn't use properties on relationships, you can
-specify a flag in the Memgraph configuration file to disable them and reduce
-memory usage.
+$\texttt{NumberOfVertices} \times (\texttt{Vertex} + \texttt{properties} + \texttt{SkipListNode} + \texttt{next\_pointers} + \texttt{Delta}).$
 
-```
---storage-properties-on-edges=false
-```
+Let's assume the name on average has $3\text{B}+10\text{B} = 13\text{B}$ (each
+name is on average 10 characters long). One the average values are included, the
+calculation is:
 
-You can disable properties on relationships with a non-empty database, just make
-sure the relationships are without properties.
+$19,148 \times (112\text{B} + 13\text{B} + 16\text{B} + 16\text{B} + 104\text{B}) = 19,148 \times 261\text{B} = 4,997,628\text{B}.$
 
-## Storage statistics
+The remaining 2,584 vertices are the `ComicSeries` vertices with the `title` and
+`publishYear` properties. Let's assume that the `title` property is
+approximately the same length as the `name` property. The `publishYear` property
+is a list of integers. The average length of the `publishYear` list is 2.17,
+let's round it up to 3 elements. Since the year is an integer, 2B for each
+integer will be more than enough, plus the 2B for the metadata. Therefore, each
+list occupies $3 \times 2\text{B} \times 2\text{B} = 12\text{B}$. Using the same
+formula as above, but being careful to include both `title` and `publishYear`
+properties, the calculation is:
 
-You can retrieve information and statistics about the storage of a running
-Memgraph instance by using the following query.
+$2584 \times (112\text{B} + 13\text{B} + 12\text{B} + 16\text{B} + 16\text{B} + 104\text{B}) = 2584 \times 273\text{B} = 705,432\text{B}.$
 
-```cypher
-SHOW STORAGE INFO;
-```
+In total, $5,703,060\text{B}$ to store vertices.
 
-Example results:
+The edges don't have any properties on them, so the formula is as follows:
 
- storage info      | value
--------------------|------------
- `average_degree`  | 2.872567
- `disk_usage`      | 38028
- `edge_count`      | 90674
- `memory_usage`    | 88842240
- `vertex_count`    | 63131
+$\texttt{NumberOfEdges} \times (\texttt{Edge} + \texttt{SkipListNode} + \texttt{next\_pointers} + \texttt{Delta}).$
 
-All of the `*_usage` results are expressed in bytes unless explicitly stated
-otherwise.
+There are 682,943 edges in the Marvel dataset. Hence, we have:
+
+$682,943 \times (40\text{B}+16\text{B}+16\text{B}+104\text{B}) = 682,943 \times 176\text{B} = 120,197,968\text{B}.$
+
+Next, `Hero`, `Comic` and `ComicSeries` labels have label indices. To calculate
+how much space they take up, use the following formula:
+
+$\texttt{NumberOfLabelIndices} \times \texttt{NumberOfVertices} \times (\texttt{SkipListNode<LabelIndex::Entry>} + \texttt{next\_pointers}).$
+
+Since there are three label indices, we have the following calculation:
+
+$3 \times 21,723 \times (24\text{B}+16\text{B}) = 65,169 \times 40\text{B} = 2,606,760\text{B}.$
+
+For label-property index, labeled property needs to be taken into account.
+Property `name` is indexed on `Hero` and `Comic` vertices, while property
+`title` is indexed on `ComicSeries` vertices. We already assumed that the
+`title` property is approximately the same length as the `name` property. 
+
+Here is the formula:
+
+$\texttt{NumberOfLabelPropertyIndices} \times \texttt{NumberOfVertices} \times (\texttt{SkipListNode<LabelIndex::Entry>} + \texttt{property} + \texttt{next\_pointers}).$
+
+When the appropriate values are included, the calculation is:
+
+$3 \times 21,723 \times (80\text{B}+13\text{B}+16\text{B})= 65,169 \times 109\text{B} = 7,103,421\text{B}.$
+
+Now let's sum up everything we calculated:
+
+$5,703,060\text{B} + 120,197,968\text{B} + 2,606,760\text{B} + 7,103,421\text{B} = 135,611,209 \text{B} \approx 130\text{MB}.$
+
+Bear in mind the number can vary because objects can have higher overhead due to
+the additional data.
+
+## Query Execution memory Usage
+
+Query execution also uses up RAM. In some cases, intermediate results are
+aggregated to return valid query results and the query execution memory can end
+up using a large amount of RAM. Keep in mind that query execution memory
+monotonically grows in size during the execution, and it's freed once the query
+execution is done.
+
+# Configuration options to reduce memory usage
+
+Here are several tips how you can reduce memory usage and increase scalability:
+
+1. Consider removing label index by executing `DROP INDEX ON :Label;` 
+2. Consider removing label-property index by executing `DROP INDEX
+   ON :Label(property);` 
+3. If you don't have properties on relationships, disable them in the
+   configuration file by setting the `-storage-properties-on-edges` flag to
+   `false`. This can significantly reduce memory usage because effectively
+   `Edge` objects will not be created, and all information will be inlined under
+   `Vertex` objects. You can disable properties on relationships with a
+   non-empty database, if the relationships are without properties. If you need
+   help with adapting the configuration to your needs, check out the the how-to
+   guide on [changing configuration settings](/how-to-guides/config-logs.md). 
+
+You can also check our reference guide for information about [controlling memory
+usage](/reference-guide/memory-control.md), and you
+[inspect](/reference-guide/optimizing-queries/inspecting-queries.md) and
+[profile](/reference-guide/optimizing-queries/profiling-queries.md) your queries
+to devise a plan for their optimization. 

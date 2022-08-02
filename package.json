@@ -20,10 +20,13 @@
     "clsx": "^1.1.1",
     "disqus-react": "^1.0.11",
     "docusaurus-plugin-sass": "^0.2.1",
+    "hast-util-is-element": "^1.1.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-facebook-pixel": "^1.0.4",
     "react-hotjar": "^2.2.1",
+    "rehype-katex": "^5.0.0",
+    "remark-math": "^3.0.1",
     "sass": "^1.42.0"
   },
   "browserslist": {
