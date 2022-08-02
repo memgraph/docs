@@ -5,8 +5,8 @@ sidebar_label: Graph stream processing with Kafka
 ---
 
 In this tutorial, you will learn how to connect Memgraph to an existing Kafka
-stream and transform data into graph database objects to analyze it in
-real-time.
+stream using Memgraph Lab, and transform data into graph database objects to
+analyze it in real-time.
 
 [![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/streams/overview.md)
 
@@ -21,8 +21,8 @@ Now that you've covered theory, let's dive into practice!
 
 We will focus on processing real-time movie ratings that are streamed through
 MovieLens Kafka stream from the [Awesome Data
-Stream](https://awesomedata.stream/#/movielens) using Memgraph and the Cypher
-query language.
+Stream](https://awesomedata.stream/#/movielens) using Memgraph Lab and the
+Cypher query language.
 
 ## Prerequisites
 
