@@ -20,7 +20,7 @@ that directory will not be loaded when Memgraph starts.
 :::caution
 
 When working with Docker and `memgraph-platform` image, you should pass
-configuration flags inside of environmental variables, for example:
+configuration flags inside of environment variables, for example:
 
 ```terminal
 docker run -p 7687:7687 -p 7444:7444 -p 3000:3000 -e MEMGRAPH="--query-modules-directory=/usr/lib/memgraph/query_modules,/usr/lib/memgraph/my_modules" memgraph/memgraph-platform`

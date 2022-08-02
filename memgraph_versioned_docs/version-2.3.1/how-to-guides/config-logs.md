@@ -136,7 +136,7 @@ passing configuration options within the `docker run` command.
     <TabItem value="platform">
 
 If you are working with the `memgraph-platform` image, you should pass
-configuration options with environmental variables.
+configuration options with environment variables.
 
 For example, if you want to limit memory usage for the whole instance to 50 MiB
 and set the log level to `TRACE`, pass the configuration like this:

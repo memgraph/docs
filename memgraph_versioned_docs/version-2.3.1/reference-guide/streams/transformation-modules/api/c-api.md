@@ -4,9 +4,9 @@ title: Transformation modules C API
 sidebar_label: C API
 ---
 
-This is the additional API documentation for `mg_procedure.h` that contains
-declarations of all functions that can be used to implement a transformation.
-The source file can be found in the Memgraph installation directory, under
+This is the C API documentation for `mg_procedure.h` that contains declarations
+of all functions that can be used to implement a transformation. This source
+file can be found in the Memgraph installation directory, under
 `include/memgraph`. On the standard Debian installation, this will be under
 `/usr/include/memgraph`.
 
@@ -19,9 +19,8 @@ version will soon be available.
 
 :::tip
 
-For an example of how to implement transformation modules in C, check out the [C
-API
-guide](/how-to-guides/streams/kafka/implement-transformation-module.md#c-api).
+For an example of how to implement transformation modules in C, check out the
+[transformation module example](#transformation-module-example).
 
 :::
 
@@ -155,3 +154,170 @@ Return non-zero if the transformation is added successfully. Registering might
 fail if unable to allocate memory for the transformation; if `name` is not
 valid, or a transformation with the same name was already registered or if any
 other unexpected failure happens.
+
+## Transformation module example
+
+Transformations can be implemented in C/C++ using the C API provided by
+Memgraph. Such modules need to be compiled to a shared library so that they can
+be loaded when Memgraph starts. This means that you can write the
+transformations in any programming language which can work with C and can be
+compiled to the ELF shared library format.
+
+In this chapter, we assume that Memgraph is installed on a standard Debian or
+Ubuntu machine where the necessary header file can be found under
+`/usr/include/memgraph`. For other installations, the header file can be found
+under the `include/memgraph` folder in the Memgraph installation directory.
+
+As we already discussed how transformations work in the Python example, we
+won't go over the transformation itself in detail. Also, to keep the
+complexity of this example low, this transformation doesn't use the query
+parameters. 
+
+So let's create `c_transformation.cpp` and start to populate it!
+
+```cpp
+#include <exception>
+#include <string>
+
+#include "mg_procedure.h"
+
+const std::string query_part_1{"CREATE (n:MESSAGE {timestamp: '"};
+const std::string query_part_2{"', payload: '"};
+const std::string query_part_3{"', topic: '"};
+const std::string query_part_4{"'})"};
+
+std::string create_query(mgp_message &message, struct mgp_result *result) {
+  int64_t timestamp{0};
+  if (mgp_error::MGP_ERROR_NO_ERROR !=
+      mgp_message_timestamp(&message, &timestamp)) {
+    throw "Internal error!";
+  }
+
+  const char *payload{nullptr};
+  if (mgp_error::MGP_ERROR_NO_ERROR !=
+      mgp_message_payload(&message, &payload)) {
+    throw "Internal error!";
+  }
+
+  size_t payload_size{0};
+  if (mgp_error::MGP_ERROR_NO_ERROR !=
+      mgp_message_payload_size(&message, &payload_size)) {
+    throw "Internal error!";
+  }
+
+  const char *topic_name{nullptr};
+  if (mgp_error::MGP_ERROR_NO_ERROR !=
+      mgp_message_topic_name(&message, &topic_name)) {
+    throw "Internal error!";
+  }
+
+  return query_part_1 + std::to_string(timestamp) + query_part_2 +
+         std::string{payload, payload_size} + query_part_3 + topic_name +
+         query_part_4;
+}
+
+void my_c_transformation(struct mgp_messages *messages, mgp_graph *,
+                         mgp_result *result, mgp_memory *memory) {
+
+  mgp_value *null_value{nullptr};
+
+  try {
+    size_t messages_size{0};
+    if (mgp_error::MGP_ERROR_NO_ERROR !=
+        mgp_messages_size(messages, &messages_size)) {
+      return;
+    }
+
+    if (mgp_error::MGP_ERROR_NO_ERROR !=
+        mgp_value_make_null(memory, &null_value)) {
+      return;
+    }
+
+    for (auto i = 0; i < messages_size; ++i) {
+
+      mgp_message *message{nullptr};
+      if (mgp_error::MGP_ERROR_NO_ERROR !=
+          mgp_messages_at(messages, i, &message)) {
+        break;
+      }
+
+      const auto query = create_query(*message, result);
+
+      mgp_result_record *record{nullptr};
+      if (mgp_error::MGP_ERROR_NO_ERROR !=
+          mgp_result_new_record(result, &record)) {
+        break;
+      }
+
+      mgp_value *query_value{nullptr};
+      if (mgp_error::MGP_ERROR_NO_ERROR !=
+          mgp_value_make_string(query.c_str(), memory, &query_value)) {
+        break;
+      }
+
+      auto mgp_result = mgp_result_record_insert(record, "query", query_value);
+      mgp_value_destroy(query_value);
+
+      if (mgp_error::MGP_ERROR_NO_ERROR != mgp_result) {
+        static_cast<void>(
+            mgp_result_set_error_msg(result, "Couldn't insert field"));
+        break;
+      }
+
+      mgp_result = mgp_result_record_insert(record, "parameters", null_value);
+      if (mgp_error::MGP_ERROR_NO_ERROR != mgp_result) {
+        static_cast<void>(
+            mgp_result_set_error_msg(result, "Couldn't insert field"));
+        break;
+      }
+    }
+    mgp_value_destroy(null_value);
+  } catch (const std::exception &e) {
+    mgp_value_destroy(null_value);
+    static_cast<void>(mgp_result_set_error_msg(result, e.what()));
+    return;
+  }
+}
+```
+
+Now we have to register the transformation in the `mgp_init_module` function:
+
+```cpp
+extern "C" int mgp_init_module(mgp_module *module, mgp_memory *memory) {
+
+  return mgp_error::MGP_ERROR_NO_ERROR !=
+         mgp_module_add_transformation(module, "my_c_transformation",
+                                       my_c_transformation);
+}
+```
+
+Now let's compile it:
+
+```shell
+clang++ --std=c++17 -Wall -shared -fPIC -I /usr/include/memgraph c_transformation.cpp -o c_transformation.so
+```
+
+After copying the resulting `c_transformation.so` to the
+`/usr/lib/memgraph/query_modules` or `/memgraph/internal_modules` directory, we can reload the modules and check
+if Memgraph found our newly created transformation:
+
+```cypher
+CALL mg.load_all();
+```
+
+Then the transformation should show up in the list of transformations:
+
+```cypher
+CALL mg.transformations() YIELD *;
+```
+
+You should see something like this:
+
+```plaintext
++-------------------------------------------+-------------------------------------------------------+-------------+
+| name                                      | path                                                  | is_editable |
++-------------------------------------------+-------------------------------------------------------+-------------+
+| "c_transformation.my_c_transformation"    | "/usr/lib/memgraph/query_modules/c_transformation.so" | false       |
+| "transformation.my_transformation"        | "/usr/lib/memgraph/query_modules/transformation.py"   | true        |
++-------------------------------------------+-------------------------------------------------------+-------------+
+```
