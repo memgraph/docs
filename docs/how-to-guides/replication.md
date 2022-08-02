@@ -106,9 +106,9 @@ instances:
    located at IP address `172.17.0.3.` with port `10000`.
 
    When the REPLICA instance is running in SYNC mode, after committing a transaction
-   the MAIN instance will communicate send the changes to all REPLICA instances running 
+   the MAIN instance will communicate the changes to all REPLICA instances running 
    in SYNC mode and wait until it receives a response or that a timeout is reached. <br/>
-   In case of timeout, it will return an error indicating to the user that he should check the 
+   In case of timeout, it will return an error to the user indicating that he should check the 
    status of the REPLICAS as there might be a network/hardware issue.
 
    If you used any port other than `10000` while demoting a REPLICA instance,
