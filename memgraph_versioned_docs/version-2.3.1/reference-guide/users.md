@@ -58,7 +58,7 @@ DROP USER user_name;
 **`memgraph-platform` image**
 
 If you are using Docker and `memgraph-platform` image, you should pass the
-`username` and `password` environmental variables when starting Memgraph:
+`username` and `password` environment variables when starting Memgraph:
 
 ```terminal
 docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 -e MGCONSOLE="--username <username> --password <password>" memgraph/memgraph-platform

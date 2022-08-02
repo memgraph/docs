@@ -48,7 +48,7 @@ programming language (as long as your favorite programming language is either
 Now it's time to [import your data](/import-data/overview.mdx) into Memgraph and
 you can use different sources. Memgraph supports importing [CSV
 files](/import-data/csv/load-csv-clause.md), establishing [connections to data
-streams](/import-data/kafka/overview.md) with Kafka, Pulsar and Redpanda, as
+streams](/import-data/data-streams/overview.md) with Kafka, Pulsar and Redpanda, as
 well as migrating data from SQL databases like
 [PostgreSQL](/import-data/migrate/postgresql.md) and
 [MySQL](/import-data/migrate/mysql.md).
@@ -79,6 +79,15 @@ interested in using a particular Memgraph feature or you are stuck solving a
 tricky problem, try to find the solution in the [How-to
 guides](/how-to-guides/overview.md). Even more tutorials dealing with specific
 issues are available on our [Blog](https://memgraph.com/category/tutorials).
+
+#### Email courses
+
+We have created two free email courses for you. The first one covers [Cypher
+query language](https://memgraph.com/learn-cypher-query-language). By the end of
+the ten days, you'll have learned everything you need to start with Cypher and
+graph database. The second one is a [Graph modeling
+course](https://memgraph.com/learn-graph-modeling). After ten days of this
+course, you will know how to model graphs.
 
 #### Video courses
 

@@ -4,51 +4,45 @@ title: How to create a backup
 sidebar_label: Create a backup
 ---
 
+While running, Memgraph generates various files in the **data directory**,
+including the durability files - snapshots and WAL files that contain Memgraph's
+data in a recoverable format. The default data directory is `/var/lib/memgraph`,
+but you can change it in the main [Memgraph configuration
+file](/docs/memgraph/reference-guide/configuration).
+
+Snapshots are created periodically based on the value defined with the
+`--storage-snapshot-interval-sec` configuration flag in the configuration file.
+If you need help adjusting the configuration, check out [the how-to guide on
+changing the configuration](/docs/memgraph/how-to-guides/config-logs).
+
 [![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/backup.md)
 
-While running, Memgraph generates several different files in its data directory.
-This is the location where Memgraph saves all permanent data. The default data
-directory is `/var/lib/memgraph` and you can change it in the main [Memgraph
-configuration file](/docs/memgraph/reference-guide/configuration).
+To create a backup follow the steps below.
 
-The data directory includes multiple different subdirectories, one of them being
-the storage directory, which contains the durability files. In that directory,
-Memgraph periodically generates [snapshots and WAL
-files](/docs/memgraph/under-the-hood/storage) that contain Memgraph's data in a
-recoverable format.
+## 1. Create a snapshot
 
-Snapshot is created periodically based on the time defined with the
-`--storage-snapshot-interval-sec` config in the [Memgraph configuration
-file](/docs/memgraph/how-to-guides/config-logs).
-
-## 1. Creating a snapshot
-
-If you want to trigger creating a snapshot of the current database state, run
-the following query in `mgconsole` or Memgraph Lab:
+If necessary, create a snapshot of the current database state by running the
+following query in `mgconsole` or Memgraph Lab:
 
 ```cypher
 CREATE SNAPSHOT;
 ```
 
-## 2. Locking the data directory
+## 2. Lock the data directory
 
-Creating a backup of a Memgraph instance would consist of simply copying the
-data directory. This is impossible without additional help because the
-durability files can be deleted when an event is triggered (the number of
-snapshots exceeded the maximum allowed number).
+Durability files are deleted when an event is triggered, for example, exceeding
+the maximum number of snapshots.
 
-To disable this behavior, you can use the following query in `mgconsole` or
-Memgraph Lab:
+To disable this behavior, run the following query in `mgconsole` or Memgraph
+Lab:
 
 ```cypher
 LOCK DATA DIRECTORY;
 ```
 
-## 3. Copying data directory and unlocking
+## 3. Copy the data directory and unlock it
 
-The deletion of every file contained in the data directory is delayed until you
-unlock it again. You can safely copy the data directory or a single snapshot to
-another location without worrying that it will be deleted during copying.
+Copy the data directory or a single WAL or snapshot file to a backup location.
 
 <details>
   <summary>Copy files if you are using Memgraph on Linux</summary>
@@ -101,12 +95,16 @@ cp /var/lib/memgraph/snapshots/20220325125308366007_timestamp_3380 ~/backup/
 
 </details>
 
-To allow the deletion of the files, run the following query in `mgconsole` or
-Memgraph Lab::
+If you need help copying the files from the Docker container, check out the
+[Working with docker
+guide](/how-to-guides/work-with-docker.md##how-to-copy-files-from-and-to-a-docker-container).
+
+Then, run the following query in `mgconsole` or Memgraph Lab to unlock the
+directory:
 
 ```cypher
 UNLOCK DATA DIRECTORY;
 ```
 
-Memgraph will delete the files which should have been deleted before and allow
-any future deletion of the files contained in the data directory.
+Memgraph will delete the files which should have been deleted before locking and
+allow any future deletion of the durability files.

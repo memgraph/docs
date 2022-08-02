@@ -1,6 +1,4 @@
 const baseUrl = "/docs/";
-const math = require('remark-math');
-const katex = require('rehype-katex');
 
 module.exports = {
   title: "Memgraph Docs",
@@ -15,13 +13,6 @@ module.exports = {
   stylesheets: [
     "https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:500,600",
     "https://fonts.googleapis.com/css?family=Roboto:400, 500,600",
-    {
-      href: 'https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css',
-      type: 'text/css',
-      integrity:
-        'sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM',
-      crossorigin: 'anonymous',
-    },
   ],
   scripts: [
     {
@@ -457,8 +448,6 @@ module.exports = {
         docs: {
           id: "memgraph",
           path: "docs",
-          remarkPlugins: [math],
-          rehypePlugins: [katex],
           routeBasePath: "memgraph",
           sidebarPath: require.resolve("./sidebars/sidebarsMemgraph.js"),
           editUrl: "https://github.com/memgraph/docs/tree/master/",
@@ -914,10 +903,6 @@ module.exports = {
             from: ["/memgraph/database-functionalities/import-data"],
           },
           {
-            to: "/memgraph/import-data/kafka",
-            from: ["/memgraph/import-data/kafka/overview"],
-          },
-          {
             to: "/memgraph/reference-guide/query-modules/available-query-modules",
             from: [
               "/memgraph/database-functionalities/query-modules/built-in-query-modules",
@@ -961,17 +946,6 @@ module.exports = {
           {
             to: "/help-center/faq/memgraph",
             from: ["/memgraph/getting-help/faq"],
-          },
-          //Kafka redirects because of introducing other stream sources
-          {
-            to: "/memgraph/how-to-guides/streams/kafka/kafka-streams",
-            from: ["/memgraph/database-functionalities/streams/kafka-streams"],
-          },
-          {
-            to: "/memgraph/how-to-guides/streams/kafka/implement-transformation-module",
-            from: [
-              "/memgraph/database-functionalities/streams/implement-transformation-module",
-            ],
           },
           //Cypher manual redirects because of new structure
           {
@@ -1047,30 +1021,6 @@ module.exports = {
           {
             to: "/memgraph/how-to-guides",
             from: ["/memgraph/database-functionalities"],
-          },
-          {
-            to: "/memgraph/how-to-guides/streams/kafka/kafka-streams",
-            from: [
-              "/memgraph/database-functionalities/streams/kafka/kafka-streams",
-            ],
-          },
-          {
-            to: "/memgraph/how-to-guides/streams/kafka/implement-transformation-module",
-            from: [
-              "/memgraph/database-functionalities/streams/kafka/implement-transformation-module",
-            ],
-          },
-          {
-            to: "/memgraph/how-to-guides/streams/pulsar/pulsar-streams",
-            from: [
-              "/memgraph/database-functionalities/streams/pulsar/pulsar-streams",
-            ],
-          },
-          {
-            to: "/memgraph/how-to-guides/streams/pulsar/implement-transformation-module",
-            from: [
-              "/memgraph/database-functionalities/streams/pulsar/implement-transformation-module",
-            ],
           },
           {
             to: "/memgraph/how-to-guides/constraints/existence-constraint",
@@ -1320,8 +1270,25 @@ module.exports = {
           // Redirect for CSV import tool
           {
             to: "/memgraph/import-data/load-csv-clause",
-            from: ["/memgraph/import-data/csv/csv-import-tool"],
+            from: ["/memgraph/import-data/csv/csv-import-tool", "/memgraph/import-data/csv-import-tool"],
           },
+          // Redirect for the Streams
+          {
+            to: "/memgraph/import-data/data-streams/overview",
+            from: ["/memgraph/database-functionalities/streams/kafka-streams", "/memgraph/how-to-guides/streams/kafka/kafka-streams", "/memgraph/database-functionalities/streams/kafka/kafka-streams", "/memgraph/how-to-guides/streams/pulsar/pulsar-streams", "/memgraph/database-functionalities/streams/pulsar/pulsar-streams", "/memgraph/import-data/kafka", "/memgraph/import-data/kafka/overview"],
+          },
+          {
+            to: "/memgraph/reference-guide/streams/transformation-modules",
+            from: ["/memgraph/how-to-guides/streams/kafka/implement-transformation-module", "/memgraph/database-functionalities/streams/kafka/implement-transformation-module", "/memgraph/how-to-guides/streams/pulsar/implement-transformation-module", "/memgraph/database-functionalities/streams/pulsar/implement-transformation-module", "/memgraph/database-functionalities/streams/implement-transformation-module"],
+          },
+          {
+            to: "/memgraph/reference-guide/streams/transformation-modules/api/python-api",
+            from: ["/memgraph/import-data/kafka/json", "/memgraph/import-data/kafka/avro", "/memgraph/import-data/kafka/protobuf"],
+          },  
+          {
+            to: "/memgraph/import-data/data-streams/manage-streams-lab",
+            from: ["/memgraph/how-to-guides/streams/kafka/connect-to-stream-from-lab"],
+          },        
         ],
       },
     ],

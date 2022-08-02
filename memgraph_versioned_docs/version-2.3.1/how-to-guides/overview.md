@@ -9,22 +9,6 @@ How-to guides within this section serve as a cookbook for getting things done as
 fast as possible. These guides tend to provide a step-by-step guide on using
 certain Memgraph features or solving a particular problem.
 
-## Streams
-
-Memgraph can connect to existing **Kafka**, **Pulsar** and **Redpanda** streams.
-The streams use user-defined transformations to produce Cypher queries based on
-the received messages. To learn more about streams and transformations take a
-look at the following pages:
-
-- **Kafka**
-  - [Managing Kafka streams](/how-to-guides/streams/kafka/kafka-streams.md)
-  - [Implement transformation
-    modules](/how-to-guides/streams/kafka/implement-transformation-module.md)
-- **Pulsar**
-  - [Managing Pulsar streams](/how-to-guides/streams/pulsar/pulsar-streams.md)
-  - [Implement transformation
-    modules](/how-to-guides/streams/pulsar/implement-transformation-module.md)
-
 ## Inspect and profile Cypher queries
 
 Memgraph also enables you to inspect and profile the execution of a query and
@@ -41,7 +25,6 @@ guides:
 
 - [Existence constraint](/how-to-guides/constraints/existence-constraint.md)
 - [Uniqueness constraint](/how-to-guides/constraints/uniqueness-constraint.md)
-
 
 ## Change configuration and access logs
 
@@ -93,7 +76,6 @@ of the files containing its data:
 
 - [How to create a backup?](/how-to-guides/create-backup.md)
 
-
 ## User privileges
 
 Memgraph comes with the option of granting, denying, or revoking a certain set
@@ -116,13 +98,11 @@ make it easier to accomplish tasks within Memgraph:
 
 - [Work with Docker](/how-to-guides/work-with-docker.md)
 
+## Set up triggers
 
-## Triggers
+Memgraph supports database triggers that can be executed if a particular type of event occurs. Events are related to changes in the data, such as created, updated, and deleted nodes or relationships. 
 
-Memgraph supports running openCypher statements after a certain event happens
-during transaction execution, i.e. triggers:
-
-- [Triggers](/reference-guide/triggers.md)
+- [How to setup triggers](/how-to-guides/set-up-triggers.md)
 
 ## Use Font Awesome icons for node images
 
