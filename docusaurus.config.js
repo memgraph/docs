@@ -1317,6 +1317,11 @@ module.exports = {
             to: "/memgraph/reference-guide/built-in-graph-algorithms",
             from: ["/memgraph/reference-overview/graph-algorithms", "/memgraph/concepts-overview/graph-algorithms", "/memgraph/concepts/graph-algorithms", "/memgraph/under-the-hood/graph-algorithms", "/memgraph/reference-guide/graph-algorithms"],
           },
+          // Redirect for CSV import tool
+          {
+            to: "/memgraph/import-data/load-csv-clause",
+            from: ["/memgraph/import-data/csv/csv-import-tool"],
+          },
         ],
       },
     ],
