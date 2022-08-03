@@ -85,7 +85,7 @@ sent back a response, then the MAIN instance will return an error to the user.<b
 The error indicates that the user should check the status of the REPLICAs
 as there might be a network/hardware issue.
 
-The following diagrams express the behavior in case a SYNC REPLICA would not answer within the expected timeout.
+The following diagrams express the behavior in cases when SYNC REPLICA doesn't answer within the expected timeout.
 
 #### SYNC REPLICA going down when creating index, uniqueness constraint or existence constraint
 
