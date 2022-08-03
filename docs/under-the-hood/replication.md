@@ -83,7 +83,7 @@ thread waits for the response and cannot continue until the response is
 received or a timeout is reached. If the timeout is reached and at least one SYNC REPLICA has not
 sent back a response, then the MAIN instance will return an error to the user.<br/>
 The error indicates that the user should check the status of the REPLICAs
-as there might be a network/hardware issue.
+as there might be a network or hardware issue.
 
 The following diagrams express the behavior in cases when SYNC REPLICA doesn't answer within the expected timeout.
 
