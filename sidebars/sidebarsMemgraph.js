@@ -177,10 +177,10 @@ module.exports = {
       label: "Reference guide",
       link: { type: "doc", id: "reference-guide/overview" },
       items: [
-        "reference-guide/backup",
         "reference-guide/built-in-graph-algorithms",
         "reference-guide/memory-control",
         "reference-guide/configuration",
+        "reference-guide/backup",
         "reference-guide/data-types",
         {
           type: "category",

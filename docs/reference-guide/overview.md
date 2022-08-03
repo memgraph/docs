@@ -7,11 +7,6 @@ slug: /reference-guide
 
 The **Memgraph** reference guide contains the details of implemented features.
 
-## [Backup](/reference-guide/backup.md)
-
-Memgraph comes with a couple of queries that allow you to safely make a backup
-of the files containing its data.
-
 ## [Built-in graph algorithms](/reference-guide/graph-algorithms.md)
 
 Memgraph comes with custom-built algorithms that are implemented using C++:
@@ -22,6 +17,12 @@ shortest path**.
 
 Memgraph can be configured by editing the Memgraph configuration file or by
 including another configuration file.
+
+## [Data durability and backup](/reference-guide/backup.md)
+
+Memgraph uses snapshots and WAL to ensure the durability of the stored data and
+it comes with a couple of queries that allow you to safely make a backup of
+these files.
 
 ## [Data types](/reference-guide/data-types.md)
 
