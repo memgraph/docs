@@ -51,7 +51,7 @@ sidebar_label: Changelog
   [#448](https://github.com/memgraph/memgraph/pull/448)
 - Fixed handling `ROUTE` Bolt message. Memgraph didn't handle the fields of
   `ROUTE` message properly. Therefore the session might be stuck in a state
-  where even the `RESET` message did not help. With this fix,  sending a `RESET`
+  where even the `RESET` message did not help. With this fix, sending a `RESET`
   message will properly reset the session.
   [#475](https://github.com/memgraph/memgraph/pull/475)
 
