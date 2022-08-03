@@ -108,7 +108,7 @@ instances:
    When the REPLICA instance is running in SYNC mode, once the MAIN instance commits a transaction, it will
    communicate the changes to all REPLICA instances running 
    in SYNC mode and wait until it receives a response that the changes have been applied to the REPLICAs or that a timeout has been reached. <br/>
-   In case of timeout, it will return an error to the user indicating that he should check the 
+   In the case of a timeout, the MAIN instance will return an error to the user proposing a check of the 
    status of the REPLICAS as there might be a network/hardware issue.
 
    If you used any port other than `10000` while demoting a REPLICA instance,
