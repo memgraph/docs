@@ -49,12 +49,12 @@ The replication mode defines the terms by which the MAIN instance can commit the
 changes to the database, thus modifying the system to prioritize either
 consistency or availability:
 
-- **SYNC** - After committing a transaction, the MAIN instance will communicate to
-all REPLICA instances running in the SYNC mode until the response is received or until
- a timeout is reached. If the timeout is reached and at least one SYNC REPLICA has not
-sent back a response, then the MAIN instance will then return an error to the user.<br/> 
-The error indicates to the user that he should check the status of the REPLICAS
-as there might be a network/hardware issue.
+- **SYNC** - After committing a transaction, the MAIN instance will communicate the changes 
+to all REPLICA instances running in SYNC mode and wait until it receives a response or that 
+a timeout is reached. <br/>
+In case of timeout, it will return an error to the user indicating that he should check the 
+status of the REPLICAS as there might be a network/hardware issue.
+the MAIN instance will communicate to
 
 - **ASYNC** - The MAIN instance will commit a transaction without receiving
   confirmation from REPLICA instances that they have received the same
