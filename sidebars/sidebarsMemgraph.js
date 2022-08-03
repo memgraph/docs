@@ -214,7 +214,6 @@ module.exports = {
             "reference-guide/optimizing-queries/profiling-queries",
           ],
         },
-        "reference-guide/isolation-levels",
         "reference-guide/metadata",
         "reference-guide/monitoring-server",
         {
@@ -257,6 +256,7 @@ module.exports = {
           ],
         },
         //"reference-guide/tensorflow",
+        "reference-guide/transactions",
         "reference-guide/encryption",
         "reference-guide/triggers",
         "reference-guide/users",
