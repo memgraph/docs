@@ -1,7 +1,7 @@
 ---
 id: cypherl
 title: Importing Cypher queries (.cypherl format)
-sidebar_label: Cypher queries (.cypherl format)
+sidebar_label: .cypherl
 pagination_prev: import-data/overview
 ---
 import Tabs from "@theme/Tabs"; import TabItem from "@theme/TabItem";
@@ -23,8 +23,9 @@ Please check the examples below to find out how to use import data using the
 
 Below, you can find two examples of how to import data within the `.cypher` file
 based on the complexity of your data:
-- [One type of nodes and relationships](#one-type-of-nodes-and-relationships)
-- [Multiple types of nodes and
+- [Examples](#examples)
+  - [One type of nodes and relationships](#one-type-of-nodes-and-relationships)
+  - [Multiple types of nodes and relationships](#multiple-types-of-nodes-and-relationships)
   relationships](#multiple-types-of-nodes-and-relationships)
 
 ### One type of nodes and relationships

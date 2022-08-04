@@ -1,7 +1,7 @@
 ---
 id: load-csv-clause
 title: LOAD CSV Cypher clause
-sidebar_label: CSV files
+sidebar_label: CSV
 pagination_prev: import-data/overview
 slug: /import-data/load-csv-clause
 ---
