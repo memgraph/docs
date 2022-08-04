@@ -29,6 +29,7 @@ sidebar_label: Changelog
 - Query `REGISTER REPLICA replica_name SYNC` no longer supports `TIMEOUT` parameter. To mimic the previous behavior of `REGISTER REPLICA replica_name SYNC WITH TIMEOUT 1`, one should use `REGISTER REPLICA replica_name ASYNC` instead. [#423](https://github.com/memgraph/memgraph/pull/423)
 - Make behavior more [openCypher](http://opencypher.org/) compliant regarding checking against `NULL` values is `CASE` expressions. [#432](https://github.com/memgraph/memgraph/pull/432)
 - Previously registered replicas are automatically registered on restart of Memgraph. [#415](https://github.com/memgraph/memgraph/pull/415)
+- Add new command `SHOW CONFIG` that returns the configuration of the currently running Memgraph instance. [#459](https://github.com/memgraph/memgraph/pull/459)
 
 
 ## v2.2.1 - Mar 17, 2022
