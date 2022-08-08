@@ -42,8 +42,8 @@ docker run -i --entrypoint=mgconsole memgraph/memgraph-platform --host HOST < qu
 ```
 
 Remember to replace `HOST` with [valid IP of the
-container](/how-to-guides/work-with-docker.md) and
-to define the correct Memgraph Docker image you are using. 
+container](/memgraph/how-to-guides/work-with-docker) and to define the
+correct Memgraph Docker image you are using. 
 
 Below, you can find two examples of how to import data within the `.cypherl` file
 based on the complexity of your data:
@@ -95,7 +95,7 @@ command, but be careful of four things:
    </ul>
    <p> </p>
    <li>Remember to replace <code>HOST</code> with a valid IP of the container (see the 
-   <a href="/how-to-guides/work-with-docker.md"><i>How to retrieve a Docker container IP address?</i> section for Docker users</a>).</li>
+   <a href="/memgraph/how-to-guides/work-with-docker"><i>How to retrieve a Docker container IP address?</i> section for Docker users</a>).</li>
    <p> </p>
  <li>Check that the paths of the files you want to import are correct.</li>
 </ol>
@@ -195,7 +195,7 @@ command, but be careful of four things:
    </ul>
    <p> </p>
    <li>Remember to replace <code>HOST</code> with a valid IP of the container (see the 
-   <a href="/how-to-guides/work-with-docker.md"><i>How to retrieve a Docker container IP address?</i> section for Docker users</a>).</li>
+   <a href="/memgraph/how-to-guides/work-with-docker"><i>How to retrieve a Docker container IP address?</i> section for Docker users</a>).</li>
    <p> </p>
  <li>Check that the paths of the files you want to import are correct.</li>
 </ol>
