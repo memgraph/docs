@@ -14,7 +14,9 @@ using [Memgraph Lab](cloud-connect#connect-with-memgraph-lab),
 [drivers](cloud-connect#connect-with-drivers). All connections use SSL
 encryption with a self-signed certificate. 
 
-<img src={require('./data/cloud.png').default}/>
+
+![Cloud-Img](./data/cloud-img.svg)
+
 
 Use Memgraph Cloud to stream data into Memgraph in real-time and run complex
 graph algorithms and modules developed within the [MAGE](/docs/mage) repository,
