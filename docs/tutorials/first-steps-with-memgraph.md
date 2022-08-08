@@ -12,8 +12,6 @@ This tutorial is also available as a video on Memgraph's YouTube channel:
 
 [![How To Install Memgraph Platform](../data/tutorials/first-steps/yt-video-preview.png)](https://www.youtube.com/watch?v=6qYsAMisqQg "How To Install Memgraph Platform")
 
-[![How To Install Memgraph Platform](https://cdn.hashnode.com/res/hashnode/image/upload/v1659606110565/8f6Wd_nN9.png align="left")](https://www.youtube.com/watch?v=6qYsAMisqQg "How To Install Memgraph Platform")
-
 Let's get started!
 
 ## Prerequisites 
