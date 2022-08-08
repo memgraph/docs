@@ -197,21 +197,6 @@ module.exports = {
             "reference-guide/deployment/kubernetes",
           ],
         },
-        {
-          type: "category",
-          label: "Import Data",
-          link: { type: "doc", id: "reference-guide/import-data/overview" },
-          items: [
-            {
-              type: "category",
-              label: "CSV",
-              items: [
-                "reference-guide/import-data/load-csv-clause",
-              ],
-            },
-            "reference-guide/import-data/cypherl",
-          ],
-        },
         "reference-guide/indexing",
         {
           type: "category",

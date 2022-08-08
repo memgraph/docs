@@ -34,7 +34,7 @@ Lab or mgconsole](/import-data/files/cypherl.md).
 
 ## How to migrate data from a relational database?
 
-You can migrate data from a [**MySQL**](/import-data/migrate/mysql.md") or
+You can migrate data from a [**MySQL**](/import-data/migrate/mysql.md) or
 [**PostgresSQL**](/import-data/migrate/postgresql.md) database using the
 [`**mgmigrate**` tool](https://github.com/memgraph/mgmigrate).
 

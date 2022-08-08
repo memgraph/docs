@@ -38,11 +38,6 @@ Check what data types are supported by Memgraph.
 Deploy your application with Memgraph as a part of your [Docker Compose file](/reference-guide/deployment/docker.md)
 or use a [Helm Chart](/reference-guide/deployment/kubernetes.md) to make Memgraph part of your Kubernetes cluster.
 
-## [Import data](./import-data/overview.md)
-
-Memgraph offers painless import of data from CSV files or Cypher queries within
-a .cypherl format file.
-
 ## [Indexing](./indexing.md)
 
 An index stores additional information on certain types of data, so that

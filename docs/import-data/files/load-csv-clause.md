@@ -80,7 +80,7 @@ When using the `LOAD CSV` clause please keep in mind:
   the parsed row values to the appropriate type. This can be done using the
   built-in conversion functions such as `ToInteger`, `ToFloat`, `ToBoolean` etc.
   Consult the documentation on [the available conversion
-  functions](/cypher-manual/functions.md).
+  functions](/cypher-manual/functions).
 
 - **The `LOAD CSV` clause is not a standalone clause**, which means that a valid query
   must contain at least one more clause, for example:
@@ -618,6 +618,3 @@ Congratulations! You've imported all the CSV files!
 
 </TabItem>
 </Tabs>
-
-<!--- For the clause syntax, please check the [Cypher
-manual](/cypher-manual/clauses/load-csv). --->

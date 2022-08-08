@@ -42,7 +42,7 @@ docker run -i --entrypoint=mgconsole memgraph/memgraph-platform --host HOST < qu
 ```
 
 Remember to replace `HOST` with [valid IP of the
-container](/how-to-guides/work-with-docker.md#docker-container-ip-address) and
+container](/how-to-guides/work-with-docker.md) and
 to define the correct Memgraph Docker image you are using. 
 
 Below, you can find two examples of how to import data within the `.cypherl` file
@@ -82,7 +82,7 @@ relationships between these nodes.
   ]}>
   <TabItem value="docker">
 
-If you installed Memgraph with Docker, run the client using the following
+If you installed Memgraph using Docker, run the client using the following
 command, but be careful of four things:
 <ol>
   <li>Use the first command in Docker installed on Linux and macOS, but use the second command in Windows because PowerShell doesn't support the &lt; character.</li>
@@ -95,7 +95,7 @@ command, but be careful of four things:
    </ul>
    <p> </p>
    <li>Remember to replace <code>HOST</code> with a valid IP of the container (see the 
-   <a href="../how-to-guides/work-with-docker#how-to-retrieve-a-docker-container-ip-address"> Note for Docker users</a>).</li>
+   <a href="/how-to-guides/work-with-docker.md"><i>How to retrieve a Docker container IP address?</i> section for Docker users</a>).</li>
    <p> </p>
  <li>Check that the paths of the files you want to import are correct.</li>
 </ol>
@@ -189,13 +189,13 @@ command, but be careful of four things:
   <p> </p>
   <li>Check the image name you are using is correct:</li>
   <ul>
-     <li>If you downloaded <b>Memgraph Platform</b> leave the current image name <code>memgraph/memgraph-platform</code>.</li>
-     <li>If you downloaded <b>MemgraphDB</b> replace the current image name with <code>memgraph/memgraph</code>.</li>
-     <li>If you downloaded <b>MAGE</b> replace the current image name with <code>memgraph/memgraph-mage</code>.</li>
+     <li>If you downloaded <b>Memgraph Platform</b>, leave the current image name <code>memgraph/memgraph-platform</code>.</li>
+     <li>If you downloaded <b>MemgraphDB</b>, replace the current image name with <code>memgraph/memgraph</code>.</li>
+     <li>If you downloaded <b>MAGE</b>, replace the current image name with <code>memgraph/memgraph-mage</code>.</li>
    </ul>
    <p> </p>
    <li>Remember to replace <code>HOST</code> with a valid IP of the container (see the 
-   <a href="../how-to-guides/work-with-docker#how-to-retrieve-a-docker-container-ip-address"> Note for Docker users</a>).</li>
+   <a href="/how-to-guides/work-with-docker.md"><i>How to retrieve a Docker container IP address?</i> section for Docker users</a>).</li>
    <p> </p>
  <li>Check that the paths of the files you want to import are correct.</li>
 </ol>
