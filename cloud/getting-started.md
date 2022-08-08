@@ -46,8 +46,7 @@ If you are looking for a quick start, take a look at our short tutorial.
 
 [![Getting started with Memgraph Cloud and Memgraph Lab](./data/yt-cloud-getting-started-preview.png)](https://www.youtube.com/watch?v=Hfs2lGTwyuo "Getting started with Memgraph Cloud and Memgraph Lab")
 
-For more detailed explanation of Memgraph Cloud, take a look at demo video made for the launch that will take you through it's
-features: 
+For a more detailed explanation of Memgraph Cloud, take a look at the demo video made for the launch that will take you through it's features:
 
 [<img alt="memgraph_cloud" src={require('./data/cloud-login.png').default} style={{width:'30%'}}/>](https://youtu.be/Tt5KPKylU8k?t=683 "Get started with Memgraph Cloud")
 
