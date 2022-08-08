@@ -16,22 +16,21 @@ There are a few methods for importing data into Memgraph and they cover:
 
 ## How to import CSV files into Memgraph?
 
-The easiest way to import data into Memgraph is to use the [**LOAD CSV
-clause**](/import-data/csv/load-csv-clause.md), which is used as a standard Cypher
-clause, and can be invoked straight from a running Memgraph instance.
-
+To import data from CSV files into Memgraph, use the [**LOAD CSV
+clause**](/import-data/files/load-csv-clause.md), which is used as a standard
+Cypher clause, and can be invoked straight from a running Memgraph instance.
 
 ## How to import JSON files into Memgraph?
 
 You can import the JSON file into Memgraph by using the [**JSON query
-module**](/import-data/json/load-json.md), which has procedures for loading JSON
-file from local file or remote address.
+module**](/import-data/files/load-json.md), which has procedures for loading JSON
+file from a local file  from a remote address.
 
 ## How to import .cypherl files with Cypher queries into Memgraph?
 
 If your data is in the form of Cypher queries (`CREATE` and `MERGE` clauses)
-within a **.cypherl** file it can be [imported via mgconsole or Memgraph
-Lab](/import-data/cypherl.md).
+within a **.cypherl** file it can be [imported via Memgraph
+Lab or mgconsole](/import-data/files/cypherl.md).
 
 ## How to migrate data from a relational database?
 
@@ -48,8 +47,9 @@ wizard](/import-data/data-streams/manage-streams-lab.md).
 
 ## How to import data directly from an application or a program?
 
-Memgraph offers a wide range of drivers that can be used to connect directly to the platform. You can find a list of all the supported
-connection methods [here](/connect-to-memgraph/drivers/overview.md).
+Memgraph offers a wide range of drivers that can be used to connect directly to
+the platform. You can find a list of all the supported connection methods
+[here](/connect-to-memgraph/drivers/overview.md).
 
 ## Where to next?
 

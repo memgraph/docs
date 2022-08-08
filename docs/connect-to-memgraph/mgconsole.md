@@ -179,4 +179,4 @@ lessons can also be explored in the [Tutorials](/tutorials/overview.md) section,
 and knowledge about Cypher is gathered in the [Cypher manual](/cypher-manual).
 
 If you are all good to go on your own - [import your
-data](/import-data/overview.mdx)!
+data](/import-data/overview.md)!

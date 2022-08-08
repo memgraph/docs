@@ -6,31 +6,54 @@ pagination_prev: import-data/overview
 ---
 import Tabs from "@theme/Tabs"; import TabItem from "@theme/TabItem";
 
-When Memgraph is running, Cypher queries are imported by running
-[mgconsole](/connect-to-memgraph/mgconsole.md) in non-interactive mode and
+If your data is in the form of Cypher queries (`CREATE` and `MERGE` clauses)
+within a **.cypherl** file it can be imported via Memgraph
+Lab or mgconsole.
+
+The benefit of importing data using the `.cypherl` file is that you need only
+one file to import both nodes and relationships. But it can be tricky to
+actually write the queries for creating nodes and relationships yourself. If you
+haven't written any queries yet, check our [Cypher manual](/cypher-manual).
+
+## Importing via Memgraph Lab
+
+Once you Memgraph instance in running and you've connected to it via Memgraph
+Lab, go to the **Import & Export** section. To **Import Data** select the
+.cypherl file or drag and drop it into Memgraph Lab. 
+
+## Importing via mgconsole
+
+Once Memgraph is running, Cypher queries are imported by running
+[mgconsole](/connect-to-memgraph/mgconsole.md) in a non-interactive mode and
 importing data saved in a `.cypherl` file. 
 
-The great thing about importing data with the `.cypherl` file is that you need
-only one file to cover both nodes and relationships. But it can be tricky to
-actually write the queries for creating nodes and relationships yourself. If you
-haven't written any queries yet, we highly suggest you check our [Cypher
-manual](/cypher-manual).
+You can import queries saved in e.g. `queries.cypherl` by issuing the following
+shell command:
 
-Please check the examples below to find out how to use import data using the
-`.cypherl` file based on the complexity of your data.
+```plaintext
+mgconsole < queries.cypherl
+```
 
-## Examples
+If you installed and started Memgraph using Docker, you will need to run the
+client using the following command:
 
-Below, you can find two examples of how to import data within the `.cypher` file
+```plaintext
+docker run -i --entrypoint=mgconsole memgraph/memgraph-platform --host HOST < queries.cypherl
+```
+
+Remember to replace `HOST` with [valid IP of the
+container](/how-to-guides/work-with-docker.md#docker-container-ip-address) and
+to define the correct Memgraph Docker image you are using. 
+
+Below, you can find two examples of how to import data within the `.cypherl` file
 based on the complexity of your data:
-- [Examples](#examples)
-  - [One type of nodes and relationships](#one-type-of-nodes-and-relationships)
-  - [Multiple types of nodes and relationships](#multiple-types-of-nodes-and-relationships)
-  relationships](#multiple-types-of-nodes-and-relationships)
+
+- [One type of nodes and relationships](#one-type-of-nodes-and-relationships) 
+- [Multiple types of nodes and relationships](#multiple-types-of-nodes-and-relationships) 
 
 ### One type of nodes and relationships
 
-Copy the following into a `queries.cypherl` file:
+Let's import data from `queries.cypherl` file with the following content:
 
 ```plaintext
 CREATE (:Person {id: "100", name: "Daniel", age: 30, city: "London"});
@@ -47,10 +70,8 @@ MATCH (u:Person), (v:Person) WHERE u.id = "103" AND v.id = "101" CREATE (u)-[:IS
 MATCH (u:Person), (v:Person) WHERE u.id = "104" AND v.id = "100" CREATE (u)-[:IS_FRIENDS_WITH]->(v);
 ```
 
-The first five queries create nodes for people and the rest of the queries create
-relationships between nodes. After you have prepared your queries, you can
-import them with the command below or drag and drop them using the
-**Dataset** tab in **Memgraph Lab**.
+The first five queries create nodes for people, and the rest of the queries create
+relationships between these nodes.
 
 <Tabs
   groupId="platform"
@@ -69,7 +90,7 @@ command, but be careful of four things:
   <li>Check the image name you are using is correct:</li>
   <ul>
      <li>If you downloaded <b>Memgraph Platform</b>, leave the current image name <code>memgraph/memgraph-platform</code>.</li>
-     <li>If you downloaded <b>MemgraphDB</b>, replace the current image name with <code>memgraph</code>.</li>
+     <li>If you downloaded <b>MemgraphDB</b>, replace the current image name with <code>memgraph/memgraph</code>.</li>
      <li>If you downloaded <b>MAGE</b>, replace the current image name with <code>memgraph/memgraph-mage</code>.</li>
    </ul>
    <p> </p>
@@ -114,13 +135,13 @@ mgconsole --help
 <details>
   <summary>This is how the graph should look like in Memgraph after the import:</summary>
   <div>
-    <img src={require('../data/import-data/cypherl_one_type_nodes_and_relationships.png').default}/>
+    <img src={require('../../data/import-data/cypherl_one_type_nodes_and_relationships.png').default}/>
   </div>
 </details>
 
 ### Multiple types of nodes and relationships
 
-Copy the following into `queries.cypherl` file:
+Let's import data from `queries.cypherl` file with the following content:
 
 ```plaintext
 CREATE (p:Person {id: "100", name: "Daniel", age: 30, city: "London"});
@@ -128,7 +149,7 @@ CREATE (p:Person {id: "101", name: "Alex", age: 15, city: "Paris"});
 CREATE (p:Person {id: "102", name: "Sarah", age: 17, city: "London"});
 CREATE (p:Person {id: "103", name: "Mia", age: 25, city: "Zagreb"});
 CREATE (p:Person {id: "104", name: "Lucy", age: 21, city: "Paris"});
-CREATE (r:Restaurant {id: "200", name: "Mc Donalds", menu: "Fries BigMac McChicken Apple Pie"});
+CREATE (r:Restaurant {id: "200", name: "McDonalds", menu: "Fries BigMac McChicken Apple Pie"});
 CREATE (r:Restaurant {id: "201", name: "KFC", menu: "Fried Chicken Fries Chicken Bucket"});
 CREATE (r:Restaurant {id: "202", name: "Subway", menu: "Ham Sandwich Turkey Sandwich Foot-long"});
 CREATE (r:Restaurant {id: "203", name: "Dominos", menu: "Pepperoni Pizza Double Dish Pizza Cheese filled Crust"});
@@ -142,19 +163,15 @@ MATCH (u:Person), (v:Restaurant) WHERE u.id = "100" AND v.id = "200" CREATE (u)-
 MATCH (u:Person), (v:Restaurant) WHERE u.id = "102" AND v.id = "202" CREATE (u)-[:ATE_AT {liked: false}]->(v);
 MATCH (u:Person), (v:Restaurant) WHERE u.id = "102" AND v.id = "203" CREATE (u)-[:ATE_AT {liked: false}]->(v);
 MATCH (u:Person), (v:Restaurant) WHERE u.id = "102" AND v.id = "200" CREATE (u)-[:ATE_AT {liked: true}]->(v);
-MATCH (u:Person), (v:Restraunt) WHERE u.id = "103" AND v.id = "201" CREATE (u)-[:ATE_AT {liked: true}]->(v);
+MATCH (u:Person), (v:Restaurant) WHERE u.id = "103" AND v.id = "201" CREATE (u)-[:ATE_AT {liked: true}]->(v);
 MATCH (u:Person), (v:Restaurant) WHERE u.id = "104" AND v.id = "201" CREATE (u)-[:ATE_AT {liked: false}]->(v);
 MATCH (u:Person), (v:Restaurant) WHERE u.id = "101" AND v.id = "200" CREATE (u)-[:ATE_AT {liked: true}]->(v);
 ```
 
-The first five queries create nodes for people, the following four queries
-create nodes for restaurants. The last CREATE queries are used to define
-relationships between nodes. As said before, you can define all of the different
-types of nodes and relationships in one file.
-
-After you have prepared your queries, you can
-import them with the command below or drag and drop them using the
-**Dataset** tab in **Memgraph Lab**.
+The first five queries create nodes for people, and the following four queries
+create nodes for restaurants. The rest of the queries are used to define
+relationships between nodes. As said before, you can define different types of
+nodes and relationships in one file.
 
 <Tabs
   groupId="platform"
@@ -173,7 +190,7 @@ command, but be careful of four things:
   <li>Check the image name you are using is correct:</li>
   <ul>
      <li>If you downloaded <b>Memgraph Platform</b> leave the current image name <code>memgraph/memgraph-platform</code>.</li>
-     <li>If you downloaded <b>MemgraphDB</b> replace the current image name with <code>memgraph</code>.</li>
+     <li>If you downloaded <b>MemgraphDB</b> replace the current image name with <code>memgraph/memgraph</code>.</li>
      <li>If you downloaded <b>MAGE</b> replace the current image name with <code>memgraph/memgraph-mage</code>.</li>
    </ul>
    <p> </p>
@@ -220,6 +237,6 @@ mgconsole --help
 <details>
   <summary>This is how the graph should look like in Memgraph after the import:</summary>
   <div>
-    <img src={require('../data/import-data/cypherl_multiple_type_nodes_and_relationships.png').default}/>
+    <img src={require('../../data/import-data/cypherl_multiple_type_nodes_and_relationships.png').default}/>
   </div>
 </details>

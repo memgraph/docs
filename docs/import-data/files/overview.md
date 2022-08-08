@@ -1,12 +1,12 @@
 ---
 id: overview
-title: Import data from CSV files
+title: Import data from various file formats into Memgraph
 ---
 
-If your data is in CSV format, you can import it into the Memgraph database
-using [**`LOAD CSV` Cypher clause**](./load-csv-clause.md). 
+At the moment, Memgraph supports importing data from:
 
-Once you have a running Memgraph instance, you can trigger data import from a
-designated CSV file. Import populates the database if it is empty, or appends
-new data to an existing dataset.
+- **CSV files** with [LOAD CSV clause](/import-data/files/load-csv-clause.md)
+- **JSON files** with [JSON query module](/import-data/files/load-json.md)  
+- **.cypherl files** via [Memgraph Lab or mgconsole](/import-data/files/cypherl.md)
+
 

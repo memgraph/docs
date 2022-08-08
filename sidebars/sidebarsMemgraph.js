@@ -85,7 +85,16 @@ module.exports = {
       label: "Import data",
       link: { type: "doc", id: "import-data/overview" },
       items: [
-        "import-data/csv/load-csv-clause",
+        {
+          type: "category",
+          label: "Import data from files",
+          link: { type: "doc", id: "import-data/files/overview" },
+          items: [
+            "import-data/files/load-csv-clause",
+            "import-data/files/load-json",
+            "import-data/files/cypherl",
+          ],
+        },
         {
           type: "category",
           label: "Connect to data streams",
@@ -103,8 +112,6 @@ module.exports = {
             "import-data/migrate/postgresql",
           ],
         },
-        "import-data/cypherl",
-        "import-data/json/load-json",
       ],
     },
     {
