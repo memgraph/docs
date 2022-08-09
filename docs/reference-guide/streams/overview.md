@@ -252,7 +252,7 @@ the transaction is committed to the database.
 A stream can fail for various reasons. One important type of failure is when a
 transaction (in which the returned queries of the transformation are executed)
 fails to commit because of another conflicting transaction. This is a side
-effect of [isolation levels](/reference-guide/isolation-levels.md) and can be
+effect of [isolation levels](/reference-guide/transactions.md#isolation-levels) and can be
 remedied by the following Memgraph flag:
 
 ```

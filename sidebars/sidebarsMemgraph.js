@@ -184,10 +184,10 @@ module.exports = {
       label: "Reference guide",
       link: { type: "doc", id: "reference-guide/overview" },
       items: [
-        "reference-guide/backup",
         "reference-guide/built-in-graph-algorithms",
         "reference-guide/memory-control",
         "reference-guide/configuration",
+        "reference-guide/backup",
         "reference-guide/data-types",
         {
           type: "category",
@@ -206,7 +206,6 @@ module.exports = {
             "reference-guide/optimizing-queries/profiling-queries",
           ],
         },
-        "reference-guide/isolation-levels",
         "reference-guide/metadata",
         "reference-guide/monitoring-server",
         {
@@ -249,6 +248,7 @@ module.exports = {
           ],
         },
         //"reference-guide/tensorflow",
+        "reference-guide/transactions",
         "reference-guide/encryption",
         "reference-guide/triggers",
         "reference-guide/users",
