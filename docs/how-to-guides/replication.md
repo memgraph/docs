@@ -109,7 +109,7 @@ instances:
    communicate the changes to all REPLICA instances running 
    in SYNC mode and wait until it receives a response that the changes have been applied to the REPLICAs or that a timeout has been reached. <br/>
    In the case of a timeout, the MAIN instance will return an error to the user proposing a check of the 
-   status of the REPLICAs' statuses as there might be network or hardware issues.
+   REPLICAs' statuses as there might be network or hardware issues.
 
    If you used any port other than `10000` while demoting a REPLICA instance,
    you will need to specify it like this: "172.17.0.3:5000"
