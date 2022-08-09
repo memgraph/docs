@@ -44,8 +44,9 @@ docker run -i --entrypoint=mgconsole memgraph/memgraph-platform --host HOST < qu
 ```
 
 Remember to replace `HOST` with [valid IP of the
-container](/memgraph/how-to-guides/work-with-docker#how-to-retrieve-a-docker-container-ip-address) and to define the
-correct Memgraph Docker image you are using. 
+container](/memgraph/how-to-guides/work-with-docker#how-to-retrieve-a-docker-container-ip-address)
+and to define the correct Memgraph Docker image you are using as well as the
+correct path to the file. 
 
 Below, you can find two examples of how to import data within the `.cypherl` file
 based on the complexity of your data:
@@ -208,7 +209,7 @@ command, but be careful of four things:
 docker run -i --entrypoint=mgconsole memgraph/memgraph-platform --host HOST < queries.cypherl
 ```
 
-**Windows**
+**Windows Powershell**
 
 ```console
 cmd.exe /c "docker run -i --entrypoint=mgconsole memgraph/memgraph-platform --host HOST < queries.cypherl"
