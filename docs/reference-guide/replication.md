@@ -53,7 +53,6 @@ consistency or availability:
 to all REPLICA instances running in SYNC mode and wait until it receives a response or that 
 a timeout is reached. <br/>
 In the case of a timeout, it will return an error to the user indicating that he should check the MAIN instance will return an error to the user proposing a check of  REPLICAs' statuses as there might be network or hardware issues.
-status of the REPLICAS as there might be a network/hardware issue.
 
 - **ASYNC** - The MAIN instance will commit a transaction without receiving
   confirmation from REPLICA instances that they have received the same
