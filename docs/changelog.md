@@ -14,6 +14,8 @@ sidebar_label: Changelog
 - Adapted compilation flag so that the memory allocator uses JEMALLOC while counting allocated memory. [#401](https://github.com/memgraph/memgraph/pull/401)
 - `toString` function is now able to accept `Date`, `LocalTime`, `LocalDateTime` and `Duration` data types. [#429](https://github.com/memgraph/memgraph/pull/429)
 - Aggregation functions now return the openCypher-compliant results on `null` input and display the correct behavior when grouped with other operators. [#448](https://github.com/memgraph/memgraph/pull/448)
+- Corrected inconsistencies and incorrect behavior with regards to sync replicas. For more detail about the behavior, please check [Under the
+Hood](/under-the-hood/replication.md). [#448](https://github.com/memgraph/memgraph/pull/435)
 
 ### Major Features and Improvements
 
