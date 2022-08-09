@@ -105,7 +105,7 @@ instances:
    REPLICA instance 1 is called REP1, its replication mode is SYNC, and it is
    located at IP address `172.17.0.3.` with port `10000`.
 
-   When the REPLICA instance is running in SYNC mode, once the MAIN instance commits a transaction, it will
+   Once the MAIN instance commits a transaction, it will
    communicate the changes to all REPLICA instances running 
    in SYNC mode and wait until it receives a response that the changes have been applied to the REPLICAs or that a timeout has been reached. <br/>
    In the case of a timeout, the MAIN instance will return an error to the user proposing a check of the 
