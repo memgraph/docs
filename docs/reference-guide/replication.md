@@ -54,7 +54,6 @@ to all REPLICA instances running in SYNC mode and wait until it receives a respo
 a timeout is reached. <br/>
 In case of timeout, it will return an error to the user indicating that he should check the 
 status of the REPLICAS as there might be a network/hardware issue.
-the MAIN instance will communicate to
 
 - **ASYNC** - The MAIN instance will commit a transaction without receiving
   confirmation from REPLICA instances that they have received the same
