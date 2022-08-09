@@ -21,6 +21,8 @@ Once you Memgraph instance in running and you've connected to it via Memgraph
 Lab, go to the **Import & Export** section. To **Import Data** select the
 .cypherl file or drag and drop it into Memgraph Lab. 
 
+<img src={require('../../data/import-data/import-lab.png').default}className={"imgBorder"}/>
+
 ## Importing via mgconsole
 
 Once Memgraph is running, Cypher queries are imported by running
@@ -42,7 +44,7 @@ docker run -i --entrypoint=mgconsole memgraph/memgraph-platform --host HOST < qu
 ```
 
 Remember to replace `HOST` with [valid IP of the
-container](/memgraph/how-to-guides/work-with-docker) and to define the
+container](/memgraph/how-to-guides/work-with-docker#how-to-retrieve-a-docker-container-ip-address) and to define the
 correct Memgraph Docker image you are using. 
 
 Below, you can find two examples of how to import data within the `.cypherl` file
@@ -95,7 +97,7 @@ command, but be careful of four things:
    </ul>
    <p> </p>
    <li>Remember to replace <code>HOST</code> with a valid IP of the container (see the 
-   <a href="/memgraph/how-to-guides/work-with-docker"><i>How to retrieve a Docker container IP address?</i> section for Docker users</a>).</li>
+   <a href="/memgraph/how-to-guides/work-with-docker#how-to-retrieve-a-docker-container-ip-address"> guide on working with Docker</a>).</li>
    <p> </p>
  <li>Check that the paths of the files you want to import are correct.</li>
 </ol>
@@ -195,7 +197,7 @@ command, but be careful of four things:
    </ul>
    <p> </p>
    <li>Remember to replace <code>HOST</code> with a valid IP of the container (see the 
-   <a href="/memgraph/how-to-guides/work-with-docker"><i>How to retrieve a Docker container IP address?</i> section for Docker users</a>).</li>
+   <a href="/memgraph/how-to-guides/work-with-docker#how-to-retrieve-a-docker-container-ip-address"> guide on working with Docker</a>).</li>
    <p> </p>
  <li>Check that the paths of the files you want to import are correct.</li>
 </ol>
