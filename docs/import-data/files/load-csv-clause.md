@@ -414,17 +414,16 @@ person by being friends.
 1. Download the
 [`people_relationships.csv`](https://public-assets.memgraph.com/import-data/load-csv-cypher/multiple-types-nodes/people_relationships.csv)
 file, where each row represents one friendship and the year it started:
-
-    ```csv
-    first_person,second_person,met_in
-    100,102,2014
-    103,101,2021
-    102,103,2005
-    101,104,2005
-    104,100,2018
-    101,102,2017
-    100,103,2001
-    ```
+  ```csv
+  first_person,second_person,met_in
+  100,102,2014
+  103,101,2021
+  102,103,2005
+  101,104,2005
+  104,100,2018
+  101,102,2017
+  100,103,2001
+  ```
 
 2. Check the location of the CSV file. If you are working with Docker, copy the
    files from your local directory into the Docker container where Memgraph can
@@ -551,16 +550,16 @@ Now move on to the `restaurants_relationships.csv` file.
 [`restaurants_relationships.csv`](https://public-assets.memgraph.com/import-data/load-csv-cypher/multiple-types-nodes/restaurants_relationships.csv)
 file that contains a list of people and the restaurants they visited:
 
-    ```csv
-    PERSON_ID,REST_ID,liked
-    100,200,true
-    103,201,false
-    104,200,true
-    101,202,false
-    101,203,false
-    101,200,true
-    102,201,true
-    ```
+  ```csv
+  PERSON_ID,REST_ID,liked
+  100,200,true
+  103,201,false
+  104,200,true
+  101,202,false
+  101,203,false
+  101,200,true
+  102,201,true
+  ```
 
 2. Check the location of the CSV file. If you are working with Docker, copy the
    files from your local directory into the Docker container where Memgraph can
@@ -592,13 +591,13 @@ file that contains a list of people and the restaurants they visited:
 3. The following query will create relationships between people and restaurants
 where they ate:
 
-    ```cypher
-    LOAD CSV FROM "/path-to/restaurants_relationships.csv" WITH HEADER AS row
-    MATCH (p1:Person {id: row.PERSON_ID})
-    MATCH (re:Restaurant {id: row.REST_ID})
-    CREATE (p1)-[ate:ATE_AT]->(re)
-    SET ate.liked = ToBoolean(row.liked);
-    ```
+  ```cypher
+  LOAD CSV FROM "/path-to/restaurants_relationships.csv" WITH HEADER AS row
+  MATCH (p1:Person {id: row.PERSON_ID})
+  MATCH (re:Restaurant {id: row.REST_ID})
+  CREATE (p1)-[ate:ATE_AT]->(re)
+  SET ate.liked = ToBoolean(row.liked);
+  ```
 
 <details>
   <summary>This is how the graph should look like in Memgraph after the import:</summary>

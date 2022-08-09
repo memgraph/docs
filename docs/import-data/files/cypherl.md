@@ -6,9 +6,9 @@ pagination_prev: import-data/overview
 ---
 import Tabs from "@theme/Tabs"; import TabItem from "@theme/TabItem";
 
-If your data is in the form of Cypher queries (`CREATE` and `MERGE` clauses)
-within a **.cypherl** file it can be imported via Memgraph
-Lab or mgconsole.
+If your data is in the form of Cypher queries (for example, `CREATE` and `MERGE`
+clauses) within a **.cypherl** file it can be imported via Memgraph Lab or
+mgconsole.
 
 The benefit of importing data using the `.cypherl` file is that you need only
 one file to import both nodes and relationships. But it can be tricky to

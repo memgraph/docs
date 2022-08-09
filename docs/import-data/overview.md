@@ -36,19 +36,19 @@ Lab or mgconsole](/import-data/files/cypherl.md).
 
 You can migrate data from a [**MySQL**](/import-data/migrate/mysql.md) or
 [**PostgresSQL**](/import-data/migrate/postgresql.md) database using the
-[`**mgmigrate**` tool](https://github.com/memgraph/mgmigrate).
+[**`mgmigrate`** tool](https://github.com/memgraph/mgmigrate).
 
 ## How to import streaming data into Memgraph?
 
 Memgraph comes with full streaming support, and you can connect directly to a
-Kafka, Redpanda or Pulsar stream using [Cypher
+**Kafka**, **Redpanda** or **Pulsar** stream using [Cypher
 queries](/import-data/data-streams/manage-streams.md) or [Memgraph Lab
 wizard](/import-data/data-streams/manage-streams-lab.md).
 
 ## How to import data directly from an application or a program?
 
 Memgraph offers a wide range of drivers that can be used to connect directly to
-the platform. You can find a list of all the supported connection methods
+the platform. You can find a list of all the supported drivers
 [here](/connect-to-memgraph/drivers/overview.md).
 
 ## Where to next?
