@@ -48,13 +48,6 @@ that utilize the NetworkX library. Take a look how to use the NetworkX library w
 
 - [Utilize the NetworkX library](/how-to-guides/networkx.md)
 
-## TensorFlow Op
-
-A TensorFlow op (operation) is a fundamental building block of all TensorFlow
-models. Learn how to setup Memgraph TensorFlow Op:
-
-- [TensorFlow Op](/how-to-guides/tensorflow-setup.md)
-
 ## Working with indexes
 
 A database index is a data structure used to improve the speed of data retrieval

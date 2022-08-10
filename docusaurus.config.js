@@ -1281,7 +1281,7 @@ module.exports = {
           // Redirect for CSV import tool
           {
             to: "/memgraph/import-data/load-csv-clause",
-            from: ["/memgraph/import-data/csv/csv-import-tool", "/memgraph/import-data/csv-import-tool"],
+            from: ["/memgraph/import-data/csv/csv-import-tool", "/memgraph/import-data/csv-import-tool", "/memgraph/reference-guide/import-data/csv-import-tool"],
           },
           // Redirect for the Streams
           {
@@ -1299,7 +1299,21 @@ module.exports = {
           {
             to: "/memgraph/import-data/data-streams/manage-streams-lab",
             from: ["/memgraph/how-to-guides/streams/kafka/connect-to-stream-from-lab"],
-          },        
+          },
+           // Redirect for the Transactions
+          {
+            to: "/memgraph/reference-guide/transactions",
+            from: ["/memgraph/reference-guide/isolation-levels"],
+          },   
+          // Redirect for the Import section 
+          {
+            to: "/memgraph/import-data/files/cypherl",
+            from: ["/memgraph/import-data/cypherl"],
+          },
+          {
+            to: "/memgraph/import-data/files/load-json",
+            from: ["/memgraph/import-data/load-json", "/memgraph/import-data/json/load-json"],
+          },
         ],
       },
     ],

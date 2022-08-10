@@ -14,23 +14,33 @@ relationships.
 Below, you can find two examples of how to use the load JSON methods depending
 on the data source:
 
-- [Load JSON from a local file](#load-json-from-a-local-file)
+- [Load JSON from a local file](#load-json-from-a-local-file) 
 - [Load JSON from a remote address](#load-json-from-a-remote-address)
 
 The above methods are procedures of query module implemented in MAGE (Memgraph Advanced
 Graph Extensions) and you can read more about them in the [MAGE
 documentation](/mage/query-modules/python/json-util).
 
-> To be able to call JSON load procedures, you need to install MAGE and load
-> query modules. To learn how to do that, check out the [Run a query module](/mage/how-to-guides/run-a-query-module) how-to guide.
+:::note
+
+To be able to call JSON load procedures, you need to install MAGE and load query
+modules. To learn how to do that, check out the [Run a query
+module](/mage/how-to-guides/run-a-query-module) how-to guide.
+
+:::
 
 ## Examples
 
+The following examples will show how to load data from a local JSON file or a
+remote address.
+
 ### Load JSON from a local file
 
-Let's import a simple JSON file into Memgraph.
+To import data from a local JSON file, use `load_from_path(path)` procedure that
+takes one string argument (`path`) and returns a list of JSON objects from the
+file located at the provided path.
 
-Create the file `data.json` with the following content:
+Let's import data from a file `data.json` with the following content:
 
 ```json
 {
@@ -40,9 +50,13 @@ Create the file `data.json` with the following content:
 }
 ```
 
-Next, let's say you want to create a node with the label `Person` and
-`first_name`, `last_name` and `pets` as properties. You can run the following
-query:
+If you are using Docker to run Memgraph, you will need to [copy the files from
+your local directory into the
+Docker](/how-to-guides/work-with-docker.md#how-to-copy-files-from-and-to-a-Docker-container)
+container where Memgraph can access them.
+
+To create a node with the label `Person` and `first_name`, `last_name` and `pets`
+as properties, run the following query:
 
 ```cypher
 CALL json_util.load_from_path("path/to/data.json")
@@ -60,7 +74,9 @@ CREATE (:Person {first_name: o.first_name, last_name: o.last_name, pets: o.pets}
 
 ### Load JSON from a remote address
 
-Similarly, you can import JSON files from a remote address.
+To import data from a remote JSON file, use `load_from_url(url)` procedure that
+takes one string argument (`url`) and returns a list of JSON objects from the
+file located at the provided URL.
 
 For example, at `"https://download.memgraph.com/asset/mage/data.json"`, you can
 find the following `data.json` file:
@@ -73,9 +89,8 @@ find the following `data.json` file:
 }
 ```
 
-Next, let's say you want to create a node with the label `Person` and
-`first_name`, `last_name` and `pets` as properties from the `data.json` file.
-You can run the following query:
+To create a node with the label `Person` and `first_name`, `last_name` and
+`pets` as properties from the `data.json` file. You can run the following query:
 
 ```cypher
 CALL json_util.load_from_url("https://download.memgraph.com/asset/mage/data.json")
