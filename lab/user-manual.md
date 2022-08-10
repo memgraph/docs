@@ -221,7 +221,7 @@ explore the datasets available in Memgraph Lab.
 
 ## Import & Export
 
-In this section, you can import and export data in [.cypherl
+In this section, you can import and export data in [CYPHERL
 format](/memgraph/import-data/cypherl), which represents data in the form of
 Cypher queries.
 

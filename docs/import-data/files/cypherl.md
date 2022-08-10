@@ -1,16 +1,16 @@
 ---
 id: cypherl
-title: Importing Cypher queries (.cypherl format)
-sidebar_label: .cypherl
+title: Importing Cypher queries (CYPHERL format)
+sidebar_label: CYPHERL
 pagination_prev: import-data/overview
 ---
 import Tabs from "@theme/Tabs"; import TabItem from "@theme/TabItem";
 
 If your data is in the form of Cypher queries (for example, `CREATE` and `MERGE`
-clauses) within a **.cypherl** file it can be imported via Memgraph Lab or
+clauses) within a **CYPHERL** file it can be imported via Memgraph Lab or
 mgconsole.
 
-The benefit of importing data using the `.cypherl` file is that you need only
+The benefit of importing data using the CYPHERL file is that you need only
 one file to import both nodes and relationships. But it can be tricky to
 actually write the queries for creating nodes and relationships yourself. If you
 haven't written any queries yet, check our [Cypher manual](/cypher-manual).
@@ -19,7 +19,7 @@ haven't written any queries yet, check our [Cypher manual](/cypher-manual).
 
 Once you Memgraph instance in running and you've connected to it via Memgraph
 Lab, go to the **Import & Export** section. To **Import Data** select the
-.cypherl file or drag and drop it into Memgraph Lab. 
+CYPHERL file or drag and drop it into Memgraph Lab. 
 
 <img src={require('../../data/import-data/import-lab.png').default}className={"imgBorder"}/>
 
@@ -27,7 +27,7 @@ Lab, go to the **Import & Export** section. To **Import Data** select the
 
 Once Memgraph is running, Cypher queries are imported by running
 [mgconsole](/connect-to-memgraph/mgconsole.md) in a non-interactive mode and
-importing data saved in a `.cypherl` file. 
+importing data saved in a CYPHERL file. 
 
 You can import queries saved in e.g. `queries.cypherl` by issuing the following
 shell command:

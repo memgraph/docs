@@ -9,7 +9,7 @@ There are a few methods for importing data into Memgraph and they cover:
 
 - [How to import CSV files into Memgraph?](#how-to-import-csv-files-into-memgraph) 
 - [How to import JSON files into Memgraph?](#how-to-import-json-files-into-memgraph)
-- [How to import .cypherl files with Cypher queries into Memgraph?](#how-to-import-cypherl-files-with-cypher-queries-into-memgraph)
+- [How to import CYPHERL files with Cypher queries into Memgraph?](#how-to-import-cypherl-files-with-cypher-queries-into-memgraph)
 - [How to migrate data from a relational database?](#how-to-migrate-data-from-a-relational-database)
 - [How to import streaming data into Memgraph?](#how-to-import-streaming-data-into-memgraph)
 - [How to import data directly from an application/program?](#how-to-import-data-directly-from-an-application-or-a-program)
@@ -26,10 +26,10 @@ You can import the JSON file into Memgraph by using the [**JSON query
 module**](/import-data/files/load-json.md), which has procedures for loading JSON
 file from a local file  from a remote address.
 
-## How to import .cypherl files with Cypher queries into Memgraph?
+## How to import CYPHERL files with Cypher queries into Memgraph?
 
 If your data is in the form of Cypher queries (`CREATE` and `MERGE` clauses)
-within a **.cypherl** file it can be [imported via Memgraph
+within a **CYPHERL** file it can be [imported via Memgraph
 Lab or mgconsole](/import-data/files/cypherl.md).
 
 ## How to migrate data from a relational database?
