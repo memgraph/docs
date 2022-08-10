@@ -41,7 +41,7 @@ Once you [created a Python or a shared library file
 (module)](/reference-guide/streams/transformation-modules/overview.md#creating-a-transformation-module),
 save the file into the Memgraph's `query_modules` or `internal_modules`
 directory (default: `/usr/lib/memgraph/query_modules` and
-`/memgraph/internal_modules/`). If you are using Docker, you need to [transfer
+`/var/lib/memgraph/internal_modules/`). If you are using Docker, you need to [transfer
 the transformation module file into the Docker
 container](/how-to-guides/work-with-docker.md#how-to-copy-files-from-and-to-a-docker-container).
 
@@ -56,7 +56,7 @@ transformation module to handle the conversion.
 
 When started, Memgraph will automatically attempt to load the transformation
 modules from all `*.so` and `*.py` files it finds in the default
-`/usr/lib/memgraph/query_modules` and `/memgraph/internal_modules` directories.
+`/usr/lib/memgraph/query_modules` and `/var/lib/memgraph/internal_modules` directories.
 
 You can point to a different directory by changing or extending the
 `--query-modules-directory` flag in the main configuration file
@@ -100,11 +100,11 @@ CALL mg.transformations() YIELD *;
 You should see an output similar to the following:
 
 ```cypher
-+------------------+------------------------------------+---------------------------------------------------------+
-| is_editable      | name                               | path                                                    |
-+------------------+------------------------------------+---------------------------------------------------------|
-| `true`           | "transformation_module.procedure"  | `/memgraph/internal_modules/transformation_module.py    |
-+------------------+------------------------------------+---------------------------------------------------------+
++------------------+------------------------------------+-----------------------------------------------------------------+
+| is_editable      | name                               | path                                                            |
++------------------+------------------------------------+-----------------------------------------------------------------|
+| `true`           | "transformation_module.procedure"  | `/var/lib/memgraph/internal_modules/transformation_module.py    |
++------------------+------------------------------------+-----------------------------------------------------------------+
 ```
 
 ## Create a stream in Memgraph

@@ -17,7 +17,7 @@ To create a transformation module, you need to:
 1. Create a [Python](./api/python-api.md) or a [shared library](./api/c-api.md)
    file (module).
 2. Save the file into the Memgraph's `query_modules` or `internal_modules` directory (default:
-   `/usr/lib/memgraph/query_modules` and `/memgraph/internal_modules/`).
+   `/usr/lib/memgraph/query_modules` and `/var/lib/memgraph/internal_modules/`).
 3. Load the file into Memgraph either on startup (automatically) or by running a
    `CALL mg.load_all();` query.
 
@@ -110,7 +110,7 @@ The file is now inside your Docker container.
 
 To load a specific transformation module from a `*.so` and `*.py` files that
  were added to the default directories (`/usr/lib/memgraph/query_modules` and
-`/memgraph/internal_modules/`) while the instance was already running, use:
+`/var/lib/memgraph/internal_modules/`) while the instance was already running, use:
 
 ```
 CALL mg.load(module_name);
