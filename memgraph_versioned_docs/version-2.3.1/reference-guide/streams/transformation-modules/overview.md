@@ -110,7 +110,7 @@ The file is now inside your Docker container.
 
 To load a specific transformation module from a `*.so` and `*.py` files that
  were added to the default directories (`/usr/lib/memgraph/query_modules` and
-`/memgraph/internal_modules/`) while the instance was already running, use:
+`/var/lib/memgraph/internal_modules/`) while the instance was already running, use:
 
 ```
 CALL mg.load(module_name);

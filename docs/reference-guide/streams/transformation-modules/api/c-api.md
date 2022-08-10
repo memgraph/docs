@@ -298,7 +298,7 @@ clang++ --std=c++17 -Wall -shared -fPIC -I /usr/include/memgraph c_transformatio
 ```
 
 After copying the resulting `c_transformation.so` to the
-`/usr/lib/memgraph/query_modules` or `/memgraph/internal_modules` directory, we can reload the modules and check
+`/usr/lib/memgraph/query_modules` or `/var/lib/memgraph/internal_modules` directory, we can reload the modules and check
 if Memgraph found our newly created transformation:
 
 ```cypher
