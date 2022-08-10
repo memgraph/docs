@@ -468,6 +468,28 @@ Bases: `object`
 
 Annotate a resulting Record’s field as deprecated.
 
+## class mgp.Log()
+Bases: `object`
+
+Class for logging.
+
+### info(out:str)
+Logs a message `out` on `INFO` log level.
+
+### debug(out:str)
+Logs a message `out` on `DEBUG` log level.
+
+### error(out:str)
+Logs a message `out` on `ERROR` log level.
+
+### trace(out:str)
+Logs a message `out` on `TRACE` log level.
+
+### warning(out:str)
+Logs a message `out` on `WARNING` log level.
+
+### critical(out:str)
+Logs a message `out` on `CRITICAL` log level.
 
 ### field_type()
 
