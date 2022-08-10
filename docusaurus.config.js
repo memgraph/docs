@@ -1300,7 +1300,11 @@ module.exports = {
             to: "/memgraph/import-data/data-streams/manage-streams-lab",
             from: ["/memgraph/how-to-guides/streams/kafka/connect-to-stream-from-lab"],
           },    
-          // Redirect for the Transactions    
+          // Redirect for the Transactions
+          {
+            to: "/memgraph/reference-guide/transactions",
+            from: ["/memgraph/reference-guide/isolation-levels"],
+          },
         ],
       },
     ],
