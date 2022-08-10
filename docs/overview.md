@@ -21,7 +21,7 @@ Production use                                                          |     + 
 [Replication](/how-to-guides/replication.md)                 |     +     |     +
 [Custom Cypher procedures](/reference-guide/query-modules/overview.md)  |     +     |     +
 [Custom graph algorithms](/mage)                                        |     +     |     +
-[Importing data](/import-data/overview.mdx)                              |     +     |     +
+[Importing data](/import-data/overview.md)                              |     +     |     +
 [Authentication](/how-to-guides/manage-users-using-ldap.md)              |           |     +
 [Advanced Password Policies](/how-to-guides/manage-user-privileges.md)   |           |     +
 [Fine&#8209;Grained Access Control](/reference-guide/security.md)                   |           |     +
