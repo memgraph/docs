@@ -80,13 +80,26 @@ registration.
 
 SYNC mode is the most straightforward replication mode in which the main storage
 thread waits for the response and cannot continue until the response is
-received. That means that the MAIN instance will not commit a transaction until
-all REPLICA instances running in the SYNC mode confirm they have received the
-same transaction.
+received or a timeout is reached. If the timeout is reached and at least one SYNC REPLICA has not
+sent back a response, then the MAIN instance will return an error to the user.<br/>
+The error indicates that the user should check the status of the REPLICAs
+as there might be a network or hardware issue.
 
-SYNC mode prioritizes data consistency but has no tolerance for any network
-failures because if any of the REPLICATION instances fail, the MAIN instance
-will fail as well.
+The following diagrams express the behavior of the MAIN instance in cases when SYNC REPLICA doesn't answer within the expected timeout.
+
+#### SYNC REPLICA going down when creating index, uniqueness constraint or existence constraint
+
+![sync-replicas-down-when-creating-index-or-constraints](data/replication/workflow_diagram_data_definition_creation.drawio.png)
+
+
+#### SYNC REPLICA going down when dropping index, uniqueness constraint or existence constraint
+
+![sync-replicas-down-when-dropping-index-or-constraints](data/replication/workflow_diagram_data_definition_dropping.drawio.png)
+
+
+#### SYNC REPLICA going down adding/updating/deleting data
+
+![sync-replicas-down-when-modifying-data](data/replication/workflow_diagram_data_manipulation.drawio.png)
 
 ### ASYN replication mode
 

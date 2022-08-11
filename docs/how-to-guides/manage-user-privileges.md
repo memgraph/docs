@@ -74,7 +74,7 @@ We could naturally cluster those privileges into groups:
   * Privilege to try freeing memory (`FREE_MEMORY`)
   * Privilege to use trigger queries (`TRIGGER`)
   * Privilege to use stream queries (`STREAM`)
-  * Privilege to configure Memgraph during runtime (`CONFIG`)
+  * Privilege to configure Memgraph during runtime and to attain the configuration of the given Memgraph instance(`CONFIG`)
   * Privilege to read the content of Python query module files (`MODULE_READ`)
   * Privilege to modify the content of Python query modules files (`MODULE_WRITE`)
   * Privilege to connect to [Memgraph monitoring server](/reference-guide/monitoring-server.md) (`WEBSOCKET`)

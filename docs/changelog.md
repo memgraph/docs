@@ -33,6 +33,9 @@ sidebar_label: Changelog
   [#432](https://github.com/memgraph/memgraph/pull/432)
 - Previously registered replicas are automatically registered on restart of
   Memgraph. [#415](https://github.com/memgraph/memgraph/pull/415)
+- Add new command `SHOW CONFIG` that returns the configuration of the currently
+  running Memgraph instance.
+  [#459](https://github.com/memgraph/memgraph/pull/459)
 
 ### Bug Fixes
 
@@ -49,6 +52,10 @@ sidebar_label: Changelog
 - Aggregation functions now return the openCypher-compliant results on `null`
   input and display the correct behavior when grouped with other operators.
   [#448](https://github.com/memgraph/memgraph/pull/448)
+- Corrected inconsistencies and incorrect behavior with regards to sync
+  replicas. For more detail about the behavior, please check [Under the
+  Hood](/under-the-hood/replication.md).
+  [#448](https://github.com/memgraph/memgraph/pull/435)
 - Fixed handling `ROUTE` Bolt message. Memgraph didn't handle the fields of
   `ROUTE` message properly. Therefore the session might be stuck in a state
   where even the `RESET` message did not help. With this fix, sending a `RESET`

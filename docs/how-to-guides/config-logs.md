@@ -82,6 +82,7 @@ C:\Users\Vlasta\Desktop>docker cp memgraph.conf bb3de2634afe:/etc/memgraph/memgr
 
 **8.** Restart Memgraph.
 
+**9.** You can check the current configuration by running the `SHOW CONFIG;` query. 
 ----
 
 #### Passing configuration options within the `docker run` command {#command}
@@ -123,6 +124,8 @@ docker run -it -p 7687:7687 -p 7444:7444  memgraph --memory-limit=50
    
    </TabItem>
    </Tabs>
+
+You can check the current configuration by running the `SHOW CONFIG;` query. 
 
 ### Accessing logs
 
@@ -190,6 +193,8 @@ RPM package.
 **3.** Modify the configuration file and save the changes.
 
 **4.** Restart Memgraph.
+
+**5.** You can check the current configuration by running the `SHOW CONFIG;` query. 
 
 ### Accessing logs
 
