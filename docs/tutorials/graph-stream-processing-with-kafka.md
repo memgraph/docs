@@ -5,7 +5,10 @@ sidebar_label: Graph stream processing with Kafka
 ---
 
 In this tutorial, you will learn how to connect Memgraph to an existing Kafka
-stream in order to analyze data in real-time.
+stream using Memgraph Lab, and transform data into graph database objects to
+analyze it in real-time.
+
+[![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/streams/overview.md)
 
 If you are still very new to streaming, feel free to first read some of our blog
 posts about the topic to learn [what stream processing
@@ -14,31 +17,27 @@ differs from batch
 processing](https://memgraph.com/blog/batch-processing-vs-stream-processing) and
 [how streaming databases work](https://memgraph.com/blog/streaming-databases).
 
-Now that you've covered theory let's dive into practice!
+Now that you've covered theory, let's dive into practice!
 
 We will focus on processing real-time movie ratings that are streamed through
-Kafka in order to generate movie recommendations using Memgraph and the Cypher
-query language.
+MovieLens Kafka stream from the [Awesome Data
+Stream](https://awesomedata.stream/#/movielens) using Memgraph Lab and the
+Cypher query language.
 
 ## Prerequisites
 
 To follow this tutorial, you will need:
 
-1. [**Docker**](https://docs.docker.com/get-docker/)
-2. If you are using Linux, you will also need [**Docker
-   Compose**](https://docs.docker.com/compose/install/)
-3. [**Memgraph Lab**](https://memgraph.com/download/#memgraph-lab) - a desktop
-   application providing a visual user interface that enables you to visualize
-   graphs and execute Cypher queries
-4. [**Python**](https://www.python.org/downloads/)
+- [Memgraph Platform](/installation/overview.mdx) or [Memgraph Cloud](http://cloud.memgraph.com)
 
-## Data model
+You can use Memgraph Cloud for a 2-week trial period, or you can install
+Memgraph Platform locally. 
 
-We didn't want you to worry about setting up Kafka and streaming data, that's
-why we've prepared a Kafka dummy stream of the reduced
-[MovieLens](https://movielens.org/) dataset for you to practice on.
+## Data stream
 
-Each JSON message in the stream will be structured like this:
+For this tutorial, we will use MovieLens Kafka stream from the [Awesome Data
+Stream](https://awesomedata.stream/#/movielens). MovieLens data stream streams
+movie ratings, and each JSON message represents a new movie rating:
 
 ```nocopy
 "userId": "112",
@@ -51,101 +50,114 @@ Each JSON message in the stream will be structured like this:
 "timestamp": "1442535783"
 ```
 
-If we were to describe in one sentence the process that generated this data, it
-would be: "A user rated a movie of a genre". That is how we get the nodes and
-relationships for our graph data model.
+## 1. Prepare Memgraph
 
-Nodes are labeled `User`, `Movie` and `Genre` while the relationships are of
-type `RATED` or `OF_GENRE`.
+Let's open Memgraph Lab, where we will write the transformation module and
+connect to the stream.
 
-`User` has the property `id`, `Movie` has the properties `id` and `title` and
-`Genre` has the property `name`. `RATED` has `rating` (1.0 - 5.0) and
-`timestamp` properties, and `OF_GENRE` relationship has no properties.
+If you have successfully installed Memgraph Platform, you should be able to open
+Memgraph Lab in a browser at [`http://localhost:3000/`](http://localhost:3000/).
 
-<img src={require('../data/tutorials/analyzing-data-streamed-from-kafka-data-model.png').default} className={"imgBorder"}/>
+If you are using Memgraph Cloud, open the running instance, and open the
+**Connect via Client** tab, then click on **Connect in Browser** to open
+Memgraph Lab in a new browser tab. Enter your project password and **Connect Now**.
 
-### 1. Start the Kafka stream
+## 2. Create a transformation module
 
-Start by making a clone of the
-[data-streams](https://github.com/memgraph/data-streams) repository. This
-project contains the data stream, a Kafka setup and MemgraphDB.
+The prerequisite of connecting Memgraph to a stream is to have a transformation
+module with procedures that can produce Cypher queries based on the received
+messages. Procedures can be written in
+[Python](/reference-guide/streams/transformation-modules/api/python-api.md) or
+[C](/reference-guide/streams/transformation-modules/api/c-api.md) languages. If you
+need more information about what transformation modules are, please read our [reference
+guide on transformation modules](/reference-guide/streams/transformation-modules/overview.md).
 
-Open a terminal and use the following command:
+Memgraph Lab allows you to develop Python transformation modules in-app:
 
-```terminal
-git clone https://github.com/memgraph/data-streams.git
-```
+1. Navigate to **Query Modules**. Here you can see all the query modules
+   available in Memgraph, such as utility modules or query modules from the MAGE
+   library. Here you will also be able to check out and edit any transformation
+   modules you develop while using Memgraph.
 
-Now place yourself in the `data-streams` directory and run the following command
-to start the Kafka stream:
+   <img src={require('../data/tutorials/create-stream-lab/query-modules.png').default}className={"imgBorder"}/>
 
-```terminal
-python start.py --platforms kafka --dataset movielens
-```
+2. Click on the **+ New Module** button, give the new module name `movielens`
+   and create the module.
 
-Give the script a couple of minutes, and you should see messages being consumed
-in the console:
+3. Memgraph Lab creates sample procedures you can erase, so you have a clean
+   slate for writing the `movielens` transformation module.
 
-```nocopy
-All topics:
-['ratings']
-Kafka  : {'userId': '1', 'movie': {'movieId': '1', 'title': 'Toy Story (1995)', 'genres': ['Adventure', 'Animation', 'Children', 'Comedy', 'Fantasy']}, 'rating': '4.0', 'timestamp': '964982703'}
-Kafka  : {'userId': '1', 'movie': {'movieId': '3', 'title': 'Grumpier Old Men (1995)', 'genres': ['Comedy', 'Romance']}, 'rating': '4.0', 'timestamp': '964981247'}
-Kafka  : {'userId': '1', 'movie': {'movieId': '6', 'title': 'Heat (1995)', 'genres': ['Action', 'Crime', 'Thriller']}, 'rating': '4.0', 'timestamp': '964982224'}
-Kafka  : {'userId': '1', 'movie': {'movieId': '47', 'title': 'Seven (a.k.a. Se7en) (1995)', 'genres': ['Mystery', 'Thriller']}, 'rating': '5.0', 'timestamp': '964983815'}
-Kafka  : {'userId': '1', 'movie': {'movieId': '50', 'title': 'Usual Suspects, The (1995)', 'genres': ['Crime', 'Mystery', 'Thriller']}, 'rating': '5.0', 'timestamp': '964982931'}
-```
+   <img src={require('../data/tutorials/create-stream-lab/query-modules-empty.png').default}className={"imgBorder"}/>
+ 
+### Python API 
 
-### 2. Start Memgraph
+Python API is defined in the `mgp` module you can find in the Memgraph
+installation directory `/usr/lib/memgraph/python_support`. In essence, Python
+API is a wrapper around the C API, and at the beginning of each new module, you
+need to import the `mgp`. As the messages from the streams are coming as JSON
+messages, you need to `import json` module for Memgraph to read them correctly.
+Below the imported modules, you need to define the `@mgp.transformation`
+decorator, which handles data coming from streams.
 
-If we were using a proper Kafka stream, we would start Memgraph independently
-using Docker, but because we are using a dummy stream, we will start Memgraph
-within the `data-streams` project. Given that we need to access the data stream
-running in a separate Docker container, we need to run Memgraph on the same
-network.
-
-Open a new terminal and position yourself in the `data-streams` directory you
-cloned earlier, then build the Memgraph image with the following command:
-
-```terminal
-docker-compose build memgraph-mage
-```
-
-When the image is built, start the container with:
-
-```terminal
-docker-compose up memgraph-mage
-```
-
-You should get the following reply:
-
-```nocopy
-Container data-streams-memgraph-mage-1  Created 0.2s
-Attaching to data-streams-memgraph-mage-1
-data-streams-memgraph-mage-1  | You are running Memgraph v2.1.0
-data-streams-memgraph-mage-1  | To get started with Memgraph, visit https://memgr.ph/start
-```
-
-To check if Memgraph is indeed running, open [**Memgraph
-Lab**](https://memgraph.com/download/#memgraph-lab) desktop application you
-downloaded and installed, and connect to the empty database.
-
-### 3. Create a transformation module
-
-Before we can connect Memgraph to a data stream, we need to instruct it on how
-to transform the incoming messages, so they can be consumed correctly. This is
-done through a Python transformation module. If you open the
-`data-streams/memgraph/transformations/movielens.py` you'll see one such
-transformation file we've created for this tutorial.
+Python API also defines `@mgp.read_proc` and `@mgp.write_proc` decorators.
+`@mgp.read_proc` decorator handles read-only procedures, the `@mgp.write_proc`
+decorator handles procedures that also write to the database and they are used
+in [writing custom query
+modules](/tutorials/implement-custom-query-module-in-python.md). 
 
 ```python
 import mgp
 import json
 
+@mgp.transformation
+```
+
+Now you are ready to write the function that will transform JSON messages to
+graph entities.  
+
+### Transformation function
+
+First, define the function `rating` that will receive a list of messages and return
+queries that will be executed in Memgraph as any regular query in order to
+create nodes and relationships, so the signature of the function looks like this:
+
+```python
+import mgp
+import json
 
 @mgp.transformation
 def rating(messages: mgp.Messages
-             ) -> mgp.Record(query=str, parameters=mgp.Nullable[mgp.Map]):
+                ) -> mgp.Record(query=str, parameters=mgp.Nullable[mgp.Map]):
+    result_queries = []
+```
+
+Now you need to iterate through each message within the batch, decode it with
+`json.loads` and save the elements of the message in the `movie_dict` variable.
+
+```python
+import mgp
+import json
+
+@mgp.transformation
+def rating(messages: mgp.Messages
+                ) -> mgp.Record(query=str, parameters=mgp.Nullable[mgp.Map]):
+    result_queries = []
+
+    for i in range(messages.total_messages()):
+        message = messages.message_at(i)
+        movie_dict = json.loads(message.payload().decode('utf8'))
+```
+Now, you create the queries that will execute in Memgraph. You instruct Memgraph
+to create `User`, `Movie` and `Genre` nodes, then connect the nodes with
+appropriate relationships. In each query, you also define the entity properties.  
+
+```python
+import mgp
+import json
+
+@mgp.transformation
+def rating(messages: mgp.Messages
+                ) -> mgp.Record(query=str, parameters=mgp.Nullable[mgp.Map]):
     result_queries = []
 
     for i in range(messages.total_messages()):
@@ -154,11 +166,39 @@ def rating(messages: mgp.Messages
         result_queries.append(
             mgp.Record(
                 query=("MERGE (u:User {id: $userId}) "
-                       "MERGE (m:Movie {id: $movieId, title: $title}) "
-                       "WITH u, m "
-                       "UNWIND $genres as genre "
-                       "MERGE (m)-[:OF_GENRE]->(:Genre {name: genre}) "
-                       "CREATE (u)-[:RATED {rating: ToFloat($rating), timestamp: $timestamp}]->(m)"),
+                        "MERGE (m:Movie {id: $movieId, title: $title}) "
+                        "WITH u, m "
+                        "UNWIND $genres as genre "
+                        "MERGE (m)-[:OF_GENRE]->(:Genre {name: genre}) "
+                        "MERGE (u)-[r:RATED {rating: ToFloat($rating), timestamp: $timestamp}]->(m)"),
+
+```
+
+Once you set the placeholders, you can fill them out by applying the values
+from the messages to the node and relationship properties, and return the
+queries. 
+
+
+```python
+import mgp
+import json
+
+@mgp.transformation
+def rating(messages: mgp.Messages
+                ) -> mgp.Record(query=str, parameters=mgp.Nullable[mgp.Map]):
+    result_queries = []
+
+    for i in range(messages.total_messages()):
+        message = messages.message_at(i)
+        movie_dict = json.loads(message.payload().decode('utf8'))
+        result_queries.append(
+            mgp.Record(
+                query=("MERGE (u:User {id: $userId}) "
+                        "MERGE (m:Movie {id: $movieId, title: $title}) "
+                        "WITH u, m "
+                        "UNWIND $genres as genre "
+                        "MERGE (m)-[:OF_GENRE]->(:Genre {name: genre}) "
+                        "MERGE (u)-[r:RATED {rating: ToFloat($rating), timestamp: $timestamp}]->(m)"),
                 parameters={
                     "userId": movie_dict["userId"],
                     "movieId": movie_dict["movie"]["movieId"],
@@ -170,266 +210,105 @@ def rating(messages: mgp.Messages
     return result_queries
 ```
 
-Each JSON message triggers a Cypher query that maps the elements of the message
-as a graph object:
+Congratulations, you just created your first transformation procedure! Save it
+and you should be able to see transformation `rating() -> ()` among the
+**Detected procedures & transformations**. 
 
-```cypher
-MERGE (u:User {id: $userId})
-MERGE (m:Movie {id: $movieId, title: $title})
-WITH u, m
-UNWIND $genres as genre
-MERGE (m)-[:OF_GENRE]->(:Genre {name: genre})
-CREATE (u)-[:RATED {rating: ToFloat($rating), timestamp: $timestamp}]->(m)
+<img src={require('../data/tutorials/create-stream-lab/transformation-module-from-qm.png').default}className={"imgBorder"}/>
+
+You can now **Save and Close** the module to get an overview of the module that
+lists procedures and their signature.
+
+<img src={require('../data/tutorials/create-stream-lab/signature.png').default}className={"imgBorder"}/>
+
+## 3. Create a stream
+
+To add a stream in Memgraph Lab: 
+
+1. Switch to **Streams** and **Add New Stream**.
+2. Choose Kafka stream type, enter stream name `movielens`, server address
+`get.awesomedata.stream:9093`, and topics `rating` as instructed on the [Awesome
+Data Stream](https://awesomedata.stream/#/movielens)
+3. Go to the **Next Step**.
+4. Click on **Edit** (pencil icon) to modify the *Consumer Group* to the one
+written on the [Awesome Data Stream](https://awesomedata.stream/#/movielens). As
+the streams are public, consumer groups need to be unique. 
+
+The stream configuration should look something like this:
+
+<img src={require('../data/tutorials/create-stream-lab/creating-stream-movielens.png').default}className={"imgBorder"}/>
+
+## 4. Add a transformation module
+
+To add the `movielens` Python transformation module you developed earlier to a stream:
+
+1. Click on **Add Transformation Module**.
+2. Click on **Choose Transformation Module**.
+3. Select the `movielens` transformation module
+4. Check if the necessary transformation procedure `rating() -> ()` is visible under **Detected
+   transformation functions** on the right.
+5. Select it and **Attach to Stream**.
+
+<img src={require('../data/tutorials/create-stream-lab/transformation-module.png').default}className={"imgBorder"}/>
+
+## 5. Set Kafka configuration parameters
+
+Due to the nature of the public MovieLens Awesome Data Stream, you need to add
+additional Kafka configuration parameters:
+
+* **sasl.username**: public <br/>
+* **sasl.password**: public <br/>
+* **security.protocol**: SASL_PLAINTEXT <br/>
+* **sasl.mechanism**: PLAIN <br/>
+
+In order to do so:
+
+1. In the Kafka Configuration Parameters **+ Add parameter field**.
+2. Insert the parameter name and value.
+3. To add another parameter, **Add parameter filed**.
+4. **Save Configuration** once you have set all parameters.
+
+<img src={require('../data/tutorials/create-stream-lab/config-parameters.png').default}className={"imgBorder"}/>
+
+## 6. Connect Memgraph to the stream and start ingesting the data
+
+Once the stream is configured, you can **Connect to Stream**. 
+
+Memgraph will do a series of checks, ensuring that defined topics and
+transformation procedures are correctly configured. If all checks pass
+successfully, you can **Start the stream**. Once you start the stream, you will
+no longer be able to change configuration settings, just the transformation
+module. 
+
+The stream status changes to **Running**, and data is ingested into Memgraph.
+You can see the number of nodes and relationships rising as the data keeps
+coming in. 
+
+## 7. Analyze the streaming data
+
+Switch to **Query Execution** and run a query to visualize the data coming in: 
+
 ```
-
-In the first two line we define two nodes, `User` and `Movie`, and define their
-properties. If you look at the messages you are receiving from Kafka, you will
-notice each movie has several genres. We want to store each genre as a separate
-node and that is why we use the `UNWIND` clause to separate types of genre.
-
-In the last two lines, we create relationships between nodes and define their
-properties. `Movie` nodes belong to a certain `Genre`, and `User` nodes rated
-`Movie` nodes by a certain `rating` in the form of a decimal number (`Float`) at
-a certain time.
-
-### 4. Copy transformation module into Docker
-
-Once again, the transformation module you will need to complete this tutorial is
-already locked among the project files so feel free to skip this step and go
-straight to loading. But hopefully, there will come a time when you will need to
-create your own transformation modules and you need to know how to copy them
-into the Docker container.
-
-Let's play around a bit:
-
-1. Copy the `data-streams/memgraph/transformations/movielens.py` file to the
-   root directory of your computer and rename it `movielens2.py`.
-
-2. Open the file `movielens2.py` and rename the relationship `OF_GENRE` to just
-   `OF`:
-
-   ```cypher
-   "MERGE (m)-[:OF]->(:Genre {name: genre}) "
-   ```
-
-3. Open a new terminal and find out the CONTAINER ID of the `memgraph-mage`
-   container by running:
-
-   ```terminal
-   docker ps
-   ```
-
-4. Position yourself in the root directory (or in the folder where
-   `movielens2.py` file is) and copy the file `movielens2.py` transformation
-   module to the `memgraph-mage` container by running:
-
-   ```terminal
-   docker cp movielens2.py CONTAINER_ID:/usr/lib/memgraph/query_modules/movielens2.py
-   ```
-
-5. Check if you copied the file correctly! Enter the container:
-
-   ```terminal
-   docker exec -it CONTAINER_ID bash
-   ```
-
-6. List all the files in the `/usr/lib/memgraph/query_modules` folder and check
-   if the `movielens2.py` file is there:
-
-   ```terminal
-   ls /usr/lib/memgraph/query_modules
-   ```
-
-### 5. Load the transformation module into Memgraph
-
-Once your transformation module is safe in Docker, you can load it into
-Memgraph.
-
-All modules are automatically loaded into Memgraph when it starts, but if the
-module was copied into Docker while the Memgraph was already running, like it
-was now in step 4, it needs to be loaded by using a Cypher procedure.
-
-You can either use the `CALL mg.load_all()` procedure to reload all existing
-modules and load any newly added ones, or `CALL mg.load("module_name")` to
-(re)load a specific module.
-
-Switch to Memgraph Lab and switch to the **Query** tab. In the **Query editor**
-(the black part of the Lab, looking like a terminal) enter the procedure of your
-choice and then press **Run query** to load the transformation module.
-
-I am going to load the original transformation module created for this tutorial
-`movielens.py`:
-
-```cypher
-CALL mg.load("movielens");
+MATCH p=(n)-[r]-(m)
+RETURN p LIMIT 100;
 ```
+<img src={require('../data/tutorials/create-stream-lab/graph.png').default}className={"imgBorder"}/>
 
-If you don’t receive an error, the module was loaded successfully.
+Congratulations! You have connected Memgraph to a Kafka stream. We've prepared
+queries that utilize the most powerful graph algorithms to gain every last bit
+of insight that data can provide. [Let the querying
+begin](https://memgraph.com/blog/how-to-analyze-a-streaming-dataset-of-movie-ratings-using-custom-query-modules)!
 
-<img src={require('../data/tutorials/analyzing-data-streamed-from-kafka-trans-module.png').default} className={"imgBorder"}/>
-
-### 6. Connect Memgraph to the Kafka stream
-
-We will connect Memgraph to the Kafka stream by running several queries in
-Memgraph Lab.
-
-1. Position yourself in the **Query** tab and enter the following query into the
-   **Query editor** (terminal looking area):
-
-   ```cypher
-   CREATE KAFKA STREAM movielens_stream
-   TOPICS ratings
-   TRANSFORM movielens.rating
-   BOOTSTRAP_SERVERS "kafka:9092";
-   ```
-
-   In the first line, we gave the stream a custom name, and in the second, we
-   defined the name of the topic we are reading the data from. In the third line
-   we defined the transformation procedure by writing the name of the .py file
-   we are using to transform the data, followed by the function we defined in
-   that file. In the last line we defined the bootstrap servers.
-
-2. Hit the **Run query** and if no error appears, you are good to go to the next
-   step.
-
-3. Now that we have created the stream, it needs to be started in order to
-   consume messages:
-
-   ```cypher
-   START STREAM movielens_stream;
-   ```
-
-4. To check if the stream was created and started correctly, run the following
-   query:
-
-   ```cypher
-   SHOW STREAMS;
-   ```
-
-   <img src={require('../data/tutorials/analyzing-data-streamed-from-kafka-running-stream.png').default} className={"imgBorder"}/>
-
-That’s it! You just connected to a real-time data source with Memgraph. If you
-open the **Overview** tab in Memgraph Lab, you should see that a number of nodes
-and edges has already been created.
-
-<img src={require('../data/tutorials/analyzing-data-streamed-from-kafka-overview.png').default} className={"imgBorder"}/>
-
-Just to be sure, open the tab **Graph Schema** and click on the **Generate graph
-schema** button to see if the graph follows the **Data model** we defined at the
-beginning of the article.
-
-<img src={require('../data/tutorials/analyzing-data-streamed-from-kafka-graph-schema.png').default} className={"imgBorder"}/>
-
-We are all set to start exploring the data!
-
-### 7. Analyze the streaming data
-
-We will use Cypher for data analysis, the most popular query language when it
-comes to graph databases. It provides an intuitive way to work with property
-graphs.
-
-1. Let’s return 10 movies from the database:
-
-   ```cypher
-   MATCH (movie:Movie)
-   RETURN movie.title
-   LIMIT 10;
-   ```
-
-   In the first line, we are matching all `Movie` nodes and saving them in
-   `movie` variable. Then we are return the `title` property of those nodes but
-   limiting the result to show only the first 10.
-
-   <img src={require('../data/tutorials/analyzing-data-streamed-from-kafka-ten-movies.png').default} className={"imgBorder"}/>
-
-2. Find Adventure and Fantasy movies:
-
-   ```cypher
-   MATCH (movie:Movie)-[:OF_GENRE]->(:Genre {name:"Fantasy"})
-   MATCH (movie)-[:OF_GENRE]->(:Genre {name:"Adventure"})
-   RETURN movie.title
-   ORDER BY movie.title
-   LIMIT 10;
-   ```
-
-   In the first line, we are matching all `Movie` nodes of the `Fantasy` genre.
-   Then we are further filtering those `Movie` nodes to be of the `Adventure`
-   genre as well. The result of this query will be an alphabetized list of 10
-   movie titles of those two genres.
-
-   Also, don't worry if the results show less than 10 movies - it just means not
-   enough movies of that genre were received from the stream.
-
-   <img src={require('../data/tutorials/analyzing-data-streamed-from-kafka-genre-movies.png').default} className={"imgBorder"}/>
-
-3. Calculate the average rating score for the movie Matrix:
-
-   ```cypher
-   MATCH (:User)-[r:RATED]->(m:Movie)
-   WHERE m.title = "Matrix, The (1999)"
-   RETURN avg(r.rating)
-   ```
-
-   We are matching users and their ratings of specific movies. Then we filter
-   only the ratings given to the movie Matrix and return the average rating.
-
-   If your result is `null`, check your stream for some other movie title and
-   edit the query.
-
-   <img src={require('../data/tutorials/analyzing-data-streamed-from-kafka-matrix.png').default} className={"imgBorder"}/>
-
-4. Things will now get a little bit complicated. Let’s find a recommendation for
-   a specific user, for example, with the id 150:
-
-   ```cypher
-   MATCH (u:User {id: "150"})-[r:RATED]-(p:Movie)-[other_r:RATED]-(other:User)
-   WITH other.id AS other_id, avg(r.rating-other_r.rating) AS similarity
-   ORDER BY similarity
-   LIMIT 10
-   WITH collect(other_id) AS similar_user_set
-   MATCH (some_movie: Movie)-[fellow_rate:RATED]-(fellow_user:User)
-   WHERE fellow_user.id IN similar_user_set
-   WITH some_movie, avg(fellow_rate.rating) AS prediction_score
-   RETURN some_movie.title AS Title, prediction_score
-   ORDER BY prediction_score DESC;
-   ```
-
-   If you don't get any data using the id 150, check what user IDs you have in
-   your Kafka stream, and just pick one at random. I got data for user ids 144
-   to 177.
-
-   In the first line, we matched all the users who rated the same movie as our
-   user 150.
-
-   We got their ids, and then we wanted to filter out only those users who gave
-   the same or similar rating as our user 150. That is why we subtracted their
-   rating scores from the rating scores of user 150 and got an average score. If
-   the result is 0 the users gave the same rating and had a similar taste. As
-   that number grows, users have different tastes.
-
-   Then, we ordered the users by the similarity of their taste with the taste of
-   user 150 and collected 10 users into a list called `similar_user_set`.
-
-   With the next `MATCH` clause we got all the movies rated by all the users in
-   the database, then filtered the results to get only the movies rated by the
-   users from the `similar_user_set`. We got the average rating score those
-   users gave to a particular movie with the presumption that the user 150 might
-   rate the movie as well, being that he has a similar taste as these 10 users.
-
-   At the end, we returned the movie titles and prediction score starting with
-   the movie with the highest prediction score.
-
-   <img src={require('../data/tutorials/analyzing-data-streamed-from-kafka-similar-ratings.png').default} className={"imgBorder"}/>
-
-   And that’s it, you have generated recommendations based on the similarity of
-   ratings between users.
-
-## Where to next?
-
-Congratulations! You have connected Memgraph to a Kafka stream and analyzed the
-data. You can continue to do so using the [**Cypher query
-language**](/cypher-manual). You can also try using various graph algorithms and
+If you are new to Cypher, check [**Cypher query language
+manual**](/cypher-manual). You can also try using various graph algorithms and
 modules from our open-source repository [**MAGE**](/mage) to solve graph
 analytics problems, create awesome customized visual displays of your nodes and
-relationships with [**Graph Style Script**](/memgraph-lab/graph-style-script-language)
-and above all - enjoy your graph database!
+relationships with [**Graph Style
+Script**](/memgraph-lab/graph-style-script-language).
+
+You can also explore other data streams from the [Awesome Data
+Stream](https://awesomedata.stream/) site! Feel free to play around with the
+Python API some more and let us know what you are working on through our
+[Discord server](https://discord.gg/memgraph).
+
+Above all - enjoy your graph database!

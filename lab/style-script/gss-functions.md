@@ -711,6 +711,58 @@ Outputs:
 
 - `number`
 
+### `Floor(value)`
+
+Returns the largest integer less than or equal to the input value.
+
+Examples:
+
+- `Floor(2.8)` will return number `2`.
+- `Floor(2)` will return number `2`.
+
+Inputs:
+
+- `value: number`
+
+Outputs:
+
+- `number`
+
+### `Ceil(value)`
+
+Returns the smallest integer greater than or equal to the input value.
+
+Examples:
+
+- `Ceil(2.1)` will return number `3`.
+- `Ceil(2)` will return number `2`.
+
+Inputs:
+
+- `value: number`
+
+Outputs:
+
+- `number`
+
+### `Round(value)`
+
+Returns the closest integer to the input value.
+
+Examples:
+
+- `Round(2.1)` will return number `2`.
+- `Round(2.5)` will return number `3`.
+- `Round(2.8)` will return number `3`.
+
+Inputs:
+
+- `value: number`
+
+Outputs:
+
+- `number`
+
 ## Text functions
 
 ### `Concat(value...)`

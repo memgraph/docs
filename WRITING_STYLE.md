@@ -54,7 +54,7 @@ reflect on their usage of our product. In other words, a deep understanding of
 concepts should make them use Memgraph more efficiently and effectively.
 
 An example of a good concept is an article that explains [Graph
-Algorithms](docs/concepts/graph-algorithms.md) that are implemented within
+Algorithms](docs/reference-guide/graph-algorithms.md) that are implemented within
 Memgraph. Advanced users will gain an understanding of what is happening when
 they are executing certain queries and might optimize their queries due to that
 knowledge.

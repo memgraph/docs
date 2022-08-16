@@ -45,7 +45,7 @@ TSP or "Travelling salesman problem" is one of the well-known problems in graph 
 #### Input:
 
 * `points: List[Vertex]` ➡ List of points to calculate TSP on. Required to have *lng* and *lat* properties.
-* `method: str(1.5_approx)` ➡ Method used for optimization. Can be either ***1.5_approx***, ***2_approx*** or ***greedy***
+* `method: string (default=1.5_approx)` ➡ Method used for optimization. Can be either ***1.5_approx***, ***2_approx*** or ***greedy***
 
 #### Output:
 

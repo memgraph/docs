@@ -4,13 +4,13 @@ title: Implement a custom query module in Python
 sidebar_label: Implement a custom query module in Python
 ---
 
+This tutorial will give you a basic idea of how to develop a custom query module
+in Python with Memgraph Lab 2.0 and use it on a dataset.
+
 [![Related - How
 to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/query-modules.md)
 [![Related - Reference
 Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/query-modules/overview.md)
-
-This tutorial will give you a basic idea of how to develop a custom query module
-in Python with Memgraph Lab 2.0 and use it on a dataset.
 
 In short, query modules allow you to expand the Cypher query module with various
 procedures. Procedures can be written in Python or C languages. Our MAGE library
@@ -23,8 +23,7 @@ guide on query modules](/reference-guide/query-modules/overview.md).
 
 In order to start developing a custom query you will need:
 
-- [Memgraph Platform](/installation/overview.mdx)
-- Visual Studio Code or a code editor of your choice
+- [Memgraph Platform](/installation/overview.mdx) or [Memgraph Cloud](http://cloud.memgraph.com)
 
 ## Data model
 
@@ -87,9 +86,14 @@ use the procedures from our query module.
 
 If you have successfully installed Memgraph Platform, you should be able to open
 Memgraph Lab in a browser at [`http://localhost:3000/`](http://localhost:3000/).
-Navigate to the **Datasets** menu item, click on the **Europe backpacking**
-dataset to import it into Memgraph. You can also check the details of the
-dataset by clicking on **Quick View**
+
+If you are using Memgraph Cloud, open the running instance, and open the
+**Connect via Client** tab, then click on **Connect in Browser** to open
+Memgraph Lab in a new browser tab. Enter your project password and **Connect Now**. 
+
+In Memgraph Lab, navigate to the **Datasets** menu item, click on the **Europe
+backpacking** dataset to import it into Memgraph. You can also check the details
+of the dataset by clicking on **Quick View**
 
 <img src={require('../data/tutorials/query-modules/import-dataset.png').default}
 className={"imgBorder"}/>
@@ -178,10 +182,10 @@ the new module we've created in Memgraph Lab, you can see you need to import the
 `mgp` module at the beginning of every query module.
 
 Below the `import mgp`, in line 17, you can see a `@read_proc` decorator. Python
-API defines `@read_proc`, `@write_proc` and `@transformation_proc` decorators.
-`@read_proc` decorator handles read-only procedures, the `@write_proc` decorator
-handles procedures that also write to the database, and the
-`@transformation_proc` decorator handles data coming from streams.
+API defines `@mgp.read_proc`, `@mgp.write_proc` and `@mgp.transformation`
+decorators. `@mgp.read_proc` decorator handles read-only procedures, the
+`@mgp.write_proc` decorator handles procedures that also write to the database,
+and the `@mgp.transformation` decorator handles data coming from streams.
 
 If you look at our two goals, to get the total cost of accommodation, Memgraph
 only needs to read from the database to get the value of the
@@ -192,13 +196,13 @@ Feel free to examine the examples and tips available in this template, and when
 you are ready to continue with the tutorial, clear the file so we start writing
 our code from line 1.
 
-We'll start with the `@read_proc` decorator to achieve the first goal, then
-we'll dive into a bit more complicated second goal and its `@write_proc`.
+We'll start with the `@mgp.read_proc` decorator to achieve the first goal, then
+we'll dive into a bit more complicated second goal and its `@mgp.write_proc`.
 
 ## Read procedure
 
 As we established in the previous chapter, first we need to import the `mgp`
-module and then use the `@read_proc` decorator. Then we will define the
+module and then use the `@mgp.read_proc` decorator. Then we will define the
 procedure by giving it a name and signature, that is, what arguments it needs to
 receive and what values it will return.
 
@@ -233,8 +237,8 @@ import mgp
 
 @mgp.read_proc
 def total_cost(context: mgp.ProcCtx,
-               city: mgp.Nullable[str],
-               adults: mgp.Nullable[int],
+               city: str,
+               adults: int,
                children: mgp.Nullable[int] = None
                ) -> mgp.Record(Total_cost_per_night = mgp.Nullable[float]):
 ```
@@ -250,8 +254,8 @@ import mgp
 
 @mgp.read_proc
 def total_cost(context: mgp.ProcCtx,
-              city: mgp.Any[str],
-              adults: mgp.Number[int],
+              city: str,
+              adults: int,
               children: mgp.Nullable[int] = None
               ) -> mgp.Record(Total_cost_per_night = mgp.Nullable[float]):
 
@@ -268,8 +272,8 @@ import mgp
 
 @mgp.read_proc
 def total_cost(context: mgp.ProcCtx,
-               city: mgp.Any[str],
-               adults: mgp.Number[int],
+               city: str,
+               adults: int,
                children: mgp.Nullable[int] = None
                ) -> mgp.Record(Total_cost_per_night = mgp.Nullable[float]):
 
@@ -289,8 +293,8 @@ import mgp
 
 @mgp.read_proc
 def total_cost(context: mgp.ProcCtx,
-               city: mgp.Any[str],
-               adults: mgp.Number[int],
+               city: str,
+               adults: int,
                children: mgp.Nullable[int] = None
                ) -> mgp.Record(Total_cost_per_night = mgp.Nullable[float]):
 
@@ -315,8 +319,8 @@ import mgp
 
 @mgp.read_proc
 def total_cost(context: mgp.ProcCtx,
-              city: mgp.Any[str],
-              adults: mgp.Number[int],
+              city: str,
+              adults: int,
               children: mgp.Nullable[int] = None
               ) -> mgp.Record(
                               Total_cost_per_night = mgp.Nullable[float]):
@@ -387,7 +391,7 @@ the current module go to **Query Modules** and find the `backpacking` module.
 Click on the arrow to view details about the module, such as the name of the
 procedures and their signatures. To continue editing the module, click on **Edit
 code**. If you are writing the write procedure in a new module, don't forget to
-import the `mgp` module. For the write procedure, we will use the `@write_proc`
+import the `mgp` module. For the write procedure, we will use the `@mgp.write_proc`
 decorator.
 
 The goal of this write procedure is to expand the data model by a given country

@@ -87,20 +87,21 @@ module.exports = {
       items: [
         {
           type: "category",
-          label: "CSV",
-          link: { type: "doc", id: "import-data/csv/overview" },
+          label: "Import data from files",
+          link: { type: "doc", id: "import-data/files/overview" },
           items: [
-            "import-data/csv/load-csv-clause",
+            "import-data/files/load-csv-clause",
+            "import-data/files/load-json",
+            "import-data/files/cypherl",
           ],
         },
         {
           type: "category",
-          label: "Kafka",
-          link: { type: "doc", id: "import-data/kafka/overview" },
+          label: "Connect to data streams",
+          link: { type: "doc", id: "import-data/data-streams/overview" },
           items: [
-            "import-data/kafka/json",
-            "import-data/kafka/avro",
-            "import-data/kafka/protobuf",
+            "import-data/data-streams/manage-streams",
+            "import-data/data-streams/manage-streams-lab",
           ],
         },
         {
@@ -111,8 +112,6 @@ module.exports = {
             "import-data/migrate/postgresql",
           ],
         },
-        "import-data/cypherl",
-        "import-data/json/load-json",
       ],
     },
     {
@@ -152,29 +151,6 @@ module.exports = {
       link: { type: "doc", id: "how-to-guides/overview" },
       items: [
         "how-to-guides/create-backup",
-        {
-          type: "category",
-          label: "Connect to stream sources",
-          items: [
-            {
-              type: "category",
-              label: "Kafka",
-              items: [
-                "how-to-guides/streams/kafka/kafka-streams",
-                "how-to-guides/streams/kafka/implement-transformation-module",
-                "how-to-guides/streams/kafka/connect-to-stream-from-lab",
-              ],
-            },
-            {
-              type: "category",
-              label: "Pulsar",
-              items: [
-                "how-to-guides/streams/pulsar/pulsar-streams",
-                "how-to-guides/streams/pulsar/implement-transformation-module",
-              ],
-            },
-          ],
-        },
         "how-to-guides/config-logs",
         {
           type: "category",
@@ -186,13 +162,12 @@ module.exports = {
         },
         "how-to-guides/networkx",
         "how-to-guides/replication",
-        //"how-to-guides/tensorflow-setup",
-        "reference-guide/triggers",
         "how-to-guides/font-awesome-for-node-images",
         "how-to-guides/query-modules",
         "how-to-guides/encryption",
         "how-to-guides/work-with-docker",
         "how-to-guides/indexes",
+        "how-to-guides/set-up-triggers",
         {
           type: "category",
           label: "Enterprise features",
@@ -208,10 +183,10 @@ module.exports = {
       label: "Reference guide",
       link: { type: "doc", id: "reference-guide/overview" },
       items: [
-        "reference-guide/backup",
-        "reference-guide/graph-algorithms",
+        "reference-guide/built-in-graph-algorithms",
         "reference-guide/memory-control",
         "reference-guide/configuration",
+        "reference-guide/backup",
         "reference-guide/data-types",
         {
           type: "category",
@@ -219,21 +194,6 @@ module.exports = {
           items: [
             "reference-guide/deployment/docker",
             "reference-guide/deployment/kubernetes",
-          ],
-        },
-        {
-          type: "category",
-          label: "Import Data",
-          link: { type: "doc", id: "reference-guide/import-data/overview" },
-          items: [
-            {
-              type: "category",
-              label: "CSV",
-              items: [
-                "reference-guide/import-data/load-csv-clause",
-              ],
-            },
-            "reference-guide/import-data/cypherl",
           ],
         },
         "reference-guide/indexing",
@@ -245,7 +205,6 @@ module.exports = {
             "reference-guide/optimizing-queries/profiling-queries",
           ],
         },
-        "reference-guide/isolation-levels",
         "reference-guide/metadata",
         "reference-guide/monitoring-server",
         {
@@ -281,19 +240,13 @@ module.exports = {
               label: "Transformation modules",
               link: { type: "doc", id: "reference-guide/streams/transformation-modules/overview" },
               items: [
-                {
-                  type: "category",
-                  label: "API",
-                  items: [
-                    "reference-guide/streams/transformation-modules/api/c-api",
-                    "reference-guide/streams/transformation-modules/api/python-api",
-                  ],
-                },
+                "reference-guide/streams/transformation-modules/api/c-api",
+                "reference-guide/streams/transformation-modules/api/python-api",
               ],
             },
           ],
         },
-        //"reference-guide/tensorflow",
+        "reference-guide/transactions",
         "reference-guide/encryption",
         "reference-guide/triggers",
         "reference-guide/users",
@@ -316,7 +269,6 @@ module.exports = {
       link: { type: "doc", id: "under-the-hood/overview" },
       items: [
         "under-the-hood/storage",
-        //"under-the-hood/graph-algorithms",
         "under-the-hood/indexing",
         "under-the-hood/replication",
         "under-the-hood/telemetry",

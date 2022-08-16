@@ -46,7 +46,7 @@ The distance calculator is a module for calculating distance between two geograp
 
 * `start: Vertex` ➡ Starting point to measure distance. Required to have *lng* and *lat* properties.
 * `end: Vertex` ➡ Ending point to measure distance. Required to have *lng* and *lat* properties.
-* `metrics: str` ➡ Can be either "m" or "km". These stand for meters and kilometers respectively.
+* `metrics: string` ➡ Can be either "m" or "km". These stand for meters and kilometers respectively.
 
 #### Output:
 
@@ -66,7 +66,7 @@ RETURN distance;
 
 * `start_points: List[Vertex]` ➡ Starting points to measure distance collected in a list. Required to have *lng* and *lat* properties. Must be of the same size as *end_points*.
 * `end_points: List[Vertex]` ➡ Ending points to measure distance collected in a list. Required to have *lng* and *lat* properties. Must be of the same size as *start_points*.
-* `metrics: str` ➡ Can be either "m" or "km". These stand for metres and kilometres respectively.
+* `metrics: string` ➡ Can be either "m" or "km". These stand for metres and kilometres respectively.
 
 #### Output:
 

@@ -38,7 +38,7 @@ A module for loading JSON from a local file or remote address. If the JSON that 
 
 #### Input:
 
-* `path: str` ➡ Path to the JSON that is being loaded.
+* `path: string` ➡ Path to the JSON that is being loaded.
 
 #### Output:
 
@@ -55,7 +55,7 @@ RETURN objects;
 
 #### Input:
 
-* `url: str` ➡ URL to the JSON that is being loaded.
+* `url: string` ➡ URL to the JSON that is being loaded.
 
 #### Output:
 

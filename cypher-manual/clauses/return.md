@@ -15,7 +15,8 @@ The `RETURN` clause defines which data should be included in the resulting set.
 7. [Returning elements with an alias](#7-returning-elements-with-an-alias) <br />
 8. [Optional properties](#8-optional-properties) <br />
 9. [Returning expressions](#9-returning-expressions) <br />
-10. [Returning unique results](#10-returning-unique-results)
+10. [Returning unique results](#10-returning-unique-results)<br />
+11. [Limiting the number of returned results](#11-limiting-the-number-of-returned-results)
 
 ## Dataset
 
@@ -247,4 +248,13 @@ WHERE p.name = 'Anna' AND c1.name = 'United Kingdom' AND c2.name = 'Germany'
 CREATE (c2)<-[:LIVING_IN {date_of_start: 2014}]-(p)-[:LIVING_IN {date_of_start: 2014}]->(c1);
 
 MATCH (n)-[r]->(m) RETURN n,r,m;
+```
+
+## 11. Limiting the number of returned results
+
+You can limit the number of returned results with the `LIMIT` sub-clause.
+To get the first ten results, you can use this query:
+
+```cypher
+MATCH (n:Person) RETURN n LIMIT 10;
 ```

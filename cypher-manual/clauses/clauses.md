@@ -20,9 +20,3 @@ The **Cypher** language enables users to perform standard database operations by
   * [`UNWIND`](unwind.md) - unwinds a list of values as individual rows
   * [`WHERE`](where.md) - filters the matched data
   * [`WITH`](with.md) - combines multiple reads and writes
-
-
-
-
-
- 

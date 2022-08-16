@@ -11,10 +11,12 @@ allows you to create projects with Enterprise instances of MemgraphDB from your
 browser. The instances can use up to 32 GB of RAM and you can connect to them
 using [Memgraph Lab](cloud-connect#connect-with-memgraph-lab),
 [mgconsole](cloud-connect#connect-with-mgconsole) or various
-[drivers](cloud-connect#connect-with-drivers). All connections¸use SSL
+[drivers](cloud-connect#connect-with-drivers). All connections use SSL
 encryption with a self-signed certificate. 
 
-<img src={require('./data/cloud.png').default}/>
+
+![Cloud-Img](./data/cloud-img.svg)
+
 
 Use Memgraph Cloud to stream data into Memgraph in real-time and run complex
 graph algorithms and modules developed within the [MAGE](/docs/mage) repository,
@@ -40,7 +42,15 @@ with feedback on [Discord](https://discord.com/invite/memgraph):
 4. Your project is up and running - connect to the instance, import data and
    start querying!
 
-Here, you can find everything you want to know about:
+If you are looking for a quick start, take a look at our short tutorial.
+
+[![Getting started with Memgraph Cloud and Memgraph Lab](./data/yt-cloud-getting-started-preview.png)](https://www.youtube.com/watch?v=Hfs2lGTwyuo "Getting started with Memgraph Cloud and Memgraph Lab")
+
+For a more detailed explanation of Memgraph Cloud, take a look at the demo video made for the launch that will take you through it's features:
+
+[<img alt="memgraph_cloud" src={require('./data/cloud-login.png').default} style={{width:'30%'}}/>](https://youtu.be/Tt5KPKylU8k?t=683 "Get started with Memgraph Cloud")
+
+On the documentation pages, you can find everything you want to know about:
 
 * [Managing your Cloud account](cloud-account)
 * [Managing your projects within the Memgraph Cloud](cloud-projects)
