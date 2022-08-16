@@ -15,8 +15,8 @@ of the files containing its data.
 ## [Built-in graph algorithms](./graph-algorithms.md)
 
 Memgraph comes with custom-built algorithms that are implemented using C++:
-**Filtering variable-length paths**, **Breadth-first search**, and **Weighted
-shortest path**.
+**Filtering variable-length paths**, **Breadth-first search**, **Weighted
+shortest path**, **All shortest paths**.
 
 ## [Configuration settings](./configuration.md)
 

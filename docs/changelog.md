@@ -19,6 +19,9 @@ sidebar_label: Changelog
   given frequency controller by `--replication-replica-check-delay-sec`. The
   check allows latest information about the state of each replica from `main`
   point of view. [#380](https://github.com/memgraph/memgraph/pull/380)
+- Extend the shortest paths functionality with [All Shortest
+  Path](/memgraph/reference-guide/graph-algorithms#all-shortest-paths)
+  query. [#409](https://github.com/memgraph/memgraph/pull/409)
 
 ## v2.2.1 - Mar 17, 2022
 
