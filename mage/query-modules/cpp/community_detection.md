@@ -75,7 +75,7 @@ Computes graph communities using the Louvain method.
 #### Usage
 
 ```cypher
-CALL community_detection_online.get()
+CALL community_detection.get()
 YIELD node, community_id;
 ```
 
@@ -110,7 +110,7 @@ Computes graph communities over a subgraph using the Louvain method.
 ```cypher
 MATCH (a)-[e]-(b)
 WITH COLLECT(a) AS nodes, COLLECT (e) AS relationships
-CALL community_detection_online.get_subgraph(nodes, relationships)
+CALL community_detection.get_subgraph(nodes, relationships)
 YIELD node, community_id;
 ```
 
