@@ -148,13 +148,12 @@ shortest path search.
 ## All Shortest Paths
 
 Weighted shortest path returns only one result of the shortest path from one
-node to the other. Commonly, there are multiple shortest paths throught different
+node to the other. Commonly, there are multiple shortest paths through different
 routes. openCypher does not specify the syntax for obtaining them, and therefore 
-Memgraph offers the custom implementation implementation, again based on the edge
-expansion syntax.  
+Memgraph offers the custom implementation, again based on the edge expansion syntax.  
 
 Finding **all** weighted shortest paths between nodes is done using the path expansion,
-similar to weighted shortest path seen previously.:
+similar to the weighted shortest path seen previously.:
 
 ```cypher
 MATCH (a {id: 723})-[
@@ -163,11 +162,11 @@ MATCH (a {id: 723})-[
 RETURN *;
 ```
 
-Similarly to the previous example, this query finds all shortest path between 
+Similar to the previous example, this query finds all the shortest paths between 
 nodes `a` and `b`. Length restriction offers the opportunity to prevent expanding
-paths with provided number of hops, in this example it is 12.
+paths with a provided number of hops, in this example, it is 12.
 
-All shortest paths expansion uses expression which is evaluated on each step which
+All shortest path expansion uses an expression which is evaluated on each step and
 determines the weight of the current expansion. To match the algorithm requirements, 
 the weights need to be positive. Implementation allows duration and numeric numbers
 to be used as weights.  
@@ -179,8 +178,8 @@ MATCH (a {id: 723})-[
 RETURN exp(total_weight);
 ```
 
-Lastly, if user wants to filter out the nodes and prevent expansions on some
-paths, it can be achieved with expression filter that comes after weight expression
+Lastly, if a user wants to filter out the nodes and prevent expansions on some
+paths, it can be achieved with an expression filter that comes after weight expression
 and optional hop number restriction. Following is an example in which
 expansion is allowed only over edges whose `z` property is greater than `15`:
 
