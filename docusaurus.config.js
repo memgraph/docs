@@ -1281,7 +1281,7 @@ module.exports = {
           // Redirect for CSV import tool
           {
             to: "/memgraph/import-data/load-csv-clause",
-            from: ["/memgraph/import-data/csv/csv-import-tool", "/memgraph/import-data/csv-import-tool", "/memgraph/reference-guide/import-data/csv-import-tool"],
+            from: ["/memgraph/import-data/csv/csv-import-tool", "/memgraph/import-data/csv-import-tool", "/memgraph/reference-guide/import-data/csv-import-tool", "/memgraph/import-data/csv/load-csv-clause", "/memgraph/reference-guide/import-data/load-csv-clause"],
           },
           // Redirect for the Streams
           {
@@ -1307,13 +1307,17 @@ module.exports = {
           },   
           // Redirect for the Import section 
           {
-            to: "/memgraph/import-data/files/cypherl",
-            from: ["/memgraph/import-data/cypherl"],
-          },
-          {
             to: "/memgraph/import-data/files/load-json",
             from: ["/memgraph/import-data/load-json", "/memgraph/import-data/json/load-json"],
           },
+          {
+            to: "/memgraph/import-data/files/cypherl",
+            from: ["/memgraph/import-data/cypherl", "/memgraph/reference-guide/import-data/cypherl"],
+          },
+          {
+            to: "/memgraph/import-data/files/overview",
+            from: ["/memgraph/import-data/csv/overview", "/memgraph/reference-guide/import-data/overview"],
+          },       
         ],
       },
     ],
