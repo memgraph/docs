@@ -1,7 +1,8 @@
 ---
-id: algorithms
+id: overview
 title: Graph algorithms
 sidebar_label: Graph algorithms
+slug: /algorithms
 ---
 
 ## Traditional Graph Analytics

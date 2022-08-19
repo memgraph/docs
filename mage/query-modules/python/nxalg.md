@@ -43,8 +43,8 @@ Compute all shortest simple paths in the graph. A simple path is a path with no 
 
 * `source: Vertex` ➡ Starting node for the path.
 * `target: Vertex` ➡ Ending node for the path.
-* `weight: str(NULL)` ➡ If `NULL`, every edge has weight/distance/cost 1. If a string, use this edge attribute as the edge weight. Any edge attribute not present defaults to 1.
-* `method: str("dijkstra")` ➡ The algorithm to use to compute the path lengths. Supported options: ‘dijkstra’, ‘bellman-ford’. Other inputs produce a ValueError. If `weight` is `None`, unweighted graph methods are used, and this suggestion is ignored.
+* `weight: string (default=NULL)` ➡ If `NULL`, every edge has weight/distance/cost 1. If a string, use this edge attribute as the edge weight. Any edge attribute not present defaults to 1.
+* `method: string (default="dijkstra")` ➡ The algorithm to use to compute the path lengths. Supported options: ‘dijkstra’, ‘bellman-ford’. Other inputs produce a ValueError. If `weight` is `None`, unweighted graph methods are used, and this suggestion is ignored.
 
 #### Output:
 
@@ -65,7 +65,7 @@ Returns all simple paths in the graph `G` from source to target. A simple path i
 
 * `source: Vertex` ➡ Starting node for the path.
 * `target: Vertex` ➡ Ending node for the path.
-* `cutoff: List[int](NULL)` ➡ Depth to stop the search. Only paths of `length <= cutoff` are returned.
+* `cutoff: List[integer] (default=NULL)` ➡ Depth to stop the search. Only paths of `length <= cutoff` are returned.
 
 #### Output:
 
@@ -103,11 +103,11 @@ Compute the shortest-path betweenness centrality for nodes. *Betweenness central
 
 #### Input:
 
-* `k: str(NULL)` ➡ If `k` is not `None`, use `k` node samples to estimate betweenness. The value of `k <= n` where `n` is the number of nodes in the graph. Higher values give a better approximation.
-* `normalized: bool(True)` ➡  If `True` the betweenness values are normalized by `2/((n-1)(n-2))` for graphs, and `1/((n-1)(n-2))` for directed graphs where `n` is the number of nodes in `G`.
-* `weight: str(NULL)` ➡  If `None`, all edge weights are considered equal. Otherwise holds the name of the edge attribute used as weight.
-* `endpoints: bool(False)` ➡  If `True`, includes the endpoints in the shortest path counts.
-* `seed: int(NULL)` ➡  Indicator of random number generation state. Note that this is only used if `k` is not `None`.
+* `k: string (default=NULL)` ➡ If `k` is not `None`, use `k` node samples to estimate betweenness. The value of `k <= n` where `n` is the number of nodes in the graph. Higher values give a better approximation.
+* `normalized: boolean (default=True)` ➡  If `True` the betweenness values are normalized by `2/((n-1)(n-2))` for graphs, and `1/((n-1)(n-2))` for directed graphs where `n` is the number of nodes in `G`.
+* `weight: string (default=NULL)` ➡  If `None`, all edge weights are considered equal. Otherwise holds the name of the edge attribute used as weight.
+* `endpoints: boolean (default=False)` ➡  If `True`, includes the endpoints in the shortest path counts.
+* `seed: integer (default=NULL)` ➡  Indicator of random number generation state. Note that this is only used if `k` is not `None`.
 
 #### Output:
 
@@ -127,8 +127,8 @@ Iterate over edges in a breadth-first-search starting at source.
 #### Input:
 
 * `source: Vertex` ➡  Specify starting node for breadth-first search; this function iterates over only those edges in the component reachable from this node.
-* `reverse: bool(False)` ➡   If `True`, traverse a directed graph in the reverse direction.
-* `depth_limit: int(NULL)` ➡  Specify the maximum search depth.
+* `reverse: boolean (default=False)` ➡   If `True`, traverse a directed graph in the reverse direction.
+* `depth_limit: integer (default=NULL)` ➡  Specify the maximum search depth.
 
 #### Output:
 
@@ -148,7 +148,7 @@ Returns an iterator of predecessors in breadth-first-search from source.
 #### Input:
 
 * `source: Vertex` ➡  Specify starting node for breadth-first search.
-* `depth_limit: int(NULL)` ➡  Specify the maximum search depth.
+* `depth_limit: integer (default=NULL)` ➡  Specify the maximum search depth.
 
 #### Output:
 
@@ -169,7 +169,7 @@ Returns an iterator of successors in breadth-first-search from source.
 #### Input:
 
 * `source: Vertex` ➡  Specify starting node for breadth-first search.
-* `depth_limit: int(NULL)` ➡  Specify the maximum search depth.
+* `depth_limit: integer (default=NULL)` ➡  Specify the maximum search depth.
 
 #### Output:
 
@@ -190,8 +190,8 @@ Returns an oriented tree constructed from of a breadth-first-search starting at 
 #### Input:
 
 * `source: Vertex` ➡  Specify starting node for breadth-first search.
-* `reversed: bool(False)` ➡  If `True`, traverse a directed graph in the reverse direction.
-* `depth_limit: int(NULL)` ➡  Specify the maximum search depth.
+* `reversed: boolean (default=False)` ➡  If `True`, traverse a directed graph in the reverse direction.
+* `depth_limit: integer (default=NULL)` ➡  Specify the maximum search depth.
 
 #### Output:
 
@@ -240,7 +240,7 @@ edge that does not belong to any cycle.
 
 #### Input:
 
-* `root: Vertex(NULL)` ➡   A node in the graph `G`. If specified, only the bridges in the connected components containing this node will be returned.
+* `root: Vertex (default=NULL)` ➡   A node in the graph `G`. If specified, only the bridges in the connected components containing this node will be returned.
 
 #### Output:
 
@@ -305,7 +305,7 @@ any edge intersections.
 
 #### Output:
 
-* `is_planar: bool` ➡ `True` if the graph is planar.
+* `is_planar: boolean` ➡ `True` if the graph is planar.
 
 #### Usage:
 ```cypher
@@ -321,8 +321,8 @@ in a graph tend to cluster together.
 
 #### Input:
 
-* `nodes: List[Vertex](NULL)` ➡  Compute clustering for nodes in this container.
-* `weight: str(NULL)` ➡  The edge attribute that holds the numerical value used as a weight. If `None`, then each edge has weight 1.
+* `nodes: List[Vertex] (default=NULL)` ➡  Compute clustering for nodes in this container.
+* `weight: string (default=NULL)` ➡  The edge attribute that holds the numerical value used as a weight. If `None`, then each edge has weight 1.
 
 #### Output:
 
@@ -367,7 +367,7 @@ that node.
 #### Output:
 
 * `node: Vertex` ➡ Node to calculate k-core for
-* `core: int` ➡ Largest value `k` of a k-core
+* `core: integer` ➡ Largest value `k` of a k-core
 
 #### Usage:
 ```cypher
@@ -384,10 +384,10 @@ in the graph with respect to the node degree.
 
 #### Input:
 
-* `x: str("out")` ➡  The degree type for source node (directed graphs only). Can be "in" and "out".
-* `y: str("in")` ➡  The degree type for target node (directed graphs only). Can be "in" and "out".
-* `weight: str(NULL)` ➡  The edge attribute that holds the numerical value used as a weight.  If `None`, then each edge has weight 1. The degree is the sum of the edge weights adjacent to the node.
-* `nodes: List[Vertex](NULL)` ➡  Compute degree assortativity only for nodes in a container. The default is all nodes.
+* `x: string (default="out")` ➡  The degree type for source node (directed graphs only). Can be "in" or "out".
+* `y: string (default="in")` ➡  The degree type for target node (directed graphs only). Can be "in" or "out".
+* `weight: string (default=NULL)` ➡  The edge attribute that holds the numerical value used as a weight.  If `None`, then each edge has weight 1. The degree is the sum of the edge weights adjacent to the node.
+* `nodes: List[Vertex] (default=NULL)` ➡  Compute degree assortativity only for nodes in a container. The default is all nodes.
 
 #### Output:
 
@@ -424,7 +424,7 @@ Returns nodes in a depth-first-search post-ordering starting at source.
 #### Input:
 
 * `source: Vertex` ➡  Specify the maximum search depth.
-* `depth_limit: int(NULL)` ➡  Specify the maximum search depth.
+* `depth_limit: integer (default=NULL)` ➡  Specify the maximum search depth.
 
 #### Output:
 
@@ -443,7 +443,7 @@ Returns a dictionary of predecessors in depth-first-search from source.
 #### Input:
 
 * `source: Vertex` ➡  Specify the maximum search depth.
-* `depth_limit: int(NULL)` ➡  Specify the maximum search depth.
+* `depth_limit: integer (default=NULL)` ➡  Specify the maximum search depth.
 
 #### Output:
 
@@ -463,7 +463,7 @@ Returns nodes in a depth-first-search pre-ordering starting at source.
 #### Input:
 
 * `source: Vertex` ➡  Specify starting node for depth-first search and return nodes in the component reachable from this node.
-* `depth_limit: int(NULL)` ➡  Specify the maximum search depth.
+* `depth_limit: integer (default=NULL)` ➡  Specify the maximum search depth.
 
 #### Output:
 
@@ -482,7 +482,7 @@ Returns a dictionary of successors in depth-first-search from source.
 #### Input:
 
 * `source: Vertex` ➡  Specify starting node for depth-first search and return nodes in the component reachable from this node.
-* `depth_limit: int(NULL)` ➡  Specify the maximum search depth.
+* `depth_limit: integer (default=NULL)` ➡  Specify the maximum search depth.
 
 #### Output:
 
@@ -502,7 +502,7 @@ Returns an oriented tree constructed from a depth-first-search from source.
 #### Input:
 
 * `source: Vertex` ➡  Specify starting node for depth-first search.
-* `depth_limit: int(NULL)` ➡  Specify the maximum search depth.
+* `depth_limit: integer (default=NULL)` ➡  Specify the maximum search depth.
 
 #### Output:
 
@@ -521,7 +521,7 @@ The diameter is the maximum eccentricity.
 
 #### Output:
 
-* `diameter: int` ➡ Diameter of graph.
+* `diameter: integer` ➡ Diameter of graph.
 
 #### Usage:
 ```cypher
@@ -583,7 +583,7 @@ all edges are generated.
 #### Input:
 
 * `source: Vertex` ➡  The node from which the traversal begins. If `None`, then a source is chosen arbitrarily and repeatedly until all edges from each node in the graph are searched.
-* `orientation: str(NULL)` ➡  For directed graphs and directed multigraphs, edge traversals need not respect the original orientation of the edges. When set to ‘reverse’, every edge is traversed in the reverse direction. When set to ‘ignore’, every edge is treated as undirected. When set to ‘original’, every edge is treated as directed. In all three cases, the returned edge tuples add a last entry to indicate the direction in which that edge was traversed. If `orientation` is `None`, the returned edge has no direction indicated. The direction is respected, but not reported.
+* `orientation: string (default=NULL)` ➡  For directed graphs and directed multigraphs, edge traversals need not respect the original orientation of the edges. When set to ‘reverse’, every edge is traversed in the reverse direction. When set to ‘ignore’, every edge is treated as undirected. When set to ‘original’, every edge is treated as directed. In all three cases, the returned edge tuples add a last entry to indicate the direction in which that edge was traversed. If `orientation` is `None`, the returned edge has no direction indicated. The direction is respected, but not reported.
 
 #### Output:
 
@@ -604,8 +604,8 @@ all edges are generated.
 
 #### Input:
 
-* `source: Vertex(NULL)` ➡  The node from which the traversal begins. If `None`, then a source is chosen arbitrarily and repeatedly until all edges from each node in the graph are searched.
-* `orientation: str(NULL)` ➡  For directed graphs and directed multigraphs, edge traversals
+* `source: Vertex (default=NULL)` ➡  The node from which the traversal begins. If `None`, then a source is chosen arbitrarily and repeatedly until all edges from each node in the graph are searched.
+* `orientation: string (default=NULL)` ➡  For directed graphs and directed multigraphs, edge traversals
 need not respect the original orientation of the edges.
 When set to ‘reverse’, every edge is traversed in the reverse direction.
 When set to ‘ignore’, every edge is treated as undirected.
@@ -663,8 +663,8 @@ The orientation of directed edges is determined by `orientation`.
 
 #### Input:
 
-* `source: List[Vertex](NULL)` ➡  The node from which the traversal begins. If `None`, then a source is chosen arbitrarily and repeatedly until all edges from each node in the graph are searched.
-* `orientation: str(NULL)` ➡  For directed graphs and directed multigraphs, edge traversals
+* `source: List[Vertex] (default=NULL)` ➡  The node from which the traversal begins. If `None`, then a source is chosen arbitrarily and repeatedly until all edges from each node in the graph are searched.
+* `orientation: string (default=NULL)` ➡  For directed graphs and directed multigraphs, edge traversals
 need not respect the original orientation of the edges. When set to ‘reverse’ every edge is traversed in the reverse direction. When set to ‘ignore’, every edge is treated as undirected. When set to ‘original’, every edge is treated as directed. In all three cases, the yielded edge tuples add a last entry to indicate the direction in which that edge was traversed. If `orientation` is `None`, the yielded edge has no direction indicated. The direction is respected, but not reported.
 
 #### Output:
@@ -686,7 +686,7 @@ Returns the flow hierarchy of a directed network.
 
 #### Input:
 
-* `weight: str(NULL)` ➡  Attribute to use for node weights. If `None`, the weight defaults to 1.
+* `weight: string (default=NULL)` ➡  Attribute to use for node weights. If `None`, the weight defaults to 1.
 
 #### Output:
 
@@ -727,11 +727,11 @@ Color a graph using various strategies of greedy graph coloring. Attempts to col
 `'connected_sequential'` (alias for the previous strategy)
 `'saturation_largest_first'`
 `'DSATUR'` (alias for the previous strategy)
-* `interchange: bool(False)` ➡  Will use the color interchange algorithm if set to `True`. Note that `saturation_largest_first` and `independent_set` do not work with interchange. Furthermore, if you use interchange with your own strategy function, you cannot rely on the values in the `colors` argument.
+* `interchange: boolean (default=False)` ➡  Will use the color interchange algorithm if set to `True`. Note that `saturation_largest_first` and `independent_set` do not work with interchange. Furthermore, if you use interchange with your own strategy function, you cannot rely on the values in the `colors` argument.
 #### Output:
 
 * `node: Vertex` ➡ Vertex to color.
-* `color: int` ➡ Color index of a certain node.
+* `color: integer` ➡ Color index of a certain node.
 
 #### Usage:
 ```cypher
@@ -750,7 +750,7 @@ RETURN node, color;
 
 #### Output:
 
-* `has_eulerian_path: bool` ➡ `True` if `G` has an eulerian path.
+* `has_eulerian_path: boolean` ➡ `True` if `G` has an eulerian path.
 
 #### Usage:
 ```cypher
@@ -770,7 +770,7 @@ Returns `True` if `G` has a path from `source` to `target`.
 
 #### Output:
 
-* `has_path: bool` ➡  `True` if `G` has a path from `source` to `target`.
+* `has_path: boolean` ➡  `True` if `G` has a path from `source` to `target`.
 
 #### Usage:
 ```cypher
@@ -805,7 +805,7 @@ Returns `True` if `G` is an arborescence. An *arborescence* is a directed tree w
 
 #### Output:
 
-* `is_arborescence: bool` ➡  A boolean that is `True` if `G` is an arborescence.
+* `is_arborescence: boolean` ➡  A boolean that is `True` if `G` is an arborescence.
 
 #### Usage:
 ```cypher
@@ -819,7 +819,7 @@ Check if a graph is AT-free. The method uses the find_asteroidal_triple method t
 
 #### Output:
 
-* `is_at_free: bool` ➡  `True` if `G` is AT-free and `False` otherwise.
+* `is_at_free: boolean` ➡  `True` if `G` is AT-free and `False` otherwise.
 
 #### Usage:
 ```cypher
@@ -832,7 +832,7 @@ Returns `True` if graph `G` is bipartite, `False` if not. A *bipartite graph* (o
 
 #### Output:
 
-* `is_bipartite: bool` ➡  `True` if `G` is bipartite and `False` otherwise.
+* `is_bipartite: boolean` ➡  `True` if `G` is bipartite and `False` otherwise.
 
 #### Usage:
 ```cypher
@@ -846,7 +846,7 @@ Returns `True` if `G` is a branching. A *branching* is a directed forest with ma
 
 #### Output:
 
-* `is_branching: bool` ➡   A boolean that is `True` if `G` is a branching.
+* `is_branching: boolean` ➡   A boolean that is `True` if `G` is a branching.
 
 #### Usage:
 ```cypher
@@ -860,7 +860,7 @@ Checks whether `G` is a chordal graph. A graph is *chordal* if every cycle of le
 
 #### Output:
 
-* `is_chordal: bool` ➡  `True` if `G` is a chordal graph and `False` otherwise.
+* `is_chordal: boolean` ➡  `True` if `G` is a chordal graph and `False` otherwise.
 
 #### Usage:
 ```cypher
@@ -874,7 +874,7 @@ Returns `True` if the graph is distance regular, `False` otherwise. A connected 
 
 #### Output:
 
-* `is_distance_regular: bool` ➡  `True` if the graph is Distance Regular, `False` otherwise.
+* `is_distance_regular: boolean` ➡  `True` if the graph is Distance Regular, `False` otherwise.
 
 #### Usage:
 ```cypher
@@ -890,7 +890,7 @@ Decides whether a set of edges is a valid edge cover of the graph. Given a set o
 
 #### Output:
 
-* `is_edge_cover: bool` ➡  Whether the set of edges is a valid edge cover of the graph.
+* `is_edge_cover: boolean` ➡  Whether the set of edges is a valid edge cover of the graph.
 
 #### Usage:
 ```cypher
@@ -906,7 +906,7 @@ Returns `True` if and only if `G` is Eulerian. A graph is *Eulerian* if it has a
 
 #### Output:
 
-* `is_eulerian: bool` ➡  `True` if `G` is Eulerian.
+* `is_eulerian: boolean` ➡  `True` if `G` is Eulerian.
 
 #### Usage:
 ```cypher
@@ -919,7 +919,7 @@ Returns `True` if `G` is a forest. A *forest* is a graph with no undirected cycl
  For directed graphs, `G` is a forest if the underlying graph is a forest. The underlying graph is obtained by treating each directed edge as a single undirected edge in a multigraph.
 #### Output:
 
-* `is_forest: bool` ➡  A boolean that is `True` if `G` is a forest.
+* `is_forest: boolean` ➡  A boolean that is `True` if `G` is a forest.
 
 #### Usage:
 ```cypher
@@ -938,7 +938,7 @@ Determines whether a node is an isolate.
 
 #### Output:
 
-* `is_isolate: bool` ➡  `True` if and only if `n` has no neighbors.
+* `is_isolate: boolean` ➡  `True` if and only if `n` has no neighbors.
 
 #### Usage:
 ```cypher
@@ -959,7 +959,7 @@ Returns `True` if the graphs `G1` and `G2` are isomorphic and `False` otherwise.
 
 #### Output:
 
-* `is_isomorphic: bool` ➡  `True` if the graphs `G1` and `G2` are isomorphic and `False` otherwise.
+* `is_isomorphic: boolean` ➡  `True` if the graphs `G1` and `G2` are isomorphic and `False` otherwise.
 
 #### Usage:
 ```cypher
@@ -981,7 +981,7 @@ Returns `True` if `G` is semi-Eulerian.
 
 #### Output:
 
-* `is_semieulerian: bool` ➡  `True` if `G` is semi-Eulerian.
+* `is_semieulerian: boolean` ➡  `True` if `G` is semi-Eulerian.
 
 #### Usage:
 ```cypher
@@ -1000,7 +1000,7 @@ Returns `True` if and only if the given nodes form a simple path in
 
 #### Output:
 
-* `is_simple_path: bool` ➡  Whether the given list of nodes represents a simple path in `G`.
+* `is_simple_path: boolean` ➡  Whether the given list of nodes represents a simple path in `G`.
 
 #### Usage:
 ```cypher
@@ -1027,7 +1027,7 @@ Returns `True` if and only if the given graph is strongly regular.
 
 #### Output:
 
-* `is_strongly_regular: bool` ➡   Whether `G` is strongly regular.
+* `is_strongly_regular: boolean` ➡   Whether `G` is strongly regular.
 
 #### Usage:
 ```cypher
@@ -1041,7 +1041,7 @@ Returns `True` if and only if `G` is a tournament.
 
 #### Output:
 
-* `is_tournament: bool` ➡   Whether the given graph is a tournament graph.
+* `is_tournament: boolean` ➡   Whether the given graph is a tournament graph.
 
 #### Usage:
 ```cypher
@@ -1056,7 +1056,7 @@ Returns `True` if `G` is a tree.
 
 #### Output:
 
-* `is_tree: bool` ➡   A boolean that is `True` if `G` is a tree.
+* `is_tree: boolean` ➡   A boolean that is `True` if `G` is a tree.
 
 #### Usage:
 ```cypher
@@ -1080,7 +1080,7 @@ Compute the Jaccard coefficient of all node pairs in `ebunch`.
 *Jaccard coefficient* compares members of two sets to see which members are shared and which are distinct.
 #### Input:
 
-* `ebunch: List[List[Vertex]](NULL)` ➡  Jaccard coefficient will be computed for each pair of nodes given in the iterable. The pairs must be given as 2-tuples
+* `ebunch: List[List[Vertex]] (default=NULL)` ➡  Jaccard coefficient will be computed for each pair of nodes given in the iterable. The pairs must be given as 2-tuples
 `(u, v)` where `u` and `v` are nodes in the graph. If `ebunch` is `None` then all non-existent edges in the graph will be used.
 
 #### Output:
@@ -1099,8 +1099,8 @@ Find k-clique communities in a graph using the percolation method.
  A *k-clique community* is the union of all cliques of size `k` that can be reached through adjacent (sharing `k-1` nodes) k-cliques.
 #### Input:
 
-* `k: int` ➡  Size of the smallest clique.
-* `cliques: List[List[Vertex]](NULL)` ➡  Precomputed cliques (use networkx.find_cliques(G)).
+* `k: integer` ➡  Size of the smallest clique.
+* `cliques: List[List[Vertex]] (default=NULL)` ➡  Precomputed cliques (use networkx.find_cliques(G)).
 
 #### Output:
 
@@ -1117,11 +1117,11 @@ Returns the approximate k-component structure of a graph `G`.
  This implementation is based on the fast heuristics to approximate the k-component structure of a graph. This, in turn, is based on a fast approximation algorithm for finding good lower bounds of the number of node independent paths between two nodes.
 #### Input:
 
-* `min_density: double(0.95)` ➡   Density relaxation threshold.
+* `min_density: double (default=0.95)` ➡   Density relaxation threshold.
 
 #### Output:
 
-* `k: int` ➡  Connectivity level k
+* `k: integer` ➡  Connectivity level k
 * `components: List[List[Vertex]]` ➡  List of sets of nodes that form a k-component of level `k` as values.
 
 #### Usage:
@@ -1134,7 +1134,7 @@ Returns nodes in each maximal k-edge-connected component in `G`.
 A connected graph is *k-edge-connected* if it remains connected whenever fewer than k edges are removed. The edge-connectivity of a graph is the largest k for which the graph is k-edge-connected.
 #### Input:
 
-* `k: int` ➡  Desired edge connectivity.
+* `k: integer` ➡  Desired edge connectivity.
 
 #### Output:
 
@@ -1191,9 +1191,9 @@ Returns a minimum spanning tree or forest on an undirected graph `G`.
  A *minimum spanning tree* is a subset of the edges of a connected, undirected graph that connects all of the vertices together without any cycles.
 #### Input:
 
-* `weight: str("weight")` ➡  Data key to use for edge weights.
-* `algorithm: str("kruskal")` ➡  The algorithm to use when finding a minimum spanning tree. Valid choices are ‘kruskal’, ‘prim’, or ‘boruvka’.
-* `ignore_nan: bool(False)` ➡  If `NaN` is found as an edge weight normally an exception is raised. If `ignore_nan` is `True` then that edge is ignored.
+* `weight: string (default="weight")` ➡  Data key to use for edge weights.
+* `algorithm: string (default="kruskal")` ➡  The algorithm to use when finding a minimum spanning tree. Valid choices are ‘kruskal’, ‘prim’, or ‘boruvka’.
+* `ignore_nan: boolean (default=False)` ➡  If `NaN` is found as an edge weight normally an exception is raised. If `ignore_nan` is `True` then that edge is ignored.
 
 #### Output:
 
@@ -1212,9 +1212,8 @@ Compute shortest path between any of the source nodes and all other reachable no
 #### Input:
 
 * `sources: List[Vertex]` ➡  Starting nodes for paths. If this is a set containing a single node, then all paths computed by this function will start from that node. If there are two or more nodes in the set, the computed paths may begin from any one of the start nodes.
-* `cutoff: int(NULL)` ➡   Depth to stop the search. Only return paths with `length <= cutoff`.
-* `weight: str` ➡  If this is a string, then edge weights will be accessed via the edge attribute with this key (that is, the weight of the edge joining `u` to `v` will be `G.edges[u, v][weight]`). If no such edge attribute exists, the weight of the edge is assumed to be one. If this is a function, the weight of an edge is the value returned by the function. The function must accept exactly three positional arguments: the two endpoints of an edge and the dictionary of edge attributes for that edge. The function must return a number.
-* `sources: List[Vertex]` ➡
+* `cutoff: integer (default=NULL)` ➡   Depth to stop the search. Only return paths with `length <= cutoff`.
+* `weight: string` ➡  If this is a string, then edge weights will be accessed via the edge attribute with this key (that is, the weight of the edge joining `u` to `v` will be `G.edges[u, v][weight]`). If no such edge attribute exists, the weight of the edge is assumed to be one. If this is a function, the weight of an edge is the value returned by the function. The function must accept exactly three positional arguments: the two endpoints of an edge and the dictionary of edge attributes for that edge. The function must return a number.
 
 #### Output:
 
@@ -1235,8 +1234,8 @@ Compute the shortest path length between any of the source nodes and all other r
 #### Input:
 
 * `sources: List[Vertex]` ➡  Starting nodes for paths. If this is a set containing a single node, then all paths computed by this function will start from that node. If there are two or more nodes in the set, the computed paths may begin from any one of the start nodes.
-* `cutoff: int(NULL)` ➡  Depth to stop the search. Only return paths with `length <= cutoff`.
-* `weight: str` ➡  If this is a string, then edge weights will be accessed via the edge attribute with this key (that is, the weight of the edge joining `u` to `v` will be `G.edges[u, v][weight]`). If no such edge attribute exists, the weight of the edge is assumed to be one. If this is a function, the weight of an edge is the value returned by the function. The function must accept exactly three positional arguments: the two endpoints of an edge and the dictionary of edge attributes for that edge. The function must return a number.
+* `cutoff: integer (default=NULL)` ➡  Depth to stop the search. Only return paths with `length <= cutoff`.
+* `weight: string` ➡  If this is a string, then edge weights will be accessed via the edge attribute with this key (that is, the weight of the edge joining `u` to `v` will be `G.edges[u, v][weight]`). If no such edge attribute exists, the weight of the edge is assumed to be one. If this is a function, the weight of an edge is the value returned by the function. The function must accept exactly three positional arguments: the two endpoints of an edge and the dictionary of edge attributes for that edge. The function must return a number.
 
 #### Output:
 
@@ -1257,7 +1256,7 @@ Returns the node boundary of `nbunch1`.
 #### Input:
 
 * `nbunch1: List[Vertex]` ➡  List of nodes in the graph representing the set of nodes whose node boundary will be returned. (This is the set `S` from the definition above.)
-* `nbunch2: List[Vertex](NULL)` ➡  List of nodes representing the target (or “exterior”) set of nodes. (This is the set `T` from the definition above.) If not specified, this is assumed to be the set of all nodes in `G` not in `nbunch1`.
+* `nbunch2: List[Vertex] (default=NULL)` ➡  List of nodes representing the target (or “exterior”) set of nodes. (This is the set `T` from the definition above.) If not specified, this is assumed to be the set of all nodes in `G` not in `nbunch1`.
 
 #### Output:
 
@@ -1278,12 +1277,12 @@ Returns an approximation for node connectivity for a graph or digraph `G`.
  This algorithm is based on a fast approximation that gives a strict lower bound on the actual number of node independent paths between two nodes. It works for both directed and undirected graphs.
 #### Input:
 
-* `source: Vertex(NULL)` ➡  Source node.
-* `target: Vertex(NULL)` ➡   Target node.
+* `source: Vertex (default=NULL)` ➡  Source node.
+* `target: Vertex (default=NULL)` ➡  Target node.
 
 #### Output:
 
-* `connectivity: int` ➡  Node connectivity of `G`, or local node connectivity if `source` and `target` are provided.
+* `connectivity: integer` ➡  Node connectivity of `G`, or local node connectivity if `source` and `target` are provided.
 
 #### Usage:
 ```cypher
@@ -1315,7 +1314,7 @@ The first returned value `non_randomness` is the sum of non-randomness values of
 The second computed value `relative_non_randomness` is a relative measure that indicates to what extent graph `G` is different from random graphs in terms of probability. When it is close to 0, the graph tends to be more likely generated by an Erdos Renyi model.
 #### Input:
 
-* `k: int(NULL)` ➡  The number of communities in `G`. If `k` is not set, the function will use a default community detection algorithm to set it.
+* `k: integer (default=NULL)` ➡  The number of communities in `G`. If `k` is not set, the function will use a default community detection algorithm to set it.
 
 #### Output:
 
@@ -1333,13 +1332,13 @@ Returns the PageRank of the nodes in the graph.
 PageRank computes a ranking of the nodes in the graph G based on the structure of the incoming links. It was originally designed as an algorithm to rank web pages.
 #### Input:
 
-* `alpha: double(0.85)` ➡  Damping parameter for PageRank.
-* `personalization: str(NULL)` ➡  The “personalization vector” consisting of a dictionary with a subset of graph nodes as a key and maps personalization value for each subset. At least one personalization value must be non-zero. If not specified, a nodes personalization value will be zero. By default, a uniform distribution is used.
-* `max_iter: int(100)` ➡  Maximum number of iterations in power method eigenvalue solver.
-* `tol: double(1e-06)` ➡  Error tolerance used to check convergence in power method solver.
-* `nstart: str(NULL)` ➡ Starting value of PageRank iteration for each node.
-* `weight: str("weight")` ➡  Edge data key to use as weight. If `None`, weights are set to 1.
-* `dangling: str(NULL)` ➡  The outedges to be assigned to any “dangling” nodes, i.e., nodes without any outedges. The dict key is the node the outedge points to and the dict value is the weight of that outedge. By default, dangling nodes are given outedges according to the personalization vector (uniform if not specified). This must be selected to result in an irreducible transition matrix. It may be common to have the dangling dict to be the same as the personalization dict.
+* `alpha: double (default=0.85)` ➡  Damping parameter for PageRank.
+* `personalization: string (default=NULL)` ➡  The “personalization vector” consisting of a dictionary with a subset of graph nodes as a key and maps personalization value for each subset. At least one personalization value must be non-zero. If not specified, a nodes personalization value will be zero. By default, a uniform distribution is used.
+* `max_iter: integer (default=100)` ➡  Maximum number of iterations in power method eigenvalue solver.
+* `tol: double (default=1e-06)` ➡  Error tolerance used to check convergence in power method solver.
+* `nstart: string (default=NULL)` ➡ Starting value of PageRank iteration for each node.
+* `weight: string (default="weight")` ➡  Edge data key to use as weight. If `None`, weights are set to 1.
+* `dangling: string (default=NULL)` ➡  The outedges to be assigned to any “dangling” nodes, i.e., nodes without any outedges. The dict key is the node the outedge points to and the dict value is the weight of that outedge. By default, dangling nodes are given outedges according to the personalization vector (uniform if not specified). This must be selected to result in an irreducible transition matrix. It may be common to have the dangling dict to be the same as the personalization dict.
 
 #### Output:
 
@@ -1375,10 +1374,10 @@ RETURN node, reciprocity;
 Compute shortest paths in the graph.
 #### Input:
 
-* `source: Vertex(NULL)` ➡  Starting node for the path. If not specified, compute shortest path lengths using all nodes as source nodes.
-* `target: Vertex(NULL)` ➡  Ending node for the path. If not specified, compute shortest path lengths using all nodes as target nodes.
-* `weight: str(NULL)` ➡  If `None`, every edge has weight/distance/cost 1. If a string, use this edge attribute as the edge weight. Any edge attribute not present defaults to 1.
-* `method: str("dijkstra")` ➡  The algorithm to use to compute the path length. Supported options: ‘dijkstra’, ‘bellman-ford’. Other inputs produce a ValueError. If `weight` is `None`, unweighted graph methods are used and this suggestion is ignored.
+* `source: Vertex (default=NULL)` ➡  Starting node for the path. If not specified, compute shortest path lengths using all nodes as source nodes.
+* `target: Vertex (default=NULL)` ➡  Ending node for the path. If not specified, compute shortest path lengths using all nodes as target nodes.
+* `weight: string (default=NULL)` ➡  If `None`, every edge has weight/distance/cost 1. If a string, use this edge attribute as the edge weight. Any edge attribute not present defaults to 1.
+* `method: string (default="dijkstra")` ➡  The algorithm to use to compute the path length. Supported options: ‘dijkstra’, ‘bellman-ford’. Other inputs produce a ValueError. If `weight` is `None`, unweighted graph methods are used and this suggestion is ignored.
 
 #### Output:
 
@@ -1396,10 +1395,10 @@ RETURN source, target, path;
 Compute shortest path lengths in the graph.
 #### Input:
 
-* `source: Vertex(NULL)` ➡  Starting node for the path. If not specified, compute shortest path lengths using all nodes as source nodes.
-* `target: Vertex(NULL)` ➡  Ending node for the path. If not specified, compute shortest path lengths using all nodes as target nodes.
-* `weight: str(NULL)` ➡  If `None`, every edge has weight/distance/cost 1. If a string, use this edge attribute as the edge weight. Any edge attribute not present defaults to 1.
-* `method: str("dijkstra")` ➡  The algorithm to use to compute the path length. Supported options: ‘dijkstra’, ‘bellman-ford’. Other inputs produce a ValueError. If `weight` is `None`, unweighted graph methods are used and this suggestion is ignored.
+* `source: Vertex (default=NULL)` ➡  Starting node for the path. If not specified, compute shortest path lengths using all nodes as source nodes.
+* `target: Vertex (default=NULL)` ➡  Ending node for the path. If not specified, compute shortest path lengths using all nodes as target nodes.
+* `weight: string (default=NULL)` ➡  If `None`, every edge has weight/distance/cost 1. If a string, use this edge attribute as the edge weight. Any edge attribute not present defaults to 1.
+* `method: string (default="dijkstra")` ➡  The algorithm to use to compute the path length. Supported options: ‘dijkstra’, ‘bellman-ford’. Other inputs produce a ValueError. If `weight` is `None`, unweighted graph methods are used and this suggestion is ignored.
 
 #### Output:
 
@@ -1456,8 +1455,8 @@ Determines the triadic census of a directed graph. The *triadic census* is a cou
 
 #### Output:
 
-* `triad: str` ➡  Triad name.
-* `count: int` ➡  Number of occurrences as value.
+* `triad: string` ➡  Triad name.
+* `count: integer` ➡  Number of occurrences as value.
 
 #### Usage:
 ```cypher
@@ -1473,7 +1472,7 @@ Returns the Voronoi cells centered at center_nodes with respect to the shortest-
 #### Input:
 
 * `center_nodes: List[Vertex]` ➡  A nonempty set of nodes in the graph `G` that represent the centers of the Voronoi cells.
-* `weight: str(NULL)` ➡  The edge attribute (or an arbitrary function) representing the weight of an edge. This keyword argument is as described in the documentation for `networkx.multi_source_dijkstra_path`, for example.
+* `weight: string (default=NULL)` ➡  The edge attribute (or an arbitrary function) representing the weight of an edge. This keyword argument is as described in the documentation for `networkx.multi_source_dijkstra_path`, for example.
 
 #### Output:
 
@@ -1492,7 +1491,7 @@ Returns the Wiener index of the given graph.
  The *Wiener index* of a graph is the sum of the shortest-path distances between each pair of reachable nodes. For pairs of nodes in undirected graphs, only one orientation of the pair is counted.
 #### Input:
 
-* `weight: str(NULL)` ➡ The edge attribute to use as distance when computing shortest-path distances. This is passed directly to the
+* `weight: string (default=NULL)` ➡ The edge attribute to use as distance when computing shortest-path distances. This is passed directly to the
 `networkx.shortest_path_length` function.
 
 #### Output:

@@ -31,6 +31,34 @@ sidebar_label: Changelog
 - Previously registered replicas are automatically registered on restart of Memgraph. [#415](https://github.com/memgraph/memgraph/pull/415)
 - Add new command `SHOW CONFIG` that returns the configuration of the currently running Memgraph instance. [#459](https://github.com/memgraph/memgraph/pull/459)
 
+## v2.3.1 - Jun 23, 2022
+
+### Bug Fixes
+
+- Fix WebSocket connection with clients that do not use binary protocol header. [#403](https://github.com/memgraph/memgraph/pull/403)
+- Fix SSL connection shutdown hanging. [#395](https://github.com/memgraph/memgraph/pull/395)
+- Fix module symbol loading with python modules. [#335](https://github.com/memgraph/memgraph/pull/335)
+- Fix header on `SHOW REPLICATION ROLE` query and wrong timeout info on
+  `SHOW REPLICAS query`. [#376](https://github.com/memgraph/memgraph/pull/376)
+- Adapted compilation flag so that the memory allocator uses JEMALLOC while
+  counting allocated memory. [#401](https://github.com/memgraph/memgraph/pull/401)
+
+## v2.3.0 - Apr 27, 2022
+
+### Major Features and Improvements
+
+- Added [`FOREACH`](/cypher-manual/extension-clauses) clause.
+  [#351](https://github.com/memgraph/memgraph/pull/351)
+- Added [Bolt over WebSocket](/connect-to-memgraph/websocket.md) support to
+  Memgraph. [#384](https://github.com/memgraph/memgraph/pull/384)
+- Added [user-defined Memgraph magic
+  functions](/cypher-manual/functions/#user-defined-memgraph-magic-functions).
+  [#345](https://github.com/memgraph/memgraph/pull/345)
+
+### Bug Fixes
+
+- Fixed incorrect loading of C query modules.
+  [#387](https://github.com/memgraph/memgraph/pull/387)
 
 ## v2.2.1 - Mar 17, 2022
 
@@ -161,15 +189,13 @@ sidebar_label: Changelog
   you'll know how many nodes/edges were created by it.
   [#285](https://github.com/memgraph/memgraph/pull/285)
 - Added support for connecting to Pulsar as a new stream source. For more
-  details, check out our
-  [example](how-to-guides/streams/pulsar/pulsar-streams) and
-  [reference pages](reference-guide/streams).
+  details, check out our [reference pages](reference-guide/streams).
   [#293](https://github.com/memgraph/memgraph/pull/293)
 
 ### Bug Fixes
 
 - Allow duration values to be used as weights in the [Weighted Shortest
-  Path](/memgraph/reference-guide/graph-algorithms#weighted-shortest-path)
+  Path](/memgraph/reference-guide/built-in-graph-algorithms#weighted-shortest-path)
   query. [#278](https://github.com/memgraph/memgraph/pull/278)
 - Fix linkage error when `mgp_local_time_get_minute` is used.
   [#273](https://github.com/memgraph/memgraph/pull/273)

@@ -39,7 +39,7 @@ module supports only the export to JSON file format.
 
 #### Input:
 
-* `path: str` ➡ Path to the JSON file containing the exported graph database.
+* `path: string` ➡ Path to the JSON file containing the exported graph database.
 
 #### Usage:
 

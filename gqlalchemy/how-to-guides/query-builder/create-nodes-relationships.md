@@ -27,9 +27,9 @@ To create nodes, you can just use the method `node()` after `create()`:
   <TabItem value="gqlalchemy">
 
 ```python
-from gqlalchemy import create
+from gqlalchemy import Create
 
-query = create().node(labels="Person", name="Ron").execute()
+query = Create().node(labels="Person", name="Ron").execute()
 ```
 
   </TabItem>
@@ -56,9 +56,9 @@ if it already exists, it will only be updated if the properties don't match:
   <TabItem value="gqlalchemy">
 
 ```python
-from gqlalchemy import merge
+from gqlalchemy import Merge
 
-query = merge().node(labels="Person", name="Leslie").execute()
+query = Merge().node(labels="Person", name="Leslie").execute()
 ```
 
   </TabItem>
@@ -85,11 +85,11 @@ To create relationships, you can just use the methods `to()` and `from()` after
   <TabItem value="gqlalchemy">
 
 ```python
-from gqlalchemy import create
+from gqlalchemy import Create
 
-query = create()
+query = Create()
         .node(labels="Person", name="Leslie")
-        .to(edge_label="FRIENDS_WITH")
+        .to(relationship_type="FRIENDS_WITH")
         .node(labels="Person", name="Ron")
         .execute()
 ```

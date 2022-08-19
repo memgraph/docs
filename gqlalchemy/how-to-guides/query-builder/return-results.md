@@ -10,14 +10,16 @@ import TabItem from '@theme/TabItem';
 You can use the methods `return_()`, `limit()`, `skip()` and `order_by()` to
 construct queries that will return data from the database.
 
-- `return_(results: Optional[Dict[str, str]])` - Return data from the database
-  with aliases formatted as `key AS value`.
-- `limit(integer_expression: str)` - Limits the number of returned results equal
+- `return_(results: Optional[Union[str, Tuple[str, str], Dict[str, str],
+  List[Union[str, Tuple[str, str]]], Set[Union[str, Tuple[str, str]]]]] =
+  None)` - Return data from the database with aliases formatted as `key AS
+  value`.
+- `limit(integer_expression: Union[str, int])` - Limits the number of returned results equal
   to `integer_expression`.
-- `skip(integer_expression: str)` - Skip the number of results to be returned
+- `skip(integer_expression: Union[str, int])` - Skip the number of results to be returned
   equal to `integer_expression`.
-- `order_by(properties: str)` - Order the returned results either descending or
-  ascending.
+- `order_by(properties: Union[str, Tuple[str, Order], List[Union[str, Tuple[str,
+  Order]]]])` - Order the returned results either descending or ascending.
 
 ## Return all variables from a query
 
@@ -33,9 +35,9 @@ values={[
 <TabItem value="gqlalchemy">
 
 ```python
-from gqlalchemy import match
+from gqlalchemy import Match
 
-query = match().node(labels="Person", variable="p").return_().execute()
+query = Match().node(labels="Person", variable="p").return_().execute()
 ```
 
   </TabItem>
@@ -62,13 +64,13 @@ values={[
 <TabItem value="gqlalchemy">
 
 ```python
-from gqlalchemy import match
+from gqlalchemy import Match
 
-query = match()
+query = Match()
         .node(labels="Person", variable="p1")
         .to()
         .node(labels="Person", variable="p2")
-        .return_({"p1":"p1"})
+        .return_(results=[("p1", "first"), "p2"])
         .execute()
 ```
 
@@ -76,7 +78,7 @@ query = match()
   <TabItem value="cypher">
 
 ```cypher
-MATCH (p1:Person)-[]->(p2:Person) RETURN p1;
+MATCH (p1:Person)-[]->(p2:Person) RETURN p1 AS first, p2;
 ```
 
 </TabItem>
@@ -96,7 +98,7 @@ values={[
 <TabItem value="gqlalchemy">
 
 ```python
-from gqlalchemy import match
+from gqlalchemy import Match
 
 query = match().node(labels="Person", variable="p").return_().limit(10).execute()
 ```
@@ -137,9 +139,9 @@ values={[
 <TabItem value="gqlalchemy">
 
 ```python
-from gqlalchemy import match
+from gqlalchemy import Match
 
-query = match().node(variable="n").return_().order_by(properties="n.id").execute()
+query = Match().node(variable="n").return_().order_by(properties="n.id").execute()
 ```
 
   </TabItem>
@@ -163,10 +165,10 @@ values={[
 <TabItem value="gqlalchemy">
 
 ```python
-from gqlalchemy import match
-from gqlalchemy.query_builder import Order
+from gqlalchemy import Match
+from gqlalchemy.query_builders.memgraph_query_builder import Order
 
-query = match().node(variable="n").return_().order_by(properties=("n.id", Order.ASC).execute()
+query = Match().node(variable="n").return_().order_by(properties=("n.id", Order.ASC).execute()
 ```
 
   </TabItem>
@@ -190,10 +192,10 @@ values={[
 <TabItem value="gqlalchemy">
 
 ```python
-from gqlalchemy import match
-from gqlalchemy.query_builder import Order
+from gqlalchemy import Match
+from gqlalchemy.query_builders.memgraph_query_builder import Order
 
-query = match().node(variable="n").return_().order_by(properties=("n.id", Order.ASCENDING).execute()
+query = Match().node(variable="n").return_().order_by(properties=("n.id", Order.ASCENDING).execute()
 ```
 
   </TabItem>
@@ -228,10 +230,10 @@ values={[
 <TabItem value="gqlalchemy">
 
 ```python
-from gqlalchemy import match
-from gqlalchemy.query_builder import Order
+from gqlalchemy import Match
+from gqlalchemy.query_builders.memgraph_query_builder import Order
 
-query = match().node(variable="n").return_().order_by(properties=("n.id", Order.DESC).execute()
+query = Match().node(variable="n").return_().order_by(properties=("n.id", Order.DESC).execute()
 ```
 
   </TabItem>
@@ -268,10 +270,10 @@ values={[
 <TabItem value="gqlalchemy">
 
 ```python
-from gqlalchemy import match
-from gqlalchemy.query_builder import Order
+from gqlalchemy import Match
+from gqlalchemy.query_builders.memgraph_query_builder import Order
 
-query = match()
+query = Match()
         .node(variable="n")
         .return_()
         .order_by(

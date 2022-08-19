@@ -88,19 +88,19 @@ Ferenc Béres, Róbert Pálovics, Domokos Miklós Kelen and András A. Benczúr
 
 #### Input:
 
-* `half_life: int` ➡ half-life [seconds], used in the temporal walk probability
+* `half_life: integer` ➡ half-life [seconds], used in the temporal walk probability
   calculation
-* `max_length: int` ➡ Maximum length of the sampled temporal random walks
+* `max_length: integer` ➡ Maximum length of the sampled temporal random walks
 * `beta: float` ➡ Damping factor for long paths
-* `cutoff: int` ➡ Temporal cutoff in seconds to exclude very distant past
-* `sampled_walks: int` ➡ Number of sampled walks for each edge update
-* `full_walks: bool` ➡  Return every node of the sampled walk for representation
+* `cutoff: integer` ➡ Temporal cutoff in seconds to exclude very distant past
+* `sampled_walks: integer` ➡ Number of sampled walks for each edge update
+* `full_walks: boolean` ➡  Return every node of the sampled walk for representation
     learning (full_walks=True) or only the endpoints of the walk
     (full_walks=False)
 
 #### Output:
 
-* `message: str` ➡ Whether parameters are set or they need to be reset
+* `message: string` ➡ Whether parameters are set or they need to be reset
 
 #### Usage:
 
@@ -112,17 +112,17 @@ CALL node2vec_online.set_streamwalk_updater(7200, 3, 0.9, 604800, 4, False);
 
 #### Input:
 
-* `embedding_dimension: int` ➡ Number of dimensions in the representation of the
+* `embedding_dimension: integer` ➡ Number of dimensions in the representation of the
   embedding vector
 * `learning_rate: float` ➡ Learning rate
-* `skip_gram: bool` ➡ Whether to use skip-gram model (True) or
+* `skip_gram: boolean` ➡ Whether to use skip-gram model (True) or
   continuous-bag-of-words (CBOW)
-* `negative_rate: int` ➡ Negative rate for Gensim Word2Vec model
-* `threads: int` ➡ Maximum number of threads for parallelization
+* `negative_rate: integer` ➡ Negative rate for Gensim Word2Vec model
+* `threads: integer` ➡ Maximum number of threads for parallelization
 
 #### Output:
 
-* `message: str` ➡ Whether parameters are set or they need to be reset
+* `message: string` ➡ Whether parameters are set or they need to be reset
 
 #### Usage:
 
@@ -176,7 +176,7 @@ RETURN x;
 
 #### Output:
 
-* `message: str` ➡ Message that parameters are ready to be set again
+* `message: string` ➡ Message that parameters are ready to be set again
 
 #### Usage:
 
@@ -188,8 +188,8 @@ CALL node2vec_online.reset();
 
 #### Output:
 
-* `name: str` ➡ Name of available functions
-* `value: str` ➡ Documentation for every function
+* `name: string` ➡ Name of available functions
+* `value: string` ➡ Documentation for every function
 
 #### Usage:
 

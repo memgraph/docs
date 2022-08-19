@@ -31,9 +31,10 @@ If you want a certain configuration setting to be applied during this run only,
 
 #### Changing the configuration file {#file}
 
-Follow these steps to modify the main configuration file:
+Begin with starting Memgraph and finding out the `CONTAINER ID`:
 
-**1.** Start Memgraph with a `docker run` command. 
+**1.** Start Memgraph with a `docker run` command but be sure to include the
+following flag `-v mg_etc:/etc/memgraph`. 
 
 **2.** Open a new terminal and find the `CONTAINER ID` of the Memgraph Docker
 container using the following command:
@@ -41,6 +42,21 @@ container using the following command:
 ```plaintext
 docker ps
 ```
+
+Now, you can choose to either modify the main configuration file outside of
+Docker, or within Docker with a command-line text editor (such as **vim**).
+
+<Tabs
+  groupId="container"
+  defaultValue="outside"
+  values={[
+    {label: 'Changing configuration outside the container', value: 'outside'},
+    {label: 'Changing configuration inside the container', value: 'inside'},
+  ]}>
+    <TabItem value="outside">
+
+To change the configuration file outside the Docker container continue with the
+following steps:
 
 **3.** Place yourself in the directory where you want to copy the configuration
 file. 
@@ -82,7 +98,29 @@ C:\Users\Vlasta\Desktop>docker cp memgraph.conf bb3de2634afe:/etc/memgraph/memgr
 
 **8.** Restart Memgraph.
 
-**9.** You can check the current configuration by running the `SHOW CONFIG;` query. 
+**9.** You can check the current configuration by running the `SHOW CONFIG;` query.
+ 
+   </TabItem>
+   <TabItem value="inside">
+
+To change the configuration file inside the Docker container continue with the
+following steps:
+
+**3.** Enter the Docker container with the following command:
+
+```plaintext
+docker exec -it <CONTAINER ID> bash
+```
+
+**4.** Install the text editor of your choice.
+
+**5.** Edit the configuration file located at `/etc/memgraph/memgraph.conf`
+
+**6.** Restart Memgraph.
+
+   </TabItem>
+   </Tabs>
+
 ----
 
 #### Passing configuration options within the `docker run` command {#command}
@@ -99,28 +137,29 @@ passing configuration options within the `docker run` command.
   ]}>
     <TabItem value="platform">
 
-When you are working with the `memgraph-platform` image you should pass
-configuration options inside of environmental variables.
+If you are working with the `memgraph-platform` image, you should pass
+configuration options with environment variables.
 
 For example, if you want to limit memory usage for the whole instance to 50 MiB
-pass the configuration like this:
+and set the log level to `TRACE`, pass the configuration like this:
 
-```plaintext
-docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 -e MEMGRAPH="--memory-limit=50" memgraph/memgraph-platform
+```
+docker run -it -p 7687:7687 -p 3000:3000 -p 7444:7444 -e MEMGRAPH="--memory-limit=50 --log-level=TRACE" memgraph/memgraph-platform
 ```
 
    </TabItem>
    <TabItem value="other">
 
-When you are working with `memgraph` or `memgraph-mage` images you should pass
-configuration options as arguments. 
+When you are working with `memgraph` or `memgraph-mage` images, you should pass
+configuration options as arguments.
 
 For example, if you want to limit memory usage for the whole instance to 50 MiB
-pass the configuration like this:
+and set the log level to `TRACE`, pass the configuration argument like this:
 
-```plaintext
-docker run -it -p 7687:7687 -p 7444:7444  memgraph --memory-limit=50
 ```
+docker run -it -p 7687:7687 -p 7444:7444 memgraph/memgraph --memory-limit=50 --log-level=TRACE
+```
+
    
    </TabItem>
    </Tabs>

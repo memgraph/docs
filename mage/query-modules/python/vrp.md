@@ -45,13 +45,13 @@ VRP or **Vehicle Routing problem** is a generalization of the *Travelling Salesm
 #### Input:
 
 * `depot_node: Vertex` ➡ Depot node with its corresponding *lat* and *lng* coordinate properties.
-* `number_of_vehicles: int = 1` ➡ Designates how many vehicles are used. Set to 1 by default
+* `number_of_vehicles: integer = 1` ➡ Designates how many vehicles are used. Set to 1 by default
 
 #### Output:
 
 * `from_vertex: Vertex` ➡ Beginning point of one part of the route
 * `to_vertex: Vertex` ➡ Ending point of one part of the route
-* `vehicle_id: int` ➡ Vehicle ID that will drive the corresponding path (*from_vertex*)->(*to_vertex*)
+* `vehicle_id: integer` ➡ Vehicle ID that will drive the corresponding path (*from_vertex*)->(*to_vertex*)
 All pairs of the route represent the full route with all vehicles used.
 
 #### Usage:

@@ -12,6 +12,7 @@ not leave you stranded!
 answer to your inquiry:
 
   - **[Memgraph FAQ](/faq/memgraph-faq.md)**
+  - **[Memgraph Cloud FAQ](/faq/cloud-faq.md)**
   - **[Memgraph Lab FAQ](/faq/memgraph-lab-faq.md)**
   - **[MAGE FAQ](/faq/mage-faq.md)**
 

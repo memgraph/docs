@@ -25,6 +25,8 @@ three properties:
 3. **Partition tolerance** - the system continues to work as expected despite a
    partial network failure
 
+<img src={require('../data/replication/memgraph-replication-CAP-theorem.png').default} className={"imgBorder"}/>
+
 Most of the Memgraph use-cases do not benefit from well-known algorithms that
 strive to achieve all three CAP properties, such as Raft, because due to their
 complexity they produce performance issues. Memgraph use-cases are based on
@@ -70,6 +72,8 @@ implemented in Memgraph replication:
 - SYNC
 - ASYNC
 
+<img src={require('../data/replication/memgraph-replication-async-sync.png').default} className={"imgBorder"}/>
+
 When a REPLICA instance is registered and added to the cluster, it will start
 replicating in ASYNC mode. That will allow it to catch up to the current state
 of the MAIN instance. When the REPLICA instance synchronizes with the MAIN
@@ -83,6 +87,8 @@ thread waits for the response and cannot continue until the response is
 received. That means that the MAIN instance will not commit a transaction until
 all REPLICA instances running in the SYNC mode confirm they have received the
 same transaction.
+
+<img src={require('../data/replication/memgraph-replication-sync.png').default} className={"imgBorder"}/>
 
 SYNC mode prioritizes data consistency but has no tolerance for any network
 failures because if any of the REPLICATION instances fail, the MAIN instance
@@ -103,6 +109,8 @@ replication tasks to the REPLICA instance, creates a custom thread pool pattern,
 and receives confirmations of successful replication from the REPLICATION
 instance.
 
+<img src={require('../data/replication/memgraph-replication-async.png').default} className={"imgBorder"}/>
+
 ASYNC mode ensures system availability and partition tolerance.
 
 ## Synchronizing instances
@@ -121,6 +129,8 @@ While the REPLICA instance is in the RECOVERY state, the MAIN instance
 calculates the optimal synchronization path based on the REPLICA instance's
 timestamp and the current state of the durability files while keeping the
 overall size of the files necessary for synchronization to a minimum.
+
+<img src={require('../data/replication/memgraph-replication-sync-process.png').default} className={"imgBorder"}/>
 
 Imagine there were 5 changes made to the database. Each change is saved in a WAL
 file, so there are 5 WAL files, and the snapshot was created after 2 changes.
@@ -171,6 +181,8 @@ was not blocked, new data can be written. The content of the buffer (including
 any new data) is then written in a new WAL file that will be sent in the next
 synchronization process.
 
+<img src={require('../data/replication/memgraph-replication-buffer.png').default} className={"imgBorder"}/>
+
 ### Fixing timestamp consistency
 
 Timestamps are used to compare the state of the REPLICA instance in comparison
@@ -208,3 +220,5 @@ relationship. But if the transactions were run on the original MAIN after it was
 brought back online, the timestamp would be of no help, but the `epoch_id` would
 indicate incomparability, thus preventing the original MAIN from reclaiming its
 original role.
+
+<img src={require('../data/replication/memgraph-replication-ids.png').default} className={"imgBorder"}/>

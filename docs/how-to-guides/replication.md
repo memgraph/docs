@@ -139,7 +139,7 @@ instance:
 SHOW REPLICAS;
 ```
 
-### How to drop a REPLICA instance?
+## How to drop a REPLICA instance?
 
 To drop a replica, run the following query:
 
