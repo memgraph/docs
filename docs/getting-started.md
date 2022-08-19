@@ -11,7 +11,9 @@ develop applications you never thought possible within a couple of days, not
 months.
 
 If you're interested in trying out Memgraph from the comfort of your browser,
-you can do so on [Memgraph Playground](https://playground.memgraph.com/).
+you can run an instance on [Memgraph Cloud](https://cloud.memgraph.com/) and
+explore Memgraph during the 2-week trial period or you can play around with
+datasets and queries on [Memgraph Playground](https://playground.memgraph.com/).
 
 Are you eager to start working with the real thing? Read on!
 
@@ -20,11 +22,14 @@ Are you eager to start working with the real thing? Read on!
 Follow these three steps, and you will have Memgraph as a full-running graph
 application platform in no time at all. Here is what you need to do:
 
-### 1. Download and install Memgraph
+### 1. Download and install Memgraph or run it in Cloud
 
 Start your journey through the world of graph analytics by [downloading and
 installing](/installation/overview.mdx) Memgraph. You can install Memgraph using
 Docker on Windows and macOS, or natively on Linux and WSL.
+
+For a quick start, register at [Memgraph Cloud](https://cloud.memgraph.com/) and
+create a project in few easy steps!
 
 ### 2. Connect to Memgraph
 
@@ -107,7 +112,8 @@ repository](https://github.com/memgraph/example-streaming-app) and get started.
 
 If you want to know more about Memgraph and learn details of implemented
 features, take a deep dive into our [Reference
-guide](/reference-guide/overview.md) and [Concepts](/under-the-hood/overview.md).
+guide](/reference-guide/overview.md) and look [under Memgraph's
+hood](/under-the-hood/overview.md).
 
 ### Power up with MAGE
 
