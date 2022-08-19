@@ -69,32 +69,32 @@ the user should check if that is indeed the case.
 
 #### Input:
 
-* `directed: bool(False)` ➡ Specifies whether the graph is directed. If not set,
+* `directed: boolean (default=False)` ➡ Specifies whether the graph is directed. If not set,
   the graph is treated as undirected.
-* `weighted: bool(False)` ➡ Specifies whether the graph is weighted. If not set,
+* `weighted: boolean (default=False)` ➡ Specifies whether the graph is weighted. If not set,
   the graph is considered unweighted.
-* `similarity_threshold: double(0.7)` ➡ Maximum similarity between node’s and
+* `similarity_threshold: double (default=0.7)` ➡ Maximum similarity between node’s and
    its neighbors’ communities for the node to be updated in the ongoing
    iteration.
-* `exponent: double(4)` ➡ Power which community probability vectors are raised
+* `exponent: double (default=4)` ➡ Power which community probability vectors are raised
   elementwise to.
-* `min_value: double(0.1)` ➡ Smallest community probability that is not pruned
+* `min_value: double (default=0.1)` ➡ Smallest community probability that is not pruned
   between iterations.
-* `weight_property: str("weight")` For directed graphs, the values at the given
+* `weight_property: string (default="weight")` For directed graphs, the values at the given
    edge property are used as weights in the community detection algorithm.
-* `w_selfloop: double(1)` ➡ Each vertex has a self-loop added to smooth the
+* `w_selfloop: double (default=1)` ➡ Each vertex has a self-loop added to smooth the
    label propagation. This parameter specifies the weight assigned to the
    self-loops. If the graph is unweighted, this value is ignored.
 
 
-* `max_iterations: int(100)` ➡ Maximum number of iterations to run.
-* `max_updates: int(5)` ➡ Maximum number of updates to any node’s community
+* `max_iterations: integer (default=100)` ➡ Maximum number of iterations to run.
+* `max_updates: integer (default=5)` ➡ Maximum number of updates to any node’s community
   probabilities.
 
 #### Output:
 
 * `node: Vertex` ➡ Graph node.
-* `community_id: int` ➡ Community ID. If the node is not associated with any
+* `community_id: integer` ➡ Community ID. If the node is not associated with any
   community, defaults to ***-1***.
 
 #### Usage:
@@ -112,7 +112,7 @@ are none, defaults to calling `set()` with default parameters.
 #### Output:
 
 * `node: Vertex` ➡ Graph node.
-* `community_id: int` ➡ Community ID. Defaults to ***-1*** if the node does not belong to any community.
+* `community_id: integer` ➡ Community ID. Defaults to ***-1*** if the node does not belong to any community.
 
 #### Usage:
 
@@ -141,7 +141,7 @@ changes applied in the latest graph update and returns the results.
 #### Output:
 
 * `node: Vertex` ➡ Graph node.
-* `community_id: int` ➡ Community ID. If the node is not associated with any
+* `community_id: integer` ➡ Community ID. If the node is not associated with any
   community, defaults to ***-1***.
 
 #### Usage:
@@ -178,7 +178,7 @@ Resets the algorithm to its initial state.
 
 #### Output:
 
-* `message: str` ➡ Reports whether the algorithm was successfully reset.
+* `message: string` ➡ Reports whether the algorithm was successfully reset.
 
 #### Usage:
 

@@ -1,0 +1,26 @@
+.homePlaygroundEmbed {
+    padding: 85px 0;
+    position: relative;
+    margin-top: 70px;
+}
+
+.homePlaygroundEmbed h2 {
+    font-size: 39px;
+    margin-bottom: 42px;
+}
+
+.homePlaygroundEmbed__subtitle {
+    max-width: 50%;
+}
+
+.homePlaygroundEmbed__bg {
+    position: absolute;
+    right: 0;
+    z-index: 1;
+}
+
+.homePlaygroundEmbed__embed iframe {
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
+}

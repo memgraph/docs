@@ -4,6 +4,8 @@ title: How to load nodes and relationships
 sidebar_label: Load nodes and relationships
 ---
 
+import Neo4jOption from '../../templates/_neo4j_option.mdx';
+
 Through this guide, you will learn how to load nodes and relationships from a
 graph database. First, perform all necessary imports and create an instance of
 the database:
@@ -17,6 +19,8 @@ db = Memgraph()
 
 > Make sure you have a running Memgraph instance. If you're not sure how to run
 > Memgraph, check out the Memgraph [Quick start](/memgraph/#quick-start).
+
+<Neo4jOption/>
 
 Let's say you have defined `Streamer`, `Team` and `IsPartOf` classes:
 

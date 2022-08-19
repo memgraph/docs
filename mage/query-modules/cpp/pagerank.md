@@ -65,11 +65,11 @@ PageRank implementation.
 
 #### Input:
 
-* `max_iterations: int(100)` ➡ Maximum number of iterations within PageRank
+* `max_iterations: integer (default=100)` ➡ Maximum number of iterations within PageRank
   algorithm.
-* `damping_factor: double(0.85)` ➡ PageRanks damping factor. This is the
+* `damping_factor: double (default=0.85)` ➡ PageRanks damping factor. This is the
   probability of continuing the random walk from a random node within the graph.
-* `stop_epsilon: double(1e-5)` ➡ Value used to terminate the iterations of
+* `stop_epsilon: double (default=1e-5)` ➡ Value used to terminate the iterations of
   PageRank. If change from one iteration to another is lower than
   *stop_epsilon*, execution is stopped.
 

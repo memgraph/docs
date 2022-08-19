@@ -4,13 +4,6 @@ title: Replication
 sidebar_label: Replication
 ---
 
-[![Related - How
-to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/replication.md)
-[![Related - Under the
-Hood](https://img.shields.io/static/v1?label=Related&message=Under%20the%20hood&color=orange&style=for-the-badge)](/under-the-hood/replication.md)
-[![Related - Blog
-Post](https://img.shields.io/static/v1?label=Related&message=Blog%20post&color=9C59DB&style=for-the-badge)](https://memgraph.com/blog/implementing-data-replication)
-
 When distributing data across several instances, Memgraph uses replication to
 provide a satisfying ratio of the following properties:
 
@@ -24,6 +17,23 @@ provide a satisfying ratio of the following properties:
 In the replication process, the data is replicated from one storage (MAIN
 instance) to another (REPLICA instances).
 
+:::info
+
+From version 2.4 it is no longer possible to specify a timeout when registering
+a sync replica. To mimic this behavior in higher releases, please use ASYNC
+replication instead.
+
+:::
+
+
+[![Related - How
+to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/replication.md)
+[![Related - Under the
+Hood](https://img.shields.io/static/v1?label=Related&message=Under%20the%20hood&color=orange&style=for-the-badge)](/under-the-hood/replication.md)
+[![Related - Blog
+Post](https://img.shields.io/static/v1?label=Related&message=Blog%20post&color=9C59DB&style=for-the-badge)](https://memgraph.com/blog/implementing-data-replication)
+
+
 ## Data replication implementation basics
 
 In Memgraph, all instances are MAIN upon starting. When creating a replication
@@ -32,23 +42,18 @@ instances have to be demoted to REPLICA roles and have a port defined using a
 Cypher query. REPLICA instances no longer accept write queries. In order to
 start the replication, each REPLICA instance needs to be registered from the
 MAIN instance by setting [a replication
-mode](/under-the-hood/replication.md#replication-modes) (SYNC, SYNC WITH TIMEOUT,
-and ASYNC) and specifying the REPLICA instance's socket address.
+mode](/under-the-hood/replication.md#replication-modes) (SYNC
+or ASYNC) and specifying the REPLICA instance's socket address.
 
 The replication mode defines the terms by which the MAIN instance can commit the
 changes to the database, thus modifying the system to prioritize either
 consistency or availability:
 
-- **SYNC** - The MAIN instance will not commit a transaction until all REPLICA
-  instances running in the SYNC mode confirm they have received the same
-  transaction. SYNC mode prioritizes data consistency but has no tolerance for
-  any network failures.
-- **SYNC WITH TIMEOUT** - The MAIN instance will not commit a transaction until
-  all REPLICA instances confirm they have received the same transaction within a
-  configured time interval. If the response from a REPLICA times out, the
-  replication mode of that instance will be changed to ASYNC. SYNC WITH TIMEOUT
-  prioritizes data consistency until unexpected issues force the system to
-  prioritize availability and partition tolerance.
+- **SYNC** - After committing a transaction, the MAIN instance will communicate the changes 
+to all REPLICA instances running in SYNC mode and wait until it receives a response or that 
+a timeout is reached. <br/>
+In the case of a timeout, it will return an error to the user indicating that he should check the MAIN instance will return an error to the user proposing a check of  REPLICAs' statuses as there might be network or hardware issues.
+
 - **ASYNC** - The MAIN instance will commit a transaction without receiving
   confirmation from REPLICA instances that they have received the same
   transaction. ASYNC mode ensures system availability and partition tolerance.
@@ -139,16 +144,15 @@ SHOW REPLICATION ROLE;
 
 Once all the nodes in the cluster are assigned with appropriate roles, you can
 enable replication in the MAIN instance by registering REPLICA instances,
-setting a replication mode (SYNC, SYNC WITH TIMEOUT, and ASYNC), and specifying
+setting a replication mode (SYNC and ASYNC), and specifying
 the REPLICA instance's socket address. Memgraph doesn't support chaining REPLICA
 instances, that is, a REPLICA instance cannot be replicated on another REPLICA
 instance.
 
-If you want to register a REPLICA instance with a SYNC or SYNC WITH TIMEOUT
-replication mode, run the following query:
+If you want to register a REPLICA instance with a SYNC replication mode, run the following query:
 
 ```plaintext
-REGISTER REPLICA name SYNC [WITH TIMEOUT 0.5] TO <socket_address>;
+REGISTER REPLICA name SYNC TO <socket_address>;
 ```
 
 If you want to register a REPLICA instance with an ASYNC replication mode, run
@@ -187,8 +191,8 @@ Example of a `<socket_address>` using only `IP_ADDRESS`:
 
 When a REPLICA instance is registered, it will start replication in ASYNC mode
 until it synchronizes to the current state of the database. Upon
-synchronization, REPLICA instances will start replication in the replication
-mode set during registration.
+synchronization, REPLICA instances will either continue working in the ASYNC
+mode or reset to SYNC mode.
 
 ### Listing all registered REPLICA instances
 

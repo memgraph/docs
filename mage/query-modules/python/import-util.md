@@ -39,7 +39,7 @@ supports only the import of JSON file format.
 
 #### Input:
 
-* `path: str` ➡ Path to the JSON file that is being imported.
+* `path: string` ➡ Path to the JSON file that is being imported.
 
 #### Usage:
 The JSON file you're importing needs to be structured the same as the JSON file

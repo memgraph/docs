@@ -4,6 +4,8 @@ title: How to save nodes and relationships
 sidebar_label: Save nodes and relationships
 ---
 
+import Neo4jOption from '../../templates/_neo4j_option.mdx';
+
 Through this guide, you will learn how to save nodes and relationships to a
 graph database.
 
@@ -25,6 +27,8 @@ class User(Node):
 class Language(Node):
     name: str = Field(unique=True, db=db)
 ```
+
+<Neo4jOption/>
 
 Then you create and save objects with:
 

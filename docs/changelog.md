@@ -6,22 +6,93 @@ sidebar_label: Changelog
 
 ## v2.4.0
 
-### Bug Fixes
-
-- Fix header on `SHOW REPLICATION ROLE` query and wrong timout info on `SHOW
-  REPLICAS` query. [#376](https://github.com/memgraph/memgraph/pull/376)
-
 ### Major Features and Improvements
 
 - Add replica state to `SHOW REPLICAS` query.
   [#379](https://github.com/memgraph/memgraph/pull/379)
+- Add `current_timestamp` and `number_of_timestamp_behind_master` to `SHOW
+  REPLICAS` query.[#412](https://github.com/memgraph/memgraph/pull/412)
 - Add frequent replica ping. `main` instance checks state of the replicas with
   given frequency controller by `--replication-replica-check-delay-sec`. The
   check allows latest information about the state of each replica from `main`
   point of view. [#380](https://github.com/memgraph/memgraph/pull/380)
+- Updated results return by [`CHECK
+  STREAM`](/reference-guide/streams/overview.md) query to group all queries/raw
+  messages on single line per batch.
+  [#394](https://github.com/memgraph/memgraph/pull/394)
+- Added `BATCH_LIMIT` and `TIMEOUT` options to [`START
+  STREAM`](/reference-guide/streams/overview.md) query that returns the raw
+  message received by the transformation.
+  [#392](https://github.com/memgraph/memgraph/pull/392)
+- Query `REGISTER REPLICA replica_name SYNC` no longer supports `TIMEOUT`
+  parameter. To mimic the previous behavior of `REGISTER REPLICA replica_name
+  SYNC WITH TIMEOUT 1`, one should use `REGISTER REPLICA replica_name ASYNC`
+  instead. [#423](https://github.com/memgraph/memgraph/pull/423)
+- Make behavior more [openCypher](http://opencypher.org/) compliant regarding
+  checking against `NULL` values is `CASE` expressions.
+  [#432](https://github.com/memgraph/memgraph/pull/432)
+- Previously registered replicas are automatically registered on restart of
+  Memgraph. [#415](https://github.com/memgraph/memgraph/pull/415)
+- Add new command `SHOW CONFIG` that returns the configuration of the currently
+  running Memgraph instance.
+  [#459](https://github.com/memgraph/memgraph/pull/459)
 - Extend the shortest paths functionality with [All Shortest
   Path](/memgraph/reference-guide/graph-algorithms#all-shortest-paths)
   query. [#409](https://github.com/memgraph/memgraph/pull/409)
+
+### Bug Fixes
+
+- Fix header on `SHOW REPLICATION ROLE` query and wrong timeout info on `SHOW
+  REPLICAS` query. [#376](https://github.com/memgraph/memgraph/pull/376)
+- Added a check to ensure two replicas cannot be registered to an identical
+  end-point. [#406](https://github.com/memgraph/memgraph/pull/406)
+- Adapted compilation flag so that the memory allocator uses JEMALLOC while
+  counting allocated memory.
+  [#401](https://github.com/memgraph/memgraph/pull/401)
+- `toString` function is now able to accept `Date`, `LocalTime`, `LocalDateTime`
+  and `Duration` data types.
+  [#429](https://github.com/memgraph/memgraph/pull/429)
+- Aggregation functions now return the openCypher-compliant results on `null`
+  input and display the correct behavior when grouped with other operators.
+  [#448](https://github.com/memgraph/memgraph/pull/448)
+- Corrected inconsistencies and incorrect behavior with regards to sync
+  replicas. For more detail about the behavior, please check [Under the
+  Hood](/under-the-hood/replication.md).
+  [#448](https://github.com/memgraph/memgraph/pull/435)
+- Fixed handling `ROUTE` Bolt message. Memgraph didn't handle the fields of
+  `ROUTE` message properly. Therefore the session might be stuck in a state
+  where even the `RESET` message did not help. With this fix, sending a `RESET`
+  message will properly reset the session.
+  [#475](https://github.com/memgraph/memgraph/pull/475)
+
+## v2.3.1 - Jun 23, 2022
+
+### Bug Fixes
+
+- Fix WebSocket connection with clients that do not use binary protocol header. [#403](https://github.com/memgraph/memgraph/pull/403)
+- Fix SSL connection shutdown hanging. [#395](https://github.com/memgraph/memgraph/pull/395)
+- Fix module symbol loading with python modules. [#335](https://github.com/memgraph/memgraph/pull/335)
+- Fix header on `SHOW REPLICATION ROLE` query and wrong timeout info on
+  `SHOW REPLICAS query`. [#376](https://github.com/memgraph/memgraph/pull/376)
+- Adapted compilation flag so that the memory allocator uses JEMALLOC while
+  counting allocated memory. [#401](https://github.com/memgraph/memgraph/pull/401)
+
+## v2.3.0 - Apr 27, 2022
+
+### Major Features and Improvements
+
+- Added [`FOREACH`](/cypher-manual/extension-clauses) clause.
+  [#351](https://github.com/memgraph/memgraph/pull/351)
+- Added [Bolt over WebSocket](/connect-to-memgraph/websocket.md) support to
+  Memgraph. [#384](https://github.com/memgraph/memgraph/pull/384)
+- Added [user-defined Memgraph magic
+  functions](/cypher-manual/functions/#user-defined-memgraph-magic-functions).
+  [#345](https://github.com/memgraph/memgraph/pull/345)
+
+### Bug Fixes
+
+- Fixed incorrect loading of C query modules.
+  [#387](https://github.com/memgraph/memgraph/pull/387)
 
 ## v2.2.1 - Mar 17, 2022
 
@@ -152,15 +223,13 @@ sidebar_label: Changelog
   you'll know how many nodes/edges were created by it.
   [#285](https://github.com/memgraph/memgraph/pull/285)
 - Added support for connecting to Pulsar as a new stream source. For more
-  details, check out our
-  [example](how-to-guides/streams/pulsar/pulsar-streams) and
-  [reference pages](reference-guide/streams).
+  details, check out our [reference pages](reference-guide/streams).
   [#293](https://github.com/memgraph/memgraph/pull/293)
 
 ### Bug Fixes
 
 - Allow duration values to be used as weights in the [Weighted Shortest
-  Path](/memgraph/reference-guide/graph-algorithms#weighted-shortest-path)
+  Path](/memgraph/reference-guide/built-in-graph-algorithms#weighted-shortest-path)
   query. [#278](https://github.com/memgraph/memgraph/pull/278)
 - Fix linkage error when `mgp_local_time_get_minute` is used.
   [#273](https://github.com/memgraph/memgraph/pull/273)

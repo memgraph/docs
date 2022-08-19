@@ -19,7 +19,7 @@ in the [Playground
 sandbox](https://playground.memgraph.com/sandbox/europe-backpacking) using the
 Europe backpacking dataset, or adjust them to the dataset of your choice. 
 
-Memgraph has a lot more graph algorithms to offer besides these four, and they
+Memgraph has a lot more graph algorithms to offer besides these three, and they
 are all a part of [MAGE](/mage) - Memgraph Advanced Graph Extensions, an
 open-source repository that contains graph algorithms and modules written in the
 form of query modules that can be used to tackle the most interesting and
