@@ -92,8 +92,9 @@ SHOW ROLE FOR user_name;
 At the moment, privileges are confined to users' abilities to perform certain
 `OpenCypher` queries. Namely users can be given permission to execute a subset
 of the following commands: `CREATE`, `DELETE`, `MATCH`, `MERGE`, `SET`,
-`REMOVE`, `INDEX`, `AUTH`, `REPLICATION`, `READ_FILE`, `FREE_MEMORY`, `DURABILITY`,
-`TRIGGER`, `STREAM`, `CONFIG`, `MODULE_READ`, `MODULE_WRITE` and `WEBSOCKET`.
+`REMOVE`, `INDEX`, `STATS`, `AUTH`, `REPLICATION`, `READ_FILE`, `DURABILITY`,
+`FREE_MEMORY`, `TRIGGER`, `STREAM`, `CONFIG`, `CONSTRAINT`, `DUMP`,
+`MODULE_READ`, `MODULE_WRITE` and `WEBSOCKET`.
 
 Granting a certain set of privileges to a specific user or user role can be
 done by issuing the following command:

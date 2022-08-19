@@ -24,10 +24,12 @@ more details.
 2. [Merging relationships](#2-merging-relationships)<br />
     2.1. [Merging relationships](#21-merging-relationships)<br />
     2.2. [Merging on undirected relationships](#22-merging-on-undirected-relationships)<br />
-3. [Merging with ON CREATE and ON MATCH](#3-merging-with-on-create-and-on-match)<br />
-    3.1. [Merging with ON CREATE](#31-merging-with-on-create)<br />
-    3.2. [Merging with ON MATCH](#32-merging-with-on-match)<br />
-    3.3. [Merging with ON CREATE and ON MATCH](#33-merging-with-on-create-and-on-match)
+3. [Merging with ON CREATE and ON MATCH](#3-merging-with-on-create-set-and-on-match-set)<br />
+    3.1. [Merging with ON CREATE SET](#31-merging-with-on-create-set)<br />
+    3.2. [Merging with ON MATCH SET](#32-merging-with-on-match-set)<br />
+    3.3. [Merging with ON CREATE SET and ON MATCH SET](#33-merging-with-on-create-set-and-on-match-set)<br />
+    3.4. [Merging with SET](#34-merging-with-set)<br />
+    3.5. [Combination of clauses](#35-combination-of-clauses)
 
 ## Data Set
 
