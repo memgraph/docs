@@ -36,6 +36,7 @@ sidebar_label: Changelog
 - Add new command `SHOW CONFIG` that returns the configuration of the currently
   running Memgraph instance.
   [#459](https://github.com/memgraph/memgraph/pull/459)
+- Extend the query modules C and Python API to enable logging on different levels. [#417](https://github.com/memgraph/memgraph/pull/417)
 
 ### Bug Fixes
 
