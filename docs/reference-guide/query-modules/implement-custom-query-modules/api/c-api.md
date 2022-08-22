@@ -1912,7 +1912,7 @@ enum mgp_error mgp_vertex_iter_in_edges(
 )
 ```
 
-Start iterating over inbound edges of the given vertex.
+Start iterating over inbound edges of the given vertex. When the first parameter to procedure is projected graph, iterating will start over inbound edges vertex in projected graph.
 
 The connection information of the vertex is copied when the iterator is created, therefore later creation or deletion of edges won't affect the iterated edges, however the property changes on the edges will be visible. The resulting mgp_edges_iterator needs to be deallocated with mgp_edges_iterator_destroy. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_edges_iterator. Return MGP_ERROR_DELETED_OBJECT if `v` has been deleted.
 
@@ -1927,7 +1927,7 @@ enum mgp_error mgp_vertex_iter_out_edges(
 )
 ```
 
-Start iterating over outbound edges of the given vertex.
+Start iterating over outbound edges of the given vertex. When the first parameter to procedure is projected graph, iterating will start over outbound edges vertex in projected graph.
 
 The connection information of the vertex is copied when the iterator is created, therefore later creation or deletion of edges won't affect the iterated edges, however the property changes on the edges will be visible. The resulting mgp_edges_iterator needs to be deallocated with mgp_edges_iterator_destroy. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_edges_iterator. Return MGP_ERROR_DELETED_OBJECT if `v` has been deleted.
 
@@ -2132,7 +2132,7 @@ enum mgp_error mgp_graph_get_vertex_by_id(
 )
 ```
 
-Get the vertex corresponding to given ID, or NULL if no such vertex exists.
+Get the vertex corresponding to given ID, or NULL if no such vertex exists. When the first parameter to procedure is projected graph, vertex must exist also in projected graph.
 
 Resulting vertex must be freed using mgp_vertex_destroy. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate the vertex.
 
@@ -2161,7 +2161,7 @@ enum mgp_error mgp_graph_create_vertex(
 )
 ```
 
-Add a new vertex to the graph.
+Add a new vertex to the graph. When the first parameter to procedure is projected graph, vertex is added to projected graph view and it be reachable from afterwards in [mgp_graph_iter_vertices](#function-mgp-graph-iter-vertices)
 
 Resulting vertex must be freed using mgp_vertex_destroy. Return MGP_ERROR_IMMUTABLE_OBJECT if `graph` is immutable. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_vertex.
 
@@ -2175,7 +2175,7 @@ enum mgp_error mgp_graph_delete_vertex(
 )
 ```
 
-Delete a vertex from the graph.
+Delete a vertex from the graph. When the first parameter to procedure is projected graph, vertex must exist also in projected graph.
 
 Return MGP_ERROR_IMMUTABLE_OBJECT if `graph` is immutable. Return MGP_ERROR_LOGIC_ERROR if `vertex` has edges. Return MGP_ERROR_SERIALIZATION_ERROR if `vertex` has been modified by another transaction.
 
@@ -2189,7 +2189,7 @@ enum mgp_error mgp_graph_detach_delete_vertex(
 )
 ```
 
-Delete a vertex and all of its edges from the graph.
+Delete a vertex and all of its edges from the graph. When the first parameter to procedure is projected graph, such operation is not possible. 
 
 Return MGP_ERROR_IMMUTABLE_OBJECT if `graph` is immutable. Return MGP_ERROR_SERIALIZATION_ERROR if `vertex` has been modified by another transaction.
 
@@ -2207,7 +2207,7 @@ enum mgp_error mgp_graph_create_edge(
 )
 ```
 
-Add a new directed edge between the two vertices with the specified label.
+Add a new directed edge between the two vertices with the specified label. If first parameter is projected graph, it will create new directed edge with specified label only if both vertices are part of projected graph.
 
 Resulting edge must be freed using mgp_edge_destroy. Return MGP_ERROR_IMMUTABLE_OBJECT if `graph` is immutable. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_edge. Return MGP_ERROR_DELETED_OBJECT if `from` or `to` has been deleted. Return MGP_ERROR_SERIALIZATION_ERROR if `from` or `to` has been modified by another transaction.
 
@@ -2221,7 +2221,7 @@ enum mgp_error mgp_graph_delete_edge(
 )
 ```
 
-Delete an edge from the graph.
+Delete an edge from the graph. When the first parameter to procedure is projected graph, edge must also exist in projected graph.
 
 Return MGP_ERROR_IMMUTABLE_OBJECT if `graph` is immutable. Return MGP_ERROR_SERIALIZATION_ERROR if `edge`, its source or destination vertex has been modified by another transaction.
 
