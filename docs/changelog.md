@@ -32,7 +32,7 @@ Hood](/under-the-hood/replication.md). [#448](https://github.com/memgraph/memgra
 - Make behavior more [openCypher](http://opencypher.org/) compliant regarding checking against `NULL` values is `CASE` expressions. [#432](https://github.com/memgraph/memgraph/pull/432)
 - Previously registered replicas are automatically registered on restart of Memgraph. [#415](https://github.com/memgraph/memgraph/pull/415)
 - Add new command `SHOW CONFIG` that returns the configuration of the currently running Memgraph instance. [#459](https://github.com/memgraph/memgraph/pull/459)
-- Extend C API and Python API to enable logging on certain level. [#417](https://github.com/memgraph/memgraph/pull/417)
+- Extend the query modules C and Python API to enable logging on different levels. [#417](https://github.com/memgraph/memgraph/pull/417)
 
 
 ## v2.2.1 - Mar 17, 2022
