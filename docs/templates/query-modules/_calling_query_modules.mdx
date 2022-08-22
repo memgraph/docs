@@ -5,8 +5,12 @@ loaded into Memgraph, you can call them within queries using the following Cyphe
 syntax:
 
 ```cypher
-CALL module.procedure(arg1, "string_argument", ...) YIELD res1, res2, ...;
+CALL module.procedure([optional parameter], arg1, "string_argument", ...) YIELD res1, res2, ...;
 ```
+As you can see, first parameter is optional, rest of them depend on procedure you are trying to call. Optional parameter
+must be result of aggregation function `project`, about which you can read more [here](/cypher-manual/functions#aggregation-functions).
+If such parameter is provided, **all** operations will be executed on projected graph. Otherwise, you will work on
+graph you have stored inside Memgraph. 
 
 Each procedure returns zero or more records, where each record contains named
 fields. The `YIELD` clause is used to select fields you are interested in or all
