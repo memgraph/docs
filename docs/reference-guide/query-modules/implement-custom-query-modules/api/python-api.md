@@ -1431,7 +1431,6 @@ Access to `Graph` object.
 
 - `InvalidContextError` - If context is invalid.
 
-
 **Examples**:
 
   ```context.graph```
