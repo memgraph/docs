@@ -1912,7 +1912,7 @@ enum mgp_error mgp_vertex_iter_in_edges(
 )
 ```
 
-Start iterating over inbound edges of the given vertex. When the first parameter to procedure is projected graph, iterating will start over inbound edges vertex in projected graph.
+Start iterating over inbound edges of the given vertex. When the first parameter to procedure is projected graph, iterating will start over inbound edges of the given vertex in projected graph.
 
 The connection information of the vertex is copied when the iterator is created, therefore later creation or deletion of edges won't affect the iterated edges, however the property changes on the edges will be visible. The resulting mgp_edges_iterator needs to be deallocated with mgp_edges_iterator_destroy. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_edges_iterator. Return MGP_ERROR_DELETED_OBJECT if `v` has been deleted.
 
@@ -1927,7 +1927,7 @@ enum mgp_error mgp_vertex_iter_out_edges(
 )
 ```
 
-Start iterating over outbound edges of the given vertex. When the first parameter to procedure is projected graph, iterating will start over outbound edges vertex in projected graph.
+Start iterating over outbound edges of the given vertex. When the first parameter to procedure is projected graph, iterating will start over outbound edges of the given vertex in projected graph.
 
 The connection information of the vertex is copied when the iterator is created, therefore later creation or deletion of edges won't affect the iterated edges, however the property changes on the edges will be visible. The resulting mgp_edges_iterator needs to be deallocated with mgp_edges_iterator_destroy. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_edges_iterator. Return MGP_ERROR_DELETED_OBJECT if `v` has been deleted.
 
@@ -2161,7 +2161,7 @@ enum mgp_error mgp_graph_create_vertex(
 )
 ```
 
-Add a new vertex to the graph. When the first parameter to procedure is projected graph, vertex is added to projected graph view and it be reachable from afterwards in [mgp_graph_iter_vertices](#function-mgp-graph-iter-vertices)
+Add a new vertex to the graph. When the first parameter to procedure is projected graph, vertex is added to also to projected graph view.
 
 Resulting vertex must be freed using mgp_vertex_destroy. Return MGP_ERROR_IMMUTABLE_OBJECT if `graph` is immutable. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_vertex.
 
