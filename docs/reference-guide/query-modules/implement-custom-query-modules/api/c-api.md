@@ -265,6 +265,7 @@ Memgraph in order to use them.
 | enum [mgp_error](#variable-mgp-error) | **[mgp_module_add_transformation](#function-mgp-module-add-transformation)**(struct mgp_module * module, const char * name, [mgp_trans_cb](#typedef-mgp-trans-cb) cb)<br/>Register a transformation with a module.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_vertices_iterator_next](#function-mgp-vertices-iterator-next)**(struct mgp_vertices_iterator * it, struct mgp_vertex ** result)<br/>Advance the iterator to the next vertex and return it.  |
 | enum [mgp_error](#variable-mgp-error)| **[mgp_log](#function-mgp-log)**(mgp_log_level log_level, const char *output)<br/>Log a message on a certain level. |
+
 ## Attributes
 
 |                | Name           |
