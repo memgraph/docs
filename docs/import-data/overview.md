@@ -54,7 +54,7 @@ the platform. You can find a list of all the supported drivers
 ## Where to next?
 
 You can also connect to streams and import data from CYPHERL files to an
-instance running in [Memgraph Cloud](https://cloud.memgraph.com/). To learn more
+instance running in [Memgraph Cloud](/memgraph-cloud). To learn more
 about the Cypher language, check out our [Cypher manual](/cypher-manual) or
 [Memgraph Playground](https://playground.memgraph.com/) for interactive guides.
 For real-world examples of how to use Memgraph, we strongly suggest going

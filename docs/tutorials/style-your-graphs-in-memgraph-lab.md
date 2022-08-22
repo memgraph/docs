@@ -8,17 +8,46 @@ sidebar_label: Style your graphs in Memgraph Lab
 Post](https://img.shields.io/static/v1?label=Related&message=Blog%20post&color=9C59DB&style=for-the-badge)](https://memgraph.com/blog/how-to-style-your-graphs-in-memgraph-lab)
 
 In this tutorial, you'll learn how to use **Style script** to add style to your
-graphs. You'll use the sandbox site **Memgraph Playground** that runs **Memgraph Lab** to
-try out some styling.
+graphs. You'll use [**Memgraph Cloud**](http://memgraph.com/cloud) or the sandbox
+site **Memgraph Playground** that runs **Memgraph Lab** to try out styling
+graphs.
 
 ## Prerequisites
 
 For this tutorial, there are no particular prerequisites. All you need is a web
 browser.
 
-## Step 1 - Connecting to Memgraph sandbox
+## Step 1 - Connecting to Memgraph Cloud or Memgraph Playground
 
-First, open the Memgraph Playground sandbox [Europe
+Memgraph Cloud enables you to read and make changes to the data. It comes with a
+14-day free trial upon registration. You can also use Memgraph Playground, but
+there you can only read the data, but don't worry, you will be able to complete
+the tutorial.
+
+### Memgraph Cloud
+
+1. [Sign up](https://cloud.memgraph.com/) to Memgraph Cloud.
+2. Once you finish the registration, log in and [create a new
+   project](/memgraph-cloud/cloud-projects#create-a-new-memgraph-cloud-project).
+3. Open the project and [connect to it via Memgraph
+   Lab](/memgraph-cloud/cloud-connect#connect-with-memgraph-lab).
+
+  <img src={require('../data/tutorials/style-your-graphs-in-memgraph-lab/style-graphs-open-lab.gif').default} className={"imgBorder"}/>
+
+4. In Memgraph Lab, navigate to **Datasets** section and upload the Europe
+   backpacking dataset.
+5. Run the sample query provided by the Lab. 
+6. Open the **Graph Style Editor** tab. 
+
+  <img src={require('../data/tutorials/style-your-graphs-in-memgraph-lab/style-graphs-upload-dataset.gif').default} className={"imgBorder"}/>
+
+Notice there is code already present in the _Graph Style Editor_. In the next few
+steps, you'll learn how to adjust that code to style your graph using colors and
+images.
+
+### Memgraph Playground
+
+Open the Memgraph Playground sandbox [Europe
 backpacking](https://playground.memgraph.com/sandbox/europe-backpacking). When
 the sandbox is loaded, do the following:
 

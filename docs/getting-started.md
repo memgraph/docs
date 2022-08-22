@@ -11,7 +11,7 @@ develop applications you never thought possible within a couple of days, not
 months.
 
 If you're interested in trying out Memgraph from the comfort of your browser,
-you can run an instance on [Memgraph Cloud](https://cloud.memgraph.com/) and
+you can run an instance on [Memgraph Cloud](/memgraph-cloud) and
 explore Memgraph during the 2-week trial period or you can play around with
 datasets and queries on [Memgraph Playground](https://playground.memgraph.com/).
 
