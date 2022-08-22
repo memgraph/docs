@@ -892,7 +892,7 @@ Get the properties of the vertex.
 def in_edges() -> typing.Iterable[Edge]
 ```
 
-Iterate over inbound edges of the vertex.
+Iterate over inbound edges of the vertex. When the first parameter to procedure is projected graph, iterating will start over inbound edges of the given vertex in projected graph.
 Doesn’t return a dynamic view of the edges but copies the
 current inbound edges.
 
@@ -919,7 +919,7 @@ current inbound edges.
 def out_edges() -> typing.Iterable[Edge]
 ```
 
-Iterate over outbound edges of the vertex.
+Iterate over outbound edges of the vertex. When the first parameter to procedure is projected graph, iterating will start over outbound edges of the given vertex in projected graph.
 
 Doesn’t return a dynamic view of the edges but copies the
 current outbound edges.
@@ -1203,7 +1203,7 @@ Check if `graph` is in a valid context and may be used.
 def get_vertex_by_id(vertex_id: VertexId) -> Vertex
 ```
 
-Return the Vertex corresponding to the given vertex_id from the graph.
+Return the Vertex corresponding to the given vertex_id from the graph. When the first parameter to procedure is projected graph, vertex must exist also in projected graph.
 
 Access to a Vertex is only valid during a single execution of a
 procedure in a query. You should not globally store the returned
@@ -1284,7 +1284,7 @@ Check if the graph is mutable. Thus it can be used to modify vertices and edges.
 def create_vertex() -> Vertex
 ```
 
-Create an empty vertex.
+Create an empty vertex. When the first parameter to procedure is projected graph, vertex is added to also to projected graph view.
 
 **Returns**:
 
@@ -1307,7 +1307,7 @@ Create an empty vertex.
 def delete_vertex(vertex: Vertex) -> None
 ```
 
-Delete a vertex if there are no edges.
+Delete a vertex if there are no edges. When the first parameter to procedure is projected graph, vertex must exist also in projected graph.
 
 **Arguments**:
 
@@ -1329,7 +1329,7 @@ Delete a vertex if there are no edges.
 def detach_delete_vertex(vertex: Vertex) -> None
 ```
 
-Delete a vertex and all of its edges.
+Delete a vertex and all of its edges. When the first parameter to procedure is projected graph, such operation is not possible. 
 
 **Arguments**:
 
@@ -1352,7 +1352,7 @@ def create_edge(from_vertex: Vertex, to_vertex: Vertex,
                 edge_type: EdgeType) -> None
 ```
 
-Create an edge.
+Create an edge. When the first parameter is projected graph, it will create new directed edge with specified label only if both vertices are part of projected graph.
 
 **Arguments**:
 
@@ -1378,7 +1378,7 @@ Create an edge.
 def delete_edge(edge: Edge) -> None
 ```
 
-Delete an edge.
+Delete an edge. When the first parameter to procedure is projected graph, edge must also exist in projected graph.
 
 **Arguments**:
 

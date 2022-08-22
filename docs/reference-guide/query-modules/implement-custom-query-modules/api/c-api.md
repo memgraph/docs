@@ -2207,7 +2207,7 @@ enum mgp_error mgp_graph_create_edge(
 )
 ```
 
-Add a new directed edge between the two vertices with the specified label. If first parameter is projected graph, it will create new directed edge with specified label only if both vertices are part of projected graph.
+Add a new directed edge between the two vertices with the specified label. When the first parameter is projected graph, it will create new directed edge with specified label only if both vertices are part of projected graph.
 
 Resulting edge must be freed using mgp_edge_destroy. Return MGP_ERROR_IMMUTABLE_OBJECT if `graph` is immutable. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_edge. Return MGP_ERROR_DELETED_OBJECT if `from` or `to` has been deleted. Return MGP_ERROR_SERIALIZATION_ERROR if `from` or `to` has been modified by another transaction.
 
