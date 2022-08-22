@@ -49,15 +49,15 @@ Changes made in one iteration may not be permanent if they don’t improve the s
 
 #### Input:
 
-* `parameters: Dict[str, Any]({})` ➡ A dictionary that specifies the algorithm configuration. Configuration parameters are explained in the table below.
-* `edge_property: str(weight)` ➡ Edge property that stores the edge weight. Any edge attribute not present defaults to 1.
+* `parameters: Dict[string, Any] (default={})` ➡ A dictionary that specifies the algorithm configuration. Configuration parameters are explained in the table below.
+* `edge_property: string (default=weight)` ➡ Edge property that stores the edge weight. Any edge attribute not present defaults to 1.
 
 
 #### Output:
 
-* `node: str` ➡ Represents the node ID
+* `node: string` ➡ Represents the node ID
 
-* `color: str` ➡ Represents the assigned color
+* `color: string` ➡ Represents the assigned color
 
 #### Usage:
 ```cypher
@@ -70,19 +70,19 @@ YIELD node, color;
 #### Input:
 * `vertices: List[Vertex]` ➡ List of vertices in the subgraph.
 * `edges: List[Edge]` ➡ List of edges in the subgraph.
-* `parameters: Dict[str, Any]({})` ➡ A dictionary that specifies the algorithm configuration. Configuration parameters are explained in the table below.
-* `edge_property: str(weight)` ➡ Edge property that stores the edge weight. Any edge attribute not present defaults to 1.
+* `parameters: Dict[string, Any] (default={})` ➡ A dictionary that specifies the algorithm configuration. Configuration parameters are explained in the table below.
+* `edge_property: string (default=weight)` ➡ Edge property that stores the edge weight. Any edge attribute not present defaults to 1.
 
 
 #### Output:
 
-* `node: str` ➡ Represents the node ID
+* `node: string` ➡ Represents the node ID
 
-* `color: str` ➡ Represents the assigned color
+* `color: string` ➡ Represents the assigned color
 
 #### Usage:
 ```cypher
-MATCH (a:)-[e:]->(b:)
+MATCH (a)-[e]->(b)
 WITH collect(a) as nodes, collect (e) as edges
 CALL graph_coloring.color_subgraph(nodes, edges, {no_of_colors: 2})
 YIELD color, node;

@@ -29,9 +29,9 @@ To call a procedure with no arguments, don't specify the arguments in the
   <TabItem value="gqlalchemy">
 
 ```python
-from gqlalchemy import call
+from gqlalchemy import Call
 
-query = call("pagerank.get").yield_().return_().execute()
+query = Call("pagerank.get").yield_().return_().execute()
 ```
 
   </TabItem>
@@ -58,11 +58,11 @@ To call a procedure with arguments, specify the arguments as a string in the
   <TabItem value="gqlalchemy">
 
 ```python
-from gqlalchemy import call
+from gqlalchemy import Call
 
-query = call("json_util.load_from_url", "https://some-url.com")
-        .yield_({"objects":"objects"})
-        .return_({"objects":"objects"})
+query = Call("json_util.load_from_url", "https://some-url.com")
+        .yield_(results="objects")
+        .return_(results="objects")
         .execute()
 ```
 
@@ -70,7 +70,7 @@ query = call("json_util.load_from_url", "https://some-url.com")
   <TabItem value="cypher">
 
 ```cypher
-CALL json_util.load_from_url(https://some-url.com) YIELD objects RETURN objects;
+CALL json_util.load_from_url("https://some-url.com") YIELD objects RETURN objects;
 ```
 
 </TabItem>

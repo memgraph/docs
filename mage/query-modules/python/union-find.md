@@ -49,14 +49,14 @@ The implementation of the disjoint-set data structure and its operations uses th
 
 * `nodes1: Union[Vertex, List[Vertex]]` ➡ First value (or list thereof) in connectedness calculation.
 * `nodes2: Union[Vertex, List[Vertex]]` ➡ Second value (or list thereof) in connectedness calculation.
-* `mode: str("pairwise")` ➡ Mode of combining `nodes1` and `nodes2`. Can be ***p*** or ***pairwise*** for a pairwise product, or ***c*** or ***cartesian*** for a Cartesian product of the arguments. Pairwise by default.
-* `update: bool(True)` ➡ Specifies whether the disjoint-set data structure should be reinitialized. Enabled by default. If the graph has been modified since the previous call of this procedure, turning `update` off ensures that the changes are not visible in the output.
+* `mode: string (default="pairwise")` ➡ Mode of combining `nodes1` and `nodes2`. Can be ***p*** or ***pairwise*** for a pairwise product, or ***c*** or ***cartesian*** for a Cartesian product of the arguments. Pairwise by default.
+* `update: boolean (default=True)` ➡ Specifies whether the disjoint-set data structure should be reinitialized. Enabled by default. If the graph has been modified since the previous call of this procedure, turning `update` off ensures that the changes are not visible in the output.
 
 #### Output:
 
 * `node1: Vertex` ➡ Node in `nodes1`.
 * `node2: Vertex` ➡ Node in `nodes2`.
-* `connected: bool` ➡ `True` if the above nodes are in the same connected component of the graph.
+* `connected: boolean` ➡ `True` if the above nodes are in the same connected component of the graph.
 
 #### Usage:
 ```cypher

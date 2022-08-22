@@ -60,7 +60,7 @@ The algorithm is implemented so that it ignores whether the graph is directed or
 
 * `node1: Union[Vertex, Tuple[Vertex]` ➡ The first node or a tuple of nodes.
 * `node2: Union[Vertex, Tuple[Vertex]]` ➡ The second node or a tuple of nodes.
-* `mode: str("cartesian")` ➡ If the given arguments are tuples, this argument determines whether to calculate the similarity between nodes pairwise ("pairwise") or calculate the similarity between one and each node ("cartesian"). The default value is "cartesian".
+* `mode: string (default="cartesian")` ➡ If the given arguments are tuples, this argument determines whether to calculate the similarity between nodes pairwise ("pairwise") or calculate the similarity between one and each node ("cartesian"). The default value is "cartesian".
 
 #### Output:
 
@@ -84,7 +84,7 @@ RETURN node1, node2, similarity
 
 * `node1: Union[Vertex, Tuple[Vertex]` ➡ The first node or a tuple of nodes.
 * `node2: Union[Vertex, Tuple[Vertex]]` ➡ The second node or a tuple of nodes.
-* `mode: str("cartesian")` ➡ If the given arguments are tuples, this argument determines whether to calculate the similarity between nodes pairwise ("pairwise") or calculate the similarity between one and each node ("cartesian"). The default value is "cartesian".
+* `mode: string (default="cartesian")` ➡ If the given arguments are tuples, this argument determines whether to calculate the similarity between nodes pairwise ("pairwise") or calculate the similarity between one and each node ("cartesian"). The default value is "cartesian".
 
 #### Output:
 
@@ -108,7 +108,7 @@ RETURN node1, node2, similarity
 
 * `node1: Union[Vertex, Tuple[Vertex]` ➡ The first node or a tuple of nodes.
 * `node2: Union[Vertex, Tuple[Vertex]]` ➡ The second node or a tuple of nodes.
-* `mode: str("cartesian")` ➡ If the given arguments are tuples, this argument determines whether to calculate the similarity between nodes pairwise ("pairwise") or calculate the similarity between one and each node ("cartesian"). The default value is "cartesian".
+* `mode: string (default="cartesian")` ➡ If the given arguments are tuples, this argument determines whether to calculate the similarity between nodes pairwise ("pairwise") or calculate the similarity between one and each node ("cartesian"). The default value is "cartesian".
 
 #### Output:
 

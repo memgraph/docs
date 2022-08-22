@@ -34,6 +34,9 @@ users should determine whether this is the right measurement for them.
 Centrality](https://img.shields.io/badge/Katz_Centrality-Implementation-FB6E00?style=for-the-badge&logo=github&logoColor=white)](https://github.com/memgraph/mage/blob/main/cpp/katz_centrality_module/katz_centrality_module.cpp)
 
 [![Katz
+Centrality](https://img.shields.io/badge/Katz_Centrality-Implementation-76B900?style=for-the-badge&logo=NVIDIA&logoColor=white)](https://github.com/memgraph/mage/blob/main/cpp/cugraph_module/algorithms/katz_centrality.cu)
+
+[![Katz
 Centrality](https://img.shields.io/badge/Katz_Centrality-Documentation-FCC624?style=for-the-badge&logo=cplusplus&logoColor=white)](/mage/query-modules/cpp/katz-centrality)
 
 **Katz Centrality** is implemented as part of the

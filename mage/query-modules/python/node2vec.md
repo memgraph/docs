@@ -84,22 +84,22 @@ A. Grover, J. Leskovec
 
 #### Input:
 
-- `is_directed : bool` ➡ If bool=True, graph is treated as directed, else not
+- `is_directed : boolean` ➡ If `True`, graph is treated as directed, else not
   directed
 - `p : float` ➡ Return hyperparameter for calculating transition probabilities.
 - `q : float` ➡ In-out hyperparameter for calculating transition probabilities.
-- `num_walks : int` ➡ Number of walks per node in walk sampling.
-- `walk_length : int` ➡ Length of one walk in walk sampling.
-- `vector_size : int` ➡ Dimensionality of the word vectors.
-- `window : int` ➡ Maximum distance between the current and predicted word
+- `num_walks : integer` ➡ Number of walks per node in walk sampling.
+- `walk_length : integer` ➡ Length of one walk in walk sampling.
+- `vector_size : integer` ➡ Dimensionality of the word vectors.
+- `window : integer` ➡ Maximum distance between the current and predicted word
   within a sentence.
-- `min_count : int` ➡ Ignores all words with total frequency lower than this.
-- `workers : int` ➡ Use these many worker threads to train the model (=faster
+- `min_count : integer` ➡ Ignores all words with total frequency lower than this.
+- `workers : integer` ➡ Use these many worker threads to train the model (=faster
   training with multicore machines).
 - `sg : {0, 1}` ➡ Training algorithm: 1 for skip-gram; otherwise CBOW.
 - `hs : {0, 1}` ➡ If 1, hierarchical softmax will be used for model training. If
   0, and `negative` is non-zero, negative sampling will be used.
-- `negative : int` ➡ If > 0, negative sampling will be used, the int for
+- `negative : integer` ➡ If > 0, negative sampling will be used, the integer for
   negative specifies how many "noise words" should be drawn (usually
   between 5-20). If set to 0, no negative sampling is used.
 - `cbow_mean : {0, 1}` ➡ If 0, use the sum of the context word vectors. If 1,
@@ -107,7 +107,7 @@ A. Grover, J. Leskovec
 - `alpha : float` ➡ The initial learning rate.
 - `min_alpha : float` ➡ Learning rate will linearly drop to `min_alpha` as
   training progresses.
-- `seed : int` ➡ Seed for the random number generator. Initial vectors for each
+- `seed : integer` ➡ Seed for the random number generator. Initial vectors for each
   word are seeded with a hash of the concatenation of word + `str(seed)`.
 
 #### Output:
@@ -127,22 +127,22 @@ CALL node2vec_online.get_embeddings(False, 2.0, 0.5, 4, 5, 100, 0.025, 5, 1, 1, 
 
 #### Input:
 
-- `is_directed : bool` ➡ If bool=True, graph is treated as directed, else not
+- `is_directed : boolean` ➡ If `True`, graph is treated as directed, else not
   directed
 - `p : float` ➡ Return hyperparameter for calculating transition probabilities.
 - `q : float` ➡ In-out hyperparameter for calculating transition probabilities.
-- `num_walks : int` ➡ Number of walks per node in walk sampling.
-- `walk_length : int` ➡ Length of one walk in walk sampling.
-- `vector_size : int` ➡ Dimensionality of the word vectors.
-- `window : int` ➡ Maximum distance between the current and predicted word
+- `num_walks : integer` ➡ Number of walks per node in walk sampling.
+- `walk_length : integer` ➡ Length of one walk in walk sampling.
+- `vector_size : integer` ➡ Dimensionality of the word vectors.
+- `window : integer` ➡ Maximum distance between the current and predicted word
   within a sentence.
-- `min_count : int` ➡ Ignores all words with total frequency lower than this.
-- `workers : int` ➡ Use these many worker threads to train the model (=faster
+- `min_count : integer` ➡ Ignores all words with total frequency lower than this.
+- `workers : integer` ➡ Use these many worker threads to train the model (=faster
   training with multicore machines).
 - `sg : {0, 1}` ➡ Training algorithm: 1 for skip-gram; otherwise CBOW.
 - `hs : {0, 1}` ➡ If 1, hierarchical softmax will be used for model training. If
   0, and `negative` is non-zero, negative sampling will be used.
-- `negative : int` ➡ If > 0, negative sampling will be used, the int for
+- `negative : integer` ➡ If > 0, negative sampling will be used, the int for
   negative specifies how many "noise words" should be drawn (usually
   between 5-20). If set to 0, no negative sampling is used.
 - `cbow_mean : {0, 1}` ➡ If 0, use the sum of the context word vectors. If 1,
@@ -150,7 +150,7 @@ CALL node2vec_online.get_embeddings(False, 2.0, 0.5, 4, 5, 100, 0.025, 5, 1, 1, 
 - `alpha : float` ➡ The initial learning rate.
 - `min_alpha : float` ➡ Learning rate will linearly drop to `min_alpha` as
   training progresses.
-- `seed : int` ➡ Seed for the random number generator. Initial vectors for each
+- `seed : integer` ➡ Seed for the random number generator. Initial vectors for each
   word are seeded with a hash of the concatenation of word + `str(seed)`.
 
 #### Output:
@@ -170,8 +170,8 @@ CALL node2vec_online.get_embeddings(False, 2.0, 0.5, 4, 5, 100, 0.025, 5, 1, 1, 
 
 #### Output:
 
-- `name: str` ➡ Name of available functions
-- `value: str` ➡ Documentation for every function
+- `name: string` ➡ Name of available functions
+- `value: string` ➡ Documentation for every function
 
 #### Usage:
 

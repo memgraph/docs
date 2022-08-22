@@ -4,13 +4,13 @@ title: Implement a custom query module in Python
 sidebar_label: Implement a custom query module in Python
 ---
 
+This tutorial will give you a basic idea of how to develop a custom query module
+in Python with Memgraph Lab 2.0 and use it on a dataset.
+
 [![Related - How
 to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/query-modules.md)
 [![Related - Reference
 Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/query-modules/overview.md)
-
-This tutorial will give you a basic idea of how to develop a custom query module
-in Python with Memgraph Lab 2.0 and use it on a dataset.
 
 In short, query modules allow you to expand the Cypher query module with various
 procedures. Procedures can be written in Python or C languages. Our MAGE library
@@ -23,8 +23,7 @@ guide on query modules](/reference-guide/query-modules/overview.md).
 
 In order to start developing a custom query you will need:
 
-- [Memgraph Platform](/installation/overview.md)
-- Visual Studio Code or a code editor of your choice
+- [Memgraph Platform](/installation/overview.mdx) or [Memgraph Cloud](http://cloud.memgraph.com)
 
 ## Data model
 
@@ -86,15 +85,20 @@ Let's open Memgraph Lab where we will import the dataset, as well as write and
 use the procedures from our query module.
 
 If you have successfully installed Memgraph Platform, you should be able to open
-Memgraph Lab in a browser at `http://localhost:3000/`. Navigate to the
-**Datasets** menu item, click on the **Europe backpacking** dataset to import it
-into Memgraph. You can also check the details of the dataset by clicking on
-**Quick View**
+Memgraph Lab in a browser at [`http://localhost:3000/`](http://localhost:3000/).
+
+If you are using Memgraph Cloud, open the running instance, and open the
+**Connect via Client** tab, then click on **Connect in Browser** to open
+Memgraph Lab in a new browser tab. Enter your project password and **Connect Now**. 
+
+In Memgraph Lab, navigate to the **Datasets** menu item, click on the **Europe
+backpacking** dataset to import it into Memgraph. You can also check the details
+of the dataset by clicking on **Quick View**
 
 <img src={require('../data/tutorials/query-modules/import-dataset.png').default}
 className={"imgBorder"}/>
 
-Go to the **Query Execution** tab and try running a test query that will show
+Go to the **Query Execution** and try running a test query that will show
 the city Vienna and all its relationships:
 
 ```Cypher
@@ -178,10 +182,10 @@ the new module we've created in Memgraph Lab, you can see you need to import the
 `mgp` module at the beginning of every query module.
 
 Below the `import mgp`, in line 17, you can see a `@read_proc` decorator. Python
-API defines `@read_proc`, `@write_proc` and `@transformation_proc` decorators.
-`@read_proc` decorator handles read-only procedures, the `@write_proc` decorator
-handles procedures that also write to the database, and the
-`@transformation_proc` decorator handles data coming from streams.
+API defines `@mgp.read_proc`, `@mgp.write_proc` and `@mgp.transformation`
+decorators. `@mgp.read_proc` decorator handles read-only procedures, the
+`@mgp.write_proc` decorator handles procedures that also write to the database,
+and the `@mgp.transformation` decorator handles data coming from streams.
 
 If you look at our two goals, to get the total cost of accommodation, Memgraph
 only needs to read from the database to get the value of the
@@ -192,13 +196,13 @@ Feel free to examine the examples and tips available in this template, and when
 you are ready to continue with the tutorial, clear the file so we start writing
 our code from line 1.
 
-We'll start with the `@read_proc` decorator to achieve the first goal, then
-we'll dive into a bit more complicated second goal and its `@write_proc`.
+We'll start with the `@mgp.read_proc` decorator to achieve the first goal, then
+we'll dive into a bit more complicated second goal and its `@mgp.write_proc`.
 
 ## Read procedure
 
 As we established in the previous chapter, first we need to import the `mgp`
-module and then use the `@read_proc` decorator. Then we will define the
+module and then use the `@mgp.read_proc` decorator. Then we will define the
 procedure by giving it a name and signature, that is, what arguments it needs to
 receive and what values it will return.
 
@@ -233,9 +237,9 @@ import mgp
 
 @mgp.read_proc
 def total_cost(context: mgp.ProcCtx,
-               city: mgp.Any[str],
-               adults: mgp.Number[int],
-               children: mgp.Nullable[int] = None,
+               city: str,
+               adults: int,
+               children: mgp.Nullable[int] = None
                ) -> mgp.Record(Total_cost_per_night = mgp.Nullable[float]):
 ```
 
@@ -250,9 +254,9 @@ import mgp
 
 @mgp.read_proc
 def total_cost(context: mgp.ProcCtx,
-              city: mgp.Any[str],
-              adults: mgp.Number[int],
-              children: mgp.Nullable[int] = None,
+              city: str,
+              adults: int,
+              children: mgp.Nullable[int] = None
               ) -> mgp.Record(Total_cost_per_night = mgp.Nullable[float]):
 
   for vertex in context.graph.vertices:
@@ -268,9 +272,9 @@ import mgp
 
 @mgp.read_proc
 def total_cost(context: mgp.ProcCtx,
-               city: mgp.Any[str],
-               adults: mgp.Number[int],
-               children: mgp.Nullable[int] = None,
+               city: str,
+               adults: int,
+               children: mgp.Nullable[int] = None
                ) -> mgp.Record(Total_cost_per_night = mgp.Nullable[float]):
 
   for vertex in context.graph.vertices:
@@ -289,9 +293,9 @@ import mgp
 
 @mgp.read_proc
 def total_cost(context: mgp.ProcCtx,
-               city: mgp.Any[str],
-               adults: mgp.Number[int],
-               children: mgp.Nullable[int] = None,
+               city: str,
+               adults: int,
+               children: mgp.Nullable[int] = None
                ) -> mgp.Record(Total_cost_per_night = mgp.Nullable[float]):
 
   for vertex in context.graph.vertices:
@@ -315,9 +319,9 @@ import mgp
 
 @mgp.read_proc
 def total_cost(context: mgp.ProcCtx,
-              city: mgp.Any[str],
-              adults: mgp.Number[int],
-              children: mgp.Nullable[int] = None,
+              city: str,
+              adults: int,
+              children: mgp.Nullable[int] = None
               ) -> mgp.Record(
                               Total_cost_per_night = mgp.Nullable[float]):
 
@@ -372,8 +376,8 @@ Some errors will be written out as you are trying to call the procedure. Others
 can be viewed in the log file.
 
 If you started your Memgraph Platform image by exposing the `7444` port, you can
-check the logs from Memgraph Lab. Otherwise, you need to access the logs in the
-Docker container.
+check the logs from Memgraph Lab. Otherwise, you need to [access the logs in the
+Docker container](../how-to-guides/config-logs.md#accessing-logs).
 
 But the rest of the errors in the code will result in the procedure not being
 detected. That means that if you go to the **Query Modules** menu item and check
@@ -387,7 +391,7 @@ the current module go to **Query Modules** and find the `backpacking` module.
 Click on the arrow to view details about the module, such as the name of the
 procedures and their signatures. To continue editing the module, click on **Edit
 code**. If you are writing the write procedure in a new module, don't forget to
-import the `mgp` module. For the write procedure, we will use the `@write_proc`
+import the `mgp` module. For the write procedure, we will use the `@mgp.write_proc`
 decorator.
 
 The goal of this write procedure is to expand the data model by a given country
@@ -414,7 +418,7 @@ After defining the name and signature, the code should look like this:
 @mgp.write_proc
 def new_city(context: mgp.ProcCtx,
              in_city: mgp.Nullable[str],
-             in_country: mgp.Nullable[str],
+             in_country: mgp.Nullable[str]
                     ) -> mgp.Record(City = mgp.Vertex,
                                     Relationship = mgp.Edge,
                                     Country = mgp.Vertex):
@@ -450,7 +454,7 @@ and the relationship.
 @mgp.write_proc
 def new_city(context: mgp.ProcCtx,
              in_city: mgp.Nullable[str],
-             in_country: mgp.Nullable[str],
+             in_country: mgp.Nullable[str]
                     ) -> mgp.Record(City = mgp.Vertex,
                                     Relationship = mgp.Edge,
                                     Country = mgp.Vertex):
@@ -484,15 +488,15 @@ to the new `City` node, such as `local_currency` and `local_currency_code`.
 
 The new `City` node also has to get a new `id` number, that's why we will save
 the highest existing `id` among `City` nodes in the `city_id` and increase that
-number by 1 to get the ID of the new City node. Now that we have created a new
+number by 1 to get the ID of the new `City` node. Now that we have created a new
 `City` node, we need to create a relationship to connect it with the existing
-Country node and return both nodes and the relationship.
+`Country` node and return both nodes and the relationship.
 
 ```python
 @mgp.write_proc
 def new_city(context: mgp.ProcCtx,
              in_city: mgp.Nullable[str],
-             in_country: mgp.Nullable[str],
+             in_country: mgp.Nullable[str]
                     ) -> mgp.Record(City = mgp.Vertex,
                                     Relationship = mgp.Edge,
                                     Country = mgp.Vertex):
@@ -557,7 +561,7 @@ This is also the finished procedure:
 @mgp.write_proc
 def new_city(context: mgp.ProcCtx,
              in_city: mgp.Nullable[str],
-             in_country: mgp.Nullable[str],
+             in_country: mgp.Nullable[str]
                     ) -> mgp.Record(City = mgp.Vertex,
                                     Relationship = mgp.Edge,
                                     Country = mgp.Vertex):
@@ -616,7 +620,7 @@ def new_city(context: mgp.ProcCtx,
 Save the query module, switch to **Query Execution** and call the procedure
 using the clause `CALL`, then calling the right module and procedure within it
 (`backpacking.new_city`). List all arguments except the whole graph inside
-brackets, and at the end YIELD all the results:
+brackets, and at the end `YIELD` all the results:
 
 ```cypher
 CALL backpacking.new_city("Zagreb", "Croatia") YIELD *;

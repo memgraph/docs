@@ -24,9 +24,12 @@ If you install any Python modules after running Memgraph, you'll have to [load
 them into Memgraph](../load-call-query-modules#loading-query-modules) or restart
 Memgraph in order to use them.
 
+You can also develop query modules in Python from Memgraph Lab (v2.0 and newer). Just
+navigate to **Query Modules** and click on **New Module** to start.
+
 :::
 
-## class mgp.read_proc(func: Callable[[…], mgp.Record])
+## mgp.read_proc(func: Callable[[…], mgp.Record])
 
 Register func as a read-only procedure of the current module.
 
@@ -76,7 +79,7 @@ properly and suggest methods and classes it contains. You can install the module
 by running `pip install mgp`.
 :::
 
-## class mgp.write_proc(func: Callable[[…], mgp.Record])
+## mgp.write_proc(func: Callable[[…], mgp.Record])
 
 Register func as a writeable procedure of the current module.
 
@@ -129,344 +132,1309 @@ CALL example.procedure(“single argument”) YIELD result;
 Naturally, you may pass in different arguments.
 
 
-## class mgp.Properties(vertex_or_edge)
-Bases: `object`
+## mgp.function(func: Callable[[…]])
 
-A collection of properties either on a Vertex or an Edge.
+Register func as a Memgraph function in the current module.
 
+`function` is meant to be used as a decorator function to register module
+functions. The registered func needs to be a callable which optionally takes
+`FuncCtx` as the first argument. Other arguments of func will be bound to values
+passed in the Cypher query. Only the funcion arguments need to be annotated with
+types. The return type doesn't need to be specified, but it has to be supported
+by `mgp.Any`. Registering generator functions is currently not supported.
 
-### get(property_name: str, default=None)
-Get the value of a property with the given name or return default.
+**Example usage**
 
-Raise InvalidContextError. Raise UnableToAllocateError if unable to allocate a
-mgp.Value. Raise DeletedObjectError if the object has been deleted.
+```python
+import mgp
 
+@mgp.function
+def func_example(context: mgp.FuncCtx,
+    required_arg: str,
+    optional_arg: mgp.Nullable[str] = None
+    ):
+
+    return_args = [required_arg]
+
+    if optional_arg is not None:
+        return_args.append(optional_arg)
+
+    # Return any kind of result supported by mgp.Any
+    return return_args
+```
+
+The example function above returns a list of provided arguments:
+* `required_arg` is always present and its value is the first argument of the
+  function.
+* `optional_arg` is present if the second argument of the function is not
+  `null`.
+
+Any errors can be reported by raising an `Exception`.
+
+The function can be invoked in Cypher using the following calls:
+
+```cypher
+RETURN example.func_example("first argument", "second_argument");
+RETURN example.func_example("first argument");
+```
+
+Naturally, you may pass in different arguments.
+
+This module provides the API for usage in custom openCypher procedures.
+
+## Label Objects
+
+```python
+class Label()
+```
+
+Label of a `Vertex`.
+
+### name
+
+```python
+@property
+def name() -> str
+```
+
+Get the name of the label.
+
+**Returns**:
+
+  A string that represents the name of the label.
+  
+
+**Example**:
+
+  ```label.name```
+
+## Properties Objects
+
+```python
+class Properties()
+```
+
+A collection of properties either on a `Vertex` or an `Edge`.
+
+### get()
+
+```python
+def get(property_name: str, default=None) -> object
+```
+
+Get the value of a property with the given name or return default value.
+
+**Arguments**:
+
+- `property_name` - String that represents property name.
+- `default` - Default value return if there is no property.
+  
+
+**Returns**:
+
+  Any object value that property under `property_name` has or default value otherwise.
+  
+
+**Raises**:
+
+- `InvalidContextError` - If `edge` or `vertex` is out of context.
+- `UnableToAllocateError` - If unable to allocate a `mgp.Value`.
+- `DeletedObjectError` - If the `object` has been deleted.
+  
+
+**Examples**:
+
+  ```
+  vertex.properties.get(property_name)
+  edge.properties.get(property_name)
+  ```
+
+### set()
+
+```python
+def set(property_name: str, value: object) -> None
+```
+
+Set the value of the property. When the value is `None`, then the
+property is removed.
+
+**Arguments**:
+
+- `property_name` - String that represents property name.
+- `value` - Object that represents value to be set.
+  
+
+**Raises**:
+
+- `UnableToAllocateError` - If unable to allocate memory for storing the property.
+- `ImmutableObjectError` - If the object is immutable.
+- `DeletedObjectError` - If the object has been deleted.
+- `SerializationError` - If the object has been modified by another transaction.
+- `ValueConversionError` - If `value` is vertex, edge or path.
+  
+
+**Examples**:
+
+  ```
+  vertex.properties.set(property_name, value)
+  edge.properties.set(property_name, value)
+  ```
 
 ### items()
-Iterate over the properties.
 
-Doesn’t return a dynamic view of the properties, but copies the current
-properties.
+```python
+def items() -> typing.Iterable[Property]
+```
 
-Raise InvalidContextError. Raise UnableToAllocateError if unable to allocate an
-iterator. Raise DeletedObjectError if the object has been deleted.
-
-
-### keys()
-Iterate over property names.
-
-Doesn’t return a dynamic view of the property names, but copies the name of the
+Iterate over the properties. Doesn’t return a dynamic view of the properties but copies the
 current properties.
 
-Raise InvalidContextError. Raise UnableToAllocateError if unable to allocate an
-iterator. Raise DeletedObjectError if the object has been deleted.
+**Returns**:
 
+  Iterable `Property` of names and values.
+  
 
-### set(property_name: str, value: object)
-Set the value of the property. When the value is None, then the property is
-removed.
+**Raises**:
 
-Raise UnableToAllocateError if unable to allocate memory for storing the
-property. Raise ImmutableObjectError if the object is immutable. Raise
-DeletedObjectError if the ojbect has been deleted. Raise SerializationError if
-the object has been modified by another transaction. Raise ValueConversionError
-if value is vertex, edge or path.
+- `InvalidContextError` - If edge or vertex is out of context.
+- `UnableToAllocateError` - If unable to allocate an iterator.
+- `DeletedObjectError` - If the object has been deleted.
+  
 
+**Examples**:
+
+  ```
+  items = vertex.properties.items()
+  for it in items:
+    name = it.name
+    value = it.value
+  ```
+  ```
+  items = edge.properties.items()
+  for it in items:
+    name = it.name
+    value = it.value
+  ```
+
+### keys()
+
+```python
+def keys() -> typing.Iterable[str]
+```
+
+Iterate over property names. Doesn’t return a dynamic view of the property names but copies the
+name of the current properties.
+
+**Returns**:
+
+  Iterable list of strings that represent names/keys of properties.
+  
+
+**Raises**:
+
+- `InvalidContextError` - If edge or vertex is out of context.
+- `UnableToAllocateError` - If unable to allocate an iterator.
+- `DeletedObjectError` - If the object has been deleted.
+  
+
+**Examples**:
+
+  ```
+  graph.vertex.properties.keys()
+  graph.edge.properties.keys()
+  ```
 
 ### values()
-Iterate over property values.
 
-Doesn’t return a dynamic view of the property values, but copies the value of
-the current properties.
+```python
+def values() -> typing.Iterable[object]
+```
 
-Raise InvalidContextError. Raise UnableToAllocateError if unable to allocate an
-iterator. Raise DeletedObjectError if the object has been deleted.
+Iterate over property values. Doesn’t return a dynamic view of the property values but copies the
+value of the current properties.
 
+**Returns**:
 
-## class mgp.Label(name: str)
-Bases: `object`
+  Iterable list of property values.
+  
 
-Label of a Vertex.
+**Raises**:
 
+- `InvalidContextError` - If edge or vertex is out of context.
+- `UnableToAllocateError` - If unable to allocate an iterator.
+- `DeletedObjectError` - If the object has been deleted.
+  
 
-### property name()
+**Examples**:
 
-## class mgp.EdgeType(name)
-Bases: `object`
+  ```
+  vertex.properties.values()
+  edge.properties.values()
+  ```
+
+### \_\_len\_\_
+
+```python
+def __len__() -> int
+```
+
+Get the number of properties.
+
+**Returns**:
+
+  A number of properties on vertex or edge.
+  
+
+**Raises**:
+
+- `InvalidContextError` - If edge or vertex is out of context.
+- `UnableToAllocateError` - If unable to allocate an iterator.
+- `DeletedObjectError` - If the object has been deleted.
+  
+
+**Examples**:
+
+  ```
+  len(vertex.properties)
+  len(edge.properties)
+  ```
+
+### \_\_iter\_\_
+
+```python
+def __iter__() -> typing.Iterable[str]
+```
+
+Iterate over property names.
+
+**Returns**:
+
+  Iterable list of strings that represent names of properties.
+  
+
+**Raises**:
+
+- `InvalidContextError` - If edge or vertex is out of context.
+- `UnableToAllocateError` - If unable to allocate an iterator.
+- `DeletedObjectError` - If the object has been deleted.
+  
+
+**Examples**:
+
+  ```
+  iter(vertex.properties)
+  iter(edge.properties)
+  ```
+
+### \_\_getitem\_\_
+
+```python
+def __getitem__(property_name: str) -> object
+```
+
+Get the value of a property with the given name or raise KeyError.
+
+**Arguments**:
+
+- `property_name` - String that represents property name.
+  
+
+**Returns**:
+
+  Any value that property under property_name have.
+  
+
+**Raises**:
+
+- `InvalidContextError` - If edge or vertex is out of context.
+- `UnableToAllocateError` - If unable to allocate a mgp.Value.
+- `DeletedObjectError` - If the object has been deleted.
+  
+
+**Examples**:
+
+  ```
+  vertex.properties[property_name]
+  edge.properties[property_name]
+  ```
+
+### \_\_setitem\_\_
+
+```python
+def __setitem__(property_name: str, value: object) -> None
+```
+
+Set the value of the property. When the value is `None`, then the
+property is removed.
+
+**Arguments**:
+
+- `property_name` - String that represents property name.
+- `value` - Object that represents value to be set.
+  
+
+**Raises**:
+
+- `UnableToAllocateError` - If unable to allocate memory for storing the property.
+- `ImmutableObjectError` - If the object is immutable.
+- `DeletedObjectError` - If the object has been deleted.
+- `SerializationError` - If the object has been modified by another transaction.
+- `ValueConversionError` - If `value` is vertex, edge or path.
+  
+
+**Examples**:
+
+  ```
+  vertex.properties[property_name] = value
+  edge.properties[property_name] = value
+  ```
+
+### \_\_contains\_\_
+
+```python
+def __contains__(property_name: str) -> bool
+```
+
+Check if there is a property with the given name.
+
+**Arguments**:
+
+- `property_name` - String that represents property name
+  
+
+**Returns**:
+
+  Bool value that depends if there is with a given name.
+  
+
+**Raises**:
+
+- `InvalidContextError` - If edge or vertex is out of context.
+- `UnableToAllocateError` - If unable to allocate a mgp.Value.
+- `DeletedObjectError` - If the object has been deleted.
+  
+
+**Examples**:
+
+  ```
+  if property_name in vertex.properties:
+  ```
+  ```
+  if property_name in edge.properties:
+  ```
+
+## EdgeType Objects
+
+```python
+class EdgeType()
+```
 
 Type of an Edge.
 
+### name
 
-### property name()
+```python
+@property
+def name() -> str
+```
 
-## class mgp.Edge(edge)
-Bases: `object`
+Get the name of EdgeType.
+
+**Returns**:
+
+  A string that represents the name of EdgeType.
+  
+
+**Example**:
+
+  ```edge.type.name```
+
+## Edge Objects
+
+```python
+class Edge()
+```
 
 Edge in the graph database.
 
-Access to an Edge is only valid during a single execution of a procedure in a
-query. You should not globally store an instance of an Edge. Using an invalid
-Edge instance will raise InvalidContextError.
+Access to an Edge is only valid during a single execution of a procedure in
+a query. You should not globally store an instance of an Edge. Using an
+invalid Edge instance will raise InvalidContextError.
 
+### is\_valid()
 
-### property from_vertex()
-Get the source vertex.
+```python
+def is_valid() -> bool
+```
 
-Raise InvalidContextError.
+Check if `edge` is in a valid context and may be used.
 
+**Returns**:
 
-### property id()
+  A `bool` value depends on if the `edge` is in a valid context.
+  
+
+**Examples**:
+
+  ```edge.is_valid()```
+
+### underlying\_graph\_is\_mutable()
+
+```python
+def underlying_graph_is_mutable() -> bool
+```
+
+Check if the `graph` can be modified.
+
+**Returns**:
+
+  A `bool` value depends on if the `graph` is mutable.
+  
+
+**Examples**:
+
+  ```edge.underlying_graph_is_mutable()```
+
+### id
+
+```python
+@property
+def id() -> EdgeId
+```
+
 Get the ID of the edge.
 
-Raise InvalidContextError.
+**Returns**:
 
+  `EdgeId` represents ID of the edge.
+  
 
-### is_valid()
-Return True if self is in valid context and may be used.
+**Raises**:
 
+- `InvalidContextError` - If edge is out of context.
+  
 
-### property properties()
-Get the properties of the edge.
+**Examples**:
 
-Raise InvalidContextError.
+  ```edge.id```
 
+### type
 
-### property to_vertex()
+```python
+@property
+def type() -> EdgeType
+```
+
+Get the type of edge.
+
+**Returns**:
+
+  `EdgeType` describing the type of edge.
+  
+
+**Raises**:
+
+- `InvalidContextError` - If edge is out of context.
+  
+
+**Examples**:
+
+  ```edge.type```
+
+### from\_vertex()
+
+```python
+@property
+def from_vertex() -> "Vertex"
+```
+
+Get the source vertex.
+
+**Returns**:
+
+  `Vertex` from where the edge is directed.
+  
+
+**Raises**:
+
+- `InvalidContextError` - If edge is out of context.
+  
+
+**Examples**:
+
+  ```edge.from_vertex```
+
+### to\_vertex()
+
+```python
+@property
+def to_vertex() -> "Vertex"
+```
+
 Get the destination vertex.
 
+**Returns**:
+
+  `Vertex` to where the edge is directed.
+  
+
+**Raises**:
+
+- `InvalidContextError` - If edge is out of context.
+  
+
+**Examples**:
+
+  ```edge.to_vertex```
+
+### properties
+
+```python
+@property
+def properties() -> Properties
+```
+
+Get the properties of the edge.
+
+**Returns**:
+
+  All `Properties` of edge.
+  
+
+**Raises**:
+
+- `InvalidContextError` - If edge is out of context.
+  
+
+**Examples**:
+
+  ```edge.properties```
+
+### \_\_eq\_\_
+
+```python
+def __eq__(other) -> bool
+```
+
 Raise InvalidContextError.
 
+## Vertex Objects
 
-### property type()
-Get the type of the edge.
-
-Raise InvalidContextError.
-
-
-### underlying_graph_is_mutable()
-Return True if the edge can be modified.
-
-
-## class mgp.Vertex(vertex)
-Bases: `object`
+```python
+class Vertex()
+```
 
 Vertex in the graph database.
 
-Access to a Vertex is only valid during a single execution of a procedure in a
-query. You should not globally store an instance of a Vertex. Using an invalid
-Vertex instance will raise InvalidContextError.
+Access to a Vertex is only valid during a single execution of a procedure
+in a query. You should not globally store an instance of a Vertex. Using an
+invalid Vertex instance will raise InvalidContextError.
 
+### is\_valid()
 
-### add_label(label: str)
-Add the label to the vertex.
+```python
+def is_valid() -> bool
+```
 
-Raise InvalidContextError. Raise UnableToAllocateError if unable to allocate
-memory for storing the label. Raise ImmutableObjectError if self is immutable.
-Raise DeletedObjectError if self has been deleted. Raise SerializationError if
-self has been modified by another transaction.
+Checks if `Vertex` is in valid context and may be used.
 
+**Returns**:
 
-### property id()
-Get the ID of the vertex.
+  A `bool` value depends on if the `Vertex` is in a valid context.
+  
 
-Raise InvalidContextError.
+**Examples**:
 
+  ```vertex.is_valid()```
 
-### property in_edges()
-Iterate over inbound edges of the vertex.
+### underlying\_graph\_is\_mutable()
 
-Doesn’t return a dynamic view of the edges, but copies the current inbound
-edges.
+```python
+def underlying_graph_is_mutable() -> bool
+```
 
-Raise InvalidContextError. Raise UnableToAllocateError if unable to allocate an
-iterator. Raise DeletedObjectError if self has been deleted.
+Check if the `graph` is mutable.
 
+**Returns**:
 
-### is_valid()
-Return True if self is in valid context and may be used.
+  A `bool` value depends on if the `graph` is mutable.
+  
 
+**Examples**:
 
-### property labels()
+  ```vertex.underlying_graph_is_mutable()```
+
+### id
+
+```python
+@property
+def id() -> VertexId
+```
+
+Get the ID of the Vertex.
+
+**Returns**:
+
+  `VertexId` represents ID of the vertex.
+  
+
+**Raises**:
+
+- `InvalidContextError` - If vertex is out of context.
+  
+
+**Examples**:
+
+  ```vertex.id```
+
+### labels
+
+```python
+@property
+def labels() -> typing.Tuple[Label]
+```
+
 Get the labels of the vertex.
 
-Raise InvalidContextError. Raise OutOfRangeError if some of the labels are
-removed while collecting the labels. Raise DeletedObjectError if self has been
-deleted.
+**Returns**:
 
+  A tuple of `Label` representing vertex Labels
+  
 
-### property out_edges()
-Iterate over outbound edges of the vertex.
+**Raises**:
 
-Doesn’t return a dynamic view of the edges, but copies the current outbound
-edges.
+- `InvalidContextError` - If vertex is out of context.
+- `OutOfRangeError` - If some of the labels are removed while collecting the labels.
+- `DeletedObjectError` - If `Vertex` has been deleted.
+  
 
-Raise InvalidContextError. Raise UnableToAllocateError if unable to allocate an
-iterator. Raise DeletedObjectError if self has been deleted.
+**Examples**:
 
+  ```vertex.labels```
 
-### property properties()
-Get the properties of the vertex.
+### add\_label()
 
-Raise InvalidContextError.
+```python
+def add_label(label: str) -> None
+```
 
+Add the label to the vertex.
 
-### remove_label(label: str)
+**Arguments**:
+
+- `label` - String label to be added.
+  
+
+**Raises**:
+
+- `InvalidContextError` - If `Vertex` is out of context.
+- `UnableToAllocateError` - If unable to allocate memory for storing the label.
+- `ImmutableObjectError` - If `Vertex` is immutable.
+- `DeletedObjectError` - If `Vertex` has been deleted.
+- `SerializationError` - If `Vertex` has been modified by another transaction.
+  
+
+**Examples**:
+
+  ```vertex.add_label(label)```
+
+### remove\_label()
+
+```python
+def remove_label(label: str) -> None
+```
+
 Remove the label from the vertex.
 
-Raise InvalidContextError. Raise ImmutableObjectError if self is immutable.
-Raise DeletedObjectError if self has been deleted. Raise SerializationError if
-self has been modified by another transaction.
+**Arguments**:
 
+- `label` - String label to be deleted
 
-### underlying_graph_is_mutable()
-Return True if the vertex can be modified.
+**Raises**:
 
+- `InvalidContextError` - If `Vertex` is out of context.
+- `ImmutableObjectError` - If `Vertex` is immutable.
+- `DeletedObjectError` - If `Vertex` has been deleted.
+- `SerializationError` - If `Vertex` has been modified by another transaction.
+  
 
-## class mgp.Path(starting_vertex_or_path: Union[_mgp.Path, mgp.Vertex])
-Bases: `object`
+**Examples**:
+
+  ```vertex.remove_label(label)```
+
+### properties
+
+```python
+@property
+def properties() -> Properties
+```
+
+Get the properties of the vertex.
+
+**Returns**:
+
+  `Properties` on a current vertex.
+  
+
+**Raises**:
+
+- `InvalidContextError` - If `Vertex` is out of context.
+  
+
+**Examples**:
+
+  ```vertex.properties```
+
+### in\_edges
+
+```python
+@property
+def in_edges() -> typing.Iterable[Edge]
+```
+
+Iterate over inbound edges of the vertex.
+Doesn’t return a dynamic view of the edges but copies the
+current inbound edges.
+
+**Returns**:
+
+  Iterable list of `Edge` objects that are directed in towards the current vertex.
+  
+
+**Raises**:
+
+- `InvalidContextError` - If `Vertex` is out of context.
+- `UnableToAllocateError` - If unable to allocate an iterator.
+- `DeletedObjectError` - If `Vertex` has been deleted.
+  
+
+**Examples**:
+
+  ```for edge in vertex.in_edges:```
+
+### out\_edges
+
+```python
+@property
+def out_edges() -> typing.Iterable[Edge]
+```
+
+Iterate over outbound edges of the vertex.
+
+Doesn’t return a dynamic view of the edges but copies the
+current outbound edges.
+
+**Returns**:
+
+  Iterable list of `Edge` objects that are directed out of the current vertex.
+  
+
+**Raises**:
+
+- `InvalidContextError` - If `Vertex` is out of context.
+- `UnableToAllocateError` - If unable to allocate an iterator.
+- `DeletedObjectError` - If `Vertex` has been deleted.
+  
+
+**Examples**:
+
+  ```for edge in vertex.out_edges:```
+
+### \_\_eq\_\_
+
+```python
+def __eq__(other) -> bool
+```
+
+Raise InvalidContextError
+
+## Path Objects
+
+```python
+class Path()
+```
 
 Path containing Vertex and Edge instances.
 
+### \_\_init\_\_
 
-### property edges()
-Edges ordered from the start to the end of the path.
+```python
+def __init__(starting_vertex_or_path: typing.Union[_mgp.Path, Vertex])
+```
 
-Raise InvalidContextError if using an invalid Path instance.
+Initialize with a starting Vertex.
 
+**Raises**:
 
-### expand(edge: mgp.Edge)
+- `InvalidContextError` - If passed in Vertex is invalid.
+- `UnableToAllocateError` - If cannot allocate a path.
+
+### is\_valid()
+
+```python
+def is_valid() -> bool
+```
+
+Check if `Path` is in valid context and may be used.
+
+**Returns**:
+
+  A `bool` value depends on if the `Path` is in a valid context.
+  
+
+**Examples**:
+
+  ```path.is_valid()```
+
+### expand()
+
+```python
+def expand(edge: Edge)
+```
+
 Append an edge continuing from the last vertex on the path.
 
-The last vertex on the path will become the other endpoint of the given edge, as
-continued from the current last vertex.
+The last vertex on the path will become the other endpoint of the given
+edge, as continued from the current last vertex.
 
-Raise InvalidContextError if using an invalid Path instance or if passed in edge
-is invalid. Raise LogicErrorError if the current last vertex in the path is not
-part of the given edge. Raise UnableToAllocateError if unable to allocate memory
-for path extension.
+**Arguments**:
 
+- `edge` - `Edge` that is added to the path
+  
 
-### is_valid()
+**Raises**:
 
-### property vertices()
-Vertices ordered from the start to the end of the path.
+- `InvalidContextError` - If using an invalid `Path` instance or if passed in `Edge` is invalid.
+- `LogicErrorError` - If the current last vertex in the path is not part of the given edge.
+- `UnableToAllocateError` - If unable to allocate memory for path extension.
+  
 
-Raise InvalidContextError if using an invalid Path instance.
+**Examples**:
 
+  ```path.expand(edge)```
 
-## class mgp.Record(**kwargs)
-Bases: `object`
+### vertices
+
+```python
+@property
+def vertices() -> typing.Tuple[Vertex, ...]
+```
+
+Vertices are ordered from the start to the end of the path.
+
+**Returns**:
+
+  A tuple of `Vertex` objects order from start to end of the path.
+  
+
+**Raises**:
+
+- `InvalidContextError` - If using an invalid Path instance.
+  
+
+**Examples**:
+
+  ```path.vertices```
+
+### edges
+
+```python
+@property
+def edges() -> typing.Tuple[Edge, ...]
+```
+
+Edges are ordered from the start to the end of the path.
+
+**Returns**:
+
+  A tuple of `Edge` objects order from start to end of the path
+
+**Raises**:
+
+- `InvalidContextError` - If using an invalid `Path` instance.
+
+**Examples**:
+
+  ```path.edges```
+
+## Record Objects
+
+```python
+class Record()
+```
 
 Represents a record of resulting field values.
 
+### \_\_init\_\_
 
-### fields()
+```python
+def __init__(**kwargs)
+```
 
-## class mgp.Vertices(graph)
-Bases: `object`
+Initialize with name=value fields in kwargs.
+
+## Vertices Objects
+
+```python
+class Vertices()
+```
 
 Iterable over vertices in a graph.
 
+### is\_valid()
 
-### is_valid()
-Return True if self is in valid context and may be used.
+```python
+def is_valid() -> bool
+```
 
+Check if `Vertices` is in valid context and may be used.
 
-## class mgp.Graph(graph)
-Bases: `object`
+**Returns**:
+
+  A `bool` value depends on if the `Vertices` is in valid context.
+  
+
+**Examples**:
+
+  ```vertices.is_valid()```
+
+### \_\_iter\_\_
+
+```python
+def __iter__() -> typing.Iterable[Vertex]
+```
+
+Iterate over vertices.
+
+**Returns**:
+
+  Iterable list of `Vertex` objects.
+  
+
+**Raises**:
+
+- `InvalidContextError` - If context is invalid.
+- `UnableToAllocateError` - If unable to allocate an iterator or a vertex.
+  
+
+**Examples**:
+
+  ```for vertex in graph.vertices```
+  
+
+### \_\_contains\_\_
+
+```python
+def __contains__(vertex)
+```
+
+Check if Vertices contain the given vertex.
+
+**Arguments**:
+
+- `vertex` - `Vertex` to be checked if it is a part of graph `Vertices`.
+  
+
+**Returns**:
+
+  Bool value depends if there is `Vertex` in graph `Vertices`.
+  
+
+**Raises**:
+
+- `UnableToAllocateError` - If unable to allocate the vertex.
+  
+
+**Examples**:
+
+  ```if vertex in graph.vertices:```
+
+### \_\_len\_\_
+
+```python
+def __len__()
+```
+
+Get the number of vertices.
+
+**Returns**:
+
+  A number of vertices in the graph.
+  
+
+**Raises**:
+
+- `InvalidContextError` - If context is invalid.
+- `UnableToAllocateError` - If unable to allocate an iterator or a vertex.
+  
+
+**Examples**:
+
+  ```len(graph.vertices)```
+
+## Graph Objects
+
+```python
+class Graph()
+```
 
 State of the graph database in current ProcCtx.
 
+### is\_valid()
 
-### create_edge(from_vertex: mgp.Vertex, to_vertex: mgp.Vertex, edge_type: mgp.EdgeType)
-Create an edge.
+```python
+def is_valid() -> bool
+```
 
-Raise ImmutableObjectError if self \` is immutable. Raise UnableToAllocateError
-if unable to allocate an edge. Raise DeletedObjectError if \`from_vertex or
-to_vertex has been deleted. Raise SerializationError if from_vertex or to_vertex
-has been modified by another transaction.
+Check if `graph` is in a valid context and may be used.
 
+**Returns**:
 
-### create_vertex()
-Create a vertex.
+  A `bool` value depends on if the `graph` is in a valid context.
+  
 
-Raise ImmutableObjectError if self is immutable. Raise UnableToAllocateError if
-unable to allocate a vertex.
+**Examples**:
 
+  ```graph.is_valid()```
 
-### delete_edge(edge: mgp.Edge)
-Delete an edge.
+### get\_vertex\_by\_id()
 
-Raise ImmutableObjectError if self is immutable. Raise SerializationError if
-edge, its source or destination vertex has been modified by another transaction.
+```python
+def get_vertex_by_id(vertex_id: VertexId) -> Vertex
+```
 
+Return the Vertex corresponding to the given vertex_id from the graph.
 
-### delete_vertex(vertex: mgp.Vertex)
-Delete a vertex.
+Access to a Vertex is only valid during a single execution of a
+procedure in a query. You should not globally store the returned
+Vertex.
 
-Raise ImmutableObjectError if self is immutable. Raise LogicErrorError if vertex
-has edges. Raise SerializationError if vertex has been modified by another
-transaction.
+**Arguments**:
 
+- `vertex_id` - Memgraph Vertex ID
+  
 
-### detach_delete_vertex(vertex: mgp.Vertex)
+**Returns**:
+
+  `Vertex`corresponding to `vertex_id`
+  
+
+**Raises**:
+
+- `IndexError` - If unable to find the given vertex_id.
+- `InvalidContextError` - If context is invalid.
+  
+
+**Examples**:
+
+  ```graph.get_vertex_by_id(vertex_id)```
+
+### vertices
+
+```python
+@property
+def vertices() -> Vertices
+```
+
+Get all vertices in the graph.
+
+Access to a Vertex is only valid during a single execution of a
+procedure in a query. You should not globally store the returned Vertex
+instances.
+
+**Returns**:
+
+  `Vertices` that contained in the graph.
+  
+
+**Raises**:
+
+- `InvalidContextError` - If context is invalid.
+  
+
+**Examples**:
+
+  Iteration over all graph `Vertices`.
+  
+  ```
+  graph = context.graph
+  for vertex in graph.vertices:
+  ```
+
+### is\_mutable()
+
+```python
+def is_mutable() -> bool
+```
+
+Check if the graph is mutable. Thus it can be used to modify vertices and edges.
+
+**Returns**:
+
+  A `bool` value that depends if the graph is mutable or not.
+  
+
+**Examples**:
+
+  ```graph.is_mutable()```
+
+### create\_vertex()
+
+```python
+def create_vertex() -> Vertex
+```
+
+Create an empty vertex.
+
+**Returns**:
+
+  Created `Vertex`.
+  
+
+**Raises**:
+
+- `ImmutableObjectError` - If `graph` is immutable.
+- `UnableToAllocateError` - If unable to allocate a vertex.
+  
+
+**Examples**
+
+  ```vertex = graph.create_vertex()```
+
+### delete\_vertex()
+
+```python
+def delete_vertex(vertex: Vertex) -> None
+```
+
+Delete a vertex if there are no edges.
+
+**Arguments**:
+
+- `vertex` - `Vertex` to be deleted
+
+**Raises**:
+
+- `ImmutableObjectError` - If `graph` is immutable.
+- `LogicErrorError` - If `vertex` has edges.
+- `SerializationError` - If `vertex` has been modified by another transaction.
+
+**Examples**:
+
+  ```graph.delete_vertex(vertex)```
+
+### detach\_delete\_vertex()
+
+```python
+def detach_delete_vertex(vertex: Vertex) -> None
+```
+
 Delete a vertex and all of its edges.
 
-Raise ImmutableObjectError if self is immutable. Raise SerializationError if
-vertex has been modified by another transaction.
+**Arguments**:
 
+- `vertex` - `Vertex` to be deleted with all of its edges
+  
 
-### get_vertex_by_id(vertex_id: VertexId)
-Return the Vertex corresponding to given vertex_id from the graph.
+**Raises**:
 
-Access to a Vertex is only valid during a single execution of a procedure in a
-query. You should not globally store the returned Vertex.
+- `ImmutableObjectError` - If `graph` is immutable.
+- `SerializationError` - If `vertex` has been modified by another transaction.
 
-Raise IndexError if unable to find the given vertex_id. Raise
-InvalidContextError if context is invalid.
+**Examples**:
 
+  ```graph.detach_delete_vertex(vertex)```
 
-### is_mutable()
-Return True if self represents a mutable graph, thus it can be used to modify
-vertices and edges.
+### create\_edge()
 
+```python
+def create_edge(from_vertex: Vertex, to_vertex: Vertex,
+                edge_type: EdgeType) -> None
+```
 
-### is_valid()
-Return True if self is in valid context and may be used.
+Create an edge.
 
+**Arguments**:
 
-### property vertices()
-All vertices in the graph.
+- `from_vertex` - `Vertex` from where edge is directed.
+- `to_vertex` - `Vertex`  to where edge is directed.
+- `edge_type` - `EdgeType` defines the type of edge.
+  
 
-Access to a Vertex is only valid during a single execution of a procedure in a
-query. You should not globally store the returned Vertex instances.
+**Raises**:
 
-Raise InvalidContextError if context is invalid.
+- `ImmutableObjectError` - If `graph` is immutable.
+- `UnableToAllocateError` - If unable to allocate an edge.
+- `DeletedObjectError` - If `from_vertex` or `to_vertex` has been deleted.
+- `SerializationError` - If `from_vertex` or `to_vertex` has been modified by another transaction.
 
+**Examples**:
 
-## class mgp.ProcCtx(graph)
-Bases: `object`
+  ```graph.create_edge(from_vertex, vertex, edge_type)```
+
+### delete\_edge()
+
+```python
+def delete_edge(edge: Edge) -> None
+```
+
+Delete an edge.
+
+**Arguments**:
+
+- `edge` - `Edge` to be deleted
+  
+
+**Raises**:
+
+- ImmutableObjectError: If `graph` is immutable.
+- Raise SerializationError: If `edge`, its source or destination vertex has been modified by another transaction.
+
+**Examples**
+
+  ```graph.delete_edge(edge)```
+
+## AbortError Objects
+
+```python
+class AbortError(Exception)
+```
+
+Signals that the procedure was asked to abort its execution.
+
+## ProcCtx Objects
+
+```python
+class ProcCtx()
+```
 
 Context of a procedure being executed.
 
-Access to a ProcCtx is only valid during a single execution of a procedure in a
-query. You should not globally store a ProcCtx instance.
+Access to a ProcCtx is only valid during a single execution of a procedure
+in a query. You should not globally store a ProcCtx instance.
+
+### graph
+
+```python
+@property
+def graph() -> Graph
+```
+
+Access to `Graph` object.
+
+**Returns**:
+
+  Graph object.
+  
+
+**Raises**:
+
+- `InvalidContextError` - If context is invalid.
 
 
-### check_must_abort()
+**Examples**:
 
-### property graph()
-Raise InvalidContextError if context is invalid.
-
-
-### is_valid()
-
-### must_abort()
-
-## class mgp.Deprecated(type_)
-Bases: `object`
-
-Annotate a resulting Record’s field as deprecated.
+  ```context.graph```
 
 ## class mgp.Log()
 Bases: `object`
@@ -491,106 +1459,339 @@ Logs a message `out` on `WARNING` log level.
 ### critical(out:str)
 Logs a message `out` on `CRITICAL` log level.
 
-### field_type()
 
-## class mgp.\_typing\_to\_cypher\_type(type_)
-Convert typing annotation to a _mgp.CypherType instance.
+## UnsupportedTypingError Objects
 
-
-## class mgp.UnsupportedTypingError(type_)
-Bases: `Exception`
+```python
+class UnsupportedTypingError(Exception)
+```
 
 Signals a typing annotation is not supported as a _mgp.CypherType.
 
+## Deprecated Objects
 
-## class mgp.AbortError()
-Bases: `Exception`
+```python
+class Deprecated()
+```
 
-Signals that the procedure was asked to abort its execution.
+Annotate a resulting Record&#x27;s field as deprecated.
+
+### read\_proc()
+
+```python
+def read_proc(func: typing.Callable[..., Record])
+```
+
+Register `func` as a read-only procedure of the current module.
+
+The decorator `read_proc` is meant to be used to register module procedures.
+The registered `func` needs to be a callable which optionally takes
+`ProcCtx` as its first argument. Other arguments of `func` will be bound to
+values passed in the cypherQuery. The full signature of `func` needs to be
+annotated with types. The return type must be `Record(field_name=type, ...)`
+and the procedure must produce either a complete Record or None. To mark a
+field as deprecated, use `Record(field_name=Deprecated(type), ...)`.
+Multiple records can be produced by returning an iterable of them.
+Registering generator functions is currently not supported.
 
 
-## class mgp.InvalidContextError()
-Bases: `Exception`
+### write\_proc()
 
-Signals using a graph element instance outside of the registered procedure.
+```python
+def write_proc(func: typing.Callable[..., Record])
+```
+
+Register `func` as a writeable procedure of the current module.
+
+The decorator `write_proc` is meant to be used to register module
+procedures. The registered `func` needs to be a callable which optionally
+takes `ProcCtx` as the first argument. Other arguments of `func` will be
+bound to values passed in the cypherQuery. The full signature of `func`
+needs to be annotated with types. The return type must be
+`Record(field_name=type, ...)` and the procedure must produce either a
+complete Record or None. To mark a field as deprecated, use
+`Record(field_name=Deprecated(type), ...)`. Multiple records can be produced
+by returning an iterable of them. Registering generator functions is
+currently not supported.
 
 
-## class mgp.InvalidMessageError()
-Bases: `Exception`
+## InvalidMessageError Objects
+
+```python
+class InvalidMessageError(Exception)
+```
 
 Signals using a message instance outside of the registered transformation.
 
+## Message Objects
 
-## class mgp.InvalidMessagesError()
-Bases: `Exception`
+```python
+class Message()
+```
+
+Represents a message from a stream.
+
+### is\_valid()
+
+```python
+def is_valid() -> bool
+```
+
+Return True if `self` is in valid context and may be used.
+
+### source\_type()
+
+```python
+def source_type() -> str
+```
+
+Supported in all stream sources
+
+Raise InvalidArgumentError if the message is from an unsupported stream source.
+
+### payload()
+
+```python
+def payload() -> bytes
+```
+
+Supported stream sources:
+  - Kafka
+  - Pulsar
+
+Raise InvalidArgumentError if the message is from an unsupported stream source.
+
+### topic\_name()
+
+```python
+def topic_name() -> str
+```
+
+Supported stream sources:
+  - Kafka
+  - Pulsar
+
+Raise InvalidArgumentError if the message is from an unsupported stream source.
+
+### key()
+
+```python
+def key() -> bytes
+```
+
+Supported stream sources:
+  - Kafka
+
+Raise InvalidArgumentError if the message is from an unsupported stream source.
+
+### timestamp()
+
+```python
+def timestamp() -> int
+```
+
+Supported stream sources:
+  - Kafka
+
+Raise InvalidArgumentError if the message is from an unsupported stream source.
+
+### offset()
+
+```python
+def offset() -> int
+```
+
+Supported stream sources:
+  - Kafka
+
+Raise InvalidArgumentError if the message is from an unsupported stream source.
+
+## InvalidMessagesError Objects
+
+```python
+class InvalidMessagesError(Exception)
+```
 
 Signals using a messages instance outside of the registered transformation.
 
+## Messages Objects
 
-## class mgp.DeletedObjectError(*args: Any, **kwargs: Any)
-Bases: `_mgp.`
+```python
+class Messages()
+```
 
-Signals accessing an already deleted object.
+Represents a list of messages from a stream.
+
+### is\_valid()
+
+```python
+def is_valid() -> bool
+```
+
+Return True if `self` is in valid context and may be used.
+
+### message\_at()
+
+```python
+def message_at(id: int) -> Message
+```
+
+Raise InvalidMessagesError if context is invalid.
+
+### total\_messages()
+
+```python
+def total_messages() -> int
+```
+
+Raise InvalidContextError if context is invalid.
+
+## TransCtx Objects
+
+```python
+class TransCtx()
+```
+
+Context of a transformation being executed.
+
+Access to a TransCtx is only valid during a single execution of a transformation.
+You should not globally store a TransCtx instance.
+
+### graph
+
+```python
+@property
+def graph() -> Graph
+```
+
+Raise InvalidContextError if context is invalid.
+
+## FuncCtx Objects
+
+```python
+class FuncCtx()
+```
+
+Context of a function being executed.
+
+Access to a FuncCtx is only valid during a single execution of a function in
+a query. You should not globally store a FuncCtx instance. The graph object
+within the FuncCtx is not mutable.
+
+### function()
+
+```python
+def function(func: typing.Callable)
+```
+
+Register `func` as a user-defined function in the current module.
+
+The decorator `function` is meant to be used to register module functions.
+The registered `func` needs to be a callable which optionally takes
+`FuncCtx` as its first argument. Other arguments of `func` will be bound to
+values passed in the Cypher query. Only the function arguments need to be
+annotated with types. The return type doesn&#x27;t need to be specified, but it
+has to be supported by `mgp.Any`. Registering generator functions is
+currently not supported.
 
 
-## class mgp.ImmutableObjectError(*args: Any, **kwargs: Any)
-Bases: `_mgp.`
-
-Signals modification of an immutable object.
 
 
-## class mgp.InsufficientBufferError(*args: Any, **kwargs: Any)
-Bases: `_mgp.`
+## InvalidContextError Objects
 
-Signals that some buffer is not big enough.
+```python
+class InvalidContextError(Exception)
+```
 
+Signals using a graph element instance outside of the registered procedure.
 
-## class mgp.InvalidArgumentError(*args: Any, **kwargs: Any)
-Bases: `_mgp.`
+## UnknownError Objects
 
-Signals that some of the arguments have invalid values.
-
-
-## class mgp.KeyAlreadyExistsError(*args: Any, **kwargs: Any)
-Bases: `_mgp.`
-
-Signals that a key already exists in a container-like object.
-
-
-## class mgp.LogicErrorError(*args: Any, **kwargs: Any)
-Bases: `_mgp.`
-
-Signals faulty logic within the program such as violating logical preconditions
-or class invariants and may be preventable.
-
-
-## class mgp.OutOfRangeError(*args: Any, **kwargs: Any)
-Bases: `_mgp.`
-
-Signals that an index-like parameter has a value that is outside its possible
-values.
-
-
-## class mgp.SerializationError(*args: Any, **kwargs: Any)
-Bases: `_mgp.`
-
-Signals serialization error caused by concurrent modifications from different
-transactions.
-
-
-## class mgp.UnableToAllocateError(*args: Any, **kwargs: Any)
-Bases: `_mgp.`
-
-Signals failed memory allocation.
-
-
-## class mgp.UnknownError(*args: Any, **kwargs: Any)
-Bases: `_mgp.`
+```python
+class UnknownError(_mgp.UnknownError)
+```
 
 Signals unspecified failure.
 
+## UnableToAllocateError Objects
 
-## class mgp.ValueConversionError(*args: Any, **kwargs: Any)
-Bases: `_mgp.`
+```python
+class UnableToAllocateError(_mgp.UnableToAllocateError)
+```
+
+Signals failed memory allocation.
+
+## InsufficientBufferError Objects
+
+```python
+class InsufficientBufferError(_mgp.InsufficientBufferError)
+```
+
+Signals that some buffer is not big enough.
+
+## OutOfRangeError Objects
+
+```python
+class OutOfRangeError(_mgp.OutOfRangeError)
+```
+
+Signals that an index-like parameter has a value that is outside its
+possible values.
+
+## LogicErrorError Objects
+
+```python
+class LogicErrorError(_mgp.LogicErrorError)
+```
+
+Signals faulty logic within the program such as violating logical
+preconditions or class invariants and may be preventable.
+
+## DeletedObjectError Objects
+
+```python
+class DeletedObjectError(_mgp.DeletedObjectError)
+```
+
+Signals accessing an already deleted object.
+
+## InvalidArgumentError Objects
+
+```python
+class InvalidArgumentError(_mgp.InvalidArgumentError)
+```
+
+Signals that some of the arguments have invalid values.
+
+## KeyAlreadyExistsError Objects
+
+```python
+class KeyAlreadyExistsError(_mgp.KeyAlreadyExistsError)
+```
+
+Signals that a key already exists in a container-like object.
+
+## ImmutableObjectError Objects
+
+```python
+class ImmutableObjectError(_mgp.ImmutableObjectError)
+```
+
+Signals modification of an immutable object.
+
+## ValueConversionError Objects
+
+```python
+class ValueConversionError(_mgp.ValueConversionError)
+```
 
 Signals that the conversion failed between python and cypher values.
+
+## SerializationError Objects
+
+```python
+class SerializationError(_mgp.SerializationError)
+```
+
+Signals serialization error caused by concurrent modifications from
+different transactions.

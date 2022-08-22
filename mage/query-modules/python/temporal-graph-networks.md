@@ -316,7 +316,7 @@ from 1.
 - `batch_num:mgp.Number` ➡ The number of batches per `train` or `eval` epoch.
 - `batch_process_time:mgp.Number` ➡ Time needed to process a batch.
 - `average_precision:mgp.Number` ➡ Mean average precision on the current batch.
-- `batch_type:str` ➡ A string indicating whether `train` or `eval` is performed
+- `batch_type:string` ➡ A string indicating whether `train` or `eval` is performed
   on the batch.
 
 #### Usage:
@@ -332,18 +332,18 @@ and `eval` on evaluation edges.
 
 #### Input:
 
-- `num_epochs: int` ➡ Perform additional epoch training and evaluation **after**
+- `num_epochs: integer` ➡ Perform additional epoch training and evaluation **after**
   the stream is done.
 
 #### Output:
 
-- `epoch_num: int` ➡ The epoch of the batch for which performance statistics
+- `epoch_num: integer` ➡ The epoch of the batch for which performance statistics
   will be returned.
-- `batch_num: int` ➡ The number of the batch for which performance statistics
+- `batch_num: integer` ➡ The number of the batch for which performance statistics
   will be returned.
 - `batch_process_time: float` ➡ Processing time in seconds for a batch.
 - `average_precision:mgp.Number` ➡ Mean average precision on the current batch.
-- `batch_type:str` ➡ Whether we performed `train` or `eval` on the batch.
+- `batch_type:string` ➡ Whether we performed `train` or `eval` on the batch.
 
 #### Usage:
 

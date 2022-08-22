@@ -5,6 +5,8 @@ sidebar_label: Make a custom file system importer
 slug: /how-to-guides/custom-file-system-importer
 ---
 
+import Neo4jWarning from '../../templates/_neo4j_warning.mdx';
+
 > To learn how to import table data from a file to the Memgraph database, head
 > over to the [How to import table
 > data](/how-to-guides/loaders/import-table-data-to-graph-database.md) guide.
@@ -13,6 +15,8 @@ If you want to read from a file system not currently supported by
 **GQLAlchemy**, or use a file type currently not readable, you can implement
 your own by extending abstract classes `FileSystemHandler` and `DataLoader`,
 respectively.
+
+<Neo4jWarning/>
 
 ## Implementing a new `FileSystemHandler`
 
@@ -26,7 +30,7 @@ these steps.
 
 This class holds the connection to the file system service and handles the path
 from which the `DataLoader` object reads files. To get a fsspec-compatible instance of
-an Azure Blob connection, you can use the [adlfs](https://github.com/fsspec/adlfs) package. We are going to pass `adlfs`-specific parameters such as `blob_account_name` and `blob_account_key` via kwargs. All that's left to do
+an Azure Blob connection, you can use the [adlfs](https://github.com/fsspec/adlfs) package. We are going to pass `adlfs`-specific parameters such as `account_name` and `account_key` via kwargs. All that's left to do
 is to override the `get_path` method.
 
 ```python
@@ -81,8 +85,8 @@ importer = PyArrowAzureBlobImporter(
     container_name="test"
     file_extension_enum=PyArrowFileTypeEnum.Parquet,
     data_configuration=parsed_yaml,
-    blob_account_name="your_account_name",
-    blob_account_key="your_account_key",
+    account_name="your_account_name",
+    account_key="your_account_key",
 )
 
 importer.translate(drop_database_on_start=True)

@@ -26,5 +26,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
-          user_name: g-despot
-          user_email: ivan.g.despot@outlook.com
+

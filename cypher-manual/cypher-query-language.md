@@ -45,7 +45,7 @@ want to be a comment:
 
 ```cypher
 // This is a Cypher comment
-CREATE (p1:Person {name: 'Harry'}), (p2:Person  name: 'Anna'})
+CREATE (p1:Person {name: 'Harry'}), (p2:Person  {name: 'Anna'})
 CREATE (p1)-[r:MARRIED_TO]->(p2)
 RETURN r;
 ```

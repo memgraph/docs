@@ -24,10 +24,12 @@ more details.
 2. [Merging relationships](#2-merging-relationships)<br />
     2.1. [Merging relationships](#21-merging-relationships)<br />
     2.2. [Merging on undirected relationships](#22-merging-on-undirected-relationships)<br />
-3. [Merging with ON CREATE and ON MATCH](#3-merging-with-on-create-and-on-match)<br />
-    3.1. [Merging with ON CREATE](#31-merging-with-on-create)<br />
-    3.2. [Merging with ON MATCH](#32-merging-with-on-match)<br />
-    3.3. [Merging with ON CREATE and ON MATCH](#33-merging-with-on-create-and-on-match)
+3. [Merging with ON CREATE and ON MATCH](#3-merging-with-on-create-set-and-on-match-set)<br />
+    3.1. [Merging with ON CREATE SET](#31-merging-with-on-create-set)<br />
+    3.2. [Merging with ON MATCH SET](#32-merging-with-on-match-set)<br />
+    3.3. [Merging with ON CREATE SET and ON MATCH SET](#33-merging-with-on-create-set-and-on-match-set)<br />
+    3.4. [Merging with SET](#34-merging-with-set)<br />
+    3.5. [Combination of clauses](#35-combination-of-clauses)
 
 ## Data Set
 
@@ -176,11 +178,11 @@ Output:
 
 In this example, a path is returned to show the direction of the relationships.
 
-## 3. Merging with `ON CREATE` and `ON MATCH`
+## 3. Merging with `ON CREATE SET` and `ON MATCH SET`
 
-### 3.1. Merging with `ON CREATE`
+### 3.1. Merging with `ON CREATE SET`
 
-The `ON CREATE` part of a `MERGE` clause will only be executed if the node needs to be created:
+The `ON CREATE SET` part of a `MERGE` clause will only be executed if the node needs to be created:
 
 ```cypher
 MERGE (p:Person {name: 'Lucille'})
@@ -197,9 +199,9 @@ Output:
 +--------------------+--------------------+
 ```
 
-### 3.2. Merging with `ON MATCH`
+### 3.2. Merging with `ON MATCH SET`
 
-The `ON MATCH` part of a `MERGE` clause will only be executed if the node is found:
+The `ON MATCH SET` part of a `MERGE` clause will only be executed if the node is found:
 
 ```cypher
 MERGE (p:Person {name: 'John'})
@@ -216,9 +218,9 @@ Output:
 +---------+---------+
 ```
 
-### 3.3. Merging with `ON CREATE` and `ON MATCH`
+### 3.3. Merging with `ON CREATE SET` and `ON MATCH SET`
 
-The `MERGE` clause can be used with both the `ON CREATE` and `ON MATCH` options:
+The `MERGE` clause can be used with both the `ON CREATE SET` and `ON MATCH SET` options:
 
 ```cypher
 MERGE (p:Person {name: 'Angela'})
@@ -235,6 +237,41 @@ Output:
 | Angela     | true       | Null       |
 +------------+------------+------------+
 ```
+
+### 3.4. Merging with `SET`
+
+If a certain property wants to be set to the same value in the case of `ON
+CREATE SET` and `ON MATCH SET` you can just use `SET`:
+
+```cypher
+MERGE (p:Person {name: 'Angela'})
+ON CREATE SET p.found = TRUE
+ON MATCH SET p.found = TRUE;
+```
+
+is the same as the query below:
+
+```cypher
+MERGE (p:Person {name: 'Angela'})
+SET p.Found = TRUE;
+```
+
+### 3.5. Combination of clauses
+
+You can also combine all three clauses (`ON CREATE SET`, `ON MATCH SET` and
+`SET`) to set a certain property depending on whether the node has been merged
+or created, and to set another property to a certain value regardless of the
+creation or merger of the node:
+
+```cypher
+MERGE (p:Person {name: 'Angela'})
+ON CREATE SET p.found = FALSE
+ON MATCH SET p.found = TRUE
+SET p.last_name = 'Smith'
+```
+
+The `found` property will be set to `FALSE` if the node was created, on `TRUE`
+if it was merged, but in any case, the last name will be set to `Smith`.
 
 ## Data set Queries
 
