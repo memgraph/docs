@@ -42,7 +42,7 @@ the [installment instructions](/installation/overview.mdx) for your OS. Once
 Memgraph is up and running, connect to it using **Memgraph Lab**, a visual user
 interface that you can also use from your browser at
 [`http://localhost:3000`](http://localhost:3000) or [download as an
-application](https://memgraph.com/product/lab).
+application](https://memgraph.com/lab).
 
 ## Data model
 
