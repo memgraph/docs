@@ -33,6 +33,17 @@ will also show you how to use one of the most popular Python libraries for
 graphs, called [NetworkX](https://networkx.github.io/), which contains an insane
 amount of functions and algorithms for the graphs.
 
+To get started, sign up to [Memgraph Cloud](https://memgraph.com/cloud), create
+a new instance and connect to it using in-browser Memgraph Lab. If you require
+help, check out the [documentation on Memgraph Cloud](/memgraph-cloud). 
+
+You can also install Memgraph using the `memgraph-platform` image by following
+the [installment instructions](/installation/overview.mdx) for your OS. Once
+Memgraph is up and running, connect to it using **Memgraph Lab**, a visual user
+interface that you can also use from your browser at
+[`http://localhost:3000`](http://localhost:3000) or [download as an
+application](https://memgraph.com/lab).
+
 ## Data model
 
 Social graphs is a relatively recent term. Simply said, it's a representation of
@@ -52,56 +63,22 @@ alongside many more similar datasets kindly provided by the same authors.
 
 ## Importing the dataset
 
-To import the dataset, download the [Memgraph
-Lab](https://memgraph.com/product/lab) desktop application and navigate to the
-`Datasets` tab in the sidebar. From there, choose the dataset `Music genres social network` and continue with the tutorial.
-
-## Defining a directory with query modules
-
-We need to set up the directory from which Memgraph will search for custom query
-modules by changing the `--query-modules-directory` flag in the main
-configuration file(`/etc/memgraph/memgraph.conf`) or by supplying it as a
-command-line parameter using the directory containing our modules as the value.
-For a more detailed explanation take a look at [Load and call query
-modules](/reference-guide/query-modules/load-call-query-modules.md).
-
-```
-sudo -u memgraph /usr/lib/memgraph/memgraph --query-modules-directory=/modules
-```
-
-When using Memgraph installed from a DEB or RPM package, the currently running
-Memgraph server may need to be stopped. The user can do so using the following
-command:
-
-```
-systemctl stop memgraph
-```
-
-When using Docker, the query module directory can be mounted with the following
-command:
-
-```plaintext
-docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 \
-  -v $(pwd)/modules:/modules \
-  -e MEMGRAPH="--query-modules-directory=/modules" \
-  memgraph/memgraph-platform
-```
+To import the dataset navigate to the `Datasets` tab in the sidebar. From there,
+choose the dataset `Music genres social network` and continue with the tutorial.
 
 ## Example queries and procedures
 
-First, let's create a Python script in our modules directory which will contain
-our procedures. We'll name the script `deezer_example.py`.
+Memgraph comes with several built-in algorithms. This list is expanded by the
+MAGE library, but if the algorithm you require is something completely
+different, you can add it yourself as a **query module**.
 
-After each change to the script, we need to tell Memgraph to reload all the
-modules. We can do that by calling the following command:
+Let's create a custom query module!
 
-```cypher
-CALL mg.load_all();
-```
-
-Let's count how many times a specific genre occurs in our network!
-
-We will define a procedure called `genre_count`:
+Go to the **Query Modules** section in Memgraph Lab and click on the *+ New
+Module* button. Give it a name, such as *deezer_example* and *Create* it. A new
+query module will be created with example procedures. Feel free to erase them
+and copy the following code into it that will define a procedure called
+`genre_count`:
 
 ```python
 import mgp
@@ -115,12 +92,8 @@ def genre_count(context: mgp.ProcCtx,
     return mgp.Record(genre=genre, count=count)
 ```
 
-Let's reload the modules and check the results:
-
-```cypher
-CALL deezer_example.genre_count("Pop")
-YIELD *;
-```
+Click *Save* and you should be able to see the procedure and its signature as
+*Detected procedures & transformations*. 
 
 We can notice multiple things:
 
@@ -144,7 +117,7 @@ RETURN genre, count(n);
 Let's try something more interesting. The genres are listed in the order the
 users have added them. If we assume that users picked the genres in order of
 preference, let's write a function that tells us in what percentage each genre
-appears in top n places.
+appears in top n places. Add the following code:
 
 ```python
 from collections import defaultdict
@@ -174,7 +147,10 @@ def in_top_n_percentage(context: mgp.ProcCtx,
         counts in genre_count.items()]
 ```
 
-Let's see what we got:
+*Save and close* the window then move to the *Query Execution* section to use the
+procedure.
+
+Let's see what we get:
 
 ```cypher
 CALL deezer_example.in_top_n_percentage(3)
@@ -196,6 +172,10 @@ To use `NetworkX` algorithms we need to transform our graph to a type `NetworkX`
 recognizes. In our case, we need to use an undirected graph `networkX.Graph`. To
 make our lives easier, let's write a helper function that transforms Memgraph
 graph to `networkX.Graph`.
+
+Go back to the *Query Modules* section, find the *deezer_example* query module,
+click on the arrow on the right to see its details, then edit it by adding the
+following code:
 
 ```python
 import networkx as nx
@@ -235,7 +215,8 @@ def analyze_graph(
         has_bridges=nxa.has_bridges(g))
 ```
 
-And to get and display the data let's run the following command:
+*Save and close* the window then move to the *Query Execution* section to use the
+procedure:
 
 ```cypher
 CALL deezer_example.analyze_graph()
@@ -248,6 +229,7 @@ important a node is for a graph. In our case, it would mean higher the
 centrality, the more popular the user is. Let's find out which user is the most
 popular in our network and take a peek at his/her music taste. We will use the
 [betweenness centrality](https://en.wikipedia.org/wiki/Betweenness_centrality).
+Edit the query module by adding the following code: 
 
 ```python
 @mgp.read_proc
@@ -270,16 +252,13 @@ ORDER BY centrality DESC
 LIMIT 10;
 ```
 
----
-
-**NOTE**
+:::info
 
 Calculating betweenness centrality for each node can take some time to finish.
-The issue of slower `NetworkX` implementations is something we at Memgraph would
-like to address in the future. An example of this can be seen in the next
-section of this tutorial.
+The issue of the slow `NetworkX` implementations is something Memgraph tackled
+by implementing a custom betweenness centrality algorithm within the MAGE library. 
 
----
+:::
 
 For our last trick, let's try to locate communities inside our network.
 Communities are a set of nodes that are densely connected. The goal of the
@@ -292,7 +271,8 @@ uses it to find the communities, and, optionally, calculates some metrics
 specific to the graph partitioning so we can compare algorithms. To make things
 more interesting, let's find out which genre is the most popular in the
 community and return the percentage which tells us how many of the users have
-that genre on their list. In the end, music is something that connects us!
+that genre on their list. In the end, music is something that connects us! Edit
+the query module by adding the following code: 
 
 ```python
 def _get_communities(
@@ -342,7 +322,7 @@ Now that we have our function in place let's test some algorithms. We will be
 checking out community detection using [greedy modularity maximization by
 Clauset-Newman-Moore](https://networkx.github.io/documentation/latest/reference/algorithms/generated/networkx.algorithms.community.modularity_max.greedy_modularity_communities.html#networkx.algorithms.community.modularity_max.greedy_modularity_communities)
 and [label
-propagation](https://networkx.github.io/documentation/latest/reference/algorithms/generated/networkx.algorithms.community.label_propagation.label_propagation_communities.html#networkx.algorithms.community.label_propagation.label_propagation_communities).
+propagation](https://networkx.github.io/documentation/latest/reference/algorithms/generated/networkx.algorithms.community.label_propagation.label_propagation_communities.html#networkx.algorithms.community.label_propagation.label_propagation_communities). Edit the query module by adding the following code: 
 
 ```python
 @mgp.read_proc
@@ -399,7 +379,7 @@ ORDER BY community.size DESC;
 Your results should look something like this:
 ![](../data/community_genre_statistics.png)
 
-Hmm, `Pop` sure is popular. Let's ignore that genre:
+Hmm, `Pop` sure is popular. Let's ignore that genre in the code:
 
 ```python
 for genre in itertools.chain(
@@ -463,7 +443,7 @@ LIMIT 10;
 ```
 
 You should get the same results as with our previous procedure for the
-betweenness centrality but in a much lower time.
+betweenness centrality but in much less time.
 
 ## Further reading
 
@@ -477,4 +457,5 @@ implemented graph algorithms while Memgraph allows you complete access to its
 internal graph.
 
 If you are not a big fan of Python, don't worry! We have a C API with the exact
-same functionalities.
+same functionalities but the functions cannot be written directly in Memgraph
+Lab (yet).

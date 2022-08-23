@@ -9,7 +9,8 @@ This article is part of a series intended to show how to use Memgraph on
 real-world data to retrieve some interesting and useful information.
 
 We highly recommend checking out the other articles from this series which are
-listed in our [tutorial overview section](/tutorials/overview.md).
+listed in our [tutorial overview section](/tutorials/overview.md), where you
+can also find instructions on how to start with the tutorial.
 
 ## Introduction
 
