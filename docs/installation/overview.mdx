@@ -146,6 +146,16 @@ export default function InstallMemgraph() {
             </div>
         </section>
         <p>Newer versions of Memgraph are currently <b>not backward compatible</b> with older versions. That is why you won't be able to load storage snapshots between different versions.</p>
+        <section>
+          <h2>Available Memgraph Docker images</h2>
+            <ul>
+              <li><a href='https://hub.docker.com/r/memgraph/memgraph/tags'><b>memgraph/memgraph</b></a> includes MemgraphDB</li> 
+              <li><a href='https://hub.docker.com/r/memgraph/memgraph-mage/tags'><b>memgraph/memgraph-mage</b></a> includes MemgraphDB and MAGE (check the <a href='/mage/installation'>docs</a>)
+                  <ul><li><a href='https://hub.docker.com/r/memgraph/memgraph-mage/tags?page=1&name=cugraph'><b>memgraph/memgraph-mage + cuGraph</b></a> - includes MemgraphDB, MAGE and NVIDIA cuGraph GPU-powered graph algorithms</li></ul>
+                </li>
+              <li><a href='https://hub.docker.com/r/memgraph/memgraph-platform/tags'><b>memgraph/memgraph-platform</b></a> includes MemgraphDB, MAGE, mgconsole and Memgraph Lab</li>
+            </ul>
+        </section>
       </div>
     </Container>
   );
