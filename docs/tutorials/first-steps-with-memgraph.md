@@ -286,6 +286,10 @@ awaits you!
 In this tutorial, you've learned how to install Memgraph Platform, use Memgraph Lab to
 import a dataset, run queries and style your graph. Not bad for a start, right?
 
+You don't want to bother with installation? Done! [Memgraph
+Cloud](/memgraph-cloud) at your service - register and run an instance in few
+easy steps.
+
 We have promised along the way some more resources, so here they are:
 
 * [Cypher manual](/cypher-manual/)
