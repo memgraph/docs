@@ -340,6 +340,12 @@ module.exports = {
           position: "right",
           'aria-label': 'GitHub repository'
         },
+        {
+          href: "https://discord.gg/memgraph",
+          className: 'header-discord-link',
+          position: "right",
+          'aria-label': 'Memgraph Discord community'
+        },
       ],
     },
     footer: {
