@@ -7,8 +7,8 @@ slug: /
 
 import MageSpells from '../mage/templates/_mage_spells.mdx';
 
-**Memgraph Advanced Graph Extensions**, **MAGE** to friends, is an open-source
-repository that contains **graph algorithms** and **modules** written by the
+**Memgraph Advanced Graph Extensions**, **MAGE** to friends, is an [**open-source
+repository**](https://github.com/memgraph/mage) that contains **graph algorithms** and **modules** written by the
 team behind Memgraph and its users in the form of **query modules**. The project
 aims to give everyone the tools they need to tackle the most interesting and
 challenging **graph analytics** problems.
