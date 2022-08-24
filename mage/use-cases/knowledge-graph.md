@@ -34,6 +34,13 @@ interventions and improve patient outcomes for illnesses like kidney disease.
 
 ## Where to next?
 
+[Sign up for the special **Memgraph
+Webinar**](https://memgraph.com/memgraph-webinar-astrazeneca-biomedical-knowledge-graph)
+and learn how **AstraZeneca** ingests data sources in the **Biological Insights
+Knowledge Graph (BIKG)** and distributes it to **data scientists** and **domain
+experts**. You will also find examples of how this knowledge graph assists
+scientists in therapeutics development.
+
 This text is a **summary** of one area that fits perfectly with the application
 of graphs. Therefore, we would like to have you with us when **implementing**
 some of these solutions. Share **opinions**, **experiences** and **problems**
