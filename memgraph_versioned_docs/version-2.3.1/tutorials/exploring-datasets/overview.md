@@ -19,7 +19,13 @@ On the other hand, if you would like to add changes to the dataset, download the
 have it up and running, open Memgraph Lab web application within the browser on
 [`localhost:3000`](http://localhost:3000) and navigate to the `Datasets` in the
 sidebar. From there, choose the dataset that seems interesting to you and
-continue with the tutorial.
+continue with the tutorial. 
+
+You can also run an instance in [Memgraph
+Cloud](https://memgraph.com/docs/memgraph-cloud/). Once you [sing
+up](https://cloud.memgraph.com/), create a new project. From the project you can
+connect to Memgraph Lab web application and navigate to the `Datasets` in the
+sidebar to choose the preferred dataset.
 
 So far we have covered the following topics with basic tutorials:
 

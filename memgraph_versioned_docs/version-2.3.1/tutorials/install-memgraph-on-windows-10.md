@@ -19,6 +19,13 @@ If you want to install Memgraph Platform, please follow the [Memgraph Platform i
 
 :::
 
+:::info
+
+Memgraph is also available as a [Memgraph Cloud](/memgraph-cloud) solution that
+requires no installation - be sure to check it out.
+
+:::
+
 [MemgraphDB](https://memgraph.com/product/) is a native, in-memory graph
 database built for real-time business-critical applications. Memgraph supports
 strongly-consistent ACID transactions and uses the [Cypher query
