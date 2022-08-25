@@ -118,6 +118,8 @@ docker exec -it <CONTAINER ID> bash
 
 **6.** Restart Memgraph.
 
+**7.** You can check the current configuration by running the `SHOW CONFIG;` query.
+
    </TabItem>
    </Tabs>
 
