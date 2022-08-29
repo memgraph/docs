@@ -2221,7 +2221,7 @@ enum mgp_error mgp_graph_delete_edge(
 )
 ```
 
-Delete an edge from the graph. When the first parameter to procedure is projected graph, edge must also exist in projected graph.
+Delete an edge from the graph. When the first parameter to a procedure is a projected graph, the edge must also exist in the projected graph.
 
 Return MGP_ERROR_IMMUTABLE_OBJECT if `graph` is immutable. Return MGP_ERROR_SERIALIZATION_ERROR if `edge`, its source or destination vertex has been modified by another transaction.
 
