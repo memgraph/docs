@@ -315,22 +315,23 @@ MATCH path=(n {id: 0})-[*WSHORTEST (r, n | n.total_USD) total_weight (r, n | r.e
 RETURN path,total_weight;
 ```
 
-## All Shortest Paths
+## All shortest paths
 
 Finding all shortest paths is an expansion of the weighted shortest paths problem. The goal
 of finding the shortest path is obtaining any minimum sum of weights on the path from one
 node to the other. However, there could be multiple similar-weighted paths, and this algorithm
-enables to fetch them all.
+fetches them all.
 
-Weighted shortest path implementation returns only one-row resulting path from one
+Weighted shortest path implementation returns only one resulting path from one
 node to the other. Commonly, multiple shortest paths are flowing through different
-routes. Syntax of obtaining all shortest paths is similar to the weighted shortest path
+routes. Syntax of obtaining all shortest paths is similar to the Weighted Shortest Path
 and boils down to calling `[*ALLSHORTEST (r, n | r.weight)]` where `r` and `n` define 
 the current expansion relationship and node respectively.
 
 ### Getting various results
 
-We'll use a similar example as the one above, used for the weighted shortest path.
+The following query searches for all shortest paths with a default weight equal to 1:
+
 To showcase the characteristics of all shortest paths, we'll use a default weight equal to 1 in the next example.
 
 ```cypher
@@ -338,20 +339,17 @@ MATCH path=(n {id: 0})-[:CloseTo *ALLSHORTEST (r, n | 1)]-(m {id: 15})
 RETURN path;
 ```
 
-Query returns multiple results, all with the 4 hops meaning that there are 
-multiple paths flowing from source node to the destination node.
+The query returns multiple results, all with 4 hops meaning that there are 
+multiple paths flowing from the source node to the destination node.
 
-Nothing prevents the user to run a weighted query based on the weight property on
-each visited edge:
+The following is a weighted query based on the weight property on each visited relationship:
 
 ```cypher
 MATCH path=(n {id: 0})-[:Type *ALLSHORTEST (r, n | r.weight)]-(m {id: 5})
 RETURN path;
 ```
 
-One might want to obtain all relationships on all shortest paths. To 
-unwind them all,
-a little more complicated query needs to be written:
+To obtain all relationship on all shortest paths, use the `relationships` function, unwind the results, and return unique edges so there is no duplicates in our output:
 
 ```cypher
 MATCH path=(n {id: 0})-[relationships:CloseTo *ALLSHORTEST (r, n | n.total_USD)]-(m {id: 51})
@@ -359,8 +357,7 @@ UNWIND (relationships(path)) AS edge
 RETURN DISTINCT edge; 
 ```
 
-Information about total weight can be gathered in a similar fashion as in 
-the weighted shortest path. 
+To get the total weight, add a variable at the end of the expansion expression: 
 ```cypher
 MATCH path=(n {id: 0})-[relationships:CloseTo *WSHORTEST (r, n | 1) total_weight]-(m {id: 9})
 RETURN nodes(path), total_weight;
@@ -368,8 +365,8 @@ RETURN nodes(path), total_weight;
 
 ### Constraining the path's length
 
-All shortest path allows for upper bound path restriction. This significantly modifies the outcome of the shortest path if the globally shortest path is obtained from some route with more hops than the set upper bound. Finding the all shortest paths with path restriction
-boils down to finding the minimum weighted path with a maximum length of `upper_bound`. Upper bound is defined just after the operator:
+All Shortest Paths allows for upper bound path restriction. This addition significantly modifies the outcome of the algorithm if the unrestricted shortest path is obtained from a route with more hops than the set upper bound. Finding the all shortest paths with path restriction
+boils down to finding the minimum weighted path with a maximum length of `upper_bound`. Upper bound is set to 4 just after the operator:
 
 ```cypher
 MATCH path=(n {id: 0})-[:CloseTo *ALLSHORTEST 4 (r, n | n.total_USD) total_weight]-(m {id: 46})
@@ -378,9 +375,8 @@ RETURN path,total_weight;
 
 ### Constraining the expansion based on property values
 
-All shortest paths algorithm implementation enables expansions filter to be
-written in a query. To define it, the requirement is to write a lambda function
-with filter expression over `r` (relationship) and `n` (node) variables as parameters.
+All Shortest Paths algorithm enables the usage of an expansions filter. To define it, you need to write a lambda function
+with a filter expression over `r` (relationship) and `n` (node) variables as parameters.
 
 In the following example, expansion is allowed over relationships with a `eu_border`
 property equal to `false` and to nodes with a `drinks_USD` property less than `20`:
