@@ -2161,7 +2161,7 @@ enum mgp_error mgp_graph_create_vertex(
 )
 ```
 
-Add a new vertex to the graph. When the first parameter to procedure is projected graph, vertex is added to also to projected graph view.
+Add a new vertex to the graph. When the first parameter to a procedure is a projected graph, the vertex is also added to the projected graph view.
 
 Resulting vertex must be freed using mgp_vertex_destroy. Return MGP_ERROR_IMMUTABLE_OBJECT if `graph` is immutable. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_vertex.
 
