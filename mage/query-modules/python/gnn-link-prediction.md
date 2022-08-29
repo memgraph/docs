@@ -22,7 +22,7 @@ style={{
 [![docs-source](https://img.shields.io/badge/source-link_prediction_with_gnn-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/link_prediction/python/link_prediction.py)
 
 ## Abstract
-Link prediction can be defined as a problem where one wants to predict if there is a link between two nodes in the graph. It can be used for predicting missing or future links in the evolving graph. Using the notation `G = (V, E)` for a graph with nodes `V` and edges `E` and given two nodes `v1` and `v2`, the link prediction algorithm tries to predict whether those 2 nodes will be connected, based on the `node features` and `graph structure`. `Graph neural networks` have been extremely often used lately for `node-classification` and `link-prediction` problems. They are extremely useful in numerous interdisciplinary fields of work where it is important to incorporate domain-specific knowledge to capture more fine-grained relationships among the data. Such fields usually involve working with `heterogeneous` and `large-scale` graphs. `GNNs` iteratively update node representations by aggregating the representations of node neighbours and their representation from the previous iteration. Such properties make `graph neural networks` a great tool for various problems we in Memgraph encounter. If your graph is evolving in time, check [TGN model](https://github.com/memgraph/mage/blob/main/python/tgn.py) that Memgraph engineers already developed.
+Link prediction can be defined as a problem where one wants to predict if there is a link between two nodes in the graph. It can be used for predicting missing or future links in the evolving graph. Using the notation `G = (V, E)` for a graph with nodes `V` and edges `E` and given two nodes `v1` and `v2`, the link prediction algorithm tries to predict whether those 2 nodes will be connected, based on the `node features` and `graph structure`. `Graph neural networks` have been extremely often used lately for `node-classification` and `link-prediction` problems. They are extremely useful in numerous interdisciplinary fields of work where is important to incorporate `domain-specific` knowledge to capture more `fine-grained` relationships among the data. Such fields usually involve working with `heterogeneous` and `large-scale` graphs. `GNNs` iteratively update node representations by aggregating the representations of node neighbours and their representation from the previous iteration. Such properties make `graph neural networks` a great tool for various problems we in Memgraph encounter. If your graph is evolving in time, check [TGN model](https://github.com/memgraph/mage/blob/main/python/tgn.py) that Memgraph engineers already developed.
 
 ### Blog Posts
 
@@ -68,7 +68,7 @@ The following procedure is expected when using **link prediction module**:
 
 - set parameters by calling `set_model_parameters()` function
 - train a model by calling `train()` function
-- inspect training results (optional)
+- inspect training results (optional) by calling `get_training_results()` function
 - predict the relationship between two vertices by calling `predict` or
 - call the `recommend` function to find the most likely relationships
 
@@ -81,7 +81,7 @@ For the underlying *GNN* training we use [DGL library](https://github.com/dmlc/d
 
 #### **Splitting the dataset**
 
-If the user specifies split_ratio 1.0, the model will train normally on a whole dataset without validating its performance on a validation set. However, if the user-defined split_ratio is a value between 0.0 and 1.0 but the graph is too small to have such a split, an exception will be thrown. 
+If the user specifies `split_ratio 1.0`, the model will train normally on a whole dataset without validating its performance on a validation set. However, if the user-defined split_ratio is a value between 0.0 and 1.0 but the graph is too small to have such a split, an exception will be thrown. 
 
 #### **Self-loops**
 
@@ -124,7 +124,7 @@ The link prediction module is organized as a stateful module in which the user c
 | `aggregator` | str | `mean` | Aggregator used in GraphSAGE model. Supported values are lstm, pool, mean and gcn. |
 | `metrics` | mgp.List[str] | `[loss, accuracy, auc_score, precision, recall, f1, true_positives, true_negatives, false_positives, false_negatives]` | Metrics used to evaluate the model in training on the validation set. Additionally, epoch information will always be displayed. |
 | `predictor_type` | str | `dot` | Type of the predictor. A predictor is used for combining node scores to edge scores. Supported values are `dot` and `mlp`. |
-| `attn_num_heads` | List[int] | `[4, 1]` | GAT can support the usage of more than one head in each layer except the last one. The size of the list must be the same as the number of layers specified by the `hidden_features_size` parameter. |
+| `attn_num_heads` | List[int] | `[4, 1]` | `GAT` can support the usage of more than one head in each layer except the last one. The size of the list must be the same as the number of layers specified by the `hidden_features_size` parameter. |
 | `tr_acc_patience` | int | `8` | Training patience, specifies how many epochs will accuracy drop on the validation set be tolerated before the training will be stopped. |
 | `context_save_dir` | str | `None` | Path where the model and predictor will be saved every checkpoint_freq epochs. |
 | `target_relation` | str | `None` | Unique edge type that is used for training. Users can provide only `edge_type` or `tuple of the source node, edge type, dest_node` if the same `edge_type` is used with more source-destination node combinations. |
