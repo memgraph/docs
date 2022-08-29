@@ -2132,7 +2132,7 @@ enum mgp_error mgp_graph_get_vertex_by_id(
 )
 ```
 
-Get the vertex corresponding to given ID, or NULL if no such vertex exists. When the first parameter to procedure is projected graph, vertex must exist also in projected graph.
+Get the vertex corresponding to given ID, or NULL if no such vertex exists. When the first parameter to a procedure is a projected graph, the vertex must also exist in the projected graph.
 
 Resulting vertex must be freed using mgp_vertex_destroy. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate the vertex.
 
