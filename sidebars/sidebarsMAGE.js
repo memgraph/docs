@@ -4,7 +4,7 @@ module.exports = {
     {
       type: "category",
       label: "Install MAGE",
-      link: {type: 'doc', id: 'installation/overview'},
+      link: { type: 'doc', id: 'installation/overview' },
       items: [
         "installation/docker-hub",
         "installation/docker-build",
@@ -20,7 +20,7 @@ module.exports = {
     {
       type: "category",
       label: "Available query modules",
-      link: {type: 'doc', id: 'query-modules/available-queries'},
+      link: { type: 'doc', id: 'query-modules/available-queries' },
       items: [
         "query-modules/cpp/betweenness-centrality",
         "query-modules/cpp/betweenness-centrality-online",
@@ -33,6 +33,7 @@ module.exports = {
         "query-modules/cuda/cugraph",
         "query-modules/python/distance-calculator",
         "query-modules/python/export-util",
+        "query-modules/python/gnn-link-prediction",
         "query-modules/python/graph-analyzer",
         "query-modules/python/graph-coloring",
         "query-modules/python/import-util",
@@ -67,7 +68,7 @@ module.exports = {
     {
       type: "category",
       label: "Algorithms",
-      link: {type: 'doc', id: 'algorithms/overview'},
+      link: { type: 'doc', id: 'algorithms/overview' },
       items: [
         {
           type: "category",
