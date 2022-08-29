@@ -264,6 +264,7 @@ Memgraph in order to use them.
 | enum [mgp_error](#variable-mgp-error) | **[mgp_messages_at](#function-mgp-messages-at)**(struct mgp_messages * message, size_t index, struct mgp_message ** result)<br/>Get the message from a messages list at given index.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_module_add_transformation](#function-mgp-module-add-transformation)**(struct mgp_module * module, const char * name, [mgp_trans_cb](#typedef-mgp-trans-cb) cb)<br/>Register a transformation with a module.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_vertices_iterator_next](#function-mgp-vertices-iterator-next)**(struct mgp_vertices_iterator * it, struct mgp_vertex ** result)<br/>Advance the iterator to the next vertex and return it.  |
+| enum [mgp_error](#variable-mgp-error)| **[mgp_log](#function-mgp-log)**(mgp_log_level log_level, const char *output)<br/>Log a message on a certain level. |
 
 ## Attributes
 
@@ -3482,6 +3483,16 @@ Advance the iterator to the next vertex and return it.
 
 The previous mgp_vertex obtained through mgp_vertices_iterator_get will be invalidated, and you must not use its value. Result is NULL if the end of the iteration has been reached. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_vertex.
 
+### mgp_log {#function-mgp-log}
+
+```cpp
+enum mgp_error mgp_log(
+    enum mgp_log_level log_level, 
+    const char *output
+)
+```
+
+Log a message on a certain level.
 
 
 ## Attributes Documentation
@@ -4181,6 +4192,12 @@ enum mgp_error mgp_type_nullable(struct mgp_type *type, struct mgp_type **result
 struct mgp_module;
 
 struct mgp_proc;
+
+/// All available log levels that can be used in mgp_log function
+MGP_ENUM_CLASS mgp_log_level{
+    MGP_LOG_LEVEL_TRACE, MGP_LOG_LEVEL_DEBUG, MGP_LOG_LEVEL_INFO,
+    MGP_LOG_LEVEL_WARN,  MGP_LOG_LEVEL_ERROR, MGP_LOG_LEVEL_CRITICAL,
+};
 
 typedef void (*mgp_proc_cb)(struct mgp_list *, struct mgp_graph *, struct mgp_result *, struct mgp_memory *);
 

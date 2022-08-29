@@ -57,8 +57,8 @@ At the moment, privileges are confined to users' abilities to perform certain
 `OpenCypher` queries. Namely users can be given permission to execute a subset
 of the following commands: `CREATE`, `DELETE`, `MATCH`, `MERGE`, `SET`,
 `REMOVE`, `INDEX`, `STATS`, `AUTH`, `REPLICATION`, `READ_FILE`, `DURABILITY`,
-`FREE_MEMORY`, `TRIGGER`, `STREAM`, `CONFIG`, `MODULE_READ`, `MODULE_WRITE` and
-`WEBSOCKET`.
+`FREE_MEMORY`, `TRIGGER`, `STREAM`, `CONFIG`, `CONSTRAINT`, `DUMP`,
+`MODULE_READ`, `MODULE_WRITE` and `WEBSOCKET`.
 
 We could naturally cluster those privileges into groups:
 

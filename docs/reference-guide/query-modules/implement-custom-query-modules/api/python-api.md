@@ -1430,11 +1430,118 @@ Access to `Graph` object.
 **Raises**:
 
 - `InvalidContextError` - If context is invalid.
-  
+
 
 **Examples**:
 
   ```context.graph```
+
+
+## Logger Objects
+
+```python
+class Logger()
+```
+
+Class for logging.
+
+### info()
+
+```python
+def info(out: str) -> None
+```
+Logs a message `out` on `INFO` log level.
+
+**Arguments**:
+
+- `out` - `str` to be logged
+  
+
+**Examples**
+
+  ```logger.info("message")```
+
+### debug()
+
+```python
+def debug(out: str) -> None
+```
+Logs a message `out` on `DEBUG` log level.
+
+**Arguments**:
+
+- `out` - `str` to be logged
+  
+
+**Examples**
+
+  ```logger.debug("message")```
+
+
+### error()
+
+```python
+def error(out: str) -> None
+```
+Logs a message `out` on `ERROR` log level.
+
+**Arguments**:
+
+- `out` - `str` to be logged
+  
+
+**Examples**
+
+  ```logger.error("message")```
+
+### trace()
+
+```python
+def trace(out: str) -> None
+```
+Logs a message `out` on `TRACE` log level.
+
+**Arguments**:
+
+- `out` - `str` to be logged
+  
+
+**Examples**
+
+  ```logger.trace("message")```
+
+
+### warning()
+
+```python
+def warning(out: str) -> None
+```
+Logs a message `out` on `WARNING` log level.
+
+**Arguments**:
+
+- `out` - `str` to be logged
+  
+
+**Examples**
+
+  ```logger.warning("message")```
+
+### critical()
+
+```python
+def critical(out: str) -> None
+```
+Logs a message `out` on `CRITICAL` log level.
+
+**Arguments**:
+
+- `out` - `str` to be logged
+  
+
+**Examples**
+
+  ```logger.critical("message")```
 
 ## UnsupportedTypingError Objects
 
