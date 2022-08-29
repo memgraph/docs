@@ -9,7 +9,6 @@ CALL module.procedure([optional parameter], arg1, "string_argument", ...) YIELD 
 ```
 Every procedure has a first optional parameter and the rest of them depend on the procedure you are trying to call. The optional parameter must be result of the aggregation function [`project()`](/cypher-manual/functions#aggregation-functions). If such a parameter is provided, **all** operations will be executed on a projected graph. Otherwise, you will work on the whole graph stored inside Memgraph. 
 
-
 Each procedure returns zero or more records, where each record contains named
 fields. The `YIELD` clause is used to select fields you are interested in or all
 of them (*). If you are not interested in any fields, omit the `YIELD` clause.
