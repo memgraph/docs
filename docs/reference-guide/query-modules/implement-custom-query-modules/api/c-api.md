@@ -2189,7 +2189,7 @@ enum mgp_error mgp_graph_detach_delete_vertex(
 )
 ```
 
-Delete a vertex and all of its edges from the graph. When the first parameter to procedure is projected graph, such operation is not possible. 
+Delete a vertex and all of its edges from the graph. When the first parameter to a procedure is a projected graph, such an operation is not possible. 
 
 Return MGP_ERROR_IMMUTABLE_OBJECT if `graph` is immutable. Return MGP_ERROR_SERIALIZATION_ERROR if `vertex` has been modified by another transaction.
 
