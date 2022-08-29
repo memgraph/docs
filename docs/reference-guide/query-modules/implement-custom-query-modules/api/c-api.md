@@ -1912,7 +1912,7 @@ enum mgp_error mgp_vertex_iter_in_edges(
 )
 ```
 
-Start iterating over inbound edges of the given vertex. When the first parameter to procedure is projected graph, iterating will start over inbound edges of the given vertex in projected graph.
+Start iterating over inbound edges of the given vertex. When the first parameter to a procedure is a projected graph, iterating will start over the inbound edges of the given vertex in the projected graph.
 
 The connection information of the vertex is copied when the iterator is created, therefore later creation or deletion of edges won't affect the iterated edges, however the property changes on the edges will be visible. The resulting mgp_edges_iterator needs to be deallocated with mgp_edges_iterator_destroy. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_edges_iterator. Return MGP_ERROR_DELETED_OBJECT if `v` has been deleted.
 
