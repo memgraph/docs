@@ -249,125 +249,94 @@ This function resets all variables to default values.
 
 ## Example
 
-<Tabs
-groupId="example"
-defaultValue="visualization"
-values={[
-{label: 'Step 1: Input graph', value: 'visualization'},
-{label: 'Step 2: Set parameters', value: 'cypher-param-set'},
-{label: 'Step 3: Set trigger', value: 'cypher-trigger-set'},
-{label: 'Step 4: Load training batch', value: 'cypher-train-load'},
-{label: 'Step 5: Change mode', value: 'cypher-mode-change'},
-{label: 'Step 6: Load evaluation batch', value: 'cypher-eval-load'},
-{label: 'Step 7: Train epochs', value: 'cypher-epoch-train'},
-{label: 'Step 8: Run', value: 'run'},
-{label: 'Step 9: Results', value: 'result'},
-]
-}>
-<TabItem value="visualization">
+In this example, network tries to find frauds in Heterogeneous Graph Insurance Dataset.
 
-<img src={require('../../data/query-modules/python/tgn/graph_visualization.png').default}/>
+TODO explain dataset
+First, load the following `insurance.cypherl` file to memgraph. It can be done easily by running
+TODO upload insurance.cypherl file
+```
+mgconsole < /PATH_TO_FILE/insurance.cypherl
+```
 
-  </TabItem>
-  <TabItem value="cypher-param-set">
+After, it is recommended to load the module:
+```cypher
+CALL mg.load("node_classification");
+```
+
+Before models are trained, set default parameters.
+Note: be careful to write correct `class_name` and `features_name`. Line `PROCEDURE MEMORY UNLIMITED` is not necessary here, it is used for bigger datasets.
 
 ```cypher
-CALL tgn.set_params({learning_type:'self_supervised', batch_size:2, num_of_layers:1,
-                      layer_type:'graph_attn',memory_dimension:100, time_dimension:100,
-                      num_edge_features:20, num_node_features:20, message_dimension:100,
-                      num_neighbors:10, edge_message_function_type:'identity',
-                      message_aggregator_type:'last', memory_updater_type:'gru', num_attention_heads:1});
+CALL node_classification.set_model_parameters({layer_type: "GATJK", learning_rate: 0.001, hidden_features_size: [16,16], class_name: "fraud", features_name: "embedding", batch_size: 10}) PROCEDURE MEMORY UNLIMITED YIELD * RETURN *;
 ```
 
-  </TabItem>
-  <TabItem value="cypher-trigger-set">
+Memgraph returns default parameters:
 
+```
+"aggregator": "mean",
+"checkpoint_freq": 5,
+"console_log_freq": 5,
+"device_type": "cpu",
+"hidden_features_size": [
+  16,
+  16
+],
+"layer_type": "GATJK",
+"learning_rate": 0.001,
+"metrics": [
+  "loss",
+  "accuracy",
+  "f1_score",
+  "precision",
+  "recall",
+  "num_wrong_examples"
+],
+"node_id_property": "id",
+"num_epochs": 100,
+"path_to_model": "/home/mateo/memgraph_with_fraud_detection_demo/torch_models/model_GATJK_",
+"split_ratio": 0.8,
+"weight_decay": 0.0005
+```
+
+(Optional)
+If there are no node features, you can make them with Memgraph's already implemented Node2Vec query module!
 ```cypher
-CREATE TRIGGER create_embeddings ON --> CREATE BEFORE COMMIT
-EXECUTE CALL tgn.update(createdEdges) RETURN 1;
+CALL node2vec.set_embeddings() YIELD *;
 ```
 
-  </TabItem>
-  <TabItem value="cypher-train-load">
-
+Let the training begin!
 ```cypher
-MERGE (n:Node {id: 1}) MERGE (m:Node {id: 6}) CREATE (n)-[:RELATION]->(m);
-MERGE (n:Node {id: 2}) MERGE (m:Node {id: 6}) CREATE (n)-[:RELATION]->(m);
-MERGE (n:Node {id: 10}) MERGE (m:Node {id: 5}) CREATE (n)-[:RELATION]->(m);
-MERGE (n:Node {id: 5}) MERGE (m:Node {id: 2}) CREATE (n)-[:RELATION]->(m);
-MERGE (n:Node {id: 9}) MERGE (m:Node {id: 7}) CREATE (n)-[:RELATION]->(m);
-MERGE (n:Node {id: 7}) MERGE (m:Node {id: 3}) CREATE (n)-[:RELATION]->(m);
-MERGE (n:Node {id: 3}) MERGE (m:Node {id: 6}) CREATE (n)-[:RELATION]->(m);
-MERGE (n:Node {id: 9}) MERGE (m:Node {id: 8}) CREATE (n)-[:RELATION]->(m);
+CALL node_classification.train() YIELD *;
 ```
 
-  </TabItem>
-  <TabItem value="cypher-mode-change">
-
+After training, you can obtain training data with the following function
 ```cypher
-CALL tgn.set_eval() YIELD *;
-
+CALL node_classification.get_training_data() YIELD *;
 ```
-
-  </TabItem>
-  <TabItem value="cypher-eval-load">
-
+This is example of one row in Memgraph output:
+```
+{
+  'epoch': 5, 
+  'loss': 0.11469734972342849, 
+  'train_log': 
+    {
+      'accuracy': 0.9618644118309021, 
+      'f1_score': 0.9618643522262573, 
+      'precision': 0.9618644118309021, 
+      'recall': 0.9618644118309021
+    }, 
+  'val_log': 
+    {
+      'accuracy': 0.9655172228813171, 
+      'f1_score': 0.9655172228813171, 
+      'precision': 0.9655172228813171, 
+      'recall': 0.9655172228813171
+    }, 
+  'val_loss': 0.10837011535962422
+}
+```
+Finally, you can find out if CLAIM was fraud or not.
 ```cypher
-MERGE (n:Node {id: 8}) MERGE (m:Node {id: 4}) CREATE (n)-[:RELATION]->(m);
-MERGE (n:Node {id: 4}) MERGE (m:Node {id: 6}) CREATE (n)-[:RELATION]->(m);
+MATCH (n:CLAIM {amount: 265.32}) CALL node_classification.predict(n) YIELD * RETURN predicted_class;
 ```
-
-  </TabItem>
-  <TabItem value="cypher-epoch-train">
-
-```cypher
- CALL tgn.train_and_eval(5) YIELD *
-```
-
-  </TabItem>
-  <TabItem value="run">
-
-```cypher
- CALL tgn.get_results() YIELD  epoch_num, batch_num, average_precision, batch_process_time, batch_type
- RETURN epoch_num, batch_num, average_precision, batch_type, batch_process_time;
-```
-
-  </TabItem>
-  <TabItem value="result">
-
-```plaintext
-+--------------------+--------------------+--------------------+--------------------+--------------------+
-| epoch_num          | batch_num          | average_precision  | batch_type         | batch_process_time |
-+--------------------+--------------------+--------------------+--------------------+--------------------+
-| 1                  | 1                  | 0.5                | "Train"            | 0.05               |
-| 1                  | 2                  | 0.42               | "Eval"             | 0.02               |
-| 2                  | 1                  | 0.83               | "Train"            | 0.03               |
-| 2                  | 2                  | 0.5                | "Train"            | 0.04               |
-| 2                  | 3                  | 0.5                | "Train"            | 0.04               |
-| 2                  | 4                  | 0.58               | "Train"            | 0.04               |
-| 2                  | 5                  | 0.83               | "Eval"             | 0.02               |
-| 3                  | 1                  | 0.5                | "Train"            | 0.03               |
-| 3                  | 2                  | 0.75               | "Train"            | 0.03               |
-| 3                  | 3                  | 0.83               | "Train"            | 0.03               |
-| 3                  | 4                  | 1                  | "Train"            | 0.04               |
-| 3                  | 5                  | 0.83               | "Eval"             | 0.02               |
-| 4                  | 1                  | 0.5                | "Train"            | 0.03               |
-| 4                  | 2                  | 0.58               | "Train"            | 0.03               |
-| 4                  | 3                  | 1                  | "Train"            | 0.03               |
-| 4                  | 4                  | 1                  | "Train"            | 0.04               |
-| 4                  | 5                  | 1                  | "Eval"             | 0.02               |
-| 5                  | 1                  | 0.83               | "Train"            | 0.03               |
-| 5                  | 2                  | 0.58               | "Train"            | 0.03               |
-| 5                  | 3                  | 1                  | "Train"            | 0.03               |
-| 5                  | 4                  | 1                  | "Train"            | 0.03               |
-| 5                  | 5                  | 0.83               | "Eval"             | 0.02               |
-| 6                  | 1                  | 0.58               | "Train"            | 0.03               |
-| 6                  | 2                  | 0.83               | "Train"            | 0.03               |
-| 6                  | 3                  | 1                  | "Train"            | 0.03               |
-| 6                  | 4                  | 1                  | "Train"            | 0.03               |
-| 6                  | 5                  | 1                  | "Eval"             | 0.01               |
-+--------------------+--------------------+--------------------+--------------------+--------------------+
-```
-
-  </TabItem>
-</Tabs>
+Memgraph will output `0`, which means model doesn't recognize this CLAIM as fraud.
