@@ -783,6 +783,49 @@ Outputs:
 
 - `string | List[any]`
 
+### `Slice(value, start, end?)`
+
+Returns a string or array slice defined by the start and optional end index.
+Negative indexes will also work.
+
+Examples:
+
+- `Slice("Hello", 1)` will return `"ello"`.
+- `Slice("Hello", -3, -1)` will return `"ll"`.
+- `Slice(AsArray(1, 2, 3, 4, 5), 1, 3)` will return `[2, 3]`.
+- `Slice(AsArray(1, 2, 3, 4, 5), -2)` will return `[4, 5]`.
+
+Inputs:
+
+- `value: string | List[any]`
+- `start: number`
+- `end?: number`
+
+Outputs:
+
+- `string | List[any]`
+
+### `Split(text, delimiter)`
+
+Returns a string or array slice defined by the start and optional end index.
+Negative indexes will also work.
+
+Examples:
+
+- `Split("Hello", "x")` will return `["Hello"]`.
+- `Split("Hello", "")` will return `["H", "e", "l", "l", "o"]`.
+- `Split("Hello", "lo")` will return `["Hel", ""]`.
+- `Split("Hello there", " ")` will return `["Hello", "there"]`.
+
+Inputs:
+
+- `text: string`
+- `delimiter: string`
+
+Outputs:
+
+- `List[string]`
+
 ### `Format(formatString, value...)`
 
 Substitutes occurrences of curly brace pairs in formatString with textual
@@ -828,6 +871,29 @@ Outputs:
 
 - `boolean`
 
+### `Replace(text, regex, replacement)`
+
+Returns a new string where a replacement value will be used instead of the
+first regex match. The creation of the regex is done with the Javascript
+function `new RegExp(text)`.
+
+Examples:
+
+- `Replace("Graph style script", "xyz", "text")` -> `"Graph style script"`
+- `Replace("Graph style script", "style ", "")` -> `"Graph script"`
+- `Replace("Graph style script", "style.*", "rocks!")` -> `"Graph rocks!"`
+- `Replace("Graph style script", "s", "S!")` -> `"Graph S!tyle script"`
+
+Inputs:
+
+- `text: string`
+- `regex: string`
+- `replacement: string`
+
+Outputs:
+
+- `string`
+
 ### `LowerCase(text)`
 
 Returns the value of a string converted to lower case.
@@ -853,6 +919,22 @@ Example:
 
 - `AsText(UpperCase(Property(node, "name")))` will return the node name in upper
   case.
+
+Inputs:
+
+- `text: string`
+
+Outputs:
+
+- `string`
+
+### `Trim(text)`
+
+Returns the string without starting and ending whitespaces.
+
+Example:
+
+- `Trim("  Hello  there!  ")` will return `"Hello  there!`.
 
 Inputs:
 
