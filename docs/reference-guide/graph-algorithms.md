@@ -324,7 +324,7 @@ fetches them all.
 
 Weighted shortest path implementation returns only one resulting path from one
 node to the other. Commonly, multiple shortest paths are flowing through different
-routes. Syntax of obtaining all shortest paths is similar to the Weighted Shortest Path
+routes. Syntax of obtaining all shortest paths is similar to the weighted shortest path
 and boils down to calling `[*ALLSHORTEST (r, n | r.weight)]` where `r` and `n` define 
 the current expansion relationship and node respectively.
 
@@ -365,7 +365,7 @@ RETURN nodes(path), total_weight;
 
 ### Constraining the path's length
 
-All Shortest Paths allows for upper bound path restriction. This addition significantly modifies the outcome of the algorithm if the unrestricted shortest path is obtained from a route with more hops than the set upper bound. Finding the all shortest paths with path restriction
+All shortest paths allows for upper bound path restriction. This addition significantly modifies the outcome of the algorithm if the unrestricted shortest path is obtained from a route with more hops than the set upper bound. Finding the all shortest paths with path restriction
 boils down to finding the minimum weighted path with a maximum length of `upper_bound`. Upper bound is set to 4 just after the operator:
 
 ```cypher
@@ -375,7 +375,7 @@ RETURN path,total_weight;
 
 ### Constraining the expansion based on property values
 
-All Shortest Paths algorithm enables the usage of an expansions filter. To define it, you need to write a lambda function
+All shortest paths algorithm enables the usage of an expansions filter. To define it, you need to write a lambda function
 with a filter expression over `r` (relationship) and `n` (node) variables as parameters.
 
 In the following example, expansion is allowed over relationships with a `eu_border`
