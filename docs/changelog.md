@@ -36,6 +36,9 @@ sidebar_label: Changelog
 - Add new command `SHOW CONFIG` that returns the configuration of the currently
   running Memgraph instance.
   [#459](https://github.com/memgraph/memgraph/pull/459)
+- Extend the shortest paths functionality with [All Shortest
+  Path](/memgraph/reference-guide/graph-algorithms#all-shortest-paths)
+  query. [#409](https://github.com/memgraph/memgraph/pull/409)
 - Extend the query modules C and Python API to enable logging on different levels. [#417](https://github.com/memgraph/memgraph/pull/417)
 
 ### Bug Fixes
