@@ -439,22 +439,45 @@ Outputs:
 
 - `List[Relationship]`
 
-### `Edges(node)`
+### `Edges(graphOrNode)`
 
-Returns the list of inbound and outbound edges from a given graph node.
+Returns the list of inbound and outbound edges from a given graph node. It
+returns all the edges in the graph if the input is a graph.
 
-Example:
+Examples:
 
+- `size: Size(Edges(graph))` sets the size to be equal to the count of all
+  graph edges.
 - `size: Size(Edges(node))` sets the size to be equal to the count of inbound
   and outbound edges.
 
 Inputs:
 
-- `node: Node`
+- `graphOrNode: Graph | Node`
 
 Outputs:
 
 - `List[Relationship]`
+
+### `Nodes(graphOrEdge)`
+
+Returns the list of start and end nodes from a given graph edge. It returns
+all the nodes in the graph if the input is a graph.
+
+Examples:
+
+- `size: Size(Nodes(graph))` sets the size to be equal to the count of all
+  graph nodes.
+- `size: Size(Nodes(edge))` sets the size to be equal to the count of nodes
+  that edge connects (usually 2).
+
+Inputs:
+
+- `graphOrEdge: Graph | Relationship`
+
+Outputs:
+
+- `List[Node]`
 
 ### `AdjacentNodes(node)`
 
@@ -1229,6 +1252,70 @@ Inputs:
 Outputs:
 
 - `string`
+
+### `IsNumber(value)`
+
+Returns True if the input value is a number, otherwise False.
+
+Example:
+
+- `IsNumber(10.2)` returns `True`.
+
+Inputs:
+
+- `value: any`
+
+Outputs:
+
+- `boolean`
+
+### `IsBoolean(value)`
+
+Returns True if the input value is a boolean, otherwise False.
+
+Example:
+
+- `IsBoolean(False)` returns `True`.
+
+Inputs:
+
+- `value: any`
+
+Outputs:
+
+- `boolean`
+
+### `IsString(value)`
+
+Returns True if the input value is a string, otherwise False.
+
+Example:
+
+- `IsString("text")` returns `True`.
+
+Inputs:
+
+- `value: any`
+
+Outputs:
+
+- `boolean`
+
+### `IsNull(value)`
+
+Returns True if the input value is a Null, otherwise False.
+
+Example:
+
+- `IsNull(Null)` returns `True`.
+
+Inputs:
+
+- `value: any`
+
+Outputs:
+
+- `boolean`
 
 ## Utility functions
 
