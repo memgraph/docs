@@ -4,6 +4,11 @@ title: Graph Style Script @GraphStyle.Map directive properties
 sidebar_label: GraphStyle.Map directive properties
 ---
 
+`@GraphStyle.Map` directive is a subset of `@GraphStyle` because it defines
+additional style properties for a graph view when there is a map background. 
+Style properties of the `@GraphStyle.Map` directive are used to style the 
+background map.
+
 ## `@GraphStyle.Map`
 
 Here is the list of all properties that can be defined in the `@GraphStyle.Map`

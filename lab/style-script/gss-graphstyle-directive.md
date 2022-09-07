@@ -4,6 +4,10 @@ title: Graph Style Script @GraphStyle directive properties
 sidebar_label: GraphStyle directive properties
 ---
 
+`@GraphStyle` directive is used for defining style properties of a general
+graph view: link distance, view, physics, repel force, etc. You can read more about
+each property in the following sections.
+
 ## `@GraphStyle`
 
 Here is the list of all properties that can be defined in the `@GraphStyle` directive,

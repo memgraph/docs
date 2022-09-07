@@ -222,7 +222,6 @@ all relationship styling possibilities.
 
 ### `@GraphStyle`
 
-
 `@GraphStyle` directive is used for defining style properties of a general
 graph view: link distance, view, physics, repel force, etc. It is also
 possible to use a predicate expression which acts as a filter to apply
