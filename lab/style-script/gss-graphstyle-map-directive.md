@@ -14,4 +14,4 @@ directive, along with their expected types.
 Sets the map tile for the map background. The default map tile is `"light"`.
 
 Examples:
-- `tile-layer: "dark"` sets the map tile to be type "dark".
+- `tile-layer: "dark"` sets the map tile to be type `"dark"`.
