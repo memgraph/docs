@@ -16,11 +16,11 @@ Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&
    mg_lib:/var/lib/memgraph` and `-v mg_etc:/etc/memgraph` volumes.
 
 2. [Copy the SSL certificate inside of the Docker
-   container](/memgraph/how-to-work-with-docker#how-to-copy-files-from-and-to-a-docker-container)
+   container](/how-to-guides/work-with-docker.md#how-to-copy-files-from-and-to-a-docker-container)
    or use Memgraph self-signed certificates (`cert.pem` and `key.pem`) located
    at `/etc/memgraph/ssl/`.
 
-3. [Change the configuration file](/memgraph/how-to-guides/config-logs#file) to
+3. [Change the configuration file](/how-to-guides/config-logs.md#file) to
    include the following configuration flags:
 
    ```
@@ -38,7 +38,7 @@ Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&
    --bolt-key-file=/etc/memgraph/ssl/key.pem
    ```
 
-5. [Stop the Docker container](/memgraph/how-to-work-with-docker#stop-image),
+5. [Stop the Docker container](/how-to-guides/work-with-docker.md#stop-image),
    then start it again, including the volumes you used in step 1.
 
    If you are running `memgraph-platform` image, pass the configuration flag

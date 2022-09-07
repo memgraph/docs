@@ -28,9 +28,9 @@ SSL certificate is a pair of `.pem` documents issued by self-signing, or by a
 Certification Authority. Memgraph contains a self-signed testing certificate
 (`cert.pem` and `key.pem`) located at `/etc/memgraph/ssl/`.
 
-If you are using Docker and want to use your own certificates, you need to [move
+If you are using Docker and want to use your own certificates, you need to [copy
 them into a Docker
-container](/how-to-guides/work-with-docker.md#how-to-copy-files-from-and-to-a-Docker-container)
+container](/how-to-guides/work-with-docker.md#how-to-copy-files-from-and-to-a-docker-container)
 in order to utilize them.
 
 ## Configure the server
