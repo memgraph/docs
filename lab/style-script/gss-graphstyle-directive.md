@@ -12,7 +12,7 @@ along with their expected types.
 ### `collision-radius: number`
 
 Sets the margin radius for each node from its centre. If node `size` is `10` and
-`collision-radius` is set to 20, it means there will be `10` spaces left around each
+`collision-radius` is set to `20`, it means there will be `10` spaces left around each
 node. No other node can be in that space.
 
 The default `collision-radius` is `15`.
