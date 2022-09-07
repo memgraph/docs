@@ -240,7 +240,7 @@ Similar to `@NodeStyle` and `@EdgeStyle`, `@GraphStyle` has a built-in variable
 `graph` which can be used for directive filter or property assignment.
 
 An example below shows a general directive style definition and a directive where
-style properties will be only applied if there are more than 10 nodes in the graph.
+style properties will only be applied if there are more than 10 nodes in the graph.
 
 ```
 @GraphStyle {
