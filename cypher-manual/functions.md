@@ -96,6 +96,7 @@ This section contains the list of supported functions.
  | `max`     | <code>max(row: integer\|float) -> (integer\|float)</code> | Returns the maximum value in a set of values.                                                         |
  | `min`     | <code>min(row: integer\|float) -> (integer\|float)</code> | Returns the minimum value in a set of values.                                                         |
  | `sum`     | <code>sum(row: integer\|float) -> (integer\|float)</code> | Returns a sum value of rows with numerical values generated with the `MATCH` or `UNWIND` clause.      |
+ | `project` | <code>project(row: path) -> map("nodes":list[Node], "edges":list[Edge])</code>| Creates a projected graph consisting of nodes and edges from aggregated paths.|
 
 ### String functions
 
