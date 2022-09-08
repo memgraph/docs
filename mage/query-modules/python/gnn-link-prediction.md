@@ -1,5 +1,5 @@
 ---
-id: gnn-link-prediction
+id: link-prediction-with-gnn
 title: link_prediction_with_gnn
 sidebar_label: link_prediction_with_gnn
 ---
@@ -22,13 +22,13 @@ style={{
 [![docs-source](https://img.shields.io/badge/source-link_prediction_with_gnn-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/link_prediction/python/link_prediction.py)
 
 ## Abstract
-Link prediction can be defined as a problem where one wants to predict if there is a link between two nodes in the graph. It can be used for predicting missing or future links in the evolving graph. Using the notation `G = (V, E)` for a graph with nodes `V` and edges `E` and given two nodes `v1` and `v2`, the link prediction algorithm tries to predict whether those 2 nodes will be connected, based on the `node features` and `graph structure`. `Graph neural networks` have been extremely often used lately for `node-classification` and `link-prediction` problems. They are extremely useful in numerous interdisciplinary fields of work where is important to incorporate `domain-specific` knowledge to capture more `fine-grained` relationships among the data. Such fields usually involve working with `heterogeneous` and `large-scale` graphs. `GNNs` iteratively update node representations by aggregating the representations of node neighbours and their representation from the previous iteration. Such properties make `graph neural networks` a great tool for various problems we in Memgraph encounter. If your graph is evolving in time, check [TGN model](https://github.com/memgraph/mage/blob/main/python/tgn.py) that Memgraph engineers already developed.
+**Link prediction** can be defined as a problem where one wants to predict if there is a link between two nodes in the graph. It can be used for predicting missing or future links in the evolving graph. Using the notation `G = (V, E)` for a graph with nodes `V` and edges `E` and given two nodes `v1` and `v2`, the link prediction algorithm tries to predict whether those two nodes will be connected, based on the **node features** and **graph structure**. Lately, **graph neural networks** have been often used for **node-classification** and **link-prediction** problems. They are extremely useful in numerous interdisciplinary fields of work where is important to incorporate **domain-specific** knowledge to capture more **fine-grained** relationships among the data. Such fields usually involve working with **heterogeneous** and **large-scale** graphs. **GNNs** iteratively update node representations by aggregating the representations of node neighbors and their representation from the previous iteration. Such properties make **graph neural networks** a great tool for various problems we in Memgraph encounter. If your graph is evolving in time, check [TGN model](https://github.com/memgraph/mage/blob/main/python/tgn.py) that Memgraph engineers have already developed.
 
 ### Blog Posts
 
-Check out these blog posts where we explain how we tried to apply link prediction:
+The following blog posts explain how we tried to apply link prediction:
 - [Node2Vec](https://memgraph.com/blog/link-prediction-with-node2vec-in-physics-collaboration-network)
-- [TODO: Telecom blog](www.google.com)
+<!-- [TODO: Telecom blog](www.google.com) -->
 
 ### About the query module
 
@@ -38,7 +38,7 @@ In this module you can find support for the following interesting features:
 - its applicability to use it as a **recommendation system**
 - a **semi-inductive** link prediction setup where a larger, updated graph is used for the **inference**
 - an **inductive** link prediction setup in which **training** and **inference** graphs are different
-- **transductive** graph splitting(training and validation sets)
+- **transductive** graph splitting (training and validation sets)
 - **Graph attention layer** aggregates information using an attention mechanism from the first-hop neighbourhood. Introduced by [Velickovic et al.](https://arxiv.org/pdf/1710.10903.pdf)
 - **GraphSAGE layer** extends the usability of graph neural networks to large-scale graphs. Introduced by [Hamilton et al.](https://arxiv.org/pdf/1706.02216.pdf)
 - **mlp** and **dot** predictors are used for combining node scores to edge scores
@@ -49,14 +49,13 @@ In this module you can find support for the following interesting features:
 - evaluating the model's **training performance** using a variety of metrics like **AUC, Precision, Recall, Accuracy, Confusion matrix**
 - evaluating the model's **recommendation performance** with **Precision@k, Recall@k, F1@k and Average Precision** metrics
 
-If you want to try-out our implementation, head to **[github/memgraph/mage](https://github.com/memgraph/mage)** and find `python/link_prediction.py`. Feel free to give us some :star: if you like the code. The easiest way to test `link-prediction` is by downloading [Memgraph Platform](https://memgraph.com/download) and using some of the preloaded datasets in **Memgraph Lab**.
+If you want to try-out our implementation, head to **[github/memgraph/mage](https://github.com/memgraph/mage)** and find `python/link_prediction.py`. Feel free to give us a :star: if you like the code. The easiest way to test **link-prediction** is by downloading [Memgraph Platform](https://memgraph.com/download) and using some of the preloaded datasets in **Memgraph Lab**.
 
-There are some things you should be careful about when using `link prediction`:
-- features of all nodes should be called the same(e.g saved as **'features'** property in **Memgraph**) 
+There are some things you should be careful about when using **link prediction**:
+- features of all nodes should be called the same (e.g saved as **'features'** property in **Memgraph**) 
 - model's performance on the validation set is obtained using **transductive** splitting mode, while **inductive** dataset split is not yet supported. You can find more information about graph splitting on slides of [Graph Machine Learning course](http://web.stanford.edu/class/cs224w/slides/08-GNN-application.pdf) offered by **Stanford**. 
-- to improve performance, `self-loop` is added to each node with the edge-type set to `self`
-- also, the user can set the flag to automatically add **reverse edges** to each existing edge and hence, convert a **directed** graph to a **bidirected** one. If the source and destination nodes of the edge are the same, **reverse edge type** will be the same as the original **edge type**. Otherwise, the prefix **rev_** will be added to the original **edge type**. See the implementation part to further see why are **self-loops** and **reverse edges** very important in ML training and how you can get into problems if your graph is already **undirected** :thinking_face: 
-- **Currently, execution on GPU-s is not supported** so setting the parameter `device_type` doesn't change anything.  
+- to improve performance, **self-loop** is added to each node with the edge-type set to `self`
+- the user can set the flag to automatically add **reverse edges** to each existing edge and hence, convert a **directed** graph to a **bidirected** one. If the source and destination nodes of the edge are the same, **reverse edge type** will be the same as the original **edge type**. Otherwise, the prefix **rev_** will be added to the original **edge type**. See the FAQ part to further see why are **self-loops** and **reverse edges** very important in ML training and how you can get into problems if your graph is already **undirected** :thinking_face: 
 
 Feel free to open a **[GitHub issue](https://github.com/memgraph/mage/issues)**
 or start a discussion on **[Discord](https://discord.gg/memgraph)** if you want
@@ -66,15 +65,15 @@ to speed up development.
 
 The following procedure is expected when using **link prediction module**:
 
-- set parameters by calling `set_model_parameters()` function
-- train a model by calling `train()` function
-- inspect training results (optional) by calling `get_training_results()` function
+- set parameters by calling `set_model_parameters` function
+- train a model by calling `train` function
+- inspect training results (optional) by calling `get_training_results` function
 - predict the relationship between two vertices by calling `predict` or
 - call the `recommend` function to find the most likely relationships
 
 ### Implementation details
 
-For the underlying *GNN* training we use [DGL library](https://github.com/dmlc/dgl/). 
+For the underlying **GNN** training we use the [DGL library](https://github.com/dmlc/dgl/). 
 > Fast and memory-efficient message passing primitives for training Graph Neural Networks. Scale to giant graphs via multi-GPU acceleration and distributed training infrastructure.
 >
 > -- DGL team
@@ -85,7 +84,7 @@ If the user specifies `split_ratio 1.0`, the model will train normally on a whol
 
 #### **Self-loops**
 
-`Self-loop edge` is added to every node to improve link_prediction performance if specified by the user. `Self-loop edges` are added only as edge_type `self`, not in any other way, and to enable this, a custom module has been added. 
+**Self-loop edge** is added to every node to improve **link_prediction** performance if specified by the user. **Self-loop edges** are added only as **edge_type** `self`, not in any other way, and to enable this, a custom module has been added. 
 
 #### **Batch training**
 
@@ -98,47 +97,47 @@ In heterogeneous graphs, all edges are used for creating the node’s neighbourh
 > 
 > -- DGL docs
 
-The reader is encouraged to see [DGL mini-batch explanation](https://docs.dgl.ai/guide/minibatch.html) for more details.
+The reader is encouraged to take a look at the [DGL mini-batch explanation](https://docs.dgl.ai/guide/minibatch.html) for more details.
 
 ## Procedures
 
-### **Set training parameters**
+The link prediction module is organized as a stateful module in which the user can run several methods one after another without losing the context. The user should start with setting the parameters that are going to be used in the training. If the graph is **heterogeneous** (more than one **edge type**), `target_relation` parameter must be set so the model could distinguish **supervision edges** (edges used in prediction) from **message passing edges** (used for message aggregation). In the case of **homogeneous graph**, `target relation` will be automatically inferred. `Node_features_property` must also be sent by the user to specify where are saved original node features. Those are needed by **graph neural networks** to compute **node embeddings**. All other parameters are optional.
 
-The link prediction module is organized as a stateful module in which the user can run several methods one after another without losing the context. The user should start with setting the parameters that are going to be used in the training. If the graph is **heterogeneous**(more than one **edge type**), `target_relation` parameter must be set so the model could distinguish **supervision edges**(edges used in prediction) from **message passing edges**(used for message aggregation). In the case of **homogeneous graph**, `target relation` will be automatically inferred. `Node_features_property` must also be sent by the user to specify where are saved original node features. Those are needed by **Graph neural networks** to compute **node embeddings**. All other parameters are optional. Here is the description of all parameters supported by **link prediction**:
+### **Set model parameters**
 
-
+Here is the description of all parameters supported by **link prediction** that you can set by calling the `set_model_parameters` method:
 #### **Input**:
 
 | Name            | Type  | Default     | Description |
 | --------------- | ----- | ----------- | ----------- |
-| `hidden_features_size` | mgp.List[int] | `[16, 16]` | Defines the size of each hidden layer in the architecture. Input feature size is determined automatically while converting the original graph to the DGL-compatible one. |
+| `hidden_features_size` | mgp.List[int] | `[16, 16]` | Defines the size of each hidden layer in the architecture. Input feature size is determined automatically while converting the original graph to the DGL compatible one. |
 | `layer_type`    | str   | `graph_attn` | Supported values are `graph_sage` and `graph_attn`. |
-| `num_epochs`    | int   | `100`  | number of epochs for model training.   |
-| `optimizer`     | str   | `ADAM` |  Supported values are `ADAM` and `SGD`. |
-| `learning_rate` | float | `0.01` | optimizer's learning rate.             |
-| `split_ratio`   | float | `0.8`  | split ratio between training and validation set. There is no test dataset because it is assumed that the user first needs to create new edges in the original dataset to test a model on them. |
-| `node_features_property` | str | `features` | property name where the node features are saved. |
-| `device_type` | str | `cpu` | If the model will be trained using CPU or Cuda GPU. To be run on `cuda`, the user must set this flag to `cuda` and the system must support `cuda` execution. System’s support is checked with `torch.cuda.is_available()`. Supported values are `cpu` and `cuda`. |
-| `console_log_freq` | int | `5` | How often results will be printed. This also directly specifies which results will be returned as training and validation results when calling the training method. |
+| `num_epochs`    | int   | `100`  | The number of epochs for model training.   |
+| `optimizer`     | str   | `ADAM` | Supported values are `ADAM` and `SGD`. |
+| `learning_rate` | float | `0.01` | Optimizer's learning rate.             |
+| `split_ratio`   | float | `0.8`  | The split ratio between the training and the validation set. There is no test dataset because it's assumed that the user first needs to create new edges in the original dataset to test a model on them. |
+| `node_features_property` | str | `features` | Property name where the node features are saved. |
+| `device_type` | str | `cpu` | Defines if the model will be trained using the `CPU` or `Cuda GPU`. To run on `Cuda GPU`, check if the system supports it with `torch.cuda.is_available()`, then set this flag to `cuda`.  |
+| `console_log_freq` | int | `5` | Specifies how often results will be printed. This also directly specifies which results will be returned as training and validation results when calling the training method. |
 | `checkpoint_freq` | int | `5` | Select the number of epochs on which the model will be saved. The model is persisted on disc. |
-| `aggregator` | str | `mean` | Aggregator used in GraphSAGE model. Supported values are lstm, pool, mean and gcn. |
+| `aggregator` | str | `mean` | Aggregator used in GraphSAGE model. Supported values are `lstm`, `pool`, `mean` and `gcn`. |
 | `metrics` | mgp.List[str] | `[loss, accuracy, auc_score, precision, recall, f1, true_positives, true_negatives, false_positives, false_negatives]` | Metrics used to evaluate the model in training on the validation set. Additionally, epoch information will always be displayed. |
 | `predictor_type` | str | `dot` | Type of the predictor. A predictor is used for combining node scores to edge scores. Supported values are `dot` and `mlp`. |
 | `attn_num_heads` | List[int] | `[4, 1]` | `GAT` can support the usage of more than one head in each layer except the last one. The size of the list must be the same as the number of layers specified by the `hidden_features_size` parameter. |
 | `tr_acc_patience` | int | `8` | Training patience, specifies how many epochs will accuracy drop on the validation set be tolerated before the training will be stopped. |
-| `context_save_dir` | str | `None` | Path where the model and predictor will be saved every checkpoint_freq epochs. |
-| `target_relation` | str | `None` | Unique edge type that is used for training. Users can provide only `edge_type` or `tuple of the source node, edge type, dest_node` if the same `edge_type` is used with more source-destination node combinations. |
+| `context_save_dir` | str | `None` | Path where the model and predictor will be saved every `checkpoint_freq` epochs. |
+| `target_relation` | str | `None` | Unique edge type used for training. Users can provide only `edge_type` or `tuple of the source node, edge type, dest_node` if the same `edge_type` is used with more source-destination node combinations. |
 | `num_neg_per_pos_edge` | int | `1` | Number of negative edges that will be sampled per one positive edge in the mini-batch training. |
 | `batch_size` | int | `256` | Batch size used in both training and validation procedure. It specifies the number of indices in each batch. |
 | `sampling_workers` | int | `5` | Number of workers that will cooperate in the sampling procedure in the training and validation. |
 | `last_activation_function` | str | `sigmoid` | Activation function that is applied after the last layer in the model and before the `predictor_type`. Currently, only `sigmoid` is supported. | 
-| `add_reverse_edges` | bool | `False` | Whether the module should add reverse edges for each in the obtained graph. If the source and destination node are of the same type, edges of the same edge type will be created. If the source and destination nodes are different, then the prefix `rev_` will be added to the previous edge type. Reverse edges will be excluded as message passing edges for corresponding supervision edges. |
+| `add_reverse_edges` | bool | `False` | Whether the module should add reverse edges for each existing edge in the obtained graph. If the source and destination node are of the same type, edges of the same edge type will be created. If the source and destination nodes are different, then the prefix `rev_` will be added to the previous edge type. Reverse edges will be excluded as message passing edges for corresponding supervision edges. |
 
 #### **Output**:
-- `status: bool` -> True if all parameters were successfully updated, False otherwise.
-- `message: str` -> "OK" if all parameters were successfully updated, *Error message* otherwise. 
+- `status: bool` -> `True` if all parameters were successfully updated, `False` otherwise.
+- `message: str` -> `OK` if all parameters were successfully updated, `Error message` otherwise. 
 
-__You__ can send only the parameters you want to change from the default ones, so e.g the method call could look like this:
+Only those parameters that need changing from their default values are sent when calling the procedure:
 ```
 CALL link_prediction.set_model_parameters({num_epochs: 100, node_features_property: "features", tr_acc_patience: 8, target_relation: "CITES", batch_size: 256, last_activation_function: "sigmoid", add_reverse_edges: True})
 YIELD status, message
@@ -146,7 +145,7 @@ RETURN status, message;
 ```
 
 ### **Training**
-The training method doesn't take any parameters, so it is very simple to use. 
+The `train` method doesn't take any parameters, so it is very simple to use. 
 
 #### **Output**:
 - `training_results: List[Dict[str, float]]` -> List of training results through epochs. Model's performance is evaluated every `console_log_freq` epochs. 
@@ -158,11 +157,11 @@ CALL link_prediction.train()
 YIELD training_results, validation_results
 RETURN training_results, validation_results;
 ```
-and Voilà, training and validation results through epochs are summarized and returned to __you__. 
+to get training and validation results summarized through epochs. 
 
 ### **Get training results**
 
-This method is used when the user wants to get performance data obtained from the last training. It is in the same form as a result of calling the training method. If there is no loaded model, the exception will be thrown.
+The `get_training_results` method is used when the user wants to get performance data obtained from the last training. It is in the same form as a result of calling the training method. If there is no loaded model, the exception will be thrown.
 
 ```
 CALL link_prediction.get_training_results()
@@ -176,7 +175,7 @@ RETURN training_results, validation_results;
 
 ### **Predict**
 
-Predict method takes two arguments, **src_vertex** and **dest_vertex**, and predicts whether there is an edge between them or not. It supports an `“actual”` prediction scenario when the edge doesn’t exist and the user wants to predict whether there is an edge or not but also a scenario in which there is an edge between two vertices and the user wants to check the model’s evaluation. 
+The `predict` method takes two arguments, **src_vertex** and **dest_vertex**, and predicts whether there is an edge between them or not. It supports an `“actual”` prediction scenario when the edge doesn’t exist and the user wants to predict whether there is an edge or not but also a scenario in which there is an edge between two vertices and the user wants to check the model’s evaluation. 
 
 #### Input
 - `src_vertex: mgp.Vertex` -> Source vertex of the edge
@@ -195,7 +194,7 @@ RETURN score;
 
 ### **Recommend**
 
-Recommend method can be used to recommend the best k nodes from dest_vertices to src_vertex. It is implemented efficiently using the **max heap** data structure. The best nodes are determined based on the edge scores. Metrics specific to recommendation systems (**precision@k, recall@k, f1@k and average precision**) are logged to the **standard output**. **K** is equal to the given `min(k, length(dest_vertices), length(results))` where results are a list of all recommendations given by the model(classified as a positive example.)
+The `recommend` method can be used to recommend the best k nodes from `dest_vertices` to `src_vertex`. It is implemented efficiently using the **max heap** data structure. The best nodes are determined based on the edge scores. Metrics specific to recommendation systems (**precision@k, recall@k, f1@k and average precision**) are logged to the **standard output**. **K** is equal to the given `min(k, length(dest_vertices), length(results))` where results are a list of all recommendations given by the model(classified as a positive example.)
 
 #### Input
 - `src_vertex: mgp.Vertex` → Source node.
@@ -217,7 +216,7 @@ RETURN v1, score, recommendation;
 
 ### **Load context**
 
-Loading the context means loading the model and the predictor. If the user specifies the path, the method will try to load it from there. Otherwise, context will be loaded from the default parameter specified in the link_prediction_parameters module.
+Loading the context means loading the model and the predictor. If the user specifies the path, the method will try to load it from there. Otherwise, context will be loaded from the default parameter specified in the **link_prediction_parameters** module.
 
 #### Input
 - `path: str` → Path to the folder where the model and the predictor are saved.
@@ -231,7 +230,7 @@ CALL link_prediction.load_context() YIELD * RETURN *;
 
 ### **Reset parameters**
 
-User can explicitly reset parameters whenever he/she wants. Note, however, that parameters will be reset before the training even if not specified by the user because of implementation reasons.
+You can explicitly reset parameters whenever you want. Note, however, that parameters will be reset before the training even if not specified because of implementation reasons.
 
 #### Output
 - `status: mgp.Any` → True to indicate that method is successfully finished.
@@ -242,7 +241,7 @@ CALL link_prediction.reset_parameters() YIELD * RETURN *;
 
 ## Results
 
-We extensively tested our model on [**CORA**](https://paperswithcode.com/dataset/cora) dataset and the Telecom recommendation dataset. Here are the results of one of our basic models on the Cora dataset after training for 10 epochs:
+We extensively tested our model on the [**CORA**](https://paperswithcode.com/dataset/cora) dataset and the Telecom recommendation dataset. To show you how the training performance could progress through epochs, here are the results for one of our basic models tried on the Cora dataset:
 
 | epoch_num | AUC   | accuracy | precision | recall | f1    |
 | --------- | ----- | -------- | --------- | ------ | ----- |
@@ -362,9 +361,9 @@ RETURN score;
 
 ## FAQ
 
-### **Why you can get into problems with reverse edges?**
+### **Why can I get into problems with reverse edges?**
 
-As specified in one of the chapters above, **reverse edges** deserve a little bit more attention. Having a `reverse_edge` in your dataset can be a problem if they are not excluded from `message passing edges` in the prediction of its `opposite edge`(`supervision edge`). The best thing you can do is have a `directed` graph and we will automatically add reverse edges, if you specify `add_reverse_edges` in the `set_model_parameters` method, in a way that doesn't cause information flow. 
+Having a `reverse_edge` in your dataset can be a problem if they are not excluded from `message passing edges` in the prediction of its `opposite edge`(`supervision edge`). The best thing you can do is have a `directed` graph and the module will automatically add reverse edges, if you specify `add_reverse_edges` in the `set_model_parameters` method, in a way that doesn't cause information flow. 
 ### **What is a transductive dataset split?**
 
 The transductive dataset split assumes that the entire graph can be observed in all dataset splits. We distinguish four types of edges, and those are: `validation`, `training`, `message passing` and `supervision edges`. 
