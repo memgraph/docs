@@ -1255,7 +1255,7 @@ Outputs:
 
 ### `IsNumber(value)`
 
-Returns True if the input value is a number, otherwise False.
+Returns `True` if the input value is a number, otherwise `False`.
 
 Example:
 
@@ -1271,7 +1271,7 @@ Outputs:
 
 ### `IsBoolean(value)`
 
-Returns True if the input value is a boolean, otherwise False.
+Returns `True` if the input value is a boolean, otherwise `False`.
 
 Example:
 
@@ -1287,7 +1287,7 @@ Outputs:
 
 ### `IsString(value)`
 
-Returns True if the input value is a string, otherwise False.
+Returns `True` if the input value is a string, otherwise `False`.
 
 Example:
 
@@ -1303,7 +1303,7 @@ Outputs:
 
 ### `IsNull(value)`
 
-Returns True if the input value is a Null, otherwise False.
+Returns `True` if the input value is a `Null`, otherwise `False`.
 
 Example:
 
