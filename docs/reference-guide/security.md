@@ -165,7 +165,7 @@ Community. In Memgraph Enterprise the privileges of the owner are used when
 executing the queries returned from a transformation, in other words, the
 execution of the queries will fail if  the owner doesn't have the required
 privileges. More information about how the owner affects the stream can be
-found in the
+found in the [reference guide](/reference-guide/streams/overview.md#create-a-stream).
 
 ## Label-based access control
 Sometimes, disabling users from executing certain commands is too restrictive.
