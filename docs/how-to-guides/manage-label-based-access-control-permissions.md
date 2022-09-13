@@ -14,13 +14,13 @@ Regardless, all of the previously defined privileges will still be applied.
 :::
 
 Sometimes, authorizing the database by granting and denying clause privileges is not enough to make the
-database fully secure. Some nodes and relationships can be confidential and must be restricted from viewing
-and manipulation by multiple users.
+database fully secure. Certain nodes and relationships can be confidential and must be restricted from viewing
+and manipulating by multiple users.
 
 In response to the need for such authorization, Memgraph has advanced its authorization features to enable
 authorization on node labels and relationship edge types. By applying authorization to graph's first class
 citizens, a database administrator can now keep all the data in one database while keeping any private data
-secure from those who don't have the permission.
+secure from those who don't have adequate permission.
 
 This how-to-guide will walk you through label-based access control in the use case of a fictional company
 doing data analytics and machine learning. 
