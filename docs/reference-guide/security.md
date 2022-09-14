@@ -157,7 +157,7 @@ user without any privileges, so no queries are allowed to be executed.
 - Currently, there is no way of changing the owner. The only workaround for this
 is to delete the stream or trigger and then create it again with another user.
 
-### Streams
+## Streams
 The user who executes the `CREATE STREAM` query is going to be the owner of the stream.
 Authentication and authorization are not supported in Memgraph Community, thus
 the owner will always be `Null`, and the privileges are not checked in Memgraph
@@ -165,4 +165,90 @@ Community. In Memgraph Enterprise the privileges of the owner are used when
 executing the queries returned from a transformation, in other words, the
 execution of the queries will fail if  the owner doesn't have the required
 privileges. More information about how the owner affects the stream can be
-found in the
+found in the [reference guide](/reference-guide/streams/overview.md#create-a-stream).
+
+## Label-based access control
+Sometimes, disabling users from executing certain commands is too restrictive.
+Label-based access control enables database administrators to disable users from 
+viewing or manipulating nodes with certain labels and relationships of certain types.
+
+
+Label-based permissions are divided into 4 hierarchical parts or levels:
+- `NOTHING` - denies user visibility and manipulation over nodes and relationships
+- `READ` - grants the user visibility over nodes and relationships
+- `UPDATE` - grants the user visibility and the ability to edit nodes and relationships 
+- `CREATE_DELETE` - grants the user visibility, editing, creation, and deletion of a node or a
+relationship
+
+### Node permissions
+
+Granting a certain set of node permissions can be done similarly to the clause 
+privileges using the following command:
+
+```cypher
+GRANT permission_level ON LABELS label_list TO user_or_role;
+```
+
+with the legend:
+- `permission_level` is either `NOTHING`, `READ`, `UPDATE` or `CREATE_DELETE`
+- `label_list` is a set of node labels, separated with a comma and with a colon in front of
+each label (e.g. `:L1`), or `*` for specifying all labels in the graph
+- `user_or_role` is the already created user or role in Memgraph
+
+For example, granting a `READ` permission on labels `L1` and `L2` would be written as:
+
+```cypher
+GRANT READ ON LABELS :L1, :L2 TO charlie;
+```
+
+while granting both `READ` and `EDIT` permissions for all labels in the graph, would be written as:
+
+```cypher
+GRANT UPDATE ON LABELS * TO charlie;
+```
+
+For denying visibility to a node, the command would be written as:
+
+```cypher
+GRANT NOTHING ON LABELS :L1 TO charlie;
+```
+
+### Relationship permissions
+Relationship permission queries are in essence the same as node permission queries, with the
+one difference that the name of the relationship type is `EDGE_TYPE` and not `LABEL`.
+
+Granting a certain set of edge type permissions can be done similarly to the
+clause privileges by issuing the following command:
+
+```cypher
+GRANT permission_level ON EDGE_TYPES edge_type_list TO user_or_role;
+```
+
+with the same legend as the node permissions.
+
+For example, granting a `READ` permission on relationship type `:CONNECTS` would be written as:
+
+```cypher
+GRANT READ ON EDGE_TYPES :CONNECTS TO charlie;
+```
+
+### Revoking label-based permissions
+To revoke any of the label-based permissions, users can use one of the following commands:
+
+```cypher
+REVOKE (LABELS | EDGE_TYPES) label_or_edge_type_list FROM user_or_role
+```
+
+where:
+- `label_or_edge_type_list` is a list of labels or edge types with a colon in front of each
+label or edge type (or `*` for specifying all labels or edge types)
+- `user_or_role` is the existing user or role in Memgraph
+
+### Show privileges for label-based access control
+To check which privileges an existing user or role has in Memgraph, it is enough to write
+
+```cypher
+SHOW PRIVILEGES FOR user_or_role;
+```
+
+and all the values of clause privileges, as well as label-based permissions will be displayed.
