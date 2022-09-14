@@ -448,3 +448,9 @@ int mgp_init_module(struct mgp_module *module, struct mgp_memory *memory) {
   return 0;
 }
 ```
+
+## C++ API
+
+```
+TODO
+```
