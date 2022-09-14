@@ -173,9 +173,10 @@ Label-based access control enables database administrators to disable users from
 viewing or manipulating nodes with certain labels and relationships of certain types.
 
 
-Label-based permissions are divided into 3 hierarchical parts or levels:
-- `READ` - grants the user visibility over a node or a relationship
-- `UPDATE` - grants the user visibility and the ability to edit a node or a relationship
+Label-based permissions are divided into 4 hierarchical parts or levels:
+- `NOTHING` - denies user visibility and manipulation over nodes and relationships
+- `READ` - grants the user visibility over nodes and relationships
+- `UPDATE` - grants the user visibility and the ability to edit nodes and relationships 
 - `CREATE_DELETE` - grants the user visibility, editing, creation, and deletion of a node or a
 relationship
 
@@ -189,7 +190,7 @@ GRANT permission_level ON LABELS label_list TO user_or_role;
 ```
 
 with the legend:
-- `permission_level` is either `READ`, `UPDATE` or `CREATE_DELETE`
+- `permission_level` is either `NOTHING`, `READ`, `UPDATE` or `CREATE_DELETE`
 - `label_list` is a set of node labels, separated with a comma and with a colon in front of
 each label (e.g. `:L1`), or `*` for specifying all labels in the graph
 - `user_or_role` is the already created user or role in Memgraph
@@ -206,16 +207,11 @@ while granting both `READ` and `EDIT` permissions for all labels in the graph, w
 GRANT UPDATE ON LABELS * TO charlie;
 ```
 
-
-The same functionality could be executed with the `DENY` command, which is an inverse 
-command to `GRANT`. By using `DENY`, users are getting a permission level one level 
-below the denied one. To be clear, by executing
+For denying visibility to a node, the command would be written as:
 
 ```cypher
-DENY CREATE_DELETE ON LABELS * TO charlie;
+GRANT NOTHING ON LABELS :L1 TO charlie;
 ```
-
-the user would actually be granted an `UPDATE` permission level.
 
 ### Relationship permissions
 Relationship permission queries are in essence the same as node permission queries, with the
