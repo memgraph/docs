@@ -166,6 +166,9 @@ Alice has already set up his account with the following commands:
 CREATE ROLE tester;
 CREATE USER Charlie IDENTIFIED BY 'test';
 SET ROLE FOR Charlie TO tester;
+
+GRANT MATCH, SET TO tester;
+
 GRANT READ ON LABELS :DataPoint TO tester;
 GRANT READ ON EDGE_TYPES :NEXT TO tester;
 ```
@@ -198,6 +201,9 @@ Alice has his account set up with the following commands:
 CREATE ROLE dataEngineer;
 CREATE USER David IDENTIFIED BY 'test';
 SET ROLE FOR David TO dataEngineer;
+
+GRANT MATCH, DELETE TO dataEngineer;
+
 GRANT UPDATE ON LABELS :DataPoint TO dataEngineer;
 GRANT UPDATE ON EDGE_TYPES :NEXT TO dataEngineer;
 ```
@@ -219,6 +225,31 @@ GRANT CREATE_DELETE ON EDGE_TYPES :NEXT TO dataEngineer;
 
 The permission is executed on relationships as well, since David needs to detach the nodes
 prior to deleting them. David is now able to successfully delete the deprecated nodes.
+
+## Denying visibility
+
+Eve is the new senior engineer in town, and she is making excellent progress in the company.
+The management therefore decided to grant her visibility and manipulation over all the nodes.
+However, there are certain confidential nodes that are only for the management people to see.
+
+Since there could be a lot of different node labels or relationship types in the database,
+a shortcut can be made by granting `NOTHING` to the entity. The database administrator therefore
+sets Eve's role as:
+
+```cypher
+CREATE ROLE seniorEngineer;
+CREATE USER Eve IDENTIFIED BY 'test';
+SET ROLE FOR Eve TO seniorEngineer;
+
+GRANT MATCH, DELETE TO seniorEngineer;
+
+GRANT CREATE_DELETE ON LABELS * TO seniorEngineer;
+GRANT NOTHING ON LABELS :SecretLabel TO seniorEngineer;
+```
+
+When granting `NOTHING`, the user is denied both visibility and manipulation of the entity.
+Eve is now able to see all the domain data while the management is happy since they have not
+leaked any confidential data.
 
 And that's it! You successfully finished Memgraph's label-based access control how-to-guide!
 
