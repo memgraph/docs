@@ -1,7 +1,7 @@
 ---
-id: manage-label-based-access-control-permissions
-title: How to manage label-based access control permissions (Enterprise)
-sidebar_label: Manage label-based access control permissions
+id: manage-label-based-access-control
+title: How to manage label-based access control (Enterprise)
+sidebar_label: Manage label-based access control
 ---
 
 [![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/security.md)
@@ -10,7 +10,6 @@ sidebar_label: Manage label-based access control permissions
 This is an Enterprise feature.
 If the Memgraph Enterprise is not activated, all the created users will be granted
 all of the privileges.
-Regardless, all of the previously defined privileges will still be applied.
 :::
 
 Sometimes, authorizing the database by granting and denying clause privileges is not enough to make the
@@ -69,6 +68,9 @@ WEBSOCKET         | GRANT           | GRANTED TO USER
 ALL LABELS        | CREATE_DELETE   | GLOBAL LABEL PERMISSION GRANTED TO USER     
 ALL EDGE_TYPES    | CREATE_DELETE   | GLOBAL EDGE_TYPE PERMISSION GRANTED TO USER 
 
+If you want to find more about user privileges, hover over to
+**[Managing user privileges](/how-to-guides/manage-user-privileges)**
+
 Alice can now log in as an administrator in Memgraph with her own account. From that point on,
 she can also create new users and roles in the database. The subsequently created users and roles
 won't have any privileges or label-based permissions and need additional commands to be granted
@@ -106,12 +108,12 @@ GRANT MATCH TO analyst;
 Now Bob is able to perform a match. However, by executing the same query again, he 
 is not able to get any results. Now that's unfortunate. Did we do anything wrong?
 
-Enter label-based access control. Since Bob was not an administrator, he was not able
-to see any data points in the graph. In other words, he does not have read permission 
+Enter label-based access control. Since Bob is not an administrator, he was not able
+to see any data points in the graph. In other words, he does not have `READ` permission 
 on the `DataPoint` label.
 
 Memgraph's label-based access control is hierarchically constructed, and the first
-permission one can be given is `READ`, on node labels or relationship edge types.
+permission one can be given on node labels or relationship edge types is `READ`.
 
 Alice now updates Bob's permissions by executing:
 
@@ -125,7 +127,7 @@ with respect to all the data points in the graph!
 Additionally, in the company, it was decided that all the data points would be connected 
 in a time series fashion, depending on when they were ingested into the database. One 
 `DataPoint` should therefore be connected to the previously inserted one. 
-The relationship edge type is called `:NEXT`.
+The relationship type is called `:NEXT`.
 
 Bob now again has problems, because when he executes:
 

@@ -174,7 +174,7 @@ module.exports = {
           items: [
             "how-to-guides/manage-users-using-ldap",
             "how-to-guides/manage-user-privileges",
-            "how-to-guides/manage-label-based-access-control-permissions",
+            "how-to-guides/manage-label-based-access-control",
           ],
         },
       ],

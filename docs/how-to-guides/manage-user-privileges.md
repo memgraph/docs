@@ -152,7 +152,7 @@ SET ROLE FOR bob TO supervisor;
 ## Where to next?
 
 If you are in need for a finer granularity in authorizing your graph, visit
-**[Manage label-based access control permissions](/how-to-guides/manage-label-based-access-control-permissions.md)**
+**[Manage label-based access control permissions](/how-to-guides/manage-label-based-access-control.md)**
 for authorizing specific nodes and relationships.
 
 To learn more about Memgraph's functionalities, visit the **[Reference guide](/reference-guide/overview.md)**.
