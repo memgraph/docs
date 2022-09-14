@@ -200,7 +200,7 @@ For example, granting a `READ` permission on labels `L1` and `L2` would be writt
 GRANT READ ON LABELS :L1, :L2 TO charlie;
 ```
 
-while granting both read and edit permissions for all labels in the graph, would be written as:
+while granting both `READ` and `EDIT` permissions for all labels in the graph, would be written as:
 
 ```cypher
 GRANT UPDATE ON LABELS * TO charlie;
@@ -208,7 +208,7 @@ GRANT UPDATE ON LABELS * TO charlie;
 
 
 The same functionality could be executed with the `DENY` command, which is an inverse 
-command to `GRANT`. By using deny, users are getting a permission level one level 
+command to `GRANT`. By using `DENY`, users are getting a permission level one level 
 below the denied one. To be clear, by executing
 
 ```cypher
@@ -230,7 +230,7 @@ GRANT permission_level ON EDGE_TYPES edge_type_list TO user_or_role;
 
 with the same legend as the node permissions.
 
-For example, granting a `READ` permission on edge_type `:CONNECTS` would be written as:
+For example, granting a `READ` permission on relationship type `:CONNECTS` would be written as:
 
 ```cypher
 GRANT READ ON EDGE_TYPES :CONNECTS TO charlie;
@@ -243,16 +243,16 @@ To revoke any of the label-based permissions, users can use one of the following
 REVOKE (LABELS | EDGE_TYPES) label_or_edge_type_list FROM user_or_role
 ```
 
-with the legend:
+where:
 - `label_or_edge_type_list` is a list of labels or edge types with a colon in front of each
 label or edge type (or `*` for specifying all labels or edge types)
 - `user_or_role` is the existing user or role in Memgraph
 
 ### Show privileges for label-based access control
-For checking the privileges the existing user or role has in Memgraph, it is enough to write
+To check which privileges an existing user or role has in Memgraph, it is enough to write
 
 ```cypher
 SHOW PRIVILEGES FOR user_or_role;
 ```
 
-and all the values of clause privileges as well as label-based permissions will be displayed.
+and all the values of clause privileges, as well as label-based permissions will be displayed.
