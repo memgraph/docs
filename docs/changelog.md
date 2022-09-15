@@ -31,7 +31,7 @@ sidebar_label: Changelog
   Memgraph. [#415](https://github.com/memgraph/memgraph/pull/415)
 - Add new command `SHOW CONFIG` that returns the configuration of the currently
   running Memgraph instance.
-  [#459](https://github.com/memgraph/memgraph/pull/459)
+  [#459](https://github.com/memgraph/memgraph/pull/459)jj
 - Extend the shortest paths functionality with [All Shortest
   Path](/reference-guide/graph-algorithms.md#all-shortest-paths)
   query. [#409](https://github.com/memgraph/memgraph/pull/409)
@@ -40,7 +40,10 @@ sidebar_label: Changelog
 - Added C++ query modules API. Instead of using the C API call, C++ API calls
   significantly simplify the implementation of fast query modules.
   [#546](https://github.com/memgraph/memgraph/pull/546)
-
+- [Enterprise] Added support for label-based authorization. In addition to
+  clause-based authorization rules, each user can now be granted `NOTHING`,
+  `READ`, `UPDATE`, or `CREATE_DELETE` permission on a given label or edge
+  type. [#484](https://github.com/memgraph/memgraph/pull/484)
 
 ### Bug Fixes
 
