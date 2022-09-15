@@ -89,11 +89,11 @@ If you started the query, let's send some messages to the topic in the same way
 as described in the Kafka quick start guide. You should see a similar output:
 
 ```plaintext
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-| queries                                                                                                                                                                                           | raw messages          |
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-| [{parameters: {payload: "Example message 1", timestamp: 1625757014009, topic: "quickstart-events"}, query: "CREATE (n:MESSAGE {timestamp: $timestamp, payload: $payload, topic: $topic})"}]       | ["Example message 1"] |
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
++--------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
+| query                                                                                | parameters                                                                           |
++--------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
+| "CREATE (n:MESSAGE {timestamp: $timestamp, payload: $payload, topic: $topic})"       | {payload: "Example message 1", timestamp: 1625757014009, topic: "quickstart-events"} |
++--------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
 ```
 
 If you want to consume more batches, you can also increase the batch limit:
@@ -105,23 +105,22 @@ CHECK STREAM myStream BATCH_LIMIT 3 TIMEOUT 60000;
 As a result, you should see multiple messages (probably 3) in the output:
 
 ```plaintext
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-| queries                                                                                                                                                                                           | raw messages          |
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-| [{parameters: {payload: "Memgraph <3 Kafka", timestamp: 1625757026942, topic: "quickstart-events"}, query: "CREATE (n:MESSAGE {timestamp: $timestamp, payload: $payload, topic: $topic})"}]       | ["Memgraph <3 Kafka"] |
-| [{parameters: {payload: "Example message 2", timestamp: 1625757112493, topic: "quickstart-events"}, query: "CREATE (n:MESSAGE {timestamp: $timestamp, payload: $payload, topic: $topic})"}]       | ["Example message 2"] |
-| [{parameters: {payload: "Example message 3", timestamp: 1625757118408, topic: "quickstart-events"}, query: "CREATE (n:MESSAGE {timestamp: $timestamp, payload: $payload, topic: $topic})"}]       | ["Example message 3"] |
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
++--------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
+| query                                                                                | parameters                                                                           |
++--------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
+| "CREATE (n:MESSAGE {timestamp: $timestamp, payload: $payload, topic: $topic})"       | {payload: "Memgraph <3 Kafka", timestamp: 1625757026942, topic: "quickstart-events"} |
+| "CREATE (n:MESSAGE {timestamp: $timestamp, payload: $payload, topic: $topic})"       | {payload: "Example message 2", timestamp: 1625757112493, topic: "quickstart-events"} |
+| "CREATE (n:MESSAGE {timestamp: $timestamp, payload: $payload, topic: $topic})"       | {payload: "Example message 3", timestamp: 1625757118408, topic: "quickstart-events"} |
++--------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
 ```
 
 ## Start the stream
 
 As we just demonstrated that the stream is working, we can start to ingest data
 into the database by starting the stream and sending some messages to the topic.
-As a safeguard, you can use the `BATCH_LIMIT` option to first start the stream and let it consume a limited number of batches. 
 
 ```
-START STREAM myStream [BATCH_LIMIT <count>] [TIMEOUT <milliseconds>];
+START STREAM myStream;
 ```
 
 After sending a few messages to the topic, the created vertices can be checked
@@ -135,12 +134,6 @@ by executing `MATCH (n: MESSAGE) RETURN n`:
 | (:MESSAGE {payload: "another message", timestamp: 1625757441665, topic: "quickstart-events"}) |
 | (:MESSAGE {payload: "it is working!", timestamp: 1625757444175, topic: "quickstart-events"})  |
 +-----------------------------------------------------------------------------------------------+
-```
-
-If the result satisfies you, then you can fully start the stream by calling `START STREAM myStream` without providing a `BATCH_LIMIT` option. 
-
-```
-START STREAM myStream;
 ```
 
 ## Committed offsets
@@ -178,11 +171,11 @@ CHECK STREAM myStream TIMEOUT 60000;
 Running this query multiple times should emit the same results:
 
 ```plaintext
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+
-| queries                                                                                                                                                                                   | raw messages  |
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+
-| [{parameters: {payload: "message A", timestamp: 1625758319964, topic: "quickstart-events"}, query: "CREATE (n:MESSAGE {timestamp: $timestamp, payload: $payload, topic: $topic})"}]       | ["message A"] |
-| [{parameters: {payload: "message B", timestamp: 1625758321735, topic: "quickstart-events"}, query: "CREATE (n:MESSAGE {timestamp: $timestamp, payload: $payload, topic: $topic})"}]       | ["message A"] |
-| [{parameters: {payload: "message C", timestamp: 1625758323795, topic: "quickstart-events"}, query: "CREATE (n:MESSAGE {timestamp: $timestamp, payload: $payload, topic: $topic})"}]       | ["message C"] |
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+
++--------------------------------------------------------------------------------+--------------------------------------------------------------------------------+
+| query                                                                          | parameters                                                                     |
++--------------------------------------------------------------------------------+--------------------------------------------------------------------------------+
+| "CREATE (n:MESSAGE {timestamp: $timestamp, payload: $payload, topic: $topic})" | {payload: "message A", timestamp: 1625758319964, topic: "quickstart-events"}   |
+| "CREATE (n:MESSAGE {timestamp: $timestamp, payload: $payload, topic: $topic})" | {payload: "message B", timestamp: 1625758321735, topic: "quickstart-events"}   |
+| "CREATE (n:MESSAGE {timestamp: $timestamp, payload: $payload, topic: $topic})" | {payload: "message C", timestamp: 1625758323795, topic: "quickstart-events"}   |
++--------------------------------------------------------------------------------+--------------------------------------------------------------------------------+
 ```

@@ -10,7 +10,7 @@ The **Memgraph** reference guide contains the details of implemented features.
 ## [Built-in graph algorithms](/reference-guide/graph-algorithms.md)
 
 Memgraph comes with custom-built algorithms that are implemented using C++:
-**Filtering variable-length paths**, **Breadth-first search**, **Weighted
+**Depth-first search**, **Breadth-first search**, **Weighted
 shortest path**, **All shortest paths**.
 
 ## [Configuration settings](/reference-guide/configuration.md)

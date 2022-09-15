@@ -11,19 +11,15 @@ sidebar_label: Changelog
 - Add replica state to `SHOW REPLICAS` query.
   [#379](https://github.com/memgraph/memgraph/pull/379)
 - Add `current_timestamp` and `number_of_timestamp_behind_master` to `SHOW
-  REPLICAS` query.[#412](https://github.com/memgraph/memgraph/pull/412)
+  REPLICAS` query. [#412](https://github.com/memgraph/memgraph/pull/412)
 - Add frequent replica ping. `main` instance checks state of the replicas with
   given frequency controller by `--replication-replica-check-delay-sec`. The
   check allows latest information about the state of each replica from `main`
   point of view. [#380](https://github.com/memgraph/memgraph/pull/380)
 - Updated results return by [`CHECK
-  STREAM`](/reference-guide/streams/overview.md) query to group all queries/raw
+  STREAM`](/reference-guide/streams/overview.md#check-stream) query to group all queries/raw
   messages on single line per batch.
-  [#394](https://github.com/memgraph/memgraph/pull/394)
-- Added `BATCH_LIMIT` and `TIMEOUT` options to [`START
-  STREAM`](/reference-guide/streams/overview.md) query that returns the raw
-  message received by the transformation.
-  [#392](https://github.com/memgraph/memgraph/pull/392)
+  [#394](https://github.com/memgraph/memgraph/pull/394
 - Query `REGISTER REPLICA replica_name SYNC` no longer supports `TIMEOUT`
   parameter. To mimic the previous behavior of `REGISTER REPLICA replica_name
   SYNC WITH TIMEOUT 1`, one should use `REGISTER REPLICA replica_name ASYNC`
@@ -37,13 +33,14 @@ sidebar_label: Changelog
   running Memgraph instance.
   [#459](https://github.com/memgraph/memgraph/pull/459)
 - Extend the shortest paths functionality with [All Shortest
-  Path](/memgraph/reference-guide/graph-algorithms#all-shortest-paths)
+  Path](/reference-guide/graph-algorithms.md#all-shortest-paths)
   query. [#409](https://github.com/memgraph/memgraph/pull/409)
 - Extend the query modules C and Python API to enable logging on different
   levels. [#417](https://github.com/memgraph/memgraph/pull/417)
 - Added C++ query modules API. Instead of using the C API call, C++ API calls
   significantly simplify the implementation of fast query modules.
   [#546](https://github.com/memgraph/memgraph/pull/546)
+
 
 ### Bug Fixes
 
@@ -62,7 +59,7 @@ sidebar_label: Changelog
   [#448](https://github.com/memgraph/memgraph/pull/448)
 - Corrected inconsistencies and incorrect behavior with regards to sync
   replicas. For more detail about the behavior, please check [Under the
-  Hood](/under-the-hood/replication.md).
+  hood view on replication](/under-the-hood/replication.md).
   [#448](https://github.com/memgraph/memgraph/pull/435)
 - Fixed handling `ROUTE` Bolt message. Memgraph didn't handle the fields of
   `ROUTE` message properly. Therefore the session might be stuck in a state
@@ -71,6 +68,12 @@ sidebar_label: Changelog
   [#475](https://github.com/memgraph/memgraph/pull/475)
 
 ## v2.3.1 - Jun 23, 2022
+
+### Improvement
+
+- Added `BATCH_LIMIT` and `TIMEOUT` options to [`START
+  STREAM`](/reference-guide/streams/overview.md#start-a-stream) query that
+  returns the raw message received by the transformation. [#392](https://github.com/memgraph/memgraph/pull/392)
 
 ### Bug Fixes
 

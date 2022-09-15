@@ -196,8 +196,8 @@ mode or reset to SYNC mode.
 
 ### Listing all registered REPLICA instances
 
-You can check all the registered REPLICA instances by running the following
-query:
+You can check all the registered REPLICA instances and their details by running
+the following query:
 
 ```plaintext
 SHOW REPLICAS;

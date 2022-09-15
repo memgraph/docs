@@ -129,28 +129,34 @@ guide](reference-guide/security.md#owners).
 
 ## Start a stream
 
-The following queries start a specific stream or all streams.
+The following query will start a specific stream with name `<stream name>` to
+consume `<count>` number of batches for a maximum duration of `<milliseconds>`
+milliseconds.
 
 ```cypher
 START STREAM <stream name> [BATCH_LIMIT <count>] [TIMEOUT <milliseconds>];
 ```
 
-Starts a specific stream with name `<stream name>` with `<count>` number of batches for a maximum duration of `<milliseconds>` milliseconds. The stream will automatically stop after having consumed the given number of batches or if the timeout is reached.  If `<count>` number of batches are not processed within the specified `TIMEOUT`, probably because not enough messages were received, an exception is thrown. 
-`TIMEOUT` is measured in milliseconds, and its default value is 30000. It can only be used in combination of `BATCH_LIMIT`.
+The stream will automatically stop after consuming the given number of batches
+or reaching the timeout. If `<count>` number of batches are not processed within
+the specified `TIMEOUT`, probably because not enough messages was received, an
+exception is thrown. `TIMEOUT` is measured in milliseconds, and its default
+value is 30000. It can only be used in combination with the `BATCH_LIMIT`
+option.
 
-If no `BATCH_LIMIT` limit is provided (thus no `TIMEOUT` neither), then the stream will run for an infinite number of batches and without a timeout limit (see below).
+If `BATCH_LIMIT` (and `TIMEOUT`) is not provided, the `<stream name>` stream
+will run for an infinite number of batches without a timeout limit.
 
 ```cypher
 START STREAM <stream name>;
 ```
 
-Starts a specific stream with name `<stream name>` for an infinite number of batches and without a timeout limit.
+The following query will start all streams for an infinite number of batches and
+without a timeout limit.
 
 ```cypher
 START ALL STREAMS;
 ```
-
-Starts all streams for an infinite number of batches and without a timeout limit.
 
 When a stream is started, it resumes ingesting data from the last committed
 offset. If no offset is committed for the consumer group, the largest

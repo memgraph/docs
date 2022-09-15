@@ -18,7 +18,7 @@ it's the most common one.
 :::caution
 
 `LOAD CSV` clause cannot be used with a Memgraph Cloud instance because at the
-moment it is impossible make files accessible by Memgraph. 
+moment it is impossible to make files accessible by Memgraph. 
 
 :::
 

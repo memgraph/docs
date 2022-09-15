@@ -208,7 +208,7 @@ MATCH path=(n {id: 0})-[*BFS (r, n | r.eu_border = false AND n.drinks_USD < 15)]
 RETURN path;
 ```
 
-## Weighted Shortest Path
+## Weighted shortest path
 
 In graph theory, the weighted shortest path problem is the problem of finding a path
 between two nodes in a graph such that the sum of the weights of relationships

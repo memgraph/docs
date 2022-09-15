@@ -85,11 +85,11 @@ If you started the query, let's send some messages to the topic. You should see
 a similar output:
 
 ```plaintext
-+---------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-| queries                                                                                                                               | raw messages          |
-+---------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-| [{parameters: {payload: "Example message 1", topic: "topic1"}, query: "CREATE (n:MESSAGE {payload: $payload, topic: $topic})"}]       | ["Example message 1"] |
-+---------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
++-----------------------------------------------------------------------------------------------------------------+
+| query                                                         | parameters                                      |
++-----------------------------------------------------------------------------------------------------------------+
+| "CREATE (n:MESSAGE {payload: $payload, topic: $topic})"       | {payload: "Example message 1", topic: "topic1"} |
++--------------------------------------------------------------------------------------+---------------------------
 ```
 
 If you want to consume more batches, you can also increase the batch limit:
@@ -101,23 +101,22 @@ CHECK STREAM myStream BATCH_LIMIT 3 TIMEOUT 60000;
 As a result, you should see multiple messages (probably 3) in the output:
 
 ```plaintext
-+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
-| queries                                                                                                                               | raw messages           |
-+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
-| [{parameters: {payload: "Memgraph <3 Pulsar", topic: "topic1"}, query: "CREATE (n:MESSAGE {payload: $payload, topic: $topic})"}]      | ["Memgraph <3 Pulsar"] |
-| [{parameters: {payload: "Example message 2", topic: "topic1"}, query: "CREATE (n:MESSAGE {payload: $payload, topic: $topic})"}]       | ["Example message 2"]  |
-| [{parameters: {payload: "Example message 3", topic: "topic1"}, query: "CREATE (n:MESSAGE {payload: $payload, topic: $topic})"}]       | ["Example message 3"]  |
-+---------------------------------------------------------------------------------------------------------------------------------------+------------------------+
++---------------------------------------------------------------+--------------------------------------------------+
+| query                                                         | parameters                                       |
++---------------------------------------------------------------+--------------------------------------------------+
+| "CREATE (n:MESSAGE {payload: $payload, topic: $topic})"       | {payload: "Memgraph <3 Pulsar", topic: "topic1"} |
+| "CREATE (n:MESSAGE {payload: $payload, topic: $topic})"       | {payload: "Example message 2", topic: "topic1"}  |
+| "CREATE (n:MESSAGE {payload: $payload, topic: $topic})"       | {payload: "Example message 3", topic: "topic1"}  |
++---------------------------------------------------------------+--------------------------------------------------+
 ```
 
 ## Start the stream
 
 As we just demonstrated that the stream is working, we can start to ingest data
 into the database by starting the stream and sending some messages to the topic.
-As a safeguard, you can use the `BATCH_LIMIT` option to first start the stream and let it consume a limited number of batches. 
 
 ```
-START STREAM myStream [BATCH_LIMIT <count>] [TIMEOUT <milliseconds>];
+START STREAM myStream;
 ```
 
 After sending a few messages to the topic, the created vertices can be checked
@@ -131,11 +130,6 @@ by executing `MATCH (n: MESSAGE) RETURN n`:
 | (:MESSAGE {payload: "another message", topic: "topic1"}) |
 | (:MESSAGE {payload: "it is working!", topic: "topic1"})  |
 +----------------------------------------------------------+
-```
-If the result satisfies you, then you can fully start the stream by calling `START STREAM myStream` without providing a `BATCH_LIMIT` option. 
-
-```
-START STREAM myStream;
 ```
 
 ## Acknowledging messages
