@@ -69,7 +69,7 @@ ALL LABELS        | CREATE_DELETE   | GLOBAL LABEL PERMISSION GRANTED TO USER
 ALL EDGE_TYPES    | CREATE_DELETE   | GLOBAL EDGE_TYPE PERMISSION GRANTED TO USER 
 
 If you want to find more about user privileges, hover over to
-**[Managing user privileges](/how-to-guides/manage-user-privileges)**
+**[Managing user privileges](/how-to-guides/manage-user-privileges.md)**
 
 Alice can now log in as an administrator in Memgraph with her own account. From that point on,
 she can also create new users and roles in the database. The subsequently created users and roles
