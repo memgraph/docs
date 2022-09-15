@@ -17,9 +17,9 @@ sidebar_label: Changelog
   check allows latest information about the state of each replica from `main`
   point of view. [#380](https://github.com/memgraph/memgraph/pull/380)
 - Updated results return by [`CHECK
-  STREAM`](/reference-guide/streams/overview.md#check-stream) query to group all queries/raw
-  messages on single line per batch.
-  [#394](https://github.com/memgraph/memgraph/pull/394
+  STREAM`](/reference-guide/streams/overview.md#check-stream) query to group
+  all queries/raw messages on single line per batch.
+  [#394](https://github.com/memgraph/memgraph/pull/394)
 - Query `REGISTER REPLICA replica_name SYNC` no longer supports `TIMEOUT`
   parameter. To mimic the previous behavior of `REGISTER REPLICA replica_name
   SYNC WITH TIMEOUT 1`, one should use `REGISTER REPLICA replica_name ASYNC`
@@ -31,7 +31,7 @@ sidebar_label: Changelog
   Memgraph. [#415](https://github.com/memgraph/memgraph/pull/415)
 - Add new command `SHOW CONFIG` that returns the configuration of the currently
   running Memgraph instance.
-  [#459](https://github.com/memgraph/memgraph/pull/459)jj
+  [#459](https://github.com/memgraph/memgraph/pull/459)
 - Extend the shortest paths functionality with [All Shortest
   Path](/reference-guide/graph-algorithms.md#all-shortest-paths)
   query. [#409](https://github.com/memgraph/memgraph/pull/409)
