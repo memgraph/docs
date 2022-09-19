@@ -44,6 +44,10 @@ sidebar_label: Changelog
   clause-based authorization rules, each user can now be granted `NOTHING`,
   `READ`, `UPDATE`, or `CREATE_DELETE` permission on a given label or edge
   type. [#484](https://github.com/memgraph/memgraph/pull/484)
+- New Cypher function `project()` creates a projected graph consisting of nodes
+  and edges from aggregated paths. Any query module or algorithm can be now run
+  on a subgraph, by passing the variable of the projected graph as the first
+  argument of the query module procedure. [#535](https://github.com/memgraph/memgraph/pull/535)
 
 ### Bug Fixes
 
@@ -63,7 +67,7 @@ sidebar_label: Changelog
 - Corrected inconsistencies and incorrect behavior with regards to sync
   replicas. For more detail about the behavior, please check [Under the
   hood view on replication](/under-the-hood/replication.md).
-  [#448](https://github.com/memgraph/memgraph/pull/435)
+  [#435](https://github.com/memgraph/memgraph/pull/435)
 - Fixed handling `ROUTE` Bolt message. Memgraph didn't handle the fields of
   `ROUTE` message properly. Therefore the session might be stuck in a state
   where even the `RESET` message did not help. With this fix, sending a `RESET`
