@@ -58,7 +58,7 @@ To learn more about query modules, take a look at the following guides:
   - **[C
     API](/reference-guide/query-modules/implement-custom-query-modules/api/c-api.md)**
   - **[C++
-    API](/reference-guide/query-modules/implement-custom-query-modules/api/c-api.md)**
+    API](/reference-guide/query-modules/implement-custom-query-modules/api/cpp-api.md)**
 - **[Load and call query
   modules](/reference-guide/query-modules/load-call-query-modules.md)**
 - **[Manage module files from
