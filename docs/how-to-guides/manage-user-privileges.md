@@ -74,7 +74,7 @@ We could naturally cluster those privileges into groups:
   * Privilege to try freeing memory (`FREE_MEMORY`)
   * Privilege to use trigger queries (`TRIGGER`)
   * Privilege to use stream queries (`STREAM`)
-  * Privilege to configure Memgraph during runtime (`CONFIG`)
+  * Privilege to configure Memgraph during runtime and to attain the configuration of the given Memgraph instance(`CONFIG`)
   * Privilege to read the content of Python query module files (`MODULE_READ`)
   * Privilege to modify the content of Python query modules files (`MODULE_WRITE`)
   * Privilege to connect to [Memgraph monitoring server](/reference-guide/monitoring-server.md) (`WEBSOCKET`)
@@ -150,6 +150,10 @@ SET ROLE FOR bob TO supervisor;
 ```
 
 ## Where to next?
+
+If you are in need for a finer granularity in authorizing your graph, visit
+**[Manage label-based access control](/how-to-guides/manage-label-based-access-control.md)**
+for authorizing specific nodes and relationships.
 
 To learn more about Memgraph's functionalities, visit the **[Reference guide](/reference-guide/overview.md)**.
 For real-world examples of how to use Memgraph, we strongly suggest going through one of the available **[Tutorials](/tutorials/overview.md)**.

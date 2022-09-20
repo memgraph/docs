@@ -892,7 +892,7 @@ Get the properties of the vertex.
 def in_edges() -> typing.Iterable[Edge]
 ```
 
-Iterate over inbound edges of the vertex.
+Iterate over inbound edges of the vertex. When the first parameter to a procedure is a projected graph, iterating will start over the inbound edges of the given vertex in the projected graph.
 Doesn’t return a dynamic view of the edges but copies the
 current inbound edges.
 
@@ -919,7 +919,7 @@ current inbound edges.
 def out_edges() -> typing.Iterable[Edge]
 ```
 
-Iterate over outbound edges of the vertex.
+Iterate over outbound edges of the vertex. When the first parameter to a procedure is a projected graph, iterating will start over the outbound edges of the given vertex in the projected graph.
 
 Doesn’t return a dynamic view of the edges but copies the
 current outbound edges.
@@ -1203,7 +1203,7 @@ Check if `graph` is in a valid context and may be used.
 def get_vertex_by_id(vertex_id: VertexId) -> Vertex
 ```
 
-Return the Vertex corresponding to the given vertex_id from the graph.
+Return the Vertex corresponding to the given vertex_id from the graph. When the first parameter to a procedure is a projected graph, the vertex must also exist in the projected graph.
 
 Access to a Vertex is only valid during a single execution of a
 procedure in a query. You should not globally store the returned
@@ -1284,7 +1284,7 @@ Check if the graph is mutable. Thus it can be used to modify vertices and edges.
 def create_vertex() -> Vertex
 ```
 
-Create an empty vertex.
+Create an empty vertex. When the first parameter to a procedure is a projected graph, the vertex is also added to the projected graph view.
 
 **Returns**:
 
@@ -1307,7 +1307,7 @@ Create an empty vertex.
 def delete_vertex(vertex: Vertex) -> None
 ```
 
-Delete a vertex if there are no edges.
+Delete a vertex if there are no edges. When the first parameter to a procedure is a projected graph, the vertex must also exist in the projected graph.
 
 **Arguments**:
 
@@ -1329,7 +1329,7 @@ Delete a vertex if there are no edges.
 def detach_delete_vertex(vertex: Vertex) -> None
 ```
 
-Delete a vertex and all of its edges.
+Delete a vertex and all of its edges. When the first parameter to a procedure is a projected graph, such an operation is not possible. 
 
 **Arguments**:
 
@@ -1352,7 +1352,7 @@ def create_edge(from_vertex: Vertex, to_vertex: Vertex,
                 edge_type: EdgeType) -> None
 ```
 
-Create an edge.
+Create an edge. When the first parameter is a projected graph, it will create a new directed edge with a specified label only if both vertices are a part of the projected graph.
 
 **Arguments**:
 
@@ -1378,7 +1378,7 @@ Create an edge.
 def delete_edge(edge: Edge) -> None
 ```
 
-Delete an edge.
+Delete an edge. When the first parameter to a procedure is a projected graph, the edge must also exist in the projected graph.
 
 **Arguments**:
 
@@ -1430,11 +1430,118 @@ Access to `Graph` object.
 **Raises**:
 
 - `InvalidContextError` - If context is invalid.
-  
+
 
 **Examples**:
 
   ```context.graph```
+
+
+## Logger Objects
+
+```python
+class Logger()
+```
+
+Class for logging.
+
+### info()
+
+```python
+def info(out: str) -> None
+```
+Logs a message `out` on `INFO` log level.
+
+**Arguments**:
+
+- `out` - `str` to be logged
+  
+
+**Examples**
+
+  ```logger.info("message")```
+
+### debug()
+
+```python
+def debug(out: str) -> None
+```
+Logs a message `out` on `DEBUG` log level.
+
+**Arguments**:
+
+- `out` - `str` to be logged
+  
+
+**Examples**
+
+  ```logger.debug("message")```
+
+
+### error()
+
+```python
+def error(out: str) -> None
+```
+Logs a message `out` on `ERROR` log level.
+
+**Arguments**:
+
+- `out` - `str` to be logged
+  
+
+**Examples**
+
+  ```logger.error("message")```
+
+### trace()
+
+```python
+def trace(out: str) -> None
+```
+Logs a message `out` on `TRACE` log level.
+
+**Arguments**:
+
+- `out` - `str` to be logged
+  
+
+**Examples**
+
+  ```logger.trace("message")```
+
+
+### warning()
+
+```python
+def warning(out: str) -> None
+```
+Logs a message `out` on `WARNING` log level.
+
+**Arguments**:
+
+- `out` - `str` to be logged
+  
+
+**Examples**
+
+  ```logger.warning("message")```
+
+### critical()
+
+```python
+def critical(out: str) -> None
+```
+Logs a message `out` on `CRITICAL` log level.
+
+**Arguments**:
+
+- `out` - `str` to be logged
+  
+
+**Examples**
+
+  ```logger.critical("message")```
 
 ## UnsupportedTypingError Objects
 

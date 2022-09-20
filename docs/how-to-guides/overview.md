@@ -84,6 +84,13 @@ custom-built external auth module. To learn more visit:
 - [Authentication and authorization
   (Enterprise)](/how-to-guides/manage-users-using-ldap.md)
 
+## Label-based access control
+
+In its enterprise edition, Memgraph enables granting and denying permissions to
+users for viewing and manipulating certain nodes and relationships.
+
+- [Label-based access control (Enterprise)](/how-to-guides/manage-label-based-access-control.md)
+
 ## Work with Docker
 
 If you are new to Docker, this how-to guide will help you get a grasp of Docker and

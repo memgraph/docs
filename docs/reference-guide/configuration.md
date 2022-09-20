@@ -14,6 +14,11 @@ variable or by passing arguments on the command line.
 
 Each configuration setting is in the form: `--setting-name=value` .
 
+You can check the current configuration by using the following query (privilege level `CONFIG` is required):
+```opencypher
+SHOW CONFIG;
+```
+
 ## Bolt
 
 | Flag           | Description    | Type           |
@@ -55,7 +60,7 @@ Each configuration setting is in the form: `--setting-name=value` .
 
 | Flag           | Description    | Type           |
 | -------------- | -------------- | -------------- |
-| --kafka-bootstrap-servers= | List of Kafka brokers as a comma separated list of broker `host` or `host:port`. | `[string]` |
+| --kafka-bootstrap-servers | List of Kafka brokers as a comma separated list of broker `host` or `host:port`. | `[string]` |
 | --pulsar-service-url | The service URL that will allow Memgraph to locate the Pulsar cluster. | `[string]` |
 | --stream-transaction-conflict-retries=30 | Number of times to retry a conflicting transaction of a stream. | `[uint32]` |
 | --stream-transaction-retry-interval=500 | The interval to wait (measured in milliseconds) before retrying to execute again a conflicting transaction. | `[uint32]` |
@@ -72,6 +77,7 @@ Each configuration setting is in the form: `--setting-name=value` .
 | --log-level=WARNING | Minimum log level. Allowed values: TRACE, DEBUG, INFO, WARNING, ERROR, CRITICAL | `[string]` |
 | --memory-limit=0 | Total memory limit in MiB. Set to 0 to use the default values which are 100% of the physical memory if the swap is enabled and 90% of the physical memory otherwise. | `[uint64]` |
 | --memory-warning-threshold=1024 | Memory warning threshold, in MB. If Memgraph detects there is less available RAM it will log a warning. <br/>Set to 0 to disable. | `[uint64]` |
+| --replication-replica-check-delay-sec | The time duration in seconds between two replica checks/pings. If < 1, replicas will not  be checked at all. The MAIN instance allocates a new thread for each REPLICA. | `[uint64]` |
 | --telemetry-enabled=true | Set to true to enable telemetry. We collect information about the running system (CPU and memory information), information about the database runtime (vertex and edge counts and resource usage), and aggregated statistics about some features of the database (e.g. how many times a feature is used) to allow for an easier improvement of the product. | `[bool]` |
 
 ## Additional configuration inclusion

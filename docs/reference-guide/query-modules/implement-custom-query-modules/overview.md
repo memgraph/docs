@@ -48,3 +48,15 @@ guide](/reference-guide/query-modules/implement-custom-query-modules/api/c-api.m
 We also made [an example
 module](/reference-guide/query-modules/implement-custom-query-modules/custom-query-module-example.md#c-api)
 to help you start developing your own modules.
+
+## C++ API
+
+C++ API modules, just like C API modules, need to be compiled to a shared
+library so that they can be loaded when Memgraph starts. This is done much in
+the same way as with C API modules.
+
+For more information, check the [C++ API reference
+guide](/reference-guide/query-modules/implement-custom-query-modules/api/cpp-api.md).<br/>
+We also made [an example
+module](/reference-guide/query-modules/implement-custom-query-modules/custom-query-module-example.md#cpp-api)
+to help you start developing your own modules.

@@ -264,6 +264,7 @@ Memgraph in order to use them.
 | enum [mgp_error](#variable-mgp-error) | **[mgp_messages_at](#function-mgp-messages-at)**(struct mgp_messages * message, size_t index, struct mgp_message ** result)<br/>Get the message from a messages list at given index.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_module_add_transformation](#function-mgp-module-add-transformation)**(struct mgp_module * module, const char * name, [mgp_trans_cb](#typedef-mgp-trans-cb) cb)<br/>Register a transformation with a module.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_vertices_iterator_next](#function-mgp-vertices-iterator-next)**(struct mgp_vertices_iterator * it, struct mgp_vertex ** result)<br/>Advance the iterator to the next vertex and return it.  |
+| enum [mgp_error](#variable-mgp-error)| **[mgp_log](#function-mgp-log)**(mgp_log_level log_level, const char *output)<br/>Log a message on a certain level. |
 
 ## Attributes
 
@@ -1911,7 +1912,7 @@ enum mgp_error mgp_vertex_iter_in_edges(
 )
 ```
 
-Start iterating over inbound edges of the given vertex.
+Start iterating over inbound edges of the given vertex. When the first parameter to a procedure is a projected graph, iterating will start over the inbound edges of the given vertex in the projected graph.
 
 The connection information of the vertex is copied when the iterator is created, therefore later creation or deletion of edges won't affect the iterated edges, however the property changes on the edges will be visible. The resulting mgp_edges_iterator needs to be deallocated with mgp_edges_iterator_destroy. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_edges_iterator. Return MGP_ERROR_DELETED_OBJECT if `v` has been deleted.
 
@@ -1926,7 +1927,7 @@ enum mgp_error mgp_vertex_iter_out_edges(
 )
 ```
 
-Start iterating over outbound edges of the given vertex.
+Start iterating over outbound edges of the given vertex. When the first parameter to a procedure is a projected graph, iterating will start over the inbound edges of the given vertex in the projected graph.
 
 The connection information of the vertex is copied when the iterator is created, therefore later creation or deletion of edges won't affect the iterated edges, however the property changes on the edges will be visible. The resulting mgp_edges_iterator needs to be deallocated with mgp_edges_iterator_destroy. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_edges_iterator. Return MGP_ERROR_DELETED_OBJECT if `v` has been deleted.
 
@@ -2131,7 +2132,7 @@ enum mgp_error mgp_graph_get_vertex_by_id(
 )
 ```
 
-Get the vertex corresponding to given ID, or NULL if no such vertex exists.
+Get the vertex corresponding to given ID, or NULL if no such vertex exists. When the first parameter to a procedure is a projected graph, the vertex must also exist in the projected graph.
 
 Resulting vertex must be freed using mgp_vertex_destroy. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate the vertex.
 
@@ -2160,7 +2161,7 @@ enum mgp_error mgp_graph_create_vertex(
 )
 ```
 
-Add a new vertex to the graph.
+Add a new vertex to the graph. When the first parameter to a procedure is a projected graph, the vertex is also added to the projected graph view.
 
 Resulting vertex must be freed using mgp_vertex_destroy. Return MGP_ERROR_IMMUTABLE_OBJECT if `graph` is immutable. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_vertex.
 
@@ -2174,7 +2175,7 @@ enum mgp_error mgp_graph_delete_vertex(
 )
 ```
 
-Delete a vertex from the graph.
+Delete a vertex from the graph. When the first parameter to a procedure is a projected graph, the vertex must also exist in the projected graph.
 
 Return MGP_ERROR_IMMUTABLE_OBJECT if `graph` is immutable. Return MGP_ERROR_LOGIC_ERROR if `vertex` has edges. Return MGP_ERROR_SERIALIZATION_ERROR if `vertex` has been modified by another transaction.
 
@@ -2188,7 +2189,7 @@ enum mgp_error mgp_graph_detach_delete_vertex(
 )
 ```
 
-Delete a vertex and all of its edges from the graph.
+Delete a vertex and all of its edges from the graph. When the first parameter to a procedure is a projected graph, such an operation is not possible. 
 
 Return MGP_ERROR_IMMUTABLE_OBJECT if `graph` is immutable. Return MGP_ERROR_SERIALIZATION_ERROR if `vertex` has been modified by another transaction.
 
@@ -2206,7 +2207,7 @@ enum mgp_error mgp_graph_create_edge(
 )
 ```
 
-Add a new directed edge between the two vertices with the specified label.
+Add a new directed edge between the two vertices with the specified label. When the first parameter is a projected graph, it will create a new directed edge with the specified label only if both vertices are a part of the projected graph.
 
 Resulting edge must be freed using mgp_edge_destroy. Return MGP_ERROR_IMMUTABLE_OBJECT if `graph` is immutable. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_edge. Return MGP_ERROR_DELETED_OBJECT if `from` or `to` has been deleted. Return MGP_ERROR_SERIALIZATION_ERROR if `from` or `to` has been modified by another transaction.
 
@@ -2220,7 +2221,7 @@ enum mgp_error mgp_graph_delete_edge(
 )
 ```
 
-Delete an edge from the graph.
+Delete an edge from the graph. When the first parameter to a procedure is a projected graph, the edge must also exist in the projected graph.
 
 Return MGP_ERROR_IMMUTABLE_OBJECT if `graph` is immutable. Return MGP_ERROR_SERIALIZATION_ERROR if `edge`, its source or destination vertex has been modified by another transaction.
 
@@ -3482,6 +3483,16 @@ Advance the iterator to the next vertex and return it.
 
 The previous mgp_vertex obtained through mgp_vertices_iterator_get will be invalidated, and you must not use its value. Result is NULL if the end of the iteration has been reached. Return MGP_ERROR_UNABLE_TO_ALLOCATE if unable to allocate a mgp_vertex.
 
+### mgp_log {#function-mgp-log}
+
+```cpp
+enum mgp_error mgp_log(
+    enum mgp_log_level log_level, 
+    const char *output
+)
+```
+
+Log a message on a certain level.
 
 
 ## Attributes Documentation
@@ -4181,6 +4192,12 @@ enum mgp_error mgp_type_nullable(struct mgp_type *type, struct mgp_type **result
 struct mgp_module;
 
 struct mgp_proc;
+
+/// All available log levels that can be used in mgp_log function
+MGP_ENUM_CLASS mgp_log_level{
+    MGP_LOG_LEVEL_TRACE, MGP_LOG_LEVEL_DEBUG, MGP_LOG_LEVEL_INFO,
+    MGP_LOG_LEVEL_WARN,  MGP_LOG_LEVEL_ERROR, MGP_LOG_LEVEL_CRITICAL,
+};
 
 typedef void (*mgp_proc_cb)(struct mgp_list *, struct mgp_graph *, struct mgp_result *, struct mgp_memory *);
 

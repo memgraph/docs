@@ -174,6 +174,7 @@ module.exports = {
           items: [
             "how-to-guides/manage-users-using-ldap",
             "how-to-guides/manage-user-privileges",
+            "how-to-guides/manage-label-based-access-control",
           ],
         },
       ],
@@ -220,6 +221,7 @@ module.exports = {
               items: [
                 "reference-guide/query-modules/implement-custom-query-modules/api/python-api",
                 "reference-guide/query-modules/implement-custom-query-modules/api/c-api",
+                "reference-guide/query-modules/implement-custom-query-modules/api/cpp-api",
                 "reference-guide/query-modules/implement-custom-query-modules/custom-query-module-example",
               ],
             },

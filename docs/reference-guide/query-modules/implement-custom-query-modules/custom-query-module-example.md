@@ -448,3 +448,211 @@ int mgp_init_module(struct mgp_module *module, struct mgp_memory *memory) {
   return 0;
 }
 ```
+
+## C++ API
+
+Query modules can be implemented using the [C++ API
+](/reference-guide/query-modules/implement-custom-query-modules/api/cpp-api.md)
+provided by Memgraph. As with the C API, these modules need to be compiled to a
+shared library so that they can be loaded when Memgraph starts.
+Compilation of query modules that use the C++ API works much in the same way as
+with modules using the C API.
+
+:::warning
+
+Any exceptions thrown should never leave the scope of your module. You may have 
+a top-level exception handler that returns the error value and potentially logs
+any error messages.
+Exceptions that cross the module boundary may cause unexpected issues!
+
+:::
+
+Let’s now take a look at the architecture of a query module itself. 
+The basic parts of every query module are as follows:
+
+```cpp
+#include <mgp.hpp>
+
+// (Query procedure & magic function callbacks)
+
+extern "C" int mgp_init_module(struct mgp_module *module, struct mgp_memory *memory) {
+  // Register your procedures & functions here
+}
+
+extern "C" int mgp_shutdown_module() {
+  // If you need to release any resources at shutdown, do it here
+  return 0;
+}
+
+```
+
+* The `mgp.hpp` file contains all declarations of the C++ API for implementing
+query module procedures and functions.
+* To make your query procedures and functions available, they need to be 
+registered in `mgp_init_module`.
+* Finally, you may use `mgp_shutdown_module` to reset any global states or release
+global resources at shutdown.
+
+### Readable procedures
+
+We can now examine how query procedures are implemented on the example of the 
+**random walk algorithm**.
+
+As mentioned above, procedures are registered in `mgp_init_module`.
+
+```cpp
+extern "C" int mgp_init_module(struct mgp_module *module, struct mgp_memory *memory) {
+  try {
+    mgp::memory = memory;
+  
+    AddProcedure(RandomWalk, "get", mgp::ProdecureType::Read,
+                 {mgp::Parameter("start", mgp::Type::Node), mgp::Parameter("length", mgp::Type::Int)},
+                 {mgp::Return("random_walk", mgp::Type::Path)}, module, memory);
+  } catch (const std::exception &e) {
+    return 1;
+  }
+}
+```
+
+Here, we defined our procedure’s signature and added it as a readable 
+(`mgp::ProcedureType::Read`) procedure, named `get`, to our random walk module.
+The function takes two named parameters: the start node and random walk length,
+and it yields the computed random walk as a `Path` (sequence of nodes connected
+by relationships) in the `random_walk` result field.
+
+When the procedure is called, its arguments (& the graph) will be passed to the
+`RandomWalk` callback function.
+
+:::note
+
+The API needs memory access for registration; you may grant it with 
+`mgp::memory = memory`.
+
+As any exceptions should never leave the scope of the module, the procedure was
+registered inside a try-catch block.
+
+:::
+
+
+
+Callbacks for query procedures all share the same signature, as laid out below.
+Parameter by parameter, the callback receives the procedure arguments (`args`),
+graph context (`memgraph_graph`), result stream (`result`), and memory access.
+
+:::tip
+
+In place of working with the raw `mgp_` type arguments, use the C++ API classes 
+that provide familiar standard library-like interfaces and do away with needing
+manual memory management.
+
+:::
+
+```cpp
+void RandomWalk(mgp_list *args, mgp_graph *memgraph_graph, mgp_result *result, mgp_memory *memory) {
+  try {
+    mgp::memory = memory;
+    const auto arguments = mgp::List(args);
+    const auto record_factory = mgp::RecordFactory(result);
+    
+    const auto start_node = args[0].ValueNode();
+    const auto length = args[1].ValueInt();
+
+    auto random_walk = mgp::Path(start_node);
+    
+    // (Random walk algorithm logic)
+    
+    auto record = record_factory.NewRecord();
+    record.Insert("random_walk", random_walk);
+
+  } catch (const std::exception &e) {
+    mgp::result_set_error_msg(result, e.what());
+    return;
+  }
+}
+```
+
+### Writeable procedures
+
+Writeable procedures differ from readable procedures in their graph context 
+being **mutable**. With them, you may create or delete nodes and relationships,
+modify their properties, and add or remove node labels.
+
+They use the same interface as readable procedures; the only difference is that
+the appropriate procedure type parameter is passed to `AddProcedure`. The below
+code registers and implements a writeable procedure `add_x_nodes`, which adds a
+user-specified number of nodes (given by int parameter `number`) to the graph.
+
+```cpp
+extern "C" int mgp_init_module(struct mgp_module *module, struct mgp_memory *memory) {
+  try {
+    mgp::memory = memory;
+  
+    mgp::AddProcedure(AddXNodes, "add_x_nodes", mgp::ProdecureType::Write, {mgp::Parameter("number", mgp::Type::Int)},
+                      {}, module, memory);
+  } catch (const std::exception &e) {
+    return 1;
+  }
+  return 0;
+}
+```
+
+
+
+```cpp
+void AddXNodes(mgp_list *args, mgp_graph *memgraph_graph, mgp_result *result, mgp_memory *memory) {
+  mgp::memory = memory;
+  const auto arguments = mgp::List(args);
+  auto graph = mgp::Graph(memgraph_graph);
+
+  for (int i = 0; i < arguments[0].ValueInt(); i++) {
+    graph.CreateNode();
+  }
+}
+```
+
+### Magic functions
+
+Magic functions are a Memgraph feature that lets the user write and call custom
+Cypher functions. Unlike procedures, functions are simple operations that can’t
+modify the graph; they return a single value and can be used in any expression 
+or predicate.
+
+Let’s examine an example function that multiplies the numbers passed to it. The
+registration is done by `AddFunction` in the same way as with query procedures,
+the difference being the absence of a "function type" argument (functions don’t 
+modify the graph).
+
+```cpp
+extern "C" int mgp_init_module(struct mgp_module *module, struct mgp_memory *memory) {
+  try {
+    mgp::memory = memory;
+
+    mgp::AddFunction(Multiply, "multiply",
+                     {mgp::Parameter("int", mgp::Type::Int), mgp::Parameter("int", mgp::Type::Int)}, module, memory);
+  } catch (const std::exception &e) {
+    return 1;
+  }
+  return 0;
+}
+```
+
+There are two key differences in the function signature:
+* the lack of a `mgp_graph *` parameter (the graph is immutable in functions)
+* different result type (functions return single values, while procedures write
+result records to the result stream)
+
+The difference in result type means that, to work with function results, we use
+a different C++ API class: `Result`. Our function is implemented as follows:
+
+```cpp
+void Multiply(mgp_list *args, mgp_func_context *ctx, mgp_func_result *res, mgp_memory *memory) {
+  mgp::memory = memory;
+  const auto arguments = mgp::List(args);
+  auto result = mgp::Result(res);
+
+  auto first = arguments[0].ValueInt();
+  auto second = arguments[1].ValueInt();
+
+  result.SetValue(first * second);
+}
+```

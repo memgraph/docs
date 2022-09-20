@@ -6,7 +6,7 @@ sidebar_label: Functions
 
 ## User-defined Memgraph Magic functions
 
-Memgraph offers the flexibility of implementing custom functions. When supported built-in functions are not enough, there is an option to define a custom one by using C, C++, Python or Rust. The mechanism of [query modules](../memgraph/reference-guide/query-modules) enables the integration of custom functionalities.
+Memgraph offers the flexibility of implementing custom functions. When supported built-in functions are not enough, there is an option to define a custom one by using C, C++, Python or Rust. The mechanism of [query modules](/memgraph/reference-guide/query-modules) enables the integration of custom functionalities.
 
 Semantically, functions should be a small fragment of functionality that does not require long computations and large memory consumption. The only requirement for functions is to not modify the graph. Mentioned functionality offers flexibility in terms of nested calls within the Cypher.
 
@@ -18,11 +18,11 @@ This section contains the list of supported functions.
 
  | Name            | Signature                                                                  | Description                                                               |
  | --------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
- | `duration`      | <code>duration(value: string\|Duration) -> (Duration)</code>    | Returns the data type that represents a period of time.                   
- | `date`          | <code>date(value: string\|Date) -> (Date)</code>                            | Returns the data type that represents a date with year, month, and day.   |
- | `localTime`     | <code>localTime(value: string\|LocalTime) -> (LocalTime)</code>             | Returns the data type that represents time within a day without timezone. |
- | `localDateTime` | <code>localDateTime(value: string\|LocalDateTime)-> (LocalDateTime)</code>  | Returns the data type that represents a date and local time.              |
-                             
+ | `duration`      | <code>duration(value: string\|Duration) -> (Duration)</code>               | Returns the data type that represents a period of time.                   |
+ | `date`          | <code>date(value: string\|Date) -> (Date)</code>                           | Returns the data type that represents a date with year, month, and day.   |
+ | `localTime`     | <code>localTime(value: string\|LocalTime) -> (LocalTime)</code>            | Returns the data type that represents time within a day without timezone. |
+ | `localDateTime` | <code>localDateTime(value: string\|LocalDateTime)-> (LocalDateTime)</code> | Returns the data type that represents a date and local time.              |
+
  ### Scalar functions
 
  | Name         | Signature                                                                            | Description                                                                                                                                                                                                                              |
@@ -43,7 +43,7 @@ This section contains the list of supported functions.
  | `id`         | <code>id(value: Node\|Relationship) -> (integer)</code>                              | Returns identifier for a given node or relationship. The identifier is generated during the initialization of a node or a relationship  and will be persisted through the durability mechanism.                                                  |
  | `timestamp`  | `timestamp() -> (integer)`                                                           | Returns the difference, measured in microseconds, between the current time and midnight, January 1, 1970 UTC.                                                                                                                            |
  | `counter`    | `counter(name: string, initial-value: integer, increment: integer = 1) -> (integer)` | Generates integers that are guaranteed to be unique within a single query for a given counter name.  The increment parameter can be any integer besides zero.                                                                            |
- 
+
  ### Lists
 
  | Name            | Signature                                                                                      | Description                                                                                                                                |
@@ -57,7 +57,6 @@ This section contains the list of supported functions.
  | `range`         | `range(start-number: integer, end-number: integer, increment: integer = 1) -> (List[integer])` | Constructs a list of value in given range.                                                                                                 |
  | `reduce`        | <code>reduce(accumulator = initial_value, variable IN list\|expression)</code>               | Accumulate list elements into a single result by applying an expression.                                                                   |
  | `extract`       | <code>extract(variable IN list\|expression)</code>                                                      | A list of values obtained by evaluating an expression for each element in list.                                                            |
- |                 |
  | `all`           | `all(variable IN list WHERE predicate)`                                                        | Check if all elements of a list satisfy a predicate. <br/> NOTE: Whenever possible, use Memgraph's lambda functions when matching instead. |
  | `any`           | `any(element IN list WHERE predicate_using_element)`                                           | Check if any element in the list satisfies the predicate.                                                                                  |
  | `single`        | `single(variable IN list WHERE predicate)`                                                     | Check if only one element of a list satisfies a predicate.                                                                                 |
@@ -67,7 +66,7 @@ This section contains the list of supported functions.
  | Name    | Signature                                                             | Description                                                                                                                                           |
  | ------- | --------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
  | `abs`   | <code>abs(number: integer\|float) -> (integer\|float)</code>        | Returns the absolute value of a number.                                                                                                               |
- | `ceil`  | `ceil(number: float) -> (integer)`                                    | Returns the smallest integer greater than or equal to the iven float number.                                                                          |
+ | `ceil`  | `ceil(number: float) -> (integer)`                                    | Returns the smallest integer greater than or equal to the given float number.                                                                          |
  | `floor` | `floor(number: float) -> (integer)`                                   | Returns the largest integer smaller than or equal to the given float number.                                                                          |
  | `round` | `round(number: float) -> (integer)`                                   | Returns the number, rounded to the nearest integer. Tie-breaking is done using the *commercial rounding*,  where -1.5 produces -2 and 1.5 produces 2. |
  | `pi`    | `pi() -> (float)`                                                     | Returns the constant *pi* (3.14159).                                                                                                                  |
@@ -96,6 +95,7 @@ This section contains the list of supported functions.
  | `max`     | <code>max(row: integer\|float) -> (integer\|float)</code> | Returns the maximum value in a set of values.                                                         |
  | `min`     | <code>min(row: integer\|float) -> (integer\|float)</code> | Returns the minimum value in a set of values.                                                         |
  | `sum`     | <code>sum(row: integer\|float) -> (integer\|float)</code> | Returns a sum value of rows with numerical values generated with the `MATCH` or `UNWIND` clause.      |
+ | `project` | <code>project(row: path) -> map("nodes":list[Node], "edges":list[Edge])</code>| Creates a projected graph consisting of nodes and edges from aggregated paths.|
 
 ### String functions
 

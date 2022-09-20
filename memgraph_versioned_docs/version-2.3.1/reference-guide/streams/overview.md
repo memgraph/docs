@@ -129,11 +129,30 @@ guide](reference-guide/security.md#owners).
 
 ## Start a stream
 
-The following queries start a specific stream or all streams.
+The following query will start a specific stream with name `<stream name>` to
+consume `<count>` number of batches for a maximum duration of `<milliseconds>`
+milliseconds.
+
+```cypher
+START STREAM <stream name> [BATCH_LIMIT <count>] [TIMEOUT <milliseconds>];
+```
+
+The stream will automatically stop after consuming the given number of batches
+or reaching the timeout. If `<count>` number of batches are not processed within
+the specified `TIMEOUT`, probably because not enough messages was received, an
+exception is thrown. `TIMEOUT` is measured in milliseconds, and its default
+value is 30000. It can only be used in combination with the `BATCH_LIMIT`
+option.
+
+If `BATCH_LIMIT` (and `TIMEOUT`) is not provided, the `<stream name>` stream
+will run for an infinite number of batches without a timeout limit.
 
 ```cypher
 START STREAM <stream name>;
 ```
+
+The following query will start all streams for an infinite number of batches and
+without a timeout limit.
 
 ```cypher
 START ALL STREAMS;

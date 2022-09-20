@@ -4,15 +4,15 @@ title: Replication
 sidebar_label: Replication
 ---
 
+Uninterrupted data and operational availability in production systems are
+critical and can be achieved in many ways. In Memgraph we opted for replication.
+
 [![Related - How
 to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/replication.md)
 [![Related - Reference
 Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/replication.md)
 [![Related - Blog
 Post](https://img.shields.io/static/v1?label=Related&message=Blog%20post&color=9C59DB&style=for-the-badge)](https://memgraph.com/blog/implementing-data-replication)
-
-Uninterrupted data and operational availability in production systems are
-critical and can be achieved in many ways.
 
 In distributed systems theory the CAP theorem, also named Brewer's theorem,
 states that any distributed system can simultaneously guarantee two out of the
@@ -45,7 +45,7 @@ accepts read and write queries to the database and REPLICA instances accept only
 read queries.
 
 The changes or state of the MAIN instance are replicated to the REPLICA
-instances in a SYNC, SYNC WITH TIMEOUT, or ASYNC mode.
+instances in a SYNC or ASYNC mode.
 
 By using the timestamp, the MAIN instance knows the current state of the
 REPLICA. If the REPLICA is not synchronized with the MAIN instance, the MAIN
@@ -56,14 +56,21 @@ WAL files is impossible, Memgraph will use snapshots.
 
 ## Replication modes
 
+:::info
+
+From version 2.4 it is no longer possible to specify a timeout when registering
+a sync replica. To mimic this behavior in higher releases, please use ASYNC
+replication instead.
+
+:::
+
 Replication mode defines the terms by which the MAIN instance can commit the
 changes to the database, thus modifying the system to prioritize either
-consistency or availability. There are three possible replication modes
+consistency or availability. There are two possible replication modes
 implemented in Memgraph replication:
 
 - SYNC
 - ASYNC
-- SYNC WITH TIMEOUT
 
 <img src={require('../data/replication/memgraph-replication-async-sync.png').default} className={"imgBorder"}/>
 
@@ -77,15 +84,27 @@ registration.
 
 SYNC mode is the most straightforward replication mode in which the main storage
 thread waits for the response and cannot continue until the response is
-received. That means that the MAIN instance will not commit a transaction until
-all REPLICA instances running in the SYNC mode confirm they have received the
-same transaction.
+received or a timeout is reached. If the timeout is reached and at least one SYNC REPLICA has not
+sent back a response, then the MAIN instance will return an error to the user.<br/>
+The error indicates that the user should check the status of the REPLICAs
+as there might be a network or hardware issue.
 
-<img src={require('../data/replication/memgraph-replication-sync.png').default} className={"imgBorder"}/>
+The following diagrams express the behavior of the MAIN instance in cases when
+SYNC REPLICA doesn't answer within the expected timeout.
 
-SYNC mode prioritizes data consistency but has no tolerance for any network
-failures because if any of the REPLICATION instances fail, the MAIN instance
-will fail as well.
+#### SYNC REPLICA going down when creating index, uniqueness constraint or existence constraint
+
+![sync-replicas-down-when-creating-index-or-constraints](data/replication/workflow_diagram_data_definition_creation.drawio.png)
+
+
+#### SYNC REPLICA going down when dropping index, uniqueness constraint or existence constraint
+
+![sync-replicas-down-when-dropping-index-or-constraints](data/replication/workflow_diagram_data_definition_dropping.drawio.png)
+
+
+#### SYNC REPLICA going down adding/updating/deleting data
+
+![sync-replicas-down-when-modifying-data](data/replication/workflow_diagram_data_manipulation.drawio.png)
 
 ### ASYN replication mode
 
@@ -105,65 +124,6 @@ instance.
 <img src={require('../data/replication/memgraph-replication-async.png').default} className={"imgBorder"}/>
 
 ASYNC mode ensures system availability and partition tolerance.
-
-### SYNC WITH TIMEOUT replication mode
-
-In the SYNC WITH TIMEOUT replication mode the MAIN instance will not commit a
-transaction until all REPLICA instances confirm they have received the same
-transaction within a configured time interval. If the response from a REPLICA
-times out, the replication mode of that instance will be changed to ASYNC.
-
-Three threads are necessary for SYNC WITH TIMEOUT replication mode. The main
-thread sends the data for replication to the REPLICATION instance using the
-background thread and notifies the timeout thread to start the time count. The
-background thread waits for the response from the REPLICA instance. If the
-REPLICA instance replicates the data within the set time interval, both the
-background thread and the timeout thread will confirm successful replication. If
-the REPLICA instance doesn't replicate the data within the set time interval,
-the timeout thread notifies the main thread of the timeout, and the REPLICATION
-instance's replication mode is changed to ASYNC mode.
-
-<img src={require('../data/replication/memgraph-replication-sync-timeout.png').default} className={"imgBorder"}/>
-
-SYNC WITH TIMEOUT prioritizes data consistency until unexpected issues force the
-system to prioritize availability and partition tolerance.
-
-The implementation is as follows:
-
-```
-active = true
-replication_background_thread({
-  replicate...
-  active = false
-  notify main thread
-})
-
-timeout_thread({
-  finished = false
-  while (active && not timeouted)
-      sleep for some time
-
-  finished = true
-  active = false
-  notify main thread
-})
-
-while (active)
-  wait
-```
-
-The finished flag was introduced because the timeout thread sleeps for some time
-to conserve resources, and it doesn’t immediately register that the replication
-thread finished the replication successfully. During that time, another
-replication task can arrive for the same REPLICA and queue the timeout task.
-Upon waking, the timeout thread would check if the previous task is still
-active, and it would think it is because it would be reading the status of the
-new replication task. The timeout task would continue counting time for the new
-replication task, and eventually, one task would prematurely time out.
-
-That is why the sleep time is set at a reasonable value, and the previous
-timeout task needs to finish before sending a new one to avoid premature
-timeouts.
 
 ## Synchronizing instances
 

@@ -4,10 +4,83 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
-## v2.3.1 - Jun 23, 2022
+## v2.4.0
+
+### Major Features and Improvements
+
+- Add replica state to `SHOW REPLICAS` query.
+  [#379](https://github.com/memgraph/memgraph/pull/379)
+- Add `current_timestamp` and `number_of_timestamp_behind_master` to `SHOW
+  REPLICAS` query. [#412](https://github.com/memgraph/memgraph/pull/412)
+- Query `REGISTER REPLICA replica_name SYNC` no longer supports `TIMEOUT`
+  parameter. To mimic the previous behavior of `REGISTER REPLICA replica_name
+  SYNC WITH TIMEOUT 1`, one should use `REGISTER REPLICA replica_name ASYNC`
+  instead. [#423](https://github.com/memgraph/memgraph/pull/423)
+- Make behavior more [openCypher](http://opencypher.org/) compliant regarding
+  checking against `NULL` values is `CASE` expressions.
+  [#432](https://github.com/memgraph/memgraph/pull/432)
+- Previously registered replicas are automatically registered on restart of
+  Memgraph. [#415](https://github.com/memgraph/memgraph/pull/415)
+- Add new command `SHOW CONFIG` that returns the configuration of the currently
+  running Memgraph instance.
+  [#459](https://github.com/memgraph/memgraph/pull/459)
+- Extend the shortest paths functionality with [All Shortest
+  Path](/reference-guide/graph-algorithms.md#all-shortest-paths)
+  query. [#409](https://github.com/memgraph/memgraph/pull/409)
+- Extend the query modules C and Python API to enable logging on different
+  levels. [#417](https://github.com/memgraph/memgraph/pull/417)
+- Added C++ query modules API. Instead of using the C API call, C++ API calls
+  significantly simplify the implementation of fast query modules.
+  [#546](https://github.com/memgraph/memgraph/pull/546)
+- [Enterprise] Added support for label-based authorization. In addition to
+  clause-based authorization rules, each user can now be granted `NOTHING`,
+  `READ`, `UPDATE`, or `CREATE_DELETE` permission on a given label or edge
+  type. [#484](https://github.com/memgraph/memgraph/pull/484)
+- New Cypher function `project()` creates a projected graph consisting of nodes
+  and edges from aggregated paths. Any query module or algorithm can be now run
+  on a subgraph, by passing the variable of the projected graph as the first
+  argument of the query module procedure. [#535](https://github.com/memgraph/memgraph/pull/535)
 
 ### Bug Fixes
 
+- Added a check to ensure two replicas cannot be registered to an identical
+  end-point. [#406](https://github.com/memgraph/memgraph/pull/406)
+- `toString` function is now able to accept `Date`, `LocalTime`, `LocalDateTime`
+  and `Duration` data types.
+  [#429](https://github.com/memgraph/memgraph/pull/429)
+- Aggregation functions now return the openCypher-compliant results on `null`
+  input and display the correct behavior when grouped with other operators.
+  [#448](https://github.com/memgraph/memgraph/pull/448)
+- Corrected inconsistencies and incorrect behavior with regards to sync
+  replicas. For more detail about the behavior, please check [Under the
+  hood view on replication](/under-the-hood/replication.md).
+  [#435](https://github.com/memgraph/memgraph/pull/435)
+- Fixed handling `ROUTE` Bolt message. Memgraph didn't handle the fields of
+  `ROUTE` message properly. Therefore the session might be stuck in a state
+  where even the `RESET` message did not help. With this fix, sending a `RESET`
+  message will properly reset the session.
+  [#475](https://github.com/memgraph/memgraph/pull/475)
+
+## v2.3.1 - Jun 23, 2022
+
+### Improvement
+
+- Updated results return by [`CHECK
+  STREAM`](/reference-guide/streams/overview.md#check-stream) query to group
+  all queries/raw messages on single line per batch.
+  [#394](https://github.com/memgraph/memgraph/pull/394)
+- Add frequent replica ping. `main` instance checks state of the replicas with
+  given frequency controller by `--replication-replica-check-delay-sec`. The
+  check allows latest information about the state of each replica from `main`
+  point of view. [#380](https://github.com/memgraph/memgraph/pull/380)
+- Added `BATCH_LIMIT` and `TIMEOUT` options to [`START
+  STREAM`](/reference-guide/streams/overview.md#start-a-stream) query that
+  returns the raw message received by the transformation. [#392](https://github.com/memgraph/memgraph/pull/392)
+
+### Bug Fixes
+
+- Fix header on `SHOW REPLICATION ROLE` query and wrong timeout info on `SHOW
+  REPLICAS` query. [#376](https://github.com/memgraph/memgraph/pull/376)
 - Fix WebSocket connection with clients that do not use binary protocol header. [#403](https://github.com/memgraph/memgraph/pull/403)
 - Fix SSL connection shutdown hanging. [#395](https://github.com/memgraph/memgraph/pull/395)
 - Fix module symbol loading with python modules. [#335](https://github.com/memgraph/memgraph/pull/335)
