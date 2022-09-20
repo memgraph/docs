@@ -12,14 +12,6 @@ sidebar_label: Changelog
   [#379](https://github.com/memgraph/memgraph/pull/379)
 - Add `current_timestamp` and `number_of_timestamp_behind_master` to `SHOW
   REPLICAS` query. [#412](https://github.com/memgraph/memgraph/pull/412)
-- Add frequent replica ping. `main` instance checks state of the replicas with
-  given frequency controller by `--replication-replica-check-delay-sec`. The
-  check allows latest information about the state of each replica from `main`
-  point of view. [#380](https://github.com/memgraph/memgraph/pull/380)
-- Updated results return by [`CHECK
-  STREAM`](/reference-guide/streams/overview.md#check-stream) query to group
-  all queries/raw messages on single line per batch.
-  [#394](https://github.com/memgraph/memgraph/pull/394)
 - Query `REGISTER REPLICA replica_name SYNC` no longer supports `TIMEOUT`
   parameter. To mimic the previous behavior of `REGISTER REPLICA replica_name
   SYNC WITH TIMEOUT 1`, one should use `REGISTER REPLICA replica_name ASYNC`
@@ -51,13 +43,8 @@ sidebar_label: Changelog
 
 ### Bug Fixes
 
-- Fix header on `SHOW REPLICATION ROLE` query and wrong timeout info on `SHOW
-  REPLICAS` query. [#376](https://github.com/memgraph/memgraph/pull/376)
 - Added a check to ensure two replicas cannot be registered to an identical
   end-point. [#406](https://github.com/memgraph/memgraph/pull/406)
-- Adapted compilation flag so that the memory allocator uses JEMALLOC while
-  counting allocated memory.
-  [#401](https://github.com/memgraph/memgraph/pull/401)
 - `toString` function is now able to accept `Date`, `LocalTime`, `LocalDateTime`
   and `Duration` data types.
   [#429](https://github.com/memgraph/memgraph/pull/429)
@@ -78,12 +65,22 @@ sidebar_label: Changelog
 
 ### Improvement
 
+- Updated results return by [`CHECK
+  STREAM`](/reference-guide/streams/overview.md#check-stream) query to group
+  all queries/raw messages on single line per batch.
+  [#394](https://github.com/memgraph/memgraph/pull/394)
+- Add frequent replica ping. `main` instance checks state of the replicas with
+  given frequency controller by `--replication-replica-check-delay-sec`. The
+  check allows latest information about the state of each replica from `main`
+  point of view. [#380](https://github.com/memgraph/memgraph/pull/380)
 - Added `BATCH_LIMIT` and `TIMEOUT` options to [`START
   STREAM`](/reference-guide/streams/overview.md#start-a-stream) query that
   returns the raw message received by the transformation. [#392](https://github.com/memgraph/memgraph/pull/392)
 
 ### Bug Fixes
 
+- Fix header on `SHOW REPLICATION ROLE` query and wrong timeout info on `SHOW
+  REPLICAS` query. [#376](https://github.com/memgraph/memgraph/pull/376)
 - Fix WebSocket connection with clients that do not use binary protocol header. [#403](https://github.com/memgraph/memgraph/pull/403)
 - Fix SSL connection shutdown hanging. [#395](https://github.com/memgraph/memgraph/pull/395)
 - Fix module symbol loading with python modules. [#335](https://github.com/memgraph/memgraph/pull/335)
