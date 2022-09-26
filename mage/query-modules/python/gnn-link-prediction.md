@@ -103,7 +103,7 @@ The reader is encouraged to take a look at the [DGL mini-batch explanation](http
 
 The link prediction module is organized as a stateful module in which the user can run several methods one after another without losing the context. The user should start with setting the parameters that are going to be used in the training. If the graph is **heterogeneous** (more than one **edge type**), `target_relation` parameter must be set so the model could distinguish **supervision edges** (edges used in prediction) from **message passing edges** (used for message aggregation). In the case of **homogeneous graph**, `target relation` will be automatically inferred. `Node_features_property` must also be sent by the user to specify where are saved original node features. Those are needed by **graph neural networks** to compute **node embeddings**. All other parameters are optional.
 
-### **Set model parameters**
+### `set_model_parameters()`
 
 Here is the description of all parameters supported by **link prediction** that you can set by calling the `set_model_parameters` method:
 #### **Input**:
@@ -121,10 +121,10 @@ Here is the description of all parameters supported by **link prediction** that 
 | `console_log_freq` | int | `5` | Specifies how often results will be printed. This also directly specifies which results will be returned as training and validation results when calling the training method. |
 | `checkpoint_freq` | int | `5` | Select the number of epochs on which the model will be saved. The model is persisted on disc. |
 | `aggregator` | str | `mean` | Aggregator used in GraphSAGE model. Supported values are `lstm`, `pool`, `mean` and `gcn`. |
-| `metrics` | mgp.List[str] | `[loss, accuracy, auc_score, precision, recall, f1, true_positives, true_negatives, false_positives, false_negatives]` | Metrics used to evaluate the model in training on the validation set. Additionally, epoch information will always be displayed. |
+| `metrics` | mgp.List[str] | `[loss, accuracy, auc_score, precision, recall, f1, true_positives, true_negatives, false_positives, false_negatives]` | Metrics used to evaluate the training model on the validation set. Additionally, epoch information will always be displayed. |
 | `predictor_type` | str | `dot` | Type of the predictor. A predictor is used for combining node scores to edge scores. Supported values are `dot` and `mlp`. |
 | `attn_num_heads` | List[int] | `[4, 1]` | `GAT` can support the usage of more than one head in each layer except the last one. The size of the list must be the same as the number of layers specified by the `hidden_features_size` parameter. |
-| `tr_acc_patience` | int | `8` | Training patience, specifies how many epochs will accuracy drop on the validation set be tolerated before the training will be stopped. |
+| `tr_acc_patience` | int | `8` | Training patience specifies for how many epochs drop in accuracy on the validation set is tolerated before the training is stopped. |
 | `context_save_dir` | str | `None` | Path where the model and predictor will be saved every `checkpoint_freq` epochs. |
 | `target_relation` | str | `None` | Unique edge type used for training. Users can provide only `edge_type` or `tuple of the source node, edge type, dest_node` if the same `edge_type` is used with more source-destination node combinations. |
 | `num_neg_per_pos_edge` | int | `1` | Number of negative edges that will be sampled per one positive edge in the mini-batch training. |
@@ -144,7 +144,7 @@ YIELD status, message
 RETURN status, message;
 ```
 
-### **Training**
+### `train()`
 The `train` method doesn't take any parameters, so it is very simple to use. 
 
 #### **Output**:
@@ -159,7 +159,7 @@ RETURN training_results, validation_results;
 ```
 to get training and validation results summarized through epochs. 
 
-### **Get training results**
+### `get_training_results()`
 
 The `get_training_results` method is used when the user wants to get performance data obtained from the last training. It is in the same form as a result of calling the training method. If there is no loaded model, the exception will be thrown.
 
@@ -173,7 +173,7 @@ RETURN training_results, validation_results;
 - `training_results: List[Dict[str, float]]` -> List of training results through epochs. Model's performance is evaluated every `console_log_freq` epochs. 
 - `validation results: List[Dict[str, float]]` -> List of validation results through epochs. Model's performance is evaluated every `console_log_freq` epochs. 
 
-### **Predict**
+### `predict()`
 
 The `predict` method takes two arguments, **src_vertex** and **dest_vertex**, and predicts whether there is an edge between them or not. It supports an `“actual”` prediction scenario when the edge doesn’t exist and the user wants to predict whether there is an edge or not but also a scenario in which there is an edge between two vertices and the user wants to check the model’s evaluation. 
 
@@ -192,7 +192,7 @@ YIELD score
 RETURN score;
 ```
 
-### **Recommend**
+### `recommend()`
 
 The `recommend` method can be used to recommend the best k nodes from `dest_vertices` to `src_vertex`. It is implemented efficiently using the **max heap** data structure. The best nodes are determined based on the edge scores. Metrics specific to recommendation systems (**precision@k, recall@k, f1@k and average precision**) are logged to the **standard output**. **K** is equal to the given `min(k, length(dest_vertices), length(results))` where results are a list of all recommendations given by the model(classified as a positive example.)
 
@@ -214,7 +214,7 @@ YIELD score, recommendation
 RETURN v1, score, recommendation;
 ```
 
-### **Load context**
+### `load_context()`
 
 Loading the context means loading the model and the predictor. If the user specifies the path, the method will try to load it from there. Otherwise, context will be loaded from the default parameter specified in the **link_prediction_parameters** module.
 
@@ -228,7 +228,7 @@ Loading the context means loading the model and the predictor. If the user speci
 CALL link_prediction.load_context() YIELD * RETURN *;
 ```
 
-### **Reset parameters**
+### `reset_parameters()`
 
 You can explicitly reset parameters whenever you want. Note, however, that parameters will be reset before the training even if not specified because of implementation reasons.
 
