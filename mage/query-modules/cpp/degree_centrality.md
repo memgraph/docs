@@ -28,7 +28,7 @@ number of edges adjacent to a node. For directed graphs, we define an in-degree
 measure, which is defined as the number of in-coming edges, and an out-degree
 measure, defined as the number of out-going edges.
 
-Let $A = (a_{i,j})$ be the adjacency matrix of a directed graph. The in-degree centrality $x_{i}$ of node $i$ is given by: $$x_{i} = \sum_k a_{k,i}$$ or in matrix form ($1$ is a vector with all components equal to unity): $$x = 1 A$$ The out-degree centrality $y_{i}$ of node $i$ is given by: $$y_{i} = \sum_k a_{i,k}$$ or in matrix form: $$y = A 1$$
+Let $A = (a_{i,j})$ be the adjacency matrix of a directed graph. The in-degree centrality $x_{i}$ of node $i$ is given by: $$x_{i} = \sum_k a_{k,i}$$ or in matrix form (1 is a vector with all components equal to unity): $$x = 1 A$$ The out-degree centrality $y_{i}$ of node $i$ is given by: $$y_{i} = \sum_k a_{i,k}$$ or in matrix form: $$y = A 1$$
 
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |

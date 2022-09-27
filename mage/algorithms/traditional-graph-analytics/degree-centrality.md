@@ -11,13 +11,14 @@ entities.
 It is a simple centrality measure that counts how many neighbors a node has. 
 For a directed graph, we have two versions of the measure: in-degree and 
 out-degree.
-In-degree counts the number of in-coming edges, and out-degree counts the number
-of out-going edges.
+In-degree counts the number of incoming edges, and out-degree counts the number
+of outgoing edges.
 
-Usually, applications are more interested in in-degree measure, since in-coming
-edges are given by other nodes in a graph. Degree centrality can be used for any
-centrality use-case, such as social network or citation network analysis. More
-complex centrality measures are available when users need them.
+Usually, applications are more interested in in-degree measure, since incoming
+edges stem from other nodes in a graph. Degree centrality can be used for any
+centrality use-case, such as social network or citation network analysis.
+For some use-cases there are other, more complex centrality measures such as
+[Beetweenness Centrality](https://memgraph.com/docs/mage/algorithms/traditional-graph-analytics/betweenness-centrality-algorithm).
 
 <img src="https://i.imgur.com/hHJkvWw.png" alt="drawing1" width="600"/>
 <img src="https://i.imgur.com/kbX3FKZ.png" alt="drawing2" width="600"/>
