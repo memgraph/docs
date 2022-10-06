@@ -4,6 +4,13 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v2.4.1 - Oct 7, 2022
+
+### Bug Fixes
+
+- Fixed bug when getting EdgeType from Edge object or Label from Vertex object 
+  in query modules. [#582](https://github.com/memgraph/memgraph/pull/582)
+
 ## v2.4.0
 
 ### Major Features and Improvements
