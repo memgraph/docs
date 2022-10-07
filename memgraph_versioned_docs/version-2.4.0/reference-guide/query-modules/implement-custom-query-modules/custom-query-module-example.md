@@ -460,14 +460,14 @@ with modules using the C API.
 
 :::warning
 
-Any exceptions thrown should never leave the scope of your module. You may have 
+Any exceptions thrown should never leave the scope of your module. You may have
 a top-level exception handler that returns the error value and potentially logs
 any error messages.
 Exceptions that cross the module boundary may cause unexpected issues!
 
 :::
 
-Let’s now take a look at the architecture of a query module itself. 
+Let’s now take a look at the architecture of a query module itself.
 The basic parts of every query module are as follows:
 
 ```cpp
@@ -488,14 +488,14 @@ extern "C" int mgp_shutdown_module() {
 
 * The `mgp.hpp` file contains all declarations of the C++ API for implementing
 query module procedures and functions.
-* To make your query procedures and functions available, they need to be 
+* To make your query procedures and functions available, they need to be
 registered in `mgp_init_module`.
 * Finally, you may use `mgp_shutdown_module` to reset any global states or release
 global resources at shutdown.
 
 ### Readable procedures
 
-We can now examine how query procedures are implemented on the example of the 
+We can now examine how query procedures are implemented on the example of the
 **random walk algorithm**.
 
 As mentioned above, procedures are registered in `mgp_init_module`.
@@ -504,7 +504,7 @@ As mentioned above, procedures are registered in `mgp_init_module`.
 extern "C" int mgp_init_module(struct mgp_module *module, struct mgp_memory *memory) {
   try {
     mgp::memory = memory;
-  
+
     AddProcedure(RandomWalk, "get", mgp::ProdecureType::Read,
                  {mgp::Parameter("start", mgp::Type::Node), mgp::Parameter("length", mgp::Type::Int)},
                  {mgp::Return("random_walk", mgp::Type::Path)}, module, memory);
@@ -514,7 +514,7 @@ extern "C" int mgp_init_module(struct mgp_module *module, struct mgp_memory *mem
 }
 ```
 
-Here, we defined our procedure’s signature and added it as a readable 
+Here, we defined our procedure’s signature and added it as a readable
 (`mgp::ProcedureType::Read`) procedure, named `get`, to our random walk module.
 The function takes two named parameters: the start node and random walk length,
 and it yields the computed random walk as a `Path` (sequence of nodes connected
@@ -525,11 +525,22 @@ When the procedure is called, its arguments (& the graph) will be passed to the
 
 :::note
 
-The API needs memory access for registration; you may grant it with 
+The API needs memory access for registration; you may grant it with
 `mgp::memory = memory`.
 
 As any exceptions should never leave the scope of the module, the procedure was
 registered inside a try-catch block.
+
+:::
+
+:::warning
+
+As `mgp::memory` is a global object, that means all of the procedures and
+functions in a single shared library will refer to the same `mgp::memory`
+object. As a result, calling such callables simultaneously from multiple threads
+will lead to incorrect memory usage. This also includes the case when the same
+callable is called from different user sessions. This is a constraint of the
+current C++ API that we are planning to improve in the future.
 
 :::
 
@@ -541,7 +552,7 @@ graph context (`memgraph_graph`), result stream (`result`), and memory access.
 
 :::tip
 
-In place of working with the raw `mgp_` type arguments, use the C++ API classes 
+In place of working with the raw `mgp_` type arguments, use the C++ API classes
 that provide familiar standard library-like interfaces and do away with needing
 manual memory management.
 
@@ -553,14 +564,14 @@ void RandomWalk(mgp_list *args, mgp_graph *memgraph_graph, mgp_result *result, m
     mgp::memory = memory;
     const auto arguments = mgp::List(args);
     const auto record_factory = mgp::RecordFactory(result);
-    
+
     const auto start_node = args[0].ValueNode();
     const auto length = args[1].ValueInt();
 
     auto random_walk = mgp::Path(start_node);
-    
+
     // (Random walk algorithm logic)
-    
+
     auto record = record_factory.NewRecord();
     record.Insert("random_walk", random_walk);
 
@@ -573,7 +584,7 @@ void RandomWalk(mgp_list *args, mgp_graph *memgraph_graph, mgp_result *result, m
 
 ### Writeable procedures
 
-Writeable procedures differ from readable procedures in their graph context 
+Writeable procedures differ from readable procedures in their graph context
 being **mutable**. With them, you may create or delete nodes and relationships,
 modify their properties, and add or remove node labels.
 
@@ -586,7 +597,7 @@ user-specified number of nodes (given by int parameter `number`) to the graph.
 extern "C" int mgp_init_module(struct mgp_module *module, struct mgp_memory *memory) {
   try {
     mgp::memory = memory;
-  
+
     mgp::AddProcedure(AddXNodes, "add_x_nodes", mgp::ProdecureType::Write, {mgp::Parameter("number", mgp::Type::Int)},
                       {}, module, memory);
   } catch (const std::exception &e) {
@@ -614,12 +625,12 @@ void AddXNodes(mgp_list *args, mgp_graph *memgraph_graph, mgp_result *result, mg
 
 Magic functions are a Memgraph feature that lets the user write and call custom
 Cypher functions. Unlike procedures, functions are simple operations that can’t
-modify the graph; they return a single value and can be used in any expression 
+modify the graph; they return a single value and can be used in any expression
 or predicate.
 
 Let’s examine an example function that multiplies the numbers passed to it. The
 registration is done by `AddFunction` in the same way as with query procedures,
-the difference being the absence of a "function type" argument (functions don’t 
+the difference being the absence of a "function type" argument (functions don’t
 modify the graph).
 
 ```cpp
