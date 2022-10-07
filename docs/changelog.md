@@ -8,8 +8,11 @@ sidebar_label: Changelog
 
 ### Bug Fixes
 
-- Fixed bug when getting EdgeType from Edge object or Label from Vertex object 
+- Fixed bug when getting EdgeType from Edge object or Label from Vertex object
   in query modules. [#582](https://github.com/memgraph/memgraph/pull/582)
+- Fix a bug when changing role permissions for label based authorization, by
+  passing user's instead of role's `fine_grained_access_handler`.
+  [#579](https://github.com/memgraph/memgraph/pull/579)
 
 ## v2.4.0
 
