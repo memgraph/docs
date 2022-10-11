@@ -1,17 +1,17 @@
 ---
-id: gss-graphstyle-map-directive
-title: Graph Style Script @GraphStyle.Map directive properties
-sidebar_label: GraphStyle.Map directive properties
+id: gss-viewstyle-map-directive
+title: Graph Style Script @ViewStyle.Map directive properties
+sidebar_label: ViewStyle.Map directive properties
 ---
 
-`@GraphStyle.Map` directive is a subset of `@GraphStyle` because it defines
+`@ViewStyle.Map` directive is a subset of `@ViewStyle` because it defines
 additional style properties for a graph view when there is a map background. 
-Style properties of the `@GraphStyle.Map` directive are used to style the 
+Style properties of the `@ViewStyle.Map` directive are used to style the 
 background map.
 
-## `@GraphStyle.Map`
+## `@ViewStyle.Map`
 
-Here is the list of all properties that can be defined in the `@GraphStyle.Map`
+Here is the list of all properties that can be defined in the `@ViewStyle.Map`
 directive, along with their expected types.
 
 ### 1. `tile-layer: string: "detailed" | "light" | "dark" | "basic" | "satellite"`

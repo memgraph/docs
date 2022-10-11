@@ -154,8 +154,8 @@ Graph Style Script currently has four directives:
 
 * `@NodeStyle` - for defining the visual style of graph nodes.
 * `@EdgeStyle` - for defining the visual style of graph relationships.
-* `@GraphStyle.Default` - for defining the general graph style properties.
-* `@GraphStyle.Map` - for defining the graph style properties when map
+* `@ViewStyle` - for defining the general graph style properties.
+* `@ViewStyle.Map` - for defining the graph style properties when map
   is in the background.
 
 An example of a directive is `@NodeStyle` directive which can be used to specify
@@ -220,34 +220,34 @@ Take a look at the [GSS @EdgeStyle directive
 properties](/docs/memgraph-lab/style-script/gss-edgestyle-directive) page to see
 all relationship styling possibilities.
 
-### `@GraphStyle`
+### `@ViewStyle`
 
-`@GraphStyle` directive is used for defining style properties of a general
+`@ViewStyle` directive is used for defining style properties of a general
 graph view: link distance, view, physics, repel force, etc. It is also
 possible to use a predicate expression which acts as a filter to apply
 the defined properties to the final directive output.
 
 ```
-@GraphStyle <predicate expression> {
+@ViewStyle <predicate expression> {
   <property-name-1>: <value expression-1>
   ...
   <property-name-n>: <value expression-n>
 }
 ```
 
-Similar to `@NodeStyle` and `@EdgeStyle`, `@GraphStyle` has a built-in variable
+Similar to `@NodeStyle` and `@EdgeStyle`, `@ViewStyle` has a built-in variable
 `graph` which can be used for directive filter or property assignment.
 
 An example below shows a general directive style definition and a directive where
 style properties will only be applied if there are more than 10 nodes in the graph.
 
 ```
-@GraphStyle {
+@ViewStyle {
   collision-radius: 15
   physics-enabled: True
 }
 
-@GraphStyle Greater(NodeCount(graph), 10) {
+@ViewStyle Greater(NodeCount(graph), 10) {
   physics-enabled: False
   repel-force: -300
 }
@@ -274,46 +274,46 @@ properties will be:
 }
 ```
 
-Take a look at the [GSS @GraphStyle directive
-properties](/docs/memgraph-lab/style-script/gss-graphstyle-directive) page to see
+Take a look at the [GSS @ViewStyle directive
+properties](/docs/memgraph-lab/style-script/gss-viewstyle-directive) page to see
 all styling possibilities.
 
-### `@GraphStyle.Map`
+### `@ViewStyle.Map`
 
-`@GraphStyle.Map` directive is a subset of `@GraphStyle` because it defines additional style
+`@ViewStyle.Map` directive is a subset of `@ViewStyle` because it defines additional style
 properties for a graph view when there is a map background. The map view will be available
 only if:
 
-* `@GraphStyle` contains a property `view` set to value `"map"`.
+* `@ViewStyle` contains a property `view` set to value `"map"`.
 * There is at least one node with defined `latitude` and `longitude` properties
 
 It is also possible to use a predicate expression which acts as a filter to
 apply the defined properties to the final directive output.
 
 ```
-@GraphStyle.Map <predicate expression> {
+@ViewStyle.Map <predicate expression> {
   <property-name-1>: <value expression-1>
   ...
   <property-name-n>: <value expression-n>
 }
 ```
 
-Similar to `@GraphStyle`, `@GraphStyle.Map` also has a built-in
+Similar to `@ViewStyle`, `@ViewStyle.Map` also has a built-in
 variable `graph` which can be used for directive filter or property assignment.
 
 An example below shows a general directive style definition and a directive where
 style properties will be only applied if there are more than 10 nodes in the graph.
 
 ```
-@GraphStyle {
+@ViewStyle {
   view: "map"
 }
 
-@GraphStyle.Map {
+@ViewStyle.Map {
   tile-layer: "detailed"
 }
 
-@GraphStyle.Map Greater(NodeCount(graph), 10) {
+@ViewStyle.Map Greater(NodeCount(graph), 10) {
   tile-layer: "dark"
 }
 ```
@@ -336,8 +336,8 @@ properties will be:
 }
 ```
 
-Take a look at the [GSS @GraphStyle.Map directive
-properties](/docs/memgraph-lab/style-script/gss-graphstyle-map-directive) page to see
+Take a look at the [GSS @ViewStyle.Map directive
+properties](/docs/memgraph-lab/style-script/gss-viewstyle-map-directive) page to see
 all styling possibilities.
 
 ## Built-in functions

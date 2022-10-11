@@ -1,16 +1,16 @@
 ---
-id: gss-graphstyle-directive
-title: Graph Style Script @GraphStyle directive properties
-sidebar_label: GraphStyle directive properties
+id: gss-viewstyle-directive
+title: Graph Style Script @ViewStyle directive properties
+sidebar_label: ViewStyle directive properties
 ---
 
-`@GraphStyle` directive is used for defining style properties of a general
+`@ViewStyle` directive is used for defining style properties of a general
 graph view: link distance, view, physics, repel force, etc. You can read more about
 each property in the following sections.
 
-## `@GraphStyle`
+## `@ViewStyle`
 
-Here is the list of all properties that can be defined in the `@GraphStyle` directive,
+Here is the list of all properties that can be defined in the `@ViewStyle` directive,
 along with their expected types.
 
 ### `collision-radius: number`
