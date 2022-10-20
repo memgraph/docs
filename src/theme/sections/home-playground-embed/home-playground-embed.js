@@ -15,7 +15,7 @@ export default function HomePlaygroundEmbed() {
                     <p>In <a href="https://playground.memgraph.com/">Memgraph Playground</a> you can explore data sets, run example queries, check out the integrated graph visualizations - and get a jump start on your data driven project.</p>
                 </div>
                 <div className={styles.homePlaygroundEmbed__embed}>
-                    <iframe src="https://playground.memgraph.com/share/cd825a1b-7635-4360-a966-3ea2e21f8d07/embed" width="100%" height="500rem"></iframe>
+                    <iframe src="https://playground.memgraph.com/share/96fe4f42-f5b2-41d1-8ace-4055ded85cbc/embed" width="100%" height="500rem"></iframe>
                 </div>
             </Container>
         </div>
