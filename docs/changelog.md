@@ -4,6 +4,13 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v2.4.1 - TBA
+
+### Major Features and Improvements
+
+- Add OEM license support in Memgraph. [#618](https://github.com/memgraph/memgraph/pull/618)
+
+
 ## v2.4.1 - Oct 7, 2022
 
 ### Bug Fixes
