@@ -82,7 +82,7 @@ CALL mg.get_module_files() YIELD *;
 ```
 
 Check the reference guide for more [utility procedures for query
-modules](./reference-guide/query-modules/module-file-utilities.md).
+modules](../reference-guide/query-modules/module-file-utilities.md).
 
 ## How to list all loaded procedures, user-defined functions and their signatures?
 
@@ -100,7 +100,7 @@ CALL mg.functions() YIELD *;
 ```
 
 Check the reference guide for more [utility procedures for query
-modules](./reference-guide/query-modules/module-file-utilities.md).
+modules](../reference-guide/query-modules/module-file-utilities.md).
 
 ## How to load a query module?
 

@@ -7,8 +7,8 @@ module.exports = {
   tagline: "Welcome to the Memgraph Docs site!",
   url: "https://memgraph.com",
   baseUrl,
-  onBrokenLinks: "error",
-  onBrokenMarkdownLinks: "error",
+  onBrokenLinks: "throw",
+  onBrokenMarkdownLinks: "throw",
   favicon: "img/social-logo-round-corners.png",
   organizationName: "memgraph",
   projectName: "docs",
@@ -33,6 +33,11 @@ module.exports = {
     },
   ],
   themeConfig: {
+    docs: {
+      sidebar: {
+        hideable: true,
+      },
+    },
     metadata: [
       {
         property: "og:image",
@@ -335,10 +340,10 @@ module.exports = {
           ],
         },
         {
-          href: "https://github.com/memgraph/memgraph",
-          className: 'header-github-link',
+          type: 'html',
+          className: "github-stars",
+          value: '<iframe src="https://ghbtns.com/github-btn.html?user=memgraph&repo=memgraph&type=star&count=true&size=large" frameborder="0" scrolling="0" title="Give Memgraph a Star on GitHub!"></iframe>',
           position: "right",
-          'aria-label': 'GitHub repository'
         },
         {
           href: "https://discord.gg/memgraph",
@@ -446,7 +451,6 @@ module.exports = {
         "docker",
       ],
     },
-    hideableSidebar: true,
     announcementBar: {
       id: "graphmodelingemailcourse",
       content:
