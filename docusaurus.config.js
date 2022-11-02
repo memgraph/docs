@@ -341,9 +341,10 @@ module.exports = {
         },
         {
           type: 'html',
-          value: '<iframe src="https://ghbtns.com/github-btn.html?user=memgraph&repo=memgraph&type=star&count=true&size=large" frameborder="0" scrolling="0" width="130" height="30" title="Give Memgraph a Star on GitHub!"></iframe>',
-          position: 'right',
-      },
+          className: "github-stars",
+          value: '<iframe src="https://ghbtns.com/github-btn.html?user=memgraph&repo=memgraph&type=star&count=true&size=large" frameborder="0" scrolling="0" title="Give Memgraph a Star on GitHub!"></iframe>',
+          position: "right",
+        },
         {
           href: "https://discord.gg/memgraph",
           className: 'header-discord-link',
