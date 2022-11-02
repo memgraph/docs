@@ -28,9 +28,13 @@ Then, there are the most advanced models so far and they are based on [**graph e
 
 ### Implementation
 
-![Link Prediction](https://img.shields.io/badge/Not_implemented-EB3434?style=for-the-badge&logo=github&logoColor=white)
 
-Unfortunately, **Link Prediction** is yet not implemented within the project [**MAGE**](https://github.com/memgraph/mage). Be sure to raise the issue on the GitHub repo and ping us to speed up the development. :point_up:
+[![Link Prediction](https://img.shields.io/badge/LinkPrediction-Implementation-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/link_prediction.py)
+
+[![Link Prediction](https://img.shields.io/badge/LinkPrediction-Documentation-FCC624?style=for-the-badge&logo=python&logoColor=white)](/mage/query-modules/python/link-prediction-with-gnn)
+
+
+**Link prediction** is implemented within project [**MAGE**](https://github.com/memgraph/mage). Be sure to check it out in the link above. :point_up:
 
 ### Blog posts
 
