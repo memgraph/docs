@@ -432,6 +432,8 @@ module.exports = {
         alt: "Memgraph Logo",
         src: "img/Memgraph-logo-white-rgb.png",
         href: "https://memgraph.com",
+        width: 160,
+        height: 74,
       },
       copyright: `Copyright © ${new Date().getFullYear()} Memgraph. Built by developers, for developers!`,
     },
