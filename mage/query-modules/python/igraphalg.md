@@ -19,7 +19,7 @@ style={{
   </span>
 );
 
-[![docs-source](igraphalg)](https://github.com/memgraph/mage/blob/main/python/igraphalg.py)
+[![docs-source](https://img.shields.io/badge/source-igraphalg-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/igraphalg.py)
 
 ## Abstract
 
