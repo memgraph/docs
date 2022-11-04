@@ -41,6 +41,7 @@ module.exports = {
         "query-modules/cpp/katz-centrality-online",
         "query-modules/python/link-prediction-with-gnn",
         "query-modules/python/max-flow",
+        "query-modules/python/node-classification-with-gnn",
         "query-modules/python/node2vec",
         "query-modules/python/node2vec-online",
         "query-modules/python/node-similarity",

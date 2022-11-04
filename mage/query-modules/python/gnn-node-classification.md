@@ -1,7 +1,7 @@
 ---
-id: gnn-node-classification
-title: gnn-node-classification
-sidebar_label: gnn-node-classification
+id: node-classification-with-gnn
+title: node-classification-with-gnn
+sidebar_label: node-classification-with-gnn
 ---
 
 import Tabs from '@theme/Tabs';
@@ -21,49 +21,28 @@ style={{
 
 [![docs-source](https://img.shields.io/badge/source-node_classification-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/T515-IN-node-classification-with-pyg/python/node_classification.py)
 
-## Abstract
-
-Intuitively, node classification is the problem of finding out the right label for a node based on its neighbors’ labels.
-More formally, let $G=(V,E)$ be a graph, $S$ the set of all labels, and $f : V → S$ a vertex labelling function that returns the correct labels. From a given partial function $g : V’ ⊆ V → S$ ($V’$ being training examples), a node classification model aims to minimize the loss of the label prediction function $g’ : V → S$.
-
-The motivation for node classification models is the sociological concept of _homophily_: in social networks, individuals that associate and bond with each other tend to have similar properties. In graph terms, this means that neighboring nodes tend to have the same labels. 
-
-## User story
-
-Set $V$ in this case can be a lot of things, the most common are scientific publications, proteins, Reddit posts etc. In the same respective order, set $E$ can be citation of publications, protein connections or connection of posts commented by same user. Therefore, if user wants to classify publication relevant to its field, find if protein is helpful to curing new diseases, or simply find out to which subreddit its post naturally belongs, it should try out this approach. Given any not completely labeled graph, this problem will find all nodes’ labels.
-
-In this query module, we will concentrate on one very important use case of node classification: **Fraud detection**.
-
-Fraud Detection is a vital topic that applies to many industries including the financial sectors, banking, government agencies, insurance, and law enforcement, and more. Fraud endeavors have detected a radical rise in current years, creating this topic more critical than ever. Despite struggles on the part of the troubled organizations, hundreds of millions of dollars are wasted to fraud each year. Because nearly a few samples confirm fraud in a vast community, locating these can be complex. Data mining and statistics help to predict and immediately distinguish fraud and take immediate action to minimize costs.
 
 ### About the query module
 
 This query module contains all necessary functions user should need to train GNN model on Memgraph. User first fills Memgraph nodes and edges, either with prepared dataset or made by its own. 
 
-In this query module these are some of functionalities that can be used:
-
- 1. **graph can be heterogeneous or homogeneous**
+In this module you can find support for the following features:
+- **graph can be heterogeneous or homogeneous**
     - multiple node and edge labels are allowed
- 2. **no restrictions on dataset size** 
-    - implemented data loader
- 3.  **multiple model architectures** to work on (inductive learning)
+- **no restrictions on dataset size**
+- **multiple model architectures** to work on (inductive learning)
     - GAT with Jumping Knowledge
     - multiple version of GAT
     - GraphSAGE
- 4. model **training**
-    1. saving of last $n$ models
-    2. early stopping
-    3. metrics calculations
- 5. **predict** on one node
- 6. **saving** models
- 7. **loading** models
+- model **training** which includes saving of last `n` models, early stopping and metrics calculations
+- **predictions** for specific node
+- **saving** models and **loading** models
 
 
-If you want to explore our implementation, jump to
-**[github/memgraph/mage](https://github.com/memgraph/mage)** and find
+If you want to explore our implementation, jump to **[github/memgraph/mage](https://github.com/memgraph/mage)** and find
 `python/node_classification.py`. You can also jump to the [download
 page](https://memgraph.com/download), download **Memgraph Platform** and fire up
-**Node Classification**. We have prepared an homogenouse graph **Yelp-Fraud (Multi-relational Graph Dataset for Yelp Spam Review Detection)** dataset on which you can
+**Node Classification**. We have prepared an homogenous graph **Yelp-Fraud (Multi-relational Graph Dataset for Yelp Spam Review Detection)** dataset on which you can
 explore node classification using a **[Jupyter
 Notebook](https://github.com/memgraph/jupyter-memgraph-tutorials)** and other Memgraph **home-made** heterogeneous graph fraud detection dataset.
 
@@ -71,24 +50,21 @@ Feel free to open a **[GitHub issue](https://github.com/memgraph/mage/issues)**
 or start a discussion on **[Discord](https://discord.gg/memgraph)** if you want
 to speed up development.
 
-How should **you** use the following module? Load dataset, call `set_model_parameters`, and let the training begin! When training is finished, models are saved. You can test them on other data (which model has not already seen!) and check the results!
-The module reports the [mean average
-precision](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.average_precision_score.html)
-for every batch _training_ or _evaluation_ done.
+## Usage
+Load dataset in Memgraph, call `set_model_parameters`, and start training your model. When training is done, query module will save models. 
+Afterwards, you can test modules on other data (which model has not already seen for example) and inspect the results!
+The module reports the [mean average precision](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.average_precision_score.html)
+for every batch `training` or `evaluation` epoch.
 
-### Usage
 
-A basic node classification workflow is as follows:
+To **summarize** basic node classification workflow is as follows:
 
 - load data to Memgraph
-- you should first set parameters by calling `set_model_parameters()` function
-  - you should probably set **node features** label
-- now call `train()` function
-- take a look of training data with `get_training_data()` function
+- set parameters by calling `set_model_parameters()` function. Be sure that **node_features** property on nodes are in place.
+- call `train()` function
+- inspect training results (optional) by calling `get_training_data()` function
 - optionally use `save_model()` and `load_model()` if you want
-- use `predict()` for predicting classes on **not already seen** nodes
-
-
+- predict node class by calling `predict()` procedure
 
 
 :::info
