@@ -4,6 +4,17 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v2.3.1 - Nov 4, 2022
+
+### Bug Fixes
+
+* Fix handling single-line commented Cypher code in query execution.
+* Fix the map toggle freeze in the graph view.
+* Fix showing multiple maps in the rich collections.
+* Fix missing node and edge information on graph schema.
+* Fix the query reordering in the rich collections.
+* Fix using a previous description when adding a new query to the rich collection.
+
 ## v2.3.0 - Oct 24, 2022
 
 ### What's New
