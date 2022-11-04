@@ -43,7 +43,7 @@ link](https://github.com/memgraph/docs/blob/master/docs/overview.md).
 
 To run the documentation website locally, you will need to install:
 
-- [Node.js](https://nodejs.org/en/download/) version >= 12.13.0 or above (which
+- [Node.js](https://nodejs.org/en/download/) version >= 16.0.0 or above (which
   can be checked by running `node -v`). You can use
   [nvm](https://github.com/nvm-sh/nvm) for managing multiple Node versions on a
   single machine installed.

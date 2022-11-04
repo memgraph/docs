@@ -106,7 +106,16 @@ CHECK STREAM myStream BATCH_LIMIT 3 TIMEOUT 60000;
 
 ## How to start, stop or delete a stream?
 
-To start a stream:
+To start a specific stream with name `<stream name>` that will consume `<count>`
+number of batches for a maximum duration of `<milliseconds>` milliseconds and
+then stop:
+
+```cypher
+START STREAM <stream name> [BATCH_LIMIT <count>] [TIMEOUT <milliseconds>];
+```
+
+To start a stream that will run for an infinite number of batches without a
+timeout limit:
 
 ```cypher
 START STREAM streamName;

@@ -179,7 +179,7 @@ Your data should be slowly arriving in your Memgraph instance. To check if
 everything is working, run the following query:
 
 ```cypher
-CHECK STREAM <stream_name>
+CHECK STREAM <stream_name>;
 ```
 
 or
