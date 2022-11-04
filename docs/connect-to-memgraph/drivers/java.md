@@ -35,9 +35,9 @@ following dependency:
 ```java
 <dependencies>
     <dependency>
-      <groupId>org.neo4j.driver</groupId>
-      <artifactId>neo4j-java-driver</artifactId>
-      <version>4.1.1</version>
+      <groupId>org.memgraph</groupId>
+      <artifactId>bolt-java-driver</artifactId>
+      <version>0.4.7</version>
     </dependency>
   </dependencies>
 ```
