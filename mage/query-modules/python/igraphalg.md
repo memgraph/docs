@@ -23,7 +23,7 @@ style={{
 
 ## Abstract
 
-This module, named **igraphalg**, provides a comprehensive set of thin wrappers around some of the algorithms present in the [Igraph](https://igraph.org/) package. The wrapper functions now have the capability to create a Igraph compatible graph-like object that can stream the native database graph directly saving on memory usage significantly.
+This module, named **igraphalg**, provides a comprehensive set of thin wrappers around some of the algorithms present in the [igraph](https://igraph.org/) package. The wrapper functions now can create an igraph compatible graph-like object that can stream the native database graph directly saving on memory usage significantly.
 
 
 | Trait               | Value                                                                                                     |
@@ -58,7 +58,7 @@ RETURN path;
 
 ### `spanning_tree(weights, directed)`
 Returns a minimum spanning tree on a graph `G`.
- A *minimum spanning tree* is a subset of the edges of a connected, graph that connects all of the vertices together without any cycles.
+ A *minimum spanning tree* is a subset of the edges of a connected, graph that connects all of the vertices without any cycles.
 
 #### Input:
 
@@ -80,14 +80,14 @@ RETURN tree;
 ### `pagerank(damping, weights, directed,implementation)`
 Returns the PageRank of the nodes in the graph.
 
-PageRank computes a ranking of the nodes in the graph G based on the structure of the incoming links. It was originally designed as an algorithm to rank web pages.
+PageRank computes a ranking of the nodes in graph G based on the structure of the incoming links. It was originally designed as an algorithm to rank web pages.
 
 #### Input:
 
 * `damping: double (default=0.85)` ➡  Damping parameter for PageRank.
-* `weights: string (default="weight")` ➡  Edge data key to use as weight. If `None`, weights are set to 1.
+* `weights: string (default="weight")` ➡  Edge data key to use as a weight. If `None`, weights are set to 1.
 * `directed: bool (default=True)` ➡  Is Graph directed or undirected.
-* `implementation: string (default="prpack")` ➡  Algorithm used for calculating PageRank values. Algorithm can be either `prpack` or `arpack`.
+* `implementation: string (default="prpack")` ➡  Algorithm used for calculating PageRank values. The Algorithm can be either `prpack` or `arpack`.
 
 #### Output:
 
@@ -102,7 +102,7 @@ RETURN node, rank;
 ```
 
 ### `get_shortest_path(source, target, weights, directed)`
-Compute shortest path in the graph.
+Compute the shortest path in the graph.
 
 #### Input:
 
@@ -123,7 +123,7 @@ RETURN path;
 ```
 
 ### `shortest_path_length(source, target, weights, directed)`
-Compute shortest path length in the graph.
+Compute the shortest path length in the graph.
 
 #### Input:
 
@@ -134,7 +134,7 @@ Compute shortest path length in the graph.
 
 #### Output:
 
-* `length: double` ➡   Shortest path length between `source` node and `target` node. If there is no path it returns `inf`.
+* `length: double` ➡   Shortest path length between the `source` node and `target` node. If there is no path it returns `inf`.
 
 #### Usage:
 
@@ -146,7 +146,7 @@ RETURN length;
 
 ### `topological_sort(mode)`
 Returns nodes in topologically sorted order.
- A *topological sort* is a non unique permutation of the nodes such that an edge from `u` to `v` implies that `u` appears before `v` in the topological sort order.
+ A *topological sort* is a non-unique permutation of the nodes such that an edge from `u` to `v` implies that `u` appears before `v` in the topological sort order.
 
 #### Input:
 
@@ -186,7 +186,7 @@ RETURN max_flow;
 ```
 
 ### `mincut(source, target, capacity,directed)`
-Mincut calculates the minimum st-cut between two vertices in a graph.
+Minimum cut calculates the minimum st-cut between two vertices in a graph.
 
 #### Input:
 
@@ -197,7 +197,7 @@ Mincut calculates the minimum st-cut between two vertices in a graph.
 #### Output:
 
 * `node: Vertex` ➡ Vertex in graph.
-* `partition_id: int` ➡ Id of partition where `node` belongs after mincut.
+* `partition_id: int` ➡ Id of the partition where `node` belongs after min-cut.
 
 #### Usage:
 
@@ -208,19 +208,19 @@ Mincut calculates the minimum st-cut between two vertices in a graph.
   RETURN node, partition_id;
 ```
 
-### `community_leiden(obejctive_function, weights, resolution_parameter, beta, initial_membership, n_iterations, node_weights)`
-Mincut calculates the minimum st-cut between two vertices in a graph.
+### `community_leiden(objective_function, weights, resolution_parameter, beta, initial_membership, n_iterations, node_weights)`
+Finding community structure of a graph using the Leiden algorithm of Traag, van Eck & Waltman.
 
 #### Input:
 
 * `objective_function: string (default="CPM")` ➡ Whether to use the Constant Potts Model (CPM) or modularity. Must be either `CPM` or `modularity`.
-* `weights: string (default=NULL)` ➡ If a string is present, use this edge attribute as the edge weight if it isn't edge weights defaults to 1.
-* `resolution_parameter: float (default=1.0)` ➡ Higher resolutions lead to more smaller communities, while lower resolutions lead to fewer larger communities.
+* `weights: string (default=NULL)` ➡ If a string is present, use this edge attribute as the edge weight if it isn't edge weights default to 1.
+* `resolution_parameter: float (default=1.0)` ➡ Higher resolutions lead to smaller communities, while lower resolutions lead to fewer larger communities.
 * `beta: float (default=0.01)` ➡ Parameter affecting the randomness in the Leiden algorithm. This affects only the refinement step of the algorithm.
-* `initial_membership: List[int](default=NULL)` ➡  If provided, the Leiden algorithm will try to improve this provided membership. If no argument is provided, the aglorithm simply starts from the singleton partition.
+* `initial_membership: List[int](default=NULL)` ➡  If provided, the Leiden algorithm will try to improve this provided membership. If no argument is provided, the algorithm simply starts from the singleton partition.
 * `n_iterations: int (default=2)` ➡ The number of iterations to iterate the Leiden algorithm. Each iteration may improve the partition further.
 * `vertex_weights: List[float] (default=NULL) ➡ 	
-The vertex weights used in the Leiden algorithm. If this is not provided, it will be automatically determined on the basis of the objective_function.
+The vertex weights used in the Leiden algorithm. If this is not provided, it will be automatically determined based on the objective_function.
 
 #### Output:
 
