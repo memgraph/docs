@@ -23,8 +23,10 @@ style={{
 
 ## Abstract
 
-Intuitively, node classification is problem where one has to determine labelling of samples from other neighbours’ labels.
-Little more formally, let $G=(V,E)$ be a graph, S set of all labels, and $f : V → S$ vertex labelling function which returns true labels. From given partial function $g : V’ ⊆ V → S$ (training examples) node classification model aims to learn function $g’ : V → S$ which tries to predict as many true labels as possible. It is motivated by sociological concept of “homophily”: individual nodes tend to associate and bond with each other because they probably have similar labels.
+Intuitively, node classification is the problem of finding out the right label for a node based on its neighbors’ labels.
+More formally, let $G=(V,E)$ be a graph, $S$ the set of all labels, and $f : V → S$ a vertex labelling function that returns the correct labels. From a given partial function $g : V’ ⊆ V → S$ ($V’$ being training examples), a node classification model aims to minimize the loss of the label prediction function $g’ : V → S$.
+
+The motivation for node classification models is the sociological concept of _homophily_: in social networks, individuals that associate and bond with each other tend to have similar properties. In graph terms, this means that neighboring nodes tend to have the same labels. 
 
 ## User story
 
@@ -76,9 +78,9 @@ for every batch _training_ or _evaluation_ done.
 
 ### Usage
 
-The following procedure is expected when using **Node classification**:
+A basic node classification workflow is as follows:
 
-- fill Memgraph with data using Cypher, CSV, or easily with our already prepared datasets
+- load data to Memgraph
 - you should first set parameters by calling `set_model_parameters()` function
   - you should probably set **node features** label
 - now call `train()` function
