@@ -1,7 +1,7 @@
 ---
 id: node-classification-with-gnn
-title: node-classification-with-gnn
-sidebar_label: node-classification-with-gnn
+title: node_classification_with_gnn
+sidebar_label: node_classification_with_gnn
 ---
 
 import Tabs from '@theme/Tabs';
@@ -21,30 +21,32 @@ style={{
 
 [![docs-source](https://img.shields.io/badge/source-node_classification-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/T515-IN-node-classification-with-pyg/python/node_classification.py)
 
+## Abstract
+**Node classification** is the problem of finding out the **right label** for a **node** based on its **neighbors’ labels** and **structure similarities**.
 
 ### About the query module
 
-This query module contains all necessary functions user should need to train GNN model on Memgraph. User first fills Memgraph nodes and edges, either with prepared dataset or made by its own. 
+This query module contains all necessary functions you need to train GNN model on Memgraph. 
 
-In this module you can find support for the following features:
-- **graph can be heterogeneous or homogeneous**
-    - multiple node and edge labels are allowed
+You can find support for the following features in **node_classification** module:
+- support for both **homogeneous** and **heterogeneous** graphs
+- support for multiple-label and multi-edge-type graphs
 - **no restrictions on dataset size**
-- **multiple model architectures** to work on (inductive learning)
-    - GAT with Jumping Knowledge
-    - multiple version of GAT
-    - GraphSAGE
-- model **training** which includes saving of last `n` models, early stopping and metrics calculations
+- **multiple model architectures** layers to work on (inductive learning):
+    - **Graph attention with Jumping Knowledge**
+    - multiple versions of **Graph attention network (GAT)**
+    - **GraphSAGE**
+- support for **early stopping**
+- support for different **metrics calculations**
 - **predictions** for specific node
 - **saving** models and **loading** models
+- its applicability to use it as a **recommendation system**
 
 
 If you want to explore our implementation, jump to **[github/memgraph/mage](https://github.com/memgraph/mage)** and find
-`python/node_classification.py`. You can also jump to the [download
-page](https://memgraph.com/download), download **Memgraph Platform** and fire up
-**Node Classification**. We have prepared an homogenous graph **Yelp-Fraud (Multi-relational Graph Dataset for Yelp Spam Review Detection)** dataset on which you can
-explore node classification using a **[Jupyter
-Notebook](https://github.com/memgraph/jupyter-memgraph-tutorials)** and other Memgraph **home-made** heterogeneous graph fraud detection dataset.
+`python/node_classification.py`. Feel free to give us a :star: if you like the code. 
+The easiest way to test **node_classification** is by downloading [Memgraph Platform](https://memgraph.com/download)
+and using some of the preloaded datasets in **Memgraph Lab**.
 
 Feel free to open a **[GitHub issue](https://github.com/memgraph/mage/issues)**
 or start a discussion on **[Discord](https://discord.gg/memgraph)** if you want
@@ -89,140 +91,144 @@ declare_model_and_data and sets each global variable to some value.
 - `ctx: (mgp.ProcCtx)`: current context,
 - `params: (mgp.Map, optional)`: user  defined parameters from query module. Defaults to {}
 
+| Name                       | Type         | Default                                                                    | Description                                                                                                                                                                           |
+|----------------------------|--------------|----------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| hidden_features_size       | List[Int]    | [16, 16]                                                                   | Embedding dimension for each node in new layer.                                                                                                                                       |
+| layer_type                 | String       | `GATJK`                                                                    | Type of layer used, supported: `GATJK`, `GAT`, `GRAPHSAGE`                                                                                                                            |
+| aggregator                 | String       | `mean`                                                                     | Type of aggregator used, supported: `mean`.                                                                                                                                           |
+| learning_rate              | Float        | 0.1                                                                        | Optimizer's learning rate.                                                                                                                                                            |
+| weight_decay               | Float        | 5e-4                                                                       | Optimizer's weight decay.                                                                                                                                                             |
+| split_ratio                | Float        | 0.8                                                                        | Ratio between training and validation data                                                                                                                                            |
+| metrics                    | List[String] | `["loss","accuracy","f1_score","precision","recall","num_wrong_examples"]` | List of metrics to report, supports any of combination "loss","accuracy","f1_score","precision","recall","num_wrong_examples"                                                         |
+| node_id_property           | String       | `id`                                                                       | Property name of node features                                                                                                                                                        |
+| num_epochs                 | Integer      | 100                                                                        | The number of epochs for model training.                                                                                                                                              |
+| console_log_freq           | Integer      | 5                                                                          | Specifies how often results will be printed.                                                                                                                                          |
+| checkpoint_freq            | Integer      | 5                                                                          | Specifies how often the model will be saved. The model is persisted on disc.                                                                                                          |
+| device_type                | String       | `cpu`                                                                      | Defines if the model will be trained using the `cpu` or `cuda`. To run on `Cuda GPU`, check if the system supports it with `torch.cuda.is_available()`, then set this flag to `cuda`. |
+| path_to_model              | String       | "/tmp/torch_models"                                                        | Path from where model is loaded and where is stored                                                                                                                                   |
+
 #### Exceptions:
-- `Exception`: exception is raised if some variable in dictionary params is not defined as it should be
+- `Exception`: exception is raised if some variable in dictionary params is not correctly defined.
 
-#### Return values
-`mgp.Record` of:
-
-- `hidden_features_size (list)`: list of hidden features
-- `layer_type (str)`: type of layer
-- `aggregator (str)`: type of aggregator
-- `learning_rate (float)`: learning rate
-- `weight_decay (float)`: weight decay
-- `split_ratio (float)`: ratio between training and validation data
-- `metrics (list)`: list of metrics to be calculated
-- `node_id_property (str)`: name of nodes id property
-- `num_epochs (int)`: number of epochs
-- `console_log_freq (int)`: frequency of logging metrics
-- `checkpoint_freq (int)`: frequency of saving models
-- `device_type (str)`: cpu or cuda
-- `path_to_model (str)`: path where model is load and saved
+#### Output
+- `mgp.Record(
+    hidden_features_size=list,
+    layer_type=str,
+    aggregator=str,
+    learning_rate=float,
+    weight_decay=float,
+    split_ratio=float,
+    metrics=mgp.Any,
+    node_id_property=str,
+    num_epochs=int,
+    console_log_freq=int,
+    checkpoint_freq=int,
+    device_type=str,
+    path_to_model=str,
+)` ➡ Map of parameters set for training
 
 #### Usage:
 
 ```cypher
   CALL node_classification.set_model_parameters(
     {layer_type: "GATJK", learning_rate: 0.001, hidden_features_size: [16,16], class_name: "fraud", features_name: "embedding"}
-  ) PROCEDURE MEMORY UNLIMITED YIELD * RETURN in_channels;
+  ) YIELD * RETURN *;
 ```
 
-### train(ctx: mgp.ProcCtx, no_epochs: int = 100)
+### train(num_epochs)
 
-This function performs training of model. It first declares data, model, optimizer and criterion. Then it performs training.
+This procedure performs model training. Firstly it declares data, model, optimizer and criterion. Afterwards it performs training.
 #### Input
-
-- `ctx (mgp.ProcCtx)`: context of process
-- `no_epochs (int, optional)`: number of epochs. Defaults to 100.
+- `num_epochs (int, optional)` ➡ number of epochs. Default set to 100.
 
 #### Exceptions
-- `Exception`: raised if graph is empty
+- `Exception`➡ raised if graph is empty
 
-#### Return values
-`list` of `mgp.Record` of:
-- `epoch (int)`: epoch number
-- `loss (float)`: loss of model on training data
-- `val_loss (float)`: loss of model on validation data
-- `train_log (list)`: list of metrics on training data
-- `val_log (list)`: list of metrics on validation data
+#### Outputs
+- `epoch: int` ➡ epoch number
+- `loss: float`➡ loss of model on training data
+- `val_loss: float`➡ loss of model on validation data
+- `train_log: list`➡ list of metrics on training data
+- `val_log: list`➡ list of metrics on validation data
 
 #### Usage
 ```cypher
-  CALL node_classification.train(10) YIELD *;
+  CALL node_classification.train() YIELD * RETURN *;
 ```
 
 ### get_training_data()
-This function is used so user can see logged data from training.
+Use following procedure to get logged data from training.
 
 #### Return values
-
-`mgp.Record` of:
-- `epoch (int)`: epoch number of record of logged data row
-- `loss (float)`: loss in logged data row
-- `train_log (mgp.Any)`: training parameters of record of logged data row
-- `val_log (mgp.Any)`: validation parameters of record of logged data row
+- `epoch: int` ➡ epoch number for current record's logged data
+- `loss: float`➡ loss in epoch
+- `train_log: mgp.Any` ➡ training parameters for epoch
+- `val_log: mgp.Any`➡ validation parameters for epoch
 
 #### Usage
 ```cypher
-  CALL node_classification.get_training_data() YIELD *;
+  CALL node_classification.get_training_data() YIELD * RETURN *;
 ```
 
 ### save_model()
 
-This function saves model to model saving folder. If there are already total of **max_models_to_keep** models in model saving folder, oldest model is deleted.
+This function saves model to model saving folder. If there are already total of **max_models_to_keep** models in model saving folder, 
+the oldest model is deleted.
 
 #### Exception
 - `Exception`: raised if model is not initialized or defined
 
 #### Return values
-`mgp.Record` of
-
-- `path (str)`: path to saved model
-- `status (str)`: status of saving model
+- `path (str)`➡ path to stored model
+- `status (str)`➡ status of stored model
 
 #### Usage
 ```cypher
-  CALL node_classification.save_model() YIELD *;
+  CALL node_classification.save_model() YIELD * RETURN *;
 ```
 
 ### load_model(num: int = 0)
 
-This function loads model from defined folder for saved models.
+This function loads model from specified folder.
 
 #### Input
 
-- `num (int, optional)`: ordinary number of model to load from default map. Defaults to 0 (newest model).
+- `num (int, optional)`: ordinary number of model to load from default path on disc. Defaults to 0 (newest model).
 
 #### Return values
-`mgp.Record` of 
-- path (str): path to loaded model
+- `path: str` ➡ path of loaded model
 
 #### Usage
 
 ```cypher
-  CALL node_classification.load_model() YIELD *;
+  CALL node_classification.load_model() YIELD * RETURN *;
 ```
 
-### predict(ctx: mgp.ProcCtx, vertex: mgp.Vertex)
+### predict(vertex: mgp.Vertex)
 
 This function predicts metrics on one node. It is suggested that user previously
 loads unseen test data to predict on it.
     
 #### Input
-
-- `ctx (mgp.ProcCtx)`: proc context
-- `vertex (mgp.Vertex)`: node to predict on
+- `vertex: mgp.Vertex`➡ prediction node
 
 #### Return values
-`mgp.Record` of 
-- `predicted_class (int)`: predicted class
+- `predicted_class: int`➡ predicted class for specified node
 
 #### Usage:
 ```cypher
 MATCH (n {id: 1}) CALL node_classification.predict(n) YIELD * RETURN predicted_value;
 ```
-- note: if node with property *id = 1* doesn't exist, query module won't be called
 
 ### reset()
 This function resets all variables to default values.
 
 #### Return values
-`mgp.Record` of 
-- `status (str)`: status of reset
+- `status (str)`: status of reset function
 
 #### Usage:
 ```cypher
-  CALL node_classification.reset() YIELD *;
+  CALL node_classification.reset() YIELD * RETURN *;
 ```
 
 ## Example
