@@ -4,6 +4,10 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v2.4.2 - Nov 7, 2022
+
+### Bug Fixes
+- Fixed a bug when calling `AllShortestPath` with `id` function. [#636](https://github.com/memgraph/memgraph/pull/636)
 
 ## v2.4.2 - Oct 26, 2022
 
