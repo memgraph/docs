@@ -23,7 +23,7 @@ style={{
 
 ## Abstract
 
-This module, named **igraphalg**, provides a comprehensive set of thin wrappers around some of the algorithms present in the [igraph](https://igraph.org/) package. The wrapper functions now can create an igraph compatible graph-like object that can stream the native database graph directly saving on memory usage significantly.
+The  **igraphalg** module provides a comprehensive set of thin wrappers around some of the algorithms present in the [igraph](https://igraph.org/) package. The wrapper functions can create an igraph compatible graph-like object that can stream the native database graph directly, significantly lowering memory usage.
 
 
 | Trait               | Value                                                                                                     |
@@ -41,13 +41,13 @@ Returns all simple paths in the graph `G` from source to target. A simple path i
 
 #### Input:
 
-* `v: Vertex` ➡ Starting node for the path.
-* `to: Vertex` ➡ Ending node for the path.
-* `cutoff: int (default=-1)` ➡ Maximum length of path that is considered. If negative, paths of all lengths are considered.
+* `v: Vertex` ➡ Path's starting node.
+* `to: Vertex` ➡ Path's ending node.
+* `cutoff: int (default=-1)` ➡ Maximum length of the considered path. If negative, paths of all lengths are considered.
 
 #### Output:
 
-* `path: List[Vertex]` ➡ List of vertices for a certain path. If there are no paths between the source and target within the given cutoff there is no output.
+* `path: List[Vertex]` ➡ List of vertices for a certain path. If there are no paths between the source and the target within the given cutoff, there is no output.
 
 #### Usage:
 ```cypher
@@ -58,16 +58,16 @@ RETURN path;
 
 ### `spanning_tree(weights, directed)`
 Returns a minimum spanning tree on a graph `G`.
- A *minimum spanning tree* is a subset of the edges of a connected, graph that connects all of the vertices without any cycles.
+ A *minimum spanning tree* is a subset of the edges of a connected graph that connects all of the vertices without any cycles.
 
 #### Input:
 
-* `weights: string (default=NULL)` ➡  Data key to use for edge weights.
-* `directed: bool (default=False)` ➡  Is graph directed or undirected
+* `weights: string (default=NULL)` ➡ Data key to use for edge weights.
+* `directed: bool (default=False)` ➡ If `true` the graph is directed, otherwise it's undirected.
 
 #### Output:
 
-* `tree: List[List[Vertex]]` ➡  A minimum spanning tree or forest.
+* `tree: List[List[Vertex]]` ➡ A minimum spanning tree or forest.
 
 #### Usage:
 
@@ -84,15 +84,15 @@ PageRank computes a ranking of the nodes in graph G based on the structure of th
 
 #### Input:
 
-* `damping: double (default=0.85)` ➡  Damping parameter for PageRank.
-* `weights: string (default="weight")` ➡  Edge data key to use as a weight. If `None`, weights are set to 1.
-* `directed: bool (default=True)` ➡  Is Graph directed or undirected.
-* `implementation: string (default="prpack")` ➡  Algorithm used for calculating PageRank values. The Algorithm can be either `prpack` or `arpack`.
+* `damping: double (default=0.85)` ➡ Damping parameter for PageRank.
+* `weights: string (default="weight")` ➡ Edge data key to use as a weight. If `None`, weights are set to 1.
+* `directed: bool (default=True)` ➡ If `true` the graph is directed, otherwise it's undirected.
+* `implementation: string (default="prpack")` ➡ Algorithm used for calculating PageRank values. The algorithm can be either `prpack` or `arpack`.
 
 #### Output:
 
-* `node: Vertex` ➡ Vertex to calculate PageRank for.
-* `rank: double` ➡ Node PageRank.
+* `node: Vertex` ➡ Vertex for which the PageRank is calculated.
+* `rank: double` ➡ Node's PageRank value.
 
 #### Usage:
 
@@ -106,10 +106,10 @@ Compute the shortest path in the graph.
 
 #### Input:
 
-* `source: Vertex (default=NULL)` ➡  Starting node for the path.
-* `target: Vertex (default=NULL)` ➡  Ending node for the path. 
-* `weights: string (default=NULL)` ➡  If `None`, every edge has weight/distance/cost 1. If a string, use this edge attribute as the edge weight. Any edge attribute not present defaults to 1.
-* `directed: bool (default=True)` ➡  Is Graph directed or undirected.
+* `source: Vertex (default=NULL)` ➡ Path's starting node.
+* `target: Vertex (default=NULL)` ➡ Path's ending node. 
+* `weights: string (default=NULL)` ➡ If `None`, every edge has weight/distance/cost 1. If the value is a property name, use that property as the edge weight. If an edge doesn't have a property, the value defaults to 1.
+* `directed: bool (default=True)` ➡ If `true`, the graph is directed, otherwise, it's undirected.
 
 
 #### Output:
@@ -127,14 +127,14 @@ Compute the shortest path length in the graph.
 
 #### Input:
 
-* `source: Vertex (default=NULL)` ➡  Starting node for the path.
-* `target: Vertex (default=NULL)` ➡  Ending node for the path. 
-* `weights: string (default=NULL)` ➡  If `None`, every edge has weight/distance/cost 1. If a string, use this edge attribute as the edge weight. Any edge attribute not present defaults to 1.
-* `directed: bool (default=True)` ➡  Is Graph directed or undirected.
+* `source: Vertex (default=NULL)` ➡ Path's starting node.
+* `target: Vertex (default=NULL)` ➡ Path's ending node. 
+* `weights: string (default=NULL)` ➡ If `None`, every edge has weight/distance/cost 1. If the value is a property name, use that property as the edge weight. If an edge doesn't have a property, the value defaults to 1.
+* `directed: bool (default=True)` ➡ If `true`, the graph is directed, otherwise, it's undirected.
 
 #### Output:
 
-* `length: double` ➡   Shortest path length between the `source` node and `target` node. If there is no path it returns `inf`.
+* `length: double` ➡ Shortest path length between the `source` node and `target` node. If there is no path it returns `inf`.
 
 #### Usage:
 
@@ -150,11 +150,11 @@ Returns nodes in topologically sorted order.
 
 #### Input:
 
-* `mode: string (default="out")` ➡  Specifies how to use the direction of the edges. For `out`, the sorting order ensures that each node comes before all nodes to which it has edges, so nodes with no incoming edges go first. For `in`, it is quite the opposite: each node comes before all nodes from which it receives edges. Nodes with no outgoing edges go first.
+* `mode: string (default="out")` ➡ Specifies how to use the direction of the edges. For `out`, the sorting order ensures that each node comes before all nodes to which it has edges, so nodes with no incoming edges go first. For `in`, it is quite the opposite: each node comes before all nodes from which it receives edges. Nodes with no outgoing edges go first.
 
 #### Output:
 
-* `nodes: List[Vertex]` ➡   A list of nodes in topological sorted order.
+* `nodes: List[Vertex]` ➡ A list of nodes in topological sorted order.
 
 #### Usage:
 
@@ -168,9 +168,9 @@ The maximum flow problem consists of finding a flow through a graph such that it
 
 #### Input:
 
-* `source: Vertex` ➡ Source node from which the maximum flow is calculated
-* `target: Vertex` ➡ Sink node to which the max flow is calculated
-* `capacity: string (default="weight")` ➡ Edge property which is used as the flow capacity of the edge
+* `source: Vertex` ➡ Source node from which the maximum flow is calculated.
+* `target: Vertex` ➡ Sink node to which the max flow is calculated.
+* `capacity: string (default="weight")` ➡ Edge property which is used as the flow capacity of the edge.
 
 #### Output:
 
@@ -190,9 +190,9 @@ Minimum cut calculates the minimum st-cut between two vertices in a graph.
 
 #### Input:
 
-* `source: Vertex` ➡ Source node from which the maximum flow is calculated
-* `target: Vertex` ➡ Sink node to which the max flow is calculated
-* `capacity: string (default="weight")` ➡ Edge property which is used as the capacity of the edge
+* `source: Vertex` ➡ Source node from which the maximum flow is calculated.
+* `target: Vertex` ➡ Sink node to which the max flow is calculated.
+* `capacity: string (default="weight")` ➡ Edge property which is used as the capacity of the edge.
 
 #### Output:
 
@@ -219,8 +219,7 @@ Finding community structure of a graph using the Leiden algorithm of Traag, van 
 * `beta: float (default=0.01)` ➡ Parameter affecting the randomness in the Leiden algorithm. This affects only the refinement step of the algorithm.
 * `initial_membership: List[int](default=NULL)` ➡  If provided, the Leiden algorithm will try to improve this provided membership. If no argument is provided, the algorithm simply starts from the singleton partition.
 * `n_iterations: int (default=2)` ➡ The number of iterations to iterate the Leiden algorithm. Each iteration may improve the partition further.
-* `vertex_weights: List[float] (default=NULL) ➡ 	
-The vertex weights used in the Leiden algorithm. If this is not provided, it will be automatically determined based on the objective_function.
+`vertex_weights: List[float] (default=NULL)` ➡ The vertex weights used in the Leiden algorithm. If this is not provided, it will be automatically determined based on the objective_function.
 
 #### Output:
 
@@ -240,14 +239,14 @@ Compute all shortest path lengths in the graph.
 
 #### Input:
 
-* `weights: string (default=NULL)` ➡  If `None`, every edge has weight/distance/cost 1. If a string, use this edge attribute as the edge weight. Any edge attribute not present defaults to 1.
-* `directed: bool (default=True)` ➡  Is Graph directed or undirected.
+* `weights: string (default=NULL)` ➡ If `None`, every edge has weight/distance/cost 1. If the value is a property name, use that property as the edge weight. If an edge doesn't have a property, the value defaults to 1.
+* `directed: bool (default=True)` ➡ If `true`, the graph is directed, otherwise, it's undirected.
 
 #### Output:
 
 * `src_node: Vertex` ➡ `Source` node.
 * `dest_node: Vertex` ➡ `Destination` node.
-* `length: double` ➡   Shortest path length between `src_node` node and `dest_node` node. If there is no path it returns `inf`.
+* `length: double` ➡ If `true`, the graph is directed, otherwise, it's undirected.
 
 #### Usage:
 
