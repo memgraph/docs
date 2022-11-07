@@ -4,6 +4,12 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v2.4.2 - Nov 7, 2022
+
+### Bug Fixes
+- Fixed a bug when calling `AllShortestPath` with `id` function. [#636](https://github.com/memgraph/memgraph/pull/636)
+- Fixed bug when getting iterating over in-edges of a Node. [#582](https://github.com/memgraph/memgraph/pull/613)
+
 ## v2.4.1 - Oct 7, 2022
 
 ### Bug Fixes
