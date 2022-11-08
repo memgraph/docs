@@ -23,7 +23,7 @@ the tag **memgraphdb**. You can also ask your question on our
 forum**](https://discourse.memgraph.com/). There is always someone from Memgraph
 or graph community there to help!
 
-🎫 Open **[an GitHub issue](https://github.com/memgraph)** in corresponding repository to:
+🎫 Open **[a GitHub issue](https://github.com/memgraph)** in the corresponding repository to:
 
   - report a bug or a technical issue
   - submit a feature request or an improvement suggestion
