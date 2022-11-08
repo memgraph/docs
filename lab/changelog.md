@@ -12,7 +12,7 @@ sidebar_label: Changelog
 * Having different map tiles (e.g. "light" map tile on one map view, but "dark" map tile on another map view) for multiple graph map views in the rich collection is now fixed and enabled.
 * Graph rendering freeze when toggling the map view on/off during the graph rendering process has been fixed.
 * All the information about nodes and edges on the graph schema is now previewed as expected.
-* A bug that would wrongly mix query title and description when queries are reordered in the rich query collection has been fixed.
+* A bug that would mix query title and description when queries are reordered in the rich query collection has been fixed.
 * A bug that would not reset the description field when adding a new query to the query collection has been fixed.
 * Fixed an issue when saving a style, which now saves the current GSS code, not the last applied one.
 
