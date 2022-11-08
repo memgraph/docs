@@ -19,7 +19,7 @@ style={{
 </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-link_prediction_with_gnn-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/link_prediction/python/link_prediction.py)
+[![docs-source](https://img.shields.io/badge/source-link_prediction_with_gnn-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/link_prediction.py)
 
 ## Abstract
 **Link prediction** can be defined as a problem where one wants to predict if there is a link between two nodes in the graph. It can be used for predicting missing or future links in the evolving graph. Using the notation `G = (V, E)` for a graph with nodes `V` and edges `E` and given two nodes `v1` and `v2`, the link prediction algorithm tries to predict whether those two nodes will be connected, based on the **node features** and **graph structure**. Lately, **graph neural networks** have been often used for **node-classification** and **link-prediction** problems. They are extremely useful in numerous interdisciplinary fields of work where is important to incorporate **domain-specific** knowledge to capture more **fine-grained** relationships among the data. Such fields usually involve working with **heterogeneous** and **large-scale** graphs. **GNNs** iteratively update node representations by aggregating the representations of node neighbors and their representation from the previous iteration. Such properties make **graph neural networks** a great tool for various problems we in Memgraph encounter. If your graph is evolving in time, check [TGN model](https://github.com/memgraph/mage/blob/main/python/tgn.py) that Memgraph engineers have already developed.
