@@ -8,12 +8,13 @@ sidebar_label: Changelog
 
 ### Bug Fixes
 
-* Fix handling single-line commented Cypher code in query execution.
-* Fix the map toggle freeze in the graph view.
-* Fix showing multiple maps in the rich collections.
-* Fix missing node and edge information on graph schema.
-* Fix the query reordering in the rich collections.
-* Fix using a previous description when adding a new query to the rich collection.
+* Writing a single-line comment in the Cypher code no longer results in an error.
+* Having different map tiles (e.g. "light" map tile on one map view, but "dark" map tile on another map view) for multiple graph map views in the rich collection is now fixed and enabled.
+* Graph rendering freeze when toggling the map view on/off during the graph rendering process has been fixed.
+* All the information about nodes and edges on the graph schema is now previewed as expected.
+* A bug that would wrongly mix query title and description when queries are reordered in the rich query collection has been fixed.
+* A bug that would not reset the description field when adding a new query to the query collection has been fixed.
+* Fixed an issue when saving a style, which now saves the current GSS code, not the last applied one.
 
 ## v2.3.0 - Oct 24, 2022
 
