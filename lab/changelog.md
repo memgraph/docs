@@ -14,7 +14,6 @@ sidebar_label: Changelog
 * All the information about nodes and edges on the graph schema is now previewed as expected.
 * A bug that would mix query title and description when queries are reordered in the rich query collection has been fixed.
 * A bug that would not reset the description field when adding a new query to the query collection has been fixed.
-* Fixed an issue when saving a style, which now saves the current GSS code, not the last applied one.
 * Saving a new style now works as expected. An active style is saved, not the last applied one.
 
 ## v2.3.0 - Oct 24, 2022
