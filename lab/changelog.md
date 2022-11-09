@@ -4,6 +4,18 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v2.3.1 - Nov 4, 2022
+
+### Bug Fixes
+
+* Writing a single-line comment in the Cypher code no longer results in an error.
+* Having different map tiles (e.g. "light" map tile on one map view, but "dark" map tile on another map view) for multiple graph map views in the rich collection is enabled and works as expected.
+* Graph rendering freeze when toggling the map view on/off during the graph rendering process has been fixed.
+* All the information about nodes and edges on the graph schema is now previewed as expected.
+* A bug that would mix query title and description when queries are reordered in the rich query collection has been fixed.
+* A bug that would not reset the description field when adding a new query to the query collection has been fixed.
+* Saving a new style now works as expected. The active style is saved, not the last applied one.
+
 ## v2.3.0 - Oct 24, 2022
 
 ### What's New
