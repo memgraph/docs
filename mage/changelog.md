@@ -8,8 +8,20 @@ sidebar_label: Changelog
 
 ### Major Features and Improvements
 
+- Implement Link prediction with DGL.
+  [#160](https://github.com/memgraph/mage/pull/160)
+- Implement Node classification with PyTorch.
+  [#161](https://github.com/memgraph/mage/pull/161)
+- Add igraph support.
+  [#150](https://github.com/memgraph/mage/pull/150)
+- Add embeddings K-Means++ clustering algorithm.
+  [#105](https://github.com/memgraph/mage/pull/105)
+- Add better support for C++ API.
+  [#174](https://github.com/memgraph/mage/pull/174)
+- 
 ### Bug Fixes
-
+- Fix reset procedure, class label and early stopping bugs on node classification module.
+  [#173](https://github.com/memgraph/mage/pull/173)
 
 ## v1.3.2 - Oct 10, 2022
 
