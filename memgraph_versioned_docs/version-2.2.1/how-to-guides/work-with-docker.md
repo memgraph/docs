@@ -220,7 +220,7 @@ ID](#how-to-retrieve-a-docker-container-id).
 Then run the following command if the container ID is `9397623cd87e`:
 
 ```
-docker -it exec 9397623cd87e bash
+docker exec -it  9397623cd87e bash
 ```
 
 To navigate through the container, use the following commands:
