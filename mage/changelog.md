@@ -4,6 +4,29 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v1.4 - Dec 13, 2021
+
+### Major Features and Improvements
+
+### Bug Fixes
+
+
+
+## v1.3 - Dec 13, 2021
+
+### Major Features and Improvements
+
+### Bug Fixes
+
+
+## v1.2 - Dec 13, 2021
+
+### Major Features and Improvements
+
+
+### Bug Fixes
+
+
 ## v1.1 - Dec 13, 2021
 
 ### Major Features and Improvements
