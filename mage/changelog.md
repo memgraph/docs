@@ -11,21 +11,67 @@ sidebar_label: Changelog
 ### Bug Fixes
 
 
+## v1.3.2 - Oct 10, 2022
 
-## v1.3 - Dec 13, 2021
+### Major Features and Improvements
+- Allow restricting community detection to subgraphs.
+  [#152](https://github.com/memgraph/mage/pull/152)
+- Implement Degree centrality algorithm.
+  [#162](https://github.com/memgraph/mage/pull/162)
+- Update Memgraph version.
+  [#171](https://github.com/memgraph/mage/pull/171)
+
+### Bug Fixes
+- Dynamic betweenness centrality bugfix by @antepusic in https://github.com/memgraph/mage/pull/147
+
+## v1.3.1 - Jul 14, 2022
+
+### Major Features and Improvements
+- Update MG version.
+  [#154](https://github.com/memgraph/mage/pull/154)
+- Introduce E2E group testing.
+  [#145](https://github.com/memgraph/mage/pull/145)
+
+## v1.3 - May 23, 2022
+
+### Major Features and Improvements
+- Add integration between cuGraph and Memgraph integration.
+  [#99](https://github.com/memgraph/mage/pull/99)
+
+### Bug Fixes
+- Fix node deletion.
+  [#141](https://github.com/memgraph/mage/pull/141)
+
+## v1.2 - Apr 20, 2022
 
 ### Major Features and Improvements
 
+- Implemented Temporal graph networks.
+  [#121](https://github.com/memgraph/mage/pull/121)
+- Implemented Dynamic Betweenness Centrality.
+  [#127](https://github.com/memgraph/mage/pull/127)
+- Implemented Dynamic Katz Centrality.
+  [#117](https://github.com/memgraph/mage/pull/117)
+- Implemented Louvain Community Detection.
+  [#48](https://github.com/memgraph/mage/pull/48)
+- Implemented Maximum Flow.
+  [#125](https://github.com/memgraph/mage/pull/125)
+- Implemented Static Katz Centrality. 
+  [#117](https://github.com/memgraph/mage/pull/117)
+- Added utility Import/Export module (JSON).
+  [#100](https://github.com/memgraph/mage/pull/100)
+- Bump the version of Black formatter.
+  [#132](https://github.com/memgraph/mage/pull/132)
+
 ### Bug Fixes
-
-
-## v1.2 - Dec 13, 2021
-
-### Major Features and Improvements
-
-
-### Bug Fixes
-
+- Fix IsSubset checking for unordered set.
+  [#135](https://github.com/memgraph/mage/pull/135)
+- Fix Continuous integration.
+  [#133](https://github.com/memgraph/mage/pull/133)
+- Fix E2E testing.
+  [#128](https://github.com/memgraph/mage/pull/128)
+- Fix ID validity check.
+  [#129](https://github.com/memgraph/mage/pull/129)
 
 ## v1.1 - Dec 13, 2021
 
