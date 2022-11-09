@@ -72,7 +72,7 @@ To **summarize** basic node classification workflow is as follows:
 :::info
 
 This **MAGE** module is still in its early stage. We intend to use it only for
-**learning** activities. If you wish to make it production-ready, make sure
+**exploring or learning** about node classification . If you wish us to make it production-ready, make sure
 to either open a **[GitHub issue](https://github.com/memgraph/mage/issues)** or
 drop us a comment on **[Discord](https://discord.gg/memgraph)**. Also, consider
 throwing us a :star: so we can continue to do even better work.
@@ -135,7 +135,7 @@ declare_model_and_data and sets each global variable to some value.
   ) YIELD * RETURN *;
 ```
 
-### train(num_epochs)
+### `train(num_epochs)`
 
 This procedure performs model training. Firstly it declares data, model, optimizer and criterion. Afterwards it performs training.
 #### Input
@@ -156,7 +156,7 @@ This procedure performs model training. Firstly it declares data, model, optimiz
   CALL node_classification.train() YIELD * RETURN *;
 ```
 
-### get_training_data()
+### `get_training_data()`
 Use following procedure to get logged data from training.
 
 #### Return values
@@ -170,7 +170,7 @@ Use following procedure to get logged data from training.
   CALL node_classification.get_training_data() YIELD * RETURN *;
 ```
 
-### save_model()
+### `save_model()`
 
 This function saves model to model saving folder. If there are already total of **max_models_to_keep** models in model saving folder, 
 the oldest model is deleted.
@@ -187,7 +187,7 @@ the oldest model is deleted.
   CALL node_classification.save_model() YIELD * RETURN *;
 ```
 
-### load_model(num: int = 0)
+### `load_model(num)`
 
 This function loads model from specified folder.
 
@@ -204,10 +204,10 @@ This function loads model from specified folder.
   CALL node_classification.load_model() YIELD * RETURN *;
 ```
 
-### predict(vertex: mgp.Vertex)
+### `predict(vertex)`
 
-This function predicts metrics on one node. It is suggested that user previously
-loads unseen test data to predict on it.
+This function predicts metrics on one node. It is suggested to load even test data (data without labels). Test data
+won't be part of training or validation process.
     
 #### Input
 - `vertex: mgp.Vertex`➡ prediction node
@@ -220,7 +220,7 @@ loads unseen test data to predict on it.
 MATCH (n {id: 1}) CALL node_classification.predict(n) YIELD * RETURN predicted_value;
 ```
 
-### reset()
+### `reset()`
 This function resets all variables to default values.
 
 #### Return values
@@ -233,94 +233,111 @@ This function resets all variables to default values.
 
 ## Example
 
-In this example, network tries to find frauds in Heterogeneous Graph Insurance Dataset.
 
-TODO explain dataset
-First, load the following `insurance.cypherl` file to memgraph. It can be done easily by running
-TODO upload insurance.cypherl file
-```
-mgconsole < /PATH_TO_FILE/insurance.cypherl
-```
+<Tabs
+groupId="example"
+defaultValue="visualization"
+values={[
+{label: 'Step 1: Input graph', value: 'visualization'},
+{label: 'Step 2: Load commands', value: 'cypher-load'},
+{label: 'Step 3: Set model parameters', value: 'set-model-parameters'},
+{label: 'Step 4: Train', value: 'train'},
+{label: 'Step 5: Train results', value: 'train-results'},
+{label: 'Step 6: Predict', value: 'predict'},
+{label: 'Step 7: Predict results', value: 'predict-results'},
+]
+}>
 
-After, it is recommended to load the module:
+
+  <TabItem value="visualization">
+
+  <img src={require('../../data/query-modules/python/gnn-node-classification/example.png').default}/>
+
+  </TabItem>
+
+
+  <TabItem value="cypher-load">
+
 ```cypher
-CALL mg.load("node_classification");
+CREATE (v1:PAPER {id: 10, features: [1, 2, 3], label:0});
+CREATE (v2:PAPER {id: 11, features: [1.54, 0.3, 1.78], label:0});
+CREATE (v3:PAPER {id: 12, features: [0.5, 1, 4.5], label:0});
+CREATE (v4:PAPER {id: 13, features: [0.78, 0.234, 1.2], label:0});
+CREATE (v5:PAPER {id: 14, features: [3, 4, 100], label:0});
+CREATE (v6:PAPER {id: 15, features: [2.1, 2.2, 2.3], label:1});
+CREATE (v7:PAPER {id: 16, features: [2.2, 2.3, 2.4], label:1});
+CREATE (v8:PAPER {id: 17, features: [2.3, 2.4, 2.5], label:1});
+CREATE (v9:PAPER {id: 18, features: [2.4, 2.5, 2.6], label:1});
+MATCH (v1:PAPER {id:10}), (v2:PAPER {id:11}) CREATE (v1)-[e:CITES {}]->(v2);
+MATCH (v2:PAPER {id:11}), (v3:PAPER {id:12}) CREATE (v2)-[e:CITES {}]->(v3);
+MATCH (v3:PAPER {id:12}), (v4:PAPER {id:13}) CREATE (v3)-[e:CITES {}]->(v4);
+MATCH (v4:PAPER {id:13}), (v1:PAPER {id:10}) CREATE (v4)-[e:CITES {}]->(v1);
+MATCH (v4:PAPER {id:13}), (v5:PAPER {id:14}) CREATE (v4)-[e:CITES {}]->(v5);
+MATCH (v5:PAPER {id:14}), (v6:PAPER {id:15}) CREATE (v5)-[e:CITES {}]->(v6);
+MATCH (v6:PAPER {id:15}), (v7:PAPER {id:16}) CREATE (v6)-[e:CITES {}]->(v7);
+MATCH (v7:PAPER {id:16}), (v8:PAPER {id:17}) CREATE (v7)-[e:CITES {}]->(v8);
+MATCH (v8:PAPER {id:17}), (v9:PAPER {id:18}) CREATE (v8)-[e:CITES {}]->(v9);
+MATCH (v9:PAPER {id:18}), (v6:PAPER {id:15}) CREATE (v9)-[e:CITES {}]->(v6);
 ```
 
-Before models are trained, set default parameters.
-Note: be careful to write correct `class_name` and `features_name`. Line `PROCEDURE MEMORY UNLIMITED` is not necessary here, it is used for bigger datasets.
+  </TabItem>
+
+  <TabItem value="set-model-parameters">
 
 ```cypher
-CALL node_classification.set_model_parameters({layer_type: "GATJK", learning_rate: 0.001, hidden_features_size: [16,16], class_name: "fraud", features_name: "embedding", batch_size: 10}) PROCEDURE MEMORY UNLIMITED YIELD * RETURN *;
+CALL node_classification.set_model_parameters({layer_type: "GAT", learning_rate: 0.001, 
+                                               hidden_features_size: [2,2], 
+                                               class_name: "label", features_name: "features", console_log_freq:1}) YIELD * 
+RETURN *;
 ```
+  
+  </TabItem>
 
-Memgraph returns default parameters:
 
-```
-"aggregator": "mean",
-"checkpoint_freq": 5,
-"console_log_freq": 5,
-"device_type": "cpu",
-"hidden_features_size": [
-  16,
-  16
-],
-"layer_type": "GATJK",
-"learning_rate": 0.001,
-"metrics": [
-  "loss",
-  "accuracy",
-  "f1_score",
-  "precision",
-  "recall",
-  "num_wrong_examples"
-],
-"node_id_property": "id",
-"num_epochs": 100,
-"path_to_model": "/home/mateo/memgraph_with_fraud_detection_demo/torch_models/model_GATJK_",
-"split_ratio": 0.8,
-"weight_decay": 0.0005
-```
+  <TabItem value="train">
 
-(Optional)
-If there are no node features, you can make them with Memgraph's already implemented Node2Vec query module!
 ```cypher
-CALL node2vec.set_embeddings() YIELD *;
+CALL node_classification.train(5) YIELD epoch, loss RETURN *;
 ```
 
-Let the training begin!
-```cypher
-CALL node_classification.train() YIELD *;
+  </TabItem>
+
+  <TabItem value="train-results">
+
+```plaintext
++----------+----------+
+| epoch    | loss     |
++----------+----------+
+| 1        | 0.788709 |
+| 2        | 0.765075 |
+| 3        | 0.776351 |
+| 4        | 0.727615 |
+| 5        | 0.727735 |
+
 ```
 
-After training, you can obtain training data with the following function
+  </TabItem>
+
+  <TabItem value="predict"> 
+
 ```cypher
-CALL node_classification.get_training_data() YIELD *;
+ MATCH (v1:PAPER {id: 10})
+ CALL node_classification.predict(v1) YIELD predicted_class RETURN predicted_class, v1.label as correct_class;
 ```
-This is example of one row in Memgraph output:
+
+  </TabItem>
+
+  <TabItem value="predict-results">
+
+```plaintext
++-----------------+-----------------+
+| predicted_class | correct_class   |
++-----------------+-----------------+
+| 0               | 0               |
++-----------------+-----------------+
 ```
-{
-  'epoch': 5, 
-  'loss': 0.11469734972342849, 
-  'train_log': 
-    {
-      'accuracy': 0.9618644118309021, 
-      'f1_score': 0.9618643522262573, 
-      'precision': 0.9618644118309021, 
-      'recall': 0.9618644118309021
-    }, 
-  'val_log': 
-    {
-      'accuracy': 0.9655172228813171, 
-      'f1_score': 0.9655172228813171, 
-      'precision': 0.9655172228813171, 
-      'recall': 0.9655172228813171
-    }, 
-  'val_loss': 0.10837011535962422
-}
-```
-Finally, you can find out if CLAIM was fraud or not.
-```cypher
-MATCH (n:CLAIM {amount: 265.32}) CALL node_classification.predict(n) YIELD * RETURN predicted_class;
-```
-Memgraph will output `0`, which means model doesn't recognize this CLAIM as fraud.
+
+  </TabItem>
+
+</Tabs>
+
