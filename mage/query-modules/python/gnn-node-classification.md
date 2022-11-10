@@ -43,10 +43,10 @@ The `node_classification` module supports as follows:
 - recommendation system use cases
 
 
-If you want to explore our implementation, jump to **[github/memgraph/mage](https://github.com/memgraph/mage)** and find
-`python/node_classification.py`. Feel free to give us a :star: if you like the code. 
 The easiest way to test **node_classification** is by downloading [Memgraph Platform](https://memgraph.com/download)
-and using some of the preloaded datasets in **Memgraph Lab**.
+and using some of the preloaded datasets in **Memgraph Lab**. If you want to explore our implementation, jump to **[github/memgraph/mage](https://github.com/memgraph/mage)** and find
+`python/node_classification.py`. Feel free to give us a :star: if you like the code. 
+
 
 Feel free to open a **[GitHub issue](https://github.com/memgraph/mage/issues)**
 or start a discussion on **[Discord](https://discord.gg/memgraph)** if you want
@@ -83,7 +83,7 @@ throwing us a :star: so we can continue to do even better work.
 
 ### `set_model_parameters(params)`
 
-The purpose of this function is to initialize all global variables. _You_ can change those via **params** dictionary. It checks if variables in **params** are defined appropriately. If so, map of default global parameters is overriden with user defined dictionary params.
+This function initializes all global variables. _You_ can change those via **params** dictionary. It checks if variables in **params** are defined appropriately. If so, map of default global parameters is overriden with user defined dictionary params.
 After that it executes previously defined functions declare_globals and
 declare_model_and_data and sets each global variable to some value.
 
