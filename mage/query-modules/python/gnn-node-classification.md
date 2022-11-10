@@ -28,19 +28,19 @@ style={{
 
 This query module contains all necessary functions you need to train GNN model on Memgraph. 
 
-You can find support for the following features in **node_classification** module:
-- support for both **homogeneous** and **heterogeneous** graphs
-- support for multiple-label and multi-edge-type graphs
-- **no restrictions on dataset size**
-- **multiple model architectures** layers to work on (inductive learning):
-    - **Graph attention with Jumping Knowledge**
-    - multiple versions of **Graph attention network (GAT)**
-    - **GraphSAGE**
-- support for **early stopping**
-- support for different **metrics calculations**
-- **predictions** for specific node
-- **saving** models and **loading** models
-- its applicability to use it as a **recommendation system**
+The `node_classification` module supports as follows:
+- homogeneous and heterogeneous graphs
+- multiple-label and multi-edge-type graphs
+- any-size datasets
+- the following model architectures:
+    - Graph Attention with Jumping Knowledge
+    - multiple versions of Graph attention networks (GAT)
+    - GraphSAGE
+- early stopping
+- calculation of various metrics
+- predictions for specified nodes
+- model saving and loading
+- recommendation system use cases
 
 
 If you want to explore our implementation, jump to **[github/memgraph/mage](https://github.com/memgraph/mage)** and find

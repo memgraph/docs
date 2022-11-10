@@ -7,7 +7,7 @@ sidebar_label: Node Classification
 ## Description
 Node classification is the problem of finding out the **right label** for a **node** based on its **neighbors’ labels** and **structure similarities**.
 
-More formally, let `G=(V,E)` be a graph, `S` the set of all labels, and `f : V → S` a vertex labeling function that returns the correct label for each node. 
+More formally, let `G=(V, E)` be a graph with vertices (nodes) `V` and edges (relationships) `E`, `S` the set of all labels, and `f : V → S` a vertex labeling function that returns the correct label for each node. 
 From a given partial function `g : V’ ⊆ V → S` (`V’` being training examples), 
 a node classification model aims to minimize the loss of the label prediction function `g’ : V → S`.
 
@@ -15,10 +15,10 @@ The motivation for node classification models is the sociological concept of **h
 bond with each other tend to have similar properties. In graph structure, **homophily** means that neighboring nodes 
 tend to have the same labels and similar connections.  
 
-Set `V` can be a lot of things, and the most common are scientific publications, proteins, Reddit posts, etc. In the same respective order, 
+In real-life datasets, the set `V` can be a lot of things, often scientific publications, proteins, Reddit posts, etc. In the same respective order, 
 set `E` can be a citation of publications, protein connections, or connection of posts commented by the same user. Therefore, node classification helps the user to classify publications 
-relevant to its field, check whether protein helps cure new diseases, or simply find out to which subreddit its post naturally belongs. 
-Given the not completely labeled graph, node classification tends to find the correct label for each node.
+relevant to its field, check whether protein helps cure new diseases, or simply find out which subreddit a post naturally belongs to. 
+On incompletely labeled graphs, node classification seeks to find the right labels for unlabeled nodes.
 
 ### Solution 
 Solving methods range from **traditional** to **machine learning-based**. Both models work on top of the feature which describes each node. Together features and relationships between
@@ -48,7 +48,7 @@ learns and maps such features as distinguishing ones. ML models are constantly d
 
 [![Node classification](https://img.shields.io/badge/Node_classification-Documentation-FCC624?style=for-the-badge&logo=python&logoColor=white)](/mage/query-modules/python/node-classification-with-gnn)
 
-The machine learning approach for **node classification** is implemented within the project [**MAGE**](https://github.com/memgraph/mage). Be sure to check implementation :point_up: and test it yourself.
+Machine learning-powered **node classification** is provided within [Memgraph MAGE](https://github.com/memgraph/mage). We encourage you to test it yourself and take a look at the implementation.
 
 ## Use cases
 
