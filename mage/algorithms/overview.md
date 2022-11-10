@@ -55,6 +55,13 @@ detection](/algorithms/traditional-graph-analytics/cycle-detection-algorithm.md)
 Cycles are not only popular in graph structures but also play an important role
 in number theory and cryptography.
 
+### Degree Centrality
+
+Centrality analysis provides information about the node’s importance for an
+information flow or connectivity of the network. A basic type of centrality is 
+[Degree Centrality](/algorithms/traditional-graph-analytics/degree-centrality.md)
+It is defined as the number of edges adjacent to a node.
+
 ### Graph Coloring
 
 Certain applications require the special labeling of a graph called [graph
