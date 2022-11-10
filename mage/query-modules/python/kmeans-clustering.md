@@ -1,7 +1,7 @@
 ---
-id: node2vec
-title: node2vec
-sidebar_label: node2vec
+id: kmeans-clustering
+title: kmeans_clustering
+sidebar_label: kmeans_clustering
 ---
 
 import Tabs from '@theme/Tabs';
@@ -23,7 +23,8 @@ style={{
 
 ## Abstract
 
-
+The KMeans algorithm clusters given data by trying to separate samples in `n` groups of equal variance, by minimizing a criterion known as 
+within-the-cluster sum-of-squares. To understand more about it, jump to [algorithm](../../algorithms/machine-learning-graph-analytics/kmeans-clustering-algorithm) page.
 
 | Trait               | Value                                                          |
 | ------------------- | -------------------------------------------------------------- |
@@ -36,6 +37,7 @@ style={{
 ## Procedures
 
 ### `get_clusters( n_clusters, embedding_property, init, n_init, max_iter, tol, algorithm, random_state)`
+This procedure returns for each node to which cluster it belongs to.
 
 #### Input:
 
@@ -63,6 +65,7 @@ If `random` then choose `n_clusters` observations (rows) at random from data for
 ```
 
 ### `set_clusters( n_clusters, embedding_property, cluster_property, init, n_init, max_iter, tol, algorithm, random_state)`
+Procedure sets for each node to which cluster it belongs to by writing cluster id  to `cluster_property`.
 
 #### Input:
 
@@ -104,7 +107,7 @@ values={[
 }>
   <TabItem value="visualization">
 
-<img src={require('../../data/query-modules/python/kmeans/img.png').default}/>
+<img src={require('../../data/query-modules/python/kmeans-clustering/img.png').default}/>
 
   </TabItem>
   <TabItem value="cypher-load">

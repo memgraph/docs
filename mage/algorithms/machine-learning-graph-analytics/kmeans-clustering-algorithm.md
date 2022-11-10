@@ -1,7 +1,7 @@
 ---
 id: kmeans-clustering-algorithm
 title: K-Means Clustering
-sidebar_label: Graph Clustering
+sidebar_label: K-Means Clustering
 ---
 
 ## Description

@@ -39,6 +39,7 @@ module.exports = {
         "query-modules/python/json-util",
         "query-modules/cpp/katz-centrality",
         "query-modules/cpp/katz-centrality-online",
+        "query-modules/python/kmeans-clustering",
         "query-modules/python/link-prediction-with-gnn",
         "query-modules/python/max-flow",
         "query-modules/python/node2vec",
@@ -104,6 +105,7 @@ module.exports = {
           label: "Machine Learning Graph Algorithms",
           items: [
             "algorithms/machine-learning-graph-analytics/gnn-algorithm",
+            "algorithms/machine-learning-graph-analytics/kmeans-clustering-algorithm",
             "algorithms/machine-learning-graph-analytics/graph-classification-algorithm",
             "algorithms/machine-learning-graph-analytics/link-prediction-algorithm",
             "algorithms/machine-learning-graph-analytics/node-classification-algorithm",
