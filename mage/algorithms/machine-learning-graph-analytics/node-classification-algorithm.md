@@ -11,8 +11,8 @@ More formally, let `G=(V, E)` be a graph with vertices (nodes) `V` and edges (re
 From a given partial function `g : V’ ⊆ V → S` (`V’` being training examples), 
 a node classification model aims to minimize the loss of the label prediction function `g’ : V → S`.
 
-The motivation for node classification models is the sociological concept of **homophily**. In social networks, individuals who associate and 
-bond with each other tend to have similar properties. In graph structure, **homophily** means that neighboring nodes 
+The motivation for node classification models is the sociological concept of homophily. In social networks, individuals who associate and 
+bond with each other tend to have similar properties. In graph structure, homophily means that neighboring nodes 
 tend to have the same labels and similar connections.  
 
 In real-life datasets, the set `V` can be a lot of things, often scientific publications, proteins, Reddit posts, etc. In the same respective order, 
