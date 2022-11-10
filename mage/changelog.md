@@ -14,13 +14,13 @@ sidebar_label: Changelog
   [#161](https://github.com/memgraph/mage/pull/161)
 - Add igraph support.
   [#150](https://github.com/memgraph/mage/pull/150)
-- Add embeddings K-Means++ clustering algorithm.
+- Add _k_-means embedding clustering algorithm.
   [#105](https://github.com/memgraph/mage/pull/105)
 - Add better support for C++ API.
   [#174](https://github.com/memgraph/mage/pull/174)
 - 
 ### Bug Fixes
-- Fix reset procedure, class label and early stopping bugs on node classification module.
+- Fix bugs in resetting procedures, class labels and early stopping in the Node classification module.
   [#173](https://github.com/memgraph/mage/pull/173)
 
 ## v1.3.2 - Oct 10, 2022
@@ -28,7 +28,7 @@ sidebar_label: Changelog
 ### Major Features and Improvements
 - Allow restricting community detection to subgraphs.
   [#152](https://github.com/memgraph/mage/pull/152)
-- Implement Degree centrality algorithm.
+- Implement the degree centrality algorithm.
   [#162](https://github.com/memgraph/mage/pull/162)
 - Update Memgraph version.
   [#171](https://github.com/memgraph/mage/pull/171)
