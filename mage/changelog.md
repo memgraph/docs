@@ -8,7 +8,7 @@ sidebar_label: Changelog
 
 ### Major Features and Improvements
 
-- Implement Link prediction with DGL.
+- Implement Link prediction with [DGL](https://www.dgl.ai/).
   [#160](https://github.com/memgraph/mage/pull/160)
 - Implement Node classification with PyTorch.
   [#161](https://github.com/memgraph/mage/pull/161)
