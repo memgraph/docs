@@ -72,7 +72,7 @@ sidebar_label: Changelog
   [#117](https://github.com/memgraph/mage/pull/117)
 - Added utility Import/Export module (JSON).
   [#100](https://github.com/memgraph/mage/pull/100)
-- Bump the version of Black formatter.
+- Bumped the version of Black formatter.
   [#132](https://github.com/memgraph/mage/pull/132)
 
 ### Bug Fixes
