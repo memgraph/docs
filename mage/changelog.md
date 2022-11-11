@@ -8,15 +8,15 @@ sidebar_label: Changelog
 
 ### Major Features and Improvements
 
-- Implement Link prediction with [DGL](https://www.dgl.ai/).
+- Implemented Link prediction with [DGL](https://www.dgl.ai/).
   [#160](https://github.com/memgraph/mage/pull/160)
-- Implement Node classification with PyTorch.
+- Implemented Node classification with PyTorch.
   [#161](https://github.com/memgraph/mage/pull/161)
-- Add igraph support.
+- Added igraph support.
   [#150](https://github.com/memgraph/mage/pull/150)
-- Add _k_-means embedding clustering algorithm.
+- Added _k_-means embedding clustering algorithm.
   [#105](https://github.com/memgraph/mage/pull/105)
-- Add better support for C++ API.
+- Added better support for C++ API.
   [#174](https://github.com/memgraph/mage/pull/174)
 - 
 ### Bug Fixes
@@ -26,11 +26,11 @@ sidebar_label: Changelog
 ## v1.3.2 - Oct 10, 2022
 
 ### Major Features and Improvements
-- Allow restricting community detection to subgraphs.
+- Allowed restricting community detection to subgraphs.
   [#152](https://github.com/memgraph/mage/pull/152)
-- Implement the degree centrality algorithm.
+- Implemented the degree centrality algorithm.
   [#162](https://github.com/memgraph/mage/pull/162)
-- Update Memgraph version.
+- Updated Memgraph version.
   [#171](https://github.com/memgraph/mage/pull/171)
 
 ### Bug Fixes
@@ -51,7 +51,7 @@ sidebar_label: Changelog
   [#99](https://github.com/memgraph/mage/pull/99)
 
 ### Bug Fixes
-- Fix node deletion.
+- Fixed node deletion.
   [#141](https://github.com/memgraph/mage/pull/141)
 
 ## v1.2 - Apr 20, 2022
@@ -76,13 +76,13 @@ sidebar_label: Changelog
   [#132](https://github.com/memgraph/mage/pull/132)
 
 ### Bug Fixes
-- Fix IsSubset checking for unordered set.
+- Fixed IsSubset checking for unordered set.
   [#135](https://github.com/memgraph/mage/pull/135)
-- Fix Continuous integration.
+- Fixed Continuous integration.
   [#133](https://github.com/memgraph/mage/pull/133)
-- Fix E2E testing.
+- Fixed E2E testing.
   [#128](https://github.com/memgraph/mage/pull/128)
-- Fix ID validity check.
+- Fixed ID validity check.
   [#129](https://github.com/memgraph/mage/pull/129)
 
 ## v1.1 - Dec 13, 2021
