@@ -6,7 +6,7 @@ sidebar_label: K-Means Clustering
 
 ## Description
 
-The KMeans algorithm clusters given data by trying to separate samples in `n` groups of equal variance, by minimizing a criterion known as 
+The K-Means algorithm clusters given data by trying to separate samples in `n` groups of equal variance by minimizing a criterion known as 
 within-the-cluster sum-of-squares. 
 Algorithm requires the number of clusters to be specified beforehand. This means it is not possible for algorithm to determine
 what is the best number of clusters to use, but it is up to user to find it. It scales well to large numbers of samples and has been used 
@@ -24,8 +24,8 @@ across a large range of application areas in many different fields such as recom
 
 [![K-Means](https://img.shields.io/badge/KMeans-Documentation-FCC624?style=for-the-badge&logo=python&logoColor=white)](/mage/query-modules/python/kmeans-clustering)
 
-**K-Means** algorithm is implemented within project
-[**MAGE**](https://github.com/memgraph/mage). Be sure to check it out in the
+**K-Means** algorithm is implemented within the
+[**MAGE**](https://github.com/memgraph/mage) project. Be sure to check it out in the
 link above.
 
 ## Use cases
@@ -33,5 +33,5 @@ link above.
 [![Social
 networks](https://img.shields.io/badge/Social_networks-Application-8A477F?style=for-the-badge)](/use-cases/social-media.md)
 
-Biggest use case for clustering is in social networks. There communities
-can be explored, similarities found, and many more.
+Clustering is mostly used in social networks. Communities
+can be explored, similarities found, and much more.

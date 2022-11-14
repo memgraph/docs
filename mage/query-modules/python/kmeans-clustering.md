@@ -24,7 +24,7 @@ style={{
 ## Abstract
 
 The KMeans algorithm clusters given data by trying to separate samples in `n` groups of equal variance, by minimizing a criterion known as 
-within-the-cluster sum-of-squares. To understand more about it, jump to [algorithm](../../algorithms/machine-learning-graph-analytics/kmeans-clustering-algorithm) page.
+within-the-cluster sum-of-squares. To understand more about it, jump to the [algorithm](../../algorithms/machine-learning-graph-analytics/kmeans-clustering-algorithm) page.
 
 | Trait               | Value                                                          |
 | ------------------- | -------------------------------------------------------------- |
@@ -43,13 +43,13 @@ This procedure returns for each node to which cluster it belongs to.
 
 - `n_clusters : int` ➡ The number of clusters to form.
 - `embedding_property : str` ➡ From which property of node will embeddings be read.
-- `init : str` ➡ Method for initialization. If `k-means++` is selected, then initial cluster centroids  are selected using sampling based on an empirical probability distribution of the points’ contribution to the overall inertia. This technique speeds up convergence, and is theoretically proven to be `O(logk)`-optimal. 
-If `random` then choose `n_clusters` observations (rows) at random from data for the initial centroids.
-- `n_init : int` ➡ Number of time the k-means algorithm will be run with different centroid seeds
+- `init : str` ➡ Initialization method. If `k-means++` is selected, the initial cluster centroids are selected using sampling based on an empirical probability distribution of the points’ contribution to the overall inertia. This technique speeds up convergence and is theoretically proven to be `O(logk)`-optimal. 
+If `random` then `n_clusters` observations (rows) are chosen for the initial centroids randomly from the data.
+- `n_init : int` ➡ Number of times the k-means algorithm will be run with different centroid seeds.
 - `max_iter : int` ➡ Length of one walk in walk sampling.
 - `tol : float` ➡ Relative tolerance with regards to Frobenius norm of the difference in the cluster centers of two consecutive iterations to declare convergence.
-- `algorithm : str` ➡ Options are `lloyd`, `elkan`, `auto`, `full`
-- `random_state : int` ➡ Use an int to make the randomness deterministic
+- `algorithm : str` ➡ Options are `lloyd`, `elkan`, `auto`, `full`.
+- `random_state : int` ➡ Use an int to make the randomness deterministic.
 
 #### Output:
 
