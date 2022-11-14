@@ -49,7 +49,7 @@ If `random`, `n_clusters` observations (rows) are randomly chosen for the initia
 - `max_iter : int` ➡ Length of sampling walks.
 - `tol : float` ➡ Relative tolerance of the Frobenius norm of the difference of cluster centers across consecutive iterations. Used in determining convergence.
 - `algorithm : str` ➡ Options are `lloyd`, `elkan`, `auto`, `full`. Description [here](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html#:~:text=algorithm%7B%E2%80%9Clloyd%E2%80%9D%2C%20%E2%80%9Celkan%E2%80%9D%2C%20%E2%80%9Cauto%E2%80%9D%2C%20%E2%80%9Cfull%E2%80%9D%7D%2C%20default%3D%E2%80%9Dlloyd%E2%80%9D).
-- `random_state : int` ➡ Random seed for the algorithm.
+- `random_state : int` ➡ Random seed for the algorithm (default:1998).
 
 #### Output:
 
@@ -78,7 +78,7 @@ If `random`, `n_clusters` observations (rows) are randomly chosen for the initia
 - `max_iter : int` ➡ Length of sampling walks.
 - `tol : float` ➡ Relative tolerance of the Frobenius norm of the difference of cluster centers across consecutive iterations. Used in determining convergence.
 - `algorithm : str` ➡ Options are `lloyd`, `elkan`, `auto`, `full`. Description [here](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html#:~:text=algorithm%7B%E2%80%9Clloyd%E2%80%9D%2C%20%E2%80%9Celkan%E2%80%9D%2C%20%E2%80%9Cauto%E2%80%9D%2C%20%E2%80%9Cfull%E2%80%9D%7D%2C%20default%3D%E2%80%9Dlloyd%E2%80%9D).
-- `random_state : int` ➡ Random seed for the algorithm.
+- `random_state : int` ➡ Random seed for the algorithm (default:1998).
 
 #### Output:
 

@@ -12,8 +12,6 @@ The algorithm requires the number of clusters to be specified beforehand. In oth
 
 
 ![k-means clustering](../../data/algorithms/machine-learning-graph-analytics/kmeans-clustering.png)
-> K-means clustering run on node2vec output; clusters are numbered.
-
 
 
 ### Implementation
