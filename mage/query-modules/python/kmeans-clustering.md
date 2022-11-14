@@ -1,7 +1,7 @@
 ---
-id: k-means-clustering
-title: k-means_clustering
-sidebar_label: k-means_clustering
+id: kmeans
+title: kmeans
+sidebar_label: kmeans
 ---
 
 import Tabs from '@theme/Tabs';

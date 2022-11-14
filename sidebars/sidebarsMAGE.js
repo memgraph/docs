@@ -39,7 +39,7 @@ module.exports = {
         "query-modules/python/json-util",
         "query-modules/cpp/katz-centrality",
         "query-modules/cpp/katz-centrality-online",
-        "query-modules/python/k-means-clustering",
+        "query-modules/python/kmeans",
         "query-modules/python/link-prediction-with-gnn",
         "query-modules/python/max-flow",
         "query-modules/python/node2vec",
