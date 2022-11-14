@@ -87,8 +87,7 @@ After that it executes previously defined functions declare_globals and
 declare_model_and_data and sets each global variable to some value.
 
 #### Input:
-- `ctx: (mgp.ProcCtx)`: current context,
-- `params: (mgp.Map, optional)`: user  defined parameters from query module. Defaults to {}
+- `params: (mgp.Map, optional)`: User defined parameters from query module. Defaults to {}.
 
 | Name                       | Type         | Default                                                                    | Description                                                                                                                                                                           |
 |----------------------------|--------------|----------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -138,17 +137,17 @@ declare_model_and_data and sets each global variable to some value.
 
 This procedure performs model training. Firstly it declares data, model, optimizer and criterion. Afterwards it performs training.
 #### Input
-- `num_epochs (int, optional)` ➡ number of epochs. Default set to 100.
+- `num_epochs (int, optional)` ➡ Number of epochs (default:100).
 
 #### Exceptions
-- `Exception`➡ raised if graph is empty
+- `Exception`➡ Raised if graph is empty.
 
 #### Outputs
-- `epoch: int` ➡ epoch number
-- `loss: float`➡ loss of model on training data
-- `val_loss: float`➡ loss of model on validation data
-- `train_log: list`➡ list of metrics on training data
-- `val_log: list`➡ list of metrics on validation data
+- `epoch: int` ➡ Epoch number.
+- `loss: float`➡ Loss of model on training data.
+- `val_loss: float`➡ Loss of model on validation data.
+- `train_log: list`➡ List of metrics on training data.
+- `val_log: list`➡ List of metrics on validation data.
 
 #### Usage
 ```cypher
@@ -159,10 +158,10 @@ This procedure performs model training. Firstly it declares data, model, optimiz
 Use following procedure to get logged data from training.
 
 #### Return values
-- `epoch: int` ➡ epoch number for current record's logged data
-- `loss: float`➡ loss in epoch
-- `train_log: mgp.Any` ➡ training parameters for epoch
-- `val_log: mgp.Any`➡ validation parameters for epoch
+- `epoch: int` ➡ Epoch number for current record's logged data.
+- `loss: float`➡ Loss in epoch.
+- `train_log: mgp.Any` ➡ Training parameters for epoch.
+- `val_log: mgp.Any`➡ Validation parameters for epoch.
 
 #### Usage
 ```cypher
@@ -175,11 +174,11 @@ This function saves the model to a specified folder. If there are already **max_
 the oldest model is deleted.
 
 #### Exception
-- `Exception`: raised if model is not initialized or defined
+- `Exception`: Raised if model is not initialized or defined.
 
 #### Return values
-- `path (str)`➡ path to the stored model
-- `status (str)`➡ status of the stored model
+- `path (str)`➡ Path to the stored model.
+- `status (str)`➡ Status of the stored model.
 
 #### Usage
 ```cypher
@@ -192,10 +191,10 @@ This function loads the model from the specified folder.
 
 #### Input
 
-- `num (int, optional)`: ordinary number of model to load from the default path on the disc (default: 0, i.e., newest model).
+- `num (int, optional)`: Ordinal number of model to load from the default path on the disc (default: 0, i.e., newest model).
 
 #### Return values
-- `path: str` ➡ path of loaded model
+- `path: str` ➡ Path of loaded model.
 
 #### Usage
 
@@ -209,10 +208,10 @@ This function predicts metrics on one node. It is suggested to load the test dat
 won't be a part of the training or validation process.
     
 #### Input
-- `vertex: mgp.Vertex`➡ prediction node
+- `vertex: mgp.Vertex`➡ Prediction node.
 
 #### Return values
-- `predicted_class: int`➡ predicted class for specified node
+- `predicted_class: int`➡ Predicted class for specified node.
 
 #### Usage:
 ```cypher
@@ -223,7 +222,7 @@ MATCH (n {id: 1}) CALL node_classification.predict(n) YIELD * RETURN predicted_v
 This function resets all variables to default values.
 
 #### Return values
-- `status (str)`: status of reset function
+- `status (str)`: Status of reset function.
 
 #### Usage:
 ```cypher
