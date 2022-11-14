@@ -28,7 +28,7 @@ Before you proceed with the installation guide make sure that you have:
 
 Memgraph packages are available for:
 - **CentOS 7**
-- **CentOS 8 Stream**
+- **CentOS 9**
 
 :::
 
