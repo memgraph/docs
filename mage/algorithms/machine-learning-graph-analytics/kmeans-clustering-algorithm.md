@@ -6,15 +6,13 @@ sidebar_label: K-means Clustering
 
 ## Description
 
-The k-means algorithm clusters given data by trying to separate samples in `n` groups of equal variance by minimizing a criterion known as 
+The k-means algorithm clusters given data by trying to separate samples in `n` groups of equal variance by minimizing the criterion known as 
 within-the-cluster sum-of-squares. 
-Algorithm requires the number of clusters to be specified beforehand. This means it is not possible for algorithm to determine
-what is the best number of clusters to use, but it is up to user to find it. It scales well to large numbers of samples and has been used 
-across a large range of application areas in many different fields such as recommendation engine, fraud detection and so on.
+The algorithm requires the number of clusters to be specified beforehand. In other words, the algorithm doesn’t compute the optimal number of clusters to use, but leaves that task to the user. It scales well to large numbers of samples, and it has been applied in a wide range of fields such as recommendation engines, fraud detection and market research.
 
 
 ![k-means clustering](../../data/algorithms/machine-learning-graph-analytics/kmeans-clustering.png)
-> K-means clustering run on top of Node2Vec algorithm. Numbers represent cluster.
+> K-means clustering run on node2vec output; clusters are numbered.
 
 
 
@@ -33,5 +31,4 @@ link above.
 [![Social
 networks](https://img.shields.io/badge/Social_networks-Application-8A477F?style=for-the-badge)](/use-cases/social-media.md)
 
-Clustering is mostly used in social networks. Communities
-can be explored, similarities found, and much more.
+Clustering is heavily used in social network analysis to discover user communities, find similarities between them and much more.
