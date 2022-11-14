@@ -6,7 +6,7 @@ sidebar_label: K-Means Clustering
 
 ## Description
 
-The K-Means algorithm clusters given data by trying to separate samples in `n` groups of equal variance by minimizing a criterion known as 
+The k-Means algorithm clusters given data by trying to separate samples in `n` groups of equal variance by minimizing a criterion known as 
 within-the-cluster sum-of-squares. 
 Algorithm requires the number of clusters to be specified beforehand. This means it is not possible for algorithm to determine
 what is the best number of clusters to use, but it is up to user to find it. It scales well to large numbers of samples and has been used 

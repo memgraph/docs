@@ -23,7 +23,7 @@ style={{
 
 ## Abstract
 
-The KMeans algorithm clusters given data by trying to separate samples in `n` groups of equal variance, by minimizing a criterion known as 
+The k-means algorithm clusters given data by trying to separate samples in `n` groups of equal variance, by minimizing a criterion known as 
 within-the-cluster sum-of-squares. To understand more about it, jump to the [algorithm](../../algorithms/machine-learning-graph-analytics/kmeans-clustering-algorithm) page.
 
 | Trait               | Value                                                          |
@@ -42,7 +42,7 @@ This procedure returns for each node to which cluster it belongs to.
 #### Input:
 
 - `n_clusters : int` ➡ The number of clusters to form.
-- `embedding_property : str` ➡ From which property of node will embeddings be read.
+- `embedding_property : str` ➡ Node property where embeddings are stored.
 - `init : str` ➡ Initialization method. If `k-means++` is selected, the initial cluster centroids are selected using sampling based on an empirical probability distribution of the points’ contribution to the overall inertia. This technique speeds up convergence and is theoretically proven to be `O(logk)`-optimal. 
 If `random` then `n_clusters` observations (rows) are chosen for the initial centroids randomly from the data.
 - `n_init : int` ➡ Number of times the k-means algorithm will be run with different centroid seeds.
@@ -53,8 +53,8 @@ If `random` then `n_clusters` observations (rows) are chosen for the initial cen
 
 #### Output:
 
-- `node: mgp.Vertex` ➡ Vertex for which we got cluster_id
-- `cluster_id: mgp.Number` ➡ Corresponding cluster id of vertex
+- `node: mgp.Vertex` ➡ Vertex for which we got cluster_id.
+- `cluster_id: mgp.Number` ➡ Corresponding cluster id of vertex.
 
 #### Usage:
 
@@ -70,20 +70,20 @@ Procedure sets for each node to which cluster it belongs to by writing cluster i
 #### Input:
 
 - `n_clusters : int` ➡ The number of clusters to form.
-- `embedding_property : str` ➡ From which property of node will embeddings be read.
-- `cluster_property: str` ➡ Property to which cluster_id will be saved.
-- `init : str` ➡ Method for initialization. If `k-means++` is selected, then initial cluster centroids  are selected using sampling based on an empirical probability distribution of the points’ contribution to the overall inertia. This technique speeds up convergence, and is theoretically proven to be `O(logk)`-optimal. 
-If `random` then choose `n_clusters` observations (rows) at random from data for the initial centroids.
-- `n_init : int` ➡ Number of time the k-means algorithm will be run with different centroid seeds
+- `embedding_property : str` ➡ Node property where embeddings are stored.
+- `cluster_property: str` ➡ Node property where cluster_id will be stored.
+- `init : str` ➡ Initialization method. If `k-means++` is selected, the initial cluster centroids are selected using sampling based on an empirical probability distribution of the points’ contribution to the overall inertia. This technique speeds up convergence and is theoretically proven to be `O(logk)`-optimal. 
+If `random` then `n_clusters` observations (rows) are chosen for the initial centroids randomly from the data.
+- `n_init : int` ➡ Number of times the k-means algorithm will be run with different centroid seeds.
 - `max_iter : int` ➡ Length of one walk in walk sampling.
 - `tol : float` ➡ Relative tolerance with regards to Frobenius norm of the difference in the cluster centers of two consecutive iterations to declare convergence.
-- `algorithm : str` ➡ Options are `lloyd`, `elkan`, `auto`, `full`
-- `random_state : int` ➡ Use an int to make the randomness deterministic
+- `algorithm : str` ➡ Options are `lloyd`, `elkan`, `auto`, `full`.
+- `random_state : int` ➡ Use an int to make the randomness deterministic.
 
 #### Output:
 
-- `node: mgp.Vertex` ➡ Vertex for which we got cluster_id
-- `cluster_id: mgp.Number` ➡ Corresponding cluster id of vertex
+- `node: mgp.Vertex` ➡ Vertex for which we got cluster_id.
+- `cluster_id: mgp.Number` ➡ Corresponding cluster id of vertex.
 
 #### Usage:
 
