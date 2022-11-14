@@ -21,7 +21,7 @@ relevant to its field, check whether protein helps cure new diseases, or simply 
 On incompletely labeled graphs, node classification seeks to find the right labels for unlabeled nodes.
 
 ### Solution 
-Solving methods range from **traditional** to **machine learning-based**. Both models work on top of the feature which describes each node. Together features and relationships between
+Solving methods range from **algorithmic** to **machine learning-based**. Both models work on top of the feature which describes each node. Together features and relationships between
 nodes help the algorithm decide what is the correct label for each node.
 
 The key difference is when using traditional methods, an engineer must create distinguishing features for each node himself.
