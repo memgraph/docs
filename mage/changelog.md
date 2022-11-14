@@ -40,7 +40,7 @@ sidebar_label: Changelog
 ## v1.3.1 - Jul 14, 2022
 
 ### Major Features and Improvements
-- Update Memgraph version.
+- Updated Memgraph version.
   [#154](https://github.com/memgraph/mage/pull/154)
 - Introduced E2E group testing.
   [#145](https://github.com/memgraph/mage/pull/145)
