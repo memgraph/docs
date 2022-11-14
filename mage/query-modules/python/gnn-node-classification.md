@@ -82,8 +82,8 @@ drop us a comment on **[Discord](https://discord.gg/memgraph)**.
 
 ### `set_model_parameters(params)`
 
-The function initializes all global variables. _You_ can change global variables via **params** dictionary. It checks if variables in **params** are defined appropriately. If so, map of default global parameters is overriden with user defined dictionary params.
-After that it executes previously defined functions declare_globals and
+The function initializes all global variables. _You_ can change global variables via **params** dictionary. Procedure checks if variables in **params** are defined appropriately. If so, map of default global parameters is overriden with user defined dictionary params.
+After that procedure executes previously defined functions declare_globals and
 declare_model_and_data and sets each global variable to some value.
 
 #### Input:
