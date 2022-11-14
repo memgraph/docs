@@ -4,7 +4,7 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
-## v1.4 - Dec 13, 2021
+## v1.4 - Dec 13, 2022
 
 ### Major Features and Improvements
 
@@ -39,15 +39,15 @@ sidebar_label: Changelog
 ## v1.3.1 - Jul 14, 2022
 
 ### Major Features and Improvements
-- Update MG version.
+- Update Memgraph version.
   [#154](https://github.com/memgraph/mage/pull/154)
-- Introduce E2E group testing.
+- Introduced E2E group testing.
   [#145](https://github.com/memgraph/mage/pull/145)
 
 ## v1.3 - May 23, 2022
 
 ### Major Features and Improvements
-- Add integration between cuGraph and Memgraph integration.
+- Added integration between cuGraph and Memgraph integration.
   [#99](https://github.com/memgraph/mage/pull/99)
 
 ### Bug Fixes
