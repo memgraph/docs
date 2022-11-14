@@ -20,7 +20,7 @@ The algorithm requires the number of clusters to be specified beforehand. In oth
 
 [![k-means](https://img.shields.io/badge/KMeans-Documentation-FCC624?style=for-the-badge&logo=python&logoColor=white)](/mage/query-modules/python/kmeans)
 
-**K-means** algorithm is implemented within the
+The **K-means** algorithm is implemented within the
 [**MAGE**](https://github.com/memgraph/mage) project. Be sure to check it out in the
 link above.
 

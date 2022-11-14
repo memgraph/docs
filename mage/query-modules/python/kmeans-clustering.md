@@ -71,7 +71,7 @@ Procedure sets for each node to which cluster it belongs to by writing cluster i
 
 - `n_clusters : int` ➡ Number of clusters to be formed.
 - `embedding_property : str` ➡ Node property where embeddings are stored.
-- `cluster_property: str` ➡ Node property where cluster_id will be stored.
+- `cluster_property: str` ➡ Node property where `cluster_id` will be stored.
 - `init : str` ➡ Initialization method. If `k-means++` is selected, initial cluster centroids are sampled per an empirical probability distribution of the points’ contribution to the overall inertia. This technique speeds up convergence and is theoretically proven to be `O(logk)`-optimal. 
 If `random`, `n_clusters` observations (rows) are randomly chosen for the initial centroids.
 - `n_init : int` ➡ Number of times the k-means algorithm will be run with different centroid seeds.
