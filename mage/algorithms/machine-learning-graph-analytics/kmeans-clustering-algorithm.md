@@ -13,16 +13,16 @@ what is the best number of clusters to use, but it is up to user to find it. It 
 across a large range of application areas in many different fields such as recommendation engine, fraud detection and so on.
 
 
-![kmeans-clustering](../../data/algorithms/machine-learning-graph-analytics/kmeans-clustering.png)
-> K-Means clustering run on top of Node2Vec algorithm. Numbers represent cluster
+![k-means clustering](../../data/algorithms/machine-learning-graph-analytics/kmeans-clustering.png)
+> K-means clustering run on top of Node2Vec algorithm. Numbers represent cluster.
 
 
 
 ### Implementation
 
-[![K-Means](https://img.shields.io/badge/KMeans-Implementation-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/kmeans.py)
+[![k-means](https://img.shields.io/badge/KMeans-Implementation-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/kmeans.py)
 
-[![K-Means](https://img.shields.io/badge/KMeans-Documentation-FCC624?style=for-the-badge&logo=python&logoColor=white)](/mage/query-modules/python/kmeans-clustering)
+[![k-means](https://img.shields.io/badge/KMeans-Documentation-FCC624?style=for-the-badge&logo=python&logoColor=white)](/mage/query-modules/python/kmeans-clustering)
 
 **K-Means** algorithm is implemented within the
 [**MAGE**](https://github.com/memgraph/mage) project. Be sure to check it out in the
