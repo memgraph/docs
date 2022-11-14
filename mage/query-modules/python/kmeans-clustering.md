@@ -1,7 +1,7 @@
 ---
-id: kmeans-clustering
-title: kmeans_clustering
-sidebar_label: kmeans_clustering
+id: k-means-clustering
+title: k-means_clustering
+sidebar_label: k-means_clustering
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,12 +19,12 @@ style={{
 </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-node2vec-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/kmeans.py)
+[![docs-source](https://img.shields.io/badge/source-kmeans-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/kmeans.py)
 
 ## Abstract
 
 The k-means algorithm clusters given data by trying to separate samples in `n` groups of equal variance, by minimizing a criterion known as 
-within-the-cluster sum-of-squares. To understand more about it, jump to the [algorithm](../../algorithms/machine-learning-graph-analytics/kmeans-clustering-algorithm) page.
+within-the-cluster sum-of-squares. To understand more about it, jump to the [algorithm](../../algorithms/machine-learning-graph-analytics/k-means-clustering-algorithm) page.
 
 | Trait               | Value                                                          |
 | ------------------- | -------------------------------------------------------------- |

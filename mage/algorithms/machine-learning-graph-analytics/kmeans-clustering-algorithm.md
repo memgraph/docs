@@ -1,7 +1,7 @@
 ---
-id: kmeans-clustering-algorithm
-title: K-Means Clustering
-sidebar_label: K-Means Clustering
+id: k-means-clustering-algorithm
+title: k-means clustering
+sidebar_label: k-Means clustering
 ---
 
 ## Description
