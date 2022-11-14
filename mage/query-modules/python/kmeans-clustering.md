@@ -48,7 +48,7 @@ If `random`, `n_clusters` observations (rows) are randomly chosen for the initia
 - `n_init : int` ➡ Number of times the k-means algorithm will be run with different centroid seeds.
 - `max_iter : int` ➡ Length of sampling walks.
 - `tol : float` ➡ Relative tolerance of the Frobenius norm of the difference of cluster centers across consecutive iterations. Used in determining convergence.
-- `algorithm : str` ➡ Options are `lloyd`, `elkan`, `auto`, `full`.
+- `algorithm : str` ➡ Options are `lloyd`, `elkan`, `auto`, `full`. Description [here](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html#:~:text=algorithm%7B%E2%80%9Clloyd%E2%80%9D%2C%20%E2%80%9Celkan%E2%80%9D%2C%20%E2%80%9Cauto%E2%80%9D%2C%20%E2%80%9Cfull%E2%80%9D%7D%2C%20default%3D%E2%80%9Dlloyd%E2%80%9D).
 - `random_state : int` ➡ Random seed for the algorithm.
 
 #### Output:
@@ -69,21 +69,21 @@ Procedure sets for each node to which cluster it belongs to by writing cluster i
 
 #### Input:
 
-- `n_clusters : int` ➡ The number of clusters to form.
+- `n_clusters : int` ➡ Number of clusters to be formed.
 - `embedding_property : str` ➡ Node property where embeddings are stored.
 - `cluster_property: str` ➡ Node property where cluster_id will be stored.
-- `init : str` ➡ Initialization method. If `k-means++` is selected, the initial cluster centroids are selected using sampling based on an empirical probability distribution of the points’ contribution to the overall inertia. This technique speeds up convergence and is theoretically proven to be `O(logk)`-optimal. 
-If `random` then `n_clusters` observations (rows) are chosen for the initial centroids randomly from the data.
+- `init : str` ➡ Initialization method. If `k-means++` is selected, initial cluster centroids are sampled per an empirical probability distribution of the points’ contribution to the overall inertia. This technique speeds up convergence and is theoretically proven to be `O(logk)`-optimal. 
+If `random`, `n_clusters` observations (rows) are randomly chosen for the initial centroids.
 - `n_init : int` ➡ Number of times the k-means algorithm will be run with different centroid seeds.
-- `max_iter : int` ➡ Length of one walk in walk sampling.
-- `tol : float` ➡ Relative tolerance with regards to Frobenius norm of the difference in the cluster centers of two consecutive iterations to declare convergence.
-- `algorithm : str` ➡ Options are `lloyd`, `elkan`, `auto`, `full`.
-- `random_state : int` ➡ Use an int to make the randomness deterministic.
+- `max_iter : int` ➡ Length of sampling walks.
+- `tol : float` ➡ Relative tolerance of the Frobenius norm of the difference of cluster centers across consecutive iterations. Used in determining convergence.
+- `algorithm : str` ➡ Options are `lloyd`, `elkan`, `auto`, `full`. Description [here](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html#:~:text=algorithm%7B%E2%80%9Clloyd%E2%80%9D%2C%20%E2%80%9Celkan%E2%80%9D%2C%20%E2%80%9Cauto%E2%80%9D%2C%20%E2%80%9Cfull%E2%80%9D%7D%2C%20default%3D%E2%80%9Dlloyd%E2%80%9D).
+- `random_state : int` ➡ Random seed for the algorithm.
 
 #### Output:
 
-- `node: mgp.Vertex` ➡ Vertex for which we got cluster_id.
-- `cluster_id: mgp.Number` ➡ Corresponding cluster id of vertex.
+- `node: mgp.Vertex` ➡ Graph node.
+- `cluster_id: mgp.Number` ➡ Cluster ID of the above node.
 
 #### Usage:
 
