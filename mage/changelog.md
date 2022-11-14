@@ -20,7 +20,7 @@ sidebar_label: Changelog
   [#174](https://github.com/memgraph/mage/pull/174)
 - 
 ### Bug Fixes
-- Fix bugs in resetting procedures, class labels and early stopping in the Node classification module.
+- Enable module reset to be able to train and evaluate without shutting down database, enable working with class labels which don't start from 0, and fix potential early stopping due to low limit in the Node classification module.
   [#173](https://github.com/memgraph/mage/pull/173)
 
 ## v1.3.2 - Oct 10, 2022
@@ -34,7 +34,8 @@ sidebar_label: Changelog
   [#171](https://github.com/memgraph/mage/pull/171)
 
 ### Bug Fixes
-- Dynamic betweenness centrality bugfix by @antepusic in https://github.com/memgraph/mage/pull/147
+- Dynamic betweenness centrality bugfix.
+  [#147](https://github.com/memgraph/mage/pull/147)
 
 ## v1.3.1 - Jul 14, 2022
 
