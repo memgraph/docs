@@ -135,7 +135,7 @@ declare_model_and_data and sets each global variable to some value.
 
 ### `train(num_epochs)`
 
-This procedure performs model training. Firstly it declares data, model, optimizer and criterion. Afterwards it performs training.
+This procedure performs model training. Firstly it declares data, model, optimizer, and criterion. Afterward, it performs training.
 #### Input
 - `num_epochs (int, optional)` ➡ Number of epochs (default:100).
 
