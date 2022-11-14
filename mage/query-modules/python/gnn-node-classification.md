@@ -106,7 +106,7 @@ declare_model_and_data and sets each global variable to some value.
 | path_to_model              | String       | "/tmp/torch_models"                                                        | Path for loading and storing the model.                                                                                                                                   |
 
 #### Exceptions:
-- `Exception`: exception is raised if some variable in dictionary params is not correctly defined.
+- `Exception`: Exception is raised if some variable in dictionary params is not correctly defined.
 
 #### Output
 - `mgp.Record(
