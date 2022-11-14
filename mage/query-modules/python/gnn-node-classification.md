@@ -65,17 +65,16 @@ To **summarize** basic node classification workflow is as follows:
 - set parameters by calling `set_model_parameters()` function. Be sure that **node_features** property on nodes are in place.
 - call `train()` function
 - inspect training results (optional) by calling `get_training_data()` function
-- optionally use `save_model()` and `load_model()` if you want
+- optionally use `save_model()` and `load_model()` 
 - predict node class by calling `predict()` procedure
 
 
 :::info
 
 This **MAGE** module is still in its early stage. We intend to use it only for
-**exploring or learning** about node classification . If you wish us to make it production-ready, make sure
+**exploring or learning** about node classification. If you want it to be production-ready, make sure
 to either open a **[GitHub issue](https://github.com/memgraph/mage/issues)** or
-drop us a comment on **[Discord](https://discord.gg/memgraph)**. Also, consider
-throwing us a :star: so we can continue to do even better work.
+drop us a comment on **[Discord](https://discord.gg/memgraph)**.
 
 :::
 
@@ -93,19 +92,19 @@ declare_model_and_data and sets each global variable to some value.
 
 | Name                       | Type         | Default                                                                    | Description                                                                                                                                                                           |
 |----------------------------|--------------|----------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| hidden_features_size       | List[Int]    | [16, 16]                                                                   | Embedding dimension for each node in new layer.                                                                                                                                       |
-| layer_type                 | String       | `GATJK`                                                                    | Type of layer used, supported: `GATJK`, `GAT`, `GRAPHSAGE`                                                                                                                            |
-| aggregator                 | String       | `mean`                                                                     | Type of aggregator used, supported: `mean`.                                                                                                                                           |
+| hidden_features_size       | List[Int]    | [16, 16]                                                                   | Embedding dimension for each node in a new layer.                                                                                                                                       |
+| layer_type                 | String       | `GATJK`                                                                    | Type of layer used, supported types: `GATJK`, `GAT`, `GRAPHSAGE`.                                                                                                                            |
+| aggregator                 | String       | `mean`                                                                     | Type of aggregator used, supported type: `mean`.                                                                                                                                           |
 | learning_rate              | Float        | 0.1                                                                        | Optimizer's learning rate.                                                                                                                                                            |
 | weight_decay               | Float        | 5e-4                                                                       | Optimizer's weight decay.                                                                                                                                                             |
-| split_ratio                | Float        | 0.8                                                                        | Ratio between training and validation data                                                                                                                                            |
-| metrics                    | List[String] | `["loss","accuracy","f1_score","precision","recall","num_wrong_examples"]` | List of metrics to report, supports any of combination "loss","accuracy","f1_score","precision","recall","num_wrong_examples"                                                         |
-| node_id_property           | String       | `id`                                                                       | Property name of node features                                                                                                                                                        |
+| split_ratio                | Float        | 0.8                                                                        | Ratio between training and validation data.                                                                                                                                            |
+| metrics                    | List[String] | `["loss","accuracy","f1_score","precision","recall","num_wrong_examples"]` | List of metrics to report, supports any combination of "loss","accuracy","f1_score","precision","recall","num_wrong_examples".                                                         |
+| node_id_property           | String       | `id`                                                                       | Property name of node features.                                                                                                                                                        |
 | num_epochs                 | Integer      | 100                                                                        | The number of epochs for model training.                                                                                                                                              |
 | console_log_freq           | Integer      | 5                                                                          | Specifies how often results will be printed.                                                                                                                                          |
 | checkpoint_freq            | Integer      | 5                                                                          | Specifies how often the model will be saved. The model is persisted on disc.                                                                                                          |
 | device_type                | String       | `cpu`                                                                      | Defines if the model will be trained using the `cpu` or `cuda`. To run on `Cuda GPU`, check if the system supports it with `torch.cuda.is_available()`, then set this flag to `cuda`. |
-| path_to_model              | String       | "/tmp/torch_models"                                                        | Path from where model is loaded and where is stored                                                                                                                                   |
+| path_to_model              | String       | "/tmp/torch_models"                                                        | Path for loading and storing the model.                                                                                                                                   |
 
 #### Exceptions:
 - `Exception`: exception is raised if some variable in dictionary params is not correctly defined.
@@ -172,15 +171,15 @@ Use following procedure to get logged data from training.
 
 ### `save_model()`
 
-This function saves model to model saving folder. If there are already total of **max_models_to_keep** models in model saving folder, 
+This function saves the model to a specified folder. If there are already **max_models_to_keep** in the folder, 
 the oldest model is deleted.
 
 #### Exception
 - `Exception`: raised if model is not initialized or defined
 
 #### Return values
-- `path (str)`➡ path to stored model
-- `status (str)`➡ status of stored model
+- `path (str)`➡ path to the stored model
+- `status (str)`➡ status of the stored model
 
 #### Usage
 ```cypher
@@ -189,11 +188,11 @@ the oldest model is deleted.
 
 ### `load_model(num)`
 
-This function loads model from specified folder.
+This function loads the model from the specified folder.
 
 #### Input
 
-- `num (int, optional)`: ordinary number of model to load from default path on disc. Defaults to 0 (newest model).
+- `num (int, optional)`: ordinary number of model to load from the default path on the disc (default: 0, i.e., newest model).
 
 #### Return values
 - `path: str` ➡ path of loaded model
@@ -206,8 +205,8 @@ This function loads model from specified folder.
 
 ### `predict(vertex)`
 
-This function predicts metrics on one node. It is suggested to load even test data (data without labels). Test data
-won't be part of training or validation process.
+This function predicts metrics on one node. It is suggested to load the test data (data without labels) as well. Test data
+won't be a part of the training or validation process.
     
 #### Input
 - `vertex: mgp.Vertex`➡ prediction node

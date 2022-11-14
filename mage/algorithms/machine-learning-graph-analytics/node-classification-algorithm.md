@@ -30,8 +30,8 @@ On the other hand, the machine learning model learns and adapts almost any set o
 For a traditional approach, extracting such a feature is not an easy problem, since there are many options to choose from — node properties, node adjacency, or the structure of the neighborhood.
 Traditional methods of extracting knowledge from nodes include measures of [centrality](https://en.wikipedia.org/wiki/Centrality), importance, or feature structure such as [graphlets](https://en.wikipedia.org/wiki/Graphlets).
 
-Graph machine learning models can work based on almost arbitrary features. Their main strength is that model finds which features are similar for nodes with the same label, and 
-learns and maps such features as distinguishing ones. ML models are constantly developed. Here are some which are usually used in **node classification** tasks:
+Graph machine learning models can work based on almost arbitrary features. Finding similar features for nodes with the same label, then
+learning and mapping such features as distinguishing ones is their biggest advantage. ML models are constantly developed. Here are some which are usually used in **node classification** tasks:
 1. [GraphSAGE](http://snap.stanford.edu/graphsage/)
 2. [Graph convolutional networks](https://towardsdatascience.com/understanding-graph-convolutional-networks-for-node-classification-a2bfdb7aba7b) (GCN)
 3. [Graph Attention Network](https://arxiv.org/abs/1710.10903) (GAT)
