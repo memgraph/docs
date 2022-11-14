@@ -22,9 +22,9 @@ across a large range of application areas in many different fields such as recom
 
 [![k-means](https://img.shields.io/badge/KMeans-Implementation-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/kmeans.py)
 
-[![k-means](https://img.shields.io/badge/KMeans-Documentation-FCC624?style=for-the-badge&logo=python&logoColor=white)](/mage/query-modules/python/kmeans-clustering)
+[![k-means](https://img.shields.io/badge/KMeans-Documentation-FCC624?style=for-the-badge&logo=python&logoColor=white)](/mage/query-modules/python/kmeans)
 
-**K-Means** algorithm is implemented within the
+**K-means** algorithm is implemented within the
 [**MAGE**](https://github.com/memgraph/mage) project. Be sure to check it out in the
 link above.
 
