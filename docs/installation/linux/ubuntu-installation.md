@@ -29,6 +29,7 @@ Before you proceed with the installation guide make sure that you have:
 Memgraph packages are available for:
 - **Ubuntu 18.04**
 - **Ubuntu 20.04**
+- **Ubuntu 22.04**
 
 :::
 

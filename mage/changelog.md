@@ -4,6 +4,88 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v1.4 - Nov 15, 2022
+
+### Major Features and Improvements
+
+- Implemented Link prediction with [DGL](https://www.dgl.ai/).
+  [#160](https://github.com/memgraph/mage/pull/160)
+- Implemented Node classification with PyTorch.
+  [#161](https://github.com/memgraph/mage/pull/161)
+- Added igraph support.
+  [#150](https://github.com/memgraph/mage/pull/150)
+- Added _k_-means embedding clustering algorithm.
+  [#105](https://github.com/memgraph/mage/pull/105)
+- Added better support for C++ API.
+  [#174](https://github.com/memgraph/mage/pull/174)
+- 
+### Bug Fixes
+- Enable module reset to be able to train and evaluate without shutting down database, enable working with class labels which don't start from 0, and fix potential early stopping due to low limit in the Node classification module.
+  [#173](https://github.com/memgraph/mage/pull/173)
+
+## v1.3.2 - Oct 10, 2022
+
+### Major Features and Improvements
+- Allowed restricting community detection to subgraphs.
+  [#152](https://github.com/memgraph/mage/pull/152)
+- Implemented the degree centrality algorithm.
+  [#162](https://github.com/memgraph/mage/pull/162)
+- Updated Memgraph version.
+  [#171](https://github.com/memgraph/mage/pull/171)
+
+### Bug Fixes
+- Dynamic betweenness centrality bugfix.
+  [#147](https://github.com/memgraph/mage/pull/147)
+
+## v1.3.1 - Jul 14, 2022
+
+### Major Features and Improvements
+- Updated Memgraph version.
+  [#154](https://github.com/memgraph/mage/pull/154)
+- Introduced E2E group testing.
+  [#145](https://github.com/memgraph/mage/pull/145)
+
+## v1.3 - May 23, 2022
+
+### Major Features and Improvements
+- Added integration between cuGraph and Memgraph integration.
+  [#99](https://github.com/memgraph/mage/pull/99)
+
+### Bug Fixes
+- Fixed node deletion.
+  [#141](https://github.com/memgraph/mage/pull/141)
+
+## v1.2 - Apr 20, 2022
+
+### Major Features and Improvements
+
+- Implemented Temporal graph networks.
+  [#121](https://github.com/memgraph/mage/pull/121)
+- Implemented Dynamic Betweenness Centrality.
+  [#127](https://github.com/memgraph/mage/pull/127)
+- Implemented Dynamic Katz Centrality.
+  [#117](https://github.com/memgraph/mage/pull/117)
+- Implemented Louvain Community Detection.
+  [#48](https://github.com/memgraph/mage/pull/48)
+- Implemented Maximum Flow.
+  [#125](https://github.com/memgraph/mage/pull/125)
+- Implemented Static Katz Centrality. 
+  [#117](https://github.com/memgraph/mage/pull/117)
+- Added utility Import/Export module (JSON).
+  [#100](https://github.com/memgraph/mage/pull/100)
+- Bumped the version of Black formatter.
+  [#132](https://github.com/memgraph/mage/pull/132)
+
+### Bug Fixes
+- Fixed IsSubset checking for unordered set.
+  [#135](https://github.com/memgraph/mage/pull/135)
+- Fixed Continuous integration.
+  [#133](https://github.com/memgraph/mage/pull/133)
+- Fixed E2E testing.
+  [#128](https://github.com/memgraph/mage/pull/128)
+- Fixed ID validity check.
+  [#129](https://github.com/memgraph/mage/pull/129)
+
 ## v1.1 - Dec 13, 2021
 
 ### Major Features and Improvements
