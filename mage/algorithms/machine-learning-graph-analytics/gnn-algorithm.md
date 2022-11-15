@@ -28,9 +28,29 @@ Today's most popular models are [GraphSAGE](https://arxiv.org/abs/1706.02216), [
 
 ### Implementation
 
-![Graph Neural Networks](https://img.shields.io/badge/Not_implemented-EB3434?style=for-the-badge&logo=github&logoColor=white)
+**GNNs** are implemented within the project [**MAGE**](https://github.com/memgraph/mage). There are multiple options you can choose from.
 
-Unfortunately, **GNNs** are yet not implemented within the project [**MAGE**](https://github.com/memgraph/mage). Be sure to raise the issue on the GitHub repo and ping us to speed up the development. :point_up:
+If you are dealing with **dynamic** graphs, check out **[Temporal graph newtorks](/mage/query-modules/python/temporal-graph-networks)**. You can use Temporal graph networks for [link prediction](/mage/algorithms/machine-learning-graph-analytics/link-prediction-algorithm) or [node classification](/mage/algorithms/machine-learning-graph-analytics/node-classification-algorithm) task.
+Check our implementation and documentation :point_down: 
+
+[![Temporal graph networks](https://img.shields.io/badge/Temporal_Graph_Networks-Implementation-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/tgn.py)
+
+[![Temporal graph networks](https://img.shields.io/badge/Temporal_Graph_Networks-Documentation-FCC624?style=for-the-badge&logo=python&logoColor=white)](/mage/query-modules/python/temporal-graph-networks)
+
+If you are dealing on the other hand with **static** graph you have **two** different modules to choose from depending on your task.
+
+For [link prediction](/mage/algorithms/machine-learning-graph-analytics/link-prediction-algorithm) you can check our implementation and documentation :point_down: 
+
+[![Link prediction](https://img.shields.io/badge/Link_Prediction-Implementation-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/link_prediction.py)
+
+[![Link prediction](https://img.shields.io/badge/Link_Prediction-Documentation-FCC624?style=for-the-badge&logo=python&logoColor=white)](/mage/query-modules/python/link-prediction-with-gnn)
+
+For [node classification](/mage/algorithms/machine-learning-graph-analytics/node-classification-algorithm) you can check our implementation and documentation :point_down: 
+
+[![Node classification](https://img.shields.io/badge/Node_Classification-Implementation-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/node_classification.py)
+
+[![Node classification](https://img.shields.io/badge/Node_Classification-Documentation-FCC624?style=for-the-badge&logo=python&logoColor=white)](/mage/query-modules/python/node-classification-with-gnn)
+
 ## Use cases
 
 [![Bioinformatics](https://img.shields.io/badge/Bioinformatics-Application-8A477F?style=for-the-badge)](/use-cases/bioinformatics.md)
