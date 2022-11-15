@@ -21,7 +21,7 @@ If you downloaded a specific release, skip the first step.
 **[GitHub](https://github.com/memgraph/mage)**:
 
 ```shell
-git clone https://github.com/memgraph/mage.git && cd mage
+git clone --recurse-submodules https://github.com/memgraph/mage.git && cd mage
 ```
 
 **2.** Build the **MAGE** tagged Docker image with the following command:

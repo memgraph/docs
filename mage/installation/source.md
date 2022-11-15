@@ -32,6 +32,23 @@ will generate a `dist` directory with all the needed files:
 python3 setup build
 ```
 
+:::info
+
+Make sure you cloned  `mage` github repository with:
+
+```shell
+git clone --recurse-submodules https://github.com/memgraph/mage.git
+```
+
+if you didn't, you can run following command to update submodules:
+
+```shell
+git submodule update --init --recursive
+```
+
+:::
+
+
 **2.** Copy the contents of the newly created `dist` directory to
 `/usr/lib/memgraph/query_modules`:
 
