@@ -18,7 +18,7 @@ sidebar_label: Changelog
   [#105](https://github.com/memgraph/mage/pull/105)
 - Added better support for C++ API.
   [#174](https://github.com/memgraph/mage/pull/174)
-- 
+
 ### Bug Fixes
 - Enable module reset to be able to train and evaluate without shutting down database, enable working with class labels which don't start from 0, and fix potential early stopping due to low limit in the Node classification module.
   [#173](https://github.com/memgraph/mage/pull/173)
