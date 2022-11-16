@@ -37,15 +37,15 @@ Check our implementation and documentation :point_down:
 
 [![Temporal graph networks](https://img.shields.io/badge/Temporal_Graph_Networks-Documentation-FCC624?style=for-the-badge&logo=python&logoColor=white)](/mage/query-modules/python/temporal-graph-networks)
 
-If you are dealing on the other hand with **static** graph you have **two** different modules to choose from depending on your task.
+If you are dealing with **static** graphs you can choose between **two** different modules, depending on the task.
 
-For [link prediction](/mage/algorithms/machine-learning-graph-analytics/link-prediction-algorithm) you can check our implementation and documentation :point_down: 
+Check implementation and documentation for [link prediction](/mage/algorithms/machine-learning-graph-analytics/link-prediction-algorithm) :point_down: 
 
 [![Link prediction](https://img.shields.io/badge/Link_Prediction-Implementation-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/link_prediction.py)
 
 [![Link prediction](https://img.shields.io/badge/Link_Prediction-Documentation-FCC624?style=for-the-badge&logo=python&logoColor=white)](/mage/query-modules/python/link-prediction-with-gnn)
 
-For [node classification](/mage/algorithms/machine-learning-graph-analytics/node-classification-algorithm) you can check our implementation and documentation :point_down: 
+Check implementation and documentation for [node classification](/mage/algorithms/machine-learning-graph-analytics/node-classification-algorithm) :point_down: 
 
 [![Node classification](https://img.shields.io/badge/Node_Classification-Implementation-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/node_classification.py)
 
