@@ -55,9 +55,9 @@ Changes made in one iteration may not be permanent if they don’t improve the s
 
 #### Output:
 
-* `node: string` ➡ Represents the node ID
+* `node: Vertex` ➡ Represents the node
 
-* `color: string` ➡ Represents the assigned color
+* `color: int` ➡ Represents the assigned color
 
 #### Usage:
 ```cypher
@@ -76,16 +76,16 @@ YIELD node, color;
 
 #### Output:
 
-* `node: string` ➡ Represents the node ID
+* `node: Vertex` ➡ Represents the node
 
-* `color: string` ➡ Represents the assigned color
+* `color: int` ➡ Represents the assigned color
 
 #### Usage:
 ```cypher
 MATCH (a)-[e]->(b)
 WITH collect(a) as nodes, collect (e) as edges
 CALL graph_coloring.color_subgraph(nodes, edges, {no_of_colors: 2})
-YIELD color, node;
+YIELD node, color;
 ```
 
 ### Parameters
@@ -192,4 +192,3 @@ YIELD node, color;
   </TabItem>
 
 </Tabs>
-
