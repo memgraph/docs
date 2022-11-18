@@ -117,7 +117,7 @@ hood](/under-the-hood/overview.md).
 
 ### Power up with MAGE
 
-Memgraph Advanced Graph Extensions (MAGE) is an open-source repository that
+[Memgraph Advanced Graph Extensions (MAGE)](/mage) is an open-source repository that
 contains graph algorithms and modules in the form of query modules written by
 the team behind Memgraph and its users. It aims to help you tackle the most
 interesting and challenging graph analytics problems.
