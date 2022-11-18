@@ -5,7 +5,7 @@ sidebar_label: Implement custom query modules
 ---
 
 If you need to expand the Cypher language, Memgraph provides public APIs for
-writing custom query modules in Python and C.
+writing custom query modules in Python, C and C++.
 
 ## Python API
 

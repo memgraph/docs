@@ -92,7 +92,7 @@ docker build --target dev -t memgraph-mage:dev .
 **2.** Then run the image with the following command:
 
 ```
-docker run --rm -p 7687:7687 --name mage memgraph-mage:dev
+docker run --rm -p 7687:7687 --name mage memgraph-mage:1.4-dev
 ```
 
 **3.** Next, copy the files inside the container and do the build:

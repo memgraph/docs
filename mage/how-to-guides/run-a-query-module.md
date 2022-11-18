@@ -36,7 +36,7 @@ to import the modules.
 **1.** Start the MAGE container with:
 
 ```shell
-docker run --rm -p 7687:7687 --name mage memgraph-mage:dev
+docker run --rm -p 7687:7687 --name mage memgraph-mage:1.4-dev
 ```
 
 **2.** Copy your local MAGE directory inside the container in order for Memgraph
@@ -86,7 +86,7 @@ docker build --target dev -t memgraph-mage:dev .
 **2.** Start the container with the following command:
 
 ```shell
-docker run --rm -p 7687:7687 --name mage memgraph-mage:dev
+docker run --rm -p 7687:7687 --name mage memgraph-mage:1.4-dev
 ```
 
 :::info

@@ -4,7 +4,7 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
-## v2.4.0
+## v2.4.0 - Sep 15, 2022
 
 ### Major Features and Improvements
 

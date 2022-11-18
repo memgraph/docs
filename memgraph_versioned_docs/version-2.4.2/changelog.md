@@ -20,7 +20,7 @@ sidebar_label: Changelog
   passing user's instead of role's `fine_grained_access_handler`.
   [#579](https://github.com/memgraph/memgraph/pull/579)
 
-## v2.4.0
+## v2.4.0 - Sep 15, 2022
 
 ### Major Features and Improvements
 
