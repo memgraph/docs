@@ -6,6 +6,7 @@ sidebar_label: node2vec
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import RunOnSubgraph from '../../templates/_run_on_subgraph.mdx';
 
 export const Highlight = ({children, color}) => (
 <span
@@ -79,6 +80,8 @@ A. Grover, J. Leskovec
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight>          |
 
 ## Procedures
+
+<RunOnSubgraph/>
 
 ### `get_embeddings( is_directed, p, q, num_walks, walk_length, vector_size, alpha, window, min_count, seed, workers, min_alpha, sg, hs, negative, epochs,)`
 

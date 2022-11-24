@@ -6,6 +6,7 @@ sidebar_label: node_classification_with_gnn
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import RunOnSubgraph from '../../templates/_run_on_subgraph.mdx';
 
 export const Highlight = ({children, color}) => (
 <span
@@ -79,6 +80,8 @@ drop us a comment on **[Discord](https://discord.gg/memgraph)**.
 :::
 
 ## Procedures
+
+<RunOnSubgraph/>
 
 ### `set_model_parameters(params)`
 

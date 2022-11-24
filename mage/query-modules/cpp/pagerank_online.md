@@ -6,6 +6,7 @@ sidebar_label: pagerank_online
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import RunOnSubgraph from '../../templates/_run_on_subgraph.mdx';
 
 export const Highlight = ({children, color}) => (
 <span
@@ -85,6 +86,8 @@ Bahman Bahmani et al.
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight> |
 
 ## Procedures
+
+<RunOnSubgraph/>
 
 ### `set(walks_per_node, walk_stop_epsilon)`
 

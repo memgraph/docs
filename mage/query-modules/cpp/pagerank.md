@@ -6,6 +6,7 @@ sidebar_label: pagerank
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import RunOnSubgraph from '../../templates/_run_on_subgraph.mdx';
 
 export const Highlight = ({children, color}) => (
   <span
@@ -60,6 +61,8 @@ PageRank implementation.
 | **Parallelism**     | <Highlight color="#FB6E00">**parallel**</Highlight>   |
 
 ## Procedures
+
+<RunOnSubgraph/>
 
 ### `get(max_iterations, damping_factor, stop_epsilon)`
 

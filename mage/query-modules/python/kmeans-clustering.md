@@ -6,6 +6,7 @@ sidebar_label: kmeans
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import RunOnSubgraph from '../../templates/_run_on_subgraph.mdx';
 
 export const Highlight = ({children, color}) => (
 <span
@@ -35,6 +36,8 @@ within-the-cluster sum-of-squares. To learn more about it, jump to the [algorith
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight>          |
 
 ## Procedures
+
+<RunOnSubgraph/>
 
 ### `get_clusters(n_clusters, embedding_property, init, n_init, max_iter, tol, algorithm, random_state)`
 For each node, this procedure returns what cluster it belongs to.

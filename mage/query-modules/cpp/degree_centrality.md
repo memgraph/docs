@@ -6,6 +6,7 @@ sidebar_label: degree_centrality
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import RunOnSubgraph from '../../templates/_run_on_subgraph.mdx';
 
 export const Highlight = ({children, color}) => (
 <span
@@ -39,6 +40,8 @@ Let $A = (a_{i,j})$ be the adjacency matrix of a directed graph. The in-degree c
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight> |
 
 ## Procedures
+
+<RunOnSubgraph/>
 
 ### `get(type)`
 
