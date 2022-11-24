@@ -85,10 +85,10 @@ $conn->setSslContextOptions([
 **3.** Run a composer command to get the required library:
 
 ```sh
-composer require stefanak-michal/bolt
+composer require stefanak-michal/memgraph-bolt-wrapper
 ```
 
-_It will auto create composer.json file._
+It will auto create `composer.json` file.
 
 **4.** Start the application with the following command:
 

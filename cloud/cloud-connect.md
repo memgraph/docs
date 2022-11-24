@@ -49,7 +49,7 @@ To connect to Cloud via a command-line interface **mgconsole**:
 
 Step 1: Install the driver with pip or poetry:
 
-```
+```python
 pip install gqlalchemy
 # or with Poetry: poetry add gqlalchemy
 
@@ -57,7 +57,7 @@ pip install gqlalchemy
 
 Step 2: Copy the following code and fill out the missing details (`YOUR_MEMGRAPH_PASSWORD`, `YOUR_MEMGRAPH_USERNAME` and `MEMGRAPH_HOST_ADDRESS`) before running it:
 
-```
+```python
 from gqlalchemy import Memgraph
 
 MEMGRAPH_HOST = 'MEMGRAPH_HOST_ADDRESS'
@@ -99,7 +99,7 @@ rsmgclient = "0.1.1"
 ```
 Step 3: Copy the following code and fill out the missing details (`YOUR_MEMGRAPH_PASSWORD`, `YOUR_MEMGRAPH_USERNAME` and `MEMGRAPH_HOST_ADDRESS`) before running it:
 
-```
+```rust
 use rsmgclient::{ConnectParams, Connection, SSLMode};
 
 fn main(){
@@ -147,7 +147,7 @@ git clone https://github.com/memgraph/mgclient
 
 Step 2: Copy the following code and fill out the missing details (`YOUR_MEMGRAPH_PASSWORD`, `YOUR_MEMGRAPH_USERNAME` and `MEMGRAPH_HOST_ADDRESS`) before running it:
 
-```
+```c
 #include <cstdlib>
 #include <iostream>
 
@@ -203,7 +203,7 @@ Read more about it on [C# Quick Start Guide](/memgraph/connect-to-memgraph/drive
 
 Step 1: Add the following driver dependency in your `pom.xml` file:
 
-```
+```xml
 <dependency>
   <groupId>org.neo4j.driver</groupId>
   <artifactId>neo4j-java-driver</artifactId>
@@ -213,7 +213,7 @@ Step 1: Add the following driver dependency in your `pom.xml` file:
 
 Step 2: Copy the following code and fill out the missing details (`YOUR_MEMGRAPH_PASSWORD`, `YOUR_MEMGRAPH_USERNAME` and `MEMGRAPH_HOST_ADDRESS`) before running it:
 
-```
+```java
 import org.neo4j.driver.AuthTokens;
 import org.neo4j.driver.Driver;
 import org.neo4j.driver.GraphDatabase;
@@ -279,7 +279,7 @@ Install-Package Neo4j.Driver.Simple
 
 Step 2: Copy the following code and fill out the missing details (`YOUR_MEMGRAPH_PASSWORD`, `YOUR_MEMGRAPH_USERNAME` and `MEMGRAPH_HOST_ADDRESS`) before running it:
 
-```
+```cs
 using System;
 using System.Linq;
 using Neo4j.Driver;
@@ -336,7 +336,7 @@ go get github.com/neo4j/neo4j-go-driver/neo4j
 
 Step 2: Copy the following code and fill out the missing details (`YOUR_MEMGRAPH_PASSWORD`, `YOUR_MEMGRAPH_USERNAME` and `MEMGRAPH_HOST_ADDRESS`) before running it:
 
-```
+```go
 package main
 
 import "github.com/neo4j/neo4j-go-driver/v4/neo4j"
@@ -394,7 +394,7 @@ composer require stefanak-michal/memgraph-bolt-wrapper
 
 Step 2: Copy the following code and replace the `YOUR MEMGRAPH PASSWORD HERE` with the project's password:
 
-```
+```php
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -442,7 +442,7 @@ npm install neo4j-driver
 
 Step 2: Copy the following code and fill out the missing details( `YOUR_MEMGRAPH_PASSWORD`, `YOUR_MEMGRAPH_USERNAME` and `MEMGRAPH_HOST_ADDRESS` ) before running it:
 
-```
+```php
 const neo4j = require('neo4j-driver')
 
 const MEMGRAPH_URI = 'bolt+ssc://MEMGRAPH_HOST_ADDRESS:7687';
