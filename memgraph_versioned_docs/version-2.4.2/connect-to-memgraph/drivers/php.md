@@ -41,7 +41,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 // Create a connection class and specify target host and port, default is localhost.
 $conn = new \Bolt\connection\Socket();
-// Create a new Bolt instance and provide connection object
+// Create a new Bolt instance and provide connection object.
 $bolt = new \Bolt\Bolt($conn);
 // Set available Bolt versions for Memgraph.
 $bolt->setProtocolVersions(4.1, 4, 3);
@@ -85,10 +85,10 @@ $conn->setSslContextOptions([
 **3.** Run a composer command to get the required library:
 
 ```sh
-composer require stefanak-michal/bolt
+composer require stefanak-michal/memgraph-bolt-wrapper
 ```
 
-_It will auto create composer.json file._
+It will auto create `composer.json` file.
 
 **4.** Start the application with the following command:
 
