@@ -389,36 +389,45 @@ Read more about it on [Go Quick Start Guide](/memgraph/connect-to-memgraph/drive
 Step 1: Install the driver with composer:
 
 ```
-composer require stefanak-michal/bolt
+composer require stefanak-michal/memgraph-bolt-wrapper
 ```
 
-Step 2: Copy the following code and fill out the missing details( `YOUR_MEMGRAPH_PASSWORD`, `YOUR_MEMGRAPH_USERNAME` and `MEMGRAPH_HOST_ADDRESS` ) before running it:
+Step 2: Copy the following code and replace the `YOUR MEMGRAPH PASSWORD HERE` with the project's password:
 
 ```
 <?php
-$conn = new \Bolt\connection\StreamSocket('MEMGRAPH_HOST_ADDRESS', '7687');
+require_once __DIR__ . '/vendor/autoload.php';
+
+// Create a connection class and specify target host and port.
+$conn = new \\Bolt\\connection\\StreamSocket('<FILL_HOST>', <FILL_PORT>);
 $conn->setSslContextOptions([
-    'passphrase' => 'bolt',
-    'allow_self_signed' => true,
-    'verify_peer' => false,
-    'verify_peer_name' => false
+    'peer_name' => 'Memgraph DB',
+    'allow_self_signed' => true
 ]);
-// Create new Bolt instance
-$bolt = new \Bolt\Bolt($conn);
-// Set Bolt protocol version if needed
-$bolt->setProtocolVersions(4.0);
-// Connect to database
-$bolt->init('MyClient/1.0', 'YOUR_MEMGRAPH_USERNAME', 'YOUR_MEMGRAPH_PASSWORD');
 
-// Execute query
-$res = $bolt->run(
-    'CREATE (n:FirstNode {message: $message}) RETURN id(n) AS nodeId, n.message AS message',
-    ['message' => 'Hello Memgraph from PHP!']
-);
-// Pull records from last query
-$rows = $bolt->pull();
+// Create a new Bolt instance and provide a connection object.
+$bolt = new \\Bolt\\Bolt($conn);
 
-echo 'Created node: ' . $rows[0][1];
+// Set available Bolt versions for Memgraph.
+$bolt->setProtocolVersions(4.1, 4, 3);
+
+// Build and get protocol version instance which creates connection and executes a handshake.
+$protocol = $bolt->build();
+
+// Login to database with credentials
+$protocol->hello(\\Bolt\\helpers\\Auth::basic('<FILL_EMAIL>', '<YOUR MEMGRAPH PASSWORD HERE>'));
+
+// Pipeline two messages. One to execute query with parameters and second to pull records.
+$protocol
+    ->run('CREATE (a:Greeting) SET a.message = $message RETURN id(a) AS nodeId, a.message AS message', ['message' => 'Hello, World!'])
+    ->pull();
+
+// Server responses are waiting to be fetched through iterator.
+$rows = iterator_to_array($protocol->getResponses(), false);
+
+// Get content from requested record.
+$row = $rows[1]->getContent();
+echo 'Node ' . $row[0] . ' says: ' . $row[1];
 ```
 
 Read more about it on [PHP Quick Start Guide](/memgraph/connect-to-memgraph/drivers/php).

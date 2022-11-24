@@ -39,15 +39,15 @@ following code to it:
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
 
-// Create connection class and specify target host and port, default is localhost
+// Create a connection class and specify target host and port, default is localhost.
 $conn = new \Bolt\connection\Socket();
-// Create new Bolt instance and provide connection object
+// Create a new Bolt instance and provide connection object
 $bolt = new \Bolt\Bolt($conn);
-// Set available bolt versions for Memgraph.
+// Set available Bolt versions for Memgraph.
 $bolt->setProtocolVersions(4.1, 4, 3);
-// Build and get protocol version instance which creates connection and executes handshake
+// Build and get protocol version instance which creates connection and executes handshake.
 $protocol = $bolt->build();
-// Login to database with credentials
+// Login to database with credentials.
 $protocol->hello(\Bolt\helpers\Auth::basic('username', 'password'));
 
 // Pipeline two messages. One to execute query with parameters and second to pull records.
@@ -72,7 +72,7 @@ $conn->setSslContextOptions([
 ]);
 ```
 
-If you want to connect to Memgraph cloud you have to set these parameters.
+If you want to connect to Memgraph Cloud you have to set these parameters.
 
 ```php
 $conn = new \Bolt\connection\StreamSocket('URI or IP', 7687);
@@ -96,7 +96,7 @@ _It will auto create composer.json file._
 php -S localhost:4000
 ```
 
-Open you browser, enter url localhost:4000 and you should see an output similar to the following:
+Open you browser, enter `localhost:4000` as URL and you should see an output similar to the following:
 
 ```
 Node 1 says: Hello, World!
@@ -106,7 +106,7 @@ Node 1 says: Hello, World!
 
 Check out the [PHP Bolt driver repository](https://github.com/neo4j-php/Bolt) to learn more about using the PHP Bolt library.
 
-You can simplify usage of this library with wrapper [Memgraph bolt wrapper](https://github.com/stefanak-michal/memgraph-bolt-wrapper).
+You can simplify usage of this library with wrapper [Memgraph Bolt wrapper](https://github.com/stefanak-michal/memgraph-bolt-wrapper).
 
 For real-world examples of how to use Memgraph, we suggest you take a look at
 the **[Tutorials](/tutorials/overview.md)** page. You can also browse through
