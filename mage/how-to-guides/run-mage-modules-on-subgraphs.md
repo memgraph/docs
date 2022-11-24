@@ -49,7 +49,7 @@ The mechanism of running query modules on subgraphs is specifying the projected 
 first argument in the query module call:
 
 ```cypher
-CALL module.procedure([optional graph parameter], argument1, argument2) YIELD * RETURN *;
+CALL module.procedure([optional graph parameter], argument1, argument2, ...) YIELD * RETURN *;
 ```
 
 If the optional graph projection parameter is not specified, the query module will be executed on the

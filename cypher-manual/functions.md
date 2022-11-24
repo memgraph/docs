@@ -97,6 +97,12 @@ This section contains the list of supported functions.
  | `sum`     | <code>sum(row: integer\|float) -> (integer\|float)</code> | Returns a sum value of rows with numerical values generated with the `MATCH` or `UNWIND` clause.      |
  | `project` | <code>project(row: path) -> map("nodes":list[Node], "edges":list[Edge])</code>| Creates a projected graph consisting of nodes and edges from aggregated paths.|
 
+ ### Graph projection functions
+
+ | Name      | Signature                                                     | Description                                                                                           |
+ | --------- | ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+ | `project` | <code>project(row: path) -> map("nodes":list[Node], "edges":list[Edge])</code>| Creates a projected graph consisting of nodes and edges from aggregated paths.|
+
 ### String functions
 
 | Name         | Signature                                                                                | Description                                                                                                                              |
