@@ -102,9 +102,6 @@ Open you browser, enter url localhost:4000 and you should see an output similar 
 Node 1 says: Hello, World!
 ```
 
-
-
-
 ## Where to next?
 
 Check out the [PHP Bolt driver repository](https://github.com/neo4j-php/Bolt) to learn more about using the PHP Bolt library.
