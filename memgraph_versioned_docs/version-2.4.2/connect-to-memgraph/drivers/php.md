@@ -44,7 +44,7 @@ $conn = new \Bolt\connection\Socket();
 // Create new Bolt instance and provide connection object
 $bolt = new \Bolt\Bolt($conn);
 // Set available bolt versions for Memgraph.
-$this->setProtocolVersions(4.1, 4, 3);
+$bolt->setProtocolVersions(4.1, 4, 3);
 // Build and get protocol version instance which creates connection and executes handshake
 $protocol = $bolt->build();
 // Login to database with credentials
