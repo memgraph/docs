@@ -10,6 +10,9 @@ sidebar_label: Changelog
 
 ### Major Features and Improvements
 
+- Added option to use `DISTINCT` with aggregation functions.
+  For example, query `COUNT(DISTINCT n.prop)` works now. [#654](https://github.com/memgraph/memgraph/pull/665)
+
 ## v2.4.2 - Nov 7, 2022
 
 ### Bug Fixes
