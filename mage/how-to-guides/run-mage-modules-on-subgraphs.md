@@ -27,7 +27,7 @@ and up to its specification.
 
 ### Available graph projections
 
-For now, the only graph projection function in Memgraph is called project(),
+For now, the only graph projection function in Memgraph is called [project()](/cypher-manual/functions#graph-projection-functions),
 which can be executed like the example below: 
 
 ```cypher
@@ -134,3 +134,7 @@ ORDER BY rank DESC;
 <img src={require('../data/how-to-guides/subgraphs-guide/world-cup-subgraph.png').default}/>
 
 The query is basically identical, with only the projection changing from one hashtag to another.
+
+### Final remarks
+Thanks for reading our how to guide on how to run subgraph query modules in MAGE!
+If you want to try out some of our algorithms in subgraph mode, you can pick one in our [list of available query modules](/mage/query-modules/available-queries)!
