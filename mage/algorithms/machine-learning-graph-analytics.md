@@ -19,3 +19,7 @@ both use cases in static and streaming setup. To learn more about streaming setu
 
 ### [Link Prediction](/mage/query-modules/python/link-prediction-with-gnn)
 * static algorithm for link prediction
+
+
+### [Node2Vec](/mage/query-modules/python/node2vec)
+* provides low-level embeddings for graph nodes
