@@ -78,7 +78,6 @@ module.exports = {
         {
           type: "category",
           label: "Traditional Graph Analytics",
-          link: { type: 'doc', id: 'algorithms/traditional-graph-analytics' },
           items: [
             "algorithms/traditional-graph-analytics/betweenness-centrality-algorithm",
             "algorithms/traditional-graph-analytics/biconnected-components-algorithm",
@@ -98,7 +97,6 @@ module.exports = {
         {
           type: "category",
           label: "Streaming Graph Analytics",
-          link: { type: 'doc', id: 'algorithms/streaming-graph-analytics'},
           items: [
             "algorithms/dynamic-graph-analytics/betweenness-centrality-online-algorithm",
             "algorithms/dynamic-graph-analytics/community-detection-online-algorithm",
@@ -110,7 +108,6 @@ module.exports = {
         {
           type: "category",
           label: "Machine Learning Graph Algorithms",
-          link: { type: 'doc', id: 'algorithms/machine-learning-graph-algorithms'},
           items: [
             "algorithms/machine-learning-graph-analytics/gnn-algorithm",
             "algorithms/machine-learning-graph-analytics/k-means-clustering-algorithm",
