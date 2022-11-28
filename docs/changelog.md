@@ -10,6 +10,9 @@ sidebar_label: Changelog
 
 ### Major Features and Improvements
 
+- `DISTINCT` subclause can now be used with aggregation functions.
+  Until now, if you wanted to use an aggregation function with distinct values, you had to write a query similar to this one `WITH DISTINCT n.prop as distinct_prop RETURN COUNT(distinct_prop)`. Now you can use the `DISTINCT` clause like in the following query, `RETURN COUNT(DISTINCT n.prop)` . [#654](https://github.com/memgraph/memgraph/pull/665)
+
 ## v2.4.2 - Nov 7, 2022
 
 ### Bug Fixes
