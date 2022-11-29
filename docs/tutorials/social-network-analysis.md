@@ -207,9 +207,9 @@ The resulting communities are:
 
 ## Further reading
 
-If you want to find out more about query modules, take a look at our guide on
+To find out more about query modules, take a look at our guide on
 how to create your own: [Implement custom query
-modules](/reference-guide/query-modules/implement-custom-query-modules/custom-query-module-example.md).
+modules](/reference-guide/query-modules/implement-custom-query-modules/custom-query-module-example.md). You can also visit our [NetworkX how-to guide](/how-to-guides/networkx.md) to
+learn how to utilize the NetworkX library.
 
-You can also visit our [NetworkX Reference guide](/how-to-guides/networkx.md) to
-find out which NetworkX algorithms are already available in Memgraph.
+If you want to learn more about how to use Memgraph with NetworkX, check out the [**Memgraph for NetworkX developers resources**](https://memgraph.com/memgraph-for-networkx?utm_source=networkx-guide&utm_medium=referral&utm_campaign=networkx_ppp&utm_term=docs%2Btutorialsocialnetwork&utm_content=resources). 
