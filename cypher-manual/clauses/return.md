@@ -215,40 +215,6 @@ Output:
 +-----------------------------------------------------------------------------------------------------+
 ```
 
-## 11. Returning aggregated results
-
-The `RETURN` statement can be used with `Aggregation` functions:
-
-```cypher
-MATCH (c:Country)
-RETURN AVG(c.population) as average_population;
-```
-Output:
-
-```nocopy
-+-----------------------------------------------------------------------------------------------------+
-| population                                                                                          |
-+-----------------------------------------------------------------------------------------------------+
-| 72,000,000                                                                                           |
-+-----------------------------------------------------------------------------------------------------+
-```
-
-Aggregations functions can be used with `DISTINCT` operator, which will performe calculations only on unique values:
-
-```cypher
-MATCH ()-[:LIVING_IN]->(c)
-RETURN AVG(DISTINCT c.population) as average population;
-```
-Output:
-
-```nocopy
-+-----------------------------------------------------------------------------------------------------+
-| population                                                                                          |
-+-----------------------------------------------------------------------------------------------------+
-| 74,500,000                                                                                            |
-+-----------------------------------------------------------------------------------------------------+
-```
-
 ## Dataset queries
 
 We encourage you to try out the examples by yourself.
