@@ -456,7 +456,7 @@ module.exports = {
     announcementBar: {
       id: "graphmodelingemailcourse",
       content:
-        'Sign up for the new <a target="_blank" rel="noopener noreferrer" href="https://memgraph.com/learn-graph-modeling"><b>Graph Modeling Email Course</b></a> 📩',
+        'Check out the <a target="_blank" rel="noopener noreferrer" href="https://memgraph.com/benchgraph"><b>Graph Database Performance Benchmark</b></a> 🚀',
       backgroundColor: "#fafbfc",
       textColor: "#091E42",
       isCloseable: true,
