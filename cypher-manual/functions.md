@@ -96,6 +96,13 @@ This section contains the list of supported functions.
  | `min`     | <code>min(row: integer\|float) -> (integer\|float)</code> | Returns the minimum value in a set of values.                                                         |
  | `sum`     | <code>sum(row: integer\|float) -> (integer\|float)</code> | Returns a sum value of rows with numerical values generated with the `MATCH` or `UNWIND` clause.      |
  | `project` | <code>project(row: path) -> map("nodes":list[Node], "edges":list[Edge])</code>| Creates a projected graph consisting of nodes and edges from aggregated paths.|
+:::
+
+:::info
+
+All aggregation functions can be used with `DISTINCT` option to performe calculations only on unique values. For example, `COUNT(DISTINCT n.prop)`, `COLLECT(DISTINCT n.prop)
+
+:::
 
 ### String functions
 
