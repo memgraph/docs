@@ -27,6 +27,7 @@ sidebar_label: Changelog
 * Missing detailed error message on a failed query in rich collections has been fixed.
 * Save code changes action in rich collections will be enabled only if there are unsaved changes for the Cypher query 
   or GSS.
+* A bug in the table results view where only the first node label has been shown instead of all node labels has been fixed.
 
 ## v2.3.1 - Nov 4, 2022
 
