@@ -7,25 +7,36 @@ sidebar_label: Utilize the NetworkX library
 NetworkX is a Python package for the creation, manipulation, and study of the structure,
 dynamics, and functions of complex networks. Memgraph has [**`nxalg`**](/docs/mage/query-modules/python/nxalg) query module, which is a wrapper around NetworkX graph algorithms. It also provides **[Graph Analyzer](/mage/query-modules/python/graph-analyzer)** query module, which utilizes the NetworkX library. Besides that, you can create a custom query module which uses the NetworkX library. Through this how-to guide, you are going to learn:
 
-- [**How to run NetworkX algorithms**](#how-to-run-networkx-algorithms)
+- [**How to run NetworkX algorithms in Memgraph Lab**](#how-to-run-networkx-algorithms-in-memgraph-lab)
 - [**How to implement custom NetworkX module**](#how-to-implement-custom-networkx-module)
 
 
-## How to run NetworkX algorithms
+## How to run NetworkX algorithms in Memgraph Lab
 
-NetworkX algorithms in Memgraph are query modules like any other [MAGE](/docs/mage) query module. Head over to the guide on [how to call MAGE procedures](/docs/mage/usage/calling-procedures) to learn how to call all Memgraph procedures, including those that utilize the NetworkX library.
+NetworkX algorithms are integrated into Memgraph as query modules inside Memgraph’s open-source graph extension library [MAGE](/docs/mage). Head over to the guide on [how to call MAGE procedures](/docs/mage/usage/calling-procedures) to learn how to call all Memgraph procedures, including those that utilize the NetworkX library.
 
-In this how-to guide, we will show one simple example of how to call a NetworkX procedure. The prerequisite of following the example is to have a running Memgraph instance. To run Memgraph with the visual user interface, use the Memgraph Platform Docker image where Memgraph Lab is included. Run the following command:
+This how-to guide will show one simple example of calling a NetworkX procedure. 
+
+### 1. Connect to Memgraph
+
+To be able to try out this example on your own, you need a running Memgraph instance. Run Memgraph using the Memgraph Platform Docker image, which includes both the MAGE library and Memgraph Lab, a visual interface. 
+To run the image, open a command-line interpreter and run the following Docker command:
 
 ```
 docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 memgraph/memgraph-platform:latest
 ```
 
-Check out the [installation guide](/docs/memgraph/installation) for other installation options.
+[Connect to Memgraph](/docs/memgraph-lab/connect-to-memgraph#connecting-to-memgraph) via Memgraph Lab which is running at `localhost:3000`. 
 
-Memgraph Lab is running at `localhost:3000`. First, head over to the **Datasets** section to load a dataset. For example, choose the **Europe backpacking dataset**. 
+Check out the [installation guide](/docs/memgraph/installation) for other installation options. If you wish to avoid the installation, you can also use [Memgraph Cloud](/docs/memgraph-cloud/).
+
+### 2. Load the dataset
+
+First, head over to the **Datasets** section to load a dataset. Then, choose the **Europe backpacking dataset**. 
 
 <img src={require('../data/how-to-guides/nxalg-how-to-1.png').default} className={"imgBorder"}/>
+
+### 3. Run NetworkX algorithm
 
 Once the dataset is loaded, go to the **Query Modules** section and search for `nxalg` module. Click on the arrow next to the module name to **view module details**. 
 
@@ -54,17 +65,26 @@ To learn how to implement a custom query module, head over to the [example of qu
 
 Since Memgraph is integrated with NetworkX, you can import NetworkX library inside your Python code and start coding. In this guide, we will create a new query module which utilizes the NetworkX library with the help of Memgraph Lab.
 
-First, we need to have a running Memgraph instance. The easiest way to do that is by using the Memgraph Docker image. To get the visual user interface Memgraph Lab along with it, use the Memgraph Platform Docker image. Here is the command:
+### 1. Connect to Memgraph
+
+To be able to try out this example on your own, you need a running Memgraph instance. Run Memgraph using the Memgraph Platform Docker image, which includes both the MAGE library and Memgraph Lab, a visual interface. 
+To run the image, open a command-line interpreter and run the following Docker command:
 
 ```
 docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 memgraph/memgraph-platform:latest
 ```
 
-Check out the [installation guide](/docs/memgraph/installation) for other installation options. 
+[Connect to Memgraph](/docs/memgraph-lab/connect-to-memgraph#connecting-to-memgraph) via Memgraph Lab which is running at `localhost:3000`. 
 
-Memgraph Lab is available at `localhost:3000`. First, load a dataset in the **Datasets** section by searching and loading the Karate club friendship network dataset. 
+Check out the [installation guide](/docs/memgraph/installation) for other installation options. If you wish to avoid the installation, you can also use [Memgraph Cloud](/docs/memgraph-cloud/).
+
+### 2. Load the dataset
+
+First, load a dataset in the **Datasets** section by searching and loading the Karate club friendship network dataset. 
 
 <img src={require('../data/how-to-guides/nxalg-how-to-5.png').default} className={"imgBorder"}/>
+
+### 3. Implement a custom query module
 
 Once the dataset is loaded, go to the **Query modules** section. The goal is to create a community detection algorithm that can partition a network into multiple communities with the help of the NetworkX library. Click on the **New Module** and type in the module name, e.g., `communities`. 
 
@@ -95,7 +115,11 @@ Here is what the code looks like in the code editor:
 
 <img src={require('../data/how-to-guides/nxalg-how-to-7.png').default} className={"imgBorder"}/>
 
-Click **Save & close**, and head over to the **Query Execution** tab. Copy and paste the following query to the **Cypher Editor**: 
+Click **Save & close**, and head over to the **Query Execution** tab. 
+
+### 4. Run the custom query module
+
+Copy and paste the following query to the **Cypher Editor**: 
 
 ```cypher
 CALL communities.detect()
