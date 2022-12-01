@@ -4,71 +4,63 @@ title: How to run a MAGE module on subgraphs
 sidebar_label: Run modules on subgraphs
 ---
 
-If you have already read our how-to guide on [how to run MAGE modules and graph algorithms](/mage/how-to-guides/run-a-query-module.md),
-now it's time to move on to the finer execution of graph analytics.
-In this how-to guide, we will project a portion of the graph from the whole network persisted in 
-Memgraph, and run our algorithms on that portion of the graph.
+The following how-to guide will demonstrate how to run graph analytics on sub-graphs. A portion of the graph is projected from the whole network persisted in Memgraph, and algorithms are run on that portion of the graph.
 
-### Why might running an algorithm across the entire network not be ideal for you?
+If you need help with running MAGE modules and graph algorithms, check out the [how-to guide on that topic](/mage/how-to-guides/run-a-query-module.md).
 
-If you didn't observe already, by executing a query module (or a MAGE module, which is essentially
-the same thing), the algorithm is executed on the whole network. This is impractical for multiple
-reasons:
-- your graph may be heterogeneous, and you want the module to run only on specific labels.
-- your graph may be too large, and you only want a portion of it to be updated with the analytics
-- you have multiple diverse data models and graphs in your network, and
-running analytics on all the graphs at the same time just does not make sense
+### When not to run algorithms across the entire network and use the projection feature?
+Executing any MAGE query module, the algorithm is executed on the whole network. 
+This is impractical in the following use cases: 
+- if the graph is heterogeneous, and you want to run the module only on specific labels
+- if the graph is too large, and you only want to use the analytics to update only a portion of it 
+- the network contains multiple diverse data models and graphs, and running analytics on mixed graphs at once might yield unexpected results
 
-For that purpose, Memgraph has enabled you to execute modules on subgraphs and graph
-projections, to make the insights yielded by graph algorithms affect only the
-necessary nodes in your graph, saving you time and making the data more consistent
-and up to its specifications.
+That is why Memgraph enables module execution on subgraphs and graph
+projections. The insights yielded by graph algorithms can then affect only the necessary nodes in your graph,
+making the data more consistent and up to its specifications. 
 
 ### Available graph projections
 
-For now, the only graph projection function in Memgraph is called [project()](/cypher-manual/functions#graph-projection-functions),
-which can be carried out like as shown below: 
+Graph projection function in Memgraph is called [project()](/cypher-manual/functions#graph-projection-functions),
+and it is used in the following way:
 
 ```cypher
 MATCH p=(n)-[r]->(m)
-WITH project(p) AS graph
-RETURN graph;
+WITH project(p) AS subgraph
+RETURN subgraph;
 ```
 
-Because we haven't specified any constraints, the result of this query
-is a projection of the graph that yields the entire graph.
-However, by putting constraints on properties or relationships, like in the query below:
+The path is specified first which denotes source and target nodes as well as relationships connecting them.
+The function `project` then constructs a subgraph out of all the generated paths.
+
+Because the matched pattern actually includes all the nodes and the relationships in the graph, the result of this query is a projection of the whole graph. 
+To isolate a certain part of the graph, constraints need to be added to either labels, edge types, or properties, like in the query below: 
 
 ```cypher
 MATCH p=(n:SpecificLabel)-[r:REL_TYPE]->(m:SpecificLabel)
-WITH project(p) AS graph
-RETURN graph;
+WITH project(p) AS subgraph
+RETURN subgraph;
 ```
 
-we will get a subgraph of connected `SpecificLabel` nodes connected with the relationship
-of type `REL_TYPE`.
+The query above will return a subgraph of `SpecificLabel` nodes connected with the relationships of type `REL_TYPE`.
 
 ### Calling query modules on graph projections
 
-The mechanism of running query modules on subgraphs begins by specifying 
-the projected graph as the first argument in the query module call:
+If you want to run query modules on subgraphs, specify the projected graph as the first argument of the query module.
 
 ```cypher
 CALL module.procedure([optional graph parameter], argument1, argument2, ...) YIELD * RETURN *;
 ```
 
-If the optional graph projection parameter is not specified, the query module will be executed on the
-whole graph.
-
-Let's see how graph projections work in a practical example!
-
+If the optional graph projection parameter is not included as the first argument,
+the query module will be executed on the whole graph.
 
 ## Practical example with Twitter influencers
 
-In this practical example, we will go through a fictional Twitter dataset for which we
-want to execute the PageRank algorithm.
-Assume that the PageRank that we want to execute is grouped by the Twitter hashtag,
-and that each Tweet can have a different number of comments.
+In this practical example, PageRank algorithm will be executed on a fictional Twitter dataset.
+PageRank execution is grouped by the Twitter hashtag, and each Tweet can have a different number of retweets.
+
+<img src={require('../data/how-to-guides/subgraphs-guide/whole-graph.png').default}/>
 
 ```cypher
 CREATE (n:Tweet {id: 1, hashtag: "#WorldCup", text: "Cool world cup! #WorldCup"});
@@ -89,23 +81,24 @@ MATCH (n:Tweet {id: 4}) MERGE (n)<-[:RETWEETED]-(:Tweet {hashtag: "#christmas", 
 MATCH (n:Tweet {id: 4}) MERGE (n)<-[:RETWEETED]-(:Tweet {hashtag: "#christmas", text: "All I want for Christmas is youuuu"});
 ```
 
-### The usual way of running PageRank on the whole network
+### Running PageRank on the whole network
 
-The usual way one would run a PageRank in MAGE is:
+To run the PageRank algorithms available in the MAGE library, use the following query:
 
 ```cypher
 CALL pagerank.get() YIELD node, rank
 SET node.rank = rank;
 ```
 
-However, this kind of PageRank takes into account all of the nodes. It would be unwise to correlate tweets from the
-World Cup with tweets for Christmas, as they are not the same thing, and a plausible case would be if they
-could be separated.
+The PageRank algorithm will take into account all the nodes in the graph. 
+It doesn't really make sense to correlate tweets about World Cup with tweets about Christmas, 
+as they are thematically quite different and should be analyzed separately.
+
 
 ### Running PageRank on a subgraph
 
-With a small modification, by putting the graph projection in as the first argument of the query module, it is 
-executed on the subgraph, like in the query below:
+To run the PageRank on a subset of Christmas tweets only, that portion of the graph is 
+saved as a projection and used as the first argument of the query module: 
 
 ```cypher
 MATCH p=(n:Tweet {hashtag: "#christmas"})-[r]->(m)
@@ -118,8 +111,8 @@ ORDER BY rank DESC;
 
 <img src={require('../data/how-to-guides/subgraphs-guide/christmas-subgraph.png').default}/>
 
-With this query, we have successfully updated the rank of the Christmas tweets only! Let's do the same
-on the World Cup tweets:
+The above query successfully updated the rank of the Christmas tweets only! Let's do the same
+on the World Cup tweets by changing the value of the hashtag property:
 
 ```cypher
 MATCH p=(n:Tweet {hashtag: "#WorldCup"})-[r]->(m)
@@ -132,8 +125,6 @@ ORDER BY rank DESC;
 
 <img src={require('../data/how-to-guides/subgraphs-guide/world-cup-subgraph.png').default}/>
 
-The query is basically identical, with only the projection changing from one hashtag to another.
-
 ### Final remarks
-Thanks for reading our how to guide on how to run subgraph query modules in MAGE!
-If you want to try out some of our algorithms in subgraph mode, you can pick one from our [list of available query modules](/mage/query-modules/available-queries)!
+This how-to guide showed how to run algorithms on subgraphs. If you want to try out other 
+MAGE algorithms and run them on subgraphs, check the [list of available query modules](/mage/query-modules/available-queries)!
