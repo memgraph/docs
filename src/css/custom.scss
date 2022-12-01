@@ -161,10 +161,14 @@ html[data-theme="dark"] .docsRating {
 
 .imgRow {
   display: flex;
-  border: 3px solid #555;
 }
 
 .imgColumn {
   flex: 50%;
   padding: 5px;
+}
+
+.imgSmaller {
+  max-width: 50%;
+  max-height: 50%;
 }
