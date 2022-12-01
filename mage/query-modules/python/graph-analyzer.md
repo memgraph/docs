@@ -142,7 +142,9 @@ MERGE (a:Node {id: 10}) MERGE (b:Node {id: 11}) CREATE (a)-[:RELATION]->(b);
 CALL graph_analyzer.analyze([
     "nodes", "edges", "bridges", "articulation_points",
     "avg_degree", "is_dag", "is_tree", "strongly_components"
-    ]) YIELD *;
+    ])
+YIELD *
+RETURN *;
 ```
 
   </TabItem>

@@ -123,7 +123,8 @@ MERGE (a:Node {id: 0}) MERGE (b:Node {id: 7}) CREATE (a)-[:RELATION]->(b);
 
 ```cypher
 CALL pagerank.get()
-YIELD node, rank;
+YIELD node, rank
+RETURN node, rank;
 ```
 
   </TabItem>

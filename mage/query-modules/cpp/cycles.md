@@ -90,7 +90,8 @@ MERGE (a:Node {id: 3}) MERGE (b:Node {id: 4}) CREATE (a)-[:RELATION]->(b);
 
 ```cypher
 CALL cycles.get()
-YIELD cycle_id, node;
+YIELD cycle_id, node
+RETURN cycle_id, node;
 ```
 
   </TabItem>

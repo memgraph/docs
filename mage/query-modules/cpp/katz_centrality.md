@@ -128,7 +128,8 @@ MERGE (a:Node {id: 10}) MERGE (b:Node {id: 9}) CREATE (a)-[:RELATION]->(b);
 
 ```cypher
 CALL katz_centrality.get()
-YIELD node, rank;
+YIELD node, rank
+RETURN node, rank;
 ```
 
   </TabItem>

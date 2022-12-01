@@ -86,7 +86,8 @@ MERGE (a:Node {id: 2}) MERGE (b:Node {id: 4}) CREATE (a)-[:RELATION]->(b);
 
 ```cypher
 CALL bipartite_matching.max()
-YIELD maximum_bipartite_matching;
+YIELD maximum_bipartite_matching
+RETURN maximum_bipartite_matching;
 ```
 
   </TabItem>

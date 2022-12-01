@@ -166,7 +166,8 @@ MERGE (a:Node {id: 10}) MERGE (b:Node {id: 7}) CREATE (a)-[:RELATION]->(b);
 
 ```cypher
 CALL graph_coloring.color_graph({no_of_colors: 4})
-YIELD node, color;
+YIELD node, color
+RETURN node, color;
 ```
 
   </TabItem>
