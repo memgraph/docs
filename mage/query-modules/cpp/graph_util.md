@@ -24,10 +24,8 @@ style={{
 
 ## Abstract
 
-**Graph util** is a collection of common graph algorithms offered by Memgraph's
-new C++ API. It enables quick development of graph analytics and algorithms with 
-automatic memory management. The algorithms that are consisted in this module
-are the ones that may suite a developer in a day-to-day job while prototyping new
+**Graph util** is a collection of Memgraph's utility graph algorithms. The algorithms that are included in this module
+are the ones that may suit a developer's day-to-day job while prototyping new
 solutions, with various graph manipulation tools to accelerate development. 
 
 | Trait               | Value                                                                                                     |
@@ -54,7 +52,7 @@ there exists a path to the input node.
 
 #### Output:
 
-- `ancestors: List[Vertex]` ➡ List of ancestors from which there exists a path to the source node
+- `ancestors: List[Vertex]` ➡ List of ancestors from which a path to the source node exists
 
 #### Usage:
 
@@ -68,17 +66,16 @@ RETURN ancestor;
 
 ### `connect_nodes(nodes)`
 
-Returns a list of relationships that connect the list of inputted nodes. Usually used when we want to get a subgraphs, 
-out of returned nodes.
-
+Returns a list of relationships that connect the list of inputted nodes. 
+Typically used to create a subgraph from returned nodes.
 #### Input:
 
-- `nodes: List[Vertex]` ➡ List of nodes for which we want to find the corresponding connections, i.e. relationships between them
+- `nodes: List[Vertex]` ➡ List of nodes for which we want to find corresponding connections, i.e., relationships between them
 
 
 #### Output:
 
-- `connections: List[Edges]` ➡ List of relationships which connect the input nodes of the starting graph
+- `connections: List[Edges]` ➡ List of relationships that connect the starting graph's input nodes
 
 #### Usage:
 
@@ -102,7 +99,7 @@ there exists a path from the input node.
 
 #### Output:
 
-- `descendants: List[Vertex]` ➡ List of descendants to which there exists a path from the source node
+- `descendants: List[Vertex]` ➡ List of descendants to which a path from the source node exists
 
 #### Usage:
 
@@ -125,7 +122,7 @@ The topological sort algorithm takes a directed graph and returns an array of th
 
 #### Output:
 
-- `sorted_nodes: List[Vertex]` ➡ Ordering of the nodes where each node appears before all the nodes it points to.
+- `sorted_nodes: List[Vertex]` ➡ Node ordering in which each node appears before all nodes to which it points
 
 #### Usage:
 
