@@ -4,6 +4,30 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v2.4.0 - Dec 2, 2022
+
+## What's New
+
+* Support for manual transaction workflow has been enabled using transaction commands `BEGIN`, `COMMIT`, and `ROLLBACK`.
+* Cypher intellisense has been updated to suggest new Cypher features from Memgraph 2.4.0 such as:
+  * Privileges for user-role authorization.
+  * Commands and privileges for label-based authorization.
+  * Manual transaction commands: `BEGIN`, `COMMIT`, `ROLLBACK`.
+  * Checking configuration with `SHOW CONFIG`.
+  * All shortest path algorithm `allShortest`.
+  * Graph projection function `project`.
+  * Additional query module signature that accepts a projected graph as an optional first argument.
+* Graph results view will check for nodes and relationships in arrays and projected graphs. It simplifies
+  the visualization of a projected graph or an array of nodes/relationships without using `UNWIND`.
+
+## Bug Fixes
+
+* Once the table results view is selected, an automatic switch to the graph view won't happen on the next query run.
+* Exploring a dataset's query collection now works as expected. It opens up a query list to explore the dataset.
+* Missing detailed error message on a failed query in rich collections has been fixed.
+* Save code changes action in rich collections will be enabled only if there are unsaved changes for the Cypher query 
+  or GSS.
+
 ## v2.3.1 - Nov 4, 2022
 
 ### Bug Fixes
