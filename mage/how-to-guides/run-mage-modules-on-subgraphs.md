@@ -8,6 +8,9 @@ The following how-to guide will demonstrate how to run graph analytics on sub-gr
 
 If you need help with running MAGE modules and graph algorithms, check out the [how-to guide on that topic](/mage/how-to-guides/run-a-query-module.md).
 
+[![Related - Blog
+Post](https://img.shields.io/static/v1?label=Related&message=Blog%20post&color=9C59DB&style=for-the-badge)](https://memgraph.com/blog/how-we-designed-and-implemented-graph-projection-feature)
+
 ### When not to run algorithms across the entire network and use the projection feature?
 Executing any MAGE query module, the algorithm is executed on the whole network. 
 This is impractical in the following use cases: 
