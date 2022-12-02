@@ -32,7 +32,7 @@ Check out the [installation guide](/docs/memgraph/installation) for other instal
 
 ### 2. Load the dataset
 
-First, head over to the **Datasets** section to load a dataset. Then, choose the **Europe backpacking dataset**. 
+Head over to the **Datasets** section to load a dataset and load the **Europe backpacking dataset**. 
 
 <img src={require('../data/how-to-guides/nxalg-how-to-1.png').default} className={"imgBorder"}/>
 
