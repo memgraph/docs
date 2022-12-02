@@ -85,7 +85,7 @@ On the other hand, to create a relationship of type `EDGE_TYPE`  that connects n
 graph.add_edges_from([(1, 2, {"type": "EDGE_TYPE"}), (1, 3)])
 ```
 
-The code above translates into a graph inside Memgraph, which looks like this: 
+The code above translates into the following a graph inside Memgraph: 
 
 <img src={require('./data/networkx-example-1.png').default} alt="networkx-example-1" className={"imgSmaller"}/>
 
