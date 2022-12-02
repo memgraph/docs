@@ -80,7 +80,7 @@ Check out the [installation guide](/docs/memgraph/installation) for other instal
 
 ### 2. Load the dataset
 
-First, load a dataset in the **Datasets** section by searching and loading the Karate club friendship network dataset. 
+In the **Datasets** section, find and load the Karate club friendship network dataset. 
 
 <img src={require('../data/how-to-guides/nxalg-how-to-5.png').default} className={"imgBorder"}/>
 
