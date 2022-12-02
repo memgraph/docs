@@ -99,8 +99,7 @@ This section contains the list of supported functions.
 :::
 
 :::info
-
-All aggregation functions can be used with `DISTINCT` operator to performe calculations only on unique values. For example, `COUNT(DISTINCT n.prop)`, `COLLECT(DISTINCT n.prop)`.
+All aggregation functions can be used with the `DISTINCT` operator to perform calculations only on unique values. For example, `COUNT(DISTINCT n.prop)` and `COLLECT(DISTINCT n.prop)`.
 :::
 
 ### String functions

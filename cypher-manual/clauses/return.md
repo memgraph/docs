@@ -217,7 +217,7 @@ Output:
 
 ## 11. Returning aggregated results
 
-The `RETURN` statement can be used with `Aggregation` functions:
+The `RETURN` statement can be used with [`Aggregation`](https://memgraph.com/docs/cypher-manual/functions#aggregation-functions) functions:
 
 ```cypher
 MATCH (c:Country)
@@ -233,7 +233,7 @@ Output:
 +-----------------------------------------------------------------------------------------------------+
 ```
 
-Aggregations functions can be used with `DISTINCT` operator, which will performe calculations only on unique values:
+Aggregations functions can be also used with `DISTINCT` operator, which will performe calculations only on unique values:
 
 ```cypher
 MATCH ()-[:LIVING_IN]->(c)
