@@ -46,7 +46,7 @@ The goal is to run the [`is_bipartite()`](/docs/mage/query-modules/python/nxalg#
 
 <img src={require('../data/how-to-guides/nxalg-how-to-3.png').default} className={"imgBorder"}/>
 
-Copy the query, go to the **Query Execution** tab and paste the query into the **Cypher Editor**. If you need the query, here it is:
+Copy the query, go to the **Query Execution** tab and paste the query into the **Cypher Editor**:
 
 ```cypher 
 CALL nxalg.is_bipartite() YIELD is_bipartite;
