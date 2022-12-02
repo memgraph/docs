@@ -25,7 +25,7 @@ sidebar_label: Changelog
 * Once the table results view is selected, the results of the following query run will also preview in the table results view, instead of automatically switching to the graph view.
 * Exploring a dataset's query collection now works as expected. It opens up a list of queries that can be used to explore the dataset.
 * Failed queries from the rich collections now return a detailed error message.
-* Save code changes action in rich collections will be enabled only if there are unsaved changes for the Cypher query 
+* _Save code changes_ button in rich collections will now be enabled only if there are unsaved changes for the Cypher query 
   or GSS.
 * A bug in the table results view where only the first node label has been shown instead of all node labels has been fixed.
 
