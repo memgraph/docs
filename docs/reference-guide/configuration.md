@@ -81,6 +81,7 @@ SHOW CONFIG;
 | --telemetry-enabled=true | Set to true to enable telemetry. We collect information about the running system (CPU and memory information), information about the database runtime (vertex and edge counts and resource usage), and aggregated statistics about some features of the database (e.g. how many times a feature is used) to allow for an easier improvement of the product. | `[bool]` |
 
 ## Environment variables
+
  Variable        | Description    | Type           |
 | -------------- | -------------- | -------------- |
 | MG_USER        | First user username     | `[string]`     |
