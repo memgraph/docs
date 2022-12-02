@@ -54,7 +54,8 @@ module.exports = {
           ],
         },
         "how-to-guides/triggers/triggers",
-        "how-to-guides/on-disk-storage/on-disk-storage"
+        "how-to-guides/on-disk-storage/on-disk-storage",
+        "how-to-guides/networkx"
       ],
     },
     /*
