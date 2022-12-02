@@ -15,7 +15,7 @@ dynamics, and functions of complex networks. Memgraph has [**`nxalg`**](/docs/ma
 
 NetworkX algorithms are integrated into Memgraph as query modules inside Memgraph’s open-source graph extension library [MAGE](/docs/mage). Head over to the guide on [how to call MAGE procedures](/docs/mage/usage/calling-procedures) to find out how to call all Memgraph procedures, including those that utilize the NetworkX library.
 
-This how-to guide will show one simple example of calling a NetworkX procedure. 
+This how-to guide will show one simple example of calling a NetworkX procedure in Memgraph's visual interface Memgraph Lab. 
 
 ### 1. Connect to Memgraph
 
