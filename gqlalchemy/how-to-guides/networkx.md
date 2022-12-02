@@ -45,7 +45,7 @@ python3 graph.py
 
 ### 3. Explore the graph
 
-[Connect to Memgraph](/docs/memgraph-lab/connect-to-memgraph#connecting-to-memgraph) via Memgraph Lab which is running at `localhost:3000`. Head over to the **Query Execution** tab and write the following query:
+[Connect to Memgraph](/docs/memgraph-lab/connect-to-memgraph#connecting-to-memgraph) via Memgraph Lab which is running at `localhost:3000`. Open the **Query Execution** section and write the following query:
 
 ```cypher
 MATCH (n)-[r]->(m)
