@@ -79,7 +79,7 @@ By default, the node does not have a label and the relationship is of type `TO`.
 graph.add_nodes_from([(1, {"labels": "First"}), 2, 3])
 ```
 
-On the other hand, to create a relationship in Memgraph of type `EDGE_TYPE` that connects nodes with the property `id` of values 1 and 2, and another one of type `TO` between nodes with the property `id` of values 1 and 3, you should use the following code:
+On the other hand, to create a relationship of type `EDGE_TYPE`  that connects nodes with the property `id` of values 1 and 2, and another relationship of type `TO` between nodes with the property `id` of values 1 and 3, you should use the following code in Memgraph:
 
 ```python
 graph.add_edges_from([(1, 2, {"type": "EDGE_TYPE"}), (1, 3)])
