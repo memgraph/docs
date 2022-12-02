@@ -8,7 +8,7 @@ sidebar_label: Changelog
 
 ## What's New
 
-* Support for manual transaction workflow has been enabled using transaction commands `BEGIN`, `COMMIT`, and `ROLLBACK`.
+* Memgraph Lab now supports manual transaction workflows you can construct using transaction commands `BEGIN`, `COMMIT`, and `ROLLBACK`.
 * Cypher intellisense has been updated to suggest new Cypher features from Memgraph 2.4.0 such as:
   * Privileges for user-role authorization.
   * Commands and privileges for label-based authorization.
