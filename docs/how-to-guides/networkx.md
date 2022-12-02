@@ -5,7 +5,7 @@ sidebar_label: Utilize the NetworkX library
 ---
 
 NetworkX is a Python package for the creation, manipulation, and study of the structure,
-dynamics, and functions of complex networks. Memgraph has [**`nxalg`**](/docs/mage/query-modules/python/nxalg) query module, which is a wrapper around NetworkX graph algorithms. It also provides **[Graph Analyzer](/mage/query-modules/python/graph-analyzer)** query module, which utilizes the NetworkX library. Besides that, you can create a custom query module which uses the NetworkX library. Through this how-to guide, you are going to learn:
+dynamics, and functions of complex networks. Memgraph has [**`nxalg`**](/docs/mage/query-modules/python/nxalg) query module, which is a wrapper around NetworkX graph algorithms. It also provides **[Graph Analyzer](/mage/query-modules/python/graph-analyzer)** query module, which utilizes the NetworkX library. Besides that, you can create a custom query module that uses the NetworkX library. Through this how-to guide, you can find out:
 
 - [**How to run NetworkX algorithms in Memgraph Lab**](#how-to-run-networkx-algorithms-in-memgraph-lab)
 - [**How to implement custom NetworkX module**](#how-to-implement-custom-networkx-module)
