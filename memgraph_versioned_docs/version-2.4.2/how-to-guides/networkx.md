@@ -5,7 +5,7 @@ sidebar_label: Utilize the NetworkX library
 ---
 
 NetworkX is a Python package for the creation, manipulation, and study of the structure,
-dynamics, and functions of complex networks. Memgraph has [**`nxalg`**](/docs/mage/query-modules/python/nxalg) query module, which is a wrapper around NetworkX graph algorithms. It also provides **[Graph Analyzer](/mage/query-modules/python/graph-analyzer)** query module, which utilizes the NetworkX library. Besides that, you can create a custom query module which uses the NetworkX library. Through this how-to guide, you are going to learn:
+dynamics, and functions of complex networks. Memgraph has [**`nxalg`**](/docs/mage/query-modules/python/nxalg) query module, which is a wrapper around NetworkX graph algorithms. It also provides **[Graph Analyzer](/mage/query-modules/python/graph-analyzer)** query module, which utilizes the NetworkX library. Besides that, you can create a custom query module that uses the NetworkX library. Through this how-to guide, you can find out:
 
 - [**How to run NetworkX algorithms in Memgraph Lab**](#how-to-run-networkx-algorithms-in-memgraph-lab)
 - [**How to implement custom NetworkX module**](#how-to-implement-custom-networkx-module)
@@ -13,13 +13,13 @@ dynamics, and functions of complex networks. Memgraph has [**`nxalg`**](/docs/ma
 
 ## How to run NetworkX algorithms in Memgraph Lab
 
-NetworkX algorithms are integrated into Memgraph as query modules inside Memgraph’s open-source graph extension library [MAGE](/docs/mage). Head over to the guide on [how to call MAGE procedures](/docs/mage/usage/calling-procedures) to learn how to call all Memgraph procedures, including those that utilize the NetworkX library.
+NetworkX algorithms are integrated into Memgraph as query modules inside Memgraph’s open-source graph extension library [MAGE](/docs/mage). Head over to the guide on [how to call MAGE procedures](/docs/mage/usage/calling-procedures) to find out how to call all Memgraph procedures, including those that utilize the NetworkX library.
 
-This how-to guide will show one simple example of calling a NetworkX procedure. 
+This how-to guide will show one simple example of calling a NetworkX procedure in Memgraph's visual interface Memgraph Lab. 
 
 ### 1. Connect to Memgraph
 
-To be able to try out this example on your own, you need a running Memgraph instance. Run Memgraph using the Memgraph Platform Docker image, which includes both the MAGE library and Memgraph Lab, a visual interface. 
+First, run Memgraph using the Memgraph Platform Docker image, which includes both the MAGE library and Memgraph Lab. 
 To run the image, open a command-line interpreter and run the following Docker command:
 
 ```
@@ -32,7 +32,7 @@ Check out the [installation guide](/docs/memgraph/installation) for other instal
 
 ### 2. Load the dataset
 
-First, head over to the **Datasets** section to load a dataset. Then, choose the **Europe backpacking dataset**. 
+Head over to the **Datasets** section to load a dataset and load the **Europe backpacking dataset**. 
 
 <img src={require('../data/how-to-guides/nxalg-how-to-1.png').default} className={"imgBorder"}/>
 
@@ -46,7 +46,7 @@ The goal is to run the [`is_bipartite()`](/docs/mage/query-modules/python/nxalg#
 
 <img src={require('../data/how-to-guides/nxalg-how-to-3.png').default} className={"imgBorder"}/>
 
-Copy the query, go to the **Query Execution** tab and paste the query into the **Cypher Editor**. If you need the query, here it is:
+Copy the query, go to the **Query Execution** tab and paste the query into the **Cypher Editor**:
 
 ```cypher 
 CALL nxalg.is_bipartite() YIELD is_bipartite;
@@ -58,16 +58,16 @@ By clicking on the **Run Query** button, you can see that the Europe backpacking
 
 In the same way, you can run other procedures from the `nxalg` module and the procedures from the `graph_analyzer` module, which can be found in the **Query Modules** section.
 
-## How to implement custom NetworkX module
+## How to implement custom NetworkX module in Memgraph Lab
 
 Besides using already implemented modules, you can create your own module which utilizes the NetworkX library.
 To learn how to implement a custom query module, head over to the [example of query module in Python](/docs/memgraph/reference-guide/query-modules/implement-custom-query-modules/custom-query-module-example#python-api).
 
-Since Memgraph is integrated with NetworkX, you can import NetworkX library inside your Python code and start coding. In this guide, we will create a new query module which utilizes the NetworkX library with the help of Memgraph Lab.
+Since Memgraph is integrated with NetworkX, you can import NetworkX library inside Python code. This guide will show you how to create a new query module that utilizes the NetworkX library within Memgraph's visual interface Memgraph Lab.
 
 ### 1. Connect to Memgraph
 
-To be able to try out this example on your own, you need a running Memgraph instance. Run Memgraph using the Memgraph Platform Docker image, which includes both the MAGE library and Memgraph Lab, a visual interface. 
+First, run Memgraph using the Memgraph Platform Docker image, which includes both the MAGE library and Memgraph Lab. 
 To run the image, open a command-line interpreter and run the following Docker command:
 
 ```
@@ -80,7 +80,7 @@ Check out the [installation guide](/docs/memgraph/installation) for other instal
 
 ### 2. Load the dataset
 
-First, load a dataset in the **Datasets** section by searching and loading the Karate club friendship network dataset. 
+In the **Datasets** section, find and load the Karate club friendship network dataset. 
 
 <img src={require('../data/how-to-guides/nxalg-how-to-5.png').default} className={"imgBorder"}/>
 
