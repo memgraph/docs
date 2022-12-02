@@ -58,7 +58,7 @@ By clicking on the **Run Query** button, you can see that the Europe backpacking
 
 In the same way, you can run other procedures from the `nxalg` module and the procedures from the `graph_analyzer` module, which can be found in the **Query Modules** section.
 
-## How to implement custom NetworkX module
+## How to implement custom NetworkX module in Memgraph Lab
 
 Besides using already implemented modules, you can create your own module which utilizes the NetworkX library.
 To learn how to implement a custom query module, head over to the [example of query module in Python](/docs/memgraph/reference-guide/query-modules/implement-custom-query-modules/custom-query-module-example#python-api).
