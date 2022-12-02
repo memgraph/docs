@@ -23,7 +23,7 @@ sidebar_label: Changelog
 ## Bug Fixes
 
 * Once the table results view is selected, the results of the following query run will also preview in the table results view, instead of automatically switching to the graph view.
-* Exploring a dataset's query collection now works as expected. It opens up a query list to explore the dataset.
+* Exploring a dataset's query collection now works as expected. It opens up a list of queries that can be used to explore the dataset.
 * Missing detailed error message on a failed query in rich collections has been fixed.
 * Save code changes action in rich collections will be enabled only if there are unsaved changes for the Cypher query 
   or GSS.
