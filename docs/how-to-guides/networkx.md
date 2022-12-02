@@ -111,6 +111,8 @@ def detect(
         list(s) for s in next(communities_generator)])
 ```
 
+In the above code we are creating a read procedure which creates a NetworkX DiGraph from the MemgraphDiGraph object which takes the existing graph from the database. After that, we run the Girvan-Newman community algorithm and return its results.
+
 Here is what the code looks like in the code editor:
 
 <img src={require('../data/how-to-guides/nxalg-how-to-7.png').default} className={"imgBorder"}/>

@@ -37,6 +37,8 @@ for query in nx_to_cypher(graph):
     memgraph.execute(query)
 ```
 
+First, we are connecting to a running Memgraph instance. Next, we need to drop the database to be sure that the database is empty. After that, we create a simple NetworkX graph to which we add nodes and edges. In the end, we use `nx_to_cypher()` transformation to transform the NetworkX graph to Cypher queries which will be executed in Memgraph.
+
 To run it, open a command-line interpreter and run the following command:
 
 ```python
@@ -93,4 +95,4 @@ These kind of transformations follow the mentioned schema, but if you want to cu
 
 ## Learn more
 
-If you want to learn more, find interesting resources and check out our course, head over to the [**Memgraph for NetworkX developers**](https://memgraph.com/memgraph-for-networkx?utm_source=docs&utm_medium=referral&utm_campaign=networkx_ppp&utm_term=docsgqla%2Bhowto&utm_content=textlink) website. To learn how to utilize the NetworkX library with Memgraph, check out the [**how-to guide**](/docs/memgraph/how-to-guides/networkx) on Memgraph documentation.
+If you want to learn more about using NetworkX with Memgraph with interesting resources and courses, head over to the [**Memgraph for NetworkX developers**](https://memgraph.com/memgraph-for-networkx?utm_source=docs&utm_medium=referral&utm_campaign=networkx_ppp&utm_term=docsgqla%2Bhowto&utm_content=textlink) website. To learn how to utilize the NetworkX library with Memgraph, check out the [**how-to guide**](/docs/memgraph/how-to-guides/networkx) on Memgraph documentation.
