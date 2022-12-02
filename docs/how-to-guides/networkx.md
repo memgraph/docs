@@ -63,7 +63,7 @@ In the same way, you can run other procedures from the `nxalg` module and the pr
 Besides using already implemented modules, you can create your own module which utilizes the NetworkX library.
 To learn how to implement a custom query module, head over to the [example of query module in Python](/docs/memgraph/reference-guide/query-modules/implement-custom-query-modules/custom-query-module-example#python-api).
 
-Since Memgraph is integrated with NetworkX, you can import NetworkX library inside your Python code and start coding. In this guide, we will create a new query module which utilizes the NetworkX library with the help of Memgraph Lab.
+Since Memgraph is integrated with NetworkX, you can import NetworkX library inside Python code. This guide will show you how to create a new query module that utilizes the NetworkX library within Memgraph's visual interface Memgraph Lab.
 
 ### 1. Connect to Memgraph
 
