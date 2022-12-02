@@ -56,7 +56,7 @@ Click **Run Query** button to see the results.
 
 <img src={require('./data/networkx-example-2.png').default} alt="networkx-example-1" className={"imgBorder"}/>
 
-You can notice that the node with the property `name` Kata and property `id` 2 doesn't have a label. This happened because we didn't define property key `labels`. On the other hand, a relationship which doesn't have a key `type` in the properies dictionary, is of type `TO`.
+You can notice that the node with the property `name` Kata and property `id` 2 doesn't have a label. This happened because the property key `labels` was not defined. A relationship without a key `type` in the properties dictionary is of type `TO`.
 
 
 ## Under the hood
