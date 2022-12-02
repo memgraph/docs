@@ -11,7 +11,7 @@ GQLAlchemy holds transformations that can transform NetworkX graphs into Memgrap
 
 ### 1. Run Memgraph
 
-To be able to try out this example on your own, you need a running Memgraph instance. Run Memgraph using the Memgraph Platform Docker image, which includes both the MAGE library and Memgraph Lab, a visual interface. 
+First, run Memgraph using the Memgraph Platform Docker image, which includes both the MAGE library and Memgraph Lab, a visual interface. 
 To run the image, open a command-line interpreter and run the following Docker command:
 
 ```
