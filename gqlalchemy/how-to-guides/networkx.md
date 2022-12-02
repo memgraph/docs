@@ -4,7 +4,7 @@ title: How to import NetworkX graph into Memgraph
 sidebar_label: Import NetworkX graph into Memgraph
 ---
 
-GQLAlchemy holds transformations that allow the NetworkX graph to be transformed into the Memgraph graph. These transformations take the NetworkX graph object and translate it to the appropriate Cypher queries. Then the Cypher queries can be executed so that the graph is created inside Memgraph. 
+GQLAlchemy holds transformations that can transform NetworkX graphs into Memgraph graphs. These transformations take the NetworkX graph object and translate it to the appropriate Cypher queries. The Cypher queries are then executed to create a graph inside Memgraph. 
 
 
 ## Import NetworkX graph into Memgraph 
