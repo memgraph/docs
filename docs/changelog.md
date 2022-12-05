@@ -4,6 +4,11 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+### Bug Fixes
+- The `EmptyResult` sink operator was added to the Memgraph's planner. It works by exhausting its input cursor so it is a combination of the existing `Produce` and `Once` operator. [#667](https://github.com/memgraph/memgraph/pull/667)
+- Fixed python submodules reloading when calling `CALL mg.load()` and `CALL mg.load_all()`. [#653](https://github.com/memgraph/memgraph/pull/653)
+
+
 ## v2.4.2 - Nov 7, 2022
 
 ### Bug Fixes
