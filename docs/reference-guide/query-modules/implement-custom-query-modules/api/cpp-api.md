@@ -118,12 +118,12 @@ Parameter(std::string_view name, Type type, bool default_value)
 
 Creates an optional integer parameter with the given `name` and `default_value`.
 ```cpp
-Parameter(std::string_view name, Type type, bool default_value)
+Parameter(std::string_view name, Type type, int default_value)
 ```
 
 Creates an optional floating-point parameter with the given `name` and `default_value`.
 ```cpp
-Parameter(std::string_view name, Type type, bool default_value)
+Parameter(std::string_view name, Type type, double default_value)
 ```
 
 Creates an optional string parameter with the given `name` and `default_value`.
