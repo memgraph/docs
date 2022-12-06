@@ -6,6 +6,7 @@ sidebar_label: nxalg
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import RunOnSubgraph from '../../templates/_run_on_subgraph.mdx';
 
 export const Highlight = ({children, color}) => (
   <span
@@ -35,6 +36,9 @@ This module, named **nxalg**, provides a comprehensive set of thin wrappers arou
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight>                                                     |
 
 ## Procedures
+
+<RunOnSubgraph/>
+
 ### `all_shortest_paths(source, target, weight, method)`
 
 Compute all shortest simple paths in the graph. A simple path is a path with no repeated nodes.

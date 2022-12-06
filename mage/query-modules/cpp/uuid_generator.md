@@ -6,6 +6,7 @@ sidebar_label: uuid_generator
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import RunOnSubgraph from '../../templates/_run_on_subgraph.mdx';
 
 export const Highlight = ({children, color}) => (
   <span
@@ -36,6 +37,8 @@ installed by running `sudo apt-get install uuid-dev`.
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight> |
 
 ## Procedures
+
+<RunOnSubgraph/>
 
 ### `get()`
 

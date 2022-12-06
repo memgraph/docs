@@ -6,6 +6,7 @@ sidebar_label: temporal_graph_networks
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import RunOnSubgraph from '../../templates/_run_on_subgraph.mdx';
 
 export const Highlight = ({children, color}) => (
 <span
@@ -201,6 +202,8 @@ throwing us a :star: so we can continue to do even better work.
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight>          |
 
 ## Procedures
+
+<RunOnSubgraph/>
 
 ### `set_params(params)`
 

@@ -67,6 +67,7 @@ module.exports = {
         "how-to-guides/create-a-new-module-python",
         "how-to-guides/create-a-new-module-cpp",
         "how-to-guides/run-a-query-module",
+        "how-to-guides/run-a-subgraph-module"
       ],
     },
     {

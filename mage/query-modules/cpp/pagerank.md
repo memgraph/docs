@@ -6,6 +6,7 @@ sidebar_label: pagerank
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import RunOnSubgraph from '../../templates/_run_on_subgraph.mdx';
 
 export const Highlight = ({children, color}) => (
   <span
@@ -60,6 +61,8 @@ PageRank implementation.
 | **Parallelism**     | <Highlight color="#FB6E00">**parallel**</Highlight>   |
 
 ## Procedures
+
+<RunOnSubgraph/>
 
 ### `get(max_iterations, damping_factor, stop_epsilon)`
 
@@ -120,7 +123,8 @@ MERGE (a:Node {id: 0}) MERGE (b:Node {id: 7}) CREATE (a)-[:RELATION]->(b);
 
 ```cypher
 CALL pagerank.get()
-YIELD node, rank;
+YIELD node, rank
+RETURN node, rank;
 ```
 
   </TabItem>

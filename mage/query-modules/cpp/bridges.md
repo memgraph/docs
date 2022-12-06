@@ -6,6 +6,7 @@ sidebar_label: bridges
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import RunOnSubgraph from '../../templates/_run_on_subgraph.mdx';
 
 export const Highlight = ({children, color}) => (
   <span
@@ -35,6 +36,8 @@ A bridge in the graph can be described as an edge which if deleted, creates two 
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight> |
 
 ## Procedures
+
+<RunOnSubgraph/>
 
 ### `get()`
 

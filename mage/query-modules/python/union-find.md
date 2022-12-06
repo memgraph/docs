@@ -6,6 +6,7 @@ sidebar_label: union_find
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import RunOnSubgraph from '../../templates/_run_on_subgraph.mdx';
 
 export const Highlight = ({children, color}) => (
   <span
@@ -42,6 +43,8 @@ The implementation of the disjoint-set data structure and its operations uses th
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight> |
 
 ## Procedures
+
+<RunOnSubgraph/>
 
 ### `connected(nodes1, nodes2, mode, update)`
 
