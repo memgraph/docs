@@ -43,6 +43,26 @@ Output:
 +-------------+
 ```
 
+Sorting unique aggregated results can be done with `DISTINCT` operator in aggregation function which can be then filtered:
+
+```cypher
+MATCH (p:Person {name: 'John'})--(person)-->(m)
+WITH person, count(DISTINCT m) AS foaf
+WHERE foaf > 1
+RETURN person.name;
+```
+
+Output:
+
+```nocopy
++-------------+
+| person.name |
++-------------+
+| Harry       |
+| Anna        |
++-------------+
+```
+
 ## 2. Sorting results
 
 The `WITH` clause can be used to order results before using `collect()` on them:
@@ -59,6 +79,25 @@ Output:
 ```nocopy
 +-------------------------------+
 | collect(n.name)               |
++-------------------------------+
+| ["Anna", "France", "Germany"] |
++-------------------------------+
+```
+
+if you want to `collect()` only unique values:
+
+```cypher
+MATCH (n)
+WITH n
+ORDER BY n.name ASC LIMIT 3
+RETURN collect(DISTINCT n.name) as unique_names;
+```
+
+Output:
+
+```nocopy
++-------------------------------+
+| unique_names                  |
 +-------------------------------+
 | ["Anna", "France", "Germany"] |
 +-------------------------------+
