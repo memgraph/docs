@@ -5,7 +5,7 @@ const katex = require('rehype-katex');
 module.exports = {
   title: "Memgraph Docs",
   tagline: "Welcome to the Memgraph Docs site!",
-  url: "https://memgraph.com",
+  url: "https://memgraph-archive-docs.netlify.app",
   baseUrl,
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "throw",
@@ -33,6 +33,13 @@ module.exports = {
     },
   ],
   themeConfig: {
+    metadata: [
+      {
+        name: "robots",
+        content:
+          "noindex",
+      },
+    ],
     docs: {
       sidebar: {
         hideable: true,
@@ -1307,16 +1314,16 @@ module.exports = {
           {
             to: "/memgraph/reference-guide/streams/transformation-modules/api/python-api",
             from: ["/memgraph/import-data/kafka/json", "/memgraph/import-data/kafka/avro", "/memgraph/import-data/kafka/protobuf"],
-          },  
+          },
           {
             to: "/memgraph/import-data/data-streams/manage-streams-lab",
             from: ["/memgraph/how-to-guides/streams/kafka/connect-to-stream-from-lab"],
           },
-           // Redirect for the Transactions
+          // Redirect for the Transactions
           {
             to: "/memgraph/reference-guide/transactions",
             from: ["/memgraph/reference-guide/isolation-levels"],
-          },   
+          },
           // Redirect for the Import section 
           {
             to: "/memgraph/import-data/files/load-json",
@@ -1329,7 +1336,7 @@ module.exports = {
           {
             to: "/memgraph/import-data/files/overview",
             from: ["/memgraph/import-data/csv/overview", "/memgraph/reference-guide/import-data/overview"],
-          },       
+          },
         ],
       },
     ],
