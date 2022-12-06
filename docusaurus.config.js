@@ -1,4 +1,4 @@
-const baseUrl = "/docs/";
+const baseUrl = "/";
 const math = require('remark-math');
 const katex = require('rehype-katex');
 
