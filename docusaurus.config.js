@@ -444,12 +444,6 @@ module.exports = {
       },
       copyright: `Copyright © ${new Date().getFullYear()} Memgraph. Built by developers, for developers!`,
     },
-    algolia: {
-      appId: "R5T3EMHC2U",
-      apiKey: "986c523abb1c0bbd68ec83d9ada11124",
-      indexName: "g-despot",
-      contextualSearch: true,
-    },
     prism: {
       additionalLanguages: [
         "cypher",
