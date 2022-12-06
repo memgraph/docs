@@ -51,8 +51,8 @@ and can be used in Cypher queries.
 void AddProcedure(
     mgp_proc_cb callback, 
     std::string_view name,
-    ProdecureType proc_type,
-    std::vector<mgp::Parameter> parameters,
+    ProcedureType proc_type,
+    std::vector<Parameter> parameters,
     std::vector<Return> returns,
     mgp_module *module,
     mgp_memory *memory);
@@ -84,7 +84,7 @@ and can be used in Cypher queries.
 void AddFunction(
     mgp_func_cb callback, 
     std::string_view name,
-    std::vector<mgp::Parameter> parameters,
+    std::vector<Parameter> parameters,
     std::vector<Return> returns,
     mgp_module *module,
     mgp_memory *memory);
@@ -108,51 +108,51 @@ and (if optional) default value.
 
 Creates a non-optional parameter with the given `name` and `type`.
 ```cpp
-Parameter(std::string_view name, mgp::Type type)
+Parameter(std::string_view name, Type type)
 ```
 
 Creates an optional Boolean parameter with the given `name` and `default_value`.
 ```cpp
-Parameter(std::string_view name, mgp::Type type, bool default_value)
+Parameter(std::string_view name, Type type, bool default_value)
 ```
 
 Creates an optional integer parameter with the given `name` and `default_value`.
 ```cpp
-Parameter(std::string_view name, mgp::Type type, bool default_value)
+Parameter(std::string_view name, Type type, bool default_value)
 ```
 
 Creates an optional floating-point parameter with the given `name` and `default_value`.
 ```cpp
-Parameter(std::string_view name, mgp::Type type, bool default_value)
+Parameter(std::string_view name, Type type, bool default_value)
 ```
 
 Creates an optional string parameter with the given `name` and `default_value`.
 ```cpp
-Parameter(std::string_view name, mgp::Type type, std::string_view default_value)
-Parameter(std::string_view name, mgp::Type type, const char *default_value)
+Parameter(std::string_view name, Type type, std::string_view default_value)
+Parameter(std::string_view name, Type type, const char *default_value)
 ```
 
 Creates a non-optional list parameter with the given `name` and `item_type`.
 The `list_type` parameter is organized as follows: `{Type::List, Type::[ITEM_TYPE]}`.
 ```cpp
-Parameter(std::string_view name, std::pair<mgp::Type, mgp::Type> list_type)
+Parameter(std::string_view name, std::pair<Type, Type> list_type)
 ```
 
 Creates an optional list parameter with the given `name`, `item_type`, and `default_value`.
 The `list_type` parameter is organized as follows: `{Type::List, Type::[ITEM_TYPE]}`.
 ```cpp
-Parameter(std::string_view name, std::pair<mgp::Type, mgp::Type> list_type, mgp::Value default_value)
+Parameter(std::string_view name, std::pair<Type, Type> list_type, Value default_value)
 ```
 
 #### Member variables
 
 | Name              | Type               | Description                         |
-|-------------------|--------------------|-------------------------------------|
+| ----------------- | ------------------ | ----------------------------------- |
 | `name`            | `std::string_view` | parameter name                      |
-| `type_`           | `mgp::Type`        | parameter type                      |
-| `list_item_type_` | `mgp::Type`        | (list parameters) item type         |
+| `type_`           | `Type`             | parameter type                      |
+| `list_item_type_` | `Type`             | (list parameters) item type         |
 | `optional`        | `bool`             | whether the parameter is optional   |
-| `default_value`   | `mgp::Value`       | (optional parameters) default value |
+| `default_value`   | `Value`            | (optional parameters) default value |
 
 ### Return
 
@@ -162,22 +162,22 @@ Represents a procedure/function return value. Values are defined by their name a
 
 Creates a return value with the given `name` and `type`.
 ```cpp
-Return(std::string_view name, mgp::Type type) 
+Return(std::string_view name, Type type) 
 ```
 
 Creates a return value with the given `name` and `list_type`. 
 The `list_type` parameter is organized as follows: `{Type::List, Type::[ITEM_TYPE]}`.
 ```cpp
-Return(std::string_view name, std::pair<mgp::Type, mgp::Type> list_type)
+Return(std::string_view name, std::pair<Type, Type> list_type)
 ```
 
 #### Member variables
 
 | Name              | Type               | Description             |
-|-------------------|--------------------|-------------------------|
+| ----------------- | ------------------ | ----------------------- |
 | `name`            | `std::string_view` | return name             |
-| `type_`           | `mgp::Type`        | return type             |
-| `list_item_type_` | `mgp::Type`        | (list values) item type |
+| `type_`           | `Type`             | return type             |
+| `list_item_type_` | `Type`             | (list values) item type |
 
 ### RecordFactory
 
@@ -192,7 +192,7 @@ explicit RecordFactory(mgp_result *result)
 #### Member functions
 
 | Name        | Description               |
-|-------------|---------------------------|
+| ----------- | ------------------------- |
 | `NewRecord` | Adds a new result record. |
 
 ### Record
@@ -209,7 +209,7 @@ explicit Record(mgp_result_record *record)
 #### Member functions
 
 | Name     | Description                                             |
-|----------|---------------------------------------------------------|
+| -------- | ------------------------------------------------------- |
 | `Insert` | Inserts a value of given type under field `field_name`. |
 
 ##### Insert
@@ -237,39 +237,39 @@ Inserts a value of given type under field `field_name`.
 ```
 
 ```cpp
-  void Insert(const char *field_name, const mgp::List &value)
+  void Insert(const char *field_name, const List &value)
 ```
 
 ```cpp
-  void Insert(const char *field_name, const mgp::Map &value)
+  void Insert(const char *field_name, const Map &value)
 ```
 
 ```cpp
-  void Insert(const char *field_name, const mgp::Node &value)
+  void Insert(const char *field_name, const Node &value)
 ```
 
 ```cpp
-  void Insert(const char *field_name, const mgp::Relationship &value)
+  void Insert(const char *field_name, const Relationship &value)
 ```
 
 ```cpp
-  void Insert(const char *field_name, const mgp::Path &value)
+  void Insert(const char *field_name, const Path &value)
 ```
 
 ```cpp
-  void Insert(const char *field_name, const mgp::Date &value)
+  void Insert(const char *field_name, const Date &value)
 ```
 
 ```cpp
-  void Insert(const char *field_name, const mgp::LocalTime value)
+  void Insert(const char *field_name, const LocalTime value)
 ```
 
 ```cpp
-  void Insert(const char *field_name, const mgp::LocalDateTime value)
+  void Insert(const char *field_name, const LocalDateTime value)
 ```
 
 ```cpp
-  void Insert(const char *field_name, const mgp::Duration value)
+  void Insert(const char *field_name, const Duration value)
 ```
 
 ### Result
@@ -285,7 +285,7 @@ explicit Result(mgp_func_result *result)
 #### Member functions
 
 | Name       | Description                        |
-|------------|------------------------------------|
+| ---------- | ---------------------------------- |
 | `SetValue` | Sets a return value of given type. |
 
 ##### SetValue
@@ -313,39 +313,39 @@ Sets a return value of given type.
 ```
 
 ```cpp
-  void SetValue(const mgp::List &value)
+  void SetValue(const List &value)
 ```
 
 ```cpp
-  void SetValue(const mgp::Map &value)
+  void SetValue(const Map &value)
 ```
 
 ```cpp
-  void SetValue(const mgp::Node &value)
+  void SetValue(const Node &value)
 ```
 
 ```cpp
-  void SetValue(const mgp::Relationship &value)
+  void SetValue(const Relationship &value)
 ```
 
 ```cpp
-  void SetValue(const mgp::Path &value)
+  void SetValue(const Path &value)
 ```
 
 ```cpp
-  void SetValue(const mgp::Date &value)
+  void SetValue(const Date &value)
 ```
 
 ```cpp
-  void SetValue(const mgp::LocalTime value)
+  void SetValue(const LocalTime value)
 ```
 
 ```cpp
-  void SetValue(const mgp::LocalDateTime value)
+  void SetValue(const LocalDateTime value)
 ```
 
 ```cpp
-  void SetValue(const mgp::Duration value)
+  void SetValue(const Duration value)
 ```
 
 ## Graph API
@@ -364,10 +364,10 @@ explicit Graph(mgp_graph *graph)
 #### Member functions
 
 | Name                   | Description                                                                                   |
-|------------------------|-----------------------------------------------------------------------------------------------|
+| ---------------------- | --------------------------------------------------------------------------------------------- |
 | `Order`                | Returns the graph order (number of nodes).                                                    |
 | `Size`                 | Returns the graph size (number of relationships).                                             |
-| `Nodes`                | Returns an iterable structure of the graph’s nodes.                                           |
+| `Nodes` (`GraphNodes`) | Returns an iterable structure of the graph’s nodes.                                           |
 | `Relationships`        | Returns an iterable structure of the graph’s relationships.                                   |
 | `GetNodeById`          | Returns the graph node with the given ID.                                                     |
 | `ContainsNode`         | Returns whether the graph contains the given node (accepts node or its ID).                   |
@@ -395,12 +395,12 @@ Returns the graph size (number of relationships).
 int64_t Size() const
 ```
 
-##### Nodes
+##### Nodes (GraphNodes)
 
 Returns an iterable structure of the graph’s nodes.
 
 ```cpp
-mgp::GraphNodes Nodes() const
+GraphNodes Nodes() const
 ```
 
 ##### Relationships
@@ -408,7 +408,7 @@ mgp::GraphNodes Nodes() const
 Returns an iterable structure of the graph’s relationships.
 
 ```cpp
-mgp::GraphRelationships Relationships() const
+GraphRelationships Relationships() const
 ```
 
 ##### GetNodeById
@@ -416,7 +416,7 @@ mgp::GraphRelationships Relationships() const
 Returns the graph node with the given ID.
 
 ```cpp
-mgp::Node GetNodeById(const mgp::Id node_id) const
+Node GetNodeById(const Id node_id) const
 ```
 
 ##### ContainsNode
@@ -456,7 +456,7 @@ bool IsMutable() const
 Creates a node and adds it to the graph.
 
 ```cpp
-mgp::Node CreateNode();
+Node CreateNode();
 ```
 
 ##### DeleteNode
@@ -464,7 +464,7 @@ mgp::Node CreateNode();
 Deletes a node from the graph.
 
 ```cpp
-void DeleteNode(const mgp::Node &node)
+void DeleteNode(const Node &node)
 ```
 
 ##### DetachDeleteNode
@@ -472,7 +472,7 @@ void DeleteNode(const mgp::Node &node)
 Deletes a node and all its incident edges from the graph.
 
 ```cpp
-void DetachDeleteNode(const mgp::Node &node)
+void DetachDeleteNode(const Node &node)
 ```
 
 ##### CreateRelationship
@@ -480,7 +480,7 @@ void DetachDeleteNode(const mgp::Node &node)
 Creates a relationship of type `type` between nodes `from` and `to` and adds it to the graph.
 
 ```cpp
-mgp::Relationship CreateRelationship(const mgp::Node &from, const mgp::Node &to, const std::string_view type)
+Relationship CreateRelationship(const Node &from, const Node &to, const std::string_view type)
 ```
 
 ##### DeleteRelationship
@@ -488,7 +488,7 @@ mgp::Relationship CreateRelationship(const mgp::Node &from, const mgp::Node &to,
 Deletes a relationship from the graph.
 
 ```cpp
-void DeleteRelationship(const mgp::Relationship &relationship)
+void DeleteRelationship(const Relationship &relationship)
 ```
 
 #### GraphNodes
@@ -504,14 +504,14 @@ explicit GraphNodes(mgp_vertices_iterator *nodes_iterator)
 
 ##### Member variables
 
-| Name       | Type                        | Description                              |
-|------------|-----------------------------|------------------------------------------|
-| `Iterator` | `mgp::GraphNodes::Iterator` | Const forward iterator for `GraphNodes`. |
+| Name       | Type                   | Description                              |
+| ---------- | ---------------------- | ---------------------------------------- |
+| `Iterator` | `GraphNodes::Iterator` | Const forward iterator for `GraphNodes`. |
 
 ##### Member functions
 
 | Name                                      | Description                                             |
-|-------------------------------------------|---------------------------------------------------------|
+| ----------------------------------------- | ------------------------------------------------------- |
 | `begin`<br/>`end`<br/>`cbegin`<br/>`cend` | Returns the beginning/end of the `GraphNodes` iterator. |
 
 #### GraphRelationships
@@ -527,14 +527,14 @@ explicit GraphRelationships(mgp_graph *graph)
 
 ##### Member variables
 
-| Name       | Type                                | Description                                      |
-|------------|-------------------------------------|--------------------------------------------------|
-| `Iterator` | `mgp::GraphRelationships::Iterator` | Const forward iterator for `GraphRelationships`. |
+| Name       | Type                           | Description                                      |
+| ---------- | ------------------------------ | ------------------------------------------------ |
+| `Iterator` | `GraphRelationships::Iterator` | Const forward iterator for `GraphRelationships`. |
 
 ##### Member functions
 
 | Name                                      | Description                                                    |
-|-------------------------------------------|----------------------------------------------------------------|
+| ----------------------------------------- | -------------------------------------------------------------- |
 | `begin`<br/>`end`<br/>`cbegin`<br/>`cend` | Returns the beginning/end of the `GraphRelationship` iterator. |
 
 ### Node
@@ -558,7 +558,7 @@ Node(Node &&other) noexcept
 #### Member functions
 
 | Name               | Description                                                         |
-|--------------------|---------------------------------------------------------------------|
+| ------------------ | ------------------------------------------------------------------- |
 | `Id`               | Returns the node’s ID.                                              |
 | `Labels`           | Returns an iterable & indexable structure of the node’s labels.     |
 | `HasLabel`         | Returns whether the node has the given `label`.                     |
@@ -580,7 +580,7 @@ mgp::Id Id() const
 Returns an iterable & indexable structure of the node’s labels.
 
 ```cpp
-mgp::Labels Labels() const
+Labels Labels() const
 ```
 
 ##### HasLabel
@@ -596,7 +596,7 @@ bool HasLabel(std::string_view label) const
 Returns an iterable & indexable structure of the node’s properties.
 
 ```cpp
-mgp::Properties Properties() const
+Properties Properties() const
 ```
 
 ##### InRelationships
@@ -604,7 +604,7 @@ mgp::Properties Properties() const
 Returns an iterable structure of the node’s inbound relationships.
 
 ```cpp
-mgp::Relationships InRelationships() const
+Relationships InRelationships() const
 ```
 
 ##### OutRelationships
@@ -612,7 +612,7 @@ mgp::Relationships InRelationships() const
 Returns an iterable structure of the node’s outbound relationships.
 
 ```cpp
-mgp::Relationships OutRelationships() const
+Relationships OutRelationships() const
 ```
 
 ##### AddLabel
@@ -626,7 +626,7 @@ void AddLabel(const std::string_view label)
 #### Operators
 
 | Name                                          | Description                                               |
-|-----------------------------------------------|-----------------------------------------------------------|
+| --------------------------------------------- | --------------------------------------------------------- |
 | `operator[]`                                  | Returns the value of the node’s `property_name` property. |
 | `operator==`<br/>`operator!=`<br/>`operator<` | comparison operators                                      |
 
@@ -635,7 +635,7 @@ void AddLabel(const std::string_view label)
 Returns the value of the node’s `property_name` property.
 
 ```cpp
-const mgp::Value operator[](std::string_view property_name) const
+const Value operator[](std::string_view property_name) const
 ```
 
 ### Relationship
@@ -659,7 +659,7 @@ Relationship(Relationship &&other) noexcept
 #### Member functions
 
 | Name         | Description                                                                 |
-|--------------|-----------------------------------------------------------------------------|
+| ------------ | --------------------------------------------------------------------------- |
 | `Id`         | Returns the relationship’s ID.                                              |
 | `Type`       | Returns the relationship’s type.                                            |
 | `Properties` | Returns an iterable & indexable structure of the relationship’s properties. |
@@ -695,7 +695,7 @@ mgp::Properties Properties() const
 Returns the relationship’s source node.
 
 ```cpp
-mgp::Node From() const
+Node From() const
 ```
 
 ##### To
@@ -703,13 +703,13 @@ mgp::Node From() const
 Returns the relationship’s source node.
 
 ```cpp
-mgp::Node To() const
+Node To() const
 ```
 
 #### Operators
 
 | Name                                          | Description                                                       |
-|-----------------------------------------------|-------------------------------------------------------------------|
+| --------------------------------------------- | ----------------------------------------------------------------- |
 | `operator[]`                                  | Returns the value of the relationship’s `property_name` property. |
 | `operator==`<br/>`operator!=`<br/>`operator<` | comparison operators                                              |
 
@@ -718,7 +718,7 @@ mgp::Node To() const
 Returns the value of the relationship’s `property_name` property.
 
 ```cpp
-const mgp::Value operator[](std::string_view property_name) const
+const Value operator[](std::string_view property_name) const
 ```
 
 #### Relationships
@@ -734,14 +734,14 @@ explicit Relationships(mgp_edges_iterator *relationships_iterator)
 
 ##### Member variables
 
-| Name       | Type                           | Description                                 |
-|------------|--------------------------------|---------------------------------------------|
-| `Iterator` | `mgp::Relationships::Iterator` | Const forward iterator for `Relationships`. |
+| Name       | Type                      | Description                                 |
+| ---------- | ------------------------- | ------------------------------------------- |
+| `Iterator` | `Relationships::Iterator` | Const forward iterator for `Relationships`. |
 
 ##### Member functions
 
 | Name                                      | Description                                                |
-|-------------------------------------------|------------------------------------------------------------|
+| ----------------------------------------- | ---------------------------------------------------------- |
 | `begin`<br/>`end`<br/>`cbegin`<br/>`cend` | Returns the beginning/end of the `Relationships` iterator. |
 
 ### Id
@@ -751,7 +751,7 @@ Represents the unique ID possessed by all Memgraph nodes and relationships.
 #### Member functions
 
 | Name       | Description                                |
-|------------|--------------------------------------------|
+| ---------- | ------------------------------------------ |
 | `FromUint` | Constructs an `Id` object from `uint64_t`. |
 | `FromInt`  | Constructs an `Id` object from `int64_t`.  |
 | `AsUint`   | Returns the ID value as `uint64_t`.        |
@@ -762,7 +762,7 @@ Represents the unique ID possessed by all Memgraph nodes and relationships.
 Constructs an `Id` object from `uint64_t`.
 
 ```cpp
-static mgp::Id FromUint(uint64_t id)
+static Id FromUint(uint64_t id)
 ```
 
 ##### FromInt
@@ -770,7 +770,7 @@ static mgp::Id FromUint(uint64_t id)
 Constructs an `Id` object from `int64_t`.
 
 ```cpp
-static mgp::Id FromInt(int64_t id)
+static Id FromInt(int64_t id)
 ```
 
 ##### AsUint
@@ -792,13 +792,13 @@ int64_t AsInt() const
 #### Operators
 
 | Name                                          | Description          |
-|-----------------------------------------------|----------------------|
+| --------------------------------------------- | -------------------- |
 | `operator==`<br/>`operator!=`<br/>`operator<` | comparison operators |
 
 ### Properties
 
 Represents a view of node/relationship properties.
-The properties are shown as a map of key-value pairs with string keys and `mgp::Value` values.
+The properties are shown as a map of key-value pairs with string keys and `Value` values.
 
 #### Constructors
 
@@ -809,7 +809,7 @@ explicit Properties(mgp_properties_iterator *properties_iterator)
 #### Member functions
 
 | Name    | Description                                  |
-|---------|----------------------------------------------|
+| ------- | -------------------------------------------- |
 | `Size`  | Returns the size of the properties map.      |
 | `Empty` | Returns whether the properties map is empty. |
 
@@ -832,7 +832,7 @@ bool Empty() const
 #### Operators
 
 | Name                          | Description                                                                                             |
-|-------------------------------|---------------------------------------------------------------------------------------------------------|
+| ----------------------------- | ------------------------------------------------------------------------------------------------------- |
 | `operator[]`                  | Returns the value associated with the given `key`. If there’s no such value, the behavior is undefined. |
 | `operator==`<br/>`operator!=` | comparison operators                                                                                    |
 
@@ -842,7 +842,7 @@ Returns the value associated with the given `key`. If there’s no such value, t
 Each key-value pair needs to be checked, ensuing O(n) time complexity.
 
 ```cpp
-const mgp::Value operator[](const std::string_view key) const
+const Value operator[](const std::string_view key) const
 ```
 
 ### Labels
@@ -857,14 +857,14 @@ explicit Labels(mgp_vertex *node_ptr)
 
 #### Member variables
 
-| Name       | Type                    | Description                          |
-|------------|-------------------------|--------------------------------------|
-| `Iterator` | `mgp::Labels::Iterator` | Const forward iterator for `Labels`. |
+| Name       | Type               | Description                          |
+| ---------- | ------------------ | ------------------------------------ |
+| `Iterator` | `Labels::Iterator` | Const forward iterator for `Labels`. |
 
 #### Member functions
 
 | Name                                      | Description                                                    |
-|-------------------------------------------|----------------------------------------------------------------|
+| ----------------------------------------- | -------------------------------------------------------------- |
 | `Size`                                    | Returns the number of the labels, i.e. the size of their list. |
 | `begin`<br/>`end`<br/>`cbegin`<br/>`cend` | Returns the beginning/end of the `Labels` iterator.            |
 
@@ -879,9 +879,9 @@ size_t Size() const
 
 #### Operators
 
-| Name                          | Description                                   |
-|-------------------------------|-----------------------------------------------|
-| `operator[]`                  | Returns the node’s label at position `index`. |
+| Name         | Description                                   |
+| ------------ | --------------------------------------------- |
+| `operator[]` | Returns the node’s label at position `index`. |
 
 ##### operator[]
 
@@ -923,7 +923,7 @@ Date(Date &&other) noexcept
 #### Member functions
 
 | Name        | Description                                                   |
-|-------------|---------------------------------------------------------------|
+| ----------- | ------------------------------------------------------------- |
 | `Now`       | Returns the current `Date`.                                   |
 | `Year`      | Returns the date’s `year` property.                           |
 | `Month`     | Returns the date’s `month` property.                          |
@@ -935,7 +935,7 @@ Date(Date &&other) noexcept
 Returns the current `Date`.
 
 ```cpp
-static mgp::Date Now()
+static Date Now()
 ```
 
 ##### Year
@@ -973,17 +973,17 @@ int64_t Timestamp() const
 #### Operators
 
 | Name                         | Description          |
-|------------------------------|----------------------|
+| ---------------------------- | -------------------- |
 | `operator+`<br/>`operator-`  | arithmetic operators |
 | `operator==`<br/>`operator<` | comparison operators |
 
 ##### operator-
 
 ```cpp
-mgp::Date operator-(const mgp::Duration &dur) const
+Date operator-(const Duration &dur) const
 ```
 ```cpp
-mgp::Duration operator-(const mgp::Date &other) const
+Duration operator-(const Date &other) const
 ```
 
 ##### operator[]
@@ -991,7 +991,7 @@ mgp::Duration operator-(const mgp::Date &other) const
 Returns the value of the relationship’s `property_name` property.
 
 ```cpp
-const mgp::Value operator[](std::string_view property_name) const
+const Value operator[](std::string_view property_name) const
 ```
 
 ### LocalTime
@@ -1026,7 +1026,7 @@ LocalTime(LocalTime &&other) noexcept
 #### Member functions
 
 | Name          | Description                                                     |
-|---------------|-----------------------------------------------------------------|
+| ------------- | --------------------------------------------------------------- |
 | `Now`         | Returns the current `LocalTime`.                                |
 | `Hour`        | Returns the object’s `hour` property.                           |
 | `Minute`      | Returns the object’s `minute` property.                         |
@@ -1040,7 +1040,7 @@ LocalTime(LocalTime &&other) noexcept
 Returns the current `LocalTime`.
 
 ```cpp
-static mgp::LocalTime Now()
+static LocalTime Now()
 ```
 
 ##### Hour
@@ -1094,17 +1094,17 @@ int64_t Timestamp() const
 #### Operators
 
 | Name                         | Description          |
-|------------------------------|----------------------|
+| ---------------------------- | -------------------- |
 | `operator+`<br/>`operator-`  | arithmetic operators |
 | `operator==`<br/>`operator<` | comparison operators |
 
 ##### operator-
 
 ```cpp
-mgp::LocalTime operator-(const mgp::Duration &dur) const
+LocalTime operator-(const Duration &dur) const
 ```
 ```cpp
-mgp::Duration operator-(const mgp::LocalDateTime &other) const
+Duration operator-(const LocalDateTime &other) const
 ```
 
 ### LocalDateTime
@@ -1140,7 +1140,7 @@ LocalDateTime(LocalDateTime &&other) noexcept
 #### Member functions
 
 | Name          | Description                                                     |
-|---------------|-----------------------------------------------------------------|
+| ------------- | --------------------------------------------------------------- |
 | `Now`         | Returns the current `LocalDateTime`.                            |
 | `Year`        | Returns the object’s `year` property.                           |
 | `Month`       | Returns the object’s `month` property.                          |
@@ -1157,7 +1157,7 @@ LocalDateTime(LocalDateTime &&other) noexcept
 Returns the current `LocalDateTime`.
 
 ```cpp
-static mgp::LocalDateTime Now()
+static LocalDateTime Now()
 ```
 
 ##### Year
@@ -1235,17 +1235,17 @@ int64_t Timestamp() const
 #### Operators
 
 | Name                         | Description          |
-|------------------------------|----------------------|
+| ---------------------------- | -------------------- |
 | `operator+`<br/>`operator-`  | arithmetic operators |
 | `operator==`<br/>`operator<` | comparison operators |
 
 ##### operator-
 
 ```cpp
-mgp::LocalDateTime operator-(const mgp::Duration &dur) const
+LocalDateTime operator-(const Duration &dur) const
 ```
 ```cpp
-mgp::Duration operator-(const mgp::LocalDateTime &other) const
+Duration operator-(const LocalDateTime &other) const
 ```
 
 ### Duration
@@ -1286,7 +1286,7 @@ Duration(Duration &&other) noexcept
 #### Member functions
 
 | Name           | Description                           |
-|----------------|---------------------------------------|
+| -------------- | ------------------------------------- |
 | `Microseconds` | Returns the duration as microseconds. |
 
 ##### Microseconds
@@ -1300,17 +1300,17 @@ int64_t Microseconds() const
 #### Operators
 
 | Name                         | Description          |
-|------------------------------|----------------------|
+| ---------------------------- | -------------------- |
 | `operator+`<br/>`operator-`  | arithmetic operators |
 | `operator==`<br/>`operator<` | comparison operators |
 
 ##### operator-
 
 ```cpp
-mgp::Duration operator-(const mgp::Duration &other) const
+Duration operator-(const Duration &other) const
 ```
 ```cpp
-mgp::Duration operator-() const
+Duration operator-() const
 ```
 
 ### Path
@@ -1328,7 +1328,7 @@ explicit Path(const mgp_path *const_ptr)
 
 Creates a Path starting with the given `start_node`.
 ```cpp
-explicit Path(const mgp::Node &start_node)
+explicit Path(const Node &start_node)
 ```
 
 Copy and move constructors:
@@ -1340,7 +1340,7 @@ Path(Path &&other) noexcept
 #### Member functions
 
 | Name                | Description                                                                                           |
-|---------------------|-------------------------------------------------------------------------------------------------------|
+| ------------------- | ----------------------------------------------------------------------------------------------------- |
 | `Length`            | Returns the path length (number of relationships).                                                    |
 | `GetNodeAt`         | Returns the node at the given `index`.  The `index` must be less than or equal to length of the path. |
 | `GetRelationshipAt` | Returns the relationship at the given `index`. The `index` must be less than length of the path.      |
@@ -1359,7 +1359,7 @@ size_t Length() const
 Returns the node at the given `index`.  The `index` must be less than or equal to length of the path.
 
 ```cpp
-mgp::Node GetNodeAt(size_t index) const
+Node GetNodeAt(size_t index) const
 ```
 
 ##### GetRelationshipAt
@@ -1367,7 +1367,7 @@ mgp::Node GetNodeAt(size_t index) const
 Returns the relationship at the given `index`.  The `index` must be less than the length of the path.
 
 ```cpp
-mgp::Relationship GetRelationshipAt(size_t index) const
+Relationship GetRelationshipAt(size_t index) const
 ```
 
 ##### Expand
@@ -1375,13 +1375,13 @@ mgp::Relationship GetRelationshipAt(size_t index) const
 Adds a relationship continuing from the last node on the path.
 
 ```cpp
-void Expand(const mgp::Relationship &relationship)
+void Expand(const Relationship &relationship)
 ```
 
 #### Operators
 
 | Name                          | Description          |
-|-------------------------------|----------------------|
+| ----------------------------- | -------------------- |
 | `operator==`<br/>`operator!=` | comparison operators |
 
 ### List
@@ -1425,14 +1425,14 @@ List(List &&other) noexcept
 
 #### Member variables
 
-| Name       | Type                  | Description                                   |
-|------------|-----------------------|-----------------------------------------------|
-| `Iterator` | `mgp::List::Iterator` | Const forward iterator for `List` containers. |
+| Name       | Type             | Description                                   |
+| ---------- | ---------------- | --------------------------------------------- |
+| `Iterator` | `List::Iterator` | Const forward iterator for `List` containers. |
 
 #### Member functions
 
 | Name                                      | Description                                           |
-|-------------------------------------------|-------------------------------------------------------|
+| ----------------------------------------- | ----------------------------------------------------- |
 | `Size`                                    | Returns the size of the list.                         |
 | `Empty`                                   | Returns whether the list is empty.                    |
 | `Append`                                  | Appends the given `value` to the list.                |
@@ -1460,14 +1460,14 @@ bool Empty() const
 Appends the given `value` to the list. The `value` is copied.
 
 ```cpp
-void Append(const mgp::Value &value)
+void Append(const Value &value)
 ```
 
 Appends the given `value` to the list. Takes ownership of `value` by moving it. 
 The behavior of accessing `value` after performing this operation is undefined.
 
 ```cpp
-void Append(mgp::Value &&value)
+void Append(Value &&value)
 ```
 
 ##### AppendExtend
@@ -1475,20 +1475,20 @@ void Append(mgp::Value &&value)
 Extends the list and appends the given `value` to it. The `value` is copied.
 
 ```cpp
-void AppendExtend(const mgp::Value &value)
+void AppendExtend(const Value &value)
 ```
 
 Extends the list and appends the given `value` to it. Takes ownership of `value` by moving it. 
 The behavior of accessing `value` after performing this operation is undefined.
 
 ```cpp
-void AppendExtend(mgp::Value &&value)
+void AppendExtend(Value &&value)
 ```
 
 #### Operators
 
 | Name                          | Description                             |
-|-------------------------------|-----------------------------------------|
+| ----------------------------- | --------------------------------------- |
 | `operator[]`                  | Returns the value at the given `index`. |
 | `operator==`<br/>`operator!=` | comparison operators                    |
 
@@ -1497,7 +1497,7 @@ void AppendExtend(mgp::Value &&value)
 Returns the value at the given `index`.
 
 ```cpp
-const mgp::Value operator[](size_t index) const
+const Value operator[](size_t index) const
 ```
 
 ### Map
@@ -1537,14 +1537,14 @@ Map(Map &&other) noexcept
 
 #### Member variables
 
-| Name       | Type                  | Description                                   |
-|------------|-----------------------|-----------------------------------------------|
-| `Iterator` | `mgp::List::Iterator` | Const forward iterator for `List` containers. |
+| Name       | Type             | Description                                   |
+| ---------- | ---------------- | --------------------------------------------- |
+| `Iterator` | `List::Iterator` | Const forward iterator for `List` containers. |
 
 #### Member functions
 
 | Name                                      | Description                                        |
-|-------------------------------------------|----------------------------------------------------|
+| ----------------------------------------- | -------------------------------------------------- |
 | `Size`                                    | Returns the size of the map.                       |
 | `Empty`                                   | Returns whether the map is empty.                  |
 | `At`                                      | Returns the value at the given `key`.              |
@@ -1572,7 +1572,7 @@ bool Empty() const
 Returns the value at the given `key`.
 
 ```cpp
-mgp::Value const At(std::string_view key) const
+Value const At(std::string_view key) const
 ```
 
 ##### Insert
@@ -1580,19 +1580,19 @@ mgp::Value const At(std::string_view key) const
 Inserts the given `key`-`value` pair into the map. The `value` is copied.
 
 ```cpp
-void Insert(std::string_view key, const mgp::Value &value)
+void Insert(std::string_view key, const Value &value)
 ```
 Inserts the given `key`-`value` pair into the map. Takes ownership of `value` by moving it. 
 The behavior of accessing `value` after performing this operation is undefined.
 
 ```cpp
-void Insert(std::string_view key, mgp::Value &&value)
+void Insert(std::string_view key, Value &&value)
 ```
 
 #### Operators
 
 | Name                          | Description                           |
-|-------------------------------|---------------------------------------|
+| ----------------------------- | ------------------------------------- |
 | `operator[]`                  | Returns the value at the given `key`. |
 | `operator==`<br/>`operator!=` | comparison operators                  |
 
@@ -1601,7 +1601,7 @@ void Insert(std::string_view key, mgp::Value &&value)
 Returns the value at the given `key`.
 
 ```cpp
-const mgp::Value operator[](std::string_view key) const
+const Value operator[](std::string_view key) const
 ```
 
 #### MapItem
@@ -1611,14 +1611,14 @@ Auxiliary data structure representing key-value pairs where keys are strings, an
 ##### Member variables
 
 | Name    | Type               | Description                                        |
-|---------|--------------------|----------------------------------------------------|
+| ------- | ------------------ | -------------------------------------------------- |
 | `key`   | `std::string_view` | Key for accessing the value stored in a `MapItem`. |
-| `value` | `mgp::Value`       | The stored value.                                  |
+| `value` | `Value`            | The stored value.                                  |
 
 ##### Operators
 
 | Name                                          | Description          |
-|-----------------------------------------------|----------------------|
+| --------------------------------------------- | -------------------- |
 | `operator==`<br/>`operator!=`<br/>`operator<` | comparison operators |
 
 ### Value
@@ -1649,32 +1649,32 @@ explicit Value(const std::string_view value)
 
 Container type constructors:
 ```cpp
-explicit Value(const mgp::List &value)
-explicit Value(mgp::List &&value)
-explicit Value(const mgp::Map &value)
-explicit Value(mgp::Map &&value)
+explicit Value(const List &value)
+explicit Value(List &&value)
+explicit Value(const Map &value)
+explicit Value(Map &&value)
 ```
 
 Graph element type constructors:
 ```cpp
-explicit Value(const mgp::Node &value)
-explicit Value(mgp::Node &&value)
-explicit Value(const mgp::Relationship &value)
-explicit Value(mgp::Relationship &&value)
-explicit Value(const mgp::Path &value)
-explicit Value(mgp::Path &&value)
+explicit Value(const Node &value)
+explicit Value(Node &&value)
+explicit Value(const Relationship &value)
+explicit Value(Relationship &&value)
+explicit Value(const Path &value)
+explicit Value(Path &&value)
 ```
 
 Temporal type constructors:
 ```cpp
-explicit Value(const mgp::Date &value)
-explicit Value(mgp::Date &&value)
-explicit Value(const mgp::LocalTime &value)
-explicit Value(mgp::LocalTime &&value)
-explicit Value(const mgp::LocalDateTime &value)
-explicit Value(mgp::LocalDateTime &&value)
-explicit Value(const mgp::Duration &value)
-explicit Value(mgp::Duration &&value)
+explicit Value(const Date &value)
+explicit Value(Date &&value)
+explicit Value(const LocalTime &value)
+explicit Value(LocalTime &&value)
+explicit Value(const LocalDateTime &value)
+explicit Value(LocalDateTime &&value)
+explicit Value(const Duration &value)
+explicit Value(Duration &&value)
 ```
 
 Copy and move constructors:
@@ -1686,7 +1686,7 @@ Value(Value &&other) noexcept
 #### Member functions
 
 | Name          | Description                                 |
-|---------------|---------------------------------------------|
+| ------------- | ------------------------------------------- |
 | `Type`        | Returns the type of the value.              |
 | `Value[TYPE]` | Returns a value of given type.              |
 | `Is[TYPE]`    | Returns whether the value is of given type. |
@@ -1725,39 +1725,39 @@ std::string_view ValueString() const
 ```
 
 ```cpp
-const mgp::List ValueList() const
+const List ValueList() const
 ```
 
 ```cpp
-const mgp::Map ValueMap() const
+const Map ValueMap() const
 ```
 
 ```cpp
-const mgp::Node ValueNode() const
+const Node ValueNode() const
 ```
 
 ```cpp
-const mgp::Relationship ValueRelationship() const
+const Relationship ValueRelationship() const
 ```
 
 ```cpp
-const mgp::Path ValuePath() const
+const Path ValuePath() const
 ```
 
 ```cpp
-const mgp::Date ValueDate() const
+const Date ValueDate() const
 ```
 
 ```cpp
-const mgp::LocalTime ValueLocalTime() const
+const LocalTime ValueLocalTime() const
 ```
 
 ```cpp
-const mgp::LocalDateTime ValueLocalDateTime() const
+const LocalDateTime ValueLocalDateTime() const
 ```
 
 ```cpp
-const mgp::Map ValueMap() const
+const Map ValueMap() const
 ```
 
 ##### Is[TYPE]
@@ -1827,7 +1827,7 @@ bool IsDuration() const
 #### Operators
 
 | Name                          | Description          |
-|-------------------------------|----------------------|
+| ----------------------------- | -------------------- |
 | `operator==`<br/>`operator!=` | comparison operators |
 
 ### Type
@@ -1855,7 +1855,7 @@ The types are listed and described [on this page](https://memgraph.com/docs/memg
 During operation, the following exceptions may be thrown.
 
 | Exception                     | Message                                         |
-|-------------------------------|-------------------------------------------------|
+| ----------------------------- | ----------------------------------------------- |
 | `ValueException`              | various (handles unknown/unexpected types)      |
 | `NotFoundException`           | Node with ID [ID] not found!                    |
 | `NotEnoughMemoryException`    | Not enough memory!                              |
