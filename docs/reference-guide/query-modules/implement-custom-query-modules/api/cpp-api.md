@@ -586,7 +586,7 @@ explicit Node(const mgp_vertex *const_ptr)
 
 Copy and move constructors:
 ```cpp
-Node(const Node &other)
+Node(const Node &other) noexcept
 Node(Node &&other) noexcept
 ```
 
@@ -687,7 +687,7 @@ explicit Relationship(const mgp_edge *const_ptr)
 
 Copy and move constructors:
 ```cpp
-Relationship(const Relationship &other)
+Relationship(const Relationship &other) noexcept
 Relationship(Relationship &&other) noexcept
 ```
 
@@ -892,7 +892,7 @@ explicit Labels(mgp_vertex *node_ptr)
 
 Copy and move constructors:
 ```cpp
-Labels(const Labels &other)
+Labels(const Labels &other) noexcept
 Labels(Labels &&other) noexcept
 ```
 
@@ -957,7 +957,7 @@ Date(int year, int month, int day)
 
 Copy and move constructors:
 ```cpp
-Date(const Date &other)
+Date(const Date &other) noexcept
 Date(Date &&other) noexcept
 ```
 
@@ -1060,7 +1060,7 @@ LocalTime(int hour, int minute, int second, int millisecond, int microsecond)
 
 Copy and move constructors:
 ```cpp
-LocalTime(const LocalTime &other)
+LocalTime(const LocalTime &other) noexcept
 LocalTime(LocalTime &&other) noexcept
 ```
 
@@ -1174,7 +1174,7 @@ LocalDateTime(int year, int month, int day, int hour, int minute, int second, in
 
 Copy and move constructors:
 ```cpp
-LocalDateTime(const LocalDateTime &other)
+LocalDateTime(const LocalDateTime &other) noexcept
 LocalDateTime(LocalDateTime &&other) noexcept
 ```
 
@@ -1320,7 +1320,7 @@ Duration(double day, double hour, double minute, double second, double milliseco
 
 Copy and move constructors:
 ```cpp
-Duration(const Duration &other)
+Duration(const Duration &other) noexcept
 Duration(Duration &&other) noexcept
 ```
 
@@ -1374,7 +1374,7 @@ explicit Path(const Node &start_node)
 
 Copy and move constructors:
 ```cpp
-Path(const Path &other)
+Path(const Path &other) noexcept
 Path(Path &&other) noexcept
 ```
 
@@ -1460,7 +1460,7 @@ explicit List(const std::initializer_list<Value> list)
 
 Copy and move constructors:
 ```cpp
-List(const List &other)
+List(const List &other) noexcept
 List(List &&other) noexcept
 ```
 
@@ -1572,7 +1572,7 @@ Map(const std::initializer_list<std::pair<std::string_view, Value>> items)
 
 Copy and move constructors:
 ```cpp
-Map(const Map &other)
+Map(const Map &other) noexcept
 Map(Map &&other) noexcept
 ```
 
@@ -1720,7 +1720,7 @@ explicit Value(Duration &&value)
 
 Copy and move constructors:
 ```cpp
-Value(const Value &other)
+Value(const Value &other) noexcept
 Value(Value &&other) noexcept
 ```
 
