@@ -4,9 +4,18 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v2.5. - Dec 7, 2022
+
+### Bug Fixes
+
+- Fixed bugs in the C++ API concerning constructors and assignment operators.
+- Fixed a bug in the C++ API’s `Value::ValueNumeric` method.
+- Added `SetErrorMessage` methods to the C++ API for uniformity with the C API.
+
 ## v2.4.2 - Nov 7, 2022
 
 ### Bug Fixes
+
 - Fixed a bug when calling `AllShortestPath` with `id` function. [#636](https://github.com/memgraph/memgraph/pull/636)
 - Fixed bug when getting iterating over in-edges of a Node. [#582](https://github.com/memgraph/memgraph/pull/613)
 
