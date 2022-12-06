@@ -191,9 +191,31 @@ explicit RecordFactory(mgp_result *result)
 
 #### Member functions
 
-| Name        | Description               |
-| ----------- | ------------------------- |
-| `NewRecord` | Adds a new result record. |
+| Name              | Description                   |
+| ----------------- | ----------------------------- |
+| `NewRecord`       | Adds a new result record.     |
+| `SetErrorMessage` | Sets the given error message. |
+
+
+##### NewRecord
+
+Adds a new result record.
+
+```cpp
+  const Record NewRecord() const
+```
+
+##### SetErrorMessage
+
+Sets the given error message.
+
+```cpp
+  void SetErrorMessage(const std::string_view error_msg) const
+```
+
+```cpp
+  void SetErrorMessage(const char *error_msg) const
+```
 
 ### Record
 
@@ -284,9 +306,10 @@ explicit Result(mgp_func_result *result)
 
 #### Member functions
 
-| Name       | Description                        |
-| ---------- | ---------------------------------- |
-| `SetValue` | Sets a return value of given type. |
+| Name              | Description                        |
+| ----------------- | ---------------------------------- |
+| `SetValue`        | Sets a return value of given type. |
+| `SetErrorMessage` | Sets the given error message.      |
 
 ##### SetValue
 
@@ -346,6 +369,18 @@ Sets a return value of given type.
 
 ```cpp
   void SetValue(const Duration value)
+```
+
+##### SetErrorMessage
+
+Sets the given error message.
+
+```cpp
+  void SetErrorMessage(const std::string_view error_msg) const
+```
+
+```cpp
+  void SetErrorMessage(const char *error_msg) const
 ```
 
 ## Graph API
@@ -580,7 +615,7 @@ mgp::Id Id() const
 Returns an iterable & indexable structure of the node’s labels.
 
 ```cpp
-Labels Labels() const
+class Labels Labels() const
 ```
 
 ##### HasLabel
@@ -596,7 +631,7 @@ bool HasLabel(std::string_view label) const
 Returns an iterable & indexable structure of the node’s properties.
 
 ```cpp
-Properties Properties() const
+class Properties Properties() const
 ```
 
 ##### InRelationships
@@ -687,7 +722,7 @@ std::string_view Type() const
 Returns an iterable & indexable structure of the relationship’s properties.
 
 ```cpp
-mgp::Properties Properties() const
+class Properties Properties() const
 ```
 
 ##### From
@@ -853,6 +888,12 @@ Represents a view of node labels.
 
 ```cpp
 explicit Labels(mgp_vertex *node_ptr) 
+```
+
+Copy and move constructors:
+```cpp
+Labels(const Labels &other)
+Labels(Labels &&other) noexcept
 ```
 
 #### Member variables
@@ -1687,9 +1728,18 @@ Value(Value &&other) noexcept
 
 | Name          | Description                                 |
 | ------------- | ------------------------------------------- |
+| `ptr`         | Returns the pointer to the stored value.    |
 | `Type`        | Returns the type of the value.              |
 | `Value[TYPE]` | Returns a value of given type.              |
 | `Is[TYPE]`    | Returns whether the value is of given type. |
+
+##### Type
+
+Returns the C API pointer to the stored value.
+
+```cpp
+mgp_value *ptr() const
+```
 
 ##### Type
 
