@@ -43,6 +43,7 @@ This section contains the list of supported functions.
  | `id`         | <code>id(value: Node\|Relationship) -> (integer)</code>                              | Returns identifier for a given node or relationship. The identifier is generated during the initialization of a node or a relationship  and will be persisted through the durability mechanism.                                                  |
  | `timestamp`  | `timestamp() -> (integer)`                                                           | Returns the difference, measured in microseconds, between the current time and midnight, January 1, 1970 UTC.                                                                                                                            |
  | `counter`    | `counter(name: string, initial-value: integer, increment: integer = 1) -> (integer)` | Generates integers that are guaranteed to be unique within a single query for a given counter name.  The increment parameter can be any integer besides zero.                                                                            |
+ | `coalesce`    | `coalesce(expression: any [, expression: any]*) -> (any)` | Returns the first non-`null` value in the given list of expressions.                                                                          |
 
  ### Lists
 
