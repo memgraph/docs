@@ -8,9 +8,10 @@ sidebar_label: Changelog
 
 ### Bug Fixes
 
-- Fixed bugs in the C++ API concerning constructors and assignment operators.
-- Fixed a bug in the C++ API’s `Value::ValueNumeric` method.
-- Added `SetErrorMessage` methods to the C++ API for uniformity with the C API.
+#### Graph modules
+
+- The MAGE C++ API is now consistent with standard library classes. We fixed bugs related to constructors and assignment operators, and corrected the API type check in `ValueNumeric`.
+- Error message support (`SetErrorMessage`) added to query methods that use the MAGE C++ API.
 
 ## v2.4.2 - Nov 7, 2022
 
