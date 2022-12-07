@@ -4,19 +4,11 @@ title: How to create a query module in C++
 sidebar_label: Create a C++ query module
 ---
 
-Query modules can be implemented using the [C
-API](/memgraph/reference-guide/query-modules/api/c-api)
-provided by Memgraph. In this tutorial, we will learn how to develop a query
+Query modules can be implemented using the [C++
+API](/memgraph/reference-guide/query-modules/api/cpp-api)
+provided by Memgraph with automatic memory management.
+In this tutorial, we will learn how to develop a query
 module in C++ on the example of the **random walk algorithm**.
-
-:::info
-
-If you wish to write your own query modules using the C API, you can write the
-procedures in any programming language that can work with C and can be compiled
-to the ELF shared library format. The latter requirement is necessary so that
-the modules can be loaded together when Memgraph starts.
-
-:::
 
 ## Prerequisites
 
@@ -48,10 +40,14 @@ cpp
     └── random_walk_module.cpp
 ```
 
+:::info
+
 To make sure the module is linked with the rest of MAGE’s code, we need to add a 
 `CMakeLists.txt` script in the new directory and register our module in the 
 `cpp/CMakelists.txt` script as well. Refer to the existing scripts in MAGE’s 
 [query modules](https://github.com/memgraph/mage/tree/main/cpp).
+
+:::
 
 Our `random_walk` module contains a single procedure `get` which implements the
 algorithm. The procedure takes two input parameters: the starting node and the
@@ -76,7 +72,7 @@ extern "C" int mgp_shutdown_module() { return 0; }
 ```
 
 In the first line, we include `mg_utils.hpp`. This header contains declarations
-of the public C API provided by Memgraph, which we need to connect the algorithm
+of the public C++ API provided by Memgraph, which we need to connect the algorithm
 to Memgraph and work with the data stored within.
 
 Next, we are going to implement the random walk algorithm’s logic in the
@@ -85,9 +81,9 @@ openCypher procedure. Callback functions such as this one all need to have the
 same signature, but they can be arbitrarily named (e.g. in query modules
 containing multiple callback functions).
 
-Query modules using the C API must have the `mgp_init_module` &
+Query modules using the C++ API must have the `mgp_init_module` &
 `mgp_shutdown_module` functions. The `mgp_init_module` function’s main purpose
-is to register procedures so that they can be called from openCypher, and with
+is to register procedures so that they can be called from Cypher query language, and with
 `mgp_shutdown_module` you may reset any global states or release global
 resources.
 
@@ -100,38 +96,52 @@ boundary may cause all sorts of unexpected issues.
 
 :::
 
-That said, let’s now take a closer look at `RandomWalk` and `mgp_init_module`.
+
+### Main algorithm
+
+The main implementation of the `RandomWalk` algorithm is implemented in the code snippet below.
 
 ```cpp
+const char *kReturnStep = "step";
+const char *kReturnNode = "node";
 
-void RandomWalk(mgp_list *args, mgp_graph *memgraph_graph, mgp_result *result,
-                mgp_memory *memory) {
-  try {
-    const auto start = mgp::value_get_vertex(mgp::list_at(args, 0));
-    const auto n_steps = mgp::value_get_int(mgp::list_at(args, 1));
+void RandomWalk(mgp_list *args, mgp_graph *memgraph_graph, mgp_result *result, mgp_memory *memory) {
+  mgp::memory = memory;
 
-    srand(time(NULL));
+  const auto arguments = mgp::List(args);
+  const auto record_factory = mgp::RecordFactory(result);
 
-    const auto start_id = mgp::vertex_get_id(start).as_int;
-    const auto graph = mg_utility::GetGraphView(
-        memgraph_graph, result, memory, mg_graph::GraphType::kUndirectedGraph);
+  const auto start = arguments[0].ValueNode();
+  const auto n_steps = arguments[1].ValueInt();
 
-    int step = 0;
-    auto current_node = graph->GetNode(start_id);
-    InsertStepRecord(memgraph_graph, result, memory, step++, current_node.id);
+  srand(time(NULL));
 
-    while (step <= n_steps) {
-      const auto neighbors = graph->Neighbours(current_node.id);
-      if (neighbors.empty()) break;
+  auto current_nodes = mgp::List();
+  current_nodes.AppendExtend(mgp::Value(start));
 
-      const auto next_node = neighbors[rand() % neighbors.size()];
-      current_node = graph->GetNode(next_node.node_id);
-      // record the output
-      InsertStepRecord(memgraph_graph, result, memory, step++, current_node.id);
+  std::int64_t step = 0;
+  while (step <= n_steps) {
+    auto current_node = current_nodes[current_nodes.Size() - 1].ValueNode();
+
+    auto neighbours = mgp::List();
+    for (const auto relationship : current_node.OutRelationships()) {
+      neighbours.AppendExtend(mgp::Value(relationship));
     }
-  } catch (const std::exception &e) {
-    mgp::result_set_error_msg(result, e.what());
-    return;
+
+    if (neighbours.Size() == 0) {
+      break;
+    }
+
+    const auto next_node = neighbours[rand() % neighbours.Size()].ValueRelationship().To();
+
+    current_nodes.AppendExtend(mgp::Value(next_node));
+    step++;
+  }
+
+  for (std::int64_t i = 0; i < current_nodes.Size(); i++) {
+    auto record = record_factory.NewRecord();
+    record.Insert(kReturnStep, i);
+    record.Insert(kReturnNode, current_nodes[i].ValueNode());
   }
 }
 ```
@@ -140,57 +150,87 @@ Upon being called, `RandomWalk` receives the list of arguments (`args`) passed
 in the query. The parameter `result` is used for recording the results of the
 procedure, and its context is provided by `graph` and `memory`.
 
-With the C API, we next retrieve the argument values from `args` and access the
-graph in order to be able to implement the algorithm. As for the output, you
-might’ve noted that the `RandomWalk` function does not return anything by itself.
-Instead, remember that the parameter `result` serves to record the output. We
-delegated the logic for this task to the `InsertStepRecord` function:
+With the C++ API, we next retrieve the argument values from `args` by putting
+them into a list, so we can use the indexing (`[]`) operator. In the code above,
+the retrieving of arguments is done in these lines
 
 ```cpp
-void InsertStepRecord(mgp_graph *graph, mgp_result *result, mgp_memory *memory,
-                      const int step, const int node_id) {
-  auto *record = mgp::result_new_record(result);
-
-  mg_utility::InsertIntValueResult(record, "step", step, memory);
-  mg_utility::InsertNodeValueResult(graph, record, "node", node_id, memory);
-}
+  const auto start = arguments[0].ValueNode();
+  const auto n_steps = arguments[1].ValueInt();
 ```
+
+The arguments are raw values at the time of their fetching from the list, so types
+are assigned to them with `ValueNode()` and `ValueInt()` for extra operability and
+expressiveness within the algorithm.
+
+For managing results during the execution of the algorithm,
+an instance of `RecordFactory` is used. Insertion of results into the record factory is done like this:
+
+```cpp
+    auto record = record_factory.NewRecord();
+    record.Insert(kReturnStep, i);
+    record.Insert(kReturnNode, current_nodes[i].ValueNode());
+```
+
+In this code snippet, the result consists of an integer and the corresponding next node
+of the random walk algorithm. The types of the results are not arbitrary, as they are
+registered in the initialization module, further below.
 
 :::tip
 
-Analogous methods for other supported data types are outlined in the C API
-reference.
+Analogous methods for other supported data types are outlined in the
+[C++ API reference](/memgraph/reference-guide/query-modules/api/cpp-api).
 
 :::
 
+### Initialization of the module
+
 The `mgp_init_module` function has as its main duty the registration of
-procedure(s), which can then be invoked in openCypher. With the C API, we add our
+procedure(s), which can then be invoked in Cypher query language. With the C++ API, we add our
 procedure and its inputs and outputs.
 
 ```cpp
-extern "C" int mgp_init_module(struct mgp_module *module,
-                               struct mgp_memory *memory) {
-  {
-    try {
-      auto *rw_proc = mgp::module_add_read_procedure(module, "get", RandomWalk);
+const char *kProcedureGet = "get";
+const char *kParameterStart = "start";
+const char *kParameterSteps = "steps";
+const char *kReturnStep = "step";
+const char *kReturnNode = "node";
 
-      // optional parameters require a default value
-      auto default_steps = mgp::value_make_int(10, memory);
+extern "C" int mgp_init_module(struct mgp_module *module, struct mgp_memory *memory) {
+  mgp::memory = memory;
 
-      mgp::proc_add_arg(rw_proc, "start", mgp::type_node());
-      mgp::proc_add_opt_arg(rw_proc, "steps", mgp::type_int(), default_steps);
-
-      mgp::proc_add_result(rw_proc, "step", mgp::type_int());
-      mgp::proc_add_result(rw_proc, "node", mgp::type_node());
-
-      mgp_value_destroy(default_steps);
-    } catch (const std::exception &e) {
-      return 1;
-    }
+  std::int64_t default_steps = 10;
+  try {
+    mgp::AddProcedure(RandomWalk, 
+                      kProcedureGet, 
+                      mgp::ProcedureType::Read,
+                      {
+                        mgp::Parameter(kParameterStart, mgp::Type::Node),
+                        mgp::Parameter(kParameterSteps, mgp::Type::Int, default_steps)
+                      },
+                      {
+                        mgp::Return(kReturnStep, mgp::Type::Int),
+                        mgp::Return(kReturnNode, mgp::Type::Node)
+                      }, 
+                      module,
+                      memory);
+  } catch (const std::exception &e) {
+    return 1;
   }
   return 0;
 }
 ```
+
+We add the procedure to the module by specifying:
+- **function callback** used for executing the logic of the procedure (`RandomWalk`)
+- **name of the procedure** used in Cypher Query Language (`kProcedureGet`)
+- **type of the procedure**
+  - `mgp::Procedure::Read` for read-only procedures
+  - `mgp::Procedure::Write` for write procedures
+- **vector of input parameters** wrapped in `mgp::Parameter` object with name (string) and type (`mgp::Type`)
+- **vector of output results** wrapped in `mgp::Return` object with name (string) and type (`mgp::Type`)
+- passed `module` object
+- passed `memory` object
 
 Although this example registers a single procedure `get`, you can have multiple
 different procedures in one module, each of which can be invoked using the
@@ -205,13 +245,6 @@ respective callback.
 
 :::
 
-:::info
-
-For more information on the signature specification API, consult the
-documentation of the functions prefixed with `proc_` in the `mgp.hpp` file.
-
-:::
-
 :::note
 
 As the `memory` argument is only alive throughout the execution of
@@ -220,6 +253,8 @@ need to set up a global state, you may do so in the `mgp_init_module` using the
 standard global allocators.
 
 :::
+
+### Shutdown of the module
 
 Finally, you may want to reset any global state or release global resources,
 which is done in the following function:
