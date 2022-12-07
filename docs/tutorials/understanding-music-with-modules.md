@@ -447,15 +447,13 @@ betweenness centrality but in much less time.
 
 ## Further reading
 
-We encourage you to take a look at our `How to` for the modules at the [How to
+We encourage you to take a look at our [How to
 Implement Query
-Modules?](/reference-guide/query-modules/implement-custom-query-modules/custom-query-module-example.md).
+Modules](/reference-guide/query-modules/implement-custom-query-modules/custom-query-module-example.md) how-to guide.
 
 This tutorial showed you how with a little effort you can extend your control
 over the data. Using packages like `NetworkX` you get a huge amount of already
 implemented graph algorithms while Memgraph allows you complete access to its
 internal graph.
 
-If you are not a big fan of Python, don't worry! We have a C API with the exact
-same functionalities but the functions cannot be written directly in Memgraph
-Lab (yet).
+If you want to learn more about how to use Memgraph with NetworkX, check out the [**Memgraph for NetworkX developers resources**](https://memgraph.com/memgraph-for-networkx?utm_source=networkx-guide&utm_medium=referral&utm_campaign=networkx_ppp&utm_term=docs%2Btutorialmusic&utm_content=resources).

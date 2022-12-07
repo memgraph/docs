@@ -122,7 +122,8 @@ MERGE (a:Node {id: 10}) MERGE (b:Node {id: 9}) CREATE (a)-[:RELATION]->(b);
 
 ```cypher
 CALL degree_centrality.get("in")
-YIELD node, degree;
+YIELD node, degree
+RETURN node, degree;
 ```
 
   </TabItem>

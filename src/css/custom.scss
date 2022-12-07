@@ -158,3 +158,17 @@ html[data-theme="dark"] .docsRating {
   height: 40px;
   display: flex;
 }
+
+.imgRow {
+  display: flex;
+}
+
+.imgColumn {
+  flex: 50%;
+  padding: 5px;
+}
+
+.imgSmaller {
+  max-width: 50%;
+  max-height: 50%;
+}

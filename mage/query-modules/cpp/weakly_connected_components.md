@@ -91,7 +91,8 @@ MERGE (a:Node {id: 3}) MERGE (b:Node {id: 5}) CREATE (a)-[:RELATION]->(b);
 
 ```cypher
 CALL weakly_connected_components.get()
-YIELD node, component_id;
+YIELD node, component_id
+RETURN node, component_id;
 ```
 
   </TabItem>

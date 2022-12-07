@@ -142,7 +142,8 @@ MERGE (a:Node {id: "F"}) MERGE (b:Node {id: "G"}) CREATE (a)-[:RELATION {weight:
 ```cypher
 MATCH (source {id: "A"}), (sink {id: "G"})
 CALL max_flow.get_flow(source, sink)
-YIELD max_flow RETURN max_flow;
+YIELD max_flow
+RETURN max_flow;
 ```
 
   </TabItem>

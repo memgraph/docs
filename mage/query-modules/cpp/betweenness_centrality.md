@@ -121,7 +121,8 @@ MERGE (a:Node {id: 3}) MERGE (b:Node {id: 8}) CREATE (a)-[:RELATION]->(b);
 
 ```cypher
 CALL betweenness_centrality.get(TRUE,TRUE)
-YIELD node, betweenness_centrality;
+YIELD node, betweenness_centrality
+RETURN node, betweenness_centrality;
 ```
 
   </TabItem>
