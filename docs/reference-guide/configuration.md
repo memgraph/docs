@@ -41,6 +41,7 @@ SHOW CONFIG;
 | --query-modules-directory=/usr/lib/memgraph/query_modules | Directory where modules with custom query procedures are stored. NOTE: Multiple comma-separated directories can be defined. | `[string]` |
 | --query-plan-cache-ttl=60 | Time to live for cached query plans, in seconds. | `[int32]` |
 | --query-vertex-count-to-expand-existing=10 | Maximum count of indexed vertices which provoke indexed lookup and then expand to existing, <br/>instead of a regular expand. Default is 10, to turn off use -1. | `[int64]` |
+| --python-submodules-directory=mage | Directory where Python's utility submodules are stored. | `[string]` |
 
 ## Storage
 

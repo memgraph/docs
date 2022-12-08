@@ -3,10 +3,14 @@ id: changelog
 title: Changelog
 sidebar_label: Changelog
 ---
+### Major features and improvements
+
+- `--python-submodules-directory` flag is added with the default value set to the *mage*. It points to the directory where the Python's utility submodules are stored.
 
 ### Bug Fixes
-- The `EmptyResult` sink operator was added to the Memgraph's planner. It works by exhausting its input cursor so it is a combination of the existing `Produce` and `Once` operator. [#667](https://github.com/memgraph/memgraph/pull/667)
-- Fixed python submodules reloading when calling `CALL mg.load()` and `CALL mg.load_all()`. [#653](https://github.com/memgraph/memgraph/pull/653)
+- The `EmptyResult` sink operator was added to the Memgraph's planner. This means that results produced by a query `MATCH (n) SET n.test_prop = 2` will get exhausted which was a problem in some Bolt clients implementations, e.g in Golang's client.
+[#667](https://github.com/memgraph/memgraph/pull/667)
+- Fixed Python submodules reloading when calling `CALL mg.load()` and `CALL mg.load_all()`. Before only the Python module would be reloaded but now also all dependencies get reloaded. This includes Python's utility submodules but also Python packages which means that the environment with Python packages can be changed without turning off the database. [#653](https://github.com/memgraph/memgraph/pull/653)
 
 
 ## v2.4.2 - Nov 7, 2022
