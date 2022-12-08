@@ -41,7 +41,6 @@ SHOW CONFIG;
 | --query-modules-directory=/usr/lib/memgraph/query_modules | Directory where modules with custom query procedures are stored. NOTE: Multiple comma-separated directories can be defined. | `[string]` |
 | --query-plan-cache-ttl=60 | Time to live for cached query plans, in seconds. | `[int32]` |
 | --query-vertex-count-to-expand-existing=10 | Maximum count of indexed vertices which provoke indexed lookup and then expand to existing, <br/>instead of a regular expand. Default is 10, to turn off use -1. | `[int64]` |
-| --python-submodules-directory=mage | Directory where Python's utility submodules are stored. | `[string]` |
 
 ## Storage
 
@@ -80,6 +79,11 @@ SHOW CONFIG;
 | --memory-warning-threshold=1024 | Memory warning threshold, in MB. If Memgraph detects there is less available RAM it will log a warning. <br/>Set to 0 to disable. | `[uint64]` |
 | --replication-replica-check-delay-sec | The time duration in seconds between two replica checks/pings. If < 1, replicas will not  be checked at all. The MAIN instance allocates a new thread for each REPLICA. | `[uint64]` |
 | --telemetry-enabled=true | Set to true to enable telemetry. We collect information about the running system (CPU and memory information), information about the database runtime (vertex and edge counts and resource usage), and aggregated statistics about some features of the database (e.g. how many times a feature is used) to allow for an easier improvement of the product. | `[bool]` |
+
+## Python
+ Flag           | Description    | Type           |
+| -------------- | -------------- | -------------- |
+| --python-submodules-directory=mage | Directory where Python's utility submodules are stored. The flag is used for reloading the query module with all its dependencies (files and packages). E.g. query modules directory structure assumes the existence of the python and the cpp directory. Python module's (let's name it test_module) functionality is usually divided into several files which are stored in `query_modules_directory/python/<python-submodules-directory>/test_module`. | `[string]` |
 
 ## Additional configuration inclusion
 

@@ -177,6 +177,7 @@ module.exports = {
             "how-to-guides/manage-label-based-access-control",
           ],
         },
+        "how-to-guides/managing-python-environment",
       ],
     },
     {
