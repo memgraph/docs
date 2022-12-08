@@ -505,7 +505,7 @@ extern "C" int mgp_init_module(struct mgp_module *module, struct mgp_memory *mem
   try {
     mgp::memory = memory;
 
-    AddProcedure(RandomWalk, "get", mgp::ProdecureType::Read,
+    AddProcedure(RandomWalk, "get", mgp::ProcedureType::Read,
                  {mgp::Parameter("start", mgp::Type::Node), mgp::Parameter("length", mgp::Type::Int)},
                  {mgp::Return("random_walk", mgp::Type::Path)}, module, memory);
   } catch (const std::exception &e) {
@@ -516,7 +516,7 @@ extern "C" int mgp_init_module(struct mgp_module *module, struct mgp_memory *mem
 ```
 
 Here, we defined our procedure’s signature and added it as a readable
-(`mgp::ProcedureType::Read`) procedure, named `get`, to our random walk module.
+(`ProcedureType::Read`) procedure, named `get`, to our random walk module.
 The function takes two named parameters: the start node and random walk length,
 and it yields the computed random walk as a `Path` (sequence of nodes connected
 by relationships) in the `random_walk` result field.
@@ -599,7 +599,7 @@ extern "C" int mgp_init_module(struct mgp_module *module, struct mgp_memory *mem
   try {
     mgp::memory = memory;
 
-    mgp::AddProcedure(AddXNodes, "add_x_nodes", mgp::ProdecureType::Write, {mgp::Parameter("number", mgp::Type::Int)},
+    mgp::AddProcedure(AddXNodes, "add_x_nodes", mgp::ProcedureType::Write, {mgp::Parameter("number", mgp::Type::Int)},
                       {}, module, memory);
   } catch (const std::exception &e) {
     return 1;

@@ -4,9 +4,19 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v2.5. - Dec 7, 2022
+
+### Bug Fixes
+
+#### Graph modules
+
+- Constructors and assignment operators now work as expected, and the API type check in the `ValueNumeric` method now correctly recognizes numeric types.
+- Error message support (`SetErrorMessage`) has been added to query methods that use the MAGE C++ API.
+
 ## v2.4.2 - Nov 7, 2022
 
 ### Bug Fixes
+
 - Fixed a bug when calling `AllShortestPath` with `id` function. [#636](https://github.com/memgraph/memgraph/pull/636)
 - Fixed bug when getting iterating over in-edges of a Node. [#582](https://github.com/memgraph/memgraph/pull/613)
 
