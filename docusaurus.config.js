@@ -130,27 +130,27 @@ module.exports = {
           items: [
             {
               label: "Memgraph",
-              to: "/memgraph",
+              href: "https://memgraph.com/docs/memgraph/",
             },
             {
               label: "Memgraph Lab",
-              to: "/memgraph-lab",
+              href: "https://memgraph.com/docs/memgraph-lab/",
             },
             {
               label: 'Memgraph Cloud',
-              to: '/memgraph-cloud',
+              to: 'https://memgraph.com/docs/memgraph-cloud/',
             },
             {
               label: "Cypher manual",
-              to: "/cypher-manual",
+              to: "https://memgraph.com/docs/cypher-manual/",
             },
             {
               label: "MAGE",
-              to: "/mage",
+              to: "https://memgraph.com/docs/mage",
             },
             {
               label: "GQLAlchemy",
-              to: "/gqlalchemy",
+              to: "https://memgraph.com/docs/gqlalchemy/",
             },
           ],
         },
@@ -216,6 +216,14 @@ module.exports = {
         "docker",
       ],
     },
+  },
+  announcementBar: {
+    id: "visit-docs-site",
+    content:
+      'Visit the up-to-date <a target="_blank" rel="noopener noreferrer" href="https://www.memgraph.com/docs"><b>Memgraph documentation!</b></a>',
+    backgroundColor: "#fafbfc",
+    textColor: "#091E42",
+    isCloseable: true,
   },
   presets: [
     [

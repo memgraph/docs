@@ -30,12 +30,12 @@ export default function HomeEcosystem() {
         },
         'MAGE': {
             description: 'MAGE (Memgraph Advanced Graph Extensions) is an open-source repository that contains all available query modules written by the team behind Memgraph and its users. You can find and contribute implementations of various algorithms in multiple programming languages, all runnable inside Memgraph.',
-            url: useBaseUrl('/mage'),
+            url: 'https://memgraph.com/docs/mage',
             urlText: 'Get Started',
         },
         'GQLAlchemy': {
             description: 'GQLAlchemy is a fully open-source Python library that aims to be the go-to Object Graph Mapper (OGM) - a link between Graph Database objects and Python objects.',
-            url: useBaseUrl('/gqlalchemy'),
+            url: 'https://memgraph.com/docs/gqlalchemy/',
             urlText: 'Learn more',
         }
     };
