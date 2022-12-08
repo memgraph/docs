@@ -11,7 +11,7 @@ sidebar_label: Changelog
 #### Graph modules
 
 - The MAGE C++ API is now consistent with standard library classes. We fixed bugs related to constructors and assignment operators, and corrected the API type check in `ValueNumeric`.
-- Error message support (`SetErrorMessage`) added to query methods that use the MAGE C++ API.
+- Error message support (`SetErrorMessage`) has been added to query methods that use the MAGE C++ API.
 
 ## v2.4.2 - Nov 7, 2022
 
