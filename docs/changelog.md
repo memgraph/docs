@@ -12,7 +12,7 @@ sidebar_label: Changelog
 
 - `DISTINCT` subclause can now be used with aggregation functions.
   Until now, if you wanted to use an aggregation function with distinct values, you had to write a query similar to this one `WITH DISTINCT n.prop as distinct_prop RETURN COUNT(distinct_prop)`. Now you can use the `DISTINCT` clause like in the following query, `RETURN COUNT(DISTINCT n.prop)` . [#654](https://github.com/memgraph/memgraph/pull/665)
-- Added option for creating user from environment variables before bolt server starts. Environment variables are `MG_USER` for first user username, `MG_PASSWORD` for user password and `MG_PASSFILE` file that contains username and password for user in format `username:password`. [#696](https://github.com/memgraph/memgraph/pull/696)
+- You can now create a user before the Bolt server starts using the environment variables `ENTERPRISE_MG_USER` for the user username, `ENTERPRISE_MG_PASSWORD` for the user password and `ENTERPRISE_MG_PASSFILE` file that contains username and password for creating the user in the following format: `username:password`. [#696](https://github.com/memgraph/memgraph/pull/696)
 
 ## v2.4.2 - Nov 7, 2022
 
