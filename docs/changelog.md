@@ -12,7 +12,7 @@ sidebar_label: Changelog
 
 - `DISTINCT` subclause can now be used with aggregation functions.
   Until now, if you wanted to use an aggregation function with distinct values, you had to write a query similar to this one `WITH DISTINCT n.prop as distinct_prop RETURN COUNT(distinct_prop)`. Now you can use the `DISTINCT` clause like in the following query, `RETURN COUNT(DISTINCT n.prop)` . [#654](https://github.com/memgraph/memgraph/pull/665)
-- Added `init_file` and `init_data_file` configuration flags. With configuration flag `init_file` you can execute queries from cypherl file which need to be executed before bolt server starts and with configuration flag `init_data_file` you can execute queries from cypherl file immediately after bolt server starts.[696](https://github.com/memgraph/memgraph/pull/696)
+- With the new configuration flag `init_file` you can execute queries from the CYPHERL file which need to be executed before the Bolt server starts and with the configuration flag `init_data_file` you can execute queries from the CYPHERL file immediately after the Bolt server starts.[696](https://github.com/memgraph/memgraph/pull/696)
 
 ## v2.4.2 - Nov 7, 2022
 
