@@ -216,14 +216,14 @@ module.exports = {
         "docker",
       ],
     },
-  },
-  announcementBar: {
-    id: "visit-docs-site",
-    content:
-      'Visit the up-to-date <a target="_blank" rel="noopener noreferrer" href="https://www.memgraph.com/docs"><b>Memgraph documentation!</b></a>',
-    backgroundColor: "#fafbfc",
-    textColor: "#091E42",
-    isCloseable: true,
+    announcementBar: {
+      id: "visit-docs-site",
+      content:
+        'Visit the up-to-date <a target="_blank" rel="noopener noreferrer" href="https://www.memgraph.com/docs"><b>Memgraph documentation!</b></a>',
+      backgroundColor: "#fafbfc",
+      textColor: "#091E42",
+      isCloseable: true,
+    },
   },
   presets: [
     [
