@@ -84,9 +84,9 @@ SHOW CONFIG;
 
  Variable        | Description    | Type           |
 | -------------- | -------------- | -------------- |
-| MG_USER        | First user username     | `[string]`     |
-| MG_PASSWORD    | First user password       | `[string]`     |
-| MG_PASSFILE    | Path to file that contains username and password for creating first user. Data in file should be in format `username:password` if your username or password contains  `:` just add `\` before for example `us\:ername:password` | `[string]`     |
+| ENTERPRISE_MG_USER        | User username     | `[string]`     |
+| ENTERPRISE_MG_PASSWORD    | User password       | `[string]`     |
+| ENTERPRISE_MG_PASSFILE    | Path to file that contains username and password for creating user. Data in file should be in format `username:password` if your username or password contains  `:` just add `\` before for example `us\:ername:password` | `[string]`     |
 
 ## Additional configuration inclusion
 
