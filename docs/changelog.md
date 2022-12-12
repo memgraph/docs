@@ -25,7 +25,7 @@ Then the flag `--python-submodules-directory` flag corresponds to the `query_mod
 ### Bug Fixes
 - The `EmptyResult` sink operator was added to the Memgraph's planner. This means that results produced by a query `MATCH (n) SET n.test_prop = 2` will get exhausted which was a problem in some Bolt clients implementations, e.g in Golang's client.
 [#667](https://github.com/memgraph/memgraph/pull/667)
-- Fixed Python submodules reloading when calling `CALL mg.load()` and `CALL mg.load_all()`. Before only the Python module would be reloaded but now also all dependencies get reloaded. This includes Python's utility submodules but also Python packages which means that the environment with Python packages can be changed without turning off the database. [#653](https://github.com/memgraph/memgraph/pull/653)
+- Fixed Python submodules reloading when calling `CALL mg.load()` and `CALL mg.load_all()`. Before, only the Python module would be reloaded, but now all dependencies get reloaded as well. This includes Python's utility submodules and Python packages, which means that the environment with Python packages can be changed without turning off the database. [#653](https://github.com/memgraph/memgraph/pull/653)
 
 
 ## v2.4.2 - Nov 7, 2022
