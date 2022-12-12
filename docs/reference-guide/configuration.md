@@ -84,9 +84,9 @@ SHOW CONFIG;
 
  Variable        | Description    | Type           |
 | -------------- | -------------- | -------------- |
-| ENTERPRISE_MG_USER        | Username     | `[string]`     |
-| ENTERPRISE_MG_PASSWORD    | User password       | `[string]`     |
-| ENTERPRISE_MG_PASSFILE    | Path to file that contains username and password for creating user. Data in file should be in format `username:password` if your username or password contains  `:` just add `\` before for example `us\:ername:password` | `[string]`     |
+| MEMGRAPH_USER        | Username     | `[string]`     |
+| MEMGRAPH_PASSWORD    | User password       | `[string]`     |
+| MEMGRAPH_PASSFILE    | Path to file that contains username and password for creating user. Data in file should be in format `username:password` if your username or password contains  `:` just add `\` before for example `us\:ername:password` | `[string]`     |
 
 ## Additional configuration inclusion
 
