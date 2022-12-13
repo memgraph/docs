@@ -72,6 +72,8 @@ SHOW CONFIG;
 | --allow-load-csv=true | Controls whether LOAD CSV clause is allowed in queries | `[bool]` |
 | --also-log-to-stderr=false | log messages go to stderr in addition to logfiles | `[bool]` |
 | --data-directory=/var/lib/memgraph | Path to directory in which to save all permanent data. | `[string]` |
+| --init_file | Path to the CYPHERL file which contains queries that need to be executed before the Bolt server starts, such as creating users | `[string]` |
+| --init_data_file | Path to the CYPHERL file, which contains queries that need to be executed after the Bolt server starts | `[string]` |
 | --isolation-level=SNAPSHOT_ISOLATION | Isolation level used for the transactions. Allowed values: SNAPSHOT_ISOLATION, READ_COMMITTED, READ_UNCOMMITTED | `[string]` |
 | --log-file=/var/log/memgraph/memgraph.log | Path to where the log should be stored. | `[string]` |
 | --log-level=WARNING | Minimum log level. Allowed values: TRACE, DEBUG, INFO, WARNING, ERROR, CRITICAL | `[string]` |
