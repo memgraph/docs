@@ -3,25 +3,6 @@ id: changelog
 title: Changelog
 sidebar_label: Changelog
 ---
-### Major features and improvements
-
-- `--python-submodules-directory` flag is added with the default value set to the `mage`. It points to the directory where the Python's utility submodules are stored. For example, let's say that the user sets up the following structure for his query modules directory: <br/>
-```
-- query_modules/
-  - python/
-    - module1.py
-    - module2.py
-    - mage/
-      - module1/
-        - module1_utility.py
-      - module2/
-        - module2_utility.py
-  - cpp/
-    - module3.cpp
-    - module4.cpp
-```
-Then the flag `--python-submodules-directory` flag corresponds to the `query_modules/python/mage/` directory.
-
 ### Bug Fixes
 - The `EmptyResult` sink operator was added to the Memgraph's planner. This means that results produced by a query `MATCH (n) SET n.test_prop = 2` will get exhausted which was a problem in some Bolt clients implementations, e.g in Golang's client.
 [#667](https://github.com/memgraph/memgraph/pull/667)

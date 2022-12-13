@@ -69,7 +69,7 @@ CALL mg.load("py_example");
 If the response is `Empty set (x.x sec)` and there are no error messages, the
 update was successful.
 
-Upon loading the module, all dependent Python's submodules that are imported will be reloaded too. To support this functionality Memgraph parses module's code into Abstract Syntax Tree and then determines which modules are being imported. However, an information where Python's submodules are stored is needed and for that the flag `--python-submodules-directory` with a default value being set to `mage` is used. For example, let's say that you have a following query_modules_directory structure:
+Upon loading the module, all dependent Python's submodules that are imported will be reloaded too. To support this functionality Memgraph parses module's code into Abstract Syntax Tree and then determines which modules are being imported. For example, let's say that you have a following query_modules_directory structure:
 ```
 - query_modules/
   - python/
@@ -88,7 +88,7 @@ By calling:
 ```cypher
 CALL mg.load("module1");
 ```
-Memgraph will reload `module1.py`, all its imported Python packages and it will conclude that in the `mage` directory there is a subdirectory `module1` which contains utility Python files for `module1.py` and it will reload them too. Note, that if `module1` directory contains some subdirectories, they will get reloaded too. By reloading, it is assumed clearing from the `sys` cache and deleting compiled code from the `__pycache__`.
+Memgraph will reload `module1.py`, all its imported Python packages and it will conclude that there is a subdirectory `module1` which contains Python utility files for `module1.py` and it will reload them too. Note, that if `module1` directory contains some subdirectories, they will also get reloaded. By reloading, it is assumed clearing from the `sys` cache and deleting compiled code from the `__pycache__`. The repository which contains subdirectories can be organized in a different way too, so e.g. `module1/` and `module2/` folders can be placed directly in the `python/` folder.
 
 ## Procedures for `.py` query modules
 
