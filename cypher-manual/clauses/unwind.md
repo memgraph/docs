@@ -39,8 +39,7 @@ The `UNWIND` clause can be used to remove duplicates from a list:
 ```cypher
 WITH [1,1,1,2,2,3] AS list
 UNWIND list AS listElement
-WITH DISTINCT listElement
-RETURN collect(listElement) AS distinctElements;
+RETURN collect(DISTINCT listElement) AS distinctElements;
 ```
 
 Output:

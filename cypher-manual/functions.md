@@ -105,6 +105,11 @@ This section contains the list of supported functions.
  | Name      | Signature                                                     | Description                                                                                           |
  | --------- | ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
  | `project` | <code>project(row: path) -> map("nodes":list[Node], "edges":list[Edge])</code>| Creates a projected graph consisting of nodes and edges from aggregated paths.|
+:::
+
+:::info
+All aggregation functions can be used with the `DISTINCT` operator to perform calculations only on unique values. For example, `COUNT(DISTINCT n.prop)` and `COLLECT(DISTINCT n.prop)`.
+:::
 
 ### String functions
 
