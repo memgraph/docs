@@ -114,3 +114,5 @@ use those icons directly or SVG file as background images. Tak a look at workaro
 ## Manage Python environment
 
 Dealing with Python dependencies can be a cumbersome process. Check out how easy can be with Memgraph:
+
+- [Managing Python environment with Memgraph](/how-to-guides/managing-python-environment.md)
