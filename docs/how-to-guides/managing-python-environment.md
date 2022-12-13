@@ -10,13 +10,14 @@ Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&
 
 ### Managing Memgraph's Python environment
 
-Any production system after some time requires updates for the packages it uses. With Memgraph, the most obvious use case is when developing a new query module. Let's say that you are developing a new query module for which you need the latest `networkx` version and you already have Memgraph deployed somewhere with an already installed `networkx` package installed.
+After some time, any production system requires updates for the packages it uses. For example, when developing a new query module that requires the latest `networkx` version. 
 
-What you would like to do is use some package manager, e.g. pip or conda and simply delete the old `networkx`, install a new `networkx` and everything should work automatically out of the box. You definitely wouldn't want to redeploy the whole Memgraph just because of one Python package.
+If Memgraph is already deployed somewhere with an installed `networkx` package, you would probably like to use some package manager, e.g. pip or conda, to delete the old `networkx`, and install a new `networkx` package. You definitely wouldn't want to redeploy the whole Memgraph just because of one Python package.
 
-However, Python caches all modules, packages and the compiled bytecode so this cannot work out of the box.
+However, Python caches all modules, packages and the compiled bytecode, so this procedure cannot work out of the box. So after installing the new package, you need to use the utility procedure `mg.load_all()`. 
 
-Memgraph requires one simple step to make it work and that is using the built-in command `mg.load_all()`. So the whole process could look like this:
+So the whole process looks like this:
+
 Uninstall the old package:
 ```python
 pip uninstall networkx
@@ -25,7 +26,7 @@ Install a new package:
 ```python
 pip install networkx=<new_version>
 ```
-Reload everything:
+Reload all query modules:
 ```cypher
 CALL mg.load_all();
 ```
