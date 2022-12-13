@@ -80,6 +80,14 @@ SHOW CONFIG;
 | --replication-replica-check-delay-sec | The time duration in seconds between two replica checks/pings. If < 1, replicas will not  be checked at all. The MAIN instance allocates a new thread for each REPLICA. | `[uint64]` |
 | --telemetry-enabled=true | Set to true to enable telemetry. We collect information about the running system (CPU and memory information), information about the database runtime (vertex and edge counts and resource usage), and aggregated statistics about some features of the database (e.g. how many times a feature is used) to allow for an easier improvement of the product. | `[bool]` |
 
+## Environment variables
+
+ Variable        | Description    | Type           |
+| -------------- | -------------- | -------------- |
+| MEMGRAPH_USER        | Username     | `[string]`     |
+| MEMGRAPH_PASSWORD    | User password       | `[string]`     |
+| MEMGRAPH_PASSFILE    | Path to file that contains username and password for creating user. Data in file should be in format `username:password` if your username or password contains  `:` just add `\` before for example `us\:ername:password` | `[string]`     |
+
 ## Additional configuration inclusion
 
 You can define additional configuration files in the main configuration file or
