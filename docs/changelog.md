@@ -10,6 +10,7 @@ sidebar_label: Changelog
 
 - Constructors and assignment operators now work as expected, and the API type check in the `ValueNumeric` method now correctly recognizes numeric types.
 - Error message support (`SetErrorMessage`) has been added to query methods that use the MAGE C++ API.
+
 ### Major Features and Improvements
 
 - `DISTINCT` operator can now be used with aggregation functions. Until now, if you wanted to use an aggregation function with distinct values, you had to write a query similar to this one `WITH DISTINCT n.prop as distinct_prop RETURN COUNT(distinct_prop)`. Now you can use the `DISTINCT` operator like in the following query, `RETURN COUNT(DISTINCT n.prop)` . [#654](https://github.com/memgraph/memgraph/pull/665)
