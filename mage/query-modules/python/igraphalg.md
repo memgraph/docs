@@ -6,6 +6,7 @@ sidebar_label: igraphalg
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import RunOnSubgraph from '../../templates/_run_on_subgraph.mdx';
 
 export const Highlight = ({children, color}) => (
   <span
@@ -35,6 +36,9 @@ The  **igraphalg** module provides a comprehensive set of thin wrappers around s
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight>                                                     |
 
 ## Procedures
+
+<RunOnSubgraph/>
+
 ### `get_all_simple_paths(v, to, cutoff)`
 
 Returns all simple paths in the graph `G` from source to target. A simple path is a path with no repeated nodes.

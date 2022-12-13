@@ -6,6 +6,7 @@ sidebar_label: betweenness_centrality
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import RunOnSubgraph from '../../templates/_run_on_subgraph.mdx';
 
 export const Highlight = ({children, color}) => (
 <span
@@ -49,6 +50,8 @@ Ulrik Brandes
 | **Parallelism**     | <Highlight color="#FB6E00">**parallel**</Highlight>                                                       |
 
 ## Procedures
+
+<RunOnSubgraph/>
 
 ### `get(directed, normalized, threads)`
 
@@ -118,7 +121,8 @@ MERGE (a:Node {id: 3}) MERGE (b:Node {id: 8}) CREATE (a)-[:RELATION]->(b);
 
 ```cypher
 CALL betweenness_centrality.get(TRUE,TRUE)
-YIELD node, betweenness_centrality;
+YIELD node, betweenness_centrality
+RETURN node, betweenness_centrality;
 ```
 
   </TabItem>

@@ -6,6 +6,7 @@ sidebar_label: json_util
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import RunOnSubgraph from '../../templates/_run_on_subgraph.mdx';
 
 export const Highlight = ({children, color}) => (
   <span
@@ -33,6 +34,8 @@ A module for loading JSON from a local file or remote address. If the JSON that 
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight> |
 
 ## Procedures
+
+<RunOnSubgraph/>
 
 ### `load_from_path(path)`
 

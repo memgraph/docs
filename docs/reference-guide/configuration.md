@@ -72,6 +72,8 @@ SHOW CONFIG;
 | --allow-load-csv=true | Controls whether LOAD CSV clause is allowed in queries | `[bool]` |
 | --also-log-to-stderr=false | log messages go to stderr in addition to logfiles | `[bool]` |
 | --data-directory=/var/lib/memgraph | Path to directory in which to save all permanent data. | `[string]` |
+| --init_file | Path to the CYPHERL file which contains queries that need to be executed before the Bolt server starts, such as creating users | `[string]` |
+| --init_data_file | Path to the CYPHERL file, which contains queries that need to be executed after the Bolt server starts | `[string]` |
 | --isolation-level=SNAPSHOT_ISOLATION | Isolation level used for the transactions. Allowed values: SNAPSHOT_ISOLATION, READ_COMMITTED, READ_UNCOMMITTED | `[string]` |
 | --log-file=/var/log/memgraph/memgraph.log | Path to where the log should be stored. | `[string]` |
 | --log-level=WARNING | Minimum log level. Allowed values: TRACE, DEBUG, INFO, WARNING, ERROR, CRITICAL | `[string]` |
@@ -79,6 +81,14 @@ SHOW CONFIG;
 | --memory-warning-threshold=1024 | Memory warning threshold, in MB. If Memgraph detects there is less available RAM it will log a warning. <br/>Set to 0 to disable. | `[uint64]` |
 | --replication-replica-check-delay-sec | The time duration in seconds between two replica checks/pings. If < 1, replicas will not  be checked at all. The MAIN instance allocates a new thread for each REPLICA. | `[uint64]` |
 | --telemetry-enabled=true | Set to true to enable telemetry. We collect information about the running system (CPU and memory information), information about the database runtime (vertex and edge counts and resource usage), and aggregated statistics about some features of the database (e.g. how many times a feature is used) to allow for an easier improvement of the product. | `[bool]` |
+
+## Environment variables
+
+ Variable        | Description    | Type           |
+| -------------- | -------------- | -------------- |
+| MEMGRAPH_USER        | Username     | `[string]`     |
+| MEMGRAPH_PASSWORD    | User password       | `[string]`     |
+| MEMGRAPH_PASSFILE    | Path to file that contains username and password for creating user. Data in file should be in format `username:password` if your username or password contains  `:` just add `\` before for example `us\:ername:password` | `[string]`     |
 
 ## Additional configuration inclusion
 

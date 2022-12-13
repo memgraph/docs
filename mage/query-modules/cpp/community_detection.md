@@ -6,6 +6,7 @@ sidebar_label: community_detection
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import RunOnSubgraph from '../../templates/_run_on_subgraph.mdx';
 
 export const Highlight = ({children, color}) => (
   <span
@@ -47,6 +48,8 @@ Blondel et al.
 | **Parallelism**          | <Highlight color="#FB6E00">**parallel**</Highlight>                                                         |
 
 ## Procedures
+
+<RunOnSubgraph/>
 
 ### `get(weight, coloring, min_graph_shrink, community_alg_threshold, coloring_alg_threshold)`
 

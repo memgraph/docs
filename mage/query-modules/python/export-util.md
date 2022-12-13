@@ -6,6 +6,7 @@ sidebar_label: export_util
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import RunOnSubgraph from '../../templates/_run_on_subgraph.mdx';
 
 export const Highlight = ({children, color}) => (
   <span
@@ -34,6 +35,8 @@ module supports only the export to JSON file format.
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight> |
 
 ## Procedures
+
+<RunOnSubgraph/>
 
 ### `json(path)`
 

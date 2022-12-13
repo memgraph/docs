@@ -6,6 +6,7 @@ sidebar_label: node_similarity
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import RunOnSubgraph from '../../templates/_run_on_subgraph.mdx';
 
 export const Highlight = ({children, color}) => (
   <span
@@ -53,6 +54,8 @@ The algorithm is implemented so that it ignores whether the graph is directed or
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight> |
 
 ## Procedures
+
+<RunOnSubgraph/>
 
 ### `cosine(node1, node2, mode)`
 

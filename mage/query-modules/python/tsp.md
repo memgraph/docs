@@ -6,6 +6,7 @@ sidebar_label: tsp
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import RunOnSubgraph from '../../templates/_run_on_subgraph.mdx';
 
 export const Highlight = ({children, color}) => (
   <span
@@ -39,6 +40,8 @@ TSP or "Travelling salesman problem" is one of the well-known problems in graph 
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight> |
 
 ## Procedures
+
+<RunOnSubgraph/>
 
 ### `solve(points, method)`
 

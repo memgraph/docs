@@ -6,6 +6,7 @@ sidebar_label: graph_coloring
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import RunOnSubgraph from '../../templates/_run_on_subgraph.mdx';
 
 export const Highlight = ({children, color}) => (
   <span
@@ -44,6 +45,8 @@ Changes made in one iteration may not be permanent if they don’t improve the s
 | **Parallelism**     | <Highlight color="#FB6E00">**parallel**</Highlight> |
 
 ## Procedures
+
+<RunOnSubgraph/>
 
 ### `color_graph(parameters, edge_property)`
 
@@ -163,7 +166,8 @@ MERGE (a:Node {id: 10}) MERGE (b:Node {id: 7}) CREATE (a)-[:RELATION]->(b);
 
 ```cypher
 CALL graph_coloring.color_graph({no_of_colors: 4})
-YIELD node, color;
+YIELD node, color
+RETURN node, color;
 ```
 
   </TabItem>

@@ -39,11 +39,6 @@ General purpose functions:
 - `exists(n.property)` - This can be expressed using `n.property IS NOT NULL`.
 - `length()` is named `size()` in Memgraph.
 
-Aggregation functions:
-
-- `count(DISTINCT variable)` - This can be expressed using `WITH DISTINCT
-  variable RETURN count(variable)`.
-
 Mathematical functions:
 
 - `percentileDisc()`

@@ -6,6 +6,7 @@ sidebar_label: distance_calculator
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import RunOnSubgraph from '../../templates/_run_on_subgraph.mdx';
 
 export const Highlight = ({children, color}) => (
   <span
@@ -39,6 +40,8 @@ The distance calculator is a module for calculating distance between two geograp
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight> |
 
 ## Procedures
+
+<RunOnSubgraph/>
 
 ### `single(start, end, metrics)`
 

@@ -6,6 +6,7 @@ sidebar_label: node2vec_online
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import RunOnSubgraph from '../../templates/_run_on_subgraph.mdx';
 
 export const Highlight = ({children, color}) => (
   <span
@@ -83,6 +84,8 @@ Ferenc Béres, Róbert Pálovics, Domokos Miklós Kelen and András A. Benczúr
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight> |
 
 ## Procedures
+
+<RunOnSubgraph/>
 
 ### `set_streamwalk_updater(half_life, max_length, beta, cutoff, sampled_walks, full_walks)`
 

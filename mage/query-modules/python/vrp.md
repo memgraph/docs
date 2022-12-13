@@ -6,6 +6,7 @@ sidebar_label: vrp
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import RunOnSubgraph from '../../templates/_run_on_subgraph.mdx';
 
 export const Highlight = ({children, color}) => (
   <span
@@ -39,6 +40,8 @@ VRP or **Vehicle Routing problem** is a generalization of the *Travelling Salesm
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight> |
 
 ## Procedures
+
+<RunOnSubgraph/>
 
 ### `route(depot_node, number_of_vehicles)`
 
