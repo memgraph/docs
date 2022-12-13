@@ -33,10 +33,11 @@ produced plan and gain insight into the execution of a query.
 | `CreateExpand`                  | Creates edges and  new nodes to connect with existing nodes.                                                             |
 | `Delete`                        | Deletes nodes and edges.                                                                                                 |
 | `EdgeUniquenessFilter`          | Filters unique edges.                                                                                                    |
+| `EmptyResult`                   | Discards results from the previous operator.                 |
 | `Expand`                        | Expands the node by finding the node's relationships.                                                                    |
 | `ExpandVariable`                | Performs a node expansion of a variable number of relationships                                                          |
 | `Filter`                        | Filters the input it received.                                                                                           |
-| `Foreach`                       | Iterates over a list and applies one or more update clauses.                                                             | 
+| `Foreach`                       | Iterates over a list and applies one or more update clauses.                                                             |
 | `Limit`                         | Limits certain rows from the pull chain.                                                                                 |
 | `LoadCsv`                       | Loads CSV file in order to import files into the database.                                                               |
 | `Merge`                         | Applies merge on the input it received.                                                                                  |

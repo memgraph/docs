@@ -10,6 +10,9 @@ sidebar_label: Changelog
 
 - Constructors and assignment operators now work as expected, and the API type check in the `ValueNumeric` method now correctly recognizes numeric types.
 - Error message support (`SetErrorMessage`) has been added to query methods that use the MAGE C++ API.
+- The `EmptyResult` sink operator was added to the Memgraph's planner. This means that results produced by a query `MATCH (n) SET n.test_prop = 2` will get exhausted which was a problem in some Bolt clients implementations, e.g in Golang's client.
+[#667](https://github.com/memgraph/memgraph/pull/667)
+- Fixed Python submodules reloading when calling `CALL mg.load()` and `CALL mg.load_all()`. Before, only the Python module would be reloaded, but now all dependencies get reloaded as well. This includes Python's utility submodules and Python packages, which means that the environment with Python packages can be changed without turning off the database. [#653](https://github.com/memgraph/memgraph/pull/653)
 
 ### Major Features and Improvements
 

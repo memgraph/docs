@@ -100,13 +100,19 @@ make it easier to accomplish tasks within Memgraph:
 
 ## Set up triggers
 
-Memgraph supports database triggers that can be executed if a particular type of event occurs. Events are related to changes in the data, such as created, updated, and deleted nodes or relationships. 
+Memgraph supports database triggers that can be executed if a particular type of event occurs. Events are related to changes in the data, such as created, updated, and deleted nodes or relationships.
 
 - [How to setup triggers](/how-to-guides/set-up-triggers.md)
 
 ## Use Font Awesome icons for node images
 
 Font Awesome is a popular icon library. You can't
-use those icons directly or SVG file as background images. Tak a look at  workaround for this: 
+use those icons directly or SVG file as background images. Tak a look at workaround for this:
 
 - [Use Font Awesome icons for node images](/how-to-guides/font-awesome-for-node-images.md)
+
+## Manage Python environment
+
+Dealing with Python dependencies can be a cumbersome process. Check out how easy can be with Memgraph:
+
+- [Managing Python environment with Memgraph](/how-to-guides/managing-python-environment.md)
