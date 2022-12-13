@@ -6,20 +6,19 @@ sidebar_label: Changelog
 
 ## v2.5.0 - Dec 13, 2022
 
+### Major Features and Improvements
+
+- `DISTINCT` operator can now be used with aggregation functions. Until now, if you wanted to use an aggregation function with distinct values, you had to write a query similar to this one `WITH DISTINCT n.prop as distinct_prop RETURN COUNT(distinct_prop)`. Now you can use the `DISTINCT` operator like in the following query, `RETURN COUNT(DISTINCT n.prop)`. [#654](https://github.com/memgraph/memgraph/pull/665)
+- You can now create a user before the Bolt server starts using the environment variables `MEMGRAPH_USER` for the username, `MEMGRAPH_PASSWORD` for the password and `MEMGRAPH_PASSFILE` file that contains username and password for creating the user in the following format: `username:password`. [#696](https://github.com/memgraph/memgraph/pull/696)
+- With the new configuration flag `init_file` you can execute queries from the CYPHERL file which need to be executed before the Bolt server starts and with the configuration flag `init_data_file` you can execute queries from the CYPHERL file immediately after the Bolt server starts. [#696](https://github.com/memgraph/memgraph/pull/696)
+
 ### Bug Fixes
 
-- Constructors and assignment operators now work as expected, and the API type check in the `ValueNumeric` method now correctly recognizes numeric types.
-- Error message support (`SetErrorMessage`) has been added to query methods that use the MAGE C++ API.
+- Constructors and assignment operators in the C++ query modules API now work as expected, and the API type check in the `ValueNumeric` method now correctly recognizes numeric types. [#688](https://github.com/memgraph/memgraph/pull/688)
+- Error message support (`SetErrorMessage`) has been added to query methods that use the MAGE C++ API. [#688](https://github.com/memgraph/memgraph/pull/688)
 - The `EmptyResult` sink operator was added to the Memgraph's planner. This means that results produced by a query `MATCH (n) SET n.test_prop = 2` will get exhausted which was a problem in some Bolt clients implementations, e.g in Golang's client.
 [#667](https://github.com/memgraph/memgraph/pull/667)
 - Fixed Python submodules reloading when calling `CALL mg.load()` and `CALL mg.load_all()`. Before, only the Python module would be reloaded, but now all dependencies get reloaded as well. This includes Python's utility submodules and Python packages, which means that the environment with Python packages can be changed without turning off the database. [#653](https://github.com/memgraph/memgraph/pull/653)
-
-### Major Features and Improvements
-
-- `DISTINCT` operator can now be used with aggregation functions. Until now, if you wanted to use an aggregation function with distinct values, you had to write a query similar to this one `WITH DISTINCT n.prop as distinct_prop RETURN COUNT(distinct_prop)`. Now you can use the `DISTINCT` operator like in the following query, `RETURN COUNT(DISTINCT n.prop)` . [#654](https://github.com/memgraph/memgraph/pull/665)
-- You can now create a user before the Bolt server starts using the environment variables `MEMGRAPH_USER` for the username, `MEMGRAPH_PASSWORD` for the password and `MEMGRAPH_PASSFILE` file that contains username and password for creating the user in the following format: `username:password`. [#696](https://github.com/memgraph/memgraph/pull/696)
-- With the new configuration flag `init_file` you can execute queries from the CYPHERL file which need to be executed before the Bolt server starts and with the configuration flag `init_data_file` you can execute queries from the CYPHERL file immediately after the Bolt server starts.[#696](https://github.com/memgraph/memgraph/pull/696)
-
 
 ## v2.4.2 - Nov 7, 2022
 
