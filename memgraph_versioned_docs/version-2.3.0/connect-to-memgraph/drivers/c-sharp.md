@@ -11,9 +11,17 @@ queries.
 ## Prerequisites
 
 For this guide you will need:
-* A **running Memgraph instance**. If you need to set up Memgraph, take a look
-  at the [Installation guide](/installation/overview.mdx).
-* A basic understanding of graph databases and the property graph model.
+
+- A **running Memgraph instance**. If you need to set up Memgraph, take a look
+  at the [Installation guide](/installation/overview.mdx). 
+  :::caution
+    In order for the Neo4j driver to work, you need [modify configuration
+    setting](/docs/memgraph/how-to-guides/config-logs)
+    `--bolt-server-name-for-init`. When running Memgraph, set
+    `--bolt-server-name-for-init=Neo4j/5.2.0`. If you use other version of Neo4j
+    driver, make sure to put the appropriate version number.
+  :::
+- A basic understanding of graph databases and the property graph model.
 
 ## Driver
 
@@ -26,7 +34,7 @@ Driver](https://github.com/neo4j/neo4j-dotnet-driver).
 
 ## Basic Setup
 
-We'll be using Visual Studio 2019 on Windows 10 to connect a simple . NET
+We'll be using Visual Studio 2022 on Windows 10 to connect a simple . NET
 console application to a running Memgraph instance. If you're using a different
 IDE, the steps might be slightly different, but the code is either the same or
 very similar.<br />
@@ -35,20 +43,16 @@ Let's jump in and connect a simple program to Memgraph.
 
 **1.** Open **Visual Studio** and create a new project.<br /> **2.** Find and
 select the **Console App (. NET Core)** template by using the search box.<br />
-**3.** Name your project ***MemgraphApp***, choose an appropriate location for
-it, and click **Create**.<br /> **4.** Select the **Tools > NuGet Package
-Manager > Package Manager Console** menu command.<br /> **5.** Once the console
-opens, check that the **Default project** drop-down list shows the project into
-which you want to install the package. If you have a single project in the
-solution, it is already selected.<br /> **6.** Enter the command
-**Install-Package Neo4j. Driver. Simple**.
+**3.** Name your project **_MemgraphApp_**, choose an appropriate location for
+it, and click **Create**.<br /> **4.** Select the **Tools > Manage NuGet
+Packages** menu command.<br /> **5.** Once the window opens, search for the
+**Neo4j.Driver.Simple**.<br /> **6.** Select the appropriate driver and click **Add
+package**.
 
 Now, you should have the newest version of the driver installed and can proceed
 to copy the following code into the **Program.cs** file.
 
 ```csharp
-using System;
-using System.Linq;
 using Neo4j.Driver;
 
 namespace MemgraphApp
@@ -62,7 +66,7 @@ namespace MemgraphApp
             using var _driver = GraphDatabase.Driver("bolt://localhost:7687", AuthTokens.None);
             using var session = _driver.Session();
 
-            var greeting = session.WriteTransaction(tx =>
+            var greeting = session.ExecuteWrite(tx =>
             {
                 var result = tx.Run("CREATE (n:FirstNode) " +
                                     "SET n.message = $message " +
@@ -88,8 +92,6 @@ If you want to try out more complex operations, feel free to use the refactored
 code below.
 
 ```csharp
-using System;
-using System.Linq;
 using Neo4j.Driver;
 
 namespace MemgraphApp
@@ -107,7 +109,7 @@ namespace MemgraphApp
         {
             using (var session = _driver.Session())
             {
-                var greeting = session.WriteTransaction(tx =>
+                var greeting = session.ExecuteWrite(tx =>
                 {
                     var result = tx.Run("CREATE (n:FirstNode) " +
                                         "SET n.message = $message " +
@@ -139,5 +141,5 @@ namespace MemgraphApp
 
 For real-world examples of how to use Memgraph, we suggest you take a look at
 the **[Tutorials](/tutorials/overview.md)** page. You can also browse through
-the **[How-to guides](/how-to-guides/overview.md)**
-section to get an overview of all the functionalities Memgraph offers.
+the **[How-to guides](/how-to-guides/overview.md)** section to get an overview
+of all the functionalities Memgraph offers.

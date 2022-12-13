@@ -6,6 +6,7 @@ sidebar_label: link_prediction_with_gnn
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import RunOnSubgraph from '../../templates/_run_on_subgraph.mdx';
 
 export const Highlight = ({children, color}) => (
 <span
@@ -100,6 +101,8 @@ In heterogeneous graphs, all edges are used for creating the node’s neighbourh
 The reader is encouraged to take a look at the [DGL mini-batch explanation](https://docs.dgl.ai/guide/minibatch.html) for more details.
 
 ## Procedures
+
+<RunOnSubgraph/>
 
 The link prediction module is organized as a stateful module in which the user can run several methods one after another without losing the context. The user should start with setting the parameters that are going to be used in the training. If the graph is **heterogeneous** (more than one **edge type**), `target_relation` parameter must be set so the model could distinguish **supervision edges** (edges used in prediction) from **message passing edges** (used for message aggregation). In the case of **homogeneous graph**, `target relation` will be automatically inferred. `Node_features_property` must also be sent by the user to specify where are saved original node features. Those are needed by **graph neural networks** to compute **node embeddings**. All other parameters are optional.
 

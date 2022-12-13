@@ -6,6 +6,7 @@ sidebar_label: weakly_connected_components
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import RunOnSubgraph from '../../templates/_run_on_subgraph.mdx';
 
 export const Highlight = ({children, color}) => (
   <span
@@ -38,6 +39,8 @@ is no edge that connects nodes from separate components.
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight> |
 
 ## Procedures
+
+<RunOnSubgraph/>
 
 ### `get()`
 
@@ -88,7 +91,8 @@ MERGE (a:Node {id: 3}) MERGE (b:Node {id: 5}) CREATE (a)-[:RELATION]->(b);
 
 ```cypher
 CALL weakly_connected_components.get()
-YIELD node, component_id;
+YIELD node, component_id
+RETURN node, component_id;
 ```
 
   </TabItem>

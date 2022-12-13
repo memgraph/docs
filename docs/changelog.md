@@ -14,6 +14,7 @@ sidebar_label: Changelog
 - You can now create a user before the Bolt server starts using the environment variables `MEMGRAPH_USER` for the username, `MEMGRAPH_PASSWORD` for the password and `MEMGRAPH_PASSFILE` file that contains username and password for creating the user in the following format: `username:password`. [#696](https://github.com/memgraph/memgraph/pull/696)
 - With the new configuration flag `init_file` you can execute queries from the CYPHERL file which need to be executed before the Bolt server starts and with the configuration flag `init_data_file` you can execute queries from the CYPHERL file immediately after the Bolt server starts.[#696](https://github.com/memgraph/memgraph/pull/696)
 
+
 ## v2.4.2 - Nov 7, 2022
 
 ### Bug Fixes

@@ -6,6 +6,8 @@ sidebar_label: betweenness_centrality_online
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import RunOnSubgraph from '../../templates/_run_on_subgraph.mdx';
+
 
 export const Highlight = ({children, color}) => (
 <span
@@ -68,6 +70,8 @@ Graphs](https://repository.kaust.edu.sa/bitstream/handle/10754/625935/08070346.p
 | **Parallelism**     | <Highlight color="#FB6E00">**parallel**</Highlight>   |
 
 ## Procedures
+
+<RunOnSubgraph/>
 
 ### `set(normalize, threads)`
 

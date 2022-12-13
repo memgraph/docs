@@ -6,6 +6,7 @@ sidebar_label: community_detection_online
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import RunOnSubgraph from '../../templates/_run_on_subgraph.mdx';
 
 export const Highlight = ({children, color}) => (
   <span
@@ -55,6 +56,8 @@ Propagation](https://arxiv.org/abs/1305.2006), Xie, Jierui et al.
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight>                                                       |
 
 ## Procedures
+
+<RunOnSubgraph/>
 
 ### `set(directed, weighted, similarity_threshold, exponent, min_value, weight_property, w_selfloop, max_iterations, max_updates)`
 

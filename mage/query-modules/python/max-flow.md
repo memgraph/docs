@@ -6,6 +6,7 @@ sidebar_label: max_flow
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import RunOnSubgraph from '../../templates/_run_on_subgraph.mdx';
 
 export const Highlight = ({children, color}) => (
   <span
@@ -55,6 +56,8 @@ returning max flow value is 0.
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight> |
 
 ## Procedures
+
+<RunOnSubgraph/>
 
 ### `get_flow(parameters, edge_property)`
 
@@ -139,7 +142,8 @@ MERGE (a:Node {id: "F"}) MERGE (b:Node {id: "G"}) CREATE (a)-[:RELATION {weight:
 ```cypher
 MATCH (source {id: "A"}), (sink {id: "G"})
 CALL max_flow.get_flow(source, sink)
-YIELD max_flow RETURN max_flow;
+YIELD max_flow
+RETURN max_flow;
 ```
 
   </TabItem>

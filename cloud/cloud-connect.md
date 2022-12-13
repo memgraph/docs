@@ -269,63 +269,6 @@ public class HelloMemgraph implements AutoCloseable
 
 Read more about it on [Java Quick Start Guide](/memgraph/connect-to-memgraph/drivers/java).
 
-### C#
-
-Step 1: Install the driver with Package Manager:
-
-```
-Install-Package Neo4j.Driver.Simple
-```
-
-Step 2: Copy the following code and fill out the missing details (`YOUR_MEMGRAPH_PASSWORD`, `YOUR_MEMGRAPH_USERNAME` and `MEMGRAPH_HOST_ADDRESS`) before running it:
-
-```cs
-using System;
-using System.Linq;
-using Neo4j.Driver;
-
-namespace MemgraphApp
-{
-    public class Program : IDisposable
-    {
-        private readonly IDriver _driver;
-
-        public Program(string uri, string user, string password)
-        {
-            _driver = GraphDatabase.Driver(uri, AuthTokens.Basic(user, password));
-        }
-
-        public void CreateAndPrintNode(string message)
-        {
-            using (var session = _driver.Session())
-            {
-                var nodeMessage = session.WriteTransaction(tx =>
-                {
-                    var result = tx.Run("CREATE (n:FirstNode {message: $message}) " +
-                                        "RETURN id(n) AS nodeId, n.message AS message",
-                        new { message });
-                    return result.Single()[1].As<string>();
-                });
-                Console.WriteLine("Created node:", nodeMessage);
-            }
-        }
-
-        public void Dispose()
-        {
-            _driver?.Dispose();
-        }
-
-        public static void Main()
-        {
-            using (var program = new Program("bolt+ssc://MEMGRAPH_HOST_ADDRESS:7687", "YOUR_MEMGRAPH_USERNAME", "<YOUR_MEMGRAPH_PASSWORD>"))
-            {
-                program.CreateAndPrintNode("Hello Memgraph from C#!");
-            }
-        }
-    }
-}
-```
-
 ### Golang
 
 Step 1: Make sure your application has been set up to use go modules (there should be a `go.mod` file in your application root). Add the driver with:

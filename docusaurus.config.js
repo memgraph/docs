@@ -334,7 +334,7 @@ module.exports = {
           position: "right",
           dropdownItemsAfter: [
             {
-              to: "https://memgraph-docs-archive.netlify.app/",
+              to: "https://memgraph-archive-docs.netlify.app/",
               label: "Older versions 🗄️",
             },
           ],
@@ -456,7 +456,7 @@ module.exports = {
     announcementBar: {
       id: "graphmodelingemailcourse",
       content:
-        'Sign up for the new <a target="_blank" rel="noopener noreferrer" href="https://memgraph.com/learn-graph-modeling"><b>Graph Modeling Email Course</b></a> 📩',
+        'Check out the <a target="_blank" rel="noopener noreferrer" href="https://memgraph.com/benchgraph"><b>Graph Database Performance Benchmark</b></a> 🚀',
       backgroundColor: "#fafbfc",
       textColor: "#091E42",
       isCloseable: true,
@@ -1307,16 +1307,16 @@ module.exports = {
           {
             to: "/memgraph/reference-guide/streams/transformation-modules/api/python-api",
             from: ["/memgraph/import-data/kafka/json", "/memgraph/import-data/kafka/avro", "/memgraph/import-data/kafka/protobuf"],
-          },  
+          },
           {
             to: "/memgraph/import-data/data-streams/manage-streams-lab",
             from: ["/memgraph/how-to-guides/streams/kafka/connect-to-stream-from-lab"],
           },
-           // Redirect for the Transactions
+          // Redirect for the Transactions
           {
             to: "/memgraph/reference-guide/transactions",
             from: ["/memgraph/reference-guide/isolation-levels"],
-          },   
+          },
           // Redirect for the Import section 
           {
             to: "/memgraph/import-data/files/load-json",
@@ -1329,7 +1329,7 @@ module.exports = {
           {
             to: "/memgraph/import-data/files/overview",
             from: ["/memgraph/import-data/csv/overview", "/memgraph/reference-guide/import-data/overview"],
-          },       
+          },
         ],
       },
     ],

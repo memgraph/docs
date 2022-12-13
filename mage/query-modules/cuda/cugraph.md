@@ -6,6 +6,7 @@ sidebar_label: cugraph
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import RunOnSubgraph from '../../templates/_run_on_subgraph.mdx';
 
 export const Highlight = ({children, color}) => (
 <span
@@ -53,6 +54,8 @@ their own procedures.
 ## `cugraph.balanced_cut_clustering`
 
 ### Procedures
+
+<RunOnSubgraph/>
 
 ### `get(num_clusters, num_eigenvectors, ev_tolerance, ev_max_iter, kmean_tolerance, kmean_max_iter, weight_property)`
 

@@ -7,6 +7,7 @@ sidebar_label: graph_analyzer
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import RunOnSubgraph from '../../templates/_run_on_subgraph.mdx';
 
 export const Highlight = ({children, color}) => (
   <span
@@ -55,6 +56,8 @@ The first thing someone should focus on when working with graphs is getting deep
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight> |
 
 ## Procedures
+
+<RunOnSubgraph/>
 
 ### `analyze(analyses)`
 
@@ -139,7 +142,9 @@ MERGE (a:Node {id: 10}) MERGE (b:Node {id: 11}) CREATE (a)-[:RELATION]->(b);
 CALL graph_analyzer.analyze([
     "nodes", "edges", "bridges", "articulation_points",
     "avg_degree", "is_dag", "is_tree", "strongly_components"
-    ]) YIELD *;
+    ])
+YIELD *
+RETURN *;
 ```
 
   </TabItem>

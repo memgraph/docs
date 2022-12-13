@@ -6,6 +6,7 @@ sidebar_label: katz_centrality
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import RunOnSubgraph from '../../templates/_run_on_subgraph.mdx';
 
 export const Highlight = ({children, color}) => (
 <span
@@ -59,6 +60,8 @@ Graphs](https://arxiv.org/pdf/1807.03847.pdf), Alexander van der Grinten et. al.
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight> |
 
 ## Procedures
+
+<RunOnSubgraph/>
 
 ### `get(alpha, epsilon)`
 
@@ -125,7 +128,8 @@ MERGE (a:Node {id: 10}) MERGE (b:Node {id: 9}) CREATE (a)-[:RELATION]->(b);
 
 ```cypher
 CALL katz_centrality.get()
-YIELD node, rank;
+YIELD node, rank
+RETURN node, rank;
 ```
 
   </TabItem>
