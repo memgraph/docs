@@ -66,7 +66,7 @@ RETURN ancestor;
 
 ### `chain_nodes(nodes, edge_type)`
 
-Creates a relationship between each of the neighbouring nodes from the input list, `nodes`. Each of the relationships
+Creates a relationship between each of the neighboring nodes in the input list, `nodes`. Each of the relationships
 gets the edge type from the second input parameter `edge_type`
 
 #### Input:
@@ -76,7 +76,7 @@ gets the edge type from the second input parameter `edge_type`
 
 #### Output:
 
-- `connections: List[Edge]` ➡ List of relationships that connect the nodes, each node with the next node from the input list, with the edge type from the input parameter.
+- `connections: List[Edge]` ➡ LList of relationships that connect the nodes, each node with the next node in the input list, using the edge type specified as the second input parameter.
 
 #### Usage:
 
