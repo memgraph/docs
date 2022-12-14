@@ -1,5 +1,5 @@
 ---
-id: graph_util
+id: graph-util
 title: graph_util
 sidebar_label: graph_util
 ---
@@ -64,6 +64,30 @@ UNWIND ancestors AS ancestor
 RETURN ancestor;
 ```
 
+### `chain_nodes(nodes, edge_type)`
+
+Creates a relationship between each of the neighbouring nodes from the input list, `nodes`. Each of the relationships
+gets the edge type from the second input parameter `edge_type`
+
+#### Input:
+
+- `nodes: List[Vertex]` ➡ List of nodes for which we want to create corresponding relationships between them
+
+
+#### Output:
+
+- `connections: List[Edge]` ➡ List of relationships that connect the nodes, each node with the next node from the input list, with the edge type from the input parameter.
+
+#### Usage:
+
+```cypher
+MATCH (n)
+WITH collect(n) AS nodes
+CALL graph_util.chain_nodes(nodes, "MY_EDGE")
+YIELD connections
+RETURN nodes, connections;
+```
+
 ### `connect_nodes(nodes)`
 
 Returns a list of relationships that connect the list of inputted nodes. 
@@ -75,7 +99,7 @@ Typically used to create a subgraph from returned nodes.
 
 #### Output:
 
-- `connections: List[Edges]` ➡ List of relationships that connect the starting graph's input nodes
+- `connections: List[Edge]` ➡ List of relationships that connect the starting graph's input nodes
 
 #### Usage:
 
@@ -141,3 +165,4 @@ CALL graph_util.topological_sort(graph) YIELD sorted_nodes
 UNWIND sorted_nodes AS nodes
 RETURN nodes.name;
 ```
+
