@@ -67,16 +67,18 @@ RETURN ancestor;
 ### `chain_nodes(nodes, edge_type)`
 
 Creates a relationship between each of the neighboring nodes in the input list, `nodes`. Each of the relationships
-gets the edge type from the second input parameter `edge_type`
+gets the edge type from the second input parameter `edge_type`.
 
 #### Input:
 
-- `nodes: List[Vertex]` ➡ List of nodes for which we want to create corresponding relationships between them
+- `nodes: List[Vertex]` ➡ List of nodes between which we want to create corresponding relationships between them
+
+- `edge_type: String` ➡ The name of the edge that will be created between nodes.
 
 
 #### Output:
 
-- `connections: List[Edge]` ➡ LList of relationships that connect the nodes, each node with the next node in the input list, using the edge type specified as the second input parameter.
+- `connections: List[Edge]` ➡ List of relationships that connect the nodes. Each node is connected with the node following it in the input list, using the relationship type specified as the second input parameter.
 
 #### Usage:
 
