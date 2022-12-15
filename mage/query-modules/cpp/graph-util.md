@@ -72,8 +72,7 @@ gets the edge type from the second input parameter `edge_type`.
 #### Input:
 
 - `nodes: List[Vertex]` ➡ List of nodes between which we want to create corresponding relationships between them
-
-- `edge_type: String` ➡ The name of the edge that will be created between nodes.
+- `edge_type: String` ➡ The name of the relationship that will be created between nodes.
 
 
 #### Output:
