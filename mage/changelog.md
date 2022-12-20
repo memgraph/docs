@@ -12,6 +12,8 @@ sidebar_label: Changelog
   [#180](https://github.com/memgraph/mage/pull/180)
 - Aligned C++ API with Memgraph 2.5
   [#184](https://github.com/memgraph/mage/pull/184)
+- Made Graph Coloring output vertices and integers instead of strings
+  [#177](https://github.com/memgraph/mage/pull/177)
 
 ### Bug Fixes
 - Enable module reset to be able to train and evaluate without shutting down database, enable working with class labels which don't start from 0, and fix potential early stopping due to low limit in the Node classification module.
