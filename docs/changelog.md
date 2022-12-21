@@ -4,6 +4,12 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+### Bug Fixes
+
+- Fixed bug on LOAD CSV where Memgraph would use much more RAM than needed to load whole CSV file. 
+[#712](https://github.com/memgraph/memgraph/pull/712)
+
+
 ## v2.5.0 - Dec 13, 2022
 
 ### Major Features and Improvements
