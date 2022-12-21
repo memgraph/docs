@@ -1882,3 +1882,12 @@ class SerializationError(_mgp.SerializationError)
 
 Signals serialization error caused by concurrent modifications from
 different transactions.
+
+## AuthorizationError Objects
+
+```python
+class AuthorizationError(_mgp.AuthorizationError)
+```
+
+Signals that the user doesn't have sufficient permissions to perform
+procedure call.
