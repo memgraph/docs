@@ -4,6 +4,12 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v1.5
+
+### Major Features and Improvements
+
+- Added module for synchronizing with Elasticsearch
+
 ## v1.4 - Nov 15, 2022
 
 ### Major Features and Improvements
@@ -69,7 +75,7 @@ sidebar_label: Changelog
   [#48](https://github.com/memgraph/mage/pull/48)
 - Implemented Maximum Flow.
   [#125](https://github.com/memgraph/mage/pull/125)
-- Implemented Static Katz Centrality. 
+- Implemented Static Katz Centrality.
   [#117](https://github.com/memgraph/mage/pull/117)
 - Added utility Import/Export module (JSON).
   [#100](https://github.com/memgraph/mage/pull/100)

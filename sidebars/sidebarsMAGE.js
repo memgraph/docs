@@ -58,6 +58,7 @@ module.exports = {
         "query-modules/cpp/uuid-generator",
         "query-modules/python/vrp",
         "query-modules/cpp/weakly-connected-components",
+        "query-modules/python/elasticsearch-synchronization"
       ],
     },
     {
