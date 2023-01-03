@@ -6,7 +6,7 @@ sidebar_label: Changelog
 
 ### Bug Fixes
 
-- Fixed bug on LOAD CSV where Memgraph would use much more RAM than needed to load whole CSV file. 
+- The LOAD CSV clause now uses less RAM to load a whole CSV file. 
 [#712](https://github.com/memgraph/memgraph/pull/712)
 
 
