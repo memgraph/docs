@@ -20,7 +20,7 @@ style={{
 </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-elasticsearch_synchronization-FB6E00?logo=github&style=for-the-badge)]("")
+<!--[![docs-source](https://img.shields.io/badge/source-elasticsearch_synchronization-FB6E00?logo=github&style=for-the-badge)]("") -->
 
 ## Abstract
 **Elasticsearch** is a **text-processing platform** that can be used to enhance the capabilities of a graph database like Memgraph. It offers many fine-grained features useful when working on a text that is impossible to develop in databases. Data residing in Elasticsearch and Memgraph should be **synchronized** because otherwise, the whole system could be in an inconsistent state. Such a feature can be added inside Memgraph by using triggers: every time a new entity is added (node or edge) it gets indexed to the Elasticsearch index.
