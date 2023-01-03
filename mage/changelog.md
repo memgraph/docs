@@ -10,7 +10,7 @@ sidebar_label: Changelog
 
 - Added support for ancestors, descendants, topological sort, connecting nodes, and chaining nodes.
   [#180](https://github.com/memgraph/mage/pull/180)
-- Aligned C++ API with Memgraph 2.5
+- C++ API is now aligned with Memgraph 2.5
   [#184](https://github.com/memgraph/mage/pull/184)
 - Made Graph Coloring output vertices and integers instead of strings
   [#177](https://github.com/memgraph/mage/pull/177)
