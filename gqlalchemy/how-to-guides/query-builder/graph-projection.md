@@ -54,7 +54,7 @@ Which executes this Cypher query:
 ```Cypher
 MATCH p=(:LABEL0)-[:TYPE0 | :TYPE1]->(:LABEL1)
 WITH project(p) AS graph
-CALL export_util.json(graph, "arg0", 5)
+CALL test_query_module(graph, "arg0", 5)
 ```
 
 This query makes use of a subgraph containing all nodes labeled `LABEL0` that
