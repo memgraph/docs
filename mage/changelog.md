@@ -10,7 +10,7 @@ sidebar_label: Changelog
 
 - Now you can find ancestors (all nodes from which exists path) and descendants (all nodes to which exists path) from a certain node, sort directed acyclic graph in a way where node which appears before others is first, and so on, return a subgraph from nodes using `connect_nodes` method, and create relationships between nodes in a list using `chain_nodes`.
   [#180](https://github.com/memgraph/mage/pull/180)
-- Aligned C++ API with Memgraph 2.5
+- C++ API is now aligned with Memgraph 2.5
   [#184](https://github.com/memgraph/mage/pull/184)
 - Graph Coloring no longer outputs strings but vertices and integers. Now you can use result of graph coloring directly in Memgraph Lab for example.
   [#177](https://github.com/memgraph/mage/pull/177)
