@@ -8,8 +8,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 To learn about graph projections and how they are used to 
-construct subgraphs take a look at [how we implemented the graph projection feature]
-(https://memgraph.com/blog/how-we-designed-and-implemented-graph-projection-feature).
+construct subgraphs take a look at [how we implemented the graph projection feature](https://memgraph.com/blog/how-we-designed-and-implemented-graph-projection-feature).
 
 Since subgraphs are used mainly with our query modules (graph algorithms), we 
 added support for them within `QueryBuilder`'s `call()` method using which we
