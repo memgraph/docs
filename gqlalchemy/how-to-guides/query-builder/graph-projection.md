@@ -35,25 +35,35 @@ CALL test_query_module(graph, 'arg')
 ```
 
 Te code can be expanded, you can use multiple relationship types and node
-labels. Using this functionality, we can call the query module as:
+labels. Node labels and relationship types can be passed as a single string, in
+which case that string is used for all labels, or types. To specify different
+labels and types for entities on a path, you need to pass a list of lists,
+containing a list of labels for every node on a path, and likewise for relationships. You can use this as following:
+
 ```Python
-labels = ["LABEL0", "LABEL1"]
-relationship_types = ["TYPE0", "TYPE1"]
+node_labels = [["COMP", "DEVICE"], ["USER"], ["SERVICE", "GATEWAY"]]
+relationship_types = [["OWNER", "RENTEE"], ["USES", "MAKES"]]
+relationship_directions = [RelationshipDirection.LEFT, RelationshipDirection.RIGHT]
 arguments = ("arg0", 5)
+
 query_builder = QueryBuilder().call(procedure="test_query_module",
-                                    arguments=arguments,
-                                    node_labels=labels,
-                                    relationship_types=relationship_types)
+                                    arguments = arguments,
+                                    node_labels=node_labels,
+                                    relationship_types=relationship_types,
+                                    relationship_directions=relationship_directions)
 
 query_builder.execute()
 ```
 
 The above code executes the following Cypher query:
 ```Cypher
-MATCH p=(:LABEL0)-[:TYPE0 | :TYPE1]->(:LABEL1)
+MATCH p=(a)<-[:OWNER | :RENTEE]-(b)-[:USES | :MAKES]->(c)
+WHERE (a:COMP or a:DEVICE)
+AND (b:USER)
+AND (c:SERVICE or c:GATEWAY)
 WITH project(p) AS graph
 CALL test_query_module(graph, "arg0", 5)
 ```
 
-This query uses a subgraph containing all nodes labeled `LABEL0` 
-connected with relationships `TYPE0` or `TYPE1` (or both) with nodes labeled `LABEL1`.
+This query calls `test_query_module` on a subgraph containing all nodes labeled
+`USER` that have an outgoing relationship of types either `OWNER` or `RENTEE` towards nodes labeled `COMP` or `DEVICE` and also a relationship of type `USES` or `MAKES` towards nodes labeled `SERVICE` or `GATEWAY`.
