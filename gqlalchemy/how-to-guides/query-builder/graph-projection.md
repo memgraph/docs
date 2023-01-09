@@ -4,19 +4,17 @@ title: How to create a graph projection
 sidebar_label: Create a graph projection
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+[![Related -
+How-to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/mage/how-to-guides/run-a-subgraph-module.md)
+[![Related - Under the
+Hood](https://img.shields.io/static/v1?label=Related&message=Under%20the%20hood&color=orange&style=for-the-badge)](https://memgraph.com/blog/how-we-designed-and-implemented-graph-projection-feature)
 
-To learn about graph projections and how they are used to 
-construct subgraphs take a look at [how we implemented the graph projection feature](https://memgraph.com/blog/how-we-designed-and-implemented-graph-projection-feature).
-
-Since subgraphs are used mainly with our query modules (graph algorithms), we 
-added support for them within `QueryBuilder`'s `call()` method using which we
-can specify the subgraph to use with a specified algorithm.
+As subgraphs are mainly used with Memgraph's query modules (graph algorithms), 
+`QueryBuilder`'s `call()` method enables specifying the subgraph to use with a certain algorithm.
 
 To call a procedure named `test_query_module` with argument `"arg"`, and run
 it on a subgraph containing only nodes with label `:LABEL` and their mutual 
-relationships we can build the following query:
+relationships build the following query:
 
 ```Python
 from gqlalchemy import QueryBuilder
@@ -29,15 +27,15 @@ query_builder = QueryBuilder().call(procedure="test_query_module",
 query_builder.execute()
 ```
 
-This executes this Cypher query:
+The above code executes the following Cypher query:
 ```Cypher
 MATCH p=(:LABEL)-->(:LABEL)
 WITH project(p) AS graph
 CALL test_query_module(graph, 'arg')
 ```
 
-This can be expanded, you can use multiple relationship types and up to 2 node
-labels. Using this, we can call the query module as:
+Te code can be expanded, you can use multiple relationship types and node
+labels. Using this functionality, we can call the query module as:
 ```Python
 labels = ["LABEL0", "LABEL1"]
 relationship_types = ["TYPE0", "TYPE1"]
@@ -50,12 +48,12 @@ query_builder = QueryBuilder().call(procedure="test_query_module",
 query_builder.execute()
 ```
 
-Which executes this Cypher query:
+The above code executes the following Cypher query:
 ```Cypher
 MATCH p=(:LABEL0)-[:TYPE0 | :TYPE1]->(:LABEL1)
 WITH project(p) AS graph
 CALL test_query_module(graph, "arg0", 5)
 ```
 
-This query makes use of a subgraph containing all nodes labeled `LABEL0` that
-are connected via edge `TYPE0` or `TYPE1` (or both) to nodes labeled `LABEL1`.
+This query uses a subgraph containing all nodes labeled `LABEL0` 
+connected with relationships `TYPE0` or `TYPE1` (or both) with nodes labeled `LABEL1`.
