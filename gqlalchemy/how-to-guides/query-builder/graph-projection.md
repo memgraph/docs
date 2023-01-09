@@ -29,14 +29,17 @@ query_builder.execute()
 
 The above code executes the following Cypher query:
 ```Cypher
-MATCH p=(:LABEL)-->(:LABEL)
+MATCH p=(a)-->(b)
+WHERE (a:LABEL)
+AND (b:LABEL)
 WITH project(p) AS graph
 CALL test_query_module(graph, 'arg')
 ```
 
-Te code can be expanded, you can use multiple relationship types and node
+`WHERE` and `AND` clauses are used to allow for more generalization. To expand
+on this code you can use multiple relationship types and node
 labels. Node labels and relationship types can be passed as a single string, in
-which case that string is used for all labels, or types. To specify different
+which case that string is used for all labels or types. To specify different
 labels and types for entities on a path, you need to pass a list of lists,
 containing a list of labels for every node on a path, and likewise for relationships. You can use this as following:
 
