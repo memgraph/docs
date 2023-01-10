@@ -36,6 +36,7 @@ module.exports = {
         "query-modules/python/export-util",
         "query-modules/python/graph-analyzer",
         "query-modules/python/graph-coloring",
+        "query-modules/cpp/graph-util",
         "query-modules/python/igraphalg",
         "query-modules/python/import-util",
         "query-modules/python/json-util",
