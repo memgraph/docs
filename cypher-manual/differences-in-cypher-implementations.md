@@ -24,8 +24,11 @@ differences might not be documented here (especially subtle semantic ones).
 ### Unsupported constructs
 
 - Stored procedures.
-- `shortestPath` and `allShortestPaths` functions. `shortestPath` can be
-  expressed using Memgraph's breadth-first expansion syntax.
+- `shortestPath` and `allShortestPaths` functions. They can be expressed using
+  Memgraph's depth-first search and all shortest paths expansion syntax. Among
+  Memgraph's [built in
+  algorithms](/docs/reference-guide/built-in-graph-algorithms) are also
+  breadth-first search and weighted shortest path.  
 - Patterns in expressions. For example, Memgraph doesn't support
   `size((n)-->())`. Most of the time, the same functionalities can be expressed
   differently in Memgraph using `OPTIONAL` expansions, function calls etc. You
