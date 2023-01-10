@@ -11,7 +11,7 @@ If you need help with running MAGE modules and graph algorithms, check out the [
 [![Related - Blog
 Post](https://img.shields.io/static/v1?label=Related&message=Blog%20post&color=9C59DB&style=for-the-badge)](https://memgraph.com/blog/how-we-designed-and-implemented-graph-projection-feature)
 [![Related -
-How-to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/docs/gqlalchemy/how-to-guides/query-builder/graph-projection.md)
+How-to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/docs/gqlalchemy/how-to-guides/query-builder/graph-projection)
 
 ### When not to run algorithms across the entire network and use the projection feature?
 Executing any MAGE query module, the algorithm is executed on the whole network. 
