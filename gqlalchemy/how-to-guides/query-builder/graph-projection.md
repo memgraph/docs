@@ -5,7 +5,7 @@ sidebar_label: Create a graph projection
 ---
 
 [![Related -
-How-to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/mage/how-to-guides/run-mage-modules-on-subgraphs)
+How-to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/mage/how-to-guides/run-a-subgraph-module)
 [![Related - Under the
 Hood](https://img.shields.io/static/v1?label=Related&message=Under%20the%20hood&color=orange&style=for-the-badge)](https://memgraph.com/blog/how-we-designed-and-implemented-graph-projection-feature)
 
