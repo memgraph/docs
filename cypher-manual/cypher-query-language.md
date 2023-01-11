@@ -106,23 +106,10 @@ MERGE (p)-[l:LIVES_IN]->(c)
   ON MATCH SET l.modified = date()
 RETURN p, l, c;
 
-//Indent 2 spaces with braces for subqueries
-MATCH (p:Person)
-WHERE EXISTS {
-  MATCH (p)-->(c:Country)
-  WHERE c.name = 'UK'
-}
-RETURN p;
 ```
 
 An exception to this rule would be a one-line subquery where you don't need to
 use a new line or an indent.
-
-```cypher
-MATCH (p:Person)
-WHERE EXISTS {MATCH (p)-->(c:Country {name: 'UK'})}
-RETURN p;
-```
 
 ### Quotes
 
