@@ -16,8 +16,8 @@ export default (function () {
 
             hotjar.initialize(1822641, 6);
 
-            fbq('init', '880656202502108');
-            fbq('track', 'PageView');
+            // fbq('init', '880656202502108');
+            // fbq('track', 'PageView');
 
             if (window.ldfdr.pageview && typeof window.ldfdr.pageview === 'function') {
                 if (window.ldfdr.pageview && typeof window.ldfdr.pageview === 'function') {
