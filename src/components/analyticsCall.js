@@ -16,13 +16,13 @@ export default (function () {
 
             hotjar.initialize(1822641, 6);
 
-            // fbq('init', '880656202502108');
-            // fbq('track', 'PageView');
+            if (window.fbq) {
+                window.fbq('init', '880656202502108');
+                window.fbq('track', 'PageView');
+            }
 
-            if (window.ldfdr.pageview && typeof window.ldfdr.pageview === 'function') {
-                if (window.ldfdr.pageview && typeof window.ldfdr.pageview === 'function') {
-                    window.ldfdr.pageview();
-                }
+            if (window && window.ldfdr && window.ldfdr.pageview && typeof window.ldfdr.pageview === 'function') {
+                window.ldfdr.pageview();
             }
         },
     };
