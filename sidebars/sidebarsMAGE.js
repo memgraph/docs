@@ -33,6 +33,7 @@ module.exports = {
         "query-modules/cuda/cugraph",
         "query-modules/cpp/degree-centrality",
         "query-modules/python/distance-calculator",
+        "query-modules/python/elasticsearch-synchronization",
         "query-modules/python/export-util",
         "query-modules/python/graph-analyzer",
         "query-modules/python/graph-coloring",
@@ -57,8 +58,7 @@ module.exports = {
         "query-modules/python/union-find",
         "query-modules/cpp/uuid-generator",
         "query-modules/python/vrp",
-        "query-modules/cpp/weakly-connected-components",
-        "query-modules/python/elasticsearch-synchronization"
+        "query-modules/cpp/weakly-connected-components"
       ],
     },
     {

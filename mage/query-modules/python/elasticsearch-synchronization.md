@@ -25,15 +25,10 @@ style={{
 ## Abstract
 **Elasticsearch** is a **text-processing platform** that can be used to enhance the capabilities of a graph database like Memgraph. It offers many fine-grained features useful when working on a text that is impossible to develop in databases. Data residing in Elasticsearch and Memgraph should be **synchronized** because otherwise, the whole system could be in an inconsistent state. Such a feature can be added inside Memgraph by using triggers: every time a new entity is added (node or edge) it gets indexed to the Elasticsearch index.
 
-
-### Blog Posts
-
 The following blog posts explain how Memgraph integrated Elasticsearch into its technology stack:
 <!--- [Elasticsearch](TODO add URL when blog post will be published)-->
 
-### About the query module
-
-In this module you can find support for the following interesting features:
+The module supports the following features:
 - creating **Elasticsearch index** from Memgraph clients using Cypher
 - **indexing all data** inside Memgraph to Elasticsearch indexes
 - managing Elasticsearch **authentication** in a secure way
@@ -41,30 +36,26 @@ In this module you can find support for the following interesting features:
 - **scanning and searching documents** from Elasticsearch indexes using **Query DSL**
 - reindexing existing documents from Elasticsearch
 
+When using **Elasticsearch synchronization modules**:
 
-### Usage
-
-The following procedure is expected when using **Elasticsearch synchronization modules**:
-
-- start Elasticsearch instance and store securely **username, password, a path to the certificate file and instance's URL**
-- connect to the instance by calling the `connect` method
-- use the `create_index` method to create Elasticsearch indexes for nodes and edges
-- index all entities inside the database using the `index_db` method
-- check that documents were indexed correctly using the `scan` or `search` method
-
+1. start Elasticsearch instance and securely store **username, password, path to the certificate file and instance's URL**
+2. connect to the instance by calling the `connect` method
+3. use the `create_index` method to create Elasticsearch indexes for nodes and edges
+4. index all entities inside the database using the `index_db` method
+5. check that documents were indexed correctly using the `scan` or `search` method
 
 ## Procedures
 
 <RunOnSubgraph/>
 
-The module for synchronizing Elasticsearch with Memgraph is organized as a **stateful** module where it is expected that the user performs a sequence of operations using the managed secure connection to Elasticsearch. The user can **use indexes that already exist** inside Elasticsearch but can also choose **to create new ones with custom schema**. Indexing can be performed in two ways:
-1. index all data residing inside the database
-2. **incrementally index entities** as they get inserted into the database by using triggers. Find out more about triggers [here](https://memgraph.com/docs/memgraph/how-to-guides/set-up-triggers) and [here](https://memgraph.com/docs/memgraph/reference-guide/triggers) but essentially triggers offer us a way of executing a specific procedure upon receiving some event.
+The module for synchronizing Elasticsearch with Memgraph is organized as a **stateful** module where it is expected that the user performs a sequence of operations using a managed secure connection to Elasticsearch. The user can **use indexes that already exist** inside Elasticsearch but can also choose **to create new ones with custom schema**. Indexing can be performed in two ways:
+1. **index all data** residing inside the database
+2. **incrementally index entities** as they get inserted into the database by using triggers. Find more information about triggers in the [reference guide](https://memgraph.com/docs/memgraph/reference-guide/triggers) or check how to [set up triggers](https://memgraph.com/docs/memgraph/how-to-guides/set-up-triggers). Essentially, triggers offer a way of executing a specific procedure upon some event.
 
 
 ### `connect()`
 
-The `Connect()` method is used so the user could get connected to the Elasticsearch instance using Memgraph. It uses a **basic authentication scheme with username, password and certificate**.
+The `connect()` method is used for connecting to the Elasticsearch instance using Memgraph. It uses a **basic authentication scheme with username, password and certificate**.
 
 #### **Input**:
 - `elastic_url: str` -> URL for connecting to the Elasticsearch instance.
@@ -82,11 +73,11 @@ CALL elastic_search_serialization.connect("https://localhost:9200", "~/elasticse
 ```
 
 ### `create_index()`
-A method that can be used for creating Elasticsearch indexes.
+The method used for creating Elasticsearch indexes.
 
 #### **Input**:
 - `index_name: str` -> Name of the index that needs to be created.
-- `schema_path: str` -> Path to the schema from where it will be loaded.
+- `schema_path: str` -> Path to the schema from where the index will be loaded.
 - `schema_parameters: Dict[str, Any]` ->
   - `number_of_shards: int` -> Number of shards index will use.
   - `number_of_replicas: int` -> Number of replicas index will use.
@@ -95,8 +86,7 @@ A method that can be used for creating Elasticsearch indexes.
 
 #### **Output**:
 - `message_status: Dict[str, str]` -> Output from the Elasticsearch instance whether the index was successfully created.
-
-You can call
+Use the following query to create Elasticsearch indexes:
 ```
 CALL elastic_search_serialization.create_index("edge_index",
 "edge_index_path_schema.json", {analyzer: "mem_analyzer", index_type: "edge"}) YIELD *;
@@ -104,7 +94,7 @@ CALL elastic_search_serialization.create_index("edge_index",
 to create Elasticsearch indexes.
 
 ### `index_db()`
-The method is used to serialize all vertices and relationships in MemgraphDB to Elasticsearch instance. By tuning the parameters: `thread_count, max_chunk_bytes, chunk_size, max_chunk_bytes and queue_size`, it is possible to get a good performance spot when indexing large quantities of documents.
+The method is used to serialize all vertices and relationships in MemgraphDB to Elasticsearch instance. By setting the `thread_count, max_chunk_bytes, chunk_size, max_chunk_bytes and queue_size` parameters, it is possible to get a good performance spot when indexing large quantities of documents.
 
 #### **Input**
 - `node_index: str` -> The name of the **node index**. Can be used for both **streaming and parallel bulk**.
@@ -175,7 +165,7 @@ CALL elastic_search_serialization.scan("edge_index", "{\"query\": {\"match_all\"
 ### `search()`
 Searches for all documents by specifying query and index. It is the preferred method to be used before the `scan()` method because of the possibility to use aggregations.
 
-### **Input**
+#### **Input**
 - `index_name: str` -> A name of the index.
 - `query: str` -> Query written as JSON.
 - `aggregations: Optional[Mapping[str, Mapping[str, Any]]]` -> Check out the (docs)[https://elasticsearch-py.readthedocs.io/en/v8.5.3/api.html#elasticsearch.Elasticsearch.search]

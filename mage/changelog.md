@@ -3,13 +3,6 @@ id: changelog
 title: Changelog
 sidebar_label: Changelog
 ---
-
-## v1.5
-
-### Major Features and Improvements
-
-- Added module for synchronizing with Elasticsearch
-
 ## v1.4 - Nov 15, 2022
 
 ### Major Features and Improvements
