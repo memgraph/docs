@@ -185,53 +185,25 @@ Example shows all module's features, from connecting to the Elasticsearch instan
 
 <Tabs
 groupId="example"
-defaultValue="connect"
+defaultValue="connect-populate"
 values={[
-{label: 'Step 1: Connect', value: 'connect'},
-{label: 'Step 2: Create node index', value: 'create-node-index'},
-{label: 'Step 3: Create edge index', value: 'create-edge-index'},
-{label: 'Step 4: Populate db', value: 'insert'},
-{label: 'Step 5: Index database', value: 'index-database'},
-{label: 'Step 6: Scan', value: 'scan'},
-{label: 'Step 7: Scan results', value: 'scan-results'},
-{label: 'Step 8: Create trigger', value: 'trigger'},
-{label: 'Step 9: Insert node and edge', value: 'insert-new'},
-{label: 'Step 10: Search', value: 'search'},
-{label: 'Step 11: Search results', value: 'search-results'},
+{label: 'Step 1: Connect and populate', value: 'connect-populate'},
+{label: 'Step 2: Create indexes', value: 'create-indexes'},
+{label: 'Step 3: Index database', value: 'index-database'},
+{label: 'Step 4: Scan', value: 'scan'},
+{label: 'Step 5: Scan results', value: 'scan-results'},
+{label: 'Step 6: Create trigger', value: 'trigger'},
+{label: 'Step 7: Insert node and edge', value: 'insert-new'},
+{label: 'Step 8: Search', value: 'search'},
+{label: 'Step 9: Search results', value: 'search-results'},
 ]
 }>
 
 
-  <TabItem value="connect">
+  <TabItem value="connect-populate">
 
 ```cypher
 CALL elastic_search_serialization.connect("https://localhost:9200", "http_ca.crt", "<ELASTIC_USER>","<ELASTIC_PASSWORD>") YIELD *;
-```
-
-  </TabItem>
-
-
-  <TabItem value="create-node-index">
-
-```cypher
-CALL elastic_search_serialization.create_index("docs_nodes", "node_index_path_schema.json",
-{analyzer: "mem_analyzer", index_type: "vertex"}) YIELD *;
-```
-
-  </TabItem>
-
-  <TabItem value="create-edge-index">
-
-```cypher
-CALL elastic_search_serialization.create_index("docs_edges",  "edge_index_path_schema.json", {analyzer: "mem_analyzer", index_type: "edge"}) YIELD *;
-```
-
-  </TabItem>
-
-
-  <TabItem value="insert">
-
-```cypher
 CREATE (n0 {name: "n0"}), (n1 {name: "n1"}), (n2 {name: "n2"}), (n3 {name: "n3"}), (n4 {name: "n4"}), (n5 {name: "n5"}), (n6 {name: "n6"});
 CREATE (n1)-[r1:RELATED]->(n2);
 CREATE (n1)-[r2:RELATED]->(n3);
@@ -242,6 +214,17 @@ CREATE (n2)-[r6:RELATED]->(n3);
 CREATE (n3)-[r7:RELATED]->(n6);
 CREATE (n3)-[r8:RELATED]->(n1);
 CREATE (n1)-[r9:RELATED]->(n4);
+```
+
+  </TabItem>
+
+
+  <TabItem value="create-indexes">
+
+```cypher
+CALL elastic_search_serialization.create_index("docs_nodes", "node_index_path_schema.json",
+{analyzer: "mem_analyzer", index_type: "vertex"}) YIELD *;
+CALL elastic_search_serialization.create_index("docs_edges",  "edge_index_path_schema.json", {analyzer: "mem_analyzer", index_type: "edge"}) YIELD *;
 ```
 
   </TabItem>
