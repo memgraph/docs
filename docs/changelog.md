@@ -9,6 +9,8 @@ sidebar_label: Changelog
 - The LOAD CSV clause now uses less RAM to load a whole CSV file. [#712](https://github.com/memgraph/memgraph/pull/712)
 - read_write_type_checker logic correction so queries have the right rw_type, which was a blocker for use on replicas. [#709](https://github.com/memgraph/memgraph/pull/709)
 - FOREACH clause using outer variable scope to allow nesting. [#725](https://github.com/memgraph/memgraph/pull/725)
+- `qid` now available in transactions as part of metadata. [#721](https://github.com/memgraph/memgraph/pull/721)
+- Add possibility to set and get property from node and relationship when using C++ API. [#732](https://github.com/memgraph/memgraph/pull/732)
 
 ## v2.5.0 - Dec 13, 2022
 
