@@ -593,7 +593,7 @@ Node(Node &&other) noexcept
 #### Member functions
 
 | Name               | Description                                                         |
-| ------------------ | ------------------------------------------------------------------- |
+|--------------------|---------------------------------------------------------------------|
 | `Id`               | Returns the node’s ID.                                              |
 | `Labels`           | Returns an iterable & indexable structure of the node’s labels.     |
 | `HasLabel`         | Returns whether the node has the given `label`.                     |
@@ -601,6 +601,8 @@ Node(Node &&other) noexcept
 | `InRelationships`  | Returns an iterable structure of the node’s inbound relationships.  |
 | `OutRelationships` | Returns an iterable structure of the node’s outbound relationships. |
 | `AddLabel`         | Adds a label to the node.                                           |
+| `SetProperty`      | Set value of node's property                                        |
+| `GetProperty`      | Get value of node's property                                        |
 
 ##### Id
 
@@ -631,7 +633,23 @@ bool HasLabel(std::string_view label) const
 Returns an iterable & indexable structure of the node’s properties.
 
 ```cpp
-class Properties Properties() const
+std::map<std::string, mgp::Value> Properties() const
+```
+
+##### GetProperty
+
+Gets value of node's property.
+
+```cpp
+mgp::value GetProperty(const std::string& property) const
+```
+
+##### SetProperty
+
+Sets value of node's property.
+
+```cpp
+void SetProperty(std::string key, std::string value) const
 ```
 
 ##### InRelationships
@@ -722,7 +740,22 @@ std::string_view Type() const
 Returns an iterable & indexable structure of the relationship’s properties.
 
 ```cpp
-class Properties Properties() const
+std::map<std::string, mgp::Value> Properties() const
+```
+##### GetProperty
+
+Gets value of the relationship's property.
+
+```cpp
+mgp::value GetProperty(const std::string& property) const
+```
+
+##### SetProperty
+
+Sets value of the relationship's property.
+
+```cpp
+void SetProperty(std::string key, std::string value) const
 ```
 
 ##### From
@@ -830,55 +863,6 @@ int64_t AsInt() const
 | --------------------------------------------- | -------------------- |
 | `operator==`<br/>`operator!=`<br/>`operator<` | comparison operators |
 
-### Properties
-
-Represents a view of node/relationship properties.
-The properties are shown as a map of key-value pairs with string keys and `Value` values.
-
-#### Constructors
-
-```cpp
-explicit Properties(mgp_properties_iterator *properties_iterator)
-```
-
-#### Member functions
-
-| Name    | Description                                  |
-| ------- | -------------------------------------------- |
-| `Size`  | Returns the size of the properties map.      |
-| `Empty` | Returns whether the properties map is empty. |
-
-##### Size
-
-Returns the size of the properties map.
-
-```cpp
-size_t Size() const
-```
-
-##### Empty
-
-Returns whether the properties map is empty.
-
-```cpp
-bool Empty() const
-```
-
-#### Operators
-
-| Name                          | Description                                                                                             |
-| ----------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `operator[]`                  | Returns the value associated with the given `key`. If there’s no such value, the behavior is undefined. |
-| `operator==`<br/>`operator!=` | comparison operators                                                                                    |
-
-##### operator[]
-
-Returns the value associated with the given `key`. If there’s no such value, the behavior is undefined.
-Each key-value pair needs to be checked, ensuing O(n) time complexity.
-
-```cpp
-const Value operator[](const std::string_view key) const
-```
 
 ### Labels
 
