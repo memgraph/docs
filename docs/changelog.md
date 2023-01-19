@@ -4,6 +4,11 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v2.5.2
+
+- FOREACH clause using outer variable scope to allow nesting. [#725](https://github.com/memgraph/memgraph/pull/725)
+- Add possibility to set and get property from node and relationship when using C++ API. [#732](https://github.com/memgraph/memgraph/pull/732)
+
 ## v2.5.1 - Jan 19, 2023
 
 ### Bug Fixes
