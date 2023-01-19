@@ -4,6 +4,13 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v1.5.1 - Jan 20, 2023
+
+### Major Features and Improvements
+
+- Bumped version of Memgraph to use from Docker image
+  [#193](https://github.com/memgraph/mage/pull/193)
+
 ## v1.5 - Dec 20, 2022
 
 ### Major Features and Improvements
