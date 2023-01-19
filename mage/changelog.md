@@ -4,6 +4,23 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v1.5 - Dec 20, 2022
+
+### Major Features and Improvements
+
+- Now you can find ancestors (all the nodes from which a path exists ) and descendants (all nodes to which a path exists) starting from a certain node, sort directed acyclic graph in a way that a node which appears before others is first, return a subgraph from nodes using `connect_nodes` method, and create relationships between nodes in a list using the `chain_nodes` method.
+  [#180](https://github.com/memgraph/mage/pull/180)
+- C++ API is now aligned with Memgraph 2.5
+  [#184](https://github.com/memgraph/mage/pull/184)
+- Graph Coloring no longer outputs strings but vertices and integers. This allows you to use the result of graph coloring directly in Memgraph Lab.
+  [#177](https://github.com/memgraph/mage/pull/177)
+
+### Bug Fixes
+- By enabling module reset, you can now train and evaluate the model without shutting down the database.
+  Class labels can now start from 0 or negative numbers.
+  The low limit of the early stopping flag no longer prematurely stops the training of the model while running the Node classification module.
+  [#173](https://github.com/memgraph/mage/pull/173)
+
 ## v1.4 - Nov 15, 2022
 
 ### Major Features and Improvements

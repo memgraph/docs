@@ -1349,10 +1349,14 @@ Delete a vertex and all of its edges. When the first parameter to a procedure is
 
 ```python
 def create_edge(from_vertex: Vertex, to_vertex: Vertex,
-                edge_type: EdgeType) -> None
+                edge_type: EdgeType) -> Edge
 ```
 
 Create an edge. When the first parameter is a projected graph, it will create a new directed edge with a specified label only if both vertices are a part of the projected graph.
+
+**Returns**:
+
+  Created `Edge`.
 
 **Arguments**:
 
@@ -1370,7 +1374,7 @@ Create an edge. When the first parameter is a projected graph, it will create a 
 
 **Examples**:
 
-  ```graph.create_edge(from_vertex, vertex, edge_type)```
+  ```edge = graph.create_edge(from_vertex, vertex, edge_type)```
 
 ### delete\_edge()
 
@@ -1878,3 +1882,12 @@ class SerializationError(_mgp.SerializationError)
 
 Signals serialization error caused by concurrent modifications from
 different transactions.
+
+## AuthorizationError Objects
+
+```python
+class AuthorizationError(_mgp.AuthorizationError)
+```
+
+Signals that the user doesn't have sufficient permissions to perform
+procedure call.

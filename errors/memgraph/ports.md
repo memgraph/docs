@@ -40,7 +40,7 @@ The Memgraph configuration is available in Docker's named volume `mg_etc`. On
 Linux systems, it should be in
 `/var/lib/docker/volumes/mg_etc/_data/memgraph.conf`. Keep in mind that this way
 of specifying configuration options is only valid if Memgraph was started [using
-volumes](#installation-guide). volumes](#named-volumes).
+volumes](/memgraph/how-to-guides/work-with-docker).
 
 When using Docker, you can also specify the configuration options in the `docker
 run` command:
