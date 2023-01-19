@@ -21,7 +21,7 @@ Memgraph instances, and set up replication using various replication modes.
 
 ## Cluster topology
 
-The cluster will consist of four nodes, one MAIN instance and two REPLICA
+The cluster will consist of three nodes, one MAIN instance and two REPLICA
 instances. In order to showcase the creation of REPLICA instances with different
 replication modes, we will create:
 

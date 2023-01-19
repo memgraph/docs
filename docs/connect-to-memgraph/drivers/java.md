@@ -14,8 +14,14 @@ For this guide you will need:
 
 - A **running Memgraph instance**. If you need to set up Memgraph, take a look
   at the [Installation guide](/installation/overview.mdx).
+  :::caution
+    In order for this driver to work, you need [modify configuration
+    setting](/docs/memgraph/how-to-guides/config-logs)
+    `--bolt-server-name-for-init`. When running Memgraph, set
+    `--bolt-server-name-for-init=Neo4j`.
+  :::
 - A basic understanding of graph databases and the property graph model.
-- Java 8 or 11 installed.
+- Java 8, 11, 17 or 19 installed.
 
 ## Basic Setup
 
@@ -30,7 +36,7 @@ Let's jump in and connect a simple program to Memgraph.
 the **Create a simple project** option.<br /> **3.** For the **Group Id** field
 put `com.memgraph.app` and for **Artifact Id** put `my-app` . Afterwards, click
 the **Finish** button.<br /> **4.** Open the `pom.xml` file and add the
-following dependency:
+dependencies inside your project:
 
 ```java
 <dependencies>
