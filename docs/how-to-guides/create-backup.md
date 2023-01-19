@@ -4,20 +4,20 @@ title: How to create a backup
 sidebar_label: Create a backup
 ---
 
-While running, Memgraph generates various files in the **data directory**,
-including the durability files - snapshots and WAL files that contain Memgraph's
-data in a recoverable format. The default data directory is `/var/lib/memgraph`,
-but you can change it in the main [Memgraph configuration
-file](/docs/memgraph/reference-guide/configuration).
+While running, Memgraph generates various files in its
+[data directory](/docs/memgraph/reference-guide/backup),
+including the **durability files**: snapshots and WALs that contain Memgraph's
+data in a recoverable format. On startup, it searches for previously saved
+durability files and uses them to recreate the most recent DB state.
 
 Snapshots are created periodically based on the value defined with the
 `--storage-snapshot-interval-sec` configuration flag in the configuration file.
-If you need help adjusting the configuration, check out [the how-to guide on
+If you need help adjusting the configuration, check out the [how-to guide on
 changing the configuration](/docs/memgraph/how-to-guides/config-logs).
 
 [![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/backup.md)
 
-To create a backup follow the steps below.
+To create a backup, follow the steps below:
 
 ## 1. Create a snapshot
 
