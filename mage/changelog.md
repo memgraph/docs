@@ -8,7 +8,7 @@ sidebar_label: Changelog
 
 ### Major Features and Improvements
 
-- Bumped version of Memgraph to use from Docker image
+- The version of MemgraphDB that will be used in the Docker image has been updated to 2.5.1.
   [#193](https://github.com/memgraph/mage/pull/193)
 
 ## v1.5 - Dec 20, 2022
