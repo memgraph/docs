@@ -1,46 +1,98 @@
 ---
 id: backup
-title: Backup
-sidebar_label: Backup
+title: Data durability and backup
+sidebar_label: Data durability and backup
 ---
+
+Memgraph uses two mechanisms to ensure the durability of stored data and make
+disaster recovery possible:
+
+* write-ahead logging (WAL)
+* periodic snapshot creation
+
+These mechanisms generate **durability files** and save them in the
+**data directory** so that one can use them to recover the database.
 
 [![Related - How-to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/create-backup.md)
 
-While running, Memgraph generates a couple of different files in its data
-directory. The directory includes multiple different subdirectories, one of
-them being the storage directory which contains the durability files. In that
-directory, Memgraph periodically generates snapshots and WAL files that
-contain Memgraph's data in a recoverable format.
+## Durability mechanisms
 
-Making a backup of a Memgraph instance would consist of simply copying the
-data directory. This is impossible without additional help because
-the durability files can be deleted when an event is triggered
-(the number of snapshots exceeded the maximum allowed number).
+The durability mechanisms are configurable; the relevant settings are in the
+[configuration reference](/docs/memgraph/reference-guide/configuration#storage).
+To configure Memgraph, you can use the configuration management
+[how-to guide](/how-to-guides/config-logs.md).
 
-To disable this behavior, you can use the following query:
+### Write-ahead logging
+
+Write-ahead logging (WAL) is a technique applied in providing **atomicity** and
+**durability** to database systems. Each database modification is recorded in a
+log file before being written to the DB and therefore the log file contains all
+steps needed to reconstruct the DB’s most recent state.
+
+Memgraph has WAL enabled by default. To switch it on and off, use the boolean
+`storage-wal-enabled` flag. Other WAL-related flags are
+`storage-wal-file-flush-every-n-tx` and `storage-wal-file-size-kib`; their uses
+are described [here](/docs/memgraph/how-to-guides/config-logs).
+
+### Snapshots
+
+Snapshots provide a faster way to restore the states of your database. Memgraph
+periodically takes snapshots during runtime. When a snapshot is triggered, the
+entire data storage is written to the drive.
+On startup, the database state is recovered from the most recent snapshot file.
+The timestamp of the snapshot is compared with the latest update recorded in
+the WAL file and, if the snapshot is less recent, the state of the DB will be
+recovered using the WAL file.
+
+Memgraph has snapshot creation enabled by default. You can configure the exact
+snapshot creation behavior by defining the relevant flags
+([reference](/docs/memgraph/reference-guide/configuration#storage)).
+Alternatively, you can make one directly by running the following query:
+
 ```opencypher
+CREATE SNAPSHOT;
+```
+
+:::caution
+Snapshots and WAL files are presently not compatible between Memgraph versions.
+:::
+
+### Data directory
+
+The data directory is the location where Memgraph saves write-ahead logs and
+snapshots; it functions as the dedicated site for permanent data.
+
+The default data directory path is `var/lib/memgraph`. You can change the path
+by setting the `data-dir` configuration flag
+([reference](/docs/memgraph/reference-guide/configuration#other)).
+
+## Backup
+
+You can easily back up Memgraph by following a three-step process:
+
+1. Create a snapshot
+2. Lock the data directory
+3. Copy the snapshot to the backup location and unlock the directory
+
+The following queries lock and unlock the data directory:
+
+```opencypher
+UNLOCK DATA DIRECTORY;
 LOCK DATA DIRECTORY;
 ```
 
-Now, the deletion of every file contained in the data directory is delayed
-until you unlock it again. You can safely copy the data directory or
-a single snapshot to another location without worrying that it will be
-deleted during that process.
+A detailed guide is available
+[here](/docs/memgraph/how-to-guides/create-backup).
 
-To allow the deletion of the files, run the following query:
+## Database dump
+
+The database dump contains a record of the database state in the form of Cypher
+queries; it’s equivalent to the SQL dump in relational DBs.
+You can run the queries constituting the dump to recreate the state of the DB
+as it was at the time of the dump.
+
+To dump the Memgraph DB, run the following query:
+
 ```opencypher
-UNLOCK DATA DIRECTORY;
-```
-
-Memgraph will delete the files which should have been deleted before
-and allow any future deletion of the files contained in the data
-directory.
-
-### Creating a snapshot
-
-Snapshot is created periodically based on the time defined with the
-`--storage-snapshot-interval-sec` config. If you want to generate a snapshot
-instantly for the current database state, you can use the following query:
-```opencypher
-CREATE SNAPSHOT;
+DUMP DATABASE;
 ```

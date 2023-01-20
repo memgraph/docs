@@ -74,7 +74,7 @@ You can easily back up Memgraph by following a three-step process:
 2. Lock the data directory
 3. Copy the snapshot to the backup location and unlock the directory
 
-The following queries lock/unlock the data directory:
+The following queries lock and unlock the data directory:
 
 ```opencypher
 UNLOCK DATA DIRECTORY;
