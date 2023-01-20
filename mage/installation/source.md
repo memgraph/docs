@@ -26,8 +26,7 @@ Hub](/installation/docker-hub.md) guides.
 
 ### Prerequisits
 
-You need to install few things in order to build MAGE from source. Run following command to set up machine for
-MAGE installation.
+To install MAGE from source, first set up the machine by running the following commands: 
 
 ```bash
 sudo apt-get update && apt-get install -y \
