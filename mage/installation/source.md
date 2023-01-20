@@ -82,7 +82,8 @@ git submodule update --init --recursive
 
 **2.** Start Memgraph and enjoy **MAGE**!
 
-:::warning Query modules are loaded into Memgraph on startup so if your instance
+:::warning 
+Query modules are loaded into Memgraph on startup, so if your instance
 was already running you will need to execute the following query inside one of
 [querying platforms](https://memgraph.com/docs/memgraph/connect-to-memgraph) to
 load them:
