@@ -8,7 +8,10 @@ sidebar_label: Changelog
 
 ### Bug Fixes
 
-- The LOAD CSV clause now uses less RAM to load a whole CSV file.
+- The LOAD CSV clause now uses less RAM to load a whole CSV file. Modification
+  made to improve the LOAD CSV operation, also influenced high memory usage
+  operations with objects such as lists and map. Modifying or accessing elements
+  inside those objects now also uses less RAM.
   [#712](https://github.com/memgraph/memgraph/pull/712)
 - The logic of the `read_write_type_checker` was corrected so queries now get
   the right `rw_type`, making the replication system work as expected.
