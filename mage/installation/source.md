@@ -58,8 +58,8 @@ The script will generate a `dist` directory with all the needed files:
 python3 setup build -p /usr/lib/memgraph/query_modules
 ```
 
-This command will also copy the contents of the newly created `dist` directory to
-`/usr/lib/memgraph/query_modules` where Memgraph load query modules from. 
+The command above will also copy the contents of the newly created `dist` directory to
+`/usr/lib/memgraph/query_modules`.  Memgraph loads query modules from this directory. 
 
 **If something doesn't get installed properly, `setup` script will stop installation process. If you have any 
 questions, contact us on [Discord](https://discord.gg/memgraph).**
