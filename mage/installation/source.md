@@ -66,7 +66,7 @@ questions, contact us on [Discord](https://discord.gg/memgraph).**
 
 :::warning
 
-Make sure you cloned  `mage` github repository with `--recurse-submodules` flag since it has incorporated Memgraph inside:
+Be sure you cloned the `mage` GitHub repository using the `--recurse-submodules` flag since it has incorporated Memgraph inside:
 
 ```shell
 git clone --recurse-submodules https://github.com/memgraph/mage.git
