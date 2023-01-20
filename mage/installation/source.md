@@ -50,8 +50,9 @@ sudo apt-get update && apt-get install -y \
 
 ### Installation process
 **1.** Download the MAGE source code from
-**[GitHub](https://github.com/memgraph/mage)** and run the `setup` script. It
-will generate a `dist` directory with all the needed files:
+**[GitHub](https://github.com/memgraph/mage)** and run the `setup` script. 
+
+The script will generate a `dist` directory with all the needed files:
 
 ```shell
 python3 setup build -p /usr/lib/memgraph/query_modules
