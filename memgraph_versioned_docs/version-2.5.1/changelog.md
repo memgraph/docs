@@ -8,33 +8,67 @@ sidebar_label: Changelog
 
 ### Bug Fixes
 
-- The LOAD CSV clause now uses less RAM to load a whole CSV file. [#712](https://github.com/memgraph/memgraph/pull/712)
-- read_write_type_checker logic correction so queries have the right rw_type, which was a blocker for use on replicas. [#709](https://github.com/memgraph/memgraph/pull/709)
-- `qid` now available in transactions as part of metadata. [#721](https://github.com/memgraph/memgraph/pull/721)
-- Fixed a trigger bug where Memgraph is configured to run without properties on edges. Triggers are now working as expected when there are no properties on edges. [#717](https://github.com/memgraph/memgraph/pull/717)
+- The LOAD CSV clause now uses less RAM to load a whole CSV file.
+  [#712](https://github.com/memgraph/memgraph/pull/712)
+- The logic of the `read_write_type_checker` was corrected so queries now get
+  the right `rw_type`, making the replication system work as expected.
+  [#709](https://github.com/memgraph/memgraph/pull/709)
+- Bolt protocol has been improved by adding the server-assigned query ID (`qid`)
+  as part of the transactions' metadata.
+  [#721](https://github.com/memgraph/memgraph/pull/721)
+- Fixed a trigger bug that would cause an error if Memgraph is configured to run
+  without properties on edges. As a result of the fiy, triggers are now working
+  as expected when there are no properties on edges.
+  [#717](https://github.com/memgraph/memgraph/pull/717)
 
 ## v2.5.0 - Dec 13, 2022
 
 ### Major Features and Improvements
 
-- `DISTINCT` operator can now be used with aggregation functions. Until now, if you wanted to use an aggregation function with distinct values, you had to write a query similar to this one `WITH DISTINCT n.prop as distinct_prop RETURN COUNT(distinct_prop)`. Now you can use the `DISTINCT` operator like in the following query, `RETURN COUNT(DISTINCT n.prop)`. [#654](https://github.com/memgraph/memgraph/pull/665)
-- You can now create a user before the Bolt server starts using the environment variables `MEMGRAPH_USER` for the username, `MEMGRAPH_PASSWORD` for the password and `MEMGRAPH_PASSFILE` file that contains username and password for creating the user in the following format: `username:password`. [#696](https://github.com/memgraph/memgraph/pull/696)
-- With the new configuration flag `init_file` you can execute queries from the CYPHERL file which need to be executed before the Bolt server starts and with the configuration flag `init_data_file` you can execute queries from the CYPHERL file immediately after the Bolt server starts. [#696](https://github.com/memgraph/memgraph/pull/696)
+- `DISTINCT` operator can now be used with aggregation functions. Until now, if
+  you wanted to use an aggregation function with distinct values, you had to
+  write a query similar to this one `WITH DISTINCT n.prop as distinct_prop
+  RETURN COUNT(distinct_prop)`. Now you can use the `DISTINCT` operator like in
+  the following query, `RETURN COUNT(DISTINCT n.prop)`.
+  [#654](https://github.com/memgraph/memgraph/pull/665)
+- You can now create a user before the Bolt server starts using the environment
+  variables `MEMGRAPH_USER` for the username, `MEMGRAPH_PASSWORD` for the
+  password and `MEMGRAPH_PASSFILE` file that contains username and password for
+  creating the user in the following format: `username:password`.
+  [#696](https://github.com/memgraph/memgraph/pull/696)
+- With the new configuration flag `init_file` you can execute queries from the
+  CYPHERL file which need to be executed before the Bolt server starts and with
+  the configuration flag `init_data_file` you can execute queries from the
+  CYPHERL file immediately after the Bolt server starts.
+  [#696](https://github.com/memgraph/memgraph/pull/696)
 
 ### Bug Fixes
 
-- Constructors and assignment operators in the C++ query modules API now work as expected, and the API type check in the `ValueNumeric` method now correctly recognizes numeric types. [#688](https://github.com/memgraph/memgraph/pull/688)
-- Error message support (`SetErrorMessage`) has been added to query methods that use the MAGE C++ API. [#688](https://github.com/memgraph/memgraph/pull/688)
-- The `EmptyResult` sink operator was added to the Memgraph's planner. This means that results produced by a query `MATCH (n) SET n.test_prop = 2` will get exhausted which was a problem in some Bolt clients implementations, e.g in Golang's client.
-[#667](https://github.com/memgraph/memgraph/pull/667)
-- Fixed Python submodules reloading when calling `CALL mg.load()` and `CALL mg.load_all()`. Before, only the Python module would be reloaded, but now all dependencies get reloaded as well. This includes Python's utility submodules and Python packages, which means that the environment with Python packages can be changed without turning off the database. [#653](https://github.com/memgraph/memgraph/pull/653)
+- Constructors and assignment operators in the C++ query modules API now work as
+  expected, and the API type check in the `ValueNumeric` method now correctly
+  recognizes numeric types.
+  [#688](https://github.com/memgraph/memgraph/pull/688)
+- Error message support (`SetErrorMessage`) has been added to query methods that
+  use the MAGE C++ API. [#688](https://github.com/memgraph/memgraph/pull/688)
+- The `EmptyResult` sink operator was added to the Memgraph's planner. This
+means that results produced by a query `MATCH (n) SET n.test_prop = 2` will get
+exhausted which was a problem in some Bolt clients implementations, e.g in
+Golang's client. [#667](https://github.com/memgraph/memgraph/pull/667)
+- Fixed Python submodules reloading when calling `CALL mg.load()` and `CALL
+  mg.load_all()`. Before, only the Python module would be reloaded, but now all
+  dependencies get reloaded as well. This includes Python's utility submodules
+  and Python packages, which means that the environment with Python packages can
+  be changed without turning off the database.
+  [#653](https://github.com/memgraph/memgraph/pull/653)
 
 ## v2.4.2 - Nov 7, 2022
 
 ### Bug Fixes
 
-- Fixed a bug when calling `AllShortestPath` with `id` function. [#636](https://github.com/memgraph/memgraph/pull/636)
-- Fixed bug when getting iterating over in-edges of a Node. [#582](https://github.com/memgraph/memgraph/pull/613)
+- Fixed a bug when calling `AllShortestPath` with `id` function.
+  [#636](https://github.com/memgraph/memgraph/pull/636)
+- Fixed bug when getting iterating over in-edges of a Node.
+  [#582](https://github.com/memgraph/memgraph/pull/613)
 
 ## v2.4.1 - Oct 7, 2022
 
