@@ -6,6 +6,7 @@ module.exports = {
       label: "Install Memgraph",
       link: { type: "doc", id: "installation/overview" },
       items: [
+
         {
           type: "category",
           label: "Windows",
@@ -49,6 +50,7 @@ module.exports = {
             "installation/linux/linux-installation-troubleshooting",
           ],
         },
+       "installation/minimum-system-requirements",
       ],
     },
     {
