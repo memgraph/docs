@@ -50,7 +50,6 @@ module.exports = {
             "installation/linux/linux-installation-troubleshooting",
           ],
         },
-       "installation/minimum-system-requirements",
       ],
     },
     {

@@ -18,6 +18,17 @@ different versions.
 
 :::
 
+## Minimum and recommended system requirements
+These are minimum system requirements for Linux machine when installing Memgraph from source.
+
+| Requirement | Description                                                                                                                                                                                  |
+|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| CPU             | a modern x86-64 processor, server processor (recommended)  (Intel Xeon, AMD Opteron/Epyc)                                                                                                    |
+| Memory          | minimum 8GB, 32GB or more with ECC memory (recommended)                                                                                                                                      |
+| Disk            | minimum required storage that equals to the size of RAM (used for storing database snapshots and write ahead logs), recommended server grade drives (HDD or SSD) with RAID 1 fault tolerance |
+| Operating system | Ubuntu 18.04, Ubuntu 22.04 (recommended)                                                                                                                                                     |
+
+
 ## Prerequisites
 
 Before you proceed with the installation guide make sure that you have:

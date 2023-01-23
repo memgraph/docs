@@ -35,6 +35,19 @@ Memgraph packages are available for:
 You can also use [direct download](../direct-download-links.md) links to get the
 latest Memgraph packages. 
 
+
+## Minimum and recommended system requirements
+These are minimum system requirements for Linux machine when installing Memgraph from source.
+
+| Requirement | Description                                                                                                                                                                                 |
+|-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| CPU             | a modern x86-64 processor, server processor (recommended)  (Intel Xeon, AMD Opteron/Epyc)                                                                                                   |
+| Memory          | minimum 8GB, 32GB or more with ECC memory (recommended)                                                                                                                                     |
+| Disk            | minimum required storage that equals to the size of RAM (used for storing database snapshots and write ahead logs), recommended server grade drives (HDD or SSD) with RAID 1 fault tolerance |
+| Operating system | Debian 10 or Debian 11 (recommended)                                                                                                                                                        |
+
+
+
 ## Installation guide {#installation-guide}
 
 After downloading Memgraph as a Debian package, install it by running the
