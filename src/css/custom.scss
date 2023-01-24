@@ -172,3 +172,16 @@ html[data-theme="dark"] .docsRating {
   max-width: 50%;
   max-height: 50%;
 }
+
+.danger-style-for-html {
+  background-color: rgb(255, 235, 236);
+  border-left: 5px solid red;
+  margin: 10px;
+  padding: 20px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+  box-sizing: border-box;
+  color: rgb(75, 17, 19);
+  color-scheme: light;
+  overflow-wrap: break-word;
+  text-rendering: optimizelegibility;
+}

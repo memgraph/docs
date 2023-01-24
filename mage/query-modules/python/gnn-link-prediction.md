@@ -29,7 +29,7 @@ style={{
 
 The following blog posts explain how we tried to apply link prediction:
 - [Node2Vec](https://memgraph.com/blog/link-prediction-with-node2vec-in-physics-collaboration-network)
-<!-- [TODO: Telecom blog](www.google.com) -->
+- [GNN Link prediction](https://memgraph.com/blog/building-a-recommendation-system-for-telecommunication-packages-using-graph-neural-networks)
 
 ### About the query module
 
@@ -53,10 +53,10 @@ In this module you can find support for the following interesting features:
 If you want to try-out our implementation, head to **[github/memgraph/mage](https://github.com/memgraph/mage)** and find `python/link_prediction.py`. Feel free to give us a :star: if you like the code. The easiest way to test **link-prediction** is by downloading [Memgraph Platform](https://memgraph.com/download) and using some of the preloaded datasets in **Memgraph Lab**.
 
 There are some things you should be careful about when using **link prediction**:
-- features of all nodes should be called the same (e.g saved as **'features'** property in **Memgraph**) 
-- model's performance on the validation set is obtained using **transductive** splitting mode, while **inductive** dataset split is not yet supported. You can find more information about graph splitting on slides of [Graph Machine Learning course](http://web.stanford.edu/class/cs224w/slides/08-GNN-application.pdf) offered by **Stanford**. 
+- features of all nodes should be called the same (e.g saved as **'features'** property in **Memgraph**)
+- model's performance on the validation set is obtained using **transductive** splitting mode, while **inductive** dataset split is not yet supported. You can find more information about graph splitting on slides of [Graph Machine Learning course](http://web.stanford.edu/class/cs224w/slides/08-GNN-application.pdf) offered by **Stanford**.
 - to improve performance, **self-loop** is added to each node with the edge-type set to `self`
-- the user can set the flag to automatically add **reverse edges** to each existing edge and hence, convert a **directed** graph to a **bidirected** one. If the source and destination nodes of the edge are the same, **reverse edge type** will be the same as the original **edge type**. Otherwise, the prefix **rev_** will be added to the original **edge type**. See the FAQ part to further see why are **self-loops** and **reverse edges** very important in ML training and how you can get into problems if your graph is already **undirected** :thinking_face: 
+- the user can set the flag to automatically add **reverse edges** to each existing edge and hence, convert a **directed** graph to a **bidirected** one. If the source and destination nodes of the edge are the same, **reverse edge type** will be the same as the original **edge type**. Otherwise, the prefix **rev_** will be added to the original **edge type**. See the FAQ part to further see why are **self-loops** and **reverse edges** very important in ML training and how you can get into problems if your graph is already **undirected** :thinking_face:
 
 Feel free to open a **[GitHub issue](https://github.com/memgraph/mage/issues)**
 or start a discussion on **[Discord](https://discord.gg/memgraph)** if you want
@@ -74,28 +74,28 @@ The following procedure is expected when using **link prediction module**:
 
 ### Implementation details
 
-For the underlying **GNN** training we use the [DGL library](https://github.com/dmlc/dgl/). 
+For the underlying **GNN** training we use the [DGL library](https://github.com/dmlc/dgl/).
 > Fast and memory-efficient message passing primitives for training Graph Neural Networks. Scale to giant graphs via multi-GPU acceleration and distributed training infrastructure.
 >
 > -- DGL team
 
 #### **Splitting the dataset**
 
-If the user specifies `split_ratio 1.0`, the model will train normally on a whole dataset without validating its performance on a validation set. However, if the user-defined split_ratio is a value between 0.0 and 1.0 but the graph is too small to have such a split, an exception will be thrown. 
+If the user specifies `split_ratio 1.0`, the model will train normally on a whole dataset without validating its performance on a validation set. However, if the user-defined split_ratio is a value between 0.0 and 1.0 but the graph is too small to have such a split, an exception will be thrown.
 
 #### **Self-loops**
 
-**Self-loop edge** is added to every node to improve **link_prediction** performance if specified by the user. **Self-loop edges** are added only as **edge_type** `self`, not in any other way, and to enable this, a custom module has been added. 
+**Self-loop edge** is added to every node to improve **link_prediction** performance if specified by the user. **Self-loop edges** are added only as **edge_type** `self`, not in any other way, and to enable this, a custom module has been added.
 
 #### **Batch training**
 
-In heterogeneous graphs, all edges are used for creating the node’s neighbourhood but trained on only one edge type that can be set by the user. 
+In heterogeneous graphs, all edges are used for creating the node’s neighbourhood but trained on only one edge type that can be set by the user.
 
 > For each gradient descent step, we select a mini-batch of nodes whose final representations at the L-th layer are to be computed. We then take all or some of their neighbours at the L−1 layer. This process continues until we reach the input. This iterative process builds the dependency graph starting from the output and working backwards to the input, as the figure below shows:
 
 <img src={require('../../data/query-modules/python/gnn-link-prediction/gnn-link-prediction-neighborhood-sampling.png').default}/>
 
-> 
+>
 > -- DGL docs
 
 The reader is encouraged to take a look at the [DGL mini-batch explanation](https://docs.dgl.ai/guide/minibatch.html) for more details.
@@ -133,12 +133,12 @@ Here is the description of all parameters supported by **link prediction** that 
 | `num_neg_per_pos_edge` | int | `1` | Number of negative edges that will be sampled per one positive edge in the mini-batch training. |
 | `batch_size` | int | `256` | Batch size used in both training and validation procedure. It specifies the number of indices in each batch. |
 | `sampling_workers` | int | `5` | Number of workers that will cooperate in the sampling procedure in the training and validation. |
-| `last_activation_function` | str | `sigmoid` | Activation function that is applied after the last layer in the model and before the `predictor_type`. Currently, only `sigmoid` is supported. | 
+| `last_activation_function` | str | `sigmoid` | Activation function that is applied after the last layer in the model and before the `predictor_type`. Currently, only `sigmoid` is supported. |
 | `add_reverse_edges` | bool | `False` | Whether the module should add reverse edges for each existing edge in the obtained graph. If the source and destination node are of the same type, edges of the same edge type will be created. If the source and destination nodes are different, then the prefix `rev_` will be added to the previous edge type. Reverse edges will be excluded as message passing edges for corresponding supervision edges. |
 
 #### **Output**:
 - `status: bool` -> `True` if all parameters were successfully updated, `False` otherwise.
-- `message: str` -> `OK` if all parameters were successfully updated, `Error message` otherwise. 
+- `message: str` -> `OK` if all parameters were successfully updated, `Error message` otherwise.
 
 Only those parameters that need changing from their default values are sent when calling the procedure:
 ```
@@ -148,19 +148,19 @@ RETURN status, message;
 ```
 
 ### `train()`
-The `train` method doesn't take any parameters, so it is very simple to use. 
+The `train` method doesn't take any parameters, so it is very simple to use.
 
 #### **Output**:
-- `training_results: List[Dict[str, float]]` -> List of training results through epochs. Model's performance is evaluated every `console_log_freq` epochs. 
-- `validation results: List[Dict[str, float]]` -> List of validation results through epochs. Model's performance is evaluated every `console_log_freq` epochs. 
+- `training_results: List[Dict[str, float]]` -> List of training results through epochs. Model's performance is evaluated every `console_log_freq` epochs.
+- `validation results: List[Dict[str, float]]` -> List of validation results through epochs. Model's performance is evaluated every `console_log_freq` epochs.
 
 You can just call
 ```
-CALL link_prediction.train() 
+CALL link_prediction.train()
 YIELD training_results, validation_results
 RETURN training_results, validation_results;
 ```
-to get training and validation results summarized through epochs. 
+to get training and validation results summarized through epochs.
 
 ### `get_training_results()`
 
@@ -173,19 +173,19 @@ RETURN training_results, validation_results;
 ```
 
 #### **Output:**
-- `training_results: List[Dict[str, float]]` -> List of training results through epochs. Model's performance is evaluated every `console_log_freq` epochs. 
-- `validation results: List[Dict[str, float]]` -> List of validation results through epochs. Model's performance is evaluated every `console_log_freq` epochs. 
+- `training_results: List[Dict[str, float]]` -> List of training results through epochs. Model's performance is evaluated every `console_log_freq` epochs.
+- `validation results: List[Dict[str, float]]` -> List of validation results through epochs. Model's performance is evaluated every `console_log_freq` epochs.
 
 ### `predict()`
 
-The `predict` method takes two arguments, **src_vertex** and **dest_vertex**, and predicts whether there is an edge between them or not. It supports an `“actual”` prediction scenario when the edge doesn’t exist and the user wants to predict whether there is an edge or not but also a scenario in which there is an edge between two vertices and the user wants to check the model’s evaluation. 
+The `predict` method takes two arguments, **src_vertex** and **dest_vertex**, and predicts whether there is an edge between them or not. It supports an `“actual”` prediction scenario when the edge doesn’t exist and the user wants to predict whether there is an edge or not but also a scenario in which there is an edge between two vertices and the user wants to check the model’s evaluation.
 
 #### Input
 - `src_vertex: mgp.Vertex` -> Source vertex of the edge
 - `dest_vertex: mgp.Vertex` -> Destination vertex of the edge.
 
 #### Output
-- `score: mgp.Number` -> Score between 0 and 1 that represents the probability of two nodes being connected. 
+- `score: mgp.Number` -> Score between 0 and 1 that represents the probability of two nodes being connected.
 
 ```
 MATCH (v1:PAPER {id: "ID_1"})
@@ -202,7 +202,7 @@ The `recommend` method can be used to recommend the best k nodes from `dest_vert
 #### Input
 - `src_vertex: mgp.Vertex` → Source node.
 - `dest_vertices: List[mgp.Vertex]` → destination nodes. If they are not of the same type, an exception is thrown.
-- `k: int` → Number of edges to recommend. 
+- `k: int` → Number of edges to recommend.
 
 #### Output
 - `score: mgp.Number` → Score between 0 and 1 that represents the probability of two nodes being connected.
@@ -210,8 +210,8 @@ The `recommend` method can be used to recommend the best k nodes from `dest_vert
 
 ```
 MATCH (v1:Customer {id: "8779-QRDMV"})
-MATCH (p:Plan) 
-WITH collect(p) AS all_plans, v1 
+MATCH (p:Plan)
+WITH collect(p) AS all_plans, v1
 CALL link_prediction.recommend(v1, all_plans, 5)
 YIELD score, recommendation
 RETURN v1, score, recommendation;
@@ -250,7 +250,7 @@ We extensively tested our model on the [**CORA**](https://paperswithcode.com/dat
 | --------- | ----- | -------- | --------- | ------ | ----- |
 | 1         | 0.64  | 0.594    | 0.613     | 0.494  | 0.547 |
 | 2         | 0.781 | 0.696    | 0.711     | 0.663  | 0.686 |
-| 3         | 0.798 | 0.729    | 0.752     | 0.682  | 0.715 | 
+| 3         | 0.798 | 0.729    | 0.752     | 0.682  | 0.715 |
 | 4         | 0.754 | 0.686    | 0.716     | 0.617  | 0.663 |
 | 5         | 0.789 | 0.711    | 0.715     | 0.7    | 0.707 |
 | 6         | 0.813 | 0.756    | 0.742     | 0.784  | 0.763 |
@@ -302,10 +302,10 @@ MATCH (v4:PAPER {id: 13}), (v1:PAPER {id: 10}) CREATE (v4)-[e:CITES {}]->(v1);
   <TabItem value="set-model-parameters">
 
 ```cypher
-CALL link_prediction.set_model_parameters({target_relation: ["PAPER", "CITES", "PAPER"], node_features_property: "features", 
+CALL link_prediction.set_model_parameters({target_relation: ["PAPER", "CITES", "PAPER"], node_features_property: "features",
 split_ratio: 1.0, predictor_type: "mlp", num_epochs: 100, hidden_features_size: [256], attn_num_heads: [1]}) YIELD * RETURN *;
 ```
-  
+
   </TabItem>
 
 
@@ -338,7 +338,7 @@ RETURN training_results, validation_results;
 
   </TabItem>
 
-  <TabItem value="predict"> 
+  <TabItem value="predict">
 
 ```cypher
 MATCH (v1:PAPER {id: 10})
@@ -366,10 +366,10 @@ RETURN score;
 
 ### **Why can I get into problems with reverse edges?**
 
-Having a `reverse_edge` in your dataset can be a problem if they are not excluded from `message passing edges` in the prediction of its `opposite edge`(`supervision edge`). The best thing you can do is have a `directed` graph and the module will automatically add reverse edges, if you specify `add_reverse_edges` in the `set_model_parameters` method, in a way that doesn't cause information flow. 
+Having a `reverse_edge` in your dataset can be a problem if they are not excluded from `message passing edges` in the prediction of its `opposite edge`(`supervision edge`). The best thing you can do is have a `directed` graph and the module will automatically add reverse edges, if you specify `add_reverse_edges` in the `set_model_parameters` method, in a way that doesn't cause information flow.
 ### **What is a transductive dataset split?**
 
-The transductive dataset split assumes that the entire graph can be observed in all dataset splits. We distinguish four types of edges, and those are: `validation`, `training`, `message passing` and `supervision edges`. 
+The transductive dataset split assumes that the entire graph can be observed in all dataset splits. We distinguish four types of edges, and those are: `validation`, `training`, `message passing` and `supervision edges`.
 
 <img src={require('../../data/query-modules/python/gnn-link-prediction/gnn-link-prediction-transductive-dataset-split.png').default}/>
 
