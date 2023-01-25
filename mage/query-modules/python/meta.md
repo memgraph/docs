@@ -21,7 +21,7 @@ export const Highlight = ({children, color}) => (
 );
 
 <!-- TODO -- update link -->
-[![docs-source](https://img.shields.io/badge/source-meta-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/json_util.py)
+[![docs-source](https://img.shields.io/badge/source-meta-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/meta.py)
 
 
 ## Abstract
@@ -65,6 +65,161 @@ CALL meta.schema(true)
 YIELD nodes, relationships 
 RETURN nodes, relationships;
 ```
+
+## Example - Get graph schema without properties count
+
+<Tabs
+  groupId="get_schema_without_props"
+  defaultValue="graph1"
+  values={[
+    {label: 'Create a graph', value: 'graph1'},
+    {label: 'Run the command', value: 'run1'},
+    {label: 'Graph result', value: 'graph-result1'},
+    {label: 'Data result - nodes', value: 'data-result-nodes1'},
+    {label: 'Data result - relationships', value: 'data-result-relationships1'},
+  ]
+}>
+  <TabItem value="graph1">
+
+  Create a graph by running the following Cypher query:
+
+```cypher
+CREATE (n:Person {name: "Kate", age: 27})-[:IS_FRIENDS_WITH]->(m:Person:Student {name: "James", age: 30, year: "second"})-[:STUDIES_AT]->(:University {name: "University of Vienna"})
+WITH n, m
+CREATE (n)-[:LIVES_IN]->(:City {name: "Zagreb"})<-[:LIVES_IN]-(m);
+```
+  </TabItem>
+
+  <TabItem value="run1">
+
+Once the graph is created, run the following code to call the `schema` procedure:
+
+```cypher
+CALL meta.schema() 
+YIELD nodes, relationships 
+RETURN nodes, relationships;
+```
+
+  </TabItem>
+
+
+  <TabItem value="graph-result1">
+
+The graph result of the `schema` procedure can be seen in Memgraph Lab, and it looks like this:
+<!-- 
+<div style={{textAlign:"center"}}> -->
+<div className={"imgRow"}>
+<div className={"imgColumn"}>
+<img src={require('../../data/query-modules/python/meta/meta_result.png').default}/>
+</div>
+<div className={"imgColumn"}>
+<img src={require('../../data/query-modules/python/meta/meta_result_count_without_props.png').default}/>
+</div>
+</div>
+  </TabItem>
+
+<TabItem value="data-result-nodes1">
+
+Besides graph result in Memgraph Lab, you get the data result - a list of nodes and a list of relationships. Here is the obtained list of nodes:
+
+```json
+[
+   {
+      "id": 0,
+      "labels": [
+         "Person"
+      ],
+      "properties": {
+         "count": 1
+      },
+      "type": "node"
+   },
+   {
+      "id": 1,
+      "labels": [
+         "Person",
+         "Student"
+      ],
+      "properties": {
+         "count": 1
+      },
+      "type": "node"
+   },
+   {
+      "id": 2,
+      "labels": [
+         "University"
+      ],
+      "properties": {
+         "count": 1
+      },
+      "type": "node"
+   },
+   {
+      "id": 3,
+      "labels": [
+         "City"
+      ],
+      "properties": {
+         "count": 1
+      },
+      "type": "node"
+   }
+]
+```
+  </TabItem>
+  <TabItem value="data-result-relationships1">
+
+Here is the obtained list of relationships:
+
+```json
+[
+   {
+      "end": 1,
+      "id": 0,
+      "label": "IS_FRIENDS_WITH",
+      "properties": {
+         "count": 1
+      },
+      "start": 0,
+      "type": "relationship"
+   },
+   {
+      "end": 3,
+      "id": 1,
+      "label": "LIVES_IN",
+      "properties": {
+         "count": 1
+      },
+      "start": 0,
+      "type": "relationship"
+   },
+   {
+      "end": 2,
+      "id": 2,
+      "label": "STUDIES_AT",
+      "properties": {
+         "count": 1
+      },
+      "start": 1,
+      "type": "relationship"
+   },
+   {
+      "end": 3,
+      "id": 3,
+      "label": "LIVES_IN",
+      "properties": {
+         "count": 1
+      },
+      "start": 1,
+      "type": "relationship"
+   }
+]
+```
+  </TabItem>
+
+</Tabs>
+
 
 ## Example - Get graph schema with properties count
 
