@@ -10,8 +10,11 @@ sidebar_label: Changelog
 - Add possibility to set and get property from node and relationship when using C++ API. [#732](https://github.com/memgraph/memgraph/pull/732)
 - FOREACH clause uses indexes in its children clauses [#736](https://github.com/memgraph/memgraph/pull/736)
 - OPTIONAL MATCH now uses label property index referencing the MATCH symbol property [#736](https://github.com/memgraph/memgraph/pull/736)
+
 ### Bug Fixes
+
 - Iterating over all relationships in a graph now works as expected, as well as checking whether the graph contains a given relationship. [#743](https://github.com/memgraph/memgraph/pull/743)
+- All Shortest Paths fix for bug duplicating paths when using upper bound [#737](https://github.com/memgraph/memgraph/pull/737)
 
 ## v2.5.1 - Jan 19, 2023
 
