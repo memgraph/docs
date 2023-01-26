@@ -7,9 +7,9 @@ sidebar_label: Changelog
 ## v2.5.2
 
 - FOREACH clause using outer variable scope to allow nesting. [#725](https://github.com/memgraph/memgraph/pull/725)
+- FOREACH clause improved to use indexes if needed (e.g. in case of MERGE) [#736](https://github.com/memgraph/memgraph/pull/736)
 - C++ API now allows setting and getting node and relationship properties. [#732](https://github.com/memgraph/memgraph/pull/732)
-- FOREACH clause uses indexes in its children clauses [#736](https://github.com/memgraph/memgraph/pull/736)
-- OPTIONAL MATCH now uses label property index referencing the MATCH symbol property [#736](https://github.com/memgraph/memgraph/pull/736)
+- OPTIONAL MATCH improved to use label property indexes referencing the MATCH variables before [#736](https://github.com/memgraph/memgraph/pull/736)
 
 ### Bug Fixes
 
