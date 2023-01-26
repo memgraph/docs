@@ -93,7 +93,7 @@ sidebar_label: Changelog
   [#48](https://github.com/memgraph/mage/pull/48)
 - Implemented Maximum Flow.
   [#125](https://github.com/memgraph/mage/pull/125)
-- Implemented Static Katz Centrality. 
+- Implemented Static Katz Centrality.
   [#117](https://github.com/memgraph/mage/pull/117)
 - Added utility Import/Export module (JSON).
   [#100](https://github.com/memgraph/mage/pull/100)
