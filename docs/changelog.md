@@ -14,7 +14,7 @@ sidebar_label: Changelog
 ### Bug Fixes
 
 - Iterating over all relationships in a graph now works as expected, as well as checking whether the graph contains a given relationship. [#743](https://github.com/memgraph/memgraph/pull/743)
-- All Shortest Paths fix for bug duplicating paths when using upper bound [#737](https://github.com/memgraph/memgraph/pull/737)
+- Implementation of the All Shortest Paths algorithm was fixed so the paths are no longer duplicated when the upper bound is used. [#737](https://github.com/memgraph/memgraph/pull/737)
 
 ## v2.5.1 - Jan 19, 2023
 
