@@ -10,9 +10,6 @@ sidebar_label: Changelog
 - FOREACH clause can now use indexes if needed (e.g. in case of MERGE). [#736](https://github.com/memgraph/memgraph/pull/736)
 - C++ API now allows setting and getting node and relationship properties. [#732](https://github.com/memgraph/memgraph/pull/732)
 - OPTIONAL MATCH can now use label property indexes that are referencing the previously matched variables. [#736](https://github.com/memgraph/memgraph/pull/736)
-
-### Bug Fixes
-
 - Iterating over all relationships in a graph now works as expected, as well as checking whether the graph contains a given relationship. [#743](https://github.com/memgraph/memgraph/pull/743)
 - Implementation of the All Shortest Paths algorithm was fixed so the paths are no longer duplicated when the upper bound is used. [#737](https://github.com/memgraph/memgraph/pull/737)
 
