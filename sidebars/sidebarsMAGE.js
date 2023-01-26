@@ -45,7 +45,7 @@ module.exports = {
         "query-modules/python/kmeans",
         "query-modules/python/link-prediction-with-gnn",
         "query-modules/python/max-flow",
-        "query-modules/python/meta",
+        "query-modules/python/meta-util",
         "query-modules/python/node-classification-with-gnn",
         "query-modules/python/node2vec",
         "query-modules/python/node2vec-online",

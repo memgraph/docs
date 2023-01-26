@@ -1,7 +1,6 @@
 ---
-id: meta
-title: meta
-sidebar_label: meta
+title: meta_util
+sidebar_label: meta_util
 ---
 
 import Tabs from '@theme/Tabs';
@@ -21,7 +20,7 @@ export const Highlight = ({children, color}) => (
 );
 
 <!-- TODO -- update link -->
-[![docs-source](https://img.shields.io/badge/source-meta-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/meta.py)
+[![docs-source](https://img.shields.io/badge/source-meta_util-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/meta_util.py)
 
 
 ## Abstract
@@ -54,17 +53,21 @@ Returns a list of distict relationships connecting distinct nodes, that is, a gr
 #### Usage:
 Get graph schema without properties count:
 ```cypher
-CALL meta.schema() 
+CALL meta_util.schema() 
 YIELD nodes, relationships 
 RETURN nodes, relationships;
 ```
 
 Get graph schema with properties count:
 ```cypher
-CALL meta.schema(true) 
+CALL meta_util.schema(true) 
 YIELD nodes, relationships 
 RETURN nodes, relationships;
 ```
+
+:::info
+It will show a graph view only in Memgraph Lab version >= 2.4.0. For earlier versions of the Memgraph Lab, `UNWIND` needs to be called on returned object properties nodes and edges.
+:::
 
 ## Example - Get graph schema without properties count
 
@@ -95,7 +98,7 @@ CREATE (n)-[:LIVES_IN]->(:City {name: "Zagreb"})<-[:LIVES_IN]-(m);
 Once the graph is created, run the following code to call the `schema` procedure:
 
 ```cypher
-CALL meta.schema() 
+CALL meta_util.schema() 
 YIELD nodes, relationships 
 RETURN nodes, relationships;
 ```
@@ -110,10 +113,10 @@ The graph result of the `schema` procedure can be seen in Memgraph Lab, and it l
 <div style={{textAlign:"center"}}> -->
 <div className={"imgRow"}>
 <div className={"imgColumn"}>
-<img src={require('../../data/query-modules/python/meta/meta_result.png').default}/>
+<img src={require('../../data/query-modules/python/meta_util/meta_result.png').default}/>
 </div>
 <div className={"imgColumn"}>
-<img src={require('../../data/query-modules/python/meta/meta_result_count_without_props.png').default}/>
+<img src={require('../../data/query-modules/python/meta_util/meta_result_count_without_props.png').default}/>
 </div>
 </div>
   </TabItem>
@@ -250,7 +253,7 @@ CREATE (n)-[:LIVES_IN]->(:City {name: "Zagreb"})<-[:LIVES_IN]-(m);
 Once the graph is created, run the following code to call the `schema` procedure:
 
 ```cypher
-CALL meta.schema(true) 
+CALL meta_util.schema(true) 
 YIELD nodes, relationships 
 RETURN nodes, relationships;
 ```
@@ -265,10 +268,10 @@ The graph result of the `schema` procedure can be seen in Memgraph Lab, and it l
 <div style={{textAlign:"center"}}> -->
 <div className={"imgRow"}>
 <div className={"imgColumn"}>
-<img src={require('../../data/query-modules/python/meta/meta_result.png').default}/>
+<img src={require('../../data/query-modules/python/meta_util/meta_result.png').default}/>
 </div>
 <div className={"imgColumn"}>
-<img src={require('../../data/query-modules/python/meta/meta_result_count.png').default}/>
+<img src={require('../../data/query-modules/python/meta_util/meta_result_count.png').default}/>
 </div>
 </div>
   </TabItem>
