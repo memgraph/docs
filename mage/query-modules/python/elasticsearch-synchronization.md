@@ -99,6 +99,60 @@ The method is used to serialize all vertices and relationships in MemgraphDB to 
 #### **Input**
 - `node_index: str` -> The name of the **node index**. Can be used for both **streaming and parallel bulk**.
 - `edge_index: str` -> The name of the **edge index**. Can be used for both **streaming and parallel bulk**.
+- `thread_count: int` -> **Size of the threadpool** to use for the bulk requests.
+- `chunk_size: int` -> The number of docs in one chunk sent to Elasticsearch (default: 500).
+- `max_chunk_bytes: int` -> The maximum size of the request in bytes (default: 100MB).
+- `raise_on_error: bool` -> Raise `BulkIndexError` containing errors (as .errors) from the execution of the last chunk when some occur. By default, it's raised.
+- `raise_on_exception: bool` -> If `False` then don’t propagate exceptions from call to bulk and just report the items that failed as failed.
+- `max_retries: int` -> Maximum number of times a document will be retried when 429 is received, set to 0 (default) for no retries on 429.
+- `initial_backoff: float` -> The number of seconds we should wait before the first retry. Any subsequent retries will be powers of `initial_backoff * 2**retry_number`
+- `max_backoff: float` -> The maximum number of seconds a retry will wait.
+- `yield_ok: float` -> If set to `False` will skip successful documents in the output.
+- `queue_size: int` -> Size of the **task queue** between the **main thread (producing chunks to send) and the processing threads**.
+
+The method can be called in a following way:
+```
+CALL elastic_search_serialization.index_db("node_index", "edge_index", 5, 256, 104857600, True, False, 2, 2.0, 600.0, True, 2) YIELD *;
+```
+
+#### **Output**
+- `number_of_nodes: int` -> Number of indexed nodes.
+- `number_of_edges: int` -> Number of indexed edges.
+
+### `index()`
+The method is meant to be used in combination with triggers for incrementally indexing incoming data and it shouldn't be called by a user explicitly. Check out our [docs](https://memgraph.com/docs/memgraph/reference-guide/triggers) where it is explained how Memgraph handles objects captured by various triggers. 
+
+#### **Input**
+- `createdObjects: List[Dict[str, Object]]` -> Objects that are captured by a create trigger.
+- `node_index: str` -> The name of the **node index**. Can be used for both **streaming and parallel bulk**.
+- `edge_index: str` -> The name of the **edge index**. Can be used for both **streaming and parallel bulk**.
+- `thread_count: int` -> **Size of the threadpool** to use for the bulk requests.
+- `chunk_size: int` -> The number of docs in one chunk sent to Elasticsearch (default: 500).
+- `max_chunk_bytes: int` -> The maximum size of the request in bytes (default: 100MB).
+- `raise_on_error: bool` -> Raise `BulkIndexError` containing errors (as .errors) from the execution of the last chunk when some occur. By default, it's raised.
+- `raise_on_exception: bool` -> If `False` then don’t propagate exceptions from call to bulk and just report the items that failed as failed.
+- `max_retries: int` -> Maximum number of times a document will be retried when 429 is received, set to 0 (default) for no retries on 429.
+- `initial_backoff: float` -> The number of seconds we should wait before the first retry. Any subsequent retries will be powers of `initial_backoff * 2**retry_number`
+- `max_backoff: float` -> The maximum number of seconds a retry will wait.
+- `yield_ok: float` -> If set to `False` will skip successful documents in the output.
+- `queue_size: int` -> Size of the **task queue** between the **main thread (producing chunks to send) and the processing threads**.
+
+The method can be used in a following way:
+```
+CREATE TRIGGER elastic_search_create
+ON CREATE AFTER COMMIT EXECUTE
+CALL elastic_search_serialization.index(createdObjects, "docs_nodes", "docs_edges") YIELD * RETURN *;
+```
+
+#### **Output**
+- `number_of_nodes: int` -> Number of indexed nodes.
+- `number_of_edges: int` -> Number of indexed edges.
+
+
+
+#### **Input**
+- `node_index: str` -> The name of the **node index**. Can be used for both **streaming and parallel bulk**.
+- `edge_index: str` -> The name of the **edge index**. Can be used for both **streaming and parallel bulk**.
 - `chunk_size: int` -> The number of docs in one chunk sent to Elasticsearch (default: 500).
 - `max_chunk_bytes: int` -> The maximum size of the request in bytes (default: 100MB).
 - `raise_on_error: bool` -> Raise `BulkIndexError` containing errors (as .errors) from the execution of the last chunk when some occur. By default, it's raised.
@@ -118,6 +172,8 @@ CALL elastic_search_serialization.index_db("node_index", "edge_index", 5, 256, 1
 #### **Output**
 - `number_of_nodes: int` -> Number of indexed nodes.
 - `number_of_edges: int` -> Number of indexed edges.
+
+
 
 ### `reindex()`
 **Reindex all documents** that satisfy a given query from one index to another, potentially (if `target_client` is specified) on a different cluster. If you don’t specify the query you will reindex all the documents.
@@ -167,6 +223,8 @@ Searches for all documents by specifying query and index. It is the preferred me
 #### **Input**
 - `index_name: str` -> A name of the index.
 - `query: str` -> Query written as JSON.
+- `size: int` -> Size (per shard) of the batch sent at each iteration.
+- `from_: int` -> Starting document offset. By default, you cannot page through more than 10,000 hits using the `from` and size parameters. To page through more hits, use the `search_after` parameter.
 - `aggregations: Optional[Mapping[str, Mapping[str, Any]]]` -> Check out the (docs)[https://elasticsearch-py.readthedocs.io/en/v8.5.3/api.html#elasticsearch.Elasticsearch.search]
 - `aggs: Optional[Mapping[str, Mapping[str, Any]]]` -> Check out the (docs)[https://elasticsearch-py.readthedocs.io/en/v8.5.3/api.html#elasticsearch.Elasticsearch.search]
 
