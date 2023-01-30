@@ -39,7 +39,9 @@ A module that contains procedures describing graphs on a meta-level.
 
 ### `schema(include_properties)`
 
-Returns a list of distict relationships connecting distinct nodes, that is, a graph schema. If `include_properties` is set to `true`, the graph schema will contain properties count information. 
+Knowing what kind of data, that is, what kind of nodes and relationships, is stored inside the database and how they're connected can be helpful. Besides that, each node or relationship can have a set of properties, and while loading the data in the database, you should be sure that a certain amount of graph objects has a particular property. That's where the number of graph objects with a particular property (property count) might come in handy. 
+
+The `schema()` procedure returns a list of distinct relationships connecting distinct nodes, that is, a graph schema. If `include_properties` is set to `true`, the graph schema will contain additional information about properties. 
 
 #### Input:
 
@@ -47,8 +49,8 @@ Returns a list of distict relationships connecting distinct nodes, that is, a gr
 
 #### Output:
 
-* `nodes: List[Map]` ➡ list of distinct node objects with their count. If `include_properties` was set to `true`, the node object contains properties count too.
-* `relationships: List[Map]` ➡ list of distinct relationship objects with their count. If `include_properties` was set to `true`, the relationship object contains properties count too.
+* `nodes: List[Map]` ➡ List of distinct node objects with their count. If `include_properties` is set to `true`, the node object contains properties count too.
+* `relationships: List[Map]` ➡ List of distinct relationship objects with their count. If `include_properties` is set to `true`, the relationship object contains properties count too.
 
 #### Usage:
 Get graph schema without properties count:
@@ -66,7 +68,7 @@ RETURN nodes, relationships;
 ```
 
 :::info
-It will show a graph view only in Memgraph Lab version >= 2.4.0. For earlier versions of the Memgraph Lab, `UNWIND` needs to be called on returned object properties nodes and edges.
+The queries above will return results in the graph view only in Memgraph Lab version >= 2.4.0. For earlier versions of the Memgraph Lab, call `UNWIND` on returned object properties nodes and edges.
 :::
 
 ## Example - Get graph schema without properties count
@@ -123,7 +125,7 @@ The graph result of the `schema` procedure can be seen in Memgraph Lab, and it l
 
 <TabItem value="data-result-nodes1">
 
-Besides graph result in Memgraph Lab, you get the data result - a list of nodes and a list of relationships. Here is the obtained list of nodes:
+Memgraph Lab can also return data results - a list of nodes and a list of relationships. Here is the obtained list of nodes:
 
 ```json
 [
@@ -278,7 +280,7 @@ The graph result of the `schema` procedure can be seen in Memgraph Lab, and it l
 
 <TabItem value="data-result-nodes">
 
-Besides graph result in Memgraph Lab, you get the data result - a list of nodes and a list of relationships. Here is the obtained list of nodes:
+Memgraph Lab can also return data results - a list of nodes and a list of relationships. Here is the obtained list of nodes:
 
 ```json
 [
