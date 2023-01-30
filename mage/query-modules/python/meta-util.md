@@ -39,7 +39,7 @@ A module that contains procedures describing graphs on a meta-level.
 
 ### `schema(include_properties)`
 
-Knowing what kind of data, that is, what kind of nodes and relationships, is stored inside the database and how they're connected can be helpful. Besides that, each node or relationship can have a set of properties, and while loading the data in the database, you should be sure that a certain amount of graph objects has a particular property. That's where the number of graph objects with a particular property (property count) might come in handy. 
+Knowing what kind of data, that is, what kind of nodes and relationships, are stored inside the database and how they're connected can be helpful. Besides that, each node or relationship can have a set of properties, and while loading the data in the database, you should be sure that a certain amount of graph objects has a particular property. That's where the number of graph objects with a particular property (property count) might come in handy. 
 
 The `schema()` procedure returns a list of distinct relationships connecting distinct nodes, that is, a graph schema. If `include_properties` is set to `true`, the graph schema will contain additional information about properties. 
 
