@@ -8,16 +8,11 @@ sidebar_label: Changelog
 
 ### Major Features and Improvements
 
-- Update`setup` script to halt if build fails on C++ or Rust side
-  [#194](https://github.com/memgraph/mage/pull/194)
-- Add `meta_util` to generate a graph schema as a graph result
-  [#187](https://github.com/memgraph/mage/pull/187)
-- Rewrite distance calculator in C++ due to problem with slow execution off `single` method multiple times in Python
-  [#191](https://github.com/memgraph/mage/pull/191)
-- Port dynamic graph analytics to the C++ API for better performance
-  [#182](https://github.com/memgraph/mage/pull/182)
-- Add module `elastic_search_serialization` to enable developers to serialize Memgraph into Elastic search instance using basic authentication
-  [#170](https://github.com/memgraph/mage/pull/170)
+- The `setup` script now halts if the build fails on C++ or Rust side [#194](https://github.com/memgraph/mage/pull/194)
+- With the `meta_util.schema()` procedure, you can generate a graph schema as a graph result [#187](https://github.com/memgraph/mage/pull/187)
+- The execution of the `single` method multiple times has been improved by rewriting the distance calculator from Python to C++ [#191](https://github.com/memgraph/mage/pull/191)
+- Dynamic graph analytics have been ported to C++ to improve performance  [#182](https://github.com/memgraph/mage/pull/182)
+- New module `elastic_search_serialization` enables developers to serialize Memgraph into Elasticsearch instance using basic authentication [#170](https://github.com/memgraph/mage/pull/170)
 
 ## v1.5.1 - Jan 20, 2023
 
