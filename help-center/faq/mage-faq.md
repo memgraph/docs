@@ -19,7 +19,11 @@ your graph data source.
 **[MAGE](/mage)** stands for **Memgraph Advanced Graph Extensions**. It’s an
 open-source project started by Memgraph that encourages developers to share
 innovative and useful **[query modules](/mage/query-modules/available-queries)**
-(custom Cypher procedures) so the whole community can benefit from them.
+(custom Cypher procedures) so the whole community can benefit from them. If you
+have used Neo4j's APOC library before, it will be easy for you to get used to
+the MAGE library. If there is a specific procedure you can't find in the MAGE
+library which you would like to use, please [let us
+know](https://memgraph.com/community). 
 
 ### What are query modules?
 

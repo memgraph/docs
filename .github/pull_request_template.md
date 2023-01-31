@@ -6,18 +6,17 @@ Please briefly explain the changes you made here.
 
 Please delete options that are not relevant and check the ones that are.
 
-- [ ] Broken links fixes
-- [ ] Language fixes
-- [ ] New documentation page
+- [ ] Documentation fix
+- [ ] New documentation page 
 - [ ] Base PR for the release
 - [ ] Documentation improvements
 - [ ] Other (please describe):
 
-### Related issues
+### Related PRs and issues
 
-Delete section if this PR doesn't resolve any issues. 
+PR this doc page is related to: 
+Closes (link to issue):
 
-Closes (link to issue)
 
 ### Checklist:
 
