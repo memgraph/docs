@@ -67,9 +67,32 @@ module.exports = {
       items: [
         "reference/disk_storage",
         "reference/instance_runner",
-        "reference/loaders",
         "reference/models",
-        "reference/transformations",
+        {
+          type: "category",
+          label: "transformations",
+          items: [
+            "reference/transformations/export",
+            {
+              type: "category",
+              label: "importing",
+              items: [
+                "reference/transformations/importing/import",
+                "reference/transformations/importing/loaders",
+              ]
+            },
+            {
+              type: "category",
+              label: "translators",
+              items: [
+                "reference/transformations/translators/dgl_translator",
+                "reference/transformations/translators/pyg_translator",
+                "reference/transformations/translators/nx_translator",
+              ]
+            }
+
+          ],
+        },
         "reference/utilities",
         {
           type: "category",
