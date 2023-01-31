@@ -4,6 +4,21 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v1.6 - Jan 30, 2023
+
+### Major Features and Improvements
+
+- Update`setup` script to halt if build fails on C++ or Rust side
+  [#194](https://github.com/memgraph/mage/pull/194)
+- Add `meta_util` to generate a graph schema as a graph result
+  [#187](https://github.com/memgraph/mage/pull/187)
+- Rewrite distance calculator in C++ due to problem with slow execution off `single` method multiple times in Python
+  [#191](https://github.com/memgraph/mage/pull/191)
+- Port dynamic graph analytics to the C++ API for better performance
+  [#182](https://github.com/memgraph/mage/pull/182)
+- Add module `elastic_search_serialization` to enable developers to serialize Memgraph into Elastic search instance using basic authentication
+  [#170](https://github.com/memgraph/mage/pull/170)
+
 ## v1.5.1 - Jan 20, 2023
 
 ### Major Features and Improvements
