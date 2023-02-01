@@ -8,7 +8,7 @@ export default function HomeSupportedLanguages() {
         <div className={styles.homeSupportedLanguages}>
             <div className={styles.homeSupportedLanguages__content}>
                 <Container>
-                    <h2>Supported Languages</h2>
+                    <h2>Supported languages</h2>
                     <ThemedImage
                         alt={'logotypes'}
                         sources={{
@@ -16,7 +16,6 @@ export default function HomeSupportedLanguages() {
                             dark: require('/img/logotypes-dark-mode.png').default,
                         }}
                     />
-                    {/* <img src={require('/img/logotypes-dark-mode.png').default}></img> */}
                 </Container>
             </div>
         </div >

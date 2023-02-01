@@ -36,7 +36,7 @@ export default function HomeEcosystem() {
     return (
         <div className={styles.homeEcosystem}>
             <Container>
-                <h2>The Memgraph Ecosystem</h2>
+                <h2>The Memgraph ecosystem</h2>
                 <div className={styles.homeEcosystem__menu}>
                     {ecosystemMenu.map((item, i) => {
                         const itemClass = item === selectedItem ? styles.homeEcosystem__menu__selected : '';

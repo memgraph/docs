@@ -1,9 +1,10 @@
 .calloutImgBox {
     background-color: var(--mg-bg);
     border-radius: 4px;
-    box-shadow: 0 2px 10px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
     height: 100%;
     display: block;
+    width: 280px;
 }
 
 .calloutImgBox:hover {

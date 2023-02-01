@@ -48,11 +48,12 @@ export default function HomeLearnWithUs() {
     return (
         <div className={styles.homeLearnWithUs}>
             <Container>
-                <h2>Learn With Us</h2>
+                <h2>Learn with us</h2>
                 <div className={styles.homeLearnWithUs__subtitle}>
                     <p>Get to know Memgraph by following one of our tutorials. We have prepared a lot of hands-on
                         examples in the form of tutorials and live streams.</p>
                 </div>
+                <div>&nbsp;</div>
                 <div className={styles.homeLearnWithUs__items}>
                     {/* <div>&nbsp;</div> */}
                     {items.map((item, i) => {

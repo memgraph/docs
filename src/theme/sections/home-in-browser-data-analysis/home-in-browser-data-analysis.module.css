@@ -23,6 +23,10 @@
     line-height: var(--mg-line-height-h2h3);
 }
 
+.homeInBrowserDataAnalysis__title:hover {
+    color: var(--ifm-color-primary);
+}
+
 .homeInBrowserDataAnalysis__subtitle {
     font-family: var(--mg-font-family-alt);
     font-weight: var(--mg-font-weight-h2h3);
@@ -38,4 +42,22 @@
 
 .homeInBrowserDataAnalysis__image {
     padding-top: 42px;
+}
+
+@media (max-width: 1024px) {
+    .homeInBrowserDataAnalysis__row {
+        flex-direction: column;
+    }
+
+    .homeInBrowserDataAnalysis__column {
+        padding-top: 30px;
+    }
+
+    .homeInBrowserDataAnalysis__column__cloud {
+        padding-right: 20px;
+    }
+
+    .homeInBrowserDataAnalysis__column__lab {
+        padding-right: 20px;
+    }
 }
