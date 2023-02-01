@@ -1,0 +1,61 @@
+<!-- ## Loading query modules -->
+
+Once you start Memgraph, it will attempt to load query modules from all `*.so`
+and `*.py` files from the default (`/usr/lib/memgraph/query_modules` and
+`/var/lib/memgraph/internal_modules`) directories. 
+
+MAGE modules are located at
+`/usr/lib/memgraph/query_modules` and custom modules developed via Memgraph Lab at
+`/var/lib/memgraph/internal_modules`.
+
+Memgraph can load query modules from additional directories, if their path is
+added to the `--query-modules-directory` flag in the main configuration file
+(`/etc/memgraph/memgraph.conf`) or supplied as a command-line parameter (e.g.
+when using Docker). 
+
+If you are supplying the additional directory as a parameter, do not forget to
+include the path to `/usr/lib/memgraph/query_modules`, otherwise queries from
+that directory will not be loaded when Memgraph starts.
+
+:::caution
+
+When working with Docker and `memgraph-platform` image, you should pass
+configuration flags inside of environment variables, for example:
+
+```terminal
+docker run -p 7687:7687 -p 7444:7444 -p 3000:3000 -e MEMGRAPH="--query-modules-directory=/usr/lib/memgraph/query_modules,/usr/lib/memgraph/my_modules" memgraph/memgraph-platform`
+```
+
+If you are working with `memgraph` or `memgraph-mage` images you should pass
+configuration options like this: 
+
+```terminal
+docker run -p 7687:7687 -p 7444:7444 memgraph/memgraph --query-modules-directory=/usr/lib/memgraph/query_modules,/usr/lib/memgraph/my_modules
+```
+
+:::
+
+If a certain query module was added while Memgraph was already running, you need
+to load it manually using the `mg.load("module_name")` procedure within a query:
+
+```cypher
+CALL mg.load("py_example");
+```
+
+If there is no response (no error message), the load was successful.
+
+If you want to reload all existing modules and load any newly added ones, use
+`mg.load_all()`:
+
+```cypher
+CALL mg.load_all();
+```
+
+If there is no response (no error message), the load was successful.
+
+You can check if the query module has been loaded by using the `mg.procedures()`
+procedure within a query:
+
+```cypher
+CALL mg.procedures() YIELD *;
+```

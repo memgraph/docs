@@ -20,6 +20,7 @@ the table below which will reveal MAGE compatibility with Memgraph versions.
 
 | MAGE version | Memgraph version  |
 |--------------|-------------------|
+| >= 1.6       | >= 2.5.2          |
 | >= 1.4       | >= 2.4.0          |
 | >= 1.0       | >= 2.0.0          |
 | ^0           | >= 1.4.0 <= 1.6.1 |
