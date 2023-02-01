@@ -17,74 +17,25 @@
     font-weight: var(--mg-font-weight-h2h3);
 }
 
-/* .homeLearnWithUs__items {
-    display: flex;
-    flex-wrap: wrap;
-    margin-left: -20px;
-}
-
-
-.homeLearnWithUs__items>div {
-    flex: 1 0 calc(25% - 20px);
-    margin-left: 20px;
-    margin-top: 70px;
-}
-
-
-.homeLearnWithUs__items>div:nth-child(5) {
-    flex: 1 0 calc(25% - 20px);
-    max-width: calc(25% - 20px);
-}
-
-.homeLearnWithUs__items>div:nth-child(6) {
-    flex: 1 0 calc(25% - 20px);
-    max-width: calc(25% - 20px);
-} */
 
 .homeLearnWithUs__items {
-    display: grid;
-    grid-gap: 29px;
-    grid-template-columns: auto auto auto auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    margin-top: 40px;
 }
 
-/* @media (max-width: 768px) {
-    .homeLearnWithUs__items {
-        flex-direction: column;
-    }
-
-    .homeLearnWithUs__items>div {
-        margin: 36px 0;
-    }
-
-    .homeLearnWithUs__items>div:nth-child(5) {
-        max-width: 100%;
-    }
-
-    .homeLearnWithUs__items>div:nth-child(6) {
-        max-width: 100%;
-    }
-} */
-
-@media (max-width: 1500px) {
-    .homeLearnWithUs__items {
-        grid-template-columns: auto auto auto;
-    }
+.homeLearnWithUs__items>div {
+    margin-right: 20px;
+    /* display: flex;
+    flex-basis: 10%; */
 }
 
 @media (max-width: 930px) {
 
-    .homeLearnWithUs__items {
-        grid-template-columns: auto auto;
-    }
-}
-
-/* stretch missing */
-@media (max-width: 570px) {
     .homeLearnWithUs__subtitle {
-        max-width: 100%;
+        max-width: 80%;
     }
 
-    .homeLearnWithUs__items {
-        grid-template-columns: auto;
-    }
 }

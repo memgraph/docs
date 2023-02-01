@@ -53,12 +53,11 @@ export default function HomeLearnWithUs() {
                     <p>Get to know Memgraph by following one of our tutorials. We have prepared a lot of hands-on
                         examples in the form of tutorials and live streams.</p>
                 </div>
-                <div>&nbsp;</div>
                 <div className={styles.homeLearnWithUs__items}>
                     {/* <div>&nbsp;</div> */}
                     {items.map((item, i) => {
                         return (
-                            <div key={i}>
+                            <div key={i} className={styles.homeLearnWithUs__items}>
                                 <CalloutImgBox title={item.title} subtitle={item.description} url={item.url}
                                     img={item.img} />
                             </div>
