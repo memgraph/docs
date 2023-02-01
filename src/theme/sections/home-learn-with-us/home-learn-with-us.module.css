@@ -1,7 +1,4 @@
-.homeLearnWithUs {
-    padding: 85px 0;
-    position: relative;
-}
+.homeLearnWithUs {}
 
 .homeLearnWithUs__bg {
     position: absolute;
@@ -14,32 +11,34 @@
 }
 
 .homeLearnWithUs h2 {
-    font-size: 39px;
+    font-size: 32px;
     margin-bottom: 42px;
+    font-family: var(--mg-font-family);
+    font-weight: var(--mg-font-weight-h2h3);
 }
 
 .homeLearnWithUs__items {
-    position: relative;
     display: flex;
-    justify-content: flex-end;
-    align-items: stretch;
-    margin-top: 70px;
-    z-index: 2;
+    flex-wrap: wrap;
+    margin-left: -20px;
 }
 
-.homeLearnWithUs__items > div {
-    flex: 1;
+
+.homeLearnWithUs__items>div {
+    flex: 1 0 calc(25% - 20px);
     margin-left: 20px;
+    margin-top: 70px;
 }
 
-.homeLearnWithUs__items > div:nth-child(2) {
-    margin-left: 0;
+
+.homeLearnWithUs__items>div:nth-child(5) {
+    flex: 1 0 calc(25% - 20px);
+    max-width: calc(25% - 20px);
 }
 
-@media (max-width: 1024px) {
-    .homeLearnWithUs__items > div:first-child {
-        display: none;
-    }
+.homeLearnWithUs__items>div:nth-child(6) {
+    flex: 1 0 calc(25% - 20px);
+    max-width: calc(25% - 20px);
 }
 
 @media (max-width: 768px) {
@@ -47,7 +46,15 @@
         flex-direction: column;
     }
 
-    .homeLearnWithUs__items > div {
+    .homeLearnWithUs__items>div {
         margin: 36px 0;
+    }
+
+    .homeLearnWithUs__items>div:nth-child(5) {
+        max-width: 100%;
+    }
+
+    .homeLearnWithUs__items>div:nth-child(6) {
+        max-width: 100%;
     }
 }

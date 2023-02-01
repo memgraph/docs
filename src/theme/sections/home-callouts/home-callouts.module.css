@@ -1,13 +1,11 @@
 .homeCallouts {
-    margin-top: -100px;
+    margin-top: -60px;
     display: grid;
     grid-gap: 20px;
     grid-template-columns: auto auto auto;
 }
 
-.homeCallouts__item {
-
-}
+.homeCallouts__item {}
 
 @media (max-width: 1024px) {
     .homeCallouts {
