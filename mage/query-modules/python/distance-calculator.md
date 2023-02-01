@@ -25,16 +25,17 @@ export const Highlight = ({children, color}) => (
 
 ## Abstract
 
-The distance calculator is a module for calculating distance between two geographic locations. It measures the distance along the surface of the earth. Formulae takes into consideration the radius of the earth. For this algorithm, it is necessary to define an object that has longitude and latitude properties like this:
+The distance calculator is a module for calculating distance between two geographic locations. It measures the distance along the surface of the earth. 
+Formula takes into consideration the radius of the earth. For this algorithm, it is necessary to define an object that has longitude and latitude properties like this:
 
 ```cypher
 (location:Location {lat: 44.1194, lng: 15.2314})
 ```
 
 | Trait               | Value                                                 |
-| ------------------- | ----------------------------------------------------- |
+| ------------------- |-------------------------------------------------------|
 | **Module type**     | <Highlight color="#FB6E00">**module**</Highlight>     |
-| **Implementation**  | <Highlight color="#FB6E00">**Python**</Highlight>     |
+| **Implementation**  | <Highlight color="#FB6E00">**C++**</Highlight>        |
 | **Graph direction** | <Highlight color="#FB6E00">**undirected**</Highlight> |
 | **Edge weights**    | <Highlight color="#FB6E00">**unweighted**</Highlight> |
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight> |
@@ -43,13 +44,14 @@ The distance calculator is a module for calculating distance between two geograp
 
 <RunOnSubgraph/>
 
-### `single(start, end, metrics)`
+### `single(start, end, metrics, decimals)`
 
 #### Input:
 
 * `start: Vertex` ➡ Starting point to measure distance. Required to have *lng* and *lat* properties.
 * `end: Vertex` ➡ Ending point to measure distance. Required to have *lng* and *lat* properties.
 * `metrics: string` ➡ Can be either "m" or "km". These stand for meters and kilometers respectively.
+* `decimals:int` ➡ Number of decimals on which you want to round up number.
 
 #### Output:
 
@@ -63,13 +65,14 @@ YIELD distance
 RETURN distance;
 ```
 
-### `multiple(start_points, end_points, metrics)`
+### `multiple(start_points, end_points, metrics, decimals)`
 
 #### Input:
 
 * `start_points: List[Vertex]` ➡ Starting points to measure distance collected in a list. Required to have *lng* and *lat* properties. Must be of the same size as *end_points*.
 * `end_points: List[Vertex]` ➡ Ending points to measure distance collected in a list. Required to have *lng* and *lat* properties. Must be of the same size as *start_points*.
 * `metrics: string` ➡ Can be either "m" or "km". These stand for metres and kilometres respectively.
+* `decimals:int` ➡ Number of decimals on which you want to round up number.
 
 #### Output:
 
