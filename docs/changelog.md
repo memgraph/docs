@@ -8,12 +8,12 @@ sidebar_label: Changelog
 
 ### Bug Fixes
 
-- Variables can be used inside nested FOREACH clauses. [#725](https://github.com/memgraph/memgraph/pull/725)
-- FOREACH clause can now use indexes if needed (e.g. in case of MERGE). [#736](https://github.com/memgraph/memgraph/pull/736)
-- C++ API now allows setting and getting node and relationship properties. [#732](https://github.com/memgraph/memgraph/pull/732)
-- OPTIONAL MATCH can now use label property indexes that are referencing the previously matched variables. [#736](https://github.com/memgraph/memgraph/pull/736)
+- Variables can be used inside nested [FOREACH clauses](/cypher-manual/extension-clauses). [#725](https://github.com/memgraph/memgraph/pull/725)
+- [FOREACH clause](/cypher-manual/extension-clauses) can now use indexes if needed (e.g. in case of MERGE). [#736](https://github.com/memgraph/memgraph/pull/736)
+- [C++ API](/reference-guide/query-modules/implement-custom-query-modules/api/cpp-api.md) now allows setting and getting node and relationship properties. [#732](https://github.com/memgraph/memgraph/pull/732)
+- [OPTIONAL MATCH](/cypher-manual/clauses/optional-match) can now use label property indexes that are referencing the previously matched variables. [#736](https://github.com/memgraph/memgraph/pull/736)
 - Iterating over all relationships in a graph now works as expected, as well as checking whether the graph contains a given relationship. [#743](https://github.com/memgraph/memgraph/pull/743)
-- Implementation of the All Shortest Paths algorithm was fixed so the paths are no longer duplicated when the upper bound is used. [#737](https://github.com/memgraph/memgraph/pull/737)
+- Implementation of the [All Shortest Paths algorithm](/memgraph/reference-guide/built-in-graph-algorithms#all-shortest-paths) was fixed so the paths are no longer duplicated when the upper bound is used. [#737](https://github.com/memgraph/memgraph/pull/737)
 
 ## v2.5.1 - Jan 19, 2023
 
