@@ -10,6 +10,10 @@
     /* cursor: pointer; */
 }
 
+.calloutBox:hover .calloutBox__url {
+    color: var(--ifm-color-primary);
+}
+
 .calloutBox__title {
     font-size: 20px;
     font-weight: 500;

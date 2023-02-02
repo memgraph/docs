@@ -4,6 +4,7 @@ import Container from "../../../components/container/container";
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 export default function HomeInBrowserDataAnalysis() {
+    const iconArrowRight = "fa fa-arrow-right";
     return (
         <div className={styles.homeInBrowserDataAnalysis}>
             <Container>
@@ -23,6 +24,9 @@ export default function HomeInBrowserDataAnalysis() {
                                 <img src={require('/img/memgraph-cloud-the-fastest-way-to-build-graph-apps-for-streaming.gif').default}></img>
                             </a>
                         </div>
+                        <div className={styles.homeInBrowserDataAnalysis__cta}>
+                            <a className={styles.homeInBrowserDataAnalysis__content__url} href={useBaseUrl('/memgraph-cloud')}>Get started with Cloud  &nbsp; <i className={iconArrowRight} style={{ color: "#FB6E00" }}></i></a>
+                        </div>
                     </div>
                     <div className={styles.homeInBrowserDataAnalysis__column + ' ' + styles.homeInBrowserDataAnalysis__column__lab}>
                         <a href={useBaseUrl('/memgraph-lab')} style={{ textDecoration: 'none', color: '#231F20' }}>
@@ -37,6 +41,9 @@ export default function HomeInBrowserDataAnalysis() {
                             <a href={useBaseUrl('/memgraph-lab')}>
                                 <img src={require('/img/memgraph-lab-understand-your-schema-visual.gif').default}></img>
                             </a>
+                        </div>
+                        <div className={styles.homeInBrowserDataAnalysis__cta}>
+                            <a className={styles.homeInBrowserDataAnalysis__content__url} href={useBaseUrl('/memgraph-lab')}>Get started with Lab  &nbsp; <i className={iconArrowRight} style={{ color: "#FB6E00" }}></i></a>
                         </div>
                     </div>
                 </div>

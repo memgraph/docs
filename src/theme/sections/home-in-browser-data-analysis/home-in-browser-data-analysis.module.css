@@ -34,6 +34,7 @@
     line-height: var(--mg-line-height-p);
     color: var(--mg-font-color-light2);
     margin-top: 24px;
+    margin-bottom: 42px;
 }
 
 .homeInBrowserDataAnalysis__column__cloud {
@@ -41,7 +42,25 @@
 }
 
 .homeInBrowserDataAnalysis__image {
-    padding-top: 42px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.homeInBrowserDataAnalysis__cta {
+    padding-top: 32px;
+}
+
+.homeInBrowserDataAnalysis__content__url {
+    color: var(--mg-primary);
+    font-size: 16px;
+    font-weight: var(--mg-font-weight-p);
+    color: var(--mg-font-color);
+    font-family: var(--mg-font-family-alt);
+    line-height: 24px;
+    letter-spacing: 0.01em;
+}
+
+.homeInBrowserDataAnalysis__content__url:hover {
+    text-decoration: none;
 }
 
 @media (max-width: 1024px) {
