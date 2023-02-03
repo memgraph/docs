@@ -21,7 +21,7 @@ export default function HomeInBrowserDataAnalysis() {
                         </div>
                         <div className={styles.homeInBrowserDataAnalysis__image}>
                             <a href={useBaseUrl('/memgraph-cloud')}>
-                                <img src={require('/img/memgraph-cloud-the-fastest-way-to-build-graph-apps-for-streaming.gif').default}></img>
+                                <img src={require('/img/cloud.gif').default}></img>
                             </a>
                         </div>
                         <div className={styles.homeInBrowserDataAnalysis__cta}>
@@ -39,7 +39,7 @@ export default function HomeInBrowserDataAnalysis() {
                         </div>
                         <div className={styles.homeInBrowserDataAnalysis__image}>
                             <a href={useBaseUrl('/memgraph-lab')}>
-                                <img src={require('/img/memgraph-lab-understand-your-schema-visual.gif').default}></img>
+                                <img src={require('/img/lab.gif').default}></img>
                             </a>
                         </div>
                         <div className={styles.homeInBrowserDataAnalysis__cta}>
