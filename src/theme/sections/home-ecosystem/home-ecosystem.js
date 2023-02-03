@@ -14,7 +14,7 @@ export default function HomeEcosystem() {
         },
         'Lab': {
             description: 'Memgraph Lab is a visual user interface that connects your local Memgraph instance or Cloud account. You can use Lab to import, explore and visualize your data as well as execute and optimize Cypher queries.',
-            url: 'https://memgraph.com/product/lab',
+            url: useBaseUrl('/memgraph-lab'),
             urlText: 'Learn more',
         },
         'MAGE': {
