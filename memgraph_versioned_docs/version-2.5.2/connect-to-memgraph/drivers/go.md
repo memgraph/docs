@@ -16,7 +16,7 @@ You can find the official Go driver on
 
 :::note Go Object Modeled Graph (OMG)
 
-If you are looking for something similar to the Object Graph Mapper for Go, check out [`gograph`](https://github.com/prahaladd/gograph). This project aims to provide a mechanism to interact with any graph database using a unified and minimalistic API layer for the core operations on a graph database. It is an open-source project not maintaned by Memgraph team.
+If you are looking for something similar to the Object Graph Mapper for Go, check out [`gograph`](https://github.com/prahaladd/gograph). This project aims to provide a mechanism to interact with any graph database using a unified and minimalistic API layer for the core operations on a graph database. It is an open-source project not maintained by the Memgraph team.
 
 :::
 
