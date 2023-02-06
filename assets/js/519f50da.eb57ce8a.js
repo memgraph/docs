@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[8901],{57535:s=>{s.exports=JSON.parse('{"name":"docusaurus-plugin-content-docs","id":"memgraph"}')}}]);
