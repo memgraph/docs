@@ -20,7 +20,7 @@ style={{
 </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-node_classification-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/T515-IN-node-classification-with-pyg/python/node_classification.py)
+[![docs-source](https://img.shields.io/badge/source-node_classification-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/node_classification.py)
 
 ## Abstract
 **Node classification** is the problem of finding out the **right label** for a **node** based on its **neighbors’ labels** and **structure similarities**.
