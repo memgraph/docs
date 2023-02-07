@@ -8,6 +8,8 @@ The `LOAD CSV` clause enables you to load and use data from a CSV file of your
 choosing in a row-based manner within a query. We support the Excel CSV dialect,
 as it's the most commonly used one.
 
+[![Related - How-to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/docs/memgraph/import-data/load-csv-clause)
+
 The syntax of the clause is:
 
 ```cypher
