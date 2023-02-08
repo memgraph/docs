@@ -282,46 +282,57 @@ Step 2: Copy the following code and fill out the missing details (`YOUR_MEMGRAPH
 ```go
 package main
 
-import "github.com/neo4j/neo4j-go-driver/v4/neo4j"
-import "fmt"
+import (
+    "fmt"
+    "github.com/neo4j/neo4j-go-driver/v5/neo4j"
+)
 
 func main() {
-    driver, err := neo4j.NewDriver(
-        "bolt+ssc://MEMGRAPH_HOST_ADDRESS:7687",
-        neo4j.BasicAuth("YOUR_MEMGRAPH_USERNAME", "YOUR_MEMGRAPH_PASSWORD", ""))
-
+    dbUri := "bolt+ssc://MEMGRAPH_HOST_ADDRESS:7687"
+    driver, err := neo4j.NewDriver(dbUri, neo4j.BasicAuth("YOUR_MEMGRAPH_USERNAME", "YOUR_MEMGRAPH_PASSWORD", ""))
     if err != nil {
-        fmt.Println(err)
+        panic(err)
     }
+
     defer driver.Close()
-
-    session, err := driver.Session(neo4j.AccessModeWrite)
+    item, err := insertItem(driver)
     if err != nil {
-        fmt.Println(err)
+        panic(err)
     }
+    fmt.Printf("%v\n", item.Message)
+}
+
+func insertItem(driver neo4j.Driver) (*Item, error) {
+
+    session := driver.NewSession(neo4j.SessionConfig{})
     defer session.Close()
+    result, err := session.WriteTransaction(createItemFn)
+    if err != nil {
+        return nil, err
+    }
+    return result.(*Item), nil
+}
 
-    message, err := session.WriteTransaction(func(transaction neo4j.Transaction) (interface{}, error) {
-        records, err := transaction.Run(
-            "CREATE (n:FirstNode {message: $message}) RETURN id(n) AS nodeId, n.message AS message",
-            map[string]interface{}{"message": "Hello Memgraph from Go!"})
-        if err != nil {
-            return nil, err
-        }
-
-        record, err := records.Single()
-        if err != nil {
-            return nil, err
-        }
-
-        return record.Values[1].(string), nil
-    })
+func createItemFn(tx neo4j.Transaction) (interface{}, error) {
+    records, err := tx.Run(
+        "CREATE (a:Greeting) SET a.message = $message RETURN 'Node ' + id(a) + ': ' + a.message",
+        map[string]interface{}{"message": "Hello Memgraph from Go!"})
 
     if err != nil {
-        fmt.Println(err)
+        return nil, err
+    }
+    record, err := records.Single()
+    if err != nil {
+        return nil, err
     }
 
-    fmt.Println("Created node:", message)
+    return &Item{
+        Message: record.Values[0].(string),
+    }, nil
+}
+
+type Item struct {
+    Message string
 }
 ```
 
