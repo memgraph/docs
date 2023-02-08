@@ -17,7 +17,7 @@ export default function HomeInBrowserDataAnalysis() {
                             </div>
                         </a>
                         <div className={styles.homeInBrowserDataAnalysis__subtitle}>
-                            Check out Memgraph Cloud - a cloud service fully managed on AWS and available in 26 geographic regions around the world. Memgraph Cloud allows you to create projects with Enterprise instances of MemgraphDB from your browser.
+                            Check out Memgraph Cloud - a cloud service fully managed on AWS and available in 6 geographic regions around the world. Memgraph Cloud allows you to create projects with Enterprise instances of MemgraphDB from your browser.
                         </div>
                         <div className={styles.homeInBrowserDataAnalysis__image}>
                             <a href={useBaseUrl('/memgraph-cloud')}>
