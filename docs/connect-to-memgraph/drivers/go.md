@@ -46,7 +46,7 @@ package main
 import (
     "fmt"
 
-    "github.com/neo4j/neo4j-go-driver/v4/neo4j"
+    "github.com/neo4j/neo4j-go-driver/v5/neo4j"
 )
 
 func main() {
@@ -113,19 +113,19 @@ go mod init example.com/hello
 **4.** Add the **Bolt driver** with the command:
 
 ```
-go get github.com/neo4j/neo4j-go-driver/v4@v4.3.1
+go get github.com/neo4j/neo4j-go-driver/v5
 ```
 
 **5.** Run the app with the following command:
 
 ```
-go run .\program.go
+go run ./program.go
 ```
 
 You should see an output similar to the following:
 
 ```
-Node 1: Hello, World!
+Node 0: Hello, World!
 ```
 
 ## Where to next?
