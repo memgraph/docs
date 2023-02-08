@@ -346,14 +346,14 @@ Step 1: Install the driver with composer:
 composer require stefanak-michal/memgraph-bolt-wrapper
 ```
 
-Step 2: Copy the following code and replace the `YOUR MEMGRAPH PASSWORD HERE` with the project's password:
+Step 2: Copy the following code and fill out the missing details (`YOUR_MEMGRAPH_PASSWORD`, `YOUR_MEMGRAPH_USERNAME` and `MEMGRAPH_HOST_ADDRESS`) before running it:
 
 ```php
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
 
 // Create a connection class and specify target host and port.
-$conn = new \\Bolt\\connection\\StreamSocket('<FILL_HOST>', <FILL_PORT>);
+$conn = new \\Bolt\\connection\\StreamSocket('MEMGRAPH_HOST_ADDRESS', '7687');
 $conn->setSslContextOptions([
     'peer_name' => 'Memgraph DB',
     'allow_self_signed' => true
@@ -369,7 +369,7 @@ $bolt->setProtocolVersions(4.1, 4, 3);
 $protocol = $bolt->build();
 
 // Login to database with credentials
-$protocol->hello(\\Bolt\\helpers\\Auth::basic('<FILL_EMAIL>', '<YOUR MEMGRAPH PASSWORD HERE>'));
+$protocol->hello(\\Bolt\\helpers\\Auth::basic('YOUR_MEMGRAPH_USERNAME', 'YOUR_MEMGRAPH_PASSWORD'));
 
 // Pipeline two messages. One to execute query with parameters and second to pull records.
 $protocol
