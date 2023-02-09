@@ -13,29 +13,13 @@ To follow this guide, you will need:
 
 - A **running Memgraph instance**. If you need to set up Memgraph, take a look
   at the [Installation guide](/installation/overview.mdx).
-- A basic understanding of graph databases and the property graph model.
-- **Docker** installed and running. Instructions on how to setup Docker can be
-  found on the [official Docker website](https://docs.docker.com/get-docker/).
 - A locally installed [**rsmgclient
-  driver**](https://github.com/memgraph/rsmgclient) if you are not using Docker
-  to build the program.
+  driver**](https://github.com/memgraph/rsmgclient).
 
-:::info
-
-**NOTE:** We recommend using Docker because it simplifies installing the driver
-dependencies. If you don't wish to use Docker, you will need to install the
-**rsmgclient driver** locally.
-
-:::
 
 ## Basic setup
 
-We'll use a **Dockerized Rust program** to demonstrate how to connect to a
-running Memgraph database instance. If you won't use Docker, the steps
-might be slightly different, but the code is either the same or very
-similar.<br />
-
-Let's jump in and connect a simple program to Memgraph.
+Let's jump in and connect a simple program to connect to Memgraph.
 
 **1.** Create a new Rust project with the name **memgraph_rust** by running the
 following command:
@@ -48,119 +32,71 @@ cargo new memgraph_rust --bin
 `[dependencies]` :
 
 ```
-rsmgclient = "1.0.0"
+rsmgclient = "2.0.0"
 ```
 
 **3.** To create the actual program, add the following code to the `src/main.rs`
 file:
 
 ```rust
-use rsmgclient::{ConnectParams, Connection, SSLMode};
+use rsmgclient::{ConnectParams, Connection, MgError, Value, SSLMode};
 
-fn main(){
-    // Parameters for connecting to database.
+fn execute_query() -> Result<(), MgError> {
+    // Connect to Memgraph.
     let connect_params = ConnectParams {
-        host: Some(String::from("172.17.0.2")),
+        host: Some(String::from("localhost")),
+        port: 7687,
         sslmode: SSLMode::Disable,
         ..Default::default()
     };
+    let mut connection = Connection::connect(&connect_params)?;
 
-    // Make a connection to the database.
-    let mut connection = match Connection::connect(&connect_params) {
-        Ok(c) => c,
-        Err(err) => panic!("{}", err)
-    };
+    // Create simple graph.
+    connection.execute_without_results(
+        "CREATE (p1:Person {name: 'Alice'})-[l1:Likes]->(m:Software {name: 'Memgraph'}) \
+         CREATE (p2:Person {name: 'John'})-[l2:Likes]->(m);",
+    )?;
 
-    // Execute a query.
-    let query = "CREATE (u:User {name: 'Alice'})-[:Likes]->(m:Software {name: 'Memgraph'}) RETURN u, m";
-    match connection.execute(query, None) {
-        Ok(columns) => println!("Columns: {}", columns.join(", ")),
-        Err(err) => panic!("{}", err)
-    };
-
-    // Fetch all query results.
-    match connection.fetchall() {
-        Ok(records) => {
-            for value in &records[0].values {
-                println!("{}", value);
+    // Fetch the graph.
+    let columns = connection.execute("MATCH (n)-[r]->(m) RETURN n, r, m;", None)?;
+    println!("Columns: {}", columns.join(", "));
+    for record in connection.fetchall()? {
+        for value in record.values {
+            match value {
+                Value::Node(node) => print!("{}", node),
+                Value::Relationship(edge) => print!("-{}-", edge),
+                value => print!("{}", value),
             }
-        },
-        Err(err) => panic!("{}", err)
-    };
+        }
+        println!();
+    }
+    connection.commit()?;
 
-    // Commit any pending transaction to the database.
-    match connection.commit() {
-        Ok(()) => {},
-        Err(err) => panic!("{}", err)
-    };
+    Ok(())
+}
+
+fn main() {
+    if let Err(error) = execute_query() {
+        panic!("{}", error)
+    }
 }
 ```
 
-**4.** Create a new file in the project root directory `/memgraph_rust` and name
-it `Dockerfile` . Add the following code to it:
-
-```dockerfile
-# Set base image (host OS)
-FROM rust:1.56
-
-# Install CMake
-RUN apt-get update && \
-  apt-get --yes install cmake
-
-# Install mgclient
-RUN apt-get install -y git cmake make gcc g++ libssl-dev clang && \
-  git clone https://github.com/memgraph/mgclient.git /mgclient && \
-  cd mgclient && \
-  git checkout 5ae69ea4774e9b525a2be0c9fc25fb83490f13bb && \
-  mkdir build && \
-  cd build && \
-  cmake .. && \
-  make && \
-  make install
-
-# Set the working directory in the container
-WORKDIR /code
-
-# Copy the dependencies file to the working directory
-COPY Cargo.toml .
-
-# Copy the content of the local src directory to the working directory
-RUN mkdir src
-COPY src/ ./src
-
-# Generate binary using the Rust compiler
-RUN cargo build
-
-# Command to run on container start
-CMD [ "cargo", "run" ]
+**4.** Open a terminal, position yourself in the project root directory `/memgraph_rust` and run:
+``` 
+cargo build
 ```
-
-**5.** Don't forget to change the host address in your code.<br /> Find the
-**`CONTAINER_ID`** with `docker ps` and use it in the following command to
-retrieve the address:
-
+and after that:
 ```
-docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' CONTAINER_ID
-```
-
-**6.** To run the application, first, you need to create a Docker image with:
-
-```
-docker build -t memgraph_rust .
-```
-
-**7.** Now, you can start the application with the following command:
-
-```
-docker run memgraph_rust
+cargo run
 ```
 
 You should see an output similar to the following:
 
 ```
-Columns: u, m
-(:User {'name': 'Alice'})
-(:Software {'name': 'Memgraph'})
+Columns: n, r, m
+(:Person {'name': 'Alice'})-[:Likes {}]-(:Software {'name': 'Memgraph'})
+(:Person {'name': 'John'})-[:Likes {}]-(:Software {'name': 'Memgraph'})
 ```
 
 ## Where to next?
