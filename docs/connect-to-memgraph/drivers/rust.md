@@ -4,7 +4,7 @@ title: Rust quick start
 sidebar_label: Rust
 ---
 
-At the end of this guide, you will have created a simple Rust **`Hello, World!`** program that connects to the Memgraph database and executes simple
+At the end of this guide, you will have created a Rust program that connects to the Memgraph database and executes simple
 queries.
 
 ## Prerequisites
