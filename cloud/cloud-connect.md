@@ -95,15 +95,15 @@ git clone https://github.com/memgraph/mgclient
 Step 2: Add the following line to the Cargo.toml file under the line [dependencies]:
 
 ```
-rsmgclient = "0.1.1"
+rsmgclient = "2.0.0"
 ```
 Step 3: Copy the following code and fill out the missing details (`YOUR_MEMGRAPH_PASSWORD`, `YOUR_MEMGRAPH_USERNAME` and `MEMGRAPH_HOST_ADDRESS`) before running it:
 
 ```rust
-use rsmgclient::{ConnectParams, Connection, SSLMode};
+use rsmgclient::{ConnectParams, Connection, MgError, Value, SSLMode};
 
-fn main(){
-    // Parameters for connecting to database.
+fn execute_query() -> Result<(), MgError> {
+    // Connect to Memgraph.
     let connect_params = ConnectParams {
         host: Some(String::from("MEMGRAPH_HOST_ADDRESS")),
         port: 7687,
@@ -112,26 +112,36 @@ fn main(){
         sslmode: SSLMode::Require,
         ..Default::default()
     };
+    let mut connection = Connection::connect(&connect_params)?;
 
-    // Make a connection to the database.
-    let mut connection = match Connection::connect(&connect_params) {
-        Ok(c) => c,
-        Err(err) => panic!("Connect failed: {}", err)
-    };
+    // Create simple graph.
+    connection.execute_without_results(
+        "CREATE (p1:Person {name: 'Alice'})-[l1:Likes]->(m:Software {name: 'Memgraph'}) \
+         CREATE (p2:Person {name: 'John'})-[l2:Likes]->(m);",
+    )?;
 
-    // Execute a query.
-    let query = "CREATE (n:FirstNode {message: 'Hello Memgraph from Rust!'}) RETURN id(n) AS nodeId, n.message AS message";
-    match connection.execute(query, None) {
-        Ok(c) => c,
-        Err(err) => panic!("Query failed: {}", err)
-    };
+    // Fetch the graph.
+    let columns = connection.execute("MATCH (n)-[r]->(m) RETURN n, r, m;", None)?;
+    println!("Columns: {}", columns.join(", "));
+    for record in connection.fetchall()? {
+        for value in record.values {
+            match value {
+                Value::Node(node) => print!("{}", node),
+                Value::Relationship(edge) => print!("-{}-", edge),
+                value => print!("{}", value),
+            }
+        }
+        println!();
+    }
+    connection.commit()?;
 
-    match connection.fetchall() {
-        Ok(records) => {
-            println!("Created node: {}", &records[0].values[1])
-        },
-        Err(err) => panic!("{}", err)
-    };
+    Ok(())
+}
+
+fn main() {
+    if let Err(error) = execute_query() {
+        panic!("{}", error)
+    }
 }
 ```
 Read more about it on [Rust Quick Start Guide](/memgraph/connect-to-memgraph/drivers/rust).
