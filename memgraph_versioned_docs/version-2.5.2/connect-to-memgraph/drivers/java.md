@@ -76,7 +76,7 @@ public class HelloWorld implements AutoCloseable
     	
     	try (var session = driver.session()) {
     		var hello = session.executeWrite( transaction -> {
-    		var query = new Query("CREATE (a:Greeting) " + "SET a.message = $message " + "RETURN 'Node ' + id(a) + ': ' + a.message", parameters("message", message));
+    		var query = new Query("CREATE (a:Greeting) SET a.message = $message RETURN 'Node ' + id(a) + ': ' + a.message", parameters("message", message));
     		var result = transaction.run(query);
     		return result.single().get(0).asString();
     		});
