@@ -49,7 +49,7 @@ module.exports = {
         "query-modules/python/node-classification-with-gnn",
         "query-modules/python/node2vec",
         "query-modules/python/node2vec-online",
-        "query-modules/python/node-similarity",
+        "query-modules/cpp/node-similarity",
         "query-modules/python/nxalg",
         "query-modules/cpp/pagerank",
         "query-modules/cpp/pagerank-online",
