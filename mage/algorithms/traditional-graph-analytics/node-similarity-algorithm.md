@@ -41,10 +41,10 @@ popular measures based on neighborhood nodes with their brief explanations.
 ## Implementation
 
 [![Node
-Similarity](https://img.shields.io/badge/Node_Similarity-Implementation-FB6E00?style=for-the-badge&logo=github&logoColor=white)](https://github.com/memgraph/mage/blob/main/python/node_similarity.py)
+Similarity](https://img.shields.io/badge/Node_Similarity-Implementation-FB6E00?style=for-the-badge&logo=github&logoColor=white)](https://github.com/memgraph/mage/blob/main/cpp/node_similarity_module/node_similarity.cpp)
 
 [![Node
-Similarity](https://img.shields.io/badge/Node_Similarity-Documentation-FCC624?style=for-the-badge&logo=python&logoColor=white)](/mage/query-modules/python/node-similarity)
+Similarity](https://img.shields.io/badge/Node_Similarity-Documentation-FCC624?style=for-the-badge&logo=python&logoColor=white)](/mage/query-modules/cpp/node-similarity)
 
 Node similarity is implemented as part of the
 [**MAGE**](https://github.com/memgraph/mage) project. Be sure to check it out in

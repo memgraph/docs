@@ -4,6 +4,8 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+- added node similarity algorithms (Jaccard, overlap and cosine) in C++
+
 ## v1.5.1 - Jan 20, 2023
 
 ### Major Features and Improvements
