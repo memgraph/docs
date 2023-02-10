@@ -18,14 +18,13 @@ For this guide you will need:
     In order for this driver to work, you need [modify configuration
     setting](/docs/memgraph/how-to-guides/config-logs)
     `--bolt-server-name-for-init`. When running Memgraph, set
-    `--bolt-server-name-for-init=Neo4j`.
+    `--bolt-server-name-for-init=Neo4j/`.
   :::
-- A basic understanding of graph databases and the property graph model.
 - Java 8, 11, 17 or 19 installed.
 
 ## Basic Setup
 
-We'll be using Eclipse IDE 2020-09 on Windows 10 to connect a simple Java
+We'll be using Eclipse IDE 2022-12 on MacOS to connect a simple Java
 console application to a running Memgraph instance using **Maven**. If you're
 using a different IDE, the steps might be slightly different, but the code is
 probably the same or very similar.<br />
@@ -40,11 +39,11 @@ dependencies inside your project:
 
 ```java
 <dependencies>
-    <dependency>
-      <groupId>org.memgraph</groupId>
-      <artifactId>bolt-java-driver</artifactId>
-      <version>0.4.7</version>
-    </dependency>
+	<dependency>
+	  <groupId>org.neo4j.driver</groupId>
+	  <artifactId>neo4j-java-driver</artifactId>
+	  <version>5.4.0</version>
+	</dependency>
   </dependencies>
 ```
 
@@ -54,10 +53,7 @@ dependencies inside your project:
 import org.neo4j.driver.AuthTokens;
 import org.neo4j.driver.Driver;
 import org.neo4j.driver.GraphDatabase;
-import org.neo4j.driver.Session;
-import org.neo4j.driver.Result;
-import org.neo4j.driver.Transaction;
-import org.neo4j.driver.TransactionWork;
+import org.neo4j.driver.Query;
 
 import static org.neo4j.driver.Values.parameters;
 
@@ -77,24 +73,17 @@ public class HelloWorld implements AutoCloseable
 
     public void printGreeting( final String message )
     {
-        try ( Session session = driver.session() )
-        {
-            String greeting = session.writeTransaction( new TransactionWork<String>()
-            {
-                @Override
-                public String execute( Transaction tx )
-                {
-                    Result result = tx.run( "CREATE (a:Greeting) " +
-                                                     "SET a.message = $message " +
-                                                     "RETURN 'Node ' + id(a) + ': ' + a.message",
-                            parameters( "message", message ) );
-                    return result.single().get( 0 ).asString();
-                }
-            } );
-            System.out.println( greeting );
-        }
+    	
+    	try (var session = driver.session()) {
+    		var hello = session.executeWrite( transaction -> {
+    		var query = new Query("CREATE (a:Greeting) SET a.message = $message RETURN 'Node ' + id(a) + ': ' + a.message", parameters("message", message));
+    		var result = transaction.run(query);
+    		return result.single().get(0).asString();
+    		});
+    		System.out.println(hello);
+    	}
     }
-
+    
     public static void main( String... args ) throws Exception
     {
         try ( HelloWorld greeter = new HelloWorld( "bolt://localhost:7687", "", "" ) )
@@ -110,6 +99,10 @@ Once you run the program, you should see an output similar to the following:
 ```
 Node 1: Hello, World!
 ```
+
+:::info
+Memgraph created [Bolt Java Driver](https://github.com/memgraph/bolt-java-driver) which can be used to connect to a running Memgraph instance. We still recommend you use the above mentioned driver.
+:::
 
 ## Where to next?
 

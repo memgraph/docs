@@ -45,13 +45,12 @@ package main
 
 import (
     "fmt"
-
     "github.com/neo4j/neo4j-go-driver/v5/neo4j"
 )
 
 func main() {
     dbUri := "bolt://localhost:7687"
-    driver, err := neo4j.NewDriver(dbUri, neo4j.BasicAuth("username", "password", ""))
+    driver, err := neo4j.NewDriver(dbUri, neo4j.BasicAuth("", "", ""))
     if err != nil {
         panic(err)
     }

@@ -4,8 +4,7 @@ title: JavaScript quick start
 sidebar_label: JavaScript
 ---
 
-At the end of this guide, you will have created a simple JavaScript **`Hello,
-World!`** program that connects to the Memgraph database and executes simple
+At the end of this guide, you will have created a JavaScript program that connects to the Memgraph database and executes simple
 queries.
 
 :::note

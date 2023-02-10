@@ -95,15 +95,15 @@ git clone https://github.com/memgraph/mgclient
 Step 2: Add the following line to the Cargo.toml file under the line [dependencies]:
 
 ```
-rsmgclient = "0.1.1"
+rsmgclient = "2.0.0"
 ```
 Step 3: Copy the following code and fill out the missing details (`YOUR_MEMGRAPH_PASSWORD`, `YOUR_MEMGRAPH_USERNAME` and `MEMGRAPH_HOST_ADDRESS`) before running it:
 
 ```rust
-use rsmgclient::{ConnectParams, Connection, SSLMode};
+use rsmgclient::{ConnectParams, Connection, MgError, Value, SSLMode};
 
-fn main(){
-    // Parameters for connecting to database.
+fn execute_query() -> Result<(), MgError> {
+    // Connect to Memgraph.
     let connect_params = ConnectParams {
         host: Some(String::from("MEMGRAPH_HOST_ADDRESS")),
         port: 7687,
@@ -112,26 +112,36 @@ fn main(){
         sslmode: SSLMode::Require,
         ..Default::default()
     };
+    let mut connection = Connection::connect(&connect_params)?;
 
-    // Make a connection to the database.
-    let mut connection = match Connection::connect(&connect_params) {
-        Ok(c) => c,
-        Err(err) => panic!("Connect failed: {}", err)
-    };
+    // Create simple graph.
+    connection.execute_without_results(
+        "CREATE (p1:Person {name: 'Alice'})-[l1:Likes]->(m:Software {name: 'Memgraph'}) \
+         CREATE (p2:Person {name: 'John'})-[l2:Likes]->(m);",
+    )?;
 
-    // Execute a query.
-    let query = "CREATE (n:FirstNode {message: 'Hello Memgraph from Rust!'}) RETURN id(n) AS nodeId, n.message AS message";
-    match connection.execute(query, None) {
-        Ok(c) => c,
-        Err(err) => panic!("Query failed: {}", err)
-    };
+    // Fetch the graph.
+    let columns = connection.execute("MATCH (n)-[r]->(m) RETURN n, r, m;", None)?;
+    println!("Columns: {}", columns.join(", "));
+    for record in connection.fetchall()? {
+        for value in record.values {
+            match value {
+                Value::Node(node) => print!("{}", node),
+                Value::Relationship(edge) => print!("-{}-", edge),
+                value => print!("{}", value),
+            }
+        }
+        println!();
+    }
+    connection.commit()?;
 
-    match connection.fetchall() {
-        Ok(records) => {
-            println!("Created node: {}", &records[0].values[1])
-        },
-        Err(err) => panic!("{}", err)
-    };
+    Ok(())
+}
+
+fn main() {
+    if let Err(error) = execute_query() {
+        panic!("{}", error)
+    }
 }
 ```
 Read more about it on [Rust Quick Start Guide](/memgraph/connect-to-memgraph/drivers/rust).
@@ -197,8 +207,6 @@ int main(int argc, char *argv[]) {
 }
 ```
 
-Read more about it on [C# Quick Start Guide](/memgraph/connect-to-memgraph/drivers/c-sharp).
-
 ### Java
 
 Step 1: Add the following driver dependency in your `pom.xml` file:
@@ -210,6 +218,10 @@ Step 1: Add the following driver dependency in your `pom.xml` file:
   <version>4.1.1</version>
 </dependency>
 ```
+
+:::info
+If you want to use neo4j-java-driver v5, please connect to the local instance following the instructions on [Java Quick Start Guide](/memgraph/connect-to-memgraph/drivers/java).
+:::
 
 Step 2: Copy the following code and fill out the missing details (`YOUR_MEMGRAPH_PASSWORD`, `YOUR_MEMGRAPH_USERNAME` and `MEMGRAPH_HOST_ADDRESS`) before running it:
 
@@ -269,12 +281,71 @@ public class HelloMemgraph implements AutoCloseable
 
 Read more about it on [Java Quick Start Guide](/memgraph/connect-to-memgraph/drivers/java).
 
+### C#
+
+Step 1: Install the driver with Package Manager:
+
+```
+Install-Package Neo4j.Driver.Simple@4.4.0
+```
+
+:::info
+If you want to use Neo4j.Driver.Simple v5, please connect to the local instance following the instructions on [C# Quick Start Guide](/memgraph/connect-to-memgraph/drivers/c-sharp).
+:::
+
+Step 2: Copy the following code and fill out the missing details (`YOUR_MEMGRAPH_PASSWORD`, `YOUR_MEMGRAPH_USERNAME` and `MEMGRAPH_HOST_ADDRESS`) before running it:
+
+```cs
+using System;
+using System.Linq;
+using Neo4j.Driver;
+
+namespace MemgraphApp
+{
+    public class Program : IDisposable
+    {
+        private readonly IDriver _driver;
+        public Program(string uri, string user, string password)
+        {
+            _driver = GraphDatabase.Driver(uri, AuthTokens.Basic(user, password));
+        }
+        public void CreateAndPrintNode(string message)
+        {
+            using (var session = _driver.Session())
+            {
+                var nodeMessage = session.WriteTransaction(tx =>
+                {
+                    var result = tx.Run("CREATE (n:FirstNode {message: $message}) " +
+                                        "RETURN id(n) AS nodeId, n.message AS message",
+                        new { message });
+                    return result.Single()[1].As<string>();
+                });
+                Console.WriteLine("Created node:", nodeMessage);
+            }
+        }
+        public void Dispose()
+        {
+            _driver?.Dispose();
+        }
+        public static void Main()
+        {
+            using (var program = new Program("bolt+ssc://MEMGRAPH_HOST_ADDRESS:7687", "YOUR_MEMGRAPH_USERNAME", "YOUR_MEMGRAPH_PASSWORD"))
+            {
+                program.CreateAndPrintNode("Hello Memgraph from C#!");
+            }
+        }
+    }
+}
+```
+
+Read more about it on [C# Quick Start Guide](/memgraph/connect-to-memgraph/drivers/c-sharp).
+
 ### Golang
 
 Step 1: Make sure your application has been set up to use go modules (there should be a `go.mod` file in your application root). Add the driver with:
 
 ```
-go get github.com/neo4j/neo4j-go-driver/neo4j
+go get github.com/neo4j/neo4j-go-driver/v5
 ```
 
 Step 2: Copy the following code and fill out the missing details (`YOUR_MEMGRAPH_PASSWORD`, `YOUR_MEMGRAPH_USERNAME` and `MEMGRAPH_HOST_ADDRESS`) before running it:
@@ -346,14 +417,14 @@ Step 1: Install the driver with composer:
 composer require stefanak-michal/memgraph-bolt-wrapper
 ```
 
-Step 2: Copy the following code and replace the `YOUR MEMGRAPH PASSWORD HERE` with the project's password:
+Step 2: Copy the following code and fill out the missing details (`YOUR_MEMGRAPH_PASSWORD`, `YOUR_MEMGRAPH_USERNAME` and `MEMGRAPH_HOST_ADDRESS`) before running it:
 
 ```php
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
 
 // Create a connection class and specify target host and port.
-$conn = new \\Bolt\\connection\\StreamSocket('<FILL_HOST>', <FILL_PORT>);
+$conn = new \\Bolt\\connection\\StreamSocket('MEMGRAPH_HOST_ADDRESS', '7687');
 $conn->setSslContextOptions([
     'peer_name' => 'Memgraph DB',
     'allow_self_signed' => true
@@ -369,7 +440,7 @@ $bolt->setProtocolVersions(4.1, 4, 3);
 $protocol = $bolt->build();
 
 // Login to database with credentials
-$protocol->hello(\\Bolt\\helpers\\Auth::basic('<FILL_EMAIL>', '<YOUR MEMGRAPH PASSWORD HERE>'));
+$protocol->hello(\\Bolt\\helpers\\Auth::basic('YOUR_MEMGRAPH_USERNAME', 'YOUR_MEMGRAPH_PASSWORD'));
 
 // Pipeline two messages. One to execute query with parameters and second to pull records.
 $protocol
@@ -431,4 +502,4 @@ helloMemgraph(MEMGRAPH_URI, MEMGRAPH_USERNAME, MEMGRAPH_PASSWORD)
     .catch((error) => console.error(error));
 ```
 
-Read more about it on [Javascript Quick Start Guide](/memgraph/connect-to-memgraph/drivers/javascript).
+Read more about it on [Node.js Quick Start Guide](/memgraph/connect-to-memgraph/drivers/nodejs).
