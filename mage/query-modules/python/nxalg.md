@@ -1175,7 +1175,7 @@ Compute the lowest common ancestor of the given pair of nodes.
 ```cypher
 MATCH (n), (m)
 WHERE n != m
-CALL nxalg.local_efficiency(n, m) YIELD *
+CALL nxalg.lowest_common_ancestor(n, m) YIELD *
 RETURN n, m, ancestor;
 ```
 ### `maximal_matching()`
