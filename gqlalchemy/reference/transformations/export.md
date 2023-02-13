@@ -9,11 +9,11 @@ GQLAlchemy currently supports exporting data from Memgraph to NetworkX, DGL and 
 
 ## Transporter
 
-Abstract transporter that provides interface for translating Memgraph data into graph objects like `NetworkX, DGL and PyG`.
+Abstract transporter that provides interface for translating Memgraph data into graph objects like NetworkX, DGL and PyG.
 
 ## GraphTransporter
 
-`GraphTransporter` is used for converting Memgraph graph to the specific graph type offered by some Python package (PyG, DGL, NX...). Each `GraphTransporter` has a reference to the specific translator object which is used for translating Memgraph data into correct graph type. This translator does all the dirty stuff so check out docs about `DGLTranslator, PyGTranslator and NxTranslator` to find out implementation details.
+`GraphTransporter` is used for converting a Memgraph graph to the specific graph type offered by some Python package (PyG, DGL, NX...). Each `GraphTransporter` has a reference to the specific translator object, which is used for translating Memgraph data into the correct graph type. This translator does all the dirty work, so check out the docs about [`DGLTranslator`](./translators/dgl_translator.md), [`PyGTranslator`](./translators/pyg_translator.md) and [`NxTranslator`](./translators/nx_translator.md) to find out implementation details.
 
 ### Methods
 
@@ -34,10 +34,10 @@ def __init__(self,
     ) -> None
 ```
 
-Creates neccessary translator object based on a graph type provided.
+Creates the neccessary translator object based on a graph type provided.
 
 ##### Input
-- `graph_type: str` -> Graph source type object. Can be any of the: [`DGL`, `NX`, `PYG`]
+- `graph_type: str` -> Graph source type object. Can be one of the following: [`DGL`, `NX`, `PYG`]
 - `default_node_label: str=NODE` -> Default node label that will be given to nodes when no other can be inferred.
 - `default_edge_type: str=RELATIONSHIP` -> Default edge type that will be given to edges when no other can be inferred.
 - `host: str=127.0.0.1` -> Host connection info for connecting to the Memgraph instance.
@@ -59,7 +59,7 @@ Creates graph instance for the provided export option.
 
 ### Example
 
-The following code can be used to transfer data from Memgraph DB into DGL graph.
+The following code can be used to transfer data from Memgraph DB into `DGL` graph.
 
 ```python
 transporter = GraphTransporter("dgl")

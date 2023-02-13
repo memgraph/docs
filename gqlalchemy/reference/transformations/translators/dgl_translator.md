@@ -5,8 +5,8 @@ title: gqlalchemy.transformations.translators.dgl_translator
 
 # Abstract
 
-Used to translate Memgraph data to DGLGraph representation and vice-versa.
-DGL assigns to each edge a unique integer, called the edge ID, based on the order in which it was added to the graph. In DGL, all the edges are directed, and an edge (u,v) indicates that the direction goes from node u to node v. Only features of numerical types (e.g., float, double, and int) are allowed. They can be scalars, vectors or multi-dimensional tensors (DQL requirement). Each node feature has a unique name and each edge feature has a unique name. The features of nodes and edges can have the same name. A feature is created via tensor assignment, which assigns a feature to each node/edge in the graph. The leading dimension of that tensor must be equal to the number of nodes/edges in the graph. You cannot assign a feature to a subset of the nodes/edges in the graph. Features of the same name must have the same dimensionality and data type.
+Used to translate Memgraph data into `DGLGraph` representation and vice-versa.
+DGL assigns a unique integer to each edge based on the order in which it was added to the graph, called the edge ID. In DGL, all the edges are directed, and an edge (u,v) indicates that the direction goes from node u to node v. Only features of numerical types (e.g., float, double, and int) are allowed. They can be scalars, vectors or multi-dimensional tensors (DQL requirement). Each node feature has a unique name, and each edge feature has a unique name. The features of nodes and edges can have the same name. A feature is created via the tensor assignment, which assigns a feature to each node/edge in the graph. The leading dimension of that tensor must be equal to the number of nodes/edges in the graph. You cannot assign a feature to a subset of the nodes/edges in the graph. Features of the same name must have the same dimensionality and data type.
 
 ### Methods
 
@@ -45,14 +45,14 @@ Initializes translator object with given parameters.
 def to_cypher_queries(self, graph) -> None
 ```
 
-Produces cypher queries for data saved as part of the DGL graph. The method handles both homogeneous and heterogeneous graph. If the graph is homogeneous, a default DGL's labels will be used. _N as a node label and _E as edge label. The method converts 1D as well as multidimensional features. If there are some isolated nodes inside DGL graph, they won't get transferred. Nodes and edges created in Memgraph DB will, for the consistency reasons, have property `dgl_id` set to the id they have as part of the DGL graph. Note that this method doesn't insert anything inside the database, it just creates cypher queries.
+Produces Cypher queries for data saved as part of the DGL graph. The method handles both homogeneous and heterogeneous graphs. If the graph is homogeneous, default DGL labels will be used, _N as a node label and _E as an edge label. The method converts 1D, as well as multidimensional features. If there are some isolated nodes inside the DGL graph, they won't get transferred. Nodes and edges created in the Memgraph DB will, for consistency reasons, have the property `dgl_id` set to the ID they have as part of the DGL graph. Note that this method doesn't insert anything inside the database, it just creates Cypher queries.
 
 ##### Input
 - `graph: Union[dgl.DGLGraph, dgl.DGLHeteroGraph]`
 
 #### Example
 
-To transfer `DGLGraph` to `Cypher` queries and execute them in the Memgraph, you can use the following query:
+Use the following query to transfer the `DGLGraph` to Cypher queries and execute them in Memgraph:
 
 ```python
 memgraph = Memgraph()
@@ -67,11 +67,11 @@ for query in DGLTranslator().to_cypher_queries(dgl_graph):
 def get_instance(self) -> dgl.DGLHeteroGraph
 ```
 
-Creates instance of DGL graph from all edges that are inside Memgraph. Currently, isolated nodes are ignored because they don't contribute in message passing neural networks. Only numerical features that are set on all nodes or all edges are transferred to the DGL instance since this is DGL's requirement. That means thay any string values properties won't be transferred, as well as numerical properties that aren't set on all nodes. However, features of type list are transferred to the DGL and can be used as any other feature in the DGL graph. Regardless of data residing inside Memgraph database, the created DGL graph is a heterograph instance.
+Creates an instance of a DGL graph from all edges inside Memgraph. Currently, isolated nodes are ignored because they don't contribute to message-passing neural networks. Only numerical features that are set on all nodes or all edges are transferred to the DGL instance since this is DGL's requirement. That means that any string value properties won't be transferred, as well as numerical properties that aren't set on all nodes. However, features of the type list are transferred to the DGL and can be used as any other feature in the DGL graph. Regardless of the data residing inside the Memgraph database, the created DGL graph is a heterograph instance.
 
 #### Example
 
-To create an instance of the `DGLGraph` from the data residing inside `Memgraph`, the following block of code can be used:
+Use the following code to create an instance of the `DGLGraph` from the data residing inside `Memgraph`:
 
 ```python
 dgl_translator = DGLTranslator()

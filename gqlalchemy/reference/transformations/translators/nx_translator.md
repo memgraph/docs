@@ -6,7 +6,7 @@ title: gqlalchemy.transformations.translators.nx_translator
 # Abstract
 
 Translates data from Memgraph to NX graph and vice-versa.
-Uses original ids from Memgraph. Labels are encoded as properties. Since Networkx allows that nodes have properties of different dimensionality, this modules makes use of it and stores properties as dictionary entries. All properties are saved to Networkx data structure.
+Uses original IDs from Memgraph. Labels are encoded as properties. Since Networkx allows nodes to have properties of different dimensionality, this module stores properties as dictionary entries. All properties are saved to the NetworkX data structure.
 
 ### Methods
 
@@ -45,14 +45,14 @@ Initializes translator object with given parameters.
 def to_cypher_queries(self, graph) -> None
 ```
 
-Generates cypher queries from a given NetworkX graph.
+Generates Cypher queries from a given NetworkX graph.
 
 ##### Input
 - `graph` -> `NetworkX` graph representation.
 
 #### Example
 
-To transfer `NxGraph` to `Cypher` queries and execute them in the Memgraph, you can use the following query:
+Use the following query to transfer `NxGraph` to Cypher queries and execute them in Memgraph:
 
 ```python
 memgraph = Memgraph()
@@ -76,11 +76,11 @@ Generates Cypher queries and inserts data into Memgraph in parallel.
 def get_instance(self) -> dgl.DGLHeteroGraph
 ```
 
-Creates Networkx instance of the graph from the data residing inside Memgraph. Since Networkx doesn't support labels in a way Memgraph does, labels are encoded as a node and edge properties. All relationships are transferred as well as nodes, even if they are not connected with any other node (they're isolated).
+Creates a NetworkX instance of the graph from the data residing inside Memgraph. Since NetworkX doesn't support labels as Memgraph does, labels are encoded as node and edge properties. All nodes and relationships are transferred, even if they are not connected with any other node (they're isolated).
 
 #### Example
 
-To create an instance of the `NetworkX` from the data residing inside `Memgraph`, the following block of code can be used:
+Use the following block of code to create an instance of the `NetworkX` graph from the data residing inside `Memgraph`:
 
 ```python
 nx_translator = NxTranslator()
@@ -107,5 +107,6 @@ Generates Cypher queries for creating a graph.
 def yield_query_groups(graph: nx.Graph) -> List[Iterator[str]]
 ```
 
-Generates Cypher queries for creating a graph by query groups.
+Generates Cypher queries that can be used to create a graph by query groups.
+
 

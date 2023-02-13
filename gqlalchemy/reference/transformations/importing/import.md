@@ -5,16 +5,15 @@ title: gqlalchemy.transformations.importing.import
 
 # Abstract
 
-GQLAlchemy supports importing data from various sources. This includes import from graph objects stored in NetworkX, DGL and PyG format but also importing from various other table sources like S3, Azure Blob storage... Files stored in local file system could be of any of the CSV, Parquet, ORC or Feather format and GQLAlchemy can parse such data and import it to the Memgraph database.
+GQLAlchemy supports importing data from various sources. This includes importing from graph objects stored in NetworkX, DGL and PyG format or various other table sources like S3 or Azure Blob storage. Files stored in the local file system can be in CSV, Parquet, ORC or Feather format. GQLAlchemy will parse the data and import it into the Memgraph database.
 
 ## Importer
 
-Abstract importer that doesn't implement any strategy for translating graph but provides interface that other objects can implement. Each `Importer` has a reference to the specific translator object which is used for translating graph of specific type into Memgraph data. This translator does all the dirty stuff so check out docs about `DGLTranslator, PyGTranslator and NxTranslator` to find out implementation details.
-
+An abstract importer that doesn't implement any strategy for translating a graph but provides an interface that other objects can implement. Each `Importer` has a reference to the specific translator object, which is used for translating a graph of a specific type into Memgraph data. This translator does all the dirty work, so check out docs about [`DGLTranslator`](../translators/dgl_translator.md), [`PyGTranslator`](../translators/pyg_translator.md) and [`NxTranslator`](../translators/nx_translator.md) to find out implementation details.
 
 ## GraphImporter
 
-`GraphImporter` is one such object that implements `Importer`. It is used an entry class for all importing stuff where the original object is in the graph shape already. Currently, importing from `NetworkX, DGL and PyG` is supported.
+`GraphImporter` is one such object that implements `Importer`. It is used an entry class which creates correct translator object, translated input graph to cypher queries and inserts them into the database. Currently supported formats to import from are `NetworkX`, `DGL` and `PyG`.
 
 ### Methods
 
@@ -38,7 +37,7 @@ def __init__(self,
 Creates neccessary translator object based on a graph type provided.
 
 ##### Input
-- `graph_type: str` -> Graph source type object. Can be any of the: [`DGL`, `NX`, `PYG`]
+- `graph_type: str` -> Graph source type object. Can be one of the following: [`DGL`, `NX`, `PYG`]
 - `default_node_label: str=NODE` -> Default node label that will be given to nodes when no other can be inferred.
 - `default_edge_type: str=RELATIONSHIP` -> Default edge type that will be given to edges when no other can be inferred.
 - `host: str=127.0.0.1` -> Host connection info for connecting to the Memgraph instance.
@@ -56,10 +55,10 @@ Creates neccessary translator object based on a graph type provided.
 def translate(self, graph) -> None
 ```
 
-Gets cypher queries using the underlying translator and then inserts all queries to Memgraph DB.
+Collects Cypher queries using the underlying translator and inserts them into Memgraph DB.
 
 ##### Input
-- `graph` -> DGL, PyG or NX graph instance.
+- `graph` -> `DGL`, `PyG` or `NX` graph instance.
 
 ### Example
 
@@ -73,7 +72,7 @@ importer.translate(graph)  # in this step, queries are inserted into the Memgrap
 
 ## TableToGraphImporter
 
-Implements translation of table data to graph data, and imports it to Memgraph.
+Implements a translation of table data to graph data and imports it to Memgraph.
 
 ### Methods
 
@@ -86,7 +85,7 @@ def __init__(self,
     memgraph: Optional[Memgraph] = None)
 ```
 
-Loads configuration from `data_configuration` and saves references to `data_loader` and `memgraph`.
+Loads the configuration from the `data_configuration` and saves references to the `data_loader` and `memgraph`.
 
 #### `translate`
 
