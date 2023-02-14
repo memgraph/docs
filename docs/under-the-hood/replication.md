@@ -59,7 +59,7 @@ WAL files is impossible, Memgraph will use snapshots.
 :::info
 
 From version 2.4 it is no longer possible to specify a timeout when registering
-a sync replica. To mimic this behavior in higher releases, please use ASYNC
+a SYNC replica. To mimic this behavior in higher releases, please use ASYNC
 replication instead.
 
 :::
@@ -84,10 +84,7 @@ registration.
 
 SYNC mode is the most straightforward replication mode in which the main storage
 thread waits for the response and cannot continue until the response is
-received or a timeout is reached. If the timeout is reached and at least one SYNC REPLICA has not
-sent back a response, then the MAIN instance will return an error to the user.<br/>
-The error indicates that the user should check the status of the REPLICAs
-as there might be a network or hardware issue.
+received or a timeout is reached.
 
 The following diagrams express the behavior of the MAIN instance in cases when
 SYNC REPLICA doesn't answer within the expected timeout.
