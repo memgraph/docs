@@ -15,16 +15,8 @@ language, you will find the how-to guides very useful.
 
 Object graph mapper (OGM) in GQLAlchemy maps Python classes to nodes and
 relationships in graph database and converts function calls to Cypher queries.
-To learn more about how to use OGM, take a look at the following pages:
+To learn more about how to use OGM, take at [**OGM how-to guide**](/how-to-guides/ogm.md).
 
-- [**Map nodes and
-  relationships**](/how-to-guides/ogm/map-nodes-and-relationships.md)
-- [**Save nodes and
-  relationships**](/how-to-guides/ogm/save-nodes-and-relationships.md)
-- [**Load nodes and
-  relationships**](/how-to-guides/ogm/load-nodes-and-relationships.md)
-- [**Index labels and
-  properties**](/how-to-guides/ogm/index-labels-and-properties.md)
 
 ## Query builder
 

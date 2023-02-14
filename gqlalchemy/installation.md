@@ -10,9 +10,13 @@ as pip and Poetry, and by building it from source.
 ## Prerequisites
 
 To install GQLAlchemy, you will need the following:
-- **Python 3.7** or **higher**.
+- **Python 3.7 - 3.10**
 - **CMake** - You can download CMake from their [official
   website](https://cmake.org/download/).
+
+:::caution
+GQLAlchemy can't be installed with Python 3.11 [(#203)](https://github.com/memgraph/gqlalchemy/issues/203) and on Windows with Python >= 3.10 [(#179)](https://github.com/memgraph/gqlalchemy/issues/179). If this is currently a blocker for you, please let us know by commenting on opened issues.
+:::
 
 ## Install with Pip {#pip}
 
