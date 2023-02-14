@@ -14,8 +14,6 @@ import Help from '../templates/_help.mdx';
    memgr.ph/python.](#error-1)
 2. [Unable to load support for embedded Python: missing directory {}. For more
    details, visit: memgr.ph/python.](#error-1)
-3. [Unable to load support for embedded Python: {}. For more details, visit:
-   memgr.ph/python.](#error-1)
 
 ## How to install Python packages globally? {#error-1}
 
