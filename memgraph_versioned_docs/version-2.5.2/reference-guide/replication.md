@@ -51,8 +51,7 @@ consistency or availability:
 
 - **SYNC** - After committing a transaction, the MAIN instance will communicate the changes 
 to all REPLICA instances running in SYNC mode and wait until it receives a response or that 
-a timeout is reached. <br/>
-In the case of a timeout, it will return an error to the user indicating that they should check the MAIN instance will return an error to the user proposing a check of  REPLICAs' statuses as there might be network or hardware issues.
+a timeout is reached.
 
 - **ASYNC** - The MAIN instance will commit a transaction without receiving
   confirmation from REPLICA instances that they have received the same
