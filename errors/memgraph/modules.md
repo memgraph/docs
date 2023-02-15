@@ -22,7 +22,7 @@ import Help from '../templates/_help.mdx';
 ## Warnings
 
 1. [Unknown query module file {}. For more details, visit:
-   memgr.ph/load-query-modules.](#warning-1)
+   memgr.ph/modules.](#warning-1)
 
 ## Errors when loading or closing modules {#error-1}
 
