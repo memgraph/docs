@@ -55,6 +55,12 @@ returning max flow value is 0.
 | **Edge weights**    |  <Highlight color="#FB6E00">**weighted**</Highlight>|
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight> |
 
+:::note Too slow?
+
+If this algorithm implementation is too slow for your use case, [contact us](mailto:tech@memgraph.com) and request a rewrite to C++ !
+
+:::
+
 ## Procedures
 
 <RunOnSubgraph/>

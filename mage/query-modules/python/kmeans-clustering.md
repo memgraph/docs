@@ -35,6 +35,12 @@ within-the-cluster sum-of-squares. To learn more about it, jump to the [algorith
 | **Edge weights**    | <Highlight color="#FB6E00">**weighted/unweighted**</Highlight> |
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight>          |
 
+:::note Too slow?
+
+If this algorithm implementation is too slow for your use case, [contact us](mailto:tech@memgraph.com) and request a rewrite to C++ !
+
+:::
+
 ## Procedures
 
 <RunOnSubgraph/>

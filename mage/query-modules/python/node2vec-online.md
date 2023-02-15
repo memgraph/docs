@@ -83,6 +83,12 @@ Ferenc Béres, Róbert Pálovics, Domokos Miklós Kelen and András A. Benczúr
 | **Edge weights**    | <Highlight color="#FB6E00">**unweighted**</Highlight> |
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight> |
 
+:::note Too slow?
+
+If this algorithm implementation is too slow for your use case, [contact us](mailto:tech@memgraph.com) and request a rewrite to C++ !
+
+:::
+
 ## Procedures
 
 <RunOnSubgraph/>

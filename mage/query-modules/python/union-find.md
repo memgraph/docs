@@ -42,6 +42,12 @@ The implementation of the disjoint-set data structure and its operations uses th
 | **Edge weights**    | <Highlight color="#FB6E00">**unweighted**</Highlight> |
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight> |
 
+:::note Too slow?
+
+If this algorithm implementation is too slow for your use case, [contact us](mailto:tech@memgraph.com) and request a rewrite to C++ !
+
+:::
+
 ## Procedures
 
 <RunOnSubgraph/>
