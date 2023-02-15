@@ -13,7 +13,6 @@ centralized user management system.
 
 [![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/ldap-security.md)
 
-
 :::warning
 This is an Enterprise feature.
 If the Memgraph Enterprise is not activated, all the created users will be granted
