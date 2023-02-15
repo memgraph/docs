@@ -20,9 +20,6 @@ export const Highlight = ({children, color}) => (
   </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-graph_coloring-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/graph_coloring.py)
-
-## Abstract
 
 Graph coloring is the assignment of colors to nodes such that two nodes connected with an edge don’t have the same color. The goal is to minimize the number of colors while correctly coloring a graph.
 
@@ -35,6 +32,8 @@ The algorithm is iterative. It applies several simple rules to change solutions 
 Changes made in one iteration may not be permanent if they don’t improve the solution. But, with a certain probability, the new solution is accepted even if its error is not reduced. In that way, the algorithm is prevented from converging to local minimums too early.
 
 [^1] [Graph Coloring with a Distributed Hybrid Quantum Annealing Algorithm](https://link.springer.com/chapter/10.1007/978-3-642-22000-5_57), Olawale TitiloyeAlan Crispin
+
+[![docs-source](https://img.shields.io/badge/source-graph_coloring-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/graph_coloring.py)
 
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |

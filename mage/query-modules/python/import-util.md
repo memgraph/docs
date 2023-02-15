@@ -20,13 +20,11 @@ export const Highlight = ({children, color}) => (
   </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-import_util-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/import_util.py)
-
-
-## Abstract
-
 Module for importing data from different formats. Currently, this module
 supports only the import of JSON file format.
+
+[![docs-source](https://img.shields.io/badge/source-import_util-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/import_util.py)
+
 
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |

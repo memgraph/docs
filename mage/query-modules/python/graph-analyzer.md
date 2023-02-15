@@ -21,12 +21,11 @@ export const Highlight = ({children, color}) => (
   </span>
 );
 
+The first thing someone should focus on when working with graphs is getting deep analytics of the current state. That is what this module is doing. By using the power of NetworkX, various different graph properties are extracted. This module has the ability to run on a subgraph if a subgraph of nodes is provided as input. 
+
 [![docs-source](https://img.shields.io/badge/source-graph_analyzer-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/graph_analyzer.py)
 
-
-## Abstract
-
-The first thing someone should focus on when working with graphs is getting deep analytics of the current state. That is what this module is doing. By using the power of NetworkX, various different graph properties are extracted. This module has the ability to run on a subgraph if a subgraph of nodes is provided as input. Here is a list of analytics that it uses:
+The list of analytics that the module uses:
 
 * **nodes**: Number of nodes
 * **edges**: Number of edges

@@ -19,13 +19,9 @@ export const Highlight = ({children, color}) => (
   </span>
 );
 
-<!-- TODO -- update link -->
-[![docs-source](https://img.shields.io/badge/source-meta_util-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/meta_util.py)
-
-
-## Abstract
-
 A module that contains procedures describing graphs on a meta-level.
+
+[![docs-source](https://img.shields.io/badge/source-meta_util-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/meta_util.py)
 
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |

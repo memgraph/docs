@@ -20,10 +20,6 @@ style={{
 </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-katz_centrality-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/cpp/katz_centrality_module/katz_centrality_module.cpp)
-
-## Abstract
-
 **Katz Centrality** is the measurement of centrality that incorporates the
 inbound path length starting from the wanted node. More central nodes will have
 closer connections rather than having many long-distance nodes connected to
@@ -50,6 +46,8 @@ resulting centralities will be correct.
 
 [^1] [Scalable Katz Ranking Computation in Large Static and Dynamic
 Graphs](https://arxiv.org/pdf/1807.03847.pdf), Alexander van der Grinten et. al.
+
+[![docs-source](https://img.shields.io/badge/source-katz_centrality-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/cpp/katz_centrality_module/katz_centrality_module.cpp)
 
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |

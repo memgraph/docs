@@ -20,13 +20,10 @@ export const Highlight = ({children, color}) => (
   </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-set_cover-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/set_cover.py)
-
-
-## Abstract
-
 **The Set Cover** problem is one of the problems in graph theory that tries to solve the least possible set of sets that covers all elements inside those sets. Given a set of *n* elements, and a collection of *m* sets containing them, the algorithm tries to identify the **smallest sub-collection** of sets whose union equal to all the elements.
 It is *NP-complete*, however solvable with techniques such as constraint programming. The current algorithm uses *GEKKO* optimizer as a constraint programming solver.
+
+[![docs-source](https://img.shields.io/badge/source-set_cover-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/set_cover.py)
 
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |

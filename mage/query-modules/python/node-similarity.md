@@ -20,11 +20,6 @@ export const Highlight = ({children, color}) => (
   </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-node_similarity-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/node_similarity.py)
-
-
-## Abstract
-
 If we're interested in how similar two nodes in a graph are, we'll want to get a numerical value that represents the <em>node similarity</em> between those two nodes. There are many node similarity measures and currently this module contains the following: 
 * cosine similarity
 * Jaccard similarity 
@@ -43,6 +38,8 @@ If we're interested in how similar two nodes in a graph are, we'll want to get a
 Set A represents all neighbors of one node, set B represents all neighbors of the other node. In all the given formulas, the numerator is the cardinality of the intersection of set A and set B (in other words, the cardinality of the common neighbors set). The denominator differs but requires the cardinality of sets A and B in some way.
 
 The algorithm is implemented so that it ignores whether the graph is directed or undirected and treats the edges as if they were undirected. It also ignores multiple edges between two nodes and treats them as if there were only one edge.
+
+[![docs-source](https://img.shields.io/badge/source-node_similarity-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/node_similarity.py)
 
 
 | Trait               | Value                                                 |

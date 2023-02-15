@@ -20,13 +20,11 @@ style={{
 </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-graph_util-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/cpp/graph_util_module)
-
-## Abstract
-
 **Graph util** is a collection of Memgraph's utility graph algorithms. The algorithms that are included in this module
 are the ones that may suit a developer's day-to-day job while prototyping new
 solutions, with various graph manipulation tools to accelerate development. 
+
+[![docs-source](https://img.shields.io/badge/source-graph_util-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/cpp/graph_util_module)
 
 | Trait               | Value                                                                                                     |
 | ------------------- | --------------------------------------------------------------------------------------------------------- |

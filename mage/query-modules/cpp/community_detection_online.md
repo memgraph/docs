@@ -20,10 +20,6 @@ export const Highlight = ({children, color}) => (
   </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-community_detection_online-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/cpp/community_detection_module/community_detection_online_module.cpp)
-
-## Abstract
-
 This query module implements the [LabelRankT](https://arxiv.org/abs/1305.2006)
 dynamic community detection algorithm.
 
@@ -46,6 +42,8 @@ and it extends LabelRankT’s compatibility to a wider set of graphs.
 
 [^1] [LabelRankT: Incremental Community Detection in Dynamic Networks via Label
 Propagation](https://arxiv.org/abs/1305.2006), Xie, Jierui et al.
+
+[![docs-source](https://img.shields.io/badge/source-community_detection_online-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/cpp/community_detection_module/community_detection_online_module.cpp)
 
 | Trait               | Value                                                                                                       |
 | ------------------- | ----------------------------------------------------------------------------------------------------------- |

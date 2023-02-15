@@ -20,12 +20,9 @@ style={{
   </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-nxalg-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/nxalg.py)
-
-## Abstract
-
 This module, named **nxalg**, provides a comprehensive set of thin wrappers around most of the algorithms present in the [NetworkX](https://networkx.org/) package. The wrapper functions now have the capability to create a NetworkX compatible graph-like object that can stream the native database graph directly saving on memory usage significantly.
 
+[![docs-source](https://img.shields.io/badge/source-nxalg-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/nxalg.py)
 
 | Trait               | Value                                                                                                     |
 | ------------------- | --------------------------------------------------------------------------------------------------------- |

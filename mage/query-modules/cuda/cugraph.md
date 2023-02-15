@@ -20,10 +20,6 @@ style={{
 </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-cugraph-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/cpp/cugraph_module)
-
-## Abstract
-
 **NVIDIA cuGraph** is a graph analytics library that is part of NVIDIA’s
 [**RAPIDS**](https://rapids.ai/) open-source data science suite containing
 machine learning tools and libraries for various applications in data science;
@@ -33,6 +29,8 @@ requirements**](https://rapids.ai/start.html#requirements).
 This set of modules is built on top of NVIDIA cuGraph and provides a set of
 wrappers for most of the algorithms present in the
 [**cuGraph**](https://github.com/rapidsai/cugraph) repository.
+
+[![docs-source](https://img.shields.io/badge/source-cugraph-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/cpp/cugraph_module)
 
 | Trait               | Value                                                                                                     |
 | ------------------- | --------------------------------------------------------------------------------------------------------- |

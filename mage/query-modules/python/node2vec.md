@@ -20,10 +20,6 @@ style={{
 </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-node2vec-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/node2vec.py)
-
-## Abstract
-
 The **node2vec** is a semi-supervised algorithmic framework for learning
 continuous feature representations for nodes in networks. The algorithm
 generates a mapping of nodes to a low-dimensional space of features that
@@ -70,6 +66,8 @@ capture `DFS` like walks and **homophily**.
 
 [^1] [Scalable Feature Learning for Networks](https://arxiv.org/abs/1607.00653),
 A. Grover, J. Leskovec
+
+[![docs-source](https://img.shields.io/badge/source-node2vec-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/node2vec.py)
 
 | Trait               | Value                                                          |
 | ------------------- | -------------------------------------------------------------- |

@@ -20,10 +20,6 @@ export const Highlight = ({children, color}) => (
   </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-max_flow-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/max_flow.py)
-
-## Abstract
-
 The maximum flow problem consists of finding a flow through a graph such that it
 is the maximum possible flow.
 
@@ -46,6 +42,8 @@ The algorithm is adapted to work with heterogeneous graphs, meaning not all
 edges need to have the defined edge property used for edge flow. When an edge 
 doesn't have a flow, it is skipped, and when no edges have this property, the
 returning max flow value is 0.
+
+[![docs-source](https://img.shields.io/badge/source-max_flow-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/max_flow.py)
 
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |
