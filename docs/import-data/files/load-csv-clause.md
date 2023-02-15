@@ -122,13 +122,17 @@ When using the `LOAD CSV` clause please keep in mind:
   CREATE (n:A {p1 : x, p2 : y});
   ```
 
-- **The `LOAD CSV` clause will create relationships and thus import data much
-  faster if you [create indexes](/how-to-guides/indexes.md)** on appropriate node properties once you import
-  them: 
+:::tip
+
+The `LOAD CSV` clause will create relationships and thus import data much
+  faster if you [create indexes](/how-to-guides/indexes.md) on nodes or node
+  properties once you import them: 
 
   ```cypher
   CREATE INDEX ON Node(id);
   ````
+
+:::
 
 ## Examples
 

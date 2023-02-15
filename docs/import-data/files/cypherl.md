@@ -15,8 +15,12 @@ one file to import both nodes and relationships. But it can be tricky to
 actually write the queries for creating nodes and relationships yourself. If you
 haven't written any queries yet, check our [Cypher manual](/cypher-manual).
 
+:::tip
+
 To speed up import time, after queries creating nodes, consider [creating
-  indexes](/how-to-guides/indexes.md) on appropriate node properties.
+  indexes](/how-to-guides/indexes.md) on appropriate nodes or node properties.
+
+:::
 
 ## Importing via Memgraph Lab
 
