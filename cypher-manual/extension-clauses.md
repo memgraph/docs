@@ -4,7 +4,7 @@ title: Extension clauses
 sidebar_label: Extension clauses
 ---
 
-## Foreach
+## FOREACH
 
 `FOREACH` iterates over a list of elements. Each element is stored inside a
 variable which can optionally be used inside the update clauses. All update
