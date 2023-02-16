@@ -9,8 +9,20 @@ module.exports = {
       items: [
         {
           type: "doc",
-          label: "Use query builder",
+          label: "Use object graph mapper",
           id: "how-to-guides/ogm",
+        },
+        {
+          type: "category",
+          label: "Use query builder",
+          items: [
+            "how-to-guides/query-builder/create-nodes-relationships",
+            "how-to-guides/query-builder/return-results",
+            "how-to-guides/query-builder/filter-data",
+            "how-to-guides/query-builder/call-procedures",
+            "how-to-guides/query-builder/delete-remove-objects",
+            "how-to-guides/query-builder/set-or-update-objects",
+          ],
         },
         {
           type: "category",
