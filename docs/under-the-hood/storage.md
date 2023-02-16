@@ -205,7 +205,7 @@ up using a large amount of RAM. Keep in mind that query execution memory
 monotonically grows in size during the execution, and it's freed once the query
 execution is done.
 
-# Configuration options to reduce memory usage
+## Configuration options to reduce memory usage
 
 Here are several tips how you can reduce memory usage and increase scalability:
 

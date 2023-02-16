@@ -39,6 +39,14 @@ property `age` being 42, is done with the following query:
 MATCH (n:Person {age: 42}) RETURN n;
 ```
 
+```tip
+
+Each node and relationship gets a identifier generated during their initialization which is persisted through the durability mechanism.
+
+Return it with the [`id()` function](/cypher-manual/functions#scalar-functions). 
+
+```
+
 You can use the following query to find their friends:
 
 ```cypher
