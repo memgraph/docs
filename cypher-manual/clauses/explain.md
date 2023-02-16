@@ -4,7 +4,7 @@ title: EXPLAIN clause
 sidebar_label: EXPLAIN
 ---
 
-The EXPLAIN can be used to inspect a particular Cypher query in order to see its
+The EXPLAIN clause can be used to inspect a particular Cypher query in order to see its
 execution plan.
 
 For example, the following query will return the execution plan:

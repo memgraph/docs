@@ -248,6 +248,66 @@ Output:
 | 74,500,000                                                                                            |
 +-----------------------------------------------------------------------------------------------------+
 ```
+## 12. Limiting the number of returned results
+
+You can limit the number of returned results with the `LIMIT` sub-clause.
+To get the first ten results, you can use this query:
+
+```cypher
+MATCH (n:Person) RETURN n LIMIT 10;
+```
+
+## 13. Order results
+
+Since the patterns which are matched can come in any order, it is very useful to
+be able to enforce some ordering among the results. In such cases, you can use
+the `ORDER BY` sub-clause.
+
+For example, the following query will get all `:Person` nodes and order them by
+their names:
+
+```cypher
+MATCH (n:Person) RETURN n ORDER BY n.name;
+```
+
+By default, ordering will be ascending. To change the order to be descending,
+you should append `DESC`.
+
+For example, you can use this query to order people by their name descending:
+
+```cypher
+MATCH (n:Person) RETURN n ORDER BY n.name DESC;
+```
+
+You can also order by multiple variables. The results will be sorted by the
+first variable listed. If the values are equal, the results are sorted by the
+second variable, and so on.
+
+For example, ordering by first name descending and last name ascending:
+
+```cypher
+MATCH (n:Person) RETURN n ORDER BY n.name DESC, n.lastName;
+```
+
+Note that `ORDER BY` sees only the variable names as carried over by `RETURN`.
+This means that the following will result in an error.
+
+```cypher
+MATCH (old:Person) RETURN old AS new ORDER BY old.name;
+```
+
+Instead, the `new` variable must be used:
+
+```cypher
+MATCH (old:Person) RETURN old AS new ORDER BY new.name;
+```
+
+The `ORDER BY` sub-clause may come in handy with `SKIP` and/or `LIMIT`
+sub-clauses. For example, to get the oldest person you can use the following:
+
+```cypher
+MATCH (n:Person) RETURN n ORDER BY n.age DESC LIMIT 1;
+```
 
 ## Dataset queries
 
@@ -284,11 +344,3 @@ CREATE (c2)<-[:LIVING_IN {date_of_start: 2014}]-(p)-[:LIVING_IN {date_of_start: 
 MATCH (n)-[r]->(m) RETURN n,r,m;
 ```
 
-## 11. Limiting the number of returned results
-
-You can limit the number of returned results with the `LIMIT` sub-clause.
-To get the first ten results, you can use this query:
-
-```cypher
-MATCH (n:Person) RETURN n LIMIT 10;
-```

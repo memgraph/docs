@@ -17,7 +17,7 @@ operator *pulls* data from the logical operator(s) preceding it, processes it
 and passes it onto the logical operator next in the pipeline for further
 processing.
 
-Using the `EXPLAIN` operator, it is possible for the user to inspect the
+Using the `EXPLAIN` clause, it is possible for the user to inspect the
 produced plan and gain insight into the execution of a query.
 
 ## Operators
@@ -78,7 +78,7 @@ EXPLAIN MATCH (n) RETURN n;
 +----------------+
 ```
 
-The output of the `EXPLAIN` query is a representation of the produced plan. Every
+The output of the query using the `EXPLAIN` clause is a representation of the produced plan. Every
 logical operator within the plan starts with an asterisk character (`*`) and is
 followed by its name (and sometimes additional information). The execution of
 the query proceeds iteratively (generating one entry of the result set at a
