@@ -9,13 +9,13 @@ slug: /faq/memgraph
 
 ### What is Memgraph?
 
-Memgraph is a **streaming graph application platform** that helps you wrangle
-your streaming data, build sophisticated models that you can query in real-time,
-and develop applications you never thought possible in days, not months.
-Memgraph is powered by an in-memory graph database built to
-handle real-time use-cases at enterprise scale. Memgraph supports
-strongly-consistent ACID transactions and uses the standardized Cypher query
-language for structuring, manipulating, and exploring data.
+Memgraph is an **open source graph database** built for teams who expect highly
+performant, advanced analytical insights - as compatible with your current
+infrastructure as Neo4j (but up to 120x faster). Memgraph is powered by an
+in-memory graph database built to handle real-time use-cases at enterprise
+scale. Memgraph supports **strongly-consistent ACID transactions** and uses the
+standardized **Cypher query language** for structuring, manipulating, and exploring
+data.
 
 ### What is the difference between Memgraph and Memgraph Platform?
 
