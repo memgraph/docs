@@ -32,6 +32,14 @@ This module, named **nxalg**, provides a comprehensive set of thin wrappers arou
 | **Edge weights**    | <Highlight color="#FB6E00">**weighted**</Highlight>/<Highlight color="#FB6E00">**unweighted**</Highlight> |
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight>                                                     |
 
+:::tip
+
+If you are not satisfied with the performance of algorithms from the nxalg
+module, check Memgraph's native implementation of algorithms such as PageRank,
+betweenness centrality, and others written in C++
+
+:::
+
 ## Procedures
 
 <RunOnSubgraph/>
