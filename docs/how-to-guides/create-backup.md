@@ -1,7 +1,7 @@
 ---
 id: create-backup
-title: How to create a backup and restore data
-sidebar_label: Create a backup and restore data
+title: How to backup and restore data
+sidebar_label: Backup and restore data
 ---
 
 While running, Memgraph generates various files in its
