@@ -251,7 +251,33 @@ When granting `NOTHING`, the user is denied both visibility and manipulation of 
 Eve is now able to see all the domain data while the management is happy since they have not
 leaked any confidential data.
 
-And that's it! You successfully finished Memgraph's label-based access control how-to-guide!
+## Templates for granting privileges
+
+To grant all privileges to a superuser (admin):
+
+```
+GRANT ALL PRIVILEGES TO admin;
+GRANT CREATE_DELETE ON LABELS * TO admin;
+GRANT CREATE_DELETE ON EDGE_TYPES * TO admin;
+```
+
+To grant all read and write privileges:
+
+```
+DENY ALL PRIVILEGES TO readWrite;
+GRANT CREATE, DELETE, MERGE, SET, REMOVE, INDEX, MATCH, STATS TO readWrite;
+GRANT CREATE_DELETE ON LABELS * TO readWrite;
+GRANT CREATE_DELETE ON EDGE_TYPES * TO readWrite;
+```
+
+To grant read only privileges: 
+
+```
+DENY ALL PRIVILEGES TO readonly;
+GRANT MATCH, STATS TO readonly;
+GRANT READ ON LABELS * TO readonly;
+GRANT READ ON EDGE_TYPES * TO readonly;
+```
 
 ## Where to next?
 
