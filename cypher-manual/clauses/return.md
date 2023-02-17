@@ -309,6 +309,15 @@ sub-clauses. For example, to get the oldest person you can use the following:
 MATCH (n:Person) RETURN n ORDER BY n.age DESC LIMIT 1;
 ```
 
+You can also order result before returning them. The following query will order
+all the nodes according to name, and then return them in a list. 
+
+```cypher
+MATCH (n)
+WITH n ORDER BY n.name DESC
+RETURN collect(n.name) AS names;
+```
+
 ## Dataset queries
 
 We encourage you to try out the examples by yourself.
