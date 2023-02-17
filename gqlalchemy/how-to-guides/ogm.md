@@ -19,7 +19,7 @@ Through this guide, you will learn how to use GQLAlchemy object graph mapper to:
 >have any more questions, join our community and ping us on [Discord](https://discord.gg/memgraph).
 
 :::info
-To test the above features, you need to have [GQLAlchemy installed](/docs/gqlalchemy/installation) and a running Memgraph instance. If you're not sure how to run Memgraph, check out the Memgraph [Quick start](/memgraph/#quick-start).
+To test the above features, you need to have [GQLAlchemy installed](/gqlalchemy/installation) and a running Memgraph instance. If you're not sure how to run Memgraph, check out the Memgraph [Quick start](/memgraph/#quick-start).
 :::
 
 ## Map nodes and relationships
@@ -341,7 +341,7 @@ The indexes will be set on class definition, before instantiation. This ensures 
 print(db.get_indexes())
 ```
 
-To learn more about indexes, head over to the [indexing reference guide](/docs/memgraph/reference-guide/indexing).
+To learn more about indexes, head over to the [indexing reference guide](/memgraph/reference-guide/indexing).
 
 ## Create constraints 
 
@@ -358,7 +358,7 @@ The above is the same as running the Cypher query:
 CREATE CONSTRAINT ON (n:Language) ASSERT n.name IS UNIQUE;
 ```
 
-Read more about it at [uniqueness constraint how-to guide](/docs/memgraph/how-to-guides/constraints/uniqueness-constraint).
+Read more about it at [uniqueness constraint how-to guide](/memgraph/how-to-guides/constraints/uniqueness-constraint).
 
 Existence constraint enforces that each vertex that has a specific label also must have the specified property.  Here is how you can **enforce existence constraint** with GQLAlchemy's OGM:
 
@@ -375,7 +375,7 @@ The above is the same as running the Cypher query:
 CREATE CONSTRAINT ON (n:Streamer) ASSERT EXISTS (n.username);
 ```
 
-Read more about it at [existence constraint how-to guide](/docs/memgraph/how-to-guides/constraints/existence-constraint).
+Read more about it at [existence constraint how-to guide](/memgraph/how-to-guides/constraints/existence-constraint).
 
 To check which constraints have been created, run: 
 

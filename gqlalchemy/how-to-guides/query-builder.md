@@ -40,12 +40,12 @@ Through this guide, you will learn how to use GQLAlchemy query builder to:
 >have any more questions, join our community and ping us on [Discord](https://discord.gg/memgraph).
 
 :::info
-To test the above features, you need to have [GQLAlchemy installed](/docs/gqlalchemy/installation) and a running Memgraph instance. If you're not sure how to run Memgraph, check out the Memgraph [Quick start](/memgraph/#quick-start).
+To test the above features, you need to have [GQLAlchemy installed](/gqlalchemy/installation) and a running Memgraph instance. If you're not sure how to run Memgraph, check out the Memgraph [Quick start](/memgraph/#quick-start).
 :::
 
 ## Create nodes and relationships
 
-Methods [`create()`](/docs/gqlalchemy/reference/query_builders/declarative_base#create), [`merge()`](/docs/gqlalchemy/reference/query_builders/declarative_base#merge), [`match()`](/docs/gqlalchemy/reference/query_builders/declarative_base#match), [`node()`](/docs/gqlalchemy/reference/query_builders/declarative_base#node), [`to()`](/docs/gqlalchemy/reference/query_builders/declarative_base#to) and [`from_()`](/docs/gqlalchemy/reference/query_builders/declarative_base#from_) are most often used when building a query to create or merge nodes and relationships.
+Methods [`create()`](/gqlalchemy/reference/query_builders/declarative_base#create), [`merge()`](/gqlalchemy/reference/query_builders/declarative_base#merge), [`match()`](/gqlalchemy/reference/query_builders/declarative_base#match), [`node()`](/gqlalchemy/reference/query_builders/declarative_base#node), [`to()`](/gqlalchemy/reference/query_builders/declarative_base#to) and [`from_()`](/gqlalchemy/reference/query_builders/declarative_base#from_) are most often used when building a query to create or merge nodes and relationships.
 
 ### Create a node
 
@@ -256,7 +256,7 @@ Read more about `MERGE` clause in the [Cypher manual](/docs/cypher-manual/clause
 
 ## Set or update properties and labels
 
-The [`set_()`](/docs/gqlalchemy/reference/query_builders/declarative_base#set_) method is used to set labels on nodes, and properties on nodes and relationships. When being set, labels and properties can be updated or created, depending on the operator used as the argument of `set_()` method.
+The [`set_()`](/gqlalchemy/reference/query_builders/declarative_base#set_) method is used to set labels on nodes, and properties on nodes and relationships. When being set, labels and properties can be updated or created, depending on the operator used as the argument of `set_()` method.
 
 ### Set a property
 
@@ -485,9 +485,9 @@ All the properties in the map (value of the `literal` argument) that are on a gr
 
 ## Filter data
 
-You can use the methods [`where()`](/docs/gqlalchemy/reference/query_builders/declarative_base#where), [`where_not()`](/docs/gqlalchemy/reference/query_builders/declarative_base#where_not), [`or_where()`](/docs/gqlalchemy/reference/query_builders/declarative_base#or_where),
-[`or_where_not()`](/docs/gqlalchemy/reference/query_builders/declarative_base#or_where_node), [`and_where()`](/docs/gqlalchemy/reference/query_builders/declarative_base#and_where), [`and_where_not()`](/docs/gqlalchemy/reference/query_builders/declarative_base#and_where_not), [`xor_where()`](/docs/gqlalchemy/reference/query_builders/declarative_base#xor_where) and
-[`xor_where_not()`](/docs/gqlalchemy/reference/query_builders/declarative_base#xor_where_not) to construct queries that will filter data.
+You can use the methods [`where()`](/gqlalchemy/reference/query_builders/declarative_base#where), [`where_not()`](/gqlalchemy/reference/query_builders/declarative_base#where_not), [`or_where()`](/gqlalchemy/reference/query_builders/declarative_base#or_where),
+[`or_where_not()`](/gqlalchemy/reference/query_builders/declarative_base#or_where_node), [`and_where()`](/gqlalchemy/reference/query_builders/declarative_base#and_where), [`and_where_not()`](/gqlalchemy/reference/query_builders/declarative_base#and_where_not), [`xor_where()`](/gqlalchemy/reference/query_builders/declarative_base#xor_where) and
+[`xor_where_not()`](/gqlalchemy/reference/query_builders/declarative_base#xor_where_not) to construct queries that will filter data.
 
 
 
@@ -533,7 +533,7 @@ MATCH (p1:Person)-[:FRIENDS_WITH]->(p2:Person) WHERE p1.name < p2.name RETURN *;
 Keyword arguments that can be used in filtering methods are `literal` and `expression`. Usually we use `literal` for property values and `expression` for property names and labels. That is because property names and labels shouldn't be quoted in Cypher statements. 
 
 :::info
-You will probably see the `GQLAlchemySubclassNotFoundWarning` warning. This happens if you did not define a Python class which maps to a graph object in the database. To do that, check the [object graph mapper how-to guide](/docs/gqlalchemy/how-to-guides/ogm). To ignore such warnings, you can do the following before query execution:
+You will probably see the `GQLAlchemySubclassNotFoundWarning` warning. This happens if you did not define a Python class which maps to a graph object in the database. To do that, check the [object graph mapper how-to guide](/gqlalchemy/how-to-guides/ogm). To ignore such warnings, you can do the following before query execution:
 
 ```python
 from gqlalchemy import models
@@ -755,7 +755,7 @@ Just like in [property comparison](#filter-data-by-property-comparison), it is p
 
 ## Return results
 
-You can use the methods [`return_()`](/docs/gqlalchemy/reference/query_builders/declarative_base#return_), [`limit()`](/docs/gqlalchemy/reference/query_builders/declarative_base#limit), [`skip()`](/docs/gqlalchemy/reference/query_builders/declarative_base#skip) and [`order_by()`](/docs/gqlalchemy/reference/query_builders/declarative_base#order_by) to
+You can use the methods [`return_()`](/gqlalchemy/reference/query_builders/declarative_base#return_), [`limit()`](/gqlalchemy/reference/query_builders/declarative_base#limit), [`skip()`](/gqlalchemy/reference/query_builders/declarative_base#skip) and [`order_by()`](/gqlalchemy/reference/query_builders/declarative_base#order_by) to
 construct queries that will return data from the database.
 
 ### Return all variables from a query
@@ -1072,7 +1072,7 @@ ORDER BY n.id ASC, n.name, n.last_name DESC, n.age ASCENDING, n.middle_name DESC
 
 ## Delete and remove objects
 
-You can use the methods [`delete()`](/docs/gqlalchemy/reference/query_builders/declarative_base#delete) and [`remove()`](/docs/gqlalchemy/reference/query_builders/declarative_base#remove) to construct queries that will
+You can use the methods [`delete()`](/gqlalchemy/reference/query_builders/declarative_base#delete) and [`remove()`](/gqlalchemy/reference/query_builders/declarative_base#remove) to construct queries that will
 remove nodes and relationships or properties and labels.
 
 ### Delete a node
@@ -1168,7 +1168,7 @@ MATCH (p:Person {name: 'Jane'}) REMOVE p.name, p.last_name;
 
 ## Call procedures
 
-You can use the methods [`call()`](/docs/gqlalchemy/reference/query_builders/declarative_base#call) and [`yield_()`](/docs/gqlalchemy/reference/query_builders/declarative_base#yield_) to construct queries that will
+You can use the methods [`call()`](/gqlalchemy/reference/query_builders/declarative_base#call) and [`yield_()`](/gqlalchemy/reference/query_builders/declarative_base#yield_) to construct queries that will
 call procedure and return results from them.
 
 ### Call procedure with no arguments
