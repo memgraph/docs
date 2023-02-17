@@ -40,7 +40,7 @@ Through this guide, you will learn how to use GQLAlchemy query builder to:
 >have any more questions, join our community and ping us on [Discord](https://discord.gg/memgraph).
 
 :::info
-To test the above features, you need to have [GQLAlchemy installed](/gqlalchemy/installation) and a running Memgraph instance. If you're not sure how to run Memgraph, check out the Memgraph [Quick start](/memgraph/#quick-start).
+To test the above features, you must install [GQLAlchemy](/gqlalchemy/installation) and have a running Memgraph instance. If you're unsure how to run Memgraph, check out the Memgraph [Quick start](/memgraph/#quick-start).
 :::
 
 ## Create nodes and relationships
@@ -365,7 +365,7 @@ MATCH (n) WHERE n.name = 'Germany' SET n.population = 83000001 SET n.capital = '
 </TabItem>
 </Tabs>
 
-If a node already had the properties we are setting, they will be updated to a new value. Otherwise, the properties will be created and their value will be set.
+If a node already has the properties we are setting, they will be updated to a new value. Otherwise, the properties will be created and their value will be set.
 
 ### Set a label
 
@@ -541,7 +541,6 @@ from gqlalchemy import models
 models.IGNORE_SUBCLASSNOTFOUNDWARNING = True
 ```
 :::
-
 
 
 Standard boolean operators like `NOT`, `AND`, `OR` and `XOR` are used in the
