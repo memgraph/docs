@@ -8,7 +8,7 @@ slug: /
 **Memgraph Lab** is a lightweight and intuitive **visual user interface** that
 enables you to:
 
-- visualize graph data
+- visualize graph data using [the Orb library](https://github.com/memgraph/orb)
 - write and execute Cypher queries
 - import and export data
 - view and optimize query performance
