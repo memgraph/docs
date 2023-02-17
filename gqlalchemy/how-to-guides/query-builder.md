@@ -40,12 +40,12 @@ Through this guide, you will learn how to use GQLAlchemy query builder to:
 >have any more questions, join our community and ping us on [Discord](https://discord.gg/memgraph).
 
 :::info
-To test the above features, you need a running Memgraph instance. If you're not sure how to run Memgraph, check out the Memgraph [Quick start](/memgraph/#quick-start).
+To test the above features, you need to have [GQLAlchemy installed](/docs/gqlalchemy/installation) and a running Memgraph instance. If you're not sure how to run Memgraph, check out the Memgraph [Quick start](/memgraph/#quick-start).
 :::
 
 ## Create nodes and relationships
 
-Methods [`create()`](/docs/gqlalchemy/reference/query_builders/declarative_base#create), [`merge()`](/docs/gqlalchemy/reference/query_builders/declarative_base#merge), [`match()`](/docs/gqlalchemy/reference/query_builders/declarative_base#match), [`node()`](/docs/gqlalchemy/reference/query_builders/declarative_base#node), [`to()`](/docs/gqlalchemy/reference/query_builders/declarative_base#to) and [`from_()`](/docs/gqlalchemy/reference/query_builders/declarative_base#from_) are most often used when building a query to create or merger nodes and relationships.
+Methods [`create()`](/docs/gqlalchemy/reference/query_builders/declarative_base#create), [`merge()`](/docs/gqlalchemy/reference/query_builders/declarative_base#merge), [`match()`](/docs/gqlalchemy/reference/query_builders/declarative_base#match), [`node()`](/docs/gqlalchemy/reference/query_builders/declarative_base#node), [`to()`](/docs/gqlalchemy/reference/query_builders/declarative_base#to) and [`from_()`](/docs/gqlalchemy/reference/query_builders/declarative_base#from_) are most often used when building a query to create or merge nodes and relationships.
 
 ### Create a node
 
@@ -77,7 +77,7 @@ CREATE (:Person {name: 'Ron'});
 
 ### Create a relationship
 
-To **create a relationship** of type `FRIENDS_WITH` from one `Person` node to another, run the following code:
+To **create a relationship** of type `FRIENDS_WITH` with property `since` from one `Person` node to another, run the following code:
 
 <Tabs
   defaultValue="gqlalchemy"
@@ -102,7 +102,7 @@ query = (
   <TabItem value="cypher">
 
 ```cypher
-CREATE (:Person {name: 'Leslie'})-[:FRIENDS_WITH]->(:Person {name: 'Ron'});
+CREATE (:Person {name: 'Leslie'})-[:FRIENDS_WITH {since: '2023-02-16'}]->(:Person {name: 'Ron'});
 ```
   
 </TabItem>
@@ -172,7 +172,9 @@ query = (
   <TabItem value="cypher">
 
 ```cypher
-CREATE (:Person {name: 'Leslie'})-[:FRIENDS_WITH]->(:Person {name: 'Ron'});
+MATCH (leslie:Person {name: 'Leslie'})
+MATCH (ron:Person {name: 'Ron'})
+CREATE (leslie)-[:FRIENDS_WITH]->(ron);
 ```
   
 </TabItem>
@@ -242,7 +244,8 @@ query = (
   <TabItem value="cypher">
 
 ```cypher
-MATCH (leslie:Person {name: 'Leslie'}), (ron:Person {name: 'Ron'})
+MATCH (leslie:Person {name: 'Leslie'})
+MATCH (ron:Person {name: 'Ron'})
 MERGE (leslie)-[:FRIENDS_WITH]->(ron);
 ```
   
@@ -362,7 +365,7 @@ MATCH (n) WHERE n.name = 'Germany' SET n.population = 83000001 SET n.capital = '
 </TabItem>
 </Tabs>
 
-If the node already had the properties we are setting, they will be updated to a new value. Otherwise, the properties will be created and their value will be set.
+If a node already had the properties we are setting, they will be updated to a new value. Otherwise, the properties will be created and their value will be set.
 
 ### Set a label
 
@@ -583,7 +586,7 @@ MATCH (p1:Person)-[:FRIENDS_WITH]->(p2:Person) WHERE NOT p1.name < p2.name RETUR
 In a similar way, you can use `AND` and `AND NOT` clauses which correspond to
 the methods `and_where()` and `and_not_where()`. Using the query below you can
 find all persons with the same `address` and `last_name`, but different
-`first_name`.
+`name`.
 
 <Tabs
 defaultValue="gqlalchemy"
@@ -669,8 +672,7 @@ MATCH (p:Person) WHERE p.age > 18 RETURN *;
 
 The third keyword argument is `literal` since we wanted the property `age` to be saved as an integer. If we used `expression` keyword argument instead of `literal`, then the `age` property would be a string (it would be quoted in Cypher query). Instead of `Operator.GREATER_THAN`, a simple string of value `">"` can be used.
 
-Just like in [property comparison](#filter-data-by-property-comparison), you can
-use different boolean operators to further filter the data.
+Just like in [property comparison](#filter-data-by-property-comparison), it is possible to use different boolean operators to further filter the data.
 
 <Tabs
 defaultValue="gqlalchemy"
@@ -749,8 +751,7 @@ MATCH (p) WHERE p:Person RETURN *;
   </TabItem>
 </Tabs>
 
-Just like in [property comparison](#filter-data-by-property-comparison), you can
-use different boolean operators to further filter the data.
+Just like in [property comparison](#filter-data-by-property-comparison), it is possible to use different boolean operators to further filter the data.
 
 ## Return results
 
@@ -759,7 +760,7 @@ construct queries that will return data from the database.
 
 ### Return all variables from a query
 
-To **return all the variables from a query**, just use the `return_()` method at the
+To **return all the variables from a query**, use the `return_()` method at the
 end of the query:
 
 <Tabs
@@ -961,7 +962,7 @@ print(results)
   <TabItem value="cypher">
 
 ```cypher
-MATCH (n) RETURN * ORDER BY n.id ASCENDING;
+MATCH (n) RETURN * ORDER BY n.name ASCENDING;
 ```
 
 </TabItem>
@@ -1217,16 +1218,25 @@ To call a procedure with arguments, specify the arguments as a string in the
 from gqlalchemy import call
 
 results = list(
-    call(procedure="pagerank.get", arguments="100").yield_().return_().execute()
+    call(
+        "json_util.load_from_url",
+        "'https://download.memgraph.com/asset/mage/data.json'",
+    )
+    .yield_("objects")
+    .return_(results="objects")
+    .execute()
 )
-print(results)
+
+print("Load from URL with argument:", results, "\n")
 ```
 
   </TabItem>
   <TabItem value="cypher">
 
 ```cypher
-CALL pagerank.get(100) YIELD * RETURN *;
+CALL json_util.load_from_url('https://download.memgraph.com/asset/mage/data.json') 
+YIELD objects 
+RETURN objects;
 ```
 
 </TabItem>
@@ -1468,11 +1478,18 @@ match().node(labels="Person", name="Jane", variable="p").remove(
 results = list(call("pagerank.get").yield_().return_().execute())
 print("PageRank:", results, "\n")
 
-# calculate PageRank with arguments
+# Load JSON from URL with arguments
 results = list(
-    call(procedure="pagerank.get", arguments="100").yield_().return_().execute()
+    call(
+        "json_util.load_from_url",
+        "'https://download.memgraph.com/asset/mage/data.json'",
+    )
+    .yield_("objects")
+    .return_(results="objects")
+    .execute()
 )
-print("PageRank with argument:", results, "\n")
+
+print("Load from URL with argument:", results, "\n")
 ```
 
 

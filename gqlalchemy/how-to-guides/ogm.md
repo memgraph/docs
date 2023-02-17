@@ -15,11 +15,11 @@ Through this guide, you will learn how to use GQLAlchemy object graph mapper to:
 - [**Create indexes**](#create-indexes)
 - [**Create constraints**](#create-constraints)
 
->Hopefully, this guide will teach you how to properly use GQLAlchemy query builder. If you
+>Hopefully, this guide will teach you how to properly use GQLAlchemy object graph mapper. If you
 >have any more questions, join our community and ping us on [Discord](https://discord.gg/memgraph).
 
 :::info
-To test the above features, you need a running Memgraph instance. If you're not sure how to run Memgraph, check out the Memgraph [Quick start](/memgraph/#quick-start).
+To test the above features, you need to have [GQLAlchemy installed](/docs/gqlalchemy/installation) and a running Memgraph instance. If you're not sure how to run Memgraph, check out the Memgraph [Quick start](/memgraph/#quick-start).
 :::
 
 ## Map nodes and relationships
@@ -453,5 +453,5 @@ print(db.get_indexes())
 print(db.get_constraints())
 ```
 
-Hopefully, this guide has taught you how to properly use GQLAlchemy object graph mapper. If you
-have any more questions, join our community and ping us on [Discord](https://discord.gg/memgraph).
+>Hopefully, this guide has taught you how to properly use GQLAlchemy object graph mapper. If you
+>have any more questions, join our community and ping us on [Discord](https://discord.gg/memgraph).
