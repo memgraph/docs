@@ -66,13 +66,19 @@ The default data directory path is `var/lib/memgraph`. You can change the path
 by setting the `data-dir` configuration flag
 ([reference](/docs/memgraph/reference-guide/configuration#other)).
 
-## Backup
+## Backup and restore
 
 You can easily back up Memgraph by following a three-step process:
 
 1. Create a snapshot
 2. Lock the data directory
 3. Copy the snapshot to the backup location and unlock the directory
+
+To restore from back-up:
+
+1. Lock the data directory
+2. Copy the backed up snapshot into the directory
+3. Unlock the directory
 
 The following queries lock and unlock the data directory:
 
