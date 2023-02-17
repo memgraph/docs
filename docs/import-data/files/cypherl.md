@@ -28,6 +28,9 @@ Once you Memgraph instance in running and you've connected to it via Memgraph
 Lab, go to the **Import & Export** section. To **Import Data** select the
 CYPHERL file or drag and drop it into Memgraph Lab. 
 
+You can import up to 1 million nodes and relationships via Memgraph Lab using
+the CYPHERL file. 
+
 <img src={require('../../data/import-data/import-lab.png').default}className={"imgBorder"}/>
 
 ## Importing via mgconsole
