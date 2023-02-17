@@ -133,7 +133,7 @@ If you need help copying the files from the Docker container, check out the
 [Working with docker
 guide](/how-to-guides/work-with-docker.md##how-to-copy-files-from-and-to-a-docker-container).
 
-### 3. Copy the snapshot into the data directory
+### 3. Unlock the directory
 
 Run the following query in `mgconsole` or Memgraph Lab to unlock the
 directory:
