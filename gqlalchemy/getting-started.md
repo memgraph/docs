@@ -30,5 +30,5 @@ guide](/how-to-guides/ogm.md) you can learn how to map Python classes to graph o
 ### 3. Learn how to use the query builder
 
 There is no need to learn the Cypher query language when you can use the [query
-builder](/how-to-guides/query-builder/create-nodes-relationships.md) in GQLAlchemy to perform
+builder](/how-to-guides/query-builder.md) in GQLAlchemy to perform
 the same tasks.
