@@ -16,12 +16,12 @@ operator *pulls* data from the logical operator(s) preceding it, processes it
 and passes it onto the logical operator next in the pipeline for further
 processing.
 
-Using the `EXPLAIN` operator, it is possible for the user to inspect the
+Using the `EXPLAIN` clause, it is possible for the user to inspect the
 produced plan and gain insight into the execution of a query. Currently, the
 various logical operators aren't fully documented as their behavior is subject
 to change. However, the behavior of most of them can be deduced from their name.
 In the future, additional information might be added to the output of the
-`EXPLAIN` operator.
+`EXPLAIN` clause.
 
 As an example, let's inspect the plan produced for a simple query:
 

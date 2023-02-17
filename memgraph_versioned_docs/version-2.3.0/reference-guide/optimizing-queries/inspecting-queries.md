@@ -17,7 +17,7 @@ operator *pulls* data from the logical operator(s) preceding it, processes it
 and passes it onto the logical operator next in the pipeline for further
 processing.
 
-Using the `EXPLAIN` operator, it is possible for the user to inspect the
+Using the `EXPLAIN` clause, it is possible for the user to inspect the
 produced plan and gain insight into the execution of a query.
 
 ## Operators

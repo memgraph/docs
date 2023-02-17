@@ -91,7 +91,7 @@ predicates. In this case, anything that is not true is interpreted as being fals
 
 ## Inspecting and profiling queries
 
-The `EXPLAIN` and `PROFILE` operators can be used to inspect and profile a
+The `EXPLAIN` and `PROFILE` clauses can be used to inspect and profile a
 particular Cypher query in order to see its internal representation and the way
 it behaves during execution:
 
