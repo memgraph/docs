@@ -1,0 +1,22 @@
+.homeSupportedLanguages {
+    background: var(--mg-bg-light);
+    height: 540px;
+    margin: 65px 30px;
+    z-index: 0;
+}
+
+.homeSupportedLanguages__content {
+    padding-top: 92px;
+}
+
+.homeSupportedLanguages h2 {
+    font-size: 32px;
+    margin-bottom: 42px;
+    font-family: var(--mg-font-family);
+    font-weight: var(--mg-font-weight-h2h3);
+}
+
+.homeSupportedLanguages__image {
+    background-image: url("/static/img/logotypes.png");
+    z-index: 1;
+}

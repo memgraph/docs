@@ -9,14 +9,22 @@
   color: white;
 }
 
-.heroInner > div:first-child {
+.heroInner>div:first-child {
   max-width: 420px;
 }
 
 .heroInner h1 {
-  font-size: 56px;
-  font-weight: 600;
+  font-size: var(--mg-font-size-h1);
+  font-weight: var(--mg-font-weight-h1);
   font-family: var(--mg-font-family);
+  line-height: 56px;
+}
+
+.heroInner p {
+  font-size: var(--mg-font-size-p);
+  font-weight: var(--mg-font-weight-p);
+  font-family: var(--mg-font-family-alt);
+  line-height: 24px;
 }
 
 .heroImg {
@@ -37,6 +45,8 @@
 @media (max-width: 1074px) {
   .heroCodeSnippet pre {
     font-size: 14px;
+    font-weight: var(--mg-font-weight-p);
+    line-height: 28px;
   }
 }
 
@@ -44,6 +54,7 @@
   .heroInner div:first-child {
     max-width: inherit;
   }
+
   .heroInner div:last-child {
     display: none;
   }

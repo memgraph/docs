@@ -6,7 +6,8 @@ import HomeCallouts from "../theme/sections/home-callouts/home-callouts";
 import HomeEcosystem from "../theme/sections/home-ecosystem/home-ecosystem";
 import HomeLearnWithUs from "../theme/sections/home-learn-with-us/home-learn-with-us";
 import HomeGetInvolved from "../theme/sections/home-get-involved/home-get-involved";
-import HomePlaygroundEmbed from '../theme/sections/home-playground-embed/home-playground-embed';
+import HomeInBrowserDataAnalysis from '../theme/sections/home-in-browser-data-analysis/home-in-browser-data-analysis';
+import HomeSupportedLanguages from '../theme/sections/home-supported-lanaguages/home-supported-languages';
 
 
 function Home() {
@@ -22,9 +23,10 @@ function Home() {
                 <Hero title={title} />
                 <HomeCallouts />
                 <HomeEcosystem />
-                <HomePlaygroundEmbed />
+                <HomeInBrowserDataAnalysis />
                 <HomeLearnWithUs />
-                <HomeGetInvolved />
+                {/* <HomeGetInvolved /> */}
+                <HomeSupportedLanguages />
             </main>
         </Layout>
     );

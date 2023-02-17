@@ -7,48 +7,57 @@ import CalloutImgBox from "../../../components/callout-img-box/callout-img-box";
 export default function HomeLearnWithUs() {
     const items = [
         {
+            title: 'Email Courses',
+            description: 'Sign up for the free email courses and learn about graph-related topics such as Cypher and data modeling.',
+            url: 'https://memgraph.com/email-courses',
+            img: useBaseUrl('img/cypher-email-course.svg'),
+        },
+        {
             title: 'Playground',
-            description: 'No downloads, installations, or registration required. Just choose a tutorial and try out Memgraph in your browser.',
+            description: 'Explore datasets to learn Cypher query langauge and how to analyze data with graph algorithms.',
             url: 'https://playground.memgraph.com/',
             img: useBaseUrl('img/tutorial-playground.svg'),
         },
         {
-            title: 'Cypher Email Course',
-            description: 'Sign up for the free email course and learn the Cypher query language in 10 days.',
-            url: 'https://memgraph.com/learn-cypher-query-language',
-            img: useBaseUrl('img/cypher-email-course.svg'),
+            title: 'Tutorials',
+            description: 'Select one of the many available tutorials and examples available in our documentation and give it a go locally.',
+            url: useBaseUrl('/memgraph/tutorials'),
+            img: useBaseUrl('img/tutorials-tut-img.svg'),
         },
         {
-            title: 'Tutorials',
-            description: 'Select one of the many available tutorials and give it a go locally.',
-            url: 'https://memgraph.com/docs/memgraph/tutorials',
-            img: useBaseUrl('img/tutorials-tut-img.svg'),
+            title: 'Cypher Manual',
+            description: 'If you get stuck with writing Cypher queries, the manual will guide you to get the insights you require.',
+            url: useBaseUrl('/cypher-manual'),
+            img: useBaseUrl('img/cypher-manual.svg'),
+        },
+        {
+            title: 'Webinars & On Demand Courses',
+            description: 'Learn more about graph databases in general or deep dive into one of the use case with Memgraph webinars.',
+            url: 'https://memgraph.com/webinars',
+            img: useBaseUrl('img/webinar.svg'),
         },
         {
             title: 'Code with Buda',
             description: 'Watch as Memgraph’s CTO demonstrates how to use some of the most complex and powerful features.',
             url: 'https://www.youtube.com/playlist?list=PL7Eotag2rRhaYDrSNcltkbtj0S3yC7h-u',
-            img: useBaseUrl('img/codewbuda-img.svg'),
+            img: useBaseUrl('img/code-with-buda.svg'),
         }
     ];
 
 
     return (
         <div className={styles.homeLearnWithUs}>
-            <div className={styles.homeLearnWithUs__bg}>
-                <img src={useBaseUrl('img/PatternBG.svg')} />
-            </div>
             <Container>
-                <h2>Learn With Us</h2>
+                <h2>Learn with us</h2>
                 <div className={styles.homeLearnWithUs__subtitle}>
                     <p>Get to know Memgraph by following one of our tutorials. We have prepared a lot of hands-on
                         examples in the form of tutorials and live streams.</p>
                 </div>
                 <div className={styles.homeLearnWithUs__items}>
-                    <div>&nbsp;</div>
+                    {/* <div>&nbsp;</div> */}
                     {items.map((item, i) => {
                         return (
-                            <div key={i}>
+                            <div key={i} className={styles.homeLearnWithUs__items}>
                                 <CalloutImgBox title={item.title} subtitle={item.description} url={item.url}
                                     img={item.img} />
                             </div>
