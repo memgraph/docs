@@ -20,10 +20,6 @@ export const Highlight = ({children, color}) => (
   </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-union_find-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/union_find.py)
-
-## Abstract
-
 Analysis of connected components is a common task in graph analytics.
 
 By using a disjoint-set data structure that keeps track of them, the algorithm implemented in this module enables the user to quickly check whether a pair of given nodes is in the same or different connected component.
@@ -33,6 +29,7 @@ The implementation of the disjoint-set data structure and its operations uses th
 
 [^1] [Worst-case Analysis of Set Union Algorithms](https://dl.acm.org/doi/10.1145/62.2160), Robert E. Tarjan and Jan van Leeuwen
 
+[![docs-source](https://img.shields.io/badge/source-union_find-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/union_find.py)
 
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |
@@ -41,6 +38,12 @@ The implementation of the disjoint-set data structure and its operations uses th
 | **Graph direction** | <Highlight color="#FB6E00">**undirected**</Highlight> |
 | **Edge weights**    | <Highlight color="#FB6E00">**unweighted**</Highlight> |
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight> |
+
+:::note Too slow?
+
+If this algorithm implementation is too slow for your use case, [contact us](mailto:tech@memgraph.com) and request a rewrite to C++ !
+
+:::
 
 ## Procedures
 

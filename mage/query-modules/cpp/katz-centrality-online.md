@@ -20,10 +20,6 @@ style={{
 </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-katz_centrality_online-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/cpp/katz_centrality_module/katz_centrality_online_module.cpp)
-
-## Abstract
-
 Because of its simplicity, **Katz Centrality** has become one of the most
 established centrality measurements. The definition of Katz centrality is that
 it presents the amount of influence by summing all walks starting from the node
@@ -64,6 +60,8 @@ SET node.rank = rank;
 
 Finally, the `reset()` function resets the context and enables the user to start
 new runs.
+
+[![docs-source](https://img.shields.io/badge/source-katz_centrality_online-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/cpp/katz_centrality_module/katz_centrality_online_module.cpp)
 
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |

@@ -20,10 +20,6 @@ style={{
 </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-temporal_graph_networks-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/tgn.py)
-
-## Abstract
-
 The **temporal_graph_networks (TGNs)** are a type of [graph neural network
 (GNN)](https://distill.pub/2021/gnn-intro/) for dynamic graphs. In recent years,
 **GNNs** have become very popular due to their ability to perform a wide variety
@@ -47,6 +43,8 @@ networks](https://arxiv.org/abs/2006.10637), an architecture for machine
 learning on streamed graphs, a rapidly-growing ML use case.
 
 ### About the query module
+
+[![docs-source](https://img.shields.io/badge/source-temporal_graph_networks-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/tgn.py)
 
 What we have got in this module:
 

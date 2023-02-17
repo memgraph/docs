@@ -20,13 +20,11 @@ export const Highlight = ({children, color}) => (
   </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-export_util-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/export_util.py)
-
-
-## Abstract
-
 Module for exporting a graph database in different formats. Currently, this
 module supports only the export to JSON file format.
+
+[![docs-source](https://img.shields.io/badge/source-export_util-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/export_util.py)
+
 
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |

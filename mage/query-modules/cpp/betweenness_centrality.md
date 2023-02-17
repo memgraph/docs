@@ -20,10 +20,6 @@ style={{
 </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-betweenness_centrality-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/cpp/betweenness_centrality_module/betweenness_centrality_module.cpp)
-
-## Abstract
-
 Centrality analysis provides information about the node’s importance for an
 information flow or connectivity of the network. Betweenness centrality is one
 of the most used centrality metrics. Betweenness centrality measures the extent
@@ -40,6 +36,8 @@ Centrality](http://www.uvm.edu/pdodds/research/papers/others/2001/brandes2001a.p
 [^1] [A Faster Algorithm for Betweenness
 Centrality](http://www.uvm.edu/pdodds/research/papers/others/2001/brandes2001a.pdf),
 Ulrik Brandes
+
+[![docs-source](https://img.shields.io/badge/source-betweenness_centrality-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/cpp/betweenness_centrality_module/betweenness_centrality_module.cpp)
 
 | Trait               | Value                                                                                                     |
 | ------------------- | --------------------------------------------------------------------------------------------------------- |

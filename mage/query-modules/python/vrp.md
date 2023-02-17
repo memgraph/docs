@@ -20,16 +20,12 @@ export const Highlight = ({children, color}) => (
   </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-vrp-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/vrp.py)
-
-
-## Abstract
-
 VRP or **Vehicle Routing problem** is a generalization of the *Travelling Salesman Problem*. The goal of the problem is to find the shortest route that visits each node once, starting and finishing from the same node, called a depot, while using a fleet of vehicles. Each vehicle does not need to be at every location, it is enough that every node is visited by at least one vehicle. The problem is *NP-hard* in optimization, and therefore methods such as constraint programming, approximations or heuristics are a good approach for solving. The current implementation of VRP includes constraint programming with *GEKKO* solver which works with 1 depot and an arbitrary number of vehicles. The algorithm uses the distance calculator to determine the distance between driving points, and works only with geographical locations, meaning each node needs to have its *lat* and *lng* property.
 
 ```cypher
 (location:Location {lat: 44.1194, lng: 15.2314})
 ```
+[![docs-source](https://img.shields.io/badge/source-vrp-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/vrp.py)
 
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |
@@ -38,6 +34,12 @@ VRP or **Vehicle Routing problem** is a generalization of the *Travelling Salesm
 | **Graph direction** | <Highlight color="#FB6E00">**undirected**</Highlight> |
 | **Edge weights**    | <Highlight color="#FB6E00">**unweighted**</Highlight> |
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight> |
+
+:::note Too slow?
+
+If this algorithm implementation is too slow for your use case, [contact us](mailto:tech@memgraph.com) and request a rewrite to C++ !
+
+:::
 
 ## Procedures
 

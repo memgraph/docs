@@ -20,15 +20,12 @@ export const Highlight = ({children, color}) => (
   </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-weakly_connected_components-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/cpp/connectivity_module/connectivity_module.cpp)
-
-
-## Abstract
-
 The first analysis that is most often run on a graph is usually a search for disconnected components.
 The algorithm implemented within this module does exactly that, it searches for different components of
 the graph. Within components, nodes have connections toward each other, while between components there
 is no edge that connects nodes from separate components.
+
+[![docs-source](https://img.shields.io/badge/source-weakly_connected_components-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/cpp/connectivity_module/connectivity_module.cpp)
 
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |

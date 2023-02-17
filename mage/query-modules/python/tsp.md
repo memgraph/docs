@@ -20,16 +20,13 @@ export const Highlight = ({children, color}) => (
   </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-tsp-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/tsp.py)
-
-
-## Abstract
-
 TSP or "Travelling salesman problem" is one of the well-known problems in graph theory. The goal of the problem is to find the shortest route that visits each node once, starting and finishing from the same node, given the distance between each one of them. It is an NP-hard problem in optimization and therefore there exists no exact solution. Here implemented are trivial, *greedy* and *k-approx* methods that find the solution within a *k-bound* of the optimal one. That means that solution is not going to be more than *k* times worse than the best possible. The algorithm uses the distance calculator to determine the distance between points, and works only with geographical locations, meaning each node needs to have its *lat* and *lng* property.
 
 ```cypher
 (location:Location {lat: 44.1194, lng: 15.2314})
 ```
+
+[![docs-source](https://img.shields.io/badge/source-tsp-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/tsp.py)
 
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |
@@ -38,6 +35,12 @@ TSP or "Travelling salesman problem" is one of the well-known problems in graph 
 | **Graph direction** | <Highlight color="#FB6E00">**undirected**</Highlight> |
 | **Edge weights**    | <Highlight color="#FB6E00">**unweighted**</Highlight> |
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight> |
+
+:::note Too slow?
+
+If this algorithm implementation is too slow for your use case, [contact us](mailto:tech@memgraph.com) and request a rewrite to C++ !
+
+:::
 
 ## Procedures
 

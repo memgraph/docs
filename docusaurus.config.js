@@ -1330,6 +1330,10 @@ module.exports = {
             to: "/memgraph/import-data/files/overview",
             from: ["/memgraph/import-data/csv/overview", "/memgraph/reference-guide/import-data/overview"],
           },
+          {
+            to: "/mage/query-modules/cpp/distance-calculator",
+            from: ["/mage/query-modules/python/distance-calculator"],
+          },
         ],
       },
     ],
