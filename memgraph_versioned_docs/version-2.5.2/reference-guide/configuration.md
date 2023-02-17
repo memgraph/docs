@@ -31,6 +31,14 @@ SHOW CONFIG;
 | --bolt-server-name-for-init= | Server name which the database should send to the client in the Bolt INIT message. | `[string]` |
 | --bolt-session-inactivity-timeout=1800 | Time in seconds after which inactive Bolt sessions will be closed. | `[int32]` |
 
+:::note
+
+Memgraph does not limit the maximum amount of simultaneous sessions.
+Transactions within all open sessions are served with a limited number of Bolt
+workers simultaneously. 
+
+:::
+
 ## Query
 
 | Flag           | Description    | Type           |
