@@ -172,6 +172,7 @@ Sometimes, disabling users from executing certain commands is too restrictive.
 Label-based access control enables database administrators to disable users from 
 viewing or manipulating nodes with certain labels and relationships of certain types.
 
+[![Related - How to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/manage-label-based-access-control.md)
 
 Label-based permissions are divided into 4 hierarchical parts or levels:
 - `NOTHING` - denies user visibility and manipulation over nodes and relationships
