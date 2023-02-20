@@ -26,7 +26,9 @@ Hub](/installation/docker-hub.md) guides.
 
 ### Prerequisits
 
-To install MAGE from source, first set up the machine by running the following commands: 
+To install MAGE from source, first [install Rust and Cargo](https://doc.rust-lang.org/cargo/getting-started/installation.html). 
+
+Then set up the machine by running the following commands: 
 
 ```bash
 sudo apt-get update && apt-get install -y \
