@@ -23,10 +23,12 @@ module.exports = {
       items: [
         "clauses/create",
         "clauses/delete",
+        "clauses/explain",
         "clauses/load-csv",
         "clauses/match",
         "clauses/merge",
         "clauses/optional-match",
+        "clauses/profile",
         "clauses/remove",
         "clauses/return",
         "clauses/set",

@@ -122,12 +122,27 @@ When using the `LOAD CSV` clause please keep in mind:
   CREATE (n:A {p1 : x, p2 : y});
   ```
 
+:::tip
+
+The `LOAD CSV` clause will create relationships and thus import data much
+  faster if you [create indexes](/how-to-guides/indexes.md) on nodes or node
+  properties once you import them: 
+
+  ```cypher
+  CREATE INDEX ON Node(id);
+  ````
+
+:::
+
 ## Examples
 
 Below, you can find two examples of how to use the LOAD CSV clause depending on
 the complexity of your data:
-- [One type of nodes and relationships](#one-type-of-nodes-and-relationships) 
-- [Multiple types of nodes and relationships](#multiple-types-of-nodes-and-relationships)
+- [Clause syntax](#clause-syntax)
+- [Clause specificities](#clause-specificities)
+- [Examples](#examples)
+  - [One type of nodes and relationships](#one-type-of-nodes-and-relationships)
+  - [Multiple types of nodes and relationships](#multiple-types-of-nodes-and-relationships)
 
 ### One type of nodes and relationships
 

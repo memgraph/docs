@@ -20,10 +20,6 @@ style={{
 </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-pagerank_online-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/cpp/pagerank_module/pagerank_online_module.cpp)
-
-## Abstract
-
 **Online PageRank** is a streaming algorithm made for calculating
 [PageRank](pagerank.md) in a graph streaming scenario. Incremental- local
 changes are introduced in the algorithm to prevent users from recalculating
@@ -76,6 +72,8 @@ new runs.
 [^1] [Fast Incremental and Personalized
 PageRank](http://snap.stanford.edu/class/cs224w-readings/bahmani10pagerank.pdf),
 Bahman Bahmani et al.
+
+[![docs-source](https://img.shields.io/badge/source-pagerank_online-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/cpp/pagerank_module/pagerank_online_module.cpp)
 
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |

@@ -6,7 +6,7 @@ slug: /
 ---
 
 [Memgraph Cloud](https://memgraph.com/cloud) is a cloud service fully managed
-on AWS and available in 26 geographic regions around the world. Memgraph Cloud
+on AWS and available in 6 geographic regions around the world. Memgraph Cloud
 allows you to create projects with Enterprise instances of MemgraphDB from your
 browser. The instances can use up to 32 GB of RAM and you can connect to them
 using [Memgraph Lab](cloud-connect#connect-with-memgraph-lab),

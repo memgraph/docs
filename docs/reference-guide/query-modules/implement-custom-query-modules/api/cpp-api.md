@@ -711,13 +711,15 @@ Relationship(Relationship &&other) noexcept
 
 #### Member functions
 
-| Name         | Description                                                                 |
-| ------------ | --------------------------------------------------------------------------- |
-| `Id`         | Returns the relationship’s ID.                                              |
-| `Type`       | Returns the relationship’s type.                                            |
-| `Properties` | Returns an iterable & indexable structure of the relationship’s properties. |
-| `From`       | Returns the relationship’s source node.                                     |
-| `To`         | Returns the relationship’s destination node.                                |
+| Name               | Description                                                                 |
+| ------------------ | --------------------------------------------------------------------------- |
+| `Id`               | Returns the relationship’s ID.                                              |
+| `Type`             | Returns the relationship’s type.                                            |
+| `Properties`       | Returns an iterable & indexable structure of the relationship’s properties. |
+| `SetProperty`      | Set value of relationship's property                                        |
+| `GetProperty`      | Get value of relationship's property                                        |
+| `From`             | Returns the relationship’s source node.                                     |
+| `To`               | Returns the relationship’s destination node.                                |
 
 ##### Id
 

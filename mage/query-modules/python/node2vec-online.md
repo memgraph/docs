@@ -20,10 +20,6 @@ export const Highlight = ({children, color}) => (
   </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-node2vec_online-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/node2vec_online.py)
-
-## Abstract
-
 The **node2vec_online** algorithm learns and updates temporal node embeddings on
 the fly for tracking and measuring node similarity over time in graph streams.
 The algorithm creates similar embeddings for two nodes (e.g. `v` and `u`) if there
@@ -75,6 +71,8 @@ interconnected and belong to similar network clusters or communities.
 graphs](https://appliednetsci.springeropen.com/track/pdf/10.1007/s41109-019-0169-5.pdf),
 Ferenc Béres, Róbert Pálovics, Domokos Miklós Kelen and András A. Benczúr
 
+[![docs-source](https://img.shields.io/badge/source-node2vec_online-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/node2vec_online.py)
+
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |
 | **Module type**     | <Highlight color="#FB6E00">**module**</Highlight>     |
@@ -82,6 +80,12 @@ Ferenc Béres, Róbert Pálovics, Domokos Miklós Kelen and András A. Benczúr
 | **Graph direction** | <Highlight color="#FB6E00">**directed**</Highlight> |
 | **Edge weights**    | <Highlight color="#FB6E00">**unweighted**</Highlight> |
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight> |
+
+:::note Too slow?
+
+If this algorithm implementation is too slow for your use case, [contact us](mailto:tech@memgraph.com) and request a rewrite to C++ !
+
+:::
 
 ## Procedures
 

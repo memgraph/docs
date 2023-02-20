@@ -20,12 +20,9 @@ export const Highlight = ({children, color}) => (
   </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-json_util-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/json_util.py)
-
-
-## Abstract
-
 A module for loading JSON from a local file or remote address. If the JSON that is being loaded is an array, then this module loads it as a stream of values, and if it is a map, the module loads it as a single value.
+
+[![docs-source](https://img.shields.io/badge/source-json_util-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/json_util.py)
 
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |

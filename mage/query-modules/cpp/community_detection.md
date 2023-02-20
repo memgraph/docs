@@ -20,10 +20,6 @@ export const Highlight = ({children, color}) => (
   </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-community_detection-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/cpp/community_detection_module/community_detection_module.cpp)
-
-## Abstract
-
 This query module enables using the [Louvain method](https://en.wikipedia.org/wiki/Louvain_method)<sup>[1]</sup> for community
 detection, using the [Grappolo](https://github.com/Exa-Graph/grappolo) parallel implementation.
 
@@ -38,6 +34,8 @@ a distance-1 graph coloring heuristic, and a graph coarsening algorithm that aim
 
 [^1] [Fast unfolding of communities in large networks](https://arxiv.org/abs/0803.0476),
 Blondel et al.
+
+[![docs-source](https://img.shields.io/badge/source-community_detection-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/cpp/community_detection_module/community_detection_module.cpp)
 
 | Trait                    | Value                                                                                                       |
 | ------------------------ | ----------------------------------------------------------------------------------------------------------- |

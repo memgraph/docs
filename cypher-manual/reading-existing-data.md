@@ -39,6 +39,14 @@ property `age` being 42, is done with the following query:
 MATCH (n:Person {age: 42}) RETURN n;
 ```
 
+```tip
+
+Each node and relationship gets a identifier generated during their initialization which is persisted through the durability mechanism.
+
+Return it with the [`id()` function](/cypher-manual/functions#scalar-functions). 
+
+```
+
 You can use the following query to find their friends:
 
 ```cypher
@@ -228,6 +236,15 @@ sub-clauses. For example, to get the oldest person you can use the following:
 
 ```cypher
 MATCH (n:Person) RETURN n ORDER BY n.age DESC LIMIT 1;
+```
+
+You can also order result before returning them. The following query will order
+all the nodes according to name, and then return them in a list. 
+
+```cypher
+MATCH (n)
+WITH n ORDER BY n.name DESC
+RETURN collect(n.name) AS names;
 ```
 
 ### Aggregating

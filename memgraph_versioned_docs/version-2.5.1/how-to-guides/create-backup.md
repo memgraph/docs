@@ -1,7 +1,7 @@
 ---
 id: create-backup
-title: How to create a backup
-sidebar_label: Create a backup
+title: How to backup and restore data
+sidebar_label: Backup and restore data
 ---
 
 While running, Memgraph generates various files in its
@@ -17,9 +17,11 @@ changing the configuration](/docs/memgraph/how-to-guides/config-logs).
 
 [![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/backup.md)
 
+## Create backup
+
 To create a backup, follow the steps below:
 
-## 1. Create a snapshot
+### 1. Create a snapshot
 
 If necessary, create a snapshot of the current database state by running the
 following query in `mgconsole` or Memgraph Lab:
@@ -28,7 +30,7 @@ following query in `mgconsole` or Memgraph Lab:
 CREATE SNAPSHOT;
 ```
 
-## 2. Lock the data directory
+### 2. Lock the data directory
 
 Durability files are deleted when an event is triggered, for example, exceeding
 the maximum number of snapshots.
@@ -40,7 +42,7 @@ Lab:
 LOCK DATA DIRECTORY;
 ```
 
-## 3. Copy the data directory and unlock it
+### 3. Copy the data directory and unlock it
 
 Copy the data directory or a single WAL or snapshot file to a backup location.
 
@@ -108,3 +110,36 @@ UNLOCK DATA DIRECTORY;
 
 Memgraph will delete the files which should have been deleted before locking and
 allow any future deletion of the durability files.
+
+## Restore data
+
+To restore data from a backup: 
+
+### 1. Lock the data directory
+
+To disable changes in the data directory, run the following query in `mgconsole` or Memgraph
+Lab:
+
+```cypher
+LOCK DATA DIRECTORY;
+```
+
+### 2. Copy the snapshot into the data directory
+
+Copy the data directory or, empty the directory, then copy a single WAL or
+snapshot file into it.
+
+If you need help copying the files from the Docker container, check out the
+[Working with docker
+guide](/how-to-guides/work-with-docker.md##how-to-copy-files-from-and-to-a-docker-container).
+
+### 3. Unlock the directory
+
+Run the following query in `mgconsole` or Memgraph Lab to unlock the
+directory:
+
+```cypher
+UNLOCK DATA DIRECTORY;
+```
+
+Memgraph should restore the data from the files in the data directory. 

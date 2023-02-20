@@ -20,12 +20,9 @@ style={{
   </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-igraphalg-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/igraphalg.py)
-
-## Abstract
-
 The  **igraphalg** module provides a comprehensive set of thin wrappers around some of the algorithms present in the [igraph](https://igraph.org/) package. The wrapper functions can create an igraph compatible graph-like object that can stream the native database graph directly, significantly lowering memory usage.
 
+[![docs-source](https://img.shields.io/badge/source-igraphalg-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/igraphalg.py)
 
 | Trait               | Value                                                                                                     |
 | ------------------- | --------------------------------------------------------------------------------------------------------- |
@@ -34,6 +31,14 @@ The  **igraphalg** module provides a comprehensive set of thin wrappers around s
 | **Graph direction** | <Highlight color="#FB6E00">**directed**</Highlight>/<Highlight color="#FB6E00">**undirected**</Highlight> |
 | **Edge weights**    | <Highlight color="#FB6E00">**weighted**</Highlight>/<Highlight color="#FB6E00">**unweighted**</Highlight> |
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight>                                                     |
+
+:::tip
+
+If you are not satisfied with the performance of algorithms from the igraphalg
+module, check Memgraph's native implementation of algorithms such as PageRank,
+shortest path, and others written in C++
+
+:::
 
 ## Procedures
 

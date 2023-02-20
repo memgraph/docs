@@ -4,6 +4,26 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v1.3.3 - Dec 15, 2022
+
+### Bug fixes
+
+- Added initial support for NumPy arrays (`ndarray`) and scalars (`generic`) [#208](https://github.com/memgraph/gqlalchemy/pull/208)
+
+## v1.3.2 - Sep 15, 2022
+
+### Bug fixes
+
+- Fixed Unicode serialisation [#189](https://github.com/memgraph/gqlalchemy/pull/189)
+- Fixed `GQLAlchemyWaitForConnectionError` and `GQLAlchemyDatabaseError` [#188](https://github.com/memgraph/gqlalchemy/pull/188)
+- Fixed `Datetime` serialisation [#185](https://github.com/memgraph/gqlalchemy/pull/185)
+
+### Updates
+
+- Bumped `pyarrow` [#193](https://github.com/memgraph/gqlalchemy/pull/193)
+- Updated `poetry` to 1.2.0 and `pymgclient` to 1.3.1 [#191](https://github.com/memgraph/gqlalchemy/pull/191)
+- Updated all dependencies [#194](https://github.com/memgraph/gqlalchemy/pull/194)
+
 ## v1.3 - Jun 14, 2022
 :::warning
 

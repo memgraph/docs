@@ -20,17 +20,14 @@ export const Highlight = ({children, color}) => (
   </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-distance_calculator-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/distance_calculator.py)
-
-
-## Abstract
-
 The distance calculator is a module for calculating distance between two geographic locations. It measures the distance along the surface of the earth. 
 Formula takes into consideration the radius of the earth. For this algorithm, it is necessary to define an object that has longitude and latitude properties like this:
 
 ```cypher
 (location:Location {lat: 44.1194, lng: 15.2314})
 ```
+
+[![docs-source](https://img.shields.io/badge/source-distance_calculator-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/distance_calculator.py)
 
 | Trait               | Value                                                 |
 | ------------------- |-------------------------------------------------------|

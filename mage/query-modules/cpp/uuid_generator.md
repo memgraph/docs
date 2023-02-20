@@ -20,15 +20,12 @@ export const Highlight = ({children, color}) => (
   </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-uuid-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/cpp/uuid_module/uuid_module.cpp)
-
-
-## Abstract
-
 This module is used to generate string UUIDs which can be stored as properties
 on nodes or edges. The underlying implementation makes use of the `uuid-dev`
 library. When using the `uuid` module on Linux systems, the library can be
 installed by running `sudo apt-get install uuid-dev`.
+
+[![docs-source](https://img.shields.io/badge/source-uuid-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/cpp/uuid_module/uuid_module.cpp)
 
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |

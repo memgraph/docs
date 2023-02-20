@@ -32,7 +32,7 @@ module.exports = {
         "query-modules/cpp/cycles",
         "query-modules/cuda/cugraph",
         "query-modules/cpp/degree-centrality",
-        "query-modules/python/distance-calculator",
+        "query-modules/cpp/distance-calculator",
         "query-modules/python/elasticsearch-synchronization",
         "query-modules/python/export-util",
         "query-modules/python/graph-analyzer",

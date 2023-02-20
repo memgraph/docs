@@ -20,12 +20,9 @@ style={{
   </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-nxalg-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/nxalg.py)
-
-## Abstract
-
 This module, named **nxalg**, provides a comprehensive set of thin wrappers around most of the algorithms present in the [NetworkX](https://networkx.org/) package. The wrapper functions now have the capability to create a NetworkX compatible graph-like object that can stream the native database graph directly saving on memory usage significantly.
 
+[![docs-source](https://img.shields.io/badge/source-nxalg-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/nxalg.py)
 
 | Trait               | Value                                                                                                     |
 | ------------------- | --------------------------------------------------------------------------------------------------------- |
@@ -34,6 +31,14 @@ This module, named **nxalg**, provides a comprehensive set of thin wrappers arou
 | **Graph direction** | <Highlight color="#FB6E00">**directed**</Highlight>/<Highlight color="#FB6E00">**undirected**</Highlight> |
 | **Edge weights**    | <Highlight color="#FB6E00">**weighted**</Highlight>/<Highlight color="#FB6E00">**unweighted**</Highlight> |
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight>                                                     |
+
+:::tip
+
+If you are not satisfied with the performance of algorithms from the nxalg
+module, check Memgraph's native implementation of algorithms such as PageRank,
+betweenness centrality, and others written in C++
+
+:::
 
 ## Procedures
 

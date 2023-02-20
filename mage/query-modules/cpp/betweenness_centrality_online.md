@@ -21,10 +21,6 @@ style={{
 </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-betweenness_centrality_online-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/cpp/betweenness_centrality_module/betweenness_centrality_online_module.cpp)
-
-## Abstract
-
 Betweenness centrality is among the most common metrics in graph analytics owing
 to its utility in identifying critical vertices of graphs. It is one of the
 tools in _centrality analysis_, a set of techniques for measuring the importance
@@ -60,6 +56,8 @@ update.
 [^1] [Parallel Algorithm for Incremental Betweenness Centrality on Large
 Graphs](https://repository.kaust.edu.sa/bitstream/handle/10754/625935/08070346.pdf)
 (Jamour et al., 2017)
+
+[![docs-source](https://img.shields.io/badge/source-betweenness_centrality_online-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/cpp/betweenness_centrality_module/betweenness_centrality_online_module.cpp)
 
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |

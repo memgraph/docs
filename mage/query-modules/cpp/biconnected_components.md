@@ -20,17 +20,14 @@ export const Highlight = ({children, color}) => (
   </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-biconnected_components-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/cpp/biconnected_components_module/biconnected_components_module.cpp)
-
-
-## Abstract
-
 Finding biconnected components means finding a maximal biconnected subgraph. Subgraph is biconnected if:
 
 - It is possible to go from each node to another within a biconnected subgraph
 - First scenario remains true even after removing any vertex in the subgraph
 
 The algorithm works by finding articulation points, and then traversing from these articulation points toward other nodes, which all together form one biconnected component.
+
+[![docs-source](https://img.shields.io/badge/source-biconnected_components-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/cpp/biconnected_components_module/biconnected_components_module.cpp)
 
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |

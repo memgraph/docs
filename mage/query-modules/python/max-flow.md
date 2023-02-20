@@ -20,10 +20,6 @@ export const Highlight = ({children, color}) => (
   </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-max_flow-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/max_flow.py)
-
-## Abstract
-
 The maximum flow problem consists of finding a flow through a graph such that it
 is the maximum possible flow.
 
@@ -47,6 +43,8 @@ edges need to have the defined edge property used for edge flow. When an edge
 doesn't have a flow, it is skipped, and when no edges have this property, the
 returning max flow value is 0.
 
+[![docs-source](https://img.shields.io/badge/source-max_flow-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/max_flow.py)
+
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |
 | **Module type**     | <Highlight color="#FB6E00">**algorithm**</Highlight>  |
@@ -54,6 +52,12 @@ returning max flow value is 0.
 | **Graph direction** | <Highlight color="#FB6E00">**directed**</Highlight> |
 | **Edge weights**    |  <Highlight color="#FB6E00">**weighted**</Highlight>|
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight> |
+
+:::note Too slow?
+
+If this algorithm implementation is too slow for your use case, [contact us](mailto:tech@memgraph.com) and request a rewrite to C++ !
+
+:::
 
 ## Procedures
 

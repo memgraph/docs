@@ -15,11 +15,21 @@ one file to import both nodes and relationships. But it can be tricky to
 actually write the queries for creating nodes and relationships yourself. If you
 haven't written any queries yet, check our [Cypher manual](/cypher-manual).
 
+:::tip
+
+To speed up import time, after queries creating nodes, consider [creating
+  indexes](/how-to-guides/indexes.md) on appropriate nodes or node properties.
+
+:::
+
 ## Importing via Memgraph Lab
 
 Once you Memgraph instance in running and you've connected to it via Memgraph
 Lab, go to the **Import & Export** section. To **Import Data** select the
 CYPHERL file or drag and drop it into Memgraph Lab. 
+
+You can import up to 1 million nodes and relationships via Memgraph Lab using
+the CYPHERL file. 
 
 <img src={require('../../data/import-data/import-lab.png').default}className={"imgBorder"}/>
 
@@ -51,8 +61,10 @@ correct path to the file.
 Below, you can find two examples of how to import data within the `.cypherl` file
 based on the complexity of your data:
 
-- [One type of nodes and relationships](#one-type-of-nodes-and-relationships) 
-- [Multiple types of nodes and relationships](#multiple-types-of-nodes-and-relationships) 
+- [Importing via Memgraph Lab](#importing-via-memgraph-lab)
+- [Importing via mgconsole](#importing-via-mgconsole)
+  - [One type of nodes and relationships](#one-type-of-nodes-and-relationships)
+  - [Multiple types of nodes and relationships](#multiple-types-of-nodes-and-relationships)
 
 ### One type of nodes and relationships
 

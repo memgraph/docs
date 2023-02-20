@@ -20,10 +20,6 @@ export const Highlight = ({children, color}) => (
   </span>
 );
 
-[![docs-source](https://img.shields.io/badge/source-pagerank-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/cpp/pagerank_module/pagerank_module.cpp)
-
-## Abstract
-
 If we present nodes as pages and directed edges between them as links, the
 **PageRank** algorithm outputs a probability distribution used to represent the
 likelihood that a person randomly clicking on links will arrive at any
@@ -51,6 +47,8 @@ used to calculate PageRank, mostly for scalability purposes.
 Default arguments are equal to default arguments in
 [NetworkX](https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.link_analysis.pagerank_alg.pagerank.html)
 PageRank implementation.
+
+[![docs-source](https://img.shields.io/badge/source-pagerank-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/cpp/pagerank_module/pagerank_module.cpp)
 
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |

@@ -230,3 +230,5 @@ in a skip list):
 - The average deletion time is `O(log(n))`
 - The average search time is `O(log(n))`
 - The average memory consumption is `O(n)`
+
+Read more about [memory usage in Memgraph](/under-the-hood/storage.md). 

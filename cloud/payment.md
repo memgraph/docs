@@ -146,3 +146,18 @@ Snapshots will be charged by the following rates:
 |                                  | 8 GB RAM            | 24        | 0.08            | 2.35              |
 |                                  | 16 GB RAM           | 48        | 0.16            | 4.70              |
 |                                  | 32 GB RAM           | 96        | 0.31            | 9.40              |
+
+### CPU number
+
+The number of CPUs in current instances:
+
+| RAM       | Instance type | vCPU*  |
+| --------- | ------------- | ------ |
+| 1 GB RAM  | t3a.micro     | 2 vCPU |
+| 2 GB RAM  | t3a.small     | 2 vCPU |
+| 4 GB RAM  | t3a.medium    | 2 vCPU |
+| 8 GB RAM  | m5.large      | 2 vCPU |
+| 16 GB RAM | r5.large      | 2 vCPU |
+| 32 GB RAM | r5.xlarge     | 4 vCPU |
+
+*vCPU definition from AWS: Each virtual CPU is a hyperthread of an Intel Xeon core.
