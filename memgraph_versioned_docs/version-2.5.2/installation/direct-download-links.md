@@ -31,6 +31,17 @@ version of MemgraphDB, take a look at the list below.
 - **Debian 11 (ARM64/AArch64)** -
   [https://download.memgraph.com/memgraph/v2.5.2/debian-11-aarch64/memgraph_2.5.2-1_arm64.deb](https://download.memgraph.com/memgraph/v2.5.2/debian-11-aarch64/memgraph_2.5.2-1_arm64.deb)
 
+  ### Fedora
+
+- **Fedora 36** - [https://download.memgraph.com/memgraph/v2.5.2/fedora-36/memgraph-2.5.2_1-1.x86_64.rpm](https://download.memgraph.com/memgraph/v2.5.2/fedora-36/memgraph-2.5.2_1-1.x86_64.rpm)
+
+### RedHat
+
+- **RedHat 7** -
+  [https://download.memgraph.com/memgraph/v2.5.2/centos-7/memgraph-2.5.2_1-1.x86_64.rpm](https://download.memgraph.com/memgraph/v2.5.2/centos-7/memgraph-2.5.2_1-1.x86_64.rpm)
+- **RedHat 9** -
+  [https://download.memgraph.com/memgraph/v2.5.2/centos-9/memgraph-2.5.2_1-1.x86_64.rpm](https://download.memgraph.com/memgraph/v2.5.2/centos-9/memgraph-2.5.2_1-1.x86_64.rpm)
+
 ### Ubuntu
 
 - **Ubuntu 18.04** -

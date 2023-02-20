@@ -29,6 +29,9 @@ Before you proceed with the installation guide make sure that you have:
 Memgraph packages are available for:
 - **CentOS 7**
 - **CentOS 9**
+- **Fedora 36**
+- **RedHat 7**
+- **RedHat 9**
 
 :::
 
