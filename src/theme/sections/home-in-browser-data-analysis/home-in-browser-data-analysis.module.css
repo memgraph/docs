@@ -21,6 +21,7 @@
     font-weight: var(--mg-font-weight-h2h3);
     font-size: var(--mg-font-size-h2h3);
     line-height: var(--mg-line-height-h2h3);
+    color: var(--mg-font-color);
 }
 
 .homeInBrowserDataAnalysis__title:hover {
@@ -32,7 +33,7 @@
     font-weight: var(--mg-font-weight-h2h3);
     font-size: var(--mg-font-size-p);
     line-height: var(--mg-line-height-p);
-    color: var(--mg-font-color-light2);
+    color: var(--mg-font-color-light);
     margin-top: 24px;
     margin-bottom: 42px;
 }
