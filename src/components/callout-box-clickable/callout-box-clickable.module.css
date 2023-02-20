@@ -15,6 +15,7 @@
 }
 
 .calloutBox__title {
+    color: var(--mg-font-color);
     font-size: 20px;
     font-weight: 500;
     letter-spacing: 0.2px;
@@ -27,12 +28,12 @@
     font-size: 1rem;
     letter-spacing: 0;
     line-height: 1.5rem;
-    color: var(--mg-font-color-light2);
+    color: var(--mg-font-color-light);
     margin-bottom: 1rem;
 }
 
 .calloutBox__url {
-    color: var(--mg-font-color-primary);
+    color: var(--mg-font-color);
     text-decoration: none;
     font-weight: 500;
     display: flex;
