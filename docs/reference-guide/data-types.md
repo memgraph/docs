@@ -285,7 +285,7 @@ For maps the following fields are available: `year`, `month`, `day`, `hour`,
 Example:
 
 ```cypher
-CREATE (:Flights {AIR123: localDateTime(year:2021, month:10, day:5, hour:14, minute:15)});
+CREATE (:Flights {AIR123: localDateTime({year:2021, month:10, day:5, hour:14, minute:15})});
 ```
 
 You can access the individual fields of LocalDateTime through its properties:
@@ -349,8 +349,4 @@ LocalDateTime operations:
 
 ## Procedures API
 
-Data types are also used within query modules. Check out the documentation for
-the [Python
-API](/reference-guide/query-modules/implement-custom-query-modules/api/python-api.md)
-and [C
-API](/reference-guide/query-modules/implement-custom-query-modules/api/c-api.md).
+Data types are also used within query modules. Check out the documentation for the [Python API](/reference-guide/query-modules/implement-custom-query-modules/api/python-api.md), [C API](/reference-guide/query-modules/implement-custom-query-modules/api/c-api.md) and [C++ API](/reference-guide/query-modules/implement-custom-query-modules/api/cpp-api.md).
