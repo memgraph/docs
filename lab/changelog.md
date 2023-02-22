@@ -52,6 +52,8 @@ sidebar_label: Changelog
 * Not showing graph schema on a database with no edges has been fixed.
 * Missing in-progress feedback when generating graph schema and exporting datasets for graphs with more than 10M nodes
   have been fixed.
+* A scrolling issue with expanded results in the Data view where you couldn't see a completely expanded row because the
+  scroll would jump to the next row is now fixed.
 * A glitch with a lot of empty spaces when using the search on Lab datasets has been fixed.
 
 ## v2.4.0 - Dec 2, 2022
