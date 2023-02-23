@@ -5,10 +5,13 @@ sidebar_label: Getting started
 slug: /
 ---
 
-Memgraph is a streaming graph application platform that helps you wrangle your
-streaming data, build sophisticated models you can query in real-time, and
-develop applications you never thought possible within a couple of days, not
-months.
+Memgraph is an open source graph database built for teams who expect highly
+performant, advanced analytical insights - as compatible with your current
+infrastructure as Neo4j (but up to 120x faster). Memgraph is powered by an
+in-memory graph database built to handle real-time use cases at enterprise
+scale. Memgraph supports strongly-consistent ACID transactions and uses the
+standardized Cypher query language for structuring, manipulating, and exploring
+data.
 
 If you're interested in trying out Memgraph from the comfort of your browser,
 you can run an instance on [Memgraph Cloud](/memgraph-cloud) and
