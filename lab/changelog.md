@@ -8,53 +8,43 @@ sidebar_label: Changelog
 
 ## What's New
 
-* In case of multiple Cypher queries in the query editor, you will be able to select a single query and run
-  just that one without a need to comment out all the other Cypher queries.
+* If there are several Cypher queries in the query editor you can select a single query and run
+  it without commenting out all the other queries.
 
 <TODO: Add screenshot here>
 
-* A limit of having one query execution view has been removed and you can have multiple query executions now. It makes
-  life easier especially when you want to compare different Cypher queries side to side in terms of speed or
-  query results.
+* You can now open multiple query executions views side by side and compare query execution speed or results.
 
 <TODO: Add screenshot here>
 
-* Showing only the last result when running multiple Cypher queries at once has been changed. Now, results for each
-  Cypher query will be returned and you will be able to select and view each one.
+* If you are running multiple Cypher queries at once, you can now view the result of each one instead of viewing just the last result. 
 
 <TODO: Add screenshot here>
 
-* When using code blocks in rich collection descriptions, you can specify one of the following languages to have
-  syntax highlighting enabled: `cypher`, `bash`, `python`, `css`, `c`, `cpp`, `json`, `sql`, and `yaml`. Check the
-  examples for syntax highlighting on [Markdown Guide](https://www.markdownguide.org/extended-syntax/#syntax-highlighting).
+* You can highlight the syntax of code blocks in the query collection description by using one of the following language styles: `cypher`, `bash`, `python`, `css`, `c`, `cpp`, `json`, `sql`, and `yaml`. Check the
+  examples of syntax highlighting in the [Markdown Guide](https://www.markdownguide.org/extended-syntax/#syntax-highlighting).
 
 <TODO: Add screenshot here>
 
-* Query modules are now sorted alphabetically which will enable easier and faster. A search has been added for query
-  module procedures if there are more than 5 procedures within a module for easier narrowing down (e.g. `nxalg`
-  with [49 procedures](https://memgraph.com/docs/mage/query-modules/python/nxalg)).
+* Query modules are now sorted alphabetically for easier and faster browsing. A search box has also been added to query modules with more than 5 procedures to help narrow them down (e.g. `nxalg` query module has [49 procedures](https://memgraph.com/docs/mage/query-modules/python/nxalg)).
 * Rendering graph view for medium/larger graphs might take time, so for any graph with more than 5k nodes or 10k edges
   you will be asked if you want to proceed with the graph visualization or switch to the data view. This also fixed
   showing a default graph view for each new query execution and accidentally rendering the full database graph.
 * Changes in the Cypher query editor and GSS style editor will be automatically saved in rich collections. You will
   also have the option to do the manual save like before.
-* Notifications have been added to the Lab where you will be able to receive information about new product updates,
-  and various tips and tricks around the Memgraph ecosystem.
+* Memgraph Lab will now notify you of any product updates and offer various tips and tricks for using the Memgraph ecosystem.
 
 ## Bug Fixes
 
-* Cypher intellisense for node/edge labels and properties was working for graphs with a maximum of 100k nodes and
-  200k edges. The limits have been increased so labels and properties intellisense will work for graphs with a maximum
-  of 250k nodes and 500k edges.
-* Scrolling in the rich collection was hard because of multiple scrollable elements such as query editor and query
-  results. Now, on click, you can focus a particular segment and the scroll will only work within that focused segment.
+Cypher code suggestions can now handle labels and properties of 250k nodes and 500k relationships, compared to the previous limit of 100k nodes nad 200k relationships.
+* Multiple scrollable elements of the query collections was making scrolling difficult. Now you can focus on a particular element and scroll through it by clicking on it.
 * Browser's back button is now working as expected when using Lab as a web application.
-* Not showing graph schema on a database with no edges has been fixed.
-* Missing in-progress feedback when generating graph schema and exporting datasets for graphs with more than 10M nodes
-  have been fixed.
+* Graph schema is now generated even if the database has no relationships.
+* In-progress feedback when generating graph schema and exporting datasets for graphs with more than 10M nodes
+  is now previewed as expected.
 * A scrolling issue with expanded results in the Data view where you couldn't see a completely expanded row because the
   scroll would jump to the next row is now fixed.
-* A glitch with a lot of empty spaces when using the search on Lab datasets has been fixed.
+* Dataset cards no longer spread apart when conducting a search. 
 
 ## v2.4.0 - Dec 2, 2022
 
