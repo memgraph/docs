@@ -21,23 +21,26 @@ sidebar_label: Changelog
 
 <TODO: Add screenshot here>
 
-* You can highlight the syntax of code blocks in the query collection description by using one of the following language styles: `cypher`, `bash`, `python`, `css`, `c`, `cpp`, `json`, `sql`, and `yaml`. Check the
-  examples of syntax highlighting in the [Markdown Guide](https://www.markdownguide.org/extended-syntax/#syntax-highlighting).
+* You can highlight the syntax of code blocks in the query collection description by using one of the following language styles: `cypher`,
+  `bash`, `python`, `css`, `c`, `cpp`, `json`, `sql`, and `yaml`. Check the examples of syntax highlighting in
+  the [Markdown Guide](https://www.markdownguide.org/extended-syntax/#syntax-highlighting).
 
 <TODO: Add screenshot here>
 
-* Query modules are now sorted alphabetically for easier and faster browsing. A search box has also been added to query modules with more than 5 procedures to help narrow them down (e.g. `nxalg` query module has [49 procedures](https://memgraph.com/docs/mage/query-modules/python/nxalg)).
-* Rendering graph view for medium/larger graphs might take time, so for any graph with more than 5k nodes or 10k edges
-  you will be asked if you want to proceed with the graph visualization or switch to the data view. This also fixed
-  showing a default graph view for each new query execution and accidentally rendering the full database graph.
+* Query modules are now sorted alphabetically for easier and faster browsing. A search box has also been added to query modules with more
+  than 5 procedures to help narrow them down (e.g. `nxalg` query module has [49 procedures](https://memgraph.com/docs/mage/query-modules/python/nxalg)).
+* When rendering a graph with more than 5k nodes or 10k relationships, which might take considerable amount of time to preview, you will be
+  asked if you want to proceed with the graph visualization or switch to the data view.
 * Changes in the Cypher query editor and GSS style editor will be automatically saved in rich collections. You will
   also have the option to do the manual save like before.
 * Memgraph Lab will now notify you of any product updates and offer various tips and tricks for using the Memgraph ecosystem.
 
 ## Bug Fixes
 
-Cypher code suggestions can now handle labels and properties of 250k nodes and 500k relationships, compared to the previous limit of 100k nodes nad 200k relationships.
-* Multiple scrollable elements of the query collections was making scrolling difficult. Now you can focus on a particular element and scroll through it by clicking on it.
+* Cypher code suggestions can now handle labels and properties of 250k nodes and 500k relationships, compared to the previous limit of
+  100k nodes nad 200k relationships.
+* Multiple scrollable elements of the query collections was making scrolling difficult. Now you can focus on a particular element and
+  scroll through it by clicking on it.
 * Browser's back button is now working as expected when using Lab as a web application.
 * Graph schema is now generated even if the database has no relationships.
 * In-progress feedback when generating graph schema and exporting datasets for graphs with more than 10M nodes
