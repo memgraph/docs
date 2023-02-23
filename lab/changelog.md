@@ -31,8 +31,8 @@ sidebar_label: Changelog
   than 5 procedures to help narrow them down (e.g. `nxalg` query module has [49 procedures](https://memgraph.com/docs/mage/query-modules/python/nxalg)).
 * When rendering a graph with more than 5k nodes or 10k relationships, which might take considerable amount of time to preview, you will be
   asked if you want to proceed with the graph visualization or switch to the data view.
-* Changes in the Cypher query editor and GSS style editor will be automatically saved in rich collections. You will
-  also have the option to do the manual save like before.
+* Besides manually saving changes in the Cypher query and GSS style editor in the query collections section, they will also be saved
+  automatically after each query run.
 * Memgraph Lab will now notify you of any product updates and offer various tips and tricks for using the Memgraph ecosystem.
 
 ## Bug Fixes
