@@ -88,15 +88,15 @@ Computes graph communities over a subgraph using the Louvain method.
 
 * `subgraph_nodes: List[Node]` ➡ List of nodes in the subgraph.
 * `subgraph_relationships: List[Relationship]` ➡ List of relationships in the subgraph.
-* `weight: str(null)` ➡ Specifies the default relationship weight. If not set,
+* `weight: str (default=null)` ➡ Specifies the default relationship weight. If not set,
   the algorithm uses the `weight` relationship attribute when present and otherwise
   treats the graph as unweighted.
-* `coloring: bool(False)` ➡ If set, use the graph coloring heuristic for effective parallelization.
-* `min_graph_shrink: int(100000)` ➡ The graph coarsening optimization stops upon shrinking the graph to this many nodes.
-* `community_alg_threshold: double(0.000001)` ➡ Controls how long the algorithm iterates. When the gain in modularity
+* `coloring: bool (default=False)` ➡ If set, use the graph coloring heuristic for effective parallelization.
+* `min_graph_shrink: int  (default=100000)` ➡ The graph coarsening optimization stops upon shrinking the graph to this many nodes.
+* `community_alg_threshold: double  (default=0.000001)` ➡ Controls how long the algorithm iterates. When the gain in modularity
   goes below the threshold, iteration is over.
   Valid values are between 0 and 1 (exclusive).
-* `coloring_alg_threshold: double(0.01)` ➡ If coloring is enabled, controls how long the algorithm iterates. When the
+* `coloring_alg_threshold: double  (default=0.01)` ➡ If coloring is enabled, controls how long the algorithm iterates. When the
   gain in modularity goes below this threshold, a final iteration is performed using the
   `community_alg_threshold` value.
   Valid values are between 0 and 1 (exclusive); this parameter's value should be higher than `community_alg_threshold`.
