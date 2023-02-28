@@ -44,7 +44,7 @@ To delete a user use:
 DROP USER user_name;
 ```
 
-## Authorization 
+## Authentication
 
 <Tabs
   groupId="platform"
