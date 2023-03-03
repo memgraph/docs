@@ -5,7 +5,11 @@ sidebar_label: Uniqueness constraint
 ---
 
 Uniqueness constraint enforces that each `label, property_set` pair is unique.
-This constraint can be enforced using the following language construct:
+Adding uniqueness constraint does not create a label-property index, it needs to
+be added manually. 
+
+The uniqueness constraint can be enforced using the following language
+construct:
 
 ```cypher
 CREATE CONSTRAINT ON (n:label) ASSERT n.property1, n.property2, ..., IS UNIQUE;

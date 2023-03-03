@@ -155,6 +155,12 @@ For the best performance, create index on properties containing unique integer v
 
 :::
 
+:::caution
+
+Creating a label-property index will not create a label index!
+
+:::
+
 ### Speed comparison
 
 After the query execution, you can see how much time the query took to finish.
