@@ -62,6 +62,12 @@ For the best performance, create index on properties containing unique integer v
 
 :::
 
+:::caution
+
+Creating a label-property index will not create a label index!
+
+:::
+
 ## How to delete indexes?
 
 You can delete created indexes by using the following Cypher queries:
