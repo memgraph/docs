@@ -2,7 +2,6 @@ module.exports = {
   errors: [
     "memgraph/overview",
     "memgraph/auth",
-    "memgraph/csv-import-tool",
     "memgraph/durability",
     "memgraph/memory",
     "memgraph/modules",
