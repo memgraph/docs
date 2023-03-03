@@ -5,15 +5,15 @@ title: gqlalchemy.transformations.export
 
 # Abstract
 
-GQLAlchemy currently supports exporting data from Memgraph to NetworkX, DGL and PyG graph formats.  
+GQLAlchemy currently supports exporting data from Memgraph to `NetworkX`, `DGL` and `PyG` graph formats.  
 
 ## Transporter
 
-Abstract transporter that provides interface for translating Memgraph data into graph objects like NetworkX, DGL and PyG.
+Abstract transporter that provides interface for translating Memgraph data into graph objects like `NetworkX`, `DGL` and `PyG`.
 
 ## GraphTransporter
 
-`GraphTransporter` is used for converting a Memgraph graph to the specific graph type offered by some Python package (PyG, DGL, NX...). Each `GraphTransporter` has a reference to the specific translator object, which is used for translating Memgraph data into the correct graph type. This translator does all the dirty work, so check out the docs about [`DGLTranslator`](./translators/dgl_translator.md), [`PyGTranslator`](./translators/pyg_translator.md) and [`NxTranslator`](./translators/nx_translator.md) to find out implementation details.
+`GraphTransporter` is used for converting a Memgraph graph to the specific graph type offered by some Python package (`PyG`, `DGL`, `Nx`...). Each `GraphTransporter` has a reference to the specific translator object, which is used for translating Memgraph data into the correct graph type. This translator does all the dirty work, so check out the docs about [`DGLTranslator`](./translators/dgl_translator.md), [`PyGTranslator`](./translators/pyg_translator.md) and [`NxTranslator`](./translators/nx_translator.md) to find out implementation details.
 
 ### Methods
 

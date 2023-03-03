@@ -44,7 +44,7 @@ Initializes translator object with given parameters.
 def to_cypher_queries(self, graph) -> None
 ```
 
-Produces Cypher queries for data saved as part of the PyG graph. The method handles both homogeneous and heterogeneous graphs. The method converts 1D, as well as multidimensional features. If there are some isolated nodes inside the graph, they won't get transferred. Nodes and edges created in Memgraph DB will, for consistency reasons, have the property `pyg_id` set to the `id` they have as part of the PyG graph. Note that this method doesn't insert anything inside the database, it just creates Cypher queries.
+Produces Cypher queries for data saved as part of the `PyG` graph. The method handles both homogeneous and heterogeneous graphs. The method converts 1D, as well as multidimensional features. If there are some isolated nodes inside the graph, they won't get transferred. Nodes and edges created in Memgraph DB will, for consistency reasons, have the property `pyg_id` set to the `id` they have as part of the `PyG` graph. Note that this method doesn't insert anything inside the database, it just creates Cypher queries.
 
 ##### Input
 - `graph: Union[torch_geometric.data.Data, torch_geometric.data.HeteroData]`
@@ -66,11 +66,11 @@ for query in PyGTranslator().to_cypher_queries(pyg_graph):
 def get_instance(self) -> dgl.DGLHeteroGraph
 ```
 
-Creates an instance of PyG graph from all edges that are inside Memgraph. Currently, isolated nodes are ignored because they don't contribute to message-passing neural networks. Only numerical features that are set on all nodes or all edges are transferred to the PyG instance since this is PyG's requirement. That means that any string value properties won't be transferred, as well as numerical properties that aren't set on all nodes. However, features that are of a type list are transferred to the PyG instance and can be used as any other feature in the PyG graph. Regardless of data residing inside the Memgraph database, the created PyG graph is a heterograph instance.
+Creates an instance of `PyG` graph from all edges that are inside Memgraph. Currently, isolated nodes are ignored because they don't contribute to message-passing neural networks. Only numerical features that are set on all nodes or all edges are transferred to the `PyG` instance since this is `PyG's` requirement. That means that any string value properties won't be transferred, as well as numerical properties that aren't set on all nodes. However, features that are of a type list are transferred to the `PyG` instance and can be used as any other feature in the `PyG` graph. Regardless of data residing inside the Memgraph database, the created `PyG` graph is a heterograph instance.
 
 #### Example
 
-Use the following block of code to create an instance of the `DGLGraph` from the data residing inside `Memgraph`:
+Use the following block of code to create an instance of the `PyG` graph from the data residing inside `Memgraph`:
 
 ```python
 pyg_translator = PyGTranslator()
