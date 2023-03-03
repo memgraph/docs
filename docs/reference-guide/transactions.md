@@ -71,7 +71,7 @@ SET <scope> TRANSACTION ISOLATION LEVEL <isolation_level>
  - SESSION - apply the new isolation level only for the current session
  - NEXT - apply the new isolation level only for the next transaction in the current session
 
-`<isolation_level` defines the isolation level:
- - SNAPSHOT_ISOLATION
- - READ_COMMITTED
- - READ_UNCOMMITTED
+`<isolation_level>` defines the isolation level:
+ - SNAPSHOT ISOLATION
+ - READ COMMITTED
+ - READ UNCOMMITTED

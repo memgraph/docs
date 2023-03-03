@@ -174,7 +174,7 @@ Output:
 
 ## 3. Creating a path
 
-When creating a path, all of the parts of the pattern that don't exist will be created.
+When creating a path all the entities of the pattern will be created.
 
 ```cypher
 CREATE p=((n:Country {name: 'Belgium'})-[r:BORDERS_WITH {length: '30KM'}]->(m:Country {name: 'Netherlands'}))
