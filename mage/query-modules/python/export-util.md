@@ -106,11 +106,11 @@ where `path` is the path to a local JSON file that will be created inside the
 
 * `query: string` ➡ A query from which the results will be saved to a CSV file.
 * `file_path: string (default="")` ➡ A query from which the results will be saved to a CSV file.
-* `stream: bool (default=False)` ➡ A value which determines whether the a stream of query results in a CSV format will be returned.
+* `stream: bool (default=False)` ➡ A value which determines whether a stream of query results in a CSV format will be returned.
 
 #### Output:
 
-* `file_path: string` ➡ A path to the CSV file where the query results are exported. If `file_path` was not provided, it will be an empty string.
+* `file_path: string` ➡ A path to the CSV file where the query results are exported. If `file_path` is not provided, it will be an empty string.
 * `data: string` ➡ A stream of query results in a CSV format.
 
 #### Usage:
