@@ -64,6 +64,12 @@ Each `Delta` object has a least **104B**.
 Each `Vertex` object has at least **112B** + **104B** for the `Delta` object, in
 total, a minimum of **216B**.
 
+Each additional label takes 8B. 
+
+Keep in mind that three labels take as much space as four labels, and five to
+seven labels take as much space as eight labels, etc., due to the dynamic
+allocation.  
+
 ### `Edge` memory layout
 
 Each `Edge` object has at least **40B** + **104B** for the `Delta` object, in
