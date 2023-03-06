@@ -21,6 +21,7 @@ order to avoid problems with performance or results.
    1.4. [Filter with node properties](#14-filter-with-node-properties)<br />
    1.5. [Filter with relationship properties](#15-filter-with-relationship-properties)<br />
    1.6. [Check if property is not null](#16-check-if-property-is-not-null)<br />
+   1.7. [Filter with pattern expressions](#17-filter-with-pattern-expressions)<br />
 2. [String matching](#2-string-matching)<br />
 3. [Regular Expressions](#3-regular-expressions)
 
@@ -159,6 +160,29 @@ Output:
 +----------------+----------------+
 | United Kingdom | 66000000       |
 +----------------+----------------+
+```
+
+### 1.7. Filter with pattern expressions
+
+Currently, we support pattern expression filters with the `exists(pattern)` function, which can perform filters based on
+neighboring entities:
+
+```cypher
+MATCH (p:Person)
+WHERE exists((p)-[:LIVING_IN]->(:Country {name: 'Germany'}))
+RETURN p.name
+ORDER BY p.name;
+```
+
+Output:
+
+```nocopy
++----------------+
+| c.name         |
++----------------+
+| Anna           |
+| John           |
++----------------+
 ```
 
 ## 2. String matching

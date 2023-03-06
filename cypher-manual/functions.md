@@ -45,6 +45,10 @@ This section contains the list of supported functions.
  | `type`       | `type(relationship: Relationship) -> (string)`                                       | Returns the type of a relationships as a character string.                                                                                                                                                                                       |
  | `timestamp`  | `timestamp() -> (integer)`                                                           | Returns the difference, measured in microseconds, between the current time and midnight, January 1, 1970 UTC.                                                                                                                            |
 
+### Pattern functions
+ | Name            | Signature                                                                                      | Description                                                                                                                                |
+ | --------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+ | `exists`           | `exists(pattern: Pattern)`                                                        | Checks if a pattern exists as part of the filtering clause. Symbols provided in the MATCH clause can also be used here. |
 
  ### Lists
 
