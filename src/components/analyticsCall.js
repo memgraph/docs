@@ -9,10 +9,12 @@ export default (function () {
 
     return {
         onRouteUpdate({ location }) {
-            window.analytics.page({
-                title: document.title,
-                path: location.pathname
-            });
+            if (window.analytics) {
+                window.analytics.page({
+                    title: document.title,
+                    path: location.pathname
+                });
+            }
 
             hotjar.initialize(1822641, 6);
 
