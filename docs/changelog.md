@@ -10,7 +10,7 @@ sidebar_label: Changelog
 
 - Importing speed using the LOAD CSV clause has been improved due to two changes: 
   -  Performance improvement in accessing values from large arrays or maps with numerous properties. [#744](https://github.com/memgraph/memgraph/pull/774)
-  -  When dealing with large numbers of  node or relationship properties, properties are stored in a property store all at once, instead of individually. [#788](https://github.com/memgraph/memgraph/pull/788)
+  -  Upon creating a large number of node or relationship properties, properties are stored in a property store all at once, instead of individually. [#788](https://github.com/memgraph/memgraph/pull/788)
 - Memgraph now supports Fedora 36 and Ubuntu 22.04 for ARM. [#787](https://github.com/memgraph/memgraph/pull/787) [#810](https://github.com/memgraph/memgraph/pull/810)
 
 ### Bug fixes
