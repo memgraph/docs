@@ -207,7 +207,7 @@ export the database to the `export.json` file in the
 CALL export_util.json("/usr/lib/memgraph/query_modules/export.json");
 ```
 
-If you're using **Memgraph on Ubuntu, Debian, RPM package or WSL**, then the
+If you're using **Memgraph on Ubuntu, Debian, RPM package or WSL**, the
 following Cypher query will export the database to the `export.json` file in the
 `/users/my_user/export_folder`.
 
