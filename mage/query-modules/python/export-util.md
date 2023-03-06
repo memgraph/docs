@@ -72,10 +72,7 @@ where `path` is the path to the JSON file inside the
 `/usr/lib/memgraph/query_modules/export.json`).
 
 :::info
-You can copy the exported JSON file to your local file system using the [`docker cp`](https://docs.docker.com/engine/reference/commandline/cp/) command: 
-```
-docker cp <container_id>:/usr/lib/memgraph/query_modules/export.json /path_to_local_folder/export.json
-```
+You can [**copy the exported CSV file to your local file system**](/memgraph/how-to-guides/work-with-docker#how-to-copy-files-from-and-to-a-docker-container) using the [`docker cp`](https://docs.docker.com/engine/reference/commandline/cp/) command.
 :::
 </TabItem>
 
@@ -105,12 +102,12 @@ where `path` is the path to a local JSON file that will be created inside the
 #### Input:
 
 * `query: string` ➡ A query from which the results will be saved to a CSV file.
-* `file_path: string (default="")` ➡ A query from which the results will be saved to a CSV file.
+* `file_path: string (default="")` ➡ A path to the CSV file where the query results will be exported. Defaults to an empty string.
 * `stream: bool (default=False)` ➡ A value which determines whether a stream of query results in a CSV format will be returned.
 
 #### Output:
 
-* `file_path: string` ➡ A path to the CSV file where the query results are exported. If `file_path` is not provided, it will be an empty string.
+* `file_path: string` ➡ A path to the CSV file where the query results are exported. If `file_path` is not provided, the output will be an empty string.
 * `data: string` ➡ A stream of query results in a CSV format.
 
 #### Usage:
@@ -143,10 +140,7 @@ where `path` is the path to a CSV file inside the
 `/usr/lib/memgraph/query_modules/export.csv`).
 
 :::info
-You can copy the exported CSV file to your local file system using the [`docker cp`](https://docs.docker.com/engine/reference/commandline/cp/) command: 
-```
-docker cp <container_id>:/usr/lib/memgraph/query_modules/export.csv /path_to_local_folder/export.csv
-```
+You can [**copy the exported CSV file to your local file system**](/memgraph/how-to-guides/work-with-docker#how-to-copy-files-from-and-to-a-docker-container) using the [`docker cp`](https://docs.docker.com/engine/reference/commandline/cp/) command.
 :::
 </TabItem>
 
@@ -197,7 +191,7 @@ CREATE (n)-[:IS_FRIENDS_WITH]->(m), (n)-[:IS_FRIENDS_WITH]->(k), (m)-[:IS_MARRIE
 
 <TabItem value="input">
 
-Below you can see how the data looks like after you created the nodes and relationships:
+The image below shows the above data as a graph:
 
 <img src={require('../../data/query-modules/python/export-util/export-util-1.png').default}/>
     
@@ -205,7 +199,7 @@ Below you can see how the data looks like after you created the nodes and relati
 
 <TabItem value="run">
 
-If you're using **Memgraph with Docker**, then the following Cypher query will
+If you're using **Memgraph with Docker**, the following Cypher query will
 export the database to the `export.json` file in the
 `/usr/lib/memgraph/query_modules` directory inside the running Docker container.
 
@@ -343,7 +337,7 @@ CREATE
 
 <TabItem value="input_csv">
 
-Below you can see how the data looks like after you created the nodes and relationships:
+The image below shows the above data as a graph:
 
 <img src={require('../../data/query-modules/python/export-util/export-util-csv-1.png').default}/>
     
@@ -351,7 +345,7 @@ Below you can see how the data looks like after you created the nodes and relati
 
 <TabItem value="run_csv">
 
-If you're using **Memgraph with Docker**, then the following Cypher query will
+If you're using **Memgraph with Docker**, the following Cypher query will
 export the database to the `export.csv` file in the
 `/usr/lib/memgraph/query_modules` directory inside the running Docker container.
 
@@ -377,7 +371,7 @@ RETURN file_path, data;
 
 <TabItem value="result_csv">
 
-Here is the output `export.csv` will look like this:
+The output in the `export.csv` file looks like this:
 
 ```csv
 name,portrayed_by,title,released,program_creators
