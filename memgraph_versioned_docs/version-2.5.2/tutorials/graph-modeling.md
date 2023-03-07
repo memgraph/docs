@@ -66,7 +66,7 @@ starting data point.
 To fully utilize the power of graphs, you first need to get a basic
 understanding of the underlying concepts in graph theory.
 
-There are four components a graph can consists of **nodes**, **relationships**,
+There are four components a graph can consist of **nodes**, **relationships**,
 **labels**, and **properties**. While only nodes and relationships are
 fundamental components that need to be utilized, labels and properties are often
 included as well because of the added functionalities they offer.
