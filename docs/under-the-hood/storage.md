@@ -64,11 +64,11 @@ Each `Delta` object has a least **104B**.
 Each `Vertex` object has at least **112B** + **104B** for the `Delta` object, in
 total, a minimum of **216B**.
 
-Each additional label takes 8B. 
+Each additional label takes **8B**. 
 
 Keep in mind that three labels take as much space as four labels, and five to
 seven labels take as much space as eight labels, etc., due to the dynamic
-allocation.  
+memory allocation.  
 
 ### `Edge` memory layout
 
@@ -209,7 +209,8 @@ Query execution also uses up RAM. In some cases, intermediate results are
 aggregated to return valid query results and the query execution memory can end
 up using a large amount of RAM. Keep in mind that query execution memory
 monotonically grows in size during the execution, and it's freed once the query
-execution is done.
+execution is done. A general rule of thumb is to have double the RAM than what
+the actual dataset is occupying.
 
 ## Configuration options to reduce memory usage
 
