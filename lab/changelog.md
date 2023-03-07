@@ -42,6 +42,8 @@ sidebar_label: Changelog
 * Multiple scrollable elements of the query collections was making scrolling difficult. Now you can focus on a particular element and
   scroll through it by clicking on it.
 * Browser's back button is now working as expected when using Lab as a web application.
+* Data in the query results, query modules and query run history tables now loads faster making the scrolling smoother and improving
+  the user experience.
 * Graph schema is now generated even if the database has no relationships.
 * In-progress feedback when generating graph schema and exporting datasets for graphs with more than 10M nodes
   is now previewed as expected.
