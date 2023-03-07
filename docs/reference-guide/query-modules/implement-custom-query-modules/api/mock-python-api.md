@@ -14,8 +14,8 @@ code.
 
 It is implemented in `mgp_mock.py`, which contains definitions of all
 classes and functions provided for developing query module procedures and
-functions. The source file is found in the Memgraph installation directory,
-under `/usr/include/memgraph`.
+functions. The source file is located in the Memgraph installation directory,
+inside `/usr/include/memgraph`.
 
 ## API reference
 
