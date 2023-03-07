@@ -28,7 +28,7 @@ navigate to **Query Modules** and click on **New Module** to start.
 Custom modules developed via Memgraph Lab are located at
 `/var/lib/memgraph/internal_modules`.
 
-### Mock API
+### Mock Python API
 
 The [mock Python query module API](api/mock-python-api.md) enables you to
 develop and test query modules for Memgraph without having to run a Memgraph
