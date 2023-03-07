@@ -4,54 +4,51 @@ title: How to create a query module in Python
 sidebar_label: Create a Python query module
 ---
 
-Query modules can be implemented using the [Python
-API](/memgraph/reference-guide/query-modules/api/python-api) provided by
-Memgraph. In this tutorial, we will learn how to develop a query module in
+The [Python API](/memgraph/reference-guide/query-modules/api/python-api)
+provided by Memgraph lets you develop query modules. It is accompanied by the
+[mock API](https://memgraph.com/docs/memgraph/reference-guide/query-modules/api/mock-python-api), which
+makes it possible to develop and test query modules for Memgraph without having
+to run a Memgraph instance.
+
+In this tutorial, we will learn how to develop a query module in
 Python on the example of the **random walk algorithm**.
 
 ## Prerequisites
 
 There are three options for installing and working with Memgraph MAGE:
 
-1.  **Pulling the `memgraph/memgraph-mage` image**: check the `Docker Hub` 
-    [installation guide](/installation/docker-hub.md).
-2.  **Building a Docker image from the MAGE repository**: check the `Docker
-    build` [installation guide](/installation/docker-build.md).
-3.  **Building MAGE from source**: check the `Build from source on Linux` 
-    [installation guide](/installation/source.md).
+1. **Pulling the `memgraph/memgraph-mage` image**: check the `Docker Hub`
+   [installation guide](/installation/docker-hub.md).
+2. **Building a Docker image from the MAGE repository**: check the `Docker
+   build` [installation guide](/installation/docker-build.md).
+3. **Building MAGE from source**: check the `Build from source on Linux`
+   [installation guide](/installation/source.md).
 
 ## Developing a module
 
 :::note
 
-These steps are the same for every type of MAGE installation: _Docker Hub_,
-_Docker build_ and _Build from source on Linux_.
+These steps are the same for all MAGE installation options (_Docker Hub_,
+_Docker build_ and _Build from source on Linux_).
 
 :::
 
 Position yourself in the **MAGE repository** you cloned earlier. Specifically,
-go in the `python` subdirectory and create a new file called `random_walk.py`.
+go in the `python` subdirectory and create a new file named `random_walk.py`.
 
 ```plaintext
-python
-└── mage
-    random_walk.py
+mage
+└── python
+    └── random_walk.py
 
 ```
 
-For this part, we will import [`mgp`](https://github.com/memgraph/mgp),
-Memgraph's internal data structure module. Among others, it contains definitions
-for [**Vertex**](https://github.com/memgraph/mgp/blob/main/mgp.py#L260) and
-[**Edge** ](https://github.com/memgraph/mgp/blob/main/mgp.py#L182)data
-structures.
-
-:::tip
-
-Install the `mgp` Python module so your editor can use typing annotations
-properly and suggest methods and classes it contains. You can install the module
-by running `pip install mgp`.
-
-:::
+For coding the query module, we’ll use the
+[`mgp`](https://github.com/memgraph/mgp) package that has the Memgraph Python
+API including the key graph data structures:
+[**Vertex**](https://github.com/memgraph/mgp/blob/main/mgp.py#L260) and
+[**Edge**](https://github.com/memgraph/mgp/blob/main/mgp.py#L182).
+To install `mgp`, run `pip install mgp`.
 
 Here's the code for the random walk algorithm:
 
@@ -99,3 +96,16 @@ page](/mage/how-to-guides/run-a-query-module).
 Feel free to create an issue or open a pull request on our [GitHub
 repo](https://github.com/memgraph/mage) to speed up the development.<br/>
 Also, don't forget to throw us a star on GitHub. :star:
+
+## Working with the mock API
+
+The
+[mock Python API](https://memgraph.com/docs/memgraph/reference-guide/query-modules/api/mock-python-api)
+lets you develop and test query modules for Memgraph without having to run a
+Memgraph instance. As it’s compatible with the Python API you can add modules
+developed with it to Memgraph as-is, without having to refactor your code.
+
+The documentation on importing the mock API and running query modules with it
+is available
+[here](https://memgraph.com/docs/memgraph/reference-guide/query-modules/api/mock-python-api#using-the-mock-api),
+accompanied by examples.
