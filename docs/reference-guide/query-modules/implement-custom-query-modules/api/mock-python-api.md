@@ -89,5 +89,4 @@ module developed with the mock API to Memgraph is a simple task.
 
 1. Replace the `mgp_mock` import with `import mgp`
    * This includes refactoring the usages of `mgp_mock` (or alias) to `mgp`.
-2. Load the query module normally
-   ([reference](https://memgraph.com/docs/mage/usage/loading-modules))
+2. [Load the query module.](/reference-guide/query-modules/load-call-query-modules.md)
