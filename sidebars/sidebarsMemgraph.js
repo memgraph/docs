@@ -221,6 +221,7 @@ module.exports = {
               link: { type: "doc", id: "reference-guide/query-modules/implement-custom-query-modules/overview" },
               items: [
                 "reference-guide/query-modules/implement-custom-query-modules/api/python-api",
+                "reference-guide/query-modules/implement-custom-query-modules/api/mock-python-api",
                 "reference-guide/query-modules/implement-custom-query-modules/api/c-api",
                 "reference-guide/query-modules/implement-custom-query-modules/api/cpp-api",
                 "reference-guide/query-modules/implement-custom-query-modules/custom-query-module-example",
