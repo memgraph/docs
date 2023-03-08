@@ -60,17 +60,16 @@ relationships:
 
 People often use the terms graph and tree interchangeably, but graphs are a
 superset of trees. Graphs, for example, can have cycles while trees can't. A
-**cycle** means that there is only one way to go to a node by following
-relationships from another node.
+**cycle** means that there is a path through the data that leads back to the
+starting data point.
 
 To fully utilize the power of graphs, you first need to get a basic
 understanding of the underlying concepts in graph theory.
 
-There are four components that every graph consists of **nodes**,
-**relationships**, **labels**, and **properties**. While only nodes and
-relationships are fundamental components that need to be utilized, labels and
-properties are often included as well because of the added functionalities they
-offer.
+There are four components a graph can consist of: **nodes**, **relationships**,
+**labels**, and **properties**. While only nodes and relationships are
+fundamental components that need to be utilized, labels and properties are often
+included as well because of the added functionalities they offer.
 
 ### 2.1 Nodes
 
