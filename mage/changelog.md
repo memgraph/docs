@@ -4,7 +4,12 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
-- Similarity algorithms (jaccard, overlap and cosine) have been rewritten in C++ to improve performance.
+## v1.6.1 - Mar 9, 2023
+
+### Features and improvements
+
+- With the `export_util.csv_query()` procedure, you can export query results to a CSV file or as a stream. [#199](https://github.com/memgraph/mage/pull/199)
+- Similarity algorithms (jaccard, overlap and cosine) have been rewritten in C++ to improve performance. [#196](https://github.com/memgraph/mage/pull/196)
 
 ## v1.6 - Jan 30, 2023
 
