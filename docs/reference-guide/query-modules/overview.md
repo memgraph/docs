@@ -55,6 +55,7 @@ To learn more about query modules, take a look at the following guides:
   using:
   - **[Python
     API](/reference-guide/query-modules/implement-custom-query-modules/api/python-api.md)**
+    - [**Mock Python API**](/reference-guide/query-modules/implement-custom-query-modules/api/mock-python-api.md)
   - **[C
     API](/reference-guide/query-modules/implement-custom-query-modules/api/c-api.md)**
   - **[C++

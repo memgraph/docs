@@ -28,6 +28,18 @@ navigate to **Query Modules** and click on **New Module** to start.
 Custom modules developed via Memgraph Lab are located at
 `/var/lib/memgraph/internal_modules`.
 
+### Mock Python API
+
+The [mock Python query module API](api/mock-python-api.md) enables you to
+develop and test query modules for Memgraph without having to run a Memgraph
+instance by simulating its behavior. As the mock API is compatible with the
+[Python API](/reference-guide/query-modules/implement-custom-query-modules/api/python-api.md),
+you can add modules developed with it to Memgraph as-is, without modifying the
+code.
+
+For more information and examples, check the
+[mock Python API reference guide](api/mock-python-api.md).
+
 ## C API
 
 C API modules need to be compiled to a shared library so that they can be loaded

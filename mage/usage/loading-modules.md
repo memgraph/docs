@@ -6,9 +6,9 @@ sidebar_label: Loading query modules
 
 import Loading from '../../docs/templates/query-modules/\_loading_query_modules.mdx';
 
-Query modules can be written using C API (thus creating `.so` modules), and
-Python API (thus creating `*.py`) modules. Each file corresponds to one query
-module with one or more procedures within them. The names of these files will be
+Query modules can be written using the C and C++ APIs (creating `.so` modules)
+and the Python API (creating `*.py`) modules. Each file corresponds to one query
+module and contains at least one procedure. The names of these files will be
 mapped to the query module names. For example, a procedure `node_connectivity`
 in `nxalg.py` will be mapped to `nxalg.node_connectivity()` in the Cypher query
 language.
@@ -27,11 +27,11 @@ manage query modules files.
 Here is the list of procedures from the `mg` query module that can be used with
 all other query module files, and their signatures:
 
-| Procedure                                                         | Description                                   |
-| ----------------------------------------------------------------- | --------------------------------------------- |
-| `mg.procedures() -> (name\|STRING, signature\|STRING)`            | Lists loaded procedures and their signatures. |
-| `mg.load(module_name\|STRING) -> ()`                              | Loads or reloads the given module.            |
-| `mg.load_all() -> ()`                                             | Loads or reloads all modules.                 |
+| Procedure                                              | Description                                   |
+| ------------------------------------------------------ | --------------------------------------------- |
+| `mg.procedures() -> (name\|STRING, signature\|STRING)` | Lists loaded procedures and their signatures. |
+| `mg.load(module_name\|STRING) -> ()`                   | Loads or reloads the given module.            |
+| `mg.load_all() -> ()`                                  | Loads or reloads all modules.                 |
 
 ### `mg.procedures`
 
