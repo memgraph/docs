@@ -12,14 +12,15 @@ sidebar_label: Changelog
   -  Performance improvement in accessing values from large arrays or maps with numerous properties. [#744](https://github.com/memgraph/memgraph/pull/774)
   -  Upon creating a large number of node or relationship properties, properties are stored in a property store all at once, instead of individually. [#788](https://github.com/memgraph/memgraph/pull/788)
 - Newly implemented `exists()` function allows using patterns as part of the filtering clause. Check the [Cypher Manual](/cypher-manual/clauses/where) for usage. [#818](https://github.com/memgraph/memgraph/pull/818)
-- With the new Python mock query module API, you can now develop and test Python query modules for Memgraph without having to run a Memgraph instance. The mock API is compatible with the Python API and thus developed modules can be added to Memgraph as-is. [#757](https://github.com/memgraph/memgraph/pull/757)
+- With the new [Python mock query module API](/reference-guide/query-modules/implement-custom-query-modules/api/mock-python-api.md), you can now develop and test Python query modules for Memgraph without having to run a Memgraph instance. The mock API is compatible with the Python API and thus developed modules can be added to Memgraph as-is. [#757](https://github.com/memgraph/memgraph/pull/757)
 - Memgraph now supports Fedora 36 and Ubuntu 22.04 for ARM. [#787](https://github.com/memgraph/memgraph/pull/787) [#810](https://github.com/memgraph/memgraph/pull/810)
 
 ### Bug fixes
 
 -  `torch` and `igraph` can no longer be removed from the `svs.modules` cache to avoid issues after reload. [#720](https://github.com/memgraph/memgraph/pull/720)
--  Newly created nodes now comply with the set label based authorisation rules. [#755](https://github.com/memgraph/memgraph/pull/755)
+-  Newly created nodes now comply with the set label based authorization rules. [#755](https://github.com/memgraph/memgraph/pull/755)
 -  Constructing LocalDateTime objects with invalid parameters doesn’t crash Memgraph anymore, but throws an informative exception. [#819](https://github.com/memgraph/memgraph/pull/819)
+-  Error message warning about incompatible `epoch_id` between a MAIN and REPLICA instance has been improved. [#786](https://github.com/memgraph/memgraph/pull/786)
 
 ## v2.5.2 - Jan 26, 2023
 
