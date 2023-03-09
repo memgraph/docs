@@ -20,6 +20,7 @@ sidebar_label: Changelog
 -  `torch` and `igraph` can no longer be removed from the `svs.modules` cache to avoid issues after reload. [#720](https://github.com/memgraph/memgraph/pull/720)
 -  Newly created nodes now comply with the set label based authorization rules. [#755](https://github.com/memgraph/memgraph/pull/755)
 -  Constructing LocalDateTime objects with invalid parameters doesn’t crash Memgraph anymore, but throws an informative exception. [#819](https://github.com/memgraph/memgraph/pull/819)
+-  Error message warning about incompatible `epoch_id` between a MAIN and REPLICA instance has been improved. [#786](https://github.com/memgraph/memgraph/pull/786)
 
 ## v2.5.2 - Jan 26, 2023
 
