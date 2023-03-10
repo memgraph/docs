@@ -147,6 +147,75 @@ export default function InstallMemgraph() {
         </section>
         <p class="danger-style-for-html">Newer versions of Memgraph are currently <b>not backward compatible</b> with older versions. That is why you won't be able to load storage snapshots between different versions.</p>
         <section>
+          <h2>System requirements</h2>
+            <p>Below are minimum and recommended system requirements for installing Memgraph.</p>
+              <div class="row">
+                <div class="column" style={{'paddingLeft':'130px'}}>
+                  <p><b>Minimum</b></p>
+                </div>
+                <div class="column" style={{'paddingLeft':'220px'}}>
+                  <p><b>Recommended</b></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="column" style={{'paddingLeft':'40px', 'paddingRight': '55px'}}>
+                  <p><b>CPU</b></p>
+                </div>
+                <div class="column">
+                  <p>Server or desktop processor:</p>
+                  <ul>
+                    <li>Intel Xeon</li>
+                    <li>AMD Opteron/Epyc</li>
+                    <li>ARM machines or Apple M1</li>
+                    <li>Amazon Graviton</li>
+                  </ul>
+                </div>
+                <div class="column" style={{'paddingLeft':'60px'}}>
+                  <p>Server or desktop processor:</p>
+                  <ul>
+                    <li>Intel Xeon</li>
+                    <li>AMD Opteron/Epyc</li>
+                    <li>ARM machines or Apple M1</li>
+                    <li>Amazon Graviton</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="row">
+                <div class="column" style={{'paddingLeft':'40px', 'paddingRight':'50px'}}>
+                  <p><b>RAM</b></p>
+                </div>
+                <div class="column">
+                  <p>1 GB</p>
+                </div>
+                <div class="column" style={{'paddingLeft':'260px'}}>
+                  <p>≥ 16 GB ECC</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="column" style={{'paddingLeft':'40px', 'paddingRight':'55px'}}>
+                  <p><b>Disk</b></p>
+                </div>
+                <div class="column">
+                  <p>1 GB</p>
+                </div>
+                <div class="column" style={{'paddingLeft':'260px'}}>
+                  <p>equally as RAM</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="column" style={{'paddingLeft':'40px', 'paddingRight':'45px'}}>
+                  <p><b>Cores</b></p>
+                </div>
+                <div class="column">
+                  <p>1 vCPU</p>
+                </div>
+                <div class="column" style={{'paddingLeft':'240px'}}>
+                  <p>≥ 8 vCPUs (≥ 4 physical cores)</p>
+                </div>
+              </div>
+        </section>
+        <p>The disk is used for storing database snapshots and write-ahead logs.</p>
+        <section>
           <h2>Available Memgraph Docker images</h2>
             <ul>
               <li><a href='https://hub.docker.com/r/memgraph/memgraph/tags'><b>memgraph/memgraph</b></a> includes MemgraphDB and mgconsole</li> 
