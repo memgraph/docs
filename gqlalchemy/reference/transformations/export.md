@@ -3,8 +3,6 @@ sidebar_label: export
 title: gqlalchemy.transformations.export
 ---
 
-# Abstract
-
 GQLAlchemy currently supports exporting data from Memgraph to `NetworkX`, `DGL` and `PyG` graph formats.  
 
 ## Transporter

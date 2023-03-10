@@ -2,9 +2,6 @@
 sidebar_label: nx_translator
 title: gqlalchemy.transformations.translators.nx_translator
 ---
-
-# Abstract
-
 Translates data from Memgraph to NX graph and vice-versa.
 Uses original IDs from Memgraph. Labels are encoded as properties. Since Networkx allows nodes to have properties of different dimensionality, this module stores properties as dictionary entries. All properties are saved to the NetworkX data structure.
 

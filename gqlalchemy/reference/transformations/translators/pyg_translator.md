@@ -3,8 +3,6 @@ sidebar_label: pyg_translator
 title: gqlalchemy.transformations.translators.pyg_translator
 ---
 
-# Abstract
-
 Used to translate Memgraph data to PyG graph representation and vice-versa. Only features of numerical types (e.g., float, double, and int) are allowed. They can be scalars, vectors or multi-dimensional tensors (PyG requirement). Each node feature has a unique name and each edge feature has a unique name. A feature is created via tensor assignment, which assigns a feature to each node/edge in the graph. The leading dimension of that tensor must be equal to the number of nodes/edges in the graph. You cannot assign a feature to a subset of the nodes/edges in the graph. Features of the same name must have the same dimensionality and data type.
 
 ### Methods

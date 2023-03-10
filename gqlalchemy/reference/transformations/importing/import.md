@@ -3,8 +3,6 @@ sidebar_label: import
 title: gqlalchemy.transformations.importing.import
 ---
 
-# Abstract
-
 GQLAlchemy supports importing data from various sources. This includes importing from graph objects stored in NetworkX, DGL and PyG format or various other table sources like S3 or Azure Blob storage. Files stored in the local file system can be in CSV, Parquet, ORC or Feather format. GQLAlchemy will parse the data and import it into the Memgraph database.
 
 ## Importer
