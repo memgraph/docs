@@ -1,6 +1,6 @@
 ---
 sidebar_label: loaders
-title: gqlalchemy.loaders
+title: gqlalchemy.transformations.importing.loaders
 ---
 
 ## ForeignKeyMapping Objects
