@@ -363,7 +363,7 @@ RETURN DISTINCT edge;
 
 To get the total weight, add a variable at the end of the expansion expression: 
 ```cypher
-MATCH path=(n {id: 0})-[relationships:CloseTo *WSHORTEST (r, n | 1) total_weight]-(m {id: 9})
+MATCH path=(n {id: 0})-[relationships:CloseTo *ALLSHORTEST (r, n | 1) total_weight]-(m {id: 9})
 RETURN nodes(path), total_weight;
 ```
 
