@@ -4,28 +4,18 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
-## Lab v2.5.0 - <TODO: Add the release date>
+## Lab v2.5.0 - Mar 17, 2023
 
 ## What's New
 
 * If there are several Cypher queries in the query editor you can select a single query and run
   it without commenting out all the other queries.
 
-<TODO: Add screenshot here>
+![run-selected-query-in-the-lab](./data/lab-run-selected-demo.gif)
 
 * You can now open multiple query executions views side by side and compare query execution speed or results.
 
-<TODO: Add screenshot here>
-
-* If you are running multiple Cypher queries at once, you can now view the result of each one instead of viewing just the last result. 
-
-<TODO: Add screenshot here>
-
-* You can highlight the syntax of code blocks in the query collection description by using one of the following language styles: `cypher`,
-  `bash`, `python`, `css`, `c`, `cpp`, `json`, `sql`, and `yaml`. Check the examples of syntax highlighting in
-  the [Markdown Guide](https://www.markdownguide.org/extended-syntax/#syntax-highlighting).
-
-<TODO: Add screenshot here>
+![multiple-query-executions-in-the-lab](./data/lab-multiple-editors-demo.gif)
 
 * Query modules are now sorted alphabetically for easier and faster browsing. A search box has also been added to query modules with more
   than 5 procedures to help narrow them down (e.g. `nxalg` query module has [49 procedures](https://memgraph.com/docs/mage/query-modules/python/nxalg)).
