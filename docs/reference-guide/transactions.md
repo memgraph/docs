@@ -75,3 +75,68 @@ SET <scope> TRANSACTION ISOLATION LEVEL <isolation_level>
  - SNAPSHOT ISOLATION
  - READ COMMITTED
  - READ UNCOMMITTED
+
+### Managing transactions
+
+From Memgraph v2.7.0 users can see and terminate certain transactions at a specific moment.
+
+### Show transactions
+
+To see what transactions are running at a specific moment use the following command:
+
+```cypher
+SHOW TRANSACTIONS;
+```
+
+The command will show you only transactions you started or which you have the neccessary [privilege](#privileges-needed-to-manage-all-transactions).
+
+<img src={require('../data/how-to-guides/manage-transactional-queue/show_transactions.png').default}/>
+
+### Terminate transactions
+
+
+To terminate one or more transactions, use the following query:
+
+```cypher
+TERMINATE TRANSACTIONS "<tid1>", "<tid2>", "<tid3>" ...
+```
+
+The `tid` represents the transactional ID visible after running the `SHOW TRANSACTIONS;` query.
+
+
+From the output of `SHOW TRANSACTIONS` command, it is easy to see that an infinite query is being run as part of the transaction with id "9223372036854775809". So in the same session, by executing:
+
+```cypher
+TERMINATE TRANSACTIONS "9223372036854775809";
+```
+
+the user gets the confirmation that the transaction was killed:
+
+<img src={require('../data/how-to-guides/manage-transactional-queue/terminate_transactions.png').default}/>
+
+In the session in which infinite query was being run, the user will get a message that the transaction was asked to abort so all changes made as part of that transaction will be annulated and the system will stay in the consistent state as it was before running terminated transaction.
+
+<img src={require('../data/how-to-guides/manage-transactional-queue/transaction_aborted_message.png').default}/>
+
+
+The `TERMINATE TRANSACTIONS` query signalizes to the thread executing the transaction that it should stop the execution. No violent interruption will happen, and the whole system will stay in a consistent state.
+To kill the transaction you haven't started you need to have the neccessary [privilege](#privileges-needed-to-manage-all-transactions).
+
+### Privileges needed to manage all transactions
+
+By default, the users can see and terminate only the transactions they started. For all other transactions, the user must have the **TRANSACTION_MANAGEMENT** privilege which the admin assigns with the following query:
+
+```cypher
+GRANT TRANSACTION_MANAGEMENT TO user;
+```
+
+The privilege to see all the transactions running in Memgraph is revoked using the following query:
+
+```cypher
+REVOKE TRANSACTION_MANAGEMENT FROM user;
+```
+
+:::info
+
+When Memgraph is first started there is only one explicit super-admin user that has all privilages, including the **TRANSACTION_MANAGEMENT**. The super-admin user is able to see all transactions.
+:::
