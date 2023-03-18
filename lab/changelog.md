@@ -4,6 +4,43 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## Lab v2.5.0 - Mar 17, 2023
+
+## What's New
+
+* If there are several Cypher queries in the query editor you can select a single query and run
+  it without commenting out all the other queries.
+
+![run-selected-query-in-the-lab](./data/lab-run-selected-demo.gif)
+
+* You can now open multiple query executions views side by side and compare query execution speed or results.
+
+![multiple-query-executions-in-the-lab](./data/lab-multiple-editors-demo.gif)
+
+* Query modules are now sorted alphabetically for easier and faster browsing. A search box has also been added to query modules with more
+  than 5 procedures to help narrow them down (e.g. `nxalg` query module has [49 procedures](https://memgraph.com/docs/mage/query-modules/python/nxalg)).
+* When rendering a graph with more than 5k nodes or 10k relationships, which might take considerable amount of time to preview, you will be
+  asked if you want to proceed with the graph visualization or switch to the data view.
+* Besides manually saving changes in the Cypher query and GSS style editor in the query collections section, they will also be saved
+  automatically after each query run.
+* Memgraph Lab will now notify you of any product updates and offer various tips and tricks for using the Memgraph ecosystem.
+
+## Bug Fixes
+
+* Cypher code suggestions can now handle labels and properties of 250k nodes and 500k relationships, compared to the previous limit of
+  100k nodes nad 200k relationships.
+* Multiple scrollable elements of the query collections was making scrolling difficult. Now you can focus on a particular element and
+  scroll through it by clicking on it.
+* Browser's back button is now working as expected when using Lab as a web application.
+* Data in the query results, query modules and query run history tables now loads faster making the scrolling smoother and improving
+  the user experience.
+* Graph schema is now generated even if the database has no relationships.
+* In-progress feedback when generating graph schema and exporting datasets for graphs with more than 10M nodes
+  is now previewed as expected.
+* A scrolling issue with expanded results in the Data view where you couldn't see a completely expanded row because the
+  scroll would jump to the next row is now fixed.
+* Dataset cards no longer spread apart when conducting a search. 
+
 ## v2.4.0 - Dec 2, 2022
 
 ## What's New
