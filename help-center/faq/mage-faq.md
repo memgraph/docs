@@ -5,35 +5,12 @@ sidebar_label: MAGE
 slug: /faq/mage
 ---
 
-### What is Memgraph?
-
-**[Memgraph](/memgraph)** is a native in-memory graph streaming
-platform built to handle real-time use-cases at enterprise scale. Memgraph
-supports strongly-consistent ACID transactions and uses the standardized
-**Cypher** query language for structuring, manipulating, and exploring data. You
-can [connect to Kafka](/memgraph/import-data/kafka) and use Memgraph to wrangle
-your graph data source.
-
 ### What is MAGE?
 
-**[MAGE](/mage)** stands for **Memgraph Advanced Graph Extensions**. It’s an
-open-source project started by Memgraph that encourages developers to share
-innovative and useful **[query modules](/mage/query-modules/available-queries)**
-(custom Cypher procedures) so the whole community can benefit from them. If you
-have used Neo4j's APOC library before, it will be easy for you to get used to
-the MAGE library. If there is a specific procedure you can't find in the MAGE
-library which you would like to use, please [let us
-know](https://memgraph.com/community). 
+[**Memgraph Advanced Graph Extensions (MAGE)**](/mage) is an open-source repository that contains graph algorithms and utility modules. It encourages developers to share innovative and useful [query modules](/mage/query-modules/available-queries) (custom Cypher procedures) the whole community can benefit from. It corresponds to APOC in Neo4j, except it's free and open source. 
+
+The MAGE library also includes dynamic algorithms specially designed for analyzing real-time data, NetworkX and igraph integrations, Elasticsearch synchronization module and NVIDIA GPU-powered algorithms. Check [the full list of modules](/mage/query-modules/available-queries), and if there is a specific procedure you can't find in the MAGE library which you would like to use, please [let us know](overview.md).
 
 ### What are query modules?
 
-**[Query modules](/mage/query-modules/available-queries)** are essentially
-collections of custom Cypher procedures that extend the basic functionalities of
-the Cypher query language. Each query module consists of procedures that are
-connected by a common theme (community detection for example). You can [implement
-query modules](/mage/usage/loading-modules) using Python or C API.
-
-### What is Cypher?
-
-**[Cypher](/cypher-manual)** is a **graph query language** that allows users to store and retrieve
-data from a graph database.
+[Query modules](/memgraph/reference-guide/query-modules) are collections of custom Cypher procedures that extend the basic functionalities of the Cypher query language. Each query module consists of procedures connected by a common theme (for example, community detection). [MAGE graph library](/mage) gathers a number of implemented graph algorithms and utility modules. Still, if you need a specific procedure unavailable in MAGE, you can [implement it using Python or C/C++ API](/memgraph/reference-guide/query-modules/implement-custom-query-modules/overview) and [contribute to the library](/mage/contributing) or [contact us](overview.md). 
