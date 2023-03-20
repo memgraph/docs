@@ -20,8 +20,8 @@ export const Highlight = ({children, color}) => (
   </span>
 );
 
-Module for exporting a graph database in different formats. Currently, this
-module supports only the export to JSON file format.
+Module for exporting a graph database or query results in different formats. Currently, this
+module supports [**exporting database to a JSON file format**](#jsonpath) and [**exporting query results in a CSV file format**](#csv_queryquery-file_path-stream).
 
 [![docs-source](https://img.shields.io/badge/source-export_util-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/export_util.py)
 
@@ -72,10 +72,7 @@ where `path` is the path to the JSON file inside the
 `/usr/lib/memgraph/query_modules/export.json`).
 
 :::info
-You can copy the exported JSON file to your local file system using the [`docker cp`](https://docs.docker.com/engine/reference/commandline/cp/) command: 
-```
-docker cp <container_id>:/usr/lib/memgraph/query_modules/export.json /path_to_local_folder/export.json
-```
+You can [**copy the exported CSV file to your local file system**](/memgraph/how-to-guides/work-with-docker#how-to-copy-files-from-and-to-a-docker-container) using the [`docker cp`](https://docs.docker.com/engine/reference/commandline/cp/) command.
 :::
 </TabItem>
 
@@ -99,6 +96,75 @@ where `path` is the path to a local JSON file that will be created inside the
 </TabItem>
 
 </Tabs>
+
+### `csv_query(query, file_path, stream)`
+
+#### Input:
+
+* `query: string` ➡ A query from which the results will be saved to a CSV file.
+* `file_path: string (default="")` ➡ A path to the CSV file where the query results will be exported. Defaults to an empty string.
+* `stream: bool (default=False)` ➡ A value which determines whether a stream of query results in a CSV format will be returned.
+
+#### Output:
+
+* `file_path: string` ➡ A path to the CSV file where the query results are exported. If `file_path` is not provided, the output will be an empty string.
+* `data: string` ➡ A stream of query results in a CSV format.
+
+#### Usage:
+
+The `file_path` you have to provide as procedure argument depends on how you started
+Memgraph.
+
+<Tabs
+  groupId="export_to_csv_usage"
+  defaultValue="docker"
+  values={[
+    {label: 'Docker', value: 'docker'},
+    {label: 'Linux', value: 'linux'},
+  ]
+}> 
+
+<TabItem value="docker">
+
+If you ran Memgraph with Docker, query results will be exported to a CSV file inside
+the Docker container. We recommend exporting the database to the CSV file
+inside the `/usr/lib/memgraph/query_modules` directory.
+
+You can call the procedure by running the following query:
+
+```cypher
+CALL export_util.csv_query(path);
+```
+where `path` is the path to a CSV file inside the
+`/usr/lib/memgraph/query_modules` directory in the running Docker container (e.g.,
+`/usr/lib/memgraph/query_modules/export.csv`).
+
+:::info
+You can [**copy the exported CSV file to your local file system**](/memgraph/how-to-guides/work-with-docker#how-to-copy-files-from-and-to-a-docker-container) using the [`docker cp`](https://docs.docker.com/engine/reference/commandline/cp/) command.
+:::
+</TabItem>
+
+<TabItem value="linux">
+
+To export query results to a local CSV file create a new directory (for example,
+`export_folder`) and run the following command to give the user `memgraph` the
+necessary permissions:
+
+```
+sudo chown memgraph export_folder
+```
+
+Then, call the procedure by running the following query:
+
+```cypher
+CALL export_util.csv_query(path);
+```
+where `path` is the path to a local CSV file that will be created inside the
+`export_folder` (e.g., `/users/my_user/export_folder/export.csv`).
+</TabItem>
+
+</Tabs>
+
 
 ## Example - Exporting database to a JSON file
 
@@ -125,7 +191,7 @@ CREATE (n)-[:IS_FRIENDS_WITH]->(m), (n)-[:IS_FRIENDS_WITH]->(k), (m)-[:IS_MARRIE
 
 <TabItem value="input">
 
-Below you can see how the data looks like after you created the nodes and relationships:
+The image below shows the above data as a graph:
 
 <img src={require('../../data/query-modules/python/export-util/export-util-1.png').default}/>
     
@@ -133,7 +199,7 @@ Below you can see how the data looks like after you created the nodes and relati
 
 <TabItem value="run">
 
-If you're using **Memgraph with Docker**, then the following Cypher query will
+If you're using **Memgraph with Docker**, the following Cypher query will
 export the database to the `export.json` file in the
 `/usr/lib/memgraph/query_modules` directory inside the running Docker container.
 
@@ -141,7 +207,7 @@ export the database to the `export.json` file in the
 CALL export_util.json("/usr/lib/memgraph/query_modules/export.json");
 ```
 
-If you're using **Memgraph on Ubuntu, Debian, RPM package or WSL**, then the
+If you're using **Memgraph on Ubuntu, Debian, RPM package or WSL**, the
 following Cypher query will export the database to the `export.json` file in the
 `/users/my_user/export_folder`.
 
@@ -214,6 +280,114 @@ The `export.json` file should be similar to the one below, except for the
         "type": "relationship"
     }
 ]
+```
+</TabItem>
+
+</Tabs>
+
+
+## Example - Exporting query results to a CSV file
+
+<Tabs
+  groupId="export_to_csv_example"
+  defaultValue="input_csv"
+  values={[
+    {label: 'Step 1: Cypher load commands', value: 'load_csv'},
+    {label: 'Step 2: Input graph', value: 'input_csv'},
+    {label: 'Step 3: Running command', value: 'run_csv'},
+    {label: 'Step 4: Results', value: 'result_csv'},
+  ]
+}>
+
+<TabItem value="load_csv">
+
+You can create a simple graph database by running the following queries:
+
+```cypher
+CREATE (StrangerThings:TVShow {title:'Stranger Things', released:2016, program_creators:['Matt Duffer', 'Ross Duffer']})
+CREATE (Eleven:Character {name:'Eleven', portrayed_by:'Millie Bobby Brown'})
+CREATE (JoyceByers:Character {name:'Joyce Byers', portrayed_by:'Millie Bobby Brown'})
+CREATE (JimHopper:Character {name:'Jim Hopper', portrayed_by:'Millie Bobby Brown'})
+CREATE (MikeWheeler:Character {name:'Mike Wheeler', portrayed_by:'Finn Wolfhard'})
+CREATE (DustinHenderson:Character {name:'Dustin Henderson', portrayed_by:'Gaten Matarazzo'})
+CREATE (LucasSinclair:Character {name:'Lucas Sinclair', portrayed_by:'Caleb McLaughlin'})
+CREATE (NancyWheeler:Character {name:'Nancy Wheeler', portrayed_by:'Natalia Dyer'})
+CREATE (JonathanByers:Character {name:'Jonathan Byers', portrayed_by:'Charlie Heaton'})
+CREATE (WillByers:Character {name:'Will Byers', portrayed_by:'Noah Schnapp'})
+CREATE (SteveHarrington:Character {name:'Steve Harrington', portrayed_by:'Joe Keery'})
+CREATE (MaxMayfield:Character {name:'Max Mayfield', portrayed_by:'Sadie Sink'})
+CREATE (RobinBuckley:Character {name:'Robin Buckley', portrayed_by:'Maya Hawke'})
+CREATE (EricaSinclair:Character {name:'Erica Sinclair', portrayed_by:'Priah Ferguson'})
+CREATE
+(Eleven)-[:ACTED_IN {seasons:[1, 2, 3, 4]}]->(StrangerThings),
+(JoyceByers)-[:ACTED_IN {seasons:[1, 2, 3, 4]}]->(StrangerThings),
+(JimHopper)-[:ACTED_IN {seasons:[1, 2, 3, 4]}]->(StrangerThings),
+(MikeWheeler)-[:ACTED_IN {seasons:[1, 2, 3, 4]}]->(StrangerThings),
+(DustinHenderson)-[:ACTED_IN {seasons:[1, 2, 3, 4]}]->(StrangerThings),
+(LucasSinclair)-[:ACTED_IN {seasons:[1, 2, 3, 4]}]->(StrangerThings),
+(NancyWheeler)-[:ACTED_IN {seasons:[1, 2, 3, 4]}]->(StrangerThings),
+(JonathanByers)-[:ACTED_IN {seasons:[1, 2, 3, 4]}]->(StrangerThings),
+(WillByers)-[:ACTED_IN {seasons:[1, 2, 3, 4]}]->(StrangerThings),
+(SteveHarrington)-[:ACTED_IN {seasons:[1, 2, 3, 4]}]->(StrangerThings),
+(MaxMayfield)-[:ACTED_IN {seasons:[2, 3, 4]}]->(StrangerThings),
+(RobinBuckley)-[:ACTED_IN {seasons:[3, 4]}]->(StrangerThings),
+(EricaSinclair)-[:ACTED_IN {seasons:[2, 3, 4]}]->(StrangerThings);
+```
+</TabItem>
+
+<TabItem value="input_csv">
+
+The image below shows the above data as a graph:
+
+<img src={require('../../data/query-modules/python/export-util/export-util-csv-1.png').default}/>
+    
+</TabItem>
+
+<TabItem value="run_csv">
+
+If you're using **Memgraph with Docker**, the following Cypher query will
+export the database to the `export.csv` file in the
+`/usr/lib/memgraph/query_modules` directory inside the running Docker container.
+
+```cypher
+WITH "MATCH path = (c:Character)-[:ACTED_IN]->(tvshow) RETURN c.name AS name, c.portrayed_by AS portrayed_by, tvshow.title AS title, tvshow.released AS released, tvshow.program_creators AS program_creators" AS query
+CALL export_util.csv_query(query, "/usr/lib/memgraph/query_modules/export.csv", True)
+YIELD file_path, data
+RETURN file_path, data;
+```
+
+If you're using **Memgraph on Ubuntu, Debian, RPM package or WSL**, then the
+following Cypher query will export the database to the `export.csv` file in the
+`/users/my_user/export_folder`.
+
+```cypher
+WITH "MATCH path = (c:Character)-[:ACTED_IN]->(tvshow) RETURN c.name AS name, c.portrayed_by AS portrayed_by, tvshow.title AS title, tvshow.released AS released, tvshow.program_creators AS program_creators" AS query
+CALL export_util.csv_query(query, "/users/my_user/export_folder/export.csv", True)
+YIELD file_path, data
+RETURN file_path, data;
+```
+
+</TabItem>
+
+<TabItem value="result_csv">
+
+The output in the `export.csv` file looks like this:
+
+```csv
+name,portrayed_by,title,released,program_creators
+Eleven,Millie Bobby Brown,Stranger Things,2016,"['Matt Duffer', 'Ross Duffer']"
+Joyce Byers,Millie Bobby Brown,Stranger Things,2016,"['Matt Duffer', 'Ross Duffer']"
+Jim Hopper,Millie Bobby Brown,Stranger Things,2016,"['Matt Duffer', 'Ross Duffer']"
+Mike Wheeler,Finn Wolfhard,Stranger Things,2016,"['Matt Duffer', 'Ross Duffer']"
+Dustin Henderson,Gaten Matarazzo,Stranger Things,2016,"['Matt Duffer', 'Ross Duffer']"
+Lucas Sinclair,Caleb McLaughlin,Stranger Things,2016,"['Matt Duffer', 'Ross Duffer']"
+Nancy Wheeler,Natalia Dyer,Stranger Things,2016,"['Matt Duffer', 'Ross Duffer']"
+Jonathan Byers,Charlie Heaton,Stranger Things,2016,"['Matt Duffer', 'Ross Duffer']"
+Will Byers,Noah Schnapp,Stranger Things,2016,"['Matt Duffer', 'Ross Duffer']"
+Steve Harrington,Joe Keery,Stranger Things,2016,"['Matt Duffer', 'Ross Duffer']"
+Max Mayfield,Sadie Sink,Stranger Things,2016,"['Matt Duffer', 'Ross Duffer']"
+Robin Buckley,Maya Hawke,Stranger Things,2016,"['Matt Duffer', 'Ross Duffer']"
+Erica Sinclair,Priah Ferguson,Stranger Things,2016,"['Matt Duffer', 'Ross Duffer']"
 ```
 </TabItem>
 
