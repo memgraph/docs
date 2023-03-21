@@ -81,3 +81,7 @@ DROP INDEX ON :Person(age);
 ```
 
 These queries instruct all active transactions to abort as soon as possible. Once all transactions have finished, the index will be deleted.
+
+## Analyze graph
+
+In cases when there are multiple label-property indices, the non-optimal index can sometimes be selected due to the data's distribution. To fix the large majority of cases, the `ANALYZE GRAPH` command was introduced. It is intended to be run only once after all indexes have been created and data inserted in the database. The details can be found [here](https://memgraph.com/docs/memgraph/reference-guide/analyze-graph).
