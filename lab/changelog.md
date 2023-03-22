@@ -19,7 +19,7 @@ sidebar_label: Changelog
 
 * Query modules are now sorted alphabetically for easier and faster browsing. A search box has also been added to query modules with more
   than 5 procedures to help narrow them down (e.g. `nxalg` query module has [49 procedures](https://memgraph.com/docs/mage/query-modules/python/nxalg)).
-* When rendering a graph with more than 5k nodes or 10k relationships, which might take considerable amount of time to preview, you will be
+* When rendering a graph with more than 3,500 nodes or 8,500 relationships, which might take considerable amount of time to preview, you will be
   asked if you want to proceed with the graph visualization or switch to the data view.
 * Besides manually saving changes in the Cypher query and GSS style editor in the query collections section, they will also be saved
   automatically after each query run.
