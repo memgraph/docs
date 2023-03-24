@@ -138,9 +138,7 @@ The `LOAD CSV` clause will create relationships and thus import data much
 
 Below, you can find two examples of how to use the LOAD CSV clause depending on
 the complexity of your data:
-- [Clause syntax](#clause-syntax)
-- [Clause specificities](#clause-specificities)
-- [Examples](#examples)
+<!-- no toc -->
   - [One type of nodes and relationships](#one-type-of-nodes-and-relationships)
   - [Multiple types of nodes and relationships](#multiple-types-of-nodes-and-relationships)
 
@@ -217,9 +215,16 @@ Let's import a simple dataset from the `people_nodes` and `people_relationships`
 3. The following query will load row by row from the CSV file, and create a new
   node for each row with properties based on the parsed row values:
 
+   ```cypher
+  LOAD CSV FROM "/path-to/people.csv" WITH HEADER as row
+  CREATE (p:Person) SET p += row;
+  ```
+
+  If the property names need to be different from headers, you need to explicitly state them: 
+    
   ```cypher
   LOAD CSV FROM "/path-to/people_nodes.csv" WITH HEADER AS row
-  CREATE (p:Person {id: row.id, name: row.name});
+  CREATE (p:Person {no: row.id, firstName: row.name});
   ```
 
   If successful, you should receive an `Empty set (0.014 sec)` message. 
