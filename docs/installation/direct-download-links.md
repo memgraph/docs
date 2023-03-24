@@ -52,3 +52,5 @@ version of MemgraphDB, take a look at the list below.
   [https://download.memgraph.com/memgraph/v2.6.0/ubuntu-20.04/memgraph_2.6.0-1_amd64.deb](https://download.memgraph.com/memgraph/v2.6.0/ubuntu-20.04/memgraph_2.6.0-1_amd64.deb)
 - **Ubuntu 22.04** -
   [https://download.memgraph.com/memgraph/v2.6.0/ubuntu-22.04/memgraph_2.6.0-1_amd64.deb](https://download.memgraph.com/memgraph/v2.6.0/ubuntu-22.04/memgraph_2.6.0-1_amd64.deb)
+- **Ubuntu 22.04 (ARM64/AArch64)** -
+  [https://download.memgraph.com/memgraph/v2.6.0/ubuntu-22.04-aarch64/memgraph_2.6.0-1_arm64.deb](hhttps://download.memgraph.com/memgraph/v2.6.0/ubuntu-22.04-aarch64/memgraph_2.6.0-1_arm64.deb)
