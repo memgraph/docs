@@ -60,9 +60,7 @@ correct path to the file.
 
 Below, you can find two examples of how to import data within the `.cypherl` file
 based on the complexity of your data:
-
-- [Importing via Memgraph Lab](#importing-via-memgraph-lab)
-- [Importing via mgconsole](#importing-via-mgconsole)
+<!-- no toc -->
   - [One type of nodes and relationships](#one-type-of-nodes-and-relationships)
   - [Multiple types of nodes and relationships](#multiple-types-of-nodes-and-relationships)
 

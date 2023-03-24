@@ -82,17 +82,26 @@ When using the `LOAD CSV` clause please keep in mind:
   Consult the documentation on [the available conversion
   functions](/cypher-manual/functions).
 
+  If all values are indeed strings and the file has a header, you can import
+  data using the following string: 
+
+  ```cypher
+  LOAD CSV FROM "/people.csv" WITH HEADER AS row
+  CREATE (p:People) SET p += row; 
+  ```
+
 - **The `LOAD CSV` clause is not a standalone clause**, which means that a valid query
   must contain at least one more clause, for example:
 
   ```cypher
-  MERGE (n:A) LOAD CSV FROM "file.csv" WITH HEADER AS row;
+  LOAD CSV FROM "/people.csv" WITH HEADER AS row
+  CREATE (p:People) SET p += row; 
   ```
 
   In this regard, the following query will throw an exception:
 
   ```cypher
-  LOAD CSV FROM "file.csv" WITH HEADER AS row;
+  LOAD CSV FROM "/file.csv" WITH HEADER AS row;
   ```
 
 - Because of the need to use at least two clauses, the clause that exhausts its
@@ -101,7 +110,7 @@ When using the `LOAD CSV` clause please keep in mind:
 
   ```cypher
   MATCH (n)
-  LOAD CSV FROM "file.csv" WITH HEADER as row
+  LOAD CSV FROM "/file.csv" WITH HEADER AS row
   SET n.p = row;
   ```
 
@@ -117,17 +126,30 @@ When using the `LOAD CSV` clause please keep in mind:
   below wll throw an exception: 
 
   ```cypher
-  LOAD CSV FROM "x.csv" WITH HEADER as x
-  LOAD CSV FROM "y.csv" WITH HEADER as y
+  LOAD CSV FROM "/x.csv" WITH HEADER as x
+  LOAD CSV FROM "/y.csv" WITH HEADER as y
   CREATE (n:A {p1 : x, p2 : y});
   ```
+
+:::tip
+
+The `LOAD CSV` clause will create relationships and thus import data much
+  faster if you [create indexes](/how-to-guides/indexes.md) on nodes or node
+  properties once you import them: 
+
+  ```cypher
+  CREATE INDEX ON Node(id);
+  ````
+
+:::
 
 ## Examples
 
 Below, you can find two examples of how to use the LOAD CSV clause depending on
 the complexity of your data:
-- [One type of nodes and relationships](#one-type-of-nodes-and-relationships) 
-- [Multiple types of nodes and relationships](#multiple-types-of-nodes-and-relationships)
+<!-- no toc -->
+  - [One type of nodes and relationships](#one-type-of-nodes-and-relationships)
+  - [Multiple types of nodes and relationships](#multiple-types-of-nodes-and-relationships)
 
 ### One type of nodes and relationships
 
