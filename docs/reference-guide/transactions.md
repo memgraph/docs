@@ -53,6 +53,93 @@ lowest:
  - READ_UNCOMMITTED - one transaction may read not yet committed changes made by
    other transactions.
 
+## Managing transactions
+
+Starting with Memgraph v2.7.0 you can check running transactions and terminate them.
+
+### Show transactions
+
+To see what transactions are running at the moment use the following command:
+
+```cypher
+SHOW TRANSACTIONS;
+```
+
+The command will show only the transactions you started or transactions for which you have the necessary [privilege](#privileges-needed-to-manage-all-transactions).
+
+<img src={require('../data/how-to-guides/manage-transactional-queue/show_transactions.png').default}/>
+
+### Terminate transactions
+
+To terminate one or more transactions, you need to open a new session and use the following query:
+
+```cypher
+TERMINATE TRANSACTIONS "tid", "<tid2>", "<tid3>", ... ;
+```
+
+The `tid` is the transactional ID that can be seen using the `SHOW TRANSACTIONS;` query.
+
+The `TERMINATE TRANSACTIONS` query signalizes to the thread executing the transaction that it should stop the execution. No violent interruption will happen, and the whole system will stay in a consistent state.
+To terminate the transaction you haven't started, you need to have the necessary [privilege](#privileges-needed-to-manage-all-transactions).
+
+#### New session with Docker
+
+If you are using **Memgraph Lab**, you can vertically split screens and open another
+Query Execution section. 
+
+If you are using **mgconsole** on an instance running in a Docker container:
+  
+1. Open a new terminal and find the CONTAINER ID of the Memgraph Docker container: 
+      
+  ```
+  docker ps
+  ```
+
+2. Enter the container with the following command: 
+   
+  ```
+  docker exec -it CONTAINER ID bash
+  ```
+3. Execute `mgconsole` command to run the client
+
+4. Run the `SHOW TRANSACTIONS;` and `TERMINATE TRANSACTIONS tid;`
+
+### Example
+
+The output of the `SHOW TRANSACTIONS` command shows that an infinite query is currently being run as part of the transaction ID "9223372036854775809".
+
+To terminate the transaction, run the following query:
+
+```cypher
+TERMINATE TRANSACTIONS "9223372036854775809";
+```
+
+Upon the transaction termination, the following confirmation will appear: 
+
+<img src={require('../data/how-to-guides/manage-transactional-queue/terminate_transactions.png').default}/>
+
+The following message will appear in the session in which the infinite query was being run:
+
+<img src={require('../data/how-to-guides/manage-transactional-queue/transaction_aborted_message.png').default}/>
+
+### Privileges needed to manage all transactions
+
+By default, the users can see and terminate only the transactions they started. For all other transactions, the user must have the **TRANSACTION_MANAGEMENT** privilege which the admin assigns with the following query:
+
+```cypher
+GRANT TRANSACTION_MANAGEMENT TO user;
+```
+
+The privilege to see all the transactions running in Memgraph is revoked using the following query:
+
+```cypher
+REVOKE TRANSACTION_MANAGEMENT FROM user;
+```
+
+:::info
+When Memgraph is first started there is only one explicit super-admin user that has all privileges, including the **TRANSACTION_MANAGEMENT**. The super-admin user is able to see all transactions.
+:::
+
 ### Setting the isolation level
 
 To change the isolation level, change the `--isolation-level` configuration flag
@@ -75,70 +162,3 @@ SET <scope> TRANSACTION ISOLATION LEVEL <isolation_level>
  - SNAPSHOT ISOLATION
  - READ COMMITTED
  - READ UNCOMMITTED
-
-### Managing transactions
-
-From Memgraph v2.7.0 users can see and terminate certain transactions at a specific moment.
-
-### Show transactions
-
-To see what transactions are running at the moment use the following command:
-
-```cypher
-SHOW TRANSACTIONS;
-```
-
-The command will show only the transactions you started or transactions for which you have the necessary [privilege](#privileges-needed-to-manage-all-transactions).
-
-<img src={require('../data/how-to-guides/manage-transactional-queue/show_transactions.png').default}/>
-
-### Terminate transactions
-
-
-To terminate one or more transactions, use the following query:
-
-```cypher
-TERMINATE TRANSACTIONS "<tid1>", "<tid2>", "<tid3>" ...
-```
-
-The `tid` is the transactional ID that can be seen using the `SHOW TRANSACTIONS;` query.
-
-
-The output of the `SHOW TRANSACTIONS` command shows that an infinite query is currently being run as part of the transaction ID "9223372036854775809".
-
-To terminate the transaction, run the following query:
-
-```cypher
-TERMINATE TRANSACTIONS "9223372036854775809";
-```
-
-Upon the transaction termination, the following confirmation will appear: 
-
-<img src={require('../data/how-to-guides/manage-transactional-queue/terminate_transactions.png').default}/>
-
-The following message will appear in the session in which the infinite query was being run:
-
-<img src={require('../data/how-to-guides/manage-transactional-queue/transaction_aborted_message.png').default}/>
-
-
-The `TERMINATE TRANSACTIONS` query signalizes to the thread executing the transaction that it should stop the execution. No violent interruption will happen, and the whole system will stay in a consistent state.
-To terminate the transaction you haven't started, you need to have the necessary [privilege](#privileges-needed-to-manage-all-transactions).
-
-### Privileges needed to manage all transactions
-
-By default, the users can see and terminate only the transactions they started. For all other transactions, the user must have the **TRANSACTION_MANAGEMENT** privilege which the admin assigns with the following query:
-
-```cypher
-GRANT TRANSACTION_MANAGEMENT TO user;
-```
-
-The privilege to see all the transactions running in Memgraph is revoked using the following query:
-
-```cypher
-REVOKE TRANSACTION_MANAGEMENT FROM user;
-```
-
-:::info
-
-When Memgraph is first started there is only one explicit super-admin user that has all privilages, including the **TRANSACTION_MANAGEMENT**. The super-admin user is able to see all transactions.
-:::
