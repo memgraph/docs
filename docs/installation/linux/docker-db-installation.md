@@ -12,9 +12,11 @@ This article briefly outlines the basic steps necessary to install and run
 
 :::caution
 
-Newer versions of Memgraph are currently **not backward compatible** with older
-versions. That is why you won't be able to load storage snapshots between
-different versions.
+Newer versions of Memgraph **might not be backward compatible** with older
+versions and you might not be able to load storage snapshots between different
+versions. In that case, please [contact the Memgraph
+team](mailto:tech@memgraph.com) and we'll help with the migration as much as
+possible.
 
 :::
 
