@@ -82,13 +82,13 @@ From Memgraph v2.7.0 users can see and terminate certain transactions at a speci
 
 ### Show transactions
 
-To see what transactions are running at a specific moment use the following command:
+To see what transactions are running at the moment use the following command:
 
 ```cypher
 SHOW TRANSACTIONS;
 ```
 
-The command will show you only transactions you started or which you have the neccessary [privilege](#privileges-needed-to-manage-all-transactions).
+The command will show only the transactions you started or transactions for which you have the necessary [privilege](#privileges-needed-to-manage-all-transactions).
 
 <img src={require('../data/how-to-guides/manage-transactional-queue/show_transactions.png').default}/>
 
@@ -101,26 +101,28 @@ To terminate one or more transactions, use the following query:
 TERMINATE TRANSACTIONS "<tid1>", "<tid2>", "<tid3>" ...
 ```
 
-The `tid` represents the transactional ID visible after running the `SHOW TRANSACTIONS;` query.
+The `tid` is the transactional ID that can be seen using the `SHOW TRANSACTIONS;` query.
 
 
-From the output of `SHOW TRANSACTIONS` command, it is easy to see that an infinite query is being run as part of the transaction with id "9223372036854775809". So in the same session, by executing:
+The output of the `SHOW TRANSACTIONS` command shows that an infinite query is currently being run as part of the transaction ID "9223372036854775809".
+
+To terminate the transaction, run the following query:
 
 ```cypher
 TERMINATE TRANSACTIONS "9223372036854775809";
 ```
 
-the user gets the confirmation that the transaction was killed:
+Upon the transaction termination, the following confirmation will appear: 
 
 <img src={require('../data/how-to-guides/manage-transactional-queue/terminate_transactions.png').default}/>
 
-In the session in which infinite query was being run, the user will get a message that the transaction was asked to abort so all changes made as part of that transaction will be annulated and the system will stay in the consistent state as it was before running terminated transaction.
+The following message will appear in the session in which the infinite query was being run:
 
 <img src={require('../data/how-to-guides/manage-transactional-queue/transaction_aborted_message.png').default}/>
 
 
 The `TERMINATE TRANSACTIONS` query signalizes to the thread executing the transaction that it should stop the execution. No violent interruption will happen, and the whole system will stay in a consistent state.
-To kill the transaction you haven't started you need to have the neccessary [privilege](#privileges-needed-to-manage-all-transactions).
+To terminate the transaction you haven't started, you need to have the necessary [privilege](#privileges-needed-to-manage-all-transactions).
 
 ### Privileges needed to manage all transactions
 
