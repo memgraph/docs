@@ -194,3 +194,16 @@ html[data-theme="dark"] .docsRating {
   overflow-wrap: break-word;
   text-rendering: optimizelegibility;
 }
+
+.warning-style-for-html {
+  background-color: rgb(255, 248, 230);
+  border-left: 5px solid rgb(230,167,0);
+  margin: 10px;
+  padding: 20px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+  box-sizing: border-box;
+  color: rgb(102, 76, 4);
+  color-scheme: light;
+  overflow-wrap: break-word;
+  text-rendering: optimizelegibility;
+}
