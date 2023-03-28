@@ -218,7 +218,7 @@ DROP INDEX ON :Label(property);
 ```
 ## Analyze graph
 
-In cases when there are multiple label-property indices, the non-optimal index can sometimes be selected due to the data's distribution. To fix the large majority of cases, the `ANALYZE GRAPH` command was introduced. It is intended to be run only once after all indexes have been created and data inserted in the database. The details can be found [here](https://memgraph.com/docs/memgraph/reference-guide/analyze-graph).
+When multiple label-property indices exist, the database can sometimes select a non-optimal index due to the data's distribution. The `ANALYZE GRAPH` command calculates the distribution of property values so the database can select a more optimal label-property index with the smallest average property value size. The command is run only once after all indexes have been created and data inserted in the database. The details can be found [here](https://memgraph.com/docs/memgraph/reference-guide/analyze-graph):
 
 ## Underlying implementation
 
