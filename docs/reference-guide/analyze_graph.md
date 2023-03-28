@@ -4,7 +4,7 @@ title: Analyze graph
 sidebar_label: Analyze graph
 ---
 
-Until Memgraph v2.7, the database would choose an index solely based on the number of indexed nodes. But if the number of nodes is the only condition, the database would choose a non-optimal index. With the `ANALYZE GRAPH` query, Memgraph analyzes the distribution of property values and can select a more optimal label-property index, with the smallest average property value size. 
+Until Memgraph v2.7, the database would choose an index solely based on the number of indexed nodes. But if the number of nodes is the only condition, in some cases the database would choose a non-optimal index. With the `ANALYZE GRAPH` query, Memgraph analyzes the distribution of property values and can select a more optimal label-property index, the one with the smallest average property value size. 
 
 The average property value's group size directly represents the database's expected number of hits which can be used to estimate the query's cost. When the average group size is the same, the chi-squared statistic is used to measure how close the distribution of property-value group size is to the uniform distribution. The index with a distribution closest to the uniform distribution is selected.
 
@@ -12,9 +12,9 @@ The average property value's group size directly represents the database's expec
 <a href="https://latex.codecogs.com/gif.image?\dpi{110}\chi^2&space;=&space;\sum_{i}\frac{(E_i-O_i)^2}{E_i}" target="_blank"><img src="https://latex.codecogs.com/gif.image?\dpi{110}\chi^2&space;=&space;\sum_{i}\frac{(E_i-O_i)^2}{E_i}" title="Chi-squared statistic" /></a>
 
 
-The `ANALYZE GRAPH` command should be run only once after all indexes have been created and nodes inserted in the database. In rare situations when one property is set on many more nodes than another property, choosing an index based on average group size and uniform distribution would be misleading. That's why the database always selects the label-property index with >= 10x fewer nodes than the other label-property index.
+The `ANALYZE GRAPH;` command should be run only once after all indexes have been created and nodes inserted in the database. In rare situations when one property is set on many more nodes than another property, choosing an index based on average group size and uniform distribution would be misleading. That's why the database always selects the label-property index with >= 10x fewer nodes than the other label-property index.
 
-The `ANALYZE GRAPH` command analyses only label-property indices, so whenever the database contains only label indices, the information about the distribution and average group size is ignored and the optimal index is selected based on the number of nodes it contains.
+The `ANALYZE GRAPH;` command analyses only label-property indices, so whenever the database contains only label indices, the information about the distribution and average group size is ignored, and the optimal index is selected based on the number of nodes it contains.
 
 
 [![Related - How
@@ -40,7 +40,7 @@ The query will iterate over all label-property indices in the database and calcu
 | index's label | index's property | number of nodes used for estimation | number of distinct values the property contains | average group size of property's values | value of the chi-squared statistic |
 
 
-Once the information about the average group size and the chi-squared statistic is obtained, Memgraph will be able to choose the optimal indexes.
+Once the information about the average group size and the chi-squared statistic is obtained, Memgraph can choose the optimal index.
 If you don't want to run analysis on all labels, you can specify which labels to use by adding the labels to the query:
 
 ```cypher
@@ -55,13 +55,13 @@ If you want the database to ignore information about the average group size and 
 ANALYZE GRAPH DELETE STATISTICS;
 ```
 
-The results will contain all label-property indices that were successfully deleted. The following output format can be expected:
+The results will contain all label-property indices that were successfully deleted:
 
 | label | property |
 | ----- | -------- |
 | index's label | index's property |
 
-Specific labels can again be specified as in the above case with the construct `ON LABELS`:
+Specific labels can be specified with the construct `ON LABELS`:
 
 ```cypher
 ANALYZE GRAPH ON LABELS :Label1 DELETE STATISTICS;
