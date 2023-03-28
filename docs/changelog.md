@@ -4,6 +4,19 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v2.7 - Mar 31, 2023
+
+### New features and improvements
+
+- When you have more than one label-property indexes, you can make Memgraph
+  analyze the properties with the `ANALYZE GRAPH;` query. By calculating the
+  distribution of property values, Memgraph will be able to select the optimal
+  index for every query.
+- If, for example, you are no longer interested in the results of the query you
+  ran, or the procedure you built is running in an infinite loop, you can stop
+  the transaction with the `TERMINATE TRANSACTIONS tid;` query; Find out the
+  transaction ID with `SHOW TRANSACTIONS;` query.
+
 ## v2.6 - Mar 07, 2023
 
 ### Major features and improvements
