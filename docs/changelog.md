@@ -11,11 +11,16 @@ sidebar_label: Changelog
 - When you have more than one label-property indexes, you can make Memgraph
   analyze the properties with the `ANALYZE GRAPH;` query. By calculating the
   distribution of property values, Memgraph will be able to select the optimal
-  index for every query.
+  index for every query. [#812](https://github.com/memgraph/memgraph/pull/812)
 - If, for example, you are no longer interested in the results of the query you
   ran, or the procedure you built is running in an infinite loop, you can stop
   the transaction with the `TERMINATE TRANSACTIONS tid;` query; Find out the
-  transaction ID with `SHOW TRANSACTIONS;` query.
+  transaction ID with `SHOW TRANSACTIONS;` query. [#790](https://github.com/memgraph/memgraph/pull/790)
+
+### Bugfixes
+
+- Replica instances no longer restart as main instances, but restore their original role. [#791](https://github.com/memgraph/memgraph/pull/791)
+
 
 ## v2.6 - Mar 07, 2023
 
