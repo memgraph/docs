@@ -8,10 +8,12 @@ sidebar_label: Changelog
 
 ### New features and improvements
 
-- When you have more than one label-property indexes, you can make Memgraph
-  analyze the properties with the `ANALYZE GRAPH;` query. By calculating the
-  distribution of property values, Memgraph will be able to select the optimal
-  index for every query. [#812](https://github.com/memgraph/memgraph/pull/812)
+- When you want to filter data using properties that all have label:property
+  indexes set, you can make Memgraph analyze the properties on all or several
+  labels with the `ANALYZE GRAPH;` query. By calculating the distribution of
+  property values, Memgraph will be able to select the optimal index for the
+  query and it will execute faster.
+  [#812](https://github.com/memgraph/memgraph/pull/812)
 - If, for example, you are no longer interested in the results of the query you
   ran, or the procedure you built is running in an infinite loop, you can stop
   the transaction with the `TERMINATE TRANSACTIONS tid;` query; Find out the
