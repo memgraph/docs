@@ -24,6 +24,7 @@ Your queries might require conditional execution logic that can’t be adequatel
 expressed in Cypher. The `do` module makes it possible to define complex logic
 and use it to control query execution.
 
+[![docs-source](https://img.shields.io/badge/source-conditional_execution-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/do.py)
 
 | Trait              | Value                                                 |
 | ------------------ | ----------------------------------------------------- |
@@ -33,14 +34,27 @@ and use it to control query execution.
 
 ## Procedures
 
+:::info
+
+Using the following procedures to run queries that execute global operations is
+currently not supported and returns a warning.
+The operations in question are:
+
+* index creation/deletion
+* constraint creation/deletion
+* changing the isolation level globally
+* setting the storage mode
+
+:::
+
+### `case(conditionals, else_query, params)`
+
 Given a list of condition-query pairs, `do.case` executes the query associated
 with the first condition evaluating to `true` (or the `else query` if none are
 `true`) with the given parameters.
 
 Parameters are prefixed with `$` like `$param_name`. For examples, see
 [here](https://memgraph.com/docs/cypher-manual/other-features#parameters).
-
-### `case(conditionals, else_query, params)`
 
 #### Input:
 
@@ -105,7 +119,6 @@ RETURN value.graph_status AS graph_status;
 
 ## Example
 
-
 <Tabs
   groupId="example"
   defaultValue="visualization"
@@ -121,7 +134,6 @@ RETURN value.graph_status AS graph_status;
   <img src={require('../../data/query-modules/python/conditional-execution/conditional-execution-1.png').default}/>
 
   </TabItem>
-
 
   <TabItem value="cypher">
 
@@ -149,7 +161,6 @@ RETURN value.graph_status AS graph_status;
 ```
 
   </TabItem>
-
 
   <TabItem value="result">
 
