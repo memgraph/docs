@@ -7,6 +7,7 @@ slug: /clauses
 
 The **Cypher** language enables users to perform standard database operations by using the following clauses:
 
+  * [`CALL`](call.md) - calls a subquery inside the query
   * [`CREATE`](create.md) - creates new nodes and relationships
   * [`DELETE`](delete.md) - deletes nodes and relationships
   * [`EXPLAIN`](explain.md) - 

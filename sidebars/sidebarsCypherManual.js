@@ -21,6 +21,7 @@ module.exports = {
       label: "Clauses",
       link: {type: 'doc', id: 'clauses/clauses'},
       items: [
+        "clauses/call",
         "clauses/create",
         "clauses/delete",
         "clauses/explain",
