@@ -113,4 +113,22 @@ Example:
    </TabItem>
    </Tabs>
 
+## Password encryption algorithm
 
+Memgraph offers multiple password encryption algorithms:
+* BCrypt
+* SHA256
+* SHA256 with multiple iterations (currently set to 1024 iterations)
+
+The above algorithms can be specified at runtime using the flag `--password-encryption-algorithm` with the
+appropriate values of `bcrypt`, `sha256` or `sha256-multiple`.
+
+### BCrypt
+This algorithm is the default algorithm for password encryption. It's the most secure algorithm and has the best
+protection against brute-force attack. However, if you're running connecting multiple concurrent enterprise users with
+passwords at the same time, it may not be the best choice for you as you might experience slower performance. The performance
+is slower only during authentication of the users, and should not degrade once the connection has been established.
+
+### SHA256 and SHA256 with multiple iterations
+SHA256 is another encryption algorithm, that's usually not used for password encryption, but is enough fast and secure to
+offer optimal performance when running a lot of concurrent opening connections to Memgraph.
