@@ -119,14 +119,14 @@ mgconsole from source.
 **2.** Start mgconsole with the command:
 
 ```terminal
-./mgconsole --host HOST --port PORT
+mgconsole --host HOST --port PORT
 ```
 
 If Memgraph is running locally using the default configuration, start
 mgconsole with:
 
 ```terminal
-./mgconsole --host 127.0.0.1 --port 7687
+mgconsole --host 127.0.0.1 --port 7687
 ```
 
   </TabItem>
