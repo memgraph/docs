@@ -63,7 +63,7 @@ To terminate the transaction you haven't started, you need to have the necessary
 #### Terminating custom procedures
 
 If you want to be able to [terminate custom
-procedures](/reference-guide/query-modules/implement-custom-query-modules),
+procedures](/reference-guide/query-modules/implement-custom-query-modules/custom-query-module-example.md),
 crucial parts of the code, such as `while` and `until` loops, or similar points
 where the procedure might become costly, need to be preceded with
 CheckMustAbort() function.

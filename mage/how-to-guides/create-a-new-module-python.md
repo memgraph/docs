@@ -92,7 +92,7 @@ iteratively.
 
 Just as the execution of a Cypher query can be terminated with [`TERMINATE
 TRANSACTIONS
-"id";`](/memgraph/reference-guide/transactions#terminate-transactions) query,
+"id";`](/memgraph/reference-guide/transactions) query,
 the execution of the procedure can as well, if it takes too long to yield a
 response or gets stuck in an infinite loop due to unpredicted input data.
 

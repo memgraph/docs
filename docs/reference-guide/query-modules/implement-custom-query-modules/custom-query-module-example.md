@@ -277,7 +277,7 @@ the intent to use them in a different procedure invocation.
 ### Terminate procedure execution
 
 Just as the execution of a Cypher query can be terminated with [`TERMINATE
-TRANSACTIONS "id";`](/reference-guide/transactions#terminate-transactions) query,
+TRANSACTIONS "id";`](/reference-guide/transactions.md) query,
 the execution of the procedure can as well, if it takes too long to yield a
 response or gets stuck in an infinite loop due to unpredicted input data.
 
@@ -708,7 +708,7 @@ void Multiply(mgp_list *args, mgp_func_context *ctx, mgp_func_result *res, mgp_m
 ### Terminate procedure execution
 
 Just as the execution of a Cypher query can be terminated with [`TERMINATE
-TRANSACTIONS "id";`](/reference-guide/transactions#terminate-transactions) query,
+TRANSACTIONS "id";`](/reference-guide/transactions.md) query,
 the execution of the procedure can as well, if it takes too long to yield a
 response or gets stuck in an infinite loop due to unpredicted input data.
 
