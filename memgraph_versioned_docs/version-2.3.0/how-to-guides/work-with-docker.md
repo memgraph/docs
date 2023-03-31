@@ -73,7 +73,7 @@ The most common flags used while running Memgraph images are:
 
 - enable interactive mode: `-it`
 - publish ports: `-p 3000:3000`
-- specify volumes for data persistance `-v mg_lib:/var/lib/memgraph`
+- specify volumes for data persistence `-v mg_lib:/var/lib/memgraph`
 - set up configuration using environmental variables in the case of the
   `memgraph-platform` image, or configuration flags using the `memgraph` or
   `memgraph-mage` image
