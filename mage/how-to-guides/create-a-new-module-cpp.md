@@ -265,6 +265,67 @@ extern "C" int mgp_shutdown_module() {
 }
 ```
 
+### Terminate procedure execution
+
+Just as the execution of a Cypher query can be terminated with [`TERMINATE
+TRANSACTIONS "id";`](/memgraph/reference-guide/transactions#terminate-transactions) query, the execution of the procedure can as well, if it takes
+too long to yield a response or gets stuck in an infinite loop due to
+unpredicted input data.
+
+Transaction ID is visible upon calling the `SHOW TRANSACTIONS;` query. 
+
+In order to be able to terminate the procedure, it has to contain function
+`graph.CheckMustAbort();` which precedes crucial parts of the code, such as
+`while` and `until` loops, or similar points where the procedure might become
+costly.
+
+Consider the following example:
+
+```cpp
+#include <cstdint>
+#include <unordered_map>
+#include <unordered_set>
+#include <algorithm>
+#include <mgp.hpp>
+#include <mg_exceptions.hpp>
+
+// Methods
+constexpr char const *get = "get";
+// Return object names
+char const *return_field = "return";
+
+
+void Test(mgp_list *args, mgp_graph *memgraph_graph, mgp_result *result, mgp_memory *memory) {
+    mgp::memory = memory;
+    const auto record_factory = mgp::RecordFactory(result);
+    auto graph = mgp::Graph(memgraph_graph);
+    int64_t id_ = 1;
+    try {
+        while (true) {
+            graph.CheckMustAbort();
+            ++id_;
+        }
+    } catch (const mgp::MustAbortException &e) {
+        std::cout << e.what() << std::endl;
+        auto new_record = record_factory.NewRecord();
+        new_record.Insert(return_field, id_);
+    }
+}
+
+
+extern "C" int mgp_init_module(struct mgp_module *module, struct mgp_memory *memory) {
+    try {
+        mgp::memory = memory;
+        mgp::AddProcedure(Test, get, mgp::ProcedureType::Read, {}, {mgp::Return(return_field, mgp::Type::Int)}, module, memory);
+    } catch(const std::exception &e) {
+        return 1;
+    } 
+    return 0;
+}
+
+extern "C" int mgp_shutdown_module() { return 0; }
+```
+
 As mentioned before, no exceptions should leave your module. As done in this
 example, exception handlers are in `mgp_init_module` and the callback function.
 Depending on your module’s needs, you might want one in `mgp_shutdown_module` as

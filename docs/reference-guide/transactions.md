@@ -60,6 +60,14 @@ The `tid` is the transactional ID that can be seen using the `SHOW TRANSACTIONS;
 The `TERMINATE TRANSACTIONS` query signalizes to the thread executing the transaction that it should stop the execution. No violent interruption will happen, and the whole system will stay in a consistent state.
 To terminate the transaction you haven't started, you need to have the necessary [privilege](#privileges-needed-to-manage-all-transactions).
 
+#### Terminating custom procedures
+
+If you want to be able to [terminate custom
+procedures](/reference-guide/query-modules/implement-custom-query-modules),
+crucial parts of the code, such as `while` and `until` loops, or similar points
+where the procedure might become costly, need to be preceded with
+CheckMustAbort() function.
+
 #### New session with Docker
 
 If you are using **Memgraph Lab**, you can vertically split screens and open another
