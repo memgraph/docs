@@ -130,5 +130,5 @@ passwords at the same time, it may not be the best choice for you as you might e
 is slower only during authentication of the users, and should not degrade once the connection has been established.
 
 ### SHA256 and SHA256 with multiple iterations
-SHA256 is another encryption algorithm, that's usually not used for password encryption, but is enough fast and secure to
+SHA256 is an encryption algorithm that's usually not used for password encryption but is fast and secure enough to
 offer optimal performance when running a lot of concurrent opening connections to Memgraph.
