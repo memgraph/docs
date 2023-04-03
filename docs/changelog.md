@@ -35,6 +35,7 @@ sidebar_label: Changelog
 - Import using the LOAD CSV clause has been further improved by 
 - The users who have global visibility on the graph will experience a slight
   improvement in performance regarding label-based access control. [#837](https://github.com/memgraph/memgraph/pull/837)
+- The All shortest paths algorithm now supports multiedges. [#832](https://github.com/memgraph/memgraph/pull/832)
 
 ### Bugfixes
 
