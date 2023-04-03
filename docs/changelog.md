@@ -8,6 +8,20 @@ sidebar_label: Changelog
 
 ### New features and improvements
 
+- You can now choose between two different storage modes:
+  - Transactional mode - the default database mode that favors
+    strongly-consistent ACID transactions using WAL files and periodic
+    snapshots, but requires more time and resources during data import and
+    analysis.
+  - Analytical mode - speeds up import and data analysis but offers no ACID
+    guarantees besides manually created snapshots. 
+  
+  Switch between modes within the session using the `STORAGE MODE
+  IN_MEMORY_{TRANSACTIONAL|ANALYTICAL};` query. [#772](https://github.com/memgraph/memgraph/pull/772)
+-  With the new flag `password-encryption-algorithm` you can choose between
+   `bcrypt`, `sha256`, and `sha256-multiple` encryption algorithms. SHA256
+   offers better performance compared to the more secure but less performant
+   bcrypt. [#839](https://github.com/memgraph/memgraph/pull/839)
 - When you want to filter data using properties that all have label:property
   indexes set, you can make Memgraph analyze the properties on all or several
   labels with the `ANALYZE GRAPH;` query. By calculating the distribution of
@@ -18,6 +32,9 @@ sidebar_label: Changelog
   ran, or the procedure you built is running in an infinite loop, you can stop
   the transaction with the `TERMINATE TRANSACTIONS tid;` query; Find out the
   transaction ID with `SHOW TRANSACTIONS;` query. [#790](https://github.com/memgraph/memgraph/pull/790)
+- Import using the LOAD CSV clause has been further improved by 
+- The users who have global visibility on the graph will experience a slight
+  improvement in performance regarding label-based access control. [#837](https://github.com/memgraph/memgraph/pull/837)
 
 ### Bugfixes
 
