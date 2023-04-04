@@ -257,3 +257,4 @@ and all the values of clause privileges, as well as label-based permissions will
 ### Storage mode permissions
 To change storage mode user needs to have `STORAGE_MODE` permission. To learn more
 about storage modes, jump to [storage modes reference guide](./storage_modes/overview).
+
