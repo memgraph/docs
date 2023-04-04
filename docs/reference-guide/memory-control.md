@@ -96,3 +96,11 @@ FREE MEMORY;
 
 This query tries to clean up as much unused memory as possible without affecting
 currently running transactions.
+
+
+## Storage modes
+
+Memgraph has option to work in `IN_MEMORY_ANALYTICAL` or `IN_MEMORY_TRANSACTIONAL`
+storage mode. Former reduced memory usage by not creating additional memory
+objects during data modification. If you need to import lot of data on startup
+of database, check `IN_MEMORY_ANALYTICAL` mode query [here](./storage_modes/in-memory-analytical.md)

@@ -264,7 +264,19 @@ module.exports = {
             "reference-guide/ldap-security",
             "reference-guide/security",
           ],
-        }
+        },
+
+        {
+          type: "category",
+          label: "Storage modes",
+          link: { type: "doc", id: "reference-guide/storage-modes/overview" },
+          items: [
+            "reference-guide/storage-modes/in-memory-transactional",
+            "reference-guide/storage-modes/in-memory-analytical",
+          ],
+        },
+        
+        
       ],
     },
     {

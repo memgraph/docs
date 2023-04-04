@@ -75,3 +75,17 @@ SET <scope> TRANSACTION ISOLATION LEVEL <isolation_level>
  - SNAPSHOT ISOLATION
  - READ COMMITTED
  - READ UNCOMMITTED
+
+
+Chaning isolation level is only supported in `IN_MEMORY_TRANSACTIONAL` mode.
+## Storage modes
+
+Memgraph has option to work in `IN_MEMORY_ANALYTICAL` or `IN_MEMORY_TRANSACTIONAL`
+storage mode. `IN_MEMORY_TRANSACTIONAL` is standard mode on starup.
+
+`IN_MEMORY_TRANSACTIONAL` mode offers all mentioned isolation levels and all ACID guarantees.
+`IN_MEMORY_ANALYTICAL` offers no isolation levels and no ACID guarantees. Multiple transactions can write data stimultaniously
+to Memgraph. One transaction can therefore see all the changes from other transactions.
+
+If you want to switch from one mode to the other, there can't be any active transactions. Memgraph will log a warning message 
+if it finds active transactions. During switching modes, no other transactions will take place.

@@ -94,7 +94,7 @@ At the moment, privileges are confined to users' abilities to perform certain
 of the following commands: `CREATE`, `DELETE`, `MATCH`, `MERGE`, `SET`,
 `REMOVE`, `INDEX`, `STATS`, `AUTH`, `REPLICATION`, `READ_FILE`, `DURABILITY`,
 `FREE_MEMORY`, `TRIGGER`, `STREAM`, `CONFIG`, `CONSTRAINT`, `DUMP`,
-`MODULE_READ`, `MODULE_WRITE` and `WEBSOCKET`.
+`MODULE_READ`, `MODULE_WRITE` and `WEBSOCKET`, and `STORAGE_MODE`.
 
 Granting a certain set of privileges to a specific user or user role can be
 done by issuing the following command:
@@ -253,3 +253,7 @@ SHOW PRIVILEGES FOR user_or_role;
 ```
 
 and all the values of clause privileges, as well as label-based permissions will be displayed.
+
+### Storage mode permissions
+To change storage mode user needs to have `STORAGE_MODE` permission. To learn more
+about storage modes, jump to [storage modes reference guide](./storage_modes/overview).
