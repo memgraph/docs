@@ -60,11 +60,11 @@ one_to_many_relations:
   address: []        # currently needed, leave [] if no relations to define
   individuals:
     - foreign_key: # foreign key used for mapping;
-      column_name: add_id         # specifies its column
-      reference_table: address    # name of table from which the foreign key is taken
-      reference_key: add_id       # column name in reference table from which the foreign key is taken
-    label: LIVES_IN        # label applied to relationship created
-      from_entity: False     # (optional) define direction of relationship created
+        column_name: add_id         # specifies its column
+        reference_table: address    # name of table from which the foreign key is taken
+        reference_key: add_id       # column name in reference table from which the foreign key is taken
+      label: LIVES_IN        # label applied to relationship created
+        from_entity: False     # (optional) define direction of relationship created
 
 
 many_to_many_relations:       # intended to be used in case of associative tables
@@ -111,7 +111,7 @@ Having defined the data configuration for the translation, all you need to do is
 make an instance of an `Importer` and call `translate()`.
 
 ```python
-importer = ParquetLocalFileSystemImporter(
+importer = CSVLocalFileSystemImporter(
     data_configuration=parsed_yaml,
     path="/home/user/table_data",
 )
