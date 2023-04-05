@@ -34,7 +34,9 @@ sidebar_label: Changelog
   `bcrypt`, `sha256`, and `sha256-multiple` encryption algorithms. SHA256 offers
   better performance compared to the more secure but less performant bcrypt.
   [#839](https://github.com/memgraph/memgraph/pull/839)
-- Import using the LOAD CSV clause has been further improved by 
+- Import using the LOAD CSV clause has been further improved by using a memory
+  allocator which will reuse memory blocks allocated while processing the `LOAD
+  CSV` query. [#825](https://github.com/memgraph/memgraph/pull/825)
 
 ### Bugfixes
 
