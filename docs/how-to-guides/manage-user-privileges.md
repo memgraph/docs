@@ -78,7 +78,7 @@ We could naturally cluster those privileges into groups:
   * Privilege to read the content of Python query module files (`MODULE_READ`)
   * Privilege to modify the content of Python query modules files (`MODULE_WRITE`)
   * Privilege to connect to [Memgraph monitoring server](/reference-guide/monitoring-server.md) (`WEBSOCKET`)
-  * Privilege to show and terminate transactions `TRANSACTION_MANAGEMENT`.
+  * Privilege to show and terminate transactions (`TRANSACTION_MANAGEMENT`).
 
 If you are unfamiliar with any of these commands, you can look them up in our
 [Cypher manual](/cypher-manual).
