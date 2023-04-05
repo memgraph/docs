@@ -15,13 +15,10 @@ sidebar_label: Changelog
     analysis.
   - Analytical mode - speeds up import and data analysis but offers no ACID
     guarantees besides manually created snapshots. 
-  
   Switch between modes within the session using the `STORAGE MODE
   IN_MEMORY_{TRANSACTIONAL|ANALYTICAL};` query. [#772](https://github.com/memgraph/memgraph/pull/772)
--  With the new flag `password-encryption-algorithm` you can choose between
-   `bcrypt`, `sha256`, and `sha256-multiple` encryption algorithms. SHA256
-   offers better performance compared to the more secure but less performant
-   bcrypt. [#839](https://github.com/memgraph/memgraph/pull/839)
+- You can now call subqueries inside existing queries using the CALL clause.
+  [#794](/https://github.com/memgraph/memgraph/pull/794)
 - When you want to filter data using properties that all have label:property
   indexes set, you can make Memgraph analyze the properties on all or several
   labels with the `ANALYZE GRAPH;` query. By calculating the distribution of
@@ -31,16 +28,22 @@ sidebar_label: Changelog
 - If, for example, you are no longer interested in the results of the query you
   ran, or the procedure you built is running in an infinite loop, you can stop
   the transaction with the `TERMINATE TRANSACTIONS tid;` query; Find out the
-  transaction ID with `SHOW TRANSACTIONS;` query. [#790](https://github.com/memgraph/memgraph/pull/790)
+  transaction ID with `SHOW TRANSACTIONS;` query.
+  [#790](https://github.com/memgraph/memgraph/pull/790)
+- With the new flag `password-encryption-algorithm` you can choose between
+  `bcrypt`, `sha256`, and `sha256-multiple` encryption algorithms. SHA256 offers
+  better performance compared to the more secure but less performant bcrypt.
+  [#839](https://github.com/memgraph/memgraph/pull/839)
 - Import using the LOAD CSV clause has been further improved by 
-- The users who have global visibility on the graph will experience a slight
-  improvement in performance regarding label-based access control. [#837](https://github.com/memgraph/memgraph/pull/837)
-- The All shortest paths algorithm now supports multiedges. [#832](https://github.com/memgraph/memgraph/pull/832)
 
 ### Bugfixes
 
-- Replica instances no longer restart as main instances, but restore their original role. [#791](https://github.com/memgraph/memgraph/pull/791)
-
+- The users who have global visibility on the graph will experience a slight
+  improvement in performance regarding label-based access control as the engine
+  no longer check privileges for each node.
+  [#837](https://github.com/memgraph/memgraph/pull/837)
+- The All shortest paths algorithm now supports multiedges.
+  [#832](https://github.com/memgraph/memgraph/pull/832)
 
 ## v2.6 - Mar 07, 2023
 
