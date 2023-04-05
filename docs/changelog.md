@@ -18,7 +18,7 @@ sidebar_label: Changelog
   Switch between modes within the session using the `STORAGE MODE
   IN_MEMORY_{TRANSACTIONAL|ANALYTICAL};` query. [#772](https://github.com/memgraph/memgraph/pull/772)
 - You can now call subqueries inside existing queries using the CALL clause.
-  [#794](/https://github.com/memgraph/memgraph/pull/794)
+  [#794](https://github.com/memgraph/memgraph/pull/794)
 - When you want to filter data using properties that all have label:property
   indexes set, you can make Memgraph analyze the properties on all or several
   labels with the `ANALYZE GRAPH;` query. By calculating the distribution of
