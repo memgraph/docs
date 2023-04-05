@@ -28,12 +28,11 @@ pip install gqlalchemy
 
 ### Optional dependencies
 
-GQLAlchemy’s import/export capabilities for the Apache Arrow, PyTorch Geometric
-and Deep Graph Library formats aren’t in the default installation. To make them
-available, use one of the following commands:
+GQLAlchemy’s import/export capabilities aren’t included in the default installation.
+To make them available, use one of the following commands:
 
 ```bash
-pip install gqlalchemy[arrow] # Apache Arrow support
+pip install gqlalchemy[arrow] # Support for the CSV, Parquet, ORC and IPC/Feather/Arrow formats
 pip install gqlalchemy[ml] # PyTorch Geometric and DGL support
 
 pip install gqlalchemy[all] # All of the above
