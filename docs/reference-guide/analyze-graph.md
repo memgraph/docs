@@ -16,7 +16,8 @@ The `ANALYZE GRAPH;` command should be run only once after all indexes have been
 
 The `ANALYZE GRAPH;` command analyses only label-property indices, so whenever the database contains only label indices, the information about the distribution and average group size is ignored, and the optimal index is selected based on the number of nodes it contains.
 
-
+[![Related - Reference
+Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/indexing.md)
 [![Related - How
 to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/indexes.md)
 [![Related - Under the
