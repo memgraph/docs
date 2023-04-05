@@ -58,7 +58,7 @@ At the moment, privileges are confined to users' abilities to perform certain
 of the following commands: `CREATE`, `DELETE`, `MATCH`, `MERGE`, `SET`,
 `REMOVE`, `INDEX`, `STATS`, `AUTH`, `REPLICATION`, `READ_FILE`, `DURABILITY`,
 `FREE_MEMORY`, `TRIGGER`, `STREAM`, `CONFIG`, `CONSTRAINT`, `DUMP`,
-`MODULE_READ`, `MODULE_WRITE` and `WEBSOCKET`.
+`MODULE_READ`, `MODULE_WRITE`, `WEBSOCKET` and `TRANSACTION_MANAGEMENT`.
 
 We could naturally cluster those privileges into groups:
 
@@ -78,6 +78,7 @@ We could naturally cluster those privileges into groups:
   * Privilege to read the content of Python query module files (`MODULE_READ`)
   * Privilege to modify the content of Python query modules files (`MODULE_WRITE`)
   * Privilege to connect to [Memgraph monitoring server](/reference-guide/monitoring-server.md) (`WEBSOCKET`)
+  * Privilege to show and terminate transactions (`TRANSACTION_MANAGEMENT`).
 
 If you are unfamiliar with any of these commands, you can look them up in our
 [Cypher manual](/cypher-manual).

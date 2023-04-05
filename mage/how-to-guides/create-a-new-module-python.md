@@ -88,6 +88,41 @@ Memgraph it's a `read` procedure, meaning it won't make changes to the graph.
 The path is created from the `start` node, and edges are appended to it
 iteratively.
 
+### Terminate procedure execution
+
+Just as the execution of a Cypher query can be terminated with [`TERMINATE
+TRANSACTIONS
+"id";`](/memgraph/reference-guide/transactions) query,
+the execution of the procedure can as well, if it takes too long to yield a
+response or gets stuck in an infinite loop due to unpredicted input data.
+
+Transaction ID is visible upon calling the SHOW TRANSACTIONS; query. 
+
+In order to be able to terminate the procedure, it has to contain function
+`ctx.check_must_abort()` which precedes crucial parts of the code, such as
+`while` and `until` loops, or similar points where the procedure might become
+costly.
+
+Consider the following example:
+
+```python
+import mgp
+
+@mgp.read_proc
+def long_query(ctx: mgp.ProcCtx) -> mgp.Record(my_id=int):
+    id = 1
+    try:
+        while True:
+            if ctx.check_must_abort():
+                break
+            id += 1
+    except mgp.AbortError:
+        return mgp.Record(my_id=id)
+```
+
+The `mgp.AbortError:` ensures that the correct message about termination is sent
+to the session where the procedure was originally run. 
+
 ## Importing, querying and testing a module
 
 Now in order to import, query and test a module, check out the [following

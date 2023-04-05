@@ -148,6 +148,11 @@ CALL random_walk.get(start, 2) YIELD path
 RETURN path
 ```
 
+Since every query module is run as one transaction in Memgraph, the user can stop
+the query module by [terminating the corresponding transaction](/memgraph/reference-guide/transactions). The user first needs
+to find out the transaction ID using `SHOW TRANSACTIONS` command and then terminate it
+using the `TERMINATE TRANSACTIONS <tid>` command.
+
 ## Testing
 
 Test decoupled parts of your code that don't depend on Memgraph like you would
