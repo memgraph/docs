@@ -4,16 +4,12 @@ title: CALL clause
 sidebar_label: CALL
 ---
 
-The `CALL` clause is used to call a subquery inside the existing subquery.
-An ambiguous term might 
-be [calling MAGE procedures](/docs/mage/usage/calling-procedures), since they follow a similar syntax,
-starting with the `CALL` keyword.
+The `CALL` clause is used to call a subquery inside the existing query.
 
 :::info
 
-An ambiguous action that you might have been looking for are
-[calling MAGE procedures](/docs/mage/usage/calling-procedures), since they follow a similar syntax,
-starting with the `CALL` keyword.
+[MAGE procedures](/docs/mage/usage/calling-procedures) are also run with a query with the `CALL` clause at the beginning. 
+Switch to MAGE documentation if you want to CALL a graph algorithm or some other procedure from the MAGE library.
 
 :::
 
@@ -26,16 +22,16 @@ starting with the `CALL` keyword.
 
 2. [Invalid uses of CALL subquery](#2-invalid-uses-of-call-subquery) <br />
     2.1. [Returning variables with the same name as those in the outer scope](#21-returning-variables-with-same-name-as-those-in-the-outer-scope) <br />
-    2.2. [Returning non aliased expressions](#22-returning-non-aliased-expressions) <br />
-    2.3. [Referencing outer scope variables that do not exist](#22-referencing-outer-scope-variables-that-do-not-exist) <br />
+    2.2. [Returning non-aliased expressions](#22-returning-non-aliased-expressions) <br />
+    2.3. [Referencing outer scope variables that don't exist](#22-referencing-outer-scope-variables-that-dont-exist) <br />
 
 # 1. Uses of CALL subquery
 ## 1.1. Cartesian products
 
-`CALL` subquery is executed once for each incoming row. If there are multiple rows that get produced from the
-`CALL` subquery, the result is a Cartesian product of results. You can think of this as combining the output of
-2 branches, one being called the `input branch` (the produced rows before calling the subquery), and the `subquery branch`
-(the produced rows of the subquery).
+`CALL` subquery is executed once for each incoming row. If multiple rows are produced from the
+`CALL` subquery, the result is a Cartesian product of results. It is an output combined from 2 branches, 
+one being called the `input branch` (rows produced before calling the subquery), and the `subquery branch`
+(rows produced by the subquery).  
 
 ```cypher
 MATCH (p:Person)
@@ -46,8 +42,9 @@ CALL {
 RETURN p.name as person_name, animal_name
 ```
 
-If we assume that there are 2 `:Person` in the database named `John` and `Alice`, 
-and 2 `:Animal` named `Rex` and `Lassie`, the result would be as follows:
+Imagine the data includes four `:Person` nodes, two named `John` and two named `Alice`, 
+as well as four `:Animal` nodes, two named `Rex` and two named `Lassie`.
+Running the following query would produce the output below:
 
 Output:
 ```nocopy
@@ -63,10 +60,12 @@ Output:
 
 ## 1.2. Cartesian products with bounded symbols
 
-By referencing variables in the subquery from the outer scope using the `WITH` keyword,
-we can use those same symbols to expand on the neighborhood of the referenced nodes or relationships.
-By not using the `WITH` keyword as the first clause in the query, we will not have the access to the
-outer scope variables, and the subquery would behave as it sees the variable for the first time.
+To reference variables from the outer scope in the subquery, start the subquery with the `WITH` clause. 
+It allows using the same symbols to expand on the neighborhood of the referenced nodes or relationships.
+Otherwise, the subquery will behave as it sees the variable for the first time.
+
+In the following query, the WITH clause expanded the meaning of the variable person to the node with the 
+label `:Person` matched in the outer scope of the subquery:
 
 ```cypher
 MATCH (person:Person)
@@ -92,8 +91,8 @@ Output:
 
 ## 1.3. Post-union processing
 
-When doing unions, users can combine output from all the union queries inside a subquery, in order to
-post processing on their data and make the query more expressive.
+Output from all UNION queries inside a subquery can be combined and
+forwarded as a single output to make the queries more expressive:
 
 ```cypher
 CALL {
@@ -118,7 +117,8 @@ Output:
 
 ## 1.4. Observing changes from previous executions
 
-Subqueries can be
+Each execution of a `CALL` clause can observe changes from previous executions.
+
 
 ```cypher
 UNWIND [0, 1, 2] AS x
@@ -147,9 +147,9 @@ Output:
 
 ## 1.5. Unit subqueries
 
-Unit subqueries are used when we want to perform a single action for every node from the input branch.
-Consider the following query, if there was only one `:Person` in the graph. The query allows us to clone the
-person with desired preferences in the `FOREACH` clause.
+Unit subqueries are used to perform a single action for every node from the input branch.
+If the starting state of the database is that there is only one `:Person` node in the graph,
+the following query will clone the node with desired preferences defined in the `FOREACH` clause.
 
 ```cypher
 MATCH (p:Person)
@@ -182,9 +182,9 @@ CALL {
 RETURN n;
 ```
 
-This query results in a semantic exception, because we already have the variable of same name in the
-outer scope of the variable. By renaming either the outer scope variable, or the subquery return variable,
-we are able to successfully execute the query.
+The above query results in a semantic exception because the variable `n` has
+already been used in the outer scope of the query. The query will 
+successfully execute by renaming either the outer scope variable or the subquery variable.
 
 Valid use:
 ```cypher
@@ -196,7 +196,7 @@ CALL {
 RETURN n, p;
 ```
 
-## 2.2. Returning non aliased expressions
+## 2.2. Returning non-aliased expressions
 
 Invalid use:
 ```cypher
@@ -209,9 +209,9 @@ CALL {
 RETURN n, parent.age;
 ```
 
-This query results in a semantic exception since the returned expression has not been aliased and can not be interpreted
-correctly on the exit of the subquery. By aliasing the expression we can reference it correctly on the exit of the subquery
-and use it in the outer scope.
+The above query results in a semantic exception since the expression returned in the
+subquery has not been aliased and can not be interpreted correctly. By aliasing the
+returned expression upon exiting the subquery, it can be used in the outer scope. 
 
 Valid use:
 ```cypher
@@ -224,7 +224,7 @@ CALL {
 RETURN n, parent_age;
 ```
 
-## 2.3. Referencing outer scope variables that do not exist
+## 2.3. Referencing outer scope variables that don't exist
 
 Invalid use:
 ```cypher
@@ -237,9 +237,9 @@ CALL {
 RETURN DISTINCT n;
 ```
 
-This query results in a semantic exception because the variable from outer scope does not exist.
-We can only execute queries if we referenced the variable that has already been bounded in the input branch going
-into the subquery. By renaming the variable to already bounded variable `n`, we are able to execute the query.
+The above query results in a semantic exception because the variable from the outer scope does not exist.
+Queries can be executed only by referencing variables bounded in the input branch to the subquery.
+By renaming the variable to the already bounded variable `n`, the query will be correctly executed.
 
 Valid use:
 ```cypher
