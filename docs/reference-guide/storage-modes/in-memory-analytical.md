@@ -7,7 +7,7 @@ slug: /reference-guide/storage-modes/in-memory-analytical
 
 `IN_MEMORY_ANALYTICAL` mode offers no ACID guarantees besides manually created snapshots. There are no `WAL` files created nor periodic snapshots. Users **can** create a snapshot manually. 
 
-In the `IN_MEMORY_TRANSACTIONAL` mode, Memgraph creates a [`Delta`](../../under-the-hood/storage.md#delta-memory-layout) object each time data is changed. Deltas are the backbone upon which 
+In the `IN_MEMORY_TRANSACTIONAL` mode, Memgraph creates a [`Delta`](/under-the-hood/storage.md#delta-memory-layout) object each time data is changed. Deltas are the backbone upon which 
 Memgraph provides atomicity, consistency, isolation, and durability - ACID. By using `Deltas`, Memgraph creates write-ahead-logs for durability, provides isolation, consistency, and atomicity (by ensuring that everything is executed or nothing). 
 
 But `Deltas` also require a lot of memory (104B per change), especially when there are a lot of changes  (for example, during import with the `LOAD CSV` clause). The `IN_MEMORY_ANALYTICAL` mode disables the creation of `Deltas` thus drastically speeding up import with lower memory consumption - up to 6 times faster import with 6 times less memory consumption.
