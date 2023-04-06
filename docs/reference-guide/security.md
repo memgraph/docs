@@ -94,7 +94,8 @@ At the moment, privileges are confined to users' abilities to perform certain
 of the following commands: `CREATE`, `DELETE`, `MATCH`, `MERGE`, `SET`,
 `REMOVE`, `INDEX`, `STATS`, `AUTH`, `REPLICATION`, `READ_FILE`, `DURABILITY`,
 `FREE_MEMORY`, `TRIGGER`, `STREAM`, `CONFIG`, `CONSTRAINT`, `DUMP`,
-`MODULE_READ`, `MODULE_WRITE` and `WEBSOCKET`, and `STORAGE_MODE`.
+`MODULE_READ`, `MODULE_WRITE`, `WEBSOCKET`, `TRANSACTION_MANAGEMENT` and `STORAGE_MODE`.
+
 
 Granting a certain set of privileges to a specific user or user role can be
 done by issuing the following command:

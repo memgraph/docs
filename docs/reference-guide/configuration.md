@@ -88,6 +88,7 @@ workers simultaneously.
 | --log-level=WARNING | Minimum log level. Allowed values: TRACE, DEBUG, INFO, WARNING, ERROR, CRITICAL | `[string]` |
 | --memory-limit=0 | Total memory limit in MiB. Set to 0 to use the default values which are 100% of the physical memory if the swap is enabled and 90% of the physical memory otherwise. | `[uint64]` |
 | --memory-warning-threshold=1024 | Memory warning threshold, in MB. If Memgraph detects there is less available RAM it will log a warning. <br/>Set to 0 to disable. | `[uint64]` |
+| --password-encryption-algorithm=bcrypt | Algorithm used for password encryption. Defaults to BCrypt. Allowed values: `bcrypt`, `sha256`, `sha256-multiple` (SHA256 with multiple iterations) | `[string]` |
 | --replication-replica-check-delay-sec | The time duration in seconds between two replica checks/pings. If < 1, replicas will not  be checked at all. The MAIN instance allocates a new thread for each REPLICA. | `[uint64]` |
 | --telemetry-enabled=true | Set to true to enable telemetry. We collect information about the running system (CPU and memory information), information about the database runtime (vertex and edge counts and resource usage), and aggregated statistics about some features of the database (e.g. how many times a feature is used) to allow for an easier improvement of the product. | `[bool]` |
 

@@ -31,6 +31,101 @@ executed and it won't be possible to commit the transaction.
 Commit successful transactions by executing the `COMMIT;` query. 
 Roll back unsuccessful transactions by executing the `ROLLBACK;` query. 
 
+## Managing transactions
+
+Starting with Memgraph v2.7.0 you can check running transactions and terminate them.
+
+### Show transactions
+
+To see what transactions are running at the moment use the following command:
+
+```cypher
+SHOW TRANSACTIONS;
+```
+
+The command will show only the transactions you started or transactions for which you have the necessary [privilege](#privileges-needed-to-manage-all-transactions).
+
+<img src={require('../data/how-to-guides/manage-transactional-queue/show_transactions.png').default}/>
+
+### Terminate transactions
+
+To terminate one or more transactions, you need to open a new session and use the following query:
+
+```cypher
+TERMINATE TRANSACTIONS "tid", "<tid2>", "<tid3>", ... ;
+```
+
+The `tid` is the transactional ID that can be seen using the `SHOW TRANSACTIONS;` query.
+
+The `TERMINATE TRANSACTIONS` query signalizes to the thread executing the transaction that it should stop the execution. No violent interruption will happen, and the whole system will stay in a consistent state.
+To terminate the transaction you haven't started, you need to have the necessary [privilege](#privileges-needed-to-manage-all-transactions).
+
+#### Terminating custom procedures
+
+If you want to be able to [terminate custom
+procedures](/reference-guide/query-modules/implement-custom-query-modules/custom-query-module-example.md),
+crucial parts of the code, such as `while` and `until` loops, or similar points
+where the procedure might become costly, need to be preceded with
+CheckMustAbort() function.
+
+#### New session with Docker
+
+If you are using **Memgraph Lab**, you can vertically split screens and open another
+Query Execution section. 
+
+If you are using **mgconsole** on an instance running in a Docker container:
+
+1. Open a new terminal and find the CONTAINER ID of the Memgraph Docker container: 
+
+  ```
+  docker ps
+  ```
+
+2. Enter the container with the following command: 
+
+  ```
+  docker exec -it CONTAINER ID bash
+  ```
+3. Execute `mgconsole` command to run the client
+
+4. Run the `SHOW TRANSACTIONS;` and `TERMINATE TRANSACTIONS tid;`
+
+### Example
+
+The output of the `SHOW TRANSACTIONS` command shows that an infinite query is currently being run as part of the transaction ID "9223372036854775809".
+
+To terminate the transaction, run the following query:
+
+```cypher
+TERMINATE TRANSACTIONS "9223372036854775809";
+```
+
+Upon the transaction termination, the following confirmation will appear: 
+
+<img src={require('../data/how-to-guides/manage-transactional-queue/terminate_transactions.png').default}/>
+
+The following message will appear in the session in which the infinite query was being run:
+
+<img src={require('../data/how-to-guides/manage-transactional-queue/transaction_aborted_message.png').default}/>
+
+### Privileges needed to manage all transactions
+
+By default, the users can see and terminate only the transactions they started. For all other transactions, the user must have the **TRANSACTION_MANAGEMENT** privilege which the admin assigns with the following query:
+
+```cypher
+GRANT TRANSACTION_MANAGEMENT TO user;
+```
+
+The privilege to see all the transactions running in Memgraph is revoked using the following query:
+
+```cypher
+REVOKE TRANSACTION_MANAGEMENT FROM user;
+```
+
+:::info
+When Memgraph is first started there is only one explicit super-admin user that has all privileges, including the **TRANSACTION_MANAGEMENT**. The super-admin user is able to see all transactions.
+:::
+
 ## Isolation levels
 
 In database systems, isolation determines how transaction integrity is visible

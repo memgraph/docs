@@ -81,3 +81,7 @@ DROP INDEX ON :Person(age);
 ```
 
 These queries instruct all active transactions to abort as soon as possible. Once all transactions have finished, the index will be deleted.
+
+## Analyze graph
+
+When multiple label-property indices exist, the database can sometimes select a non-optimal index due to the data's distribution. The [`ANALYZE GRAPH;`](/reference-guide/analyze-graph.md) query calculates the distribution of property values so the database can select a more optimal label-property index with the smallest average property value size. The query is run only once after all indexes have been created and data inserted in the database.

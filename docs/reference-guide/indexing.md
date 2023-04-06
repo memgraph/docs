@@ -216,6 +216,9 @@ Created indexes can also be deleted by using the following syntax:
 ```cypher
 DROP INDEX ON :Label(property);
 ```
+## Analyze graph
+
+When multiple label-property indices exist, the database can sometimes select a non-optimal index due to the data's distribution. The [`ANALYZE GRAPH;`](/reference-guide/analyze-graph.md) query calculates the distribution of property values so the database can select a more optimal label-property index with the smallest average property value size. The query is run only once after all indexes have been created and data inserted in the database.
 
 ## Underlying implementation
 
