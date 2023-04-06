@@ -266,18 +266,7 @@ module.exports = {
             "reference-guide/security",
           ],
         },
-
-        {
-          type: "category",
-          label: "Storage modes",
-          link: { type: "doc", id: "reference-guide/storage-modes/overview" },
-          items: [
-            "reference-guide/storage-modes/in-memory-transactional",
-            "reference-guide/storage-modes/in-memory-analytical",
-          ],
-        },
-        
-        
+        "reference-guide/storage-modes" 
       ],
     },
     {
