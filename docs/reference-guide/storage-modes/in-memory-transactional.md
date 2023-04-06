@@ -7,7 +7,7 @@ slug: /reference-guide/storage-modes/in-memory-transactional
 
 `IN_MEMORY_TRANSACTIONAL` mode offers all ACID guarantees.  WAL files and periodic snapshots are created automatically, and you can also create snapshots manually. 
 
-In the `IN_MEMORY_TRANSACTIONAL` mode, Memgraph creates a [`Delta`](../../under-the-hood/storage.md#delta-memory-layout) object each time data is changed. Deltas are the backbone upon which 
+In the `IN_MEMORY_TRANSACTIONAL` mode, Memgraph creates a [`Delta`](/under-the-hood/storage.md#delta-memory-layout) object each time data is changed. Deltas are the backbone upon which 
 Memgraph provides atomicity, consistency, isolation, and durability - ACID. By using `Deltas`, Memgraph creates write-ahead-logs for durability, provides isolation, consistency, and atomicity (by ensuring that everything is executed or nothing). 
 
 `IN_MEMORY_TRANSACTIONAL` enables the creation of `Deltas` in order to provide all the ACID guarantees.
@@ -15,11 +15,12 @@ Memgraph provides atomicity, consistency, isolation, and durability - ACID. By u
 
 ## Transactions
 
-All ACID properties are guaranteed. Depending on the transaction isolation level, other transactions may see changes from other transactions. Read more about transactions [here](../transactions.md).
+All ACID properties are guaranteed. Depending on the transaction isolation level, other transactions may see changes from other transactions. Read more about transactions [here](/reference-guide/transactions.md).
 
 ## WAL
 
-As mentioned, there are write-ahead logs created during the `IN_MEMORY_TRANSACTIONAL` mode. You can read more about write-ahead-logging [here](../backup.md#write-ahead-logging).
+Write-ahead logs are created in the `IN_MEMORY_TRANSACTIONAL` mode. You can read more about write-ahead-logging [here](/reference-guide/backup.md#write-ahead-logging).
+
 
 ## Snapshots
 

@@ -113,4 +113,4 @@ Memgraph starts in `IN_MEMORY_TRANSACTIONAL` mode and in such mode Memgraph offe
 durability mechanisms. 
 
 In `IN_MEMORY_ANALYTICAL` mode, Memgraph offers no periodic snapshots and write-ahead logging. Users can create a snapshot with the `CREATE SNAPSHOT;` Cypher query.
-During snapshot creation, other transactions will wait to start.
+During the process of snapshot creation, other transactions will be prevented from starting until the snapshot creation is completed.

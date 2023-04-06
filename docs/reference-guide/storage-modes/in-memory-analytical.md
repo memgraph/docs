@@ -15,12 +15,11 @@ But `Deltas` also require a lot of memory (104B per change), especially when the
 
 ## Transactions
 
-As there are no ACID guarantees, other transactions can see changes ongoing transactions are doing. Also, a transaction can see the changes it is doing.
+As there are no ACID guarantees, other transactions can see the changes of ongoing transactions. Also, a transaction can see the changes it is doing. This means that the transactions can be committed in random orders, and the updates to the data, in the end, might not be correct. 
 
 ## WAL
 
-As mentioned, there are no write-ahead logs created during the `IN_MEMORY_ANALYTICAL` mode. When switching back to `IN_MEMORY_TRANSACTIONAL` it is recommended to create a snapshot manually. After switching, `WAL` is created
-if enabled with the config file.
+As mentioned, no write-ahead logs are created in the `IN_MEMORY_ANALYTICAL` mode. When switching back to the `IN_MEMORY_TRANSACTIONAL` mode it is recommended to create a snapshot manually with `CREATE SNAPSHOT;` Cypher query. Once Memgraph switches to the `IN_MEMORY_TRANSACTIONAL` mode, for all new updates it will create a WAL if not otherwise instructed by the config file.
 
 ## Snapshots
 
