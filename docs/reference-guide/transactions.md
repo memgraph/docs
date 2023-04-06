@@ -172,14 +172,21 @@ SET <scope> TRANSACTION ISOLATION LEVEL <isolation_level>
  - READ UNCOMMITTED
 
 
-You can only change the isolation level when Memgraph is running in the `IN_MEMORY_TRANSACTIONAL` mode.
+You can only change the isolation level when Memgraph is running in the
+[`IN_MEMORY_TRANSACTIONAL` mode](/reference-guide/storage-modes.md).
 
 ## Storage modes
 
 Memgraph can work in `IN_MEMORY_ANALYTICAL` or `IN_MEMORY_TRANSACTIONAL`
-storage mode. `IN_MEMORY_TRANSACTIONAL` is the default mode in which Memgraph runs on startup.
+[storage mode](/reference-guide/storage-modes.md). `IN_MEMORY_TRANSACTIONAL` is
+the default mode in which Memgraph runs on startup.
 
-`IN_MEMORY_TRANSACTIONAL` mode offers all mentioned isolation levels and all ACID guarantees.
-`IN_MEMORY_ANALYTICAL` offers no isolation levels and no ACID guarantees. Multiple transactions can write data to Memgraph simultaneously. One transaction can therefore see all the changes from other transactions.
+`IN_MEMORY_TRANSACTIONAL` mode offers all mentioned isolation levels and all
+ACID guarantees. `IN_MEMORY_ANALYTICAL` offers no isolation levels and no ACID
+guarantees. Multiple transactions can write data to Memgraph simultaneously. One
+transaction can therefore see all the changes from other transactions.
 
-There can't be any active transactions if you want to switch from one mode to another. Memgraph will log a warning message if it finds any active transactions, so set the log level to `WARNING` to see them. No other transactions will take place during the switch between modes.
+There can't be any active transactions if you want to switch from one mode to
+another. Memgraph will log a warning message if it finds any active
+transactions, so set the log level to `WARNING` to see them. No other
+transactions will take place during the switch between modes.

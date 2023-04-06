@@ -235,6 +235,7 @@ module.exports = {
         "reference-guide/replication",
         "reference-guide/runtime-settings",
         "reference-guide/server-stats",
+        "reference-guide/storage-modes",
         {
           type: "category",
           label: "Streams",
@@ -266,7 +267,6 @@ module.exports = {
             "reference-guide/security",
           ],
         },
-        "reference-guide/storage-modes" 
       ],
     },
     {

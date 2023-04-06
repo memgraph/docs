@@ -88,7 +88,7 @@ LOCK DATA DIRECTORY;
 ```
 
 A detailed guide is available
-[here](/docs/memgraph/how-to-guides/create-backup).
+[here](/how-to-guides/create-backup.md).
 
 ## Database dump
 
@@ -103,14 +103,16 @@ To dump the Memgraph DB, run the following query:
 DUMP DATABASE;
 ```
 
-
 ## Storage modes
 
 Memgraph has the option to work in `IN_MEMORY_ANALYTICAL` or `IN_MEMORY_TRANSACTIONAL`
-storage mode. 
+[storage modes](/reference-guide/storage-modes.md). 
 
-Memgraph starts in `IN_MEMORY_TRANSACTIONAL` mode and in such mode Memgraph offers periodic snapshots, write-ahead logging and regular snapshots as
-durability mechanisms. 
+Memgraph always starts in the `IN_MEMORY_TRANSACTIONAL` mode in which it creates
+periodic snapshots and write-ahead logging as durability mechanisms, and also
+enables creating manual snapshots. 
 
-In `IN_MEMORY_ANALYTICAL` mode, Memgraph offers no periodic snapshots and write-ahead logging. Users can create a snapshot with the `CREATE SNAPSHOT;` Cypher query.
-During the process of snapshot creation, other transactions will be prevented from starting until the snapshot creation is completed.
+In the `IN_MEMORY_ANALYTICAL` mode, Memgraph offers no periodic snapshots and
+write-ahead logging. Users can create a snapshot with the `CREATE SNAPSHOT;`
+Cypher query. During the process of snapshot creation, other transactions will
+be prevented from starting until the snapshot creation is completed.
