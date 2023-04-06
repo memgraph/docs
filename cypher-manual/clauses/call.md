@@ -32,7 +32,10 @@ Switch to MAGE documentation if you want to CALL a graph algorithm or some other
 `CALL` subquery, the result is a Cartesian product of results. It is an output combined from 2 branches, 
 one being called the `input branch` (rows produced before calling the subquery), and the `subquery branch`
 (rows produced by the subquery).  
+Imagine the data includes four `:Person` nodes, two named `John` and two named `Alice`, 
+as well as four `:Animal` nodes, two named `Rex` and two named `Lassie`.
 
+Running the following query would produce the output below: 
 ```cypher
 MATCH (p:Person)
 CALL {
@@ -42,9 +45,6 @@ CALL {
 RETURN p.name as person_name, animal_name
 ```
 
-Imagine the data includes four `:Person` nodes, two named `John` and two named `Alice`, 
-as well as four `:Animal` nodes, two named `Rex` and two named `Lassie`.
-Running the following query would produce the output below:
 
 Output:
 ```nocopy
