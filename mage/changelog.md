@@ -4,6 +4,15 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v1.7.0 - Apr 5, 2023
+
+### Features and improvements
+
+- The [new conditional execution
+module](/query-modules/python/conditional-execution.md ) lets you define
+  conditions not expressible in Cypher and and use them to control query
+  execution. [#203](https://github.com/memgraph/mage/pull/203)
+
 ## v1.6.1 - Mar 20, 2023
 
 ### Features and improvements
