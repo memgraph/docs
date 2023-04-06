@@ -5,12 +5,12 @@ sidebar_label: In-memory analytical
 slug: /reference-guide/storage-modes/in-memory-analytical
 ---
 
-`IN_MEMORY_ANALYTICAL` mode offers no ACID guarantees besides manually created snapshots. There are no `WAL` files created or periodic snapshots. Users **can** create a snapshot manually. 
+`IN_MEMORY_ANALYTICAL` mode offers no ACID guarantees besides manually created snapshots. There are no `WAL` files created nor periodic snapshots. Users **can** create a snapshot manually. 
 
-In `IN_MEMORY_TRANSACTIONAL` mode, during updates, there are [delta](../../under-the-hood/storage.md#delta-memory-layout) objects created for each change of data. Such a concept is the backbone for 
-Memgraph to provide atomicity, consistency, isolation, and durability - ACID. Using `deltas`, Memgraph creates write-ahead-logs (durability), provides isolation and consistency, and atomicity (either everything is executed or nothing). 
+In the `IN_MEMORY_TRANSACTIONAL` mode, Memgraph creates a [`Delta`](../../under-the-hood/storage.md#delta-memory-layout) object each time data is changed. Deltas are the backbone upon which 
+Memgraph provides atomicity, consistency, isolation, and durability - ACID. By using `Deltas`, Memgraph creates write-ahead-logs for durability, provides isolation, consistency, and atomicity (by ensuring that everything is executed or nothing). 
 
-One big overhead with `deltas` is that they require a lot of memory (104B per change) especially when there are a lot of changes (import, i.e. `LOAD CSV` query). `IN_MEMORY_ANALYTICAL` disables the creation of `deltas` in order to provide faster import with lower memory consumption. Also, such a mode creates a speedup of import and reduces memory usage drastically - up to 6 times.
+But `Deltas` also require a lot of memory (104B per change), especially when there are a lot of changes  (for example, during import with the `LOAD CSV` clause). The `IN_MEMORY_ANALYTICAL` mode disables the creation of `Deltas` thus drastically speeding up import with lower memory consumption - up to 6 times faster import with 6 times less memory consumption.
 
 
 ## Transactions
@@ -24,14 +24,10 @@ if enabled with the config file.
 
 ## Snapshots
 
-There are two possible ways how snapshots are created in Memgraph, with periodic snapshots or with manually created snapshots.
+Snapshots capture the database state and store it on the disk. A snapshot is used to recover the database upon startup (depending on the setting of the configuration flag `--storage-recover-on-startup`, which defaults to `true`).
 
-### Periodic snapshots
+In Memgraph, snapshots are created periodically or manually. 
 
-Periodic snapshots are disabled in `IN_MEMORY_ANALYTICAL` mode.
+ In the `IN_MEMORY_ANALYTICAL` mode, periodic snapshots are **disabled**.
 
-### Manually created snapshots
-
-Snapshots capture the database state and store it on disk. By creating a snapshot is possible later to recover the database from the stored snapshot if the configuration flag is set [--storage-recover-on-startup](../configuration.md#storage). 
-
-When the `CREATE SNAPSHOT` transaction is started, in `IN_MEMORY_ANALYTICAL` mode Memgraph guarantees that it will be **the only** transaction present in the system, and all other transactions will wait until creating a snapshot is done. The user doesn't have to care about that, Memgraph does the job. This way, there is no way that an invalid snapshot is created.
+Manual snapshots are created by running the `CREATE SNAPSHOT;` query. When the query is run in the `IN_MEMORY_ANALYTICAL` mode, Memgraph guarantees that it will be **the only** transaction present in the system, and all the other transactions will wait until the snapshot is created to ensure its validity.

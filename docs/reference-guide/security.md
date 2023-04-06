@@ -255,6 +255,10 @@ SHOW PRIVILEGES FOR user_or_role;
 and all the values of clause privileges, as well as label-based permissions will be displayed.
 
 ### Storage mode permissions
-To change storage mode user needs to have `STORAGE_MODE` permission. To learn more
+Memgraph can work either in an `IN_MEMORY_ANALYTICAL` or `IN_MEMORY_TRANSACTIONAL`
+storage mode. The `IN_MEMORY_TRANSACTIONAL` is the default storage mode that ensures strongly-consistent ACID transactions using WAL files and periodic snapshots. You can reduce memory usage by switching to the [`IN_MEMORY_ANALYTICAL` mode](/reference-guide/storage_modes/in-memory-analytical.md) in which Memgraph no longer creates additional memory
+objects during data modification, but it also provides no ACID guarantees. You can use it for the initial data import as it also speeds up import up to 6x. 
+
+To change Memgraph's storage mode, the user must have the `STORAGE_MODE` privilege. To learn more
 about storage modes, jump to [storage modes reference guide](./storage_modes/overview).
 
