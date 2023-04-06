@@ -70,7 +70,7 @@ Generates Cypher queries and inserts data into Memgraph in parallel.
 #### `get_instance`
 
 ```python
-def get_instance(self) -> dgl.DGLHeteroGraph
+def get_instance(self) -> nx.DiGraph
 ```
 
 Creates a `NetworkX` instance of the graph from the data residing inside Memgraph. Since `NetworkX` doesn't support labels as Memgraph does, labels are encoded as node and edge properties. All nodes and relationships are transferred, even if they are not connected with any other node (they're isolated).

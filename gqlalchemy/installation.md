@@ -33,7 +33,10 @@ To make them available, use one of the following commands:
 
 ```bash
 pip install gqlalchemy[arrow] # Support for the CSV, Parquet, ORC and IPC/Feather/Arrow formats
-pip install gqlalchemy[ml] # PyTorch Geometric and DGL support
+pip install gqlalchemy[torch] # PyTorch support
+pip install gqlalchemy[dgl] # DGL support
+
+pip install gqlalchemy[ml] # Bundle of [torch] and [dgl]
 
 pip install gqlalchemy[all] # All of the above
 ```
