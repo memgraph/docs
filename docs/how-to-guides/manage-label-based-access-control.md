@@ -65,6 +65,8 @@ STREAM            | GRANT           | GRANTED TO USER
 MODULE_READ       | GRANT           | GRANTED TO USER                             
 MODULE_WRITE      | GRANT           | GRANTED TO USER                             
 WEBSOCKET         | GRANT           | GRANTED TO USER                             
+TRANSACTION_MANAGEMENT      | GRANT           | GRANTED TO USER                             
+STORAGE_MODE         | GRANT           | GRANTED TO USER                             
 ALL LABELS        | CREATE_DELETE   | GLOBAL LABEL PERMISSION GRANTED TO USER     
 ALL EDGE_TYPES    | CREATE_DELETE   | GLOBAL EDGE_TYPE PERMISSION GRANTED TO USER 
 
