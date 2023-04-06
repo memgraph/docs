@@ -96,3 +96,20 @@ FREE MEMORY;
 
 This query tries to clean up as much unused memory as possible without affecting
 currently running transactions.
+
+
+## Storage modes
+
+Memgraph can work either in an `IN_MEMORY_ANALYTICAL` or
+`IN_MEMORY_TRANSACTIONAL` [storage mode](/reference-guide/storage-modes.md). The
+`IN_MEMORY_TRANSACTIONAL` is the default storage mode that ensures
+strongly-consistent ACID transactions using WAL files and periodic snapshots.
+
+You can reduce memory usage by switching to the `IN_MEMORY_ANALYTICAL` mode in
+which Memgraph no longer creates additional memory objects during data
+modification, and doesn't provide any ACID guarantees. You can use it for the
+initial data import as it also speeds up import up to 6x. 
+
+You can switch between modes within a single session using the `STORAGE MODE
+IN_MEMORY_TRANSACTIONAL;` and  `STORAGE MODE IN_MEMORY_ANALYTICAL;` Cypher
+queries, but you must have the `STORAGE_MODE` privilege.
