@@ -62,7 +62,7 @@ Parameters are prefixed with `$` like `$param_name`. For examples, see
   structured as `[condition, query, condition, query, …​]`. Conditions are
   `boolean` and queries are `string`.
 * `else_query: string (default = "")` ➡ The query to be executed if no
-  condition evaluates to true.
+  condition evaluates to `true`.
 * `params: Map (default = NULL)` ➡ If any of the given queries is parameterized,
   provide a `{param_name: param_value}` map to be applied to them.
 
@@ -98,7 +98,7 @@ Parameters are prefixed with `$` like `$param_name`. For examples, see
 * `if_query: string` ➡ The query to be executed if the condition is satisfied.
 * `else_query: string (default = "")` ➡ The query to be executed if the
   condition isn’t satisfied.
-* `params: Map (default = NULL)` ➡ If `if_query` or `else_query` parameterized,
+* `params: Map (default = NULL)` ➡ If `if_query` or `else_query` are parameterized,
    provide a `{param_name: param_value}` map to be applied.
 
 #### Output:
