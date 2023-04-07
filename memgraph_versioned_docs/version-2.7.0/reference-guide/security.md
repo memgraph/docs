@@ -42,6 +42,10 @@ To delete a user use:
 DROP USER user_name;
 ```
 
+### Password encryption algorithm
+
+You can choose between `bcrypt`, `sha256`, and `sha256-multiple` password encryption algorithms. SHA256 offers better performance compared to the more secure but less performant bcrypt. Change the encryption algorithm by setting the [`--password-encryption-algorithm`](/reference-guide/configuration.md#other) configuration option to the preferred value.
+
 ## User Roles
 
 Each user can be assigned at most one user role. One can think of user roles
