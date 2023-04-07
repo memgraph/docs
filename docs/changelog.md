@@ -8,7 +8,7 @@ sidebar_label: Changelog
 
 ### New features and improvements
 
-- You can now choose between two different storage modes:
+- You can now choose between [two different storage modes](/reference-guide/storage-modes.md):
   - Transactional mode - the default database mode that favors
     strongly-consistent ACID transactions using WAL files and periodic
     snapshots, but requires more time and resources during data import and
@@ -17,35 +17,41 @@ sidebar_label: Changelog
     guarantees besides manually created snapshots. 
   Switch between modes within the session using the `STORAGE MODE
   IN_MEMORY_{TRANSACTIONAL|ANALYTICAL};` query. [#772](https://github.com/memgraph/memgraph/pull/772)
-- You can now call subqueries inside existing queries using the CALL clause.
+- You can now call [subqueries](/cypher-manual/clauses/call) inside existing queries using the CALL clause.
   [#794](https://github.com/memgraph/memgraph/pull/794)
 - When you want to filter data using properties that all have label:property
   indexes set, you can make Memgraph analyze the properties on all or several
-  labels with the `ANALYZE GRAPH;` query. By calculating the distribution of
-  property values, Memgraph will be able to select the optimal index for the
-  query and it will execute faster.
+  labels with the [`ANALYZE GRAPH;`
+  query](/memgraph/reference-guide/indexing#analyze-graph). By calculating the
+  distribution of property values, Memgraph will be able to select the optimal
+  index for the query and it will execute faster.
   [#812](https://github.com/memgraph/memgraph/pull/812)
 - If, for example, you are no longer interested in the results of the query you
-  ran, or the procedure you built is running in an infinite loop, you can stop
-  the transaction with the `TERMINATE TRANSACTIONS tid;` query; Find out the
-  transaction ID with `SHOW TRANSACTIONS;` query.
+  ran, or the procedure you built is running in an infinite loop, you can [stop
+  the transaction](/memgraph/reference-guide/transactions#managing-transactions)
+  with the `TERMINATE TRANSACTIONS tid;` query; Find out the transaction ID with
+  `SHOW TRANSACTIONS;` query.
   [#790](https://github.com/memgraph/memgraph/pull/790)
-- With the new flag `password-encryption-algorithm` you can choose between
-  `bcrypt`, `sha256`, and `sha256-multiple` encryption algorithms. SHA256 offers
-  better performance compared to the more secure but less performant bcrypt.
+- With the [new flag](/memgraph/reference-guide/configuration#other)
+  `password-encryption-algorithm` you can choose between `bcrypt`, `sha256`, and
+  `sha256-multiple` encryption algorithms. SHA256 offers better performance
+  compared to the more secure but less performant bcrypt.
   [#839](https://github.com/memgraph/memgraph/pull/839)
-- Import using the LOAD CSV clause has been further improved by using a memory
-  allocator which will reuse memory blocks allocated while processing the `LOAD
-  CSV` query. [#825](https://github.com/memgraph/memgraph/pull/825)
+- Import using the [LOAD CSV clause](/import-data/files/load-csv-clause.md) has
+  been further improved by using a memory allocator which will reuse memory
+  blocks allocated while processing the `LOAD CSV` query.
+  [#825](https://github.com/memgraph/memgraph/pull/825)
 
 ### Bugfixes
 
-- The users who have global visibility on the graph will experience a slight
-  improvement in performance regarding label-based access control as the engine
-  no longer check privileges for each node.
+- The users who have [global visibility on the
+  graph](/memgraph/reference-guide/security#label-based-access-control) will
+  experience a slight improvement in performance regarding label-based access
+  control as the engine no longer check privileges for each node.
   [#837](https://github.com/memgraph/memgraph/pull/837)
-- The All shortest paths algorithm now supports multiedges.
-  [#832](https://github.com/memgraph/memgraph/pull/832)
+- The [All shortest paths
+  algorithm](/memgraph/reference-guide/built-in-graph-algorithms#all-shortest-paths)
+  now supports multiedges. [#832](https://github.com/memgraph/memgraph/pull/832)
 
 ## v2.6 - Mar 07, 2023
 
