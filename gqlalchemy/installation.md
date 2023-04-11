@@ -20,16 +20,16 @@ GQLAlchemy can't be installed with Python 3.11 [(#203)](https://github.com/memgr
 
 ## Install with pip {#pip}
 
-Run the following command to install GQLAlchemy:
+After you’ve installed the prerequisites, run the following command to install
+GQLAlchemy:
 
 ```bash
 pip install gqlalchemy
 ```
 
-### Optional dependencies
-
-GQLAlchemy’s import/export capabilities aren’t included in the default installation.
-To make them available, use one of the following commands:
+With the above command, you get the default GQLAlchemy installation which
+doesn’t include import/export support for certain formats (see below). To get
+additional import/export capabilities, use one of the following install options:
 
 ```bash
 pip install gqlalchemy[arrow] # Support for the CSV, Parquet, ORC and IPC/Feather/Arrow formats
@@ -53,4 +53,22 @@ To run the tests, make sure you have an [active Memgraph instance](/memgraph), a
 
 ```bash
 poetry run pytest . -k "not slow"
+```
+
+The ``poetry install --all-extras`` command installs GQLAlchemy with all extras
+(optional dependencies). Alternatively, you can use the ``-E`` option to define
+what extras to install:
+
+NB: If you run the tests without certain extras, the tests for the import/export
+capabilities enabled by them will fail.
+
+```bash
+poetry install # No extras
+
+poetry install -E arrow # Support for the CSV, Parquet, ORC and IPC/Feather/Arrow formats
+poetry install -E torch # PyTorch support
+poetry install -E dgl # DGL support
+
+poetry install -E ml # Bundle of torch and dgl
+
 ```
