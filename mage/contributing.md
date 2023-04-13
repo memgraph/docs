@@ -26,4 +26,4 @@ behavior to <tech@memgraph.com>.
 
 ## Feedback
 Your feedback is always welcome and valuable to us. Please don't hesitate to
-post on our [Community Forum](https://discourse.memgraph.com/).
+post on our [Discord](https://www.discord.gg/memgraph).

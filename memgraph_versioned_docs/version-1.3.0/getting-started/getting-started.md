@@ -20,7 +20,7 @@ We recommend exploring some of these topics to get acquainted with Memgraph:
 
 ## Getting help
 
-**[Memgraph Forum](https://discourse.memgraph.com/)** - The Memgraph community forum is the best place to get fast and accurate answers from both our team and other Memgraph developers.
+**[Memgraph Discord](https://www.discord.gg/memgraph)** - The Memgraph Discord community is the best place to get fast and accurate answers from both our team and other Memgraph developers.
 
 **[StackOverflow](https://stackoverflow.com/questions/tagged/memgraphdb)** - You can always post a question on StackOverflow with the tag **memgraphdb**.
 

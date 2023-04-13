@@ -6,7 +6,7 @@ sidebar_label: Getting help
 
 **[Frequently Asked Questions](./faq.md)** - You can visit the FAQ page to see if we already provided an answer to your inquiry.
 
-**[Memgraph Forum](https://discourse.memgraph.com/)** - The Memgraph community forum is the best place to get fast and accurate answers from both our team and other Memgraph developers.
+**[Memgraph Discord](https://www.discord.gg/memgraph)** - The Memgraph Discord community is the best place to get fast and accurate answers from both our team and other Memgraph developers.
 
 **[StackOverflow](https://stackoverflow.com/questions/tagged/memgraphdb)** - You can always post a question on StackOverflow with the tag **memgraphdb**.
 
