@@ -32,7 +32,7 @@ portable, but currently available only on the x86_64 architecture. All standard
 Linux distributions like CentOS, Debian, Ubuntu, RedHat are supported. Memgraph
 is also available on Docker. For any other platforms, please drop us an email
 at [tech@memgraph.com](mailto:tech@memgraph.com) or get in touch with our team
-on our [Forum](https://discourse.memgraph.com/).
+on our [Discord](https://www.discord.gg/memgraph).
 
 ### What does the hardware footprint look like?
 

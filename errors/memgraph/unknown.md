@@ -15,8 +15,7 @@ import Help from '../templates/_help.mdx';
 
 ## How to handle an unknown error? {#error-1}
 
-Please submit the error on our official [Community
-Forum](https://discourse.memgraph.com) or through a [Support
+Please report the error by opening an issue on [GitHub](https://github.com/memgraph/memgraph), joining our [Discord](https://www.discord.gg/memgraph) or through a [Support
 ticket](https://support.memgraph.com). We will contact you about the error as soon as
 possible.
 

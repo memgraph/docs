@@ -27,13 +27,6 @@ export default function HomeGetInvolved() {
       img: useBaseUrl("img/stack-overflow.svg"),
       imgDark: useBaseUrl("img/stack-overflow-dark-mode.svg"),
     },
-    {
-      title: "Developer Forum",
-      urlText: "Join",
-      url: "https://discourse.memgraph.com/",
-      img: useBaseUrl("img/dev-forum.svg"),
-      imgDark: useBaseUrl("img/dev-forum-dark-mode.svg"),
-    },
   ];
 
   const iconArrowRight = "fa fa-arrow-right";

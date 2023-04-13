@@ -44,4 +44,4 @@ Telemetry is **completely optional** and can be fully disabled when starting the
 ## Additional remarks
 
 We fully understand the need for user privacy which is why we made the telemetry feature completely optional and provided this article to cultivate transparent communication with the developer community. Your feedback is very much appreciated, and telemetry data is only a way of receiving such feedback.
-If you wish to get in touch with us, you can always send us an email to [tech@memgraph.com](mailto:tech@memgraph.com) or leave a post on our [Forum](https://discourse.memgraph.com/).
+If you wish to get in touch with us, you can always send us an email to [tech@memgraph.com](mailto:tech@memgraph.com) or leave a post on our [Discord](https://www.discord.gg/memgraph).

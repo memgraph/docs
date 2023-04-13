@@ -397,10 +397,6 @@ module.exports = {
               href: "https://stackoverflow.com/questions/tagged/memgraphdb",
             },
             {
-              label: "Developer Forum",
-              href: "https://discourse.memgraph.com",
-            },
-            {
               label: "Twitter",
               href: "https://twitter.com/memgraphdb",
             },
