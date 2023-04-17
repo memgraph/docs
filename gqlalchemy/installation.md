@@ -49,18 +49,9 @@ Clone or download the [GQLAlchemy source code](https://github.com/memgraph/gqlal
 poetry install --all-extras
 ```
 
-To run the tests, make sure you have an [active Memgraph instance](/memgraph), and execute the following command:
-
-```bash
-poetry run pytest . -k "not slow"
-```
-
 The ``poetry install --all-extras`` command installs GQLAlchemy with all extras
 (optional dependencies). Alternatively, you can use the ``-E`` option to define
 what extras to install:
-
-NB: If you run the tests without certain extras, the tests for the import/export
-capabilities enabled by them will fail.
 
 ```bash
 poetry install # No extras
@@ -71,4 +62,12 @@ poetry install -E dgl # DGL support
 
 poetry install -E ml # Bundle of torch and dgl
 
+```
+
+To run the tests, make sure you have an [active Memgraph instance](/memgraph), and execute one of the following commands:
+
+```bash
+poetry run pytest . -k "not slow" # If all extras installed
+
+poetry run pytest . -k "not slow and not extras" # Otherwise
 ```
