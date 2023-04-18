@@ -6,6 +6,10 @@ sidebar_label: Changelog
 
 ## v2.8 - TBD
 
+### New features and improvements
+
+- The performance of data recovery has been improved by spreading the work to multiple
+  threads. [#868](https://github.com/memgraph/memgraph/pull/868)
 ## v2.7 - Apr 5, 2023
 
 ### New features and improvements
@@ -16,7 +20,7 @@ sidebar_label: Changelog
     snapshots, but requires more time and resources during data import and
     analysis.
   - Analytical mode - speeds up import and data analysis but offers no ACID
-    guarantees besides manually created snapshots. 
+    guarantees besides manually created snapshots.
   Switch between modes within the session using the `STORAGE MODE
   IN_MEMORY_{TRANSACTIONAL|ANALYTICAL};` query. [#772](https://github.com/memgraph/memgraph/pull/772)
 - You can now call [subqueries](/cypher-manual/clauses/call) inside existing queries using the CALL clause.
@@ -59,7 +63,7 @@ sidebar_label: Changelog
 
 ### Major features and improvements
 
-- Importing speed using the LOAD CSV clause has been improved due to two changes: 
+- Importing speed using the LOAD CSV clause has been improved due to two changes:
   -  Performance improvement in accessing values from large arrays or maps with numerous properties. [#744](https://github.com/memgraph/memgraph/pull/774)
   -  Upon creating a large number of node or relationship properties, properties are stored in a property store all at once, instead of individually. [#788](https://github.com/memgraph/memgraph/pull/788)
 - Newly implemented `exists()` function allows using patterns as part of the filtering clause. Check the [Cypher Manual](/cypher-manual/clauses/where) for usage. [#818](https://github.com/memgraph/memgraph/pull/818)
