@@ -35,13 +35,26 @@ Memgraph has WAL enabled by default. To switch it on and off, use the boolean
 are described [here](/docs/memgraph/how-to-guides/config-logs).
 
 ### Snapshots
-
 Snapshots provide a faster way to restore the states of your database. Memgraph
-periodically takes snapshots during runtime. When a snapshot is triggered, the
-entire data storage is written to the drive.
+periodically takes snapshots during runtime. When a snapshot creation is
+triggered, the entire data storage is written to the drive. Nodes and
+relationships are divided into groups called batches.
+
 On startup, the database state is recovered from the most recent snapshot file.
-The timestamp of the snapshot is compared with the latest update recorded in
-the WAL file and, if the snapshot is less recent, the state of the DB will be
+Memgraph can read the data and build the indices on multiple threads, using
+batches as a parallelization unit: each thread will recover one batch at a time
+until there are no unhandled batches.
+
+This means the same batch size might not be suitable for every dataset. A
+smaller dataset might require a smaller batch size to utilize a multi-threaded
+processor, while bigger datasets might use bigger batches to minimize the
+synchronization between the worker threads. Therefore the size of batches and
+the number of used threads [are
+configurable](/memgraph/reference-guide/configuration#storage) similarly to
+other durability related settings.
+
+The timestamp of the snapshot is compared with the latest update recorded in the
+WAL file and, if the snapshot is less recent, the state of the DB will be
 recovered using the WAL file.
 
 Memgraph has snapshot creation enabled by default. You can configure the exact
@@ -52,24 +65,6 @@ Alternatively, you can make one directly by running the following query:
 ```opencypher
 CREATE SNAPSHOT;
 ```
-
-#### Batches in snapshots
-
-The vertices and edges are divided into groups, called batches. When Memgraph
-starts to recover a snapshot it might read the data and build the indices on
-multiple threads. The batches serve as a unit of parallelization: each thread
-will get one batch at a time to recover until there are no unhandled batches.
-This means the same batch size might not be suitable for every dataset. A
-smaller dataset might require smaller batch size to utilize a multi-threaded
-processor, while bigger datasets might use bigger batches to minimize the
-synchronization between the worker threads. Therefore the size of batches and
-the number of threads used are configurable similarly to other durability
-related settings.
-
-:::caution
-Snapshots and WAL files are presently not compatible between Memgraph versions.
-:::
-
 ### Data directory
 
 The data directory is the location where Memgraph saves write-ahead logs and

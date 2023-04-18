@@ -8,8 +8,11 @@ sidebar_label: Changelog
 
 ### New features and improvements
 
-- The performance of data recovery has been improved by spreading the work to multiple
-  threads. [#868](https://github.com/memgraph/memgraph/pull/868)
+- Data recovery is now up to 6x faster depending on the number of cores, as
+  [snapshot loading is now distributed among several
+  threads](/memgraph/reference-guide/backup#snapshots).
+  [#868](https://github.com/memgraph/memgraph/pull/868)
+
 ## v2.7 - Apr 5, 2023
 
 ### New features and improvements
