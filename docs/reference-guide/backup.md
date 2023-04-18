@@ -53,6 +53,19 @@ Alternatively, you can make one directly by running the following query:
 CREATE SNAPSHOT;
 ```
 
+#### Batches in snapshots
+
+The vertices and edges are divided into groups, called batches. When Memgraph
+starts to recover a snapshot it might read the data and build the indices on
+multiple threads. The batches serve as a unit of parallelization: each thread
+will get one batch at a time to recover until there are no unhandled batches.
+This means the same batch size might not be suitable for every dataset. A
+smaller dataset might require smaller batch size to utilize a multi-threaded
+processor, while bigger datasets might use bigger batches to minimize the
+synchronization between the worker threads. Therefore the size of batches and
+the number of threads used are configurable similarly to other durability
+related settings.
+
 :::caution
 Snapshots and WAL files are presently not compatible between Memgraph versions.
 :::
@@ -106,11 +119,11 @@ DUMP DATABASE;
 ## Storage modes
 
 Memgraph has the option to work in `IN_MEMORY_ANALYTICAL` or `IN_MEMORY_TRANSACTIONAL`
-[storage modes](/reference-guide/storage-modes.md). 
+[storage modes](/reference-guide/storage-modes.md).
 
 Memgraph always starts in the `IN_MEMORY_TRANSACTIONAL` mode in which it creates
 periodic snapshots and write-ahead logging as durability mechanisms, and also
-enables creating manual snapshots. 
+enables creating manual snapshots.
 
 In the `IN_MEMORY_ANALYTICAL` mode, Memgraph offers no periodic snapshots and
 write-ahead logging. Users can create a snapshot with the `CREATE SNAPSHOT;`
