@@ -18,7 +18,7 @@ sidebar_label: Changelog
 
 ### Features and improvements
 
-- Data from Memgraph can now be imported from and exported to `NetworkX`, `DGL` and `PyG` graph formats. [#215](https://github.com/memgraph/gqlalchemy/pull/215)
+- Data from Memgraph can now be [imported from](/reference/transformations/importing/graph_importer.md) and [exported to](/reference/transformations/export/graph_transporter.md) `NetworkX`, `DGL` and `PyG` graph formats. [#215](https://github.com/memgraph/gqlalchemy/pull/215)
 - Now you can execute procedures from query modules on a subgraph [using the project feature](/how-to-guides/query-builder/graph-projection.md). [#210](https://github.com/memgraph/gqlalchemy/pull/210)
 - Now you can pass values from Python variables as parameters in Cypher queries. [#217](https://github.com/memgraph/gqlalchemy/pull/217)
 - Besides BSF, DSF and WSHORTEST, now you can also run the All shortest paths algorithm with GQLAlchemy. [#200](https://github.com/memgraph/gqlalchemy/pull/200)
