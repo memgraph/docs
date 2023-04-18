@@ -33,7 +33,7 @@ additional import/export capabilities, use one of the following install options:
 
 ```bash
 pip install gqlalchemy[arrow] # Support for the CSV, Parquet, ORC and IPC/Feather/Arrow formats
-pip install gqlalchemy[ml] # ML support (includes DGL and torch)
+pip install gqlalchemy[dgl] # DGL support (also includes torch)
 
 pip install gqlalchemy[all] # All of the above
 ```
@@ -54,7 +54,7 @@ what extras to install:
 poetry install # No extras
 
 poetry install -E arrow # Support for the CSV, Parquet, ORC and IPC/Feather/Arrow formats
-poetry install -E ml # ML support (includes dgl and torch)
+poetry install -E dgl # DGL support (also includes torch)
 
 ```
 
@@ -64,4 +64,11 @@ To run the tests, make sure you have an [active Memgraph instance](/memgraph), a
 poetry run pytest . -k "not slow" # If all extras installed
 
 poetry run pytest . -k "not slow and not extras" # Otherwise
+```
+
+If you’ve installed only certain extras, it’s also possible to run their associated tests:
+
+```bash
+poetry run pytest . -k "arrow"
+poetry run pytest . -k "dgl"
 ```
