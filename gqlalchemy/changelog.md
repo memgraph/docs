@@ -4,6 +4,16 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v1.4.1 - April 19, 2023
+
+### Features and improvements
+
+- Installing and testing GQLAlchemy is now easier because the Apache Arrow, PyTorch Geometric and DGL dependencies have been made optional. [#235](https://github.com/memgraph/gqlalchemy/pull/235)
+
+### Bug fixes
+
+- Removed unnecessary extra argument in the call of the `escape_value` method and fixed a bug in query creation for `Map` property type. [#198](https://github.com/memgraph/gqlalchemy/pull/198/files)
+
 ## v1.4 - March 10, 2023
 
 ### Features and improvements
