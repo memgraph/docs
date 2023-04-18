@@ -65,61 +65,76 @@ module.exports = {
         slug: "/reference",
       },
       items: [
-        "reference/disk_storage",
-        "reference/instance_runner",
-        "reference/models",
         {
-          type: "category",
-          label: "transformations",
           items: [
-            "reference/transformations/export",
             {
-              type: "category",
-              label: "importing",
               items: [
-                "reference/transformations/importing/import",
-                "reference/transformations/importing/loaders",
-              ]
+                "reference/graph_algorithms/integrated_algorithms",
+                "reference/graph_algorithms/query_builder",
+                "reference/graph_algorithms/query_modules"
+              ],
+              label: "gqlalchemy.graph_algorithms",
+              type: "category"
             },
             {
-              type: "category",
-              label: "translators",
               items: [
-                "reference/transformations/translators/dgl_translator",
-                "reference/transformations/translators/pyg_translator",
-                "reference/transformations/translators/nx_translator",
-              ]
-            }
-
+                "reference/query_builders/declarative_base",
+                "reference/query_builders/memgraph_query_builder"
+              ],
+              label: "gqlalchemy.query_builders",
+              type: "category"
+            },
+            {
+              items: [
+                {
+                  items: [
+                    "reference/transformations/export/graph_transporter",
+                    "reference/transformations/export/transporter"
+                  ],
+                  label: "gqlalchemy.transformations.export",
+                  type: "category"
+                },
+                {
+                  items: [
+                    "reference/transformations/importing/graph_importer",
+                    "reference/transformations/importing/loaders"
+                  ],
+                  label: "gqlalchemy.transformations.importing",
+                  type: "category"
+                },
+                {
+                  items: [
+                    "reference/transformations/translators/dgl_translator",
+                    "reference/transformations/translators/nx_translator",
+                    "reference/transformations/translators/pyg_translator",
+                    "reference/transformations/translators/translator"
+                  ],
+                  label: "gqlalchemy.transformations.translators",
+                  type: "category"
+                }
+              ],
+              label: "gqlalchemy.transformations",
+              type: "category"
+            },
+            {
+              items: [
+                "reference/vendors/database_client",
+                "reference/vendors/memgraph",
+                "reference/vendors/neo4j"
+              ],
+              label: "gqlalchemy.vendors",
+              type: "category"
+            },
+            "reference/connection",
+            "reference/disk_storage",
+            "reference/exceptions",
+            "reference/instance_runner",
+            "reference/models",
+            "reference/utilities"
           ],
-        },
-        "reference/utilities",
-        {
-          type: "category",
-          label: "graph_algorithms",
-          items: [
-            "reference/graph_algorithms/integrated_algorithms",
-            "reference/graph_algorithms/query_builder",
-            "reference/graph_algorithms/query_modules",
-          ],
-        },
-        {
-          type: "category",
-          label: "query_builders",
-          items: [
-            "reference/query_builders/declarative_base",
-            "reference/query_builders/memgraph_query_builder",
-          ],
-        },
-        {
-          type: "category",
-          label: "vendors",
-          items: [
-            "reference/vendors/database_client",
-            "reference/vendors/memgraph",
-            "reference/vendors/neo4j",
-          ],
-        },
+          label: "gqlalchemy",
+          type: "category"
+        }
       ],
     },
     "changelog",
