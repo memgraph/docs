@@ -3,6 +3,10 @@ sidebar_label: loaders
 title: gqlalchemy.transformations.importing.loaders
 ---
 
+import OptionalDependenciesNote from '../../../templates/_optional_dependencies_note.mdx';
+
+<OptionalDependenciesNote/>
+
 ## ForeignKeyMapping Objects
 
 ```python
