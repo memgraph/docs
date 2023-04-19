@@ -4,11 +4,21 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v1.4.1 - April 19, 2023
+
+### Features and improvements
+
+- Installing and testing GQLAlchemy is now easier because Apache Arrow, PyTorch Geometric and DGL dependencies have been made optional. [#235](https://github.com/memgraph/gqlalchemy/pull/235)
+
+### Bug fixes
+
+- Removed unnecessary extra argument in the call of the `escape_value` method and fixed a bug in query creation for the `Map` property type. [#198](https://github.com/memgraph/gqlalchemy/pull/198/files)
+
 ## v1.4 - March 10, 2023
 
 ### Features and improvements
 
-- Data from Memgraph can now be [imported from](/reference/transformations/importing/import.md) and [exported to](/reference/transformations/export.md) `NetworkX`, `DGL` and `PyG` graph formats. [#215](https://github.com/memgraph/gqlalchemy/pull/215)
+- Data from Memgraph can now be [imported from](/reference/transformations/importing/graph_importer.md) and [exported to](/reference/transformations/export/graph_transporter.md) `NetworkX`, `DGL` and `PyG` graph formats. [#215](https://github.com/memgraph/gqlalchemy/pull/215)
 - Now you can execute procedures from query modules on a subgraph [using the project feature](/how-to-guides/query-builder/graph-projection.md). [#210](https://github.com/memgraph/gqlalchemy/pull/210)
 - Now you can pass values from Python variables as parameters in Cypher queries. [#217](https://github.com/memgraph/gqlalchemy/pull/217)
 - Besides BSF, DSF and WSHORTEST, now you can also run the All shortest paths algorithm with GQLAlchemy. [#200](https://github.com/memgraph/gqlalchemy/pull/200)
