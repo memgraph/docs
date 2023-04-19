@@ -3,7 +3,11 @@ sidebar_label: export
 title: gqlalchemy.transformations.export
 ---
 
+import OptionalDependenciesNote from '../../templates/_optional_dependencies_note.mdx';
+
 GQLAlchemy currently supports exporting data from Memgraph to `NetworkX`, `DGL` and `PyG` graph formats.  
+
+<OptionalDependenciesNote/>
 
 ## Transporter
 

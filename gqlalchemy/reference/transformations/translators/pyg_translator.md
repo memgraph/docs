@@ -3,6 +3,10 @@ sidebar_label: pyg_translator
 title: gqlalchemy.transformations.translators.pyg_translator
 ---
 
+import OptionalDependenciesNote from '../../../templates/_optional_dependencies_note.mdx';
+
+<OptionalDependenciesNote/>
+
 Used to translate Memgraph data to PyG graph representation and vice-versa. Only features of numerical types (e.g., float, double, and int) are allowed. They can be scalars, vectors or multi-dimensional tensors (PyG requirement). Each node feature has a unique name and each edge feature has a unique name. A feature is created via tensor assignment, which assigns a feature to each node/edge in the graph. The leading dimension of that tensor must be equal to the number of nodes/edges in the graph. You cannot assign a feature to a subset of the nodes/edges in the graph. Features of the same name must have the same dimensionality and data type.
 
 ### Methods
@@ -26,6 +30,7 @@ def __init__(self,
 Initializes translator object with given parameters.
 
 ##### Input
+
 - `default_node_label: str=NODE` -> Default node label that will be given to nodes when no other can be inferred.
 - `default_edge_type: str=RELATIONSHIP` -> Default edge type that will be given to edges when no other can be inferred.
 - `host: str=127.0.0.1` -> Host connection info for connecting to the Memgraph instance.
@@ -45,6 +50,7 @@ def to_cypher_queries(self, graph) -> None
 Produces Cypher queries for data saved as part of the `PyG` graph. The method handles both homogeneous and heterogeneous graphs. The method converts 1D, as well as multidimensional features. If there are some isolated nodes inside the graph, they won't get transferred. Nodes and edges created in Memgraph DB will, for consistency reasons, have the property `pyg_id` set to the `id` they have as part of the `PyG` graph. Note that this method doesn't insert anything inside the database, it just creates Cypher queries.
 
 ##### Input
+
 - `graph: Union[torch_geometric.data.Data, torch_geometric.data.HeteroData]`
 
 #### Example
