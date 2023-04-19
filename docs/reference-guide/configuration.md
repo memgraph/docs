@@ -35,7 +35,7 @@ SHOW CONFIG;
 
 Memgraph does not limit the maximum amount of simultaneous sessions.
 Transactions within all open sessions are served with a limited number of Bolt
-workers simultaneously. 
+workers simultaneously.
 
 :::
 
@@ -64,6 +64,8 @@ workers simultaneously.
 | --storage-wal-enabled=true | Controls whether the storage uses write-ahead-logging. To enable WAL periodic snapshots must be enabled. | `[bool]` |
 | --storage-wal-file-flush-every-n-tx=100000 | Issue a 'fsync' call after this amount of transactions are written to the WAL file. Set to 1 for fully synchronous operation. | `[uint64]` |
 | --storage-wal-file-size-kib=20480 | Minimum file size of each WAL file. | `[uint64]` |
+| --storage-items-per-batch=1000000 | The number of edges and vertices stored in a batch in a snapshot file. | `[uint64]` |
+| --storage-recovery-thread-count= | The number of threads used to recover persisted data from disk. | `[uint64]` |
 
 ## Streams
 
