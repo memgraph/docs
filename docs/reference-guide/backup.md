@@ -10,8 +10,9 @@ disaster recovery possible:
 * write-ahead logging (WAL)
 * periodic snapshot creation
 
-These mechanisms generate **durability files** and save them in the
-**data directory** so that one can use them to recover the database.
+These mechanisms generate **durability files** and save them in the **data
+directory** (usually located at `/var/lib/memgraph`) so that one can use them to
+recover the database.
 
 [![Related - How-to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/create-backup.md)
 
@@ -33,6 +34,8 @@ Memgraph has WAL enabled by default. To switch it on and off, use the boolean
 `storage-wal-enabled` flag. Other WAL-related flags are
 `storage-wal-file-flush-every-n-tx` and `storage-wal-file-size-kib`; their uses
 are described [here](/docs/memgraph/how-to-guides/config-logs).
+
+WAL files are usually located at `/var/lib/memgraph/wal`.
 
 ### Snapshots
 
@@ -59,8 +62,9 @@ Snapshots and WAL files are presently not compatible between Memgraph versions.
 
 ### Data directory
 
-The data directory is the location where Memgraph saves write-ahead logs and
-snapshots; it functions as the dedicated site for permanent data.
+The data directory is the location where Memgraph saves write-ahead logs in the
+directory `wal` and snapshots in the directory `snapshots`. It functions as the
+dedicated site for permanent data.
 
 The default data directory path is `var/lib/memgraph`. You can change the path
 by setting the `data-dir` configuration flag
@@ -70,15 +74,15 @@ by setting the `data-dir` configuration flag
 
 You can easily back up Memgraph by following a three-step process:
 
-1. Create a snapshot
-2. Lock the data directory
-3. Copy the snapshot to the backup location and unlock the directory
+1. Create a snapshot.
+2. Lock the data directory.
+3. Copy the snapshot to the backup location and unlock the directory.
 
 To restore from back-up:
 
-1. Lock the data directory
-2. Copy the backed up snapshot into the directory
-3. Unlock the directory
+1. Lock the data directory.
+2. Copy the backed up snapshot into the directory.
+3. Restart the instance. 
 
 The following queries lock and unlock the data directory:
 
@@ -93,7 +97,7 @@ A detailed guide is available
 ## Database dump
 
 The database dump contains a record of the database state in the form of Cypher
-queries; it’s equivalent to the SQL dump in relational DBs.
+queries. It’s equivalent to the SQL dump in relational DBs.
 You can run the queries constituting the dump to recreate the state of the DB
 as it was at the time of the dump.
 

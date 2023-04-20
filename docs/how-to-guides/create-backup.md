@@ -10,6 +10,10 @@ including the **durability files**: snapshots and WALs that contain Memgraph's
 data in a recoverable format. On startup, it searches for previously saved
 durability files and uses them to recreate the most recent DB state.
 
+When talking about the data directory, we are actually talking about two
+directories, `snapshots` and `wal` which are usually located in the
+`/var/lib/memgraph` folder.
+
 Snapshots are created periodically based on the value defined with the
 `--storage-snapshot-interval-sec` configuration flag in the configuration file.
 If you need help adjusting the configuration, check out the [how-to guide on
@@ -44,7 +48,7 @@ LOCK DATA DIRECTORY;
 
 ### 3. Copy the data directory and unlock it
 
-Copy the data directory or a single WAL or snapshot file to a backup location.
+Copy the snapshot directory or a single WAL or snapshot file to a backup location.
 
 <details>
   <summary>Copy files if you are using Memgraph on Linux</summary>
@@ -99,7 +103,7 @@ cp /var/lib/memgraph/snapshots/20220325125308366007_timestamp_3380 ~/backup/
 
 If you need help copying the files from the Docker container, check out the
 [Working with docker
-guide](/how-to-guides/work-with-docker.md##how-to-copy-files-from-and-to-a-docker-container).
+guide](/how-to-guides/work-with-docker.md#how-to-copy-files-from-and-to-a-docker-container).
 
 Then, run the following query in `mgconsole` or Memgraph Lab to unlock the
 directory:
@@ -117,8 +121,8 @@ To restore data from a backup:
 
 ### 1. Lock the data directory
 
-To disable changes in the data directory, run the following query in `mgconsole` or Memgraph
-Lab:
+To disable file deletions in the data directory, run the following query in
+`mgconsole` or Memgraph Lab:
 
 ```cypher
 LOCK DATA DIRECTORY;
@@ -126,20 +130,18 @@ LOCK DATA DIRECTORY;
 
 ### 2. Copy the snapshot into the data directory
 
-Copy the data directory or, empty the directory, then copy a single WAL or
+Copy the snapshot or WAL directory or, empty it and then copy a single WAL or
 snapshot file into it.
 
 If you need help copying the files from the Docker container, check out the
 [Working with docker
-guide](/how-to-guides/work-with-docker.md##how-to-copy-files-from-and-to-a-docker-container).
+guide](/how-to-guides/work-with-docker.md#how-to-copy-files-from-and-to-a-docker-container).
 
-### 3. Unlock the directory
+### 3. Restart the instance
 
-Run the following query in `mgconsole` or Memgraph Lab to unlock the
-directory:
+By restarting the instance, Memgraph should restore the data from the files in
+the data directory. 
 
-```cypher
-UNLOCK DATA DIRECTORY;
-```
-
-Memgraph should restore the data from the files in the data directory. 
+Be sure to restart the instance before Memgraph automatically creates a new
+periodic snapshot because upon restart it will use that newer snapshot which is
+not the data you want to load. 
