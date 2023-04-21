@@ -33,7 +33,7 @@ sidebar_label: Changelog
   longer becomes unresponsive. 
 - Using a new line character `\n` in the query module doesn’t result in a new
   line, but an explicit character `\n`.
-- Viewing the code of multiple query modules in the split screen no longer now
+- Viewing the code of multiple query modules in the split screen now
   works as expected.
 - Notifications no longer mix with the Query Editor and Query Collections visual
   elements.
