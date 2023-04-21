@@ -37,9 +37,7 @@ sidebar_label: Changelog
   works as expected.
 - Notifications no longer mix with the Query Editor and Query Collections visual
   elements.
-- Using shortcut keys CMD/CTRL + S to save a query to a query collection now
-  works for queries within a single query execution. In a query collection, the
-  shortcut will initiate a manual save of the query within the query collection.
+- Pressing CMD/CTRL + S will save a query within a query collection execution section as intended.
 - The autosave in query collection is now triggered on every query run as it was
   intended.
 - Running a selected portion of the query won’t remove the rest of the query
