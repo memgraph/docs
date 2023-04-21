@@ -4,9 +4,51 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## Lab v2.6.0 - Apr 20, 2023
+
+### What's new
+
+- If you execute multiple Cypher queries, you can now view the result of each
+  query instead of viewing just the last result.
+- Besides exporting query results to JSON, you can also export them to CSV and
+  TSV file format.
+- If the dataset contains millions or billions nodes and relationships, their
+  count in the status bar will be in the following format: X.XXM or X.XXB.
+- Syntax of code blocks in the query collection description can now be
+  highlighted by using one of the following language
+  styles: `cypher`, `bash`, `python`, `css`, `c`, `cpp`, `json`, `sql`,
+  and `yaml`. Check the examples of syntax highlighting in the [Markdown
+  Guide](https://www.markdownguide.org/extended-syntax/#syntax-highlighting).
+- New functions of the Graph Style Script language used for customizing graph
+  appearance are: `Reduce`, `Sum`, `Avg`, `Min`, `Max`, `IsArray`, `Hue`,
+  `Saturation`, `Lightness`, `HSL`.
+
+### Bug fixes
+
+- The initial node count has been removed from the connection initialization so
+  connecting to the Memgraph instance containing a huge number of nodes will no
+  longer cause a timeout. 
+- Run History now logs queries as expected.
+- When switching between the map view and the default view the graph view no
+  longer becomes unresponsive. 
+- Using a new line character `\n` in the query module doesn’t result in a new
+  line, but an explicit character `\n`.
+- Viewing the code of multiple query modules in the split screen now
+  works as expected.
+- Notifications no longer mix with the Query Editor and Query Collections visual
+  elements.
+- Pressing CMD/CTRL + S will save a query within a query collection execution section as intended.
+- The autosave in query collection is now triggered on every query run as it was
+  intended.
+- Running a selected portion of the query won’t remove the rest of the query
+  from the query collection execution view.
+- GSS `Blue` function was returning a wrong number. It is fixed now. `Lighter`
+  and `Darker` functions now work correctly as well because they were depending
+  on the output from the `Blue` function.
+  
 ## Lab v2.5.0 - Mar 17, 2023
 
-## What's New
+### What's New
 
 * If there are several Cypher queries in the query editor you can select a single query and run
   it without commenting out all the other queries.
@@ -25,7 +67,7 @@ sidebar_label: Changelog
   automatically after each query run.
 * Memgraph Lab will now notify you of any product updates and offer various tips and tricks for using the Memgraph ecosystem.
 
-## Bug Fixes
+### Bug Fixes
 
 * Cypher code suggestions can now handle labels and properties of 250k nodes and 500k relationships, compared to the previous limit of
   100k nodes nad 200k relationships.
@@ -43,7 +85,7 @@ sidebar_label: Changelog
 
 ## v2.4.0 - Dec 2, 2022
 
-## What's New
+### What's New
 
 * Memgraph Lab now supports manual transaction workflows you can construct using transaction commands `BEGIN`, `COMMIT`, and `ROLLBACK`.
 * Cypher intellisense has been updated to suggest new Cypher features from Memgraph 2.4.0 such as:
@@ -57,7 +99,7 @@ sidebar_label: Changelog
 * Graph results view will check for nodes and relationships in arrays and projected graphs. It simplifies
   the visualization of a projected graph or an array of nodes/relationships without using `UNWIND`.
 
-## Bug Fixes
+### Bug Fixes
 
 * Once the table results view is selected, the results of the following query run will also preview in the table results view, instead of automatically switching to the graph view.
 * Exploring a dataset's query collection now works as expected. It opens up a list of queries that can be used to explore the dataset.
