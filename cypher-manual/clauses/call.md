@@ -155,7 +155,7 @@ the following query will clone the node with desired preferences defined in the 
 MATCH (p:Person)
 CALL {
 	FOREACH (i IN range(1, 5) | CREATE(:Person {id: i}))
-};
+}
 
 MATCH (n) RETURN COUNT(n) AS no_created_nodes;
 ```
