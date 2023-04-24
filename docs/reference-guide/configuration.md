@@ -66,6 +66,7 @@ workers simultaneously.
 | --storage-wal-file-size-kib=20480 | Minimum file size of each WAL file. | `[uint64]` |
 | --storage-items-per-batch=1000000 | The number of edges and vertices stored in a batch in a snapshot file. | `[uint64]` |
 | --storage-recovery-thread-count= | The number of threads used to recover persisted data from disk. | `[uint64]` |
+| --storage-parallel-index-recovery=false | Controls whether the index creation can be done in a multithreaded fashion. | `[bool]` |
 
 ## Streams
 
