@@ -10,8 +10,8 @@ including the **durability files**: snapshots and WALs that contain Memgraph's
 data in a recoverable format. On startup, it searches for previously saved
 durability files and uses them to recreate the most recent DB state.
 
-When talking about the data directory, we are actually talking about two
-directories, `snapshots` and `wal` which are usually located in the
+When talking about the data directory in the context of backup and restore, we are actually talking about two
+directories, `snapshots` and `wal`, which are usually located in the
 `/var/lib/memgraph` folder.
 
 Snapshots are created periodically based on the value defined with the
@@ -121,7 +121,7 @@ To restore data from a backup:
 
 ### 1. Lock the data directory
 
-To disable file deletions in the data directory, run the following query in
+To disable deletions of snapshot or WAL files in the data directory, run the following query in
 `mgconsole` or Memgraph Lab:
 
 ```cypher
@@ -143,5 +143,5 @@ By restarting the instance, Memgraph should restore the data from the files in
 the data directory. 
 
 Be sure to restart the instance before Memgraph automatically creates a new
-periodic snapshot because upon restart it will use that newer snapshot which is
+periodic snapshot because upon restart it might use that newer snapshot which is
 not the data you want to load. 
