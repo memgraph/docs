@@ -177,7 +177,7 @@ You can only change the isolation level when Memgraph is running in the
 
 ### Querying the isolation level
 
-You can query the isolation level using the following query:
+You can find out the current isolation level using the following query:
 
 ```cypher
 SHOW STORAGE INFO;
