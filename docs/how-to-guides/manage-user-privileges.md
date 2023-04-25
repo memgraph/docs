@@ -114,6 +114,12 @@ Creating a user account for a new hire named Alice can be done as follows:
 CREATE USER alice IDENTIFIED BY '0042';
 ```
 
+If you are creating a new username that is an email address, you need to enclose it in backticks (``` ` ```):
+
+```cypher
+CREATE USER `alice@memgraph.com` IDENTIFIED BY '0042'; 
+``` 
+
 Alice should also be granted a privilege to access data, which can be done by
 executing the following:
 

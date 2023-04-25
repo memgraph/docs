@@ -18,6 +18,13 @@ Creating a user can be done by executing the following command:
 ```cypher
 CREATE USER user_name [IDENTIFIED BY 'password'];
 ```
+
+If you are creating a new username that is an email address, you need to enclose it in backticks (``` ` ```):
+
+```cypher
+CREATE USER `alice@memgraph.com` IDENTIFIED BY '0042'; 
+``` 
+
 If the user should authenticate themself on each session, i.e. provide their
 password on each session, the part within the brackets is mandatory. Otherwise,
 the password is set to `null` and the user will be allowed to log-in using
