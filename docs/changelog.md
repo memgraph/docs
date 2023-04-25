@@ -12,6 +12,7 @@ sidebar_label: Changelog
   [snapshot loading is now distributed among several
   threads](/memgraph/reference-guide/backup#snapshots).
   [#868](https://github.com/memgraph/memgraph/pull/868)
+- Added a new query called `SHOW BUILD INFO;` that returns the suspected build type of the Memgraph executable.
 
 ## v2.7 - Apr 5, 2023
 
