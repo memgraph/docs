@@ -22,7 +22,11 @@ source](/installation.md#source). If you are using [Conda](https://docs.conda.io
 GQLAlchemy can't be installed with Python 3.11 [(#203)](https://github.com/memgraph/gqlalchemy/issues/203) and on Windows with Python > 3.9 [(#179)](https://github.com/memgraph/gqlalchemy/issues/179). If this is currently a blocker for you, please let us know by commenting on opened issues.
 :::
 
-### 2. Learn how to use GQLAlchemy
+### 2. Connect to Memgraph
+
+Check the [Python quick start guide](/memgraph/connect-to-memgraph/drivers/python) on Memgraph documentation to learn how to connect to Memgraph using GQLAlchemy.
+
+### 3. Learn how to use GQLAlchemy
 
 With the help of the [How-to guides](/how-to-guides/overview.md) you can learn how to use GQLAlchemy's features, such as object graph mapper and query builder. 
 
