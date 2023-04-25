@@ -19,7 +19,7 @@ Creating a user can be done by executing the following command:
 CREATE USER user_name [IDENTIFIED BY 'password'];
 ```
 
-If you are creating a new username that is an email address, you need to enclose it in backticks (``` ` ```):
+If the username is an email address, you need to enclose it in backticks (``` ` ```):
 
 ```cypher
 CREATE USER `alice@memgraph.com` IDENTIFIED BY '0042'; 
