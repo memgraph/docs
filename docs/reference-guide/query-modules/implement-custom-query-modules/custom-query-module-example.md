@@ -57,6 +57,12 @@ navigate to **Query Modules** and click on **New Module** to start.
 
 <img src={require('../../../data/memgraph_lab_query_modules.png').default} className={"imgBorder"}/>
 
+:::info
+If you need an additional Python library not included with Memgraph, check out
+[the guide on how to install
+it](/memgraph/how-to-guides/query-modules#how-to-install-external-python-libraries).
+:::
+
 ### Readable procedure
 
 Let's take a look at the `py_example.py` file and its first line:

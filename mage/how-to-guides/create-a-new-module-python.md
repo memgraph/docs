@@ -88,6 +88,12 @@ Memgraph it's a `read` procedure, meaning it won't make changes to the graph.
 The path is created from the `start` node, and edges are appended to it
 iteratively.
 
+:::info 
+If you need an additional Python library that is not already installed with
+Memgraph, check out our [guide on how to install
+it](/memgraph/how-to-guides/query-modules#how-to-install-external-python-libraries).
+:::
+
 ### Terminate procedure execution
 
 Just as the execution of a Cypher query can be terminated with [`TERMINATE
