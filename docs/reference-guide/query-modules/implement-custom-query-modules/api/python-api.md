@@ -14,7 +14,7 @@ installation directory, under `/usr/lib/memgraph/python_support`.
 
 For an example of how to implement query modules in Python, take a look at [the
 example we
-provided](/reference-guide/query-modules/implement-custom-query-modules/custom-query-module-example.md#python-api).
+provided](/reference-guide/query-modules/implement-custom-query-modules/custom-query-module-example.md#python-api). 
 
 :::
 
@@ -28,6 +28,13 @@ You can also develop query modules in Python from Memgraph Lab (v2.0 and newer).
 navigate to **Query Modules** and click on **New Module** to start.
 
 :::
+
+:::info
+If you need an additional Python library that is not already installed with
+Memgraph, check out our [guide on how to install
+it](/memgraph/how-to-guides/query-modules#how-to-install-external-python-libraries).
+:::
+
 
 ## mgp.read_proc(func: Callable[[…], mgp.Record])
 

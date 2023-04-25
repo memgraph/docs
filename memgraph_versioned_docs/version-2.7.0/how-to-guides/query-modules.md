@@ -30,6 +30,7 @@ query modules:
   Memgraph?](#how-to-import-the-mage-library-and-its-query-modules-into-memgraph)
 - [How to implement custom query
   modules?](#how-to-implement-custom-query-modules)
+- [How to install external Python packages?](#how-to-install-external-python-libraries)
 - [How to list all loaded .py query
   modules?](#how-to-list-all-loaded-py-query-modules)
 - [How to list all loaded procedures and their
@@ -71,6 +72,38 @@ newer). To start, just navigate to **Query Modules** and click on **New
 Module**.
 
 <img src={require('../data/memgraph_lab_query_modules.png').default} className={"imgBorder"}/>
+
+If you want to use an external Python library, read [instructions on how to install it](#how-to-install-external-python-libraries).
+
+## How to install external Python libraries?
+
+It is possible to install Python libraries that are not already included with
+Memgraph installation. For example, to install `pandas` with Memgraph running
+inside a **Docker** container, run the following command in the terminal:
+
+```
+docker exec -i -u root <container_id> bash -c "apt install -y python3-pip &&
+pip install pandas"
+```
+
+Don't forget to replace `<container_id>` with the appropriate value,
+which you can find by running `docker ps` command in the terminal. 
+
+If you are starting Memgraph with **Docker Compose**, write the following commands
+in the Dockerfile:
+
+```
+FROM memgraph/memgraph:latest
+
+USER root
+
+RUN apt install -y python3-pip
+RUN pip install pandas
+
+USER memgraph
+```
+
+It is important that you install Python library as a `root` user, instead as the default `memgraph` user. 
 
 ## How to list all loaded .py query modules?
 
