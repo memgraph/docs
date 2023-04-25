@@ -103,7 +103,7 @@ RUN pip install pandas
 USER memgraph
 ```
 
-It is important that you install Python library as a `root` user, instead as the default `memgraph` user. 
+It is important that you install Python library as a `root` user, rather than the default `memgraph` user. 
 
 ## How to list all loaded .py query modules?
 

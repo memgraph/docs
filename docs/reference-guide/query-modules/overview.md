@@ -75,7 +75,7 @@ the available graph algorithms and installation instructions, check out the
 :::
 
 :::info
-If you need an additional Python library that is not already installed with
-Memgraph, check out our [guide on how to install
+If you need an additional Python library not included with Memgraph, check out
+[the guide on how to install
 it](/memgraph/how-to-guides/query-modules#how-to-install-external-python-libraries).
 :::
