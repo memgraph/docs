@@ -35,3 +35,17 @@ The result will contain the following fields:
 | disk_usage       | Amount of disk space used by the data directory (in bytes)                                                                                   |
 | memory_allocated | Amount of bytes allocated by the instance.<br/>For more info, check out the [memory control](/reference-guide/memory-control.md).               |
 | allocation_limit | Current allocation limit in bytes set for this instance.<br/>For more info, check out the [memory control](/reference-guide/memory-control.md). |
+
+
+## Build information
+
+Running the following query will return certain information about the build type of
+the current instance:
+
+```cypher
+SHOW BUILD INFO;
+```
+
+| Field            | Description                                                                                                                                  |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| build_type     | The optimization level the instance was built with.                                                                                                                    |
