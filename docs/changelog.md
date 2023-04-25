@@ -12,6 +12,7 @@ sidebar_label: Changelog
   [snapshot loading is now distributed among several
   threads](/memgraph/reference-guide/backup#snapshots).
   [#868](https://github.com/memgraph/memgraph/pull/868)
+- The `SHOW STORAGE INFO` query now returns the current [storage mode](/reference-guide/storage-modes.md) and the [isolation level](/reference-guide/transactions.md).
 
 ## v2.7 - Apr 5, 2023
 

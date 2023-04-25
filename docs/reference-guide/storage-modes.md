@@ -22,11 +22,17 @@ When switching modes, Memgraph will wait until all other transactions are done. 
 If you are running the Memgraph Enterprise Edition, to change the storage mode
 you to have [`STORAGE_MODE` permission](/reference-guide/auth-module.md).
 
+You can query the current storage mode using the following query:
+
+```cypher
+SHOW STORAGE INFO;
+```
+
 ## Transactional storage mode (default)
 
 `IN_MEMORY_TRANSACTIONAL` storage mode offers all ACID guarantees. WAL files and
 periodic snapshots are created automatically, and you can also create snapshots
-manually. 
+manually.
 
 In the `IN_MEMORY_TRANSACTIONAL` mode, Memgraph creates a
 [`Delta`](/memgraph/under-the-hood/storage#delta-memory-layout) object each time
@@ -34,7 +40,7 @@ data is changed. Deltas are the backbone upon which Memgraph provides atomicity,
 consistency, isolation, and durability - ACID. By using `Deltas`, Memgraph
 creates [write-ahead-logs](/memgraph/reference-guide/backup#write-ahead-logging)
 for durability, provides isolation, consistency, and atomicity (by ensuring that
-everything is executed or nothing). 
+everything is executed or nothing).
 
 Depending on the transaction [isolation
 level](/memgraph/reference-guide/transactions#isolation-levels), other transactions may
@@ -50,7 +56,7 @@ of the configuration flag `--storage-recover-on-startup`, which defaults to
 When Memgraph starts creating a periodic snapshot, it is not possible to
 manually create a snapshot, until the periodic snapshot is created.
 
-Manual snapshots are created by running the `CREATE SNAPSHOT;` query. 
+Manual snapshots are created by running the `CREATE SNAPSHOT;` query.
 
 ## Analytical storage mode
 
@@ -58,7 +64,7 @@ In the transactional storage mode, Memgraph is fully [ACID
 complient](/reference-guide/backup.md) which could cause memory spikes during data
 import because each time data is changed Memgraph creates
 [`Delta`](/memgraph/under-the-hood/storage#delta-memory-layout) objects to
-provides atomicity, consistency, isolation, and durability 
+provides atomicity, consistency, isolation, and durability
 
 But `Deltas` also require a lot of memory (104B per change), especially when
 there are a lot of changes  (for example, during import with the `LOAD CSV`
@@ -72,7 +78,7 @@ can take advantage of the low memory costs of the analytical mode to run
 analytical queries that will not change the data, but be aware that no backup is
 created automatically (you can create manual snapshots), and there are no ACID
 guarantees besides manually created snapshots. There are no `WAL` files created
-nor periodic snapshots. Users **can** create a snapshot manually. 
+nor periodic snapshots. Users **can** create a snapshot manually.
 
 ### Transactions
 
@@ -81,7 +87,7 @@ transactions can see the changes of ongoing transactions. Also, a [transaction
 can see the changes it is
 doing](/memgraph/reference-guide/transactions#isolation-levels). This means that
 the transactions can be committed in random orders, and the updates to the data,
-in the end, might not be correct. 
+in the end, might not be correct.
 
 ### WAL
 
@@ -100,7 +106,7 @@ state and store it on the disk. A snapshot is used to recover the database upon
 startup (depending on the setting of the configuration flag
 `--storage-recover-on-startup`, which defaults to `true`).
 
-In Memgraph, snapshots are created periodically or manually. 
+In Memgraph, snapshots are created periodically or manually.
 
 In the `IN_MEMORY_ANALYTICAL` mode, periodic snapshots are **disabled**.
 
