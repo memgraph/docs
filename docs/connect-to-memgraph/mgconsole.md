@@ -150,7 +150,7 @@ Memgraph database instance.
 
 :::tip
 
-You can use the `TAB` key to autocomplete commands in mgconsole.
+You can use the `TAB` key to autocomplete commands in `mgconsole`.
 
 :::
 
@@ -170,7 +170,29 @@ To find created nodes and relationships, execute the following query:
 MATCH (u:User)-[r]->(x) RETURN u, r, x;
 ```
 
+To get a breakdown of the execution time, set the `-verbose_execution_info` flag
+to `true`.
+
+Upon query execution you will get this information:
+
+```bash
+Query COST estimate: 3066
+Query PARSING time: 0.000175982 sec
+Query PLAN EXECUTION time: 0.0154524 sec
+Query PLANNING time: 8.054e-05 sec
+```
+
+The values show:
+
+- PARSING time - Time spent checking if the query is valid and normalizing it for cache.
+- PLAN EXECUTION time - Time spent parsing, planning and executing. 
+- PLANNING time - Time it takes the query planner to create the optimal plan to execute the query.
+
 ## Configure mgconsole
+
+Below are configurational flags you can use with mgconsole:
+
+### Main
 
 | Flag                     | Description                                                                                                             | Type    | Default |
 |--------------------------|-------------------------------------------------------------------------------------------------------------------------|---------|---------|
@@ -189,6 +211,8 @@ MATCH (u:User)-[r]->(x) RETURN u, r, x;
 | -username                 | Username for the database                                                                                               | string  | ""      |
 | -verbose_execution_info   | Output the additional information about query such as query cost, parsing, planning and execution times.               | bool    | false   |
 
+### Flags
+
 | Flag                     | Description                                                                                                             | Type    | Default |
 |--------------------------|-------------------------------------------------------------------------------------------------------------------------|---------|---------|
 | -flagfile                 | Load flags from a file.                                                                                                 | string  | ""      |
@@ -197,6 +221,8 @@ MATCH (u:User)-[r]->(x) RETURN u, r, x;
 | -undefok                  | Comma-separated list of flag names. These flags can be specified on the command line even if the program does not define a flag with that name.  IMPORTANT: Flags from the list that have arguments MUST use the flag=value format. | string  | ""      |
 | -tab_completion_columns   | The number of columns used in output for tab completion.                                                                  | int32   | 80      |
 | -tab_completion_word      | If non-empty, `HandleCommandLineCompletions()` will hijack the process and attempt to do bash-style command line flag completion on this value.                                                                                                         | string  | ""      |
+
+### Help
 
 | Flag                     | Description                                                                                                             | Type    | Default |
 |--------------------------|-------------------------------------------------------------------------------------------------------------------------|---------|---------|
@@ -208,6 +234,33 @@ MATCH (u:User)-[r]->(x) RETURN u, r, x;
 | -helpshort               | Show help on the main module for this program only.                        | bool  | false   |
 | -helpxml                 | Produce an .xml version of help.                                            | bool  | false   |
 | -version                 | Show version and build info then exit.                                      | bool  | false   |
+
+:::caution
+
+When working with Memgraph Platform, you should pass configuration flags inside
+of environment variables.
+
+For example, you should start Memgraph Platform with `docker run -e
+MGCONSOLE="-output_format="csv"" memgraph/memgraph-platform`.
+
+:::
+
+## Non-interactive mode
+
+To get the query result in bash, use the following command: 
+```bash
+mgconsole < <(echo "MATCH (n:Person) RETURN n;")
+```
+or
+```bash
+echo "MATCH (n:Person) RETURN n;" | mgconsole
+```
+
+To save the query results in a file, use the following command:
+```bash
+mgconsole < <(echo "MATCH (n:Person) RETURN n;") > results.txt
+```
+
 
 
 ## Where to next? {#where-to-next}
