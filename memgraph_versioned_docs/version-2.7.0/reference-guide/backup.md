@@ -20,7 +20,7 @@ changed by modifying the `data-dir` configuration flag
 
 To encrypt the data directory, use
 [LUKS](https://gitlab.com/cryptsetup/cryptsetup/) as it works with Memgraph out
-of the box and is undetectable from the applications perspective so it should
+of the box and is undetectable from the applications perspective so it shouldn't
 break any existing applications. 
 
 [![Related - How-to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/create-backup.md)
