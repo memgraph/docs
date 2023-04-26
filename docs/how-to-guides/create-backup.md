@@ -4,11 +4,12 @@ title: How to backup and restore data
 sidebar_label: Backup and restore data
 ---
 
-While running, Memgraph generates various files in its
-[data directory](/docs/memgraph/reference-guide/backup),
-including the **durability files**: snapshots and WALs that contain Memgraph's
-data in a recoverable format. On startup, it searches for previously saved
-durability files and uses them to recreate the most recent DB state.
+While running, Memgraph generates various files in its [data
+directory](/docs/memgraph/reference-guide/backup), including the **durability
+files**: snapshots and WALs that contain Memgraph's data in a recoverable format
+and are located in the `wal` and `snapshots` folders in the data directory. On
+startup, Memgraph searches for previously saved durability files and uses them to
+recreate the most recent DB state.
 
 Snapshots are created periodically based on the value defined with the
 `--storage-snapshot-interval-sec` configuration flag in the configuration file.
@@ -29,6 +30,8 @@ following query in `mgconsole` or Memgraph Lab:
 ```cypher
 CREATE SNAPSHOT;
 ```
+The snapshot is saved in the `snapshots` directory of the data directory
+(`/var/lib/memgraph`).
 
 ### 2. Lock the data directory
 
@@ -44,7 +47,8 @@ LOCK DATA DIRECTORY;
 
 ### 3. Copy the data directory and unlock it
 
-Copy the data directory or a single WAL or snapshot file to a backup location.
+Copy the data directory or a single WAL file (from the `wal` directory) or
+snapshot file (from the `snapshots` directory) to a backup location.
 
 <details>
   <summary>Copy files if you are using Memgraph on Linux</summary>
@@ -89,7 +93,7 @@ total 35920
 -rw-r----- 1 memgraph memgraph 17064381 Mar 25 13:53 20220325125308366007_timestamp_3380
 ```
 
-**4.** Copy a file from the snapshot directory to the backup folder:
+**4.** Copy a file from the `snapshots` directory to the backup folder:
 
 ```bash
 cp /var/lib/memgraph/snapshots/20220325125308366007_timestamp_3380 ~/backup/
@@ -126,8 +130,8 @@ LOCK DATA DIRECTORY;
 
 ### 2. Copy the snapshot into the data directory
 
-Copy the data directory or, empty the directory, then copy a single WAL or
-snapshot file into it.
+Copy the data directory or, empty the `snapshots` and `wal` directories, then
+copy a single WAL or snapshot file into the respective folders.
 
 If you need help copying the files from the Docker container, check out the
 [Working with docker
