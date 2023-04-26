@@ -170,6 +170,46 @@ To find created nodes and relationships, execute the following query:
 MATCH (u:User)-[r]->(x) RETURN u, r, x;
 ```
 
+## Configure mgconsole
+
+| Flag                     | Description                                                                                                             | Type    | Default |
+|--------------------------|-------------------------------------------------------------------------------------------------------------------------|---------|---------|
+| -csv_delimiter            | Character used to separate fields.                                                                                      | string  | ","     |
+| -csv_doublequote          | Controls how instances of the quote character (") appearing inside a field should themselves be quoted. When true, the character is doubled. When false, the `escapechar` is used as a prefix to the quote characted. If `csv_doublequote` is `false`, `csv_escapechar` must be set. | bool    | true    |
+| -csv_escapechar           | Character used to escape the quote character (") if `csv_doublequote` is `false`.                                      | string  | ""      |
+| -fit_to_screen            | Fit output width to screen width.                                                                                       | bool    | false   |
+| -history                  | Use the specified directory for saving history.                                                                         | string  | "~/.memgraph" |
+| -host                     | Server address. It can be a DNS resolvable hostname.                                                                     | string  | "127.0.0.1" |
+| -no_history               | Do not save history.                                                                                                    | bool    | false   |
+| -output_format            | Query output format. Can be `csv` or `tabular`. If the output format is not tabular `fit-to-screen` flag is ignored.       | string  | "tabular" |
+| -password                 | Password for the database                                                                                               | string  | ""      |
+| -port                     | Server port                                                                                                             | int32   | 7687    |
+| -term_colors              | Use terminal colors syntax highlighting.                                                                                | bool    | false   |
+| -use_ssl                  | Use SSL when connecting to the server.                                                                                  | bool    | false   |
+| -username                 | Username for the database                                                                                               | string  | ""      |
+| -verbose_execution_info   | Output the additional information about query such as query cost, parsing, planning and execution times.               | bool    | false   |
+
+| Flag                     | Description                                                                                                             | Type    | Default |
+|--------------------------|-------------------------------------------------------------------------------------------------------------------------|---------|---------|
+| -flagfile                 | Load flags from a file.                                                                                                 | string  | ""      |
+| -fromenv                  | Set flags from the environment [example: 'export FLAGS_flag1=value'].                                                   | string  | ""      |
+| -tryfromenv               | Set flags from the environment if present.                                                                               | string  | ""      |
+| -undefok                  | Comma-separated list of flag names. These flags can be specified on the command line even if the program does not define a flag with that name.  IMPORTANT: Flags from the list that have arguments MUST use the flag=value format. | string  | ""      |
+| -tab_completion_columns   | The number of columns used in output for tab completion.                                                                  | int32   | 80      |
+| -tab_completion_word      | If non-empty, `HandleCommandLineCompletions()` will hijack the process and attempt to do bash-style command line flag completion on this value.                                                                                                         | string  | ""      |
+
+| Flag                     | Description                                                                                                             | Type    | Default |
+|--------------------------|-------------------------------------------------------------------------------------------------------------------------|---------|---------|
+| -help                     | Show help on all flags [tip: all flags can have two dashes].                                                               | bool    | false   |
+| -helpfull                 | Show help on all flags -- same as -help.                                                                                  | bool    | false   |
+| -helpmatch                | Show help on modules, names of which contain the specified substring.                                                           | string  | ""      |
+| -helpon                   | Show help on the modules named by this flag value.                                                                        | string  | ""      |
+| -helppackage              | Show help on all modules in the main package.                                                                             | bool    | false   |
+| -helpshort               | Show help on the main module for this program only.                        | bool  | false   |
+| -helpxml                 | Produce an .xml version of help.                                            | bool  | false   |
+| -version                 | Show version and build info then exit.                                      | bool  | false   |
+
+
 ## Where to next? {#where-to-next}
 
 If you want to learn more about graph databases and Cypher queries, visit
