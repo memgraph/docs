@@ -46,8 +46,7 @@ Memgraph has WAL enabled by default. To switch it on and off, use the boolean
 `storage-wal-file-flush-every-n-tx` and `storage-wal-file-size-kib`; their uses
 are described [here](/docs/memgraph/how-to-guides/config-logs).
 
-WAL files are saved inside the `wal` folder located in the data directory
-(`var/lib/memgraph`). 
+WAL files are usually located at `/var/lib/memgraph/wal`.
 
 ### Snapshots
 
@@ -88,6 +87,7 @@ To restore from back-up:
 1. Lock the data directory with the `LOCK DATA DIRECTORY;` query
 2. Copy the backed up snapshot into the directory
 3. Unlock the directory `UNLOCK DATA DIRECTORY;` query
+
 
 Locking the data directory ensures that no files are deleted by the system. The
 following queries lock and unlock the data directory:

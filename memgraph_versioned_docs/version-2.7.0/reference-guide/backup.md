@@ -46,8 +46,7 @@ Memgraph has WAL enabled by default. To switch it on and off, use the boolean
 `storage-wal-file-flush-every-n-tx` and `storage-wal-file-size-kib`; their uses
 are described [here](/docs/memgraph/how-to-guides/config-logs).
 
-WAL files are saved inside the `wal` folder located in the data directory
-(`var/lib/memgraph`). 
+WAL files are usually located at `/var/lib/memgraph/wal`.
 
 ### Snapshots
 

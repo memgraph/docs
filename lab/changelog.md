@@ -10,8 +10,10 @@ sidebar_label: Changelog
 
 - If you execute multiple Cypher queries, you can now view the result of each
   query instead of viewing just the last result.
+  ![results](./data/lab-260/results.png)
 - Besides exporting query results to JSON, you can also export them to CSV and
   TSV file format.
+  ![download](./data/lab-260/download.png)
 - If the dataset contains millions or billions nodes and relationships, their
   count in the status bar will be in the following format: X.XXM or X.XXB.
 - Syntax of code blocks in the query collection description can now be
@@ -19,9 +21,12 @@ sidebar_label: Changelog
   styles: `cypher`, `bash`, `python`, `css`, `c`, `cpp`, `json`, `sql`,
   and `yaml`. Check the examples of syntax highlighting in the [Markdown
   Guide](https://www.markdownguide.org/extended-syntax/#syntax-highlighting).
-- New functions of the Graph Style Script language used for customizing graph
-  appearance are: `Reduce`, `Sum`, `Avg`, `Min`, `Max`, `IsArray`, `Hue`,
-  `Saturation`, `Lightness`, `HSL`.
+  ![markdown](./data/lab-260/markdown.png)
+- [New functions of the Graph Style Script
+  language](/style-script/gss-functions.md) used for customizing graph appearance
+  are: `Reduce`, `Sum`, `Avg`, `Min`, `Max`, `IsArray`, `Hue`, `Saturation`,
+  `Lightness`, `HSL`.
+  ![gss](./data/lab-260/gss.png)
 
 ### Bug fixes
 

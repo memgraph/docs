@@ -55,7 +55,7 @@ Manual snapshots are created by running the `CREATE SNAPSHOT;` query.
 ## Analytical storage mode
 
 In the transactional storage mode, Memgraph is fully [ACID
-complient](/reference-guide/backup.md) which could cause memory spikes during data
+compliant](/reference-guide/backup.md) which could cause memory spikes during data
 import because each time data is changed Memgraph creates
 [`Delta`](/memgraph/under-the-hood/storage#delta-memory-layout) objects to
 provides atomicity, consistency, isolation, and durability 
