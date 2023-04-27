@@ -54,7 +54,7 @@ Memgraph offers a wide range of drivers that can be used to connect directly to
 the platform. You can find a list of all the supported drivers
 [here](/connect-to-memgraph/drivers/overview.md).
 
-## Parquet, ORC or IPC/Feather/Arrow
+## Parquet, ORC or IPC/Feather/Arrow files
 
 If you are a Python user you can import Parquet, ORC or IPC/Feather/Arrow file
 into Memgraph [using GQLAlchemy](/how-to-guides/table-to-graph-importer).
