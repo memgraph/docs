@@ -23,7 +23,7 @@ clause**](/import-data/files/load-csv-clause.md), which is used as a standard
 Cypher clause, and can be invoked straight from a running Memgraph instance.
 
 <!--Import tool to import CSV files in a strictly formatted CSV files
-Try to compare mg_import_csv against LOAD CSV if mg_import_csv is 2x+ faster → keep it, if it’s ~10% faster → remove it completely-->
+Try to compare mg_import_csv against LOAD CSV if mg_import_csv is 2x+ faster → keep it, if it’s ~10 percent faster → remove it completely-->
 
 ## CYPHERL files
 
