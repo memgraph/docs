@@ -19,13 +19,17 @@ To follow this tutorial, you will need to have the following:
 
 One of the first steps to consider is how to migrate your data. If you have your data in the CSV, Cypherl or JSON format, you can import these formats into Memgraph. Keep in mind that for importing larger datasets it is recommended to use CSV or Cypherl formats, since they have native Memgraph integrations, and are faster than JSON.
 
+If you have any of the mentioned formats, feel free to skip the section on exporting data from Neo4j and go directly to the section on importing data into Memgraph. If you don't have your data in any of the mentioned formats, you will need to export your data from Neo4j and then import it into Memgraph.
+
 
 ### Exporting data from Neo4j
 
-In order to get your data out of Neo4j instance you need to used the APOC export functionality. Neo4j supports several different export formats, in the ideal case you would export the data in CSV, Cypherl or JSON format.  Since for that would be that Memgraph plays very well with CSV and Cypherl. 
-
+In order to get your data out of Neo4j instance you need to used the Neo4j APOC export functionality. Neo4j supports several different export formats, as mentioned previously in the ideal case you would export the data in CSV, Cypherl or JSON format. 
 
 #### Exporting data in CSV format
+
+
+
 
 #### Exporting data in Cypherl format
 
