@@ -215,6 +215,10 @@ module.exports = {
               to: "/gqlalchemy/installation",
             },
             {
+              label: "Import data",
+              to: "/gqlalchemy/import-data",
+            },
+            {
               label: "How-to guides",
               to: "/gqlalchemy/how-to-guides",
             },

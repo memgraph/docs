@@ -6,28 +6,48 @@ slug: /import-data
 ---
 
 You can import data in the following formats:
+- [**CSV**](#csv)
+- [**JSON**](#json)
+- [**Parquet, ORC or IPC/Feather/Arrow**](#parquet-orc-or-ipcfeatherarrow)
+- [**Python graphs - NetworkX, PyG or DGL graph**](#python-graphs---networkx-pyg-or-dgl-graph)
+- [**Kafka, RedPanda or Pulsar data stream**](#kafka-redpanda-or-pulsar-data-stream)
 
-- CSV
-    - call Cypher query -> Memgraph docs
-    - transform CSV into graph -> GQLA how-to
-
-- JSON
-    - call Cypher query -> Memgraph docs
-
-- Parquet, ORC or IPC/Feather/Arrow 
-    - transform table data from file into graph -> GQLA how-to
-
-- NetworkX/PyG/DGL graph
-    - transform into Memgraph graph
-
-- Kafka/RedPanda/Pulsar data stream
-    - Run Cypher to connect to data stream -> GQLA how-to
-
-
-
-If you want to create the data directly from code use the Object Graph Mapper or query builder. (links to how-to guides)
+Besides that, you can create the data directly from code using the [**object graph mapper**](/gqlalchemy/how-to-guides/ogm) or [**query builder**](/gqlalchemy/how-to-guides/query-builder).
 
 
 :::tip
-Fastest way of data import
+Fastest way to import data into Memgraph is using the [LOAD CSV clause](/memgraph/import-data/load-csv-clause). Don't forget to [set up indexes](/memgraph/next/how-to-guides/indexes) first with the `CREATE INDEX` clause! You can set them up by [executing the Cypher query](/memgraph/connect-to-memgraph/drivers/python) or with [object graph mapper](/gqlalchemy/how-to-guides/ogm#create-indexes).
 :::
+
+## CSV
+
+To import CSV file into Memgraph via GQLAlchemy, you can use the [`LOAD CSV` clause](/memgraph/import-data/load-csv-clause). That clause can be used by [executing the Cypher query](/memgraph/connect-to-memgraph/drivers/python) or by [building the query with the query builder](/gqlalchemy/how-to-guides/query-builder#load-csv-file). Another way of importing CSV data into Memgraph is by [translating it into a graph](/gqlalchemy/how-to-guides/table-to-graph-importer).
+
+## JSON
+
+To import JSON file into Memgraph via GQLAlchemy, you can call procedures from the [`json_util` module](/mage/query-modules/python/json-util) from MAGE. If the JSON data is in particular format, you can call the [`import_util.json()` procedure](/mage/query-modules/python/import-util#jsonpath) from MAGE. The procedures can be called by [executing Cypher queries](/memgraph/connect-to-memgraph/drivers/python) or [using the query builder](/gqlalchemy/how-to-guides/query-builder#call-procedures).
+
+
+## Parquet, ORC or IPC/Feather/Arrow 
+
+To import Parquet, ORC or IPC/Feather/Arrow file into Memgraph via GQLAlchemy, [transform table data from file into a graph](/gqlalchemy/how-to-guides/table-to-graph-importer). 
+
+:::note
+If you want to read from a file system not currently supported by GQLAlchemy, or use a file type currently not readable, you can implement your own by [making a custom file system importer](/gqlalchemy/how-to-guides/custom-file-system-importer).
+:::
+
+
+## Python graphs - NetworkX, PyG or DGL graph
+
+To import NetworkX, PyG or DGL graph into Memgraph via GQLAlchemy, [transform the source graph into Memgraph graph](/gqlalchemy/how-to-guides/networkx).
+
+## Kafka, RedPanda or Pulsar data stream
+
+To consume Kafka, RedPanda or Pulsar data stream, you can write [appropriate Cypher queries](/memgraph/import-data/data-streams/manage-streams) and [execute](/memgraph/connect-to-memgraph/drivers/python) them, or use GQLAlchemy stream manager for [Kafka/RedPanda](/gqlalchemy/how-to-guides/streams/manage-kafka-streams) or [Pulsar](/gqlalchemy/how-to-guides/streams/manage-pulsar-streams) streams.
+
+
+## Learn more
+
+To learn how to utilize the GQLAlchemy library with Memgraph, check out the [how-to guides](/gqlalchemy/how-to-guides) or sign up for the [Getting started with Memgraph and Python course](https://app.livestorm.co/memgraph/getting-started-with-memgraph-and-python-on-demand).
+
+
