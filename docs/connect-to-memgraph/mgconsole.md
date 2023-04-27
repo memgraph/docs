@@ -197,18 +197,18 @@ Below are configurational flags you can use with mgconsole:
 | Flag                     | Description                                                                                                             | Type    | Default |
 |--------------------------|-------------------------------------------------------------------------------------------------------------------------|---------|---------|
 | -csv_delimiter            | Character used to separate fields.                                                                                      | string  | ","     |
-| -csv_doublequote          | Controls how instances of the quote character (") appearing inside a field should themselves be quoted. When true, the character is doubled. When false, the `escapechar` is used as a prefix to the quote characted. If `csv_doublequote` is `false`, `csv_escapechar` must be set. | bool    | true    |
+| -csv_doublequote          | Controls how instances of the quotechar(") appearing inside a field should themselves be quoted. When `true`, the character is doubled. When `false`, the escapechar is used as a prefix to the quotechar. If `csv_doublequote` is `false`, `csv_escapechar` must be set. | bool    | true    |
 | -csv_escapechar           | Character used to escape the quote character (") if `csv_doublequote` is `false`.                                      | string  | ""      |
 | -fit_to_screen            | Fit output width to screen width.                                                                                       | bool    | false   |
-| -history                  | Use the specified directory for saving history.                                                                         | string  | "~/.memgraph" |
+| -history                  | Use the specified directory to save history.                                                                         | string  | "~/.memgraph" |
 | -host                     | Server address. It can be a DNS resolvable hostname.                                                                     | string  | "127.0.0.1" |
 | -no_history               | Do not save history.                                                                                                    | bool    | false   |
 | -output_format            | Query output format. Can be `csv` or `tabular`. If the output format is not tabular `fit-to-screen` flag is ignored.       | string  | "tabular" |
-| -password                 | Password for the database                                                                                               | string  | ""      |
-| -port                     | Server port                                                                                                             | int32   | 7687    |
+| -password                 | Database password.                                                                                               | string  | ""      |
+| -port                     | Server port.                                                                                                             | int32   | 7687    |
 | -term_colors              | Use terminal colors syntax highlighting.                                                                                | bool    | false   |
 | -use_ssl                  | Use SSL when connecting to the server.                                                                                  | bool    | false   |
-| -username                 | Username for the database                                                                                               | string  | ""      |
+| -username                 | Database username.                                                                                               | string  | ""      |
 | -verbose_execution_info   | Output the additional information about query such as query cost, parsing, planning and execution times.               | bool    | false   |
 
 ### Flags
@@ -260,8 +260,6 @@ To save the query results in a file, use the following command:
 ```bash
 mgconsole < <(echo "MATCH (n:Person) RETURN n;") > results.txt
 ```
-
-
 
 ## Where to next? {#where-to-next}
 
