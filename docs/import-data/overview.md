@@ -5,14 +5,15 @@ sidebar_label: Import data overview
 slug: /import-data
 ---
 
-There are a few methods for importing data into Memgraph and they cover:
+There are a few methods for importing data into Memgraph and they cover: 
 
-- [How to import CSV files into Memgraph?](#how-to-import-csv-files-into-memgraph) 
+- [How to import CSV files into Memgraph?](#how-to-import-csv-files-into-memgraph)
 - [How to import JSON files into Memgraph?](#how-to-import-json-files-into-memgraph)
 - [How to import CYPHERL files with Cypher queries into Memgraph?](#how-to-import-cypherl-files-with-cypher-queries-into-memgraph)
 - [How to migrate data from a relational database?](#how-to-migrate-data-from-a-relational-database)
 - [How to import streaming data into Memgraph?](#how-to-import-streaming-data-into-memgraph)
-- [How to import data directly from an application/program?](#how-to-import-data-directly-from-an-application-or-a-program)
+- [How to import data directly from an application or a program?](#how-to-import-data-directly-from-an-application-or-a-program)
+- [Where to next?](#where-to-next)
 
 ## How to import CSV files into Memgraph?
 
