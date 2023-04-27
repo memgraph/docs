@@ -4,8 +4,6 @@ title: Installing Memgraph Lab on Windows
 sidebar_label: Windows
 ---
 
-import CompatibilityWarning from '../templates/_compatibility_warning.mdx';
-
 We recommend you [install **Memgraph Platform**](/memgraph/installation) and get
 the complete streaming graph application platform that includes <br/> **MemgraphDB**,
 command-line tool **mgconsole**, visual user interface **Memgraph Lab** running
@@ -22,7 +20,9 @@ If you installed Memgraph Platform you should already have one. <br/>If not,
 install [MemgraphDB](/memgraph/installation) and once the database instance is
 running  you can continue with the next step.
 
-<CompatibilityWarning/>
+If you installed Memgraph DB using Docker, and you want to be able to use in-browser Memgraph Lab, be sure to expose port 3000 (`-p 3000:3000`) in the `docker run ...` command. 
+
+If you installed Memgraph DB using Docker, and you want to be able to connect to it with Memgraph Lab application, be sure to expose ports 7687 for the instance connection (`-p 7687:7687`) and 7444 for logs (`-p 7444:7444`) in the `docker run ...` command.
 
 ## Step 2 - Installing and setting up Memgraph Lab
 
