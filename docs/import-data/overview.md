@@ -6,8 +6,15 @@ slug: /import-data
 ---
 
 What data do you want to import?
-
-## CSV files
+<!-- no toc -->
+- [CSV files](#csv-files)
+- [CYPHERL files](#cypherl-files)
+- [JSON files](#json-files)
+- [Data from a stream](#data-from-a-stream)
+- [Table data](#table-data)
+- [Data from an application or a program](#data-from-an-application-or-a-program)
+- [Parquet, ORC or IPC/Feather/Arrow file](#parquet-orc-or-ipcfeatherarrow-file)
+- [NetworkX, PyG or DGL graph](#networkx-pyg-or-dgl-graph)
 
 ## CSV files
 
@@ -35,7 +42,7 @@ but the JSON file then needs to in a specific format defined by the procedure.
 
 <!--Need to add anchors on the load-json page and link from here-->
 
-## Data streams
+## Data from a stream
 
 Memgraph comes with full streaming support, and you can connect directly to a
 **Kafka**, **Redpanda** or **Pulsar** stream using [Cypher
@@ -54,7 +61,7 @@ Memgraph offers a wide range of drivers that can be used to connect directly to
 the platform. You can find a list of all the supported drivers
 [here](/connect-to-memgraph/drivers/overview.md).
 
-## Parquet, ORC or IPC/Feather/Arrow files
+## Parquet, ORC or IPC/Feather/Arrow file
 
 If you are a Python user you can import Parquet, ORC or IPC/Feather/Arrow file
 into Memgraph [using GQLAlchemy](/how-to-guides/table-to-graph-importer).
