@@ -5,7 +5,8 @@ sidebar_label: Export data
 slug: /export-data
 ---
 
-Memgraph allows you to export all the data from the database, or query results.
+Memgraph allows you to export all the data from the database, or just results from an executed query.
+
 
 ## Export database
 
@@ -20,7 +21,8 @@ MAGE - graph algorithms and modules library.
 
 ## Export query results
 
-Query results can be exported to a CSV, TSV and JSON file using Memgraph Lab.
+Query results can be exported to a CSV, TSV and JSON file [using Memgraph Lab](/memgraph-lab/user-manual#data-results).
+
 
 To export query results from Memgraph Lab: 
 1. Run a query or select results you want to export.
