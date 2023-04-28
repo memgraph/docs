@@ -30,7 +30,7 @@ To import JSON files into Memgraph via GQLAlchemy, you can call procedures from 
 
 ## Parquet, ORC or IPC/Feather/Arrow 
 
-To import Parquet, ORC or IPC/Feather/Arrow file into Memgraph via GQLAlchemy, [transform table data from file into a graph](/gqlalchemy/how-to-guides/table-to-graph-importer). 
+To import Parquet, ORC or IPC/Feather/Arrow file into Memgraph via GQLAlchemy, [transform table data from a file into a graph](/gqlalchemy/how-to-guides/table-to-graph-importer). 
 
 :::note
 If you want to read from a file system not currently supported by GQLAlchemy, or use a file type currently not readable, you can implement your own by [making a custom file system importer](/gqlalchemy/how-to-guides/custom-file-system-importer).
