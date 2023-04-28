@@ -5,8 +5,7 @@ sidebar_label: Export data
 slug: /export-data
 ---
 
-Memgraph allows you to export all the data from the database, or just results from an executed query.
-
+Memgraph allows you to export all the data from the database, or results from an executed query.
 
 ## Export database
 
