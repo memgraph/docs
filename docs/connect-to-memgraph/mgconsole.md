@@ -184,8 +184,9 @@ Query PLANNING time: 8.054e-05 sec
 
 The values show:
 
+- COST estimate - Internal planner estimation on the cost of the query. When comparing two query executions, an order of magnitude larger COST estimates might indicate the query's longer execution time. 
 - PARSING time - Time spent checking if the query is valid and normalizing it for cache.
-- PLAN EXECUTION time - Time spent parsing, planning and executing. 
+- PLAN EXECUTION time - Time executing the plan. 
 - PLANNING time - Time it takes the query planner to create the optimal plan to execute the query.
 
 ## Configure mgconsole
