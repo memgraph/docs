@@ -12,11 +12,11 @@ You can import data in the following formats:
 - [**Python graphs - NetworkX, PyG or DGL graph**](#python-graphs---networkx-pyg-or-dgl-graph)
 - [**Kafka, RedPanda or Pulsar data stream**](#kafka-redpanda-or-pulsar-data-stream)
 
-Besides that, you can create the data directly from code using the [**object graph mapper**](/gqlalchemy/how-to-guides/ogm) or [**query builder**](/gqlalchemy/how-to-guides/query-builder).
+Besides that, you can create data directly from code using the [**object graph mapper**](/gqlalchemy/how-to-guides/ogm) or [**query builder**](/gqlalchemy/how-to-guides/query-builder).
 
 
 :::tip
-Fastest way to import data into Memgraph is using the [LOAD CSV clause](/memgraph/import-data/load-csv-clause). Don't forget to [set up indexes](/memgraph/next/how-to-guides/indexes) first with the `CREATE INDEX` clause! You can set them up by [executing the Cypher query](/memgraph/connect-to-memgraph/drivers/python) or with [object graph mapper](/gqlalchemy/how-to-guides/ogm#create-indexes).
+The fastest way to import data into Memgraph is by using the [LOAD CSV clause](/memgraph/import-data/load-csv-clause). It's recommended to first [create indexes](/memgraph/next/how-to-guides/indexes) using the `CREATE INDEX` clause. You can create them by [executing the Cypher query](/memgraph/connect-to-memgraph/drivers/python) or using [object graph mapper](/gqlalchemy/how-to-guides/ogm#create-indexes).
 :::
 
 ## CSV
@@ -25,7 +25,7 @@ To import CSV file into Memgraph via GQLAlchemy, you can use the [`LOAD CSV` cla
 
 ## JSON
 
-To import JSON file into Memgraph via GQLAlchemy, you can call procedures from the [`json_util` module](/mage/query-modules/python/json-util) from MAGE. If the JSON data is in particular format, you can call the [`import_util.json()` procedure](/mage/query-modules/python/import-util#jsonpath) from MAGE. The procedures can be called by [executing Cypher queries](/memgraph/connect-to-memgraph/drivers/python) or [using the query builder](/gqlalchemy/how-to-guides/query-builder#call-procedures).
+To import JSON files into Memgraph via GQLAlchemy, you can call procedures from the [`json_util` module](/mage/query-modules/python/json-util) available in MAGE library. If the JSON data is formatted in a particular style, you can call the [`import_util.json()` procedure](/mage/query-modules/python/import-util#jsonpath) from MAGE. The procedures can be called by [executing Cypher queries](/memgraph/connect-to-memgraph/drivers/python) or [using the query builder](/gqlalchemy/how-to-guides/query-builder#call-procedures).
 
 
 ## Parquet, ORC or IPC/Feather/Arrow 
@@ -43,7 +43,7 @@ To import NetworkX, PyG or DGL graph into Memgraph via GQLAlchemy, [transform th
 
 ## Kafka, RedPanda or Pulsar data stream
 
-To consume Kafka, RedPanda or Pulsar data stream, you can write [appropriate Cypher queries](/memgraph/import-data/data-streams/manage-streams) and [execute](/memgraph/connect-to-memgraph/drivers/python) them, or use GQLAlchemy stream manager for [Kafka/RedPanda](/gqlalchemy/how-to-guides/streams/manage-kafka-streams) or [Pulsar](/gqlalchemy/how-to-guides/streams/manage-pulsar-streams) streams.
+To consume Kafka, RedPanda or Pulsar data stream, you can write a[appropriate Cypher queries](/memgraph/import-data/data-streams/manage-streams) and [execute](/memgraph/connect-to-memgraph/drivers/python) them, or use GQLAlchemy stream manager for [Kafka, RedPanda](/gqlalchemy/how-to-guides/streams/manage-kafka-streams) or [Pulsar](/gqlalchemy/how-to-guides/streams/manage-pulsar-streams) streams.
 
 
 ## Learn more

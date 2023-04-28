@@ -24,7 +24,7 @@ GQLAlchemy can't be installed with Python 3.11 [(#203)](https://github.com/memgr
 
 ### 2. Connect to Memgraph
 
-Check the [Python quick start guide](/memgraph/connect-to-memgraph/drivers/python) on Memgraph documentation to learn how to connect to Memgraph using GQLAlchemy.
+Check the [Python quick start guide](/memgraph/connect-to-memgraph/drivers/python) to learn how to connect to Memgraph using GQLAlchemy.
 
 ### 3. Learn how to use GQLAlchemy
 
