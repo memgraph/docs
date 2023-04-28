@@ -64,7 +64,7 @@ the platform. You can find a list of all the supported drivers
 ## Parquet, ORC or IPC/Feather/Arrow file
 
 If you are a Python user you can import Parquet, ORC or IPC/Feather/Arrow file
-into Memgraph [using GQLAlchemy](/how-to-guides/table-to-graph-importer).
+into Memgraph [using GQLAlchemy](/gqlalchemy/how-to-guides/table-to-graph-importer).
 
 ## NetworkX, PyG or DGL graph
 
