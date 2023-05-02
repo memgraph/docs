@@ -7,7 +7,7 @@ slug: /import-data
 
 If you can choose the format of the data you want to import, the fastest way to
 import data into Memgraph at the moment is by using the [LOAD CSV
-clause](/import-data/load-csv-clause). 
+clause](/import-data/files/load-csv-clause.md). 
 
 What data do you want to import?
 <!-- no toc -->
