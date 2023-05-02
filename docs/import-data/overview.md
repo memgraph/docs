@@ -33,11 +33,11 @@ Lab or mgconsole](/import-data/files/cypherl.md).
 
 ## JSON files
 
-You can import the JSON file into Memgraph by using the [**`json-util` query
+You can import the **JSON** file into Memgraph by using the [**`json-util` query
 module**](/import-data/files/load-json.md), which has procedures for loading JSON
-file from a local file  from a remote address.
+file from a local file and from a remote address.
 
-You can also use [`import_util.json` procedure](/import-data/files/load-json.md)
+You can also use [**`import_util.json` procedure**](/import-data/files/load-json.md)
 but the JSON file then needs to in a specific format defined by the procedure. 
 
 <!--Need to add anchors on the load-json page and link from here-->
@@ -57,19 +57,17 @@ You can migrate data from a [**MySQL**](/import-data/migrate/mysql.md) or
 
 ## Data from an application or a program
 
-Memgraph offers a wide range of drivers that can be used to connect directly to
-the platform. You can find a list of all the supported drivers
-[here](/connect-to-memgraph/drivers/overview.md).
+Memgraph offers a [**wide range of clients**](/connect-to-memgraph/drivers/overview.md) that can be used to connect directly to the platform and import data.
 
 ## Parquet, ORC or IPC/Feather/Arrow file
 
-If you are a Python user you can import Parquet, ORC or IPC/Feather/Arrow file
-into Memgraph [using GQLAlchemy](/gqlalchemy/how-to-guides/table-to-graph-importer).
+If you are a Python user you can import **Parquet**, **ORC** or **IPC/Feather/Arrow** file
+into Memgraph [using **GQLAlchemy**](/gqlalchemy/how-to-guides/table-to-graph-importer).
 
 ## NetworkX, PyG or DGL graph
 
-If you are a Python user you can import NetworkX, PyG or DGL graph into Memgraph
-[using GQLAlchemy](/gqlalchemy/how-to-guides/networkx).
+If you are a Python user you can import **NetworkX**, **PyG** or **DGL graph** into Memgraph
+[using **GQLAlchemy**](/gqlalchemy/how-to-guides/networkx).
 
 ## Where to next?
 
