@@ -71,3 +71,20 @@ any of the graph algorithms. Learn how to use on-disk storage in the following
 guide:
 
 - [**On-disk storage**](/how-to-guides/on-disk-storage/on-disk-storage.md)
+
+## Graph projections
+
+As subgraphs are mainly used with Memgraph's query modules (graph algorithms),
+QueryBuilder's `call()` method enables specifying the subgraph to use with a
+certain algorithm.
+
+- [**Create a graph projection**](/gqlalchemy/how-to-guides/query-builder/graph-projection)
+
+## Transform Python graphs into Memgraph graphs
+
+GQLAlchemy holds transformations that can transform NetworkX, PyG and DGL graphs
+into Memgraph graphs. These transformations take the source graph object and
+translate it to the appropriate Cypher queries. The Cypher queries are then
+executed to create a graph inside Memgraph.
+
+- [**Import NetworkX graph into Memgraph**](/gqlalchemy/how-to-guides/networkx)
