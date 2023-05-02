@@ -5,6 +5,10 @@ sidebar_label: Import data overview
 slug: /import-data
 ---
 
+If you can choose the format of the data you want to import, the fastest way to
+import data into Memgraph at the moment is by using the [LOAD CSV
+clause](/import-data/load-csv-clause). 
+
 What data do you want to import?
 <!-- no toc -->
 - [CSV files](#csv-files)
