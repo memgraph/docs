@@ -8,8 +8,8 @@ sidebar_label: Changelog
 
 ### New features and improvements
 
-- Data recovery is now up to 6x faster depending on the number of cores, as
-  [snapshot loading is now distributed among several
+- Data recovery is now up to 6x faster depending on the number of available cores, as
+  [snapshot loading is distributed among several
   threads](/memgraph/reference-guide/backup#snapshots).
   [#868](https://github.com/memgraph/memgraph/pull/868)
 
