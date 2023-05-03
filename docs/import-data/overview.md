@@ -20,7 +20,7 @@ What data do you want to import?
 :::tip
 
 If you can choose the format of the data you want to import, the fastest way to
-import data into Memgraph is by using the [LOAD CSV
+import data into Memgraph is from a CSV file using the [LOAD CSV
 clause](/import-data/files/load-csv-clause.md). 
 
 :::
