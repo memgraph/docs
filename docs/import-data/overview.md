@@ -8,8 +8,8 @@ slug: /import-data
 What data do you want to import?
 <!-- no toc -->
 - [CSV files](#csv-files)
-- [CYPHERL files](#cypherl-files)
 - [JSON files](#json-files)
+- [CYPHERL files](#cypherl-files)
 - [Data from a stream](#data-from-a-stream)
 - [Table data](#table-data)
 - [Data from an application or a program](#data-from-an-application-or-a-program)
@@ -20,7 +20,7 @@ What data do you want to import?
 :::tip
 
 If you can choose the format of the data you want to import, the fastest way to
-import data into Memgraph at the moment is by using the [LOAD CSV
+import data into Memgraph is by using the [LOAD CSV
 clause](/import-data/files/load-csv-clause.md). 
 
 :::
@@ -31,22 +31,22 @@ To import data from CSV files into Memgraph, use the [**LOAD CSV
 clause**](/import-data/files/load-csv-clause.md), which is used as a standard
 Cypher clause, and can be invoked straight from a running Memgraph instance.
 
+## JSON files
+
+You can [import a **JSON** file into Memgraph](/import-data/files/load-json.md) by
+using the [**`json_util` query module**](/import-data/files/load-json.md), which
+has procedures for loading JSON file from a local file and from a remote
+address.
+
+You can also use the [**`import_util.json`
+procedure**](/import-data/files/load-json.md) to import data from a local JSON
+file, but the file needs to in a specific format defined by the procedure. 
+
 ## CYPHERL files
 
 If your data is in the form of Cypher queries (`CREATE` and `MERGE` clauses)
 within a **CYPHERL** file it can be [imported via Memgraph
 Lab or mgconsole](/import-data/files/cypherl.md).
-
-## JSON files
-
-You can import the **JSON** file into Memgraph by using the [**`json-util` query
-module**](/import-data/files/load-json.md), which has procedures for loading JSON
-file from a local file and from a remote address.
-
-You can also use [**`import_util.json` procedure**](/import-data/files/load-json.md)
-but the JSON file then needs to in a specific format defined by the procedure. 
-
-<!--Need to add anchors on the load-json page and link from here-->
 
 ## Data from a stream
 

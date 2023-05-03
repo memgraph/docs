@@ -11,34 +11,106 @@ The data you want to import to the database is often saved in JSON format, and
 you might want to import parts of that data as graph objects - nodes or
 relationships.
 
-Below, you can find two examples of how to use the load JSON methods depending
-on the data source:
+Data can be imported using query modules implemented in [the MAGE library](/mage):
+- [`json_util`](/mage/query-modules/python/json-util) query module
+- [`import_util`](/mage/query-modules/python/import-util) query module.
 
-- [Load JSON from a local file](#load-json-from-a-local-file) 
-- [Load JSON from a remote address](#load-json-from-a-remote-address)
+The difference is that `json_util.load_from_path()` has no requirements about
+the formatting of data inside the JSON file. 
 
-The above methods are procedures of query module implemented in MAGE (Memgraph Advanced
-Graph Extensions) and you can read more about them in the [MAGE
-documentation](/mage/query-modules/python/json-util).
+On the other hand,  `import_util.json()` procedure requires data to be formatted
+in a specific way. It is the same formatting the `export_util.json()` procedure
+generates when it's used to export data from Memgraph into a JSON file.  
 
-:::note
+<details>
+  <summary>JSON file data format required by the <code>import_util.json()</code> procedure</summary>
 
-To be able to call JSON load procedures, you need to install MAGE and load query
-modules. To learn how to do that, check out the [Run a query
-module](/mage/how-to-guides/run-a-query-module) how-to guide.
+  ```json
+    [
+    {
+        "id": 6114,
+        "labels": [
+            "Person"
+        ],
+        "properties": {
+            "name": "Anna"
+        },
+        "type": "node"
+    },
+    {
+        "id": 6115,
+        "labels": [
+            "Person"
+        ],
+        "properties": {
+            "name": "John"
+        },
+        "type": "node"
+    },
+    {
+        "id": 6116,
+        "labels": [
+            "Person"
+        ],
+        "properties": {
+            "name": "Kim"
+        },
+        "type": "node"
+    },
+    {
+        "end": 6115,
+        "id": 21120,
+        "label": "IS_FRIENDS_WITH",
+        "properties": {},
+        "start": 6114,
+        "type": "relationship"
+    },
+    {
+        "end": 6116,
+        "id": 21121,
+        "label": "IS_FRIENDS_WITH",
+        "properties": {},
+        "start": 6114,
+        "type": "relationship"
+    },
+    {
+        "end": 6116,
+        "id": 21122,
+        "label": "IS_MARRIED_TO",
+        "properties": {},
+        "start": 6115,
+        "type": "relationship"
+    }
+]
+  ```
+</details>
 
-:::
+To be able to call the procedures, you need to [install MAGE and load query
+modules](/mage/how-to-guides/run-a-query-module). 
 
 ## Examples
 
-The following examples will show how to load data from a local JSON file or a
-remote address.
+Below, you can find two examples of how to load data from a JSON file depending
+on the file location:
+<!-- no toc -->
+- [Load JSON from a local file](#load-json-from-a-local-file) 
+- [Load JSON from a remote address](#load-json-from-a-remote-address)
 
 ### Load JSON from a local file
 
-To import data from a local JSON file, use `load_from_path(path)` procedure that
-takes one string argument (`path`) and returns a list of JSON objects from the
-file located at the provided path.
+To import data from a local JSON file, you can use the
+[`json_util.load_from_path()`](/mage/query-modules/python/json-util) procedure
+or [`import_util.json()`](/mage/query-modules/python/import-util) procedure. 
+
+The difference is that `json_util.load_from_path()` has no requirements about
+the formatting of data inside the JSON file while the `import_util.json()`
+procedure does. It is the same formatting the `export_util.json()` procedure
+generates when it's used to export data from Memgraph into a JSON file.  
+
+#### `json_util.load_from_path()` procedure
+
+The `json_util.load_from_path()` procedure takes one string argument (`path`)
+and returns a list of JSON objects from the file located at the provided path.
 
 Let's import data from a file `data.json` with the following content:
 
@@ -71,6 +143,11 @@ CREATE (:Person {first_name: o.first_name, last_name: o.last_name, pets: o.pets}
     <img src={require('../../data/import-data/load_json_from_path.png').default}/>
   </div>
 </details>
+
+####  `import_util.json()` procedure
+
+To find out how to import data with the `import_util.json()` procedure [check
+out the MAGE documentation](/mage/query-modules/python/import-util). 
 
 ### Load JSON from a remote address
 
