@@ -75,6 +75,10 @@ If you are a Python user you can import **NetworkX**, **PyG** or **DGL graph** i
 You can also connect to streams and import data from CYPHERL files to an
 instance running in [Memgraph Cloud](/memgraph-cloud). 
 
+Memgraph uses two mechanisms to [ensure the durability of stored
+data](/reference-guide/backup.md) and make disaster recovery possible:
+write-ahead logging (WAL) and periodic snapshot creation. 
+
 To learn more about the Cypher language, check out our [Cypher
 manual](/cypher-manual) or [Memgraph
 Playground](https://playground.memgraph.com/) for interactive guides.
