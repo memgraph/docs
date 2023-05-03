@@ -5,10 +5,6 @@ sidebar_label: Import data overview
 slug: /import-data
 ---
 
-If you can choose the format of the data you want to import, the fastest way to
-import data into Memgraph at the moment is by using the [LOAD CSV
-clause](/import-data/files/load-csv-clause.md). 
-
 What data do you want to import?
 <!-- no toc -->
 - [CSV files](#csv-files)
@@ -19,6 +15,15 @@ What data do you want to import?
 - [Data from an application or a program](#data-from-an-application-or-a-program)
 - [Parquet, ORC or IPC/Feather/Arrow file](#parquet-orc-or-ipcfeatherarrow-file)
 - [NetworkX, PyG or DGL graph](#networkx-pyg-or-dgl-graph)
+
+
+:::tip
+
+If you can choose the format of the data you want to import, the fastest way to
+import data into Memgraph at the moment is by using the [LOAD CSV
+clause](/import-data/files/load-csv-clause.md). 
+
+:::
 
 ## CSV files
 
