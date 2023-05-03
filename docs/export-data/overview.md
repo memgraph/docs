@@ -22,13 +22,16 @@ MAGE - graph algorithms and modules library.
 
 Query results can be exported to a CSV, TSV and JSON file [using Memgraph Lab](/memgraph-lab/user-manual#data-results).
 
-
 To export query results from Memgraph Lab: 
 1. Run a query or select results you want to export.
 2. Click Export results and choose CSV.
 3. Save the file locally.
 
-
 Results can also be exported to a CSV file using the [`export_util.csv_query()`
 procedure](/mage/query-modules/python/export-util#csv_queryquery-file_path-stream)
 from MAGE - graph algorithms and modules library.
+
+## Where to next?
+
+Now that you exported data, [import](/import-data/overview.md) it back into a
+new Memgraph instance.
