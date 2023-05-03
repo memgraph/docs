@@ -70,9 +70,9 @@ If you want to enable ACID compliance, you can switch back to
 `IN_MEMORY_TRANSACTIONAL` and continue with regular work on the database or you
 can take advantage of the low memory costs of the analytical mode to run
 analytical queries that will not change the data, but be aware that no backup is
-created automatically (you can create manual snapshots), and there are no ACID
-guarantees besides manually created snapshots. There are no `WAL` files created
-nor periodic snapshots. Users **can** create a snapshot manually. 
+created automatically, and there are no ACID guarantees besides manually created
+snapshots. There are no `WAL` files created nor periodic snapshots. Users
+**can** create a snapshot manually. 
 
 ### Transactions
 
