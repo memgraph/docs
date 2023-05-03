@@ -5,10 +5,6 @@ sidebar_label: Import data overview
 slug: /import-data
 ---
 
-If you can choose the format of the data you want to import, the fastest way to
-import data into Memgraph at the moment is by using the [LOAD CSV
-clause](/import-data/files/load-csv-clause.md). 
-
 What data do you want to import?
 <!-- no toc -->
 - [CSV files](#csv-files)
@@ -19,6 +15,15 @@ What data do you want to import?
 - [Data from an application or a program](#data-from-an-application-or-a-program)
 - [Parquet, ORC or IPC/Feather/Arrow file](#parquet-orc-or-ipcfeatherarrow-file)
 - [NetworkX, PyG or DGL graph](#networkx-pyg-or-dgl-graph)
+
+
+:::tip
+
+If you can choose the format of the data you want to import, the fastest way to
+import data into Memgraph at the moment is by using the [LOAD CSV
+clause](/import-data/files/load-csv-clause.md). 
+
+:::
 
 ## CSV files
 
@@ -74,6 +79,10 @@ If you are a Python user you can import **NetworkX**, **PyG** or **DGL graph** i
 
 You can also connect to streams and import data from CYPHERL files to an
 instance running in [Memgraph Cloud](/memgraph-cloud). 
+
+Memgraph uses two mechanisms to [ensure the durability of stored
+data](/reference-guide/backup.md) and make disaster recovery possible:
+write-ahead logging (WAL) and periodic snapshot creation. 
 
 To learn more about the Cypher language, check out our [Cypher
 manual](/cypher-manual) or [Memgraph
