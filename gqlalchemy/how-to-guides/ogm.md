@@ -341,6 +341,21 @@ The indexes will be set on class definition, before instantiation. This ensures 
 print(db.get_indexes())
 ```
 
+The other way to create indexes is by creating an instance of `MemgraphIndex` class. For example, to create label index `NodeOne` and label-property index `NodeOne(name)`, run the following code:
+
+```python
+from gqlalchemy import Memgraph
+from gqlalchemy.models import MemgraphIndex
+
+db = Memgraph()
+
+index1 = MemgraphIndex("NodeOne")
+index2 = MemgraphIndex("NodeOne", "name")
+
+db.create_index(index1)
+db.create_index(index2)
+```
+
 To learn more about indexes, head over to the [indexing reference guide](/memgraph/reference-guide/indexing).
 
 ## Create constraints 

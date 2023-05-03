@@ -2,6 +2,7 @@ module.exports = {
   gqlalchemy: [
     "getting-started",
     "installation",
+    "import-data",
     {
       type: "category",
       label: "How-to guides",
