@@ -16,17 +16,16 @@ Data can be imported using query modules implemented in [the MAGE library](/mage
 - [`import_util`](/mage/query-modules/python/import-util) query module.
 
 The difference is that `json_util.load_from_path()` has no requirements about
-the formatting of data inside the JSON file. 
+the formatting of data inside the JSON file
 
-On the other hand,  `import_util.json()` procedure requires data to be formatted
+, while the `import_util.json()` procedure requires data to be formatted
 in a specific way. It is the same formatting the `export_util.json()` procedure
 generates when it's used to export data from Memgraph into a JSON file.  
-
 <details>
   <summary>JSON file data format required by the <code>import_util.json()</code> procedure</summary>
 
   ```json
-    [
+[
     {
         "id": 6114,
         "labels": [
