@@ -36,25 +36,24 @@ If you are running multiple instances, each on its own machine, run Memgraph as
 you usually would.
 
 If you are exploring replication and running multiple instances on one machine,
-please install Memgraph with Docker, and run the following `docker run`
-commands:
+please run Memgraph Platform with Docker:
 
 The MAIN instance:
 
 ```
-docker run -it -p 7687:7687 -p 3000:3000 -p 7444:7444 -v mg_lib:/var/lib/memgraph memgraph/memgraph-platform
+docker run -it -p 3000:3000 memgraph/memgraph-platform
 ```
 
 REPLICA instance 1:
 
 ```
-docker run -it -p 7688:7687 -p 3001:3000 -p 7445:7444 -v mg_lib2:/var/lib/memgraph memgraph/memgraph-platform
+docker run -it -p 3001:3000 memgraph/memgraph-platform
 ```
 
 REPLICA instance 2:
 
 ```
-docker run -it -p 7689:7687 -p 3002:3000 -p 7446:7444 -v mg_lib3:/var/lib/memgraph memgraph/memgraph-platform
+docker run -it -p 3002:3000 memgraph/memgraph-platform
 ```
 
 You can connect to each instance with the [Memgraph Lab](/memgraph-lab)
@@ -63,6 +62,8 @@ in-browser application at:
 - the MAIN instance - `localhost:3000`
 - REPLICA instance 1 - `localhost:3001`
 - REPLICA instance 2 - `localhost:3002`
+
+If you need to define additional ports or volumes, check [Docker run options for Memgraph images](/memgraph/how-to-guides/work-with-docker). 
 
 ## How to demote an instance to a REPLICA role?
 

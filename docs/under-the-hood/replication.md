@@ -18,11 +18,11 @@ In distributed systems theory the CAP theorem, also named Brewer's theorem,
 states that any distributed system can simultaneously guarantee two out of the
 three properties:
 
-1. **Consistency** - every node has the same view of data at a given point in
+1. **Consistency** (C) - every node has the same view of data at a given point in
    time
-2. **Availability** - all clients can find a replica of the data, even in the
+2. **Availability** (A) - all clients can find a replica of the data, even in the
    case of a partial node failure
-3. **Partition tolerance** - the system continues to work as expected despite a
+3. **Partition tolerance** (P) - the system continues to work as expected despite a
    partial network failure
 
 <img src={require('../data/replication/memgraph-replication-CAP-theorem.png').default} className={"imgBorder"}/>
@@ -45,11 +45,14 @@ accepts read and write queries to the database and REPLICA instances accept only
 read queries.
 
 The changes or state of the MAIN instance are replicated to the REPLICA
-instances in a SYNC or ASYNC mode.
+instances in a SYNC or ASYNC mode. The SYNC mode ensures consistency and
+partition tolerance (CP), but not availability for writes. The ASYNC mode
+ensures system availability and partition tolerance (AP), while data can only be
+eventually consistent. 
 
 By using the timestamp, the MAIN instance knows the current state of the
 REPLICA. If the REPLICA is not synchronized with the MAIN instance, the MAIN
-instance sends the correct data for synchronization as WAL files.
+instance sends the correct data for synchronization as WAL files. 
 
 If the REPLICA is so far behind the MAIN instance that the synchronization using
 WAL files is impossible, Memgraph will use snapshots.
@@ -201,7 +204,7 @@ At first, we used the current timestamp without increasing its value for global
 operations, like creating an index or creating a constraint. By using a single
 timestamp, it was impossible to know which operations the REPLICA had applied
 because sequential global operations had the same timestamp. To avoid this
-issue, a unique timestamp is assigned to each global operation
+issue, a unique timestamp is assigned to each global operation.
 
 As replicas allow read queries, each of those queries was assigned with its own
 timestamp. Those timestamps caused issues when the replicated write transactions
