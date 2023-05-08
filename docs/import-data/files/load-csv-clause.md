@@ -24,6 +24,8 @@ If the data is importing slower than expected, you can [speed it
 up](#increase-import-speed) by creating indexes or switching the storage mode to
 analytical.
 
+If the import speed is still unsatisfactory, don't hesitate to contact us on [Discord](https://discord.com/invite/memgraph).
+
 :::
 
 ## Clause syntax
