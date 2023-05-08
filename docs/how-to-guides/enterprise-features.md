@@ -6,7 +6,7 @@ sidebar_label: Enterprise features
 
 :::warning
 These are Enterprise features.
-If the Memgraph Enterprise is not activated, all the created users will be granted
+If Memgraph Enterprise is not activated, all the created users will be granted
 all of the privileges.
 Regardless, all of the previously defined privileges will still be applied.
 :::
