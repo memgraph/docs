@@ -33,14 +33,13 @@ Cypher clause, and can be invoked straight from a running Memgraph instance.
 
 ## JSON files
 
-You can [import a **JSON** file into Memgraph](/import-data/files/load-json.md) by
-using the [**`json_util` query module**](/import-data/files/load-json.md), which
-has procedures for loading JSON file from a local file and from a remote
-address.
+You can [import a **JSON** file into Memgraph](/import-data/files/load-json.md)
+by using the **`json_util` query module**, which has procedures for loading JSON
+file from a local file and from a remote address.
 
-You can also use the [**`import_util.json`
-procedure**](/import-data/files/load-json.md) to import data from a local JSON
-file, but the file needs to in a specific format defined by the procedure. 
+You can also use the **`import_util.json` procedure** to import data from a
+local JSON file, but the file needs to in a specific format defined by the
+procedure. 
 
 ## CYPHERL files
 
@@ -55,10 +54,10 @@ Memgraph comes with full streaming support, and you can connect directly to a
 queries](/import-data/data-streams/manage-streams.md) or [Memgraph
 Lab](/import-data/data-streams/manage-streams-lab.md).
 
-## Table data
+## MySQL or PostgreSQL table data
 
 You can migrate data from a [**MySQL**](/import-data/migrate/mysql.md) or
-[**PostgresSQL**](/import-data/migrate/postgresql.md) database using the
+[**PostgreSQL**](/import-data/migrate/postgresql.md) database using the
 [**`mgmigrate`** tool](https://github.com/memgraph/mgmigrate).
 
 ## Data from an application or a program

@@ -153,7 +153,16 @@ mode**](/reference-guide/storage-modes.md). In the analytical mode there are no
 ACID guarantees besides manually created snapshots but it does **increase the
 import speed up to 6 times with 6 times less memory consumption**. After import
 you can switch the storage mode back to transactional and enable ACID
-guarantees. 
+guarantees.
+
+You can switch between modes within the session using the following query:
+
+```cypher
+STORAGE MODE IN_MEMORY_{TRANSACTIONAL|ANALYTICAL};
+```
+
+When in the analytical storage mode, **don't** import data using multiple
+threads. 
 
 ## Examples
 
