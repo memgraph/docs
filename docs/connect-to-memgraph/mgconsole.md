@@ -38,9 +38,8 @@ instance, use the following steps:
   ]}>
   <TabItem value="docker">
 
-If you installed MemgraphDB using Docker, you can run the client from your
-Docker image or closed the terminal with the running mgconsole from Memgraph
-Platform image, run the client from your Docker image. 
+If you installed MemgraphDB using Docker or closed the terminal with the running mgconsole from Memgraph
+Platform image, run the mgconsole client from your Docker image using the following commands:
 
 1. First, you need to find the `CONTAINER_ID` by running:
 
