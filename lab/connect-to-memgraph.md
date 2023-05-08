@@ -17,8 +17,6 @@ Before you proceed with the guide, make sure that you have either:
   Lab**](/memgraph-lab/installation) and now have a running database instance
   and the Memgraph Lab desktop application
 
-<CompatibilityWarning/>
-
 ## Connecting to Memgraph
 
 Make sure that Memgraph is running and open Memgraph Lab. If you are starting

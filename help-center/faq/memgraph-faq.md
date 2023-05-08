@@ -199,7 +199,9 @@ for more information.
 
 Currently, the fastest way to import data is from a CSV file with a [LOAD CSV
 clause](/memgraph/import-data/load-csv-clause). LOAD CSV clause imports between
-100K and 350K nodes per second and between 60K and 80K edges per second.
+100K and 350K nodes per second and between 60K and 80K edges per second. To
+achieve this import speed, indexes have to be [set up
+appropriately](/memgraph/how-to-guides/indexes).
 
 [Other import methods](/memgraph/import-data) include importing data from JSON
 and CYPHERL files, migrating from SQL and Neo4j with mgmigrate tool, or

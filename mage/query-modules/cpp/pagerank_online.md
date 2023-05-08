@@ -105,7 +105,7 @@ Bahman Bahmani et al.
 #### Usage:
 
 ```cypher
-CALL pagerank.set(100, 0.2)
+CALL pagerank_online.set(100, 0.2)
 YIELD node, rank;
 ```
 
@@ -123,7 +123,7 @@ been called before adding changes to the graph.
 #### Usage:
 
 ```cypher
-CALL pagerank.get()
+CALL pagerank_online.get()
 YIELD node, rank;
 ```
 

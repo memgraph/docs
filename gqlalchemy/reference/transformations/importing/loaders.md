@@ -3,6 +3,10 @@ sidebar_label: loaders
 title: gqlalchemy.transformations.importing.loaders
 ---
 
+import OptionalDependenciesNote from '../../../templates/_optional_dependencies_note.mdx';
+
+<OptionalDependenciesNote/>
+
 ## ForeignKeyMapping Objects
 
 ```python
@@ -262,7 +266,8 @@ Implements loading of a data type from file system service to TableToGraphImport
 #### \_\_init\_\_
 
 ```python
-def __init__(file_extension: str, file_system_handler: FileSystemHandler) -> None
+def __init__(file_extension: str,
+             file_system_handler: FileSystemHandler) -> None
 ```
 
 **Arguments**:
@@ -313,7 +318,8 @@ compatible with fsspec-compatible filesystems.
 #### \_\_init\_\_
 
 ```python
-def __init__(file_extension_enum: PyArrowFileTypeEnum, file_system_handler: FileSystemHandler) -> None
+def __init__(file_extension_enum: PyArrowFileTypeEnum,
+             file_system_handler: FileSystemHandler) -> None
 ```
 
 **Arguments**:
@@ -324,7 +330,9 @@ def __init__(file_extension_enum: PyArrowFileTypeEnum, file_system_handler: File
 #### load\_data
 
 ```python
-def load_data(collection_name: str, is_cross_table: bool = False, columns: Optional[List[str]] = None) -> None
+def load_data(collection_name: str,
+              is_cross_table: bool = False,
+              columns: Optional[List[str]] = None) -> None
 ```
 
 Generator for loading data.
@@ -338,7 +346,7 @@ Generator for loading data.
 ## TableToGraphImporter Objects
 
 ```python
-class TableToGraphImporter()
+class TableToGraphImporter(Importer)
 ```
 
 Implements translation of table data to graph data, and imports it to Memgraph.
@@ -346,7 +354,9 @@ Implements translation of table data to graph data, and imports it to Memgraph.
 #### \_\_init\_\_
 
 ```python
-def __init__(data_loader: DataLoader, data_configuration: Dict[str, Any], memgraph: Optional[Memgraph] = None) -> None
+def __init__(data_loader: DataLoader,
+             data_configuration: Dict[str, Any],
+             memgraph: Optional[Memgraph] = None) -> None
 ```
 
 **Arguments**:
@@ -378,7 +388,10 @@ TableToGraphImporter wrapper for use with PyArrow for reading data.
 #### \_\_init\_\_
 
 ```python
-def __init__(file_system_handler: str, file_extension_enum: PyArrowFileTypeEnum, data_configuration: Dict[str, Any], memgraph: Optional[Memgraph] = None) -> None
+def __init__(file_system_handler: str,
+             file_extension_enum: PyArrowFileTypeEnum,
+             data_configuration: Dict[str, Any],
+             memgraph: Optional[Memgraph] = None) -> None
 ```
 
 **Arguments**:
@@ -404,7 +417,11 @@ PyArrowImporter wrapper for use with the Amazon S3 File System.
 #### \_\_init\_\_
 
 ```python
-def __init__(bucket_name: str, file_extension_enum: PyArrowFileTypeEnum, data_configuration: Dict[str, Any], memgraph: Optional[Memgraph] = None, **kwargs, ,) -> None
+def __init__(bucket_name: str,
+             file_extension_enum: PyArrowFileTypeEnum,
+             data_configuration: Dict[str, Any],
+             memgraph: Optional[Memgraph] = None,
+             **kwargs) -> None
 ```
 
 **Arguments**:
@@ -426,7 +443,11 @@ PyArrowImporter wrapper for use with the Azure Blob File System.
 #### \_\_init\_\_
 
 ```python
-def __init__(container_name: str, file_extension_enum: PyArrowFileTypeEnum, data_configuration: Dict[str, Any], memgraph: Optional[Memgraph] = None, **kwargs, ,) -> None
+def __init__(container_name: str,
+             file_extension_enum: PyArrowFileTypeEnum,
+             data_configuration: Dict[str, Any],
+             memgraph: Optional[Memgraph] = None,
+             **kwargs) -> None
 ```
 
 **Arguments**:
@@ -448,7 +469,10 @@ PyArrowImporter wrapper for use with the Local File System.
 #### \_\_init\_\_
 
 ```python
-def __init__(path: str, file_extension_enum: PyArrowFileTypeEnum, data_configuration: Dict[str, Any], memgraph: Optional[Memgraph] = None) -> None
+def __init__(path: str,
+             file_extension_enum: PyArrowFileTypeEnum,
+             data_configuration: Dict[str, Any],
+             memgraph: Optional[Memgraph] = None) -> None
 ```
 
 **Arguments**:
@@ -469,7 +493,10 @@ PyArrowS3Importer wrapper for use with the S3 file system and the parquet file t
 #### \_\_init\_\_
 
 ```python
-def __init__(bucket_name: str, data_configuration: Dict[str, Any], memgraph: Optional[Memgraph] = None, **kwargs) -> None
+def __init__(bucket_name: str,
+             data_configuration: Dict[str, Any],
+             memgraph: Optional[Memgraph] = None,
+             **kwargs) -> None
 ```
 
 **Arguments**:
@@ -490,7 +517,10 @@ PyArrowS3Importer wrapper for use with the S3 file system and the CSV file type.
 #### \_\_init\_\_
 
 ```python
-def __init__(bucket_name: str, data_configuration: Dict[str, Any], memgraph: Optional[Memgraph] = None, **kwargs) -> None
+def __init__(bucket_name: str,
+             data_configuration: Dict[str, Any],
+             memgraph: Optional[Memgraph] = None,
+             **kwargs) -> None
 ```
 
 **Arguments**:
@@ -511,7 +541,10 @@ PyArrowS3Importer wrapper for use with the S3 file system and the ORC file type.
 #### \_\_init\_\_
 
 ```python
-def __init__(bucket_name: str, data_configuration: Dict[str, Any], memgraph: Optional[Memgraph] = None, **kwargs) -> None
+def __init__(bucket_name: str,
+             data_configuration: Dict[str, Any],
+             memgraph: Optional[Memgraph] = None,
+             **kwargs) -> None
 ```
 
 **Arguments**:
@@ -532,7 +565,10 @@ PyArrowS3Importer wrapper for use with the S3 file system and the feather file t
 #### \_\_init\_\_
 
 ```python
-def __init__(bucket_name: str, data_configuration: Dict[str, Any], memgraph: Optional[Memgraph] = None, **kwargs) -> None
+def __init__(bucket_name: str,
+             data_configuration: Dict[str, Any],
+             memgraph: Optional[Memgraph] = None,
+             **kwargs) -> None
 ```
 
 **Arguments**:
@@ -553,7 +589,10 @@ PyArrowAzureBlobImporter wrapper for use with the Azure Blob file system and the
 #### \_\_init\_\_
 
 ```python
-def __init__(container_name: str, data_configuration: Dict[str, Any], memgraph: Optional[Memgraph] = None, **kwargs) -> None
+def __init__(container_name: str,
+             data_configuration: Dict[str, Any],
+             memgraph: Optional[Memgraph] = None,
+             **kwargs) -> None
 ```
 
 **Arguments**:
@@ -574,7 +613,10 @@ PyArrowAzureBlobImporter wrapper for use with the Azure Blob file system and the
 #### \_\_init\_\_
 
 ```python
-def __init__(container_name: str, data_configuration: Dict[str, Any], memgraph: Optional[Memgraph] = None, **kwargs) -> None
+def __init__(container_name: str,
+             data_configuration: Dict[str, Any],
+             memgraph: Optional[Memgraph] = None,
+             **kwargs) -> None
 ```
 
 **Arguments**:
@@ -595,7 +637,10 @@ PyArrowAzureBlobImporter wrapper for use with the Azure Blob file system and the
 #### \_\_init\_\_
 
 ```python
-def __init__(container_name, data_configuration: Dict[str, Any], memgraph: Optional[Memgraph] = None, **kwargs) -> None
+def __init__(container_name,
+             data_configuration: Dict[str, Any],
+             memgraph: Optional[Memgraph] = None,
+             **kwargs) -> None
 ```
 
 **Arguments**:
@@ -616,7 +661,10 @@ PyArrowAzureBlobImporter wrapper for use with the Azure Blob file system and the
 #### \_\_init\_\_
 
 ```python
-def __init__(container_name, data_configuration: Dict[str, Any], memgraph: Optional[Memgraph] = None, **kwargs) -> None
+def __init__(container_name,
+             data_configuration: Dict[str, Any],
+             memgraph: Optional[Memgraph] = None,
+             **kwargs) -> None
 ```
 
 **Arguments**:
@@ -637,7 +685,9 @@ PyArrowLocalFileSystemImporter wrapper for use with the local file system and th
 #### \_\_init\_\_
 
 ```python
-def __init__(path: str, data_configuration: Dict[str, Any], memgraph: Optional[Memgraph] = None) -> None
+def __init__(path: str,
+             data_configuration: Dict[str, Any],
+             memgraph: Optional[Memgraph] = None) -> None
 ```
 
 **Arguments**:
@@ -658,7 +708,9 @@ PyArrowLocalFileSystemImporter wrapper for use with the local file system and th
 #### \_\_init\_\_
 
 ```python
-def __init__(path: str, data_configuration: Dict[str, Any], memgraph: Optional[Memgraph] = None) -> None
+def __init__(path: str,
+             data_configuration: Dict[str, Any],
+             memgraph: Optional[Memgraph] = None) -> None
 ```
 
 **Arguments**:
@@ -679,7 +731,9 @@ PyArrowLocalFileSystemImporter wrapper for use with the local file system and th
 #### \_\_init\_\_
 
 ```python
-def __init__(path: str, data_configuration: Dict[str, Any], memgraph: Optional[Memgraph] = None) -> None
+def __init__(path: str,
+             data_configuration: Dict[str, Any],
+             memgraph: Optional[Memgraph] = None) -> None
 ```
 
 **Arguments**:
@@ -700,7 +754,9 @@ PyArrowLocalFileSystemImporter wrapper for use with the local file system and th
 #### \_\_init\_\_
 
 ```python
-def __init__(path: str, data_configuration: Dict[str, Any], memgraph: Optional[Memgraph] = None) -> None
+def __init__(path: str,
+             data_configuration: Dict[str, Any],
+             memgraph: Optional[Memgraph] = None) -> None
 ```
 
 **Arguments**:
