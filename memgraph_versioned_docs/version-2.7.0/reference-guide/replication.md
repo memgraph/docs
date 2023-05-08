@@ -84,8 +84,8 @@ When running multiple instances, each on its own machine, run Memgraph as you
 usually would.
 
 If you are exploring replication and running multiple instances on one machine,
-you can run Memgraph with Docker. Please check [Docker run options for
-Memgraph images](/memgraph/how-to-guides/work-with-docker) to set up ports and volumes
+you can run Memgraph with Docker. Check [Docker run options for
+Memgraph images](/memgraph/how-to-guides/work-with-docker#run-a-memgraph-docker-image) to set up ports and volumes
 properly, if necessary.
 
 ## Assigning roles

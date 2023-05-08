@@ -35,8 +35,7 @@ replication modes, we will create:
 If you are running multiple instances, each on its own machine, run Memgraph as
 you usually would.
 
-If you are exploring replication and running multiple instances on one machine,
-please run Memgraph Platform with Docker:
+If you are exploring replication and running multiple instances on one machine, run Memgraph Platform with Docker:
 
 The MAIN instance:
 
@@ -63,7 +62,7 @@ in-browser application at:
 - REPLICA instance 1 - `localhost:3001`
 - REPLICA instance 2 - `localhost:3002`
 
-If you need to define additional ports or volumes, check [Docker run options for Memgraph images](/memgraph/how-to-guides/work-with-docker). 
+If you need to define additional ports or volumes, check [Docker run options for Memgraph images](/memgraph/how-to-guides/work-with-docker#run-a-memgraph-docker-image). 
 
 ## How to demote an instance to a REPLICA role?
 
