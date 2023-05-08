@@ -4,13 +4,9 @@ title: Enterprise features
 sidebar_label: Enterprise features
 ---
 
-:::warning
-These are Enterprise features.
-If Memgraph Enterprise is not activated, all the created users will be granted
-all of the privileges.
-Regardless, all of the previously defined privileges will still be applied.
-:::
-
+Some of Memgraph's features are only available in Enterprise Edition. Take a
+look how to use features related to authentication, authorization and user
+privileges.
 
 ## Manage authentication and authorization
 
@@ -20,8 +16,6 @@ Organizations typically use an LDAP server to hold and manage the permissions.
 Because LDAP servers are already set-up in most large organizations, it is
 convenient for the organization to allow all staff members to have access to the
 database using the already available centralized user management system.
-
-
 
 ## Manage user privileges
 
@@ -37,7 +31,6 @@ At Memgraph, we provide the administrators with the option of granting, denying
 or revoking a certain set of privileges to some users or groups of users (i.e.
 users that are assigned a specific user role), thereby eliminating such security
 concerns.
-
 
 ## Manage label-based access control
 
