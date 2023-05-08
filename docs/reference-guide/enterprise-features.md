@@ -5,7 +5,7 @@ sidebar_label: Enterprise features
 ---
 
 Memgraph Enterprise Edition has features that are available only to those that
-have active license key. This features are related to logging features, user
+have active license key. These features are related to logging features, user
 management and security.
 
 ## Enabling Memgraph Enterprise
