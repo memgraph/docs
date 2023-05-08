@@ -17,8 +17,8 @@ haven't written any queries yet, check our [Cypher manual](/cypher-manual).
 
 :::tip
 
-To speed up import time, after queries creating nodes, consider [creating
-  indexes](/how-to-guides/indexes.md) on appropriate nodes or node properties.
+To speed up import time consider [creating indexes](/how-to-guides/indexes.md)
+on appropriate nodes or node properties.
 
 :::
 
@@ -35,7 +35,34 @@ the CYPHERL file.
 
 ## Importing via mgconsole
 
-Once Memgraph is running, Cypher queries are imported by running
+<Tabs
+  groupId="importing"
+  defaultValue="docker-import"
+  values={[
+    {label: 'Docker 🐳', value: 'docker-import'},
+    {label: 'Linux', value: 'linux-import'}
+  ]}>
+<TabItem value='docker-import'>
+
+If you installed and started Memgraph using **Docker**, follow these steps:
+
+1. Open a new terminal and check the Docker container ID by running `docker ps`
+2. Then run the following command
+
+  ```
+  docker exec -i CONTAINER_ID mgconsole < queries.cypherl
+  ```
+
+For more information about `mgconsole` options run:
+
+```console
+docker exec -i CONTAINER_ID mgconsole --help
+```
+
+</TabItem>
+<TabItem value= 'linux-import'>
+
+Once Memgraph is running in **Linux**, Cypher queries are imported by running
 [mgconsole](/connect-to-memgraph/mgconsole.md) in a non-interactive mode and
 importing data saved in a CYPHERL file. 
 
@@ -46,17 +73,15 @@ shell command:
 mgconsole < queries.cypherl
 ```
 
-If you installed and started Memgraph using Docker, you will need to run the
-client using the following command:
+For more information about `mgconsole` options run:
 
-```plaintext
-docker run -i --entrypoint=mgconsole memgraph/memgraph-platform --host HOST < queries.cypherl
+```console
+mgconsole --help
 ```
+  </TabItem>
+</Tabs>
 
-Remember to replace `HOST` with [valid IP of the
-container](/memgraph/how-to-guides/work-with-docker#how-to-retrieve-a-docker-container-ip-address)
-and to define the correct Memgraph Docker image you are using as well as the
-correct path to the file. 
+## Examples
 
 Below, you can find two examples of how to import data within the `.cypherl` file
 based on the complexity of your data:
@@ -95,54 +120,28 @@ relationships between these nodes.
   ]}>
   <TabItem value="docker">
 
-If you installed Memgraph using Docker, run the client using the following
-command, but be careful of four things:
-<ol>
-  <li>Use the first command in Docker installed on Linux and macOS, but use the second command in Windows because PowerShell doesn't support the &lt; character.</li>
-  <p> </p>
-  <li>Check the image name you are using is correct:</li>
-  <ul>
-     <li>If you downloaded <b>Memgraph Platform</b>, leave the current image name <code>memgraph/memgraph-platform</code>.</li>
-     <li>If you downloaded <b>MemgraphDB</b>, replace the current image name with <code>memgraph/memgraph</code>.</li>
-     <li>If you downloaded <b>MAGE</b>, replace the current image name with <code>memgraph/memgraph-mage</code>.</li>
-   </ul>
-   <p> </p>
-   <li>Remember to replace <code>HOST</code> with a valid IP of the container (see the 
-   <a href="/memgraph/how-to-guides/work-with-docker#how-to-retrieve-a-docker-container-ip-address"> guide on working with Docker</a>).</li>
-   <p> </p>
- <li>Check that the paths of the files you want to import are correct.</li>
-</ol>
+If you installed Memgraph using Docker, open a new terminal, position yourself
+in the directory where the CYPHERL file is located and run the following
+commands: 
 
-**Linux** and **macOS**
-```console
-docker run -i --entrypoint=mgconsole memgraph/memgraph-platform --host HOST < queries.cypherl
-```
+1. Check the Docker container ID by running `docker ps`
+2. Run the following command
 
-**Windows PowerShell**:
-```console
-cmd.exe /c "docker run -i --entrypoint=mgconsole memgraph/memgraph-platform --host HOST < queries.cypherl"
-```
+  ```
+  docker exec -i CONTAINER_ID mgconsole < queries.cypherl
+  ```
 
-For more information about `mgconsole` options run:
+</TabItem>
+<TabItem value= 'linux'>
 
-```console
-docker run -i --entrypoint=mgconsole memgraph/memgraph-platform --help
-```
-
-  </TabItem>
-  <TabItem value= 'linux'>
+Running mgconsole in a non-interactive mode and importing data saved in a
+CYPHERL file:
 
 ```console
 mgconsole < queries.cypherl
 ```
 
-For more information about `mgconsole` options run:
-
-```console
-mgconsole --help
-```
-
-  </TabItem>
+</TabItem>
 </Tabs>
 
 <details>
@@ -193,58 +192,30 @@ nodes and relationships in one file.
     {label: 'Docker 🐳', value: 'docker'},
     {label: 'Linux', value: 'linux'}
   ]}>
-  <TabItem value="docker">
+<TabItem value="docker">
 
-If you installed Memgraph using Docker, run the client using the following
-command, but be careful of four things:
-<ol>
-  <li>Use the first command in Docker installed on Linux and macOS, but use the second command in Windows because PowerShell doesn't support the &lt; character.</li>
-  <p> </p>
-  <li>Check the image name you are using is correct:</li>
-  <ul>
-     <li>If you downloaded <b>Memgraph Platform</b>, leave the current image name <code>memgraph/memgraph-platform</code>.</li>
-     <li>If you downloaded <b>MemgraphDB</b>, replace the current image name with <code>memgraph/memgraph</code>.</li>
-     <li>If you downloaded <b>MAGE</b>, replace the current image name with <code>memgraph/memgraph-mage</code>.</li>
-   </ul>
-   <p> </p>
-   <li>Remember to replace <code>HOST</code> with a valid IP of the container (see the 
-   <a href="/memgraph/how-to-guides/work-with-docker#how-to-retrieve-a-docker-container-ip-address"> guide on working with Docker</a>).</li>
-   <p> </p>
- <li>Check that the paths of the files you want to import are correct.</li>
-</ol>
+If you installed Memgraph using Docker, open a new terminal, position yourself
+in the directory where the CYPHERL file is located and run the following
+commands: 
 
-**Linux** and **macOS**
+1. Check the Docker container ID by running `docker ps`
+2. Run the following command
 
-```console
-docker run -i --entrypoint=mgconsole memgraph/memgraph-platform --host HOST < queries.cypherl
-```
+  ```
+  docker exec -i CONTAINER_ID mgconsole < queries.cypherl
+  ```
 
-**Windows Powershell**
+</TabItem>
+<TabItem value= 'linux'>
 
-```console
-cmd.exe /c "docker run -i --entrypoint=mgconsole memgraph/memgraph-platform --host HOST < queries.cypherl"
-```
-
-For more information about `mgconsole` options run:
-
-```console
-docker run -i --entrypoint=mgconsole memgraph/memgraph-platform --help
-```
-
-  </TabItem>
-  <TabItem value= 'linux'>
+Running mgconsole in a non-interactive mode and importing data saved in a
+CYPHERL file:
 
 ```console
 mgconsole < queries.cypherl
 ```
 
-For more information about `mgconsole` options run:
-
-```console
-mgconsole --help
-```
-
-  </TabItem>
+</TabItem>
 </Tabs>
 
 <details>
