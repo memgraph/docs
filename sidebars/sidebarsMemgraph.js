@@ -173,6 +173,7 @@ module.exports = {
         {
           type: "category",
           label: "Enterprise features",
+          link: { type: "doc", id: "how-to-guides/enterprise-features" },
           items: [
             "how-to-guides/manage-users-using-ldap",
             "how-to-guides/manage-user-privileges",
@@ -260,6 +261,7 @@ module.exports = {
         {
           type: "category",
           label: "Enterprise features",
+          link: { type: "doc", id: "reference-guide/enterprise-features" },
           items: [
             "reference-guide/enabling-enterprise",
             "reference-guide/audit-log",
