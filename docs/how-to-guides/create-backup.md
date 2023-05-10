@@ -107,10 +107,10 @@ To restore data from a backup
 1. Stop the instance using `docker stop CONTAINER_ID`
 2. Start the instance by adding a `-v ~/snapshots:/var/lib/memgraph/snapshots`
   flag to the `docker run` command, where the `~/snapshots` represents a path
-  to the location of the backed-up directory, for example: 
+  to the location of the directory with the back-up snapshot, for example: 
 
   ```
-  docker run -p 7687:7687 -p 7444:7444 -v ~/snapshots:/var/lib/memgraph/snapshots memgraph/memgraph
+  docker run -p 7687:7687 -p 7444:7444 -v C:/Users/Vlasta/snapshots:/var/lib/memgraph/snapshots memgraph/memgraph
   ```
 4. If you want to copy both WAL and snapshot files start the instance by adding
   a `-v ~/snapshots:/var/lib/memgraph/snapshots -v ~/wal:/var/lib/memgraph/wal`
@@ -119,14 +119,14 @@ To restore data from a backup
   path to the location of the backed-up wal directory for example: 
 
   ```
-  docker run -p 7687:7687 -p 7444:7444 -v ~/snapshots:/var/lib/memgraph/snapshots -v ~/wal:/var/lib/memgraph/wal memgraph/memgraph
+  docker run -p 7687:7687 -p 7444:7444 -v C:/Users/Vlasta/snapshots:/var/lib/memgraph/snapshots -v C:/Users/Vlasta/wal:/var/lib/memgraph/wal memgraph/memgraph
   ```
 
 </TabItem>
 <TabItem value='linux'>
 
 1. Before running an instance, copy the backed up snapshot into the `snapshots`
-   directory, and optionally, copy the backed-up wal files into the `wal`
+   directory, and optionally, copy the backed-up WAL files into the `wal`
    directory.
 2. If you are restoring data only from the snapshot file, ensure that the file
    you want to use to restore the data is the only snapshot file in the

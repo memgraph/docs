@@ -96,7 +96,7 @@ To restore from back-up:
 
 1. Start an instance by adding a `-v ~/snapshots:/var/lib/memgraph/snapshots`
     flag to the `docker run` command, where the `~/snapshots` represents a path to
-    the local backed-up directory, for example: 
+    the local directory with the back-up snapshot, for example: 
 
     ```
     docker run -p 7687:7687 -p 7444:7444 -v ~/snapshots:/var/lib/memgraph/snapshots memgraph/memgraph
