@@ -87,4 +87,6 @@ into Memgraph graphs. These transformations take the source graph object and
 translate it to the appropriate Cypher queries. The Cypher queries are then
 executed to create a graph inside Memgraph.
 
-- [**Import NetworkX graph into Memgraph**](/gqlalchemy/how-to-guides/networkx)
+- [**Import NetworkX graph into Memgraph**](#import-networkx-graph-into-memgraph)
+- [**Import PyG graph into Memgraph**](#import-pyg-graph-into-memgraph)
+- [**Import DGL graph into Memgraph**](#import-dgl-graph-into-memgraph)

@@ -236,6 +236,10 @@ module.exports = {
               to: "/gqlalchemy/reference",
             },
             {
+              label: "Under the hood",
+              to: "/gqlalchemy/under-the-hood",
+            },
+            {
               label: "Changelog",
               to: "/gqlalchemy/changelog",
             },
