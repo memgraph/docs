@@ -142,17 +142,3 @@ DUMP DATABASE;
 ```
 If you are using Memgraph Lab, you can dump the database, that is, the queries
 to recreate it, to a CYPHERL file in the `Import & Export` section of the Lab.
-
-## Storage modes
-
-Memgraph has the option to work in `IN_MEMORY_ANALYTICAL` or `IN_MEMORY_TRANSACTIONAL`
-[storage modes](/reference-guide/storage-modes.md). 
-
-Memgraph always starts in the `IN_MEMORY_TRANSACTIONAL` mode in which it creates
-periodic snapshots and write-ahead logging as durability mechanisms, and also
-enables creating manual snapshots. 
-
-In the `IN_MEMORY_ANALYTICAL` mode, Memgraph offers no periodic snapshots and
-write-ahead logging. Users can create a snapshot with the `CREATE SNAPSHOT;`
-Cypher query. During the process of snapshot creation, other transactions will
-be prevented from starting until the snapshot creation is completed.
