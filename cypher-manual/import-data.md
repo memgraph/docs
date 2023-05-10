@@ -31,7 +31,7 @@ done by providing a pattern, similarly to `MATCH` clause.
 For example, use this query to create two new nodes connected with a new relationship.
 
 ```cypher
-CREATE (node2)-[:RELATIONSHIP_TYPE]->(node2);
+CREATE (node1)-[:RELATIONSHIP_TYPE]->(node2);
 ```
 
 Labels and properties can be set during creation using the same syntax as in
