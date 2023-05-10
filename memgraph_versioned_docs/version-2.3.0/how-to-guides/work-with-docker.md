@@ -35,8 +35,8 @@ There are three Docker images you can use to run Memgraph:
     graph data
   - **MAGE**: an open-source library of graph algorithms and custom Cypher
     procedures
-- `memgraph-mage` - installs **MemgraphDB** and **MAGE**
-- `memgraph` - installs **MemgraphDB**
+- `memgraph-mage` - installs **MemgraphDB**, **mgconsole** and **MAGE**
+- `memgraph` - installs **MemgraphDB** and **mgconsole**
 
 ### Download the Memgraph Docker image
 
