@@ -110,12 +110,11 @@ UNLOCK DATA DIRECTORY;
 LOCK DATA DIRECTORY;
 ```
 
-At any time you can check the current lock status by issuing the following query:
+You can check the current lock status by running the following query:
 
 ```opencypher
 DATA DIRECTORY LOCK STATUS;
 ```
-
 
 A detailed guide is available
 [here](/how-to-guides/create-backup.md).
