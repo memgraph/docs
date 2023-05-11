@@ -12,6 +12,10 @@ sidebar_label: Changelog
   [snapshot loading is distributed among several
   threads](/memgraph/reference-guide/backup#snapshots).
   [#868](https://github.com/memgraph/memgraph/pull/868)
+- `(UN)LOCK DATA DIRECTORY` query improvements:
+  - Query now returns a response message
+  - Added a new status query `DATA DIRECTORY LOCK STATUS` that returns the current lock status
+  [#933](https://github.com/memgraph/memgraph/pull/933)
 
 ## v2.7 - Apr 5, 2023
 

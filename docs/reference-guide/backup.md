@@ -12,7 +12,7 @@ disaster recovery possible:
 
 These mechanisms generate **durability files** and save them in the respective
 `wal` and `snapshots` folders in the **data directory**. Data directory stores
-permanent data on-disk. 
+permanent data on-disk.
 
 The default data directory path is `var/lib/memgraph` but the path can be
 changed by modifying the `data-dir` configuration flag
@@ -21,7 +21,7 @@ changed by modifying the `data-dir` configuration flag
 To encrypt the data directory, use
 [LUKS](https://gitlab.com/cryptsetup/cryptsetup/) as it works with Memgraph out
 of the box and is undetectable from the applications perspective so it shouldn't
-break any existing applications. 
+break any existing applications.
 
 [![Related - How-to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/create-backup.md)
 
@@ -29,7 +29,7 @@ break any existing applications.
 
 To configure the durability mechanisms check their respective configuration
 flags in the [configuration reference
-file](/docs/memgraph/reference-guide/configuration#storage). 
+file](/docs/memgraph/reference-guide/configuration#storage).
 
 If you need help configuring Memgraph, check out the configuration [how-to
 guide](/how-to-guides/config-logs.md).
@@ -80,7 +80,7 @@ Alternatively, you can make one directly by running the following query:
 CREATE SNAPSHOT;
 ```
 Snapshot files are saved inside the `snapshots` folder located in the data directory
-(`var/lib/memgraph`). 
+(`var/lib/memgraph`).
 
 :::caution
 Snapshots and WAL files are presently not compatible between Memgraph versions.
@@ -110,13 +110,20 @@ UNLOCK DATA DIRECTORY;
 LOCK DATA DIRECTORY;
 ```
 
+At any time you can check the current lock status by issuing the following query:
+
+```opencypher
+DATA DIRECTORY LOCK STATUS;
+```
+
+
 A detailed guide is available
 [here](/how-to-guides/create-backup.md).
 
 ## Database dump
 
 The database dump contains a record of the database state in the form of Cypher
-queries. It’s equivalent to the SQL dump in relational DBs. 
+queries. It’s equivalent to the SQL dump in relational DBs.
 
 You can run the queries constituting the dump to recreate the state of the DB as
 it was at the time of the dump.
