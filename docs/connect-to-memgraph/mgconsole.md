@@ -18,7 +18,8 @@ If you installed **Memgraph Platform** with the Docker image
 the container. Skip the installation steps and continue with [executing
 Cypher queries](#execute-cypher-queries).
 
-If you installed any other Docker image, you need to manually run mgconsole
+If you installed any other Docker image or want to explicitly start the
+mgconsole from the Memgraph Platform image, you need to manually run mgconsole
 following the steps described below.
 
 :::
@@ -37,25 +38,19 @@ instance, use the following steps:
   ]}>
   <TabItem value="docker">
 
-**1.** If you installed MemgraphDB using Docker, you can run the client from your
-Docker image. First, you need to find the `CONTAINER_ID` of your Memgraph
-container:
+If you installed MemgraphDB using Docker or closed the terminal with the running mgconsole from Memgraph
+Platform image, run the mgconsole client from your Docker image using the following commands:
+
+1. First, you need to find the `CONTAINER_ID` by running:
 
 ```terminal
 docker ps
 ```
 
-**2.** Once you know the `CONTAINER_ID`, find the IP address of the container by
-executing:
+**2.** Once you know the `CONTAINER_ID`, you can start mgconsole by running the following command:
 
 ```terminal
-docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' CONTAINER_ID
-```
-
-**3.** Now, you can start mgconsole by running the following command:
-
-```terminal
-docker run -it --entrypoint=mgconsole memgraph/memgraph --host CONTAINER_IP
+docker exec -it CONTAINER_ID mgconsole
 ```
 
   </TabItem>
@@ -169,6 +164,8 @@ To find created nodes and relationships, execute the following query:
 ```cypher
 MATCH (u:User)-[r]->(x) RETURN u, r, x;
 ```
+
+### Query execution time
 
 To get a breakdown of the execution time, set the `-verbose_execution_info` flag
 to `true`.

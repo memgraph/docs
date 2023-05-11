@@ -5,13 +5,13 @@ sidebar_label: Replication
 ---
 
 When distributing data across several instances, Memgraph uses replication to
-provide a satisfying ratio of the following properties:
+provide a satisfying ratio of the following properties, known from the CAP theorem:
 
-1.  **Consistency** - every node has the same view of data at a given point in
+1.  **Consistency** (C) - every node has the same view of data at a given point in
     time
-2.  **Availability** - all clients can find a replica of the data, even in the
+2.  **Availability** (A) - all clients can find a replica of the data, even in the
     case of a partial node failure
-3.  **Partition tolerance** - the system continues to work as expected despite a
+3.  **Partition tolerance** (P) - the system continues to work as expected despite a
     partial network failure
 
 In the replication process, the data is replicated from one storage (MAIN
@@ -49,12 +49,18 @@ The replication mode defines the terms by which the MAIN instance can commit the
 changes to the database, thus modifying the system to prioritize either
 consistency or availability:
 
-- **SYNC** - After committing a transaction, the MAIN instance will communicate the changes 
-to all REPLICA instances running in SYNC mode and wait until it receives a response or that a timeout is reached.
+- **SYNC** - After committing a transaction, the MAIN instance will communicate
+the changes to all REPLICA instances running in SYNC mode and wait until it
+receives a response or information that a timeout is reached. SYNC mode ensures
+consistency and partition tolerance (CP), but not availability for writes. If
+the primary database has multiple replicas, the system is highly available for
+reads. But, when a replica fails, the MAIN instance can't process the write due
+to the nature of synchronous replication.
 
 - **ASYNC** - The MAIN instance will commit a transaction without receiving
   confirmation from REPLICA instances that they have received the same
-  transaction. ASYNC mode ensures system availability and partition tolerance.
+  transaction. ASYNC mode ensures system availability and partition tolerance (AP),
+  while data can only be eventually consistent. 
 
 Once the REPLICA instances are registered, data storage of the MAIN instance is
 replicated and synchronized using transaction timestamps and durability files
@@ -78,14 +84,9 @@ When running multiple instances, each on its own machine, run Memgraph as you
 usually would.
 
 If you are exploring replication and running multiple instances on one machine,
-please install Memgraph with Docker. If you are starting instances with defined
-volume flags to enable:
-- data persistency (`-v mg_lib:/var/lib/memgraph`), 
-- access logs (`-v mg_log:/var/log/memgraph`) and 
-- configuration files (`-v mg_etc:/etc/memgraph`),
-
-be sure to use a different volume name for each instance, for example,
-`mg_lib1`, `mg_lib2`, etc.
+you can run Memgraph with Docker. Check [Docker run options for
+Memgraph images](/memgraph/how-to-guides/work-with-docker#run-a-memgraph-docker-image) to set up ports and volumes
+properly, if necessary.
 
 ## Assigning roles
 
@@ -123,8 +124,8 @@ If the original instance was still alive when you promoted a new MAIN, you need
 to resolve any conflicts and manage replication manually.
 
 If you demote the new MAIN instance back to the REPLICA role, it will not
-retrieve its original function. You need to drop it from the MAIN and register
-it again.
+retrieve its original function. You need to [drop
+it](#dropping-a-replica-instance) from the MAIN and register it again.
 
 If the crashed MAIN instance goes back online, it cannot reclaim its previous
 role. It needs to be cleaned and demoted to become a REPLICA instance of the new MAIN

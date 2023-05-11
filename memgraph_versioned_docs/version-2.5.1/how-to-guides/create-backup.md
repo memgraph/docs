@@ -3,145 +3,137 @@ id: create-backup
 title: How to backup and restore data
 sidebar_label: Backup and restore data
 ---
+import Tabs from "@theme/Tabs"; import TabItem from "@theme/TabItem";
 
-While running, Memgraph generates various files in its
-[data directory](/docs/memgraph/reference-guide/backup),
-including the **durability files**: snapshots and WALs that contain Memgraph's
-data in a recoverable format. On startup, it searches for previously saved
-durability files and uses them to recreate the most recent DB state.
+While running, Memgraph generates various files in its [data
+directory](/docs/memgraph/reference-guide/backup), including the **durability
+files**, that is,  snapshots and WALs that contain Memgraph's data in a
+recoverable format and are located in the `wal` and `snapshots` folders in the
+data directory. On startup, Memgraph searches for previously saved durability
+files and uses them to recreate the most recent database state.
 
-When talking about the data directory in the context of backup and restore, we are actually talking about two
-directories, `snapshots` and `wal` which are usually located in the
-`/var/lib/memgraph` folder.
+When talking about the data directory in the context of backup and restore, we
+are actually talking about two directories, `snapshots` and `wal`, which are
+usually located in the `/var/lib/memgraph` directory.
 
 Snapshots are created periodically based on the value defined with the
-`--storage-snapshot-interval-sec` configuration flag in the configuration file.
-If you need help adjusting the configuration, check out the [how-to guide on
-changing the configuration](/docs/memgraph/how-to-guides/config-logs).
+`--storage-snapshot-interval-sec` configuration flag, as well as upon exit based
+on the configuration flag `--storage-snapshot-on-exit`, defined by the
+configuration file. 
+
+You can configure the exact snapshot creation behavior [by defining the
+relevant](/memgraph/reference-guide/configuration#storage). If you need
+help adjusting the configuration, check out the [how-to guide on changing the
+configuration](/how-to-guides/config-logs.md).
 
 [![Related - Reference Guide](https://img.shields.io/static/v1?label=Related&message=Reference%20Guide&color=yellow&style=for-the-badge)](/reference-guide/backup.md)
 
 ## Create backup
 
-To create a backup, follow the steps below:
+  Follow these steps to create database backup:
 
-### 1. Create a snapshot
+1. **Create a snapshot**
 
-If necessary, create a snapshot of the current database state by running the
-following query in `mgconsole` or Memgraph Lab:
+  If necessary, create a snapshot of the current database state by running the
+  following query in `mgconsole` or Memgraph Lab:
 
-```cypher
-CREATE SNAPSHOT;
-```
+  ```cypher
+  CREATE SNAPSHOT;
+  ```
+  The snapshot is saved in the `snapshots` directory of the data directory
+  (`/var/lib/memgraph`).
 
-### 2. Lock the data directory
+2. **Lock the data directory**
 
-Durability files are deleted when an event is triggered, for example, exceeding
-the maximum number of snapshots.
+  Durability files are deleted when an event is triggered, for example, exceeding
+  the maximum number of snapshots.
 
-To disable this behavior, run the following query in `mgconsole` or Memgraph
-Lab:
+  To disable this behavior, run the following query in `mgconsole` or Memgraph
+  Lab:
 
-```cypher
-LOCK DATA DIRECTORY;
-```
+  ```cypher
+  LOCK DATA DIRECTORY;
+  ```
 
-### 3. Copy the data directory and unlock it
+3. **Copy files**
 
-Copy the snapshot directory or a single WAL or snapshot file to a backup location.
+  Copy snapshot files (from the `snapshots` directory) and any additional WAL
+  files (from the `wal` directory) to a backup location.
 
-<details>
-  <summary>Copy files if you are using Memgraph on Linux</summary>
-  
-If you are using Linux to run Memgraph, here are the steps for copying files:
+  If you've just created a snapshot file there is no need to backup WAL files. 
 
-<br/><br/>
+  To help copying the files from the Docker container, check out the [Working with
+  docker
+  guide](/how-to-guides/work-with-docker.md#how-to-copy-files-from-and-to-a-docker-container).
 
-**1.** Start your Memgraph instance.
+4. **Unlock the data directory**
 
-**2.** Open a new Linux terminal and check the location of the permanent data
-directory:
+  Run the following query in `mgconsole` or Memgraph Lab to unlock the
+  directory:
 
-```bash
-grep -A 1 'permanent data' /etc/memgraph/memgraph.conf
-```
+  ```cypher
+  UNLOCK DATA DIRECTORY;
+  ```
 
-If you are getting a permission error, execute the `sudo su` command to get
-access privileges and then try to change the working directory again.
-
-Your output should look something like this:
-
-```nocopy
-# Path to directory in which to save all permanent data. [string]
---data-directory=/var/lib/memgraph
-```
-
-As you can see, the path is the default one: `/var/lib/memgraph`.
-
-**3.** Locate the files that you want to backup. Let's say that you want to copy
-the latest snapshot, list the content of the snapshot directory and then copy
-the latest file.
-
-```bash
-ls -l /var/lib/memgraph/snapshots/
-```
-
-```nocopy
-total 35920
--rw-r----- 1 memgraph memgraph  7185673 Mar 25 13:52 20220325125206991975_timestamp_2622
--rw-r----- 1 memgraph memgraph 12521724 Mar 25 13:52 20220325125237040637_timestamp_3028
--rw-r----- 1 memgraph memgraph 17064381 Mar 25 13:53 20220325125308366007_timestamp_3380
-```
-
-**4.** Copy a file from the snapshot directory to the backup folder:
-
-```bash
-cp /var/lib/memgraph/snapshots/20220325125308366007_timestamp_3380 ~/backup/
-```
-
-</details>
-
-If you need help copying the files from the Docker container, check out the
-[Working with docker
-guide](/how-to-guides/work-with-docker.md#how-to-copy-files-from-and-to-a-docker-container).
-
-Then, run the following query in `mgconsole` or Memgraph Lab to unlock the
-directory:
-
-```cypher
-UNLOCK DATA DIRECTORY;
-```
-
-Memgraph will delete the files which should have been deleted before locking and
-allow any future deletion of the durability files.
+  Memgraph will delete the files which should have been deleted before locking and
+  allow any future deletion of the durability files.
 
 ## Restore data
 
-To restore data from a backup: 
+To restore data from a backup
 
-### 1. Lock the data directory
+<Tabs
+  groupId="backup"
+  defaultValue="docker"
+  values={[
+    {label: 'Docker 🐳', value: 'docker'},
+    {label: 'Linux', value: 'linux'}
+  ]}>
+<TabItem value='docker'>
 
-To disable deletions of snapshot or WAL files, run the following query in
-`mgconsole` or Memgraph Lab:
 
-```cypher
-LOCK DATA DIRECTORY;
-```
+1. Empty the `wal` directory
 
-### 2. Copy the snapshot into the data directory
+  If you want to restore data only from the snapshot file, ensure that the
+  `wal` directory is empty:
 
-Copy the snapshot or WAL directory or, empty it and then copy a single WAL or
-snapshot file into it.
+     - Find the container ID using a `docker ps` command, then enter the container using:
 
-If you need help copying the files from the Docker container, check out the
-[Working with docker
-guide](/how-to-guides/work-with-docker.md#how-to-copy-files-from-and-to-a-docker-container).
+    ```
+    docker exec -it CONTAINER_ID bash
+    ```
+     - Position yourself in the `/var/lib/memgraph/wal` directory and `rm *`
 
-### 3. Restart the instance
+1. Stop the instance using `docker stop CONTAINER_ID`
+2. Start the instance by adding a `-v ~/snapshots:/var/lib/memgraph/snapshots`
+  flag to the `docker run` command, where the `~/snapshots` represents a path
+  to the location of the directory with the back-up snapshot, for example: 
 
-By restarting the instance, Memgraph should restore the data from the files in
-the data directory. 
+  ```
+  docker run -p 7687:7687 -p 7444:7444 -v C:/Users/Vlasta/snapshots:/var/lib/memgraph/snapshots memgraph/memgraph
+  ```
+4. If you want to copy both WAL and snapshot files start the instance by adding
+  a `-v ~/snapshots:/var/lib/memgraph/snapshots -v ~/wal:/var/lib/memgraph/wal`
+  flags to the `docker run` command, where the `~/snapshots` represents a path
+  to the location of the backed-up snapshot directory, and `~/wal` represents a
+  path to the location of the backed-up wal directory for example: 
 
-Be sure to restart the instance before Memgraph automatically creates a new
-periodic snapshot because upon restart it might use that newer snapshot which is
-not the data you want to load. 
+  ```
+  docker run -p 7687:7687 -p 7444:7444 -v C:/Users/Vlasta/snapshots:/var/lib/memgraph/snapshots -v C:/Users/Vlasta/wal:/var/lib/memgraph/wal memgraph/memgraph
+  ```
+
+</TabItem>
+<TabItem value='linux'>
+
+1. Before running an instance, copy the backed up snapshot into the `snapshots`
+   directory, and optionally, copy the backed-up WAL files into the `wal`
+   directory.
+2. If you are restoring data only from the snapshot file, ensure that the file
+   you want to use to restore the data is the only snapshot file in the
+   `snapshots` directory and that the `wal` directory is empty. If you are
+   restoring data from both the snapshot and WAL files, ensure they are the only
+   files in the `snapshot` and `wal` directories. 
+3. Start the database. 
+
+</TabItem>
+</Tabs>

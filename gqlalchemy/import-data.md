@@ -43,7 +43,7 @@ To import NetworkX, PyG or DGL graph into Memgraph via GQLAlchemy, [transform th
 
 ## Kafka, RedPanda or Pulsar data stream
 
-To consume Kafka, RedPanda or Pulsar data stream, you can write a[appropriate Cypher queries](/memgraph/import-data/data-streams/manage-streams) and [execute](/memgraph/connect-to-memgraph/drivers/python) them, or use GQLAlchemy stream manager for [Kafka, RedPanda](/gqlalchemy/how-to-guides/streams/manage-kafka-streams) or [Pulsar](/gqlalchemy/how-to-guides/streams/manage-pulsar-streams) streams.
+To consume Kafka, RedPanda or Pulsar data stream, you can write a [appropriate Cypher queries](/memgraph/import-data/data-streams/manage-streams) and [execute](/memgraph/connect-to-memgraph/drivers/python) them, or use GQLAlchemy stream manager for [Kafka, RedPanda](/gqlalchemy/how-to-guides/streams/manage-kafka-streams) or [Pulsar](/gqlalchemy/how-to-guides/streams/manage-pulsar-streams) streams.
 
 
 ## Learn more
