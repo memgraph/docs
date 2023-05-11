@@ -19,6 +19,22 @@ The default data directory path is `var/lib/memgraph` but the path can be
 changed by [modifying the `data-dir` configuration
 flag](/memgraph/reference-guide/configuration#other).
 
+Durability files are deleted when certain events are triggered, for example,
+exceeding the maximum number of snapshots.
+
+To manage this behavior, run the following queries:
+
+```cypher
+LOCK DATA DIRECTORY;
+UNLOCK DATA DIRECTORY;
+```
+
+To show the status of the data directory, run:
+
+```cypher
+DATA DIRECTORY LOCK STATUS;
+```
+
 To encrypt the data directory, use
 [LUKS](https://gitlab.com/cryptsetup/cryptsetup/) as it works with Memgraph out
 of the box and is undetectable from the applications perspective so it shouldn't

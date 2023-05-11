@@ -12,6 +12,9 @@ sidebar_label: Changelog
   [snapshot loading is distributed among several
   threads](/memgraph/reference-guide/backup#snapshots).
   [#868](https://github.com/memgraph/memgraph/pull/868)
+- You can now check if [the data directory](/reference-guide/backup.md) is
+  (un)locked with the `DATA DIRECTORY LOCK STATUS;` query.
+  [#933](https://github.com/memgraph/memgraph/pull/933)
 
 ## v2.7 - Apr 5, 2023
 
