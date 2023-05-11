@@ -38,6 +38,13 @@ pip install gqlalchemy[dgl] # DGL support (also includes torch)
 pip install gqlalchemy[all] # All of the above
 ```
 
+:::note
+If you are using zsh terminal, you need to pass literal square brackets as an argument to a command:
+```
+pip install 'gqlalchemy[arrow]'
+```
+:::
+
 ## Build from source
 
 Clone or download the [GQLAlchemy source code](https://github.com/memgraph/gqlalchemy) locally and run the following command to build it from source with Poetry:
