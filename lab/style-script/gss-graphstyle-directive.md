@@ -58,6 +58,15 @@ Examples:
 - `physics-enabled: True` enables the physics.
 - `physics-enabled: Greater(NodeCount(graph), 100)` enables the physics for graphs with more than 100 nodes.
 
+### `background-color: Color`
+
+Sets the background color of an canvas.
+
+Examples:
+
+- `background-color: #DDDDDD` sets the background color of the canvas to light gray.
+- `background-color: black` sets the background color of the canvas to black.
+
 ### `view: string: "default" | "map"`
 
 Sets the current graph view that can be either `"default"` or `"map"`. The `"default"` view is

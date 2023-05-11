@@ -51,15 +51,21 @@ The variable `graph` is bound to the overall graph that contains nodes and
 edges. It can be useful to get the total count of nodes and edges with the
 following functions: `NodeCount(graph)` and `EdgeCount(graph)`.
 
-In the following example, you can see the usage of the variable `graph`:
+In the following example, you can see the usage of the variable `graph` in
+the directive context (`@NodeStyle`, `@EdgeStyle`) and global context
+(variable `EDGE_COUNT`);
 
 ```
+// Global context acts like a cache because the
+// following expression will be evaluated only once
+Define(EDGE_COUNT, EdgeCount(graph))
+
 @NodeStyle {
   size: Sqrt(NodeCount(graph))
 }
 
 @EdgeStyle {
-  width: If(Greater(EdgeCount(graph), 1000), 1, 2)
+  width: If(Greater(EDGE_COUNT, 1000), 1, 2)
 }
 ```
 
