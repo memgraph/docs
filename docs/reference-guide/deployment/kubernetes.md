@@ -4,10 +4,38 @@ title: Memgraph Helm Chart
 sidebar_label: Kubernetes
 ---
 
-If you need Memgraph as a part of your **Kubernetes** cluster, you can use the below **Helm Chart** for a simple setup. The Helm Chart is a collection of files that describe a related set of Kubernetes resources. Memgraph is a **stateful application** because it saves data to persistent disk storage for the server, clients, and other applications. The `apiVersion` is set to `apps/v1`, which means the below chart supports Helm version 3 or less.
+If you need Memgraph as a part of your **Kubernetes** cluster, you can use the below **Helm Chart** for a simple setup.
+
+Due to the nature of different use-cases and deployments setups via Kubernetes you can use this as base and modify it to your needs. 
+
+Memgraph is at it core a database which means you probably wan't to deploy it as a  Kubernetes **StatefulSet** workload.  because it saves data to persistent disk storage. Hence the helm chart below is configured as **StatefulSet** workload. Due to the StatefulSet nature of Memgraph, it is also necessary to have a **PersistentVolumeClaims** for the storage of the data directory(/var/lib/memgraph). This enables the data to be persisted even if the pod is restarted or deleted. 
+
+It is not necessary to use the **StatefulSet** workload, if you are not concerned with persisting data or you may have a static datasets. Stateful applications are also more complex to setup and maintain, due to the nature of handling storage information and security.
+
+The given helm chart is configured to use the latest **MemgraphDB** docker image from [Docker Hub](https://hub.docker.com/r/memgraph/memgraph). 
+
+The `apiVersion` is set to `apps/v1`, which means the below chart supports Helm version 3 or less.
 
 
 ```yaml
+# Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: memgraph-svc
+  labels:
+    app.kubernetes.io/name: memgraph
+    app.kubernetes.io/managed-by: Helm
+spec:
+  type: NodePort
+  ports:
+    - port: 7687
+      targetPort: 7687
+      protocol: TCP
+      name: bolt
+  selector:
+    app.kubernetes.io/name: memgraph
+---
 # StatefulSet
 apiVersion: apps/v1
 kind: StatefulSet
@@ -30,10 +58,23 @@ spec:
       labels:
         app.kubernetes.io/name: memgraph
     spec:
+      securityContext:
+        fsGroup: 0
+      volumes:
+        - name: memgraph-lib-storage
+          persistentVolumeClaim:
+            claimName: memgraph-lib-storage
+        - name: memgraph-log-storage
+          persistentVolumeClaim:
+            claimName: memgraph-log-storage
       containers:
         - name: memgraph
           image: "memgraph/memgraph:latest"
+          args: ["--also-log-to-stderr=true"]
           imagePullPolicy: Never
+          securityContext:
+            runAsUser: 0
+            runAsGroup: 0
           ports:
             - name: memgraph
               containerPort: 7687
@@ -42,35 +83,29 @@ spec:
               mountPath: /var/lib/memgraph
             - name: memgraph-log-storage
               mountPath: /var/log/memgraph
-            - name: memgraph-etc-config
-              mountPath: /etc/memgraph/memgraph.conf
-              subPath: memgraph.conf
-      volumes:
-        - name: memgraph-lib-storage
-          persistentVolumeClaim:
-            claimName: memgraph-lib-pv-claim
-        - name: memgraph-log-storage
-          persistentVolumeClaim:
-            claimName: memgraph-log-pv-claim
-        - name: memgraph-etc-config
-          configMap:
-            name: memgraph-config
 ---
-# Service
 apiVersion: v1
-kind: Service
+kind: PersistentVolumeClaim
 metadata:
-  name: memgraph-svc
-  labels:
-    app.kubernetes.io/name: memgraph
-    app.kubernetes.io/managed-by: Helm
+  name: memgraph-lib-storage
 spec:
-  type: ClusterIP
-  ports:
-    - port: 7687
-      targetPort: 7687
-      protocol: TCP
-      name: bolt
-  selector:
-    app.kubernetes.io/name: memgraph
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 500Mi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: memgraph-log-storage
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 500Mi
+
 ```
+
+The above helm chart will spin up the Memgraph and expose it via **NodePort** service on port `7687` for communication via Bolt protocol. The helm chart also creates two **PersistentVolumeClaims** for the storage of the data directory and log directory. The memgraph is started with the `--also-log-to-stderr=true` flag, which means that the logs will be also written to the standard error output. This is useful for getting logs via `kubectl logs` command.
