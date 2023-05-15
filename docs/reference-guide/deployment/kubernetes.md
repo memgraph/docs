@@ -59,7 +59,6 @@ spec:
         app.kubernetes.io/name: memgraph
     spec:
       securityContext:
-        fsGroup: 0
       volumes:
         - name: memgraph-lib-storage
           persistentVolumeClaim:
@@ -74,7 +73,6 @@ spec:
           imagePullPolicy: Never
           securityContext:
             runAsUser: 0
-            runAsGroup: 0
           ports:
             - name: memgraph
               containerPort: 7687
@@ -108,4 +106,6 @@ spec:
 
 ```
 
-The above helm chart will spin up the Memgraph and expose it via **NodePort** service on port `7687` for communication via Bolt protocol. The helm chart also creates two **PersistentVolumeClaims** for the storage of the data directory and log directory. The memgraph is started with the `--also-log-to-stderr=true` flag, which means that the logs will be also written to the standard error output. This is useful for getting logs via `kubectl logs` command.
+The above helm chart will spin up the Memgraph and expose it via **NodePort** service on port `7687` for communication via Bolt protocol. The helm chart also creates two **PersistentVolumeClaims** for the storage of the data directory and log directory. Since Memgraph docker image have a root privilege on volumes data and log directories, it is necessary to set the `runAsUser` to `0` in the `securityContext` of the pod. 
+
+ The memgraph is started with the `--also-log-to-stderr=true` flag, which means that the logs will be also written to the standard error output. This is useful for getting logs via `kubectl logs` command.
