@@ -6,11 +6,11 @@ sidebar_label: Kubernetes
 
 If you need Memgraph as a part of your **Kubernetes** cluster, you can use the below **Helm Chart** for a simple setup.
 
-Due to the nature of different use-cases and deployments setups via Kubernetes you can use this as base and modify it to your needs. 
+Due to the nature of different use cases and deployment setups via Kubernetes, you can use this as the base and modify it to your needs. 
 
-Memgraph is at it core a database which means you probably wan't to deploy it as a  Kubernetes **StatefulSet** workload.  because it saves data to persistent disk storage. Hence the helm chart below is configured as **StatefulSet** workload. Due to the StatefulSet nature of Memgraph, it is also necessary to have a **PersistentVolumeClaims** for the storage of the data directory(/var/lib/memgraph). This enables the data to be persisted even if the pod is restarted or deleted. 
+Memgraph is a database at its core, so you probably want to deploy it as a  Kubernetes **StatefulSet** workload because it saves data to persistent storage. Hence the helm chart below is configured as **StatefulSet** workload. Due to the StatefulSet nature of Memgraph, it is also necessary to have a **PersistentVolumeClaims** for the storage of the data directory(/var/lib/memgraph). This enables the data to be persisted even if the pod is restarted or deleted. 
 
-It is not necessary to use the **StatefulSet** workload, if you are not concerned with persisting data or you may have a static datasets. Stateful applications are also more complex to setup and maintain, due to the nature of handling storage information and security.
+It is unnecessary to use the **StatefulSet** workload, if you are not concerned with persisting data or may have a static dataset. Stateful applications are also more complex to setup and maintain due to the nature of handling storage information and security.
 
 The given helm chart is configured to use the latest **MemgraphDB** docker image from [Docker Hub](https://hub.docker.com/r/memgraph/memgraph). 
 
@@ -106,6 +106,7 @@ spec:
 
 ```
 
-The above helm chart will spin up the Memgraph and expose it via **NodePort** service on port `7687` for communication via Bolt protocol. The helm chart also creates two **PersistentVolumeClaims** for the storage of the data directory and log directory. Since Memgraph docker image have a root privilege on volumes data and log directories, it is necessary to set the `runAsUser` to `0` in the `securityContext` of the pod. This will override the memgraph user. Aldo not ideal practice, it is necessary for the Memgraph to have root privileges on the volumes at the moment. 
+The above helm chart will spin up the Memgraph and expose it via **NodePort** service on port `7687` for communication via Bolt protocol. The helm chart also creates two **PersistentVolumeClaims** for the storage of the data directory and log directory. Since the Memgraph docker image has a root privilege on volumes data and log directories, it is necessary to set the `runAsUser` to `0` in the `securityContext` of the pod. This will override the memgraph user from the Docker image. Aldo is not ideal practice. Currently, the Memgraph must have root privileges on the volumes. 
 
- The memgraph is started with the `--also-log-to-stderr=true` flag, which means that the logs will be also written to the standard error output. This is useful for getting logs via `kubectl logs` command.
+ The memgraph starts with the `--also-log-to-stderr=true` flag, meaning the logs will also be written to the standard error output. This is useful for getting logs via `kubectl logs` command.
+
