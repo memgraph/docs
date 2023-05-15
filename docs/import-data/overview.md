@@ -72,7 +72,7 @@ into Memgraph [using **GQLAlchemy**](/gqlalchemy/how-to-guides/table-to-graph-im
 ## NetworkX, PyG or DGL graph
 
 If you are a Python user you can import **NetworkX**, **PyG** or **DGL graph** into Memgraph
-[using **GQLAlchemy**](/gqlalchemy/how-to-guides/python-graphs).
+[using **GQLAlchemy**](/gqlalchemy/how-to-guides/import-python-graphs).
 
 ## Where to next?
 

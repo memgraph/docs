@@ -39,7 +39,7 @@ If you want to read from a file system not currently supported by GQLAlchemy, or
 
 ## Python graphs - NetworkX, PyG or DGL graph
 
-To import NetworkX, PyG or DGL graph into Memgraph via GQLAlchemy, [transform the source graph into Memgraph graph](/gqlalchemy/how-to-guides/python-graphs).
+To import NetworkX, PyG or DGL graph into Memgraph via GQLAlchemy, [transform the source graph into Memgraph graph](/gqlalchemy/how-to-guides/import-python-graphs).
 
 ## Kafka, RedPanda or Pulsar data stream
 

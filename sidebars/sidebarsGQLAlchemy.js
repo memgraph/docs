@@ -45,8 +45,16 @@ module.exports = {
         "how-to-guides/triggers/triggers",
         "how-to-guides/on-disk-storage/on-disk-storage",
         "how-to-guides/query-builder/graph-projection",
-        "how-to-guides/python-graphs"
+        {
+          type: "category",
+          label: "Translate Python graphs",
+          items: [
+            "how-to-guides/translators/import-python-graphs",
+            "how-to-guides/translators/export-python-graphs"
+          ],
+        },
       ],
+
     },
     /*
     {

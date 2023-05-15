@@ -5,8 +5,8 @@ sidebar_label: Under the hood
 slug: /under-the-hood
 ---
 
-Look under the hood and have a glimpse at the inner workings of Memgraph. If you
-are an advanced Memgraph users or a graph database enthusiasts we hope you will
+Look under the hood and have a glimpse at the inner workings of GQLAlchemy. If you
+are advanced GQLAlchemy users or graph database enthusiasts we hope you will
 enjoy reading about the following topics:
 
-  * [Python graphs](python-graph-translators.md)
+  * [**Python graph translators**](python-graph-translators.md)
