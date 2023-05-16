@@ -154,7 +154,7 @@ You can notice that we have nodes labeled with `user` and `movie` and edges of t
 ```
 docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 memgraph/memgraph-platform:latest
 ```
-- [**Pytorch Geometric Python library**](https://pytorch-geometric.readthedocs.io/en/latest/install/installation.html)
+- [**Deep Graph Library**](https://www.dgl.ai/pages/start.html)
 
 ### Create and run a Python script
 
@@ -218,4 +218,4 @@ You can notice that we have nodes labeled with `user` and `movie` and edges of t
 
 ## Learn more
 
-Head over to the [**Under the hood**](/gqlalchemy/under-the-hood/python-graph-translators) section to read about implementation details. If you want to learn more about using NetworkX with Memgraph with interesting resources and courses, head over to the [**Memgraph for NetworkX developers**](https://memgraph.com/memgraph-for-networkx?utm_source=docs&utm_medium=referral&utm_campaign=networkx_ppp&utm_term=docsgqla%2Bhowto&utm_content=textlink) website. 
+Head over to the [**Under the hood**](/gqlalchemy/under-the-hood/python-graph-translators) section to read about implementation details. If you want to learn more about using NetworkX with Memgraph with interesting resources and courses, head over to the [**Memgraph for NetworkX developers**](https://memgraph.com/memgraph-for-networkx?utm_source=docs&utm_medium=referral&utm_campaign=networkx_ppp&utm_term=docsgqla%2Bhowto&utm_content=textlink) website. If you have any questions or want to connect with the Memgraph community, [**join our Discord server**](https://www.discord.gg/memgraph).
