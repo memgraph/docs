@@ -33,7 +33,6 @@ differences might not be documented here (especially subtle semantic ones).
   `size((n)-->())`. Most of the time, the same functionalities can be expressed
   differently in Memgraph using `OPTIONAL` expansions, function calls etc. You
   can check out [this example](#patterns-in-expressions).
-- Map projections such as `MATCH (n) RETURN n {.property1, .property2}`.
 
 ### Unsupported functions
 
