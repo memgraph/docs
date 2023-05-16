@@ -6,7 +6,7 @@ sidebar_label: Kubernetes
 
 To include Memgraph as a part of your **Kubernetes** cluster, use the **Helm chart** below for a simple setup. Due to numerous possible use cases and deployment setups via Kubernetes, this Helm chart is just a starting point you can modify according to your needs. 
 
-The provided Helm chart is configured to deploy Memgraph as a Kubernetes **StatefulSet** workload, which saves data to persistent storage, a useful feature when deploying a database. Due to the StatefulSet nature of Memgraph, it is also necessary to define a **PersistentVolumeClaims** to store [the data directory](/reference-guide/backup) (/var/lib/memgraph). This enables the data to be persisted even if the pod is restarted or deleted. 
+The provided Helm chart is configured to deploy Memgraph as a Kubernetes **StatefulSet** workload, which saves data to persistent storage, a useful feature when deploying a database. Due to the StatefulSet nature of Memgraph, it is also necessary to define a **PersistentVolumeClaims** to store [the data directory](/reference-guide/backup.md) (/var/lib/memgraph). This enables the data to be persisted even if the pod is restarted or deleted. 
 
 If you don't require data persistency or your dataset is static, there is no need to use the StatefulSet workload. Stateful applications are more complex to set up and maintain as they require more attention when handling storage information and security.
 
