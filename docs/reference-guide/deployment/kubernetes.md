@@ -104,7 +104,9 @@ spec:
 
 ```
 
-The above helm chart will spin up the Memgraph and expose it via **NodePort** service on port `7687` for communication via Bolt protocol. The helm chart also creates two **PersistentVolumeClaims** for the storage of the data directory and log directory. Since the Memgraph docker image has a root privilege on volumes data and log directories, it is necessary to set the `runAsUser` to `0` in the `securityContext` of the pod. This will override the memgraph user from the Docker image. Aldo is not ideal practice. Currently, the Memgraph must have root privileges on the volumes. 
+The above Helm chart spins up Memgraph and exposes it via **NodePort** service on port `7687` for communication via the Bolt protocol.
 
- The memgraph starts with the `--also-log-to-stderr=true` flag, meaning the logs will also be written to the standard error output. This is useful for getting logs via `kubectl logs` command.
+ The chart also creates two **PersistentVolumeClaims** for storing the data and log directories. Since Memgraph Docker image has root privileges on the data located on volumes and log directories, it is necessary to set the `runAsUser` to `0` in the `securityContext` section of the pod to override the `memgraph` user from the Docker image. Currently, Memgraph must have root privileges on the volumes. 
+
+Memgraph starts with the `--also-log-to-stderr=true` flag, meaning the logs will also be written to the standard error output and you can access logs using the `kubectl logs` command.
 
