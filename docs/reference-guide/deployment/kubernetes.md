@@ -68,7 +68,7 @@ spec:
         - name: memgraph
           image: "memgraph/memgraph:latest"
           args: ["--also-log-to-stderr=true"]
-          imagePullPolicy: Never
+          imagePullPolicy: Always
           securityContext:
             runAsUser: 0
           ports:
