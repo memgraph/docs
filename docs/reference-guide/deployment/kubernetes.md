@@ -4,17 +4,15 @@ title: Memgraph Helm Chart
 sidebar_label: Kubernetes
 ---
 
-If you need Memgraph as a part of your **Kubernetes** cluster, you can use the below **Helm Chart** for a simple setup.
+To include Memgraph as a part of your **Kubernetes** cluster, use the **Helm chart** below for a simple setup. Due to numerous possible use cases and deployment setups via Kubernetes, this Helm chart is just a starting point you can modify according to your needs. 
 
-Due to the nature of different use cases and deployment setups via Kubernetes, you can use this as the base and modify it to your needs. 
+The provided Helm chart is configured to deploy Memgraph as a Kubernetes **StatefulSet** workload, which saves data to persistent storage, a useful feature when deploying a database. Due to the StatefulSet nature of Memgraph, it is also necessary to define a **PersistentVolumeClaims** to store [the data directory](/reference-guide/backup) (/var/lib/memgraph). This enables the data to be persisted even if the pod is restarted or deleted. 
 
-Memgraph is a database at its core, so you probably want to deploy it as a  Kubernetes **StatefulSet** workload because it saves data to persistent storage. Hence the helm chart below is configured as **StatefulSet** workload. Due to the StatefulSet nature of Memgraph, it is also necessary to have a **PersistentVolumeClaims** for the storage of the data directory(/var/lib/memgraph). This enables the data to be persisted even if the pod is restarted or deleted. 
+If you don't require data persistency or your dataset is static, there is no need to use the StatefulSet workload. Stateful applications are more complex to set up and maintain as they require more attention when handling storage information and security.
 
-It is unnecessary to use the **StatefulSet** workload, if you are not concerned with persisting data or may have a static dataset. Stateful applications are also more complex to setup and maintain due to the nature of handling storage information and security.
+The Helm chart is configured to use the latest **MemgraphDB** docker image from [Docker Hub](https://hub.docker.com/r/memgraph/memgraph), so if you require a different Memgraph Docker image, be sure the modify the chart. 
 
-The given helm chart is configured to use the latest **MemgraphDB** docker image from [Docker Hub](https://hub.docker.com/r/memgraph/memgraph). 
-
-The `apiVersion` is set to `apps/v1`, which means the below chart supports Helm version 3 or less.
+The `apiVersion` is set to `apps/v1`, which means the chart supports Helm version 3 or less.
 
 
 ```yaml
