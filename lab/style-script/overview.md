@@ -165,18 +165,15 @@ Define(Normalize, Function(n, g,
 
 ![Using Graph Style Script to style different nodes by its size](../data/caching-results-gss.png)
 
-The problem with the above solution is the performance. `Normalize` is called twice
-for each node in the graph view. Each `Normalize` call is iterating through all the
-nodes three times: two calls of `GetMinValue` and a single call `GetMaxValue`.
-For small graphs, you won't see a difference in the performance, but try running this
-on a larger set of nodes.
+The problem with the solution above is slow performance. The `Normalize` function is called twice
+for each node in the graph view. Each `Normalize` call iterates through all nodes three times: two
+times for `GetMinValue` and once for `GetMaxValue`. For small graphs, you won't see a difference
+in performance but as the number of nodes rises the performance issues will follow. 
 
-To solve this issue, cache the results by calculating outside of the `@NodeStyle` and
-`@EdgeStyle` directives. Variable `graph` is available outside of these directives which
-can be utilized.
-Within the `@NodeStyle` directive, local variable can be used to store the normalized
-value which is then used in `size` and `width` property. We don't call `Normalize` twice
-anymore for each node, but only once.
+To solve this issue, cache the results by calculating outside of `@NodeStyle` and
+`@EdgeStyle` directives where the variable `graph` is also available.
+Inside the `@NodeStyle` directive, a local variable can be used to store the normalized
+value and use it with `size` and `width` properties thus calling the `Normalize` function only once.
 
 Check the improved GSS code below:
 
