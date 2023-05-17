@@ -199,7 +199,7 @@ Define(KeepNumericValues, Function(values,
 
 // Variables MAX_VALUE and MIN_VALUE will hold the max and min
 // values of all node properties.
-// If is used to handle errors when there are no values to calculate
+// The If statement is used to handle errors when there are no values to calculate
 // min and max on.
 Define(MAX_VALUE, If(
   Greater(NodeCount(graph), 0),
