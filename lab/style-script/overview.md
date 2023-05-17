@@ -154,7 +154,7 @@ Define(Normalize, Function(n, g,
   )
 ))
 
-// For all the nodes with label "Person" and numeric property "age"
+// For all nodes with the label "Person" and numeric property "age"
 @NodeStyle And(HasLabel(node, "Person"), IsNumber(Property(node, PROP_NAME))) {
   color: white
   size: Normalize(node, graph)
