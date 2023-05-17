@@ -198,7 +198,7 @@ Define(KeepNumericValues, Function(values,
 ))
 
 // Variables MAX_VALUE and MIN_VALUE will hold the max and min
-// value from all node properties.
+// values of all node properties.
 // If is used to handle errors when there are no values to calculate
 // min and max on.
 Define(MAX_VALUE, If(
