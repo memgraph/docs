@@ -60,7 +60,7 @@ Examples:
 
 ### `background-color: Color`
 
-Sets the background color of an canvas.
+Sets the background color of the canvas.
 
 Examples:
 
