@@ -4,6 +4,8 @@ title: Data types
 sidebar_label: Data types
 ---
 
+import Tabs from "@theme/Tabs"; import TabItem from "@theme/TabItem";
+
 Since Memgraph is a graph database management system, data is stored in the form
 of graph elements: nodes and relationships. Each graph element can contain
 various types of data. This page describes which data types are supported in
@@ -67,6 +69,275 @@ MATCH (n:Node) SET n.property.key = "other value";
 ```
 
 :::
+
+## Maps
+
+The Cypher query language supports constructing and working with map values.
+
+### Literal maps
+
+It is possible to explicitly construct maps by stating key-value pairs:
+
+<Tabs
+  groupId="literal_map"
+  defaultValue="cypher"
+  values={[
+    {label: 'Query', value: 'cypher'},
+    {label: 'Result', value: 'result'},
+  ]
+}>
+  <TabItem value="cypher">
+
+  ```cypher
+  RETURN {key: 'Value', listKey: [{inner: 'Map1'}, {inner: 'Map2'}]}
+  ```
+
+  </TabItem>
+
+  <TabItem value="result">
+
+```plaintext
+┌─────────────────────────────────────────────────────────────┐
+│ {key: 'Value', listKey: [{inner: 'Map1'}, {inner: 'Map2'}]} │
+├─────────────────────────────────────────────────────────────┤
+│ {Map} 2 properties                                          │
+│ {                                                           │
+│   "key": "Value",                                           │
+│   "listKey": [                                              │
+│       {                                                     │
+│         "inner": "Map1"                                     │
+│       },                                                    │
+│       {                                                     │
+│         "inner": "Map2"                                     │
+│       }                                                     │
+│   ]                                                         │
+│ }                                                           │
+└─────────────────────────────────────────────────────────────┘
+```
+
+  </TabItem>
+
+</Tabs>
+
+### Map projection
+
+Cypher’s **map projection** syntax allows for easily constructing map
+projections from nodes, relationships, other map values, and all other values
+that have properties.
+
+A map projection begins with the variable bound to the graph entity that’s to
+be projected from, and contains a body of comma-separated map elements enclosed
+by `{` and `}`.
+
+```cypher
+map_variable {map_element, [, ...n]}
+```
+
+A map element projects one or more key-value pairs to the map projection. There
+are four different types of map projection elements:
+
+* Property selector: Projects the property name as the key, and the value of
+  `map_variable.property` as the value for the projection.
+* All-properties selector: Projects all key-value pairs from the `map_variable`
+  value.
+* Literal entry: This is a key-value pair, with the value being an arbitrary
+  expression: `key: <expression>`.
+* Variable selector: Projects a variable: the variable name is the key, and the
+  value it is pointing to is the value of the projection: `<variable>`.
+
+The following conditions apply:
+
+* If `map_variable` points to a null value, its projected values will be null.
+* As with literal maps, key names must be strings.
+
+#### Examples
+
+The following graph is used by all examples here:
+
+<Tabs
+  groupId="example"
+  defaultValue="visualization"
+  values={[
+    {label: 'Graph', value: 'visualization'},
+    {label: 'Load queries', value: 'cypher'},
+  ]
+}>
+  <TabItem value="visualization">
+
+  <img src={require('../data/how-to-guides/map-projection-example.png').default}/>
+
+  </TabItem>
+
+  <TabItem value="cypher">
+
+  ```cypher
+  MATCH (n) DETACH DELETE n;
+  CREATE
+  (bradley:Person {name: 'Bradley Cooper', oscars: 0}),
+  (jennifer:Person {name: 'Jennifer Lawrence', oscars: 1}),
+  (slp:Movie {title: 'Silver Linings Playbook', released: 2012}),
+  (amhu:Movie {title: 'American Hustle', released: 2013}),
+  (joy:Movie {title: 'Joy', released: 2015}),
+  (asib:Movie {title: 'A Star Is Born', released: 2018}),
+  (dlu:Movie {title: 'Don’t Look Up', released: 2021}),
+  (bradley)-[:ACTED_IN]->(slp),
+  (bradley)-[:ACTED_IN]->(amhu),
+  (bradley)-[:ACTED_IN]->(joy),
+  (bradley)-[:ACTED_IN]->(asib),
+  (jennifer)-[:ACTED_IN]->(slp),
+  (jennifer)-[:ACTED_IN]->(amhu),
+  (jennifer)-[:ACTED_IN]->(joy),
+  (jennifer)-[:ACTED_IN]->(dlu);
+  ```
+
+  </TabItem>
+
+</Tabs>
+
+Find Jennifer Lawrence and return data about her and the movies she’s acted in.
+This example contains a map projection with a literal entry, which in turn also
+uses map projection inside `collect()`.
+
+<Tabs
+  groupId="ex1"
+  defaultValue="cypher"
+  values={[
+    {label: 'Query', value: 'cypher'},
+    {label: 'Result', value: 'result'},
+  ]
+}>
+  <TabItem value="cypher">
+
+  ```cypher
+  MATCH (actor:Person {name: 'Jennifer Lawrence'})-[:ACTED_IN]->(movie:Movie)
+  WITH actor, collect(movie {.title, .year}) AS movies
+  RETURN actor {.name, roles: movies} AS jennifer
+  ```
+
+  </TabItem>
+
+  <TabItem value="result">
+
+```plaintext
+┌─────────────────────────────────────────────────────────────┐
+│ jennifer                                                    │
+├─────────────────────────────────────────────────────────────┤
+│ {Map} 3 properties                                          │
+│ {                                                           │
+│   "name": "Jennifer Lawrence",                              │
+│   "roles": [                                                │
+│       {                                                     │
+│         "year": 2012,                                       │
+│         "title": "Silver Linings Playbook"                  │
+│       },                                                    │
+│       {                                                     │
+│         "year": 2013,                                       │
+│         "title": "American Hustle"                          │
+│       },                                                    │
+│       {                                                     │
+│         "year": 2015,                                       │
+│         "title": "Joy"                                      │
+│       },                                                    │
+│       {                                                     │
+│         "year": 2021,                                       │
+│         "title": "Don’t Look Up"                            │
+│       }                                                     │
+│   ]                                                         │
+│ }                                                           │
+└─────────────────────────────────────────────────────────────┘
+```
+
+  </TabItem>
+
+</Tabs>
+
+The below query finds all `Person` nodes that have one or more relationships
+of type `ACTED_IN` connected to `Movie` nodes and returns the number of movies
+each `Person` has starred in. This example introduces the variable selector and
+uses it to project the movie count.
+
+<Tabs
+  groupId="ex2"
+  defaultValue="cypher"
+  values={[
+    {label: 'Query', value: 'cypher'},
+    {label: 'Result', value: 'result'},
+  ]
+}>
+  <TabItem value="cypher">
+
+  ```cypher
+  MATCH (actor:Person)-[:ACTED_IN]->(movie:Movie)
+  WITH actor, count(movie) AS nMovies
+  RETURN actor {.name, nMovies}
+  ```
+
+  </TabItem>
+
+  <TabItem value="result">
+
+```plaintext
+┌─────────────────────────────────────────────────────────────┐
+│ actor {.name, nMovies}                                      │
+├─────────────────────────────────────────────────────────────┤
+│ {Map} 2 properties                                          │
+│ {                                                           │
+│    "name": "Jennifer Lawrence",                             │
+│    "nMovies": 4                                             │
+│ }                                                           │
+├╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┤
+│ {Map} 2 properties                                          │
+│ {                                                           │
+│    "name": "Bradley Cooper",                                │
+│    "nMovies": 4                                             │
+│ }                                                           │
+└─────────────────────────────────────────────────────────────┘
+```
+
+  </TabItem>
+
+</Tabs>
+
+Finally, the next query returns all properties from the Bradley Cooper node. It
+uses an all-properties selector to project node properties, and in addition
+explicitly projects the `dateOfBirth` property. Since this property does not
+exist, a null value is projected in its place.
+
+<Tabs
+  groupId="ex3"
+  defaultValue="cypher"
+  values={[
+    {label: 'Query', value: 'cypher'},
+    {label: 'Result', value: 'result'},
+  ]
+}>
+  <TabItem value="cypher">
+
+  ```cypher
+  MATCH (actor:Person {name: 'Bradley Cooper'})
+  RETURN actor {.*, .dateOfBirth} as bradley
+  ```
+
+  </TabItem>
+
+  <TabItem value="result">
+
+```plaintext
+┌─────────────────────────────────────────────────────────────┐
+│ bradley                                                     │
+├─────────────────────────────────────────────────────────────┤
+│ {Map} 3 properties                                          │
+│ {                                                           │
+│   "dateOfBirth": null,                                      │
+│   "name": "Bradley Cooper",                                 │
+│   "oscars": 0                                               │
+│ }                                                           │
+└─────────────────────────────────────────────────────────────┘
+```
+
+  </TabItem>
+
+</Tabs>
 
 ## Temporal types
 
