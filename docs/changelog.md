@@ -13,14 +13,14 @@ sidebar_label: Changelog
   threads](/memgraph/reference-guide/backup#snapshots).
   [#868](https://github.com/memgraph/memgraph/pull/868)
 - During the recovery, indexes can also  be created using multiple threads, thus
-  speeding up the process.
-  [#882](https://github.com/memgraph/memgraph/pull/882)
+  speeding up the process. [#882](https://github.com/memgraph/memgraph/pull/882)
 - Memgraph now exposes system metrics via an HTTP endpoint, so you can get
   information about transactions, query latency and various other properties.
   [#940](https://github.com/memgraph/memgraph/pull/940)
-- It’s now possible to use the map projection syntax to create maps. Map
-  projections are convenient for building maps based on existing values and they
-  are used by data access tools like GraphQL and Spring Data.
+- It’s now possible to use the [map projection
+  syntax](/reference-guide/data-types.md) to create maps. Map projections are
+  convenient for building maps based on existing values and they are used by
+  data access tools like GraphQL and Spring Data.
   [#892](https://github.com/memgraph/memgraph/pull/892)
 - You can now check if [the data directory](/reference-guide/backup.md) is
   (un)locked with the `DATA DIRECTORY LOCK STATUS;` query.
@@ -29,8 +29,9 @@ sidebar_label: Changelog
   mode](/reference-guide/storage-modes.md) and [isolation
   levels](/reference-guide/transactions.md) by running the `SHOW STORAGE INFO;`
   query. [#883](https://github.com/memgraph/memgraph/pull/883)
-- Check the suspected build type of the Memgraph executable by running the `SHOW
-  BUILD INFO;` query. [#894](https://github.com/memgraph/memgraph/pull/894)
+- Check the suspected [build type of the Memgraph
+ executable]/reference-guide/server-stats.md by running the `SHOW BUILD INFO;`
+  query. [#894](https://github.com/memgraph/memgraph/pull/894)
 - Performance has been improved by optimizing the deallocation of resources in
   Memgraph's custom `PoolResource` memory allocator.
   [#898](https://github.com/memgraph/memgraph/pull/898)
