@@ -28,9 +28,9 @@ sidebar_label: Changelog
 - You can now check the current the current [storage
   mode](/reference-guide/storage-modes.md) and [isolation
   levels](/reference-guide/transactions.md) by running the `SHOW STORAGE INFO;`
-  query. [#883](https://github.com/memgraph/memgraph/pull/883/)
+  query. [#883](https://github.com/memgraph/memgraph/pull/883)
 - Check the suspected build type of the Memgraph executable by running the `SHOW
-  BUILD INFO;` query. [#883](https://github.com/memgraph/memgraph/pull/883/)
+  BUILD INFO;` query. [#894](https://github.com/memgraph/memgraph/pull/894)
 - Performance has been improved by optimizing the deallocation of resources in
   Memgraph's custom `PoolResource` memory allocator.
   [#898](https://github.com/memgraph/memgraph/pull/898)
