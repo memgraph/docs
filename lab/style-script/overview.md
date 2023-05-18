@@ -103,11 +103,11 @@ use a beer image and a bigger size along with a red shadow.
 
 ## Caching results for faster performance
 
-Sometimes you might want to normalize some value, for example, the size or width of all the
-nodes or relationships in the graph. To do so, you need to find the minimum and maximum values
+To normalize some value, for example, the size or width of all the
+nodes or relationships in the graph, find the minimum and maximum values
 of all nodes.
-Let's say we have nodes labeled `"Person"` with a property `age` that holds the age information
-of a particular person. We want a node property `size` to be 5 for the youngest person
+For example, a node labled "Person"` has the property `age` that holds the age information
+of a particular person. We want the node property `size` to be 5 for the youngest person
 and 20 for the oldest one in the presented graph. All other node sizes should be normalized
 within that range.
 
