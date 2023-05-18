@@ -17,10 +17,14 @@ You can switch between modes within the session using the following query:
 STORAGE MODE IN_MEMORY_{TRANSACTIONAL|ANALYTICAL};
 ```
 
-When switching modes, Memgraph will wait until all other transactions are done. If some other transactions are running in your system, you will receive a warning message, so be sure to [set the log level to `WARNING`](/reference-guide/configuration.md#other).
+When switching modes, Memgraph will wait until all other transactions are done.
+If some other transactions are running in your system, you will receive a
+warning message, so be sure to [set the log level to
+`WARNING`](/reference-guide/configuration.md#other).
 
-If you are running the Memgraph Enterprise Edition, to change the storage mode
-you to have [`STORAGE_MODE` permission](/reference-guide/auth-module.md).
+If you are running the Memgraph Enterprise Edition, you need to have
+[`STORAGE_MODE` permission](/reference-guide/auth-module.md) to change the
+storage mode.
 
 You can query the current storage mode using the following query:
 

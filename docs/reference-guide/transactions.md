@@ -148,13 +148,20 @@ lowest:
  - READ_UNCOMMITTED - one transaction may read not yet committed changes made by
    other transactions.
 
+To check the current isolation level run the following query:
+
+```cypher
+SHOW STORAGE INFO;
+```
+
 ### Setting the isolation level
 
 To change the isolation level, change the `--isolation-level` configuration flag
 to any of the supported values. If you need help changing the configuration,
 check out [the how-to guide](/how-to-guides/config-logs.md).
 
-The initially set isolation level can be changed during runtime using the
+You can change the initially set isolation level when Memgraph is running in the
+[`IN_MEMORY_TRANSACTIONAL` mode](/reference-guide/storage-modes.md) using the
 following query:
 
 ```cypher
@@ -170,18 +177,6 @@ SET <scope> TRANSACTION ISOLATION LEVEL <isolation_level>
  - SNAPSHOT ISOLATION
  - READ COMMITTED
  - READ UNCOMMITTED
-
-
-You can only change the isolation level when Memgraph is running in the
-[`IN_MEMORY_TRANSACTIONAL` mode](/reference-guide/storage-modes.md).
-
-### Querying the isolation level
-
-You can find out the current isolation level using the following query:
-
-```cypher
-SHOW STORAGE INFO;
-```
 
 ## Storage modes
 
