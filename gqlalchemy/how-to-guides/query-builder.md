@@ -35,6 +35,7 @@ Through this guide, you will learn how to use GQLAlchemy query builder to:
 - [**Call procedures**](#call-procedures)
     - [**Call procedure with no arguments**](#call-procedure-with-no-arguments)
     - [**Call procedure with arguments**](#call-procedure-with-arguments)
+- [**Load CSV file**](#load-csv-file)
 
 >Hopefully, this guide will teach you how to properly use GQLAlchemy query builder. If you
 >have any more questions, join our community and ping us on [Discord](https://discord.gg/memgraph).
@@ -1241,7 +1242,8 @@ RETURN objects;
 </TabItem>
 </Tabs>
 
-## Full code example
+<details>
+<summary> <b>Code example using all of the above mentioned queries</b> </summary>
 
 ```python
 from gqlalchemy import create, merge, Memgraph, match, models, call
@@ -1490,7 +1492,42 @@ results = list(
 
 print("Load from URL with argument:", results, "\n")
 ```
+</details>
 
+## Load CSV file
+
+To load a CSV file using query builder, use the `load_csv()` procedure. Here is an example CSV file:
+```
+id,name,age,city
+100,Daniel,30,London
+101,Alex,15,Paris
+102,Sarah,17,London
+103,Mia,25,Zagreb
+104,Lucy,21,Paris
+```
+
+To load it, run the following code:
+
+```python
+from gqlalchemy import load_csv, Memgraph
+from gqlalchemy.utilities import CypherVariable
+
+db = Memgraph()
+
+load_csv(
+      path="/path-to/people_nodes.csv", header=True, row="row"
+  )
+  .create()
+  .node(
+      variable="n",
+      labels="Person",
+      id=CypherVariable(name="row.id"),
+      name=CypherVariable(name="row.name"),
+      age=CypherVariable(name="ToInteger(row.age)"),
+      city=CypherVariable(name="row.city"),
+  )
+  .execute()
+```   
 
 >Hopefully, this guide has taught you how to properly use GQLAlchemy query builder. If you
 >have any more questions, join our community and ping us on [Discord](https://discord.gg/memgraph).

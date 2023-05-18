@@ -7,6 +7,8 @@ slug: /how-to-guides/table-to-graph-importer
 
 import Neo4jWarning from '../../templates/_neo4j_warning.mdx';
 
+import OptionalDependenciesNote from '../../templates/_optional_dependencies_note.mdx';
+
 This guide will show you how to use `loaders.py` to translate table data from a
 file to graph data and import it to **Memgraph**. Currently, we support reading
 of CSV, Parquet, ORC and IPC/Feather/Arrow file formats via the **PyArrow** package.
@@ -23,6 +25,8 @@ data is located, here are two guides on how to import it to Memgraph:
 - [Using a cloud storage solution](#using-a-cloud-storage-solution)
 
 <Neo4jWarning/>
+
+<OptionalDependenciesNote/>
 
 ## Loading a CSV file from the local file system
 
@@ -60,11 +64,11 @@ one_to_many_relations:
   address: []        # currently needed, leave [] if no relations to define
   individuals:
     - foreign_key: # foreign key used for mapping;
-      column_name: add_id         # specifies its column
-      reference_table: address    # name of table from which the foreign key is taken
-      reference_key: add_id       # column name in reference table from which the foreign key is taken
-    label: LIVES_IN        # label applied to relationship created
-      from_entity: False     # (optional) define direction of relationship created
+        column_name: add_id         # specifies its column
+        reference_table: address    # name of table from which the foreign key is taken
+        reference_key: add_id       # column name in reference table from which the foreign key is taken
+      label: LIVES_IN        # label applied to relationship created
+        from_entity: False     # (optional) define direction of relationship created
 
 
 many_to_many_relations:       # intended to be used in case of associative tables
@@ -111,7 +115,7 @@ Having defined the data configuration for the translation, all you need to do is
 make an instance of an `Importer` and call `translate()`.
 
 ```python
-importer = ParquetLocalFileSystemImporter(
+importer = CSVLocalFileSystemImporter(
     data_configuration=parsed_yaml,
     path="/home/user/table_data",
 )

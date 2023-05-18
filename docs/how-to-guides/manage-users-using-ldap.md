@@ -15,9 +15,8 @@ centralized user management system.
 
 :::warning
 This is an Enterprise feature.
-If the Memgraph Enterprise is not activated, all the created users will be granted
-all of the privileges.
-Regardless, all of the previously defined privileges will still be applied.
+Once the Memgraph Enterprise license expires, newly created users will be granted all privileges.
+The existing users' privileges will still apply but you won't be able to manage them.
 :::
 
 For this guide let's assume that we have an LDAP server that is serving the

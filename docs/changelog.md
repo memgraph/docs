@@ -4,14 +4,40 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
-## v2.8 - TBD
+## v2.8 - May 18, 2023
 
 ### New features and improvements
 
-- Data recovery is now up to 6x faster depending on the number of cores, as
-  [snapshot loading is now distributed among several
+- Data recovery is now up to 6x faster depending on the number of available cores, as
+  [snapshot loading is distributed among several
   threads](/memgraph/reference-guide/backup#snapshots).
+- Indexes can be created using multiple threads, thus speeding up the recovery
+  process. [#882](https://github.com/memgraph/memgraph/pull/882)
   [#868](https://github.com/memgraph/memgraph/pull/868)
+- Memgraph now exposes system metrics via an HTTP endpoint, so you can get
+  information about transactions, query latency and various other properties.
+  [#940](https://github.com/memgraph/memgraph/pull/940)
+- It’s now possible to use the map projection syntax to create maps. Map
+  projections are convenient for building maps based on existing values and they
+  are used by data access tools like GraphQL and Spring Data.
+  [#892](https://github.com/memgraph/memgraph/pull/892)
+- You can now check if [the data directory](/reference-guide/backup.md) is
+  (un)locked with the `DATA DIRECTORY LOCK STATUS;` query.
+  [#933](https://github.com/memgraph/memgraph/pull/933)
+- You can now check the current the current [storage
+  mode](/reference-guide/storage-modes.md) and [isolation
+  levels](/reference-guide/transactions.md) by running the `SHOW STORAGE INFO;`
+  query. [#883](https://github.com/memgraph/memgraph/pull/883/)
+- Performance has been improved by optimizing the deallocation of resources in
+  Memgraph's custom `PoolResource` memory allocator.
+  [#898](https://github.com/memgraph/memgraph/pull/898)
+
+### Bug fixes
+
+- Running Python procedures now consume less memory.
+  [#932](https://github.com/memgraph/memgraph/pull/932)
+- Query profiles now show the correct values of memory usage.
+  [#885](https://github.com/memgraph/memgraph/pull/885)
 
 ## v2.7 - Apr 5, 2023
 
@@ -51,7 +77,7 @@ sidebar_label: Changelog
   blocks allocated while processing the `LOAD CSV` query.
   [#825](https://github.com/memgraph/memgraph/pull/825)
 
-### Bugfixes
+### Bug fixes
 
 - The users who have [global visibility on the
   graph](/memgraph/reference-guide/security#label-based-access-control) will

@@ -96,7 +96,7 @@ workers simultaneously.
 
 ## Environment variables
 
- Variable        | Description    | Type           |
+| Variable        | Description    | Type           |
 | -------------- | -------------- | -------------- |
 | MEMGRAPH_USER        | Username     | `[string]`     |
 | MEMGRAPH_PASSWORD    | User password       | `[string]`     |

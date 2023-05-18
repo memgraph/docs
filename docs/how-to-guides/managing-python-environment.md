@@ -1,7 +1,7 @@
 ---
 id: managing-python-environment
 title: How to manage Python environment
-sidebar_label: Managing Python environment
+sidebar_label: Manage Python environment
 ---
 
 [![Related - Reference

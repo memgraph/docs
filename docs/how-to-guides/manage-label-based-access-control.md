@@ -8,8 +8,8 @@ sidebar_label: Manage label-based access control
 
 :::warning
 This is an Enterprise feature.
-If the Memgraph Enterprise is not activated, all the created users will be granted
-all of the privileges.
+Once the Memgraph Enterprise license expires, newly created users will be granted all privileges.
+The existing users' privileges will still apply but you won't be able to manage them.
 :::
 
 Sometimes, authorizing the database by granting and denying clause privileges is not enough to make the

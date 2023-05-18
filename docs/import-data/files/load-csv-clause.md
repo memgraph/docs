@@ -15,10 +15,16 @@ the variable you specified and populates the database if it is empty, or appends
 new data to an existing dataset. Memgraph supports the Excel CSV dialect, as
 it's the most common one. 
 
-:::caution
-
 `LOAD CSV` clause cannot be used with a Memgraph Cloud instance because at the
 moment it is impossible to make files accessible by Memgraph. 
+
+:::tip
+
+If the data is importing slower than expected, you can [speed it
+up](#increase-import-speed) by creating indexes or switching the storage mode to
+analytical.
+
+If the import speed is still unsatisfactory, don't hesitate to contact us on [Discord](https://discord.com/invite/memgraph).
 
 :::
 
@@ -131,17 +137,34 @@ When using the `LOAD CSV` clause please keep in mind:
   CREATE (n:A {p1 : x, p2 : y});
   ```
 
-:::tip
+## Increase import speed
 
-The `LOAD CSV` clause will create relationships and thus import data much
-  faster if you [create indexes](/how-to-guides/indexes.md) on nodes or node
-  properties once you import them: 
+The `LOAD CSV` clause will create relationships much faster, and consequently
+speed up data import, if you [create indexes](/how-to-guides/indexes.md) on
+nodes or node properties once you import them: 
 
-  ```cypher
-  CREATE INDEX ON Node(id);
-  ````
+```cypher
+  CREATE INDEX ON :Node(id);
+```
 
-:::
+If the LOAD CSV clause is merging data instead of creating it, create indexes
+before running the LOAD CSV clause. 
+
+You can also speed up import if you switch Memgraph to [**analytical storage
+mode**](/reference-guide/storage-modes.md). In the analytical mode there are no
+ACID guarantees besides manually created snapshots but it does **increase the
+import speed up to 6 times with 6 times less memory consumption**. After import
+you can switch the storage mode back to transactional and enable ACID
+guarantees.
+
+You can switch between modes within the session using the following query:
+
+```cypher
+STORAGE MODE IN_MEMORY_{TRANSACTIONAL|ANALYTICAL};
+```
+
+When in the analytical storage mode, **don't** import data using multiple
+threads. 
 
 ## Examples
 
@@ -229,7 +252,15 @@ Let's import a simple dataset from the `people_nodes` and `people_relationships`
   CREATE (p:Person {id: row.id, name: row.name});
   ```
 
-  If successful, you should receive an `Empty set (0.014 sec)` message. 
+  If successful, you should receive an `Empty set (0.014 sec)` message.
+
+  If you have a large dataset, it's beneficial to create indexes on a property
+  that will be used to connect nodes and relationships, in this case, the `id`
+  property.
+
+  ```cypher
+  CREATE INDEX ON :Person(id);
+  ```
 
 4. With the initial nodes in place, you can now create relationships between
    them by importing the `people_relationships.csv` file:
@@ -306,6 +337,14 @@ Let's import a simple dataset from the `people_nodes` and `people_relationships`
     ```
 
     If successful, you should receive an `Empty set (0.014 sec)` message. 
+
+    If you have a large dataset, it's beneficial to create indexes on a property
+    that will be used to connect nodes and relationships, in this case, the `id`
+    property.
+
+    ```cypher
+    CREATE INDEX ON :Person(id);
+    ```
 
 4. With the initial nodes in place, you can now create relationships between
    them by importing the `people_relationships.csv` file::
@@ -411,19 +450,27 @@ We will create that graph by using `LOAD CSV` clause to import four CSV files.
     CREATE (n:Person {id: row.id, name: row.name, age: ToInteger(row.age), city: row.city});
     ```
 
-<details>
-  <summary>This is how the graph should look like in Memgraph after the import:</summary>
-  Run the following query: <br/>
-  <code>
-  MATCH (p) RETURN p; 
-  </code>
-  <p> 
-  
-  </p>
-  <div>
-    <img src={require('../../data/import-data/load_csv_people_nodes.png').default}/>
-  </div>
-</details>
+  <details>
+    <summary>This is how the graph should look like in Memgraph after the import:</summary>
+    Run the following query: <br/>
+    <code>
+    MATCH (p) RETURN p; 
+    </code>
+    <p> 
+    
+    </p>
+    <div>
+      <img src={require('../../data/import-data/load_csv_people_nodes.png').default}/>
+    </div>
+  </details>
+
+  4. If you have a large dataset, it's beneficial to create indexes on a property
+    that will be used to connect nodes and relationships, in this case, the `id`
+    property.
+
+    ```cypher
+    CREATE INDEX ON :Person(id);
+    ```
 
 Now move on to the `people_relationships.csv` file.
 
@@ -549,19 +596,27 @@ file that holds a list of restaurants people ate at:
     CREATE (n:Restaurant {id: row.id, name: row.name, menu: row.menu});
     ```
 
-<details>
-  <summary>This is how the graph should look like in Memgraph after the import:</summary>
-  Run the following query: <br/>
-  <code>
-  MATCH (p) RETURN p; 
-  </code>
-  <p> 
-  
-  </p>
-  <div>
-    <img src={require('../../data/import-data/load_csv_restaurant_nodes.png').default}/>
-  </div>
-</details>
+  <details>
+    <summary>This is how the graph should look like in Memgraph after the import:</summary>
+    Run the following query: <br/>
+    <code>
+    MATCH (p) RETURN p; 
+    </code>
+    <p> 
+    
+    </p>
+    <div>
+      <img src={require('../../data/import-data/load_csv_restaurant_nodes.png').default}/>
+    </div>
+  </details>
+
+4. If you have a large dataset, it's beneficial to create indexes on a property
+    that will be used to connect nodes and relationships, in this case, the `id`
+    property.
+
+    ```cypher
+    CREATE INDEX ON :Restaurant(id);
+    ```
 
 Now move on to the `restaurants_relationships.csv` file.
 
