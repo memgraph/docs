@@ -1,4 +1,4 @@
-<h1 align="center"><a href="http://memgraph.com/docs/">Memgraph Documentation</a></h1>
+<h1 align="center"><a href="https://memgraph.com/docs/">Memgraph Documentation</a></h1>
 
 <p align="center">
   <a href="https://github.com/memgraph/docs">

@@ -28,7 +28,7 @@ Cypher query language.
 
 To follow this tutorial, you will need:
 
-- [Memgraph Platform](/installation/overview.mdx) or [Memgraph Cloud](http://cloud.memgraph.com)
+- [Memgraph Platform](/installation/overview.mdx) or [Memgraph Cloud](https://cloud.memgraph.com)
 
 You can use Memgraph Cloud for a 2-week trial period, or you can install
 Memgraph Platform locally. 

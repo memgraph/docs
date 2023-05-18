@@ -8,7 +8,7 @@ sidebar_label: Style your graphs in Memgraph Lab
 Post](https://img.shields.io/static/v1?label=Related&message=Blog%20post&color=9C59DB&style=for-the-badge)](https://memgraph.com/blog/how-to-style-your-graphs-in-memgraph-lab)
 
 In this tutorial, you'll learn how to use **Style script** to add style to your
-graphs. You'll use [**Memgraph Cloud**](http://memgraph.com/cloud) or the sandbox
+graphs. You'll use [**Memgraph Cloud**](https://memgraph.com/cloud) or the sandbox
 site **Memgraph Playground** that runs **Memgraph Lab** to try out styling
 graphs.
 
