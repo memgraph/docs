@@ -23,7 +23,7 @@ guide on query modules](/reference-guide/query-modules/overview.md).
 
 In order to start developing a custom query you will need:
 
-- [Memgraph Platform](/installation/overview.mdx) or [Memgraph Cloud](http://cloud.memgraph.com)
+- [Memgraph Platform](/installation/overview.mdx) or [Memgraph Cloud](https://cloud.memgraph.com)
 
 ## Data model
 
