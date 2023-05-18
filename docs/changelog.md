@@ -8,12 +8,12 @@ sidebar_label: Changelog
 
 ### New features and improvements
 
-- Data recovery is now up to 6x faster depending on the number of available cores, as
-  [snapshot loading is distributed among several
+- Data recovery is now up to 6x faster depending on the number of available
+  cores, as [snapshot loading is distributed among several
   threads](/memgraph/reference-guide/backup#snapshots).
+  [#868](https://github.com/memgraph/memgraph/pull/868)
 - Indexes can be created using multiple threads, thus speeding up the recovery
   process. [#882](https://github.com/memgraph/memgraph/pull/882)
-  [#868](https://github.com/memgraph/memgraph/pull/868)
 - Memgraph now exposes system metrics via an HTTP endpoint, so you can get
   information about transactions, query latency and various other properties.
   [#940](https://github.com/memgraph/memgraph/pull/940)
@@ -38,8 +38,10 @@ sidebar_label: Changelog
 
 - Running Python procedures now consume less memory.
   [#932](https://github.com/memgraph/memgraph/pull/932)
-- Query profiles now show the correct values of memory usage.
-  [#885](https://github.com/memgraph/memgraph/pull/885)
+- Memory allocation in LOAD CSV queries has been optimized to avoid performance
+  degradation. [#877](https://github.com/memgraph/memgraph/pull/877) 
+- Query profiles of the LOAD CSV queries now show the correct values of memory
+  usage. [#885](https://github.com/memgraph/memgraph/pull/885)
 
 ## v2.7 - Apr 5, 2023
 
