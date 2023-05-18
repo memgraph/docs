@@ -12,8 +12,9 @@ sidebar_label: Changelog
   cores, as [snapshot loading is distributed among several
   threads](/memgraph/reference-guide/backup#snapshots).
   [#868](https://github.com/memgraph/memgraph/pull/868)
-- Indexes can be created using multiple threads, thus speeding up the recovery
-  process. [#882](https://github.com/memgraph/memgraph/pull/882)
+- During the recovery, indexes can also  be created using multiple threads, thus
+  speeding up the process.
+  [#882](https://github.com/memgraph/memgraph/pull/882)
 - Memgraph now exposes system metrics via an HTTP endpoint, so you can get
   information about transactions, query latency and various other properties.
   [#940](https://github.com/memgraph/memgraph/pull/940)
