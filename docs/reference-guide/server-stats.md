@@ -39,3 +39,16 @@ The result will contain the following fields:
 | session_isolation_level | Current `session` isolation level. |
 | next_session_isolation_level | Current `next` isolation level. |
 | storage_mode | Current storage mode.<br/>For more info, check out the [storage modes](/reference-guide/storage-modes.md). |
+
+## Build information
+
+Running the following query will return certain information about the build type of
+the current instance:
+
+```cypher
+SHOW BUILD INFO;
+```
+
+| Field            | Description                                                                                                                                  |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| build_type     | The optimization level the instance was built with.                                                                                                                    |
