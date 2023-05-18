@@ -8,9 +8,8 @@ sidebar_label: Manage user privileges
 
 :::warning
 This is an Enterprise feature.
-If the Memgraph Enterprise is not activated, all the created users will be granted
-all of the privileges.
-Regardless, all of the previously defined privileges will still be applied.
+Once the Memgraph Enterprise license expires, newly created users will be granted all privileges.
+The existing users' privileges will still apply but you won't be able to manage them.
 :::
 
 Most databases have multiple users accessing and modifying
@@ -113,6 +112,12 @@ Creating a user account for a new hire named Alice can be done as follows:
 ```cypher
 CREATE USER alice IDENTIFIED BY '0042';
 ```
+
+If the username is an email address, you need to enclose it in backticks (``` ` ```):
+
+```cypher
+CREATE USER `alice@memgraph.com` IDENTIFIED BY '0042'; 
+``` 
 
 Alice should also be granted a privilege to access data, which can be done by
 executing the following:

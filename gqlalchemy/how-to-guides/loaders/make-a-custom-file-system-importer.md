@@ -7,6 +7,8 @@ slug: /how-to-guides/custom-file-system-importer
 
 import Neo4jWarning from '../../templates/_neo4j_warning.mdx';
 
+import OptionalDependenciesNote from '../../templates/_optional_dependencies_note.mdx';
+
 > To learn how to import table data from a file to the Memgraph database, head
 > over to the [How to import table
 > data](/how-to-guides/loaders/import-table-data-to-graph-database.md) guide.
@@ -17,6 +19,8 @@ your own by extending abstract classes `FileSystemHandler` and `DataLoader`,
 respectively.
 
 <Neo4jWarning/>
+
+<OptionalDependenciesNote/>
 
 ## Implementing a new `FileSystemHandler`
 

@@ -18,7 +18,8 @@ If you installed **Memgraph Platform** with the Docker image
 the container. Skip the installation steps and continue with [executing
 Cypher queries](#execute-cypher-queries).
 
-If you installed any other Docker image, you need to manually run mgconsole
+If you installed any other Docker image or want to explicitly start the
+mgconsole from the Memgraph Platform image, you need to manually run mgconsole
 following the steps described below.
 
 :::
@@ -37,25 +38,19 @@ instance, use the following steps:
   ]}>
   <TabItem value="docker">
 
-**1.** If you installed MemgraphDB using Docker, you can run the client from your
-Docker image. First, you need to find the `CONTAINER_ID` of your Memgraph
-container:
+If you installed MemgraphDB using Docker or closed the terminal with the running mgconsole from Memgraph
+Platform image, run the mgconsole client from your Docker image using the following commands:
+
+1. First, you need to find the `CONTAINER_ID` by running:
 
 ```terminal
 docker ps
 ```
 
-**2.** Once you know the `CONTAINER_ID`, find the IP address of the container by
-executing:
+**2.** Once you know the `CONTAINER_ID`, you can start mgconsole by running the following command:
 
 ```terminal
-docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' CONTAINER_ID
-```
-
-**3.** Now, you can start mgconsole by running the following command:
-
-```terminal
-docker run -it --entrypoint=mgconsole memgraph/memgraph --host CONTAINER_IP
+docker exec -it CONTAINER_ID mgconsole
 ```
 
   </TabItem>
@@ -150,7 +145,7 @@ Memgraph database instance.
 
 :::tip
 
-You can use the `TAB` key to autocomplete commands in mgconsole.
+You can use the `TAB` key to autocomplete commands in `mgconsole`.
 
 :::
 
@@ -168,6 +163,100 @@ To find created nodes and relationships, execute the following query:
 
 ```cypher
 MATCH (u:User)-[r]->(x) RETURN u, r, x;
+```
+
+### Query execution time
+
+To get a breakdown of the execution time, set the `-verbose_execution_info` flag
+to `true`.
+
+Upon query execution you will get this information:
+
+```bash
+Query COST estimate: 3066
+Query PARSING time: 0.000175982 sec
+Query PLAN EXECUTION time: 0.0154524 sec
+Query PLANNING time: 8.054e-05 sec
+```
+
+The values show:
+
+- COST estimate - Internal planner estimation on the cost of the query. When comparing two query executions, an order of magnitude larger COST estimates might indicate the query's longer execution time. 
+- PARSING time - Time spent checking if the query is valid and normalizing it for cache.
+- PLAN EXECUTION time - Time executing the plan. 
+- PLANNING time - Time it takes the query planner to create the optimal plan to execute the query.
+
+## Configure mgconsole
+
+Below are configurational flags you can use with mgconsole:
+
+### Main
+
+| Flag                     | Description                                                                                                             | Type    | Default |
+|--------------------------|-------------------------------------------------------------------------------------------------------------------------|---------|---------|
+| -csv_delimiter            | Character used to separate fields.                                                                                      | string  | ","     |
+| -csv_doublequote          | Controls how instances of the quotechar(") appearing inside a field should themselves be quoted. When `true`, the character is doubled. When `false`, the escapechar is used as a prefix to the quotechar. If `csv_doublequote` is `false`, `csv_escapechar` must be set. | bool    | true    |
+| -csv_escapechar           | Character used to escape the quote character (") if `csv_doublequote` is `false`.                                      | string  | ""      |
+| -fit_to_screen            | Fit output width to screen width.                                                                                       | bool    | false   |
+| -history                  | Use the specified directory to save history.                                                                         | string  | "~/.memgraph" |
+| -host                     | Server address. It can be a DNS resolvable hostname.                                                                     | string  | "127.0.0.1" |
+| -no_history               | Do not save history.                                                                                                    | bool    | false   |
+| -output_format            | Query output format. Can be `csv` or `tabular`. If the output format is not tabular `fit-to-screen` flag is ignored.       | string  | "tabular" |
+| -password                 | Database password.                                                                                               | string  | ""      |
+| -port                     | Server port.                                                                                                             | int32   | 7687    |
+| -term_colors              | Use terminal colors syntax highlighting.                                                                                | bool    | false   |
+| -use_ssl                  | Use SSL when connecting to the server.                                                                                  | bool    | false   |
+| -username                 | Database username.                                                                                               | string  | ""      |
+| -verbose_execution_info   | Output the additional information about query such as query cost, parsing, planning and execution times.               | bool    | false   |
+
+### Flags
+
+| Flag                     | Description                                                                                                             | Type    | Default |
+|--------------------------|-------------------------------------------------------------------------------------------------------------------------|---------|---------|
+| -flagfile                 | Load flags from a file.                                                                                                 | string  | ""      |
+| -fromenv                  | Set flags from the environment [example: 'export FLAGS_flag1=value'].                                                   | string  | ""      |
+| -tryfromenv               | Set flags from the environment if present.                                                                               | string  | ""      |
+| -undefok                  | Comma-separated list of flag names. These flags can be specified on the command line even if the program does not define a flag with that name.  IMPORTANT: Flags from the list that have arguments MUST use the flag=value format. | string  | ""      |
+| -tab_completion_columns   | The number of columns used in output for tab completion.                                                                  | int32   | 80      |
+| -tab_completion_word      | If non-empty, `HandleCommandLineCompletions()` will hijack the process and attempt to do bash-style command line flag completion on this value.                                                                                                         | string  | ""      |
+
+### Help
+
+| Flag                     | Description                                                                                                             | Type    | Default |
+|--------------------------|-------------------------------------------------------------------------------------------------------------------------|---------|---------|
+| -help                     | Show help on all flags [tip: all flags can have two dashes].                                                               | bool    | false   |
+| -helpfull                 | Show help on all flags -- same as -help.                                                                                  | bool    | false   |
+| -helpmatch                | Show help on modules, names of which contain the specified substring.                                                           | string  | ""      |
+| -helpon                   | Show help on the modules named by this flag value.                                                                        | string  | ""      |
+| -helppackage              | Show help on all modules in the main package.                                                                             | bool    | false   |
+| -helpshort               | Show help on the main module for this program only.                        | bool  | false   |
+| -helpxml                 | Produce an .xml version of help.                                            | bool  | false   |
+| -version                 | Show version and build info then exit.                                      | bool  | false   |
+
+:::caution
+
+When working with Memgraph Platform, you should pass configuration flags inside
+of environment variables.
+
+For example, you should start Memgraph Platform with `docker run -e
+MGCONSOLE="-output_format="csv"" memgraph/memgraph-platform`.
+
+:::
+
+## Non-interactive mode
+
+To get the query result in bash, use the following command: 
+```bash
+mgconsole < <(echo "MATCH (n:Person) RETURN n;")
+```
+or
+```bash
+echo "MATCH (n:Person) RETURN n;" | mgconsole
+```
+
+To save the query results in a file, use the following command:
+```bash
+mgconsole < <(echo "MATCH (n:Person) RETURN n;") > results.txt
 ```
 
 ## Where to next? {#where-to-next}

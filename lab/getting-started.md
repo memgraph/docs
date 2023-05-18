@@ -11,6 +11,7 @@ enables you to:
 - visualize graph data using [the Orb library](https://github.com/memgraph/orb)
 - write and execute Cypher queries
 - import and export data
+- manage stream connections
 - view and optimize query performance
 - develop query modules in Python
 

@@ -35,8 +35,8 @@ There are three Docker images you can use to run Memgraph:
     graph data
   - **MAGE**: an open-source library of graph algorithms and custom Cypher
     procedures
-- `memgraph-mage` - installs **MemgraphDB** and **MAGE**
-- `memgraph` - installs **MemgraphDB**
+- `memgraph-mage` - installs **MemgraphDB**, **mgconsole** and **MAGE**
+- `memgraph` - installs **MemgraphDB** and **mgconsole**
 
 ### Download the Memgraph Docker image
 
@@ -239,8 +239,7 @@ letters to have a unique string, press the `<TAB>` key.
 To copy files from and to the Docker container, first, you need [to retrieve its
 ID](#how-to-retrieve-a-docker-container-id).
 
-1. Place yourself in the local directory where you want to copy the
-   configuration file.
+1. Place yourself in the local directory where you want to copy the file.
 
 2. Copy the file from the container to your current directory with the command:
 

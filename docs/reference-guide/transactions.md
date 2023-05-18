@@ -13,23 +13,23 @@ is rolled back and no changes are committed.
 These automatic transactions are also called implicit transactions.
 
 Users can also create explicit transactions to execute multiple Cypher queries
-in sequence, then commit them or roll them back. 
+in sequence, then commit them or roll them back.
 
 During transaction execution, an important property of a database is the
 isolation level that defines how or when the changes made by one operation
-become visible to others. 
+become visible to others.
 
 ## Explicit transactions
 
-To start a transaction, run the `BEGIN;` query. 
+To start a transaction, run the `BEGIN;` query.
 
 All the following queries will be executed as a part of a single transaction.
 
 If any of the queries fails, further queries will no longer be successfully
 executed and it won't be possible to commit the transaction.
 
-Commit successful transactions by executing the `COMMIT;` query. 
-Roll back unsuccessful transactions by executing the `ROLLBACK;` query. 
+Commit successful transactions by executing the `COMMIT;` query.
+Roll back unsuccessful transactions by executing the `ROLLBACK;` query.
 
 ## Managing transactions
 
@@ -71,17 +71,17 @@ CheckMustAbort() function.
 #### New session with Docker
 
 If you are using **Memgraph Lab**, you can vertically split screens and open another
-Query Execution section. 
+Query Execution section.
 
 If you are using **mgconsole** on an instance running in a Docker container:
 
-1. Open a new terminal and find the CONTAINER ID of the Memgraph Docker container: 
+1. Open a new terminal and find the CONTAINER ID of the Memgraph Docker container:
 
   ```
   docker ps
   ```
 
-2. Enter the container with the following command: 
+2. Enter the container with the following command:
 
   ```
   docker exec -it CONTAINER ID bash
@@ -100,7 +100,7 @@ To terminate the transaction, run the following query:
 TERMINATE TRANSACTIONS "9223372036854775809";
 ```
 
-Upon the transaction termination, the following confirmation will appear: 
+Upon the transaction termination, the following confirmation will appear:
 
 <img src={require('../data/how-to-guides/manage-transactional-queue/terminate_transactions.png').default}/>
 
@@ -148,13 +148,20 @@ lowest:
  - READ_UNCOMMITTED - one transaction may read not yet committed changes made by
    other transactions.
 
+To check the current isolation level run the following query:
+
+```cypher
+SHOW STORAGE INFO;
+```
+
 ### Setting the isolation level
 
 To change the isolation level, change the `--isolation-level` configuration flag
 to any of the supported values. If you need help changing the configuration,
-check out [the how-to guide](/how-to-guides/config-logs.md). 
+check out [the how-to guide](/how-to-guides/config-logs.md).
 
-The initially set isolation level can be changed during runtime using the
+You can change the initially set isolation level when Memgraph is running in the
+[`IN_MEMORY_TRANSACTIONAL` mode](/reference-guide/storage-modes.md) using the
 following query:
 
 ```cypher
@@ -170,10 +177,6 @@ SET <scope> TRANSACTION ISOLATION LEVEL <isolation_level>
  - SNAPSHOT ISOLATION
  - READ COMMITTED
  - READ UNCOMMITTED
-
-
-You can only change the isolation level when Memgraph is running in the
-[`IN_MEMORY_TRANSACTIONAL` mode](/reference-guide/storage-modes.md).
 
 ## Storage modes
 
