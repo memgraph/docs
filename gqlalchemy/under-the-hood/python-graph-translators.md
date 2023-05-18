@@ -24,7 +24,7 @@ Within code, translators are divided into the following parts, depending on a Py
 
 ## NetworkX graph translator
 
-The `NxTranslator` class implements the NetworkX graph translator and inherits from the `Translator` class. The `NxTranslator` class can be imported from the `gqlalchemy.transformations.translators` module. 
+The `NxTranslator` class implements the NetworkX graph translator and inherits from the `Translator` class. The `NxTranslator` class can be imported from the `gqlalchemy.transformations.translators.nx_translator` module. 
 
 [![docs-source](https://img.shields.io/badge/source-NetworkX%20Translator-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/gqlalchemy/blob/main/gqlalchemy/transformations/translators/nx_translator.py)
 
@@ -37,7 +37,7 @@ Translating the graph means that you can **import** NetworkX graph into Memgraph
 
 ### `to_cypher_queries()` method
 
-The `to_cypher_queries()` method yields queries from the `NetworkXCypherBuilder` object. These queries are creating nodes (with indexes) and edges. To create nodes with indexes, `create_index` in `config` must be set to `True`. In that case, label-property indexes will be created on `id` property of each node. With or without indexes, node creation follows the same set or rules. The value of the `labels` key in NetworkX node will be translated into Memgraph node labels. Other properties will be translated into the same key-value pairs in Memgraph. Every node will have `id` property matching its NetworkX identification number. After Cypher queries for the node creation are generated, then Cypher queries for edge creation are being generated. Those Cypher queries will match nodes by their label and property `id` and create a relationship between them. The value of the `TYPE` key in NetworkX edge will be translated into relationship type in Memgraph. Any other property in NetworkX edge will be translated into the same key-value pair in Memgraph. To run the generated queries, following code can be used:
+The `to_cypher_queries()` method yields queries from the `NetworkXCypherBuilder` object. These queries are creating nodes (with indexes) and relationships. To create nodes with indexes, `create_index` in `config` must be set to `True`. In that case, label-property indexes will be created on `id` property of each node. With or without indexes, node creation follows the same set or rules. The value of the `labels` key in NetworkX node will be translated into Memgraph node labels. Other properties will be translated into the same key-value pairs in Memgraph. Every node will have `id` property matching its NetworkX identification number. After Cypher queries for the node creation are generated, then Cypher queries for relationship creation are being generated. Those Cypher queries will match nodes by their label and property `id` and create a relationship between them. The value of the `TYPE` key in NetworkX edge will be translated into relationship type in Memgraph. Any other property in NetworkX edge will be translated into the same key-value pair in Memgraph. To run the generated queries, following code can be used:
 
 ```
 for query in NxTranslator().to_cypher_queries(nx_graph):
@@ -55,7 +55,7 @@ for query in NxTranslator().nx_graph_to_memgraph_parallel(nx_graph):
 
 ### `get_instance()` method
 
-The `get_instance()` method translates data stored inside Memgraph into NetworkX graph. It traverses along every node and relationship in the graph and it stores node and relationship objects along with their properties in a NetworkX DiGraph object. Since NetworkX doesn't support node labels and relationship type in a way Memgraph does, they are encoded as node and relationship properties, as values of `label` and `type` key. To create NetworkX graph from data stored in Memgraph, following code can be run:
+The `get_instance()` method translates data stored inside Memgraph into NetworkX graph. It traverses the graph and it stores node and relationship objects along with their properties in a NetworkX DiGraph object. Since NetworkX doesn't support node labels and relationship type in a way Memgraph does, they are encoded as node and edge properties, as values of `label` and `type` key. To create NetworkX graph from data stored in Memgraph, following code can be run:
 
 ```
 graph =  NxTranslator().get_instance()
@@ -63,7 +63,7 @@ graph =  NxTranslator().get_instance()
 
 ## PyG graph translator
 
-The `PyGTranslator` class implements the PyG graph translator and inherits from the `Translator` class. The `PyGTranslator` class can be imported from the `gqlalchemy.transformations.translators` module. 
+The `PyGTranslator` class implements the PyG graph translator and inherits from the `Translator` class. The `PyGTranslator` class can be imported from the `gqlalchemy.transformations.translators.pyg_translator` module. 
 
 [![docs-source](https://img.shields.io/badge/source-PyG%20Translator-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/gqlalchemy/blob/main/gqlalchemy/transformations/translators/pyg_translator.py)
 
@@ -84,7 +84,7 @@ for query in PyGTranslator().to_cypher_queries(pyg_graph):
 
 ### `get_instance()` method
 
-The `get_instance()` method returns instance of PyG heterograph from all relationships stored in Memgraph. Isolated nodes are ignored because they don't contribute in message passing neural networks. Only numerical features that are set on all nodes and relationships are translated to the PyG instance since this is PyG's requirement. Hence, any string properties, as well as numerical properties that aren't set on all nodes or relationships won't be translated to the PyG instance. However, properties of type list will be translated to the PyG instance as a feature. Regardless of how data is connected in Memgraph, the returned PyG graph will be a heterograph instance. To create PyG graph from data stored in Memgraph, following code can be run:
+The `get_instance()` method returns instance of PyG heterograph from all relationships stored in Memgraph. Isolated nodes are ignored because they don't contribute in message passing neural networks. Only numerical properties that are set on all nodes and relationships are translated to the PyG instance since that is PyG requirement. Hence, any string properties, as well as numerical properties that aren't set on all nodes or relationships, won't be translated to the PyG instance. However, properties of type list will be translated to the PyG instance as a feature. Regardless of how data is connected in Memgraph, the returned PyG graph will be a heterograph instance. To create PyG graph from data stored in Memgraph, following code can be run:
 
 ```
 graph =  PyGTranslator().get_instance()
@@ -92,7 +92,7 @@ graph =  PyGTranslator().get_instance()
 
 ## DGL graph translator
 
-The `DGLTranslator` class implements the DGL graph translator and inherits from the `Translator` class. The `DGLTranslator` class can be imported from the `gqlalchemy.transformations.translators` module. 
+The `DGLTranslator` class implements the DGL graph translator and inherits from the `Translator` class. The `DGLTranslator` class can be imported from the `gqlalchemy.transformations.translators.dgl_translator` module. 
 
 [![docs-source](https://img.shields.io/badge/source-DGL%20Translator-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/gqlalchemy/blob/main/gqlalchemy/transformations/translators/dgl_translator.py)
 
@@ -112,7 +112,7 @@ for query in DGLTranslator().to_cypher_queries(dgl_graph):
 
 ### `get_instance()` method
 
-The `get_instance()` method returns instance of DGL heterograph from all relationships stored in Memgraph. Isolated nodes are ignored because they don't contribute in message passing neural networks. Only numerical features that are set on all nodes and relationships are translated to the DGL instance since this is DGL's requirement. Hence, any string properties, as well as numerical properties, that aren't set on all nodes or relationships, won't be translated to the DGL instance. However, properties of type list will be translated to the PyG instance as a feature. Regardless of how data is connected in Memgraph, the returned DGL graph will be a heterograph instance. To create DGL graph from data stored in Memgraph, following code can be run:
+The `get_instance()` method returns instance of DGL heterograph from all relationships stored in Memgraph. Isolated nodes are ignored because they don't contribute in message passing neural networks. Only numerical properties that are set on all nodes and relationships are translated to the DGL instance since that is DGL requirement. Hence, any string properties, as well as numerical properties, that aren't set on all nodes or relationships, won't be translated to the DGL instance. However, properties of type list will be translated to the PyG instance as a feature. Regardless of how data is connected in Memgraph, the returned DGL graph will be a heterograph instance. To create DGL graph from data stored in Memgraph, following code can be run:
 
 ```
 graph =  DGLTranslator().get_instance()

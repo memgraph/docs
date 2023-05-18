@@ -103,6 +103,8 @@ You will get the following output:
 4
 ```
 
+This means that the NetworkX graph has the correct number of nodes and edges. You can explore it more to see if it has all the required features.
+
 ## Export data from Memgraph into PyG graph
 
 ### Prerequisites
@@ -141,6 +143,8 @@ You will get the following output:
 4
 8
 ```
+
+This means that the PyG graph has the correct number of node and edge types, as well as correct total number of nodes and edges. You can explore it more to see if it has all the required features.
 
 
 ## Export data from Memgraph into DGL graph
@@ -185,6 +189,8 @@ You will get the following output:
 3
 3
 ```
+
+This means that the DGL graph has the correct number of node and edge types, total number of nodes and edges, as well as node and edge features. You can explore it more to see if it has all the required features.
 
 ## Learn more
 
