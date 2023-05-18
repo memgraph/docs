@@ -12,8 +12,6 @@ sidebar_label: Changelog
   [snapshot loading is now distributed among several
   threads](/memgraph/reference-guide/backup#snapshots).
   [#868](https://github.com/memgraph/memgraph/pull/868)
-- Index creation can be done using multiple threads, further speeding up the recovery process.
-  [#882](https://github.com/memgraph/memgraph/pull/882)
 
 ## v2.7 - Apr 5, 2023
 
