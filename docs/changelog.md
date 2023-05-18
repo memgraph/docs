@@ -20,7 +20,7 @@ sidebar_label: Changelog
 - It’s now possible to use the [map projection
   syntax](/memgraph/reference-guide/data-types#maps) to create maps. Map
   projections are convenient for building maps based on existing values and they
-  are used by data access tools like GraphQL and Spring Data.
+  are used by data access tools like GraphQL.
   [#892](https://github.com/memgraph/memgraph/pull/892)
 - You can now check if [the data directory](/reference-guide/backup.md) is
   (un)locked with the `DATA DIRECTORY LOCK STATUS;` query.
