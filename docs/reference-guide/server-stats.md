@@ -36,7 +36,6 @@ The result will contain the following fields:
 | memory_allocated | Amount of bytes allocated by the instance.<br/>For more info, check out the [memory control](/reference-guide/memory-control.md).               |
 | allocation_limit | Current allocation limit in bytes set for this instance.<br/>For more info, check out the [memory control](/reference-guide/memory-control.md). |
 
-
 ## Build information
 
 Running the following query will return certain information about the build type of
