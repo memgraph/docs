@@ -4,6 +4,47 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v2.8 - May 18, 2023
+
+### New features and improvements
+
+- Data recovery is now up to 6x faster depending on the number of available
+  cores, as [snapshot loading is distributed among several
+  threads](/memgraph/reference-guide/backup#snapshots).
+  [#868](https://github.com/memgraph/memgraph/pull/868)
+- During the recovery, indexes can also  be created using multiple threads, thus
+  speeding up the process. [#882](https://github.com/memgraph/memgraph/pull/882)
+- Memgraph now exposes system metrics via an HTTP endpoint, so you can get
+  information about transactions, query latency and various other properties.
+  [#940](https://github.com/memgraph/memgraph/pull/940)
+- It’s now possible to use the [map projection
+  syntax](/reference-guide/data-types.md) to create maps. Map projections are
+  convenient for building maps based on existing values and they are used by
+  data access tools like GraphQL and Spring Data.
+  [#892](https://github.com/memgraph/memgraph/pull/892)
+- You can now check if [the data directory](/reference-guide/backup.md) is
+  (un)locked with the `DATA DIRECTORY LOCK STATUS;` query.
+  [#933](https://github.com/memgraph/memgraph/pull/933)
+- You can now check the current the current [storage
+  mode](/reference-guide/storage-modes.md) and [isolation
+  levels](/reference-guide/transactions.md) by running the `SHOW STORAGE INFO;`
+  query. [#883](https://github.com/memgraph/memgraph/pull/883)
+- Check the suspected [build type of the Memgraph
+ executable](/reference-guide/server-stats.md) by running the `SHOW BUILD INFO;`
+  query. [#894](https://github.com/memgraph/memgraph/pull/894)
+- Performance has been improved by optimizing the deallocation of resources in
+  Memgraph's custom `PoolResource` memory allocator.
+  [#898](https://github.com/memgraph/memgraph/pull/898)
+
+### Bug fixes
+
+- Running Python procedures now consume less memory.
+  [#932](https://github.com/memgraph/memgraph/pull/932)
+- Memory allocation in LOAD CSV queries has been optimized to avoid performance
+  degradation. [#877](https://github.com/memgraph/memgraph/pull/877) 
+- Query profiles of the LOAD CSV queries now show the correct values of memory
+  usage. [#885](https://github.com/memgraph/memgraph/pull/885)
+
 ## v2.7 - Apr 5, 2023
 
 ### New features and improvements
@@ -14,7 +55,7 @@ sidebar_label: Changelog
     snapshots, but requires more time and resources during data import and
     analysis.
   - Analytical mode - speeds up import and data analysis but offers no ACID
-    guarantees besides manually created snapshots. 
+    guarantees besides manually created snapshots.
   Switch between modes within the session using the `STORAGE MODE
   IN_MEMORY_{TRANSACTIONAL|ANALYTICAL};` query. [#772](https://github.com/memgraph/memgraph/pull/772)
 - You can now call [subqueries](/cypher-manual/clauses/call) inside existing queries using the CALL clause.
@@ -42,7 +83,7 @@ sidebar_label: Changelog
   blocks allocated while processing the `LOAD CSV` query.
   [#825](https://github.com/memgraph/memgraph/pull/825)
 
-### Bugfixes
+### Bug fixes
 
 - The users who have [global visibility on the
   graph](/memgraph/reference-guide/security#label-based-access-control) will
@@ -57,7 +98,7 @@ sidebar_label: Changelog
 
 ### Major features and improvements
 
-- Importing speed using the LOAD CSV clause has been improved due to two changes: 
+- Importing speed using the LOAD CSV clause has been improved due to two changes:
   -  Performance improvement in accessing values from large arrays or maps with numerous properties. [#744](https://github.com/memgraph/memgraph/pull/774)
   -  Upon creating a large number of node or relationship properties, properties are stored in a property store all at once, instead of individually. [#788](https://github.com/memgraph/memgraph/pull/788)
 - Newly implemented `exists()` function allows using patterns as part of the filtering clause. Check the [Cypher Manual](/cypher-manual/clauses/where) for usage. [#818](https://github.com/memgraph/memgraph/pull/818)
