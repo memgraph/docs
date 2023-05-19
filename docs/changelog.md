@@ -30,7 +30,7 @@ sidebar_label: Changelog
   levels](/reference-guide/transactions.md) by running the `SHOW STORAGE INFO;`
   query. [#883](https://github.com/memgraph/memgraph/pull/883)
 - Check the suspected [build type of the Memgraph
- executable](/memgraph/reference-guide/server-stats#build-information) by
+  executable](/memgraph/reference-guide/server-stats#build-information) by
   running the `SHOW BUILD INFO;` query.
   [#894](https://github.com/memgraph/memgraph/pull/894)
 - Performance has been improved by optimizing the deallocation of resources in
