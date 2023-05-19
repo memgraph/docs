@@ -1,0 +1,44 @@
+---
+id: overview
+title: Connect to Memgraph
+sidebar_label: Connection methods overview
+slug: /connect-to-memgraph
+---
+
+Memgraph supports the [**openCypher**](https://www.opencypher.org) query
+language which has been developed by Neo4j. It is a declarative language
+developed specifically for interaction with graph databases, which is currently
+going through a vendor-independent standardization process. 
+
+Cypher queries can be executed against Memgraph via:
+
+- **[Memgraph Lab](/memgraph-lab)** - A lightweight and intuitive **visual user interface** that enables you to execute Cypher queries and visualize graph data.
+- **[mgconsole](/connect-to-memgraph/mgconsole.md)** - A command-line interface for querying Memgraph.
+- **[Drivers](/connect-to-memgraph/drivers/overview.md)**
+- **[WebSocket](/connect-to-memgraph/websocket.md)**
+
+## Secure Sockets Layer (SSL) {#secure-sockets-layer}
+
+Secure connections are supported and disabled by default. The server initially
+ships with a self-signed testing certificate located at `/etc/memgraph/ssl/`.
+You can use it by [changing the configuration](/how-to-guides/config-logs.md) and passing its path within the
+following parameters:
+
+```
+--bolt-cert-file=/etc/memgraph/ssl/cert.pem
+--bolt-key-file=/etc/memgraph/ssl/key.pem
+```
+
+If you are using your own certificate be sure to enter the correct path to the
+certificate.
+
+To disable SSL support and use insecure connections to the database erase or
+make comments out of both parameters (`--bolt-cert-file` and
+`--bolt-key-file`) by adding a hashtag in front of them.
+
+## Where to next?
+
+You can also easily connect to an instance running in [Memgraph
+Cloud](/memgraph-cloud). To learn more about the Cypher language, visit the
+[Cypher manual](/cypher-manual) or [Memgraph
+Playground](https://playground.memgraph.com) for interactive guides.
