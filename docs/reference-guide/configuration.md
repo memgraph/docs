@@ -84,12 +84,14 @@ workers simultaneously.
 | --allow-load-csv=true | Controls whether LOAD CSV clause is allowed in queries | `[bool]` |
 | --also-log-to-stderr=false | log messages go to stderr in addition to logfiles | `[bool]` |
 | --data-directory=/var/lib/memgraph | Path to directory in which to save all permanent data. | `[string]` |
-| --init_file | Path to the CYPHERL file which contains queries that need to be executed before the Bolt server starts, such as creating users | `[string]` |
-| --init_data_file | Path to the CYPHERL file, which contains queries that need to be executed after the Bolt server starts | `[string]` |
+| --init-file | Path to the CYPHERL file which contains queries that need to be executed before the Bolt server starts, such as creating users | `[string]` |
+| --init-data-file | Path to the CYPHERL file, which contains queries that need to be executed after the Bolt server starts | `[string]` |
 | --isolation-level=SNAPSHOT_ISOLATION | Isolation level used for the transactions. Allowed values: SNAPSHOT_ISOLATION, READ_COMMITTED, READ_UNCOMMITTED | `[string]` |
 | --log-file=/var/log/memgraph/memgraph.log | Path to where the log should be stored. | `[string]` |
 | --log-level=WARNING | Minimum log level. Allowed values: TRACE, DEBUG, INFO, WARNING, ERROR, CRITICAL | `[string]` |
 | --memory-limit=0 | Total memory limit in MiB. Set to 0 to use the default values which are 100% of the physical memory if the swap is enabled and 90% of the physical memory otherwise. | `[uint64]` |
+| --metrics-address | Host for HTTP server for exposing metrics. | `[string]` |
+| --metrics-port | Port for HTTP server for exposing metrics. | `[uint64]` |
 | --memory-warning-threshold=1024 | Memory warning threshold, in MB. If Memgraph detects there is less available RAM it will log a warning. <br/>Set to 0 to disable. | `[uint64]` |
 | --password-encryption-algorithm=bcrypt | Algorithm used for password encryption. Defaults to BCrypt. Allowed values: `bcrypt`, `sha256`, `sha256-multiple` (SHA256 with multiple iterations) | `[string]` |
 | --replication-replica-check-delay-sec | The time duration in seconds between two replica checks/pings. If < 1, replicas will not  be checked at all. The MAIN instance allocates a new thread for each REPLICA. | `[uint64]` |

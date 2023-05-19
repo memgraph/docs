@@ -40,3 +40,9 @@ that is packaged with Memgraph Enterprise.
 ## Security
 
 npm
+
+## Exposing system metrics
+For [exposing system metrics](/reference-guide/exposing-system-metrics.md), we have built
+an HTTP endpoint where system metrics can be fetched via a GET request. The response contains
+information about bolt messages, sessions, transactions, streams, triggers, indexes, snapshots, 
+query latency, and many more.

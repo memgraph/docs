@@ -266,6 +266,7 @@ module.exports = {
             "reference-guide/enabling-enterprise",
             "reference-guide/audit-log",
             "reference-guide/auth-module",
+            "reference-guide/exposing-system-metrics",
             "reference-guide/ldap-security",
             "reference-guide/security",
           ],
