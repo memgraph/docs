@@ -25,7 +25,7 @@ sidebar_label: Changelog
 - You can now check if [the data directory](/reference-guide/backup.md) is
   (un)locked with the `DATA DIRECTORY LOCK STATUS;` query.
   [#933](https://github.com/memgraph/memgraph/pull/933)
-- You can now check the current the current [storage
+- You can now check the current [storage
   mode](/reference-guide/storage-modes.md) and [isolation
   levels](/reference-guide/transactions.md) by running the `SHOW STORAGE INFO;`
   query. [#883](https://github.com/memgraph/memgraph/pull/883)
