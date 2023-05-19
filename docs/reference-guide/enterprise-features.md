@@ -31,6 +31,13 @@ auth module. The two supported operation modes are:
 - authentication and authorization (username/password verification and user to
   role mapping)
 
+## Exposing system metrics
+For [exposing system metrics](/reference-guide/exposing-system-metrics.md), we have built
+an HTTP endpoint where system metrics can be fetched via a GET request. The response contains
+information about bolt messages, sessions, transactions, streams, triggers, indexes, snapshots, 
+query latency, and many more.
+
+
 ## LDAP Security
 
 For the purpose of supporting [LDAP authentication and (optional)
@@ -39,10 +46,10 @@ that is packaged with Memgraph Enterprise.
 
 ## Security
 
-npm
+Read more about [security features](/reference-guide/security.md) that are
+incorporated into Memgraph Enterprise, including how to create and manage users,
+user roles, and privileges. This includes assigning passwords and choosing
+password encryption algorithms, creating user roles and assigning them
+privileges, and limiting user access to nodes and relationships based on their
+labels and types with label-based access control.
 
-## Exposing system metrics
-For [exposing system metrics](/reference-guide/exposing-system-metrics.md), we have built
-an HTTP endpoint where system metrics can be fetched via a GET request. The response contains
-information about bolt messages, sessions, transactions, streams, triggers, indexes, snapshots, 
-query latency, and many more.
