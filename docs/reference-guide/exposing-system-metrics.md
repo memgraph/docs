@@ -18,8 +18,7 @@ The default address and port for the metrics server is `0.0.0.0:9091`, and can b
 
 ## System metrics
 
-In Memgraph, there are 3 types of metrics that measure different parts of the system in order to ensure proper
-monitoring has been done. Those 3 metrics are:
+All system metrics measuring different parts of the system can be divided into three different types:
 - **Gauge** - a single value of some variable in the system (e.g. memory usage)
 - **Counter (uint64_t)** - a value that can be incremented or decremented (e.g. number of active transactions in the system)
 - **Histogram (uint64_t)** - distribution of measured values (e.g. certain percentile of query latency on N measured queries)
