@@ -16,17 +16,13 @@ After successfully entering the license key, Memgraph needs to be restarted in o
 The default address and port for the metrics server is `0.0.0.0:9091`, and can be configured using [configuration flags](/reference-guide/configuration.md)
 `--metrics-address` and `--metrics-port`. If you need help changing the configuration follow [the how-to guide](/how-to-guides/config-logs.md).
 
-
-## Types of system metrics
+## System metrics
 
 In Memgraph, there are 3 types of metrics that measure different parts of the system in order to ensure proper
 monitoring has been done. Those 3 metrics are:
 - **Gauge** - a single value of some variable in the system (e.g. memory usage)
 - **Counter (uint64_t)** - a value that can be incremented or decremented (e.g. number of active transactions in the system)
 - **Histogram (uint64_t)** - distribution of measured values (e.g. certain percentile of query latency on N measured queries)
-
-
-## System metrics
 
 ### General metrics
 
