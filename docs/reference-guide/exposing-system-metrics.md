@@ -10,10 +10,6 @@ Exposing metrics is a Memgraph Enterprise feature and therefore needs a valid Me
 
 ## Configuring the HTTP endpoint
 
-Exposing metrics is a Memgraph Enterprise feature and therefore needs a valid Memgraph Enterprise license key.
-After successfully entering the license key, Memgraph would need to be restarted in order to start the metrics HTTP
-server in the following run.
-
 The default address and port for the metrics server is `0.0.0.0:9091`, and can be configured with configuration flags
 `--metrics-address` and `--metrics-port`. For more info on the configuration, check the [list of the configuration variables](/reference-guide/configuration.md).
 
