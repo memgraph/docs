@@ -31,6 +31,12 @@ auth module. The two supported operation modes are:
 - authentication and authorization (username/password verification and user to
   role mapping)
 
+## Exposing system metrics
+HTTP endpoint allows you to fetch [system
+metrics](/reference-guide/exposing-system-metrics.md) using a GET request. The
+response contains information about bolt messages, sessions, transactions,
+streams, triggers, indexes, snapshots, query latency, and many more.
+
 ## LDAP Security
 
 For the purpose of supporting [LDAP authentication and (optional)

@@ -14,9 +14,10 @@ sidebar_label: Changelog
   [#868](https://github.com/memgraph/memgraph/pull/868)
 - During the recovery, indexes can also  be created using multiple threads, thus
   speeding up the process. [#882](https://github.com/memgraph/memgraph/pull/882)
-- Memgraph now exposes system metrics via an HTTP endpoint, so you can get
-  information about transactions, query latency and various other properties.
-  [#940](https://github.com/memgraph/memgraph/pull/940)
+- In the Enterprise Edition, Memgraph now [exposes system
+  metrics](/reference-guide/exposing-system-metrics.md) via an HTTP endpoint, so
+  you can get information about transactions, query latency and various other
+  properties. [#940](https://github.com/memgraph/memgraph/pull/940)
 - It’s now possible to use the [map projection
   syntax](/memgraph/reference-guide/data-types#maps) to create maps. Map
   projections are convenient for building maps based on existing values and they
