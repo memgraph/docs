@@ -26,6 +26,7 @@ produced plan and gain insight into the execution of a query.
 | ----------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
 | `Accumulate`                    | Accumulates the input it received.                                                                                       |
 | `Aggregate`                     | Aggregates the input it received.                                                                                        |
+| `Apply`                         | Joins the returned symbols from two branches of execution.                                                               |
 | `CallProcedure`                 | Calls a procedure.                                                                                                       |
 | `Cartesian`                     | Applies the Cartesian product (the set of all possible ordered combinations consisting of one member from each of those sets) on the input it received. |
 | `ConstructNamedPath`            | Creates a path.                                                                                                          |
@@ -33,7 +34,8 @@ produced plan and gain insight into the execution of a query.
 | `CreateExpand`                  | Creates edges and  new nodes to connect with existing nodes.                                                             |
 | `Delete`                        | Deletes nodes and edges.                                                                                                 |
 | `EdgeUniquenessFilter`          | Filters unique edges.                                                                                                    |
-| `EmptyResult`                   | Discards results from the previous operator.                 |
+| `EmptyResult`                   | Discards results from the previous operator.                                                                             |
+| `EvaluatePatternFilter`         | Part of the filter operator that contains a sub-branch which yields either true or false.                                |
 | `Expand`                        | Expands the node by finding the node's relationships.                                                                    |
 | `ExpandVariable`                | Performs a node expansion of a variable number of relationships                                                          |
 | `Filter`                        | Filters the input it received.                                                                                           |
