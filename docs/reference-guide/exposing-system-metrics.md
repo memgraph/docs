@@ -4,9 +4,9 @@ title: Exposing system metrics (Enterprise)
 sidebar_label: Exposing system metrics
 ---
 
-In production systems, monitoring of applications is crucial, and that includes databases as well. Since Memgraph v2.8,
-an HTTP server has been added in order to expose system metrics, giving developers ability to track information about transactions,
-query latencies, snapshot recovery latencies, triggers, bolt messages, indexes, streams, and many more.
+In production systems, monitoring of applications is crucial, and that includes databases as well. Memgraph allows tracking information about transactions, query latencies, snapshot recovery latencies, triggers, bolt messages, indexes, streams, and many more using an HTTP server.
+
+Exposing metrics is a Memgraph Enterprise feature and therefore needs a valid Memgraph Enterprise license key. After successfully entering the license key, Memgraph needs to be restarted in order to start the metrics HTTP server.
 
 ## Configuring the HTTP endpoint
 
