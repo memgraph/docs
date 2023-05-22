@@ -4,6 +4,10 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+import VideoBySide from '@site/src/components/VideoBySide';
+
+<VideoBySide videoSrc="https://www.youtube.com/embed/5JvBBUjpGRA">
+
 ## v2.8 - May 18, 2023
 
 ### New features and improvements
@@ -38,6 +42,8 @@ sidebar_label: Changelog
   Memgraph's custom `PoolResource` memory allocator.
   [#898](https://github.com/memgraph/memgraph/pull/898)
 
+</VideoBySide>
+
 ### Bug fixes
 
 - Running Python procedures now consume less memory.
@@ -46,6 +52,8 @@ sidebar_label: Changelog
   degradation. [#877](https://github.com/memgraph/memgraph/pull/877) 
 - Query profiles of the LOAD CSV queries now show the correct values of memory
   usage. [#885](https://github.com/memgraph/memgraph/pull/885)
+
+<VideoBySide videoSrc="https://www.youtube.com/embed/kJG98VkPMGU">
 
 ## v2.7 - Apr 5, 2023
 
@@ -84,6 +92,8 @@ sidebar_label: Changelog
   been further improved by using a memory allocator which will reuse memory
   blocks allocated while processing the `LOAD CSV` query.
   [#825](https://github.com/memgraph/memgraph/pull/825)
+
+</VideoBySide>
 
 ### Bug fixes
 

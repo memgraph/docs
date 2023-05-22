@@ -4,7 +4,13 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+import VideoBySide from '@site/src/components/VideoBySide';
+
+<VideoBySide videoSrc="https://www.youtube.com/embed/kJG98VkPMGU">
+
 ## v2.7 - Apr 5, 2023
+
+### New features and improvements
 
 - You can now choose between [two different storage modes](/reference-guide/storage-modes.md):
   - Transactional mode - the default database mode that favors
@@ -12,7 +18,7 @@ sidebar_label: Changelog
     snapshots, but requires more time and resources during data import and
     analysis.
   - Analytical mode - speeds up import and data analysis but offers no ACID
-    guarantees besides manually created snapshots. 
+    guarantees besides manually created snapshots.
   Switch between modes within the session using the `STORAGE MODE
   IN_MEMORY_{TRANSACTIONAL|ANALYTICAL};` query. [#772](https://github.com/memgraph/memgraph/pull/772)
 - You can now call [subqueries](/cypher-manual/clauses/call) inside existing queries using the CALL clause.
@@ -39,6 +45,8 @@ sidebar_label: Changelog
   been further improved by using a memory allocator which will reuse memory
   blocks allocated while processing the `LOAD CSV` query.
   [#825](https://github.com/memgraph/memgraph/pull/825)
+
+</VideoBySide>
 
 ### Bugfixes
 
