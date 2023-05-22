@@ -4,14 +4,17 @@ title: Exposing system metrics (Enterprise)
 sidebar_label: Exposing system metrics
 ---
 
-In production systems, monitoring of applications is crucial, and that includes databases as well. Memgraph allows tracking information about transactions, query latencies, snapshot recovery latencies, triggers, bolt messages, indexes, streams, and many more using an HTTP server.
+In production systems, monitoring of applications is crucial, and that includes databases as well. 
+Memgraph allows tracking information about transactions, query latencies, snapshot recovery latencies, 
+triggers, bolt messages, indexes, streams, and many more using an HTTP server.
 
-Exposing metrics is a Memgraph Enterprise feature and therefore needs a valid Memgraph Enterprise license key. After successfully entering the license key, Memgraph needs to be restarted in order to start the metrics HTTP server.
+Exposing metrics is a Memgraph Enterprise feature and therefore needs a valid Memgraph Enterprise license key.
+After successfully entering the license key, Memgraph needs to be restarted in order to start the metrics HTTP server.
 
 ## Configuring the HTTP endpoint
 
-The default address and port for the metrics server is `0.0.0.0:9091`, and can be configured with configuration flags
-`--metrics-address` and `--metrics-port`. For more info on the configuration, check the [list of the configuration variables](/reference-guide/configuration.md).
+The default address and port for the metrics server is `0.0.0.0:9091`, and can be configured using [configuration flags](/reference-guide/configuration.md)
+`--metrics-address` and `--metrics-port`. If you need help changing the configuration follow [the how-to guide](/how-to-guides/config-logs.md).
 
 
 ## Types of system metrics
@@ -23,7 +26,7 @@ monitoring has been done. Those 3 metrics are:
 - **Histogram (uint64_t)** - distribution of measured values (e.g. certain percentile of query latency on N measured queries)
 
 
-## List of system metrics
+## System metrics
 
 ### General metrics
 
@@ -33,7 +36,7 @@ monitoring has been done. Those 3 metrics are:
  | edge_count     | Gauge (uint64_t) | Number of relationships stored in the system.               |
  | average_degree | Gauge (double)   | Average number of relationships of a single node.           |
  | memory_usage   | Gauge (uint64_t) | Amount of RAM used reported by the OS (in bytes).           |
- | disk_usage     | Gauge (uint64_t) | Amount of disk space used by the data directory (in bytes). |
+ | disk_usage     | Gauge (uint64_t) | Amount of disk space used by the [data directory](/reference-guide/backup.md) (in bytes). |
 
 ### Index metrics
 
@@ -44,11 +47,10 @@ monitoring has been done. Those 3 metrics are:
 
 ### Operator metrics
 
-:::info
-
-For more info on operators, check [Inspecting queries](/reference-guide/optimizing-queries/inspecting-queries.md).
-
-:::
+Before a Cypher query is executed, it is converted into an internal form suitable for execution, known as a query plan.
+A query plan is a tree-like data structure describing a pipeline of operations that will be performed on the database in order to
+yield the results for a given query. Every node within a plan is known as
+[a logical operator](/memgraph/reference-guide/inspecting-queries#operators) and describes a particular operation.
 
  | Name                                | Type    | Description                                                    |
  | ----------------------------------- | ------- | -------------------------------------------------------------- |
@@ -92,11 +94,11 @@ For more info on operators, check [Inspecting queries](/reference-guide/optimizi
 
 ### Query metrics
 
- | Name                         | Type      | Description                                               |
- | ---------------------------- | --------- | --------------------------------------------------------- |
- | QueryExecutionLatency_us_50p | Histogram | Query execution latency in microseconds (50th percentile) |
- | QueryExecutionLatency_us_90p | Histogram | Query execution latency in microseconds (90th percentile) |
- | QueryExecutionLatency_us_99p | Histogram | Query execution latency in microseconds (99th percentile) |
+ | Name                         | Type      | Description                                                |
+ | ---------------------------- | --------- | ---------------------------------------------------------- |
+ | QueryExecutionLatency_us_50p | Histogram | Query execution latency in microseconds (50th percentile). |
+ | QueryExecutionLatency_us_90p | Histogram | Query execution latency in microseconds (90th percentile). |
+ | QueryExecutionLatency_us_99p | Histogram | Query execution latency in microseconds (99th percentile). |
 
 ### Query type metrics
 
@@ -119,14 +121,14 @@ For more info on operators, check [Inspecting queries](/reference-guide/optimizi
 
 ### Snapshot metrics
 
- | Name                           | Type      | Description                                                 |
- | ------------------------------ | --------- | ----------------------------------------------------------- |
- | SnapshotCreationLatency_us_50p | Histogram | Snapshot creation latency in microseconds (50th percentile) |
- | SnapshotCreationLatency_us_90p | Histogram | Snapshot creation latency in microseconds (90th percentile) |
- | SnapshotCreationLatency_us_99p | Histogram | Snapshot creation latency in microseconds (99th percentile) |
- | SnapshotRecoveryLatency_us_50p | Histogram | Snapshot recovery latency in microseconds (50th percentile) |
- | SnapshotRecoveryLatency_us_90p | Histogram | Snapshot recovery latency in microseconds (90th percentile) |
- | SnapshotRecoveryLatency_us_99p | Histogram | Snapshot recovery latency in microseconds (99th percentile) |
+ | Name                           | Type      | Description                                                  |
+ | ------------------------------ | --------- | ------------------------------------------------------------ |
+ | SnapshotCreationLatency_us_50p | Histogram | Snapshot creation latency in microseconds (50th percentile). |
+ | SnapshotCreationLatency_us_90p | Histogram | Snapshot creation latency in microseconds (90th percentile)- |
+ | SnapshotCreationLatency_us_99p | Histogram | Snapshot creation latency in microseconds (99th percentile). |
+ | SnapshotRecoveryLatency_us_50p | Histogram | Snapshot recovery latency in microseconds (50th percentile). |
+ | SnapshotRecoveryLatency_us_90p | Histogram | Snapshot recovery latency in microseconds (90th percentile). |
+ | SnapshotRecoveryLatency_us_99p | Histogram | Snapshot recovery latency in microseconds (99th percentile). |
 
 
 ### Stream metrics
@@ -154,8 +156,8 @@ For more info on operators, check [Inspecting queries](/reference-guide/optimizi
 
 ## Example response
 
-If we don't have any modifying configurations, by sending a GET request to `localhost:9091` in the 
-local Memgraph build, we will get response constructed as follows.
+If there aren't any modifying configurations, by sending a GET request to `localhost:9091` in the 
+local Memgraph build will result in a response similar to the one below.
 
 ```json
 {

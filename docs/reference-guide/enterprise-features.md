@@ -32,9 +32,8 @@ auth module. The two supported operation modes are:
   role mapping)
 
 ## Exposing system metrics
-For [exposing system metrics](/reference-guide/exposing-system-metrics.md), we have built
-an HTTP endpoint where system metrics can be fetched via a GET request. The response contains
-information about bolt messages, sessions, transactions, streams, triggers, indexes, snapshots, 
+HTTP endpoint allows you to fetch [system metrics](/reference-guide/exposing-system-metrics.md) using a GET request.
+The response contains information about bolt messages, sessions, transactions, streams, triggers, indexes, snapshots, 
 query latency, and many more.
 
 

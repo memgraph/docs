@@ -26,7 +26,7 @@ produced plan and gain insight into the execution of a query.
 | ----------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
 | `Accumulate`                    | Accumulates the input it received.                                                                                       |
 | `Aggregate`                     | Aggregates the input it received.                                                                                        |
-| `Apply`                         | Joins the returned symbols from  two branches of execution.                                                              |
+| `Apply`                         | Joins the returned symbols from two branches of execution.                                                              |
 | `CallProcedure`                 | Calls a procedure.                                                                                                       |
 | `Cartesian`                     | Applies the Cartesian product (the set of all possible ordered combinations consisting of one member from each of those sets) on the input it received. |
 | `ConstructNamedPath`            | Creates a path.                                                                                                          |
