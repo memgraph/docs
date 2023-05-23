@@ -25,8 +25,9 @@ Switch to MAGE documentation if you want to CALL a graph algorithm or some other
     2.2. [Returning non-aliased expressions](#22-returning-non-aliased-expressions) <br />
     2.3. [Referencing outer scope variables that don't exist](#22-referencing-outer-scope-variables-that-dont-exist) <br />
 
-# 1. Uses of CALL subquery
-## 1.1. Cartesian products
+## 1. Uses of CALL subquery
+
+### 1.1. Cartesian products
 
 `CALL` subquery is executed once for each incoming row. If multiple rows are produced from the
 `CALL` subquery, the result is a Cartesian product of results. It is an output combined from 2 branches, 
@@ -58,7 +59,7 @@ Output:
 +---------------------------+
 ```
 
-## 1.2. Cartesian products with bounded symbols
+### 1.2. Cartesian products with bounded symbols
 
 To reference variables from the outer scope in the subquery, start the subquery with the `WITH` clause. 
 It allows using the same symbols to expand on the neighborhood of the referenced nodes or relationships.
@@ -89,7 +90,7 @@ Output:
 +---------------------------+
 ```
 
-## 1.3. Post-union processing
+### 1.3. Post-union processing
 
 Output from all UNION queries inside a subquery can be combined and
 forwarded as a single output to make the queries more expressive:
@@ -115,7 +116,7 @@ Output:
 +--------------------------+
 ```
 
-## 1.4. Observing changes from previous executions
+### 1.4. Observing changes from previous executions
 
 Each execution of a `CALL` clause can observe changes from previous executions.
 
@@ -145,7 +146,7 @@ Output:
 +--------------------------+
 ```
 
-## 1.5. Unit subqueries
+### 1.5. Unit subqueries
 
 Unit subqueries are used to perform a single action for every node from the input branch.
 If the starting state of the database is that there is only one `:Person` node in the graph,
@@ -169,8 +170,9 @@ Output:
 +------------------+
 ```
 
-# 2. Invalid uses of CALL subquery
-## 2.1. Returning variables with the same name as those in the outer scope
+## 2. Invalid uses of CALL subquery
+
+### 2.1. Returning variables with the same name as those in the outer scope
 
 Invalid use:
 ```cypher
@@ -196,7 +198,7 @@ CALL {
 RETURN n, p;
 ```
 
-## 2.2. Returning non-aliased expressions
+### 2.2. Returning non-aliased expressions
 
 Invalid use:
 ```cypher
@@ -224,7 +226,7 @@ CALL {
 RETURN n, parent_age;
 ```
 
-## 2.3. Referencing outer scope variables that don't exist
+### 2.3. Referencing outer scope variables that don't exist
 
 Invalid use:
 ```cypher
