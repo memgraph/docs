@@ -84,6 +84,10 @@ module.exports = {
               to: "/memgraph/import-data",
             },
             {
+              label: "Export data",
+              to: "/memgraph/export-data",
+            },
+            {
               label: "Tutorials",
               to: "/memgraph/tutorials",
             },
