@@ -104,14 +104,17 @@ To restore data from a backup
     ```
      - Position yourself in the `/var/lib/memgraph/wal` directory and `rm *`
 
-1. Stop the instance using `docker stop CONTAINER_ID`
-2. Start the instance by adding a `-v ~/snapshots:/var/lib/memgraph/snapshots`
+2. Stop the instance using `docker stop CONTAINER_ID`
+3. Start the instance by adding a `-v ~/snapshots:/var/lib/memgraph/snapshots`
   flag to the `docker run` command, where the `~/snapshots` represents a path
   to the location of the directory with the back-up snapshot, for example: 
 
   ```
   docker run -p 7687:7687 -p 7444:7444 -v ~/snapshots:/var/lib/memgraph/snapshots memgraph/memgraph
   ```
+
+  If the relative address doesn't work, use absolute. 
+  
 4. If you want to copy both WAL and snapshot files start the instance by adding
   a `-v ~/snapshots:/var/lib/memgraph/snapshots -v ~/wal:/var/lib/memgraph/wal`
   flags to the `docker run` command, where the `~/snapshots` represents a path
@@ -137,3 +140,16 @@ To restore data from a backup
 
 </TabItem>
 </Tabs>
+
+:::tip
+
+If your snapshot will not load and the log mentions the file might be corrupted,
+check the permissions on the file. It should be owned by the `memgraph` user. 
+
+Change permissions on the directory inside the container with `sudo chown 101:101 -R snapshots`.
+
+Stop the container.
+
+Once you stop the container, another snapshot might be created upon exit so
+delete it from the back-up location and start the instance again. 
+:::

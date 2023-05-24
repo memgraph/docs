@@ -15,8 +15,8 @@ These mechanisms generate **durability files** and save them in the respective
 `wal` and `snapshots` folders in the **data directory**. Data directory stores
 permanent data on-disk. 
 
-The default data directory path is `var/lib/memgraph` but the path can be
-changed by [modifying the `data-dir` configuration
+The default data directory path is `var/lib/memgraph` owned by user `memgraph`
+but the path can be changed by [modifying the `data-dir` configuration
 flag](/memgraph/reference-guide/configuration#other).
 
 Durability files are deleted when certain events are triggered, for example,
