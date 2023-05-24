@@ -204,7 +204,7 @@ Below are configurational flags you can use with mgconsole:
 | -history                  | Use the specified directory to save history.                                                                         | string  | "~/.memgraph" |
 | -host                     | Server address. It can be a DNS resolvable hostname.                                                                     | string  | "127.0.0.1" |
 | -no_history               | Do not save history.                                                                                                    | bool    | false   |
-| -output_format            | Query output format. Can be `csv` or `tabular`. If the output format is not tabular `fit-to-screen` flag is ignored.       | string  | "tabular" |
+| -output_format            | Query output format. Can be `csv` or `tabular`. If the output format is not tabular `fit_to_screen` flag is ignored.       | string  | "tabular" |
 | -password                 | Database password.                                                                                               | string  | ""      |
 | -port                     | Server port.                                                                                                             | int32   | 7687    |
 | -term_colors              | Use terminal colors syntax highlighting.                                                                                | bool    | false   |
