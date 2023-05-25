@@ -4,35 +4,45 @@ title: Migrate from Neo4j to Memgraph
 sidebar_label: Migrate from Neo4j
 ---
 
-Memgraph is a native in-memory graph database specialized for real-time use-cases such us streaming, analytical processing etc. It is compatible with the Cypher query language and the Neo4j Bolt protocol. This means that you can use the same tools and drivers that you are already using with Neo4j. Due to the ACID compliance, data persistency and replication support in community version, Memgraph can be used as main database for your applications, instead of Neo4j. There are some differences between Memgraph and Neo4j, from the operational side and the query language side. This tutorial will help you migrate your data and queries from Neo4j to Memgraph and provide general strategies for migrating from one graph database to another.
-
+Memgraph is a native in-memory graph database specialized for real-time
+use-cases such us streaming, analytical processing etc. It is compatible with
+the Cypher query language and the Neo4j Bolt protocol. This means that you can
+use the same tools and drivers that you are already using with Neo4j. Due to the
+ACID compliance, data persistency and replication support in community version,
+Memgraph can be used as main database for your applications, instead of Neo4j.
+There are some differences between Memgraph and Neo4j, from the operational side
+and the query language side. This tutorial will help you migrate your data and
+queries from Neo4j to Memgraph and provide general strategies for migrating from
+one graph database to another.
 
 ## Prerequisites
 
 To follow this tutorial, you will need to have the following:
 
-- Running Neo4j instance with your data
-- Latest `memgraph/memgraph-platform` Docker image
+- Running Neo4j instance (with your date, or use the sample data provided)
+- [Latest `memgraph/memgraph-platform` Docker image](https://memgraph.com/download)
 
 ## Data format
 
 One of the first steps to consider is how to migrate your data. If you have your
-data in the form of Cypher queries or CSV or JSON format, you can import these
-formats into Memgraph. Keep in mind that for importing larger datasets it is
-recommended to use CSV or pure Cypher queries (Memgraph's CYPHERL format), since
-they have native Memgraph integrations, and are faster than JSON.
+data in the form of [Cypher queries](/import-data/files/cypherl.md) or
+[CSV](/import-data/load-csv-clause) or
+[JSON](/import-data/files/load-json.md) format, you can import these formats
+into Memgraph. Keep in mind that for importing larger datasets it is recommended
+to use CSV or pure Cypher queries (Memgraph's CYPHERL format), since they have
+native Memgraph integrations, and are faster than JSON.
 
 This tutorial will go through exporting data from Neo4j into CSV files and
-exporting it into Memgraph using LOAD CSV query and Memgraph's user visual
-interface Memgraph Lab.
+exporting it into Memgraph using [LOAD CSV](/import-data/load-csv-clause)
+query and Memgraph's user visual interface [Memgraph Lab](/memgraph-lab).
 
-The current dataset in Neo4j consists of 3 different kinds of nodes (Employee,
-Order and Product) connected with 3 types of relationships as described by the
-graph schema below: 
+The sample dataset consists of 3 different kinds of nodes (Employee, Order and
+Product) connected with 3 types of relationships as described by the graph
+schema below: 
 
-[GRAPH SCHEMA]
+<img src={require('../data/tutorials/migrate-from-neo4j/shipping_schema.png').default} className={"imgBorder"}/>
 
-TO create this graph in your instance run the following queries:
+TO create this graph in your Neo4j instance run the following queries:
 
 ```cypher
 LOAD CSV WITH HEADERS FROM 'https://gist.githubusercontent.com/jexp/054bc6baf36604061bf407aa8cd08608/raw/8bdd36dfc88381995e6823ff3f419b5a0cb8ac4f/orders.csv' AS column
@@ -50,7 +60,6 @@ MERGE (e:Employee {employeeID:column.EmployeeID})
 CREATE INDEX product_id FOR (p:Product) ON (p.productID);
 CREATE INDEX product_name FOR (p:Product) ON (p.productName);
 CREATE INDEX employee_id FOR (e:Employee) ON (e.employeeID);
-CREATE CONSTRAINT order_id ON (o:Order) ASSERT o.orderID IS UNIQUE;
 CALL db.awaitIndexes();
 
 LOAD CSV WITH HEADERS FROM 'https://gist.githubusercontent.com/jexp/054bc6baf36604061bf407aa8cd08608/raw/8bdd36dfc88381995e6823ff3f419b5a0cb8ac4f/orders.csv' AS column
@@ -70,133 +79,103 @@ MATCH (manager:Employee {employeeID: column.ReportsTo})
 MERGE (employee)-[:REPORTS_TO]->(manager);
 ```
 
+If you are going to use different dataset to migrate, be aware of the
+differences between Neo4j and [Memgraph data
+types](/reference-guide/data-types.md) (for example, Memgraph doesn't support
+`DateTime()` as there is no temporal type in Memgraph that supports timezones
+but you can modify data to use `localDateTime()`).
+
 ## Exporting data from Neo4j
 
 To get your data out of Neo4j instance, use the Neo4j APOC export functionality.
 To install APOC, select the project, then in the right-side menu select *Plugins
 -> APOC* and press install.
 
+<img src={require('../data/tutorials/migrate-from-neo4j/install_APOC.png').default} className={"imgBorder"}/>
+
 Then enable export by setting the configuration flag `apoc.export.file.enabled`
 to `true` in the `apoc.config` file located in the `config` directory. To open
 the directory, select the active project, click on *...* -> *Open folder* ->
 *Configuration*. 
 
-Export nodes with distinct labels into separate CSV files along with their
-properties, then export each relationship type into a separate CSV file. 
-
-As the graph currently holds three different kinds of nodes (labeled as Employee,
-Order and Product) export them using the following queries:
+Export the data into a CSV file using:
 
 ```cypher
-MATCH (e:Employee)
-WITH collect(e) AS employee
-CALL apoc.export.csv.data(employee, [], "employee.csv", {})
-YIELD file
-RETURN file;
-
-MATCH (o:Order)
-WITH collect(o) AS order
-CALL apoc.export.csv.data(order, [], "order.csv", {})
-YIELD file
-RETURN file;
-
-MATCH (p:Product)
-WITH collect(p) AS product
-CALL apoc.export.csv.data(product, [], "product.csv", {})
-YIELD file
-RETURN file;
+CALL apoc.export.csv.all("shipping.csv", {})
 ```
 
-To export the three types of relationships, use the following queries:
+Once exported, the file is located in Ne04j's *Import* folder. To open it,
+select the active project, click on *...* -> *Open folder* -> *Import*.
 
-```cypher
-MATCH (e:Employee)-[r:REPORTS_TO]->()
-WITH collect(DISTINCT e) AS employee, collect(r) AS ReportsTo
-CALL apoc.export.csv.data([], ReportsTo, "reports_to.csv", {})
-YIELD file
-RETURN file;
-
-MATCH (e:Employee)-[s:SOLD]->()
-WITH collect(DISTINCT e) AS employee, collect(s) AS Sold
-CALL apoc.export.csv.data([], Sold, "sold.csv", {})
-YIELD file
-RETURN file;
-
-MATCH (o:Order)-[c:CONTAINS]->()
-WITH collect(DISTINCT o) AS order, collect(c) AS Contains
-CALL apoc.export.csv.data([], Contains, "contains.csv", {})
-YIELD file
-RETURN file;
-```
-
-Once exported, the files are located in Ne04j's *Import* folder. To open it,
-select the active project, click on *...* -> *Open folder* -> *Import*. 
+<img src={require('../data/tutorials/migrate-from-neo4j/import_folder.png').default} className={"imgBorder"}/>
 
 ## Importing data into Memgraph
 
-Now that we have 6 CSV files containing the needed data (*contains.csv*,
-*employee.csv*, *order.csv*, *product.csv*, *reports_to.csv* and *sold.csv*),
-let's import it into Memgraph. 
+Now that the CSV file containing the needed data has been generated,  let's
+import data into Memgraph. 
 
-As the original location of files is quite cumbersome, relocate it somewhere
+As the original location of file is quite cumbersome, relocate it somewhere
 more accessible. 
 
-### Starting Memgraph with Docker
+### 1. Starting Memgraph with Docker
 
-When working with Docker, the files need to be transferred from your local
-directory into the Docker container where Memgraph can access them.
+When working with Docker, the file need to be transferred from your local
+directory into the Docker container where Memgraph can access it.
 
-This can be done by mounting a storage volume when running the instance.
+This can be done by copying the file into your running instance. 
 
-To run the container with the mounted volume run: 
+1. Run Memgrpah with
 
-```
-docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 -v path_to_dir:/data memgraph/memgraph-platform
-```
+    ```
+    docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 memgraph/memgraph-platform
+    ```
 
-Where the path leads to the directory with the CSV files. 
+2. To copy the file inside the container, open a new terminal to find out the
+    `CONTAINER ID` with `docker ps`, then run:
 
-If the files are located at `C:/Data` directory locally, the command would look like this: 
+    ```
+    docker cp /path_to_local_folder/shipping.csv <container_ID>:/usr/lib/memgraph/shipping.csv
+    ```
 
-```
-docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 -v C:/Data:/data memgraph/memgraph-platform
-```
+    If the container ID is `bed1e5c9192d` and the file is locally located at
+    `C:/Data` the command would look like this:
 
-To check if the files are inside the container, open a new terminal, find out
-the container ID with `docker ps`, then run: 
+    ```
+    docker cp C:/Data/shipping.csv bed1:/usr/lib/memgraph/shipping.csv
+    ```
 
-```
-docker exec -it CONTAINER_ID bash
-```
+3. To check if the files are inside the container, first run: 
 
-Enter the `data` directory and list the files. 
+    ```
+    docker exec -it CONTAINER_ID bash
+    ```
 
-```
-C:\Users\Vlasta>docker ps
-CONTAINER ID   IMAGE                        COMMAND                  CREATED          STATUS         PORTS                                                                    NAMES
-d20a3c091273   memgraph/memgraph-platform   "/bin/sh -c '/usr/bi…"   11 seconds ago   Up 9 seconds   0.0.0.0:3000->3000/tcp, 0.0.0.0:7444->7444/tcp, 0.0.0.0:7687->7687/tcp   amazing_gagarin
+4. List the files inside the `/usr/lib/memgraph`. 
 
-C:\Users\Vlasta>docker exec -it d20a bash
-root@d20a3c091273:/# ls
-bin   data  etc   lab  lib64  mnt  proc  run   srv              supervisord.pid  tmp  var
-boot  dev   home  lib  media  opt  root  sbin  supervisord.log  sys              usr
-root@d20a3c091273:/# cd data
-root@d20a3c091273:/data# ls
-contains.csv  employee.csv  order.csv  product.csv  reports_to.csv  sold.csv
-root@d20a3c091273:/data#
-```
+    ```
+    C:\Users\Vlasta>docker ps
+    CONTAINER ID   IMAGE                        COMMAND                  CREATED         STATUS         PORTS                                                                    NAMES
+    bed1e5c9192d   memgraph/memgraph-platform   "/bin/sh -c '/usr/bi…"   2 minutes ago   Up 2 minutes   0.0.0.0:3000->3000/tcp, 0.0.0.0:7444->7444/tcp, 0.0.0.0:7687->7687/tcp   recursing_blackburn
 
-### Gaining speed with indexes and analytical storage mode
+    C:\Users\Vlasta>docker cp C:/Data/shipping.csv bed1:/usr/lib/memgraph/shipping.csv
+
+    C:\Users\Vlasta>docker exec -it bed1 bash
+    root@bed1e5c9192d:/# ls /usr/lib/memgraph
+    auth_module  memgraph  python_support  query_modules  shipping.csv
+    root@bed1e5c9192d:/#
+    ```
+
+### 2. Gaining speed with indexes and analytical storage mode
 
 Although the dataset imported in this tutorial is quite small, one day you might
 want to import really big datasets with billions of nodes and relationships and
 you will require all the extra speed you can get. 
 
-To gain speed you can create indexes on the properties used to connect nodes
-with relationships which are the values in the `_id` column in the CSV files,
-and in Memgraph they will be named `nodeID`.
+To gain speed you can [create indexes](/reference-guide/indexing.md) on the
+properties used to connect nodes with relationships which are the values in the
+`_id` column in the CSV files, and in Memgraph they will be named `nodeID`.
 
-To create indexes, run: 
+**To create indexes, run: **
 
 ```cypher
 CREATE INDEX ON :Employee(nodeID);
@@ -204,13 +183,13 @@ CREATE INDEX ON :Order(nodeID);
 CREATE INDEX ON :Product(nodeID);
 ```
 
-You can also change the storage mode from `IN_MEMORY_TRANSACTIONAL` to
-`IN_MEMORY_ANALYTICAL`. This will disable the creation of durability files
-(snapshots and WAL files) and you will no longer have any ACID guarantees. Other
-transactions will be able to see the changes of ongoing transactions. Also,
-transaction will be able to see the changes they are doing. This means that the
-transactions can be committed in random orders, and the updates to the data, in
-the end, might not be correct. 
+You can also change the [storage mode](/reference-guide/storage-modes.md) from
+`IN_MEMORY_TRANSACTIONAL` to `IN_MEMORY_ANALYTICAL`. This will disable the
+creation of durability files (snapshots and WAL files) and you will no longer
+have any ACID guarantees. Other transactions will be able to see the changes of
+ongoing transactions. Also, transaction will be able to see the changes they are
+doing. This means that the transactions can be committed in random orders, and
+the updates to the data, in the end, might not be correct. 
 
 But, if you import on one thread, batch of data after a batch of data, there
 should be absolutely no issues, and you will gain 6 times faster import with 6
@@ -220,7 +199,7 @@ After import you can switch back to the `IN_MEMORY_TRANSACTIONAL` storage mode o
 continue running analytics queries (only read queries) in the
 `IN_MEMORY_ANALYTICAL` mode to continue benefiting from low memory consumption. 
 
-To switch between modes, run the following queries on a running instance:
+**To switch between modes, run the following queries on a running instance:**
 
 ```cypher
 STORAGE MODE IN_MEMORY_ANALYTICAL;
@@ -233,58 +212,72 @@ To check the current storage mode, run:
 SHOW STORAGE INFO;
 ```
 
-Change the storage mode to analytical before import.
+**Change the storage mode to analytical before import.**
 
-### Importing nodes
+### 3. Importing nodes
 
 To import nodes using a LOAD CSV clause let's examine the clause syntax:
 
 ```cypher
 LOAD CSV FROM "csv-file-path.csv" ( WITH | NO ) HEADER [IGNORE BAD] [DELIMITER <delimiter-string>] [QUOTE <quote-string>] AS <variable-name>
 ```
-The files are now located at `/data/filec.csv` and they all have header rows.
-There is no need to ignore bad rows, the default deliminator is `,` and the
-default quote character `"`, the same as in the exported CSV files, so no
+The file is now located at `/usr/lib/memgraph/shipping.csv` and it has a header
+row. There is no need to ignore bad rows, the default deliminator is `,` and
+the default quote character `"`, the same as in the exported CSV file, so no
 changes are necessary.
 
 The first row of the LOAD CSV clause therefore looks like this:
 
 ```
-LOAD CSV FROM "/data/file.csv" WITH HEADER AS column
+LOAD CSV FROM "/usr/lib/memgraph/shipping.csv" WITH HEADER AS row
 ```
 
 Nodes are always imported before relationships so they will be imported first. 
+
+The `shipping.csv` file contains the following columns important for node
+creation: `_id`, `labels`, `employeeID`, `firstName`, `lastName`, `orderID`,
+`productID`, `productName`, `shipName`, `title`, `unitPrice`.
+
+The `_id` property is actually an internal node ID needed to create
+relationships later on.
 
 Execute queries in Memgraph Lab. Open your browser and go to
 `http://localhost:3000/`, **Connect now** to the instance and go to the **Query
 Execution** section.
 
+### Employee nodes
 
-#### Employee nodes
+Begin with `Employee` nodes. 
 
-The `employee.csv` file contains the following columns: `_id`, `labels`,
-`employeeID`, `firstName`, `lastName`, `title`, `_start`. `_end`, `_type`.
-
-The `_start`. `_end`, `_type` are actually related to relationships and therefor
-empty, and the label needs to be created inside the clause itself so we can ignore
-the values in those columns. The `_id` property is actually an internal node ID
-needed to create relationships later on.
- 
-In the second line of the LOAD CSV query, we need to create nodes with a certain
-label and properties. Properties are taken from the CSV table. As an example,
-let's look at the property `_id`. To add the property to the node, define its
-name in Memgraph and assigned the value of a specific column in the CSV file. 
-
-So this part of the query `nodeID: column._id` instructs Memgraph to create a
-property named `nodeID` and assign it the value located in column `_id`. First
-created node will be assigned the value from the first data row, second node
-from the second data row, etc.
-
-The same is done with all the properties, and the finished query looks like this:
+After establishing the location and format of the CSV file, filter out the rows
+that contain the label `:Employee`:
 
 ```
-LOAD CSV FROM "/data/employee.csv" WITH HEADER AS column
-CREATE (e:Employee {nodeID: column._id, employeeID: column.employeeID, firstName: column.firstName, lastName: column.lastName, title: column.title});
+LOAD CSV FROM "/usr/lib/memgraph/shipping.csv" WITH HEADER AS row
+WITH row WHERE row._labels = ':Employee'
+```
+
+Then,  create nodes with a certain label and properties. As an example, let's
+look at the property `_id`. To add the property to the node, define its name in
+Memgraph and assigned the value of a specific column in the CSV file. 
+
+```
+LOAD CSV FROM "/usr/lib/memgraph/shipping.csv" WITH HEADER AS row
+WITH row WHERE row._labels = ':Employee'
+CREATE (e:Employee {nodeID: row._id})
+```
+
+So `nodeID: row._id` part of the query instructs Memgraph to create a property
+named `nodeID` and assign it the value paired with key `_id`. First created
+node will be assigned the value from the first data row, second node from the
+second data row, etc.
+
+**After matching up the keys and values for all properties, the finished query looks like this:**
+
+```
+LOAD CSV FROM "/usr/lib/memgraph/shipping.csv" WITH HEADER AS row
+WITH row WHERE row._labels = ':Employee'
+CREATE (e:Employee {nodeID: row._id, employeeID: row.employeeID, firstName: row.firstName, lastName: row.lastName, title: row.title});
 
 MATCH (e:Employee)
 RETURN e; 
@@ -294,47 +287,59 @@ The second query will show all 9 created nodes.
 
 Copy the query in the **Cypher Editor** and **Run Query**.
 
-[IMAGE]
+<img src={require('../data/tutorials/migrate-from-neo4j/employees.png').default} className={"imgBorder"}/>
 
 #### Order nodes
 
-Relevant columns in the `order.csv` file are `_id`, `orderID` and `shipName`, so
-the LOAD CSV query for importing 830 orders looks like this:
+Relevant properties for the `Order` nodes are `_id`, `orderID` and `shipName`.
+
+**To create `Order` nodes run the following query:**
 
 ```
-LOAD CSV FROM "/data/order.csv" WITH HEADER AS column
-CREATE (o:Order {nodeID: column._id, orderID: column.orderID, shipName: column.shipName});
+LOAD CSV FROM "/usr/lib/memgraph/shipping.csv" WITH HEADER AS row
+WITH row WHERE row._labels = ':Order'
+CREATE (o:Order {nodeID: row._id, orderID: row.orderID, shipName: row.shipName});
 
 MATCH (o:Order)
 RETURN o; 
 ```
 
-[IMAGE]
+The second query will show all 830 created nodes:
+
+<img src={require('../data/tutorials/migrate-from-neo4j/orders.png').default} className={"imgBorder"}/>
 
 #### Product nodes
 
-Relevant columns in the `product.csv` file are `_id`, `productID`, `productName`
-and `unitPrice`, so the LOAD CSV query for importing 830 orders looks like this:
+Relevant properties for the `Product` nodes are `_id`, `productID`, `productName`
+and `unitPrice`.
 
 As the parser parses all the values as strings, and the `unitPrice` are numbers,
-they need to be converted to appropriate type.
+they need to be converted to appropriate data type.
+
+**To create `Product` nodes run the following query:**
 
 ```
-LOAD CSV FROM "/data/product.csv" WITH HEADER AS column
-CREATE (p:Product {nodeID: column._id, productID: column.productID, productName: column.productName, unitPrice: ToFloat(column.unitPrice)});
+LOAD CSV FROM "/usr/lib/memgraph/shipping.csv" WITH HEADER AS row
+WITH row WHERE row._labels = ':Product'
+CREATE (p:Product {nodeID: row._id, productID: row.productID, productName: row.productName, unitPrice: ToFloat(row.unitPrice)});
 
 MATCH (p:Product)
 RETURN p; 
 ```
 
-### Graph improvements
+The second query will show all 77 created nodes:
+
+<img src={require('../data/tutorials/migrate-from-neo4j/product.png').default} className={"imgBorder"}/>
+
+### 4. Graph improvements
 
 At this point it would be nice to improve the look of the nodes visually. At the
-moment, nodes are represented with their labels in the graph, but it would be
+moment, nodes in the graph are represented with their labels, but it would be
 more useful if their name attribute was written. 
 
 To adjust the look of the graph with using Graph Style Language, open the the
-Graph Style Editor. On line 16 you will find this block of code:
+Graph Style Editor. On line 22 (or in that vicinity) you will find this block of
+code:
 
 ```
 @NodeStyle HasProperty(node, "name") {
@@ -348,7 +353,7 @@ graph will be that property.
 As none of the imported nodes have the property `name`, this part of the code
 needs to be adjusted to use the properties nodes do have. 
 
-Replace the code on lines 16-18 with the following block and **Apply** the
+Replace those three lines of code with the following block and **Apply** the
 changes:
 
 ```
@@ -365,87 +370,107 @@ changes:
 }
 ```
 
-[IMAGE]
+<img src={require('../data/tutorials/migrate-from-neo4j/GSS.png').default} className={"imgBorder"}/>
 
 Visual appearance of the graph can be changed in many different ways, so be sure
 to check the GSS documentation. 
 
-### Importing relationships
+### 5. Importing relationships
 
 Now that all the 916 nodes have been imported, they can be connected with relationships. 
 
 The first row of the LOAD CSV remains the same:
 
 ```
-LOAD CSV FROM "/data/file.csv" WITH HEADER AS column
+LOAD CSV FROM "/usr/lib/memgraph/shipping.csv" WITH HEADER AS row
 ```
+
+The `shipping.csv` file contains the following values important for relationship
+creation:  `_type`, `_start`, `_end`, `quantity` and `unitPrice`.
+
+The `_type` defines relationships type,  `_start` and `_end` values define which
+nodes need to be connected based on their ID. 
 
 #### :REPORTS_TO relationships
 
-Relevant columns in the `reports_to.csv` file are `_start` and `_end_` columns
-which actually define which nodes need to be connected based on their ID. So
-first Memgraph needs to find the nodes with these IDs in order to create a
+Begin with `:REPORTS_TO` relationship. 
+
+After establishing the location and format of the CSV file, filter out the rows
+that contain the type `REPORTS_TO`:
+
+```
+LOAD CSV FROM "/usr/lib/memgraph/shipping.csv" WITH HEADER AS row
+WITH row WHERE row._type = 'REPORTS_TO'
+```
+
+Now instruct Memgraph find the nodes with certain IDs in order to create a
 relationship between them. As node IDs are unique we can just define that any
 node with a certain ID is a starting point, and another node with a certain ID
 is the end point of the relationship type `REPORTS_TO`.
 
-The LOAD CSV query creates 8 relationships, while the `MATCH p` query returns
-them and the nodes they connect:
+**The LOAD CSV query creates 8 `:REPORTS_TO` relationships:**
 
 ```cypher
-LOAD CSV FROM "/data/reports_to.csv" WITH HEADER AS column
-MATCH (n {nodeID: column._start}), (n2 {nodeID: column._end})
+LOAD CSV FROM "/usr/lib/memgraph/shipping.csv" WITH HEADER AS row
+WITH row WHERE row._type = 'REPORTS_TO'
+MATCH (n {nodeID: row._start}), (n2 {nodeID: row._end})
 CREATE (n)-[:REPORTS_TO]->(n2);
 
 MATCH p=()-[:REPORTS_TO]->()
 RETURN p;
 ```
 
-The second query returns all the nodes connected with the `REPORTS_TO` type of relationship. 
+The second query returns all the nodes connected with the `REPORTS_TO` type of
+relationship. 
 
-[IMAGE]
+<img src={require('../data/tutorials/migrate-from-neo4j/reports_to.png').default} className={"imgBorder"}/>
 
 #### :SOLD relationships
 
-Relevant columns in the `sold.csv` file are also `_start` and `_end_` columns
-for the same reasons (they define start and end node of a relationship).
-
-The LOAD CSV query creates 830 relationships, while the `MATCH p` query returns
-them and the nodes they connect:
+**The LOAD CSV query creates 830 `:SOLD` relationships:**
 
 ```cypher
-LOAD CSV FROM "/data/sold.csv" WITH HEADER AS column
-MATCH (n {nodeID: column._start}), (n2 {nodeID: column._end})
+LOAD CSV FROM "/usr/lib/memgraph/shipping.csv" WITH HEADER AS row
+WITH row WHERE row._type = 'SOLD'
+MATCH (n {nodeID: row._start}), (n2 {nodeID: row._end})
 CREATE (n)-[:SOLD]->(n2);
 
 MATCH p=()-[:SOLD]->()
 RETURN p;
 ```
 
+The second query returns all the nodes connected with the `SOLD` type of
+relationship. 
+
+<img src={require('../data/tutorials/migrate-from-neo4j/sold.png').default} className={"imgBorder"}/>
+
 #### :CONTAINS relationships
 
-Relevant columns in the `contains.csv` file are also `_start` and `_end_`
-columns for the same reasons (they define start and end node of a relationship),
-but this relationship type also has properties about the `quantity` of products
-one order contains, and the `unitPrice`.
+This relationship type has properties about the `quantity` of products one order
+contains.
 
-As the parser parses all the values as strings, and these relationship
-properties are numbers, they need to be converted to appropriate types.
-`quantity` to integer, and `unitPrice` to float.
+As the parser parses all the values as strings, and the value of this
+relationship property are numbers, they need to be converted to appropriate
+type. 
 
-The LOAD CSV query creates 2155 relationships, while the `MATCH p` query returns
-them and the nodes they connect:
+**The LOAD CSV query creates 2155 `CONTAINS` relationships:**
 
 ```cypher
-LOAD CSV FROM "/data/contains.csv" WITH HEADER AS column
-MATCH (n {nodeID: column._start}), (n2 {nodeID: column._end})
-CREATE (n)-[:CONTAINS {quantity: ToInteger(column.quantity), unitPrice: ToFloat(column.unitPrice)}]->(n2);
+LOAD CSV FROM "/usr/lib/memgraph/shipping.csv" WITH HEADER AS row
+WITH row WHERE row._type = 'CONTAINS'
+MATCH (n {nodeID: row._start}), (n2 {nodeID: row._end})
+CREATE (n)-[:CONTAINS {quantity: ToInteger(row.quantity)}]->(n2);
 
 MATCH p=()-[:CONTAINS]->()
 RETURN p;
 ```
 
-### After import
+The second query returns all the nodes connected with the `CONTAINS` type of
+relationship. 
+
+<img src={require('../data/tutorials/migrate-from-neo4j/contains.png').default} className={"imgBorder"}/>
+
+## After import
 
 Once all the 916 nodes and 2993 relationships have been imported decide whether
 you want to switch back to the transactional storage mode or not. Remember that
@@ -463,8 +488,10 @@ To check the switch was successful, run:
 SHOW STORAGE INFO;
 ```
 
-## Query migration
-
-
-
-If you have stumbled upon the [blog post on migrating from Neo4j to Memgraph](https://memgraph.com/blog/how-to-migrate-from-neo4j-to-memgraph)
+You can query the database using the [**Cypher query
+language**](/cypher-manual), use various graph algorithms and modules from our
+open-source repository [**MAGE**](/mage) to solve graph analytics problems,
+create awesome customized visual displays of your nodes and relationships with
+[**Graph Style Script**](/memgraph-lab/graph-style-script-language), find out
+how to connect any [**streams of data**](/memgraph/import-data/kafka) you might
+have with Memgraph and above all - enjoy your new graph database!

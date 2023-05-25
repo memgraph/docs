@@ -123,6 +123,7 @@ module.exports = {
         "tutorials/install-memgraph-windows-10",
         "tutorials/graph-modeling",
         "tutorials/migrate-relational-database",
+        "tutorials/migrate-from-neo4j",
         {
           type: "category",
           label: "Exploring datasets with graph analytics",
