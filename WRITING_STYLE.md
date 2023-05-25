@@ -69,3 +69,4 @@ and up-to-date.
 
 Take a look at an example of a good reference guide article:
 [Indexing](docs/reference-guide/indexing.md).
+
