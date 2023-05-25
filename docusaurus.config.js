@@ -240,6 +240,10 @@ module.exports = {
               to: "/gqlalchemy/reference",
             },
             {
+              label: "Under the hood",
+              to: "/gqlalchemy/under-the-hood",
+            },
+            {
               label: "Changelog",
               to: "/gqlalchemy/changelog",
             },
@@ -1346,6 +1350,11 @@ module.exports = {
           {
             to: "/mage/query-modules/cpp/distance-calculator",
             from: ["/mage/query-modules/python/distance-calculator"],
+          },
+          // Redirect for the GQLAlchemy how-to
+          {
+            to: "/gqlalchemy/how-to-guides/import-python-graphs",
+            from: ["/gqlalchemy/how-to-guides/networkx"],
           },
         ],
       },

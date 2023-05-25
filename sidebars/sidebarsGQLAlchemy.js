@@ -45,8 +45,16 @@ module.exports = {
         "how-to-guides/triggers/triggers",
         "how-to-guides/on-disk-storage/on-disk-storage",
         "how-to-guides/query-builder/graph-projection",
-        "how-to-guides/networkx"
+        {
+          type: "category",
+          label: "Translate Python graphs",
+          items: [
+            "how-to-guides/translators/import-python-graphs",
+            "how-to-guides/translators/export-python-graphs"
+          ],
+        },
       ],
+
     },
     /*
     {
@@ -132,6 +140,18 @@ module.exports = {
         "reference/models",
         "reference/utilities"
       ],
+    },
+    {
+      type: "category",
+      label: "Under the hood",
+      link: { type: "doc", id: "under-the-hood/overview" },
+      items: [
+        {
+          type: "doc",
+          label: "Python graphs",
+          id: "under-the-hood/python-graph-translators",
+        },
+      ]
     },
     "changelog",
   ],
