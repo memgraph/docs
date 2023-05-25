@@ -5,20 +5,20 @@ sidebar_label: Export data from Memgraph into Python graphs
 slug: /how-to-guides/export-python-graphs
 ---
 
-GQLAlchemy holds translators that can export Memgraph graphs into Python graphs ([NetworkX](https://networkx.org/), [PyG](https://pytorch-geometric.readthedocs.io/en/latest/) or [DGL](https://www.dgl.ai/) graphs). These translators create Python graph instance from the graph stored in Memgraph. 
+GQLAlchemy holds translators that can export Memgraph graphs into Python graphs ([NetworkX](https://networkx.org/), [PyG](https://pytorch-geometric.readthedocs.io/en/latest/) or [DGL](https://www.dgl.ai/) graphs). These translators create a Python graph instance from the graph stored in Memgraph. 
 
 [![docs-source](https://img.shields.io/badge/source-examples-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/gqlalchemy/tree/main/tests/transformations/translators)
 [![docs-source](https://img.shields.io/badge/source-translators-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/gqlalchemy/tree/main/gqlalchemy/transformations/translators)
 [![Related - Under the
 hood](https://img.shields.io/static/v1?label=Related&message=Under%20the%20hood&color=orange&style=for-the-badge)](/under-the-hood/python-graph-translators.md)
 
-In this how-to guide you will learn how to:
+In this guide you will learn how to:
 - [**Export data from Memgraph into NetworkX graph**](#export-data-from-memgraph-into-networkx-graph)
 - [**Export data from Memgraph into PyG graph**](#import-pyg-graph-into-memgraph)
 - [**Export data from Memgraph into DGL graph**](#import-dgl-graph-into-memgraph)
 
 ## General prerequisites
-You will need a running **Memgraph Platform instance** which includes both the MAGE library and Memgraph Lab, a visual interface. To run the image, open a command-line interpreter and run the following Docker command:
+You need a running **Memgraph Platform instance**, which includes both the MAGE library and Memgraph Lab, a visual interface. To run the image, open a command-line interpreter and run the following Docker command:
 
 ```
 docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 memgraph/memgraph-platform:latest

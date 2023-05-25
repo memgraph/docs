@@ -6,7 +6,7 @@ slug: /under-the-hood
 ---
 
 Look under the hood and have a glimpse at the inner workings of GQLAlchemy. If you
-are advanced GQLAlchemy users or graph database enthusiasts we hope you will
+are advanced GQLAlchemy user or graph database enthusiast we hope you will
 enjoy reading about the following topics:
 
   * [**Python graph translators**](python-graph-translators.md)

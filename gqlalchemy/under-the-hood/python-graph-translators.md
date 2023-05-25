@@ -15,7 +15,7 @@ How-to](https://img.shields.io/static/v1?label=Related&message=How%20to%20export
 [![docs-source](https://img.shields.io/badge/source-translators-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/gqlalchemy/tree/main/gqlalchemy/transformations/translators)
 
 
-Within code, translators are divided into the following parts, depending on a Python graph type you want to translate:
+Within the code, translators are divided into the following parts, depending on the Python graph type you want to translate:
 
 - [**NetworkX graph translator**](#networkx-graph-translator)
 - [**PyG graph translator**](#pyg-graph-translator)
@@ -46,7 +46,7 @@ for query in NxTranslator().to_cypher_queries(nx_graph):
 
 ### `nx_graph_to_memgraph_parallel()` method
 
-The `nx_graph_to_memgraph_parallel()` method is similar to the [`to_cypher_queries()`](#to_cypher_queries-method) method. It creates the graph inside Memgraph following the same set of rules, but it writes in parallel. To do that, it splits generated queries into query groups and opens up a new connection to Memgraph in order to run queries. It will warn you if you did not set `create_index` in `config` to `True`, because otherwise, the write process might take longer than expected. To run the generated queries, following code can be used:
+The `nx_graph_to_memgraph_parallel()` method is similar to the [`to_cypher_queries()`](#to_cypher_queries-method) method. It creates a graph inside Memgraph following the same set of rules, but it writes in parallel. To do that, it splits generated queries into query groups and opens up a new connection to Memgraph in order to run queries. It will warn you if you did not set `create_index` in `config` to `True`, because otherwise, the write process might take longer than expected. To run the generated queries, the following code can be used:
 
 ```
 for query in NxTranslator().nx_graph_to_memgraph_parallel(nx_graph):
@@ -84,7 +84,7 @@ for query in PyGTranslator().to_cypher_queries(pyg_graph):
 
 ### `get_instance()` method
 
-The `get_instance()` method returns instance of PyG heterograph from all relationships stored in Memgraph. Isolated nodes are ignored because they don't contribute in message passing neural networks. Only numerical properties that are set on all nodes and relationships are translated to the PyG instance since that is PyG requirement. Hence, any string properties, as well as numerical properties that aren't set on all nodes or relationships, won't be translated to the PyG instance. However, properties of type list will be translated to the PyG instance as a feature. Regardless of how data is connected in Memgraph, the returned PyG graph will be a heterograph instance. To create PyG graph from data stored in Memgraph, following code can be run:
+The `get_instance()` method returns an instance of PyG heterograph from all relationships stored in Memgraph. Isolated nodes are ignored because they don't contribute to message passing neural networks. Only numerical properties that are set on all nodes and relationships are translated to the PyG instance since that is PyG requirement. Hence, any string properties, as well as numerical properties that aren't set on all nodes or relationships, won't be translated to the PyG instance. However, properties of type list will be translated to the PyG instance as a feature. Regardless of how data is connected in Memgraph, the returned PyG graph will be a heterograph instance. To create PyG graph from data stored in Memgraph, the following code can be run:
 
 ```
 graph =  PyGTranslator().get_instance()
@@ -103,7 +103,7 @@ Translating the graph means that you can **import** DGL graph into Memgraph as w
 
 ### `to_cypher_queries()` method
 
-The `to_cypher_queries()` method produces Cypher queries to create graph objects in Memgraph for both homogeneous and heterogeneous graph. If the graph is homogeneous, the default `_N` as a node label and `_E` as a relationship label will be used. This method can translate one-dimensional as well as multidimensional features to Memgraph properties. Isolated nodes in the graph won't get translated into Memgraph. Nodes and relationships will have property `dgl_id` set to the id they have as part of the DGL graph for the consistency reasons. To run the generated queries, following code can be used:
+The `to_cypher_queries()` method produces Cypher queries to create graph objects in Memgraph for both homogeneous and heterogeneous graph. If the graph is homogeneous, the default `_N` as a node label and `_E` as a relationship label will be used. This method can translate one-dimensional as well as multidimensional features to Memgraph properties. Isolated nodes in the graph won't get translated into Memgraph. Nodes and relationships will have property `dgl_id` set to the ID they have as part of the DGL graph for the consistency reasons. To run the generated queries, the following code can be used:
 
 ```
 for query in DGLTranslator().to_cypher_queries(dgl_graph):

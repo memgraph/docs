@@ -12,13 +12,13 @@ GQLAlchemy holds translators that can import Python graphs ([NetworkX](https://n
 [![Related - Under the
 hood](https://img.shields.io/static/v1?label=Related&message=Under%20the%20hood&color=orange&style=for-the-badge)](/under-the-hood/python-graph-translators.md)
 
-In this how-to guide you will learn how to:
+In this guide you will learn how to:
 - [**Import NetworkX graph into Memgraph**](#import-networkx-graph-into-memgraph)
 - [**Import PyG graph into Memgraph**](#import-pyg-graph-into-memgraph)
 - [**Import DGL graph into Memgraph**](#import-dgl-graph-into-memgraph)
 
 ## General prerequisites
-You will need a running **Memgraph Platform instance** which includes both the MAGE library and Memgraph Lab, a visual interface. To run the image, open a command-line interpreter and run the following Docker command:
+You need a running **Memgraph Platform instance**, which includes both the MAGE library and Memgraph Lab, a visual interface. To run the image, open a command-line interpreter and run the following Docker command:
 
 ```
 docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 memgraph/memgraph-platform:latest
@@ -32,7 +32,7 @@ Except for the [**general prerequisites**](#general-prerequisites), you also nee
 
 ### Create and run a Python script
 
-Create a new Python script `networkx-graph.py`, in the code editor of your choice, with the following code:
+Create a new Python script `networkx-graph.py` in the code editor of your choice, with the following code:
 
 ```python
 import networkx as nx
@@ -52,7 +52,7 @@ for query in list(translator.to_cypher_queries(graph)):
     memgraph.execute(query)
 ```
 
-First, we are connecting to a running Memgraph instance. Next, we need to drop the database to be sure that it's empty. After that, we create a simple NetworkX graph to which we add nodes and edges. In the end, we call `to_cypher_queries` procedure on `NxTranslator` instance to transform the NetworkX graph to Cypher queries which will be executed in Memgraph.
+First, connect to a running Memgraph instance. Next, drop the database to be sure that it's empty. After that, create a simple NetworkX graph and add nodes and edges to it. In the end, call `to_cypher_queries` procedure on `NxTranslator` instance to transform the NetworkX graph to Cypher queries which will be executed in Memgraph.
 
 To run it, open a command-line interpreter and run the following command:
 
@@ -83,7 +83,7 @@ Except for the [**general prerequisites**](#general-prerequisites), you also nee
 
 ### Create and run a Python script
 
-Create a new Python script `pyg-graph.py`, in the code editor of your choice, with the following code:
+Create a new Python script `pyg-graph.py` in the code editor of your choice, with the following code:
 
 ```python
 import torch
@@ -122,7 +122,7 @@ for query in list(translator.to_cypher_queries(graph)):
     memgraph.execute(query)
 ```
 
-First, we are connecting to a running Memgraph instance. Next, we need to drop the database to be sure that it's empty. After that, we create a simple PyG heterogeneous graph to which we add nodes and edges along with their features. The graph consist of three `user` nodes and two `movie` nodes, as well as two types of edges - `PLUS` and `MINUS`. The `edge_index` of a graph determines which nodes are connected by which edges. We are providing a tensor, that is a multi-dimensional matrix, as a value of `edge_index`, to define edges. Each tensor element maps to one graph node - first row of matrix maps to `user`, while the second one to the `movie` nodes. Hence, `user` node 0 is connected to the `movie` node 0, `user` node 0 is connected to the `movie` node 1, and `user` node 1 is connected to the `movie` node 0, with edge of type `PLUS`. These integers are mapping to the values of the `pyg_id` nodes' property in Memgraph. Similarly, the edge of type `MINUS` is created between `user` node 2 and `movie` node 1. In the end, we call `to_cypher_queries` procedure on `PyGTranslator` instance to transform the PysG graph to Cypher queries which will be executed in Memgraph.
+First, connect to a running Memgraph instance. Next, drop the database to be sure that it's empty. After that, create a simple PyG heterogeneous graph and add nodes and edges along with their features to it. The graph consist of three `user` nodes and two `movie` nodes, as well as two types of edges - `PLUS` and `MINUS`. The `edge_index` of a graph determines which nodes are connected by which edges. Provide a tensor, that is a multi-dimensional matrix, as a value of `edge_index`, to define edges. Each tensor element maps to one graph node - first row of matrix maps to `user`, while the second one to the `movie` nodes. Hence, `user` node 0 is connected to the `movie` node 0, `user` node 0 is connected to the `movie` node 1, and `user` node 1 is connected to the `movie` node 0, with edge of type `PLUS`. These integers are mapping to the values of the `pyg_id` nodes' property in Memgraph. Similarly, the edge of type `MINUS` is created between `user` node 2 and `movie` node 1. In the end, call `to_cypher_queries` procedure on `PyGTranslator` instance to transform the PysG graph to Cypher queries which will be executed in Memgraph.
 
 To run it, open a command-line interpreter and run the following command:
 
@@ -153,7 +153,7 @@ Except for the [**general prerequisites**](#general-prerequisites), you also nee
 
 ### Create and run a Python script
 
-Create a new Python script `dgl-graph.py`, in the code editor of your choice, with the following code:
+Create a new Python script `dgl-graph.py` in the code editor of your choice, with the following code:
 
 ```python
 import numpy as np
@@ -188,7 +188,7 @@ for query in list(translator.to_cypher_queries(graph)):
     memgraph.execute(query)
 ```
 
-First, we are connecting to a running Memgraph instance. Next, we need to drop the database to be sure that it's is empty. After that, we create a simple DGL heterogeneous graph to which we add nodes and edges along with their features. The graph consist of three `user` nodes and two `movie` nodes, as well as two types of edges - `PLUS` and `MINUS`. To define nodes and edge between them we are providing appropriate NumPy arrays. Hence, `user` node 0 is connected to the `movie` node 0, `user` node 0 is connected to the `movie` node 1, and `user` node 1 is connected to the `movie` node 0, with edge of type `PLUS`. These integers are mapping to the values of the `dgl_id` properties in Memgraph. Similarly, the edge of type `MINUS` is created between `user` node 2 and `movie` node 1. In the end, we call `to_cypher_queries` procedure on `DGLTranslator` instance to transform the DGL graph to Cypher queries which will be executed in Memgraph.
+First, connect to a running Memgraph instance. Next, drop the database to be sure that it's is empty. After that, create a simple DGL heterogeneous graph and add nodes and edges along with their features to it. The graph consist of three `user` nodes and two `movie` nodes, as well as two types of edges - `PLUS` and `MINUS`. To define nodes and edge between them we are providing appropriate NumPy arrays. Hence, `user` node 0 is connected to the `movie` node 0, `user` node 0 is connected to the `movie` node 1, and `user` node 1 is connected to the `movie` node 0, with edge of type `PLUS`. These integers are mapping to the values of the `dgl_id` properties in Memgraph. Similarly, the edge of type `MINUS` is created between `user` node 2 and `movie` node 1. In the end, call `to_cypher_queries` procedure on `DGLTranslator` instance to transform the DGL graph to Cypher queries which will be executed in Memgraph.
 
 To run it, open a command-line interpreter and run the following command:
 
