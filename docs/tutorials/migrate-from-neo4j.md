@@ -26,14 +26,14 @@ To follow this tutorial, you will need to have the following:
 
 One of the first steps to consider is how to migrate your data. If you have your
 data in the form of [Cypher queries](/import-data/files/cypherl.md) or
-[CSV](/import-data/load-csv-clause) or
+[CSV](/import-data/files/load-csv-clause.md) or
 [JSON](/import-data/files/load-json.md) format, you can import these formats
 into Memgraph. Keep in mind that for importing larger datasets it is recommended
 to use CSV or pure Cypher queries (Memgraph's CYPHERL format), since they have
 native Memgraph integrations, and are faster than JSON.
 
 This tutorial will go through exporting data from Neo4j into CSV files and
-exporting it into Memgraph using [LOAD CSV](/import-data/load-csv-clause)
+exporting it into Memgraph using [LOAD CSV](/import-data/files/load-csv-clause.md)
 query and Memgraph's user visual interface [Memgraph Lab](/memgraph-lab).
 
 The sample dataset consists of 3 different kinds of nodes (Employee, Order and
