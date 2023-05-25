@@ -137,4 +137,5 @@ After you click on **Run Query**, you can see the result, which consists of two 
 
 ## Where to next?
 
-If you want to learn more about how to use Memgraph with NetworkX, check out the [**Memgraph for NetworkX developers resources**](https://memgraph.com/memgraph-for-networkx?utm_source=networkx-guide&utm_medium=referral&utm_campaign=networkx_ppp&utm_term=docs%2Bhowtoutilize&utm_content=resources). If you are using GQLAlchemy to connect to Memgraph, learn how to import NetworkX graph into Memgraph in the [**how-to guide**](/docs/gqlalchemy/how-to-guides/networkx) on GQLAlchemy documentation.
+If you want to learn more about using Memgraph with NetworkX, check out the [**Memgraph for NetworkX developers resources**](https://memgraph.com/memgraph-for-networkx?utm_source=networkx-guide&utm_medium=referral&utm_campaign=networkx_ppp&utm_term=docs%2Bhowtoutilize&utm_content=resources). If you are using GQLAlchemy to connect to Memgraph, learn [how to import NetworkX graph into Memgraph](/docs/gqlalchemy/how-to-guides/import-python-graphs#import-networkx-graph-into-memgraph).
+
