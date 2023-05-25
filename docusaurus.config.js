@@ -1347,6 +1347,11 @@ module.exports = {
             to: "/mage/query-modules/cpp/distance-calculator",
             from: ["/mage/query-modules/python/distance-calculator"],
           },
+          // Redirect for the GQLAlchemy how-to
+          {
+            to: "/gqlalchemy/how-to-guides/import-python-graphs",
+            from: ["/gqlalchemy/how-to-guides/networkx"],
+          },
         ],
       },
     ],
