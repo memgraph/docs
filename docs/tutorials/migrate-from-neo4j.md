@@ -381,7 +381,7 @@ changes:
 <img src={require('../data/tutorials/migrate-from-neo4j/GSS.png').default} className={"imgBorder"}/>
 
 Visual appearance of the graph can be changed in many different ways, so be sure
-to check the [GSS documentation](lab/style-script/overview). 
+to check the [GSS documentation](/memgraph-lab/graph-style-script-language). 
 
 ### 5. Importing relationships
 
