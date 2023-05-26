@@ -22,7 +22,7 @@ To follow this tutorial, you will need to have the following:
 - Running Neo4j instance (with your date, or use the sample data provided)
 - [Latest `memgraph/memgraph-platform` Docker image](https://memgraph.com/download)
 
-## Data format
+## Data schema
 
 One of the first steps to consider is how to migrate your data. If you have your
 data in the form of [Cypher queries](/import-data/files/cypherl.md) or
@@ -42,7 +42,7 @@ schema below:
 
 <img src={require('../data/tutorials/migrate-from-neo4j/shipping_schema.png').default} className={"imgBorder"}/>
 
-TO create this graph in your Neo4j instance run the following queries:
+To create this graph in your Neo4j instance run the following queries:
 
 ```cypher
 LOAD CSV WITH HEADERS FROM 'https://gist.githubusercontent.com/jexp/054bc6baf36604061bf407aa8cd08608/raw/8bdd36dfc88381995e6823ff3f419b5a0cb8ac4f/orders.csv' AS column
@@ -87,6 +87,10 @@ but you can modify data to use `localDateTime()`).
 
 ## Exporting data from Neo4j
 
+Download the CSV file
+[shipping.csv](https://public-assets.memgraph.com/import-data/load-csv-cypher/shipping.csv)
+containing the data above if you don't want to go through the exporting process. 
+
 To get your data out of Neo4j instance, use the Neo4j APOC export functionality.
 To install APOC, select the project, then in the right-side menu select *Plugins
 -> APOC* and press install.
@@ -104,7 +108,7 @@ Export the data into a CSV file using:
 CALL apoc.export.csv.all("shipping.csv", {})
 ```
 
-Once exported, the file is located in Ne04j's *Import* folder. To open it,
+Once exported, the file is located in Neo4j's *Import* folder. To open it,
 select the active project, click on *...* -> *Open folder* -> *Import*.
 
 <img src={require('../data/tutorials/migrate-from-neo4j/import_folder.png').default} className={"imgBorder"}/>
@@ -124,7 +128,7 @@ directory into the Docker container where Memgraph can access it.
 
 This can be done by copying the file into your running instance. 
 
-1. Run Memgrpah with
+1. Run Memgraph with
 
     ```
     docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 memgraph/memgraph-platform
@@ -152,7 +156,7 @@ This can be done by copying the file into your running instance.
 
 4. List the files inside the `/usr/lib/memgraph`. 
 
-    ```
+    ```nocopy
     C:\Users\Vlasta>docker ps
     CONTAINER ID   IMAGE                        COMMAND                  CREATED         STATUS         PORTS                                                                    NAMES
     bed1e5c9192d   memgraph/memgraph-platform   "/bin/sh -c '/usr/bi…"   2 minutes ago   Up 2 minutes   0.0.0.0:3000->3000/tcp, 0.0.0.0:7444->7444/tcp, 0.0.0.0:7687->7687/tcp   recursing_blackburn
@@ -221,6 +225,7 @@ To import nodes using a LOAD CSV clause let's examine the clause syntax:
 ```cypher
 LOAD CSV FROM "csv-file-path.csv" ( WITH | NO ) HEADER [IGNORE BAD] [DELIMITER <delimiter-string>] [QUOTE <quote-string>] AS <variable-name>
 ```
+
 The file is now located at `/usr/lib/memgraph/shipping.csv` and it has a header
 row. There is no need to ignore bad rows, the default deliminator is `,` and
 the default quote character `"`, the same as in the exported CSV file, so no
@@ -257,7 +262,7 @@ LOAD CSV FROM "/usr/lib/memgraph/shipping.csv" WITH HEADER AS row
 WITH row WHERE row._labels = ':Employee'
 ```
 
-Then,  create nodes with a certain label and properties. As an example, let's
+Then, create nodes with a certain label and properties. As an example, let's
 look at the property `_id`. To add the property to the node, define its name in
 Memgraph and assigned the value of a specific column in the CSV file. 
 
@@ -337,9 +342,8 @@ At this point it would be nice to improve the look of the nodes visually. At the
 moment, nodes in the graph are represented with their labels, but it would be
 more useful if their name attribute was written. 
 
-To adjust the look of the graph with using Graph Style Language, open the the
-Graph Style Editor. On line 22 (or in that vicinity) you will find this block of
-code:
+To adjust the look of the graph using Graph Style Language, open the Graph Style
+Editor. On line 22 (or in that vicinity) you will find this block of code:
 
 ```
 @NodeStyle HasProperty(node, "name") {
@@ -373,7 +377,7 @@ changes:
 <img src={require('../data/tutorials/migrate-from-neo4j/GSS.png').default} className={"imgBorder"}/>
 
 Visual appearance of the graph can be changed in many different ways, so be sure
-to check the GSS documentation. 
+to check the [GSS documentation](lab/style-script/overview). 
 
 ### 5. Importing relationships
 
@@ -403,7 +407,7 @@ LOAD CSV FROM "/usr/lib/memgraph/shipping.csv" WITH HEADER AS row
 WITH row WHERE row._type = 'REPORTS_TO'
 ```
 
-Now instruct Memgraph find the nodes with certain IDs in order to create a
+Now instruct Memgraph to find the nodes with certain IDs in order to create a
 relationship between them. As node IDs are unique we can just define that any
 node with a certain ID is a starting point, and another node with a certain ID
 is the end point of the relationship type `REPORTS_TO`.
