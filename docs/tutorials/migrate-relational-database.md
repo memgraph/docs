@@ -1,7 +1,7 @@
 ---
 id: migrate-relational-database
 title: Migrate from RDBMS to Memgraph
-sidebar_label: Migrate from RDBMS to Memgraph
+sidebar_label: Migrate from RDBMS
 ---
 
 This tutorial will help you import your data from a MySQL database into Memgraph
