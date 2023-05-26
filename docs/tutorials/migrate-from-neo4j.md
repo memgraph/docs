@@ -203,7 +203,7 @@ After import you can switch back to the `IN_MEMORY_TRANSACTIONAL` storage mode o
 continue running analytics queries (only read queries) in the
 `IN_MEMORY_ANALYTICAL` mode to continue benefiting from low memory consumption. 
 
-**To switch between modes, run the following queries on a running instance:**
+To switch between modes, run the following queries on a running instance:
 
 ```cypher
 STORAGE MODE IN_MEMORY_ANALYTICAL;
@@ -217,6 +217,10 @@ SHOW STORAGE INFO;
 ```
 
 **Change the storage mode to analytical before import.**
+
+```cypher
+STORAGE MODE IN_MEMORY_ANALYTICAL;
+```
 
 ### 3. Importing nodes
 
