@@ -343,7 +343,7 @@ moment, nodes in the graph are represented with their labels, but it would be
 more useful if their name attribute was written. 
 
 To adjust the look of the graph using Graph Style Language, open the Graph Style
-Editor. On line 22 (or in that vicinity) you will find this block of code:
+Editor. Find the following code block:
 
 ```
 @NodeStyle HasProperty(node, "name") {
