@@ -19,6 +19,8 @@ kick off your own Memgraph graph database adventures.
   practices related to graph databases and graph modeling
 - [**Migrate from RDBMS to Memgraph**](migrate-relational-database.md) - learn
   how to migrate your data from a relational database to Memgraph
+- [**Migrate from Neo4j to Memgraph**](migrate-from-neo4j.md) - learn
+  how to migrate your data from Neo4j to Memgraph
 - [**Exploring datasets**](/tutorials/exploring-datasets/overview.md) - learn
   the Cypher query language used to interact with the Memgraph graph database
 - [**Style your graphs in Memgraph Lab**](style-your-graphs-in-memgraph-lab.md) - learn Style script to add style to your graphs in Memgraph Lab
