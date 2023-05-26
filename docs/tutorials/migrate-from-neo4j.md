@@ -5,21 +5,21 @@ sidebar_label: Migrate from Neo4j
 ---
 
 Memgraph is a native in-memory graph database specialized for real-time
-use-cases such us streaming, analytical processing etc. It is compatible with
-the Cypher query language and the Neo4j Bolt protocol. This means that you can
-use the same tools and drivers that you are already using with Neo4j. Due to the
-ACID compliance, data persistency and replication support in community version,
-Memgraph can be used as main database for your applications, instead of Neo4j.
-There are some differences between Memgraph and Neo4j, from the operational side
-and the query language side. This tutorial will help you migrate your data and
-queries from Neo4j to Memgraph and provide general strategies for migrating from
-one graph database to another.
+use-cases such us streaming, analytical processing etc. It uses Cypher query
+language and Bolt protocol. This means that you can use the same tools and
+drivers that you are already using with Neo4j. Due to the ACID compliance, data
+persistency and replication support in community version, Memgraph can be used
+as main database for your applications, instead of Neo4j. There are some
+differences between Memgraph and Neo4j, from the operational side and the query
+language side. This tutorial will help you migrate your data and queries from
+Neo4j to Memgraph and provide general strategies for migrating from one graph
+database to another.
 
 ## Prerequisites
 
 To follow this tutorial, you will need to have the following:
 
-- Running Neo4j instance (with your date, or use the sample data provided)
+- Running Neo4j instance (with your data, or use the sample data provided)
 - [Latest `memgraph/memgraph-platform` Docker image](https://memgraph.com/download)
 
 ## Data schema
@@ -29,11 +29,11 @@ data in the form of [Cypher queries](/import-data/files/cypherl.md) or
 [CSV](/import-data/files/load-csv-clause.md) or
 [JSON](/import-data/files/load-json.md) format, you can import these formats
 into Memgraph. Keep in mind that for importing larger datasets it is recommended
-to use CSV or pure Cypher queries (Memgraph's CYPHERL format), since they have
-native Memgraph integrations, and are faster than JSON.
+to use CSV format or pure Cypher queries (Memgraph's CYPHERL format), since they
+can be imported into Memgraph natively, faster than JSON format.
 
 This tutorial will go through exporting data from Neo4j into CSV files and
-exporting it into Memgraph using [LOAD CSV](/import-data/files/load-csv-clause.md)
+importing it into Memgraph using [LOAD CSV](/import-data/files/load-csv-clause.md)
 query and Memgraph's user visual interface [Memgraph Lab](/memgraph-lab).
 
 The sample dataset consists of 3 different kinds of nodes (Employee, Order and
@@ -82,7 +82,7 @@ MERGE (employee)-[:REPORTS_TO]->(manager);
 If you are going to use different dataset to migrate, be aware of the
 differences between Neo4j and [Memgraph data
 types](/reference-guide/data-types.md) (for example, Memgraph doesn't support
-`DateTime()` as there is no temporal type in Memgraph that supports timezones
+`DateTime()` as there is no temporal type in Memgraph that supports timezones yet, 
 but you can modify data to use `localDateTime()`).
 
 ## Exporting data from Neo4j
@@ -237,7 +237,7 @@ changes are necessary.
 
 The first row of the LOAD CSV clause therefore looks like this:
 
-```
+```cypher
 LOAD CSV FROM "/usr/lib/memgraph/shipping.csv" WITH HEADER AS row
 ```
 
@@ -261,7 +261,7 @@ Begin with `Employee` nodes.
 After establishing the location and format of the CSV file, filter out the rows
 that contain the label `:Employee`:
 
-```
+```cypher
 LOAD CSV FROM "/usr/lib/memgraph/shipping.csv" WITH HEADER AS row
 WITH row WHERE row._labels = ':Employee'
 ```
@@ -270,7 +270,7 @@ Then, create nodes with a certain label and properties. As an example, let's
 look at the property `_id`. To add the property to the node, define its name in
 Memgraph and assigned the value of a specific column in the CSV file. 
 
-```
+```cypher
 LOAD CSV FROM "/usr/lib/memgraph/shipping.csv" WITH HEADER AS row
 WITH row WHERE row._labels = ':Employee'
 CREATE (e:Employee {nodeID: row._id})
@@ -283,7 +283,7 @@ second data row, etc.
 
 **After matching up the keys and values for all properties, the finished query looks like this:**
 
-```
+```cypher
 LOAD CSV FROM "/usr/lib/memgraph/shipping.csv" WITH HEADER AS row
 WITH row WHERE row._labels = ':Employee'
 CREATE (e:Employee {nodeID: row._id, employeeID: row.employeeID, firstName: row.firstName, lastName: row.lastName, title: row.title});
@@ -304,7 +304,7 @@ Relevant properties for the `Order` nodes are `_id`, `orderID` and `shipName`.
 
 **To create `Order` nodes run the following query:**
 
-```
+```cypher
 LOAD CSV FROM "/usr/lib/memgraph/shipping.csv" WITH HEADER AS row
 WITH row WHERE row._labels = ':Order'
 CREATE (o:Order {nodeID: row._id, orderID: row.orderID, shipName: row.shipName});
@@ -327,7 +327,7 @@ they need to be converted to appropriate data type.
 
 **To create `Product` nodes run the following query:**
 
-```
+```cypher
 LOAD CSV FROM "/usr/lib/memgraph/shipping.csv" WITH HEADER AS row
 WITH row WHERE row._labels = ':Product'
 CREATE (p:Product {nodeID: row._id, productID: row.productID, productName: row.productName, unitPrice: ToFloat(row.unitPrice)});
@@ -389,7 +389,7 @@ Now that all the 916 nodes have been imported, they can be connected with relati
 
 The first row of the LOAD CSV remains the same:
 
-```
+```cypher
 LOAD CSV FROM "/usr/lib/memgraph/shipping.csv" WITH HEADER AS row
 ```
 
@@ -406,7 +406,7 @@ Begin with `:REPORTS_TO` relationship.
 After establishing the location and format of the CSV file, filter out the rows
 that contain the type `REPORTS_TO`:
 
-```
+```cypher
 LOAD CSV FROM "/usr/lib/memgraph/shipping.csv" WITH HEADER AS row
 WITH row WHERE row._type = 'REPORTS_TO'
 ```
