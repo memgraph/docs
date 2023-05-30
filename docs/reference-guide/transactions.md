@@ -47,6 +47,12 @@ The command will show only the transactions you started or transactions for whic
 
 <img src={require('../data/how-to-guides/manage-transactional-queue/show_transactions.png').default}/>
 
+### Distinguish between transactions
+
+Since Memgraph v2.9.0, users can pass additional metadata when starting a transaction. 
+The `SHOW TRANSACTIONS;` returns the user-defined transaction metadata.
+This way, each unique transaction is easily identifiable.
+
 ### Terminate transactions
 
 To terminate one or more transactions, you need to open a new session and use the following query:
