@@ -254,7 +254,7 @@ Execute queries in Memgraph Lab. Open your browser and go to
 `http://localhost:3000/`, **Connect now** to the instance and go to the **Query
 Execution** section.
 
-### Employee nodes
+#### Employee nodes
 
 Begin with `Employee` nodes. 
 
