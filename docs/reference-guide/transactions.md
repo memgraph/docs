@@ -49,9 +49,7 @@ The command will show only the transactions you started or transactions for whic
 
 ### Distinguish between transactions
 
-Since Memgraph v2.9.0, users can pass additional metadata when starting a transaction. 
-The `SHOW TRANSACTIONS;` returns the user-defined transaction metadata.
-This way, each unique transaction is easily identifiable.
+You can pass additional metadata when starting a transaction which will be visible when running the `SHOW TRANSACTIONS;` query, thus allowing you to identify each transaction precisely.
 
 ### Terminate transactions
 
