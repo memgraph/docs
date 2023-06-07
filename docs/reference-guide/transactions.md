@@ -35,7 +35,7 @@ Roll back unsuccessful transactions by executing the `ROLLBACK;` query.
 
 Memgraph can return information about running transactions and allow you to terminate them. 
 
-### Get information about transaction
+### Show running transactions
 
 To get information about running transaction execute the following query: 
 
