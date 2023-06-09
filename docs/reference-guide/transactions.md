@@ -33,15 +33,15 @@ Roll back unsuccessful transactions by executing the `ROLLBACK;` query.
 
 ## Managing transactions
 
-Memgraph can return information about running transactions and allow you to terminate them. 
+Memgraph can return information about running transactions and allow you to terminate them.
 
 ### Show running transactions
 
-To get information about running transaction execute the following query: 
+To get information about running transaction execute the following query:
 
 ```cypher
 SHOW TRANSACTIONS;
-``` 
+```
 
 The query shows only the transactions you started or transactions for which you
 have the necessary [privileges](#privileges-needed-to-manage-all-transactions).
@@ -52,6 +52,31 @@ If you are connecting to Memgraph using a client, you can pass additional
 metadata when starting a transaction (if the client supports additional
 metadata) which will be visible when running the `SHOW TRANSACTIONS;` query,
 thus allowing you to identify each transaction precisely.
+
+Below is a simple python example demonstrating how to pass metadata for
+both an implicit and explicit transaction.
+
+```python
+import neo4j
+
+def main():
+  driver = neo4j.GraphDatabase.driver("bolt://localhost:7687", auth=("user","pass"))
+
+  s1 = driver.session()
+  tx = s1.begin_transaction(metadata={"where":"in explicit tx", "my_uuid":1})
+  tx.run("MATCH (n) RETURN n LIMIT 1")
+
+  s2 = driver.session()
+  query=neo4j.Query("SHOW TRANSACTIONS", metadata={"where":"in implicit tx", "my_uuid":2})
+  print(s2.run(query).values())
+
+  tx.close()
+  s1.close()
+  s2.close()
+
+if __name__ == '__main__':
+  main()
+```
 
 ### Terminate transactions
 
@@ -97,7 +122,7 @@ When Memgraph is first started there is only one explicit super-admin user that 
 
 ### Example
 
-Managing transactions is done by establishing a new connection to the database. 
+Managing transactions is done by establishing a new connection to the database.
 
 #### New session with Docker
 
@@ -121,7 +146,7 @@ If you are using **mgconsole** on an instance running in a Docker container:
 
 4. Run the `SHOW TRANSACTIONS;` and `TERMINATE TRANSACTIONS tid;`
 
-#### Show and terminate transactions 
+#### Show and terminate transactions
 
 The output of the `SHOW TRANSACTIONS` command shows that an infinite query is
 currently being run as part of the transaction ID "9223372036854775809".
