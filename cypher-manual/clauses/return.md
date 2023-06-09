@@ -16,7 +16,9 @@ The `RETURN` clause defines which data should be included in the resulting set.
 8. [Optional properties](#8-optional-properties) <br />
 9. [Returning expressions](#9-returning-expressions) <br />
 10. [Returning unique results](#10-returning-unique-results)<br />
-11. [Limiting the number of returned results](#11-limiting-the-number-of-returned-results)
+11. [Returning aggregated results](#11-returning-aggregated-results)<br />
+12. [Limiting the number of returned results](#12-limiting-the-number-of-returned-results)<br />
+13. [Order results](#13-order-results)
 
 ## Dataset
 
