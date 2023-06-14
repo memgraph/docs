@@ -48,3 +48,11 @@ This can be done using the built-in conversion functions such as `ToInteger`,
 `ToFloat`, `ToBoolean` etc. Consult the [documentation](/functions.md) on the
 available conversion functions.
 :::
+
+:::info
+A MATCH or a MERGE clause can be written prior to LOAD CSV, if the result of 
+the clauses is only one row. Yielding multiple rows before calling LOAD CSV
+will result in a runtime error from Memgraph. The reason for such behaviour 
+is to enable users to match some entities in the graph before running LOAD CSV
+and begin manipulating rows combined with the entities in the graph simultaneously.
+:::
