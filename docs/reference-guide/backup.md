@@ -135,9 +135,9 @@ To restore from back-up you have two options:
 
     ```
     docker create -p 7687:7687 -p 7444:7444 -v `snapshots`:/var/lib/memgraph/snapshots --name memgraphDB memgraph/memgraph
-    tar -cf - sample_snapshot_file | docker cp -a  - memgraphDB:/var/lib/memgraph/snapshots
+    tar -cf - sample_snapshot_file | docker cp -a - memgraphDB:/var/lib/memgraph/snapshots
     ```
-    Here the `sample_snapshot_file` the snapshot file you want to use to restore the data. Due to the nature of the docker ownership of the files, you need to use `tar` to copy the file as STDIN into the non-running container. This way you can give ownership of the file to the `memgraph` user inside the container.
+    The `sample_snapshot_file` is the snapshot file you want to use to restore the data. Due to the nature of Docker file ownership, you need to use `tar` to copy the file as STDIN into the non-running container. It will allow you to change the ownership of the file to the `memgraph` user inside the container.
 
     After that, start the database with:
     ```
