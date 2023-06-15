@@ -131,13 +131,13 @@ To restore from back-up you have two options:
     docker run -p 7687:7687 -p 7444:7444 -v ~/snapshots:/var/lib/memgraph/snapshots memgraph/memgraph
     ```
 
-2. Copy the backed up snapshot file into the `snapshots` directory after the creation of container and start the database. So the commands should look like this: 
+2. Copy the backed-up snapshot file into the `snapshots` directory after creating the container and start the database. So the commands should look like this: 
 
     ```
     docker create -p 7687:7687 -p 7444:7444 -v `snapshots`:/var/lib/memgraph/snapshots --name memgraphDB memgraph/memgraph
     tar -cf - sample_snapshot_file | docker cp -a  - memgraphDB:/var/lib/memgraph/snapshots
     ```
-    Here the `sample_snapshot_file` is the name of the snapshot file you want to use to restore the data. Due to the nature of the docker ownership of the files, you need to use `tar` to copy the file as STDIN into non-running container. This way you can give ownership to the file to the `memgraph` user inside the container.
+    Here the `sample_snapshot_file` the snapshot file you want to use to restore the data. Due to the nature of the docker ownership of the files, you need to use `tar` to copy the file as STDIN into the non-running container. This way you can give ownership of the file to the `memgraph` user inside the container.
 
     After that, start the database with:
     ```
@@ -145,11 +145,11 @@ To restore from back-up you have two options:
     ```
     The `-a` flag is used to attach to the container's output so you can see the logs.
 
-    Once memgraph is started, change the snapshot directory ownership to the `memgraph` user, buy running the following command:
+    Once memgraph is started, change the snapshot directory ownership to the `memgraph` user by running the following command:
     ```
     docker exec -it -u 0 memgraphDB bash -c "chown memgraph:memgraph /var/lib/memgraph/snasphots"
     ```
-    Otherwise, Memgraph will not be able to write the future snapshot files, and will fail.
+    Otherwise, Memgraph will not be able to write the future snapshot files and will fail.
 
 
 </TabItem>
