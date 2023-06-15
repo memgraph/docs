@@ -121,6 +121,9 @@ container by a semicolon:
 -v volume_name:volume_path
 ```
 
+Named volumes handle data permissions so there shouldn't be any issue with data
+permissions. 
+
 Useful volumes you can specify while running Memgraph are:
 
 - `-v mg_lib:/var/lib/memgraph` - directory containing data, enables data
@@ -159,6 +162,7 @@ files inside the container to restore data, or CSV files you will use to import
 data with `CSV LOAD` clause. 
 
 Bind mounts do not handle data permissions which could cause issues with permissions. 
+
 #### Set up the configuration
 
 If you want a certain configuration setting to be applied during this run only,
