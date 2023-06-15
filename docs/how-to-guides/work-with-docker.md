@@ -112,7 +112,7 @@ at `localhost:3000`, but the second instance is reachable at `localhost:3001`.
 
 #### Specify volumes
 
-Specifying a volume creates a copy of a directory inside the Docker container as
+Specifying a volume syncs the specified directory inside the Docker container as
 a local directory and serves for durability. The `-v` flag is followed by the
 name of the local directory separated from the path of the volume in the
 container by a semicolon:
@@ -158,6 +158,7 @@ You can use bind mounts to transfer durability files such as snapshot or wal
 files inside the container to restore data, or CSV files you will use to import
 data with `CSV LOAD` clause. 
 
+Bind mounts do not handle data permissions which could cause issues with permissions. 
 #### Set up the configuration
 
 If you want a certain configuration setting to be applied during this run only,
