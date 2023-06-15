@@ -137,10 +137,9 @@ The configuration file can usually be found at
 `/var/lib/docker/volumes/mg_etc/_data/memgraph.conf` but you can also copy the
 file from the Docker container, modify it and copy it back into the container.
 
-Logs can usually be found in
-`\\wsl$\docker-desktop-data\version-pack-data\community\docker\volumes\`, but
-you can also view them in the Memgraph Lab 2.0 (or newer) by publishing the port
-`7444`.
+The logs will be saved to the `mg_log` volume, and the directories can usually be
+found in `/var/lib/docker/volumes/`, but you can also view them in the Memgraph
+Lab 2.0 (or newer) by publishing the port `7444`.
 
 #### Specify bind mounts
 
