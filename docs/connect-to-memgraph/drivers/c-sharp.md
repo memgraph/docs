@@ -86,6 +86,14 @@ Once you run the program, you should see an output similar to the following:
 Node 1: Hello, World!
 ```
 
+:::caution 
+To configure indexes and constraints properly, do one operation at a time and use the non-transactional API:
+```cs
+await session.RunAsync(query: "CREATE INDEX ON :FirstNode");
+await session.RunAsync(query: "CREATE INDEX ON :FirstNode(message)");
+```
+:::
+
 ## Alternative Setup
 
 If you want to try out more complex operations, feel free to use the refactored
@@ -136,6 +144,7 @@ namespace MemgraphApp
     }
 }
 ```
+
 
 ## Where to next?
 
