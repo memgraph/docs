@@ -121,7 +121,7 @@ You can easily back up Memgraph by following a four-step process:
 
 Locking the data directory ensures that no files are deleted by the system. 
 
-To restore from back-up:
+To restore from back-up you have two options:
 
 1. Start an instance by adding a `-v ~/snapshots:/var/lib/memgraph/snapshots`
     flag to the `docker run` command, where the `~/snapshots` represents a path to
@@ -130,6 +130,27 @@ To restore from back-up:
     ```
     docker run -p 7687:7687 -p 7444:7444 -v ~/snapshots:/var/lib/memgraph/snapshots memgraph/memgraph
     ```
+
+2. Copy the backed-up snapshot file into the `snapshots` directory after creating the container and start the database. So the commands should look like this: 
+
+    ```
+    docker create -p 7687:7687 -p 7444:7444 -v `snapshots`:/var/lib/memgraph/snapshots --name memgraphDB memgraph/memgraph
+    tar -cf - sample_snapshot_file | docker cp -a - memgraphDB:/var/lib/memgraph/snapshots
+    ```
+    The `sample_snapshot_file` is the snapshot file you want to use to restore the data. Due to the nature of Docker file ownership, you need to use `tar` to copy the file as STDIN into the non-running container. It will allow you to change the ownership of the file to the `memgraph` user inside the container.
+
+    After that, start the database with:
+    ```
+    docker start -a memgraphDB
+    ```
+    The `-a` flag is used to attach to the container's output so you can see the logs.
+
+    Once memgraph is started, change the snapshot directory ownership to the `memgraph` user by running the following command:
+    ```
+    docker exec -it -u 0 memgraphDB bash -c "chown memgraph:memgraph /var/lib/memgraph/snasphots"
+    ```
+    Otherwise, Memgraph will not be able to write the future snapshot files and will fail.
+
 
 </TabItem>
 <TabItem value='linux'>
