@@ -50,19 +50,11 @@ To download the latest Memgraph Platform image, run:
 docker pull memgraph/memgraph-platform
 ```
 
-### Create Docker image tags
+### Architecture of Docker container running Memgraph
 
-Some images might need tags to be able to run properly and this is usually noted
-in the installation process. By creating a tag for the image, you are allowing
-all the dependencies within the Docker container to refer to the image by its
-original name and the tag.
+The picture below shows the architecture of the Memgraph Docker ecosystem.
 
-For example, the following command allows the processes inside the image to
-refer to the image as `memgraph-platform` and `memgraph`:
-
-```
-docker image tag memgraph/memgraph-platform memgraph
-```
+<img src={require('../data/how-to-guides/docker-architecture.png').default} className={"imgBorder"}/>
 
 ### Run a Memgraph Docker image
 
@@ -105,28 +97,32 @@ image and you want to connect to both instances using the Memgraph Lab
 in-browser application. You would run the first instance with:
 
 ```
-docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 memgraph/memgraph-platform
+docker run -it -p 7444:7444 -p 3000:3000 memgraph/memgraph-platform
 ```
 
-Because ports `7687`, `7444` and `3000` are now taken, you need to change the left side
-ports (host ports):
+Because port `3000` is now taken, you need to change the left side
+port (host ports):
 
 ```
-docker run -it -p 7688:7687 -p 7445:7444 -p 3001:3000 memgraph/memgraph-platform
+docker run -it -p 7444:7444 -p 3001:3000 memgraph/memgraph-platform
 ```
 
 To connect to the first instance, you should open Memgraph Lab in your browser
-at `localhost:3000`, but the second instance is at `localhost:3001`.
+at `localhost:3000`, but the second instance is reachable at `localhost:3001`.
 
 #### Specify volumes
 
-Specifying a volume creates a copy of a directory inside the Docker container as
-a local directory. The `-v` flag is followed by the name of the local directory
-separated from the path of the volume in the container by a semicolon:
+Specifying a volume syncs the specified directory inside the Docker container as
+a local directory and serves for durability. The `-v` flag is followed by the
+name of the local directory separated from the path of the volume in the
+container by a semicolon:
 
 ```
 -v volume_name:volume_path
 ```
+
+Named volumes handle data permissions so there shouldn't be any issue with data
+permissions. 
 
 Useful volumes you can specify while running Memgraph are:
 
@@ -141,10 +137,30 @@ The configuration file can usually be found at
 `/var/lib/docker/volumes/mg_etc/_data/memgraph.conf` but you can also copy the
 file from the Docker container, modify it and copy it back into the container.
 
-Logs can usually be found in
-`\\wsl$\docker-desktop-data\version-pack-data\community\docker\volumes\`, but
-you can also view them in the Memgraph Lab 2.0 (or newer) by publishing the port
-`7444`.
+The logs will be saved to the `mg_log` volume, and the directories can usually be
+found in `/var/lib/docker/volumes/`, but you can also view them in the Memgraph
+Lab 2.0 (or newer) by publishing the port `7444`.
+
+#### Specify bind mounts
+
+Bind mounts are local directories or files that can be modified by other
+processes other than Docker. Any changes made to these directories or files
+locally will be reflected inside the Docker container and vice-versa. Also, a
+bind mount will overwrite the content of the Docker container.
+
+For example, if I have a `Data` directory on my `C:` disk, and I want to access
+it from inside the container at `/usr/lib/memgraph/data`, I would run Docker
+with the following `-v` flag.
+
+```
+docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000  -v "C:/data":/usr/lib/memgraph/data memgraph/memgraph-platform
+```
+
+You can use bind mounts to transfer durability files such as snapshot or wal
+files inside the container to restore data, or CSV files you will use to import
+data with `CSV LOAD` clause. 
+
+Bind mounts do not handle data permissions which could cause issues with permissions. 
 
 #### Set up the configuration
 
@@ -172,7 +188,7 @@ and set the log level to `TRACE`, pass the configuration argument like this:
 docker run -it -p 7687:7687 memgraph/memgraph --memory-limit=50 --log-level=TRACE
 ```
 
-### Stop image
+### Stop container
 
 Database instances are stopped by stopping the Docker container with the command
 `docker stop`. To stop a container you need [to know the container's
@@ -182,6 +198,19 @@ You can list all the containers you want to stop in one `docker stop` command:
 
 ```
 docker stop CONTAINER1_ID CONTAINER2_ID
+```
+
+### Start container
+
+If you want to start a stopped container, list them using the following command: 
+
+```
+docker ps -a
+```
+
+Then start the container with: 
+```
+docker start <CONTAINER_ID> 
 ```
 
 ## How to retrieve a Docker container ID?
