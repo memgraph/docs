@@ -19,6 +19,22 @@ The default data directory path is `var/lib/memgraph` but the path can be
 changed by [modifying the `data-dir` configuration
 flag](/memgraph/reference-guide/configuration#other).
 
+Durability files are deleted when certain events are triggered, for example,
+exceeding the maximum number of snapshots.
+
+To manage this behavior, run the following queries:
+
+```cypher
+LOCK DATA DIRECTORY;
+UNLOCK DATA DIRECTORY;
+```
+
+To show the status of the data directory, run:
+
+```cypher
+DATA DIRECTORY LOCK STATUS;
+```
+
 To encrypt the data directory, use
 [LUKS](https://gitlab.com/cryptsetup/cryptsetup/) as it works with Memgraph out
 of the box and is undetectable from the applications perspective so it shouldn't
@@ -49,14 +65,27 @@ reference guide](/memgraph/reference-guide/configuration#storage).
 WAL files are usually located at `/var/lib/memgraph/wal`.
 
 ### Snapshots
-
 Snapshots provide a faster way to restore the states of your database. Memgraph
-periodically takes snapshots during runtime and upon exit. When a snapshot is
-triggered, the entire data storage is written to the drive. On startup, the
-database state is recovered from the most recent snapshot file. The timestamp of
-the snapshot is compared with the latest update recorded in the WAL file and, if
-the snapshot is less recent, the state of the DB will be recovered using the WAL
-file.
+periodically takes snapshots during runtime. When a snapshot creation is
+triggered, the entire data storage is written to the drive. Nodes and
+relationships are divided into groups called batches.
+
+On startup, the database state is recovered from the most recent snapshot file.
+Memgraph can read the data and build the indices on multiple threads, using
+batches as a parallelization unit: each thread will recover one batch at a time
+until there are no unhandled batches.
+
+This means the same batch size might not be suitable for every dataset. A
+smaller dataset might require a smaller batch size to utilize a multi-threaded
+processor, while bigger datasets might use bigger batches to minimize the
+synchronization between the worker threads. Therefore the size of batches and
+the number of used threads [are
+configurable](/memgraph/reference-guide/configuration#storage) similarly to
+other durability related settings.
+
+The timestamp of the snapshot is compared with the latest update recorded in the
+WAL file and, if the snapshot is less recent, the state of the DB will be
+recovered using the WAL file.
 
 Memgraph has snapshot creation enabled by default. You can configure the exact
 snapshot creation behavior by [defining the relevant flags](/memgraph/reference-guide/configuration#storage).
@@ -92,7 +121,7 @@ You can easily back up Memgraph by following a four-step process:
 
 Locking the data directory ensures that no files are deleted by the system. 
 
-To restore from back-up:
+To restore from back-up you have two options:
 
 1. Start an instance by adding a `-v ~/snapshots:/var/lib/memgraph/snapshots`
     flag to the `docker run` command, where the `~/snapshots` represents a path to
@@ -101,6 +130,27 @@ To restore from back-up:
     ```
     docker run -p 7687:7687 -p 7444:7444 -v ~/snapshots:/var/lib/memgraph/snapshots memgraph/memgraph
     ```
+
+2. Copy the backed-up snapshot file into the `snapshots` directory after creating the container and start the database. So the commands should look like this: 
+
+    ```
+    docker create -p 7687:7687 -p 7444:7444 -v `snapshots`:/var/lib/memgraph/snapshots --name memgraphDB memgraph/memgraph
+    tar -cf - sample_snapshot_file | docker cp -a - memgraphDB:/var/lib/memgraph/snapshots
+    ```
+    The `sample_snapshot_file` is the snapshot file you want to use to restore the data. Due to the nature of Docker file ownership, you need to use `tar` to copy the file as STDIN into the non-running container. It will allow you to change the ownership of the file to the `memgraph` user inside the container.
+
+    After that, start the database with:
+    ```
+    docker start -a memgraphDB
+    ```
+    The `-a` flag is used to attach to the container's output so you can see the logs.
+
+    Once memgraph is started, change the snapshot directory ownership to the `memgraph` user by running the following command:
+    ```
+    docker exec -it -u 0 memgraphDB bash -c "chown memgraph:memgraph /var/lib/memgraph/snasphots"
+    ```
+    Otherwise, Memgraph will not be able to write the future snapshot files and will fail.
+
 
 </TabItem>
 <TabItem value='linux'>
@@ -146,11 +196,11 @@ to recreate it, to a CYPHERL file in the `Import & Export` section of the Lab.
 ## Storage modes
 
 Memgraph has the option to work in `IN_MEMORY_ANALYTICAL` or `IN_MEMORY_TRANSACTIONAL`
-[storage modes](/reference-guide/storage-modes.md). 
+[storage modes](/reference-guide/storage-modes.md).
 
 Memgraph always starts in the `IN_MEMORY_TRANSACTIONAL` mode in which it creates
 periodic snapshots and write-ahead logging as durability mechanisms, and also
-enables creating manual snapshots. 
+enables creating manual snapshots.
 
 In the `IN_MEMORY_ANALYTICAL` mode, Memgraph offers no periodic snapshots and
 write-ahead logging. Users can create a snapshot with the `CREATE SNAPSHOT;`
