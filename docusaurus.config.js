@@ -40,6 +40,14 @@ module.exports = {
         "https://avatars.githubusercontent.com/u/17707542?s=200&v=4",
       async: true,
     },
+    {
+      src: 'https://www.googletagmanager.com/gtag/js?id=G-QCNYSWXVGM',
+      async: true,
+    },
+    {
+      src: '/js/custom-gtag.js',
+      async: true,
+    },
   ],
   themeConfig: {
     docs: {
