@@ -10,15 +10,21 @@ import TabItem from "@theme/TabItem";
 The community edition of Memgraph enables creating users that can access the
 database with or without a password.
 
-To create a user, execute the following command:
+If you want to create a user without setting a password, execute the following command:
 
 ```cypher
-CREATE USER user_name [IDENTIFIED BY 'password'];
+CREATE USER user_name;
 ```
 
-Setting up a password is optional. If the password is not set, the user can
-log in using any password, or none, provided that they enter the correct
-username.
+In this case, the user can log in using any password, or none at all, provided that they enter the correct username.
+
+If you want to create a user and set a password simultaneously, use the following command:
+
+```cypher
+CREATE USER user_name IDENTIFIED BY 'password';
+```
+
+In this case, the user must log in with the correct username and the password you have set.
 
 To set or change a user's password, use the following command:
 
