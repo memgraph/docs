@@ -499,11 +499,7 @@ module.exports = {
         },
         theme: {
           customCss: require.resolve("./src/css/custom.scss"),
-        },
-        gtag: {
-          trackingID: 'G-QCNYSWXVGM',
-          anonymizeIP: true,
-        },        
+        },     
       },
     ],
   ],
