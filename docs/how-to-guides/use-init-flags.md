@@ -4,25 +4,27 @@ title: How to use init flags with Docker
 sidebar_label: Use init flags with Docker
 ---
 
-With `init-file` and `init-data-file` configuration flags, you can execute queries from the CYPHERL file which need to be executed before or immediately after the Bolt server starts, respectively. The CYPHERL file, that the `init-file` flag is pointing to, is usually used to create users and set their passwords, so that no one except for the authorized users can't access data in the first run. The CYPHERL file, that the `init-data-file`is pointing to, is usually used to populate the database. If you plan to run Memgraph in Docker, then you have to make sure that the files `init-file` and `init-data-file` configuration flags are referring to are inside the container before Memgraph starts. In Docker, files can't be directly copied into a container before it's started because the filesystem of the container doesn't exist until it's actually running. However, you can tackle this by using a Dockerfile.
+With `init-file` and `init-data-file` [configuration flags](/docs/reference-guide/configuration.md), you can execute queries from a CYPHERL file that need to be executed before or immediately after the Bolt server starts. The CYPHERL file the `init-file` flag points to is usually used to create users and set their passwords allowing only authorized users to access the data in the first run. The CYPHERL file the `init-data-file` points to is usually used to populate the database. 
+
+If you will run Memgraph with Docker, make sure that the `init-file` and `init-data-file` configuration flags are referring to the files inside the container before Memgraph starts. Files can't be directly copied into a container before it's started because the filesystem of the container doesn't exist until it's actually running. However, you can tackle this by using a Dockerfile.
 
 In this guide you will learn how to:
-- [**Use init-file flag with Docker**](#use-init-file-flag-with-docker)
-- [**Use init-data-file flag with Docker**](#use-init-data-file-flag-with-docker)
+- [**Use the `init-file` flag with Docker**](#use-the-init-file-flag-with-docker)
+- [**Use the `init-data-file` flag with Docker**](#use-the-init-data-file-flag-with-docker)
 
-## Use init-file flag with Docker
+## Use the `init-file` flag with Docker
 
 ### 1. Create all necessary files
 
-First, create a directory called `my_init_test` and create `auth.cypherl` and Dockerfile inside it.
+First, create a local directory called `my_init_test` with `auth.cypherl` and Dockerfile inside it.
 
-Here is the content of `auth.cypherl` file:
+Below is the content of the `auth.cypherl` file:
 
 ```
 CREATE USER memgraph1 IDENTIFIED BY '1234';
 ```
 
-Here is how you should define a Dockerfile:
+The Dockerfile should be defined like this:
 
 ```bash
 FROM memgraph/memgraph:latest
@@ -34,7 +36,7 @@ COPY auth.cypherl /usr/lib/memgraph/auth.cypherl
 USER memgraph
 ```
 
-The above Dockerfile will build an image based on `memgraph/memgraph:latest` image. For other images, [check Memgraph's Docker Hub](https://hub.docker.com/u/memgraph). Next, switch to user `root` to be able to copy your local file to the container where Memgraph will be run. Due to the permissions set, it is recommended to copy it to `/usr/lib/memgraph/` or any subfolder within that folder. In the end, don't forget to switch user back to `memgraph`.
+The above Dockerfile builds an image based on `memgraph/memgraph:latest` image. For other images, [check Memgraph's Docker Hub](https://hub.docker.com/u/memgraph). Then, it switches to the user `root` to be able to copy the local file to the container where Memgraph will be run. Due to the permissions set, it is recommended to copy it to `/usr/lib/memgraph/` or any subfolder within that folder. In the end, the user is switched back to `memgraph`.
 
 ### 2. Build the Docker image
 
@@ -46,13 +48,13 @@ docker build -t my_image .
 
 ### 3. Run the Docker image
 
-Once you've built the Docker image, you can run it with the flag `init-file` set to the appropriate value:
+Once you've built the Docker image, you can run it with the `init-file` flag set to the appropriate value:
 
 ```
 docker run -it -p 7687:7687 -p 7444:7444 my_image --init-file=/usr/lib/memgraph/auth.cypherl
 ```
 
-To learn how to set the flags with other Docker images, refer to [configuration flags guide](https://memgraph.com/docs/memgraph/how-to-guides/config-logs).
+To check all available flags in Memgraph, refer to [the configuration reference guide](/docs/reference-guide/configuration.md).
 
 ### 4. Connect to Memgraph
 
@@ -60,15 +62,15 @@ To verify that everything is set up correctly, [run Memgraph Lab](/docs/memgraph
 
 ![memgraph-lab-init-file](../data/how-to-guides/memgraph-lab-init-file.png)
 
-Notice how the current value of `init_file` is updated to the path to the CYPHERL file inside the container.
+Notice how the current value of `init_file` is updated with the path to the CYPHERL file inside the container.
 
-## Use init-data-file flag with Docker 
+## Use the `init-data-file` flag with Docker 
 
 ### 1. Create all necessary files
 
-First, create a directory called `my_init_test` and create `data.cypherl` and Dockerfile inside it.
+First, create a local directory called `my_init_test` with `data.cypherl` and Dockerfile inside it.
 
-Here is the content of `data.cypherl` file:
+Below is the content of the `data.cypherl` file:
 
 ```
 CREATE INDEX ON :__mg_vertex__(__mg_id__);
@@ -140,9 +142,9 @@ DROP INDEX ON :__mg_vertex__(__mg_id__);
 MATCH (u) REMOVE u:__mg_vertex__, u.__mg_id__;
 ```
 
-The above file holds the Cypher queries to create Identity and access management dataset which can be exported from Memgraph Lab.
+These Cypher queries will create the *Identity and access management* dataset available in Memgraph Lab.
 
-Here is how you should define a Dockerfile:
+The Dockerfile should be defined like this:
 
 ```bash
 FROM memgraph/memgraph:latest
@@ -154,7 +156,7 @@ COPY data.cypherl /usr/lib/memgraph/data.cypherl
 USER memgraph
 ```
 
-The above Dockerfile will build an image based on `memgraph/memgraph:latest` image. For other images, [check Memgraph's Docker Hub](https://hub.docker.com/u/memgraph). Next, switch to user `root` to be able to copy your local file to the container where Memgraph will be run. Due to the permissions set, it is recommended to copy it to `/usr/lib/memgraph/` or any subfolder within that folder. In the end, don't forget to switch user back to `memgraph`.
+The above Dockerfile builds an image based on `memgraph/memgraph:latest` image. For other images, [check Memgraph's Docker Hub](https://hub.docker.com/u/memgraph). Then, it switches to the user `root` to be able to copy the local file to the container where Memgraph will be run. Due to the permissions set, it is recommended to copy it to `/usr/lib/memgraph/` or any subfolder within that folder. In the end, the user is switched back to `memgraph`.
 
 
 ### 2. Build the Docker image
@@ -167,13 +169,13 @@ docker build -t my_image .
 
 ### 3. Run the Docker image
 
-Once you've built the Docker image, you can run it with the flag `init-data-file` set to the appropriate value:
+Once you've built the Docker image, you can run it with the `init-data-file` flag set to the appropriate value:
 
 ```
 docker run -it -p 7687:7687 -p 7444:7444 my_image --init-data-file=/usr/lib/memgraph/data.cypherl
 ```
 
-To learn how to set the flags with other Docker images, refer to [configuration flags guide](https://memgraph.com/docs/memgraph/how-to-guides/config-logs).
+To check all available flags in Memgraph, refer to [the configuration reference guide](/docs/reference-guide/configuration.md).
 
 ### 4. Connect to Memgraph
 
@@ -181,6 +183,6 @@ To verify that everything is set up correctly, [run Memgraph Lab](/docs/memgraph
 
 ![memgraph-lab-init-data-file](../data/how-to-guides/memgraph-lab-init-data-file.png)
 
-Notice how the database is already populated and the current value of `init_data_file` is updated to the path to the CYPHERL file inside the container.
+Notice how the database is already populated and the current value of `init_data_file` is updated with the path to the CYPHERL file inside the container.
 
 
