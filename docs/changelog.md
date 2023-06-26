@@ -43,6 +43,8 @@ import VideoBySide from '@site/src/components/VideoBySide';
   original role. [#791](https://github.com/memgraph/memgraph/pull/791)
 - The IN_MEMORY_ANALYTICAL storage mode now deallocates memory as expected and
   no longer consumes memory excessively. 
+- When no values are returned from a map, a null is returned instead of an
+  exception occurring. [#1039](https://github.com/memgraph/memgraph/pull/1039)
 
 <VideoBySide videoSrc="https://www.youtube.com/embed/5JvBBUjpGRA">
 
