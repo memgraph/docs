@@ -20,7 +20,9 @@ sidebar_label: Changelog
   without losing previous state.
 - The new interfaces enables style searching, checking the last used ones
   and changing the default style in the Lab.
+  <img src={require('./data/lab-270/pick-a-style.png').default} className={"imgBorder"} style={{marginBottom:'20px'}}/>
 - Manage saved styles will be easier with a preview of the applied style.
+  <img src={require('./data/lab-270/modify-style.png').default} className={"imgBorder"} style={{marginBottom:'20px'}}/>
 - Now you can easily see what has changed in the run history, a query, a style,
   or both, and filter out All (both queries runs and applied styles), Query
   history (only query runs), and Style history (only applied style changes). You
