@@ -13,7 +13,7 @@ import VideoBySide from '@site/src/components/VideoBySide';
 - The new `ON_DISK_TRANSACTIONAL` storage mode allows you to store data on disk
   rather than in-memory. Check the implementation and implications in the
   reference guide. [#850](https://github.com/memgraph/memgraph/pull/850)
-- Memgraph now works with all Bolt v5 drivers.
+- Memgraph now works with all Bolt v5.2 drivers.
   [#938](https://github.com/memgraph/memgraph/pull/938)
 - The LOAD CSV clause has several new improvements: 
   - You can now import data from web-hosted CSV files by passing the URL as a
