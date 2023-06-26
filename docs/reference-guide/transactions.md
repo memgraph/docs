@@ -53,8 +53,8 @@ metadata when starting a transaction (if the client supports additional
 metadata) which will be visible when running the `SHOW TRANSACTIONS;` query,
 thus allowing you to identify each transaction precisely.
 
-Below is a simple python example demonstrating how to pass metadata for
-both an implicit and explicit transaction.
+The Python example below demonstrates how to pass metadata for
+both an implicit and explicit transaction:
 
 ```python
 import neo4j
