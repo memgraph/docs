@@ -167,7 +167,7 @@ STORAGE MODE IN_MEMORY_{TRANSACTIONAL|ANALYTICAL};
 When in the analytical storage mode, **don't** import data using multiple
 threads.
 
-The LOAD CSV clause will handle CSV's which are compressed with Gzip or Bzip2. 
+The LOAD CSV clause will handle CSV's which are compressed with `gzip` or `bzip2`. 
 This can speed up time it takes to fetch and/or load the file.
 
 ## Examples
