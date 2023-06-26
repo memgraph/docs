@@ -6,6 +6,35 @@ sidebar_label: Changelog
 
 import VideoBySide from '@site/src/components/VideoBySide';
 
+## v2.9 - Jun 28, 2023
+
+### New features and improvements
+
+- The new `ON_DISK_TRANSACTIONAL` storage mode allows you to store data on disk
+  rather than in-memory. Check the implementation and implications in the
+  reference guide. [#850](https://github.com/memgraph/memgraph/pull/850)
+- Memgraph now works with all Bolt v5 drivers.
+  [#938](https://github.com/memgraph/memgraph/pull/938)
+- The LOAD CSV clause has several new improvements: 
+  - You can now import data from web-hosted CSV files by passing the URL as a
+    file location. You can also import files compressed with GZIP or BZIP2
+    algorithms. [#1027](https://github.com/memgraph/memgraph/pull/1027)
+  - To speed up the execution of the LOAD CSV clause, you can now MATCH and
+    MERGE entities prior to reading the rows from a CSV file. Until now, the
+    LOAD CSV clause had to be the first clause in the query. [#916](https://github.com/memgraph/memgraph/pull/916)
+- You can now use `mgp::Type::Any` while developing a custom query procedure
+  with the C++ API to specify that the argument of the procedure can be of any
+  type. [#982](https://github.com/memgraph/memgraph/pull/982)
+
+### Bug fixes
+
+- `init-file` and `init-data-file` configuration flags allow the execution of
+  queries from a CYPHERL file, prior to or immediately after the Bolt server
+  starts and are now possible to configure in the Community Edition as well.
+  [#850](https://github.com/memgraph/memgraph/pull/850)
+- Replica instances no longer restart as main instances, but restore their
+  original role. [#791](https://github.com/memgraph/memgraph/pull/791)
+
 <VideoBySide videoSrc="https://www.youtube.com/embed/5JvBBUjpGRA">
 
 ## v2.8 - May 18, 2023
