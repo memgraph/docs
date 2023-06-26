@@ -35,15 +35,15 @@ export const Highlight = ({children, color}) => (
 
 ### schema(output_type)
 
-The `schema()` procedure generates the graph database schema in a **prompt-ready** or **raw** format. The prompt-ready format is optimized to describe the database schema in words best recognized by a large language model. The raw format offers all necessary information about the graph schema in a format that can be customized for later use with a large language model. 
+The `schema()` procedure generates the graph database schema in a **prompt-ready** or **raw** format. The prompt-ready format is optimized to describe the database schema in words best recognized by large language models (LLMs). The raw format offers all the necessary information about the graph schema in a format that can be customized for later use with LLMs.
 
 #### Input:
 
-* `output_type: str (default='prompt_ready')` ➡ By default, the graph schema will include additional context and it will be prompt-ready. If set to 'raw', it will produce a simpler version which can be adjusted for prompt.
+* `output_type: str (default='prompt_ready')` ➡ By default, the graph schema will include additional context and it will be prompt-ready. If set to 'raw', it will produce a simpler version that can be adjusted for the prompt.
 
 #### Output:
 
-* `schema: mgp.Any` ➡ `str` containing prompt-ready graph schema description, in a format suitable for a large language model, or `mgp.List` containing information on graph schema in raw format which can customized for a certain large language model. 
+* `schema: mgp.Any` ➡ `str` containing prompt-ready graph schema description in a format suitable for large language models (LLMs), or `mgp.List` containing information on graph schema in raw format which can customized for LLMs. 
 
 #### Usage:
 Get **prompt-ready graph schema**:
