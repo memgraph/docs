@@ -142,7 +142,7 @@ DROP INDEX ON :__mg_vertex__(__mg_id__);
 MATCH (u) REMOVE u:__mg_vertex__, u.__mg_id__;
 ```
 
-These Cypher queries will create the *Identity and access management* dataset available in Memgraph Lab.
+These Cypher queries will create the *Identity and access management* dataset available in Memgraph Lab. You can get this CYPHERL file by exporting the dataset from the Memgraph Lab.
 
 The Dockerfile should be defined like this:
 
