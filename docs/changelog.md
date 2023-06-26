@@ -22,6 +22,9 @@ import VideoBySide from '@site/src/components/VideoBySide';
   - To speed up the execution of the LOAD CSV clause, you can now MATCH and
     MERGE entities prior to reading the rows from a CSV file. Until now, the
     LOAD CSV clause had to be the first clause in the query. [#916](https://github.com/memgraph/memgraph/pull/916)
+  - If a certain sequence of characters in a CSV file needs to be imported as
+    null, you can now specify them with the NULLIF option of the LOAD CSV
+    clause. [#914](https://github.com/memgraph/memgraph/pull/914)
 - You can now use `mgp::Type::Any` while developing a custom query procedure
   with the C++ API to specify that the argument of the procedure can be of any
   type. [#982](https://github.com/memgraph/memgraph/pull/982)
