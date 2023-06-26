@@ -28,6 +28,10 @@ import VideoBySide from '@site/src/components/VideoBySide';
 - You can now use `mgp::Type::Any` while developing a custom query procedure
   with the C++ API to specify that the argument of the procedure can be of any
   type. [#982](https://github.com/memgraph/memgraph/pull/982)
+- When you need to differentiate many different transactions, you can now define
+  and pass metadata via the client. In Memgraph, the metadata is visible in the
+  output of the `SHOW TRANSACTIONS;` query.
+  [#945](https://github.com/memgraph/memgraph/pull/945)
 
 ### Bug fixes
 
