@@ -41,6 +41,8 @@ import VideoBySide from '@site/src/components/VideoBySide';
   [#850](https://github.com/memgraph/memgraph/pull/850)
 - Replica instances no longer restart as main instances, but restore their
   original role. [#791](https://github.com/memgraph/memgraph/pull/791)
+- The IN_MEMORY_ANALYTICAL storage mode now deallocates memory as expected and
+  no longer consumes memory excessively. 
 
 <VideoBySide videoSrc="https://www.youtube.com/embed/5JvBBUjpGRA">
 
