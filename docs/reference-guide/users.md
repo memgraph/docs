@@ -24,7 +24,7 @@ If you want to create a user and set a password simultaneously, use the followin
 CREATE USER user_name IDENTIFIED BY 'password';
 ```
 
-In this case, the user must log in with the correct username and the password you have set.
+In this case, the user must log in with the correct username and the set password.
 
 To set or change a user's password, use the following command:
 
