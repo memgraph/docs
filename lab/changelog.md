@@ -4,6 +4,57 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## Lab v2.7.0 - Jun 28, 2023
+
+### What's new
+
+- Change the canvas color of the graph view with the new property
+  `background-color` in `@ViewStyle`.
+- Change the stack order of how nodes and edges are rendered in the
+  graph view with the property `z-index` in `@NodeStyle` and `@EdgeStyle`
+  directives. It works the same as the CSS z-index property.
+- Set up transparent colors with the new GSS functions `RGBA` and `HSLA`. You
+  can also get the transparency value with the function `Alpha`.
+- When testing and trying out different functions you can use single-line (`//
+  comment`) and multi-line (`/* comment */`) comments in the GSS code editor
+  without losing previous state.
+- The new interfaces enables style searching, checking the last used ones
+  and changing the default style in the Lab.
+- Manage saved styles will be easier with a preview of the applied style.
+- Now you can easily see what has changed in the run history, a query, a style,
+  or both, and filter out All (both queries runs and applied styles), Query
+  history (only query runs), and Style history (only applied style changes). You
+  can expand both the query and style to see the full Cypher or GSS code.
+- Now you can adjust the following settings:
+    - Code completion and automatic graph rendering limits
+    - The capacity of run history and its clearing
+    - The limit for visible logs
+- New functions allow more customizations: `Sort`, `Coalesce`, `Reverse`,
+  `IsMap`, `AsMap`, `Execute`, `Get`, `Set`, `Del`, `MapKeys`, `MapValues`,
+  `AsIterator`, `IsIterator`, `Next`
+- Global and local variables make developing new styles easier:
+  • Variable graph is now available outside `@NodeStyle` and `@EdgeStyle` context
+  • Local variables can be defined with Define within `@NodeStyle` and `@EdgeStyle` context
+- Query collection can be expanded and collapsed by clicking on their name.
+- Memgraph Lab is now packaged as an RPM package and arm64 (M1 chip) for MacOS.
+
+### Bug fixes
+
+- Running a selected part of the Cypher query would just place that selected
+  part in the run history. Now, the full query will be saved in the run history,
+  and on its run, only the selected part will be executed again.
+- Rows that would hide when scrolling the data results view now preview as expected.
+- The System Default style colors all the nodes with the same label with a
+  unique color.
+- When showing a graph view on a map, you will no longer see a progress
+  percentage which is unnecessary as each node has a fixed and known position
+  due to its latitude and longitude values.
+- All tables across the Lab are responsive as expected.
+- Layouts no longer cause memory leaks and work as expected.
+- By fixing a bug, you can now successfully connect to Memgraph using a hostname
+  that contains numbers in the top-level domain.
+- Markdown lists in query descriptions are indented as expected.
+
 ## Lab v2.6.0 - Apr 20, 2023
 
 ### What's new
