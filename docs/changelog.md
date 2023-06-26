@@ -17,7 +17,7 @@ import VideoBySide from '@site/src/components/VideoBySide';
   [#938](https://github.com/memgraph/memgraph/pull/938)
 - The LOAD CSV clause has several new improvements: 
   - You can now import data from web-hosted CSV files by passing the URL as a
-    file location. You can also import files compressed with GZIP or BZIP2
+    file location. You can also import files compressed with `gzip` or `bzip2`
     algorithms. [#1027](https://github.com/memgraph/memgraph/pull/1027)
   - To speed up the execution of the LOAD CSV clause, you can now MATCH and
     MERGE entities prior to reading the rows from a CSV file. Until now, the
