@@ -24,7 +24,7 @@ The `MATCH` clause is used to obtain data from the database by matching it to a 
     3.3. [Returning multiple relationships with variable length](#33-returning-multiple-relationships-with-variable-length) <br />
 4. [Using multiple MATCH clauses](#4-using-multiple-match-clauses) <br />
     4.1. [Cartesian product of nodes](#41-cartesian-product-of-nodes) <br />
-    4.2. [Create a list](#42-create-a-list) <br />
+    4.2. [Creating a list](#42-creating-a-list) <br />
     4.3. [Using the OPTIONAL MATCH clause](#43-using-the-optional-match-clause) <br />
 
 :::tip
@@ -357,7 +357,7 @@ The query returns cartesian product of matched nodes. The output of the first `M
 
 ### 4.2. Creating a list
 
-If you want to create a list containing the results of different MATCH queries, you can achieve that with multiple MATCH clauses in one query:
+If you want to create a list containing the results of different `MATCH` queries, you can achieve that with multiple `MATCH` clauses in one query:
 
 ```cypher
 MATCH (p:Person)
@@ -379,7 +379,9 @@ Output:
 The query returns a list of names of all people from our dataset concatenated with the names of all of the countries in Europe. 
 
 :::caution
+
 If any of the sets `MATCH` clause returns is empty, the whole output will be an empty list.
+
 :::
 
 If you run the similar query again:
@@ -393,6 +395,7 @@ RETURN names;
 ```
 
 Output:
+
 ```nocopy
 +-------+
 | names |
@@ -416,6 +419,7 @@ RETURN names;
 ```
 
 Output:
+
 ```nocopy
 +---------------------------+
 | names                     |
