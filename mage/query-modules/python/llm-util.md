@@ -122,8 +122,8 @@ Below is the result of running the <code>schema</code> procedure:
 
 ```
 Node properties are the following:
-Node name: 'Person', Node properties: [{'property': 'name', 'type': 'str'}, {'property': 'age', 'type': 'int'}]
-Node name: 'Person:Student', Node properties: [{'property': 'name', 'type': 'str'}, {'property': 'age', 'type': 'int'}, {'property': 'year', 'type': 'str'}]
+Node name: 'Person', Node properties: [{'property': 'name', 'type': 'str'}, {'property': 'age', 'type': 'int'}, {'property': 'year', 'type': 'str'}]
+Node name: 'Student', Node properties: [{'property': 'name', 'type': 'str'}, {'property': 'age', 'type': 'int'}, {'property': 'year', 'type': 'str'}]
 Node name: 'University', Node properties: [{'property': 'name', 'type': 'str'}]
 Node name: 'City', Node properties: [{'property': 'name', 'type': 'str'}]
 
@@ -131,10 +131,12 @@ Relationship properties are the following:
 Relationship Name: 'IS_FRIENDS_WITH', Relationship Properties: [{'property': 'since', 'type': 'str'}]
 
 The relationships are the following:
-['(:Person)-[:IS_FRIENDS_WITH]->(:Person:Student)']
+['(:Person)-[:IS_FRIENDS_WITH]->(:Person)']
+['(:Person)-[:IS_FRIENDS_WITH]->(:Student)']
 ['(:Person)-[:LIVES_IN]->(:City)']
-['(:Person:Student)-[:STUDIES_AT]->(:University)']
-['(:Person:Student)-[:LIVES_IN]->(:City)']
+['(:Person)-[:STUDIES_AT]->(:University)']
+['(:Student)-[:STUDIES_AT]->(:University)']
+['(:Student)-[:LIVES_IN]->(:City)']
 ```
 
 </TabItem>
@@ -209,9 +211,13 @@ Below is the result of running the <code>schema</code> procedure:
          {
             "property": "age",
             "type": "int"
+         },
+         {
+            "property": "year",
+            "type": "str"
          }
       ],
-      "Person:Student": [
+      "Student": [
          {
             "property": "name",
             "type": "str"
@@ -242,7 +248,12 @@ Below is the result of running the <code>schema</code> procedure:
    },
    "relationships": [
       {
-         "end": "Person:Student",
+         "end": "Person",
+         "start": "Person",
+         "type": "IS_FRIENDS_WITH"
+      },
+      {
+         "end": "Student",
          "start": "Person",
          "type": "IS_FRIENDS_WITH"
       },
@@ -253,12 +264,17 @@ Below is the result of running the <code>schema</code> procedure:
       },
       {
          "end": "University",
-         "start": "Person:Student",
+         "start": "Person",
+         "type": "STUDIES_AT"
+      },
+      {
+         "end": "University",
+         "start": "Student",
          "type": "STUDIES_AT"
       },
       {
          "end": "City",
-         "start": "Person:Student",
+         "start": "Student",
          "type": "LIVES_IN"
       }
    ]
