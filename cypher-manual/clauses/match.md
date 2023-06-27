@@ -22,6 +22,10 @@ The `MATCH` clause is used to obtain data from the database by matching it to a 
     3.1. [Variable length relationships](#31-variable-length-relationships) <br />
     3.2. [Variable length relationships with multiple relationship types](#32-variable-length-relationships-with-multiple-relationship-types) <br />
     3.3. [Returning multiple relationships with variable length](#33-returning-multiple-relationships-with-variable-length) <br />
+4. [Using multiple MATCH clauses](#4-using-multiple-match-clauses) <br />
+    4.1. [Cartesian product of nodes](#41-cartesian-product-of-nodes) <br />
+    4.2. [Create a list](#42-create-a-list) <br />
+    4.3. [Using the OPTIONAL MATCH clause](#43-using-the-optional-match-clause) <br />
 
 :::tip
 
@@ -319,6 +323,108 @@ Output:
 | [[FRIENDS_WITH {date_of_start: 2012}]] |
 +----------------------------------------+
 ```
+
+## 4. Using multiple `MATCH` clauses
+
+### 4.1. Cartesian product of nodes
+
+To match each person from your dataset with each of the countries in Europe, you can use multiple `MATCH` clauses as following: 
+
+```cypher
+MATCH (p:Person)
+MATCH (c:Country {continent: "Europe"})
+RETURN p.name,c.name;
+```
+
+Output: 
+```nocopy 
++------------------+------------------+
+| p.name           | c.name           |
++------------------+------------------+
+| "John"           | "Germany"        |
+| "Harry"          | "Germany"        |
+| "Anna"           | "Germany"        |
+| "John"           | "France"         |
+| "Harry"          | "France"         |
+| "Anna"           | "France"         |
+| "John"           | "United Kingdom" |
+| "Harry"          | "United Kingdom" |
+| "Anna"           | "United Kingdom" |
++------------------+------------------+
+```
+
+The query returns cartesian product of matched nodes. The output of the first `MATCH` clause is matched with each output of the second `MATCH` clause. In our case, each person from our dataset is matched with each country in *Europe*. 
+
+### 4.2. Creating a list
+
+If you want to create a list containing the results of different MATCH queries, you can achieve that with multiple MATCH clauses in one query:
+
+```cypher
+MATCH (p:Person)
+WITH COLLECT(p.name) as people
+MATCH (c:Country {continent: "Europe"})
+WITH people + COLLECT(c.name) as names
+RETURN names;
+```
+
+Output:
+```nocopy
++------------------------------------------------------------------+
+| names                                                            |
++------------------------------------------------------------------+
+| ["John", "Harry", "Anna", "Germany", "France", "United Kingdom"] |
++------------------------------------------------------------------+
+```
+
+The query returns a list of names of all people from our dataset concatenated with the names of all of the countries in Europe. 
+
+:::caution
+If any of the sets `MATCH` clause returns is empty, the whole output will be an empty list.
+:::
+
+If you run the similar query again:
+
+```cypher
+MATCH (p:Person)
+WITH COLLECT(p.name) as people
+MATCH (c:Country {continent: "Asia"})
+WITH people + COLLECT(c.name) as names
+RETURN names;
+```
+
+Output:
+```nocopy
++-------+
+| names |
++-------+
+| Null  |
++-------+
+```
+
+Since we don't have any node labeled Country with a property continent named *Asia*, the second `MATCH` clause returns an empty dataset and therefore the output is also an empty list. To avoid that, use `OPTIONAL MATCH` clause.
+
+### 4.3. Using the `OPTIONAL MATCH` clause
+
+If we run the same query as before, only using the `OPTIONAL MATCH` clause: 
+
+```cypher
+MATCH (p:Person)
+WITH COLLECT(p.name) as people
+OPTIONAL MATCH (c:Country {continent: "Asia"})
+WITH people + COLLECT(c.name) as names
+RETURN names;
+```
+
+Output:
+```nocopy
++---------------------------+
+| names                     |
++---------------------------+
+| ["John", "Harry", "Anna"] |
++---------------------------+
+```
+
+The output is a list containing only the results of the first `MATCH` clause. When using the `OPTIONAL MATCH` clause, an empty set is optional and only the results of the first `MATCH` clause will be used.  
 
 ## Data set Queries
 
