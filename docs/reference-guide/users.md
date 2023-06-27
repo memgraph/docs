@@ -13,7 +13,7 @@ database with or without a password.
 If you want to create a user without setting a password, execute the following command:
 
 ```cypher
-CREATE USER user_name;
+CREATE USER `user_name`;
 ```
 
 In this case, the user can log in using any password, or none at all, provided that they enter the correct username.
@@ -21,7 +21,7 @@ In this case, the user can log in using any password, or none at all, provided t
 If you want to create a user and set a password simultaneously, use the following command:
 
 ```cypher
-CREATE USER user_name IDENTIFIED BY 'password';
+CREATE USER `user_name` IDENTIFIED BY 'password';
 ```
 
 In this case, the user must log in with the correct username and the set password.
@@ -29,7 +29,7 @@ In this case, the user must log in with the correct username and the set passwor
 To set or change a user's password, use the following command:
 
 ```cypher
-SET PASSWORD FOR user_name TO 'new_password';
+SET PASSWORD FOR `user_name` TO 'new_password';
 ```
 
 To check all the users created on an instance, use:
@@ -41,13 +41,13 @@ SHOW USERS;
 To remove a user's password, set it to `null`:
 
 ```cypher
-SET PASSWORD FOR user_name TO null;
+SET PASSWORD FOR `user_name` TO null;
 ```
 
 To delete a user use:
 
 ```cypher
-DROP USER user_name;
+DROP USER `user_name`;
 ```
 
 ## Authentication
