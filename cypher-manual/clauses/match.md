@@ -23,13 +23,13 @@ The `MATCH` clause is used to obtain data from the database by matching it to a 
     3.2. [Variable length relationships with multiple relationship types](#32-variable-length-relationships-with-multiple-relationship-types) <br />
     3.3. [Returning multiple relationships with variable length](#33-returning-multiple-relationships-with-variable-length) <br />
 
-```tip
+:::tip
 
 Each node and relationship gets a identifier generated during their initialization which is persisted through the durability mechanism.
 
 Return it with the [`id()` function](/cypher-manual/functions#scalar-functions). 
 
-```
+:::
 
 ## Data Set
 
