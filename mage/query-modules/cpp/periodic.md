@@ -25,6 +25,11 @@ does not mean that the query is executed after a specific timeout. It actually s
 of some input source is being batched in order to speed up the execution time, due to the complexity of the
 query. 
 
+:::caution
+Some of the procedures inside the periodic module may break isolation levels. Check warnings described in the procedures
+for more details.
+:::
+
 [![docs-source](https://img.shields.io/badge/source-graph_util-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/cpp/graph_util_module)
 
 | Trait               | Value                                                                                                     |
