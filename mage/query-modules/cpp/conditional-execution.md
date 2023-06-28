@@ -112,8 +112,8 @@ Parameters are prefixed with `$` like `$param_name`. For examples, see
 * `value: Map` ➡ Contains the result record of the executed query. Each `value` corresponds to one result record.
 
 :::caution
-Currently we only support returning records which contain `string`, `integer`, `double` or `boolean` primitives.
-Queries in the `conditionals` or in the `else_query` arguments which get executed and return other types of data, will
+Currently, the module supports only those returning records that contain `string`, `integer`, `double` or `boolean` primitives.
+Queries in the `conditionals` or in the `else_query` arguments, which get executed and return other types of data, will
 result in an exception.
 :::
 
