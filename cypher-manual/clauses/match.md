@@ -405,7 +405,7 @@ Output:
 +-------+
 ```
 
-Since the dataset doesn't contain any nodes labeled as `Country` with a property `continent` with the value `Asia`, the second `MATCH` clause returns an empty dataset and therefore the output is also an empty list. To avoid getting an empty list as an output, use `OPTIONAL MATCH` clause: 
+Since the dataset doesn't contain any nodes labeled as `Country` with a property `continent` with the value `Asia`, the second `MATCH` clause returns an empty dataset and therefore the output is also an empty list. To avoid getting an empty list as an output, due to any of the `MATCH` clauses returning an empty set, use `OPTIONAL MATCH` clause: 
 
 ```cypher
 MATCH (p:Person)
