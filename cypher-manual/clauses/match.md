@@ -425,7 +425,7 @@ Output:
 +---------------------------+
 ```
 
-Since the dataset doesn't contain any nodes labeled as `Country` with a property `continent` with the value `Asia`, the `OPTIONAL MATCH` clause bypasses it and returns only non-empty sets. Therefore, the output of the query is a list containing only the results of the first `MATCH` clause.    
+The `OPTIONAL MATCH` clause bypasses the empty set and the query returns only non-empty sets. Therefore, the output of the query is a list containing only the results of the first `MATCH` clause.    
 
 ## Data set Queries
 
