@@ -25,7 +25,6 @@ The `MATCH` clause is used to obtain data from the database by matching it to a 
 4. [Using multiple MATCH clauses](#4-using-multiple-match-clauses) <br />
     4.1. [Cartesian product of nodes](#41-cartesian-product-of-nodes) <br />
     4.2. [Creating a list](#42-creating-a-list) <br />
-    4.3. [Using the OPTIONAL MATCH clause](#43-using-the-optional-match-clause) <br />
 
 :::tip
 
@@ -406,11 +405,7 @@ Output:
 +-------+
 ```
 
-Since the dataset doesn't contain any nodes labeled as `Country` with a property `continent` with the value `Asia`, the second `MATCH` clause returns an empty dataset and therefore the output is also an empty list. To avoid getting an empty list as an output, use `OPTIONAL MATCH` clause.
-
-### 4.3. Using the `OPTIONAL MATCH` clause
-
-To avoid getting an empty list as an output, due to any of the `MATCH` clauses returning an empty set,  use the `OPTIONAL MATCH` clause: 
+Since the dataset doesn't contain any nodes labeled as `Country` with a property `continent` with the value `Asia`, the second `MATCH` clause returns an empty dataset and therefore the output is also an empty list. To avoid getting an empty list as an output, use `OPTIONAL MATCH` clause: 
 
 ```cypher
 MATCH (p:Person)
@@ -430,7 +425,7 @@ Output:
 +---------------------------+
 ```
 
-The output is a list containing only the results of the first `MATCH` clause. When using the `OPTIONAL MATCH` clause, an empty set is optional and only the results of the first `MATCH` clause will be used.  
+Since the dataset doesn't contain any nodes labeled as `Country` with a property `continent` with the value `Asia`, the `OPTIONAL MATCH` clause bypasses it and returns only non-empty sets. Therefore, the output of the query is a list containing only the results of the first `MATCH` clause.    
 
 ## Data set Queries
 
