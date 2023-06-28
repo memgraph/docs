@@ -20,11 +20,17 @@ style={{
 </span>
 );
 
-The **periodic module** enables users to execute a query periodically in batches. In this case, the name periodic doesn't indicate that the query is executed after a time interval, but rather that, due to the complexity of the query, the results of some input source are batched to speed up execution.
+The **periodic module** enables users to execute a query periodically in
+batches. In this case, the name periodic doesn't indicate that the query is
+executed after a time interval, but rather that, due to the complexity of the
+query, the results of some input source are batched to speed up execution.
 
 :::caution
-Some of the procedures inside the periodic module may break isolation levels. Check warnings described in the procedures
-for more details.
+
+As the results are batched and executed in different transactions, every
+executed batch is committed by itself. If an issue occurs while running this
+procedure, the already committed batches cannot be rolled back.
+
 :::
 
 [![docs-source](https://img.shields.io/badge/source-graph_util-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/cpp/graph_util_module)
@@ -38,14 +44,6 @@ for more details.
 ### Procedures
 
 ### `iterate(input_query, running_query, params)`
-
-:::caution
-This module breaks the isolation levels in the database, as the results are batched and executed in different transactions. Do
-not consider the query which executes this procedure to be aligned with set isolation level of the database, as every executed batch
-is committed by itself. An issue while running this procedure will not result in rollbacking batches of committed results.
-:::
-
-
 
 #### Input:
 
