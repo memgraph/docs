@@ -50,7 +50,7 @@ is committed by itself. An issue while running this procedure will not result in
 - `input_query: string` ➡ the input query which will yield the results that need to be batched
 - `running_query: string` ➡ query which will be executed on the batched results
 - `params: Map[string, string]` ➡ parameters for the procedure
-  - `batch_size: Integer` ➡ key specifying for many results should be kept in a batch 
+  - `batch_size: Integer` ➡ key specifying how many results should a batch contain
 
 
 #### Output:
