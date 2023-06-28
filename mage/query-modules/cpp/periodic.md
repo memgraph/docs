@@ -20,10 +20,7 @@ style={{
 </span>
 );
 
-**Periodic module** enables users to execute a query periodically in batches. Periodic in this case
-does not mean that the query is executed after a specific timeout. It actually signifies that the results
-of some input source is being batched in order to speed up the execution time, due to the complexity of the
-query. 
+The **periodic module** enables users to execute a query periodically in batches. In this case, the name periodic doesn't indicate that the query is executed after a time interval, but rather that, due to the complexity of the query, the results of some input source are batched to speed up execution.
 
 [![docs-source](https://img.shields.io/badge/source-graph_util-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/cpp/graph_util_module)
 
