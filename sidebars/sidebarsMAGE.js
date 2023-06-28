@@ -29,7 +29,7 @@ module.exports = {
         "query-modules/cpp/bridges",
         "query-modules/cpp/community-detection",
         "query-modules/cpp/community-detection-online",
-        "query-modules/python/conditional-execution",
+        "query-modules/cpp/conditional-execution",
         "query-modules/cpp/cycles",
         "query-modules/cuda/cugraph",
         "query-modules/cpp/degree-centrality",
