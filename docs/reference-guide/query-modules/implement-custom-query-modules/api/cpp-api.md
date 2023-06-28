@@ -1872,6 +1872,7 @@ Enumerates the data types supported by Memgraph and its C++ API.
 The types are listed and described [on this page](https://memgraph.com/docs/memgraph/reference-guide/data-types).
 
 - `Type::Null`
+- `Type::Any`
 - `Type::Bool`
 - `Type::Int`
 - `Type::Double`
