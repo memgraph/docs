@@ -50,9 +50,9 @@ available conversion functions.
 :::
 
 :::info
-A MATCH or a MERGE clause can be written prior to LOAD CSV, if the result of 
-the clauses is only one row. Yielding multiple rows before calling LOAD CSV
-will result in a runtime error from Memgraph. The reason for such behaviour 
-is to enable users to match some entities in the graph before running LOAD CSV
-and begin manipulating rows combined with the entities in the graph simultaneously.
+You can write a single MATCH or MERGE clause prior the LOAD CSV clause if and only if the clause returns 
+only one row. Returning multiple rows before calling the LOAD CSV clause will cause a Memgraph 
+runtime error. Adding a MATCH or MERGE clause before the LOAD CSV allows you to match certain 
+entities in the graph before running LOAD CSV, which is an optimization as matched entities
+do not need to be searched for every row in the CSV file.
 :::
