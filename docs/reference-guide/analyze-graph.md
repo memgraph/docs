@@ -36,9 +36,9 @@ ANALYZE GRAPH;
 
 The query will iterate over all label-property indices in the database and calculate the average group size and chi-squared statistic for each one, then return the following output:
 
-| label | property | num estimation nodes | num groups | avg group size | chi-squared value | 
-| ----- | -------- | -------------------- | ---------- | -------------- | ----------------- |
-| index's label | index's property | number of nodes used for estimation | number of distinct values the property contains | average group size of property's values | value of the chi-squared statistic |
+| label | property | num estimation nodes | num groups | avg group size | chi-squared value | avg degree
+| ----- | -------- | -------------------- | ---------- | -------------- | ----------------- | ----------
+| index's label | index's property | number of nodes used for estimation | number of distinct values the property contains | average group size of property's values | value of the chi-squared statistic | average degree of the indexed vertices
 
 
 Once the information about the average group size and the chi-squared statistic is obtained, Memgraph can choose the optimal index.
