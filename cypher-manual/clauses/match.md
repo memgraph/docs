@@ -328,7 +328,9 @@ Output:
 
 ### 4.1. Cartesian product of nodes
 
-To match each person from your dataset with each of the countries in Europe, you can use multiple `MATCH` clauses as following: 
+To create a Cartesian product, match the nodes in two separate `MATCH` queries. 
+
+For example, the following query will match each person from the dataset with each European country from the dataset: 
 
 ```cypher
 MATCH (p:Person)
@@ -353,7 +355,7 @@ Output:
 +------------------+------------------+
 ```
 
-The query returns cartesian product of matched nodes. The output of the first `MATCH` clause is matched with each output of the second `MATCH` clause. In our case, each person from our dataset is matched with each country in *Europe*. 
+The query returns the Cartesian product of matched nodes. The output of the first `MATCH` clause is matched with each output of the second `MATCH` clause. In this case, each person from the dataset is matched with each European country. 
 
 ### 4.2. Creating a list
 
@@ -376,7 +378,7 @@ Output:
 +------------------------------------------------------------------+
 ```
 
-The query returns a list of names of all people from our dataset concatenated with the names of all of the countries in Europe. 
+The query returns a list of names of all people from the dataset concatenated with the names of all European countries. 
 
 :::caution
 
@@ -384,7 +386,7 @@ If any of the sets `MATCH` clause returns is empty, the whole output will be an 
 
 :::
 
-If you run the similar query again:
+The following query will return an empty list:
 
 ```cypher
 MATCH (p:Person)
@@ -404,11 +406,11 @@ Output:
 +-------+
 ```
 
-Since we don't have any node labeled Country with a property continent named *Asia*, the second `MATCH` clause returns an empty dataset and therefore the output is also an empty list. To avoid that, use `OPTIONAL MATCH` clause.
+Since the dataset doesn't contain any nodes labeled as `Country` with a property `continent` with the value `Asia`, the second `MATCH` clause returns an empty dataset and therefore the output is also an empty list. To avoid getting an empty list as an output, use `OPTIONAL MATCH` clause.
 
 ### 4.3. Using the `OPTIONAL MATCH` clause
 
-If we run the same query as before, only using the `OPTIONAL MATCH` clause: 
+To avoid getting an empty list as an output, due to any of the `MATCH` clauses returning an empty set,  use the `OPTIONAL MATCH` clause: 
 
 ```cypher
 MATCH (p:Person)
