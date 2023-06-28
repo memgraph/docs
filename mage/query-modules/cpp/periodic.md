@@ -20,10 +20,7 @@ style={{
 </span>
 );
 
-**Periodic module** enables users to execute a query periodically in batches. Periodic in this case
-does not mean that the query is executed after a specific timeout. It actually signifies that the results
-of some input source is being batched in order to speed up the execution time, due to the complexity of the
-query. 
+The **periodic module** enables users to execute a query periodically in batches. In this case, the name periodic doesn't indicate that the query is executed after a time interval, but rather that, due to the complexity of the query, the results of some input source are batched to speed up execution.
 
 :::caution
 Some of the procedures inside the periodic module may break isolation levels. Check warnings described in the procedures
@@ -55,7 +52,7 @@ is committed by itself. An issue while running this procedure will not result in
 - `input_query: string` ➡ the input query which will yield the results that need to be batched
 - `running_query: string` ➡ query which will be executed on the batched results
 - `params: Map[string, string]` ➡ parameters for the procedure
-  - `batch_size: Integer` ➡ key specifying for many results should be kept in a batch 
+  - `batch_size: Integer` ➡ key specifying how many results should a batch contain
 
 
 #### Output:
