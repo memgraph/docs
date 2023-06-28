@@ -33,7 +33,7 @@ If the import speed is still unsatisfactory, don't hesitate to contact us on [Di
 The syntax of the `LOAD CSV` clause is:
 
 ```cypher
-LOAD CSV FROM <csv-location> ( WITH | NO ) HEADER [IGNORE BAD] [DELIMITER <delimiter-string>] [QUOTE <quote-string>] AS <variable-name>
+LOAD CSV FROM <csv-location> ( WITH | NO ) HEADER [IGNORE BAD] [DELIMITER <delimiter-string>] [QUOTE <quote-string>] [NULLIF <nullif-string>] AS <variable-name>
 ```
 
 - `<csv-location>` is a string of the location to the CSV file. Without a URL 
@@ -73,6 +73,11 @@ LOAD CSV FROM <csv-location> ( WITH | NO ) HEADER [IGNORE BAD] [DELIMITER <delim
 
 * `QUOTE <quote-string>` option enables the user to specify the CSV quote
   character. If it isn't set, the default quote character `"` is assumed.
+
+* `NULLIF <nullif-string>` option enables you to specify a sequence of
+  characters that will be parsed as null. By default, all empty columns in
+  Memgraph are treated as empty strings, so if this option is not used, no
+  values will be treated as null. 
 
 * `<variable-name>` is a symbolic name representing the variable to which the
   contents of the parsed row will be bound to, enabling access to the row
