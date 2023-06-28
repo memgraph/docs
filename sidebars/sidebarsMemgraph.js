@@ -171,6 +171,7 @@ module.exports = {
         "how-to-guides/networkx",
         "how-to-guides/work-with-docker",
         "how-to-guides/indexes",
+        "how-to-guides/use-init-flags",
         {
           type: "category",
           label: "Enterprise features",
