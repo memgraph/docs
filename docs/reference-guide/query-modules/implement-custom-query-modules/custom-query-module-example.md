@@ -213,6 +213,148 @@ def write_procedure(context: mgp.ProcCtx,
     return mgp.Record(created_vertex=vertex)
 
 ```
+### Batched read procedures
+
+Similar to regular `read` and `write` procedures, we have `batched` `read` and `write` procedures. Batched procedures are very similar to regular procedures. Key difference is that batched procedures return results in batches, mostly to reduce memory consumption. For batch procedures you need to define **three** functions:
+* `batching` function - similar to main function in regular procedures
+* `initialization` function - function to initialize stream, open source file, etc...
+* `cleanup` function - function to close stream, or source file, etc...
+
+Since there are three function, construct works as follows: 
+- `initialization` function must define to receive same parameters as batching function including `mgp.ProcCtx` as first parameter
+- when calling procedure from query, you need to call `batching` function
+- `initialization` is called before `batching` function 
+- batching function needs to return empty result at some point, which signals end of stream from batch
+- `cleanup` function is called on end of stream
+
+
+There is no decorator used to register batched read procedure, but we use `mgp` function `mgp.add_batch_write_proc('batch', 'init', 'cleanup')`
+
+```python
+mysql_dict = {}
+
+
+def init_migrate(
+    table: str,
+    config: mgp.Map,
+):
+    global mysql_dict
+
+    query = f"SELECT * FROM {table};"
+    mysql_dict = {}
+    # Init dict and store variables for later reference. 
+    if mysql_dict is None:
+        connection = mysql_connector.connect(**config)
+        cursor = connection.cursor(buffered=True)
+        # Executes, but doesn't fetch. Fetching is done in batches
+        # in `migrate`
+        cursor.execute(query)
+
+        mysql_dict["connection"] = connection
+        mysql_dict["cursor"] = cursor
+        mysql_dict["column_names"] = [column[0] for column in cursor.description]
+
+def migrate(
+    table_or_sql: str,
+    config: mgp.Map,
+) -> mgp.Record(row=mgp.Map):
+    
+    global mysql_dict
+    cursor = mysql_dict["cursor"]
+    column_names = mysql_dict["column_names"]
+    rows = cursor.fetchmany(1000)
+    return [mgp.Record(row=_name_row_cells(row, column_names)) for row in rows]
+
+def cleanup_migrate():
+    global mysql_dict
+    mysql_dict["cursor"] = None
+    mysql_dict["connection"].close()
+    mysql_dict["connection"].commit()
+    mysql_dict["connection"] = None
+    mysql_dict["column_names"] = None
+    mysql_dict = None
+
+
+mgp.add_batch_read_proc(migrate, init_migrate, cleanup_migrate)
+
+def _name_row_cells(row_cells, column_names) -> Dict[str, Any]:
+    return dict(map(lambda column, value: (column, value), column_names, row_cells))
+```
+
+
+
+### Batched write procedures
+
+Similar to batched `read` procedures, you can define batched `write` procedures. Batched procedures can return results in batches, mostly to reduce memory consumption. For batch `write` procedures like for batched `read` procedures you need to define **three** functions:
+* `batching` function - similar to main function in regular procedures
+* `initialization` function - function to initialize stream, open source file, etc...
+* `cleanup` function - function to close stream, or source file, etc...
+
+Construct works again as follows: 
+- `initialization` function must define to receive same parameters as batching function including `mgp.ProcCtx` as first parameter
+- when calling procedure from query, you need to call `batching` function
+- `initialization` is called before `batching` function 
+- batching function needs to return empty result at some point, which signals end of stream from batch
+- `cleanup` function is called on end of stream
+
+
+
+
+
+```python
+mysql_dict = {}
+
+def init_migrate(
+    ctx: mgp.ProcCtx,
+    table: str,
+    config: mgp.Map,
+):
+    global mysql_dict
+
+    query = f"SELECT * FROM {table};"
+    mysql_dict = {}
+    
+    if mysql_dict is None:
+        connection = mysql_connector.connect(**config)
+        cursor = connection.cursor(buffered=True)
+        cursor.execute(query)
+
+        mysql_dict["connection"] = connection
+        mysql_dict["cursor"] = cursor
+        mysql_dict["column_names"] = [column[0] for column in cursor.description]
+
+def migrate(
+    ctx: mgp.ProcCtx,
+    table_or_sql: str,
+    config: mgp.Map,
+) -> mgp.Record(vertex=mgp.Vertex):
+    
+    global mysql_dict
+    cursor = mysql_dict["cursor"]
+    column_names = mysql_dict["column_names"]
+    rows = cursor.fetchmany(1000)
+    results = []
+    for row in rows:
+        # For every row from database, create vertex
+        # and add properties from database
+        v=ctx.graph.create_vertex()
+        for key,value in _name_row_cells(row, column_names):
+            v.properties.set(key,value)
+        results.append(mgp.Record(vertex=v))
+    return results
+
+def cleanup_migrate():
+    global mysql_dict
+    mysql_dict["cursor"] = None
+    mysql_dict["connection"].close()
+    mysql_dict["connection"].commit()
+    mysql_dict["connection"] = None
+    mysql_dict["column_names"] = None
+    mysql_dict = None
+
+
+mgp.add_batch_read_proc(migrate, init_migrate, cleanup_migrate)
+```
 
 ### Magic functions
 
@@ -441,6 +583,70 @@ As mentioned before, no exceptions should leave your module. If you are writing
 the module in a language that throws them, use exception handlers
 in `mgp_init_module` and `mgp_shutdown_module` as well.
 
+
+### Batched query procedures
+
+Similar to batched query procedures in Python, you can add batched query procedures
+in C.
+
+Batched procedures need 3 functions, one for each of batching, initialization and cleanup.
+```c
+static void batched(const struct mgp_list *args, const struct mgp_graph *graph,
+                      struct mgp_result *result, struct mgp_memory *memory) {
+  ...
+}
+
+static void init(const struct mgp_list *args, const struct mgp_graph *graph,
+                 struct mgp_memory *memory) {
+  ...
+}
+
+static void cleanup() {
+  ...
+}
+```
+
+
+The `batched` function receives the list of arguments (`args`) passed in the
+query. The parameter `result` is used to fill in the resulting records of the
+procedure. Parameters `graph` and `memory` are context parameters of the
+procedure, and they are used in some parts of the provided C API. In `batched`
+you need to return at some point empty `result` which signals that batched proedure is done with execution and `cleanup` can be called. `init` doesn't receive `result` as it is only used for initialization. `init` function will receive same arguments which are registed and passed to `batched` function.
+The passed in `memory` argument is only alive throughout the execution of
+`mgp_init_module`, so you must not allocate any global resources with it.  Consequently, you may want to reset any global state or release global resources
+in the `cleanup` function. 
+
+For more information on what exactly is possible with C API, take a look at the
+`mg_procedure.h` file or the [C API reference
+guide](/reference-guide/query-modules/implement-custom-query-modules/api/c-api.md).
+
+The following line contains the `mgp_init_module` function that registers procedures
+that can be invoked through Cypher. Even though the example has only one
+`procedure`, you can register multiple different procedures in a single module.
+
+Procedures are invoked using the `CALL <module>.<procedure> ...` syntax. The
+`<module-name>` will correspond to the name of the shared library. Since we
+compile our example into `example.so`, then the module is called `example`.
+Procedure names can be different than their corresponding implementation
+callbacks because the procedure name is defined when registering a procedure. 
+
+```c
+int mgp_init_module(struct mgp_module *module, struct mgp_memory *memory) {
+  // Register our `procedure` as a read procedure with the name "procedure".
+  struct mgp_proc *proc =
+      mgp_module_add_batch_read_procedure(module, "procedure", batched, init, cleanup);
+  // Return non-zero on error.
+  if (!proc) return 1;
+  // Additional code for better specifying the procedure (omitted here).
+  ...
+  // Return 0 to indicate success.
+  return 0;
+}
+```
+
+
+
+
 ### Magic functions
 
 A major part of defining the "Magic function" is similar to query procedures.
@@ -663,6 +869,41 @@ void AddXNodes(mgp_list *args, mgp_graph *memgraph_graph, mgp_result *result, mg
   }
 }
 ```
+
+### Batched readable and writeable procedures
+
+For batched readable and writeable procedures in C++, it is pretty similar to regular procedures in C++. The way procedures work is similar to C API, only difference is procedure registration.
+
+```cpp
+
+void BatchCSVFile(mgp_list *args, mgp_graph *memgraph_graph, mgp_result *result, mgp_memory *memory) {
+  ...
+}
+
+void InitBatchCsvFile(mgp_list *args, mgp_graph *memgraph_graph, mgp_result *result, mgp_memory *memory) {
+  ...
+}
+
+void CleanupBatchCsvFile(mgp_list *args, mgp_graph *memgraph_graph, mgp_result *result, mgp_memory *memory) {
+  ...
+}
+
+
+extern "C" int mgp_init_module(struct mgp_module *module, struct mgp_memory *memory) {
+  try {
+    mgp::memory = memory;
+
+    AddBatchProcedure(BatchCSVFile, InitBatchCsvFile, CleanupBatchCsvFile,
+                 "read_csv", mgp::ProcedureType::Read,
+                 {mgp::Parameter("file_name", mgp::Type::String)},
+                 {mgp::Return("row", mgp::Type::Map)}, module, memory);
+  } catch (const std::exception &e) {
+    return 1;
+  }
+  return 0;
+}
+```
+
 
 ### Magic functions
 

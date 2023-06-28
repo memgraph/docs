@@ -36,7 +36,7 @@ it](/memgraph/how-to-guides/query-modules#how-to-install-external-python-librari
 :::
 
 
-## mgp.read_proc(func: Callable[[…], mgp.Record])
+## mgp.read_proc(func: Callable[…, mgp.Record])
 
 Register func as a read-only procedure of the current module.
 
@@ -86,7 +86,7 @@ properly and suggest methods and classes it contains. You can install the module
 by running `pip install mgp`.
 :::
 
-## mgp.write_proc(func: Callable[[…], mgp.Record])
+## mgp.write_proc(func: Callable[…, mgp.Record])
 
 Register func as a writeable procedure of the current module.
 
@@ -137,6 +137,28 @@ CALL example.procedure(“single argument”) YIELD result;
 ```
 
 Naturally, you may pass in different arguments.
+
+
+## mgp.add_batch_read_proc(func: Callable[…, mgp.Record], initializer: typing.Callable, cleanup: typing.Callable)
+
+Register func as a read-only batch procedure of the current module.
+
+`func` represents function which is invoked through OpenCypher. Before that function is invoked, `initializer` is function is called. `initializer` must define same parameters as main `func` function, and will receive same parameters as `func`. That includes position of arguments and type of arguments must be the same. 
+
+`func` needs to return at some point empty result which signals end of batch. Afterwards, `cleanup` function will be called, which can be used to clean up global resources. Only at that point is garbage collection invoked, so any dangling references to Python objects will be cleaned.
+
+Otherwise, same rules apply as in `read_proc`. Important to keep in mind is that any Memgraph resources can't be stored in `init` and during batching. All objects are after each call invalidated and referencing those will result in error.
+
+
+## mgp.add_batch_write_proc(func: Callable[…, mgp.Record], initializer: typing.Callable, cleanup: typing.Callable)
+
+Register func as a writeable batch procedure of the current module.
+
+`func` represents function which is invoked through OpenCypher. Before that function is invoked, `initializer` is function is called. `initializer` must define same parameters as main `func` function, and will receive same parameters as `func`. That includes position of arguments and type of arguments must be the same. 
+
+`func` needs to return at some point empty result which signals end of batch. Afterwards, `cleanup` function will be called, which can be used to clean up global resources. Only at that point is garbage collection invoked, so any dangling references to Python objects will be cleaned.
+
+Otherwise, same rules apply as in `read_proc`. Important to keep in mind is that any Memgraph resources can't be stored in `init` and during batching. All objects are after each call invalidated and referencing those will result in error.
 
 
 ## mgp.function(func: Callable[[…]])
