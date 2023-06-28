@@ -31,7 +31,9 @@ import VideoBySide from '@site/src/components/VideoBySide';
 - When you need to differentiate many different transactions, you can now define
   and pass metadata via the client. In Memgraph, the metadata is visible in the
   output of the `SHOW TRANSACTIONS;` query.
-  [#945](https://github.com/memgraph/memgraph/pull/945)
+  [#945](https://github.com/memgraph/memgraph/pull/945) 
+- You can now batch results from Python and C++ procedures.
+[#964](https://github.com/memgraph/memgraph/pull/964)
 
 ### Bug fixes
 
