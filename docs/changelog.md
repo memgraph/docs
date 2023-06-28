@@ -34,6 +34,9 @@ import VideoBySide from '@site/src/components/VideoBySide';
   [#945](https://github.com/memgraph/memgraph/pull/945) 
 - You can now batch results from Python and C++ procedures.
 [#964](https://github.com/memgraph/memgraph/pull/964)
+- The `ANALYZE GRAPH;` query now includes information about the degree of all
+  nodes to enhance the MERGE optimizations on supernodes.
+  [#1026](https://github.com/memgraph/memgraph/pull/1026)
 
 ### Bug fixes
 
@@ -44,7 +47,7 @@ import VideoBySide from '@site/src/components/VideoBySide';
 - Replica instances no longer restart as main instances, but restore their
   original role. [#791](https://github.com/memgraph/memgraph/pull/791)
 - The IN_MEMORY_ANALYTICAL storage mode now deallocates memory as expected and
-  no longer consumes memory excessively. 
+  no longer consumes memory excessively. [#1025](https://github.com/memgraph/memgraph/pull/1025) 
 - When no values are returned from a map, a null is returned instead of an
   exception occurring. [#1039](https://github.com/memgraph/memgraph/pull/1039)
 
