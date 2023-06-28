@@ -55,6 +55,6 @@ available conversion functions.
 :::
 
 :::info
-Compressed CSV content with, `GZip` or `Bzip2` will be automatically 
+Compressed CSV content with, `gzip` or `bzip2` will be automatically 
 decompressed on read.
 :::
