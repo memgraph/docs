@@ -40,7 +40,7 @@ The query will iterate over all label and label-property indices in the database
 
 | label | property | num estimation nodes | num groups | avg group size | chi-squared value | avg degree
 | ----- | -------- | -------------------- | ---------- | -------------- | ----------------- | ----------
-| index's label | index's property | number of nodes used for estimation | number of distinct values the property contains | average group size of property's values | value of the chi-squared statistic | average degree of the indexed vertices
+| index's label | index's property | number of nodes used for estimation | number of distinct values the property contains | average group size of property's values | value of the chi-squared statistic | average degree of the indexed nodes
 
 
 Once the information about the average group size and the chi-squared statistic is obtained, Memgraph can choose the optimal index.
