@@ -8,36 +8,39 @@ sidebar_label: Changelog
 
 ### What's new
 
-- Change the canvas color of the graph view with the new property
-  `background-color` in `@ViewStyle`.
-- Change the stack order of how nodes and edges are rendered in the
-  graph view with the property `z-index` in `@NodeStyle` and `@EdgeStyle`
-  directives. It works the same as the CSS z-index property.
-- Set up transparent colors with the new GSS functions `RGBA` and `HSLA`. You
-  can also get the transparency value with the function `Alpha`.
-- When testing and trying out different functions you can use single-line (`//
-  comment`) and multi-line (`/* comment */`) comments in the GSS code editor
-  without losing previous state.
-- The new interfaces enables style searching, checking the last used ones
-  and changing the default style in the Lab.
-<!-- <img src={require('./data/lab-270/pick-a-style.png').default} className={"imgBorder"} style={{marginBottom:'20px'}}/> -->
-- Manage saved styles will be easier with a preview of the applied style.
-<!--<img src={require('./data/lab-270/modify-style.png').default} className={"imgBorder"} style={{marginBottom:'20px'}}/> -->
-- Now you can easily see what has changed in the run history, a query, a style,
-  or both, and filter out All (both queries runs and applied styles), Query
-  history (only query runs), and Style history (only applied style changes). You
-  can expand both the query and style to see the full Cypher or GSS code.
 - Now you can adjust the following settings:
     - Code completion and automatic graph rendering limits
     - The capacity of run history and its clearing
     - The limit for visible logs
-- New functions allow more customizations: `Sort`, `Coalesce`, `Reverse`,
+- The new interfaces for managing saved styles enables searching and changing
+  the default style in the Lab. The saved styles now also have a preview. 
+<!-- <img src={require('./data/lab-270/pick-a-style.png').default} className={"imgBorder"} style={{marginBottom:'20px'}}/> -->
+- The run history now also tracks changes to the query, style, or both. You can
+  also filter out records to show All (both queries runs and applied styles),
+  Query history (only query runs), and Style history (only applied style
+  changes). You can expand both the query and style to see the full Cypher or
+  GSS code.
+- Queries inside a collection can be expanded and collapsed by clicking on their
+  name.
+- When testing and trying out different functions in the GSS you can use
+  single-line (`// comment`) and multi-line (`/* comment */`) comments in the
+  GSS code editor without losing previous state.
+- Change the canvas color of the graph view with the new property
+  `background-color` in [`@ViewStyle`](/style-script/gss-graphstyle-directive.md).
+- Change the stack order of how nodes and edges are rendered in the graph view
+  with the property `z-index` in
+  [`@NodeStyle`](/style-script/gss-nodestyle-directive.md) and
+  [`@EdgeStyle`](/style-script/gss-edgestyle-directive.md) directives. It works
+  the same as the CSS z-index property.
+- Set up transparent colors with the [new GSS
+  functions](/style-script/gss-functions.md) `RGBA` and `HSLA`. You can also get
+  the transparency value with the function `Alpha`.
+- [New functions](/style-script/gss-functions.md) allow more customizations: `Sort`, `Coalesce`, `Reverse`,
   `IsMap`, `AsMap`, `Execute`, `Get`, `Set`, `Del`, `MapKeys`, `MapValues`,
   `AsIterator`, `IsIterator`, `Next`
-- Global and local variables make developing new styles easier:
-  • Variable graph is now available outside `@NodeStyle` and `@EdgeStyle` context
-  • Local variables can be defined with Define within `@NodeStyle` and `@EdgeStyle` context
-- Query collection can be expanded and collapsed by clicking on their name.
+- Global and local variables make developing new styles easier: 
+    • Variable graph is now available outside `@NodeStyle` and `@EdgeStyle` context 
+    • Local variables can be defined with `Define` within `@NodeStyle` and `@EdgeStyle` context
 - Memgraph Lab is now packaged as an RPM package and arm64 (M1 chip) for MacOS.
 
 ### Bug fixes
