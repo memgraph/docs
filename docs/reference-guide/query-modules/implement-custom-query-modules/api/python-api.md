@@ -147,9 +147,7 @@ Register `func` as a read-only batch procedure of the current module.
 
 `initializer` must define the same parameters as the main `func` function, and will receive the same parameters as `func`. The position of arguments and the type of arguments must be the same. 
 
-Otherwise, the same rules apply as in `read_proc`. Important to keep in mind is that any Memgraph resources can't be stored in `init` and during batching. All objects are after each call invalidated and referencing those will result in error.
-
-One more thing to keep in mind is that nodes, relationships or any other Memgraph types can't be stored as global variables. After `initializer` and each `func` call, every Memgraph related object is invalidated and can't be used later on.
+Otherwise, the same rules apply as in `read_proc`. It's important to keep in mind that no Memgraph resources can be stored in `init` and during batching. After `initializer` and each `func` call, every Memgraph-related object is invalidated and can't be used later on.
 
 ## mgp.add_batch_write_proc(func: Callable[…, mgp.Record], initializer: typing.Callable, cleanup: typing.Callable)
 

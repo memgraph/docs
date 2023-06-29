@@ -221,11 +221,11 @@ Similar to the regular `read` procedure, Memgraph also includes batched `read` p
 * `cleanup` function - function to close a stream, source file, etc.
 
 Since there are three functions, construct works as follows: 
-- `initialization` function must define to receive the same parameters in the same order as batching function including `mgp.ProcCtx` if defined as the first parameter
-- when calling procedure from the query, you need to call the `batching` function
+- `initialization` function must be defined in a way it receives the same parameters in the same order as batching function, including `mgp.ProcCtx` if it's defined as the first parameter
+- when calling the procedure from the query, you need to call the `batching` function
 - Memgraph calls `initialization` before the `batching` function 
 - `batching` function needs to return an empty result at some point, which signals the end of the stream
-- `cleanup` function is called at end of the stream
+- `cleanup` function is called at the end of the stream
 
 
 There is no decorator used to register batched read procedure, so use the `mgp` function `mgp.add_batch_read_proc('batch', 'init', 'cleanup')`
@@ -291,11 +291,11 @@ Similar to batched `read` procedures, you can define batched `write` procedures.
 * `cleanup` function - function to close a stream, source file, etc.
 
 Since there are three functions, construct works as follows: 
-- `initialization` function must define to receive the same parameters in the same order as batching function including `mgp.ProcCtx` if defined as the first parameter
-- when calling procedure from the query, you need to call the `batching` function
+- `initialization` function must be defined in a way it receives the same parameters in the same order as batching function, including `mgp.ProcCtx` if it's defined as the first parameter
+- when calling the procedure from the query, you need to call the `batching` function
 - Memgraph calls `initialization` before the `batching` function 
 - `batching` function needs to return an empty result at some point, which signals the end of the stream
-- `cleanup` function is called at end of the stream
+- `cleanup` function is called at the end of the stream
 
 There is no decorator used to register batched read procedure, so use the `mgp` function `mgp.add_batch_write_proc('batch', 'init', 'cleanup')`
 
