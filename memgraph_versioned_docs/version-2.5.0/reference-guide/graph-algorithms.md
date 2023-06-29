@@ -79,6 +79,16 @@ MATCH path=(n {id: 0})-[relationships:CloseTo *]->(m {id: 8})
 RETURN path,relationships;
 ```
 
+You can also list multiple relationship types and allow your algorithm to traverse across any of them.
+
+In the following example, the algorithm will traverse across any of the `CloseTo`, `Borders` or the `Inside` type
+of relationship: 
+
+```cypher
+MATCH path=(n {id: 0})-[relationships:CloseTo | :Borders | :Inside *]->(m {id: 8}) 
+RETURN path,relationships;
+```
+
 Be careful when using algorithms, especially DFS, without defining a direction.
 Depending on the size of the dataset, the execution of the query can cause a
 timeout. 
