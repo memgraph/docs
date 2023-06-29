@@ -9,17 +9,22 @@ sidebar_label: Changelog
 ### What's new
 
 - Now you can adjust the following settings:
-    - Code completion and automatic graph rendering limits
-    - The capacity of run history and its clearing
-    - The limit for visible logs
+  - Code completion and automatic graph rendering limits
+  - The capacity of run history and its clearing
+  - The limit for visible logs
+
+  <img src={require('./data/lab-270/settings.png').default} className={"imgBorder"} style={{marginBottom:'20px'}}/>
 - The new interfaces for managing saved styles enables searching and changing
   the default style in the Lab. The saved styles now also have a preview. 
-<!-- <img src={require('./data/lab-270/pick-a-style.png').default} className={"imgBorder"} style={{marginBottom:'20px'}}/> -->
+  <img src={require('./data/lab-270/styles.png').default} className={"imgBorder"} style={{marginBottom:'20px'}}/>
 - The run history now also tracks changes to the query, style, or both. You can
   also filter out records to show All (both queries runs and applied styles),
   Query history (only query runs), and Style history (only applied style
   changes). You can expand both the query and style to see the full Cypher or
   GSS code.
+  <img src={require('./data/lab-270/run_history.png').default} className={"imgBorder"} style={{marginBottom:'20px'}}/>
+  <img src={require('./data/lab-270/run_history_expand.png').default} className={"imgBorder"} style={{marginBottom:'20px'}}/>
+  <img src={require('./data/lab-270/run_history_queries.png').default} className={"imgBorder"} style={{marginBottom:'20px'}}/>
 - Queries inside a collection can be expanded and collapsed by clicking on their
   name.
 - When testing and trying out different functions in the GSS you can use
@@ -38,9 +43,11 @@ sidebar_label: Changelog
 - [New functions](/style-script/gss-functions.md) allow more customizations: `Sort`, `Coalesce`, `Reverse`,
   `IsMap`, `AsMap`, `Execute`, `Get`, `Set`, `Del`, `MapKeys`, `MapValues`,
   `AsIterator`, `IsIterator`, `Next`
-- Global and local variables make developing new styles easier: 
-    • Variable graph is now available outside `@NodeStyle` and `@EdgeStyle` context 
-    • Local variables can be defined with `Define` within `@NodeStyle` and `@EdgeStyle` context
+- [Global and local
+    variables](/memgraph-lab/graph-style-script-language#caching-results-for-faster-performance)
+    make developing new styles easier: • Variable graph is now available outside
+    `@NodeStyle` and `@EdgeStyle` context • Local variables can be defined with
+    `Define` within `@NodeStyle` and `@EdgeStyle` context
 - Memgraph Lab is now packaged as an RPM package and arm64 (M1 chip) for MacOS.
 
 ### Bug fixes
