@@ -31,7 +31,7 @@ sidebar_label: Changelog
   single-line (`// comment`) and multi-line (`/* comment */`) comments in the
   GSS code editor without losing previous state.
 - Change the canvas color of the graph view with the new property
-  `background-color` in [`@ViewStyle`](/style-script/gss-graphstyle-directive.md).
+  `background-color` in [`@ViewStyle`](/style-script/gss-viewstyle-directive.md).
 - Change the stack order of how nodes and edges are rendered in the graph view
   with the property `z-index` in
   [`@NodeStyle`](/style-script/gss-nodestyle-directive.md) and
