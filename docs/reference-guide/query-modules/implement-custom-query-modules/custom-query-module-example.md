@@ -297,10 +297,7 @@ Since there are three functions, construct works as follows:
 - `batching` function needs to return an empty result at some point, which signals the end of the stream
 - `cleanup` function is called at end of the stream
 
-
 There is no decorator used to register batched read procedure, but we use the `mgp` function `mgp.add_batch_write_proc('batch', 'init', 'cleanup')`
-
-
 
 
 ```python
