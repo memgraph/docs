@@ -31,9 +31,7 @@ referenced in such tutorials. The nodes in the graph represent the members while
 the relationships between them are of type `FRIENDS_WITH`. You can differentiate
 the nodes by using their unique `id` property.
 
-<img
-src="https://raw.githubusercontent.com/g-despot/images/master/karate_club.png"
-alt="Karate club" style={{height: 400}} />
+<img src={require('../data/tutorials/social-network-analysis/karate_club.png').default} width="400" />
 
 ## Import the dataset
 
