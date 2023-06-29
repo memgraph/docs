@@ -164,3 +164,11 @@ Examples:
 
 - `width-selected: 2` indicates that the width of the relationship will be 2
   pixels wide on mouse select event.
+
+### `z-index: number`
+
+Sets the stack order of an element, similar to the CSS `z-index`. The element with the
+highest `z-index` will be rendered on top of every other element.
+
+Example:
+- `z-index: 100` sets the element's z-index.
