@@ -143,7 +143,7 @@ Naturally, you may pass in different arguments.
 
 Register `func` as a read-only batch procedure of the current module.
 
-`func` represents a function that is invoked through OpenCypher. Through OpenCypher user invokes `func`. Memgraph invokes first the `initializer` function. After the `initializer` function, `func` is called until returns an empty result. Afterward, the `cleanup` function will be called, which can be used to clean up global resources. Only at that point is garbage collection invoked, so any dangling references to Python objects will be cleaned.
+`func` represents a function that is invoked through OpenCypher. Through OpenCypher user invokes `func`. Memgraph invokes first the `initializer` function. After the `initializer` function, `func` is called until it returns an empty result. Afterward, the `cleanup` function is called, which can be used to clean up global resources. Only at that point is garbage collection invoked, so any dangling references to Python objects will be cleaned.
 
 `initializer` must define the same parameters as the main `func` function, and will receive the same parameters as `func`. The position of arguments and the type of arguments must be the same. 
 
@@ -155,7 +155,7 @@ One more thing to keep in mind is that nodes, relationships or any other Memgrap
 
 Register `func` as a writeable batch procedure of the current module.
 
-For writeable procedure same rules apply as in read-only batched procedure considering parameters and order of calls to functions. 
+The same rules for parameters and order of calls to functions apply for a writeable procedure as for the read-only batched procedure. 
 
 ## mgp.function(func: Callable[[…]])
 

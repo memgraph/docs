@@ -215,10 +215,10 @@ def write_procedure(context: mgp.ProcCtx,
 ```
 ### Batched read procedures
 
-Similar to regular `read` and `write` procedures, we have `batched` `read` and `write` procedures. Batched procedures are very similar to regular procedures. The key difference is that batched procedures return results in batches, mostly to reduce memory consumption. For batched procedures, you need to define **three** functions:
+Similar to the regular `read` procedure, Memgraph also includes batched `read` procedure. Batched procedures are very similar to regular procedures. The key difference is that batched procedures return results in batches, mostly to reduce memory consumption. For batched procedures, you need to define **three** functions:
 * `batching` function - similar to the main function in regular procedures
-* `initialization` function - function to initialize stream, open source file, etc...
-* `cleanup` function - function to close a stream, source file, etc...
+* `initialization` function - function to initialize stream, open source file, etc.
+* `cleanup` function - function to close a stream, source file, etc.
 
 Since there are three functions, construct works as follows: 
 - `initialization` function must define to receive the same parameters in the same order as batching function including `mgp.ProcCtx` if defined as the first parameter
@@ -228,7 +228,7 @@ Since there are three functions, construct works as follows:
 - `cleanup` function is called at end of the stream
 
 
-There is no decorator used to register batched read procedure, but we use the `mgp` function `mgp.add_batch_read_proc('batch', 'init', 'cleanup')`
+There is no decorator used to register batched read procedure, so use the `mgp` function `mgp.add_batch_read_proc('batch', 'init', 'cleanup')`
 
 ```python
 mysql_dict = {}
@@ -287,8 +287,8 @@ def _name_row_cells(row_cells, column_names) -> Dict[str, Any]:
 
 Similar to batched `read` procedures, you can define batched `write` procedures. Batched procedures can return results in batches, mostly to reduce memory consumption. For batch `write` procedures like for batched `read` procedures you need to define **three** functions:
 * `batching` function - similar to the main function in regular procedures
-* `initialization` function - function to initialize stream, open source file, etc...
-* `cleanup` function - function to close a stream, source file, etc...
+* `initialization` function - function to initialize a stream, open source file, etc.
+* `cleanup` function - function to close a stream, source file, etc.
 
 Since there are three functions, construct works as follows: 
 - `initialization` function must define to receive the same parameters in the same order as batching function including `mgp.ProcCtx` if defined as the first parameter
@@ -297,7 +297,7 @@ Since there are three functions, construct works as follows:
 - `batching` function needs to return an empty result at some point, which signals the end of the stream
 - `cleanup` function is called at end of the stream
 
-There is no decorator used to register batched read procedure, but we use the `mgp` function `mgp.add_batch_write_proc('batch', 'init', 'cleanup')`
+There is no decorator used to register batched read procedure, so use the `mgp` function `mgp.add_batch_write_proc('batch', 'init', 'cleanup')`
 
 
 ```python
@@ -605,14 +605,16 @@ static void cleanup() {
 }
 ```
 
-
-The `batch` function receives the list of arguments (`args`) passed in the
+The `batch` function receives a list of arguments (`args`) passed in the
 query. The parameter `result` is used to fill in the resulting records of the
 procedure. Parameters `graph` and `memory` are context parameters of the
-procedure, and they are used in some parts of the provided C API. `batch`
-needs to return at some point empty `result` which signals that the `batch` procedure is done with execution and `cleanup` can be called. `init` doesn't receive `result` as it is only used for initialization. `init` function will receive same arguments which are registered and passed to `batch` function.
-Memgraph ensures to call `init` before the `batch` function, and `cleanup` at the end. The user invokes directly the `batch` function through OpenCypher.
-The passed in `memory` argument is only alive throughout the execution of
+procedure, and they are used in some parts of the provided C API. 
+
+At some point, `batch` needs to return an empty `result` to signal that the `batch` procedure is done with execution and `cleanup` can be called. `init` doesn't receive `result` as it is only used for initialization. `init` function will receive same arguments which are registered and passed to the `batch` function.
+
+Memgraph ensures to call `init` before the `batch` function and `cleanup` at the end. The user directly invokes the `batch` function through OpenCypher.
+
+The argument passed in `memory` is only alive throughout the execution of
 `mgp_init_module`, so you must not allocate any global resources with it.  Consequently, you may want to reset any global state or release global resources
 in the `cleanup` function. 
 
@@ -625,8 +627,7 @@ that can be invoked through Cypher. Even though the example has only one
 `procedure`, you can register multiple different procedures in a single module.
 
 Batch procedures are invoked using the `CALL <module>.<batch_procedure> ...` syntax. The
-`<module-name>` will correspond to the name of the shared library. Since we
-compile our example into `example.so`, then the module is called `example`.
+`<module-name>` will correspond to the name of the shared library. Since the example is complied into `example.so`, the module is called `example`.
 As mentioned, Memgraph ensures to call `init` before  `<batch_procedure>` and `cleanup` once `<batch_procedure>` signals end with an empty result.
 
 ```c
