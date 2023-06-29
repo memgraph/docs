@@ -4,14 +4,20 @@ title: Storage modes
 sidebar_label: Storage modes
 ---
 
-Memgraph supports two different storage modes:
+Memgraph supports three different storage modes:
 * `IN_MEMORY_TRANSACTIONAL` - the default database mode that favors
     strongly-consistent ACID transactions using WAL files and snapshots,
     but requires more time and resources during data import and analysis.
 * `IN_MEMORY_ANALYTICAL` - speeds up import and data analysis but offers no ACID
     guarantees besides manually created snapshots.
+* `ON_DISK_TRANSACTIONAL` - supports ACID properties in a same way as `IN_MEMORY_TRANSACTIONAL`
+    with the additional ability to store data on cheap media (e.g. HDD and SSD) with a lower
+    performance than other two storage modes. **Experimental**
+    
 
-You can switch between modes within the session using the following query:
+## Switching storage modes
+
+You can switch between in-memory modes within the session using the following query:
 
 ```cypher
 STORAGE MODE IN_MEMORY_{TRANSACTIONAL|ANALYTICAL};
@@ -25,6 +31,17 @@ warning message, so be sure to [set the log level to
 If you are running the Memgraph Enterprise Edition, you need to have
 [`STORAGE_MODE` permission](/reference-guide/auth-module.md) to change the
 storage mode.
+
+Switching from the in-memory storage mode to disk mode is allowed only when
+the database is empty and there is a single session active. The intention here
+is to allow switching to users only upon starting Memgraph, not later. Switching from
+disk mode to in-memory is forbidden since data may not fit into the memory.
+
+To switch to disk storage mode the following query can be used:
+
+```cypher
+STORAGE MODE ON_DISK_TRANSACTIONAL;
+```
 
 You can query the current storage mode using the following query:
 
@@ -61,6 +78,80 @@ When Memgraph starts creating a periodic snapshot, it is not possible to
 manually create a snapshot, until the periodic snapshot is created.
 
 Manual snapshots are created by running the `CREATE SNAPSHOT;` query.
+
+## On-disk transactional storage mode
+
+### Architecture
+
+Using disk as a physical storage allows users to save much more data than
+they can when using only RAM. As a background storage we use RocksDB to 
+serialize vertices and edges into key-value format. The architecture we used
+here is in academy called "larger than memory" since it enables in-memory
+databases to save more data than it fits into the main memory without having
+the performance overhead of buffer pool. All committed data is residing on
+the disk and the only thing that resided in the main memory are two caches,
+one for doing operations on main RocksDB instance and the second one for
+operations requiring the use of indices. The cache used here is our custom
+SkipList which allows for multithreaded execution.
+
+### MVCC
+Support for concurrent execution of transactions is implemented differently
+for on-disk storage than for in-memory. In the in-memory storage we rely on
+delta objects which allow us to get to the exact versions of data at the
+specific moment in time. Therefore, the in-memory storage uses pessimistic
+approach in a sense that it is immediately checked whether there is a conflict
+between two transactions. In on-disk storage, we use cache per transaction.
+This significantly simplifies management of objects since we don't have to
+think whether some object is valid or not. On the other hand, such design
+change requires moving from pessimistic to an optimistic approach for conflict
+resolution between transactions. This means that at the moment, conflict is
+checked at the transaction's commit time with the help of RocksDB's transaction
+support. This also implies that deltas are cleared after transaction ends so
+you can even get more efficient execution in the terms of memory. We still
+need deltas to fully support Cypher's semantic for write queries. Such design
+also simplifies the process of garbage collection since the we only need to take
+care about data on disk.
+
+### Isolation level
+The only isolation level we support for disk storage is snapshot isolation. 
+The first reason is that we believe it should be the default level for most
+of the applications relying on the database. The second is that it simplifies
+query's execution flow since there is no need to go on disk until the transa-
+ction commits.
+
+### Indices
+
+
+### Constraints
+
+
+ Vertices and edges 
+are saved in the same RocksDB instance and we distinguish them using the
+concept called "handles". We use one RocksDB instance for supporting label
+indices and another one for label-property indices. There is also an instance
+used for implementing unique constraints. Three other instances are used
+only to ensure that the context is saved when the database is closed. There
+are two reasons why we use separate instance for indices, constraints and a 
+main storage. The first is that each of them logically enables some kind of
+functionality which requires copying data. Specifically, indices essentially
+speed up reading of nodes with higher memory usage while constraints restrict
+the data that can be saved. Currently, the indices don't work optimally and
+there is a lot of space for improvement by using Bloom and Ribbon filters.
+
+Larger than memory database workload.
+
+### Data formats
+
+### Durability
+
+### Memory control
+- when will memory be reduced for disk and when for main-memory storage.
+- how we implemented compaction
+
+
+### Replication
+Replication for disk storage isn't yet supported.
+
 
 ## Analytical storage mode
 
@@ -118,3 +209,6 @@ Manual snapshots are created by running the `CREATE SNAPSHOT;` query. When the
 query is run in the `IN_MEMORY_ANALYTICAL` mode, Memgraph guarantees that it
 will be **the only** transaction present in the system, and all the other
 transactions will wait until the snapshot is created to ensure its validity.
+
+## On-disk transactional storage
+
