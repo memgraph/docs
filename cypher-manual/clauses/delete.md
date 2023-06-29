@@ -16,11 +16,7 @@ The `DELETE` clause is used to delete nodes and relationships from the database.
 The following examples are executed with this data et. You can create this dataset
 locally by executing the queries at the end of the page: [Dataset queries](#data-set-queries).
 
-<img
-src="https://raw.githubusercontent.com/g-despot/images/master/data_set.png"
-alt="Data set"
-style={{height: 380}}
-/>
+![Data set](../data/clauses/data_set.png)
 
 ## 1. Deleting a node
 
