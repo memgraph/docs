@@ -33,9 +33,9 @@ A module that contains procedures describing graphs on a meta-level.
 
 ### `mysql(table_or_sql, config, config_path, params)`
 
-With `migrate.mysql` you can access MySQL and execute queries. The result table is converted into a stream,
+With `migrate.mysql` you can access a MySQL database and execute queries. The result table is converted into a stream,
 and returned rows can be used to create or create graph structures. `config` must be at least empty map.
-If `config_path` is passed, every key,value pair from JSON file will overwrite any values in `config` file.
+If a `config_path` to a JSON file is passed, every key,value pair from the file will overwrite any values in the `config` file.
 
 
 #### Input:
