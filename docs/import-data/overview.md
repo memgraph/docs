@@ -61,7 +61,7 @@ You can migrate data from a [**MySQL**](/import-data/migrate/mysql.md) or
 [**`mgmigrate`** tool](https://github.com/memgraph/mgmigrate).
 
 Alternatively, you can use the [`migration`
-module](/mage/query-modules/python/migrate.md) from the [MAGE graph
+module](/mage/query-modules/python/migrate) from the [MAGE graph
 library](/mage) which allows you to access data from a MySQL database, an SQL
 server or an Oracle database. 
 
