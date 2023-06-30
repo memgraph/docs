@@ -35,8 +35,7 @@ A module that contains procedures describing graphs on a meta-level.
 ### `mysql(table_or_sql, config, config_path, params)`
 
 With `migrate.mysql` you can access MySQL and execute queries. The result table is converted into a stream,
-and returned rows can be used to create or create graph structures. `config` must be at least empty map.
-If `config_path` is passed, every key,value pair from JSON file will overwrite any values in `config` file.
+and returned rows can be used to create graph structures. The value of the `config` parameter must be at least an empty map. If `config_path` is passed, every key,value pair from JSON file will overwrite any values in `config` file.
 
 
 #### Input:
@@ -64,9 +63,7 @@ RETURN count(row);
 
 ### `sql_server(table_or_sql, config, config_path, params)`
 
-With `migrate.sql_server` you can access SQL Server and execute queries. The result table is converted into a stream,
-and returned rows can be used to create or create graph structures. `config` must be at least empty map.
-If `config_path` is passed, every key,value pair from JSON file will overwrite any values in `config` file.
+With `migrate.sql_server` you can access SQL Server and execute queries. The result table is converted into a stream, and returned rows can be used to create graph structures. The value of the `config` parameter must be at least an empty map. If `config_path` is passed, every key,value pair from JSON file will overwrite any values in `config` file.
 
 
 #### Input:
@@ -94,10 +91,7 @@ RETURN row;
 
 ### `oracle_db(table_or_sql, config, config_path, params)`
 
-With `migrate.oracle_db` you can access Oracle DB and execute queries. The result table is converted into a stream,
-and returned rows can be used to create or create graph structures. `config` must be at least empty map.
-If `config_path` is passed, every key,value pair from JSON file will overwrite any values in `config` file.
-
+With `migrate.oracle_db` you can access Oracle DB and execute queries. The result table is converted into a stream, and returned rows can be used to create graph structures. The value of the `config` parameter must be at least an empty map. If `config_path` is passed, every key,value pair from JSON file will overwrite any values in `config` file.
 
 #### Input:
 
