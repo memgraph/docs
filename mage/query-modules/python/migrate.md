@@ -31,7 +31,6 @@ A module that contains procedures describing graphs on a meta-level.
 
 ## Procedures
 
-
 ### `mysql(table_or_sql, config, config_path, params)`
 
 With `migrate.mysql` you can access MySQL and execute queries. The result table is converted into a stream,
@@ -42,9 +41,9 @@ If `config_path` is passed, every key,value pair from JSON file will overwrite a
 #### Input:
 
 * `table_or_sql: str` ➡ Table name or an SQL query
-* `config: mgp.Map` ➡ Connection configuration parameters (as in mysql.connector.connect),
-* `config_path` ➡ Path to the JSON file containing configuration parameters (as in mysql.connector.connect)
-* `params: mgp.Nullable[mgp.Any] (default=None)` ➡ Optionally, queries may be parameterized. In that case, `params` provides parameter values
+* `config: mgp.Map` ➡ Connection configuration parameters (as in `mysql.connector.connect`)
+* `config_path` ➡ Path to a JSON file containing configuration parameters (as in `mysql.connector.connect`)
+* `params: mgp.Nullable[mgp.Any] (default=None)` ➡ Optionally, queries can be parameterized. In that case, `params` provides parameter values
     
 
 #### Output:
@@ -68,15 +67,13 @@ With `migrate.sql_server` you can access SQL Server and execute queries. The res
 and returned rows can be used to create or create graph structures. `config` must be at least empty map.
 If `config_path` is passed, every key,value pair from JSON file will overwrite any values in `config` file.
 
-
 #### Input:
 
 * `table_or_sql: str` ➡ Table name or an SQL query
-* `config: mgp.Map` ➡ Connection configuration parameters (as in pyodbc.connect),
-* `config_path` ➡ Path to the JSON file containing configuration parameters (as in pyodbc.connect)
-* `params: mgp.Nullable[mgp.Any] (default=None)` ➡ Optionally, queries may be parameterized. In that case, `params` provides parameter values
+* `config: mgp.Map` ➡ Connection configuration parameters (as in `pyodbc.connect`)
+* `config_path` ➡ Path to the JSON file containing configuration parameters (as in `pyodbc.connect`)
+* `params: mgp.Nullable[mgp.Any] (default=None)` ➡ Optionally, queries can be parameterized. In that case, `params` provides parameter values
     
-
 #### Output:
 
 * `row: mgp.Map`: The result table as a stream of rows
@@ -98,7 +95,6 @@ With `migrate.oracle_db` you can access Oracle DB and execute queries. The resul
 and returned rows can be used to create or create graph structures. `config` must be at least empty map.
 If `config_path` is passed, every key,value pair from JSON file will overwrite any values in `config` file.
 
-
 #### Input:
 
 * `table_or_sql: str` ➡ Table name or an SQL query
@@ -106,13 +102,12 @@ If `config_path` is passed, every key,value pair from JSON file will overwrite a
 * `config_path` ➡ Path to the JSON file containing configuration parameters (as in oracledb.connect)
 * `params: mgp.Nullable[mgp.Any] (default=None)` ➡ Optionally, queries may be parameterized. In that case, `params` provides parameter values
     
-
 #### Output:
 
 * `row: mgp.Map`: The result table as a stream of rows
 
 #### Usage:
-Get first 5000 rows from database:
+Get the first 5000 rows from a database:
 ```cypher
 CALL migrate.oracle_db('example_table', {user:'memgraph',
         password:'password',
