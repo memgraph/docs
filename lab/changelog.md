@@ -45,9 +45,11 @@ sidebar_label: Changelog
   `AsIterator`, `IsIterator`, `Next`
 - [Global and local
     variables](/memgraph-lab/graph-style-script-language#caching-results-for-faster-performance)
-    make developing new styles easier: • Variable graph is now available outside
-    `@NodeStyle` and `@EdgeStyle` context • Local variables can be defined with
-    `Define` within `@NodeStyle` and `@EdgeStyle` context
+    make developing new styles easier:
+  - Variable graph is now available outside `@NodeStyle` and `@EdgeStyle`
+    context
+  - Local variables can be defined with `Define` within `@NodeStyle` and
+    `@EdgeStyle` context
 - Memgraph Lab is now packaged as an RPM package and arm64 (M1 chip) for MacOS.
 
 ### Bug fixes
