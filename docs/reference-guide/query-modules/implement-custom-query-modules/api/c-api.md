@@ -46,6 +46,8 @@ Memgraph in order to use them.
 | -------------- | -------------- |
 | enum| **[mgp_value_type](#enum-mgp-value-type)** { MGP_VALUE_TYPE_NULL, MGP_VALUE_TYPE_BOOL, MGP_VALUE_TYPE_INT, MGP_VALUE_TYPE_DOUBLE, MGP_VALUE_TYPE_STRING, MGP_VALUE_TYPE_LIST, MGP_VALUE_TYPE_MAP, MGP_VALUE_TYPE_VERTEX, MGP_VALUE_TYPE_EDGE, MGP_VALUE_TYPE_PATH, MGP_VALUE_TYPE_DATE, MGP_VALUE_TYPE_LOCAL_TIME, MGP_VALUE_TYPE_LOCAL_DATE_TIME, MGP_VALUE_TYPE_DURATION}<br/>All available types that can be stored in a mgp_value.  |
 | typedef void(*)(struct mgp_list *, struct mgp_graph *, struct mgp_result *, struct mgp_memory *) | **[mgp_proc_cb](#typedef-mgp-proc-cb)** <br/>Entry-point for a query module read procedure, invoked through openCypher.  |
+| typedef void(*)(struct mgp_list *, struct mgp_graph *, struct mgp_memory *) | **[mgp_proc_initializer](#typedef-mgp-proc-initializer)** <br/>Initialization point for a query module read procedure, invoked before procedure.  |
+| typedef void(*)() | **[mgp_proc_cleanup](#typedef-mgp-proc-cleanup)** <br/>Cleanup for a query module read procedure  |
 | typedef void(*)(struct mgp_messages *, struct mgp_graph *, struct mgp_result *, struct mgp_memory *) | **[mgp_trans_cb](#typedef-mgp-trans-cb)** <br/>Entry-point for a module transformation, invoked through a stream transformation.  |
 
 ## Functions
@@ -249,6 +251,8 @@ Memgraph in order to use them.
 | enum [mgp_error](#variable-mgp-error) | **[mgp_type_nullable](#function-mgp-type-nullable)**(struct mgp_type * type, struct mgp_type ** result)<br/>Build a type representing either a `null` value or a value of given `type`.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_module_add_read_procedure](#function-mgp-module-add-read-procedure)**(struct mgp_module * module, const char * name, [mgp_proc_cb](#typedef-mgp-proc-cb) cb, struct mgp_proc ** result)<br/>Register a read-only procedure to a module.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_module_add_write_procedure](#function-mgp-module-add-write-procedure)**(struct mgp_module * module, const char * name, [mgp_proc_cb](#typedef-mgp-proc-cb) cb, struct mgp_proc ** result)<br/>Register a writeable procedure to a module.  |
+| enum [mgp_error](#variable-mgp-error) | **[mgp_module_add_batch_read_procedure](#function-mgp-module-add-read-procedure)**(struct mgp_module * module, const char * name, [mgp_proc_cb](#typedef-mgp-proc-cb) cb, [mgp_proc_initializer](#typedef-mgp-proc-initializer) initializer, [mgp_proc_cleanup](#typedef-mgp-proc-cleanup) cleanup, struct mgp_proc ** result)<br/>Register a read-only procedure to a module.  |
+| enum [mgp_error](#variable-mgp-error) | **[mgp_module_add_batch_write_procedure](#function-mgp-module-add-write-procedure)**(struct mgp_module * module, const char * name, [mgp_proc_cb](#typedef-mgp-proc-cb) cb, [mgp_proc_initializer](#typedef-mgp-proc-initializer) initializer, [mgp_proc_cleanup](#typedef-mgp-proc-cleanup) cleanup, struct mgp_proc ** result)<br/>Register a writeable procedure to a module.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_proc_add_arg](#function-mgp-proc-add-arg)**(struct mgp_proc * proc, const char * name, struct mgp_type * type)<br/>Add a required argument to a procedure.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_proc_add_opt_arg](#function-mgp-proc-add-opt-arg)**(struct mgp_proc * proc, const char * name, struct mgp_type * type, struct mgp_value * default_value)<br/>Add an optional argument with a default value to a procedure.  |
 | enum [mgp_error](#variable-mgp-error) | **[mgp_proc_add_result](#function-mgp-proc-add-result)**(struct mgp_proc * proc, const char * name, struct mgp_type * type)<br/>Add a result field to a procedure.  |
@@ -554,6 +558,8 @@ All available types that can be stored in a mgp_value.
 | MGP_VALUE_TYPE_DURATION |
 
 ### typedef mgp_proc_cb {#typedef-mgp-proc-cb}
+### typedef mgp_proc_initializer {#typedef-mgp-proc-initializer}
+### typedef mgp_proc_cleanup {#typedef-mgp-proc-cleanup}
 
 ```cpp
 typedef void(* mgp_proc_cb) (struct mgp_list *, struct mgp_graph *, struct mgp_result *, struct mgp_memory *);
