@@ -33,7 +33,8 @@ import VideoBySide from '@site/src/components/VideoBySide';
   and pass metadata via the client. In Memgraph, the metadata is visible in the
   output of the `SHOW TRANSACTIONS;` query.
   [#945](https://github.com/memgraph/memgraph/pull/945) 
-- You can now batch results from Python and C++ procedures.
+- You can now create custom batch procedures in Python and C++ that process data
+  in batches, thus consuming less memory.  
 [#964](https://github.com/memgraph/memgraph/pull/964)
 - The `ANALYZE GRAPH;` query now includes information about the degree of all
   nodes to enhance the MERGE optimizations on supernodes.
