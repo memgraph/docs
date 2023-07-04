@@ -29,9 +29,9 @@ import VideoBySide from '@site/src/components/VideoBySide';
 - You can now use `mgp::Type::Any` while developing a custom query procedure
   with the C++ API to specify that the argument of the procedure can be of any
   type. [#982](https://github.com/memgraph/memgraph/pull/982)
-- When you need to differentiate many different transactions, you can now define
-  and pass metadata via the client. In Memgraph, the metadata is visible in the
-  output of the `SHOW TRANSACTIONS;` query.
+- When you need to differentiate transactions, you can now define and pass
+  transaction metadata via the client and check it in Memgraph by running the
+  `SHOW TRANSACTIONS;` query.
   [#945](https://github.com/memgraph/memgraph/pull/945) 
 - You can now create custom batch procedures in Python and C++ that process data
   in batches, thus consuming less memory.  
