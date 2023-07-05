@@ -9,8 +9,7 @@ sidebar_label: Changelog
 ### Bug fixes
 
 - Bug that would allow multiple styles to be the default has been fixed. 
-- The System Default Style now has a value set for background-color to revert
-  the background color to white. 
+- The System Default Style now has `background-color` set to white.
 - Queries selected in the Query Editor now execute as expected. 
 - Creating and editing a query module as well as selecting a transformation
   module in the Streams section now work as expected. 
