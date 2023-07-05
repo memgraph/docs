@@ -4,6 +4,18 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## Lab v2.7.1 - Jul 05, 2023
+
+### Bug fixes
+
+- Bug that would allow multiple styles to be the default has been fixed. 
+- The System Default Style now has a value set for background-color to revert
+  the background color to white. 
+- Queries selected in the Query Editor now execute as expected. 
+- Creating and editing a query module as well as selecting a transformation
+  module in the Streams section now work as expected. 
+- All links are now linked with appropriate external resources. 
+
 ## Lab v2.7.0 - Jun 28, 2023
 
 ### What's new
