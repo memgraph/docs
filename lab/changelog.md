@@ -6,6 +6,12 @@ sidebar_label: Changelog
 
 ## Lab v2.7.1 - Jul 05, 2023
 
+### Improvements
+
+- System Default style has been renamed to System Style. 
+- If you run a query that has errors in the Graph Style Script code you can
+  decide to run it with the System Style. 
+
 ### Bug fixes
 
 - Bug that would allow multiple styles to be the default has been fixed. 
@@ -13,7 +19,10 @@ sidebar_label: Changelog
 - Queries selected in the Query Editor now execute as expected. 
 - Creating and editing a query module as well as selecting a transformation
   module in the Streams section now work as expected. 
-- All links are now linked with appropriate external resources. 
+- All links are now linked with appropriate external resources.
+- The pop-up window in the Run History that allows rerunning the query now
+  closes once an option is selected.
+
 
 ## Lab v2.7.0 - Jun 28, 2023
 
