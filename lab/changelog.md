@@ -9,8 +9,8 @@ sidebar_label: Changelog
 ### Improvements
 
 - System Default style has been renamed to System Style. 
-- If you run a query that has errors in the Graph Style Script code you can
-  decide to run it with the System Style. 
+- If you run a query that has errors in the Graph Style Script code, you can
+  decide to run it using the System Style. 
 
 ### Bug fixes
 
