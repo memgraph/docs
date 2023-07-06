@@ -38,9 +38,10 @@ Docker image that doesn't include MAGE - the graph algorithms and modules
 library. The tag includes only `mamgraph` and `lab` keywords, for example:
 `2.7.1-memgraph2.7.0-lab2.6.0`.
 
-If you already have a running Memgraph database instance and you want to install
-Memgraph Lab as a desktop application, check out the installation instructions
-for [Windows](/memgraph-lab/installation/windows),
+If you already have a running Memgraph database instance you can access the Lab
+web application at http://lab.memgraph.com/, and if you want to install Memgraph
+Lab as a desktop application, check out the installation instructions for
+[Windows](/memgraph-lab/installation/windows),
 [macOS](/memgraph-lab/installation/macos) and
 [Linux](/memgraph-lab/installation/linux).
 
