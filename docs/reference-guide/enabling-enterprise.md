@@ -14,8 +14,10 @@ After getting your license key, set the `organization.name` to the same
 organization name you used for the license key, and the `enterprise.license` to
 the license key you received by running the following queries: 
 
+```
 SET DATABASE SETTING 'organization.name' TO 'Organzation';
 SET DATABASE SETTING 'enterprise.license' TO 'License';
+```
 
 To check the set values run: 
 
