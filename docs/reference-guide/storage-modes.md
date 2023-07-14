@@ -13,7 +13,7 @@ Memgraph supports three different storage modes:
 * `ON_DISK_TRANSACTIONAL` - supports ACID properties in a same way as `IN_MEMORY_TRANSACTIONAL`
     with the additional ability to store data on cheap media (e.g. HDD and SSD) with a lower
     performance than other two storage modes. **Experimental**
-    
+
 
 ## Switching storage modes
 
@@ -84,7 +84,7 @@ Manual snapshots are created by running the `CREATE SNAPSHOT;` query.
 ### Architecture
 
 Using disk as a physical storage allows users to save much more data than
-they can when using only RAM. As a background storage we use RocksDB to 
+they can when using only RAM. As a background storage we use RocksDB to
 serialize vertices and edges into key-value format. The architecture we used
 here is in academy called "larger than memory" since it enables in-memory
 databases to save more data than it fits into the main memory without having
@@ -109,29 +109,31 @@ checked at the transaction's commit time with the help of RocksDB's transaction
 support. This also implies that deltas are cleared after transaction ends so
 you can even get more efficient execution in the terms of memory. We still
 need deltas to fully support Cypher's semantic for write queries. Such design
-also simplifies the process of garbage collection since the we only need to take
+also simplifies the process of garbage collection since then we only need to take
 care about data on disk.
 
 ### Isolation level
-The only isolation level we support for disk storage is snapshot isolation. 
+The only isolation level we support for disk storage is snapshot isolation.
 The first reason is that we believe it should be the default level for most
 of the applications relying on the database. The second is that it simplifies
 query's execution flow since there is no need to go on disk until the transa-
 ction commits.
 
 ### Indices
-
+Disk storage support both label and label-property indices.
+They are stored in different RocksDB instances as key-value pairs.
+Memgraph loads whole index to memory when user access vertex using index.
 
 ### Constraints
 
 
- Vertices and edges 
+Vertices and edges
 are saved in the same RocksDB instance and we distinguish them using the
 concept called "handles". We use one RocksDB instance for supporting label
 indices and another one for label-property indices. There is also an instance
 used for implementing unique constraints. Three other instances are used
 only to ensure that the context is saved when the database is closed. There
-are two reasons why we use separate instance for indices, constraints and a 
+are two reasons why we use separate instance for indices, constraints and a
 main storage. The first is that each of them logically enables some kind of
 functionality which requires copying data. Specifically, indices essentially
 speed up reading of nodes with higher memory usage while constraints restrict
@@ -142,7 +144,31 @@ Larger than memory database workload.
 
 ### Data formats
 
+Vertex format for main disk storage:
+Key - `label1, label2, ... | vertex gid`
+Value - `property1, property2`
+
+Edge format for main disk storage:
+Key - `from vertex gid | to vertex gid | 0 | edge type | edge gid`
+Value - `property1, property2`
+`0` is a place holder for edge direction in future.
+
+Format for label index on disk:
+Key - `indexing label | vertex gid`
+Value - `label1_id, label2_id, ... | property1, property2, ...`
+Value does not contain `indexing label`.
+
+Format for label-property index on disk:
+Key - `indexing label | indexing property | vertex gid`
+Value - `label1_id, label2_id, ... | property1, property2, ...`
+Value does not contain `indexing label`.
+
 ### Durability
+
+For on-disk storage RocksDB has its own WAL files and is responsible for durability.
+Memgraph confirms COMMIT only if write to RocksDB was successful.
+
+For in-memory storages Memgraph has it's own WAL files to which deltas (changes) are written.
 
 ### Memory control
 - when will memory be reduced for disk and when for main-memory storage.
@@ -173,7 +199,7 @@ can take advantage of the low memory costs of the analytical mode to run
 analytical queries that will not change the data, but be aware that no backup is
 created automatically, and there are no ACID guarantees besides manually created
 snapshots. There are no `WAL` files created nor periodic snapshots. Users
-**can** create a snapshot manually. 
+**can** create a snapshot manually.
 
 ### Transactions
 
