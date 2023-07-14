@@ -12,7 +12,7 @@ directives. GSS files are a sequence of expressions and directives.
 Expressions are used to combine values to create new values using functions. For
 example, the expression:
 
-```
+```cpp
 Add(2, 5)
   -> 7
 ```
@@ -30,7 +30,7 @@ applications. Literal expressions exist for `Color`s, `Number`s and `String`s.
 
 This is a literal expression for `String`s.
 
-```
+```cpp
 "Hello"
   -> Hello
 ```
@@ -45,7 +45,7 @@ and double quotes can be escaped in strings using \\ (backslash).
 
 These are literal expressions for `Number`s.
 
-```
+```cpp
 123
   -> 123
 3.14159
@@ -55,7 +55,7 @@ These are literal expressions for `Number`s.
 Literal expressions for colors are hex strings starting with '#'. This is a
 literal expression for the color red.
 
-```
+```cpp
 #ff0000
   -> #ff0000
 ```
@@ -66,7 +66,7 @@ case or upper case letters of the English alphabet and apart from those can
 contain digits and the following characters: -, \_. Names can be defined using
 the `Define` function.
 
-```
+```cpp
 Define(superhero, "Iron Man")
 superhero
   -> Iron Man
@@ -80,7 +80,7 @@ There are many built-in names that are bound to useful values. Most used are
 boolean values which are bound to `True` and `False` and null value which is
 bound to `Null`. Also, all the CSS web colors are bound to their names.
 
-```
+```cpp
 dodgerblue
   -> #1e90ff
 forestgreen
@@ -90,7 +90,7 @@ forestgreen
 The third type of expressions are function application expressions. A function
 can be applied to the list of expressions (arguments) in the following way.
 
-```
+```cpp
 Concat("Agents", " ", "of", " ", "S.H.I.E.L.D.")
   -> Agents of S.H.I.E.L.D.
 ```
@@ -101,7 +101,7 @@ to produce their concatenation. Any expression can be an argument.
 Not all expressions have to be evaluated. For example, when calling `If`
 function one argument will not be evaluated.
 
-```
+```cpp
 Define(mood, "happy")
 Define(name, "Happy Hogan")
 If(Equals(mood, "happy"),
@@ -118,7 +118,7 @@ interested in their names and not values. For example, when creating a new
 function argument names aren't evaluated, but are remembered to be later bound
 to the function arguments when the function is called.
 
-```
+```cpp
 Define(square, Function(x, Mul(x, x)))
 square(2)
   -> 4
@@ -161,7 +161,7 @@ Graph Style Script currently has four directives:
 An example of a directive is `@NodeStyle` directive which can be used to specify
 style properties of a graph node.
 
-```
+```cpp
 @NodeStyle {
   border-width: 2
   color: #abcdef
@@ -184,7 +184,7 @@ labels).
 Here is an example of a `@NodeStyle` directive that is applied to all graph
 nodes with the label superhero:
 
-```
+```cpp
 @NodeStyle HasLabel(node, vehicle) {
   label: Format("{}, horsepower: {}",
                 Property(node, "model"),
@@ -196,7 +196,7 @@ The predicate can be any expression that returns a value of type `Boolean`. It
 should depend on `node`, because if it doesn't, it will either be applied to all
 nodes or to no nodes.
 
-```
+```cpp
 @NodeStyle And(HasProperty(node, "name"),
                Equals(Property(node, "name"), "Tony Stark")) {
   color: gold
@@ -241,7 +241,7 @@ Similar to `@NodeStyle` and `@EdgeStyle`, `@ViewStyle` has a built-in variable
 An example below shows a general directive style definition and a directive where
 style properties will only be applied if there are more than 10 nodes in the graph.
 
-```
+```cpp
 @ViewStyle {
   collision-radius: 15
   physics-enabled: True
@@ -304,7 +304,7 @@ variable `graph` which can be used for directive filter or property assignment.
 An example below shows a general directive style definition and a directive where
 style properties will be only applied if there are more than 10 nodes in the graph.
 
-```
+```cpp
 @ViewStyle {
   view: "map"
 }
@@ -370,13 +370,17 @@ directives.
 
 For example:
 
-```
+```cpp
+// These are the global variables
 Define(square, Function(x, Mul(x, x)))
 Define(maxAllowedDebt, 10000)
 
 @NodeStyle HasLabel(node, "BankUser") {
-  size: square(Property(node, "debt"))
-  color: If(Greater(Property(node, "debt"), maxAllowedDebt),
+  // This is a local variable
+  Define(nodeDebt, Property(node, "debt"))
+
+  size: square(nodeDebt)
+  color: If(Greater(nodeDebt, maxAllowedDebt),
             red,
             lightblue)
 }

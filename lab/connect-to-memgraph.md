@@ -13,18 +13,19 @@ Before you proceed with the guide, make sure that you have either:
 - Installed [**Memgraph Platform**](/memgraph/installation) and now have a
   running database instance and Memgraph Lab is running within the browser on
   `http://localhost:3000`, or
-- Installed [**MemgraphDB**](/memgraph/installation) and [**Memgraph
-  Lab**](/memgraph-lab/installation) and now have a running database instance
-  and the Memgraph Lab desktop application
+- Installed [**MemgraphDB**](/memgraph/installation) and a running database
+  instance, and either an installed [**Memgraph
+  Lab**](/memgraph-lab/installation) desktop application or access to Memgraph
+  Lab web application at http://lab.memgraph.com/
 
 ## Connecting to Memgraph
 
 Make sure that Memgraph is running and open Memgraph Lab. If you are starting
-with a fresh database instance, you don't have to change any of the options.
+with a fresh database instance:
 
 1. Leave the `Username` and `Password` fields **empty**.
 2. The `Host` field can be either **`localhost`**, **`127.0.0.1`** or
-   **`0.0.0.0`**.
+   **`0.0.0.0`**, or change it appropriately. 
 3. The `Port` field should be **`7687`**. Every Memgraph instance is listening
    on this port by default.
 4. The `Encrypted` option should be **disabled** and display `SSL Off` by

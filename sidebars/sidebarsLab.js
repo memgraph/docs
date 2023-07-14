@@ -26,6 +26,8 @@ module.exports = {
             "style-script/gss-colors",
             "style-script/gss-functions",
             "style-script/gss-variables",
+            "style-script/gss-viewstyle-directive",
+            "style-script/gss-viewstyle-map-directive",
             "style-script/gss-edgestyle-directive",
             "style-script/gss-nodestyle-directive",
           ]

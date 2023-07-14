@@ -15,11 +15,7 @@ The `WITH` is used to chain together parts of a query, piping the results from o
 The following examples are executed with this dataset. You can create this dataset
 locally by executing the queries at the end of the page: [Dataset queries](#data-set-queries).
 
-<img
-src="https://raw.githubusercontent.com/g-despot/images/master/data_set.png"
-alt="Data set"
-style={{height: 380}}
-/>
+![Data set](../data/clauses/data_set.png)
 
 ## 1. Filter on aggregate functions
 
