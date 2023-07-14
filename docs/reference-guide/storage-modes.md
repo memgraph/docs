@@ -154,13 +154,19 @@ Value - `property1, property2`
 `0` is a place holder for edge direction in future.
 
 Format for label index on disk:
+
 Key - `indexing label | vertex gid`
+
 Value - `label1_id, label2_id, ... | property1, property2, ...`
+
 Value does not contain `indexing label`.
 
 Format for label-property index on disk:
+
 Key - `indexing label | indexing property | vertex gid`
+
 Value - `label1_id, label2_id, ... | property1, property2, ...`
+
 Value does not contain `indexing label`.
 
 ### Durability
