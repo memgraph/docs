@@ -219,16 +219,22 @@ SET <scope> TRANSACTION ISOLATION LEVEL <isolation_level>
 
 ## Storage modes
 
-Memgraph can work in `IN_MEMORY_ANALYTICAL` or `IN_MEMORY_TRANSACTIONAL`
-[storage mode](/reference-guide/storage-modes.md). `IN_MEMORY_TRANSACTIONAL` is
-the default mode in which Memgraph runs on startup.
+Memgraph can work in `IN_MEMORY_ANALYTICAL`, `IN_MEMORY_TRANSACTIONAL` or
+`ON_DISK_TRANSACTIONAL` [storage mode](/reference-guide/storage-modes.md).
+`IN_MEMORY_TRANSACTIONAL` is the default mode in which Memgraph runs on startup.
 
 `IN_MEMORY_TRANSACTIONAL` mode offers all mentioned isolation levels and all
 ACID guarantees. `IN_MEMORY_ANALYTICAL` offers no isolation levels and no ACID
 guarantees. Multiple transactions can write data to Memgraph simultaneously. One
 transaction can therefore see all the changes from other transactions.
 
-There can't be any active transactions if you want to switch from one mode to
-another. Memgraph will log a warning message if it finds any active
+`ON_DISK_TRANSACTIONAL` storage mode uses only snapshot isolation. 
+
+There can't be any active transactions if you want to switch from one in-memory
+mode to another. Memgraph will log a warning message if it finds any active
 transactions, so set the log level to `WARNING` to see them. No other
 transactions will take place during the switch between modes.
+
+When changing the storage mode to on-disk, there should be only one active
+session and the database must be empty. The database also needs to be empty if
+you want to change the storage mode from on-disk to in-memory.

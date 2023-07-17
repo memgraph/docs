@@ -41,7 +41,10 @@ STORAGE MODE ON_DISK_TRANSACTIONAL;
 ```
 
 It is forbidden to change the storage mode from `ON_DISK_TRANSACTIONAL` to any
-of the in-memory storage modes as the data might not fit in the RAM. 
+of the in-memory storage modes while there is data in the database as it might
+not fit in the RAM. To change the storage mode to any of the in-memory storages,
+empty the instance and restart it. An empty database will start in the default
+storage mode (in-memory transactional).
 
 If you are running the Memgraph Enterprise Edition, you need to have
 [`STORAGE_MODE` permission](/reference-guide/auth-module.md) to change the
@@ -52,6 +55,11 @@ You can check the current storage mode using the following query:
 ```cypher
 SHOW STORAGE INFO;
 ```
+
+An empty instance will always restart in in-memory transactional storage mode.
+Upon restart, a non-empty instance in the on-disk storage mode will not change
+storage mode, but the instance in an in-memory analytical storage mode will revert
+to the default in-memory transactional storage mode. 
 
 ## In-memory transactional storage mode (default)
 
@@ -191,10 +199,10 @@ need to go on disk until the commit of the transaction.
 
 ### Indices
 
-Disk-storage supports both label and label-property indices. They are stored in separate
-RocksDB instances as key-value pairs so that the access to the data is faster. Whenever
-the indexed vertex is accessed, it is put into the separate in-memory cache so that
-the reading speed is maximized.
+The on-disk storage mode supports both label and label-property indices. They
+are stored in separate RocksDB instances as key-value pairs so that the access
+to the data is faster. Whenever the indexed node is accessed, it's stored into a
+separate in-memory cache to maximize the reading speed.
 
 ### Constraints
 
@@ -236,15 +244,15 @@ Value does not contain `indexing label`.
 
 ### Durability
 
-In the on-disk storage mode, durability is supported by RocksDB since it has it
-keeps its own own
+In the on-disk storage mode, durability is supported by RocksDB since it keeps
+its own
 [WAL](https://github.com/facebook/rocksdb/wiki/Write-Ahead-Log-%28WAL%29) files.
 Memgraph persists the metadata used in the implementation of the on-disk
 storage. 
 
 ### Memory control
 
-If the workload is larger than memory, a single transaction must fir into the
+If the workload is larger than memory, a single transaction must fit into the
 memory. A memory tracker track all allocations happening throughout the
 transaction's lifetime. Disk space also has to be carefully managed. Since the
 timestamp is serialized together with the raw node and relationship data, the
@@ -253,4 +261,4 @@ old one is deleted.
 
 ### Replication
 
-At the moment, the on-disk storage doesn'tsupport replication.
+At the moment, the on-disk storage doesn't support replication.

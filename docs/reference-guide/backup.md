@@ -195,8 +195,9 @@ to recreate it, to a CYPHERL file in the `Import & Export` section of the Lab.
 
 ## Storage modes
 
-Memgraph has the option to work in `IN_MEMORY_ANALYTICAL` or `IN_MEMORY_TRANSACTIONAL`
-[storage modes](/reference-guide/storage-modes.md).
+Memgraph has the option to work in `IN_MEMORY_ANALYTICAL`,
+`IN_MEMORY_TRANSACTIONAL` or `ON_DISK_TRANSACTIONAL` [storage
+modes](/reference-guide/storage-modes.md).
 
 Memgraph always starts in the `IN_MEMORY_TRANSACTIONAL` mode in which it creates
 periodic snapshots and write-ahead logging as durability mechanisms, and also
@@ -206,3 +207,9 @@ In the `IN_MEMORY_ANALYTICAL` mode, Memgraph offers no periodic snapshots and
 write-ahead logging. Users can create a snapshot with the `CREATE SNAPSHOT;`
 Cypher query. During the process of snapshot creation, other transactions will
 be prevented from starting until the snapshot creation is completed.
+
+In the `ON_DISK_TRANSACTIONAL` mode, durability is supported by RocksDB since it
+keeps its own
+[WAL](https://github.com/facebook/rocksdb/wiki/Write-Ahead-Log-%28WAL%29) files.
+Memgraph persists the metadata used in the implementation of the on-disk
+storage. 
