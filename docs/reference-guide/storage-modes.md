@@ -92,7 +92,7 @@ the performance overhead of buffer pool. All committed data is residing on
 the disk and the only thing that resided in the main memory are two caches,
 one for doing operations on main RocksDB instance and the second one for
 operations requiring the use of indices. The cache used here is our custom
-SkipList which allows for multithreaded execution.
+SkipList which allows multithreaded read-write access pattern.
 
 ### MVCC
 Support for concurrent execution of transactions is implemented differently
@@ -104,10 +104,10 @@ between two transactions. In on-disk storage, we use cache per transaction.
 This significantly simplifies management of objects since we don't have to
 think whether some object is valid or not. On the other hand, such design
 change requires moving from pessimistic to an optimistic approach for conflict
-resolution between transactions. This means that at the moment, conflict is
+resolution between transactions. This means that for the disk storage, the conflict is
 checked at the transaction's commit time with the help of RocksDB's transaction
 support. This also implies that deltas are cleared after transaction ends so
-you can even get more efficient execution in the terms of memory. We still
+it is possible to get even more efficient execution in the terms of memory. We still
 need deltas to fully support Cypher's semantic for write queries. Such design
 also simplifies the process of garbage collection since then we only need to take
 care about data on disk.
@@ -117,45 +117,38 @@ The only isolation level we support for disk storage is snapshot isolation.
 The first reason is that we believe it should be the default level for most
 of the applications relying on the database. The second is that it simplifies
 query's execution flow since there is no need to go on disk until the transa-
-ction commits.
+ction's commit.
 
 ### Indices
-Disk-storage supports both label and label-property indices.
-They are stored in separate RocksDB instances as key-value pairs.
-Memgraph loads whole index to separate in-memory cache when user access vertex using index.
+Disk-storage supports both label and label-property indices. They are stored in separate
+RocksDB instances as key-value pairs so that the access to the data is faster. Whenever
+the indexed vertex is accessed, it is put into the separate in-memory cache so that
+the reading speed is maximized.
 
 ### Constraints
 
-
-Vertices and edges
-are saved in the same RocksDB instance and we distinguish them using the
-concept called "handles". We use one RocksDB instance for supporting label
-indices and another one for label-property indices. There is also an instance
-used for implementing unique constraints. Three other instances are used
-only to ensure that the context is saved when the database is closed. There
-are two reasons why we use separate instance for indices, constraints and a
-main storage. The first is that each of them logically enables some kind of
-functionality which requires copying data. Specifically, indices essentially
-speed up reading of nodes with higher memory usage while constraints restrict
-the data that can be saved. Currently, the indices don't work optimally and
-there is a lot of space for improvement by using Bloom and Ribbon filters.
-
-Larger than memory database workload.
+Memgraph's disk storage supports both existence and unique constraints. Existence
+constraints don't use context from the disk since the validity of vertex can be checked
+by looking only at this single vertex. On the other side, unique constraints require
+a different approach. For vertex to be valid, we need to iterate through all other vertices
+under constraint and check whether the conflict exists. To speed up this iteration 
+process, vertices which are under constaint are put into the separate RocksDB instance
+so that the cost of iterating over vertices which are not under constraint is mitigated.
 
 ### Data formats
 
 Vertex format for main disk storage:
-Key - `label1, label2, ... | vertex gid`
+Key - `label1, label2, ... | vertex gid | commit_timestamp`
 Value - `property1, property2`
 
 Edge format for main disk storage:
-Key - `from vertex gid | to vertex gid | 0 | edge type | edge gid`
+Key - `from vertex gid | to vertex gid | 0 | edge type | edge gid | commit_timestamp`
 Value - `property1, property2`
 `0` is a placeholder for edge direction in future.
 
 Format for label index on disk:
 
-Key - `indexing label | vertex gid`
+Key - `indexing label | vertex gid | commit_timestamp`
 
 Value - `label1_id, label2_id, ... | property1, property2, ...`
 
@@ -163,7 +156,7 @@ Value does not contain `indexing label`.
 
 Format for label-property index on disk:
 
-Key - `indexing label | indexing property | vertex gid`
+Key - `indexing label | indexing property | vertex gid | commit_timestamp`
 
 Value - `label1_id, label2_id, ... | property1, property2, ...`
 
@@ -171,15 +164,26 @@ Value does not contain `indexing label`.
 
 ### Durability
 
-For on-disk storage RocksDB has its own WAL files and is responsible for durability.
-Memgraph confirms COMMIT only if write to RocksDB was successful.
+For on-disk storage, durability support is provided by RocksDB 
+since it has its own [WAL](https://github.com/facebook/rocksdb/wiki/Write-Ahead-Log-%28WAL%29).
+This leaves us with a need for persisting only metadata used in 
+the implementation of disk storage.
 
 ### Memory control
-- when will memory be reduced for disk and when for main-memory storage.
-- how we implemented compaction
 
+In a larger than memory workload, we use the approach that a 
+single transaction must fit into the memory. This is ensured 
+by using a memory tracker which tracks all allocations that
+happen throughout the transaction's lifetime.
+The disk space must also be carefully managed. Since the
+timestamp is serialized together with the raw vertex and edge
+data, we have to ensure that when the new version of the same
+vertex is stored, the old one is deleted. There are several ways
+how to do that and we chose the one which does all the necessary work
+in the commit time.  
 
 ### Replication
+
 Replication for disk storage isn't yet supported.
 
 ## Analytical storage mode
