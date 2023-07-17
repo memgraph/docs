@@ -10,14 +10,13 @@ Memgraph supports three different storage modes:
     but requires more time and resources during data import and analysis.
 * `IN_MEMORY_ANALYTICAL` - speeds up import and data analysis but offers no ACID
     guarantees besides manually created snapshots.
-* `ON_DISK_TRANSACTIONAL` - supports ACID properties in a same way as `IN_MEMORY_TRANSACTIONAL`
-    with the additional ability to store data on cheap media (e.g. HDD and SSD) with a lower
-    performance than other two storage modes. **Experimental**
+* `ON_DISK_TRANSACTIONAL` - supports ACID properties in the same way as `IN_MEMORY_TRANSACTIONAL`
+    with the additional ability to store data on disk (HDD or SSD) thus trading performance for lower costs. **Experimental**
 
 
 ## Switching storage modes
 
-You can switch between in-memory modes within the session using the following query:
+You can switch between in-memory modes within a session using the following query:
 
 ```cypher
 STORAGE MODE IN_MEMORY_{TRANSACTIONAL|ANALYTICAL};
@@ -32,16 +31,12 @@ If you are running the Memgraph Enterprise Edition, you need to have
 [`STORAGE_MODE` permission](/reference-guide/auth-module.md) to change the
 storage mode.
 
-Switching from the in-memory storage mode to disk mode is allowed only when
-the database is empty and there is a single session active. The intention here
-is to allow switching to users only upon starting Memgraph, not later. Switching from
-disk mode to in-memory is forbidden since data may not fit into the memory.
+Switching from the in-memory storage mode to the on-disk storage mode is allowed when there is only one active session and the database is empty. As Memgraph Lab uses multiple sessions to run queries in parallel, it is currently impossible to switch to the on-disk storage mode within Memgraph Lab. You can change the storage mode to on-disk transactional using `mgconsole`, then connect to the instance with Memgraph Lab and query the instance as usual.
 
-To switch to disk storage mode the following query can be used:
+To change the storage mode to `ON_DISK_TRANSACTIONAL`, use the following query:
 
 ```cypher
 STORAGE MODE ON_DISK_TRANSACTIONAL;
-```
 
 You can query the current storage mode using the following query:
 
