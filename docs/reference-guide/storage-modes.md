@@ -120,9 +120,9 @@ query's execution flow since there is no need to go on disk until the transa-
 ction commits.
 
 ### Indices
-Disk storage support both label and label-property indices.
-They are stored in different RocksDB instances as key-value pairs.
-Memgraph loads whole index to memory when user access vertex using index.
+Disk-storage supports both label and label-property indices.
+They are stored in separate RocksDB instances as key-value pairs.
+Memgraph loads whole index to separate in-memory cache when user access vertex using index.
 
 ### Constraints
 
@@ -151,7 +151,7 @@ Value - `property1, property2`
 Edge format for main disk storage:
 Key - `from vertex gid | to vertex gid | 0 | edge type | edge gid`
 Value - `property1, property2`
-`0` is a place holder for edge direction in future.
+`0` is a placeholder for edge direction in future.
 
 Format for label index on disk:
 
@@ -174,8 +174,6 @@ Value does not contain `indexing label`.
 For on-disk storage RocksDB has its own WAL files and is responsible for durability.
 Memgraph confirms COMMIT only if write to RocksDB was successful.
 
-For in-memory storages Memgraph has it's own WAL files to which deltas (changes) are written.
-
 ### Memory control
 - when will memory be reduced for disk and when for main-memory storage.
 - how we implemented compaction
@@ -183,7 +181,6 @@ For in-memory storages Memgraph has it's own WAL files to which deltas (changes)
 
 ### Replication
 Replication for disk storage isn't yet supported.
-
 
 ## Analytical storage mode
 
@@ -241,6 +238,3 @@ Manual snapshots are created by running the `CREATE SNAPSHOT;` query. When the
 query is run in the `IN_MEMORY_ANALYTICAL` mode, Memgraph guarantees that it
 will be **the only** transaction present in the system, and all the other
 transactions will wait until the snapshot is created to ensure its validity.
-
-## On-disk transactional storage
-
