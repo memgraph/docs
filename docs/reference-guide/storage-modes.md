@@ -27,24 +27,33 @@ If some other transactions are running in your system, you will receive a
 warning message, so be sure to [set the log level to
 `WARNING`](/reference-guide/configuration.md#other).
 
-If you are running the Memgraph Enterprise Edition, you need to have
-[`STORAGE_MODE` permission](/reference-guide/auth-module.md) to change the
-storage mode.
-
-Switching from the in-memory storage mode to the on-disk storage mode is allowed when there is only one active session and the database is empty. As Memgraph Lab uses multiple sessions to run queries in parallel, it is currently impossible to switch to the on-disk storage mode within Memgraph Lab. You can change the storage mode to on-disk transactional using `mgconsole`, then connect to the instance with Memgraph Lab and query the instance as usual.
+Switching from the in-memory storage mode to the on-disk storage mode is allowed
+when there is only one active session and the database is empty. As Memgraph Lab
+uses multiple sessions to run queries in parallel, it is currently impossible to
+switch to the on-disk storage mode within Memgraph Lab. You can change the
+storage mode to on-disk transactional using `mgconsole`, then connect to the
+instance with Memgraph Lab and query the instance as usual.
 
 To change the storage mode to `ON_DISK_TRANSACTIONAL`, use the following query:
 
 ```cypher
 STORAGE MODE ON_DISK_TRANSACTIONAL;
+```
 
-You can query the current storage mode using the following query:
+It is forbidden to change the storage mode from `ON_DISK_TRANSACTIONAL` to any
+of the in-memory storage modes as the data might not fit in the RAM. 
+
+If you are running the Memgraph Enterprise Edition, you need to have
+[`STORAGE_MODE` permission](/reference-guide/auth-module.md) to change the
+storage mode.
+
+You can check the current storage mode using the following query:
 
 ```cypher
 SHOW STORAGE INFO;
 ```
 
-## Transactional storage mode (default)
+## In-memory transactional storage mode (default)
 
 `IN_MEMORY_TRANSACTIONAL` storage mode offers all ACID guarantees. WAL files and
 periodic snapshots are created automatically, and you can also create snapshots
@@ -74,114 +83,7 @@ manually create a snapshot, until the periodic snapshot is created.
 
 Manual snapshots are created by running the `CREATE SNAPSHOT;` query.
 
-## On-disk transactional storage mode
-
-### Architecture
-
-Using disk as a physical storage allows users to save much more data than
-they can when using only RAM. As a background storage we use RocksDB to
-serialize vertices and edges into key-value format. The architecture we used
-here is in academy called "larger than memory" since it enables in-memory
-databases to save more data than it fits into the main memory without having
-the performance overhead of buffer pool. All committed data is residing on
-the disk and the only thing that resided in the main memory are two caches,
-one for doing operations on main RocksDB instance and the second one for
-operations requiring the use of indices. The cache used here is our custom
-SkipList which allows multithreaded read-write access pattern.
-
-### MVCC
-Support for concurrent execution of transactions is implemented differently
-for on-disk storage than for in-memory. In the in-memory storage we rely on
-delta objects which allow us to get to the exact versions of data at the
-specific moment in time. Therefore, the in-memory storage uses pessimistic
-approach in a sense that it is immediately checked whether there is a conflict
-between two transactions. In on-disk storage, we use cache per transaction.
-This significantly simplifies management of objects since we don't have to
-think whether some object is valid or not. On the other hand, such design
-change requires moving from pessimistic to an optimistic approach for conflict
-resolution between transactions. This means that for the disk storage, the conflict is
-checked at the transaction's commit time with the help of RocksDB's transaction
-support. This also implies that deltas are cleared after transaction ends so
-it is possible to get even more efficient execution in the terms of memory. We still
-need deltas to fully support Cypher's semantic for write queries. Such design
-also simplifies the process of garbage collection since then we only need to take
-care about data on disk.
-
-### Isolation level
-The only isolation level we support for disk storage is snapshot isolation.
-The first reason is that we believe it should be the default level for most
-of the applications relying on the database. The second is that it simplifies
-query's execution flow since there is no need to go on disk until the transa-
-ction's commit.
-
-### Indices
-Disk-storage supports both label and label-property indices. They are stored in separate
-RocksDB instances as key-value pairs so that the access to the data is faster. Whenever
-the indexed vertex is accessed, it is put into the separate in-memory cache so that
-the reading speed is maximized.
-
-### Constraints
-
-Memgraph's disk storage supports both existence and unique constraints. Existence
-constraints don't use context from the disk since the validity of vertex can be checked
-by looking only at this single vertex. On the other side, unique constraints require
-a different approach. For vertex to be valid, we need to iterate through all other vertices
-under constraint and check whether the conflict exists. To speed up this iteration 
-process, vertices which are under constaint are put into the separate RocksDB instance
-so that the cost of iterating over vertices which are not under constraint is mitigated.
-
-### Data formats
-
-Vertex format for main disk storage:
-Key - `label1, label2, ... | vertex gid | commit_timestamp`
-Value - `property1, property2`
-
-Edge format for main disk storage:
-Key - `from vertex gid | to vertex gid | 0 | edge type | edge gid | commit_timestamp`
-Value - `property1, property2`
-`0` is a placeholder for edge direction in future.
-
-Format for label index on disk:
-
-Key - `indexing label | vertex gid | commit_timestamp`
-
-Value - `label1_id, label2_id, ... | property1, property2, ...`
-
-Value does not contain `indexing label`.
-
-Format for label-property index on disk:
-
-Key - `indexing label | indexing property | vertex gid | commit_timestamp`
-
-Value - `label1_id, label2_id, ... | property1, property2, ...`
-
-Value does not contain `indexing label`.
-
-### Durability
-
-For on-disk storage, durability support is provided by RocksDB 
-since it has its own [WAL](https://github.com/facebook/rocksdb/wiki/Write-Ahead-Log-%28WAL%29).
-This leaves us with a need for persisting only metadata used in 
-the implementation of disk storage.
-
-### Memory control
-
-In a larger than memory workload, we use the approach that a 
-single transaction must fit into the memory. This is ensured 
-by using a memory tracker which tracks all allocations that
-happen throughout the transaction's lifetime.
-The disk space must also be carefully managed. Since the
-timestamp is serialized together with the raw vertex and edge
-data, we have to ensure that when the new version of the same
-vertex is stored, the old one is deleted. There are several ways
-how to do that and we chose the one which does all the necessary work
-in the commit time.  
-
-### Replication
-
-Replication for disk storage isn't yet supported.
-
-## Analytical storage mode
+## In-memory analytical storage mode
 
 In the transactional storage mode, Memgraph is fully [ACID
 compliant](/reference-guide/backup.md) which could cause memory spikes during data
@@ -237,3 +139,118 @@ Manual snapshots are created by running the `CREATE SNAPSHOT;` query. When the
 query is run in the `IN_MEMORY_ANALYTICAL` mode, Memgraph guarantees that it
 will be **the only** transaction present in the system, and all the other
 transactions will wait until the snapshot is created to ensure its validity.
+
+## On-disk transactional storage mode
+
+In the on-disk transactional storage mode, disk is used as a physical storage
+which allows you to save more data than the capacity of your RAM. This helps
+keep the hardware costs to a minimum, but you should except slower performance
+when compared to the in-memory transactional storage mode. Keep in mind that
+while executing queries, all the graph objects used in the transactions still
+need to be able to fit in the RAM, or Memgraph will thrown an exception. 
+
+### Architecture
+
+RocksDB is used as a background storage to serialize nodes and relationships
+into a key-value format. The used architecture is also known as "larger than
+memory" as it enables in-memory databases to save more data than the main memory
+can hold, without the performance overhead caused by the buffer pool. 
+
+The imported data is residing on the disk, while the main memory contains two
+caches, one executing operations on main RocksDB instance and the other for
+operations that require indices. The cache used here is Memgraph's custom
+`SkipList` cache which allows multithreaded read-write access pattern.
+
+### MVCC
+
+Concurrent execution of transactions is supported differently for on-disk
+storage than for in-memory. The in-memory storage mode relies on delta objects
+which store the exact versions of data at the specific moment in time.
+Therefore, the in-memory storage mode uses a pessimistic approach and
+immediately checks whether there is a conflict between two transactions. 
+
+In the on-disk storage mode, the cache is used per transaction. This
+significantly simplifies object management since there is no need to question
+certain object's validity, but it also requires the optimistic approach for
+conflict resolution between transactions. 
+
+In the on-disk storage mode, the conflict is checked at the transaction's commit
+time with the help of RocksDB's transaction support. This also implies that
+deltas are cleared after each transaction, which can optimize memory usage
+during execution. Deltas are still used to fully support Cypher's semantic of
+the write queries. The design of the on-disk storage also simplifies the process
+of garbage collection, since all the data is on disk.
+
+### Isolation level
+
+The on-disk storage mode supports only snapshot isolation level. Mostly because
+it's the Memgraph viewpoint that snapshot isolation should be the default
+isolation level for most applications relying on databases. But the snapshot
+isolation level also simplifies the query's execution flow since there is no
+need to go on disk until the commit of the transaction.
+
+### Indices
+
+Disk-storage supports both label and label-property indices. They are stored in separate
+RocksDB instances as key-value pairs so that the access to the data is faster. Whenever
+the indexed vertex is accessed, it is put into the separate in-memory cache so that
+the reading speed is maximized.
+
+### Constraints
+
+The on-disk storage mode supports both existence and uniqueness constraints.
+Existence constraints don't use context from the disk since the validity of
+nodes can be checked by looking only at this single node. On the other side,
+uniqueness constraints require a different approach. For a node to be valid, the
+engine needs to iterate through all other nodes under constraint and check
+whether a conflict exists. To speed up this iteration process, nodes under
+constraint are stored into a separate RocksDB instance to eliminate the cost of
+iterating over nodes which are not under constraint.
+
+### Data formats
+
+Vertex format for main disk storage:
+Key - `label1, label2, ... | vertex gid | commit_timestamp`
+Value - `property1, property2`
+
+Edge format for main disk storage:
+Key - `from vertex gid | to vertex gid | 0 | edge type | edge gid | commit_timestamp`
+Value - `property1, property2`
+`0` is a placeholder for edge direction in future.
+
+Format for label index on disk:
+
+Key - `indexing label | vertex gid | commit_timestamp`
+
+Value - `label1_id, label2_id, ... | property1, property2, ...`
+
+Value does not contain `indexing label`.
+
+Format for label-property index on disk:
+
+Key - `indexing label | indexing property | vertex gid | commit_timestamp`
+
+Value - `label1_id, label2_id, ... | property1, property2, ...`
+
+Value does not contain `indexing label`.
+
+### Durability
+
+In the on-disk storage mode, durability is supported by RocksDB since it has it
+keeps its own own
+[WAL](https://github.com/facebook/rocksdb/wiki/Write-Ahead-Log-%28WAL%29) files.
+Memgraph persists the metadata used in the implementation of the on-disk
+storage. 
+
+### Memory control
+
+If the workload is larger than memory, a single transaction must fir into the
+memory. A memory tracker track all allocations happening throughout the
+transaction's lifetime. Disk space also has to be carefully managed. Since the
+timestamp is serialized together with the raw node and relationship data, the
+engine needs to ensure that when the new version of the same node is stored, the
+old one is deleted.
+
+### Replication
+
+At the moment, the on-disk storage doesn'tsupport replication.
