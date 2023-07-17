@@ -147,7 +147,7 @@ which allows you to save more data than the capacity of your RAM. This helps
 keep the hardware costs to a minimum, but you should except slower performance
 when compared to the in-memory transactional storage mode. Keep in mind that
 while executing queries, all the graph objects used in the transactions still
-need to be able to fit in the RAM, or Memgraph will thrown an exception. 
+need to be able to fit in the RAM, or Memgraph will throw an exception. 
 
 ### Architecture
 
