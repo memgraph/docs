@@ -4,6 +4,19 @@ title: Replication
 sidebar_label: Replication
 ---
 
+:::caution
+
+Memgraph 2.9 introduced a new configuration flag
+`--replication-restore-state-on-startup` which is `false` by default.
+
+If you do not change this configuration flag to `true` on MAIN instances, upon
+restart they will be disconnected from their replication clusters. 
+
+By setting this configuration flag to `true` on REPLICA instances, upon restart
+REPLICAs will remember their role and configuration in a replication cluster.
+
+:::
+
 When distributing data across several instances, Memgraph uses replication to
 provide a satisfying ratio of the following properties, known from the CAP theorem:
 
@@ -78,6 +91,14 @@ If the REPLICA is so far behind the MAIN instance that the synchronization using
 WAL files and deltas within it is impossible, Memgraph will use snapshots to
 synchronize the REPLICA to the state of the MAIN instance.
 
+If any of the instances are restarted, by default they will start as MAIN
+instances disconnected from any replication cluster. To make instances remember
+their role in the replication cluster, set the configuration flag
+`--replication-restore-state-on-startup=true`. In this case, upon startup, a
+restarted REPLICA instance will remember its role and configuration in the
+replication cluster and continue to serve as a REPLICA, while a restarted MAIN
+instance will have knowledge of all registered REPLICAs in the cluster. 
+
 ## Running multiple instances
 
 When running multiple instances, each on its own machine, run Memgraph as you
@@ -110,10 +131,7 @@ register replicas later on because the query for registering replicas uses port
 Otherwise, you can use any unassigned port between 1000 and 10000.
 
 By default, each crashed instance restarts as a MAIN instance. To change this
-behavior, set the configuration flag
-`--replication-restore-state-on-startup=true`. In this case, upon startup, a
-crashed REPLICA instance will remember its role and configuration in the
-replication cluster and continue to serve as a REPLICA. 
+behavior, 
 
 ### Assigning the MAIN role
 
