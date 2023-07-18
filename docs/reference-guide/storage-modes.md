@@ -166,8 +166,8 @@ can hold, without the performance overhead caused by the buffer pool.
 
 The imported data is residing on the disk, while the main memory contains two
 caches, one executing operations on main RocksDB instance and the other for
-operations that require indices. The cache used here is Memgraph's custom
-`SkipList` cache which allows multithreaded read-write access pattern.
+operations that require indices. In both cases, Memgraph's custom
+`SkipList` cache is used, which allows a multithreaded read-write access pattern.
 
 ### MVCC
 
@@ -194,8 +194,7 @@ of garbage collection, since all the data is on disk.
 The on-disk storage mode supports only snapshot isolation level. Mostly because
 it's the Memgraph viewpoint that snapshot isolation should be the default
 isolation level for most applications relying on databases. But the snapshot
-isolation level also simplifies the query's execution flow since there is no
-need to go on disk until the commit of the transaction.
+isolation level also simplifies the query's execution flow since no data is transferred to the disk until the commit of the transaction.
 
 ### Indices
 
