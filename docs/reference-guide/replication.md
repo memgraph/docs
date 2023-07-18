@@ -109,6 +109,12 @@ register replicas later on because the query for registering replicas uses port
 
 Otherwise, you can use any unassigned port between 1000 and 10000.
 
+By default, each crashed instance restarts as a MAIN instance. To change this
+behavior, set the configuration flag
+`--replication-restore-state-on-startup=true`. In this case, upon startup, a
+crashed REPLICA instance will remember its role and configuration in the
+replication cluster and continue to serve as a REPLICA. 
+
 ### Assigning the MAIN role
 
 The replication cluster should only have one MAIN instance in order to avoid
