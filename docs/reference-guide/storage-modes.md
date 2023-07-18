@@ -217,11 +217,13 @@ iterating over nodes which are not under constraint.
 
 ### Data formats
 
+Below is the format in which data is serialized to the disk. 
+
 Vertex format for main disk storage:
 Key - `label1, label2, ... | vertex gid | commit_timestamp`
 Value - `property1, property2`
 
-Edge format for main disk storage:
+Edge format for the main disk storage:
 Key - `from vertex gid | to vertex gid | 0 | edge type | edge gid | commit_timestamp`
 Value - `property1, property2`
 `0` is a placeholder for edge direction in future.
