@@ -8,6 +8,25 @@ import VideoBySide from '@site/src/components/VideoBySide';
 
 ## v2.9 - Jun 30, 2023
 
+:::caution
+
+In order to enable the REPLICA instances to restart and continue their role in
+the replication cluster without disconnecting from it, Memgraph 2.9 introduced a
+new configuration flag `--replication-restore-state-on-startup` which is `false`
+by default.
+
+Using this configuration flag you decided whether any instance, MAIN or REPLICA,
+will regain their previous role in the replication cluster. 
+
+If your current project is using replication and you do not introduce this
+configuration flag set to `true` on MAIN instances, upon restart they will be
+disconnected from their replication clusters. 
+
+By setting this configuration flag to `true` on REPLICA instances, upon restart
+REPLICAs will remember their role and configuration in a replication cluster.
+
+:::
+
 ### New features and improvements
 
 - The new `ON_DISK_TRANSACTIONAL` storage mode allows you to store data on disk
@@ -39,6 +58,13 @@ import VideoBySide from '@site/src/components/VideoBySide';
 - The `ANALYZE GRAPH;` query now includes information about the degree of all
   nodes to enhance the MERGE optimizations on supernodes.
   [#1026](https://github.com/memgraph/memgraph/pull/1026)
+- The `--replication-restore-state-on-startup` configuration flag allows you to
+  define whether instances in the replication cluster will regain their roles
+  upon restart (`true`) or restart as disconnected "blank" MAIN instances
+  (default setting `false`). This flag resolved the unwanted behavior of
+  restarted REPLICA instances disconnecting from the cluster, but it also needs
+  to be introduced to MAIN instances so they are not disconnected from the
+  cluster upon restart. [#791](https://github.com/memgraph/memgraph/pull/791)
 
 ### Bug fixes
 
@@ -46,8 +72,6 @@ import VideoBySide from '@site/src/components/VideoBySide';
   queries from a CYPHERL file, prior to or immediately after the Bolt server
   starts and are now possible to configure in the Community Edition as well.
   [#850](https://github.com/memgraph/memgraph/pull/850)
-- Replica instances no longer restart as main instances, but restore their
-  original role. [#791](https://github.com/memgraph/memgraph/pull/791)
 - The IN_MEMORY_ANALYTICAL storage mode now deallocates memory as expected and
   no longer consumes memory excessively. [#1025](https://github.com/memgraph/memgraph/pull/1025) 
 - When no values are returned from a map, a null is returned instead of an
