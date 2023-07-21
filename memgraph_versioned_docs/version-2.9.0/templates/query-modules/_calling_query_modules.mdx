@@ -1,0 +1,45 @@
+<!-- ## Calling query modules -->
+
+Once the MAGE query modules or any custom modules you developed have been
+loaded into Memgraph, you can call them within queries using the following Cypher
+syntax:
+
+```cypher
+CALL module.procedure([optional parameter], arg1, "string_argument", ...) YIELD res1, res2, ...;
+```
+Every procedure has a first optional parameter and the rest of them depend on the procedure you are trying to call. The optional parameter must be result of the aggregation function [`project()`](/cypher-manual/functions#aggregation-functions). If such a parameter is provided, **all** operations will be executed on a projected graph. Otherwise, you will work on the whole graph stored inside Memgraph. 
+
+Each procedure returns zero or more records, where each record contains named
+fields. The `YIELD` clause is used to select fields you are interested in or all
+of them (*). If you are not interested in any fields, omit the `YIELD` clause.
+The procedure will still run, but the record fields will not be stored in
+variables. If you are trying to `YIELD` fields that are not a part of the
+produced record, the query will result in an error.
+
+Procedures can be standalone as in the example above, or a part of a larger
+query when we want the procedure to work on data the query is
+producing. 
+
+For example:
+
+```cypher
+MATCH (node) CALL module.procedure(node) YIELD result RETURN *;
+```
+
+When the `CALL` clause is a part of a larger query, results from the query are
+returned using the `RETURN` clause. If the `CALL` clause is followed by a clause
+that only updates the data and doesn't read it, `RETURN` is unnecessary. It is
+the Cypher convention that read-only queries need to end with a `RETURN`, while
+queries that update something don't need to `RETURN` anything.
+
+Also, if the procedure itself writes into the database, all the rest of the
+clauses in the query can only read from the database, and the `CALL` clause can
+only be followed by the `YIELD` clause and/or `RETURN` clause. 
+
+If a procedure returns a record with the same field name as some variable we
+already have in the query, that field name can be aliased with some other name
+using the `AS` sub-clause:
+
+```cypher
+MATCH (result) CALL module.procedure(42) YIELD result AS procedure_result RETURN *;
+```
