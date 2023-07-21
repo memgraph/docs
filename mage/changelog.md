@@ -18,7 +18,7 @@ sidebar_label: Changelog
   queries depending on certain conditions being met, has been rewritten from
   Python to C++ to improve performance and it can also periodically iterates.
   [#222](https://github.com/memgraph/mage/pull/222)
-- The `migration` module has an option to get data from MySQL, SQL server, or
+- The `migrate` module has the option to get data from MySQL, SQL server, or
   Oracle DB to migrate it to Memgraph.
   [#209](https://github.com/memgraph/mage/pull/209)s
 ## v1.7.0 - Apr 5, 2023
