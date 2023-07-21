@@ -6,7 +6,7 @@ sidebar_label: Changelog
 
 import VideoBySide from '@site/src/components/VideoBySide';
 
-## v2.9 - Jun 30, 2023
+## v2.9 - Jul 21, 2023
 
 :::caution
 
