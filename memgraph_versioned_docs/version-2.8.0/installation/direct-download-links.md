@@ -17,7 +17,7 @@ version of MemgraphDB, take a look at the list below.
 
 ### Amazon Linux 2
 
-- **CentOS 7** -
+- **Amazon Linux 2** -
   [https://download.memgraph.com/memgraph/v2.8.0/amzn-2/memgraph-2.8.0_1-1.x86_64.rpm](https://download.memgraph.com/memgraph/v2.8.0/amzn-2/memgraph-2.8.0_1-1.x86_64.rpm)
 
 
