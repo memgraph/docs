@@ -13,12 +13,14 @@ as it's the most commonly used one.
 The syntax of the clause is:
 
 ```cypher
-LOAD CSV FROM <csv-file-path> ( WITH | NO ) HEADER [IGNORE BAD] [DELIMITER <delimiter-string>] [QUOTE <quote-string>] [NULLIF <nullif-string>] AS <variable-name>
+LOAD CSV FROM <csv-location> ( WITH | NO ) HEADER [IGNORE BAD] [DELIMITER <delimiter-string>] [QUOTE <quote-string>] [NULLIF <nullif-string>] AS <variable-name>
 ```
 
-* `<csv-file-path>` is a string holding the path to the CSV file. There are no
-  restrictions on where in your filesystem the file can be located, as long as
-  the path is valid (i.e., the file exists).
+* `<csv-location>` is a string of the location to the CSV file. Without a URL 
+  protocol it refers to a file path. There are no restrictions on where in your
+  filesystem the file can be located, as long as the path is valid (i.e., the 
+  file exists). If using `http://`, `https://`, or `ftp://` the CSV file will 
+  be fetched over the network.
 
 * `( WITH | NO ) HEADER ` flag specifies whether the CSV file is to be parsed as
   though it has or hasn't got a header.
@@ -58,4 +60,9 @@ It's up to the user to convert the parsed row values to the appropriate type.
 This can be done using the built-in conversion functions such as `ToInteger`,
 `ToFloat`, `ToBoolean` etc. Consult the [documentation](/functions.md) on the
 available conversion functions.
+:::
+
+:::info
+Compressed CSV content with, `gzip` or `bzip2` will be automatically 
+decompressed on read.
 :::
