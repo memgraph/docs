@@ -49,6 +49,7 @@ module.exports = {
         "query-modules/python/llm-util",
         "query-modules/python/max-flow",
         "query-modules/python/meta-util",
+        "query-modules/python/migrate",
         "query-modules/python/node-classification-with-gnn",
         "query-modules/python/node2vec",
         "query-modules/python/node2vec-online",
