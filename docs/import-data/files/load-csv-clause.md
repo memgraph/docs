@@ -24,7 +24,8 @@ If the data is importing slower than expected, you can [speed it
 up](#increase-import-speed) by creating indexes or switching the storage mode to
 analytical.
 
-If the import speed is still unsatisfactory, don't hesitate to contact us on [Discord](https://discord.com/invite/memgraph).
+If the import speed is still unsatisfactory, don't hesitate to contact us on
+[Discord](https://discord.com/invite/memgraph).
 
 :::
 
@@ -115,23 +116,13 @@ When using the `LOAD CSV` clause please keep in mind:
   LOAD CSV FROM "/file.csv" WITH HEADER AS row;
   ```
 
-- Because of the need to use at least two clauses, the clause that exhausts its
-  results sooner will dictate how many times the "loop" is executed. Consider the
-  following query: 
+- Adding a `MATCH` or `MERGE` clause before the LOAD CSV allows you to match
+  certain entities in the graph before running LOAD CSV, which is an optimization
+  as matched entities do not need to be searched for every row in the CSV file.
 
-  ```cypher
-  MATCH (n)
-  LOAD CSV FROM "/file.csv" WITH HEADER AS row
-  SET n.p = row;
-  ```
-
-  If the `MATCH (n)` clause finds five nodes, and the "file.csv" has only two
-  rows, only the first two nodes returned by the `MATCH (n)` will have their
-  properties set, using the two rows from the CSV file. 
-
-  Similarly, if the `MATCH (n)` clause finds two nodes, whereas the "file.csv" has
-  five rows, only the two nodes returned by `MATCH (n)` will have their properties
-  set with the values from the first two rows of the CSV file. 
+  But, the `MATCH` or `MERGE` clause can be used prior the `LOAD CSV` clause only
+  if the clause returns only one row. Returning multiple rows before calling the
+  `LOAD CSV` clause will cause a Memgraph runtime error.
 
 - **The `LOAD CSV` clause can be used at most once per query**, so the queries like the one
   below wll throw an exception: 

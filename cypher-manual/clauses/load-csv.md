@@ -44,6 +44,14 @@ LOAD CSV FROM <csv-file-path> ( WITH | NO ) HEADER [IGNORE BAD] [DELIMITER <deli
 The clause reads row by row from a CSV file and binds the contents of the parsed
 row to the variable you specified.
 
+Adding a `MATCH` or `MERGE` clause before the LOAD CSV allows you to match
+certain entities in the graph before running LOAD CSV, which is an optimization
+as matched entities do not need to be searched for every row in the CSV file.
+
+But, the `MATCH` or `MERGE` clause can be used prior the `LOAD CSV` clause only
+if the clause returns only one row. Returning multiple rows before calling the
+`LOAD CSV` clause will cause a Memgraph runtime error.
+
 :::info
 It's important to note that the parser parses the values as strings.
 It's up to the user to convert the parsed row values to the appropriate type.
