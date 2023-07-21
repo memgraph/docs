@@ -24,7 +24,8 @@ If the data is importing slower than expected, you can [speed it
 up](#increase-import-speed) by creating indexes or switching the storage mode to
 analytical.
 
-If the import speed is still unsatisfactory, don't hesitate to contact us on [Discord](https://discord.com/invite/memgraph).
+If the import speed is still unsatisfactory, don't hesitate to contact us on
+[Discord](https://discord.com/invite/memgraph).
 
 :::
 
@@ -33,15 +34,16 @@ If the import speed is still unsatisfactory, don't hesitate to contact us on [Di
 The syntax of the `LOAD CSV` clause is:
 
 ```cypher
-LOAD CSV FROM <csv-file-path> ( WITH | NO ) HEADER [IGNORE BAD] [DELIMITER <delimiter-string>] [QUOTE <quote-string>] AS <variable-name>
+LOAD CSV FROM <csv-location> ( WITH | NO ) HEADER [IGNORE BAD] [DELIMITER <delimiter-string>] [QUOTE <quote-string>] [NULLIF <nullif-string>] AS <variable-name>
 ```
 
-- `<csv-file-path>` is a string of the path to the CSV file. There are no
-  restrictions on where in your filesystem the file can be located, as long as
-  the path is valid (i.e., the file exists). If you are using Docker to run
-  Memgraph, you will need to [copy the files from your local directory into the
-  Docker](/how-to-guides/work-with-docker.md#how-to-copy-files-from-and-to-a-Docker-container)
-  container where Memgraph can access them.
+- `<csv-location>` is a string of the location to the CSV file. Without a URL 
+  protocol it refers to a file path. There are no restrictions on where in your
+  filesystem the file can be located, as long as the path is valid (i.e., the 
+  file exists). If you are using Docker to run Memgraph, you will need to 
+  [copy the files from your local directory into the Docker](/how-to-guides/work-with-docker.md#how-to-copy-files-from-and-to-a-Docker-container)
+  container where Memgraph can access them. If using `http://`, `https://`, or
+  `ftp://` the CSV file will be fetched over the network.
 
 - `( WITH | NO ) HEADER` flag specifies whether the CSV file has a header, in
   which case it will be parsed as a map, or it doesn't have a header, in which
@@ -72,6 +74,11 @@ LOAD CSV FROM <csv-file-path> ( WITH | NO ) HEADER [IGNORE BAD] [DELIMITER <deli
 
 * `QUOTE <quote-string>` option enables the user to specify the CSV quote
   character. If it isn't set, the default quote character `"` is assumed.
+
+* `NULLIF <nullif-string>` option enables you to specify a sequence of
+  characters that will be parsed as null. By default, all empty columns in
+  Memgraph are treated as empty strings, so if this option is not used, no
+  values will be treated as null. 
 
 * `<variable-name>` is a symbolic name representing the variable to which the
   contents of the parsed row will be bound to, enabling access to the row
@@ -110,23 +117,13 @@ When using the `LOAD CSV` clause please keep in mind:
   LOAD CSV FROM "/file.csv" WITH HEADER AS row;
   ```
 
-- Because of the need to use at least two clauses, the clause that exhausts its
-  results sooner will dictate how many times the "loop" is executed. Consider the
-  following query: 
+- Adding a `MATCH` or `MERGE` clause before the LOAD CSV allows you to match
+  certain entities in the graph before running LOAD CSV, which is an optimization
+  as matched entities do not need to be searched for every row in the CSV file.
 
-  ```cypher
-  MATCH (n)
-  LOAD CSV FROM "/file.csv" WITH HEADER AS row
-  SET n.p = row;
-  ```
-
-  If the `MATCH (n)` clause finds five nodes, and the "file.csv" has only two
-  rows, only the first two nodes returned by the `MATCH (n)` will have their
-  properties set, using the two rows from the CSV file. 
-
-  Similarly, if the `MATCH (n)` clause finds two nodes, whereas the "file.csv" has
-  five rows, only the two nodes returned by `MATCH (n)` will have their properties
-  set with the values from the first two rows of the CSV file. 
+  But, the `MATCH` or `MERGE` clause can be used prior the `LOAD CSV` clause only
+  if the clause returns only one row. Returning multiple rows before calling the
+  `LOAD CSV` clause will cause a Memgraph runtime error.
 
 - **The `LOAD CSV` clause can be used at most once per query**, so the queries like the one
   below wll throw an exception: 
@@ -164,7 +161,10 @@ STORAGE MODE IN_MEMORY_{TRANSACTIONAL|ANALYTICAL};
 ```
 
 When in the analytical storage mode, **don't** import data using multiple
-threads. 
+threads.
+
+The LOAD CSV clause will handle CSV's which are compressed with `gzip` or `bzip2`. 
+This can speed up time it takes to fetch and/or load the file.
 
 ## Examples
 

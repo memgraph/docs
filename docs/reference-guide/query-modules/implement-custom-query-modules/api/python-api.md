@@ -36,7 +36,7 @@ it](/memgraph/how-to-guides/query-modules#how-to-install-external-python-librari
 :::
 
 
-## mgp.read_proc(func: Callable[[…], mgp.Record])
+## mgp.read_proc(func: Callable[…, mgp.Record])
 
 Register func as a read-only procedure of the current module.
 
@@ -86,7 +86,7 @@ properly and suggest methods and classes it contains. You can install the module
 by running `pip install mgp`.
 :::
 
-## mgp.write_proc(func: Callable[[…], mgp.Record])
+## mgp.write_proc(func: Callable[…, mgp.Record])
 
 Register func as a writeable procedure of the current module.
 
@@ -138,6 +138,22 @@ CALL example.procedure(“single argument”) YIELD result;
 
 Naturally, you may pass in different arguments.
 
+
+## mgp.add_batch_read_proc(func: Callable[…, mgp.Record], initializer: typing.Callable, cleanup: typing.Callable)
+
+Register `func` as a read-only batch procedure of the current module.
+
+`func` represents a function that is invoked through OpenCypher. Through OpenCypher user invokes `func`. Memgraph invokes first the `initializer` function. After the `initializer` function, `func` is called until it returns an empty result. Afterward, the `cleanup` function is called, which can be used to clean up global resources. Only at that point is garbage collection invoked, so any dangling references to Python objects will be cleaned.
+
+`initializer` must define the same parameters as the main `func` function, and will receive the same parameters as `func`. The position of arguments and the type of arguments must be the same. 
+
+Otherwise, the same rules apply as in `read_proc`. It's important to keep in mind that no Memgraph resources can be stored in `init` and during batching. After `initializer` and each `func` call, every Memgraph-related object is invalidated and can't be used later on.
+
+## mgp.add_batch_write_proc(func: Callable[…, mgp.Record], initializer: typing.Callable, cleanup: typing.Callable)
+
+Register `func` as a writeable batch procedure of the current module.
+
+The same rules for parameters and order of calls to functions apply for a writeable procedure as for the read-only batched procedure. 
 
 ## mgp.function(func: Callable[[…]])
 

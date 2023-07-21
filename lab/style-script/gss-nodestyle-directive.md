@@ -228,3 +228,11 @@ Sets the size of the element.
 Example:
 
 - `size: 10` indicates that the radius of the element will be 10 pixels.
+
+### `z-index: number`
+
+Sets the stack order of an element, similar to the CSS `z-index`. The element with the
+highest `z-index` will be rendered on top of every other element.
+
+Example:
+- `z-index: 100` sets the element's z-index.

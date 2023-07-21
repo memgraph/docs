@@ -14,11 +14,7 @@ The `REMOVE` clause is used to remove labels and properties from nodes and relat
 The following examples are executed with this dataset. You can create this dataset
 locally by executing the queries at the end of the page: [Dataset queries](#data-set-queries).
 
-<img
-src="https://raw.githubusercontent.com/g-despot/images/master/data_set.png"
-alt="Data set"
-style={{height: 380}}
-/>
+![Data set](../data/clauses/data_set.png)
 
 ## 1. Removing a property
 

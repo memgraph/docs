@@ -75,6 +75,43 @@ Enum class for Cypher procedure types.
 - `ProcedureType::Read`: read procedure
 - `ProcedureType::Write`: write procedure
 
+### AddBatchProcedure
+
+Add a batch procedure to your query module. The procedure is registered as `[QUERY_MODULE_NAME].[PROC_NAME]`
+and can be used in Cypher queries.
+
+```cpp
+void AddBatchProcedure(
+    mgp_proc_cb callback, 
+    mgp_proc_initializer initializer, 
+    mgp_proc_cleanup cleanup,
+    std::string_view name, 
+    ProcedureType proc_type, 
+    std::vector<Parameter> parameters,
+    std::vector<Return> returns, 
+    mgp_module *module, 
+    mgp_memory *memory);
+```
+
+#### Input
+
+- `callback`: procedure callback, invoked through OpenCypher
+- `initializer`: procedure initializer, invoked before callback
+- `cleanup`: procedure cleanup, invoked after batching is done
+- `name`: procedure name
+- `proc_type`: procedure type (read/write)
+- `parameters`: vector (list) of procedure parameters
+- `returns`: vector (list) of procedure return values
+- `module`: the query module that the procedure is added to
+- `memory`: access to memory
+
+#### ProcedureType
+
+Enum class for Cypher procedure types.
+
+- `ProcedureType::Read`: read procedure
+- `ProcedureType::Write`: write procedure
+
 ### AddFunction
 
 Add a function to your query module. The function is registered as `[QUERY_MODULE_NAME].[FUNC_NAME]`
@@ -1872,6 +1909,7 @@ Enumerates the data types supported by Memgraph and its C++ API.
 The types are listed and described [on this page](https://memgraph.com/docs/memgraph/reference-guide/data-types).
 
 - `Type::Null`
+- `Type::Any`
 - `Type::Bool`
 - `Type::Int`
 - `Type::Double`

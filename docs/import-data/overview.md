@@ -54,11 +54,16 @@ Memgraph comes with full streaming support, and you can connect directly to a
 queries](/import-data/data-streams/manage-streams.md) or [Memgraph
 Lab](/import-data/data-streams/manage-streams-lab.md).
 
-## MySQL or PostgreSQL table data
+## MySQL, PostgreSQL or Oracle table data
 
 You can migrate data from a [**MySQL**](/import-data/migrate/mysql.md) or
 [**PostgreSQL**](/import-data/migrate/postgresql.md) database using the
 [**`mgmigrate`** tool](https://github.com/memgraph/mgmigrate).
+
+Alternatively, you can use the [`migration`
+module](/mage/query-modules/python/migrate) from the [MAGE graph
+library](/mage) which allows you to access data from a MySQL database, an SQL
+server or an Oracle database. 
 
 ## Data from an application or a program
 

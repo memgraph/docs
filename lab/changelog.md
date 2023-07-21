@@ -4,6 +4,91 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## Lab v2.7.1 - Jul 05, 2023
+
+### Improvements
+
+- System Default style has been renamed to System Style. 
+- If you run a query that has errors in the Graph Style Script code, you can
+  decide to run it using the System Style. 
+
+### Bug fixes
+
+- Bug that would allow multiple styles to be the default has been fixed. 
+- The System Default Style now has `background-color` set to white.
+- Queries selected in the Query Editor now execute as expected. 
+- Creating and editing a query module as well as selecting a transformation
+  module in the Streams section now work as expected. 
+- All links are now linked with appropriate external resources.
+- The pop-up window in the Run History that allows rerunning the query now
+  closes once an option is selected.
+
+
+## Lab v2.7.0 - Jun 28, 2023
+
+### What's new
+
+- Now you can adjust the following settings:
+  - Code completion and automatic graph rendering limits
+  - The capacity of run history and its clearing
+  - The limit for visible logs
+
+  <img src={require('./data/lab-270/settings.png').default} className={"imgBorder"} style={{marginBottom:'20px'}}/>
+- The new interfaces for managing saved styles enables searching and changing
+  the default style in the Lab. The saved styles now also have a preview. 
+  <img src={require('./data/lab-270/styles.png').default} className={"imgBorder"} style={{marginBottom:'20px'}}/>
+- The run history now also tracks changes to the query, style, or both. You can
+  also filter out records to show All (both queries runs and applied styles),
+  Query history (only query runs), and Style history (only applied style
+  changes). You can expand both the query and style to see the full Cypher or
+  GSS code.
+  <img src={require('./data/lab-270/run_history.png').default} className={"imgBorder"} style={{marginBottom:'20px'}}/>
+  <img src={require('./data/lab-270/run_history_expand.png').default} className={"imgBorder"} style={{marginBottom:'20px'}}/>
+  <img src={require('./data/lab-270/run_history_queries.png').default} className={"imgBorder"} style={{marginBottom:'20px'}}/>
+- Queries inside a collection can be expanded and collapsed by clicking on their
+  name.
+- When testing and trying out different functions in the GSS you can use
+  single-line (`// comment`) and multi-line (`/* comment */`) comments in the
+  GSS code editor without losing previous state.
+- Change the canvas color of the graph view with the new property
+  `background-color` in [`@ViewStyle`](/style-script/gss-viewstyle-directive.md).
+- Change the stack order of how nodes and edges are rendered in the graph view
+  with the property `z-index` in
+  [`@NodeStyle`](/style-script/gss-nodestyle-directive.md) and
+  [`@EdgeStyle`](/style-script/gss-edgestyle-directive.md) directives. It works
+  the same as the CSS z-index property.
+- Set up transparent colors with the [new GSS
+  functions](/style-script/gss-functions.md) `RGBA` and `HSLA`. You can also get
+  the transparency value with the function `Alpha`.
+- [New functions](/style-script/gss-functions.md) allow more customizations: `Sort`, `Coalesce`, `Reverse`,
+  `IsMap`, `AsMap`, `Execute`, `Get`, `Set`, `Del`, `MapKeys`, `MapValues`,
+  `AsIterator`, `IsIterator`, `Next`
+- [Global and local
+    variables](/memgraph-lab/graph-style-script-language#caching-results-for-faster-performance)
+    make developing new styles easier:
+  - Variable graph is now available outside `@NodeStyle` and `@EdgeStyle`
+    context
+  - Local variables can be defined with `Define` within `@NodeStyle` and
+    `@EdgeStyle` context
+- Memgraph Lab is now packaged as an RPM package and arm64 (M1 chip) for MacOS.
+
+### Bug fixes
+
+- Running a selected part of the Cypher query would just place that selected
+  part in the run history. Now, the full query will be saved in the run history,
+  and on its run, only the selected part will be executed again.
+- Rows that would hide when scrolling the data results view now preview as expected.
+- The System Default style colors all the nodes with the same label with a
+  unique color.
+- When showing a graph view on a map, you will no longer see a progress
+  percentage which is unnecessary as each node has a fixed and known position
+  due to its latitude and longitude values.
+- All tables across the Lab are responsive as expected.
+- Layouts no longer cause memory leaks and work as expected.
+- By fixing a bug, you can now successfully connect to Memgraph using a hostname
+  that contains numbers in the top-level domain.
+- Markdown lists in query descriptions are indented as expected.
+
 ## Lab v2.6.0 - Apr 20, 2023
 
 ### What's new

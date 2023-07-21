@@ -8,7 +8,7 @@ Graph Style Script comes with built-in colors that you can use by its name.
 
 Example of using color names:
 
-```
+```cpp
 @NodeStyle {
   color: aquamarine
   color-hover: Darker(cyan)
@@ -17,7 +17,7 @@ Example of using color names:
 
 Example of using color codes:
 
-```
+```cpp
 @NodeStyle {
   color: #7FFFD4
   color-hover: Darker(#00FFFF)

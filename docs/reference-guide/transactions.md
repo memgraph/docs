@@ -33,19 +33,50 @@ Roll back unsuccessful transactions by executing the `ROLLBACK;` query.
 
 ## Managing transactions
 
-Starting with Memgraph v2.7.0 you can check running transactions and terminate them.
+Memgraph can return information about running transactions and allow you to terminate them.
 
-### Show transactions
+### Show running transactions
 
-To see what transactions are running at the moment use the following command:
+To get information about running transaction execute the following query:
 
 ```cypher
 SHOW TRANSACTIONS;
 ```
 
-The command will show only the transactions you started or transactions for which you have the necessary [privilege](#privileges-needed-to-manage-all-transactions).
+The query shows only the transactions you started or transactions for which you
+have the necessary [privileges](#privileges-needed-to-manage-all-transactions).
 
 <img src={require('../data/how-to-guides/manage-transactional-queue/show_transactions.png').default}/>
+
+If you are connecting to Memgraph using a client, you can pass additional
+metadata when starting a transaction (if the client supports additional
+metadata) which will be visible when running the `SHOW TRANSACTIONS;` query,
+thus allowing you to identify each transaction precisely.
+
+The Python example below demonstrates how to pass metadata for
+both an implicit and explicit transaction:
+
+```python
+import neo4j
+
+def main():
+  driver = neo4j.GraphDatabase.driver("bolt://localhost:7687", auth=("user","pass"))
+
+  s1 = driver.session()
+  tx = s1.begin_transaction(metadata={"where":"in explicit tx", "my_uuid":1})
+  tx.run("MATCH (n) RETURN n LIMIT 1")
+
+  s2 = driver.session()
+  query=neo4j.Query("SHOW TRANSACTIONS", metadata={"where":"in implicit tx", "my_uuid":2})
+  print(s2.run(query).values())
+
+  tx.close()
+  s1.close()
+  s2.close()
+
+if __name__ == '__main__':
+  main()
+```
 
 ### Terminate transactions
 
@@ -57,8 +88,11 @@ TERMINATE TRANSACTIONS "tid", "<tid2>", "<tid3>", ... ;
 
 The `tid` is the transactional ID that can be seen using the `SHOW TRANSACTIONS;` query.
 
-The `TERMINATE TRANSACTIONS` query signalizes to the thread executing the transaction that it should stop the execution. No violent interruption will happen, and the whole system will stay in a consistent state.
-To terminate the transaction you haven't started, you need to have the necessary [privilege](#privileges-needed-to-manage-all-transactions).
+The `TERMINATE TRANSACTIONS` query signalizes to the thread executing the
+transaction that it should stop the execution. No violent interruption will
+happen, and the whole system will stay in a consistent state. To terminate the
+transaction you haven't started, you need to have the necessary
+[privileges](#privileges-needed-to-manage-all-transactions).
 
 #### Terminating custom procedures
 
@@ -66,7 +100,29 @@ If you want to be able to [terminate custom
 procedures](/reference-guide/query-modules/implement-custom-query-modules/custom-query-module-example.md),
 crucial parts of the code, such as `while` and `until` loops, or similar points
 where the procedure might become costly, need to be preceded with
-CheckMustAbort() function.
+`CheckMustAbort()` function.
+
+### Privileges needed to manage all transactions
+
+By default, the users can see and terminate only the transactions they started. For all other transactions, the user must have the **TRANSACTION_MANAGEMENT** privilege which the admin assigns with the following query:
+
+```cypher
+GRANT TRANSACTION_MANAGEMENT TO user;
+```
+
+The privilege to see all the transactions running in Memgraph is revoked using the following query:
+
+```cypher
+REVOKE TRANSACTION_MANAGEMENT FROM user;
+```
+
+:::info
+When Memgraph is first started there is only one explicit super-admin user that has all privileges, including the **TRANSACTION_MANAGEMENT**. The super-admin user is able to see all transactions.
+:::
+
+### Example
+
+Managing transactions is done by establishing a new connection to the database.
 
 #### New session with Docker
 
@@ -90,9 +146,10 @@ If you are using **mgconsole** on an instance running in a Docker container:
 
 4. Run the `SHOW TRANSACTIONS;` and `TERMINATE TRANSACTIONS tid;`
 
-### Example
+#### Show and terminate transactions
 
-The output of the `SHOW TRANSACTIONS` command shows that an infinite query is currently being run as part of the transaction ID "9223372036854775809".
+The output of the `SHOW TRANSACTIONS` command shows that an infinite query is
+currently being run as part of the transaction ID "9223372036854775809".
 
 To terminate the transaction, run the following query:
 
@@ -107,24 +164,6 @@ Upon the transaction termination, the following confirmation will appear:
 The following message will appear in the session in which the infinite query was being run:
 
 <img src={require('../data/how-to-guides/manage-transactional-queue/transaction_aborted_message.png').default}/>
-
-### Privileges needed to manage all transactions
-
-By default, the users can see and terminate only the transactions they started. For all other transactions, the user must have the **TRANSACTION_MANAGEMENT** privilege which the admin assigns with the following query:
-
-```cypher
-GRANT TRANSACTION_MANAGEMENT TO user;
-```
-
-The privilege to see all the transactions running in Memgraph is revoked using the following query:
-
-```cypher
-REVOKE TRANSACTION_MANAGEMENT FROM user;
-```
-
-:::info
-When Memgraph is first started there is only one explicit super-admin user that has all privileges, including the **TRANSACTION_MANAGEMENT**. The super-admin user is able to see all transactions.
-:::
 
 ## Isolation levels
 
@@ -180,16 +219,22 @@ SET <scope> TRANSACTION ISOLATION LEVEL <isolation_level>
 
 ## Storage modes
 
-Memgraph can work in `IN_MEMORY_ANALYTICAL` or `IN_MEMORY_TRANSACTIONAL`
-[storage mode](/reference-guide/storage-modes.md). `IN_MEMORY_TRANSACTIONAL` is
-the default mode in which Memgraph runs on startup.
+Memgraph can work in `IN_MEMORY_ANALYTICAL`, `IN_MEMORY_TRANSACTIONAL` or
+`ON_DISK_TRANSACTIONAL` [storage mode](/reference-guide/storage-modes.md).
+`IN_MEMORY_TRANSACTIONAL` is the default mode in which Memgraph runs on startup.
 
 `IN_MEMORY_TRANSACTIONAL` mode offers all mentioned isolation levels and all
 ACID guarantees. `IN_MEMORY_ANALYTICAL` offers no isolation levels and no ACID
 guarantees. Multiple transactions can write data to Memgraph simultaneously. One
 transaction can therefore see all the changes from other transactions.
 
-There can't be any active transactions if you want to switch from one mode to
-another. Memgraph will log a warning message if it finds any active
+`ON_DISK_TRANSACTIONAL` storage mode uses only snapshot isolation. 
+
+There can't be any active transactions if you want to switch from one in-memory
+mode to another. Memgraph will log a warning message if it finds any active
 transactions, so set the log level to `WARNING` to see them. No other
 transactions will take place during the switch between modes.
+
+When changing the storage mode to on-disk, there should be only one active
+session and the database must be empty. The database also needs to be empty if
+you want to change the storage mode from on-disk to in-memory.
