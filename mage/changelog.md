@@ -9,7 +9,7 @@ sidebar_label: Changelog
 ### Features and improvements
 
 - The [new conditional execution
-module](/query-modules/python/conditional-execution.md ) lets you define
+module](/query-modules/cpp/conditional-execution.md) lets you define
   conditions not expressible in Cypher and and use them to control query
   execution. [#203](https://github.com/memgraph/mage/pull/203)
 

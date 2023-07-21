@@ -29,7 +29,7 @@ and use it to control query execution.
 | Trait              | Value                                                 |
 | ------------------ | ----------------------------------------------------- |
 | **Module type**    | <Highlight color="#FB6E00">**module**</Highlight>     |
-| **Implementation** | <Highlight color="#FB6E00">**Python**</Highlight>     |
+| **Implementation** | <Highlight color="#FB6E00">**C++**</Highlight>        |
 | **Parallelism**    | <Highlight color="#FB6E00">**sequential**</Highlight> |
 
 ## Procedures
@@ -70,6 +70,12 @@ Parameters are prefixed with `$` like `$param_name`. For examples, see
 
 * `value: Map` ➡ Contains the result record of the executed query. Each `value` corresponds to one result record.
 
+:::caution
+Currently, the module supports only those returning records that contain `string`, `integer`, `double` or `boolean` primitives.
+Queries in the `conditionals` or in the `else_query` arguments, which get executed and return other types of data, will
+result in an exception.
+:::
+
 #### Usage:
 
 ```cypher
@@ -104,6 +110,12 @@ Parameters are prefixed with `$` like `$param_name`. For examples, see
 #### Output:
 
 * `value: Map` ➡ Contains the result record of the executed query. Each `value` corresponds to one result record.
+
+:::caution
+Currently, the module supports only those returning records that contain `string`, `integer`, `double` or `boolean` primitives.
+Queries in the `conditionals` or in the `else_query` arguments, which get executed and return other types of data, will
+result in an exception.
+:::
 
 #### Usage:
 
