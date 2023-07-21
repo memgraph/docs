@@ -7,17 +7,17 @@ sidebar_label: Kubernetes
 To include **standalone Memgraph** as a part of your Kubernetes cluster, you can use the Helm chart provided in the [**Memgraph Helm charts repository**](https://github.com/memgraph/helm-charts). Due to numerous possible use cases and deployment setups via Kubernetes, the provided Helm chart is just a starting point you can modify according to your needs. 
 
 
-Memgraph Helm charts repository currently contains a chart for [**standalone Memgraph deployment**](#helm-chart-for-standalone-memgraph) as a Kubernetes `StatefulSet` workload, which saves data to persistent storage. 
+Memgraph Helm charts repository currently contains a chart for [**standalone Memgraph deployment**](#helm-chart-for-standalone-memgraph) as a Kubernetes `StatefulSet` workload, which is designed for services that require permanent storage, such as databases. 
 
 :::note
-Currently available Helm chart uses the latest **Memgraph** Docker image from the [Docker Hub](https://hub.docker.com/r/memgraph/memgraph). For other Memgraph Docker images (Memgraph MAGE or Memgraph Platform), modify the chart accordingly. We are eager to see new pull requests on our [helm charts repository](https://github.com/memgraph/helm-charts).
+The currently available Helm chart uses the latest **Memgraph** Docker image from the [Docker Hub](https://hub.docker.com/r/memgraph/memgraph). For other Memgraph Docker images (Memgraph MAGE or Memgraph Platform), modify the chart accordingly. We are eager to see new pull requests on our [helm charts repository](https://github.com/memgraph/helm-charts).
 :::
 
 ## Helm chart for standalone Memgraph
 
 <!-- TODO: Add image - architecture -->
 
-The [Helm chart for standalone Memgraph](https://github.com/memgraph/helm-charts/tree/main/charts/memgraph) is configured to deploy Memgraph as a Kubernetes `StatefulSet` workload, which saves data to persistent storage. Due to the `StatefulSet` nature of Memgraph, it is also necessary to define a `PersistentVolumeClaims` to store [the data directory](/reference-guide/backup.md) (`/var/lib/memgraph`). This enables the data to be persisted even if the pod is restarted or deleted. 
+Since [Helm chart for standalone Memgraph](https://github.com/memgraph/helm-charts/tree/main/charts/memgraph) is configured to deploy Memgraph as a Kubernetes `StatefulSet` workload, it is also necessary to define a `PersistentVolumeClaims` to store [the data directory](/reference-guide/backup.md) (`/var/lib/memgraph`). This enables the data to be persisted even if the pod is restarted or deleted. 
 
 If you don't require data persistency or your dataset is static, there is no need to use the `StatefulSet` workload. Stateful applications are more complex to set up and maintain as they require more attention when handling storage information and security.
 
@@ -43,7 +43,7 @@ To install Memgraph Helm Chart, run the following command:
 ```
 helm install <release-name> memgraph/memgraph
 ```
-Replace `<release-name>` with a name of your choice for the release.
+Replace `<release-name>` with the name of the release you chose.
 
 ### Access Memgraph
 Once Memgraph is installed, you can access it using the provided services and endpoints. Refer to the [Memgraph documentation](/docs/connect-to-memgraph/overview.mdx) for details on how to connect to and interact with Memgraph.
@@ -67,7 +67,7 @@ To change the default chart values, provide your own `values.yaml` file during t
 ```
 helm install <resource-name> memgraph/memgraph -f values.yaml
 ```
-Another way of doing that is by setting the values of appropriate parameters:
+Default chart values can also be changed by setting the values of appropriate parameters:
 ```
 helm install <resource-name> memgraph/memgraph --set <flag1>=<value1>,<flag2>=<value2>,...
 ```
