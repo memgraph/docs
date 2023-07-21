@@ -4,6 +4,21 @@ title: Replication
 sidebar_label: Replication
 ---
 
+:::caution
+
+Memgraph 2.9 introduced a new configuration flag
+`--replication-restore-state-on-startup` which is `false` by default.
+
+If you want instances to remember their role and configuration in a replication
+cluster upon restart, the `--replication-restore-state-on-startup` needs to be
+set to `true` when first initializing the instances and remain `true` throughout
+the instances' lifetime. 
+
+When reinstating a cluster it is advised to first initialize the MAIN
+instance, then the REPLICA instances. 
+
+:::
+
 When distributing data across several instances, Memgraph uses replication to
 provide a satisfying ratio of the following properties, known from the CAP theorem:
 
@@ -39,11 +54,20 @@ Post](https://img.shields.io/static/v1?label=Related&message=Blog%20post&color=9
 In Memgraph, all instances are MAIN upon starting. When creating a replication
 cluster, one instance has to be chosen as the MAIN instance. The rest of the
 instances have to be demoted to REPLICA roles and have a port defined using a
-Cypher query. REPLICA instances no longer accept write queries. In order to
-start the replication, each REPLICA instance needs to be registered from the
-MAIN instance by setting [a replication
-mode](/under-the-hood/replication.md#replication-modes) (SYNC
-or ASYNC) and specifying the REPLICA instance's socket address.
+Cypher query. 
+
+If you want instances to remember their role and configuration in a replication
+cluster upon restart, they need to be initialized with the
+`--replication-restore-state-on-startup` set to `true` and remain `true`
+throughout the instances' lifetime. Otherwise and by default, restarted
+instances will start as MAIN instances disconnected from any replication
+cluster. 
+
+Once demoted to REPLICA instances, they will no longer accept write queries. In
+order to start the replication, each REPLICA instance needs to be registered
+from the MAIN instance by setting [a replication
+mode](/under-the-hood/replication.md#replication-modes) (SYNC or ASYNC) and
+specifying the REPLICA instance's socket address.
 
 The replication mode defines the terms by which the MAIN instance can commit the
 changes to the database, thus modifying the system to prioritize either
@@ -76,7 +100,7 @@ enough information to synchronize the data on a REPLICA. Memgraph stores only
 
 If the REPLICA is so far behind the MAIN instance that the synchronization using
 WAL files and deltas within it is impossible, Memgraph will use snapshots to
-synchronize the REPLICA to the state of the MAIN instance.
+synchronize the REPLICA to the state of the MAIN instance. 
 
 ## Running multiple instances
 
@@ -84,14 +108,19 @@ When running multiple instances, each on its own machine, run Memgraph as you
 usually would.
 
 If you are exploring replication and running multiple instances on one machine,
-you can run Memgraph with Docker. Check [Docker run options for
-Memgraph images](/memgraph/how-to-guides/work-with-docker#run-a-memgraph-docker-image) to set up ports and volumes
-properly, if necessary.
+you can run Memgraph with Docker. Check [Docker run options for Memgraph
+images](/memgraph/how-to-guides/work-with-docker#run-a-memgraph-docker-image) to
+set up ports and volumes properly, if necessary.
 
 ## Assigning roles
 
 Each Memgraph instance has the role of the MAIN instance when it is first
 started.
+
+Also, by default, each crashed instance restarts as a MAIN instance disconnected
+from any replication cluster. To change this behavior, set the
+`--replication-restore-state-on-startup` to `true` when first initializing the
+instance.
 
 ### Assigning the REPLICA role
 
@@ -127,9 +156,9 @@ If you demote the new MAIN instance back to the REPLICA role, it will not
 retrieve its original function. You need to [drop
 it](#dropping-a-replica-instance) from the MAIN and register it again.
 
-If the crashed MAIN instance goes back online, it cannot reclaim its previous
-role. It needs to be cleaned and demoted to become a REPLICA instance of the new MAIN
-instance. 
+If the crashed MAIN instance goes back online once a new MAIN is already
+assigned, it cannot reclaim its previous role. It can be cleaned and
+demoted to become a REPLICA instance of the new MAIN instance. 
 
 ### Checking the assigned role
 

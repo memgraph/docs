@@ -35,7 +35,15 @@ replication modes, we will create:
 If you are running multiple instances, each on its own machine, run Memgraph as
 you usually would.
 
-If you are exploring replication and running multiple instances on one machine, run Memgraph Platform with Docker:
+If you are exploring replication and running multiple instances on one machine, run Memgraph Platform with Docker.
+
+Memgraph 2.9 introduced a new configuration flag
+`--replication-restore-state-on-startup` which is `false` by default.
+
+If you want instances to remember their role and configuration in a replication
+cluster upon restart, the `--replication-restore-state-on-startup` needs to be
+set to `true` when first initializing the instances and remain `true` throughout
+the instances' lifetime. 
 
 The MAIN instance:
 
