@@ -1,112 +1,87 @@
 ---
 id: kubernetes
-title: Memgraph Helm Chart
+title: Kubernetes
 sidebar_label: Kubernetes
 ---
 
-To include Memgraph as a part of your **Kubernetes** cluster, use the **Helm chart** below for a simple setup. Due to numerous possible use cases and deployment setups via Kubernetes, this Helm chart is just a starting point you can modify according to your needs. 
-
-The provided Helm chart is configured to deploy Memgraph as a Kubernetes **StatefulSet** workload, which saves data to persistent storage, a useful feature when deploying a database. Due to the StatefulSet nature of Memgraph, it is also necessary to define a **PersistentVolumeClaims** to store [the data directory](/reference-guide/backup.md) (/var/lib/memgraph). This enables the data to be persisted even if the pod is restarted or deleted. 
-
-If you don't require data persistency or your dataset is static, there is no need to use the StatefulSet workload. Stateful applications are more complex to set up and maintain as they require more attention when handling storage information and security.
-
-The Helm chart is configured to use the latest **MemgraphDB** docker image from [Docker Hub](https://hub.docker.com/r/memgraph/memgraph), so if you require a different Memgraph Docker image, be sure the modify the chart. 
-
-The `apiVersion` is set to `apps/v1`, which means the chart supports Helm version 3 or less.
+To include **standalone Memgraph** as a part of your Kubernetes cluster, you can use the Helm chart provided in the [**Memgraph Helm charts repository**](https://github.com/memgraph/helm-charts). Due to numerous possible use cases and deployment setups via Kubernetes, the provided Helm chart is just a starting point you can modify according to your needs. 
 
 
-```yaml
-# Service
-apiVersion: v1
-kind: Service
-metadata:
-  name: memgraph-svc
-  labels:
-    app.kubernetes.io/name: memgraph
-    app.kubernetes.io/managed-by: Helm
-spec:
-  type: NodePort
-  ports:
-    - port: 7687
-      targetPort: 7687
-      protocol: TCP
-      name: bolt
-  selector:
-    app.kubernetes.io/name: memgraph
----
-# StatefulSet
-apiVersion: apps/v1
-kind: StatefulSet
-metadata:
-  name: memgraph
-  labels:
-    app.kubernetes.io/name: memgraph
-    app.kubernetes.io/managed-by: Helm
-spec:
-  replicas: 1
-  serviceName: memgraph-svc
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: memgraph
-  podManagementPolicy: OrderedReady
-  updateStrategy:
-        type: RollingUpdate
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: memgraph
-    spec:
-      securityContext:
-      volumes:
-        - name: memgraph-lib-storage
-          persistentVolumeClaim:
-            claimName: memgraph-lib-storage
-        - name: memgraph-log-storage
-          persistentVolumeClaim:
-            claimName: memgraph-log-storage
-      containers:
-        - name: memgraph
-          image: "memgraph/memgraph:latest"
-          args: ["--also-log-to-stderr=true"]
-          imagePullPolicy: Always
-          securityContext:
-            runAsUser: 0
-          ports:
-            - name: memgraph
-              containerPort: 7687
-          volumeMounts:
-            - name: memgraph-lib-storage
-              mountPath: /var/lib/memgraph
-            - name: memgraph-log-storage
-              mountPath: /var/log/memgraph
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: memgraph-lib-storage
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 500Mi
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: memgraph-log-storage
-spec:
-  accessModes:
-  - ReadWriteOnce
-  resources:
-    requests:
-      storage: 500Mi
+Memgraph Helm charts repository currently contains a chart for [**standalone Memgraph deployment**](#helm-chart-for-standalone-memgraph) as a Kubernetes `StatefulSet` workload, which is designed for services that require permanent storage, such as databases. 
+
+:::note
+The currently available Helm chart uses the latest **Memgraph** Docker image from the [Docker Hub](https://hub.docker.com/r/memgraph/memgraph). For other Memgraph Docker images (Memgraph MAGE or Memgraph Platform), modify the chart accordingly. We are eager to see new pull requests on our [helm charts repository](https://github.com/memgraph/helm-charts).
+:::
+
+## Helm chart for standalone Memgraph
+
+<!-- TODO: Add image - architecture -->
+
+Since [Helm chart for standalone Memgraph](https://github.com/memgraph/helm-charts/tree/main/charts/memgraph) is configured to deploy Memgraph as a Kubernetes `StatefulSet` workload, it is also necessary to define a `PersistentVolumeClaims` to store [the data directory](/reference-guide/backup.md) (`/var/lib/memgraph`). This enables the data to be persisted even if the pod is restarted or deleted. 
+
+If you don't require data persistency or your dataset is static, there is no need to use the `StatefulSet` workload. Stateful applications are more complex to set up and maintain as they require more attention when handling storage information and security.
+
+To include standalone Memgraph as a part of your Kubernetes cluster, you need to [**add the repository**](#add-the-repository) and [**install Memgraph**](#install-memgraph).
+
+### Add the repository
+
+Add the Memgraph Helm chart repository to your local Helm setup by running the following command:
 
 ```
+helm repo add memgraph https://memgraph.github.io/helm-charts
+```
 
-The above Helm chart spins up Memgraph and exposes it via **NodePort** service on port `7687` for communication via the Bolt protocol.
+Make sure to update the repository to fetch the latest Helm charts available:
 
- The chart also creates two **PersistentVolumeClaims** for storing the data and log directories. Since Memgraph Docker image has root privileges on the data located on volumes and log directories, it is necessary to set the `runAsUser` to `0` in the `securityContext` section of the pod to override the `memgraph` user from the Docker image. Currently, Memgraph must have root privileges on the volumes. 
+```
+helm repo update
+```
 
-Memgraph starts with the `--also-log-to-stderr=true` flag, meaning the logs will also be written to the standard error output and you can access logs using the `kubectl logs` command.
+### Install Memgraph
 
+To install Memgraph Helm Chart, run the following command:
+```
+helm install <release-name> memgraph/memgraph
+```
+Replace `<release-name>` with the name of the release you chose.
+
+### Access Memgraph
+Once Memgraph is installed, you can access it using the provided services and endpoints. Refer to the [Memgraph documentation](/docs/connect-to-memgraph/overview.mdx) for details on how to connect to and interact with Memgraph.
+
+### Configuration options
+The following table lists the configurable parameters of the Memgraph chart and their default values.
+
+parameter | description | default
+--- | --- | ---
+`image` | Memgraph Docker image repository | `memgraph`
+`persistentVolumeClaim.storagePVC` | Enable persistent volume claim for storage | `true`
+`persistanceVolumeClaim.storagePVCSize` | Size of the persistent volume claim for storage | `1Gi`
+`persistentVolumeClaim.logPVC` | Enable persistent volume claim for logs | `true`
+`persistanceVolumeClaim.logPVCSize` | Size of the persistent volume claim for logs | `256Mi`
+`service.type` | Kubernetes service type | `NodePort`
+`service.port` | Kubernetes service port | `7687`
+`service.targetPort` | Kubernetes service target port | `7687`
+`memgraphConfig` | Memgraph configuration settings | `["--also-log-to-stderr=true"]`
+
+To change the default chart values, provide your own `values.yaml` file during the installation:
+```
+helm install <resource-name> memgraph/memgraph -f values.yaml
+```
+Default chart values can also be changed by setting the values of appropriate parameters:
+```
+helm install <resource-name> memgraph/memgraph --set <flag1>=<value1>,<flag2>=<value2>,...
+```
+
+:::info
+Memgraph will start with the `--also-log-to-stderr=true` flag, meaning the logs will also be written to the standard error output and you can access logs using the `kubectl logs` command. To modify other Memgraph database settings, you should update the `memgraphConfig` parameter. It should be a list of strings defining the values of Memgraph configuration settings. For example, this is how you can define `memgraphConfig` parameter in your `values.yaml`:
+```
+memgraphConfig: 
+  - "--also-log-to-stderr=true"
+  - "--log-level=TRACE"
+```
+For all available database settings, refer to the [Configuration settings reference guide](https://memgraph.com/docs/memgraph/reference-guide/configuration).
+:::
+
+:::note
+Since Memgraph Docker image has root privileges on the data located on volumes and log directories, it is necessary that `runAsUser` is set to `0` in the `securityContext` section of the pod to override the `memgraph` user from the Docker image. Currently, Memgraph must have root privileges on the volumes. 
+:::
