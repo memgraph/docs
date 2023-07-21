@@ -4,7 +4,7 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
-## v1.8.0 - Jun 30, 2023
+## v1.8.0 - Jul 21, 2023
 
 ### Features and improvements
 
