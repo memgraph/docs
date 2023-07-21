@@ -10,20 +10,16 @@ import VideoBySide from '@site/src/components/VideoBySide';
 
 :::caution
 
-In order to enable the REPLICA instances to restart and continue their role in
-the replication cluster without disconnecting from it, Memgraph 2.9 introduced a
-new configuration flag `--replication-restore-state-on-startup` which is `false`
-by default.
+Memgraph 2.9 introduced a new configuration flag
+`--replication-restore-state-on-startup` which is `false` by default.
 
-Using this configuration flag you decided whether any instance, MAIN or REPLICA,
-will regain their previous role in the replication cluster. 
+If you want instances to remember their role and configuration in a replication
+cluster upon restart, the `--replication-restore-state-on-startup` needs to be
+set to `true` when first initializing the instances and remain `true` throughout
+the instances' lifetime. 
 
-If your current project is using replication and you do not introduce this
-configuration flag set to `true` on MAIN instances, upon restart they will be
-disconnected from their replication clusters. 
-
-By setting this configuration flag to `true` on REPLICA instances, upon restart
-REPLICAs will remember their role and configuration in a replication cluster.
+When reinstating a cluster it is advised to first initialize the MAIN
+instance, then the REPLICA instances. 
 
 :::
 
