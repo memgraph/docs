@@ -4,6 +4,23 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v1.8.0 - Jun 30, 2023
+
+### Features and improvements
+
+- With the `LLM` module you can generate a graph schema in a format best
+  suited for large language models (LLMs).
+  [#225](https://github.com/memgraph/mage/pull/225)
+- When executing complex queries, the `period` module allows batching results
+  from one query into another to improve execution time.
+  [#221](https://github.com/memgraph/mage/pull/221)
+- The `conditional_execution` module which allows the execution of different
+  queries depending on certain conditions being met, has been rewritten from
+  Python to C++ to improve performance and it can also periodically iterates.
+  [#222](https://github.com/memgraph/mage/pull/222)
+- The `migrate` module has the option to get data from MySQL, SQL server, or
+  Oracle DB to migrate it to Memgraph.
+  [#209](https://github.com/memgraph/mage/pull/209)s
 ## v1.7.0 - Apr 5, 2023
 
 ### Features and improvements
