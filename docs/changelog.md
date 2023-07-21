@@ -6,6 +6,73 @@ sidebar_label: Changelog
 
 import VideoBySide from '@site/src/components/VideoBySide';
 
+## v2.9 - Jun 30, 2023
+
+:::caution
+
+Memgraph 2.9 introduced a new configuration flag
+`--replication-restore-state-on-startup` which is `false` by default.
+
+If you want instances to remember their role and configuration in a replication
+cluster upon restart, the `--replication-restore-state-on-startup` needs to be
+set to `true` when first initializing the instances and remain `true` throughout
+the instances' lifetime. 
+
+When reinstating a cluster it is advised to first initialize the MAIN
+instance, then the REPLICA instances. 
+
+:::
+
+### New features and improvements
+
+- The new `ON_DISK_TRANSACTIONAL` storage mode allows you to store data on disk
+  rather than in-memory. Check the implementation and implications in the
+  reference guide. [#850](https://github.com/memgraph/memgraph/pull/850)
+- Memgraph now works with all Bolt v5.2 drivers.
+  [#938](https://github.com/memgraph/memgraph/pull/938)
+- The LOAD CSV clause has several new improvements: 
+  - You can now import data from web-hosted CSV files by passing the URL as a
+    file location. You can also import files compressed with `gzip` or `bzip2`
+    algorithms. [#1027](https://github.com/memgraph/memgraph/pull/1027)
+  - To speed up the execution of the `LOAD CSV` clause, you can add `MATCH` and
+    `MERGE` entities prior to reading the rows from a CSV file. But, the `MATCH`
+    or `MERGE` clause has to return just one row or Memgraph will throw an
+    exception. [#916](https://github.com/memgraph/memgraph/pull/916)
+  - If a certain sequence of characters in a CSV file needs to be imported as
+    null, you can now specify them with the NULLIF option of the LOAD CSV
+    clause. [#914](https://github.com/memgraph/memgraph/pull/914)
+- You can now use `mgp::Type::Any` while developing a custom query procedure
+  with the C++ API to specify that the argument of the procedure can be of any
+  type. [#982](https://github.com/memgraph/memgraph/pull/982)
+- When you need to differentiate transactions, you can now define and pass
+  transaction metadata via the client and check it in Memgraph by running the
+  `SHOW TRANSACTIONS;` query.
+  [#945](https://github.com/memgraph/memgraph/pull/945) 
+- You can now create custom batch procedures in Python and C++ that process data
+  in batches, thus consuming less memory.  
+[#964](https://github.com/memgraph/memgraph/pull/964)
+- The `ANALYZE GRAPH;` query now includes information about the degree of all
+  nodes to enhance the MERGE optimizations on supernodes.
+  [#1026](https://github.com/memgraph/memgraph/pull/1026)
+- The `--replication-restore-state-on-startup` configuration flag allows you to
+  define whether instances in the replication cluster will regain their roles
+  upon restart (`true`) or restart as disconnected "blank" MAIN instances
+  (default setting `false`). This flag resolved the unwanted behavior of
+  restarted REPLICA instances disconnecting from the cluster, but it also needs
+  to be introduced to MAIN instances so they are not disconnected from the
+  cluster upon restart. [#791](https://github.com/memgraph/memgraph/pull/791)
+
+### Bug fixes
+
+- `init-file` and `init-data-file` configuration flags allow the execution of
+  queries from a CYPHERL file, prior to or immediately after the Bolt server
+  starts and are now possible to configure in the Community Edition as well.
+  [#850](https://github.com/memgraph/memgraph/pull/850)
+- The IN_MEMORY_ANALYTICAL storage mode now deallocates memory as expected and
+  no longer consumes memory excessively. [#1025](https://github.com/memgraph/memgraph/pull/1025) 
+- When no values are returned from a map, a null is returned instead of an
+  exception occurring. [#1039](https://github.com/memgraph/memgraph/pull/1039)
+
 <VideoBySide videoSrc="https://www.youtube.com/embed/5JvBBUjpGRA">
 
 ## v2.8 - May 18, 2023
