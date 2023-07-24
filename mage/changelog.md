@@ -11,7 +11,7 @@ sidebar_label: Changelog
 - With the `LLM` module you can generate a graph schema in a format best
   suited for large language models (LLMs).
   [#225](https://github.com/memgraph/mage/pull/225)
-- When executing complex queries, the `period` module allows batching results
+- When executing complex queries, the `periodic` module allows batching results
   from one query into another to improve execution time.
   [#221](https://github.com/memgraph/mage/pull/221)
 - The `conditional_execution` module which allows the execution of different
