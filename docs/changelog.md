@@ -25,12 +25,13 @@ instance, then the REPLICA instances.
 
 ### New features and improvements
 
-- The new `ON_DISK_TRANSACTIONAL` storage mode allows you to store data on disk
+- The new [`ON_DISK_TRANSACTIONAL` storage
+  mode](/reference-guide/storage-modes.md) allows you to store data on disk
   rather than in-memory. Check the implementation and implications in the
   reference guide. [#850](https://github.com/memgraph/memgraph/pull/850)
 - Memgraph now works with all Bolt v5.2 drivers.
   [#938](https://github.com/memgraph/memgraph/pull/938)
-- The LOAD CSV clause has several new improvements: 
+- The [LOAD CSV clause](/import-data/files/load-csv-clause.md) has several new improvements: 
   - You can now import data from web-hosted CSV files by passing the URL as a
     file location. You can also import files compressed with `gzip` or `bzip2`
     algorithms. [#1027](https://github.com/memgraph/memgraph/pull/1027)
@@ -42,25 +43,29 @@ instance, then the REPLICA instances.
     null, you can now specify them with the NULLIF option of the LOAD CSV
     clause. [#914](https://github.com/memgraph/memgraph/pull/914)
 - You can now use `mgp::Type::Any` while developing a custom query procedure
-  with the C++ API to specify that the argument of the procedure can be of any
-  type. [#982](https://github.com/memgraph/memgraph/pull/982)
+  with [the C++
+  API](/reference-guide/query-modules/implement-custom-query-modules/api/cpp-api.md)
+  to specify that the argument of the procedure can be of any type.
+  [#982](https://github.com/memgraph/memgraph/pull/982)
 - When you need to differentiate transactions, you can now define and pass
-  transaction metadata via the client and check it in Memgraph by running the
+  [transaction metadata](/reference-guide/transactions.md) via the client and check it in Memgraph by running the
   `SHOW TRANSACTIONS;` query.
   [#945](https://github.com/memgraph/memgraph/pull/945) 
-- You can now create custom batch procedures in Python and C++ that process data
-  in batches, thus consuming less memory.  
+- You can now create [custom batch procedures in Python and
+  C++](/reference-guide/query-modules/implement-custom-query-modules/overview.md)
+  that process data in batches, thus consuming less memory.  
 [#964](https://github.com/memgraph/memgraph/pull/964)
-- The `ANALYZE GRAPH;` query now includes information about the degree of all
+- The [`ANALYZE GRAPH;` query](/reference-guide/analyze-graph.md) now includes information about the degree of all
   nodes to enhance the MERGE optimizations on supernodes.
   [#1026](https://github.com/memgraph/memgraph/pull/1026)
 - The `--replication-restore-state-on-startup` configuration flag allows you to
-  define whether instances in the replication cluster will regain their roles
-  upon restart (`true`) or restart as disconnected "blank" MAIN instances
-  (default setting `false`). This flag resolved the unwanted behavior of
-  restarted REPLICA instances disconnecting from the cluster, but it also needs
-  to be introduced to MAIN instances so they are not disconnected from the
-  cluster upon restart. [#791](https://github.com/memgraph/memgraph/pull/791)
+  define whether instances in the [replication
+  cluster](/reference-guide/replication.md) will regain their roles upon restart
+  (`true`) or restart as disconnected "blank" MAIN instances (default setting
+  `false`). This flag resolved the unwanted behavior of restarted REPLICA
+  instances disconnecting from the cluster, but it also needs to be introduced
+  to MAIN instances so they are not disconnected from the cluster upon restart.
+  [#791](https://github.com/memgraph/memgraph/pull/791)
 
 ### Bug fixes
 
