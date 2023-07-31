@@ -102,6 +102,56 @@ Name: Alice
 Age: 22
 ```
 
+## Transaction timeout
+
+Both automatic transactions and explicit transactions can be provided with a 
+timeout.
+
+### Automatic transaction
+```js
+const session: RxSession = driver.rxSession({ defaultAccessMode: 'READ' });
+session
+  .run("MATCH (), (), (), () RETURN 42 AS thing;", // NOTE: A long query
+    undefined,
+    { timeout: 50 } // NOTE: with a short timeout
+  )
+  .records()
+  .pipe(finalize(() => {
+    session.close();
+    driver.close();
+  }))
+  .subscribe({
+    next: record => { },
+    complete: () => { console.info('complete'); process.exit(1); }, // UNEXPECTED
+    error: msg => console.error('Error:', msg.message), // NOTE: expected to error with server side timeout
+  });
+
+```
+
+### Explicit transaction 
+```js
+const session = driver.rxSession({ defaultAccessMode: 'READ' });
+session
+  .beginTransaction({ timeout: 50 }) // NOTE: a short timeout
+  .pipe(
+    mergeMap(tx =>
+      tx
+        .run('MATCH (),(),(),() RETURN 42 AS thing;') // NOTE: a long query
+        .records()
+        .pipe(
+          catchError(err => { tx.rollback(); throw err; }),
+          concatWith(EMPTY.pipe(finalize(() => tx.commit())))
+        )
+    ),
+    finalize(() => { session.close(); driver.close() })
+  )
+  .subscribe({
+    next: record => { },
+    complete: () => { console.info('complete'); process.exit(1); }, // UNEXPECTED
+    error: msg => console.error('Error:', msg.message), // NOTE: expected to error with server side timeout
+  })
+```
+
 ## Where to next?
 
 For real-world examples of how to use Memgraph, we suggest you take a look at
