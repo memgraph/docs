@@ -643,6 +643,7 @@ Node(Node &&other) noexcept
 | `AddLabel`         | Adds a label to the node.                                           |
 | `SetProperty`      | Set value of node's property                                        |
 | `GetProperty`      | Get value of node's property                                        |
+| `RemoveProperty`   | Removes the node's property                                         |
 
 ##### Id
 
@@ -690,6 +691,14 @@ Sets value of node's property.
 
 ```cpp
 void SetProperty(std::string key, std::string value) const
+```
+
+##### RemoveProperty
+
+Removes the node's property.
+
+```cpp
+void RemoveProperty(std::string property)
 ```
 
 ##### InRelationships
