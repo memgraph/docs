@@ -330,7 +330,10 @@ Inserts a value of given type under field `field_name`.
 ```cpp
   void Insert(const char *field_name, const Duration value)
 ```
-
+```cpp
+  void Insert(const char *field_name, const Value &value)
+```
+ 
 ### Result
 
 Represents a **result** - the single return value of a Cypher function.
@@ -1776,61 +1779,76 @@ mgp::Type Type() const
 
 Depending on the exact function called, returns a typed value of the appropriate type.
 Throws an exception if the type stored in the `Value` object is not compatible with the function called.
+An overloaded function is avaliable which returns modifiable (non-const) value of the appropriate type.
 
 ```cpp
 bool ValueBool() const
+bool ValueBool()
 ```
 
 ```cpp
 int64_t ValueInt() const
+int64_t ValueInt()
 ```
 
 ```cpp
 double ValueDouble const
+double ValueDouble
 ```
 
 ```cpp
 double ValueNumeric const
+double ValueNumeric
 ```
 
 ```cpp
 std::string_view ValueString() const
+std::string_view ValueString()
 ```
 
 ```cpp
 const List ValueList() const
+List ValueList()
 ```
 
 ```cpp
 const Map ValueMap() const
+Map ValueMap()
 ```
 
 ```cpp
 const Node ValueNode() const
+Node ValueNode()
 ```
 
 ```cpp
 const Relationship ValueRelationship() const
+Relationship ValueRelationship()
 ```
 
 ```cpp
 const Path ValuePath() const
+Path ValuePath()
 ```
 
 ```cpp
 const Date ValueDate() const
+Date ValueDate()
 ```
 
 ```cpp
 const LocalTime ValueLocalTime() const
+LocalTime ValueLocalTime()
 ```
 
 ```cpp
 const LocalDateTime ValueLocalDateTime() const
+LocalDateTime ValueLocalDateTime()
 ```
 
 ```cpp
-const Map ValueMap() const
+const Duration ValueDuration() const
+Duration ValueDuration()
 ```
 
 ##### Is[TYPE]
@@ -1901,7 +1919,7 @@ bool IsDuration() const
 
 | Name                          | Description          |
 | ----------------------------- | -------------------- |
-| `operator==`<br/>`operator!=` | comparison operators |
+| `operator==`<br/>`operator!=` <br/> `operator<` | comparison operators |
 
 ### Type
 
@@ -1923,6 +1941,12 @@ The types are listed and described [on this page](https://memgraph.com/docs/memg
 - `Type::LocalTime`
 - `Type::LocalDateTime`
 - `Type::Duration`
+
+Additionaly, operator<< is overloaded for Type enum, and usage of this operator will print the type represented by mgp::Type enum.
+
+```cpp
+std::ostream &operator<<(std::ostream &os, const mgp::Type &type) 
+```
 
 ## Exceptions
 
