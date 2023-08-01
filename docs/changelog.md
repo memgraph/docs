@@ -6,6 +6,55 @@ sidebar_label: Changelog
 
 import VideoBySide from '@site/src/components/VideoBySide';
 
+## v2.10 - Aug 2, 2023
+
+### New features and improvements
+
+- If you want to replace procedure names your application calls without changing
+  the application code, you can define the mapping of the old and new procedure
+  names in a JSON file, then set the path to the files as the value of the
+  `query-callable-mappings-path` [configuration
+  flag](/reference-guide/configuration.md).
+  [#1018](https://github.com/memgraph/memgraph/pull/1018)
+- The [C++
+  API](/reference-guide/query-modules/implement-custom-query-modules/api/cpp-api.md)
+  for writing custom query modules now enables: 
+  - inserting `mgp::Any` datatype into Record. [#1094](https://github.com/memgraph/memgraph/pull/1094)
+  - comparing two `mgp::Value` variables with the `<` operator. [#1090](https://github.com/memgraph/memgraph/pull/1090)
+  - printing the type of `mgp::Type` enumeration using the operator `<<`. For
+  example, if you have a `mgp::List` list, `cout<< list <<endl` will output
+  `"list"`. [#1080](https://github.com/memgraph/memgraph/pull/1080) 
+  - using the `mgp::Value` variables and all its subtypes (`mgp::Map`,
+    `mgp::Path`, ...) inside hash structures such as `std::unordered_map` and
+    `std::unordered_set`. [#1093](https://github.com/memgraph/memgraph/pull/1093)
+  - deleting and updating map elements with `mgp::Map.Update(key, &value)`,
+    `mgp::Map.Update(key, &&value)` and `mgp::Map.Erase(key)` functions.
+    [#1103](https://github.com/memgraph/memgraph/pull/1103)
+  
+  Also, the `mgp::Value` wrapper for Memgraph's data types has been extended to
+  return subtypes which are modifiable (non-const).
+  [#1099](https://github.com/memgraph/memgraph/pull/1099)
+- The [C
+  API](/reference-guide/query-modules/implement-custom-query-modules/api/c-api.md)
+  for writing custom query modules now enables deleting and updating map
+  elements with `mgp_map_update(map, key, value)` and `mgp_map_erase(map, key)`
+  functions. [#1103](https://github.com/memgraph/memgraph/pull/1103)
+- Memgraph supports transaction timeouts defined by the Bolt protocol if the
+  connection to the database is established via the [JavaScript
+  client](/connect-to-memgraph/drivers/javascript.md).
+  [#1046](https://github.com/memgraph/memgraph/pull/1046)
+- Queries exploring all shortest paths now use considerably less memory without
+  significant performance deterioration.
+  [#981](https://github.com/memgraph/memgraph/pull/981)
+
+### Bug fixes
+
+- Connection with Bolt v5.2 now works as expected when returning a path as a
+  result. [#1108](https://github.com/memgraph/memgraph/pull/1108) 
+- Serializing vertex and edge properties to RocksDB now works as expected even
+  when the serialization buffer is exactly 15B.
+  [#1111](https://github.com/memgraph/memgraph/pull/1111)
+
 ## v2.9 - Jul 21, 2023
 
 :::caution
