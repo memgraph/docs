@@ -381,4 +381,106 @@ CALL collections.partition([1,2,3,4,5,6],2) YIELD result RETURN result;
 +---------------------------------------------------------+
 ```
 
+### `sum_longs(numbers)`
 
+Calculates the sum of list elements casted to integers.
+#### Input:
+
+- `numbers: List[Any]` ➡ list of numbers
+
+#### Output:
+
+- `sum: integer` ➡ sum of list elements
+
+#### Usage:
+
+```cypher
+CALL collections.sum_longs([1.9, 1.9]) YIELD sum RETURN sum;
+```
+
+```plaintext
++---------------------------------------------------------+
+| sum                                                     |
++---------------------------------------------------------+
+| 2                                                       |
++---------------------------------------------------------+
+```
+
+### `avg(numbers)`
+
+Calculates the average of list elements.
+#### Input:
+
+- `numbers: List[Any]` ➡ list of numbers
+
+#### Output:
+
+- `average: double` ➡ average of list elements
+
+#### Usage:
+
+```cypher
+CALL collections.avg([5, 5, 6, 7, -5]) YIELD average RETURN average;
+```
+
+```plaintext
++---------------------------------------------------------+
+| average                                                 |
++---------------------------------------------------------+
+| 3.6                                                     |
++---------------------------------------------------------+
+```
+
+### `contains_all(collection, values)`
+
+Checks if a list contains all the values from another list.
+#### Input:
+
+- `collection: List[Any]`
+- `values: List[Any]`
+
+#### Output:
+
+- `contained: boolean` ➡ true if all elements of `values` are contained in `collection`
+
+#### Usage:
+
+```cypher
+CALL collections.contains_all([1, 2, 3, "pero"], [1, 1, 1, 1, 2, 3])
+YIELD contained RETURN contained;
+```
+
+```plaintext
++---------------------------------------------------------+
+| contained                                               |
++---------------------------------------------------------+
+| true                                                    |
++---------------------------------------------------------+
+```
+
+### `intersection(first, second)`
+
+Returns the unique intersection of two lists.
+#### Input:
+
+- `first: List[Any]`
+- `second: List[Any]`
+
+#### Output:
+
+- `intersection: List[Any]` ➡ unique intersection of the two lists
+
+#### Usage:
+
+```cypher
+CALL collections.intersection([1, 1, 2, 3, 4, 5], [1, 1, 3, 5, 7, 9])
+YIELD intersection RETURN intersection;
+```
+
+```plaintext
++---------------------------------------------------------+
+| intersection                                            |
++---------------------------------------------------------+
+| [3, 5, 1]                                               |
++---------------------------------------------------------+
+```
