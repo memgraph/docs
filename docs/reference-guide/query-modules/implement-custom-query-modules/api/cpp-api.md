@@ -1625,6 +1625,8 @@ Map(Map &&other) noexcept
 | `Empty`                                   | Returns whether the map is empty.                  |
 | `At`                                      | Returns the value at the given `key`.              |
 | `Insert`                                  | Inserts the given `key`-`value` pair into the map. |
+| `Update`                                  | Inserts or updates the value at the given `key`.   |
+| `Erase`                                   | Erase a mapping by key.                            |
 | `begin`<br/>`end`<br/>`cbegin`<br/>`cend` | Returns the beginning/end of the `Map` iterator.   |
 
 ##### Size
@@ -1663,6 +1665,30 @@ The behavior of accessing `value` after performing this operation is undefined.
 
 ```cpp
 void Insert(std::string_view key, Value &&value)
+```
+
+##### Update
+
+Updates the `key`-`value` pair in the map. If the key doesn't exist, the value gets inserted.
+The `value` is copied.
+
+```cpp
+void Update(std::string_view key, const Value &value)
+```
+Updates the `key`-`value` pair in the map. If the key doesn't exist, the value gets inserted.
+The `value` is copied. Takes the ownership of `value` by moving it.
+The behavior of accessing `value` after performing this operation is undefined.
+
+```cpp
+void Update(std::string_view key, Value &&value)
+```
+
+##### Erase
+
+Erases the element associated with the key from the map, if it doesn't exist does nothing.
+
+```cpp
+void Erase(std::string_view key);
 ```
 
 #### Operators
