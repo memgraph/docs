@@ -1779,7 +1779,7 @@ mgp::Type Type() const
 
 Depending on the exact function called, returns a typed value of the appropriate type.
 Throws an exception if the type stored in the `Value` object is not compatible with the function called.
-An overloaded function is avaliable which returns modifiable (non-const) value of the appropriate type.
+An overloaded function is available which returns a modifiable (non-const) value of the appropriate type.
 
 ```cpp
 bool ValueBool() const
@@ -1942,7 +1942,7 @@ The types are listed and described [on this page](https://memgraph.com/docs/memg
 - `Type::LocalDateTime`
 - `Type::Duration`
 
-Additionaly, operator<< is overloaded for Type enum, and usage of this operator will print the type represented by mgp::Type enum.
+Additionally, operator<< is overloaded for Type enum, and usage of this operator will print the type represented by mgp::Type enum.
 
 ```cpp
 std::ostream &operator<<(std::ostream &os, const mgp::Type &type) 
