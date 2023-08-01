@@ -1626,7 +1626,7 @@ Map(Map &&other) noexcept
 | `At`                                      | Returns the value at the given `key`.              |
 | `Insert`                                  | Inserts the given `key`-`value` pair into the map. |
 | `Update`                                  | Inserts or updates the value at the given `key`.   |
-| `Erase`                                   | Erase a mapping by key.                            |
+| `Erase`                                   | Erases a mapping by key.                            |
 | `begin`<br/>`end`<br/>`cbegin`<br/>`cend` | Returns the beginning/end of the `Map` iterator.   |
 
 ##### Size
