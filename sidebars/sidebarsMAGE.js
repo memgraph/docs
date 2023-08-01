@@ -27,6 +27,7 @@ module.exports = {
         "query-modules/cpp/biconnected-components",
         "query-modules/cpp/bipartite-matching",
         "query-modules/cpp/bridges",
+        "query-modules/cpp/collections",
         "query-modules/cpp/community-detection",
         "query-modules/cpp/community-detection-online",
         "query-modules/cpp/conditional-execution",
