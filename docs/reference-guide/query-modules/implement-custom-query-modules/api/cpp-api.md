@@ -1720,7 +1720,7 @@ void Update(std::string_view key, Value &&value)
 
 ##### Erase
 
-Erases the element associated with the key from the map, if it doesn't exist does nothing.
+Erases the element associated with the key from the map, if it doesn't exist nothing happens.
 
 ```cpp
 void Erase(std::string_view key);
@@ -2007,7 +2007,7 @@ Object is hashable using
 std::hash<mgp::Value>
 ```
 
-Additionally, operator<< is overloaded for Value and usage of this operator will print the value of the mgp::Value instance (currently doesn't support values of type Path, Map and List).
+Additionally, operator `<<` is overloaded for `Value` and usage of this operator will print the value of the `mgp::Value` instance (currently doesn't support values of type `Path`, `Map` and `List`).
 
 ```cpp
 std::ostream &operator<<(std::ostream &os, const mgp::Value &value)
