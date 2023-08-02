@@ -325,14 +325,15 @@ CALL collections.unionAll([1,1,2,3],[3,"a","b","c"]) YIELD return_list RETURN re
 
 ### `to_set(list)`
 
-Converts the input list to a set
+Converts the input list to a set.
+
 #### Input:
 
-- `list: List[Any]` ➡ the list that is to be converted into a set
+- `list: List[Any]` ➡ the list that is to be converted into a set.
 
 #### Output:
 
-- `result: List[Any]` ➡ the set returned as an mgp::List data type
+- `result: List[Any]` ➡ the set returned as an `mgp::List` data type.
 
 #### Usage:
 
