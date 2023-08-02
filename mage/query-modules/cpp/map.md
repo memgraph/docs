@@ -209,6 +209,22 @@ Removes keys from input map. If recursive option is true, will remove keys from 
 - `result: Map[Any]` ➡ the resulting map
 
 #### Usage:
+Usage with recursive = false:
+
+```cypher
+CALL map.remove_keys({key: 1, key2:{key : 3, key3: 5}},["key"],false) YIELD result RETURN result;
+```
+
+```plaintext
++----------------------------------------+
+| result                                 |
++----------------------------------------+
+|{"key2": {"key": 3,"key3": 5}}          |
++----------------------------------------+
+```
+
+
+Usage with recursive = true:
 
 ```cypher
 CALL map.remove_keys({key: 1, key2:{key : 3, key3: 5}},["key"],true) YIELD result RETURN result;
@@ -220,5 +236,5 @@ CALL map.remove_keys({key: 1, key2:{key : 3, key3: 5}},["key"],true) YIELD resul
 +----------------------------------------+
 |{"key2": {"key3": 5}}                   |
 +----------------------------------------+
-
+```
 
