@@ -48,6 +48,13 @@ Removes the specified key and its corresponding value from the input map. If the
 
 - `removed: Map` ➡ the map after removing the specified key
 
+#### Usage:
+
+```cypher
+CALL map.remove_key({c: "b", d: "ba"}, "c") YIELD removed
+RETURN removed
+```
+
 ```plaintext
 +----------------------------+
 | removed                    |
