@@ -66,7 +66,7 @@ RETURN removed;
 
 ### `sum(input_list)`
 
-Calculates the sum of list elements if they are of the same type and can be summed (numeric).
+Calculates the sum of list elements if they are of the same type and can be summed (numeric). If the types are not the same, an exception is thrown. 
 
 #### Input:
 
@@ -113,7 +113,7 @@ Unites two lists into one, eliminating duplicates.
 
 ```cypher
 CALL collections.union([0, 1, 2, 3], [2, 2, 3, 4, 5]) YIELD union
-RETURN union
+RETURN union;
 ```
 
 ```plaintext
@@ -127,7 +127,7 @@ RETURN union
 
 ### `sort(input_list)`
 
-Sorts the elements of an input list if they are of the same type.
+Sorts the elements of an input list if they are of the same type. If they are not of the same type, an exception is thrown.
 
 #### Input:
 
@@ -142,7 +142,7 @@ Sorts the elements of an input list if they are of the same type.
 
 ```cypher
 CALL collections.sort([1, 4, 2.3, -5]) YIELD sorted
-RETURN sorted
+RETURN sorted;
 ```
 
 ```plaintext
@@ -161,7 +161,7 @@ Verifies the presence of a certain element in a sorted list. If an unsorted list
 #### Input:
 
 - `input_list: List[Any]` ➡ the target list for element search.
-- `element: Any` ➡ the element being searched for
+- `element: Any` ➡ the element being searched for.
 
 
 #### Output:
@@ -172,7 +172,7 @@ Verifies the presence of a certain element in a sorted list. If an unsorted list
 
 ```cypher
 CALL collections.contains_sorted([1, 2, 3.3, 4.4, 5], 2) YIELD contains
-RETURN contains
+RETURN contains;
 ```
 
 ```plaintext
@@ -201,7 +201,7 @@ Finds the maximum element in an input list. List elements must be comparable, th
 
 ```cypher
 CALL collections.max([-1, -2, -3.3]) YIELD max
-RETURN max
+RETURN max;
 ```
 
 ```plaintext
@@ -230,7 +230,7 @@ Creates pairs from the input list.
 
 ```cypher
 CALL collections.pairs([3, "s", 4.4, [1, 2]]) YIELD pairs
-RETURN pairs
+RETURN pairs;
 ```
 
 ```plaintext
@@ -319,7 +319,7 @@ CALL collections.unionAll([1,1,2,3],[3,"a","b","c"]) YIELD return_list RETURN re
 +---------------------------------------------------------+
 | return_list                                             |
 +---------------------------------------------------------+
-| [1,1,2,3,3,"a","b","c"]                                     |
+| [1,1,2,3,3,"a","b","c"]                                 |
 +---------------------------------------------------------+
 ```
 
@@ -382,7 +382,7 @@ CALL collections.partition([1,2,3,4,5,6],2) YIELD result RETURN result;
 
 ### `sum_longs(numbers)`
 
-Calculates the sum of list elements casted to integers.
+Calculates the sum of list elements casted to integers. The initial list elements have to be of type Numeric, or an exception is thrown.
 
 #### Input:
 
@@ -438,8 +438,8 @@ Checks if a list contains all the values from another list.
 
 #### Input:
 
-- `collection: List[Any]`
-- `values: List[Any]`
+- `collection: List[Any]` ➡ the target list for value search.
+- `values: List[Any]` ➡ values being searched for in the target list.
 
 #### Output:
 
@@ -466,8 +466,8 @@ Returns the unique intersection of two lists.
 
 #### Input:
 
-- `first: List[Any]`
-- `second: List[Any]`
+- `first: List[Any]` ➡ the first list being used in `intersection`.
+- `second: List[Any]` ➡ the first list being used in `intersection`.
 
 #### Output:
 
