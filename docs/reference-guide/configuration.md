@@ -44,6 +44,7 @@ workers simultaneously.
 
 | Flag           | Description    | Type           |
 | -------------- | -------------- | -------------- |
+| --query-callable-mappings-path | Path to the JSON file that contains possible alias mappings for query procedures in the form of key-value pairs. | `[string]` |
 | --query-cost-planner=true | Use the cost-estimating query planner. | `[bool]` |
 | --query-execution-timeout-sec=180 | Maximum allowed query execution time. <br/>Queries exceeding this limit will be aborted. Value of 0 means no limit. | `[uint64]` |
 | --query-max-plans=1000 | Maximum number of generated plans for a query. | `[uint64]` |

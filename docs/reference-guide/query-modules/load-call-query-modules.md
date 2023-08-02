@@ -23,6 +23,23 @@ read [the query modules overview page](overview.md).
 
 <Calling/>
 
+### Mapping costume procedure names to existing query procedures
+
+If you want to replace procedure names your application calls without changing
+the application code, you can define the mapping of the old and new procedure
+names in a JSON file, then set the path to the files as the value of the
+`query-callable-mappings-path` [configuration
+flag](/reference-guide/configuration.md). 
+
+Example of a JSON file:
+
+```json
+{
+    "db.components": "mgps.components",
+    "util.validate": "mgps.validate"
+}
+```
+
 ## Managing query modules from Memgraph Lab
 
 You can inspect query modules in Memgraph Lab (v2.0 and newer).
@@ -45,3 +62,5 @@ Custom modules developed via Memgraph Lab are located at
 ## Controlling procedure memory usage
 
 <Controlling/>
+
+
