@@ -716,7 +716,7 @@ void AddLabel(const std::string_view label)
 
 ##### RemoveLabel
 
-Removes a label from the node.
+Removes a label from a node.
 
 ```cpp
 void RemoveLabel(const std::string_view label)
