@@ -4,6 +4,13 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v1.9.0 - Aug 03, 2023
+
+## Features and improvements
+
+- With the new `collections` module you can filter, sort and modify lists within
+  Cypher queries. [#232](https://github.com/memgraph/mage/pull/232)
+
 ## v1.8.0 - Jul 21, 2023
 
 ### Features and improvements
