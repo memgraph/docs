@@ -70,7 +70,7 @@ Calculates the sum of list elements if they are of the same type and can be summ
 
 #### Input:
 
-- `input_list: List[Any]` ➡ list of elements to be summed up
+- `input_list: List[Any]` ➡ list of elements to be summed up.
 
 
 #### Output:
@@ -101,13 +101,13 @@ Unites two lists into one, eliminating duplicates.
 
 #### Input:
 
-- `input_list1: List[Any]` ➡ first list of elements to be united with another list
-- `input_list2: List[Any]` ➡ second list of elements to be united with another list
+- `input_list1: List[Any]` ➡ the first list of elements to be united with another list.
+- `input_list2: List[Any]` ➡ the second list of elements to be united with another list.
 
 
 #### Output:
 
-- `union: List[Any]` ➡ the union of the input lists
+- `union: List[Any]` ➡ the union of the inputed lists.
 
 #### Usage:
 
@@ -131,12 +131,12 @@ Sorts the elements of an input list if they are of the same type.
 
 #### Input:
 
-- `input_list: List[Any]` ➡ list of elements to be sorted
+- `input_list: List[Any]` ➡ list of elements to be sorted.
 
 
 #### Output:
 
-- `sorted: List[Any]` ➡ list with sorted elements
+- `sorted: List[Any]` ➡ list with sorted elements.
 
 #### Usage:
 
@@ -166,7 +166,7 @@ Verifies the presence of a certain element in a sorted list. If an unsorted list
 
 #### Output:
 
-- `contains: bool` ➡ true if the element was found, false otherwise
+- `contains: bool` ➡ `true` if the element was found, `false` otherwise.
 
 #### Usage:
 
@@ -219,7 +219,7 @@ Creates pairs from the input list.
 
 #### Input:
 
-- `input_list: List[Any]` ➡ the list used to create pairs
+- `input_list: List[Any]` ➡ the list used to create pairs.
 
 
 #### Output:
@@ -249,12 +249,12 @@ Verifies if the input value exists in the input list.
 #### Input:
 
 - `list: List[Any]` ➡ the input list on which `contains` is called.
-- `value: Any` ➡ the input value that is being searched for in the list
+- `value: Any` ➡ the input value that is being searched for in the list.
 
 
 #### Output:
 
-- `output: boolean` ➡ true if the value is present in the list, otherwise false
+- `output: boolean` ➡ `true` if the value is present in the list, otherwise `false`.
 
 #### Usage:
 
@@ -272,17 +272,15 @@ CALL collections.contains([1,2,3], "e") YIELD output RETURN output;
 
 ### `min(list)`
 
-Returns the minimum value within the list. Throws an exception if the elements in the list are not of a uniform data type or if the data type does not support comparison operations
+Returns the minimum value within the list. Throws an exception if the elements in the list are not of a uniform data type or if the data type does not support comparison operations.
 
 #### Input:
 
-- `list: List[Any]` ➡ the input list on which the `min` function is called
-
-
+- `list: List[Any]` ➡ the input list on which the `min` function is called.
 
 #### Output:
 
-- `min: Any` ➡ the minimum value of the list
+- `min: Any` ➡ the minimum value of the list.
 
 #### Usage:
 
@@ -300,17 +298,16 @@ CALL collections.min([1,2,3]) YIELD min RETURN min;
 
 ### `unionAll(list1, list2)`
 
-Returns the union of two input lists, including duplicates
+Returns the union of two input lists, including duplicates.
 
 #### Input:
 
-- `list1: List[Any]` ➡ the first list to be used in the `unionAll` operation
-- `list2: List[Any]` ➡ the second list to be used in the `unionAll` operation
-
+- `list1: List[Any]` ➡ the first list to be used in the `unionAll` operation.
+- `list2: List[Any]` ➡ the second list to be used in the `unionAll` operation.
 
 #### Output:
 
-- `return_list: List[Any]` ➡ the union of two lists, including duplicates
+- `return_list: List[Any]` ➡ the union of two lists, including duplicates.
 
 #### Usage:
 
@@ -353,15 +350,16 @@ CALL collections.to_set([1,2,1,2,3]) YIELD result RETURN result;
 
 ### `partition(list, partition_size)`
 
-Partitions the input list into sub-lists of the specified partition_size
+Partitions the input list into sub-lists of the specified `partition_size`.
+
 #### Input:
 
-- `list: List[Any]` ➡ the list that is to be partitioned
-- `partition_size: integer` ➡ the size of the sub-lists
+- `list: List[Any]` ➡ the list that is to be partitioned.
+- `partition_size: integer` ➡ the size of the sub-lists.
 
 #### Output:
 
-- `result: List[Any]` ➡ the partitioned sub-lists
+- `result: List[Any]` ➡ the partitioned sub-lists.
 
 #### Usage:
 
@@ -384,13 +382,14 @@ CALL collections.partition([1,2,3,4,5,6],2) YIELD result RETURN result;
 ### `sum_longs(numbers)`
 
 Calculates the sum of list elements casted to integers.
+
 #### Input:
 
-- `numbers: List[Any]` ➡ list of numbers
+- `numbers: List[Any]` ➡ list of numbers.
 
 #### Output:
 
-- `sum: integer` ➡ sum of list elements
+- `sum: integer` ➡ sum of list elements.
 
 #### Usage:
 
@@ -409,13 +408,14 @@ CALL collections.sum_longs([1.9, 1.9]) YIELD sum RETURN sum;
 ### `avg(numbers)`
 
 Calculates the average of list elements.
+
 #### Input:
 
-- `numbers: List[Any]` ➡ list of numbers
+- `numbers: List[Any]` ➡ list of numbers.
 
 #### Output:
 
-- `average: double` ➡ average of list elements
+- `average: double` ➡ average of list elements.
 
 #### Usage:
 
@@ -434,6 +434,7 @@ CALL collections.avg([5, 5, 6, 7, -5]) YIELD average RETURN average;
 ### `contains_all(collection, values)`
 
 Checks if a list contains all the values from another list.
+
 #### Input:
 
 - `collection: List[Any]`
@@ -441,7 +442,7 @@ Checks if a list contains all the values from another list.
 
 #### Output:
 
-- `contained: boolean` ➡ true if all elements of `values` are contained in `collection`
+- `contained: boolean` ➡ true if all elements of `values` are contained in the `collection`.
 
 #### Usage:
 
@@ -461,6 +462,7 @@ YIELD contained RETURN contained;
 ### `intersection(first, second)`
 
 Returns the unique intersection of two lists.
+
 #### Input:
 
 - `first: List[Any]`
@@ -468,7 +470,7 @@ Returns the unique intersection of two lists.
 
 #### Output:
 
-- `intersection: List[Any]` ➡ unique intersection of the two lists
+- `intersection: List[Any]` ➡ unique intersection of the two lists.
 
 #### Usage:
 
