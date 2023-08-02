@@ -240,7 +240,7 @@ CALL map.remove_keys({key: 1, key2:{key : 3, key3: 5}},["key"],true) YIELD resul
 
 ### `from_nodes(label, property)`
 
-Returns a map of all nodes which contain the given `label` and `property`. The key of each map element will be the value of the property (if it is convertible to string, otherwise throws ValueException).
+Returns a map of all nodes which contain the given label and property. The key of each map element will be the value of the property (if it is convertible to a string, otherwise throws ValueException).
 
 #### Input:
 
@@ -297,7 +297,7 @@ CALL map.from_nodes("Movie", "title") YIELD map RETURN map;
 
 ### `from_values(values)`
 
-Returns a map from the given list of values. The list has the format: `[key1, value1, key2, value2]`. If the key is not convertible to string throws ValueException.
+Returns a map from the given list of values. The list has the format: `[key1, value1, key2, value2]`. If the key is not convertible to a string throws ValueException.
 
 #### Input:
 
