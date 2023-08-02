@@ -63,7 +63,7 @@ import VideoBySide from '@site/src/components/VideoBySide';
 - Serializing vertex and edge properties to RocksDB now works as expected even
   when the serialization buffer is exactly 15B.
   [#1111](https://github.com/memgraph/memgraph/pull/1111)
-- Users created in the Community Edition persist if the instance is upgraded to
+- Users created in the Community Edition persist when the instance is upgraded to
   an Enterprise Edition. [#1067](https://github.com/memgraph/memgraph/pull/1067)
 
 ## v2.9 - Jul 21, 2023
