@@ -33,10 +33,12 @@ flag](/reference-guide/configuration.md).
 
 Example of a JSON file:
 
+```json
 {
     "db.components": "mgps.components",
     "util.validate": "mgps.validate"
 }
+```
 
 ## Managing query modules from Memgraph Lab
 
