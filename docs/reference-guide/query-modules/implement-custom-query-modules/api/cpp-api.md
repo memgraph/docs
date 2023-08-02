@@ -641,6 +641,7 @@ Node(Node &&other) noexcept
 | `InRelationships`  | Returns an iterable structure of the node’s inbound relationships.  |
 | `OutRelationships` | Returns an iterable structure of the node’s outbound relationships. |
 | `AddLabel`         | Adds a label to the node.                                           |
+| `RemoveLabel`      | Removes a label from the node.                                      |
 | `SetProperty`      | Set value of node's property                                        |
 | `GetProperty`      | Get value of node's property                                        |
 | `RemoveProperty`   | Removes the node's property                                         |
@@ -723,6 +724,14 @@ Adds a label to the node.
 
 ```cpp
 void AddLabel(const std::string_view label)
+```
+
+##### RemoveLabel
+
+Removes a label from a node.
+
+```cpp
+void RemoveLabel(const std::string_view label)
 ```
 
 #### Operators
