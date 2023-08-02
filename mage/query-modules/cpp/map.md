@@ -20,9 +20,9 @@ style={{
 </span>
 );
 
+The map module offers a versatile toolkit for manipulating collections of key-value pairs, enabling advanced data operations within a graph database context
 
-
-[![docs-source](https://img.shields.io/badge/source-graph_util-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/cpp/map_module)
+[![docs-source](https://img.shields.io/badge/source-map-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/cpp/map_module)
 
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |
@@ -36,18 +36,17 @@ style={{
 
 ### `remove_key(input_map, key, recursive_map)`
 
-Removes the key and its value from an input map. If an key that doesn't exist in an input map is passed, it will be ignored. If recursive setting is selected, key will also be removed from inner maps that may be part of the input map.
+Removes the specified key and its corresponding value from the input map. If the key does not exist in the input map, it will be ignored. Additionally, when the recursive setting is enabled, the key will also be removed from any inner maps that are part of the input map.
 
 #### Input:
 
-- `input_map: Map` ➡ map from which we want to remove key
-- `key: string` ➡ key we want to remove
-- `recursive_map: bool` ➡ false by default, should be set to true if input map consists of values that are also maps and therefore may have key we want to remove
-
+- `input_map: Map` ➡ the map from which the key is to be removed
+- `key: string` ➡ the key to be removed from the map
+- `recursive_map: bool` ➡ false by default, should be set to true if the input map consists of values that are also maps and, therefore, may have the key to be removed
 
 #### Output:
 
-- `removed: Map` ➡ map without the key we removed
+- `removed: Map` ➡ the map after removing the specified key
 
 #### Usage:
 
@@ -82,7 +81,7 @@ RETURN removed
 
 ### `from_pairs(input_list)`
 
-Creates a map from a list of pairs (pairs are essentially another list of size 2). First element in a pair must be type string since it will be used as a key.
+Creates a map from a list of pairs, where each pair is essentially another list of size 2. The first element in each pair must be of type string, as it will be used as a key in the resulting map
 
 #### Input:
 
@@ -91,7 +90,7 @@ Creates a map from a list of pairs (pairs are essentially another list of size 2
 
 #### Output:
 
-- `map: Map` ➡ map whose keys are first elements in pairs and corresponding values are second elements in pairs
+- `map: Map` ➡ a map whose keys are the first elements in pairs, and the corresponding values are the second elements in the pairs.
 
 #### Usage:
 
@@ -111,17 +110,17 @@ RETURN map
 
 ### `merge(input_map1, input_map2)`
 
-Merges two maps in one. If the same key occurs twice, later value will overwrite the previous.
+Merges two maps into one. If the same key occurs twice, the later value will overwrite the previous one
 
 #### Input:
 
-- `input_map1: Map` ➡ map whose key-value pairs we want merged with others
-- `input_map2: Map` ➡ map whose key-value pairs we want merged with others
+- `input_map1: Map` ➡ a map containing key-value pairs that need to be merged with others
+- `input_map2: Map` ➡ another map containing key-value pairs that need to be merged with others
 
 
 #### Output:
 
-- `merged: Map` ➡ merge of input maps
+- `merged: Map` ➡ merged input maps
 
 #### Usage:
 
@@ -137,5 +136,89 @@ RETURN merged
 | {a: "b", c: "d", e: "f", g: "h"}       |
 +----------------------------------------+
 ```
+
+
+### `flatten(map, delimiter)`
+
+Flattens nested items in the input map.
+
+#### Input:
+
+- `map: Map[Any]` ➡ the map used in `flatten`
+- `delimiter: string (default = ".")` ➡ the delimiter used for flattening
+
+
+#### Output:
+
+- `result: Map[Any]` ➡ flattened map, sorted alphabetically by keys
+
+#### Usage:
+
+```cypher
+CALL map.flatten({a: {b:3, d:4}},"/") YIELD result RETURN result;
+```
+
+```plaintext
++----------------------------------------+
+| result                                 |
++----------------------------------------+
+| {"a/b": 3, "a/d": 4}                   |
++----------------------------------------+
+```
+
+### `from_lists(list_keys, list_values)`
+
+Makes a map from lists of keys and corresponding values.
+
+#### Input:
+
+- `list_keys: List[string]` ➡ the list of keys
+- `list_values` ➡ the list of values
+
+
+#### Output:
+
+- `result: Map[Any]` ➡ the resulting map
+
+#### Usage:
+
+```cypher
+CALL map.from_lists(["key","key2"],[1,2]) YIELD result RETURN result;
+```
+
+```plaintext
++----------------------------------------+
+| result                                 |
++----------------------------------------+
+| {""key": 1, "key2": 2}                 |
++----------------------------------------+
+```
+### `remove_keys(input_map, keys_list, recursive)`
+
+Removes keys from input map. If recursive option is true, will remove keys from maps nested inside the map. 
+
+#### Input:
+
+- `input_map: Map[Any]` ➡ the input map
+- `keys_list: List[string]` ➡ the list of keys which are to be removed
+- `recursive: boolean (default = false)` ➡ true if keys from nested map shall be removed, false if not
+
+
+#### Output:
+
+- `result: Map[Any]` ➡ the resulting map
+
+#### Usage:
+
+```cypher
+CALL map.remove_keys({key: 1, key2:{key : 3, key3: 5}},["key"],true) YIELD result RETURN result;
+```
+
+```plaintext
++----------------------------------------+
+| result                                 |
++----------------------------------------+
+|{"key2": {"key3": 5}}                   |
++----------------------------------------+
 
 
