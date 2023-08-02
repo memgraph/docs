@@ -1,70 +1,67 @@
 ## Multi-Tenant Support
-*ENTERPRISE ONLY FEATURE*
+*ENTERPRISE-ONLY FEATURE*
 
-Multi-tenancy support in Memgraph allows users to manage multiple isolated databases within a single instance. The primary goal is to enable efficient resource isolation, data integrity, and access control for different clients.
+Multi-tenancy support in Memgraph enables users to manage multiple isolated databases within a single instance. The primary objective is to facilitate efficient resource isolation, maintain data integrity, and manage access for different clients.
 
-In the current version all isolated databases share the underlying resources; there is no way to limit CPU or RAM usage of a particular database, instead there is only the global limitations imposed on Memgraph as a whole.
+In the current version, all isolated databases share underlying resources; there is no provision to restrict CPU or RAM usage for a specific database. Instead, global limitations are imposed on Memgraph as a whole.
 
-### Default database
-A default database called 'memgraph' is created during startup. New users will by default have access to this database only.
-*NOTE:* The default database name cannot be changed.
+### Default Database
+A default database named 'memgraph' is automatically created during startup. New users are granted access only to this default database.
+*NOTE:* The default database name cannot be altered.
 
 ### Backwards Compatibility
-The multi-tenant feature ensures backwards compatibility, enabling smooth version upgrades and downgrades without disrupting user experience. When upgrading all previous data will be migrated to the default database; downgrading will delete all other databases and preserve only data contained in the default database.
+The multi-tenant feature ensures backwards compatibility, facilitating smooth version upgrades and downgrades without disrupting user experience. During an upgrade, previous data is migrated to the default database, while downgrading retains data solely in the default database.
 
 ### Isolated Databases
-Isolated databases in Memgraph function as separate single-database Memgraph instances. Queries executed against a particular database should work as if it was the only database in the system. No cross database contamination should be possible.
-Users interact with individual databases; cross-database queries are not allowed.
+Isolated databases within Memgraph function as distinct single-database Memgraph instances. Queries executed on a specific database should operate as if it were the sole database in the system, preventing cross-database contamination. Users interact with individual databases, and cross-database queries are prohibited.
 
 ### Database Configuration and Data Directory
-Currently all isolated databases share the same configuration.
-*NOTE:* There is no way to specify a per-database configuration.
+At present, all isolated databases share identical configurations.
+*NOTE:* There is no provision to specify a per-database configuration.
 
-The only difference between them is the location of the data directory. The specified data directory is used as the root and still holds the data associated with the default database. All other databases are located in a new directory in `data_directory/databases/*db_name*`.
+The sole distinction lies in the location of the data directory. The designated data directory serves as the root and retains data associated with the default database. Other databases are housed in new directories within `data_directory/databases/*db_name*`.
 
-The default `memgraph` also has a directory `data_directory/databases/memgraph`, however, it only contains symbolic links back to the root.
-*NOTE:* Some links are proactively created and, depending on the configuration, may be broken.
+The default `memgraph` database also includes a directory `data_directory/databases/memgraph`, which contains symbolic links leading back to the root.
+*NOTE:* Some links are proactively generated and their status may vary based on configuration.
 
 ## User Interface
 
 ### Cypher Queries for Multi-Tenancy
 Users interact with multi-tenant features through specialized Cypher queries:
-1. `CREATE DATABASE name`: Creates a new database
-2. `DROP DATABASE name`: Deletes the specified database
-3. `SHOW DATABASES`: Lists all currently active databases and tags the currently selected one
-4. `USE DATABASE name`: Switches the focus to the specified database (disabled in a transaction)
-5. `GRANT DATABASE name TO user`: Grant user the access right to the specified database
-6. `REVOKE DATABASE name FROM user`: Revoke user the access right to the specified database
-7. `SET MAIN DATABASE name FOR user`: Sets the user's default (landing) database
-8. `SHOW DATABASE PRIVILEGES FOR user`: Lists user's database access rights
+1. `CREATE DATABASE name`: Creates a new database.
+2. `DROP DATABASE name`: Deletes a specified database.
+3. `SHOW DATABASES`: Lists all active databases, indicating the currently selected one.
+4. `USE DATABASE name`: Switches focus to a specific database (disabled during transactions).
+5. `GRANT DATABASE name TO user`: Grants a user access to a specified database.
+6. `REVOKE DATABASE name FROM user`: Revokes a user's access to a specified database.
+7. `SET MAIN DATABASE name FOR user`: Sets a user's default (landing) database.
+8. `SHOW DATABASE PRIVILEGES FOR user`: Lists a user's database access rights.
 
 ### User's Main Database
-Administrators assign default databases for users, ensuring a seamless and secure connection experience.
-User will not be able to connect to Memgraph if they do not have access rights to their default database. This might happen if the database was deleted or if the access rights were revoked.
+Administrators assign default databases to users, ensuring a seamless and secure connection experience. Users cannot connect to Memgraph if they lack access rights to their default database. This situation may arise from database deletion or revoked access rights.
 
 ### User Privileges and Database Access
-Authentication and authorization data is shared among databases. There is a single source of truth.
-A single user can have access to multiple databases, with a global set of privileges.
-*NOTE:* Currently there is no way to grant per-database privileges.
+Authentication and authorization data are shared across databases, providing a unified source of truth. A single user can access multiple databases with a global set of privileges.
+*NOTE:* Currently, per-database privileges cannot be granted.
 
-Access to all databases can be granted/revoked by using a wildcard, as in:
+Access to all databases can be granted or revoked using wildcards, as shown:
 `GRANT DATABASE * TO user;` or `REVOKE DATABASE * FROM user;`.
 
 ### Additional Multi-Tenant Privileges
-Administrators control multi-tenant privileges with:
-- `MULTI_DATABASE_USE`: Allows switching databases and listing databases.
-- `MULTI_DATABASE_EDIT`: Permits creating and deleting databases.
+Administrators manage multi-tenant privileges with:
+- `MULTI_DATABASE_USE`: Enables database switching and listing.
+- `MULTI_DATABASE_EDIT`: Permits database creation and deletion.
 
 ### Command-line Arguments
-The `data_recovery_on_startup` flag replaces `storage_recover_on_startup`, recovering individual databases and their contents during startup.
-*NOTE:* `storage_recover_on_startup` is still active but deprecated.
+The `data_recovery_on_startup` flag replaces `storage_recover_on_startup`, facilitating recovery of individual databases and their contents during startup.
+*NOTE:* `storage_recover_on_startup` is still functional but deprecated.
 
-`storage_delete_on_drop` if set to true will delete the underlying directories associated with the database being dropped.
+If `storage_delete_on_drop` is set to true, the underlying directories associated with the dropped database will be deleted.
 
 ### Using Neo4j Drivers
 Neo4j drivers interact with multi-tenant databases in two ways:
 1. Through Cypher queries.
-2. Defining the `database` field. The `USE DATABASE` query is disabled if the database field is defined. The query will always run against the defined database.
+2. By defining the `database` field. The `USE DATABASE` query is disabled when the database field is defined. The query consistently runs against the specified database.
 
 Example using Neo4j Python driver:
 ```python
@@ -73,14 +70,14 @@ import neo4j
 driver = neo4j.GraphDatabase.driver("bolt://localhost:7687", auth=("user", "pass"))
 
 with driver.session() as session:
-    session.run(...)  # Runs against default database
+    session.run(...)  # Executes on the default database
     session.run("USE DATABASE db1")
-    session.run(...)  # Runs against db1
+    session.run(...)  # Executes on db1
 
 with driver.session(database="db2") as session:
-    session.run(...)  # Runs against db2
+    session.run(...)  # Executes on db2
     session.run("USE DATABASE db1")  # Error: database switching disabled
 ```
 
 ### Audit Logs
-Audit logs are extended with the active database name. The database name is added right after the username field.
+Audit logs now encompass the active database name, positioned immediately after the username field.
