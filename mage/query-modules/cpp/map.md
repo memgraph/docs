@@ -238,3 +238,114 @@ CALL map.remove_keys({key: 1, key2:{key : 3, key3: 5}},["key"],true) YIELD resul
 +----------------------------------------+
 ```
 
+### `from_nodes(label, property)`
+
+Returns a map of all nodes which contain the given `label` and `property`. The key of each map element will be the value of the property (if it is convertible to string, otherwise throws ValueException).
+
+#### Input:
+
+- `label: string` ➡ the wanted label
+- `property: string` ➡ the wanted property
+
+#### Output:
+
+- `result: Map` ➡ the resulting map
+
+#### Usage:
+```cypher
+CREATE (Oppenheimer:Movie {title:'Oppenheimer', released:2023})
+CREATE (Barbie:Movie {title:"Barbie", released:2023})
+CREATE (Shawshank:Movie {title:'The Shawshank Redemption', released:1994});
+
+CALL map.from_nodes("Movie", "title") YIELD map RETURN map;
+```
+
+```plaintext
+{
+   "Barbie": {
+      "identity": 53,
+      "labels": [
+         "Movie"
+      ],
+      "properties": {
+         "released": 2023,
+         "title": "Barbie"
+      }
+   },
+   "Oppenheimer": {
+      "identity": 52,
+      "labels": [
+         "Movie"
+      ],
+      "properties": {
+         "released": 2023,
+         "title": "Oppenheimer"
+      }
+   },
+   "The Shawshank Redemption": {
+      "identity": 54,
+      "labels": [
+         "Movie"
+      ],
+      "properties": {
+         "released": 1994,
+         "title": "The Shawshank Redemption"
+      }
+   }
+}
+```
+
+### `from_values(values)`
+
+Returns a map from the given list of values. The list has the format: `[key1, value1, key2, value2]`. If the key is not convertible to string throws ValueException.
+
+#### Input:
+
+- `values: List[Any]` ➡ list of values
+
+#### Output:
+
+- `map: Map` ➡ the resulting map
+
+#### Usage:
+
+```cypher
+CALL map.from_values(["day", "sunny", 5, 6]) YIELD map RETURN map;
+```
+
+```plaintext
++----------------------------------------+
+|        map                             |
++----------------------------------------+
+| {"5": 6, "day": "sunny"}               |
++----------------------------------------+
+```
+
+### `set_key(map, key, value)`
+
+Updates the value at the position `key` in `map`. If the key doesn't exist inserts it.
+
+#### Input:
+
+- `map: Map` ➡ map to be modified
+- `key: string` ➡ the position in `map` to be updated
+- `value: any` ➡ new value at the position `key` in `map`
+
+#### Output:
+
+- `map: Map` ➡ the modified map
+
+#### Usage:
+
+```cypher
+CALL map.set_key({name:"Ivan",country:"Croatia"}, "name", "Matija")
+YIELD map return map;
+```
+
+```plaintext
++-------------------------------------------+
+|                     map                   |
++-------------------------------------------+
+| {"country": "Croatia", "name": "Matija"}  |
++-------------------------------------------+
+```
