@@ -382,7 +382,7 @@ CALL collections.partition([1,2,3,4,5,6],2) YIELD result RETURN result;
 
 ### `sum_longs(numbers)`
 
-Calculates the sum of list elements casted to integers. The initial list elements have to be of type Numeric, or an exception is thrown.
+Calculates the sum of list elements casted to integers. The initial list elements have to be of type `Numeric`, or an exception is thrown.
 
 #### Input:
 
