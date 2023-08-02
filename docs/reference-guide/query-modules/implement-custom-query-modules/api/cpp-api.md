@@ -840,6 +840,11 @@ Returns the value of the relationship’s `property_name` property.
 const Value operator[](std::string_view property_name) const
 ```
 
+Object is hashable using
+```cpp
+std::hash<mgp::Relationship>
+```
+
 #### Relationships
 
 Auxiliary class providing an iterable view of the relationships adjacent to a node.
@@ -1070,6 +1075,11 @@ Returns the value of the relationship’s `property_name` property.
 const Value operator[](std::string_view property_name) const
 ```
 
+Object is hashable using
+```cpp
+std::hash<mgp::Date>
+```
+
 ### LocalTime
 
 Represents a time within the day without timezone information.
@@ -1181,6 +1191,11 @@ LocalTime operator-(const Duration &dur) const
 ```
 ```cpp
 Duration operator-(const LocalDateTime &other) const
+```
+
+Object is hashable using
+```cpp
+std::hash<mgp::LocalTime>
 ```
 
 ### LocalDateTime
@@ -1324,6 +1339,11 @@ LocalDateTime operator-(const Duration &dur) const
 Duration operator-(const LocalDateTime &other) const
 ```
 
+Object is hashable using
+```cpp
+std::hash<mgp::LocalDateTime>
+```
+
 ### Duration
 
 Represents a period of time in Memgraph.
@@ -1387,6 +1407,11 @@ Duration operator-(const Duration &other) const
 ```
 ```cpp
 Duration operator-() const
+```
+
+Object is hashable using
+```cpp
+std::hash<mgp::Duration>
 ```
 
 ### Path
@@ -1459,6 +1484,11 @@ void Expand(const Relationship &relationship)
 | Name                          | Description          |
 | ----------------------------- | -------------------- |
 | `operator==`<br/>`operator!=` | comparison operators |
+
+Object is hashable using
+```cpp
+std::hash<mgp::Path>
+```
 
 ### List
 
@@ -1574,6 +1604,11 @@ Returns the value at the given `index`.
 
 ```cpp
 const Value operator[](size_t index) const
+```
+
+Object is hashable using
+```cpp
+std::hash<mgp::List>
 ```
 
 ### Map
@@ -1706,6 +1741,11 @@ Returns the value at the given `key`.
 const Value operator[](std::string_view key) const
 ```
 
+Object is hashable using
+```cpp
+std::hash<mgp::Map>
+```
+
 #### MapItem
 
 Auxiliary data structure representing key-value pairs where keys are strings, and values can be of any supported type.
@@ -1722,6 +1762,11 @@ Auxiliary data structure representing key-value pairs where keys are strings, an
 | Name                                          | Description          |
 | --------------------------------------------- | -------------------- |
 | `operator==`<br/>`operator!=`<br/>`operator<` | comparison operators |
+
+Object is hashable using
+```cpp
+std::hash<mgp::MapItem>
+```
 
 ### Value
 
@@ -1955,6 +2000,18 @@ bool IsDuration() const
 | Name                          | Description          |
 | ----------------------------- | -------------------- |
 | `operator==`<br/>`operator!=` <br/> `operator<` | comparison operators |
+
+
+Object is hashable using
+```cpp
+std::hash<mgp::Value>
+```
+
+Additionally, operator<< is overloaded for Value and usage of this operator will print the value of the mgp::Value instance (currently doesn't support values of type Path, Map and List).
+
+```cpp
+std::ostream &operator<<(std::ostream &os, const mgp::Value &value)
+```
 
 ### Type
 
