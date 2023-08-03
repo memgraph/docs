@@ -33,7 +33,7 @@ version of MemgraphDB, take a look at the list below.
 - **Debian 10** -
   [https://download.memgraph.com/memgraph/v2.9.0/debian-10/memgraph_2.9.0-1_amd64.deb](https://download.memgraph.com/memgraph/v2.9.0/debian-10/memgraph_2.9.0-1_amd64.deb)
 - **Debian 11** -
-  [https://download.memgraph.com/memgraph/v2.9.0/debian-11/memgraph_2.6.0-1_amd64.deb](https://download.memgraph.com/memgraph/v2.9.0/debian-11/memgraph_2.9.0-1_amd64.deb)
+  [https://download.memgraph.com/memgraph/v2.9.0/debian-11/memgraph_2.9.0-1_amd64.deb](https://download.memgraph.com/memgraph/v2.9.0/debian-11/memgraph_2.9.0-1_amd64.deb)
 - **Debian 11 (ARM64/AArch64)** -
   [https://download.memgraph.com/memgraph/v2.9.0/debian-11-aarch64/memgraph_2.9.0-1_arm64.deb](https://download.memgraph.com/memgraph/v2.9.0/debian-11-aarch64/memgraph_2.9.0-1_arm64.deb)
 
