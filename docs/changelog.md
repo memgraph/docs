@@ -10,6 +10,11 @@ import VideoBySide from '@site/src/components/VideoBySide';
 
 ### New features and improvements
 
+- The new multi-tenant support available in the Enterprise Edition of Memgraph
+  enables you to manage multiple isolated databases within a single instance.
+  The primary objective is to facilitate efficient resource isolation, maintain
+  data integrity, and manage access for different clients.
+  [#952](https://github.com/memgraph/memgraph/pull/952)
 - If you want to replace procedure names your application calls without changing
   the application code, you can define the mapping of the old and new procedure
   names in a JSON file, then set the path to the files as the value of the
@@ -55,6 +60,10 @@ import VideoBySide from '@site/src/components/VideoBySide';
 - Queries exploring all shortest paths now use considerably less memory without
   significant performance deterioration.
   [#981](https://github.com/memgraph/memgraph/pull/981)
+- Users with fine grained privileges will experience better performance when
+  running queries due to user information cashing. Any changes to the user
+  privileges will be ignored until the next login.
+  [#1109](https://github.com/memgraph/memgraph/pull/1109)
 
 ### Bug fixes
 
@@ -63,8 +72,8 @@ import VideoBySide from '@site/src/components/VideoBySide';
 - Serializing vertex and edge properties to RocksDB now works as expected even
   when the serialization buffer is exactly 15B.
   [#1111](https://github.com/memgraph/memgraph/pull/1111)
-- Users created in the Community Edition persist when the instance is upgraded to
-  an Enterprise Edition. [#1067](https://github.com/memgraph/memgraph/pull/1067)
+- Users created in the Community Edition remain valid after the instance is
+  upgraded to an Enterprise Edition. [#1067](https://github.com/memgraph/memgraph/pull/1067)
 
 ## v2.9 - Jul 21, 2023
 
