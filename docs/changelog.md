@@ -6,6 +6,78 @@ sidebar_label: Changelog
 
 import VideoBySide from '@site/src/components/VideoBySide';
 
+## v2.10 - Aug 2, 2023
+
+### New features and improvements
+
+- The new multi-tenant support available in the Enterprise Edition of Memgraph
+  enables you to manage multiple isolated databases within a single instance.
+  The primary objective is to facilitate efficient resource isolation, maintain
+  data integrity, and manage access for different clients.
+  [#952](https://github.com/memgraph/memgraph/pull/952)
+- The configuration flag `storage-recover-on-startup` has been deprecated and
+  replaced with `data_recovery_on_startup`to support multi-tenancy. The
+  `storage-recover-on-startup` can still be used at the moment. 
+- If you want to replace procedure names your application calls without changing
+  the application code, you can define the mapping of the old and new procedure
+  names in a JSON file, then set the path to the files as the value of the
+  `query-callable-mappings-path` [configuration
+  flag](/reference-guide/configuration.md).
+  [#1018](https://github.com/memgraph/memgraph/pull/1018)
+- The [C++
+  API](/reference-guide/query-modules/implement-custom-query-modules/api/cpp-api.md)
+  for writing custom query modules now enables: 
+  - inserting `mgp::Any` datatype into Record. [#1094](https://github.com/memgraph/memgraph/pull/1094)
+  - comparing two `mgp::Value` variables with the `<` operator. [#1090](https://github.com/memgraph/memgraph/pull/1090)
+  - printing the type of `mgp::Type` enumeration using the `<<` operator. For
+  example, if you have a `mgp::List` list, `cout<< list <<endl` will output
+  `"list"`. [#1080](https://github.com/memgraph/memgraph/pull/1080)
+  - printing `mgp::Value` variables (except `mgp::Path`, `mgp::List` and
+    `mgp::Map` types) using the `<<` operator.
+    [#1127](https://github.com/memgraph/memgraph/pull/1127)
+  - using the `mgp::Value` variables and all its subtypes (`mgp::Map`,
+    `mgp::Path`, ...) inside hash structures such as `std::unordered_map` and
+    `std::unordered_set`. [#1093](https://github.com/memgraph/memgraph/pull/1093)
+  - deleting and updating map elements with `mgp::Map.Update(key, &value)`,
+    `mgp::Map.Update(key, &&value)` and `mgp::Map.Erase(key)` functions.
+    [#1103](https://github.com/memgraph/memgraph/pull/1103)
+  - removing properties from nodes with `RemoveProperty()` function and labels
+    with `RemoveLabel()` function.
+    [#1128](https://github.com/memgraph/memgraph/pull/1128)
+    [#1126](https://github.com/memgraph/memgraph/pull/1126)
+
+  Also, the `mgp::Value` wrapper for Memgraph's data types has been extended to
+  return subtypes which are modifiable (non-const).
+  [#1099](https://github.com/memgraph/memgraph/pull/1099)
+- The [C
+  API](/reference-guide/query-modules/implement-custom-query-modules/api/c-api.md)
+  for writing custom query modules now enables:
+    - deleting and updating map elements with `mgp_map_update(map, key, value)`
+  and `mgp_map_erase(map, key)` functions. [#1103](https://github.com/memgraph/memgraph/pull/1103)
+    - removing labels from nodes with `RemoveLabel()` function.
+      [#1126](https://github.com/memgraph/memgraph/pull/1126)
+- Memgraph supports transaction timeouts defined by the Bolt protocol if the
+  connection to the database is established via the [JavaScript
+  client](/connect-to-memgraph/drivers/javascript.md).
+  [#1046](https://github.com/memgraph/memgraph/pull/1046)
+- Queries exploring all shortest paths now use considerably less memory without
+  significant performance deterioration.
+  [#981](https://github.com/memgraph/memgraph/pull/981)
+- Users with fine grained privileges will experience better performance when
+  running queries due to user information cashing. Any changes to the user
+  privileges will be ignored until the next login.
+  [#1109](https://github.com/memgraph/memgraph/pull/1109)
+
+### Bug fixes
+
+- Connection with Bolt v5.2 now works as expected when returning a path as a
+  result. [#1108](https://github.com/memgraph/memgraph/pull/1108) 
+- Serializing vertex and edge properties to RocksDB now works as expected even
+  when the serialization buffer is exactly 15B.
+  [#1111](https://github.com/memgraph/memgraph/pull/1111)
+- Users created in the Community Edition remain valid after the instance is
+  upgraded to an Enterprise Edition. [#1067](https://github.com/memgraph/memgraph/pull/1067)
+
 ## v2.9 - Jul 21, 2023
 
 :::caution
