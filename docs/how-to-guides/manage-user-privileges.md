@@ -57,7 +57,7 @@ At the moment, privileges are confined to users' abilities to perform certain
 of the following commands: `CREATE`, `DELETE`, `MATCH`, `MERGE`, `SET`,
 `REMOVE`, `INDEX`, `STATS`, `AUTH`, `REPLICATION`, `READ_FILE`, `DURABILITY`,
 `FREE_MEMORY`, `TRIGGER`, `STREAM`, `CONFIG`, `CONSTRAINT`, `DUMP`,
-`MODULE_READ`, `MODULE_WRITE`, `WEBSOCKET` and `TRANSACTION_MANAGEMENT`.
+`MODULE_READ`, `MODULE_WRITE`, `WEBSOCKET`, `TRANSACTION_MANAGEMENT` and `MULTI_DATABASE`.
 
 We could naturally cluster those privileges into groups:
 
@@ -79,6 +79,9 @@ We could naturally cluster those privileges into groups:
   * Privilege to connect to [Memgraph monitoring server](/reference-guide/monitoring-server.md) (`WEBSOCKET`)
   * Privilege to show and terminate transactions (`TRANSACTION_MANAGEMENT`).
   * Privilege to change storage mode (`STORAGE_MODE`).
+  * Privilege to manage multiple databases (`MULTI_DATABASE_USE` to list and
+    switch the databases, `MULTI_DATABASE_EDIT` to create and delete databases
+    and all the other queries for managing multi-tenancy )
 
 If you are unfamiliar with any of these commands, you can look them up in our
 [Cypher manual](/cypher-manual).
