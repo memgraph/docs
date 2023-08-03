@@ -10,14 +10,15 @@ import VideoBySide from '@site/src/components/VideoBySide';
 
 ### New features and improvements
 
-- The new multi-tenant support available in the Enterprise Edition of Memgraph
-  enables you to manage multiple isolated databases within a single instance.
-  The primary objective is to facilitate efficient resource isolation, maintain
-  data integrity, and manage access for different clients.
-  [#952](https://github.com/memgraph/memgraph/pull/952)
+- The new [multi-tenant support](/reference-guide/multi-tenancy.md) available in
+  the Enterprise Edition of Memgraph enables you to manage multiple isolated
+  databases within a single instance. The primary objective is to facilitate
+  efficient resource isolation, maintain data integrity, and manage access for
+  different clients. [#952](https://github.com/memgraph/memgraph/pull/952)
 - The configuration flag `storage-recover-on-startup` has been deprecated and
   replaced with `data_recovery_on_startup`to support multi-tenancy. The
-  `storage-recover-on-startup` can still be used at the moment. 
+  `storage-recover-on-startup` can still be used until the next release planned
+  for mid-September. 
 - If you want to replace procedure names your application calls without changing
   the application code, you can define the mapping of the old and new procedure
   names in a JSON file, then set the path to the files as the value of the
