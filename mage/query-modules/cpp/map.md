@@ -22,7 +22,7 @@ style={{
 
 The map module offers a versatile toolkit for manipulating collections of key-value pairs, enabling advanced data operations within a graph database context
 
-[![docs-source](https://img.shields.io/badge/source-map-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/cpp/map_module)
+[![docs-source](https://img.shields.io/badge/source-map-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/tree/main/cpp/map_module)
 
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |
