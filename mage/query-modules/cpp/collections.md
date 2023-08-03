@@ -22,7 +22,7 @@ style={{
 
 The collections module is a collection manipulation module that offers functions to work with lists in Cypher queries, allowing operations like filtering, sorting, and modification for efficient data handling.
 
-[![docs-source](https://img.shields.io/badge/source-collections-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/cpp/collections_module)
+[![docs-source](https://img.shields.io/badge/source-collections-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/tree/main/cpp/collections_module)
 
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |
