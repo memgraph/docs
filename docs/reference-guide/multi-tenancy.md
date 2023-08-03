@@ -1,5 +1,5 @@
 ---
-id: multi-tenenancy
+id: multi-tenancy
 title: Multi-Tenant Support (Enterprise)
 sidebar_label: Multi-tenancy
 ---
