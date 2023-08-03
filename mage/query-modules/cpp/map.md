@@ -20,7 +20,7 @@ style={{
 </span>
 );
 
-The map module offers a versatile toolkit for manipulating collections of key-value pairs, enabling advanced data operations within a graph database context
+The `map` module offers a versatile toolkit for manipulating collections of key-value pairs, enabling advanced data operations within a graph database context.
 
 [![docs-source](https://img.shields.io/badge/source-map-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/tree/main/cpp/map_module)
 
@@ -40,13 +40,13 @@ Removes the specified key and its corresponding value from the input map. If the
 
 #### Input:
 
-- `input_map: Map` ➡ the map from which the key is to be removed
-- `key: string` ➡ the key to be removed from the map
-- `recursive_map: bool` ➡ false by default, should be set to true if the input map consists of values that are also maps and, therefore, may have the key to be removed
+- `input_map: Map` ➡ the map from which the key will be removed.
+- `key: string` ➡ the key to be removed from the map.
+- `recursive_map: bool` ➡ `false` by default, should be set to `true` if the input map consists of values that are also maps and, therefore, may have the key to be removed.
 
 #### Output:
 
-- `removed: Map` ➡ the map after removing the specified key
+- `removed: Map` ➡ the map after removing the specified key.
 
 #### Usage:
 
@@ -81,11 +81,11 @@ RETURN removed
 
 ### `from_pairs(input_list)`
 
-Creates a map from a list of pairs, where each pair is essentially another list of size 2. The first element in each pair must be of type string, as it will be used as a key in the resulting map
+Creates a map from a list of pairs, where each pair is essentially another list of size 2. The first element in each pair must be of type `string`, as it will be used as a key in the resulting map.
 
 #### Input:
 
-- `input_list: List[List]` ➡ list of pairs
+- `input_list: List[List]` ➡ list of pairs.
 
 
 #### Output:
@@ -110,17 +110,17 @@ RETURN map
 
 ### `merge(input_map1, input_map2)`
 
-Merges two maps into one. If the same key occurs twice, the later value will overwrite the previous one
+Merges two maps into one. If the same key occurs twice, the later value will overwrite the previous one.
 
 #### Input:
 
-- `input_map1: Map` ➡ a map containing key-value pairs that need to be merged with others
-- `input_map2: Map` ➡ another map containing key-value pairs that need to be merged with others
+- `input_map1: Map` ➡ a map containing key-value pairs that need to be merged with others.
+- `input_map2: Map` ➡ another map containing key-value pairs that need to be merged with others.
 
 
 #### Output:
 
-- `merged: Map` ➡ merged input maps
+- `merged: Map` ➡ merged input maps.
 
 #### Usage:
 
@@ -144,13 +144,13 @@ Flattens nested items in the input map.
 
 #### Input:
 
-- `map: Map[Any]` ➡ the map used in `flatten`
-- `delimiter: string (default = ".")` ➡ the delimiter used for flattening
+- `map: Map[Any]` ➡ the map used in `flatten`.
+- `delimiter: string (default = ".")` ➡ the delimiter used for flattening.
 
 
 #### Output:
 
-- `result: Map[Any]` ➡ flattened map, sorted alphabetically by keys
+- `result: Map[Any]` ➡ flattened map, sorted alphabetically by keys.
 
 #### Usage:
 
@@ -172,13 +172,13 @@ Makes a map from lists of keys and corresponding values.
 
 #### Input:
 
-- `list_keys: List[string]` ➡ the list of keys
-- `list_values` ➡ the list of values
+- `list_keys: List[string]` ➡ the list of keys.
+- `list_values` ➡ the list of values.
 
 
 #### Output:
 
-- `result: Map[Any]` ➡ the resulting map
+- `result: Map[Any]` ➡ the resulting map.
 
 #### Usage:
 
@@ -199,17 +199,17 @@ Removes keys from input map. If recursive option is true, will remove keys from 
 
 #### Input:
 
-- `input_map: Map[Any]` ➡ the input map
-- `keys_list: List[string]` ➡ the list of keys which are to be removed
-- `recursive: boolean (default = false)` ➡ true if keys from nested map shall be removed, false if not
+- `input_map: Map[Any]` ➡ the input map.
+- `keys_list: List[string]` ➡ the list of keys that will be removed.
+- `recursive: boolean (default = false)` ➡ true if keys from nested map shall be removed, false if not.
 
 
 #### Output:
 
-- `result: Map[Any]` ➡ the resulting map
+- `result: Map[Any]` ➡ the resulting map.
 
 #### Usage:
-Usage with recursive = false:
+Usage when `recursive` is `false`:
 
 ```cypher
 CALL map.remove_keys({key: 1, key2:{key : 3, key3: 5}},["key"],false) YIELD result RETURN result;
@@ -240,16 +240,16 @@ CALL map.remove_keys({key: 1, key2:{key : 3, key3: 5}},["key"],true) YIELD resul
 
 ### `from_nodes(label, property)`
 
-Returns a map of all nodes which contain the given label and property. The key of each map element will be the value of the property (if it is convertible to a string, otherwise throws ValueException).
+Returns a map of all nodes which contain the given label and property. The key of each map element will be the value of the property (if it is convertible to a string, otherwise throws `ValueException`).
 
 #### Input:
 
-- `label: string` ➡ the wanted label
-- `property: string` ➡ the wanted property
+- `label: string` ➡ the wanted label.
+- `property: string` ➡ the wanted property.
 
 #### Output:
 
-- `result: Map` ➡ the resulting map
+- `result: Map` ➡ the resulting map.
 
 #### Usage:
 ```cypher
@@ -297,15 +297,15 @@ CALL map.from_nodes("Movie", "title") YIELD map RETURN map;
 
 ### `from_values(values)`
 
-Returns a map from the given list of values. The list has the format: `[key1, value1, key2, value2]`. If the key is not convertible to a string throws ValueException.
+Returns a map from the given list of values. The list has the format: `[key1, value1, key2, value2]`. If the key is not convertible to a string, throws `ValueException`.
 
 #### Input:
 
-- `values: List[Any]` ➡ list of values
+- `values: List[Any]` ➡ list of values.
 
 #### Output:
 
-- `map: Map` ➡ the resulting map
+- `map: Map` ➡ the resulting map.
 
 #### Usage:
 
@@ -323,17 +323,17 @@ CALL map.from_values(["day", "sunny", 5, 6]) YIELD map RETURN map;
 
 ### `set_key(map, key, value)`
 
-Updates the value at the position `key` in `map`. If the key doesn't exist inserts it.
+Updates the value at the position `key` in `map`. If the key doesn't exist, inserts it.
 
 #### Input:
 
-- `map: Map` ➡ map to be modified
-- `key: string` ➡ the position in `map` to be updated
-- `value: any` ➡ new value at the position `key` in `map`
+- `map: Map` ➡ map to be modified.
+- `key: string` ➡ the position in `map` to be updated.
+- `value: any` ➡ new value at the position `key` in `map`.
 
 #### Output:
 
-- `map: Map` ➡ the modified map
+- `map: Map` ➡ the modified map.
 
 #### Usage:
 
