@@ -12,9 +12,18 @@ needs. Additional configuration can be specified by including another
 configuration file, in a file pointed to by the `MEMGRAPH_CONFIG` environment
 variable or by passing arguments on the command line.
 
+When working with Memgraph Platform Docker image, you should pass configuration
+flags inside of environment variables.
+
+For example, you can start the MemgraphDB Docker image with `docker run
+memgraph/memgraph --bolt-port=7687 --log-level=TRACE`, but you should start
+Memgraph Platform with `docker run -p 7687:7687 -p 7444:7444 -p 3000:3000 -e
+MEMGRAPH="--bolt-port=7687 --log-level=TRACE" memgraph/memgraph-platform`.
+
 Each configuration setting is in the form: `--setting-name=value` .
 
-You can check the current configuration by using the following query (privilege level `CONFIG` is required):
+You can check the current configuration by using the following query (privilege
+level `CONFIG` is required):
 ```opencypher
 SHOW CONFIG;
 ```
