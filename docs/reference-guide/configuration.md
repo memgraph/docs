@@ -12,12 +12,16 @@ needs. Additional configuration can be specified by including another
 configuration file, in a file pointed to by the `MEMGRAPH_CONFIG` environment
 variable or by passing arguments on the command line.
 
-Each configuration setting is in the form: `--setting-name=value` .
+Each configuration setting is in the form: `--setting-name=value`.
 
 You can check the current configuration by using the following query (privilege level `CONFIG` is required):
 ```opencypher
 SHOW CONFIG;
 ```
+
+If you are using a multi-tenant architecture, all isolated databases share
+identical configurations. At the moment, there is no way to specify a
+per-database configuration.
 
 ## Bolt
 
@@ -58,7 +62,7 @@ workers simultaneously.
 | -------------- | -------------- | -------------- |
 | --storage-gc-cycle-sec=30 | Storage garbage collector interval (in seconds). | `[uint64]` |
 | --storage-properties-on-edges=true | Controls whether edges have properties. | `[bool]` |
-| --storage-recover-on-startup=true | Controls whether the storage recovers persisted data on startup. | `[bool]` |
+| --storage-recover-on-startup=true | Deprecated and replaced with the `data_recovery_on_startup` flag. Controls whether the storage recovers persisted data on startup. | `[bool]` |
 | --storage-snapshot-interval-sec=300 | Storage snapshot creation interval (in seconds). Set to 0 to disable periodic snapshot creation. | `[uint64]` |
 | --storage-snapshot-on-exit=true | Controls whether the storage creates another snapshot on exit. | `[bool]` |
 | --storage-snapshot-retention-count=3 | The number of snapshots that should always be kept. | `[uint64]` |
@@ -85,6 +89,7 @@ workers simultaneously.
 | --allow-load-csv=true | Controls whether LOAD CSV clause is allowed in queries. | `[bool]` |
 | --also-log-to-stderr=false | Log messages go to stderr in addition to logfiles. | `[bool]` |
 | --data-directory=/var/lib/memgraph | Path to directory in which to save all permanent data. | `[string]` |
+| --data_recovery_on_startup=true | Facilitates recovery of one or more individual databases and their contents during startup. Replaces `--storage-recover-on-startup` | `[bool]` |
 | --init-file | Path to the CYPHERL file which contains queries that need to be executed before the Bolt server starts, such as creating users. | `[string]` |
 | --init-data-file | Path to the CYPHERL file, which contains queries that need to be executed after the Bolt server starts. | `[string]` |
 | --isolation-level=SNAPSHOT_ISOLATION | Isolation level used for the transactions. Allowed values: SNAPSHOT_ISOLATION, READ_COMMITTED, READ_UNCOMMITTED. | `[string]` |

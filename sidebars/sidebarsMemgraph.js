@@ -270,6 +270,7 @@ module.exports = {
             "reference-guide/auth-module",
             "reference-guide/exposing-system-metrics",
             "reference-guide/ldap-security",
+            "reference-guide/multi-tenancy",
             "reference-guide/security",
           ],
         },
