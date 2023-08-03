@@ -22,8 +22,8 @@ CREATE USER user_name [IDENTIFIED BY 'password'];
 If the username is an email address, you need to enclose it in backticks (``` ` ```):
 
 ```cypher
-CREATE USER `alice@memgraph.com` IDENTIFIED BY '0042'; 
-``` 
+CREATE USER `alice@memgraph.com` IDENTIFIED BY '0042';
+```
 
 If the user should authenticate themself on each session, i.e. provide their
 password on each session, the part within the brackets is mandatory. Otherwise,
@@ -106,7 +106,7 @@ of the following commands: `CREATE`, `DELETE`, `MATCH`, `MERGE`, `SET`,
 `REMOVE`, `INDEX`, `STATS`, `AUTH`, `REPLICATION`, `READ_FILE`, `DURABILITY`,
 `FREE_MEMORY`, `TRIGGER`, `STREAM`, `CONFIG`, `CONSTRAINT`, `DUMP`,
 `MODULE_READ`, `MODULE_WRITE`, `WEBSOCKET`, `TRANSACTION_MANAGEMENT`,
-`STORAGE_MODE` and `MULTI_DATABASE`.
+`STORAGE_MODE` and `DATABASE`.
 
 
 Granting a certain set of privileges to a specific user or user role can be
@@ -182,7 +182,7 @@ found in the [reference guide](/reference-guide/streams/overview.md#create-a-str
 
 ## Label-based access control
 Sometimes, disabling users from executing certain commands is too restrictive.
-Label-based access control enables database administrators to disable users from 
+Label-based access control enables database administrators to disable users from
 viewing or manipulating nodes with certain labels and relationships of certain types.
 
 [![Related - How to](https://img.shields.io/static/v1?label=Related&message=How-to&color=blue&style=for-the-badge)](/how-to-guides/manage-label-based-access-control.md)
@@ -190,13 +190,13 @@ viewing or manipulating nodes with certain labels and relationships of certain t
 Label-based permissions are divided into 4 hierarchical parts or levels:
 - `NOTHING` - denies user visibility and manipulation over nodes and relationships
 - `READ` - grants the user visibility over nodes and relationships
-- `UPDATE` - grants the user visibility and the ability to edit nodes and relationships 
+- `UPDATE` - grants the user visibility and the ability to edit nodes and relationships
 - `CREATE_DELETE` - grants the user visibility, editing, creation, and deletion of a node or a
 relationship
 
 ### Node permissions
 
-Granting a certain set of node permissions can be done similarly to the clause 
+Granting a certain set of node permissions can be done similarly to the clause
 privileges using the following command:
 
 ```cypher
@@ -266,3 +266,8 @@ SHOW PRIVILEGES FOR user_or_role;
 ```
 
 and all the values of clause privileges, as well as label-based permissions will be displayed.
+
+## Multi-tenant management permissions
+Multi-tenant management queries are protected via the following privileges:
+ * `MULTI_DATABASE_EDIT` manages the user's ability to create and delete isolated databases (`CREATE DATABASE x` and `DROP DATABASE x`)
+ * `MULTI_DATABASE_USE` manages the user's ability to switch between isolated databases (`USE DATABASE x` and `SHOW DATABASES`)

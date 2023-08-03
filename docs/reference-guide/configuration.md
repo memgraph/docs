@@ -20,7 +20,7 @@ SHOW CONFIG;
 ```
 
 If you are using a multi-tenant architecture, all isolated databases share
-identical configurations. AT the moment, there is no way to to specify a
+identical configurations. At the moment, there is no way to specify a
 per-database configuration.
 
 ## Bolt
