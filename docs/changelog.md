@@ -15,6 +15,9 @@ import VideoBySide from '@site/src/components/VideoBySide';
   The primary objective is to facilitate efficient resource isolation, maintain
   data integrity, and manage access for different clients.
   [#952](https://github.com/memgraph/memgraph/pull/952)
+- The configuration flag `storage-recover-on-startup` has been deprecated and
+  replaced with `data_recovery_on_startup`to support multi-tenancy. The
+  `storage-recover-on-startup` can still be used at the moment. 
 - If you want to replace procedure names your application calls without changing
   the application code, you can define the mapping of the old and new procedure
   names in a JSON file, then set the path to the files as the value of the
