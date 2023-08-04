@@ -47,6 +47,7 @@ module.exports = {
         "query-modules/python/kmeans",
         "query-modules/python/link-prediction-with-gnn",
         "query-modules/python/llm-util",
+        "query-modules/cpp/map",
         "query-modules/python/max-flow",
         "query-modules/python/meta-util",
         "query-modules/python/migrate",
