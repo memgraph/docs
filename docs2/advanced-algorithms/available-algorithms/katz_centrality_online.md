@@ -1,5 +1,5 @@
 ---
-id: katz-centrality-online
+id: katz_centrality_online
 title: katz_centrality_online
 sidebar_label: katz_centrality_online
 ---

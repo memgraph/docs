@@ -1,5 +1,5 @@
 ---
-id: llm-util
+id: llm_util
 title: llm_util
 sidebar_label: llm_util
 ---

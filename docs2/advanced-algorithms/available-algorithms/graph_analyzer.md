@@ -1,5 +1,5 @@
 ---
-id: graph-analyzer
+id: graph_analyzer
 title: graph_analyzer
 sidebar_label: graph_analyzer
 ---

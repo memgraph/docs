@@ -1,5 +1,5 @@
 ---
-id: katz-centrality
+id: katz_centrality
 title: katz_centrality
 sidebar_label: katz_centrality
 ---

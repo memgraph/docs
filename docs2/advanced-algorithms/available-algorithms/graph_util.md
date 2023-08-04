@@ -1,5 +1,5 @@
 ---
-id: graph-util
+id: graph_util
 title: graph_util
 sidebar_label: graph_util
 ---

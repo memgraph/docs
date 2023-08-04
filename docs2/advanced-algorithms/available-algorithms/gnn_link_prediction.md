@@ -1,5 +1,5 @@
 ---
-id: link-prediction-with-gnn
+id: link_prediction_with_gnn
 title: link_prediction_with_gnn
 sidebar_label: link_prediction_with_gnn
 ---

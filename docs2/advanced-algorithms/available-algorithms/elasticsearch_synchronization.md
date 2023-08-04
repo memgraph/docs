@@ -1,5 +1,5 @@
 ---
-id: elasticsearch-synchronization
+id: elasticsearch_synchronization
 title: elasticsearch_synchronization
 sidebar_label: elasticsearch_synchronization
 ---

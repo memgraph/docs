@@ -1,5 +1,5 @@
 ---
-id: distance-calculator
+id: distance_calculator
 title: distance_calculator
 sidebar_label: distance_calculator
 ---

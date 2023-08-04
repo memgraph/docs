@@ -1,5 +1,5 @@
 ---
-id: json-util
+id: json_util
 title: json_util
 sidebar_label: json_util
 ---

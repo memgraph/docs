@@ -1,5 +1,5 @@
 ---
-id: set-cover
+id: set_cover
 title: set_cover
 sidebar_label: set_cover
 ---

@@ -1,5 +1,5 @@
 ---
-id: max-flow
+id: max_flow
 title: max_flow
 sidebar_label: max_flow
 ---

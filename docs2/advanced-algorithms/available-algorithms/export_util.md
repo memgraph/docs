@@ -1,5 +1,5 @@
 ---
-id: export-util
+id: export_util
 title: export_util
 sidebar_label: export_util
 ---

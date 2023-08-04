@@ -1,5 +1,5 @@
 ---
-id: import-util
+id: import_util
 title: import_util
 sidebar_label: import_util
 ---

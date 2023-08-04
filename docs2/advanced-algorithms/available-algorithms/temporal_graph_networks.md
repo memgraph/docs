@@ -1,5 +1,5 @@
 ---
-id: temporal-graph-networks
+id: temporal_graph_networks
 title: temporal_graph_networks
 sidebar_label: temporal_graph_networks
 ---

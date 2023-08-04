@@ -1,5 +1,5 @@
 ---
-id: union-find
+id: union_find
 title: union_find
 sidebar_label: union_find
 ---
