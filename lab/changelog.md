@@ -4,6 +4,41 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## Lab v2.8.0 - Aug 04, 2023
+
+### New features and improvements
+
+- You can now save and edit connection details so you don't have to type them in
+  on every reconnect.
+- A list of recent connections is now shown in the sidebar and you can use it to
+  quickly connect to any of the recent successful connections.
+- When you click on a node or relationship in the Graph View, the object
+  properties will be shown in a sidebar next to the Graph View rather then on
+  the canvas next to the object. 
+- Nodes can be expanded by a double-click.
+- As Memgraph now supports multi-tenant architecture, you can see the database
+  you are currently working in the status bar with an option to switch to another
+  database.
+- Along with the number of nodes and relationships in the database, the status
+  bar now also shows the number of indexes, constraints, and triggers.
+- Now you can recenter, zoom in and zoom out the graph view by clicking on the
+  action buttons in the bottom right corner of the Graph Results view.
+- Now you can copy query results to the clipboard in JSON, CSV, or TSV format.
+- You can start a name of a variable in Graph Style Script with an underscore
+  `_` which is pretty handy for defining local variables in `@NodeStyle` and
+  `@EdgeStyle` directives. 
+
+### Bug fixes
+
+- Setting up the `z-index` for edges in Graph Style Script now works as expected.
+- Large integer numbers in query table results are now shown correctly, e.g. it
+  shows `10,000,000,000,000,001` for the query `RETURN 10000000000000000 + 1`
+  instead of incorrect result `10000000000000000`.
+- Results now correctly show "No results" when there are no results in the query
+  response, instead of a previously fetched result.
+- The Lab web application is no longer unexpectedly crashing when using the
+  Memgraph Platform Docker image.
+
 ## Lab v2.7.1 - Jul 05, 2023
 
 ### Improvements
