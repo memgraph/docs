@@ -51,8 +51,7 @@ Removes elements from the input list. If a non-existent element is passed, it wi
 #### Usage:
 
 ```cypher
-CALL collections.remove_all([1, 2, 3, 4, 5], [1, 2, 3, 7]) YIELD removed
-RETURN removed;
+CALL collections.remove_all([1, 2, 3, 4, 5], [1, 2, 3, 7]) YIELD removed RETURN removed;
 ```
 
 ```plaintext
@@ -81,9 +80,7 @@ Calculates the sum of list elements if they are of the same type and can be summ
 
 ```cypher
 CREATE (:A {id:5});
-MATCH (a:A)
-CALL collections.sum([1, 2.3, -4, c.id]) YIELD sum
-RETURN sum;
+MATCH (a:A) CALL collections.sum([1, 2.3, -4, a.id]) YIELD sum RETURN sum;
 ```
 
 ```plaintext
@@ -112,8 +109,7 @@ Unites two lists into one, eliminating duplicates.
 #### Usage:
 
 ```cypher
-CALL collections.union([0, 1, 2, 3], [2, 2, 3, 4, 5]) YIELD union
-RETURN union;
+CALL collections.union([0, 1, 2, 3], [2, 2, 3, 4, 5]) YIELD union RETURN union;
 ```
 
 ```plaintext
@@ -141,8 +137,7 @@ Sorts the elements of an input list if they are of the same type. If they are no
 #### Usage:
 
 ```cypher
-CALL collections.sort([1, 4, 2.3, -5]) YIELD sorted
-RETURN sorted;
+CALL collections.sort([1, 4, 2.3, -5]) YIELD sorted RETURN sorted;
 ```
 
 ```plaintext
@@ -171,8 +166,7 @@ Verifies the presence of a certain element in a sorted list. If an unsorted list
 #### Usage:
 
 ```cypher
-CALL collections.contains_sorted([1, 2, 3.3, 4.4, 5], 2) YIELD contains
-RETURN contains;
+CALL collections.contains_sorted([1, 2, 3.3, 4.4, 5], 2) YIELD contains RETURN contains;
 ```
 
 ```plaintext
@@ -200,8 +194,7 @@ Finds the maximum element in an input list. List elements must be comparable, th
 #### Usage:
 
 ```cypher
-CALL collections.max([-1, -2, -3.3]) YIELD max
-RETURN max;
+CALL collections.max([-1, -2, -3.3]) YIELD max RETURN max;
 ```
 
 ```plaintext
@@ -229,8 +222,7 @@ Creates pairs from the input list.
 #### Usage:
 
 ```cypher
-CALL collections.pairs([3, "s", 4.4, [1, 2]]) YIELD pairs
-RETURN pairs;
+CALL collections.pairs([3, "s", 4.4, [1, 2]]) YIELD pairs RETURN pairs;
 ```
 
 ```plaintext
@@ -448,8 +440,7 @@ Checks if a list contains all the values from another list.
 #### Usage:
 
 ```cypher
-CALL collections.contains_all([1, 2, 3, "pero"], [1, 1, 1, 1, 2, 3])
-YIELD contained RETURN contained;
+CALL collections.contains_all([1, 2, 3, "pero"], [1, 1, 1, 1, 2, 3]) YIELD contained RETURN contained;
 ```
 
 ```plaintext
@@ -476,8 +467,7 @@ Returns the unique intersection of two lists.
 #### Usage:
 
 ```cypher
-CALL collections.intersection([1, 1, 2, 3, 4, 5], [1, 1, 3, 5, 7, 9])
-YIELD intersection RETURN intersection;
+CALL collections.intersection([1, 1, 2, 3, 4, 5], [1, 1, 3, 5, 7, 9]) YIELD intersection RETURN intersection;
 ```
 
 ```plaintext
