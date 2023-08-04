@@ -8,10 +8,12 @@ sidebar_label: Changelog
 
 ## Features and improvements
 
-- With the new `collections` module you can filter, sort and modify lists within
-  Cypher queries. [#284](https://github.com/memgraph/mage/pull/284)
-- The new `map` module enables manipulating collections of key-value pairs, and
-  consequently advanced data operations within a graph database context.
+- With the new [`collections` module](/query-modules/cpp/collections.md) you can
+  filter, sort and modify lists within Cypher queries.
+  [#284](https://github.com/memgraph/mage/pull/284)
+- The new [`map` module](/query-modules/cpp/map.md) enables manipulating
+  collections of key-value pairs, and consequently advanced data operations
+  within a graph database context.
   [#282](https://github.com/memgraph/mage/pull/282)
 
 ## v1.8.0 - Jul 21, 2023
