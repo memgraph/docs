@@ -51,8 +51,7 @@ Removes the specified key and its corresponding value from the input map. If the
 #### Usage:
 
 ```cypher
-CALL map.remove_key({c: "b", d: "ba"}, "c") YIELD removed
-RETURN removed
+CALL map.remove_key({c: "b", d: "ba"}, "c") YIELD removed RETURN removed;
 ```
 
 ```plaintext
@@ -66,8 +65,7 @@ RETURN removed
 Example with recursion:
 
 ```cypher
-CALL map.remove_key({c: "b", d: {e: "ba", c: "h", a: {c: "z"}}}, "c", true) YIELD removed
-RETURN removed
+CALL map.remove_key({c: "b", d: {e: "ba", c: "h", a: {c: "z"}}}, "c", true) YIELD removed RETURN removed;
 ```
 
 ```plaintext
@@ -95,8 +93,7 @@ Creates a map from a list of pairs, where each pair is essentially another list 
 #### Usage:
 
 ```cypher
-CALL map.from_pairs([["b", 3], ["c", "c"]]) YIELD map
-RETURN map
+CALL map.from_pairs([["b", 3], ["c", "c"]]) YIELD map RETURN map;
 ```
 
 ```plaintext
@@ -125,8 +122,7 @@ Merges two maps into one. If the same key occurs twice, the later value will ove
 #### Usage:
 
 ```cypher
-CALL map.merge({a: "b", c: "d"}, {e: "f", g: "h"}) YIELD merged
-RETURN merged
+CALL map.merge({a: "b", c: "d"}, {e: "f", g: "h"}) YIELD merged RETURN merged;
 ```
 
 ```plaintext
@@ -253,8 +249,8 @@ Returns a map of all nodes which contain the given label and property. The key o
 
 #### Usage:
 ```cypher
-CREATE (Oppenheimer:Movie {title:'Oppenheimer', released:2023})
-CREATE (Barbie:Movie {title:"Barbie", released:2023})
+CREATE (Oppenheimer:Movie {title:'Oppenheimer', released:2023});
+CREATE (Barbie:Movie {title:"Barbie", released:2023});
 CREATE (Shawshank:Movie {title:'The Shawshank Redemption', released:1994});
 
 CALL map.from_nodes("Movie", "title") YIELD map RETURN map;
@@ -338,8 +334,7 @@ Updates the value at the position `key` in `map`. If the key doesn't exist, inse
 #### Usage:
 
 ```cypher
-CALL map.set_key({name:"Ivan",country:"Croatia"}, "name", "Matija")
-YIELD map return map;
+CALL map.set_key({name:"Ivan",country:"Croatia"}, "name", "Matija") YIELD map RETURN map;
 ```
 
 ```plaintext
