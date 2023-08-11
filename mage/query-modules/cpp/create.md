@@ -34,3 +34,40 @@ By enabling more precise and flexible creation of nodes and relationships within
 
 ### Procedures
 
+### `node(labels, properties)`
+
+Provides a more flexible way of creating nodes than Cypher’s CREATE clause.
+
+#### Input:
+
+- `labels: List[string]` ➡ list of all the labels to be added to the new node
+- `properties: Map` ➡ map with key/value pairs to be added as new node's properties
+
+#### Output:
+
+- `node: Node` ➡ new node which is added to the graph
+
+#### Usage:
+
+```cypher
+CALL create.node(["Person", "Programmer"], {name: "Ana", age: 20}) YIELD node RETURN node
+```
+
+```plaintext
++----------------------------+
+| node                       |
++----------------------------+
+| {                          |
+|     "id": 1,               |
+|     "labels": [            |
+|        "Person",           |
+|        "Programmer"        |
+|     ],                     |
+|     "properties": {        |
+|       name: "Ana",         |
+|       age: 20              |
+|     },                     |
+|     "type": "node"         |
+| }                          |
++----------------------------+
+```
