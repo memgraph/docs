@@ -33,3 +33,39 @@ The `node` module provides a comprehensive toolkit for managing graph nodes, ena
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight> |
 
 ### Procedures
+
+### `relationship_exists(node, pattern)`
+
+Checks if given node has a relationship of the pattern.  
+
+#### Input:
+
+- `node: Node` ➡ node whose relationship existance is to be verified
+- `pattern: List[string] (optional)` ➡ list of relationship types for which it will be checked if at least one of them exists; if nothing is stated, procedure checks all types of relationships
+
+:::info
+
+If '<' is added in front of the relationship type, only relationships coming into the node will be checked (e.g., "<KNOWS"), while if '>' is added at the end of the relationship type, only relationships coming from the node will be checked (e.g., "KNOWS>").
+Furthermore, if relationship type is not relevant, it is possible to enter only "<" or ">" to check ingoing or outgoing relationships.
+
+:::
+
+#### Output:
+
+- `exists: bool` ➡ whether or not provided node has a relationship of specified type
+
+#### Usage:
+
+```cypher
+MERGE (a:Person {name: "Phoebe"}) MERGE (b:Person {name: "Joey"}) CREATE (a)-[f:FRIENDS]->(b);
+MATCH (a:Person {name: "Joey"}) CALL node.relationship_exists(a, ["<FRIENDS"]) 
+YIELD exists RETURN exists
+```
+
+```plaintext
++----------------------------+
+| exists                     |
++----------------------------+
+| True                       |
++----------------------------+
+```
