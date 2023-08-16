@@ -58,20 +58,9 @@ If '<' is added in front of the relationship type, only relationships coming int
 #### Usage:
 
 ```cypher
-MERGE (a:Rachel) MERGE (b:Monica) CREATE (a)-[f:FRIENDS]->(b);
-MERGE (a:Monica) MERGE (b:Ross) CREATE (a)-[f:FRIENDS]->(b);
-MERGE (a:Monica) MERGE (b:Chandler) CREATE (a)-[f:FRIENDS]->(b);
-MERGE (a:Chandler) MERGE (b:Joey) CREATE (a)-[f:FRIENDS]->(b);
-MERGE (a:Monica) MERGE (b:Phoebe) CREATE (a)-[f:FRIENDS]->(b);
-MATCH (a:Joey) CALL neighbors.at_hop(a, ["FRIENDS"], 3) YIELD nodes RETURN nodes;
-```
-
-```plaintext
-+----------------------------+
-| removed                    |
-+----------------------------+
-| {"d": "ba"}                |
-+----------------------------+
+MATCH (p:Person)
+CALL neighbors.at_hop(p, ["KNOWS"], 3) YIELD nodes
+RETURN nodes;
 ```
 
 
@@ -94,3 +83,173 @@ If '<' is added in front of the relationship type, only relationships coming int
 #### Output:
 
 - `nodes: List[Node]` ➡ list of nodes at a specific distance from a given node, starting from distance 1 up to a provided distance
+
+#### Usage:
+
+```cypher
+MATCH (p:Person)
+CALL neighbors.by_hop(p, ["KNOWS"], 3) YIELD nodes
+RETURN nodes;
+```
+
+
+## Example - neighbors.at_hop
+
+<Tabs
+  groupId="at_hop_example"
+  defaultValue="input"
+  values={[
+    {label: 'Step 1: Cypher load commands', value: 'load'},
+    {label: 'Step 2: Input graph', value: 'input'},
+    {label: 'Step 3: Running command', value: 'run'},
+    {label: 'Step 4: Results', value: 'result'},
+  ]
+}>
+
+<TabItem value="load">
+
+You can create a simple graph database by running the following queries:
+
+```cypher
+MERGE (a:Rachel) MERGE (b:Monica) CREATE (a)-[f:FRIENDS]->(b);
+MERGE (a:Monica) MERGE (b:Ross) CREATE (a)-[f:FRIENDS]->(b);
+MERGE (a:Monica) MERGE (b:Chandler) CREATE (a)-[f:LOVERS]->(b);
+MERGE (a:Chandler) MERGE (b:Joey) CREATE (a)-[f:FRIENDS]->(b);
+MERGE (a:Monica) MERGE (b:Phoebe) CREATE (a)-[f:FRIENDS]->(b);
+MERGE (a:Rachel) MERGE (b:Ross) CREATE (a)-[f:LOVERS]->(b);
+```
+
+</TabItem>
+
+<TabItem value="input">
+
+The image below shows the above data as a graph:
+
+<img src={require('../../data/query-modules/cpp/neighbors/neighbors.png').default}/>
+    
+</TabItem>
+
+<TabItem value="run">
+
+```cypher
+MATCH (p:Phoebe)
+CALL neighbors.at_hop(p, [""], 3) YIELD nodes
+RETURN nodes
+```
+
+</TabItem>
+
+<TabItem value="result">
+
+The results should be identical to the ones below, except for the
+`id` values that depend on the internal database `id` values:
+
+```plaintext
++----------------------------+
+| nodes                      |
++----------------------------+
+| {                          |    -> node at hop 3 with no relationship
+|     "id": 1,               |       types specified
+|     "labels": [            |
+|        "Joey"              |
+|     ],                     |
+|     "properties": {},      |
+|     "type": "node"         |
+| }                          |
++----------------------------+
+
+```
+
+</TabItem>
+
+</Tabs>
+
+
+## Example - neighbors.by_hop
+
+<Tabs
+  groupId="by_hop_example"
+  defaultValue="input2"
+  values={[
+    {label: 'Step 1: Cypher load commands', value: 'load2'},
+    {label: 'Step 2: Input graph', value: 'input2'},
+    {label: 'Step 3: Running command', value: 'run2'},
+    {label: 'Step 4: Results', value: 'result2'},
+  ]
+}>
+
+<TabItem value="load2">
+
+You can create a simple graph database by running the following queries:
+
+```cypher
+MERGE (a:Rachel) MERGE (b:Monica) CREATE (a)-[f:FRIENDS]->(b);
+MERGE (a:Monica) MERGE (b:Ross) CREATE (a)-[f:FRIENDS]->(b);
+MERGE (a:Monica) MERGE (b:Chandler) CREATE (a)-[f:LOVERS]->(b);
+MERGE (a:Chandler) MERGE (b:Joey) CREATE (a)-[f:FRIENDS]->(b);
+MERGE (a:Monica) MERGE (b:Phoebe) CREATE (a)-[f:FRIENDS]->(b);
+MERGE (a:Rachel) MERGE (b:Ross) CREATE (a)-[f:LOVERS]->(b);
+```
+
+</TabItem>
+
+<TabItem value="input2">
+
+The image below shows the above data as a graph:
+
+<img src={require('../../data/query-modules/cpp/neighbors/neighbors.png').default}/>
+    
+</TabItem>
+
+<TabItem value="run2">
+
+```cypher
+MATCH (p:Phoebe)
+CALL neighbors.by_hop(p, ["FRIENDS"], 3) YIELD nodes
+RETURN nodes
+```
+
+</TabItem>
+
+<TabItem value="result2">
+
+The results should be identical to the ones below, except for the
+`id` values that depend on the internal database `id` values:
+
+```plaintext
++----------------------------+
+| nodes                      |
++----------------------------+
+| [{                         |    -> list of nodes at hop 1
+|     "id": 1,               |
+|     "labels": [            |
+|        "Monica"            |
+|     ],                     |
+|     "properties": {},      |
+|     "type": "node"         |
+| }]                         |
++----------------------------+
+| [{                         |    -> list of nodes at hop 2
+|     "id": 2,               |
+|     "labels": [            |
+|        "Ross"              |
+|     ],                     |
+|     "properties": {},      |
+|     "type": "node"         |
+| }, {                       |
+|     "id": 3,               |
+|     "labels": [            |
+|        "Rachel"            |
+|     ],                     |
+|     "properties": {},      |
+|     "type": "node"         |
+| }]                         |
++----------------------------+
+| []                         |    -> list of nodes at hop 3
++----------------------------+
+```
+
+</TabItem>
+
+</Tabs>
+
