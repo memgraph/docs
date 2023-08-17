@@ -40,8 +40,8 @@ Formats a temporal value.
 
 #### Input:
 
-- `temporal: Any` ➡ temporal value (date, time, datetime, duration) to be formatted
-- `format: str` ➡ format
+- `temporal: Any` ➡ temporal value (date, time, datetime, duration) to be formatted.
+- `format: str` ➡ the wanted format
 
 :::info
 
@@ -51,7 +51,7 @@ The format parameter supports values defined under [Python strftime format codes
 
 #### Output:
 
-- `formatted: str` ➡ received temporal value in the specified format
+- `formatted: str` ➡ received temporal value in the specified format.
 
 #### Usage:
 

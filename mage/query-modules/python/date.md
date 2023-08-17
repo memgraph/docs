@@ -40,10 +40,10 @@ Returns a string representation of time value using the specified unit, specifie
 
 #### Input:
 
-- `time: int` ➡ time which has passed since the Unix epoch
-- `unit: str (default="ms")` ➡ unit of the given time
-- `format: str (default="%Y-%m-%d %H:%M:%S %Z")` ➡ pattern to be formatted to
-- `timezone: str (default="UTC")` ➡ timezone to be used
+- `time: int` ➡ time passed since the Unix epoch.
+- `unit: str (default="ms")` ➡ unit of the given time.
+- `format: str (default="%Y-%m-%d %H:%M:%S %Z")` ➡ pattern to be formatted to.
+- `timezone: str (default="UTC")` ➡ timezone to be used.
 
 :::info
 
@@ -70,7 +70,7 @@ The timezone parameter can be specified with the database TZ identifier (text) n
 
 #### Output:
 
-- `formatted: str` ➡ received time in the specified format
+- `formatted: str` ➡ received time in the specified format.
 
 #### Usage:
 
@@ -94,10 +94,10 @@ Parses the date string using the specified format and specified timezone into th
 
 #### Input:
 
-- `time: str` ➡ a datetime
-- `unit: str (default="ms")` ➡ unit to be parsed to
-- `format: str (default="%Y-%m-%d %H:%M:%S")` ➡ format of the given datetime
-- `timezone: str (default="UTC")` ➡ timezone to be used
+- `time: str` ➡ a datetime.
+- `unit: str (default="ms")` ➡ unit to be parsed to.
+- `format: str (default="%Y-%m-%d %H:%M:%S")` ➡ format of the given DateTime.
+- `timezone: str (default="UTC")` ➡ timezone to be used.
 
 :::info
 
@@ -124,7 +124,7 @@ The timezone parameter can be specified with the database TZ identifier (text) n
 
 #### Output:
 
-- `parsed: int` ➡ number of time units that have elapsed since the Unix epoch
+- `parsed: int` ➡ number of time units that have elapsed since the Unix epoch.
 
 #### Usage:
 
