@@ -33,3 +33,46 @@ The `node` module provides a comprehensive toolkit for managing graph nodes, ena
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight> |
 
 ### Procedures
+
+### `relationship_types(node, types)`
+
+Returns a list of distinct relationship types of the given node contained within the given list of types. If the list of types is empty returns all distinct relationship types. Relationship types can also be directed:
+- \<type - ingoing relationship
+- type> - outgoing relationship
+- type - either way
+
+#### Input:
+
+- `node: Node` ➡ the given node
+- `types: List[string] (default = [])` ➡ list of relationship types to filter by
+
+#### Output:
+
+- `relationship_types: List[string]` ➡ list of distinct relationship types contained within the given list of types
+
+#### Usage:
+
+```cypher
+CREATE (ivan: Intern {name: 'Ivan'})
+CREATE (idora: Intern {name: 'Idora'})
+CREATE (matija: Intern {name: 'Matija'})
+MERGE (ivan)-[:KNOWS]->(idora)
+MERGE (matija)-[:HEARS]->(idora)
+MERGE (matija)-[:SEES]->(ivan);
+```
+
+```cypher
+MATCH (intern:Intern) CALL node.relationship_types(intern, ["<KNOWS", "SEES>", "HEARS"]) yield relationship_types return intern.name as name, relationship_types;
+```
+
+```plaintext
++--------------------------------+
+| name      relationship_types   |
++--------------------------------+
+| Ivan      []                   |
++--------------------------------+
+| Idora     ["HEARS", "KNOWS"]   |
++--------------------------------+
+| Matija    ["SEES", "HEARS"]    |
++--------------------------------+
+```
