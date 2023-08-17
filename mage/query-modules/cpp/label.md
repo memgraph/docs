@@ -41,12 +41,12 @@ Checks whether a specified label exists within the provided node.
 
 #### Input:
 
-- `node: Any` ➡ node whose labels are to be checked
-- `label: string` ➡ name of the label whose existence is to be confirmed
+- `node: Any` ➡ node whose labels are to be checked.
+- `label: string` ➡ name of the label whose existence is to be confirmed.
 
 #### Output:
 
-- `exists: bool` ➡ whether or not provided node has a specified label
+- `exists: bool` ➡ whether or not provided node has a specified label.
 
 #### Usage:
 
