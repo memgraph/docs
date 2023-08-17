@@ -2027,7 +2027,7 @@ LocalDateTime ValueLocalDateTime()
 
 ```cpp
 const Duration ValueDuration() const
-Duration ValueDuration()he table of string 
+Duration ValueDuration()
 ```
 
 ##### Is[TYPE]
