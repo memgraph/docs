@@ -37,12 +37,12 @@ The `text` module offers a toolkit for manipulating strings.
 Joins all the strings into a single one with the given delimiter between them.
 #### Input:
 
-- `strings: List[string]` ➡ list of strings to be joined
-- `delimiter: string` ➡ string to be inserted between the given strings
+- `strings: List[string]` ➡ list of strings to be joined.
+- `delimiter: string` ➡ string to be inserted between the given strings.
 
 #### Output:
 
-- `string: string` ➡ the joined string
+- `string: string` ➡ the joined string.
 
 #### Usage:
 
