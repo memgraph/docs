@@ -149,8 +149,8 @@ RETURN path
 ```
 
 Since every query module is run as one transaction in Memgraph, the user can
-stop the query module by [terminating the corresponding
-transaction](/fundamentals/transactions). The user first needs to
+stop the query module by terminating the corresponding
+transaction. The user first needs to
 find out the transaction ID using `SHOW TRANSACTIONS` command and then terminate
 it using the `TERMINATE TRANSACTIONS <tid>` command.
 
