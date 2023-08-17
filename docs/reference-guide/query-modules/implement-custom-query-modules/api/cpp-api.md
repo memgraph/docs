@@ -645,6 +645,7 @@ Node(Node &&other) noexcept
 | `SetProperty`      | Set value of node's property                                        |
 | `GetProperty`      | Get value of node's property                                        |
 | `RemoveProperty`   | Removes the node's property                                         |
+| `ToString`         | Returns the node's string representation                            |
 
 ##### Id
 
@@ -734,6 +735,14 @@ Removes a label from a node.
 void RemoveLabel(const std::string_view label)
 ```
 
+
+##### ToString
+
+Returns the node's string representation, which has this format: "(id: `node_id`, labels: `node_labels`, properties: `node_properties_map`)".
+
+```cpp
+const std::string ToString() const
+```
 #### Operators
 
 | Name                                          | Description                                               |
@@ -778,6 +787,7 @@ Relationship(Relationship &&other) noexcept
 | `GetProperty`      | Get value of relationship's property                                        |
 | `From`             | Returns the relationship’s source node.                                     |
 | `To`               | Returns the relationship’s destination node.                                |
+| `ToString`         | Returns the relationship’s string representation.                           |
 
 ##### Id
 
@@ -832,6 +842,15 @@ Returns the relationship’s source node.
 
 ```cpp
 Node To() const
+```
+
+##### ToString
+
+Returns the relationship's string representation, which has this format: 
+"(`node_from.ToString()`)-(type: `relationship_type`, id: `relationship_id`, properties: `relationship_properties_map`)->(`node_to.ToString()`)".
+
+```cpp
+const std::string ToString() const
 ```
 
 #### Operators
@@ -1019,6 +1038,7 @@ Date(Date &&other) noexcept
 | `Month`     | Returns the date’s `month` property.                          |
 | `Day`       | Returns the date’s `day` property.                            |
 | `Timestamp` | Returns the date’s timestamp (microseconds since Unix epoch). |
+| `ToString`  | Returns the date’s string representation.                     |
 
 ##### Now
 
@@ -1059,6 +1079,16 @@ Returns the date’s timestamp (microseconds since Unix epoch).
 ```cpp
 int64_t Timestamp() const
 ```
+
+##### ToString
+
+Returns the date's string representation, which has this format: "`year`-`month`-`day`".
+
+
+```cpp
+const std::string ToString() const
+```
+
 
 #### Operators
 
@@ -1129,6 +1159,7 @@ LocalTime(LocalTime &&other) noexcept
 | `Millisecond` | Returns the object’s `millisecond` property.                    |
 | `Microsecond` | Returns the object’s `microsecond` property.                    |
 | `Timestamp`   | Returns the object’s timestamp (microseconds since Unix epoch). |
+| `ToString`    | Returns the object’s string representation.                     |
 
 ##### Now
 
@@ -1185,6 +1216,15 @@ Returns the object’s timestamp (microseconds since Unix epoch).
 ```cpp
 int64_t Timestamp() const
 ```
+##### ToString
+
+Returns the object's string representation, which has this format: "`hour`:`minute`:`second`,`microsecond milisecond`".
+
+
+```cpp
+const std::string ToString() const
+```
+
 
 #### Operators
 
@@ -1251,6 +1291,7 @@ LocalDateTime(LocalDateTime &&other) noexcept
 | `Millisecond` | Returns the object’s `millisecond` property.                    |
 | `Microsecond` | Returns the object’s `microsecond` property.                    |
 | `Timestamp`   | Returns the object’s timestamp (microseconds since Unix epoch). |
+| `ToString`    | Returns the object’s string representation.                     |
 
 ##### Now
 
@@ -1332,6 +1373,16 @@ Returns the date’s timestamp (microseconds since Unix epoch).
 int64_t Timestamp() const
 ```
 
+##### ToString
+
+Returns the object's string representation, which has this format: "`year`-`month`-`day`T`hour`:`minute`:`second`,`microsecond milisecond`".
+
+
+```cpp
+const std::string ToString() const
+```
+
+
 #### Operators
 
 | Name                         | Description          |
@@ -1390,9 +1441,10 @@ Duration(Duration &&other) noexcept
 
 #### Member functions
 
-| Name           | Description                           |
-| -------------- | ------------------------------------- |
-| `Microseconds` | Returns the duration as microseconds. |
+| Name           | Description                                   |
+| -------------- | --------------------------------------------- |
+| `Microseconds` | Returns the duration as microseconds.         |
+| `ToString`     | Returns the duration's string representation. |
 
 ##### Microseconds
 
@@ -1400,6 +1452,14 @@ Returns the duration as microseconds.
 
 ```cpp
 int64_t Microseconds() const
+```
+##### ToString
+
+Returns the duration's string representation, which has this format: "`microseconds` ms".
+
+
+```cpp
+const std::string ToString() const
 ```
 
 #### Operators
@@ -1455,6 +1515,7 @@ Path(Path &&other) noexcept
 | `GetNodeAt`         | Returns the node at the given `index`.  The `index` must be less than or equal to length of the path. |
 | `GetRelationshipAt` | Returns the relationship at the given `index`. The `index` must be less than length of the path.      |
 | `Expand`            | Adds a relationship continuing from the last node on the path.                                        |
+| `ToString`          | Returns the path's string representation.                                                             |
 
 ##### Length
 
@@ -1487,6 +1548,16 @@ Adds a relationship continuing from the last node on the path.
 ```cpp
 void Expand(const Relationship &relationship)
 ```
+
+##### ToString
+
+Returns the path's string representation, which has nearly the same format as `Relationship.ToString()`, the difference being that `Path.ToString()` can have multiple nodes and relationships in its string representation, for example: "`(node)-(relationship)->(node)-(relationship)->(node)`...".
+
+
+```cpp
+const std::string ToString() const
+```
+
 
 #### Operators
 
@@ -1553,6 +1624,7 @@ List(List &&other) noexcept
 | `Append`                                  | Appends the given `value` to the list.                |
 | `AppendExtend`                            | Extends the list and appends the given `value` to it. |
 | `begin`<br/>`end`<br/>`cbegin`<br/>`cend` | Returns the beginning/end of the `List` iterator.     |
+| `ToString`                                | Returns the list's string representation.             |
 
 ##### Size
 
@@ -1599,6 +1671,15 @@ The behavior of accessing `value` after performing this operation is undefined.
 ```cpp
 void AppendExtend(Value &&value)
 ```
+
+##### ToString
+
+Returns the list's string representation, which has this format: "[`element.ToString()`, `element.ToString()`...]".
+
+```cpp
+const std::string ToString() const
+```
+
 
 #### Operators
 
@@ -1670,8 +1751,9 @@ Map(Map &&other) noexcept
 | `At`                                      | Returns the value at the given `key`.              |
 | `Insert`                                  | Inserts the given `key`-`value` pair into the map. |
 | `Update`                                  | Inserts or updates the value at the given `key`.   |
-| `Erase`                                   | Erases a mapping by key.                            |
+| `Erase`                                   | Erases a mapping by key.                           |
 | `begin`<br/>`end`<br/>`cbegin`<br/>`cend` | Returns the beginning/end of the `Map` iterator.   |
+| `ToString`                                | Returns the map's string representation.           |
 
 ##### Size
 
@@ -1733,6 +1815,13 @@ Erases the element associated with the key from the map, if it doesn't exist not
 
 ```cpp
 void Erase(std::string_view key);
+```
+##### ToString
+
+Returns the map's string representation, which has this format: "{`key1` : `value1.ToString()`, `key2`: `value2.ToString()`...}".
+
+```cpp
+const std::string ToString() const
 ```
 
 #### Operators
@@ -1847,6 +1936,7 @@ Value(Value &&other) noexcept
 | `Type`        | Returns the type of the value.              |
 | `Value[TYPE]` | Returns a value of given type.              |
 | `Is[TYPE]`    | Returns whether the value is of given type. |
+| `TOString`    | Returns the value's string representation.  |
 
 ##### Type
 
@@ -1937,7 +2027,7 @@ LocalDateTime ValueLocalDateTime()
 
 ```cpp
 const Duration ValueDuration() const
-Duration ValueDuration()
+Duration ValueDuration()he table of string 
 ```
 
 ##### Is[TYPE]
@@ -2002,6 +2092,30 @@ bool IsLocalDateTime() const
 
 ```cpp
 bool IsDuration() const
+```
+
+##### ToString
+
+Returns the value's string representation. It does this by finding the type of the object wrapped inside the Value object, calling its ToString() function or casting the object to string, depending on it's type. The table below shows the appropriate action for each type.
+
+| Data type       | String method used                                                   |
+| -------------   | -------------------------------------------------------------------- |
+| `Null`          | Returns `""`                                                         | 
+| `Numeric`       | Casts numeric type to string.                                        |
+| `Bool`          | Returns either `"false"` or `"true"`, depending on the bool's value. |
+| `String`        | Returns the string.                                                  |
+| `List`          | Returns `List.ToString()`.                                           |
+| `Map`           | Returns `Map.ToString()`.                                            |
+| `Node`          | Returns `Node.ToString()`.                                           |
+| `Relationship`  | Returns `Relationship.ToString()`.                                   |
+| `Path`          | Returns `Path.ToString()`.                                           |
+| `Date`          | Returns `Date.ToString()`.                                           |
+| `LocalTime`     | Returns `LocalTime.ToString()`.                                      |
+| `LocalDateTime` | Returns `LocalDateTime.ToString()`.                                  |
+| `Duration`      | Returns `Duration.ToString()`.                                       |
+
+```cpp
+const std::string ToString() const
 ```
 
 #### Operators
