@@ -40,17 +40,17 @@ Provides a more flexible way of creating nodes than Cypher’s CREATE clause.
 
 #### Input:
 
-- `labels: List[string]` ➡ list of all the labels to be added to the new node
-- `properties: Map` ➡ map with key/value pairs to be added as new node's properties
+- `labels: List[string]` ➡ list of all the labels to be added to the new node.
+- `properties: Map` ➡ map with key/value pairs to be added as new node's properties.
 
 #### Output:
 
-- `node: Node` ➡ new node which is added to the graph
+- `node: Node` ➡ new node which is added to the graph.
 
 #### Usage:
 
 ```cypher
-CALL create.node(["Person", "Programmer"], {name: "Ana", age: 20}) YIELD node RETURN node
+CALL create.node(["Person", "Programmer"], {name: "Ana", age: 20}) YIELD node RETURN node;
 ```
 
 ```plaintext
@@ -79,13 +79,13 @@ Adds the provided properties to the node(s).
 
 #### Input:
 
-- `input_nodes: Any` ➡ node, node's id or a list of nodes and nodes' ids
-- `input_keys: List[string]` ➡ list of all the property keys to be added to the node(s)
-- `input_values: List[Any]` ➡ list of all the corresponding property values to be added to the node(s)
+- `input_nodes: Any` ➡ node, node's id or a list of nodes and nodes' ids.
+- `input_keys: List[string]` ➡ list of all the property keys to be added to the node(s).
+- `input_values: List[Any]` ➡ list of all the corresponding property values to be added to the node(s).
 
 #### Output:
 
-- `nodes: Node` ➡ node(s) with new properties
+- `nodes: Node` ➡ node(s) with new properties.
 
 #### Usage:
 
@@ -134,13 +134,13 @@ Adds the provided property to the relationship(s).
 
 #### Input:
 
-- `input_rel: Any` ➡ relationship, relationship's id or a list of relationships and relationships' ids
-- `input_key: string` ➡ property key to be added to the relationship(s)
-- `input_value: Any` ➡ corresponding property value to be added to the relationship(s)
+- `input_rel: Any` ➡ relationship, relationship's id or a list of relationships and relationships' ids.
+- `input_key: string` ➡ property key to be added to the relationship(s).
+- `input_value: Any` ➡ corresponding property value to be added to the relationship(s).
 
 #### Output:
 
-- `relationship: Relationship` ➡ relationship(s) with new property
+- `relationship: Relationship` ➡ relationship(s) with new property.
 
 #### Usage:
 
@@ -174,17 +174,17 @@ Removes the provided labels from the node(s).
 
 #### Input:
 
-- `nodes: Any` ➡ node, node's id or a list of nodes and nodes' ids
-- `labels: List[string]` ➡ list of labels to be removed (if exist) from the nodes(s)
+- `nodes: Any` ➡ node, node's id or a list of nodes and nodes' ids.
+- `labels: List[string]` ➡ list of labels to be removed (if exist) from the nodes(s).
 
 #### Output:
 
-- `nodes: Node` ➡ node(s) without provided labels
+- `nodes: Node` ➡ node(s) without provided labels.
 
 #### Usage:
 
 ```cypher
-CREATE (:Person:Student:Programmer {name: "Ana"})
+CREATE (:Person:Student:Programmer {name: "Ana"});
 MATCH (p:Person) CALL create.remove_labels(p, ["Student", "Engineer"]) YIELD nodes RETURN nodes;
 ```
 
