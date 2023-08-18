@@ -40,8 +40,8 @@ Checks if given node has a relationship of the pattern.
 
 #### Input:
 
-- `node: Node` ➡ node whose relationship existance is to be verified
-- `pattern: List[string] (optional)` ➡ list of relationship types for which it will be checked if at least one of them exists; if nothing is stated, procedure checks all types of relationships
+- `node: Node` ➡ node whose relationship existance is to be verified.
+- `pattern: List[string] (optional)` ➡ list of relationship types for which it will be checked if at least one of them exists; if nothing is stated, procedure checks all types of relationships.
 
 :::info
 
@@ -52,14 +52,14 @@ Furthermore, if relationship type is not relevant, it is possible to enter only 
 
 #### Output:
 
-- `exists: bool` ➡ whether or not provided node has a relationship of specified type
+- `exists: bool` ➡ whether or not provided node has a relationship of specified type.
 
 #### Usage:
 
 ```cypher
 MERGE (a:Person {name: "Phoebe"}) MERGE (b:Person {name: "Joey"}) CREATE (a)-[f:FRIENDS]->(b);
 MATCH (a:Person {name: "Joey"}) CALL node.relationship_exists(a, ["<FRIENDS"]) 
-YIELD exists RETURN exists
+YIELD exists RETURN exists;
 ```
 
 ```plaintext
