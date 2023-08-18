@@ -52,7 +52,7 @@ Checks whether a specified label exists within the provided node.
 
 ```cypher
 CREATE (:Student {name: 'Ana'});
-MATCH (s:Student {name: 'Ana'}) CALL label.exists(s, "Teacher") YIELD exists RETURN exists
+MATCH (s:Student {name: 'Ana'}) CALL label.exists(s, "Teacher") YIELD exists RETURN exists;
 ```
 
 ```plaintext
