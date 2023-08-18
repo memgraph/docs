@@ -41,9 +41,9 @@ Returns nodes that are at a specific distance from a given node, considering onl
 
 #### Input:
 
-- `node: Node` ➡ node whose neighborhood is being analyzed
-- `rel_type: List[string]` ➡ list of relationship types to travel through; if empty, it is possible to travel through all types of relationships
-- `distance: int` ➡ number of hops between nodes
+- `node: Node` ➡ node whose neighborhood is being analyzed.
+- `rel_type: List[string]` ➡ list of relationship types to travel through; if empty, it is possible to travel through all types of relationships.
+- `distance: int` ➡ number of hops between nodes.
 
 :::info
 
@@ -53,14 +53,13 @@ If '<' is added in front of the relationship type, only relationships coming int
 
 #### Output:
 
-- `nodes: Node` ➡ nodes at a specific distance from a given node
+- `nodes: Node` ➡ nodes at a specific distance from a given node.
 
 #### Usage:
 
 ```cypher
 MATCH (p:Person)
-CALL neighbors.at_hop(p, ["KNOWS"], 3) YIELD nodes
-RETURN nodes;
+CALL neighbors.at_hop(p, ["KNOWS"], 3) YIELD nodes RETURN nodes;
 ```
 
 
@@ -70,9 +69,9 @@ Returns nodes that are at every distance (up to a specified number) from a given
 
 #### Input:
 
-- `node: Node` ➡ node whose neighborhood is being analyzed
-- `rel_type: List[string]` ➡ list of relationship types to travel through; if empty, it is possible to travel through all types of relationships
-- `distance: int` ➡ maximum number of hops between nodes
+- `node: Node` ➡ node whose neighborhood is being analyzed.
+- `rel_type: List[string]` ➡ list of relationship types to travel through; if empty, it is possible to travel through all types of relationships.
+- `distance: int` ➡ maximum number of hops between nodes.
 
 :::info
 
@@ -82,14 +81,13 @@ If '<' is added in front of the relationship type, only relationships coming int
 
 #### Output:
 
-- `nodes: List[Node]` ➡ list of nodes at a specific distance from a given node, starting from distance 1 up to a provided distance
+- `nodes: List[Node]` ➡ list of nodes at a specific distance from a given node, starting from distance 1 up to a provided distance.
 
 #### Usage:
 
 ```cypher
 MATCH (p:Person)
-CALL neighbors.by_hop(p, ["KNOWS"], 3) YIELD nodes
-RETURN nodes;
+CALL neighbors.by_hop(p, ["KNOWS"], 3) YIELD nodes RETURN nodes;
 ```
 
 
