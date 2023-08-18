@@ -76,7 +76,7 @@ The timezone parameter can be specified with the database TZ identifier (text) n
 
 ```cypher
 CALL date.format(74976, "h", "%Y/%m/%d %H:%M:%S %Z", "Mexico/BajaNorte") 
-YIELD formatted RETURN formatted
+YIELD formatted RETURN formatted;
 ```
 
 ```plaintext
@@ -130,7 +130,7 @@ The timezone parameter can be specified with the database TZ identifier (text) n
 
 ```cypher
 CALL date.parse("2023/08/03 14:30:00", "h", "%Y/%m/%d %H:%M:%S", "Europe/Zagreb") 
-YIELD parsed RETURN parsed
+YIELD parsed RETURN parsed;
 ```
 
 ```plaintext

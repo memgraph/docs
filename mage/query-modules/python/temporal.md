@@ -41,7 +41,7 @@ Formats a temporal value.
 #### Input:
 
 - `temporal: Any` ➡ temporal value (date, time, datetime, duration) to be formatted.
-- `format: str` ➡ the wanted format
+- `format: str` ➡ the wanted format.
 
 :::info
 
@@ -56,7 +56,7 @@ The format parameter supports values defined under [Python strftime format codes
 #### Usage:
 
 ```cypher
-CALL temporal.format(duration({minute: 127}), "%H:%M:%S") YIELD formatted RETURN formatted
+CALL temporal.format(duration({minute: 127}), "%H:%M:%S") YIELD formatted RETURN formatted;
 ```
 
 ```plaintext
