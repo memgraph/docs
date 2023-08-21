@@ -85,19 +85,19 @@ Adds the provided properties to the node(s).
 
 #### Output:
 
-- `nodes: Node` ➡ node(s) with new properties.
+- `node: Node` ➡ node(s) with new properties.
 
 #### Usage:
 
 ```cypher
 CREATE (:Student {name: "Ana"});
 CREATE (:Student {name: "Maria"});
-MATCH (s:Student) CALL create.set_properties(s, ["age", "grade"], [20, "1st"]) YIELD nodes RETURN nodes;
+MATCH (s:Student) CALL create.set_properties(s, ["age", "grade"], [20, "1st"]) YIELD node RETURN node;
 ```
 
 ```plaintext
 +----------------------------+
-| nodes                      |
+| node                       |
 +----------------------------+
 | {                          |
 |     "id": 1,               |
