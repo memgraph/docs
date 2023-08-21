@@ -6,6 +6,30 @@ sidebar_label: Changelog
 
 import VideoBySide from '@site/src/components/VideoBySide';
 
+## v2.10.1 - Aug 22, 2023
+
+### Improvements and bug fixes
+
+- Improved performance on batch update of properties, e.g., `MATCH (n) SET n +=
+  {prop1:1, prop2:2, ...};`.
+  [#1115](https://github.com/memgraph/memgraph/pull/1115)
+- Added a delta cache to improve query performance. This helps in situations of
+  repeated reads of vertices which have many delta changes cause by another
+  transaction while the current transactions is operating with snapshot isolation
+  level and so needs to process those deltas. This can be tuned using
+  `--delta-chain-cache-threshold`.
+  [#1181](https://github.com/memgraph/memgraph/pull/1181)
+- Concurrent access to the same query module had a race-condition on the
+  pointer that was used to handle the costume memory management. A mapping has
+  been added that keeps information about what thread used what pointer to
+  handle the memory resources, which should be fine since the respected query
+  executions are running on a dedicated thread. Access to the mapping itself is
+  thread-safe.  A simple `RWLock` has been implemented here, as we shouldn't
+  include `memgraph::utils` from this header and a traditional mutex might be
+  overkill. A simple RAII wrapper for the mapping container has been also added
+  for simpler client-side use.
+  [#1158](https://github.com/memgraph/memgraph/pull/1158)
+
 ## v2.10 - Aug 2, 2023
 
 ### New features and improvements
