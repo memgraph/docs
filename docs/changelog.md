@@ -20,11 +20,11 @@ import VideoBySide from '@site/src/components/VideoBySide';
   `--delta-chain-cache-threshold`.
   [#1181](https://github.com/memgraph/memgraph/pull/1181)
 - Concurrent access to the same query module had a race-condition on the
-  pointer that was used to handle the costume memory management. A mapping has
-  been added that keeps information about what thread used what pointer to
+  pointer that was used to handle the custom memory management. A mapping has
+  been added that keeps the information about what thread used what pointer to
   handle the memory resources, which should be fine since the respected query
   executions are running on a dedicated thread. Access to the mapping itself is
-  thread-safe.  A simple `RWLock` has been implemented here, as we shouldn't
+  thread-safe. A simple `RWLock` has been implemented here, as we shouldn't
   include `memgraph::utils` from this header and a traditional mutex might be
   overkill. A simple RAII wrapper for the mapping container has been also added
   for simpler client-side use.
