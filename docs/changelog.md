@@ -11,14 +11,14 @@ import VideoBySide from '@site/src/components/VideoBySide';
 ### Improvements and bug fixes
 
 - Improved performance on batch update of properties, e.g., `MATCH (n) SET n +=
-  {prop1:1, prop2:2, ...};`.
+  {prop1:1, prop2:2, ...};`
   [#1115](https://github.com/memgraph/memgraph/pull/1115)
 - Added a delta cache to improve query performance. This helps in situations of
-  repeated reads of vertices which have many delta changes cause by another
-  transaction while the current transactions is operating with snapshot isolation
+  repeated reads of vertices which have many delta changes caused by another
+  transaction while the current transaction is operating with snapshot isolation
   level and so needs to process those deltas. This can be tuned using
   `--delta-chain-cache-threshold`.
-  [#1181](https://github.com/memgraph/memgraph/pull/1181)
+  [#1181](https://github.com/memgraph/memgraph/pull/1124)
 - Concurrent access to the same query module had a race-condition on the
   pointer that was used to handle the custom memory management. A mapping has
   been added that keeps the information about what thread used what pointer to
@@ -29,6 +29,7 @@ import VideoBySide from '@site/src/components/VideoBySide';
   overkill. A simple RAII wrapper for the mapping container has been also added
   for simpler client-side use.
   [#1158](https://github.com/memgraph/memgraph/pull/1158)
+
 
 ## v2.10 - Aug 2, 2023
 
