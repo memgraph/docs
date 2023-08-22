@@ -18,7 +18,7 @@ import VideoBySide from '@site/src/components/VideoBySide';
   transaction while the current transaction is operating with snapshot isolation
   level and so needs to process those deltas. This can be tuned using
   `--delta-chain-cache-threshold`.
-  [#1181](https://github.com/memgraph/memgraph/pull/1124)
+  [#1124](https://github.com/memgraph/memgraph/pull/1124)
 - Concurrent access to the same query module had a race-condition on the
   pointer that was used to handle the custom memory management. A mapping has
   been added that keeps the information about what thread used what pointer to
