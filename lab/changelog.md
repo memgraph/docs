@@ -4,6 +4,20 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## Lab v2.8.1 - Aug 22, 2023
+
+### Bug fixes
+
+- Quick connect will now try to connect to Memgraph on `127.0.0.1` instead of
+  `localhost` because it is not always clear what `localhost` will be resolved
+  to.
+- Paths in query results now return a correct presentation instead of an empty
+  path when there is only one node in the path.
+- On hard refresh of the Lab application, you are now redirected to the correct
+  connection screen.
+- Logs no longer scroll automatically to new log records when you scroll up to
+  check past log records.
+
 ## Lab v2.8.0 - Aug 04, 2023
 
 ### New features and improvements
