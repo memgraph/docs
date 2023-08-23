@@ -61,6 +61,7 @@ module.exports = {
         "query-modules/cpp/pagerank-online",
         "query-modules/cpp/periodic",
         "query-modules/python/set-cover",
+        "query-modules/python/temporal",
         "query-modules/python/temporal-graph-networks",
         "query-modules/python/tsp",
         "query-modules/python/union-find",
