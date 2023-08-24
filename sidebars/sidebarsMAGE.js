@@ -47,6 +47,7 @@ module.exports = {
         "query-modules/cpp/katz-centrality",
         "query-modules/cpp/katz-centrality-online",
         "query-modules/python/kmeans",
+        "query-modules/cpp/label",
         "query-modules/python/link-prediction-with-gnn",
         "query-modules/python/llm-util",
         "query-modules/cpp/map",
