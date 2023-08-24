@@ -64,6 +64,7 @@ module.exports = {
         "query-modules/cpp/periodic",
         "query-modules/python/set-cover",
         "query-modules/python/temporal-graph-networks",
+        "query-modules/cpp/text",
         "query-modules/python/tsp",
         "query-modules/python/union-find",
         "query-modules/cpp/uuid-generator",
