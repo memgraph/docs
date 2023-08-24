@@ -8,7 +8,7 @@ sidebar_label: Changelog
 
 ### Features and improvements
 
-- You can use the [`label` module](/query-modules/cpp/label.md) to check whether
+- You can use the [`label` module](#) to check whether
   a node has the given label. [#304](https://github.com/memgraph/mage/pull/304)
 - Time zones don’t have to be difficult to work with. The [`date` module](/query-modules/python/date.md) provides utilities for date and time operations. [#291](https://github.com/memgraph/mage/pull/291)
 - The [`text` module](/query-modules/python/text.md) simplifies string concatenation
