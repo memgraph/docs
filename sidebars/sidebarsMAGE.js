@@ -33,6 +33,7 @@ module.exports = {
         "query-modules/cpp/conditional-execution",
         "query-modules/cpp/cycles",
         "query-modules/cuda/cugraph",
+        "query-modules/python/date",
         "query-modules/cpp/degree-centrality",
         "query-modules/cpp/distance-calculator",
         "query-modules/python/elasticsearch-synchronization",
