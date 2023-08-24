@@ -22,7 +22,7 @@ style={{
 
 The `text` module offers a toolkit for manipulating strings.
 
-[![docs-source](https://img.shields.io/badge/source-map-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/tree/main/cpp/map_module)
+[![docs-source](https://img.shields.io/badge/source-text-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/tree/main/cpp/text_module)
 
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |
