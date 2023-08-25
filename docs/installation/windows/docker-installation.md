@@ -153,23 +153,23 @@ memgraph/memgraph-platform`.
 :::
 
 To learn about all the configuration options, check out the [Reference
-guide](/docs/reference-guide/configuration).
+guide](/reference-guide/configuration.md).
 
 ## Where to next? {#where-to-next}
 
 If you need more information on working with Docker, check out our **[guide on how
-to work with Docker](/how-to-guides/work-with-docker)**.<br/>
+to work with Docker](/how-to-guides/work-with-docker.md)**.<br/>
 To learn how to query the database, take a look at the
-**[querying](/connect-to-memgraph)** guide or **[Memgraph
+**[querying](/connect-to-memgraph/overview.mdx)** guide or **[Memgraph
 Playground](https://playground.memgraph.com/)** for interactive tutorials.<br/>
-Visit the **[Drivers overview](/connect-to-memgraph/drivers)**
+Visit the **[Drivers overview](/connect-to-memgraph/drivers/overview.md)**
 page if you need to connect to the database programmatically.
 
 ## Getting help {#getting-help}
 
 If you run into problems during the installation process, check out our
 **[installation troubleshooting
-guide](/installation/windows/windows-installation-troubleshooting)** to see
+guide](/installation/windows/windows-installation-troubleshooting.md)** to see
 if we have already covered the topic. For more information on the installation
 process and for additional questions, visit the **[Help Center](/help-center)**
 page.
