@@ -21,7 +21,7 @@ export const Highlight = ({children, color}) => (
 );
 
 Module for importing data from different formats. Currently, this module
-supports only the import of JSON file format.
+supports the import of JSON and graphML file formats.
 
 [![docs-source](https://img.shields.io/badge/source-import_util-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/import_util.py)
 
@@ -47,7 +47,7 @@ The JSON file you're importing needs to be structured the same as the JSON file
 that the
 [`export_util.json()`](/docs/mage/query-modules/python/export-util)
 procedure generates. The generated JSON file is a list of objects representing
-nodes or relationships. If the object is node, then it looks like this:
+nodes or relationships. If the object is a node, then it looks like this:
 
 ```json
 {
@@ -65,7 +65,7 @@ nodes or relationships. If the object is node, then it looks like this:
  
 The `id` key has the value of the Memgraph's internal node ide. The `labels` key
 holds the information about node labels in a list. The `properties` are
-key-value pairs representing properties of the certain node. Each node needs to
+key-value pairs representing the properties of a certain node. Each node needs to
 have the value of `type` set to `"node"`.
 
 On the other hand, if the object is a relationship, then it is structured like this:
@@ -83,8 +83,8 @@ On the other hand, if the object is a relationship, then it is structured like t
 }
 ```
 
-The `end` and `start` keys hold the information about the internal ids of start
-and end node of the relationship. Each relationship also has it's internal id
+The `end` and `start` keys hold the information about the internal IDs of start
+and end node of the relationship. Each relationship also has its internal id
 exported as a value of `id` key. A relationship can only have one label which is
 exported to the `label` key. Properties are again key-value pairs, and the value
 of `type` needs to be set to `"relationship"`.
@@ -138,6 +138,83 @@ where `path` is the path to a local JSON file that will be created inside the
 </TabItem>
 
 </Tabs>
+
+### `graphml(path, config)`
+
+#### Input:
+
+* `path: string` ➡ path to the graphML file that is being imported.
+* `config: Map (default={})` ➡ configuration parameters explained below.
+
+#### Parameters:
+
+| Name 	             | Type   | Default	| Description 	                                                |
+|-	                 |-	      |-	      |-	                                                            |
+| readLabels          | Bool 	| False	  | Create node labels based on the value of the property whose key is "labels". 	|
+| defaultRelationshipType  | String	| "RELATED"  	  | The default relationship type to use when none is specified in the import file. 	|
+| storeNodeIds 	         | Bool 	| False   	| Store node's id attribute as a property.	|
+| source           | Map 	| { }	  | A map that has two keys: label and id. Label is mandatory while id's default value is "id". This allows the import of relationships in case the source node is not present in the file. It will search for a source node with a specific label and a property whose key is this map's id value, and whose value is relationship's source node id. For example, with a config map `{source: {id: 'serial_number', label: 'Device'}}` and an edge defined as `<edge id="e0" source="n0" target="n1" label="CONNECT"><data key="label">CONNECT</data></edge>`, if node "n0" doesn't exist, it will search for a source node `(:Device {serial_number: "n0"})`.  |
+| target     | Map 	| { }	  | A map that has two keys: label and id. Label is mandatory while id's default value is "id". This allows the import of relationships in case the target node is not present in the file. It will search for a target node with a specific label and a property whose key is this map's id value, and whose value is relationship's target node id. For example, with a config map `{target: {id: 'serial_number', label: 'Device'}}` and an edge defined as `<edge id="e0" source="n0" target="n1" label="CONNECT"><data key="label">CONNECT</data></edge>`, if node "n1" doesn't exist, it will search for a target node `(:Device {serial_number: "n1"})`.  	|
+
+#### Output:
+
+* `status: string` ➡ "success" if no errors are generated.
+
+#### Usage:
+
+The `path` you have to provide as procedure argument depends on how you started
+Memgraph.
+
+<Tabs
+  groupId="export_to_json_usage"
+  defaultValue="docker"
+  values={[
+    {label: 'Docker', value: 'docker'},
+    {label: 'Linux', value: 'linux'},
+  ]
+}> 
+
+<TabItem value="docker">
+
+If you ran Memgraph with Docker, database will be exported to a graphML file inside
+the Docker container. We recommend exporting the database to the graphML file
+inside the `/usr/lib/memgraph/query_modules` directory.
+
+You can call the procedure by running the following query:
+
+```cypher
+CALL export_util.graphML(path);
+```
+where `path` is the path to the JSON file inside the
+`/usr/lib/memgraph/query_modules` directory in the running Docker container (e.g.,
+`/usr/lib/memgraph/query_modules/export.graphml`).
+
+:::info
+You can [**copy the exported CSV file to your local file system**](/memgraph/how-to-guides/work-with-docker#how-to-copy-files-from-and-to-a-docker-container) using the [`docker cp`](https://docs.docker.com/engine/reference/commandline/cp/) command.
+:::
+</TabItem>
+
+<TabItem value="linux">
+
+To export database to a local graphML file create a new directory (for example,
+`export_folder`) and run the following command to give the user `memgraph` the
+necessary permissions:
+
+```
+sudo chown memgraph export_folder
+```
+
+Then, call the procedure by running the following query:
+
+```cypher
+CALL export_util.graphml(path);
+```
+where `path` is the path to a local JSON file that will be created inside the
+`export_folder` (e.g., `/users/my_user/export_folder/export.graphml`).
+</TabItem>
+
+</Tabs>
+
 
 ## Example - Importing JSON file to create a database
 

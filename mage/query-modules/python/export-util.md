@@ -21,7 +21,7 @@ export const Highlight = ({children, color}) => (
 );
 
 Module for exporting a graph database or query results in different formats. Currently, this
-module supports [**exporting database to a JSON file format**](#jsonpath) and [**exporting query results in a CSV file format**](#csv_queryquery-file_path-stream).
+module supports [**exporting database to a JSON file format**](#jsonpath), [**exporting query results in a CSV file format**](#csv_queryquery-file_path-stream) and [**exporting database to a graphML file format**](#graphmlpathconfig).
 
 [![docs-source](https://img.shields.io/badge/source-export_util-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/export_util.py)
 
@@ -161,6 +161,83 @@ CALL export_util.csv_query(path);
 ```
 where `path` is the path to a local CSV file that will be created inside the
 `export_folder` (e.g., `/users/my_user/export_folder/export.csv`).
+</TabItem>
+
+</Tabs>
+
+### `graphml(path, config)`
+
+#### Input:
+
+* `path: string` ➡ path to the graphML file that will contain the exported graph database.
+* `config: Map (default={})` ➡ configuration parameters explained below.
+
+#### Parameters:
+
+| Name 	             | Type   | Default	| Description 	                                                |
+|-	                 |-	      |-	      |-	                                                            |
+| stream             | Bool 	| False	  | Stream the file content directly to the client into the status field. 	|
+| format             | String	| " "  	  | Set the export format to either "gephi" or "tinkerpop". 	|
+| caption 	         | List 	| [ ]    	| A list of keys of properties whose value is eligible as value for the "label" data element in Gephi format. Order is important and if no match is found then there is a fallback to the node's first property. If the node has no properties then the ID is used.	|
+| useTypes           | Bool 	| False	  | Store property values' type information. |
+| leaveOutLabels     | Bool 	| False	  | Do not store node's labels. 	|
+| leaveOutProperties | Bool 	| False  	| Do not store node's properties. 	|
+
+#### Output:
+
+* `status: string` ➡ file content if stream is set to True in configuration parameters, "success" otherwise.
+
+#### Usage:
+
+The `path` you have to provide as procedure argument depends on how you started
+Memgraph.
+
+<Tabs
+  groupId="export_to_json_usage"
+  defaultValue="docker"
+  values={[
+    {label: 'Docker', value: 'docker'},
+    {label: 'Linux', value: 'linux'},
+  ]
+}> 
+
+<TabItem value="docker">
+
+If you ran Memgraph with Docker, database will be exported to a graphML file inside
+the Docker container. We recommend exporting the database to the graphML file
+inside the `/usr/lib/memgraph/query_modules` directory.
+
+You can call the procedure by running the following query:
+
+```cypher
+CALL export_util.graphML(path);
+```
+where `path` is the path to the JSON file inside the
+`/usr/lib/memgraph/query_modules` directory in the running Docker container (e.g.,
+`/usr/lib/memgraph/query_modules/export.graphml`).
+
+:::info
+You can [**copy the exported CSV file to your local file system**](/memgraph/how-to-guides/work-with-docker#how-to-copy-files-from-and-to-a-docker-container) using the [`docker cp`](https://docs.docker.com/engine/reference/commandline/cp/) command.
+:::
+</TabItem>
+
+<TabItem value="linux">
+
+To export database to a local graphML file create a new directory (for example,
+`export_folder`) and run the following command to give the user `memgraph` the
+necessary permissions:
+
+```
+sudo chown memgraph export_folder
+```
+
+Then, call the procedure by running the following query:
+
+```cypher
+CALL export_util.graphml(path);
+```
+where `path` is the path to a local JSON file that will be created inside the
+`export_folder` (e.g., `/users/my_user/export_folder/export.graphml`).
 </TabItem>
 
 </Tabs>
