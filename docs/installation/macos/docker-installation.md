@@ -61,7 +61,7 @@ terminal, and the visual user interface **Memgraph Lab** is available at
 [`http://localhost:3000`](http://localhost:3000).
 
 User either **mgconsole**, **Memgraph Lab** or various **drivers** to [**connect to
-MemgraphDB**](/connect-to-memgraph/overview.mdx).
+MemgraphDB**](/connect-to-memgraph).
 
 ## Stop Memgraph Platform {#stopping-memgraph-platform}
 
@@ -152,22 +152,22 @@ memgraph/memgraph-platform`.
 :::
 
 To learn about all the configuration options, check out the [Reference
-guide](/reference-guide/configuration.md).
+guide](/docs/reference-guide/configuration).
 
 ## Where to next? {#where-to-next}
 
 If you need more information on working with Docker, check out our **[guide on how
-to work with Docker](/how-to-guides/work-with-docker.md)**.<br/>
+to work with Docker](/how-to-guides/work-with-docker)**.<br/>
 To learn how to query the database, take a look at the
-**[querying](/connect-to-memgraph/overview.mdx)** guide or **[Memgraph
+**[querying](/connect-to-memgraph)** guide or **[Memgraph
 Playground](https://playground.memgraph.com/)** for interactive tutorials.<br/>
-Visit the **[Drivers overview](/connect-to-memgraph/drivers/overview.md)**
+Visit the **[Drivers overview](/connect-to-memgraph/drivers)**
 page if you need to connect to the database programmatically.
 
 ## Getting help {#getting-help}
 
 If you run into problems during the installation process, check out our
 **[installation troubleshooting
-guide](/installation/macos/macos-installation-troubleshooting.md)** to see if we
+guide](/installation/macos/macos-installation-troubleshooting)** to see if we
 have already covered the topic. For more information on the installation process
 and for additional questions, visit the **[Help Center](/help-center)** page.
