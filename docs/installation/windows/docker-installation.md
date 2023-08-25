@@ -38,22 +38,27 @@ compatible with all newer versions.
 
 Open the Command Prompt or PowerShell and use the following command:
 
-```console
-docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 -v mg_lib:/var/lib/memgraph memgraph/memgraph-platform
+``console
+docker run -p 7687:7687 -p 7444:7444 -p 3000:3000 --name memgraph memgraph/memgraph-platform
 ```
 
 If successful, you should see a message similar to the following:
 
 ```console
-mgconsole X.X
-Connected to 'memgraph://127.0.0.1:7687'
-Type :help for shell usage
-Quit the shell by typing Ctrl-D(eof) or :quit
-memgraph>
+2023-08-25 09:01:45,691 INFO Included extra file "/etc/supervisor/programs/lab.conf" during parsing
+2023-08-25 09:01:45,691 INFO Included extra file "/etc/supervisor/programs/memgraph.conf" during parsing
+2023-08-25 09:01:45,691 INFO Set uid to user 0 succeeded
+2023-08-25 09:01:45,692 INFO supervisord started with pid 1
+2023-08-25 09:01:46,696 INFO spawned: 'memgraph' with pid 7
+2023-08-25 09:01:46,700 INFO spawned: 'lab' with pid 8
+You are running Memgraph v2.10.1
+To get started with Memgraph, visit https://memgr.ph/start
 ```
 
-Command-line tool **mgconsole** is open in the terminal, and the visual user
-interface **Memgraph Lab** is available at [`http://localhost:3000`](http://localhost:3000).
+You can [open command-line tool
+**mgconsole**](https://github.com/memgraph/memgraph-platform#mgconsole) in the
+terminal, and the visual user interface **Memgraph Lab** is available at
+[`http://localhost:3000`](http://localhost:3000).
 
 User either **mgconsole**, **Memgraph Lab** or various **drivers** to [**connect to
 MemgraphDB**](/connect-to-memgraph/overview.mdx).
@@ -63,14 +68,50 @@ MemgraphDB**](/connect-to-memgraph/overview.mdx).
 To stop a Memgraph database instance, run the following command:
 
 ```console
-docker stop CONTAINER_ID
+docker stop memgraph
 ```
 
-You can find the name of the container (`CONTAINER_ID`) by running the following command in a new terminal:
+## Starting Memgraph Platform {#starting-memgraph-platform}
+
+
+To start a Memgraph database instance, run the following command:
 
 ```console
-docker ps
+docker start memgraph
 ```
+
+:::info
+If you chose a different name for your container instead of the default
+`memgraph`, or if you simply want to manage containers using their ID, follow
+these steps:
+
+1. To find the name or ID of your container, run the following command:
+
+   ```bash
+   docker ps
+   ```
+
+   This command will list all running containers. Look for the
+   `memgraph/memgraph-platform` image in the list and note down the container's
+   name or ID.
+
+2. To stop the container using its ID or custom name:
+
+   ```bash
+   docker stop CONTAINER_NAME_OR_ID
+   ```
+
+   Replace `CONTAINER_NAME_OR_ID` with the actual name or ID of your container.
+
+3. To start the container again:
+
+   ```bash
+   docker start CONTAINER_NAME_OR_ID
+   ```
+
+   Again, replace `CONTAINER_NAME_OR_ID` with the actual name or ID of your
+container. 
+:::
 
 ## Configuration file and logs {#named-volumes}
 
