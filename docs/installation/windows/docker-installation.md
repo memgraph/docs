@@ -1,14 +1,14 @@
 ---
 id: docker-installation
-title: Install Memgraph Platform on macOS with Docker
+title: Install Memgraph Platform on Windows with Docker
 sidebar_label: Install Memgraph Platform (recommended)
-slug: /install-memgraph-on-macos-docker
+slug: /install-memgraph-on-windows-docker
 pagination_prev: installation/overview
 pagination_next: connect-to-memgraph/overview
 ---
 
 The following article outlines the basic steps necessary to install and run
-**Memgraph Platform** on macOS with Docker.
+**Memgraph Platform** on Windows with Docker.
 
 **Memgraph Platform** contains:
 - **MemgraphDB** - the database that holds your data
@@ -36,7 +36,7 @@ compatible with all newer versions.
 
 ## Install and start Memgraph Platform {#installation-guide}
 
-Open iTerm or Terminal and use the following command:
+Open the Command Prompt or PowerShell and use the following command:
 
 ```console
 docker run -p 7687:7687 -p 7444:7444 -p 3000:3000 --name memgraph memgraph/memgraph-platform
@@ -116,13 +116,13 @@ container.
 ## Configuration file and logs {#named-volumes}
 
 If you need to access the Memgraph configuration file or logs, you will need to
-specify the following volumes when starting Memgraph:
+specify the following volumes when starting Memgraph through **PowerShell**:
 
 ```console
-docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 -e MEMGRAPH="--log-level=TRACE" \
-  -v mg_lib:/var/lib/memgraph \
-  -v mg_log:/var/log/memgraph \
-  -v mg_etc:/etc/memgraph \
+docker run -it -p 7687:7687 -p 7444:7444 -p 3000:3000 -e MEMGRAPH="--log-level=TRACE" `
+  -v mg_lib:/var/lib/memgraph `
+  -v mg_log:/var/log/memgraph `
+  -v mg_etc:/etc/memgraph `
   memgraph/memgraph-platform
 ```
 
@@ -130,7 +130,8 @@ The configuration file is located in the `mg_etc` volume. The exact location of
 the file depends on your specific setup, but usually it is
 `/var/lib/docker/volumes/mg_etc/_data/memgraph.conf`. 
 
-The logs will be saved to the `mg_log` volume, and the location of the directories depends on your specific setup. 
+The logs will be saved to the `mg_log` volume, and the directories can usually be find in
+`\\wsl$\docker-desktop-data\version-pack-data\community\docker\volumes\`.
 
 When using Docker, you can also specify the configuration options in the `docker
 run` command:
@@ -168,6 +169,7 @@ page if you need to connect to the database programmatically.
 
 If you run into problems during the installation process, check out our
 **[installation troubleshooting
-guide](/installation/macos/macos-installation-troubleshooting.md)** to see if we
-have already covered the topic. For more information on the installation process
-and for additional questions, visit the **[Help Center](/help-center)** page.
+guide](/installation/windows/windows-installation-troubleshooting.md)** to see
+if we have already covered the topic. For more information on the installation
+process and for additional questions, visit the **[Help Center](/help-center)**
+page.
