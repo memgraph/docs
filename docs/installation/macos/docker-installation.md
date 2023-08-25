@@ -38,7 +38,7 @@ compatible with all newer versions.
 
 Open iTerm or Terminal and use the following command:
 
-``console
+```console
 docker run -p 7687:7687 -p 7444:7444 -p 3000:3000 --name memgraph memgraph/memgraph-platform
 ```
 
@@ -61,7 +61,7 @@ terminal, and the visual user interface **Memgraph Lab** is available at
 [`http://localhost:3000`](http://localhost:3000).
 
 User either **mgconsole**, **Memgraph Lab** or various **drivers** to [**connect to
-MemgraphDB**](/connect-to-memgraph).
+MemgraphDB**](/connect-to-memgraph/overview.mdx).
 
 ## Stop Memgraph Platform {#stopping-memgraph-platform}
 
