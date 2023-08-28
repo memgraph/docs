@@ -1,7 +1,7 @@
 ---
 id: text
 title: text
-sidebar_label: texxt
+sidebar_label: text
 ---
 
 import Tabs from '@theme/Tabs';
