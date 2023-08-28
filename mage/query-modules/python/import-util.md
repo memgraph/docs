@@ -327,3 +327,101 @@ After you import the `import.json` file, you get the following graph database:
 </TabItem>
 
 </Tabs>
+
+
+## Example - Importing graphML file to create a database
+
+<Tabs
+  groupId="import_graphml_example"
+  defaultValue="input"
+  values={[
+    {label: 'Step 1: Input file', value: 'input'},
+    {label: 'Step 2: Running command', value: 'run'},
+    {label: 'Step 3: Created database', value: 'result'},
+  ]
+}>
+<TabItem value="input">
+
+Below is the content of the `import.graphml` file. 
+
+- If you're using **Memgraph with Docker**, then you have to save the
+  `import.graphml` file in the `/usr/lib/memgraph/query_modules` directory inside
+  the running Docker container. 
+
+- If you're using **Memgraph on Ubuntu, Debian, RPM package or WSL**, then you
+  have to save the `import.graphml` file in the local
+  `/users/my_user/import_folder` directory.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+<key id="labels" for="node" attr.name="labels" attr.type="string"/>
+<key id="title" for="node" attr.name="title" attr.type="string"/>
+<key id="released" for="node" attr.name="released" attr.type="int"/>
+<key id="program_creators" for="node" attr.name="program_creators" attr.type="string" attr.list="string"/>
+<key id="name" for="node" attr.name="name" attr.type="string"/>
+<key id="portrayed_by" for="node" attr.name="portrayed_by" attr.type="string"/>
+<key id="label" for="edge" attr.name="label" attr.type="string"/>
+<key id="seasons" for="edge" attr.name="seasons" attr.type="string" attr.list="int"/>
+<graph id="G" edgedefault="directed">
+<node id="n0" labels=":TVShow"><data key="labels">:TVShow</data><data key="title">Stranger Things</data><data key="released">2016</data><data key="program_creators">["Matt Duffer", "Ross Duffer"]</data></node>
+<node id="n1" labels=":Character"><data key="labels">:Character</data><data key="name">Eleven</data><data key="portrayed_by">Millie Bobby Brown</data></node>
+<node id="n2" labels=":Character"><data key="labels">:Character</data><data key="name">Joyce Byers</data><data key="portrayed_by">Winona Ryder</data></node>
+<node id="n3" labels=":Character"><data key="labels">:Character</data><data key="name">Jim Hopper</data><data key="portrayed_by">David Harbour</data></node>
+<node id="n4" labels=":Character"><data key="labels">:Character</data><data key="name">Mike Wheeler</data><data key="portrayed_by">Finn Wolfhard</data></node>
+<node id="n5" labels=":Character"><data key="labels">:Character</data><data key="name">Dustin Henderson</data><data key="portrayed_by">Gaten Matarazzo</data></node>
+<node id="n6" labels=":Character"><data key="labels">:Character</data><data key="name">Lucas Sinclair</data><data key="portrayed_by">Caleb McLaughlin</data></node>
+<node id="n7" labels=":Character"><data key="labels">:Character</data><data key="name">Nancy Wheeler</data><data key="portrayed_by">Natalia Dyer</data></node>
+<node id="n8" labels=":Character"><data key="labels">:Character</data><data key="name">Jonathan Byers</data><data key="portrayed_by">Charlie Heaton</data></node>
+<node id="n9" labels=":Character"><data key="labels">:Character</data><data key="name">Will Byers</data><data key="portrayed_by">Noah Schnapp</data></node>
+<node id="n10" labels=":Character"><data key="labels">:Character</data><data key="name">Steve Harrington</data><data key="portrayed_by">Joe Keery</data></node>
+<node id="n11" labels=":Character"><data key="labels">:Character</data><data key="name">Max Mayfield</data><data key="portrayed_by">Sadie Sink</data></node>
+<node id="n12" labels=":Character"><data key="labels">:Character</data><data key="name">Robin Buckley</data><data key="portrayed_by">Maya Hawke</data></node>
+<node id="n13" labels=":Character"><data key="labels">:Character</data><data key="name">Erica Sinclair</data><data key="portrayed_by">Priah Ferguson</data></node>
+<edge id="e0" source="n1" target="n0" label="ACTED_IN"><data key="label">ACTED_IN</data><data key="seasons">[1, 2, 3, 4]</data></edge>
+<edge id="e1" source="n2" target="n0" label="ACTED_IN"><data key="label">ACTED_IN</data><data key="seasons">[1, 2, 3, 4]</data></edge>
+<edge id="e2" source="n3" target="n0" label="ACTED_IN"><data key="label">ACTED_IN</data><data key="seasons">[1, 2, 3, 4]</data></edge>
+<edge id="e3" source="n4" target="n0" label="ACTED_IN"><data key="label">ACTED_IN</data><data key="seasons">[1, 2, 3, 4]</data></edge>
+<edge id="e4" source="n5" target="n0" label="ACTED_IN"><data key="label">ACTED_IN</data><data key="seasons">[1, 2, 3, 4]</data></edge>
+<edge id="e5" source="n6" target="n0" label="ACTED_IN"><data key="label">ACTED_IN</data><data key="seasons">[1, 2, 3, 4]</data></edge>
+<edge id="e6" source="n7" target="n0" label="ACTED_IN"><data key="label">ACTED_IN</data><data key="seasons">[1, 2, 3, 4]</data></edge>
+<edge id="e7" source="n8" target="n0" label="ACTED_IN"><data key="label">ACTED_IN</data><data key="seasons">[1, 2, 3, 4]</data></edge>
+<edge id="e8" source="n9" target="n0" label="ACTED_IN"><data key="label">ACTED_IN</data><data key="seasons">[1, 2, 3, 4]</data></edge>
+<edge id="e9" source="n10" target="n0" label="ACTED_IN"><data key="label">ACTED_IN</data><data key="seasons">[1, 2, 3, 4]</data></edge>
+<edge id="e10" source="n11" target="n0" label="ACTED_IN"><data key="label">ACTED_IN</data><data key="seasons">[2, 3, 4]</data></edge>
+<edge id="e11" source="n12" target="n0" label="ACTED_IN"><data key="label">ACTED_IN</data><data key="seasons">[3, 4]</data></edge>
+<edge id="e12" source="n13" target="n0" label="ACTED_IN"><data key="label">ACTED_IN</data><data key="seasons">[2, 3, 4]</data></edge>
+</graph>
+</graphml>
+```
+</TabItem>
+
+<TabItem value="run">
+
+If you're using **Memgraph with Docker**, then the following Cypher query will
+create a graph database from the provided graphML file:
+
+```cypher
+CALL import_util.graphml("/usr/lib/memgraph/query_modules/import.graphml", {readLabels: true}) 
+YIELD status RETURN status;
+```
+
+If you're using **Memgraph on Ubuntu, Debian, RPM package or WSL**, then the
+following Cypher query will create a graph database from the provided graphML file:
+
+```cypher
+CALL import_util.graphml("/users/my_user/import_folder/import.graphml", {readLabels: true}) 
+YIELD status RETURN status;
+```
+
+</TabItem>
+
+<TabItem value="result">
+
+After you import the `import.graphml` file, you get the following graph database:
+
+<img src={require('../../data/query-modules/python/import-util/import_util_graphml.png').default}/>
+
+</TabItem>
+
+</Tabs>

@@ -21,7 +21,7 @@ export const Highlight = ({children, color}) => (
 );
 
 Module for exporting a graph database or query results in different formats. Currently, this
-module supports [**exporting database to a JSON file format**](#jsonpath), [**exporting query results in a CSV file format**](#csv_queryquery-file_path-stream) and [**exporting database to a graphML file format**](#graphmlpathconfig).
+module supports [**exporting database to a JSON file format**](#jsonpath), [**exporting query results in a CSV file format**](#csv_queryquery-file_path-stream) and [**exporting database to a graphML file format**](#graphmlpath-config).
 
 [![docs-source](https://img.shields.io/badge/source-export_util-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/export_util.py)
 
@@ -210,7 +210,7 @@ inside the `/usr/lib/memgraph/query_modules` directory.
 You can call the procedure by running the following query:
 
 ```cypher
-CALL export_util.graphML(path);
+CALL export_util.graphml(path);
 ```
 where `path` is the path to the JSON file inside the
 `/usr/lib/memgraph/query_modules` directory in the running Docker container (e.g.,
@@ -383,8 +383,8 @@ You can create a simple graph database by running the following queries:
 ```cypher
 CREATE (StrangerThings:TVShow {title:'Stranger Things', released:2016, program_creators:['Matt Duffer', 'Ross Duffer']})
 CREATE (Eleven:Character {name:'Eleven', portrayed_by:'Millie Bobby Brown'})
-CREATE (JoyceByers:Character {name:'Joyce Byers', portrayed_by:'Millie Bobby Brown'})
-CREATE (JimHopper:Character {name:'Jim Hopper', portrayed_by:'Millie Bobby Brown'})
+CREATE (JoyceByers:Character {name:'Joyce Byers', portrayed_by:'Winona Ryder'})
+CREATE (JimHopper:Character {name:'Jim Hopper', portrayed_by:'David Harbour'})
 CREATE (MikeWheeler:Character {name:'Mike Wheeler', portrayed_by:'Finn Wolfhard'})
 CREATE (DustinHenderson:Character {name:'Dustin Henderson', portrayed_by:'Gaten Matarazzo'})
 CREATE (LucasSinclair:Character {name:'Lucas Sinclair', portrayed_by:'Caleb McLaughlin'})
@@ -453,8 +453,8 @@ The output in the `export.csv` file looks like this:
 ```csv
 name,portrayed_by,title,released,program_creators
 Eleven,Millie Bobby Brown,Stranger Things,2016,"['Matt Duffer', 'Ross Duffer']"
-Joyce Byers,Millie Bobby Brown,Stranger Things,2016,"['Matt Duffer', 'Ross Duffer']"
-Jim Hopper,Millie Bobby Brown,Stranger Things,2016,"['Matt Duffer', 'Ross Duffer']"
+Joyce Byers,Winona Ryder,Stranger Things,2016,"['Matt Duffer', 'Ross Duffer']"
+Jim Hopper,David Harbour,Stranger Things,2016,"['Matt Duffer', 'Ross Duffer']"
 Mike Wheeler,Finn Wolfhard,Stranger Things,2016,"['Matt Duffer', 'Ross Duffer']"
 Dustin Henderson,Gaten Matarazzo,Stranger Things,2016,"['Matt Duffer', 'Ross Duffer']"
 Lucas Sinclair,Caleb McLaughlin,Stranger Things,2016,"['Matt Duffer', 'Ross Duffer']"
@@ -465,6 +465,137 @@ Steve Harrington,Joe Keery,Stranger Things,2016,"['Matt Duffer', 'Ross Duffer']"
 Max Mayfield,Sadie Sink,Stranger Things,2016,"['Matt Duffer', 'Ross Duffer']"
 Robin Buckley,Maya Hawke,Stranger Things,2016,"['Matt Duffer', 'Ross Duffer']"
 Erica Sinclair,Priah Ferguson,Stranger Things,2016,"['Matt Duffer', 'Ross Duffer']"
+```
+</TabItem>
+
+</Tabs>
+
+
+## Example - Exporting database to a graphML file
+
+<Tabs
+  groupId="export_to_graphml_example"
+  defaultValue="input"
+  values={[
+    {label: 'Step 1: Cypher load commands', value: 'load'},
+    {label: 'Step 2: Input graph', value: 'input'},
+    {label: 'Step 3: Running command', value: 'run'},
+    {label: 'Step 4: Results', value: 'result'},
+  ]
+}>
+
+<TabItem value="load">
+
+You can create a simple graph database by running the following queries:
+
+```cypher
+CREATE (StrangerThings:TVShow {title:'Stranger Things', released:2016, program_creators:['Matt Duffer', 'Ross Duffer']})
+CREATE (Eleven:Character {name:'Eleven', portrayed_by:'Millie Bobby Brown'})
+CREATE (JoyceByers:Character {name:'Joyce Byers', portrayed_by:'Winona Ryder'})
+CREATE (JimHopper:Character {name:'Jim Hopper', portrayed_by:'David Harbour'})
+CREATE (MikeWheeler:Character {name:'Mike Wheeler', portrayed_by:'Finn Wolfhard'})
+CREATE (DustinHenderson:Character {name:'Dustin Henderson', portrayed_by:'Gaten Matarazzo'})
+CREATE (LucasSinclair:Character {name:'Lucas Sinclair', portrayed_by:'Caleb McLaughlin'})
+CREATE (NancyWheeler:Character {name:'Nancy Wheeler', portrayed_by:'Natalia Dyer'})
+CREATE (JonathanByers:Character {name:'Jonathan Byers', portrayed_by:'Charlie Heaton'})
+CREATE (WillByers:Character {name:'Will Byers', portrayed_by:'Noah Schnapp'})
+CREATE (SteveHarrington:Character {name:'Steve Harrington', portrayed_by:'Joe Keery'})
+CREATE (MaxMayfield:Character {name:'Max Mayfield', portrayed_by:'Sadie Sink'})
+CREATE (RobinBuckley:Character {name:'Robin Buckley', portrayed_by:'Maya Hawke'})
+CREATE (EricaSinclair:Character {name:'Erica Sinclair', portrayed_by:'Priah Ferguson'})
+CREATE
+(Eleven)-[:ACTED_IN {seasons:[1, 2, 3, 4]}]->(StrangerThings),
+(JoyceByers)-[:ACTED_IN {seasons:[1, 2, 3, 4]}]->(StrangerThings),
+(JimHopper)-[:ACTED_IN {seasons:[1, 2, 3, 4]}]->(StrangerThings),
+(MikeWheeler)-[:ACTED_IN {seasons:[1, 2, 3, 4]}]->(StrangerThings),
+(DustinHenderson)-[:ACTED_IN {seasons:[1, 2, 3, 4]}]->(StrangerThings),
+(LucasSinclair)-[:ACTED_IN {seasons:[1, 2, 3, 4]}]->(StrangerThings),
+(NancyWheeler)-[:ACTED_IN {seasons:[1, 2, 3, 4]}]->(StrangerThings),
+(JonathanByers)-[:ACTED_IN {seasons:[1, 2, 3, 4]}]->(StrangerThings),
+(WillByers)-[:ACTED_IN {seasons:[1, 2, 3, 4]}]->(StrangerThings),
+(SteveHarrington)-[:ACTED_IN {seasons:[1, 2, 3, 4]}]->(StrangerThings),
+(MaxMayfield)-[:ACTED_IN {seasons:[2, 3, 4]}]->(StrangerThings),
+(RobinBuckley)-[:ACTED_IN {seasons:[3, 4]}]->(StrangerThings),
+(EricaSinclair)-[:ACTED_IN {seasons:[2, 3, 4]}]->(StrangerThings);
+```
+</TabItem>
+
+<TabItem value="input">
+
+The image below shows the above data as a graph:
+
+<img src={require('../../data/query-modules/python/export-util/export-util-csv-1.png').default}/>
+    
+</TabItem>
+
+<TabItem value="run">
+
+If you're using **Memgraph with Docker**, the following Cypher query will
+export the database to the `export.graphml` file in the
+`/usr/lib/memgraph/query_modules` directory inside the running Docker container.
+
+```cypher
+CALL export_util.graphml("/usr/lib/memgraph/query_modules/export.graphml, {useTypes: true}) 
+YIELD status RETURN status;
+```
+
+If you're using **Memgraph on Ubuntu, Debian, RPM package or WSL**, the
+following Cypher query will export the database to the `export.graphml` file in the
+`/users/my_user/export_folder`.
+
+```cypher
+CALL export_util.graphml("/users/my_user/export_folder/export.graphml, {useTypes: true}) 
+YIELD status RETURN status;
+```
+
+</TabItem>
+
+<TabItem value="result">
+
+The output in the `export.graphml` file looks like this:
+
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+<key id="labels" for="node" attr.name="labels" attr.type="string"/>
+<key id="title" for="node" attr.name="title" attr.type="string"/>
+<key id="released" for="node" attr.name="released" attr.type="int"/>
+<key id="program_creators" for="node" attr.name="program_creators" attr.type="string" attr.list="string"/>
+<key id="name" for="node" attr.name="name" attr.type="string"/>
+<key id="portrayed_by" for="node" attr.name="portrayed_by" attr.type="string"/>
+<key id="label" for="edge" attr.name="label" attr.type="string"/>
+<key id="seasons" for="edge" attr.name="seasons" attr.type="string" attr.list="int"/>
+<graph id="G" edgedefault="directed">
+<node id="n0" labels=":TVShow"><data key="labels">:TVShow</data><data key="title">Stranger Things</data><data key="released">2016</data><data key="program_creators">["Matt Duffer", "Ross Duffer"]</data></node>
+<node id="n1" labels=":Character"><data key="labels">:Character</data><data key="name">Eleven</data><data key="portrayed_by">Millie Bobby Brown</data></node>
+<node id="n2" labels=":Character"><data key="labels">:Character</data><data key="name">Joyce Byers</data><data key="portrayed_by">Winona Ryder</data></node>
+<node id="n3" labels=":Character"><data key="labels">:Character</data><data key="name">Jim Hopper</data><data key="portrayed_by">David Harbour</data></node>
+<node id="n4" labels=":Character"><data key="labels">:Character</data><data key="name">Mike Wheeler</data><data key="portrayed_by">Finn Wolfhard</data></node>
+<node id="n5" labels=":Character"><data key="labels">:Character</data><data key="name">Dustin Henderson</data><data key="portrayed_by">Gaten Matarazzo</data></node>
+<node id="n6" labels=":Character"><data key="labels">:Character</data><data key="name">Lucas Sinclair</data><data key="portrayed_by">Caleb McLaughlin</data></node>
+<node id="n7" labels=":Character"><data key="labels">:Character</data><data key="name">Nancy Wheeler</data><data key="portrayed_by">Natalia Dyer</data></node>
+<node id="n8" labels=":Character"><data key="labels">:Character</data><data key="name">Jonathan Byers</data><data key="portrayed_by">Charlie Heaton</data></node>
+<node id="n9" labels=":Character"><data key="labels">:Character</data><data key="name">Will Byers</data><data key="portrayed_by">Noah Schnapp</data></node>
+<node id="n10" labels=":Character"><data key="labels">:Character</data><data key="name">Steve Harrington</data><data key="portrayed_by">Joe Keery</data></node>
+<node id="n11" labels=":Character"><data key="labels">:Character</data><data key="name">Max Mayfield</data><data key="portrayed_by">Sadie Sink</data></node>
+<node id="n12" labels=":Character"><data key="labels">:Character</data><data key="name">Robin Buckley</data><data key="portrayed_by">Maya Hawke</data></node>
+<node id="n13" labels=":Character"><data key="labels">:Character</data><data key="name">Erica Sinclair</data><data key="portrayed_by">Priah Ferguson</data></node>
+<edge id="e0" source="n1" target="n0" label="ACTED_IN"><data key="label">ACTED_IN</data><data key="seasons">[1, 2, 3, 4]</data></edge>
+<edge id="e1" source="n2" target="n0" label="ACTED_IN"><data key="label">ACTED_IN</data><data key="seasons">[1, 2, 3, 4]</data></edge>
+<edge id="e2" source="n3" target="n0" label="ACTED_IN"><data key="label">ACTED_IN</data><data key="seasons">[1, 2, 3, 4]</data></edge>
+<edge id="e3" source="n4" target="n0" label="ACTED_IN"><data key="label">ACTED_IN</data><data key="seasons">[1, 2, 3, 4]</data></edge>
+<edge id="e4" source="n5" target="n0" label="ACTED_IN"><data key="label">ACTED_IN</data><data key="seasons">[1, 2, 3, 4]</data></edge>
+<edge id="e5" source="n6" target="n0" label="ACTED_IN"><data key="label">ACTED_IN</data><data key="seasons">[1, 2, 3, 4]</data></edge>
+<edge id="e6" source="n7" target="n0" label="ACTED_IN"><data key="label">ACTED_IN</data><data key="seasons">[1, 2, 3, 4]</data></edge>
+<edge id="e7" source="n8" target="n0" label="ACTED_IN"><data key="label">ACTED_IN</data><data key="seasons">[1, 2, 3, 4]</data></edge>
+<edge id="e8" source="n9" target="n0" label="ACTED_IN"><data key="label">ACTED_IN</data><data key="seasons">[1, 2, 3, 4]</data></edge>
+<edge id="e9" source="n10" target="n0" label="ACTED_IN"><data key="label">ACTED_IN</data><data key="seasons">[1, 2, 3, 4]</data></edge>
+<edge id="e10" source="n11" target="n0" label="ACTED_IN"><data key="label">ACTED_IN</data><data key="seasons">[2, 3, 4]</data></edge>
+<edge id="e11" source="n12" target="n0" label="ACTED_IN"><data key="label">ACTED_IN</data><data key="seasons">[3, 4]</data></edge>
+<edge id="e12" source="n13" target="n0" label="ACTED_IN"><data key="label">ACTED_IN</data><data key="seasons">[2, 3, 4]</data></edge>
+</graph>
+</graphml>
 ```
 </TabItem>
 
