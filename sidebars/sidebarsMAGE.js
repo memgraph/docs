@@ -64,6 +64,7 @@ module.exports = {
         "query-modules/python/temporal-graph-networks",
         "query-modules/python/tsp",
         "query-modules/python/union-find",
+        "query-modules/cpp/util_module",
         "query-modules/cpp/uuid-generator",
         "query-modules/python/vrp",
         "query-modules/cpp/weakly-connected-components"
