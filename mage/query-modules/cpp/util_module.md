@@ -38,12 +38,11 @@ The util module provides a set of handy functions for tasks like validation and 
 ### `md5(values)`
 
 Gets the string representation of every element in the input list, concatenates it into a single string, and returns the md5 hash of that string.
-NOTE: The format of string representations can be seen by checking ToString in CPP API documentation([cpp-api](/memgraph/reference-guide/query-modules/api/cpp-api)) for desired type or Value.
+NOTE: The format of string representations can be seen by checking ToString in [CPP API](/memgraph/reference-guide/query-modules/api/cpp-api) documentation for desired type or Value.
+
 #### Input:
 
 - `values: List[Any]` ➡ input list containing elements which can be any of Memgraph's data types.
-
-
 
 #### Output:
 
@@ -51,7 +50,7 @@ NOTE: The format of string representations can be seen by checking ToString in C
 
 #### Usage:
 
-NOTE: Hash provided in this documentation will be different from user's hash for same input, unless the node has the same ID, because `Node.ToString()` uses node's id in string formation, so different ID's equal different strings, hence, different hashes.
+NOTE: The hash provided in this documentation will be different from the user's hash for the same input unless the node has the same ID because `Node.ToString()` uses the node's ID in string formation, so different IDs equal different strings, hence, different hashes.
 
 ```cypher
 CREATE (d:Dog);
