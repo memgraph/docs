@@ -38,8 +38,7 @@ The util module provides a set of handy functions for tasks like validation and 
 ### `md5(values)`
 
 Gets the string representation of every element in the input list, concatenates it into a single string, and returns the md5 hash of that string.
-NOTE: The format of string representations can be seen by checking ToString in CPP API documentation for desired type or Value. 
-QUESTION FOR REVIEWER: Can the sentence above be phrased better, or the link for this cpp api function be provided?
+NOTE: The format of string representations can be seen by checking ToString in CPP API documentation([cpp-api](/memgraph/reference-guide/query-modules/api/cpp-api)) for desired type or Value.
 #### Input:
 
 - `values: List[Any]` ➡ input list containing elements which can be any of Memgraph's data types.
