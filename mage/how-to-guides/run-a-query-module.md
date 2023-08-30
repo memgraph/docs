@@ -130,17 +130,17 @@ python3 setup build -p /usr/lib/memgraph/query_modules
 
 ## Querying
 
-> Note that query modules are loaded into Memgraph on startup, so if your
-> instance was already running, you would need to execute the following query
-> inside one of the [querying
-> platforms](https://docs.memgraph.com/memgraph/connect-to-memgraph) to load
-> them:
+Query modules are loaded into Memgraph on startup, so if your instance was
+already running, you would need to execute the following query inside one of the
+[querying platforms](https://docs.memgraph.com/memgraph/connect-to-memgraph) to
+load them:
 
 ```cypher
 CALL mg.load_all();
 ```
 
-Lastly, run a query and test your module:
+Run a query and test your module, here is an example of calling a
+`random_walk.get()` procedure:
 
 ```cypher
 MERGE (start:Node {id: 0})-[:RELATION]->(:Node {id: 1})-[:RELATION]->(:Node {id: 2})
@@ -148,10 +148,11 @@ CALL random_walk.get(start, 2) YIELD path
 RETURN path
 ```
 
-Since every query module is run as one transaction in Memgraph, the user can stop
-the query module by [terminating the corresponding transaction](/memgraph/reference-guide/transactions). The user first needs
-to find out the transaction ID using `SHOW TRANSACTIONS` command and then terminate it
-using the `TERMINATE TRANSACTIONS <tid>` command.
+Since every query module is run as one transaction in Memgraph, the user can
+stop the query module by terminating the corresponding
+transaction. The user first needs to
+find out the transaction ID using `SHOW TRANSACTIONS` command and then terminate
+it using the `TERMINATE TRANSACTIONS <tid>` command.
 
 ## Testing
 
