@@ -58,6 +58,7 @@ module.exports = {
         "query-modules/python/node2vec",
         "query-modules/python/node2vec-online",
         "query-modules/cpp/node-similarity",
+        "query-modules/cpp/nodes",
         "query-modules/python/nxalg",
         "query-modules/cpp/pagerank",
         "query-modules/cpp/pagerank-online",
