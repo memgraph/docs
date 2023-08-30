@@ -84,7 +84,7 @@ Checks if relationships in the input list exist at the given node. Results are r
 - &lt;type - incoming relationship.
 - type> - outgoing relationship.
 - type - both incoming and outgoing.
-- anything else results in an excpetion.
+- anything else results in an exception.
 
 #### Input:
 
