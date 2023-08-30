@@ -820,7 +820,9 @@ void SetProperty(std::string key, std::string value) const
 ```
 
 ##### RemoveProperty
+
 Removes the relationship's property.
+
 ```cpp
 void RemoveProperty(std::string property)
 ```
