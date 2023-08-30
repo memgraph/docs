@@ -41,7 +41,7 @@ Returns nodes that are at a specific distance from a given node, considering onl
 
 #### Input:
 
-- `node: Node` ➡ node whose neighborhood is being analyzed.
+- `node: Node` ➡ node for which neighborhood is being analyzed.
 - `rel_type: List[string]` ➡ list of relationship types to travel through; if empty, it is possible to travel through all types of relationships.
 - `distance: int` ➡ number of hops between nodes.
 
@@ -65,11 +65,11 @@ CALL neighbors.at_hop(p, ["KNOWS"], 3) YIELD nodes RETURN nodes;
 
 ### `by_hop(node, rel_type, distance)`
 
-Returns nodes that are at every distance (up to a specified number) from a given node, considering only the relationships of a specified type.
+Returns nodes that are at any or up to a specific distance from a given node, considering only the relationships of a specified type.
 
 #### Input:
 
-- `node: Node` ➡ node whose neighborhood is being analyzed.
+- `node: Node` ➡ node for which neighborhood is being analyzed.
 - `rel_type: List[string]` ➡ list of relationship types to travel through; if empty, it is possible to travel through all types of relationships.
 - `distance: int` ➡ maximum number of hops between nodes.
 
