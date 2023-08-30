@@ -73,6 +73,70 @@ CALL create.node(["Person", "Programmer"], {name: "Ana", age: 20}) YIELD node RE
 ```
 
 
+### `nodes(labels, properties)`
+
+Create nodes with given labels and properties. For each property map, a separate node is created.
+
+#### Input:
+
+- `labels: List[string]` ➡ the list with labels of the new nodes.
+- `properties: List[Map]` ➡ the list of property maps for new nodes, for each map, a separate node is created.
+
+
+#### Output:
+
+- `node: Node` ➡ created node(s).
+
+#### Usage:
+
+```cypher
+CALL create.nodes(["Human", "Soldier"], [{branch: "Marines", MOS: "Gunner"}, {branch: "Army", MOS: "Paratrooper"}]) YIELD node RETURN node;
+```
+
+```plaintext
++---------------------------------------------------------------------------------------------------------------------+
+| node                                                                                                                |
++---------------------------------------------------------------------------------------------------------------------+
+| {"id": 0, "labels": ["Human", "Soldier"], "properties": {"MOS": "Gunner", "branch": "Marines"}, "type": "node}      |
++---------------------------------------------------------------------------------------------------------------------+
+| {"id": 1, "labels": ["Human", "Soldier"], "properties": {"MOS": "Paratrooper", "branch": "Army"}, "type": "node"}   |
++---------------------------------------------------------------------------------------------------------------------+
+```
+
+
+### `set_property(nodes, key, value)`
+
+Sets the property of the input node(s), based on the provided key-value pair. If the property doesn't exist, creates a new one. Input node(s) can be a single node, node ID, or a list of nodes and node IDs. Otherwise, an exception is thrown.
+
+#### Input:
+
+- `nodes: any` ➡ input node(s). Can be a node, node's ID, or a list of nodes and IDs.
+- `key: string` ➡ name of the property which is about to be set.
+- `value: any` ➡ new value of the property.
+
+
+#### Output:
+
+- `node: Node` ➡ node(s) with modified property.
+
+#### Usage:
+
+```cypher
+CREATE (d:Dog),(h:Human);
+MATCH (d:Dog), (h:Human)
+CALL create.set_property([d,id(h)],"property", 50) YIELD node RETURN node;
+```
+
+```plaintext
++---------------------------------------------------------------------------------------------------------------------+
+| node                                                                                                                |
++---------------------------------------------------------------------------------------------------------------------+
+| {"id": 18, "labels": ["Dog"], "properties": {"property": 50}, "type": "node"}                                       |
++---------------------------------------------------------------------------------------------------------------------+
+| {"id": 19, "labels": ["Human"], "properties": {"property": 50},"type": "node"}                                      |
++---------------------------------------------------------------------------------------------------------------------+
+```
+
 ### `set_properties(input_nodes, input_keys, input_values)`
 
 Adds the provided properties to the node(s).
@@ -127,6 +191,36 @@ MATCH (s:Student) CALL create.set_properties(s, ["age", "grade"], [20, "1st"]) Y
 +----------------------------+
 ```
 
+### `remove_properties(nodes, list_keys)`
+
+Removes all the properties of the given node(s). Input node(s) can be a single node, node ID, or a list of nodes and node IDs. Otherwise, an exception is thrown.
+#### Input:
+
+- `nodes: any` ➡ input node(s). Can be a node, node's ID, or a list of nodes and IDs.
+- `list_keys: List[string]` ➡ list of properties which are to be removed.
+
+
+#### Output:
+
+- `node: Node` ➡ node(s) with removed properties.
+
+#### Usage:
+
+```cypher
+CREATE (d:Dog {property: 30, property2: 50}),(h:Human {property: 80});
+MATCH (d:Dog), (h:Human)
+CALL create.remove_properties([d,id(h)],["property", "property2"]) YIELD node RETURN node;
+```
+
+```plaintext
++---------------------------------------------------------------------------------------------------------------------+
+| node                                                                                                                |
++---------------------------------------------------------------------------------------------------------------------+
+| {"id": 120, "labels": ["Dog"], "properties": {}, "type": "node"}                                                    |
++---------------------------------------------------------------------------------------------------------------------+
+| {"id": 121, "labels": ["Human"], "properties": {}, "type": "node"}                                                  |
++---------------------------------------------------------------------------------------------------------------------+
+```
 
 ### `set_rel_property(input_rel, input_key, input_value)`
 
@@ -166,7 +260,6 @@ YIELD relationship RETURN relationship;
 | }                          |
 +----------------------------+
 ```
-
 
 ### `remove_labels(labels, nodes)`
 
