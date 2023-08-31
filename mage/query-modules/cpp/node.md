@@ -32,23 +32,23 @@ The `node` module provides a comprehensive toolkit for managing graph nodes, ena
 | **Edge weights**    | <Highlight color="#FB6E00">**weighted**</Highlight>/<Highlight color="#FB6E00">**unweighted**</Highlight> |
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight> |
 
-### Procedures
+## Procedures
 
 ### `relationship_types(node, types)`
 
 Returns a list of distinct relationship types of the given node contained within the given list of types. If the list of types is empty returns all distinct relationship types. Relationship types can also be directed:
-- &lt;type - incoming relationship
-- type> - outgoing relationship
-- type - either way
+- &lt;type - incoming relationship.
+- type> - outgoing relationship.
+- type - either way.
 
 #### Input:
 
-- `node: Node` ➡ the given node
-- `types: List[string] (default = [])` ➡ list of relationship types to filter by
+- `node: Node` ➡ the given node.
+- `types: List[string] (default = [])` ➡ list of relationship types to filter by.
 
 #### Output:
 
-- `relationship_types: List[string]` ➡ list of distinct relationship types contained within the given list of types
+- `relationship_types: List[string]` ➡ list of distinct relationship types contained within the given list of types.
 
 #### Usage:
 
@@ -112,7 +112,6 @@ YIELD exists RETURN exists;
 | True                       |
 +----------------------------+
 ```
-
 
 ### `relationships_exist(node, relationships)`
 
