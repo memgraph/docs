@@ -645,7 +645,7 @@ Node(Node &&other) noexcept
 | `SetProperty`      | Set value of node's property                                        |
 | `GetProperty`      | Get value of node's property                                        |
 | `RemoveProperty`   | Removes the node's property                                         |
-| `ToString`         | Returns the node's string representation                            |
+| `ToString`         | Returns the node's string representation.                           |
 
 ##### Id
 
