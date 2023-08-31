@@ -61,6 +61,7 @@ module.exports = {
         "query-modules/python/nxalg",
         "query-modules/cpp/pagerank",
         "query-modules/cpp/pagerank-online",
+        "query-modules/cpp/path",
         "query-modules/cpp/periodic",
         "query-modules/python/set-cover",
         "query-modules/python/temporal-graph-networks",
