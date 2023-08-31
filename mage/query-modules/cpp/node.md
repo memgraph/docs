@@ -37,7 +37,7 @@ The `node` module provides a comprehensive toolkit for managing graph nodes, ena
 ### `relationship_types(node, types)`
 
 Returns a list of distinct relationship types of the given node contained within the given list of types. If the list of types is empty returns all distinct relationship types. Relationship types can also be directed:
-- &lt;type - ingoing relationship
+- &lt;type - incoming relationship
 - type> - outgoing relationship
 - type - either way
 
@@ -89,7 +89,7 @@ Checks if given node has a relationship of the pattern.
 :::info
 
 If '<' is added in front of the relationship type, only relationships coming into the node will be checked (e.g., "<KNOWS"), while if '>' is added at the end of the relationship type, only relationships coming from the node will be checked (e.g., "KNOWS>").
-Furthermore, if relationship type is not relevant, it is possible to enter only "<" or ">" to check ingoing or outgoing relationships.
+Furthermore, if relationship type is not relevant, it is possible to enter only "<" or ">" to check incoming or outgoing relationships.
 
 :::
 
