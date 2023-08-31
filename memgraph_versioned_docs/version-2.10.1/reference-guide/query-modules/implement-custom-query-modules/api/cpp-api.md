@@ -775,6 +775,7 @@ Relationship(Relationship &&other) noexcept
 | `Type`             | Returns the relationship’s type.                                            |
 | `Properties`       | Returns an iterable & indexable structure of the relationship’s properties. |
 | `SetProperty`      | Set value of relationship's property                                        |
+| `RemoveProperty`   | Removes the relationship's property                                         |
 | `GetProperty`      | Get value of relationship's property                                        |
 | `From`             | Returns the relationship’s source node.                                     |
 | `To`               | Returns the relationship’s destination node.                                |
@@ -816,6 +817,14 @@ Sets value of the relationship's property.
 
 ```cpp
 void SetProperty(std::string key, std::string value) const
+```
+
+##### RemoveProperty
+
+Removes the relationship's property.
+
+```cpp
+void RemoveProperty(std::string property)
 ```
 
 ##### From
