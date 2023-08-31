@@ -4,9 +4,23 @@ title: Changelog
 sidebar_label: Changelog
 ---
 
+## v1.10.0 - Aug 23, 2023
+
+### Features and improvements
+
+- You can use the [`label` module](/query-modules/cpp/label.md) to check whether
+  a node has the given label. [#304](https://github.com/memgraph/mage/pull/304)
+- Time zones don’t have to be difficult to work with. The [`date` module](/query-modules/python/date.md) provides utilities for date and time operations. [#291](https://github.com/memgraph/mage/pull/291)
+- The [`text` module](/query-modules/cpp/text.md) simplifies string concatenation
+  and supports custom delimiters. [#287](https://github.com/memgraph/mage/pull/287)
+
+### Bug Fixes
+
+- LLM prompts returned by the [`llm_util` module](/query-modules/python/llm-util.md) now list node and relationship properties in a consistent order. [#324](https://github.com/memgraph/mage/pull/324) 
+
 ## v1.9.0 - Aug 03, 2023
 
-## Features and improvements
+### Features and improvements
 
 - With the new [`collections` module](/query-modules/cpp/collections.md) you can
   filter, sort and modify lists within Cypher queries.
