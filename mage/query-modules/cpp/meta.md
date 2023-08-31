@@ -1,7 +1,7 @@
 ---
-id: meta_module
-title: meta_module
-sidebar_label: meta_module
+id: meta
+title: meta
+sidebar_label: meta
 ---
 
 import Tabs from '@theme/Tabs';
