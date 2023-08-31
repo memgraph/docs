@@ -20,7 +20,7 @@ style={{
 </span>
 );
 
-The util module offers a range of convenient functions for tasks such as validation and creating cryptographic hash values. This module serves as a practical resource for streamlining a variety of tasks related to database operations.
+A module which offers a range of functions for tasks such as validation and creating cryptographic hash values. This module serves as a practical resource for streamlining a variety of tasks related to database operations.
 
 [![docs-source](https://img.shields.io/badge/source-util_module-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/tree/main/cpp/util_module)
 
