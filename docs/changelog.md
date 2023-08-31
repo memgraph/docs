@@ -8,6 +8,10 @@ import VideoBySide from '@site/src/components/VideoBySide';
 
 ## v2.10.1 - Aug 22, 2023
 
+### New features
+- Removing properties from relationships with `RemoveProperty()` function in C++ API.
+  [#1156](https://github.com/memgraph/memgraph/pull/1156)
+
 ### Improvements and bug fixes
 
 - Improved performance on batch update of properties, e.g., `MATCH (n) SET n +=
