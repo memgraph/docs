@@ -20,7 +20,7 @@ style={{
 </span>
 );
 
-The `temporal` module enables more sophisticated manipulation, conversion, and calculation of date and time. These functions handle temporal (time-related) operations and offer extended capabilities compared to the [`date`](date) functions.
+The `temporal` module enables more sophisticated manipulation, conversion, and calculation of date and time. These functions handle temporal (time-related) operations and offer extended capabilities compared to the [`date`](date.md) functions.
 
 [![docs-source](https://img.shields.io/badge/source-temporal-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/tree/main/python/date.py)
 
