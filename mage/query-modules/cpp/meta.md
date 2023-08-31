@@ -36,10 +36,10 @@ The **meta** module provides a set of procedures for generating metadata about t
 ## stats
 
 The stats procedure returns the following metadata about the graph:
-- `labelCount` ➡ number of unique labels in nodes
-- `relationshipTypeCount` ➡ number of unique relationship types (labels)
-- `nodeCount` ➡ number of nodes in the graph
-- `relationshipCount` ➡ number of relationships in the graph
+- `labelCount` ➡ number of unique labels in nodes.
+- `relationshipTypeCount` ➡ number of unique relationship types (labels).
+- `nodeCount` ➡ number of nodes in the graph.
+- `relationshipCount` ➡ number of relationships in the graph.
 - `labels` ➡ map with the following (key, value) pairs:
   - `label` : number_of_occurrences
 - `relationshipTypes` ➡ map with the following (key, value) pairs:
@@ -48,7 +48,7 @@ The stats procedure returns the following metadata about the graph:
   - `()-[:relationship_type]->()` : number_of_occurrences
 - `relationshipTypesCount` ➡ map with the following (key, value) pairs:
   - `relationship_type` : number_of_occurrences
-- `stats` ➡ map which contains all of the above
+- `stats` ➡ map which contains all of the above.
 
 It is split into two version which return the same metadata:
 - stats_online - works in **O(1)** and requires setting up a trigger
@@ -63,17 +63,16 @@ Retrieves the graph metadata in **O(1)** complexity. Requires setting up the fol
  ```
 This procedure tracks the data created/deleted/modified after the trigger was added. If you want to return the metadata about the whole graph you need to run the *stats_online* procedure with the *update_stats* flag set to true **once**. That flag will cause the procedure to traverse the whole graph to update the metadata. After that you can always run with the *update_stats* flag set to false and the procedure will return the metadata in **O(1)** complexity.
 
-
 #### Input:
 
-- `update_stats: bool (default=false)` ➡ if true traverses the whole graph to update the metadata otherwise returns the stored metadata
+- `update_stats: bool (default=false)` ➡ if true traverses the whole graph to update the metadata otherwise returns the stored metadata.
 
 #### Output:
 
-- `labelCount: int` ➡ number of unique labels in nodes
-- `relationshipTypeCount: int` ➡ number of unique relationship types (labels)
-- `nodeCount: int` ➡ number of nodes in the graph
-- `relationshipCount: int` ➡ number of relationships in the graph
+- `labelCount: int` ➡ number of unique labels in nodes.
+- `relationshipTypeCount: int` ➡ number of unique relationship types (labels).
+- `nodeCount: int` ➡ number of nodes in the graph.
+- `relationshipCount: int` ➡ number of relationships in the graph.
 - `labels: Map[string: int]` ➡ map with the following (key, value) pairs:
   - `label` : number_of_occurrences
 - `relationshipTypes: Map[string: int]` ➡ map with the following (key, value) pairs:
@@ -82,7 +81,7 @@ This procedure tracks the data created/deleted/modified after the trigger was ad
   - `()-[:relationship_type]->()` : number_of_occurrences
 - `relationshipTypesCount: Map[string: int]` ➡ map with the following (key, value) pairs:
   - `relationship_type` : number_of_occurrences
-- `stats` ➡ map which contains all of the above
+- `stats` ➡ map which contains all of the above.
 
 #### Usage:
 
@@ -137,10 +136,10 @@ Retrieves the graph metadata by traversing the whole graph. *stats_online* shoul
 
 #### Output:
 
-- `labelCount: int` ➡ number of unique labels in nodes
-- `relationshipTypeCount: int` ➡ number of unique relationship types (labels)
-- `nodeCount: int` ➡ number of nodes in the graph
-- `relationshipCount: int` ➡ number of relationships in the graph
+- `labelCount: int` ➡ number of unique labels in nodes.
+- `relationshipTypeCount: int` ➡ number of unique relationship types (labels).
+- `nodeCount: int` ➡ number of nodes in the graph.
+- `relationshipCount: int` ➡ number of relationships in the graph.
 - `labels: Map[string: int]` ➡ map with the following (key, value) pairs:
   - `label` : number_of_occurrences
 - `relationshipTypes: Map[string: int]` ➡ map with the following (key, value) pairs:
@@ -149,7 +148,7 @@ Retrieves the graph metadata by traversing the whole graph. *stats_online* shoul
   - `()-[:relationship_type]->()` : number_of_occurrences
 - `relationshipTypesCount: Map[string: int]` ➡ map with the following (key, value) pairs:
   - `relationship_type` : number_of_occurrences
-- `stats` ➡ map which contains all of the above
+- `stats` ➡ map which contains all of the above.
 
 #### Usage:
 
