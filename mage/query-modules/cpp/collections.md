@@ -28,8 +28,8 @@ The collections module is a collection manipulation module that offers functions
 | ------------------- | ----------------------------------------------------- |
 | **Module type**     | <Highlight color="#FB6E00">**algorithm**</Highlight>  |
 | **Implementation**  | <Highlight color="#FB6E00">**C++**</Highlight>        |
-| **Graph direction** | <Highlight color="#FB6E00">**undirected**</Highlight> |
-| **Edge weights**    | <Highlight color="#FB6E00">**unweighted**</Highlight> |
+| **Graph direction** | <Highlight color="#FB6E00">**directed**</Highlight>/<Highlight color="#FB6E00">**undirected**</Highlight> |
+| **Edge weights**    | <Highlight color="#FB6E00">**weighted**</Highlight>/<Highlight color="#FB6E00">**unweighted**</Highlight> |
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight> |
 
 ### Procedures
