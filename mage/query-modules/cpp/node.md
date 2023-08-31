@@ -37,7 +37,7 @@ The `node` module provides a comprehensive toolkit for managing graph nodes, ena
 ### `relationship_types(node, types)`
 
 Returns a list of distinct relationship types of the given node contained within the given list of types. If the list of types is empty returns all distinct relationship types. Relationship types can also be directed:
-- \<type - incoming relationship
+- &lt;type - ingoing relationship
 - type> - outgoing relationship
 - type - either way
 
@@ -75,4 +75,88 @@ MATCH (intern:Intern) CALL node.relationship_types(intern, ["<KNOWS", "SEES>", "
 +--------------------------------+
 | Matija    ["SEES", "HEARS"]    |
 +--------------------------------+
+```
+
+### `relationship_exists(node, pattern)`
+
+Checks if given node has a relationship of the pattern.  
+
+#### Input:
+
+- `node: Node` ➡ node for which relationship existance is to be verified.
+- `pattern: List[string] (optional)` ➡ list of relationship types for which it will be checked if at least one of them exists; if nothing is stated, procedure checks all types of relationships.
+
+:::info
+
+If '<' is added in front of the relationship type, only relationships coming into the node will be checked (e.g., "<KNOWS"), while if '>' is added at the end of the relationship type, only relationships coming from the node will be checked (e.g., "KNOWS>").
+Furthermore, if relationship type is not relevant, it is possible to enter only "<" or ">" to check ingoing or outgoing relationships.
+
+:::
+
+#### Output:
+
+- `exists: bool` ➡ whether or not provided node has a relationship of specified type.
+
+#### Usage:
+
+```cypher
+MERGE (a:Person {name: "Phoebe"}) MERGE (b:Person {name: "Joey"}) CREATE (a)-[f:FRIENDS]->(b);
+MATCH (a:Person {name: "Joey"}) CALL node.relationship_exists(a, ["<FRIENDS"]) 
+YIELD exists RETURN exists;
+```
+
+```plaintext
++----------------------------+
+| exists                     |
++----------------------------+
+| True                       |
++----------------------------+
+```
+
+
+### `relationships_exist(node, relationships)`
+
+Checks if relationships in the input list exist at the given node. Results are returned as a map, represented as string-bool pair, where string represents the relationship, and bool represents if the relationship exists or not. Relationships can be directed, and the syntax for direction specification is provided below:
+- &lt;type - incoming relationship.
+- type> - outgoing relationship.
+- type - both incoming and outgoing.
+- anything else results in an exception.
+
+#### Input:
+
+- `node: Node` ➡ the input node.
+- `relationships: List[string]` ➡ list of relationships to be checked.
+
+#### Output:
+
+- `result: Map` ➡ map of string-bool pairs, where string represents the relationship, and bool represents if the relationship exist or not. Example: `{rel1: true, rel2>: false}` means rel1 exists, and outgoing rel2 doesn't exist.
+
+#### Usage:
+
+```cypher
+CREATE (d:Dog)-[l:LOVES]->(h:Human)-[t:TAKES_CARE_OF]->(d);
+```
+
+```cypher
+MATCH (d:Dog) CALL node.relationships_exist(d, ["LOVES>", "TAKES_CARE_OF", "FOLLOWS", "<LOVES"]) YIELD result RETURN result;
+```
+
+```plaintext
++----------------------------------------------------------------------------+
+| result                                                                     |
++----------------------------------------------------------------------------+
+| {"<LOVES": false, "FOLLOWS": false, "LOVES>": true, "TAKES_CARE_OF": true} |                  
++----------------------------------------------------------------------------+
+```
+
+```cypher
+MATCH (h:Human) CALL node.relationships_exist(h, ["LOVES>", "TAKES_CARE_OF", "FOLLOWS", "<LOVES"]) YIELD result RETURN result;
+```
+
+```plaintext
++----------------------------------------------------------------------------+
+| result                                                                     |
++----------------------------------------------------------------------------+
+| {"<LOVES": true, "FOLLOWS": false, "LOVES>": false, "TAKES_CARE_OF": true} |                  
++----------------------------------------------------------------------------+
 ```
