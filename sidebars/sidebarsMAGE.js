@@ -52,6 +52,7 @@ module.exports = {
         "query-modules/python/llm-util",
         "query-modules/cpp/map",
         "query-modules/python/max-flow",
+        "query-modules/cpp/meta",
         "query-modules/python/meta-util",
         "query-modules/python/migrate",
         "query-modules/python/node-classification-with-gnn",
