@@ -1936,7 +1936,7 @@ Value(Value &&other) noexcept
 | `Type`        | Returns the type of the value.              |
 | `Value[TYPE]` | Returns a value of given type.              |
 | `Is[TYPE]`    | Returns whether the value is of given type. |
-| `TOString`    | Returns the value's string representation.  |
+| `ToString`    | Returns the value's string representation.  |
 
 ##### Type
 
