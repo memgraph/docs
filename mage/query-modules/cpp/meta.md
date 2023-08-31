@@ -43,11 +43,11 @@ The stats procedure returns the following metadata about the graph:
 - `labels` ➡ map with the following (key, value) pairs:
   - `label` : number_of_occurrences
 - `relationshipTypes` ➡ map with the following (key, value) pairs:
-  - `(:label)-[:relationship_type]->()` : number_of_occurences
-  - `()-[:relationship_type]->(:label)` : number_of_occurences
-  - `()-[:relationship_type]->()` : number_of_occurences
+  - `(:label)-[:relationship_type]->()` : number_of_occurrences
+  - `()-[:relationship_type]->(:label)` : number_of_occurrences
+  - `()-[:relationship_type]->()` : number_of_occurrences
 - `relationshipTypesCount` ➡ map with the following (key, value) pairs:
-  - `relationship_type` : number_of_occurences
+  - `relationship_type` : number_of_occurrences
 - `stats` ➡ map which contains all of the above
 
 It is split into two version which return the same metadata:
@@ -77,11 +77,11 @@ This procedure tracks the data created/deleted/modified after the trigger was ad
 - `labels: Map[string: int]` ➡ map with the following (key, value) pairs:
   - `label` : number_of_occurrences
 - `relationshipTypes: Map[string: int]` ➡ map with the following (key, value) pairs:
-  - `(:label)-[:relationship_type]->()` : number_of_occurences
-  - `()-[:relationship_type]->(:label)` : number_of_occurences
-  - `()-[:relationship_type]->()` : number_of_occurences
+  - `(:label)-[:relationship_type]->()` : number_of_occurrences
+  - `()-[:relationship_type]->(:label)` : number_of_occurrences
+  - `()-[:relationship_type]->()` : number_of_occurrences
 - `relationshipTypesCount: Map[string: int]` ➡ map with the following (key, value) pairs:
-  - `relationship_type` : number_of_occurences
+  - `relationship_type` : number_of_occurrences
 - `stats` ➡ map which contains all of the above
 
 #### Usage:
@@ -144,11 +144,11 @@ Retrieves the graph metadata by traversing the whole graph. *stats_online* shoul
 - `labels: Map[string: int]` ➡ map with the following (key, value) pairs:
   - `label` : number_of_occurrences
 - `relationshipTypes: Map[string: int]` ➡ map with the following (key, value) pairs:
-  - `(:label)-[:relationship_type]->()` : number_of_occurences
-  - `()-[:relationship_type]->(:label)` : number_of_occurences
-  - `()-[:relationship_type]->()` : number_of_occurences
+  - `(:label)-[:relationship_type]->()` : number_of_occurrences
+  - `()-[:relationship_type]->(:label)` : number_of_occurrences
+  - `()-[:relationship_type]->()` : number_of_occurrences
 - `relationshipTypesCount: Map[string: int]` ➡ map with the following (key, value) pairs:
-  - `relationship_type` : number_of_occurences
+  - `relationship_type` : number_of_occurrences
 - `stats` ➡ map which contains all of the above
 
 #### Usage:
