@@ -34,8 +34,48 @@ The `path` module is a module for working with intricate connections in graph-li
 
 ### Procedures
 
+### `create(start_node, relationships)`
+
+Creates a path from the given starting node and a list of relationships. Iteratively appends all relationships in the list to the new path until a relationship is null (as a result of optional match) or a relationship from the last node of the path to one of the nodes in the current relationship (the one that isn't the last one in the path) doesn't exist.
+
+#### Input
+
+- `start_node: Node` - starting node of the path
+- `relationships: Map` - map with the key `rel` that contains a list of the given relationships. See `usage` for more details.
+
+#### Output
+
+- `path: Path` - the created path
+
+#### Usage
+
+```cypher
+
+MERGE (croatia:Country {name: 'Croatia'})
+MERGE (madrid:City {name: 'Madrid'})
+MERGE (kutina:City {name: 'Kutina'})
+MERGE (real:Club {name: 'Real Madrid'})
+MERGE (moslavina:Club {name: 'NK Moslavina'})
+MERGE (kutina)-[:In_country]->(croatia)
+MERGE (moslavina)-[:In_city]->(kutina)
+MERGE (real)-[:In_city]->(madrid);
+```
+```cypher
+MATCH (club:Club) OPTIONAL MATCH (club)-[inCity:In_city]->(city:City) OPTIONAL MATCH (city)-[inCountry:In_country]->(:Country) CALL path.create(club, {rel:[inCity, inCountry]}) YIELD path return path;
+```
+
+```plaintext
++------------------------------------------------------------------------------------------------------------------+
+| path                                                                                                             |
++------------------------------------------------------------------------------------------------------------------+
+| (:Club {name: 'Real Madrid'}-[:In_city]->(:City {name 'Madrid'}))                                                |
++------------------------------------------------------------------------------------------------------------------+
+| (:Club {name: 'NK Moslavina'}-[:In_city]->(:City {name 'Kutina'})-[:In_country]->(:Country {name 'Croatia'}))    |
++------------------------------------------------------------------------------------------------------------------+
+```
 
 ### `expand(start, relationships, labels, min_hops, max_hops)`
+
 Expand from the start node(s) following the given relationships and label filters, from min to max number of allowed hops. Return all paths inside the allowed number of hops, which satisfy relationship and label filters.
 
 #### Input:
