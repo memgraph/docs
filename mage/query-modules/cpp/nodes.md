@@ -43,7 +43,7 @@ Returns a list of distinct relationship types of the given node(s) contained wit
 
 #### Input:
 
-- `node: int|node|List[int|node]` ➡ list of input nodes. Elements of the list can be either nodes themselves or their IDs.
+- `node: int|node|List[int|node]` ➡ input nodes given as nodes themselves or their IDs.
 - `types: List[string] (default = [])` ➡ list of relationship types to filter by.
 
 #### Output:
@@ -115,6 +115,29 @@ MATCH (n:Intern) WITH collect(n) as interns CALL nodes.relationship_types(intern
 +---------------------------------------+
 ```
 
+### `delete(nodes)`
+
+Deletes the given node(s) from the graph. Equivalent to doing detach delete.
+
+### Input:
+
+- `nodes: int|node|List[int|node]` - nodes to be deleted given as nodes themselves or their IDs.
+
+### Usage:
+
+```cypher
+CREATE (ivan: Intern {name: 'Ivan'})
+CREATE (idora: Intern {name: 'Idora'})
+CREATE (matija: Intern {name: 'Matija'})
+MERGE (ivan)-[:KNOWS]->(idora)
+MERGE (matija)-[:HEARS]->(idora)
+MERGE (matija)-[:SEES]->(ivan);
+```
+
+The following query will delete all the created nodes and relationships:
+```cypher
+MATCH (n:Intern) WITH collect(n) as interns CALL nodes.delete(interns);
+```
 
 ### `relationships_exist(nodes, relationships)`
 
