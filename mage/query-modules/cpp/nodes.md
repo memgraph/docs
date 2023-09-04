@@ -34,6 +34,88 @@ The `nodes` module provides a comprehensive toolkit for managing multiple graph 
 
 ### Procedures
 
+### `relationship_types(nodes, types)`
+
+Returns a list of distinct relationship types of the given node(s) contained within the given list of types. If the list of types is empty returns all distinct relationship types. Relationship types can also be directed:
+- &lt;type - incoming relationship.
+- type> - outgoing relationship.
+- type - either way.
+
+#### Input:
+
+- `node: int|node|List[int|node]` ➡ list of input nodes. Elements of the list can be either nodes themselves or their IDs.
+- `types: List[string] (default = [])` ➡ list of relationship types to filter by.
+
+#### Output:
+
+- `relationship_types: List[Map]` ➡ Each list element is a map with two keys: `node` and `types`. `node` representing the given node and `types` a list of distinct relationship types contained within the given list of types for the corresponding node.
+
+#### Usage:
+
+```cypher
+CREATE (ivan: Intern {name: 'Ivan'})
+CREATE (idora: Intern {name: 'Idora'})
+CREATE (matija: Intern {name: 'Matija'})
+MERGE (ivan)-[:KNOWS]->(idora)
+MERGE (matija)-[:HEARS]->(idora)
+MERGE (matija)-[:SEES]->(ivan);
+```
+
+```cypher
+MATCH (n:Intern) WITH collect(n) as interns CALL nodes.relationship_types(interns, ["<KNOWS", "SEES>", "HEARS"]) YIELD relationship_types RETURN relationship_types;
+```
+
+```plaintext
++---------------------------------------+
+|   relationship_types                  |
+| [                                     |
+|     {                                 |
+|       "node": {                       |
+|          "labels": [                  |
+|             "Intern"                  |
+|          ],                           |
+|          "properties": {              |
+|             "name": "Ivan"            |
+|          },                           |
+|          "type": "node"               |
+|       },                              |
+|       "types": []                     |
+|     },                                |
+|     {                                 |
+|        "node": {                      |
+|           "labels": [                 |
+|              "Intern"                 |
+|          ],                           |
+|           "properties": {             |
+|              "name": "Idora"          |
+|           },                          |
+|           "type": "node"              |
+|        },                             |
+|       "types": [                      |
+|          "HEARS",                     |
+|          "KNOWS"                      |
+|       ]                               |
+|    },                                 |
+|    {                                  |
+|        "node": {                      |
+|           "labels": [                 |
+|             "Intern"                  |
+|          ],                           |
+|          "properties": {              |
+|             "name": "Matija"          |
+|          },                           |
+|          "type": "node"               |
+|        },                             |
+|        "types": [                     |
+|          "SEES",                      |
+|          "HEARS"                      |
+|       ]                               |
+|    }                                  |
+| ]                                     |
++---------------------------------------+
+```
+
+
 ### `relationships_exist(nodes, relationships)`
 
 Checks if relationships in the input list exist at the given nodes. Results are returned as a map, which contains two smaller maps. The first map represents the node, and the second map represents the relationship status map of the node. Relationships can be directed, and the syntax for direction specification is provided below:
