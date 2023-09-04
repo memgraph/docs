@@ -119,11 +119,11 @@ MATCH (n:Intern) WITH collect(n) as interns CALL nodes.relationship_types(intern
 
 Deletes the given node(s) from the graph. Equivalent to doing detach delete.
 
-### Input:
+#### Input:
 
 - `nodes: int|node|List[int|node]` - nodes to be deleted given as nodes themselves or their IDs.
 
-### Usage:
+#### Usage:
 
 ```cypher
 CREATE (ivan: Intern {name: 'Ivan'})
