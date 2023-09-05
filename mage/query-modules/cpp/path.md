@@ -40,12 +40,12 @@ Creates a path from the given starting node and a list of relationships. Iterati
 
 #### Input
 
-- `start_node: Node` - starting node of the path
+- `start_node: Node` - the starting node of the path.
 - `relationships: Map` - map with the key `rel` that contains a list of the given relationships. See `usage` for more details.
 
 #### Output
 
-- `path: Path` - the created path
+- `path: Path` - the created path.
 
 #### Usage
 
@@ -136,13 +136,13 @@ For the final example, the starting node will be `Cat`, and the maximum number o
 - `Label list: [">Dog", "+Human", "+Wolf"]` - now, only paths ending with `Dog` will be returned, but they can be further expaned through the nodes with whitelisted labels. This filtering returns 3 paths: `Cat<-Dog`, `Cat<-Dog<-Human->Wolf->Dog`, `Cat<-Dog<-Wolf<-Human->Dog`.
 
 
-#### Usage:
+#### Usage
 
 In this section, usage with Cypher will be demonstrated.
 
-##### Graph used in examples:
+##### Graph used in examples
 
-This is the graph used in examples.
+This is the graph used in the examples.
 
 <Tabs
 groupId="example"
@@ -176,7 +176,7 @@ CREATE (h)-[:HATES]->(m);
 
 </Tabs>
 
-##### Usage example 1:
+##### Usage example 1
 
 Expand from `Dog` on outgoing relationship `CATCHES` and incoming relationship `HATES`, with `Mouse` and `Human` being labels in end list. Whitelist is empty, hence, all labels are whitelisted.
 
@@ -218,7 +218,7 @@ CALL path.expand(d,["CATCHES>","<HATES"],[">Mouse", ">Human"],0,4) YIELD result 
 </Tabs>
 
 
-##### Usage example 2:
+##### Usage example 2
 
 Expand from `Dog` only on incoming relationships. Also, `Human` is blacklisted.
 
@@ -259,7 +259,7 @@ CALL path.expand(d,["<"],["-Human"],0,4) YIELD result RETURN result;
 </Tabs>
 
 
-##### Usage example 3:
+##### Usage example 3
 
 Expand from `Dog` and `Mouse`. `Cat` is the termination label, and the maximum number of hops is 1. Also, mouse is passed as ID, to demonstrate that capability of expand function.
 
