@@ -36,7 +36,7 @@ The `nodes` module provides a comprehensive toolkit for managing multiple graph 
 
 ### `relationship_types(nodes, types)`
 
-Returns a list of distinct relationship types of the given node(s) contained within the given list of types. If the list of types is empty returns all distinct relationship types. Relationship types can also be directed:
+Returns a list of distinct relationship types of the given node(s) contained within the given list of types. If the list of types is empty, the procedure returns all distinct relationship types. Relationship types can also be directed:
 - &lt;type - incoming relationship.
 - type> - outgoing relationship.
 - type - either way.
@@ -117,7 +117,7 @@ MATCH (n:Intern) WITH collect(n) as interns CALL nodes.relationship_types(intern
 
 ### `delete(nodes)`
 
-Deletes the given node(s) from the graph. Equivalent to doing detach delete.
+Deletes the given node(s) from the graph. Equivalent to running a `DETACH DELETE` query.
 
 #### Input:
 
@@ -145,7 +145,8 @@ Checks if relationships in the input list exist at the given nodes. Results are 
 - &lt;type - incoming relationship.
 - type> - outgoing relationship.
 - type - both incoming and outgoing.
-- anything else results in an exception.
+
+Any other syntax results in an exception.
 
 #### Input:
 
@@ -183,8 +184,8 @@ Links the provided nodes sequentially with the relationship type provided in the
 
 #### Input:
 
-- `nodes: List[Node]` ➡ list of input nodes which are to be linked.
-- `type: string` ➡ type of relationship which will be used in linking.
+- `nodes: List[Node]` ➡ list of input nodes that need to be linked.
+- `type: string` ➡ type of relationship that will link two nodes.
 
 #### Usage:
 
