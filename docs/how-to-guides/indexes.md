@@ -30,8 +30,8 @@ To check if indexes exist, use the following Cypher query:
 SHOW INDEX INFO;
 ```
 
-The results of this query will be all of the labels and label-property pairs
-that Memgraph currently indexes.
+This query displays an alphabetized table of all label and label-property indices
+presently kept by Memgraph.
 
 ## How to create indexes?
 
