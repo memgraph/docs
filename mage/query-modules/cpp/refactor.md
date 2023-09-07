@@ -133,8 +133,9 @@ Clones the subgraph by cloning the given list of nodes and relationships. If no 
 #### Usage:
 
 ```cypher
-MATCH (ana:Ana), (marija:Marija), (ana)-[r1:KNOWS]->(marija)
-CALL refactor.clone_subgraph([ana, marija], [r2, r1], {standinNodes: [[ana, marija]]})
+MATCH (ana:Ana {id: 0}), (marija:Marija {id: 1})
+MATCH (ana)-[r1:KNOWS]->(marija)
+CALL refactor.clone_subgraph([ana, marija], [r1], {standinNodes: [[ana, marija]]})
 YIELD cloned_node_id, new_node RETURN cloned_node_id, new_node;
 ```
 
@@ -142,14 +143,12 @@ YIELD cloned_node_id, new_node RETURN cloned_node_id, new_node;
 +----------------------------+----------------------------+
 | cloned_node_id             | new_node                   |
 +----------------------------+----------------------------+
-| 0                          | {                          |
-|                            |     "id": 1,               |
-|                            |     "labels": [            |
-|                            |        "Person"            |
-|                            |     ],                     |
-|                            |     "properties": {        |
-|                            |        name: "Ana"         |
-|                            |     },                     |
+| 1                          | {                          |
+|                            |     "id": 2,               |
+|                            |     "labels": [            |   -> node :Ana was not cloned
+|                            |        "Marija"            |      because :Marija is its
+|                            |     ],                     |      "stand in" node
+|                            |     "properties": {},      |
 |                            |     "type": "node"         |
 |                            | }                          |
 +----------------------------+----------------------------+
@@ -183,24 +182,22 @@ Clones the subgraph specified by by a specific list of paths. Path is a series o
 #### Usage:
 
 ```cypher
-MATCH (ana:Ana), (marija:Marija)
+MATCH (ana:Ana {id: 0}), (marija:Marija {id: 1})
 MATCH path = (ana)-[:KNOWS*]->(marija)
 CALL refactor.clone_subgraph_from_paths([path], {standinNodes:[[ana, marija]]})
-YIELD cloned_node_id, new_nodeRETURN cloned_node_id, new_node;
+YIELD cloned_node_id, new_node RETURN cloned_node_id, new_node;
 ```
 
 ```plaintext
 +----------------------------+----------------------------+
 | cloned_node_id             | new_node                   |
 +----------------------------+----------------------------+
-| 0                          | {                          |
-|                            |     "id": 1,               |
-|                            |     "labels": [            |
-|                            |        "Person"            |
-|                            |     ],                     |
-|                            |     "properties": {        |
-|                            |        name: "Ana"         |
-|                            |     },                     |
+| 1                          | {                          |
+|                            |     "id": 2,               |
+|                            |     "labels": [            |   -> node :Ana was not cloned
+|                            |        "Marija"            |      because :Marija is its
+|                            |     ],                     |      "stand in" node
+|                            |     "properties": {},      |
 |                            |     "type": "node"         |
 |                            | }                          |
 +----------------------------+----------------------------+
@@ -257,6 +254,200 @@ The results should be identical to the ones on graph below, except for the
 `id` values that depend on the internal database `id` values:
 
 <img src={require('../../data/query-modules/cpp/refactor/categorize2.png').default}/>
+
+</TabItem>
+
+</Tabs>
+
+
+## Example - refactor.clone_nodes
+
+<Tabs
+  groupId="clone_nodes_example"
+  defaultValue="input"
+  values={[
+    {label: 'Step 1: Cypher load commands', value: 'load'},
+    {label: 'Step 2: Input graph', value: 'input'},
+    {label: 'Step 3: Running command', value: 'run'},
+    {label: 'Step 4: Results', value: 'result'},
+  ]
+}>
+
+<TabItem value="load">
+
+You can create a simple graph database by running the following queries:
+
+```cypher
+CREATE (a:Ana {name: "Ana", age: 22}) 
+CREATE (b:Marija {name: "Marija", age: 20}) 
+CREATE (a)-[r:KNOWS]->(b);
+```
+
+</TabItem>
+
+<TabItem value="input">
+
+The image below shows the above data as a graph:
+
+<img src={require('../../data/query-modules/cpp/refactor/clonenodes1.png').default}/>
+    
+</TabItem>
+
+<TabItem value="run">
+
+```cypher
+MATCH (a:Ana) MATCH (b:Marija)
+CALL refactor.clone_nodes([a, b], True, ["age"]) YIELD * RETURN *;
+```
+
+</TabItem>
+
+<TabItem value="result">
+
+The results should be identical to the ones on graph below, except for the
+`id` values that depend on the internal database `id` values:
+
+<img src={require('../../data/query-modules/cpp/refactor/clonenodes2.png').default}/>
+
+</TabItem>
+
+</Tabs>
+
+
+## Example - refactor.clone_subgraph
+
+<Tabs
+  groupId="clone_subgraph_example"
+  defaultValue="input"
+  values={[
+    {label: 'Step 1: Cypher load commands', value: 'load'},
+    {label: 'Step 2: Input graph', value: 'input'},
+    {label: 'Step 3: Running command', value: 'run'},
+    {label: 'Step 4: Results', value: 'result'},
+  ]
+}>
+
+<TabItem value="load">
+
+You can create a simple graph database by running the following queries:
+
+```cypher
+MERGE (ana:Ana{name:'Ana'}) 
+MERGE (marija:Marija{name:'Marija'}) 
+MERGE (p2:Person{name:'person2'}) 
+MERGE (p3:Person{name:'person3'}) 
+MERGE (p4:Person{name:'person4'}) 
+MERGE (p5:Person{name:'person5'}) 
+MERGE (p6:Person{name:'person6'}) 
+CREATE (ana)-[:KNOWS]->(p2)-[:KNOWS]->(p3)-[:KNOWS]->(p4) 
+CREATE (p4)<-[:KNOWS]-(p5) 
+CREATE (marija)-[:KNOWS]->(p6);
+```
+
+</TabItem>
+
+<TabItem value="input">
+
+The image below shows the above data as a graph:
+
+<img src={require('../../data/query-modules/cpp/refactor/clonesubgraph1.png').default}/>
+    
+</TabItem>
+
+<TabItem value="run">
+
+```cypher
+MATCH (ana:Ana),
+      (p2:Person{name: "person2"}),     
+      (p3:Person{name: "person3"}),
+      (p4:Person{name: "person4"}),
+      (p5:Person{name: "person5"})
+CALL refactor.clone_subgraph([ana, p2, p3, p4, p5], [], {
+       standinNodes:[[ana, marija]]
+   })
+YIELD * RETURN *;
+```
+
+</TabItem>
+
+<TabItem value="result">
+
+The results should be identical to the ones on graph below, except for the
+`id` values that depend on the internal database `id` values. Note that the 
+whole subgraph was cloned except for node `:Ana` because node `:Marija` was 
+used as its "stand in" node.
+
+<img src={require('../../data/query-modules/cpp/refactor/clonesubgraph2.png').default}/>
+
+</TabItem>
+
+</Tabs>
+
+
+## Example - refactor.clone_subgraph_from_path
+
+<Tabs
+  groupId="clone_subgraph_path_example"
+  defaultValue="input"
+  values={[
+    {label: 'Step 1: Cypher load commands', value: 'load'},
+    {label: 'Step 2: Input graph', value: 'input'},
+    {label: 'Step 3: Running command', value: 'run'},
+    {label: 'Step 4: Results', value: 'result'},
+  ]
+}>
+
+<TabItem value="load">
+
+You can create a simple graph database by running the following queries:
+
+```cypher
+MERGE (ana:Ana{name:'Ana'}) 
+MERGE (marija:Marija{name:'Marija'}) 
+MERGE (p2:Person{name:'person2'}) 
+MERGE (p3:Person{name:'person3'}) 
+MERGE (p4:Person{name:'person4'}) 
+MERGE (p5:Person{name:'person5'}) 
+MERGE (p6:Person{name:'person6'}) 
+CREATE (ana)-[:KNOWS]->(p2)-[:KNOWS]->(p3)-[:KNOWS]->(p4) 
+CREATE (p4)<-[:KNOWS]-(p5) CREATE (p5)-[:LOVES]->(p6) 
+CREATE (marija)-[:KNOWS]->(p6);
+```
+
+</TabItem>
+
+<TabItem value="input">
+
+The image below shows the above data as a graph:
+
+<img src={require('../../data/query-modules/cpp/refactor/clonesubgraphpath1.png').default}/>
+    
+</TabItem>
+
+<TabItem value="run">
+
+```cypher
+MATCH (ana:Ana),
+      (marija:Marija)
+MATCH path = (ana)-[:KNOWS*]->(node)
+WITH ana, marija, collect(path) as paths
+CALL refactor.clone_subgraph_from_paths(paths, {
+       standinNodes:[[ana, marija]]
+})
+YIELD cloned_node_id, new_node
+RETURN cloned_node_id, new_node;
+```
+
+</TabItem>
+
+<TabItem value="result">
+
+The results should be identical to the ones on graph below, except for the
+`id` values that depend on the internal database `id` values. Note that the 
+whole subgraph was cloned except for node `:Ana` because node `:Marija` was 
+used as its "stand in" node.
+
+<img src={require('../../data/query-modules/cpp/refactor/clonesubgraphpath2.png').default}/>
 
 </TabItem>
 
