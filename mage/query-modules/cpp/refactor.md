@@ -452,3 +452,144 @@ used as its "stand in" node.
 </TabItem>
 
 </Tabs>
+
+
+### `collapse_node(nodes, type)`
+
+Collapses a node into a relationship. Can only collapse nodes with exactly 1 in relationship, and exactly 1 out relationship. The node must not have any self relationships. Collapsing any node that doesn't satisfy these requirements results in an exception.
+
+#### Input:
+
+- `nodes: Any` ➡  Node, node ID, or list of nodes and node IDs.
+- `type: string` ➡ the type of the new relationship.
+
+#### Output:
+
+- `id_collapsed: integer` ➡ id of the collapsed node.
+- `new_relationship: integer` ➡ newly created relationship.
+
+#### Usage:
+
+<Tabs
+groupId="example_collapse"
+defaultValue="cypher_graph"
+values={[
+{label: 'Step 1: Cypher for graph creation', value: 'cypher_graph'},
+{label: 'Step 2: Graph before collapsing', value: 'graph'},
+{label: 'Step 3: Cypher for calling collapse', value: 'cypher_call'},
+{label: 'Step 4: Collapse output', value: 'output'},
+{label: 'Step 5: Graph after collapsing', value: 'graph_after'},
+]
+}>
+
+<TabItem value="cypher_graph">
+
+```cypher
+CREATE (c:Car)-[t:DRIVES_ON]->(r:Road)-[l:LEADS_TO]->(ci:City);
+```
+
+</TabItem>
+
+<TabItem value="graph">
+
+<img src={require('../../data/query-modules/cpp/refactor/graph_before.png').default}/>
+
+</TabItem>
+
+<TabItem value="cypher_call">
+
+```cypher
+MATCH (r:Road)
+CALL refactor.collapse_node(r, "DRIVES_TO") YIELD id_collapsed, new_relationship RETURN id_collapsed, new_relationship;
+```
+
+</TabItem>
+
+<TabItem value="output">
+
+```plaintext
++-------------------------------------------------------------------------------------------------------------------+
+| id_collapsed        | new_relationship                                                                            |
++-------------------------------------------------------------------------------------------------------------------+
+| 1                   | {"id": 2,"start": 0,"end": 2,"label": "DRIVES_TO","properties": {},"type": "relationship"}  |
++-------------------------------------------------------------------------------------------------------------------+
+```
+
+</TabItem>
+
+<TabItem value="graph_after">
+
+<img src={require('../../data/query-modules/cpp/refactor/graph_after.png').default}/>
+
+</TabItem>
+
+</Tabs>
+
+### `invert(relationship)`
+
+Invert the direction of the given relationship.
+
+#### Input:
+
+- `relationship: Any` ➡  relationship, relationship ID, or a list of relationships or relationship IDs.
+
+#### Output:
+
+- `id_inverted: integer` ➡ id of the inverted relationship.
+- `relationship` ➡ the inverted relationship.
+
+#### Usage:
+
+
+<Tabs
+groupId="example_invert"
+defaultValue="cypher_graph"
+values={[
+{label: 'Step 1: Cypher for graph creation', value: 'cypher_graph'},
+{label: 'Step 2: Graph before inverting', value: 'graph'},
+{label: 'Step 3: Cypher for calling invert', value: 'cypher_call'},
+{label: 'Step 4: Invert output', value: 'output'},
+{label: 'Step 5: Graph after inverting', value: 'graph_after'},
+]
+}>
+
+<TabItem value="cypher_graph">
+
+```cypher
+CREATE (d:Dog)-[l:LOVES]->(h:Human);
+```
+</TabItem>
+
+<TabItem value="graph">
+
+<img src={require('../../data/query-modules/cpp/refactor/rel_before.png').default}/>
+
+</TabItem>
+
+<TabItem value="cypher_call">
+
+```cypher
+MATCH (d:Dog)-[l:LOVES]->(h:Human)
+CALL refactor.invert(l) YIELD id_inverted, relationship RETURN id_inverted, relationship;
+```
+</TabItem>
+
+<TabItem value="output">
+
+```plaintext
++-------------------------------------------------------------------------------------------------------------------+
+| id_inverted         | relationship                                                                                |
++-------------------------------------------------------------------------------------------------------------------+
+| 0                   | {"id": 0,"start": 1,"end": 0,"label": "LOVES","properties": {},"type": "relationship"}      |
++-------------------------------------------------------------------------------------------------------------------+
+```
+
+</TabItem>
+
+<TabItem value="graph_after">
+
+<img src={require('../../data/query-modules/cpp/refactor/rel_after.png').default}/>
+
+</TabItem>
+
+</Tabs>
