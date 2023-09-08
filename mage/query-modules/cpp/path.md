@@ -302,7 +302,6 @@ CALL path.expand([d, id(m)],[],["/Cat"],0,1) YIELD result RETURN result;
 
 </Tabs>
 
-
 ### `subgraph_all(start_node, config)`
 
 Returns a subgraph in a form of nodes and relationships that can be reached from a given start node. While traversing the graph, the function evaluates nodes based on specified criteria: it adheres to a maximum hop limit, applies relationship and label filters, and ensures each node is visited only once.
@@ -320,7 +319,7 @@ Returns a subgraph in a form of nodes and relationships that can be reached from
  | maxLevel            | Int   	| -1   	  | The maximum number of hops in the traversal. 	|
  | relationshipFilter  | List 	| [ ]    	| List of relationships which the subgraph formation will follow. Explained in detail below.	|
  | labelFilter         | List 	| [ ]	    | List of labels which will define filtering. Explained in detail below. |
- | filterStartNode     | Bool 	| False	  | Whether the labelFilter applies to the start nodes. 	|
+ | filterStartNode     | Bool 	| False	  | Whether the `labelFilter` applies to the start nodes. 	|
 
 #### Relationship filters:
 
@@ -344,7 +343,7 @@ If the relationship filter is empty, all relationship types are allowed.
 - `Relationship list : [<LOVES, LOVES]` : path will expand on incoming relationship `LOVES`, and all directions of relationship `LOVES`, making the first element in the relationship list functionally obsolete.
 - `Relationship list : []` : path will expand on all relationships.
 
-#### Label filter:
+#### Label filters:
 
 Label filters are described in the table below:
 
@@ -420,7 +419,6 @@ CREATE (h)-[:HATES]->(m);
 
 Create a subgraph from `Dog` on outgoing relationship `CATCHES` and incoming relationship `HATES`, with `Mouse` and `Human` being labels in end list. Whitelist is empty, hence, all labels are whitelisted.
 
-
 <Tabs
 groupId="usageExample1_subgraphall"
 defaultValue="cypher"
@@ -452,11 +450,9 @@ RETURN nodes, rels;
 
 </TabItem>
 
-
 <TabItem value="results">
 
  The results should be identical to the ones below, except for the `id` values that depend on the internal database `id` values.
-
 
 ```plaintext
  +----------------------------+----------------------------+
@@ -485,7 +481,6 @@ RETURN nodes, rels;
 </TabItem>
 
 </Tabs>
-
 
 ##### Usage example 2
 
@@ -522,7 +517,6 @@ RETURN nodes, rels;
 
   </TabItem>
 
-
 <TabItem value="results">
 
  The results should be identical to the ones below, except for the `id` values that depend on the internal database `id` values.
@@ -555,7 +549,6 @@ RETURN nodes, rels;
   </TabItem>
 
 </Tabs>
-
 
 ### `subgraph_nodes(start_node, config)`
 
@@ -705,11 +698,9 @@ RETURN nodes;
 
 </TabItem>
 
-
 <TabItem value="results">
 
  The results should be identical to the ones below, except for the `id` values that depend on the internal database `id` values.
-
 
 ```plaintext
  +----------------------------+
@@ -738,7 +729,6 @@ RETURN nodes;
 </TabItem>
 
 </Tabs>
-
 
 ##### Usage example 2
 
