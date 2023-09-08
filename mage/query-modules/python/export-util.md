@@ -429,14 +429,14 @@ The CSV file columns are structured this way:
 |------|-----|--------|-------------|--------|------|-------|
 |node id| node labels | alphabetically sorted properties of all nodes (all node properties present in the graph) | id of the start node of a relationship | id of the end node of a relationship | type of relationship | alphabetically sorted properties of all relationships (all relationship properties present in the graph) |
 
-For example, consider a simple graph, created with this cypher query:
+For example, consider a simple graph created with the following Cypher query:
 
 ```cypher
 CREATE (d:Dog {name: "Rex", breed: "Dalmatian"})-[i:IS_OWNED_BY {rel_property: 30}]->(h:Human {name: "Carl", age: 50});
 ```
 
-The id of the Dog node is 0, and the id of the Human node is 1.
-Exporting would result in a CSV file structured this way:
+The `Dog` node's ID is 0, and the `Human` node's ID is 1.
+Exporting would result in a CSV file structured in the following way:
 
 | _id | _labels| age | breed | name| _start | _end | _type | rel_property |
 |-----|--------|-----|-------|-----|--------|------|-------|--------------|
@@ -520,7 +520,7 @@ CALL export_util.csv_graph(nodes, relationships, "/demonstration/export/Document
 
 #### Usage with configurations:
 
-In this section, usage with configurations is displayed. The graph used is the same one as in usage without configurations.
+In this section, usage with configurations is displayed. The same graph is used as in the usage without configurations.
 
 ##### Delimiter
 
@@ -719,7 +719,6 @@ CALL export_util.csv_graph(nodes, relationships, "/demonstration/export/Document
 ##### Stream:
 
 Example of exporting a file to stream. When stream is `True`, the CSV file is not saved, so the file path can be set as `""`, as it will be ignored.
-
 
 
 ```cypher
