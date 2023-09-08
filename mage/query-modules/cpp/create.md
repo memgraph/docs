@@ -72,7 +72,6 @@ CALL create.node(["Person", "Programmer"], {name: "Ana", age: 20}) YIELD node RE
 +----------------------------+
 ```
 
-
 ### `nodes(labels, properties)`
 
 Create nodes with given labels and properties. For each property map, a separate node is created.
@@ -182,7 +181,7 @@ Adds the provided properties to the node(s).
 
 #### Input:
 
-- `input_nodes: Any` ➡ node, node's id or a list of nodes and nodes' ids.
+- `input_nodes: Any` ➡ node, node's ID or a list of nodes and nodes' IDs.
 - `input_keys: List[string]` ➡ list of all the property keys to be added to the node(s).
 - `input_values: List[Any]` ➡ list of all the corresponding property values to be added to the node(s).
 
@@ -233,6 +232,7 @@ MATCH (s:Student) CALL create.set_properties(s, ["age", "grade"], [20, "1st"]) Y
 ### `remove_properties(nodes, list_keys)`
 
 Removes all the properties of the given node(s). Input node(s) can be a single node, node ID, or a list of nodes and node IDs. Otherwise, an exception is thrown.
+
 #### Input:
 
 - `nodes: any` ➡ input node(s). Can be a node, node's ID, or a list of nodes and IDs.
@@ -281,7 +281,7 @@ Adds the provided property to the relationship(s).
 
 #### Input:
 
-- `input_rel: Any` ➡ relationship, relationship's id or a list of relationships and relationships' ids.
+- `input_rel: Any` ➡ relationship, relationship's ID or a list of relationships and relationships' IDs.
 - `input_key: string` ➡ property key to be added to the relationship(s).
 - `input_value: Any` ➡ corresponding property value to be added to the relationship(s).
 
@@ -320,7 +320,7 @@ Removes the provided labels from the node(s).
 
 #### Input:
 
-- `nodes: Any` ➡ node, node's id or a list of nodes and nodes' ids.
+- `nodes: Any` ➡ node, node's ID or a list of nodes and nodes' IDs.
 - `labels: List[string]` ➡ list of labels to be removed (if exist) from the nodes(s).
 
 #### Output:
@@ -399,13 +399,13 @@ Adds the provided properties to the given relationships and returns the modified
 
 #### Input:
 
-- `relationships: int|Relationship|List[int|Relationship]` ➡ relationships to be modified given by their object or id
-- `keys: List[string]` ➡ list of all the property keys to be added to the relationship(s)
-- `values: List[Any]` ➡ list of all the corresponding property values to be added to the relationship(s)
+- `relationships: int|Relationship|List[int|Relationship]` ➡ relationships to be modified given by their object or ID.
+- `keys: List[string]` ➡ list of all the property keys to be added to the relationship(s).
+- `values: List[Any]` ➡ list of all the corresponding property values to be added to the relationship(s).
 
 #### Output:
 
-- `relationship: Relationship` ➡ the modified relationship(s)
+- `relationship: Relationship` ➡ the modified relationship(s).
 
 #### Usage:
 
@@ -442,8 +442,8 @@ Removes the provided properties from the given relationships and returns the mod
 
 #### Input:
 
-- `relationships: int|Relationship|List[int|Relationship]` ➡ relationships to be modified
-- `keys: List[string]` ➡ list of property names to be removed from the given relationships
+- `relationships: int|Relationship|List[int|Relationship]` ➡ relationships to be modified.
+- `keys: List[string]` ➡ list of property names to be removed from the given relationships.
 
 #### Output:
 
