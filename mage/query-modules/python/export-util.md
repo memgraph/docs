@@ -178,14 +178,14 @@ where `path` is the path to a local CSV file that will be created inside the
 |-	                 |-	      |-	      |-	                                                            |
 | stream             | Bool 	| False	  | Stream the file content directly to the client into the status field. 	|
 | format             | String	| " "  	  | Set the export format to either "gephi" or "tinkerpop". 	|
-| caption 	         | List 	| [ ]    	| A list of keys of properties whose value is eligible as value for the "label" data element in Gephi format. Order is important and if no match is found then there is a fallback to the node's first property. If the node has no properties then the ID is used.	|
+| caption 	         | List 	| [ ]    	| A list of keys of properties whose value is eligible as value for the `label` data element in Gephi format. Order is important and if no match is found, then there is a fallback to the node's first property. If the node has no properties then the ID is used.	|
 | useTypes           | Bool 	| False	  | Store property values' type information. |
 | leaveOutLabels     | Bool 	| False	  | Do not store node's labels. 	|
 | leaveOutProperties | Bool 	| False  	| Do not store node's properties. 	|
 
 #### Output:
 
-* `status: string` ➡ file content if stream is set to True in configuration parameters, "success" otherwise.
+* `status: string` ➡ file content if stream is set to `True` in configuration parameters, `success` otherwise.
 
 #### Usage:
 
@@ -469,7 +469,6 @@ Erica Sinclair,Priah Ferguson,Stranger Things,2016,"['Matt Duffer', 'Ross Duffer
 </TabItem>
 
 </Tabs>
-
 
 ## Example - Exporting database to a graphML file
 
