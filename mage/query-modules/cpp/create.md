@@ -36,7 +36,7 @@ By enabling more precise and flexible creation of nodes and relationships within
 
 ### `node(labels, properties)`
 
-Provides a more flexible way of creating nodes than Cypher’s CREATE clause.
+Provides a more flexible way of creating nodes than Cypher’s CREATE clause by allowing labels and properties to be extracted as results of other procedures and sent as a list or map.
 
 #### Input:
 
