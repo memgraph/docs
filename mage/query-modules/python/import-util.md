@@ -150,15 +150,15 @@ where `path` is the path to a local JSON file that will be created inside the
 
 | Name 	             | Type   | Default	| Description 	                                                |
 |-	                 |-	      |-	      |-	                                                            |
-| readLabels          | Bool 	| False	  | Create node labels based on the value of the property whose key is "labels". 	|
+| readLabels          | Bool 	| False	  | Create node labels by using the value of the `labels` property. 	|
 | defaultRelationshipType  | String	| "RELATED"  	  | The default relationship type to use when none is specified in the import file. 	|
 | storeNodeIds 	         | Bool 	| False   	| Store node's id attribute as a property.	|
-| source           | Map 	| { }	  | A map that has two keys: label and id. Label is mandatory while id's default value is "id". This allows the import of relationships in case the source node is not present in the file. It will search for a source node with a specific label and a property whose key is this map's id value, and whose value is relationship's source node id. For example, with a config map `{source: {id: 'serial_number', label: 'Device'}}` and an edge defined as `<edge id="e0" source="n0" target="n1" label="CONNECT"><data key="label">CONNECT</data></edge>`, if node "n0" doesn't exist, it will search for a source node `(:Device {serial_number: "n0"})`.  |
-| target     | Map 	| { }	  | A map that has two keys: label and id. Label is mandatory while id's default value is "id". This allows the import of relationships in case the target node is not present in the file. It will search for a target node with a specific label and a property whose key is this map's id value, and whose value is relationship's target node id. For example, with a config map `{target: {id: 'serial_number', label: 'Device'}}` and an edge defined as `<edge id="e0" source="n0" target="n1" label="CONNECT"><data key="label">CONNECT</data></edge>`, if node "n1" doesn't exist, it will search for a target node `(:Device {serial_number: "n1"})`.  	|
+| source           | Map 	| { }	  | A map with two keys: `label` and `id`. The `label` is mandatory, while the `id`'s default value is `id`. This allows the import of relationships if the source node is absent in the file. It will search for a source node with a specific label and a property equal to the map's `id` value. The value of that property should be equal to the relationship's source node ID. For example, with a config map `{source: {id: 'serial_number', label: 'Device'}}` and an edge defined as `<edge id="e0" source="n0" target="n1" label="CONNECT"><data key="label">CONNECT</data></edge>`, if node "n0" doesn't exist, it will search for a source node `(:Device {serial_number: "n0"})`.  |
+| target     | Map 	| { }	  | A map with two keys: `label` and `id`.  The `label` is mandatory while the `id`'s default value is `id`. This allows the import of relationships in case the target node is absent in the file. It will search for a target node with a specific label and a property equal to the map's `id` value. The value of that property should be equal to the relationship's target node ID. For example, with a config map `{target: {id: 'serial_number', label: 'Device'}}` and an edge defined as `<edge id="e0" source="n0" target="n1" label="CONNECT"><data key="label">CONNECT</data></edge>`, if node "n1" doesn't exist, it will search for a target node `(:Device {serial_number: "n1"})`.  	|
 
 #### Output:
 
-* `status: string` ➡ "success" if no errors are generated.
+- `status: string` ➡ `success` if no errors are generated.
 
 #### Usage:
 
@@ -185,7 +185,7 @@ You can call the procedure by running the following query:
 ```cypher
 CALL export_util.graphML(path);
 ```
-where `path` is the path to the JSON file inside the
+where `path` is the path to the graphML file inside the
 `/usr/lib/memgraph/query_modules` directory in the running Docker container (e.g.,
 `/usr/lib/memgraph/query_modules/export.graphml`).
 
@@ -209,7 +209,7 @@ Then, call the procedure by running the following query:
 ```cypher
 CALL export_util.graphml(path);
 ```
-where `path` is the path to a local JSON file that will be created inside the
+where `path` is the path to a local graphML file that will be created inside the
 `export_folder` (e.g., `/users/my_user/export_folder/export.graphml`).
 </TabItem>
 

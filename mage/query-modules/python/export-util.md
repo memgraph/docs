@@ -212,7 +212,7 @@ You can call the procedure by running the following query:
 ```cypher
 CALL export_util.graphml(path);
 ```
-where `path` is the path to the JSON file inside the
+where `path` is the path to the graphML file inside the
 `/usr/lib/memgraph/query_modules` directory in the running Docker container (e.g.,
 `/usr/lib/memgraph/query_modules/export.graphml`).
 
@@ -236,7 +236,7 @@ Then, call the procedure by running the following query:
 ```cypher
 CALL export_util.graphml(path);
 ```
-where `path` is the path to a local JSON file that will be created inside the
+where `path` is the path to a local graphML file that will be created inside the
 `export_folder` (e.g., `/users/my_user/export_folder/export.graphml`).
 </TabItem>
 
