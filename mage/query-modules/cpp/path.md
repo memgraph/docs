@@ -20,7 +20,7 @@ style={{
 </span>
 );
 
-The `path` module is a module for working with intricate connections in graph-like structures. It provides functions and procedures to navigate and analyze paths, helping users uncover meaningful insights from complex data relationships.
+The `path` module allows users to explore different paths, filter relationships, and nodes based on specific criteria, and achieve more complex path-related tasks that go beyond the capabilities of native Cypher - whether you're seeking all possible paths between two nodes, subgraphs that meet certain conditions, or various other path-oriented operations.
 
 [![docs-source](https://img.shields.io/badge/source-path-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/tree/main/cpp/path_module)
 
