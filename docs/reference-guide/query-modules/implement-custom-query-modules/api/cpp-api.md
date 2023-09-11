@@ -573,7 +573,7 @@ void DeleteRelationship(const Relationship &relationship)
 Changes the `from` (start) node of the given relationship.
 
 ```cpp
-void SetFrom(Relationship &relationship, const Node &new_from);
+void SetFrom(Relationship &relationship, const Node &new_from)
 ```
 
 ##### SetTo
@@ -581,7 +581,7 @@ void SetFrom(Relationship &relationship, const Node &new_from);
 Changes the `to` (end) node of the given relationship.
 
 ```cpp
-void SetTo(Relationship &relationship, const Node &set_to);
+void SetTo(Relationship &relationship, const Node &set_to)
 ```
 
 #### GraphNodes
