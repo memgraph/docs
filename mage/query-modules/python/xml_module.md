@@ -42,8 +42,8 @@ Parses an XML string or file into a map. Since this is a function and not a proc
 #### Input:
 
 - `xml_input: string` ➡ input XML string.
-- `simple: bool (default = false)` ➡ bool used for specifying whether simple mode should be used.
-- `path: string (default = "")` ➡ path to the XML file that needs to be parsed. If the path is not empty, the `xml_input` string is ignored, and only the file is parsed.
+- `simple: bool (default = false)` ➡ configuration bool used for specifying whether simple mode should be used. [**Simple configuration explanation**](#simple-configuration-explanation).
+- `path: string (default = "")` ➡ path to the XML file that needs to be parsed. If the path is not empty, the `xml_input` string is ignored, and only the file is parsed. 
 
 #### Output:
 
@@ -319,7 +319,7 @@ Output:
 
 ### `load(xml_url, simple, path, xpath, headers)`
 
-Loads and parses an XML file from a URL or a local file. Supports simple mode, and XPath expressions.
+Loads and parses an XML file from a URL or a local file. Supports simple mode, and XPath expressions. You can choose to execute the procedure in simple mode => [**Simple configuration explanation**](#simple-configuration-explanation).
 
 #### Input:
 
@@ -335,9 +335,6 @@ Loads and parses an XML file from a URL or a local file. Supports simple mode, a
 
 If the XPath expression is not empty, the output is all elements that satisfy the expression.
 
-#### Simple configuration explanation
-
-For details about simple configuration, go to [**Simple configuration explanation in parse function**](#simple-configuration-explanation).
 
 #### XPath
 
