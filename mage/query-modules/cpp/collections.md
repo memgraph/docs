@@ -495,7 +495,7 @@ Splits the provided list based on a specified delimiter. Returns a series of sub
 #### Usage:
 
 ```cypher
-CALL collections.split([2, 4, "0", 0, 3.3, 9, 0, 5], 0) YIELD splittedRETURN splitted
+CALL collections.split([2, 4, "0", 0, 3.3, 9, 0, 5], 0) YIELD splitted RETURN splitted;
 ```
 
 ```plaintext
