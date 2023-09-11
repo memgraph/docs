@@ -43,7 +43,7 @@ Parses an XML string or file into a map. Since this is a function and not a proc
 
 - `xml_input: string` ➡ input XML string.
 - `simple: bool (default = false)` ➡ bool used for specifying whether simple mode should be used.
-- `path: string (default = "")` ➡ path to the XML file which is to be parsed. If path is not empty, xml_input string is ignored, and only the file is parsed.
+- `path: string (default = "")` ➡ path to the XML file that needs to be parsed. If the path is not empty, the `xml_input` string is ignored, and only the file is parsed.
 
 #### Output:
 
@@ -51,12 +51,13 @@ The output of this function is a parsed XML map.
 
 #### Simple configuration explanation
 
-In XML file format, every element is represented as a map. For every element, its children elements are represented as a key-value pair inside that map, the key being `_children`, and the value an array of children elements. But, when `simple` is `True`, the key of children elements is not `_children`, but rather the name of the parent element. For example, consider a root element named `catalog`. When parsing this element, if `simple` is `False`, the key-value pair of children elements will look like this: `_children: [child_element_1, child_element_2, ....]`. But, when `simple` is `True`, the key-value pair will look like this `_catalog: [child_element_1, child_element_2, ....]`. Using simple mode makes nested XML elements accessible via an element name prefixed with an _.
+In XML file format, every element is represented as a map. For every element, its children elements are represented as a key-value pair inside that map, the key being `_children`, and the value an array of children elements. But, when `simple` is `True`, the key of children elements is not `_children`, but rather the name of the parent element. 
+
+Consider a root element named `catalog`. When parsing this element, if `simple` is `False`, the key-value pair of children elements will look like this: `_children: [child_element_1, child_element_2, ....]`. But, when `simple` is `True`, the key-value pair will look like this `_catalog: [child_element_1, child_element_2, ....]`. Using simple mode makes nested XML elements accessible via an element name prefixed with an `_`.
 
 #### Usage:
 
 This section shows the usage of the function.
-
 
 <Tabs
 groupId="example_parse"
@@ -74,7 +75,6 @@ values={[
 WITH '<catalog><book id="1"><title>Book 1</title><author>Author 1</author><publication><year>2022</year><publisher>Publisher A</publisher></publication></book><book id="2"><title>Book 2</title><author>Author 2</author><publication><year>2023</year><publisher>Publisher B</publisher></publication></book></catalog>' AS xmlString
 RETURN xml_module.parse(xmlString) AS value;
 ```
-
 
 Output:
 
@@ -217,7 +217,7 @@ Output:
 
 ##### Parsing an XML file:
 
-Here, parsing a file is shown. Example of the file:
+The following example shows how the parse this file:
 
 ```plaintext
 
@@ -315,7 +315,6 @@ Output:
 
 </Tabs>
 
-
 ## Procedures
 
 ### `load(xml_url, simple, path, xpath, headers)`
@@ -326,7 +325,7 @@ Loads and parses an XML file from a URL or a local file. Supports simple mode, a
 
 - `xml_url: string` ➡ input URL where the XML file is located.
 - `simple: bool (default = false)` ➡ bool used for specifying whether simple mode should be used.
-- `path: string (default = "")` ➡ path to the XML file which is to be parsed. If path is not empty, xml_input string is ignored, and only the file is parsed.
+- `path: string (default = "")` ➡ path to the XML file that needs to be parsed. If the path is not empty, `xml_input` string is ignored, and only the file is parsed.
 - `xpath: string (default = "")` ➡ XPath expression. If the expression is not empty, the result of the procedure is all elements satisfying the expression.
 - `headers: Map (default = {})` ➡ map of additional HTTP headers used when fetching a file from URL.
 
@@ -334,7 +333,7 @@ Loads and parses an XML file from a URL or a local file. Supports simple mode, a
 
 - `output_map: Map` ➡ parsed XML map.
 
-If the XPath expression is not empty, the output is all elements which satisfy the expression.
+If the XPath expression is not empty, the output is all elements that satisfy the expression.
 
 #### Simple configuration explanation
 
@@ -532,7 +531,7 @@ Output:
 
 For the XPath demonstration, [**this**](https://www.w3schools.com/xml/cd_catalog.xml) file will be used.
 
-The XPath expression is going to be `".//CD[YEAR='1988']"`, which will return all CD elements with attribute year equaling 1988. Note that XPath expressions cannot be absolute paths, because of the Python implementation of XPath, so `.` is used as an XPath prefix for this example, meaning the search is started from the current(root) element.
+The XPath expression is going to be `".//CD[YEAR='1988']"`, which will return all CD elements with attribute year equaling 1988. Note that XPath expressions cannot be absolute paths because of the Python implementation of XPath, so `.` is used as an XPath prefix for this example, meaning the search will start from the current (root) element.
 
 ```cypher
 WITH "https://www.w3schools.com/xml/cd_catalog.xml" AS xmlUrl
