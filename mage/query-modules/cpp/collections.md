@@ -487,7 +487,6 @@ Splits the provided list based on a specified delimiter. Returns a series of sub
 - `inputList: List[Any]` ➡ the list that is to be splitted.
 - `delimiter: Any` ➡ element in the list that determines the point at which the list should be splitted.
 
-
 #### Output:
 
 - `splitted: List[Any]` ➡ sublists of the original list.
