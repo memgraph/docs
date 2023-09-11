@@ -26,7 +26,7 @@ The `text` module offers a toolkit for manipulating strings.
 
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |
-| **Module type**     | <Highlight color="#FB6E00">**algorithm**</Highlight>  |
+| **Module type**     | <Highlight color="#FB6E00">**util**</Highlight>  |
 | **Implementation**  | <Highlight color="#FB6E00">**C++**</Highlight>        |
 | **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight> |
 
