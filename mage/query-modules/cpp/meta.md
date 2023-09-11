@@ -29,30 +29,9 @@ The **meta** module provides a set of procedures for generating metadata about t
 | ------------------- | ----------------------------------------------------- |
 | **Module type**     | <Highlight color="#FB6E00">**algorithm**</Highlight>  |
 | **Implementation**  | <Highlight color="#FB6E00">**C++**</Highlight>        |
-| **Parallelism**     | <Highlight color="#FB6E00">**sequential**</Highlight> |
+| **Parallelism**     | <Highlight color="#FB6E00">**parallel**</Highlight>   |
 
 ### Procedures
-
-## stats
-
-The stats procedure returns the following metadata about the graph:
-- `labelCount` ➡ number of unique labels in nodes.
-- `relationshipTypeCount` ➡ number of unique relationship types (labels).
-- `nodeCount` ➡ number of nodes in the graph.
-- `relationshipCount` ➡ number of relationships in the graph.
-- `labels` ➡ map with the following (key, value) pairs:
-  - `label` : number_of_occurrences
-- `relationshipTypes` ➡ map with the following (key, value) pairs:
-  - `(:label)-[:relationship_type]->()` : number_of_occurrences
-  - `()-[:relationship_type]->(:label)` : number_of_occurrences
-  - `()-[:relationship_type]->()` : number_of_occurrences
-- `relationshipTypesCount` ➡ map with the following (key, value) pairs:
-  - `relationship_type` : number_of_occurrences
-- `stats` ➡ map which contains all of the above.
-
-It is split into two version which return the same metadata:
-- stats_online - works in **O(1)** and requires setting up a trigger
-- stats_offline - traverses the whole graph
 
 ### `stats_online(update_stats)`
 
@@ -61,6 +40,7 @@ Retrieves the graph metadata in **O(1)** complexity. Requires setting up the fol
  ```cypher
  CREATE TRIGGER meta_trigger BEFORE COMMIT EXECUTE CALL meta.update(createdObjects, deletedObjects, removedVertexProperties, removedEdgeProperties, setVertexLabels, removedVertexLabels);
  ```
+
 This procedure tracks the data created/deleted/modified after the trigger was added. If you want to return the metadata about the whole graph you need to run the *stats_online* procedure with the *update_stats* flag set to true **once**. That flag will cause the procedure to traverse the whole graph to update the metadata. After that you can always run with the *update_stats* flag set to false and the procedure will return the metadata in **O(1)** complexity.
 
 #### Input:
@@ -132,7 +112,7 @@ CALL meta.stats_online() YIELD stats;
 
 ### `stats_offline()`
 
-Retrieves the graph metadata by traversing the whole graph. *stats_online* should be preferred because of the better complexity unless you don't want to use triggers.
+Retrieves the graph metadata by traversing the whole graph. `stats_online` should be preferred because of the better complexity unless you don't want to use triggers.
 
 #### Output:
 
