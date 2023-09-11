@@ -34,7 +34,7 @@ The `refactor` module provides utilities for changing nodes and relationships.
 
 ### `categorize(original_prop_key, rel_type, is_outgoing, new_label, new_prop_name_key, copy_props_list)`
 
-Generates new category nodes based on a specific property key from the existing nodes in the graph. It then creates relationships between the original nodes and the new category nodes to organize the graph based on these categories.
+Generates a new category of nodes based on a specific property key from the existing nodes in the graph. Then, it creates relationships between the original and new category nodes to organize a graph based on these categories.
 
 #### Input:
 
@@ -121,7 +121,7 @@ Clones the subgraph by cloning the given list of nodes and relationships. If no 
 
  | Name 	            | Type  | Default	| Description 	                                                |
  |-	                  |-	    |-	      |-	                                                            |
- | skipProperties     | List  | [ ]	    | A list of property keys. Properties associated with these keys will be skipped during the cloning process therefore new nodes will not have them.|
+ | skipProperties     | List  | [ ]	    | A list of property keys. Properties associated with these keys will be skipped during the cloning process. Therefore, new nodes will not have them.|
  | standinNodes       | List	| [ ]  	  | A list of pairs (lists with only two elements) where: 1) The first element is the original node (from the input nodes list) that you're planning to clone. 2) The second element is an existing node in the graph that will "stand in" or replace the clone of the original node in the resultant subgraph.	|
 
 
@@ -147,19 +147,19 @@ YIELD cloned_node_id, new_node RETURN cloned_node_id, new_node;
 |                            |     "id": 2,               |
 |                            |     "labels": [            |   -> node :Ana was not cloned
 |                            |        "Marija"            |      because :Marija is its
-|                            |     ],                     |      "stand in" node
+|                            |     ],                     |      "stand-in" node
 |                            |     "properties": {},      |
 |                            |     "type": "node"         |
 |                            | }                          |
 +----------------------------+----------------------------+
 ```
 
-For better understanding check the examples on the bottom of the page.
+For better understanding, check the examples at the bottom of the page.
 
 
 ### `clone_subgraph_from_paths(paths, config)`
 
-Clones the subgraph specified by by a specific list of paths. Path is a series of nodes connected by relationships.
+Clones the subgraph specified by a specific list of paths. A path is a series of nodes connected by relationships.
 
 #### Input:
 
@@ -170,8 +170,8 @@ Clones the subgraph specified by by a specific list of paths. Path is a series o
 
  | Name 	            | Type  | Default	| Description 	                                                |
  |-	                  |-	    |-	      |-	                                                            |
- | skipProperties     | List  | [ ]	    | A list of property keys. Properties associated with these keys will be skipped during the cloning process therefore new nodes will not have them.|
- | standinNodes       | List	| [ ]  	  | A list of pairs (lists with only two elements) where: 1) The first element is the original node (from the input nodes list) that you're planning to clone. 2) The second element is an existing node in the graph that will "stand in" or replace the clone of the original node in the resultant subgraph.	|
+ | skipProperties     | List  | [ ]	    | A list of property keys. Properties associated with these keys will be skipped during the cloning process. Therefore, new nodes will not have them.|
+ | standinNodes       | List	| [ ]  	  | A list of pairs (lists with only two elements) where the first element is the original node (from the input nodes list) that you're planning to clone, and the second element is an existing node in the graph that will "stand-in" or replace the clone of the original node in the resultant subgraph.	|
 
 
 #### Output:
@@ -196,15 +196,14 @@ YIELD cloned_node_id, new_node RETURN cloned_node_id, new_node;
 |                            |     "id": 2,               |
 |                            |     "labels": [            |   -> node :Ana was not cloned
 |                            |        "Marija"            |      because :Marija is its
-|                            |     ],                     |      "stand in" node
+|                            |     ],                     |      "stand-in" node
 |                            |     "properties": {},      |
 |                            |     "type": "node"         |
 |                            | }                          |
 +----------------------------+----------------------------+
 ```
 
-For better understanding check the examples on the bottom of the page.
-
+For better understanding, check the examples at the bottom of the page.
 
 ## Example - refactor.categorize
 
@@ -250,8 +249,8 @@ YIELD status RETURN status;
 
 <TabItem value="result">
 
-The results should be identical to the ones on graph below, except for the
-`id` values that depend on the internal database `id` values:
+The results should be identical to the ones in the graph below, except for the
+`id` values, which depend on the internal database `id` values:
 
 <img src={require('../../data/query-modules/cpp/refactor/categorize2.png').default}/>
 
@@ -304,15 +303,14 @@ CALL refactor.clone_nodes([a, b], True, ["age"]) YIELD * RETURN *;
 
 <TabItem value="result">
 
-The results should be identical to the ones on graph below, except for the
-`id` values that depend on the internal database `id` values:
+The results should be identical to the ones in the graph below, except for the
+`id` values, which depend on the internal database `id` values:
 
 <img src={require('../../data/query-modules/cpp/refactor/clonenodes2.png').default}/>
 
 </TabItem>
 
 </Tabs>
-
 
 ## Example - refactor.clone_subgraph
 
@@ -372,10 +370,10 @@ YIELD * RETURN *;
 
 <TabItem value="result">
 
-The results should be identical to the ones on graph below, except for the
-`id` values that depend on the internal database `id` values. Note that the 
+The results should be identical to the ones in the graph below, except for the
+`id` values, which depend on the internal database `id` values. Note that the 
 whole subgraph was cloned except for node `:Ana` because node `:Marija` was 
-used as its "stand in" node.
+used as its "stand-in" node.
 
 <img src={require('../../data/query-modules/cpp/refactor/clonesubgraph2.png').default}/>
 
@@ -442,10 +440,10 @@ RETURN cloned_node_id, new_node;
 
 <TabItem value="result">
 
-The results should be identical to the ones on graph below, except for the
-`id` values that depend on the internal database `id` values. Note that the 
-whole subgraph was cloned except for node `:Ana` because node `:Marija` was 
-used as its "stand in" node.
+The results should be identical to the ones in the graph below, except for the
+`id` values, which depend on the internal database `id` values. Note that the 
+whole subgraph was cloned except for the node `:Ana` because node `:Marija` was 
+used as its "stand-in" node.
 
 <img src={require('../../data/query-modules/cpp/refactor/clonesubgraphpath2.png').default}/>
 
@@ -453,19 +451,18 @@ used as its "stand in" node.
 
 </Tabs>
 
-
 ### `collapse_node(nodes, type)`
 
 Collapses a node into a relationship. Can only collapse nodes with exactly 1 in relationship, and exactly 1 out relationship. The node must not have any self relationships. Collapsing any node that doesn't satisfy these requirements results in an exception.
 
 #### Input:
 
-- `nodes: Any` ➡  Node, node ID, or list of nodes and node IDs.
+- `nodes: Any` ➡  a node, node ID, or list of nodes and node IDs.
 - `type: string` ➡ the type of the new relationship.
 
 #### Output:
 
-- `id_collapsed: integer` ➡ id of the collapsed node.
+- `id_collapsed: integer` ➡ ID of the collapsed node.
 - `new_relationship: integer` ➡ newly created relationship.
 
 #### Usage:
@@ -535,7 +532,7 @@ Invert the direction of the given relationship.
 
 #### Output:
 
-- `id_inverted: integer` ➡ id of the inverted relationship.
+- `id_inverted: integer` ➡ ID of the inverted relationship.
 - `relationship` ➡ the inverted relationship.
 
 #### Usage:
