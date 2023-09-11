@@ -36,6 +36,16 @@ supports only the import of JSON file format.
 
 <RunOnSubgraph/>
 
+### `cypher(path)`
+
+Imports the cypher queries from the given path by just running the queries.
+
+#### Input:
+
+* `path: string` ➡ Path to the Cypher file that is being imported.
+
+This procedure is not fully functional and was created for testing. If you want to import cypher use the Memgraph lab import feature which is fully functional and faster.
+
 ### `json(path)`
 
 #### Input:
@@ -62,7 +72,7 @@ nodes or relationships. If the object is node, then it looks like this:
     "type": "node"
 }
 ```
- 
+
 The `id` key has the value of the Memgraph's internal node ide. The `labels` key
 holds the information about node labels in a list. The `properties` are
 key-value pairs representing properties of the certain node. Each node needs to
@@ -101,7 +111,7 @@ Memgraph.
     {label: 'Docker', value: 'docker'},
     {label: 'Linux', value: 'linux'},
   ]
-}> 
+}>
 
 <TabItem value="docker">
 
@@ -119,7 +129,7 @@ where `path` is the path to the JSON file inside the
 `/usr/lib/memgraph/query_modules/import.json`).
 
 :::info
-You can copy the JSON file to the running Docker container with the [`docker cp`](https://docs.docker.com/engine/reference/commandline/cp/) command: 
+You can copy the JSON file to the running Docker container with the [`docker cp`](https://docs.docker.com/engine/reference/commandline/cp/) command:
 ```
 docker cp /path_to_local_folder/import.json <container_id>:/usr/lib/memgraph/query_modules/import.json
 ```
@@ -152,11 +162,11 @@ where `path` is the path to a local JSON file that will be created inside the
 }>
 <TabItem value="input">
 
-Below is the content of the `import.json` file. 
+Below is the content of the `import.json` file.
 
 - If you're using **Memgraph with Docker**, then you have to save the
   `import.json` file in the `/usr/lib/memgraph/query_modules` directory inside
-  the running Docker container. 
+  the running Docker container.
 
 - If you're using **Memgraph on Ubuntu, Debian, RPM package or WSL**, then you
   have to save the `import.json` file in the local

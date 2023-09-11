@@ -36,11 +36,19 @@ module supports [**exporting database to a JSON file format**](#jsonpath) and [*
 
 <RunOnSubgraph/>
 
-### `json(path)`
+### `json(path, config)`
 
 #### Input:
 
-* `path: string` ➡ Path to the JSON file containing the exported graph database.
+* `path: string = ""` ➡ Path to the JSON file containing the exported graph database.
+* `config: Map` ➡ Map of the configuration with the following keys:
+    - `stream (bool) = False:` ➡ Flag to export the graph data to a stream. By default set to false.
+    - `write_properties (bool) = True:` ➡ Flag to keep node and relationship properties. By default set to true.
+
+#### Output:
+
+* `path: string` ➡ the path to the exported file.
+* `data: string` ➡ exported data if the stream flag was set to true.
 
 #### Usage:
 
@@ -54,7 +62,7 @@ Memgraph.
     {label: 'Docker', value: 'docker'},
     {label: 'Linux', value: 'linux'},
   ]
-}> 
+}>
 
 <TabItem value="docker">
 
@@ -97,6 +105,43 @@ where `path` is the path to a local JSON file that will be created inside the
 
 </Tabs>
 
+### `json_graph(nodes, relationships, path, config)`
+
+Exports the given nodes and relationships to the JSON format. All nodes from the relationships have to be contained in the nodes as well.
+
+#### Input:
+
+* `nodes: List[Node]` ➡ list of nodes to export.
+* `relationships: List[Relationship]` ➡ list of relationships to export.
+* `path: string` ➡ Path to the JSON file containing the exported graph database.
+* `config: Map` ➡ Map of the configuration with the following keys:
+    - `stream (bool) = False:` ➡ Flag to export the graph data to a stream. By default set to false.
+    - `write_properties (bool) = True:` ➡ Flag to keep node and relationship properties. By default set to true.
+
+#### Output:
+
+* `path: string` ➡ the path to the exported file.
+* `data: string` ➡ exported data if the stream flag was set to true.
+
+### `cypher_all(path, config)`
+
+Exports the graph to the cypher query language in the specified file or stream.
+
+#### Input:
+
+* `path: string = ""` ➡ Path to the cypher file containing the exported graph database.
+* `config: Map` ➡ Map of the configuration with the following keys:
+    - `stream (bool) = False:` ➡ Flag to export the graph data to a stream. By default set to false.
+    - `write_properties (bool) = True:` ➡ Flag to keep node and relationship properties. By default set to true.
+    - `write_triggers (bool) = True:` Flag to export graph triggers.
+    - `write_indexes (bool) = True:` Flag to export indexes.
+    - `write_constraints (bool) = True:` Flag to export constraints.
+
+#### Output:
+
+* `path: string` ➡ the path to the exported file.
+* `data: string` ➡ exported data if the stream flag was set to true.
+
 ### `csv_query(query, file_path, stream)`
 
 #### Input:
@@ -122,7 +167,7 @@ Memgraph.
     {label: 'Docker', value: 'docker'},
     {label: 'Linux', value: 'linux'},
   ]
-}> 
+}>
 
 <TabItem value="docker">
 
@@ -194,7 +239,7 @@ CREATE (n)-[:IS_FRIENDS_WITH]->(m), (n)-[:IS_FRIENDS_WITH]->(k), (m)-[:IS_MARRIE
 The image below shows the above data as a graph:
 
 <img src={require('../../data/query-modules/python/export-util/export-util-1.png').default}/>
-    
+
 </TabItem>
 
 <TabItem value="run">
@@ -340,7 +385,7 @@ CREATE
 The image below shows the above data as a graph:
 
 <img src={require('../../data/query-modules/python/export-util/export-util-csv-1.png').default}/>
-    
+
 </TabItem>
 
 <TabItem value="run_csv">
@@ -392,3 +437,41 @@ Erica Sinclair,Priah Ferguson,Stranger Things,2016,"['Matt Duffer', 'Ross Duffer
 </TabItem>
 
 </Tabs>
+
+## Example - Exporting query results to a Cypher file
+
+Running the following on the graph above:
+```cypher
+CALL export_util.cypher_all("export.cyp") YIELD path RETURN path;
+```
+will produce the following `export.cyp` file:
+```plaintext
+CREATE (n:TVShow:_IMPORT_ID {title: 'Stranger Things', released: 2016, program_creators: ['Matt Duffer', 'Ross Duffer'], _IMPORT_ID: 0});
+CREATE (n:Character:_IMPORT_ID {name: 'Eleven', portrayed_by: 'Millie Bobby Brown', _IMPORT_ID: 1});
+CREATE (n:Character:_IMPORT_ID {name: 'Joyce Byers', portrayed_by: 'Millie Bobby Brown', _IMPORT_ID: 2});
+CREATE (n:Character:_IMPORT_ID {name: 'Jim Hopper', portrayed_by: 'Millie Bobby Brown', _IMPORT_ID: 3});
+CREATE (n:Character:_IMPORT_ID {name: 'Mike Wheeler', portrayed_by: 'Finn Wolfhard', _IMPORT_ID: 4});
+CREATE (n:Character:_IMPORT_ID {name: 'Dustin Henderson', portrayed_by: 'Gaten Matarazzo', _IMPORT_ID: 5});
+CREATE (n:Character:_IMPORT_ID {name: 'Lucas Sinclair', portrayed_by: 'Caleb McLaughlin', _IMPORT_ID: 6});
+CREATE (n:Character:_IMPORT_ID {name: 'Nancy Wheeler', portrayed_by: 'Natalia Dyer', _IMPORT_ID: 7});
+CREATE (n:Character:_IMPORT_ID {name: 'Jonathan Byers', portrayed_by: 'Charlie Heaton', _IMPORT_ID: 8});
+CREATE (n:Character:_IMPORT_ID {name: 'Will Byers', portrayed_by: 'Noah Schnapp', _IMPORT_ID: 9});
+CREATE (n:Character:_IMPORT_ID {name: 'Steve Harrington', portrayed_by: 'Joe Keery', _IMPORT_ID: 10});
+CREATE (n:Character:_IMPORT_ID {name: 'Max Mayfield', portrayed_by: 'Sadie Sink', _IMPORT_ID: 11});
+CREATE (n:Character:_IMPORT_ID {name: 'Robin Buckley', portrayed_by: 'Maya Hawke', _IMPORT_ID: 12});
+CREATE (n:Character:_IMPORT_ID {name: 'Erica Sinclair', portrayed_by: 'Priah Ferguson', _IMPORT_ID: 13});
+MATCH (n:_IMPORT_ID {_IMPORT_ID: 1}) MATCH (m:_IMPORT_ID {_IMPORT_ID: 0}) CREATE (n)-[:ACTED_IN {seasons: [1, 2, 3, 4]}]->(m);
+MATCH (n:_IMPORT_ID {_IMPORT_ID: 2}) MATCH (m:_IMPORT_ID {_IMPORT_ID: 0}) CREATE (n)-[:ACTED_IN {seasons: [1, 2, 3, 4]}]->(m);
+MATCH (n:_IMPORT_ID {_IMPORT_ID: 3}) MATCH (m:_IMPORT_ID {_IMPORT_ID: 0}) CREATE (n)-[:ACTED_IN {seasons: [1, 2, 3, 4]}]->(m);
+MATCH (n:_IMPORT_ID {_IMPORT_ID: 4}) MATCH (m:_IMPORT_ID {_IMPORT_ID: 0}) CREATE (n)-[:ACTED_IN {seasons: [1, 2, 3, 4]}]->(m);
+MATCH (n:_IMPORT_ID {_IMPORT_ID: 5}) MATCH (m:_IMPORT_ID {_IMPORT_ID: 0}) CREATE (n)-[:ACTED_IN {seasons: [1, 2, 3, 4]}]->(m);
+MATCH (n:_IMPORT_ID {_IMPORT_ID: 6}) MATCH (m:_IMPORT_ID {_IMPORT_ID: 0}) CREATE (n)-[:ACTED_IN {seasons: [1, 2, 3, 4]}]->(m);
+MATCH (n:_IMPORT_ID {_IMPORT_ID: 7}) MATCH (m:_IMPORT_ID {_IMPORT_ID: 0}) CREATE (n)-[:ACTED_IN {seasons: [1, 2, 3, 4]}]->(m);
+MATCH (n:_IMPORT_ID {_IMPORT_ID: 8}) MATCH (m:_IMPORT_ID {_IMPORT_ID: 0}) CREATE (n)-[:ACTED_IN {seasons: [1, 2, 3, 4]}]->(m);
+MATCH (n:_IMPORT_ID {_IMPORT_ID: 9}) MATCH (m:_IMPORT_ID {_IMPORT_ID: 0}) CREATE (n)-[:ACTED_IN {seasons: [1, 2, 3, 4]}]->(m);
+MATCH (n:_IMPORT_ID {_IMPORT_ID: 10}) MATCH (m:_IMPORT_ID {_IMPORT_ID: 0}) CREATE (n)-[:ACTED_IN {seasons: [1, 2, 3, 4]}]->(m);
+MATCH (n:_IMPORT_ID {_IMPORT_ID: 11}) MATCH (m:_IMPORT_ID {_IMPORT_ID: 0}) CREATE (n)-[:ACTED_IN {seasons: [2, 3, 4]}]->(m);
+MATCH (n:_IMPORT_ID {_IMPORT_ID: 12}) MATCH (m:_IMPORT_ID {_IMPORT_ID: 0}) CREATE (n)-[:ACTED_IN {seasons: [3, 4]}]->(m);
+MATCH (n:_IMPORT_ID {_IMPORT_ID: 13}) MATCH (m:_IMPORT_ID {_IMPORT_ID: 0}) CREATE (n)-[:ACTED_IN {seasons: [2, 3, 4]}]->(m);
+MATCH (n:_IMPORT_ID) REMOVE n:`_IMPORT_ID` REMOVE n._IMPORT_ID;
+```
