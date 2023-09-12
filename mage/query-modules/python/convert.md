@@ -35,16 +35,15 @@ Module used for conversion of one data type to another.
 
 ### `str2object(string)`
 
-Inline function that converts the input string to a object the string represents, using pythons `json.dumps` function.
+An inline function that converts the input string to an object the string represents using Python's `json.dumps` function.
 
 #### Input:
 
 - `string: string` ➡ input string that is converted,.
 
-
 #### Output:
 
-- `mgp.Any` ➡ since the function is inline, the output is not named, and can be of various data types, depending of the content of the string.
+- `mgp.Any` ➡ since the function is inline, the output is not named, and can be of various data types, depending on the content of the string.
 
 #### Usage:
 
