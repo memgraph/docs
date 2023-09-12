@@ -37,10 +37,14 @@ import VideoBySide from '@site/src/components/VideoBySide';
   MATCH (),(),() RETURN COUNT(*);
   ```
   [#1127](https://github.com/memgraph/memgraph/pull/1227)
--  The query engine is more performant as at all times it is scanning and
-   expanding nodes instead of scanning both source and destination nodes and
-   then expanding to the relationship between them.
-   [#1085](https://github.com/memgraph/memgraph/pull/1085)
+- The query engine is more performant as at all times it is scanning and
+  expanding nodes instead of scanning both source and destination nodes and
+  then expanding to the relationship between them.
+  [#1085](https://github.com/memgraph/memgraph/pull/1085)
+- Users can now call `ToString()` method on `mgp::Value` and Memgraph's data
+  types when writing query modules using [C++
+  API](/reference-guide/query-modules/implement-custom-query-modules/api/cpp-api.md).
+  [#1140](https://github.com/memgraph/memgraph/pull/1140)
 
 ### Bug fixes
 
