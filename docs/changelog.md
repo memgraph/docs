@@ -12,7 +12,7 @@ import VideoBySide from '@site/src/components/VideoBySide';
 
 - Removing properties from relationships with `RemoveProperty()` function in
   [C++
-  API]((/reference-guide/query-modules/implement-custom-query-modules/api/cpp-api.md)).
+  API](/reference-guide/query-modules/implement-custom-query-modules/api/cpp-api.md).
   [#1156](https://github.com/memgraph/memgraph/pull/1156)
 
 ### Improvements and bug fixes
