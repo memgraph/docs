@@ -42,13 +42,13 @@ module supports [**exporting database to a JSON file format**](#jsonpath) and [*
 
 * `path: string = ""` ➡ Path to the JSON file containing the exported graph database.
 * `config: Map` ➡ Map of the configuration with the following keys:
-    - `stream (bool) = False:` ➡ Flag to export the graph data to a stream. By default set to false.
-    - `write_properties (bool) = True:` ➡ Flag to keep node and relationship properties. By default set to true.
+    - `stream (bool) = False:` ➡ Flag to export the graph data to a stream. By default, set to `false`.
+    - `write_properties (bool) = True:` ➡ Flag to keep node and relationship properties. By default, set to `true`.
 
 #### Output:
 
 * `path: string` ➡ the path to the exported file.
-* `data: string` ➡ exported data if the stream flag was set to true.
+* `data: string` ➡ exported data if the stream flag was set to `true`.
 
 #### Usage:
 
@@ -115,27 +115,27 @@ Exports the given nodes and relationships to the JSON format. All nodes from the
 * `relationships: List[Relationship]` ➡ list of relationships to export.
 * `path: string` ➡ Path to the JSON file containing the exported graph database.
 * `config: Map` ➡ Map of the configuration with the following keys:
-    - `stream (bool) = False:` ➡ Flag to export the graph data to a stream. By default set to false.
-    - `write_properties (bool) = True:` ➡ Flag to keep node and relationship properties. By default set to true.
+    - `stream (bool) = False:` ➡ Flag to export the graph data to a stream. By default, set to `false`.
+    - `write_properties (bool) = True:` ➡ Flag to keep node and relationship properties. By default, set to `true`.
 
 #### Output:
 
 * `path: string` ➡ the path to the exported file.
-* `data: string` ➡ exported data if the stream flag was set to true.
+* `data: string` ➡ exported data if the stream flag was set to `true`.
 
 ### `cypher_all(path, config)`
 
-Exports the graph to the cypher query language in the specified file or stream.
+Exports the graph to the Cypher query language in the specified file or stream.
 
 #### Input:
 
-* `path: string = ""` ➡ Path to the cypher file containing the exported graph database.
-* `config: Map` ➡ Map of the configuration with the following keys:
-    - `stream (bool) = False:` ➡ Flag to export the graph data to a stream. By default set to false.
-    - `write_properties (bool) = True:` ➡ Flag to keep node and relationship properties. By default set to true.
-    - `write_triggers (bool) = True:` Flag to export graph triggers.
-    - `write_indexes (bool) = True:` Flag to export indexes.
-    - `write_constraints (bool) = True:` Flag to export constraints.
+* `path: string = ""` ➡ path to the Cypher file containing the exported graph database.
+* `config: Map` ➡ map of the configuration with the following keys:
+    - `stream (bool) = False:` ➡ flag to export the graph data to a stream. By default, set to `false`.
+    - `write_properties (bool) = True:` ➡ flag to keep node and relationship properties. By default, set to `true`.
+    - `write_triggers (bool) = True:` ➡ flag to export graph triggers.
+    - `write_indexes (bool) = True:` ➡ flag to export indexes.
+    - `write_constraints (bool) = True:` ➡ flag to export constraints.
 
 #### Output:
 

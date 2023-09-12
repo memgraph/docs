@@ -38,13 +38,13 @@ supports only the import of JSON file format.
 
 ### `cypher(path)`
 
-Imports the cypher queries from the given path by just running the queries.
+Imports the Cypher queries from the given path by just running the queries.
 
 #### Input:
 
-* `path: string` ➡ Path to the Cypher file that is being imported.
+* `path: string` ➡ path to the Cypher file that needs to be imported.
 
-This procedure is not fully functional and was created for testing. If you want to import cypher use the Memgraph lab import feature which is fully functional and faster.
+This procedure is not fully functional and was created for testing. If you want to import Cypher, use the Memgraph Lab import feature, which is fully functional and faster.
 
 ### `json(path)`
 
