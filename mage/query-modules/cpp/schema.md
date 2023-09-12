@@ -39,15 +39,14 @@ This procedure returns schema information about nodes and their properties in th
 
 #### Output:
 
-- `labels: List[string]` ➡ list of labels of the node.
+- `labels: List[string]` ➡ a list of node labels.
 - `mandatory: boolean` ➡ a boolean which is `True` if the node has properties, `False` if the node has no properties.
-- `property_name: string` ➡ name of the property.
-- `property_type: string` ➡ type of the property.
-
+- `property_name: string` ➡ property name.
+- `property_type: string` ➡ property type.
 
 #### Usage:
 
-Cypher for creation of graph used in example:
+Cypher query used to create the graph used to showcase the procedure:
 
 ```cypher
 CREATE (d:Dog {name: "Rex", age: 5})-[l:LOVES {how_much: "very"}]->(h:Human:Owner {name: "Carl", age: 90});
@@ -78,19 +77,18 @@ CALL schema.rel_type_properties() YIELD mandatory, property_name, property_type,
 
 ### `rel_type_properties()`
 
-This procedure returns schema information about relationships and their properties in the graph. For every property in a relationship, a separate row is created.
+Returns schema information about relationships and their properties in the graph. For every property in a relationship, a separate row is created.
 
 #### Output:
 
-- `rel_type: string` ➡ the type of the relationship.
+- `rel_type: string` ➡ relationship type.
 - `mandatory: boolean` ➡ a boolean which is `True` if the node has properties, `False` if the node has no properties.
-- `property_name: string` ➡ name of the property.
-- `property_type: string` ➡ type of the property.
-
+- `property_name: string` ➡ property name.
+- `property_type: string` ➡ property type.
 
 #### Usage:
 
-Cypher for creation of graph used in example:
+Cypher query used to create the graph used to showcase the procedure:
 
 ```cypher
 CREATE (d:Dog)-[r:RUNS_AND_PLAYS_IN {speed: 100, duration: "5 hours" }]->(p:Park);
