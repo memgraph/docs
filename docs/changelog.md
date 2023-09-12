@@ -6,6 +6,49 @@ sidebar_label: Changelog
 
 import VideoBySide from '@site/src/components/VideoBySide';
 
+## v2.11 - Sep 13, 2023
+
+### New features and improvements
+
+- During recovery from a snapshot, the recovery of each graph object or property
+  is no longer logged in the TRACE setting. The log now only indicates the
+  recovery progress. [#1054](https://github.com/memgraph/memgraph/pull/1054)
+- Updating indices and constraints has been streamlined, significantly improving
+  execution time for everybody making heavy use of them.
+  [#1159](https://github.com/memgraph/memgraph/pull/1159)
+- Queries that build maps with multiple same-variable property lookups have been
+  optimized. [#1168](https://github.com/memgraph/memgraph/pull/1168)
+- The batch update of properties improves performance when setting a large
+  number of properties, as in this example: 
+  ```
+  FOREACH (i in range(0, 1000000) | CREATE (n:Label {id:i}));                              
+
+  CREATE INDEX ON :Label(id);                                                              
+
+  FOREACH (i IN range(0, 1000000, 3) | MERGE (n:Label {id:i}) SET n += {prop2:"a1", prop3:"b2", prop4:"c3", prop5:"d4", prop6:"e5", prop7:"f6", prop8:"g7", prop9:"h8", prop10:"i9", prop11:"j10 q"});
+  ```
+  [#1115](https://github.com/memgraph/memgraph/pull/1115)
+- Performance has been improved for concurrent operations contending on the same
+  node. [#1187](https://github.com/memgraph/memgraph/pull/1187)
+- When a query is executing in many iterations over the graph entities, the
+  performance has been improved by 100% due to faster scanning of nodes, for example: 
+  ```
+  UNWIND RANGE (1, 500) AS i CREATE ();
+  MATCH (),(),() RETURN COUNT(*);
+  ```
+  [#1127](https://github.com/memgraph/memgraph/pull/1227)
+-  The query engine is more performant as at all times it is scanning and
+   expanding nodes instead of scanning both source and destination nodes and
+   then expanding to the relationship between them.
+   [#1085](https://github.com/memgraph/memgraph/pull/1085)
+
+### Bug fixes
+
+- When projecting a map from a variable that happens to be null, the projection
+  will have a null value instead of displaying an error.
+  [#1119](https://github.com/memgraph/memgraph/pull/1119)
+
+
 ## v2.10.1 - Aug 22, 2023
 
 ### Improvements and bug fixes
@@ -19,17 +62,10 @@ import VideoBySide from '@site/src/components/VideoBySide';
   level and so needs to process those deltas. This can be tuned using
   `--delta-chain-cache-threshold`.
   [#1124](https://github.com/memgraph/memgraph/pull/1124)
-- Concurrent access to the same query module had a race-condition on the
-  pointer that was used to handle the custom memory management. A mapping has
-  been added that keeps the information about what thread used what pointer to
-  handle the memory resources, which should be fine since the respected query
-  executions are running on a dedicated thread. Access to the mapping itself is
-  thread-safe. A simple `RWLock` has been implemented here, as we shouldn't
-  include `memgraph::utils` from this header and a traditional mutex might be
-  overkill. A simple RAII wrapper for the mapping container has been also added
-  for simpler client-side use.
+- The same query module can now be executed concurrently by different clients.
   [#1158](https://github.com/memgraph/memgraph/pull/1158)
-
+- Properties can now be removed from relationships with `RemoveProperty()`
+  function in C++ API. [#1156](https://github.com/memgraph/memgraph/pull/1156)
 
 ## v2.10 - Aug 2, 2023
 
