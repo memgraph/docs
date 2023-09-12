@@ -27,7 +27,7 @@ Labels are used to categorize nodes, and the `label` module provides an array of
 
 | Trait               | Value                                                 |
 | ------------------- | ----------------------------------------------------- |
-| **Module type**     | <Highlight color="#FB6E00">**algorithm**</Highlight>  |
+| **Module type**     | <Highlight color="#FB6E00">**util**</Highlight>  |
 | **Implementation**  | <Highlight color="#FB6E00">**C++**</Highlight>        |
 | **Graph direction** | <Highlight color="#FB6E00">**directed**</Highlight>/<Highlight color="#FB6E00">**undirected**</Highlight> |
 | **Edge weights**    | <Highlight color="#FB6E00">**weighted**</Highlight>/<Highlight color="#FB6E00">**unweighted**</Highlight> |
