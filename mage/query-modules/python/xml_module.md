@@ -319,7 +319,7 @@ Output:
 
 ### `load(xml_url, simple, path, xpath, headers)`
 
-Loads and parses an XML file from a URL or a local file. Supports simple mode, and XPath expressions. You can choose to execute the procedure in simple mode => [**Simple configuration explanation**](#simple-configuration-explanation).
+Loads and parses an XML file from a URL or a local file. Supports simple mode, and XPath expressions. You can choose to execute the procedure in simple mode, explained in the [**Simple configuration**](#simple-configuration-explanation) section.
 
 #### Input:
 
