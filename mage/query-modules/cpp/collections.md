@@ -288,14 +288,14 @@ CALL collections.min([1,2,3]) YIELD min RETURN min;
 +---------------------------------------------------------+
 ```
 
-### `unionAll(list1, list2)`
+### `union_all(list1, list2)`
 
 Returns the union of two input lists, including duplicates.
 
 #### Input:
 
-- `list1: List[Any]` ➡ the first list to be used in the `unionAll` operation.
-- `list2: List[Any]` ➡ the second list to be used in the `unionAll` operation.
+- `list1: List[Any]` ➡ the first list to be used in the `union_all` operation.
+- `list2: List[Any]` ➡ the second list to be used in the `union_all` operation.
 
 #### Output:
 
@@ -304,7 +304,7 @@ Returns the union of two input lists, including duplicates.
 #### Usage:
 
 ```cypher
-CALL collections.unionAll([1,1,2,3],[3,"a","b","c"]) YIELD return_list RETURN return_list;
+CALL collections.union_all([1,1,2,3],[3,"a","b","c"]) YIELD return_list RETURN return_list;
 ```
 
 ```plaintext
