@@ -31,6 +31,7 @@ module.exports = {
         "query-modules/cpp/community-detection",
         "query-modules/cpp/community-detection-online",
         "query-modules/cpp/conditional-execution",
+        "query-modules/cpp/create",
         "query-modules/cpp/cycles",
         "query-modules/cuda/cugraph",
         "query-modules/python/date",
