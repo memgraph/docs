@@ -4,20 +4,18 @@ title: Runtime settings
 sidebar_label: Runtime settings
 ---
 
-Memgraph contains settings that can be modified during runtime.
-All the settings are persisted between multiple runs.
+Memgraph contains settings that can be modified during runtime using a query.
+Some runtime settings are persisted between multiple runs, while others will
+fallback to the value of the command-line argument. 
 
-## Settings
-
-| Setting name   | Description    |
-| -------------- | -------------- |
-| organization.name | Name of the organization using the instance of Memgraph (used for verifying the license key). |
-| enterprise.license | License key for Memgraph Enterprise. |
-| server.name | Bolt server name |
-| query.timeout | Maximum allowed query execution time. Value of 0 means no limit. |
-| log.level | Minimum log level. Allowed values: TRACE, DEBUG, INFO, WARNING, ERROR, CRITICAL. |
-| log.to_stderr | Log messages go to `stderr` in addition to `logfiles`. |
-
+| Setting name   | Description    | Persistent between runs |
+| -------------- | -------------- | ----------------------- |
+| organization.name | Name of the organization using the instance of Memgraph (used for verifying the license key). | yes |
+| enterprise.license | License key for Memgraph Enterprise. | yes |
+| server.name | Bolt server name. | yes |
+| query.timeout | Maximum allowed query execution time. Value of 0 means no limit. | yes |
+| log.level | Minimum log level. Allowed values: TRACE, DEBUG, INFO, WARNING, ERROR, CRITICAL. | no |
+| log.to_stderr | Log messages go to `stderr` in addition to `logfiles`. | no |
 
 ## Checking and modifying settings
 
