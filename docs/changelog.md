@@ -10,12 +10,21 @@ import VideoBySide from '@site/src/components/VideoBySide';
 
 ### New features and improvements
 
+- The following configurational settings can now be changed during runtime:
+  server name, query execution timeout, log level and the option to log to
+  `stderr`. Use the following queries to set the configuration: 
+  ```
+  SET DATABASE SETTING 'server.name' TO 'new-name';
+  SET DATABASE SETTING 'query.timeout' TO '100';
+  SET DATABASE SETTING 'log.level' TO 'TRACE';
+  SET DATABASE SETTING 'log.to_stderr' TO 'true`;
+  ```
 - During recovery from a snapshot, the recovery of each graph object or property
   is no longer logged in the TRACE setting. The log now only indicates the
   recovery progress. [#1054](https://github.com/memgraph/memgraph/pull/1054)
 - Updating indices and constraints has been streamlined, significantly improving
   execution time for everybody making heavy use of them.
-  [#1159](https://github.com/memgraph/memgraph/pull/1159)
+  [#1159](https://github.com/memgraph/memgraph/pull/1159) [#1142](https://github.com/memgraph/memgraph/pull/1142)
 - Queries that build maps with multiple same-variable property lookups have been
   optimized. [#1168](https://github.com/memgraph/memgraph/pull/1168)
 - The batch update of properties improves performance when setting a large
@@ -28,6 +37,8 @@ import VideoBySide from '@site/src/components/VideoBySide';
   FOREACH (i IN range(0, 1000000, 3) | MERGE (n:Label {id:i}) SET n += {prop2:"a1", prop3:"b2", prop4:"c3", prop5:"d4", prop6:"e5", prop7:"f6", prop8:"g7", prop9:"h8", prop10:"i9", prop11:"j10 q"});
   ```
   [#1115](https://github.com/memgraph/memgraph/pull/1115)
+- Setting properties is also improved by caching mappings of property name to
+  internal property `id`. [#1147](https://github.com/memgraph/memgraph/pull/1147)
 - Performance has been improved for concurrent operations contending on the same
   node. [#1187](https://github.com/memgraph/memgraph/pull/1187)
 - When a query is executing in many iterations over the graph entities, the
@@ -45,12 +56,26 @@ import VideoBySide from '@site/src/components/VideoBySide';
   types when writing query modules using [C++
   API](/reference-guide/query-modules/implement-custom-query-modules/api/cpp-api.md).
   [#1140](https://github.com/memgraph/memgraph/pull/1140)
+- Trigger functions can now access deleted vertices from deleted edge when
+  processed. [#1209](https://github.com/memgraph/memgraph/pull/1209)
+- When developing query modules using C++ API, you can now get the `In` and
+  `Out` degrees of a node in O(1) time complexity. [#1217](https://github.com/memgraph/memgraph/pull/1217)
+- The C++ API now enables you to change relationship start (from) and end (to)
+  nodes with `mgp::Graph.SetFrom` and `mgp::Graph.SetTo` methods.
+- `SHOW INDEX INFO` now displays index information in alphabetic order for
+  easier orientation. [#1178](https://github.com/memgraph/memgraph/pull/1178)
 
 ### Bug fixes
 
 - When projecting a map from a variable that happens to be null, the projection
   will have a null value instead of displaying an error.
   [#1119](https://github.com/memgraph/memgraph/pull/1119)
+- When using the C++ API you can now construct `std::set of values` (find unique
+  values) by iterating over `mgp::List` as expected, and successfully perform
+  any other operations dependent on the STL container requirements.
+  [#1210](https://github.com/memgraph/memgraph/pull/1210)
+- The `mgp::DispatcherGuard` also works as expected now.
+  [#1225](https://github.com/memgraph/memgraph/pull/1225)
 
 
 ## v2.10.1 - Aug 22, 2023
