@@ -21,8 +21,16 @@ import VideoBySide from '@site/src/components/VideoBySide';
   ```
   [#1183](https://github.com/memgraph/memgraph/pull/1183)
 - The default value of `--bolt-server-name-for-init` is now `Neo4j/v5.11.0
-  compatible graph database server - Memgraph`.
-  [#1183](https://github.com/memgraph/memgraph/pull/1183)
+  compatible graph database server - Memgraph`. [#1183](https://github.com/memgraph/memgraph/pull/1183)
+- If a certain graph object is changed multiple times as a part of one of many
+  parallel transactions, the delta chain tracking its changes becomes very long.
+  Every other parallel transaction dependent on that object needs to access and
+  process that delta chain to get its correct state, which can be very expensive
+  regarding CPU usage. Now, Memgraph is caching delta chains of 128 or more
+  changes that need to be frequently accessed, which eliminates the need of
+  processing the chain and improves performance. If you would benefit from
+  changing at what length the delta chain should be cashed, adjust the value of
+  the `--delta-chain-cache-threshold` configuration flag. [#1124](https://github.com/memgraph/memgraph/pull/1124)   
 - During recovery from a snapshot, the recovery of each graph object or property
   is no longer logged in the TRACE setting. The log now only indicates the
   recovery progress. [#1054](https://github.com/memgraph/memgraph/pull/1054)
