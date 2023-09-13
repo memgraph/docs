@@ -22,15 +22,17 @@ import VideoBySide from '@site/src/components/VideoBySide';
   [#1183](https://github.com/memgraph/memgraph/pull/1183)
 - The default value of `--bolt-server-name-for-init` is now `Neo4j/v5.11.0
   compatible graph database server - Memgraph`. [#1183](https://github.com/memgraph/memgraph/pull/1183)
-- If a certain graph object is changed multiple times as a part of one of many
-  parallel transactions, the delta chain tracking its changes becomes very long.
-  Every other parallel transaction dependent on that object needs to access and
-  process that delta chain to get its correct state, which can be very expensive
-  regarding CPU usage. Now, Memgraph is caching delta chains of 128 or more
-  changes that need to be frequently accessed, which eliminates the need of
-  processing the chain and improves performance. If you would benefit from
-  changing at what length the delta chain should be cashed, adjust the value of
-  the `--delta-chain-cache-threshold` configuration flag. [#1124](https://github.com/memgraph/memgraph/pull/1124)   
+- When working at a snapshot isolation level, if a certain graph object is
+  changed multiple times as a part of one of many parallel transactions, the
+  delta chain tracking its changes becomes very long. Every other parallel
+  transaction dependent on that object needs to access and process that delta
+  chain to get its correct state, which can be very expensive regarding CPU
+  usage. Now, Memgraph is caching delta chains of 128 or more changes that need
+  to be frequently accessed, which eliminates the need of processing the chain
+  and improves performance. If you would benefit from changing at what length
+  the delta chain should be cashed, adjust the value of the
+  `--delta-chain-cache-threshold` configuration flag.
+  [#1124](https://github.com/memgraph/memgraph/pull/1124)   
 - During recovery from a snapshot, the recovery of each graph object or property
   is no longer logged in the TRACE setting. The log now only indicates the
   recovery progress. [#1054](https://github.com/memgraph/memgraph/pull/1054)
@@ -64,6 +66,10 @@ import VideoBySide from '@site/src/components/VideoBySide';
   expanding nodes instead of scanning both source and destination nodes and
   then expanding to the relationship between them.
   [#1085](https://github.com/memgraph/memgraph/pull/1085)
+- The expansion of node is no longer only done from left to right. Depending on
+  the previous executions and how many relationships needed to be check on
+  MERGE, the engine knows the fewest vector necessary to expand.
+  [#1110](https://github.com/memgraph/memgraph/pull/1110)
 - Users can now call `ToString()` method on `mgp::Value` and Memgraph's data
   types when writing query modules using [C++
   API](/reference-guide/query-modules/implement-custom-query-modules/api/cpp-api.md).
@@ -76,6 +82,15 @@ import VideoBySide from '@site/src/components/VideoBySide';
   nodes with `mgp::Graph.SetFrom` and `mgp::Graph.SetTo` methods.
 - `SHOW INDEX INFO` now displays index information in alphabetic order for
   easier orientation. [#1178](https://github.com/memgraph/memgraph/pull/1178)
+- The performance of `DETACH DELETE` query has been improved.
+  [#1078](https://github.com/memgraph/memgraph/pull/1078)
+- The `PROFILE` query now generates a table with operators in the same order as
+  in the plan constructed with the `EXPLAIN` query.
+  [#1024](https://github.com/memgraph/memgraph/pull/1204)
+- The import of relationships in on-disk storage mode can be improved by
+  switching to `READ ONLY VERTEX MODE;`.
+  [#1157](https://github.com/memgraph/memgraph/pull/1157).
+
 
 ### Bug fixes
 
