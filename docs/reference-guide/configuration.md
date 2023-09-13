@@ -32,7 +32,7 @@ per-database configuration.
 | --bolt-key-file= | Key file which should be used for the Bolt server. | `[string]` |
 | --bolt-num-workers= | Number of workers used by the Bolt server. <br/>By default, this will be the number of processing units available on the machine. | `[int32]` |
 | --bolt-port=7687 | Port on which the Bolt server should listen. | `[int32]` |
-| --bolt-server-name-for-init= | Server name which the database should send to the client in the Bolt INIT message. | `[string]` |
+| --bolt-server-name-for-init=Neo4j/v5.11.0 compatible graph database server - Memgraph | Server name which the database should send to the client in the Bolt INIT message. | `[string]` |
 | --bolt-session-inactivity-timeout=1800 | Time in seconds after which inactive Bolt sessions will be closed. | `[int32]` |
 
 :::note
@@ -111,6 +111,38 @@ workers simultaneously.
 | MEMGRAPH_USER        | Username     | `[string]`     |
 | MEMGRAPH_PASSWORD    | User password       | `[string]`     |
 | MEMGRAPH_PASSFILE    | Path to file that contains username and password for creating user. Data in file should be in format `username:password` if your username or password contains  `:` just add `\` before for example `us\:ername:password` | `[string]`     |
+
+## Runtime settings
+
+Memgraph contains settings that can be modified during runtime using a query. All the settings
+are persisted between multiple runs.
+
+| Setting name   | Description    |
+| -------------- | -------------- |
+| organization.name | Name of the organization using the instance of Memgraph (used for verifying the license key). |
+| enterprise.license | License key for Memgraph Enterprise. |
+| server.name | Bolt server name |
+| query.timeout | Maximum allowed query execution time. Value of 0 means no limit. |
+| log.level | Minimum log level. Allowed values: TRACE, DEBUG, INFO, WARNING, ERROR, CRITICAL. |
+| log.to_stderr | Log messages go to `stderr` in addition to `logfiles`. |
+
+All settings can be fetched by calling the following query:
+
+```opencypher
+SHOW DATABASE SETTINGS;
+```
+
+To check the value of a single setting you can use a slightly different query:
+
+```opencypher
+SHOW DATABASE SETTING 'setting.name';
+```
+
+If you want to change a value for a specific setting, following query should be used:
+
+```opencypher
+SET DATABASE SETTING 'setting.name' TO 'some-value';
+```
 
 ## Additional configuration inclusion
 

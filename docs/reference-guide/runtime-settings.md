@@ -12,7 +12,11 @@ All the settings are persisted between multiple runs.
 | Setting name   | Description    |
 | -------------- | -------------- |
 | organization.name | Name of the organization using the instance of Memgraph (used for verifying the license key). |
-| enterprise.license | License key for Memgraph Enterprise |
+| enterprise.license | License key for Memgraph Enterprise. |
+| server.name | Bolt server name |
+| query.timeout | Maximum allowed query execution time. Value of 0 means no limit. |
+| log.level | Minimum log level. Allowed values: TRACE, DEBUG, INFO, WARNING, ERROR, CRITICAL. |
+| log.to_stderr | Log messages go to `stderr` in addition to `logfiles`. |
 
 
 ## Checking and modifying settings
@@ -29,5 +33,5 @@ SHOW DATABASE SETTING 'setting.name';
 
 If you want to change a value for a specific setting, following query should be used:
 ```opencypher
-SET DATABASE SETTING 'setting.name' TO 'some-string-value';
+SET DATABASE SETTING 'setting.name' TO 'some-value';
 ```
