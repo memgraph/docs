@@ -89,7 +89,7 @@ workers simultaneously.
 | --allow-load-csv=true | Controls whether LOAD CSV clause is allowed in queries. | `[bool]` |
 | --also-log-to-stderr=false | Log messages go to stderr in addition to logfiles. | `[bool]` |
 | --data-directory=/var/lib/memgraph | Path to directory in which to save all permanent data. | `[string]` |
-| --delta-chain-cache-threshold=128 | The minimum number of deltas worth caching when rebuilding a certain object's state. Must be a positive non-zero integer. | `[uint64]` |
+| --delta-chain-cache-threshold=128 | When working at snapshot isolation level, the minimum number of deltas worth caching when rebuilding a certain object's state. Useful when executing parallel transactions dependant on changes of a frequently changed graph object, to lower CPU usage. Must be a positive non-zero integer. | `[uint64]` |
 | --data_recovery_on_startup=true | Facilitates recovery of one or more individual databases and their contents during startup. Replaces `--storage-recover-on-startup` | `[bool]` |
 | --init-file | Path to the CYPHERL file which contains queries that need to be executed before the Bolt server starts, such as creating users. | `[string]` |
 | --init-data-file | Path to the CYPHERL file, which contains queries that need to be executed after the Bolt server starts. | `[string]` |
