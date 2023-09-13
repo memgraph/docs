@@ -32,6 +32,114 @@ The `refactor` module provides utilities for changing nodes and relationships.
 
 ### Procedures
 
+### `from(relationship, new_from)`
+
+Redirect the relationship to use a new start (from) node.
+
+#### Input:
+
+- `relationship: Relationship` ➡ the relationship to be modified.
+- `new_from: Node` ➡ new start (from) node.
+
+#### Output:
+
+- `relationship` - the modified relationship.
+
+#### Usage:
+
+```cypher
+MERGE (ivan:Person {name: "Ivan"}) MERGE (matija:Person {name: "Matija"}) MERGE (diora:Person {name:"Idora"}) CREATE (ivan)-[:Friends]->(matija);
+```
+The following query changes the the relationship `Ivan ➡ Matija` to `Idora ➡ Matija`.
+```cypher
+MATCH (:Person {name: "Ivan"})-[rel:Friends]->(:Person {name: "Matija"}) MATCH (idora: Person {name:"Idora"}) CALL refactor.from(rel, idora) YIELD relationship RETURN relationship;
+```
+
+### `to(relationship, new_to)`
+
+Redirect the relationship to use a new end (to) node.
+
+#### Input:
+
+- `relationship: Relationship` ➡ the relationship to be modified.
+- `new_to: Node` ➡ new end (to) node.
+
+#### Output:
+
+- `relationship` - the modified relationship.
+
+#### Usage:
+
+```cypher
+MERGE (ivan:Person {name: "Ivan"}) MERGE (matija:Person {name: "Matija"}) MERGE (diora:Person {name:"Idora"}) CREATE (ivan)-[:Friends]->(matija);
+```
+The following query changes the the relationship `Ivan ➡ Matija` to `Ivan ➡ Idora`.
+```cypher
+MATCH (:Person {name: "Ivan"})-[rel:Friends]->(:Person {name: "Matija"}) MATCH (idora: Person {name:"Idora"}) CALL refactor.to(rel, idora) YIELD relationship RETURN relationship;
+```
+
+### `rename_label(old_label, new_label, nodes)`
+
+Rename a label from `old_label` to `new_label` for all nodes. If `nodes` is provided renaming is applied only to the given nodes. If a node doesn't contain the `old_label` the procedure doesn't modify it.
+
+#### Input:
+
+- `old_label: str` ➡ old label name.
+- `new_label: str` ➡ new label name.
+- `nodes: List[Node]` ➡ list of nodes to be modified.
+
+### Output:
+
+- `nodes_changed: int` ➡ number of modified nodes.
+
+#### Usage:
+
+```cypher
+CREATE (:Node1 {title: "Node1"}) CREATE (:Node2 {title: "Node2"}) CREATE (:Node1);
+```
+The following query changes the label of the first node to `Node`
+```cypher
+MATCH(n) WITH collect(n) AS nodes CALL refactor.rename_label("Node1", "Node3", nodes) YIELD nodes_changed RETURN nodes_changed;
+```
+```plaintext
++----------------------------+
+| nodes_changed              |
++----------------------------+
+|    2                       |
++----------------------------+
+```
+
+### `rename_node_property(old_property, new_property, nodes)`
+
+Rename a property from `old_property` to `new_property` for all nodes. If `nodes` is provided renaming is applied only to the given nodes. If a node doesn't contain the `old_property` the procedure doesn't modify it.
+
+#### Input:
+
+- `old_property: str` ➡ old property name.
+- `new_label: str` ➡ new property name.
+- `nodes: List[Node]` ➡ list of nodes to be modified.
+
+### Output:
+
+- `nodes_changed: int` ➡ number of modified nodes.
+
+#### Usage:
+
+```cypher
+CREATE (:Node1 {title: "Node1"}) CREATE (:Node2 {description: "Node2"}) CREATE (:Node3) CREATE (:Node4 {title: "title", description: "description"});
+```
+The following query will modify `Node1` and `Node4`.
+```cypher
+MATCH(n) WITH collect(n) AS nodes CALL refactor.rename_node_property("title", "description", nodes) YIELD nodes_changed RETURN nodes_changed;
+```
+```plaintext
++----------------------------+
+| nodes_changed              |
++----------------------------+
+|    2                       |
++----------------------------+
+```
+
 ### `categorize(original_prop_key, rel_type, is_outgoing, new_label, new_prop_name_key, copy_props_list)`
 
 Generates a new category of nodes based on a specific property key from the existing nodes in the graph. Then, it creates relationships between the original and new category nodes to organize a graph based on these categories.
@@ -85,7 +193,7 @@ Clones specific nodes in the graph, preserving their original labels, properties
 
 ```cypher
 MATCH (a:Person {name: "Ana", age: 22, id:0})
-CALL refactor.clone_nodes([a], False, ["age", "id"]) 
+CALL refactor.clone_nodes([a], False, ["age", "id"])
 YIELD cloned_node_id, new_node RETURN cloned_node_id, new_node;
 ```
 
@@ -235,13 +343,13 @@ CREATE (c:Book {id: 2, name: "BookName2", genre: "Romance"});
 The image below shows the above data as a graph:
 
 <img src={require('../../data/query-modules/cpp/refactor/categorize1.png').default}/>
-    
+
 </TabItem>
 
 <TabItem value="run">
 
 ```cypher
-CALL refactor.categorize('genre', 'GENRE', true, "Genre", "name", ["propertyToCopy"]) 
+CALL refactor.categorize('genre', 'GENRE', true, "Genre", "name", ["propertyToCopy"])
 YIELD status RETURN status;
 ```
 
@@ -277,8 +385,8 @@ The results should be identical to the ones in the graph below, except for the
 You can create a simple graph database by running the following queries:
 
 ```cypher
-CREATE (a:Ana {name: "Ana", age: 22}) 
-CREATE (b:Marija {name: "Marija", age: 20}) 
+CREATE (a:Ana {name: "Ana", age: 22})
+CREATE (b:Marija {name: "Marija", age: 20})
 CREATE (a)-[r:KNOWS]->(b);
 ```
 
@@ -289,7 +397,7 @@ CREATE (a)-[r:KNOWS]->(b);
 The image below shows the above data as a graph:
 
 <img src={require('../../data/query-modules/cpp/refactor/clonenodes1.png').default}/>
-    
+
 </TabItem>
 
 <TabItem value="run">
@@ -330,15 +438,15 @@ The results should be identical to the ones in the graph below, except for the
 You can create a simple graph database by running the following queries:
 
 ```cypher
-MERGE (ana:Ana{name:'Ana'}) 
-MERGE (marija:Marija{name:'Marija'}) 
-MERGE (p2:Person{name:'person2'}) 
-MERGE (p3:Person{name:'person3'}) 
-MERGE (p4:Person{name:'person4'}) 
-MERGE (p5:Person{name:'person5'}) 
-MERGE (p6:Person{name:'person6'}) 
-CREATE (ana)-[:KNOWS]->(p2)-[:KNOWS]->(p3)-[:KNOWS]->(p4) 
-CREATE (p4)<-[:KNOWS]-(p5) 
+MERGE (ana:Ana{name:'Ana'})
+MERGE (marija:Marija{name:'Marija'})
+MERGE (p2:Person{name:'person2'})
+MERGE (p3:Person{name:'person3'})
+MERGE (p4:Person{name:'person4'})
+MERGE (p5:Person{name:'person5'})
+MERGE (p6:Person{name:'person6'})
+CREATE (ana)-[:KNOWS]->(p2)-[:KNOWS]->(p3)-[:KNOWS]->(p4)
+CREATE (p4)<-[:KNOWS]-(p5)
 CREATE (marija)-[:KNOWS]->(p6);
 ```
 
@@ -349,14 +457,14 @@ CREATE (marija)-[:KNOWS]->(p6);
 The image below shows the above data as a graph:
 
 <img src={require('../../data/query-modules/cpp/refactor/clonesubgraph1.png').default}/>
-    
+
 </TabItem>
 
 <TabItem value="run">
 
 ```cypher
 MATCH (ana:Ana),
-      (p2:Person{name: "person2"}),     
+      (p2:Person{name: "person2"}),
       (p3:Person{name: "person3"}),
       (p4:Person{name: "person4"}),
       (p5:Person{name: "person5"})
@@ -371,8 +479,8 @@ YIELD * RETURN *;
 <TabItem value="result">
 
 The results should be identical to the ones in the graph below, except for the
-`id` values, which depend on the internal database `id` values. Note that the 
-whole subgraph was cloned except for node `:Ana` because node `:Marija` was 
+`id` values, which depend on the internal database `id` values. Note that the
+whole subgraph was cloned except for node `:Ana` because node `:Marija` was
 used as its "stand-in" node.
 
 <img src={require('../../data/query-modules/cpp/refactor/clonesubgraph2.png').default}/>
@@ -400,15 +508,15 @@ used as its "stand-in" node.
 You can create a simple graph database by running the following queries:
 
 ```cypher
-MERGE (ana:Ana{name:'Ana'}) 
-MERGE (marija:Marija{name:'Marija'}) 
-MERGE (p2:Person{name:'person2'}) 
-MERGE (p3:Person{name:'person3'}) 
-MERGE (p4:Person{name:'person4'}) 
-MERGE (p5:Person{name:'person5'}) 
-MERGE (p6:Person{name:'person6'}) 
-CREATE (ana)-[:KNOWS]->(p2)-[:KNOWS]->(p3)-[:KNOWS]->(p4) 
-CREATE (p4)<-[:KNOWS]-(p5) CREATE (p5)-[:LOVES]->(p6) 
+MERGE (ana:Ana{name:'Ana'})
+MERGE (marija:Marija{name:'Marija'})
+MERGE (p2:Person{name:'person2'})
+MERGE (p3:Person{name:'person3'})
+MERGE (p4:Person{name:'person4'})
+MERGE (p5:Person{name:'person5'})
+MERGE (p6:Person{name:'person6'})
+CREATE (ana)-[:KNOWS]->(p2)-[:KNOWS]->(p3)-[:KNOWS]->(p4)
+CREATE (p4)<-[:KNOWS]-(p5) CREATE (p5)-[:LOVES]->(p6)
 CREATE (marija)-[:KNOWS]->(p6);
 ```
 
@@ -419,7 +527,7 @@ CREATE (marija)-[:KNOWS]->(p6);
 The image below shows the above data as a graph:
 
 <img src={require('../../data/query-modules/cpp/refactor/clonesubgraphpath1.png').default}/>
-    
+
 </TabItem>
 
 <TabItem value="run">
@@ -441,8 +549,8 @@ RETURN cloned_node_id, new_node;
 <TabItem value="result">
 
 The results should be identical to the ones in the graph below, except for the
-`id` values, which depend on the internal database `id` values. Note that the 
-whole subgraph was cloned except for the node `:Ana` because node `:Marija` was 
+`id` values, which depend on the internal database `id` values. Note that the
+whole subgraph was cloned except for the node `:Ana` because node `:Marija` was
 used as its "stand-in" node.
 
 <img src={require('../../data/query-modules/cpp/refactor/clonesubgraphpath2.png').default}/>
