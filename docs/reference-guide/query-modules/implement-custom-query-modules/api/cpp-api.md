@@ -645,6 +645,8 @@ Node(Node &&other) noexcept
 | `SetProperty`      | Set value of node's property                                        |
 | `GetProperty`      | Get value of node's property                                        |
 | `RemoveProperty`   | Removes the node's property                                         |
+| `InDegree`         | Get the in degree of the node.                                      |
+| `OutDegree`        | Get the out degree of the node.                                     |
 | `ToString`         | Returns the node's string representation.                           |
 
 ##### Id
@@ -735,6 +737,21 @@ Removes a label from a node.
 void RemoveLabel(const std::string_view label)
 ```
 
+##### InDegree
+
+Returns the in degree of a node.
+
+```cpp
+size_t InDegree() const
+```
+
+##### OutDegree
+
+Returns the out degree of a node.
+
+```cpp
+size_t OutDegree() const
+```
 
 ##### ToString
 
@@ -743,6 +760,7 @@ Returns the node's string representation, which has this format: "(id: `node_id`
 ```cpp
 const std::string ToString() const
 ```
+
 #### Operators
 
 | Name                                          | Description                                               |
