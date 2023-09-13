@@ -19,6 +19,10 @@ import VideoBySide from '@site/src/components/VideoBySide';
   SET DATABASE SETTING 'log.level' TO 'TRACE';
   SET DATABASE SETTING 'log.to_stderr' TO 'true`;
   ```
+  [#1183](https://github.com/memgraph/memgraph/pull/1183)
+- The default value of `--bolt-server-name-for-init` is now `Neo4j/v5.11.0
+  compatible graph database server - Memgraph`.
+  [#1183](https://github.com/memgraph/memgraph/pull/1183)
 - During recovery from a snapshot, the recovery of each graph object or property
   is no longer logged in the TRACE setting. The log now only indicates the
   recovery progress. [#1054](https://github.com/memgraph/memgraph/pull/1054)
