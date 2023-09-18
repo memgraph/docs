@@ -55,6 +55,7 @@ module.exports = {
         "query-modules/python/meta-util",
         "query-modules/python/migrate",
         "query-modules/cpp/neighbors",
+        "query-modules/cpp/node",
         "query-modules/python/node-classification-with-gnn",
         "query-modules/python/node2vec",
         "query-modules/python/node2vec-online",
