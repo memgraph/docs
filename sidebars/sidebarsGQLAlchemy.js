@@ -2,32 +2,21 @@ module.exports = {
   gqlalchemy: [
     "getting-started",
     "installation",
+    "import-data",
     {
       type: "category",
       label: "How-to guides",
       link: { type: "doc", id: "how-to-guides/overview" },
       items: [
         {
-          type: "category",
+          type: "doc",
           label: "Use object graph mapper",
-          items: [
-            "how-to-guides/ogm/map-nodes-and-relationships",
-            "how-to-guides/ogm/save-nodes-and-relationships",
-            "how-to-guides/ogm/load-nodes-and-relationships",
-            "how-to-guides/ogm/index-labels-and-properties",
-          ],
+          id: "how-to-guides/ogm",
         },
         {
-          type: "category",
+          type: "doc",
           label: "Use query builder",
-          items: [
-            "how-to-guides/query-builder/create-nodes-relationships",
-            "how-to-guides/query-builder/return-results",
-            "how-to-guides/query-builder/filter-data",
-            "how-to-guides/query-builder/call-procedures",
-            "how-to-guides/query-builder/delete-remove-objects",
-            "how-to-guides/query-builder/set-or-update-objects",
-          ],
+          id: "how-to-guides/query-builder",
         },
         {
           type: "category",
@@ -55,8 +44,17 @@ module.exports = {
         },
         "how-to-guides/triggers/triggers",
         "how-to-guides/on-disk-storage/on-disk-storage",
-        "how-to-guides/networkx"
+        "how-to-guides/query-builder/graph-projection",
+        {
+          type: "category",
+          label: "Translate Python graphs",
+          items: [
+            "how-to-guides/translators/import-python-graphs",
+            "how-to-guides/translators/export-python-graphs"
+          ],
+        },
       ],
+
     },
     /*
     {
@@ -76,39 +74,84 @@ module.exports = {
         slug: "/reference",
       },
       items: [
-        "reference/disk_storage",
-        "reference/instance_runner",
-        "reference/loaders",
-        "reference/models",
-        "reference/transformations",
-        "reference/utilities",
+
         {
-          type: "category",
-          label: "graph_algorithms",
           items: [
             "reference/graph_algorithms/integrated_algorithms",
             "reference/graph_algorithms/query_builder",
-            "reference/graph_algorithms/query_modules",
+            "reference/graph_algorithms/query_modules"
           ],
+          label: "graph_algorithms",
+          type: "category"
         },
         {
-          type: "category",
-          label: "query_builders",
           items: [
             "reference/query_builders/declarative_base",
-            "reference/query_builders/memgraph_query_builder",
+            "reference/query_builders/memgraph_query_builder"
           ],
+          label: "query_builders",
+          type: "category"
         },
         {
-          type: "category",
-          label: "vendors",
+          items: [
+            {
+              items: [
+                "reference/transformations/export/graph_transporter",
+                "reference/transformations/export/transporter"
+              ],
+              label: "transformations.export",
+              type: "category"
+            },
+            {
+              items: [
+                "reference/transformations/importing/graph_importer",
+                "reference/transformations/importing/loaders"
+              ],
+              label: "transformations.importing",
+              type: "category"
+            },
+            {
+              items: [
+                "reference/transformations/translators/dgl_translator",
+                "reference/transformations/translators/nx_translator",
+                "reference/transformations/translators/pyg_translator",
+                "reference/transformations/translators/translator"
+              ],
+              label: "transformations.translators",
+              type: "category"
+            }
+          ],
+          label: "transformations",
+          type: "category"
+        },
+        {
           items: [
             "reference/vendors/database_client",
             "reference/vendors/memgraph",
-            "reference/vendors/neo4j",
+            "reference/vendors/neo4j"
           ],
+          label: "vendors",
+          type: "category"
         },
+        "reference/connection",
+        "reference/disk_storage",
+        "reference/exceptions",
+        "reference/instance_runner",
+        "reference/models",
+        "reference/utilities"
       ],
+    },
+    {
+      type: "category",
+      label: "Under the hood",
+      link: { type: "doc", id: "under-the-hood/overview" },
+      items: [
+        {
+          type: "doc",
+          label: "Python graphs",
+          id: "under-the-hood/python-graph-translators",
+        },
+      ]
     },
     "changelog",
   ],

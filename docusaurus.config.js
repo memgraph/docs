@@ -242,5 +242,4 @@ module.exports = {
     ],
   ],
   plugins: ["docusaurus-plugin-sass"],
-  clientModules: [require.resolve("./src/components/analyticsCall.js")],
 };

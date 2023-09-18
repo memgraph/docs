@@ -67,14 +67,14 @@ module.exports = {
           label: "Drivers",
           link: { type: "doc", id: "connect-to-memgraph/drivers/overview" },
           items: [
+            "connect-to-memgraph/drivers/c-sharp",
+            "connect-to-memgraph/drivers/go",
+            "connect-to-memgraph/drivers/java",
+            "connect-to-memgraph/drivers/javascript",
+            "connect-to-memgraph/drivers/nodejs",
+            "connect-to-memgraph/drivers/php",
             "connect-to-memgraph/drivers/python",
             "connect-to-memgraph/drivers/rust",
-            "connect-to-memgraph/drivers/c-sharp",
-            "connect-to-memgraph/drivers/java",
-            "connect-to-memgraph/drivers/go",
-            "connect-to-memgraph/drivers/nodejs",
-            "connect-to-memgraph/drivers/javascript",
-            "connect-to-memgraph/drivers/php",
           ],
         },
         "connect-to-memgraph/websocket",
@@ -114,6 +114,7 @@ module.exports = {
         },
       ],
     },
+    "export-data/overview",
     {
       type: "category",
       label: "Tutorials",
@@ -123,6 +124,7 @@ module.exports = {
         "tutorials/install-memgraph-windows-10",
         "tutorials/graph-modeling",
         "tutorials/migrate-relational-database",
+        "tutorials/migrate-from-neo4j",
         {
           type: "category",
           label: "Exploring datasets with graph analytics",
@@ -160,17 +162,20 @@ module.exports = {
             "how-to-guides/constraints/uniqueness-constraint",
           ],
         },
-        "how-to-guides/networkx",
+        "how-to-guides/managing-python-environment",
         "how-to-guides/replication",
+        "how-to-guides/set-up-triggers",
         "how-to-guides/font-awesome-for-node-images",
         "how-to-guides/query-modules",
         "how-to-guides/encryption",
+        "how-to-guides/networkx",
         "how-to-guides/work-with-docker",
         "how-to-guides/indexes",
-        "how-to-guides/set-up-triggers",
+        "how-to-guides/use-init-flags",
         {
           type: "category",
           label: "Enterprise features",
+          link: { type: "doc", id: "how-to-guides/enterprise-features" },
           items: [
             "how-to-guides/manage-users-using-ldap",
             "how-to-guides/manage-user-privileges",
@@ -184,6 +189,7 @@ module.exports = {
       label: "Reference guide",
       link: { type: "doc", id: "reference-guide/overview" },
       items: [
+        "reference-guide/analyze-graph",
         "reference-guide/built-in-graph-algorithms",
         "reference-guide/memory-control",
         "reference-guide/configuration",
@@ -220,6 +226,7 @@ module.exports = {
               link: { type: "doc", id: "reference-guide/query-modules/implement-custom-query-modules/overview" },
               items: [
                 "reference-guide/query-modules/implement-custom-query-modules/api/python-api",
+                "reference-guide/query-modules/implement-custom-query-modules/api/mock-python-api",
                 "reference-guide/query-modules/implement-custom-query-modules/api/c-api",
                 "reference-guide/query-modules/implement-custom-query-modules/api/cpp-api",
                 "reference-guide/query-modules/implement-custom-query-modules/custom-query-module-example",
@@ -232,6 +239,7 @@ module.exports = {
         "reference-guide/replication",
         "reference-guide/runtime-settings",
         "reference-guide/server-stats",
+        "reference-guide/storage-modes",
         {
           type: "category",
           label: "Streams",
@@ -255,14 +263,17 @@ module.exports = {
         {
           type: "category",
           label: "Enterprise features",
+          link: { type: "doc", id: "reference-guide/enterprise-features" },
           items: [
             "reference-guide/enabling-enterprise",
             "reference-guide/audit-log",
             "reference-guide/auth-module",
+            "reference-guide/exposing-system-metrics",
             "reference-guide/ldap-security",
+            "reference-guide/multi-tenancy",
             "reference-guide/security",
           ],
-        }
+        },
       ],
     },
     {
