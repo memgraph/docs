@@ -1,3 +1,8 @@
+Memgraph's documentation has been transfered to the [`memgraph/documentation`](https://github.com/memgraph/documentation) repository. For that reason the `docs` repository has been **archived**. 
+
+The DX team
+September 18th, 2023
+
 <h1 align="center"><a href="https://memgraph.com/docs/">Memgraph Documentation</a></h1>
 
 <p align="center">
