@@ -1,0 +1,162 @@
+---
+id: overview
+title: Install Memgraph
+sidebar_label: Install Memgraph overview
+slug: /installation
+---
+
+import Container from "@site/src/components/container-docs/container-docs";
+import styles from "@site/src/css/import-data-docs.module.css";
+import useBaseUrl from "@docusaurus/useBaseUrl";
+import ConnectButton from "@site/src/components/connect-button/connect-button";
+import ThemedImage from "@theme/ThemedImage";
+
+export default function InstallMemgraph() {
+  const imgFolder = "img/installation/";
+  const viaLinuxLogo = {
+    title: "Linux#",
+    img: useBaseUrl(imgFolder + "linux-logo.svg"),
+    imgDark: useBaseUrl(imgFolder + "dark/linux-logo-dark.svg"),
+  };
+  const viaMacOSLogo = {
+    title: "MacOS#",
+    img: useBaseUrl(imgFolder + "macos-logo.svg"),
+    imgDark: useBaseUrl(imgFolder + "dark/macos-logo-dark.svg"),
+  };
+  const viaWindowsLogo = {
+    title: "Windows#",
+    img: useBaseUrl(imgFolder + "windows-logo.svg"),
+    imgDark: useBaseUrl(imgFolder + "dark/windows-logo-dark.svg"),
+  };
+  return (
+     <Container size="small">
+      <div className={styles.connectToMemgraph}>
+        <section>
+          <p>
+          Install <b>Memgraph Platform</b> and get the complete streaming graph application platform that includes:
+          </p>
+          <ul>
+            <li>
+              <b>MemgraphDB</b> - the database that holds your data
+            </li>
+            <li>
+              <b>Memgraph Lab</b> - visual user interface for running queries and visualizing graph data
+            </li>
+            <li>
+              <b>mgconsole</b> - command-line interface for running queries
+            </li>
+            <li>
+              <b>MAGE</b> - graph algorithms and modules library
+            </li>
+          </ul>
+          <p>
+          Scroll down to the operating system of your choosing and install <b>Memgraph Platform</b> with Docker. If you only need to install a database instance, install MemgraphDB with Docker or some other available installation option.
+          </p>
+          <p>
+          You don't want to bother with installation? Done! <a href='/memgraph-cloud'><b>Memgraph Cloud</b></a> at your service - register and run an instance in few easy steps.
+          </p>
+        </section>
+        <section>
+          <h2>Windows</h2>
+            <div class="row">
+              <div class="column">
+              <a style={{'paddingRight':'60px', 'paddingLeft':'20px'}}>
+                <ThemedImage
+                  alt={viaWindowsLogo.title}
+                  sources={{
+                    light:useBaseUrl(viaWindowsLogo.img),
+                    dark:useBaseUrl(viaWindowsLogo.imgDark),
+                  }}
+                />
+              </a>
+              </div>
+              <div class="column" style={{'paddingRight':'60px'}}>
+                <p><b>Install Memgraph Platform (recommended)</b></p>
+                  <ul>
+                    <li><a href='install-memgraph-on-windows-docker'><b>Docker</b></a></li>
+                  </ul>
+              </div>
+              <div class="column">
+                <p><b>Install MemgraphDB</b></p>
+                <ul>
+                  <li><a href='install-memgraph-db-on-windows-docker'><b>Docker</b></a></li>
+                  <li><a href='install-memgraph-on-windows-wsl'><b>Windows Subsystem for Linux (WSL)</b></a></li>
+                </ul>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>macOS</h2>
+            <div class="row">
+              <div class="column">
+                <a style={{'paddingRight':'60px', 'paddingLeft':'20px'}}>
+                  <ThemedImage
+                    alt={viaMacOSLogo.title}
+                    sources={{
+                      light:useBaseUrl(viaMacOSLogo.img),
+                      dark:useBaseUrl(viaMacOSLogo.imgDark),
+                    }}
+                  />
+                </a>
+              </div>
+              <div class="column" style={{'paddingRight':'60px'}}>
+                <p><b>Install Memgraph Platform (recommended)</b></p>
+                <ul>
+                  <li><a href='install-memgraph-on-macos-docker'><b>Docker</b></a></li>
+                </ul>
+              </div>
+              <div class="column">
+                <p><b>Install MemgraphDB</b></p>
+                <ul>
+                  <li><a href='install-memgraph-db-on-macos-docker'><b>Docker</b></a></li>
+                </ul>
+              </div>
+            </div>
+        </section>
+        <section>
+          <h2>Linux</h2>
+            <div class="row">
+              <div class="column">
+                <a style={{'paddingRight':'60px', 'paddingLeft':'20px'}}>
+                  <ThemedImage
+                    alt={viaLinuxLogo.title}
+                    sources={{
+                      light:useBaseUrl(viaLinuxLogo.img),
+                      dark:useBaseUrl(viaLinuxLogo.imgDark),
+                    }}
+                />
+                </a>
+              </div>
+              <div class="column">
+                <p><b>Install Memgraph Platform (recommended)</b>
+                </p>
+                <ul>
+                  <li><a href='install-memgraph-on-linux-docker'><b>Docker</b></a></li>
+                </ul>
+              </div>
+              <div class="column" style={{'paddingLeft':'60px'}}>
+                <p><b>Install MemgraphDB</b></p>
+                <ul>
+                  <li><a href='install-memgraph-db-on-linux-docker'><b>Docker</b></a></li>
+                  <li><a href='install-memgraph-on-ubuntu'><b>Ubuntu</b></a></li>
+                  <li><a href='install-memgraph-on-debian'><b>Debian</b></a></li>
+                  <li><a href='install-memgraph-from-rpm'><b>RPM package</b></a></li>
+                </ul>
+              </div>
+            </div>
+        </section>
+        <p class="warning-style-for-html">Newer versions of Memgraph <b>might not be backward compatible</b> with older versions and you might not be able to load storage snapshots between different versions. In that case, please contact the Memgraph team at tech@memgraph.com and we'll help with the migration as much as possible.</p>
+        <section>
+          <h2>Available Memgraph Docker images</h2>
+            <ul>
+              <li><a href='https://hub.docker.com/r/memgraph/memgraph/tags'><b>memgraph/memgraph</b></a> includes MemgraphDB and mgconsole</li> 
+              <li><a href='https://hub.docker.com/r/memgraph/memgraph-mage/tags'><b>memgraph/memgraph-mage</b></a> includes MemgraphDB, mgconsole and MAGE (check the <a href='/mage/installation'>docs</a>)
+                  <ul><li><a href='https://hub.docker.com/r/memgraph/memgraph-mage/tags?page=1&name=cugraph'><b>memgraph/memgraph-mage + cuGraph</b></a> - includes MemgraphDB, mgconsole, MAGE and NVIDIA cuGraph GPU-powered graph algorithms</li></ul>
+                </li>
+              <li><a href='https://hub.docker.com/r/memgraph/memgraph-platform/tags'><b>memgraph/memgraph-platform</b></a> includes MemgraphDB, mgconsole, MAGE and Memgraph Lab</li>
+            </ul>
+        </section>
+      </div>
+    </Container>
+  );
+}

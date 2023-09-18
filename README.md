@@ -1,8 +1,13 @@
-<h1 align="center"><a href="http://memgraph.com/docs/">Memgraph Documentation</a></h1>
+Memgraph's documentation has been transfered to the [`memgraph/documentation`](https://github.com/memgraph/documentation) repository. For that reason the `docs` repository has been **archived**.
+
+The DX team <br/>
+September 18th, 2023
+
+<h1 align="center"><a href="https://memgraph.com/docs/">Memgraph Documentation</a></h1>
 
 <p align="center">
-  <a href="https://github.com/memgraph/memgraph">
-    <img src="https://img.shields.io/github/workflow/status/memgraph/docs/Deploy%20to%20GitHub%20Pages" alt="build" title="build"/>
+  <a href="https://github.com/memgraph/docs">
+    <img src="https://img.shields.io/github/actions/workflow/status/memgraph/docs/deploy.yml" alt="build" title="build"/>
   </a>
   <a href="https://memgraph.com/docs/" alt="Documentation">
     <img src="https://img.shields.io/badge/documentation-Memgraph-orange" />
