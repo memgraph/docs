@@ -71,7 +71,8 @@ module.exports = {
         "query-modules/python/union-find",
         "query-modules/cpp/uuid-generator",
         "query-modules/python/vrp",
-        "query-modules/cpp/weakly-connected-components"
+        "query-modules/cpp/weakly-connected-components",
+        "query-modules/python/xml_module"
       ],
     },
     {
