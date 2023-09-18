@@ -1,12 +1,10 @@
- import React from 'react';
- import DocItemFooterOriginal from '@theme-original/DocItemFooter';
- import DocsRating from '../../components/docs-rating/docs-rating';
+import React from "react";
+import DocItemFooterOriginal from "@theme-original/DocItemFooter";
 
- export default function DocItemFooter(props) {
-   return (
-     <>
-       <DocsRating label={props.content.metadata.unversionedId} />
-       <DocItemFooterOriginal {...props} />
-     </>
-   );
- }
+export default function DocItemFooter(props) {
+  return (
+    <>
+      <DocItemFooterOriginal {...props} />
+    </>
+  );
+}
