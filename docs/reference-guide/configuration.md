@@ -32,7 +32,7 @@ per-database configuration.
 | --bolt-key-file= | Key file which should be used for the Bolt server. | `[string]` |
 | --bolt-num-workers= | Number of workers used by the Bolt server. <br/>By default, this will be the number of processing units available on the machine. | `[int32]` |
 | --bolt-port=7687 | Port on which the Bolt server should listen. | `[int32]` |
-| --bolt-server-name-for-init= | Server name which the database should send to the client in the Bolt INIT message. | `[string]` |
+| --bolt-server-name-for-init=Neo4j/v5.11.0 compatible graph database server - Memgraph | Server name which the database should send to the client in the Bolt INIT message. | `[string]` |
 | --bolt-session-inactivity-timeout=1800 | Time in seconds after which inactive Bolt sessions will be closed. | `[int32]` |
 
 :::note
@@ -89,6 +89,7 @@ workers simultaneously.
 | --allow-load-csv=true | Controls whether LOAD CSV clause is allowed in queries. | `[bool]` |
 | --also-log-to-stderr=false | Log messages go to stderr in addition to logfiles. | `[bool]` |
 | --data-directory=/var/lib/memgraph | Path to directory in which to save all permanent data. | `[string]` |
+| --delta-chain-cache-threshold=128 | When working at snapshot isolation level, the minimum number of deltas worth caching when rebuilding a certain object's state. Useful when executing parallel transactions dependant on changes of a frequently changed graph object, to lower CPU usage. Must be a positive non-zero integer. | `[uint64]` |
 | --data_recovery_on_startup=true | Facilitates recovery of one or more individual databases and their contents during startup. Replaces `--storage-recover-on-startup` | `[bool]` |
 | --init-file | Path to the CYPHERL file which contains queries that need to be executed before the Bolt server starts, such as creating users. | `[string]` |
 | --init-data-file | Path to the CYPHERL file, which contains queries that need to be executed after the Bolt server starts. | `[string]` |
@@ -110,7 +111,40 @@ workers simultaneously.
 | -------------- | -------------- | -------------- |
 | MEMGRAPH_USER        | Username     | `[string]`     |
 | MEMGRAPH_PASSWORD    | User password       | `[string]`     |
-| MEMGRAPH_PASSFILE    | Path to file that contains username and password for creating user. Data in file should be in format `username:password` if your username or password contains  `:` just add `\` before for example `us\:ername:password` | `[string]`     |
+| MEMGRAPH_PASSFILE    | Path to file that contains username and password for creating user. Data in file should be in format `username:password` if your username or password contains  `:` just add `\` before for example `us\:ername:password` | `[string]` |
+
+## Runtime settings
+
+Memgraph contains settings that can be modified during runtime using a query.
+Some runtime settings are persisted between multiple runs, while others will
+fallback to the value of the command-line argument. 
+
+| Setting name   | Description    | Persistent between runs |
+| -------------- | -------------- | ----------------------- |
+| organization.name | Name of the organization using the instance of Memgraph (used for verifying the license key). | yes |
+| enterprise.license | License key for Memgraph Enterprise. | yes |
+| server.name | Bolt server name. | yes |
+| query.timeout | Maximum allowed query execution time. Value of 0 means no limit. | yes |
+| log.level | Minimum log level. Allowed values: TRACE, DEBUG, INFO, WARNING, ERROR, CRITICAL. | no |
+| log.to_stderr | Log messages go to `stderr` in addition to `logfiles`. | no |
+
+All settings can be fetched by calling the following query:
+
+```opencypher
+SHOW DATABASE SETTINGS;
+```
+
+To check the value of a single setting you can use a slightly different query:
+
+```opencypher
+SHOW DATABASE SETTING 'setting.name';
+```
+
+If you want to change a value for a specific setting, following query should be used:
+
+```opencypher
+SET DATABASE SETTING 'setting.name' TO 'some-value';
+```
 
 ## Additional configuration inclusion
 
