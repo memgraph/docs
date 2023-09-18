@@ -6,6 +6,105 @@ sidebar_label: Changelog
 
 import VideoBySide from '@site/src/components/VideoBySide';
 
+## v2.11 - Sep 13, 2023
+
+### New features and improvements
+
+- The following configurational settings can now be changed during runtime:
+  server name, query execution timeout, log level and the option to log to
+  `stderr`. Use the following queries to set the configuration: 
+  ```
+  SET DATABASE SETTING 'server.name' TO 'new-name';
+  SET DATABASE SETTING 'query.timeout' TO '100';
+  SET DATABASE SETTING 'log.level' TO 'TRACE';
+  SET DATABASE SETTING 'log.to_stderr' TO 'true`;
+  ```
+  [#1183](https://github.com/memgraph/memgraph/pull/1183)
+- The default value of `--bolt-server-name-for-init` is now `Neo4j/v5.11.0
+  compatible graph database server - Memgraph`. [#1183](https://github.com/memgraph/memgraph/pull/1183)
+- When working at a snapshot isolation level, if a certain graph object is
+  changed multiple times as a part of one of many parallel transactions, the
+  delta chain tracking its changes becomes very long. Every other parallel
+  transaction dependent on that object needs to access and process that delta
+  chain to get its correct state, which can be very expensive regarding CPU
+  usage. Now, Memgraph is caching delta chains of 128 or more changes that need
+  to be frequently accessed, which eliminates the need of processing the chain
+  and improves performance. If you would benefit from changing at what length
+  the delta chain should be cashed, adjust the value of the
+  `--delta-chain-cache-threshold` configuration flag.
+  [#1124](https://github.com/memgraph/memgraph/pull/1124)   
+- During recovery from a snapshot, the recovery of each graph object or property
+  is no longer logged in the TRACE setting. The log now only indicates the
+  recovery progress. [#1054](https://github.com/memgraph/memgraph/pull/1054)
+- Updating indices and constraints has been streamlined, significantly improving
+  execution time for everybody making heavy use of them.
+  [#1159](https://github.com/memgraph/memgraph/pull/1159) [#1142](https://github.com/memgraph/memgraph/pull/1142)
+- Queries that build maps with multiple same-variable property lookups have been
+  optimized. [#1168](https://github.com/memgraph/memgraph/pull/1168)
+- The batch update of properties improves performance when setting a large
+  number of properties, as in this example: 
+  ```
+  FOREACH (i in range(0, 1000000) | CREATE (n:Label {id:i}));                              
+
+  CREATE INDEX ON :Label(id);                                                              
+
+  FOREACH (i IN range(0, 1000000, 3) | MERGE (n:Label {id:i}) SET n += {prop2:"a1", prop3:"b2", prop4:"c3", prop5:"d4", prop6:"e5", prop7:"f6", prop8:"g7", prop9:"h8", prop10:"i9", prop11:"j10 q"});
+  ```
+  [#1115](https://github.com/memgraph/memgraph/pull/1115)
+- Setting properties is also improved by caching mappings of property name to
+  internal property `id`. [#1147](https://github.com/memgraph/memgraph/pull/1147)
+- Performance has been improved for concurrent operations contending on the same
+  node. [#1187](https://github.com/memgraph/memgraph/pull/1187)
+- When a query is executing in many iterations over the graph entities, the
+  performance has been improved by 100% due to faster scanning of nodes, for example: 
+  ```
+  UNWIND RANGE (1, 500) AS i CREATE ();
+  MATCH (),(),() RETURN COUNT(*);
+  ```
+  [#1127](https://github.com/memgraph/memgraph/pull/1227)
+- The query engine is more performant as at all times it is scanning and
+  expanding nodes instead of scanning both source and destination nodes and
+  then expanding to the relationship between them.
+  [#1085](https://github.com/memgraph/memgraph/pull/1085)
+- The expansion of node is no longer only done from left to right. Depending on
+  the previous executions and how many relationships needed to be check on
+  MERGE, the engine knows the fewest vector necessary to expand.
+  [#1110](https://github.com/memgraph/memgraph/pull/1110)
+- Users can now call `ToString()` method on `mgp::Value` and Memgraph's data
+  types when writing query modules using [C++
+  API](/reference-guide/query-modules/implement-custom-query-modules/api/cpp-api.md).
+  [#1140](https://github.com/memgraph/memgraph/pull/1140)
+- Trigger functions can now access deleted vertices from deleted edge when
+  processed. [#1209](https://github.com/memgraph/memgraph/pull/1209)
+- When developing query modules using C++ API, you can now get the `In` and
+  `Out` degrees of a node in O(1) time complexity. [#1217](https://github.com/memgraph/memgraph/pull/1217)
+- The C++ API now enables you to change relationship start (from) and end (to)
+  nodes with `mgp::Graph.SetFrom` and `mgp::Graph.SetTo` methods.
+- `SHOW INDEX INFO` now displays index information in alphabetic order for
+  easier orientation. [#1178](https://github.com/memgraph/memgraph/pull/1178)
+- The performance of `DETACH DELETE` query has been improved.
+  [#1078](https://github.com/memgraph/memgraph/pull/1078)
+- The `PROFILE` query now generates a table with operators in the same order as
+  in the plan constructed with the `EXPLAIN` query.
+  [#1024](https://github.com/memgraph/memgraph/pull/1204)
+- The import of relationships in on-disk storage mode can be improved by
+  switching to `READ ONLY VERTEX MODE;`.
+  [#1157](https://github.com/memgraph/memgraph/pull/1157).
+
+
+### Bug fixes
+
+- When projecting a map from a variable that happens to be null, the projection
+  will have a null value instead of displaying an error.
+  [#1119](https://github.com/memgraph/memgraph/pull/1119)
+- When using the C++ API you can now construct `std::set of values` (find unique
+  values) by iterating over `mgp::List` as expected, and successfully perform
+  any other operations dependent on the STL container requirements.
+  [#1210](https://github.com/memgraph/memgraph/pull/1210)
+- The `mgp::DispatcherGuard` also works as expected now.
+  [#1225](https://github.com/memgraph/memgraph/pull/1225)
+
+
 ## v2.10.1 - Aug 22, 2023
 
 ### New features
@@ -28,6 +127,8 @@ import VideoBySide from '@site/src/components/VideoBySide';
   [#1124](https://github.com/memgraph/memgraph/pull/1124)
 - The same query module can now be executed concurrently by different clients.
   [#1158](https://github.com/memgraph/memgraph/pull/1158)
+- Properties can now be removed from relationships with `RemoveProperty()`
+  function in C++ API. [#1156](https://github.com/memgraph/memgraph/pull/1156)
 
 ## v2.10 - Aug 2, 2023
 
