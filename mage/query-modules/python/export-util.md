@@ -21,7 +21,7 @@ export const Highlight = ({children, color}) => (
 );
 
 Module for exporting a graph database or query results in different formats. Currently, this
-module supports [**exporting database to a JSON file format**](#jsonpath) and [**exporting query results in a CSV file format**](#csv_queryquery-file_path-stream).
+module supports [**exporting database to a JSON file format**](#jsonpath), [**exporting query results in a CSV file format**](#csv_queryquery-file_path-stream) and [**exporting graph nodes and relationships to CSV file format**](#csv_graphnodes_list-relationships_list-path-config).
 
 [![docs-source](https://img.shields.io/badge/source-export_util-FB6E00?logo=github&style=for-the-badge)](https://github.com/memgraph/mage/blob/main/python/export_util.py)
 
@@ -392,3 +392,351 @@ Erica Sinclair,Priah Ferguson,Stranger Things,2016,"['Matt Duffer', 'Ross Duffer
 </TabItem>
 
 </Tabs>
+
+
+### `csv_graph(nodes_list, relationships_list, path, config)`
+
+This function exports the given lists of nodes and relationships into a CSV file. Additional configurations can be passed inside the `config` map to further specify the export.
+
+#### Input:
+
+- `nodes_list: List[Node]` ➡ list of nodes which are to be exported.
+- `relationships_list: List[Relationship]` ➡ list of relationships which are to be exported.
+- `path: string default = ""` ➡ path where the exported file will be saved. If left as default, the file will be saved in the current directory, as `exported_file.csv` (note: path must end with the filename, for example, `folder_outer/folder/file.csv` is a valid path, `folder_outer/folder/` is not).
+- `config: Map default = {}` ➡ configuration map, default is {}.
+
+#### Configurations:
+
+| Configuration Key | Default Value | Description |
+|-------------------|---------------|-------------|
+| `delimiter` | `,` | The delimiter used to separate fields in the CSV file. |
+| `quotes` | `All` | The type of quoting to apply to fields in the CSV file. Possible values: `none`: no quotes added, `ifNeeded`: quotes are added only when necessary, `All`: always quote. If anything other than the presented options is passed as a config, it is as if the default value is chosen. |
+| `separateHeader` | `False` | Indicates whether the CSV file header should be separated into its own file. If `True`, a file named `header.csv` will be created in the specified or default directory.|
+| `stream` | `False` | Indicates whether the data should be returned as a stream rather than a file. If `True`, no file will be saved. |
+
+#### Output:
+
+- `data: string` ➡ if stream is `True`, a string stream representation of data, otherwise `""`.
+- `path: string` ➡ path to the exported CSV file.
+
+
+
+#### File structure:
+
+The CSV file columns are structured this way:
+
+| _id | _labels| node_properties_sorted | _start | _end | _type | relationship_properties_sorted |
+|------|-----|--------|-------------|--------|------|-------|
+|node id| node labels | alphabetically sorted properties of all nodes (all node properties present in the graph) | id of the start node of a relationship | id of the end node of a relationship | type of relationship | alphabetically sorted properties of all relationships (all relationship properties present in the graph) |
+
+For example, consider a simple graph created with the following Cypher query:
+
+```cypher
+CREATE (d:Dog {name: "Rex", breed: "Dalmatian"})-[i:IS_OWNED_BY {rel_property: 30}]->(h:Human {name: "Carl", age: 50});
+```
+
+The `Dog` node's ID is 0, and the `Human` node's ID is 1.
+Exporting would result in a CSV file structured in the following way:
+
+| _id | _labels| age | breed | name| _start | _end | _type | rel_property |
+|-----|--------|-----|-------|-----|--------|------|-------|--------------|
+|0 | :Dog | | Dalmatian| Rex | | | | |
+|1 | :Human | 50 | | Carl | | | | |
+| | | | | | 0 | 1 | IS_OWNED_BY | 30 |
+
+
+#### Usage without configurations:
+
+In this section, simple usage without any configuration is displayed.
+
+<Tabs
+groupId="example"
+defaultValue="cypher"
+values={[
+{label: 'Step 1: Cypher for graph creation', value: 'cypher'},
+{label: 'Step 2: Graph visualization', value: 'visualization'},
+{label: 'Step 3: Usage example', value: 'usage1'},
+{label: 'Step 4: Csv result as a table', value: 'result1'},
+{label: 'Step 5: Csv file', value: 'result2'},
+]
+}>
+
+<TabItem value="cypher">
+
+```cypher
+CREATE (d:Dog {name: "Rex", breed: "Dalmatian"})-[i:IS_OWNED_BY {rel_property: 30}]->(h:Human {name: "Carl", age: 50});
+CREATE (hs:Human:Soldier {branch : "Army"})-[t:TRAINS { duration: duration("P10D")}]->(d:Dog:K9 {name: "Bolt", years_of_service: 3});
+```
+</TabItem>
+
+<TabItem value="visualization">
+
+<img src={require('../../data/query-modules/python/export-util/csv_graph.png').default}/>
+
+</TabItem>
+
+<TabItem value="usage1">
+
+```cypher
+MATCH (n)
+OPTIONAL MATCH (n)-[r]-()
+WITH COLLECT(DISTINCT n) AS nodes, COLLECT(DISTINCT r) AS relationships
+CALL export_util.csv_graph(nodes, relationships, "/demonstration/export/Documents/file.csv", {}) YIELD data, path RETURN data, path;
+```
+
+</TabItem>
+
+<TabItem value="result1">
+
+| _id | _labels | age | branch | breed | name | years_of_service | _start | _end | _type | duration | rel_property |
+|-----|-----------------|-----|--------|----------|------|------------------|--------|------|-----------------|----------------------------|-----------------|
+| 0 | :Dog | | | Dalmatian| Rex | | | | | | |
+| 1 | :Human | 50 | | | Carl | | | | | | |
+| 2 | :Human:Soldier | | Army | | | | | | | | |
+| 3 | :Dog:K9 | | | | Bolt | 3 | | | | | |
+| | | | | | | | 0 | 1 | IS_OWNED_BY | | 30 |
+| | | | | | | | 2 | 3 | TRAINS | duration(10 days,0:00:00) | |
+
+</TabItem>
+
+<TabItem value="result2">
+
+```plaintext
+
+"_id","_labels","age","branch","breed","name","years_of_service","_start","_end","_type","duration","rel_property"
+"0",":Dog","","","Dalmatian","Rex","","","","","",""
+"1",":Human","50","","","Carl","","","","","",""
+"2",":Human:Soldier","","Army","","","","","","","",""
+"3",":Dog:K9","","","","Bolt","3","","","","",""
+"","","","","","","","0","1","IS_OWNED_BY","","30"
+"","","","","","","","2","3","TRAINS","duration(10 days, 0:00:00)",""
+
+```
+
+</TabItem>
+
+</Tabs>
+
+
+#### Usage with configurations:
+
+In this section, usage with configurations is displayed. The same graph is used as in the usage without configurations.
+
+##### Delimiter
+
+Example of using a different delimiter.
+
+<Tabs
+groupId="example2"
+defaultValue="usage1"
+values={[
+{label: 'Step 1: Usage example', value: 'usage1'},
+{label: 'Step 2: Csv file', value: 'result1'},
+]
+}>
+<TabItem value="usage1">
+
+```cypher
+MATCH (n)
+OPTIONAL MATCH (n)-[r]-()
+WITH COLLECT(DISTINCT n) AS nodes, COLLECT(DISTINCT r) AS relationships
+CALL export_util.csv_graph(nodes, relationships, "/demonstration/export/Documents/file.csv", {delimiter : "|"}) YIELD data, path RETURN data, path;
+```
+
+</TabItem>
+
+<TabItem value="result1">
+
+```plaintext
+
+"_id"|"_labels"|"age"|"branch"|"breed"|"name"|"years_of_service"|"_start"|"_end"|"_type"|"duration"|"rel_property"
+"0"|":Dog"|""|""|"Dalmatian"|"Rex"|""|""|""|""|""|""
+"1"|":Human"|"50"|""|""|"Carl"|""|""|""|""|""|""
+"2"|":Human:Soldier"|""|"Army"|""|""|""|""|""|""|""|""
+"3"|":Dog:K9"|""|""|""|"Bolt"|"3"|""|""|""|""|""
+""|""|""|""|""|""|""|"0"|"1"|"IS_OWNED_BY"|""|"30"
+""|""|""|""|""|""|""|"2"|"3"|"TRAINS"|"duration(10 days, 0:00:00)"|""
+
+
+```
+
+</TabItem>
+
+</Tabs>
+
+##### Quoting:
+
+Example of using different quoting styles.
+
+<Tabs
+groupId="example3"
+defaultValue="usage1"
+values={[
+{label: 'Step 1: Usage example, quoting all', value: 'usage1'},
+{label: 'Step 2: Csv file, quoting all', value: 'result1'},
+{label: 'Step 3: Usage example, quoting ifNeeded', value: 'usage2'},
+{label: 'Step 4: Csv file, quoting ifNeeded', value: 'result2'},
+{label: 'Step 5: Usage example, quoting none', value: 'usage3'},
+{label: 'Step 6: Csv file, quoting none', value: 'result3'},
+]
+}>
+<TabItem value="usage1">
+
+```cypher
+MATCH (n)
+OPTIONAL MATCH (n)-[r]-()
+WITH COLLECT(DISTINCT n) AS nodes, COLLECT(DISTINCT r) AS relationships
+CALL export_util.csv_graph(nodes, relationships, "/demonstration/export/Documents/file.csv", {quotes : "All"}) YIELD data, path RETURN data, path;
+```
+
+</TabItem>
+
+<TabItem value="result1">
+
+```plaintext
+
+"_id","_labels","age","branch","breed","name","years_of_service","_start","_end","_type","duration","rel_property"
+"0",":Dog","","","Dalmatian","Rex","","","","","",""
+"1",":Human","50","","","Carl","","","","","",""
+"2",":Human:Soldier","","Army","","","","","","","",""
+"3",":Dog:K9","","","","Bolt","3","","","","",""
+"","","","","","","","0","1","IS_OWNED_BY","","30"
+"","","","","","","","2","3","TRAINS","duration(10 days, 0:00:00)",""
+
+
+```
+
+</TabItem>
+
+<TabItem value="usage2">
+
+```cypher
+MATCH (n)
+OPTIONAL MATCH (n)-[r]-()
+WITH COLLECT(DISTINCT n) AS nodes, COLLECT(DISTINCT r) AS relationships
+CALL export_util.csv_graph(nodes, relationships, "/demonstration/export/Documents/file.csv", {quotes : "ifNeeded"}) YIELD data, path RETURN data, path;
+```
+
+</TabItem>
+
+<TabItem value="result2">
+
+```plaintext
+
+_id,_labels,age,branch,breed,name,years_of_service,_start,_end,_type,duration,rel_property
+0,:Dog,,,Dalmatian,Rex,,,,,,
+1,:Human,50,,,Carl,,,,,,
+2,:Human:Soldier,,Army,,,,,,,,
+3,:Dog:K9,,,,Bolt,3,,,,,
+,,,,,,,0,1,IS_OWNED_BY,,30
+,,,,,,,2,3,TRAINS,"duration(10 days, 0:00:00)",
+
+```
+
+</TabItem>
+
+<TabItem value="usage3">
+
+```cypher
+MATCH (n)
+OPTIONAL MATCH (n)-[r]-()
+WITH COLLECT(DISTINCT n) AS nodes, COLLECT(DISTINCT r) AS relationships
+CALL export_util.csv_graph(nodes, relationships, "/demonstration/export/Documents/file.csv", {quotes : "none"}) YIELD data, path RETURN data, path;
+```
+
+</TabItem>
+
+<TabItem value="result3">
+
+```plaintext
+
+_id,_labels,age,branch,breed,name,years_of_service,_start,_end,_type,duration,rel_property
+0,:Dog,,,Dalmatian,Rex,,,,,,
+1,:Human,50,,,Carl,,,,,,
+2,:Human:Soldier,,Army,,,,,,,,
+3,:Dog:K9,,,,Bolt,3,,,,,
+,,,,,,,0,1,IS_OWNED_BY,,30
+,,,,,,,2,3,TRAINS,duration(10 days\, 0:00:00),
+
+
+```
+
+</TabItem>
+
+</Tabs>
+
+
+##### SeparateHeader:
+
+Example of separating the header.
+
+<Tabs
+groupId="example4"
+defaultValue="usage1"
+values={[
+{label: 'Step 1: Usage example, quoting all', value: 'usage1'},
+{label: 'Step 2: Header CSV file', value: 'header'},
+{label: 'Step 3: Rest of the CSV file', value: 'csv'},
+]
+}>
+<TabItem value="usage1">
+
+```cypher
+MATCH (n)
+OPTIONAL MATCH (n)-[r]-()
+WITH COLLECT(DISTINCT n) AS nodes, COLLECT(DISTINCT r) AS relationships
+CALL export_util.csv_graph(nodes, relationships, "/demonstration/export/Documents/file.csv", {separateHeader: true}) YIELD data, path RETURN data, path;
+```
+
+</TabItem>
+
+<TabItem value="header">
+
+```plaintext
+
+"_id","_labels","age","branch","breed","name","years_of_service","_start","_end","_type","duration","rel_property"
+
+```
+
+</TabItem>
+
+<TabItem value="csv">
+
+```plaintext
+"0",":Dog","","","Dalmatian","Rex","","","","","",""
+"1",":Human","50","","","Carl","","","","","",""
+"2",":Human:Soldier","","Army","","","","","","","",""
+"3",":Dog:K9","","","","Bolt","3","","","","",""
+"","","","","","","","0","1","IS_OWNED_BY","","30"
+"","","","","","","","2","3","TRAINS","duration(10 days, 0:00:00)",""
+
+```
+
+</TabItem>
+
+</Tabs>
+
+##### Stream:
+
+Example of exporting a file to stream. When stream is `True`, the CSV file is not saved, so the file path can be set as `""`, as it will be ignored.
+
+
+```cypher
+MATCH (n)
+OPTIONAL MATCH (n)-[r]-()
+WITH COLLECT(DISTINCT n) AS nodes, COLLECT(DISTINCT r) AS relationships
+CALL export_util.csv_graph(nodes, relationships, "", {stream: True}) YIELD data, path RETURN data;
+```
+
+Stream: 
+
+```plaintext	
+"_id","_labels","age","branch","breed","name","years_of_service","_start","_end","_type","duration","rel_property"
+"0",":Dog","","","Dalmatian","Rex","","","","","",""
+"1",":Human","50","","","Carl","","","","","",""
+"2",":Human:Soldier","","Army","","","","","","","",""
+"3",":Dog:K9","","","","Bolt","3","","","","",""
+"","","","","","","","0","1","IS_OWNED_BY","","30"
+"","","","","","","","2","3","TRAINS","duration(10 days, 0:00:00)",""
+
+```
