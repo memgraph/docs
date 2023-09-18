@@ -83,8 +83,8 @@ Information about available indexes can be retrieved using the following syntax:
 SHOW INDEX INFO;
 ```
 
-This query will return all the labels and label-property pairs that Memgraph
-currently indexes.
+This query displays an alphabetized table of all label and label-property indices
+presently kept by Memgraph.
 
 You can delete created indexes by using the following syntax:
 
