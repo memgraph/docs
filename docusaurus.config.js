@@ -1,6 +1,6 @@
 const baseUrl = "/";
-const math = require('remark-math');
-const katex = require('rehype-katex');
+const math = require("remark-math");
+const katex = require("rehype-katex");
 
 module.exports = {
   title: "Memgraph Docs",
@@ -16,18 +16,14 @@ module.exports = {
     "https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:500,600",
     "https://fonts.googleapis.com/css?family=Roboto:400, 500,600",
     {
-      href: 'https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css',
-      type: 'text/css',
+      href: "https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css",
+      type: "text/css",
       integrity:
-        'sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM',
-      crossorigin: 'anonymous',
+        "sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM",
+      crossorigin: "anonymous",
     },
   ],
   scripts: [
-    {
-      src: `https://memgraph.com/docs/js/load-analytics.js`,
-      // src: `http://localhost:3000/docs/js/load-analytics.js`,
-    },
     {
       src: "https://kit.fontawesome.com/3a9f2eb5b9.js",
     },
@@ -36,8 +32,7 @@ module.exports = {
     metadata: [
       {
         name: "robots",
-        content:
-          "noindex",
+        content: "noindex",
       },
     ],
     docs: {
@@ -109,16 +104,17 @@ module.exports = {
           position: "right",
         },
         {
-          type: 'html',
+          type: "html",
           className: "github-stars",
-          value: '<iframe src="https://ghbtns.com/github-btn.html?user=memgraph&repo=memgraph&type=star&count=true&size=large" frameborder="0" scrolling="0" title="Give Memgraph a Star on GitHub!"></iframe>',
+          value:
+            '<iframe src="https://ghbtns.com/github-btn.html?user=memgraph&repo=memgraph&type=star&count=true&size=large" frameborder="0" scrolling="0" title="Give Memgraph a Star on GitHub!"></iframe>',
           position: "right",
         },
         {
           href: "https://discord.gg/memgraph",
-          className: 'header-discord-link',
+          className: "header-discord-link",
           position: "right",
-          'aria-label': 'Memgraph Discord community'
+          "aria-label": "Memgraph Discord community",
         },
       ],
     },
@@ -137,8 +133,8 @@ module.exports = {
               href: "https://memgraph.com/docs/memgraph-lab/",
             },
             {
-              label: 'Memgraph Cloud',
-              to: 'https://memgraph.com/docs/memgraph-cloud/',
+              label: "Memgraph Cloud",
+              to: "https://memgraph.com/docs/memgraph-cloud/",
             },
             {
               label: "Cypher manual",
@@ -180,11 +176,11 @@ module.exports = {
           items: [
             {
               label: "Memgraph Cloud",
-              href: "https://memgraph.com/cloud"
+              href: "https://memgraph.com/cloud",
             },
             {
               label: "Memgraph Playground",
-              href: "https://playground.memgraph.com"
+              href: "https://playground.memgraph.com",
             },
             {
               label: "GitHub",
@@ -245,8 +241,6 @@ module.exports = {
       },
     ],
   ],
-  plugins: [
-    "docusaurus-plugin-sass",
-  ],
+  plugins: ["docusaurus-plugin-sass"],
   clientModules: [require.resolve("./src/components/analyticsCall.js")],
 };
