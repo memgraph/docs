@@ -22,10 +22,11 @@ To create a new project:
 2. Click **Add new** button.
 3. In the pop-up, enter the project name, choose the cloud region, size and
    Memgraph version and click **Next**.
-4. Add a password to your project to connect to your Memgraph project and click
+4. Adjust the instance [configuration](/memgraph/reference-guide/configuration). 
+5. Add a password to your project to connect to your Memgraph project and click
    **Next**. Keep in mind that Memgraph can't retrieve this password if you lose
    it. 
-5. Click **Go to project** to complete the project creation.
+6. Click **Go to project** to complete the project creation.
 
 Below is a demo video made for the launch that will take you through setting up
 a new Cloud project: 
